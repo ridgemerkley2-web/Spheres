@@ -1,0 +1,28 @@
+diff --git a/.github/workflows/verify.yml b/.github/workflows/verify.yml
+index e57b0b4e..90429098 100644
+--- a/.github/workflows/verify.yml
++++ b/.github/workflows/verify.yml
+@@ -46,7 +46,7 @@ jobs:
+       - name: Verify task queries and dependency guards
+         run: python -B -m unittest discover -s tools/planning -p "test_*.py"
+       - name: Verify strict native stability evidence orchestration
+-        run: python -B -m unittest discover -s tools/campaign -p "test_stability_matrix.py"
++        run: python -B -m unittest discover -s tools/campaign -p "test_*stability*.py"
+       - name: Verify release packaging and extraction guards
+         run: python -B -m unittest discover -s tools/release -p "test_*.py"
+       - name: Verify extracted smoke boundary guards
+diff --git a/tools/campaign/test_stability_matrix.py b/tools/campaign/test_stability_matrix.py
+index cc83064a..c55bcf29 100644
+--- a/tools/campaign/test_stability_matrix.py
++++ b/tools/campaign/test_stability_matrix.py
+@@ -496,7 +496,9 @@ class RetainedVerificationTests(unittest.TestCase):
+             moved = root / "relocated"
+             shutil.copytree(out, moved)
+             verified = matrix.verify_retained_run(moved)
+-            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
++            # The runner records a resolved origin; Windows TEMP may use an
++            # 8.3 alias (RUNNER~1) for that same directory.
++            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out.resolve())))
+             self.assertEqual(verified["source"], str(moved.resolve()))
+             self.assertTrue(verified["passed"])
+ 

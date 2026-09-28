@@ -1,0 +1,50 @@
+{
+  "revision": "3ec6e155a416f713149820f9d6276b5ad2e7d721",
+  "utc": "2026-09-28T18:29:10.935902+00:00",
+  "ordinary_workspace": {
+    "targets": 67,
+    "passed": 1979,
+    "failed": 0,
+    "ignored": 113,
+    "filtered": 0
+  },
+  "a1_still_failed": true,
+  "note": "The supplied --skip name matched zero tests. All ordinary targets executed without filtering; ignored acceptance/fixture checks remain separately declared.",
+  "files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\restored-workspace-3ec6e155.log",
+      "bytes": 220004,
+      "sha256": "f09081493291a407ef1d06ea5785f9ff0f32db5af4e38cd5dbb46057cc963bf7"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\restored-web-build-3ec6e155.log",
+      "bytes": 911,
+      "sha256": "15e6c37d36352c1ae256439f8623be470407c34fc41f22f273e53db36d276e9c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "bytes": 848551,
+      "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\tests\\bloc_census.rs",
+      "bytes": 65134,
+      "sha256": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\frozen-3ec6e155\\spheres-web.exe",
+      "bytes": 358621116,
+      "sha256": "bd1b442488e499d6294f092b2c2bfe5c8473ef53e46148e8af7ad4a060105b3f"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\frozen-3ec6e155\\spheres_web-55caf82b2dcec446.exe",
+      "bytes": 353088286,
+      "sha256": "fe019aeedaf055e6ad3a91c2370b60f8610229cc6ac9006af95aa8a1e6f94c0e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\frozen-3ec6e155\\bloc_census-b35be4d742aae476.exe",
+      "bytes": 31702744,
+      "sha256": "9478cc5e74205f08e998e91e037bb5cbb36d84ecf7d543701109fde51157c8c1"
+    }
+  ]
+}

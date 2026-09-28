@@ -1,0 +1,1097 @@
+{
+  "population_system": {
+    "nations": {
+      "encoded_field_payload_estimates": {
+        "source_notes": 73643,
+        "province_ids": 27773,
+        "labor_growth": 3193,
+        "research_reference": 3168,
+        "population_growth": 3138,
+        "hardship_reference": 3110,
+        "last_inherited_employed_m": 2801,
+        "opening_education_share": 1748,
+        "policy": 1684,
+        "opening_gdp_bn": 944,
+        "opening_population_m": 928,
+        "opening_military_strength": 840,
+        "last_policy_day": 611
+      },
+      "element_counts": {
+        "province_ids": 2959,
+        "source_notes": 484
+      },
+      "largest_rows": {
+        "province_ids": [
+          [
+            269,
+            "USSR"
+          ],
+          [
+            106,
+            "Yugoslavia"
+          ],
+          [
+            86,
+            "Russia"
+          ],
+          [
+            81,
+            "Turkey"
+          ],
+          [
+            51,
+            "USA"
+          ]
+        ],
+        "source_notes": [
+          [
+            4,
+            "Uzbekistan"
+          ],
+          [
+            4,
+            "Ukraine"
+          ],
+          [
+            4,
+            "Turkmenistan"
+          ],
+          [
+            4,
+            "Tajikistan"
+          ],
+          [
+            4,
+            "Slovenia"
+          ]
+        ]
+      },
+      "samples": {
+        "province_ids": "['AF-BAL', 'AF-BAM', 'AF-BDG', 'AF-BDS', 'AF-BGL', 'AF-FRA', 'AF-FYB', 'AF-GHA', 'AF-GHO', 'AF-HEL', 'AF-HER', 'AF-JOW', 'AF-KAB', 'AF-KAN', 'AF-KAP', 'AF-KDZ', 'AF-KHO', 'AF-KNR', 'AF-LAG', 'AF-LOG', 'AF-NAN', 'AF-NIM', 'AF-NUR', 'AF-PIA', 'AF-PKA', 'AF-SAM', 'AF-SAR', 'AF-TAK', 'AF-WAR', 'AF-ZAB', 'AFG_parwan', 'AFG_parwan-2', 'AFG_uruzgan', 'AFG_uruzgan-2']",
+        "source_notes": "['Province age and education shares use national observations. Jobs, ownership, wages and class shares are game estimates, not a historical census.', 'Modeled starting values where observations are unavailable: literacy, education_attainment_secondary_25_plus, education_attainment_tertiary_25_plus.', 'Courses have calendar delays; enrollment and qualification counts are separate. Gross enrollment is never treated as an observed attainment rate.']"
+      }
+    },
+    "provinces": {
+      "encoded_field_payload_estimates": {
+        "courses": 61420931,
+        "jobs_reference": 1351152,
+        "filled": 1350912,
+        "jobs": 1350574,
+        "children": 1076089,
+        "wage_indices": 324251,
+        "class_shares": 310733,
+        "class_risk_reference": 306032,
+        "project_jobs": 294905,
+        "class_living": 287969,
+        "wealth_indices": 287588,
+        "working": 264307,
+        "employed_by_skill": 259746,
+        "unemployment_by_skill": 145176,
+        "staffing_reference": 139655,
+        "social_mobility": 53431,
+        "military_m": 52390,
+        "training_capacity_m": 51058,
+        "annual_graduates_m": 50638,
+        "birth_rate_per_adult": 49741,
+        "retirees_m": 49615,
+        "labor_force_m": 48036,
+        "inherited_filled_m": 48002,
+        "living_standards": 44898,
+        "school_coverage": 40970,
+        "baseline_education_share": 27701,
+        "participation": 27602,
+        "participation_reference": 25081,
+        "school_reference": 24519,
+        "last_owner": 24001,
+        "opening_unemployment": 22174,
+        "reference_population_m": 20369,
+        "underemployed_m": 17710,
+        "intake_month": 12920
+      },
+      "element_counts": {
+        "children": 38558,
+        "class_living": 15504,
+        "class_risk_reference": 15504,
+        "class_shares": 15504,
+        "courses": 496309,
+        "employed_by_skill": 12920,
+        "filled": 20672,
+        "jobs": 20672,
+        "jobs_reference": 20672,
+        "project_jobs": 20672,
+        "staffing_reference": 20672,
+        "unemployment_by_skill": 12920,
+        "wage_indices": 20672,
+        "wealth_indices": 15504,
+        "working": 12920
+      },
+      "largest_rows": {
+        "children": [
+          [
+            15,
+            "ZW-MW"
+          ],
+          [
+            15,
+            "ZW-MV"
+          ],
+          [
+            15,
+            "ZW-MS"
+          ],
+          [
+            15,
+            "ZW-MN"
+          ],
+          [
+            15,
+            "ZW-MI"
+          ]
+        ],
+        "class_living": [
+          [
+            6,
+            "ZW-MW"
+          ],
+          [
+            6,
+            "ZW-MV"
+          ],
+          [
+            6,
+            "ZW-MS"
+          ],
+          [
+            6,
+            "ZW-MN"
+          ],
+          [
+            6,
+            "ZW-MI"
+          ]
+        ],
+        "class_risk_reference": [
+          [
+            6,
+            "ZW-MW"
+          ],
+          [
+            6,
+            "ZW-MV"
+          ],
+          [
+            6,
+            "ZW-MS"
+          ],
+          [
+            6,
+            "ZW-MN"
+          ],
+          [
+            6,
+            "ZW-MI"
+          ]
+        ],
+        "class_shares": [
+          [
+            6,
+            "ZW-MW"
+          ],
+          [
+            6,
+            "ZW-MV"
+          ],
+          [
+            6,
+            "ZW-MS"
+          ],
+          [
+            6,
+            "ZW-MN"
+          ],
+          [
+            6,
+            "ZW-MI"
+          ]
+        ],
+        "courses": [
+          [
+            48545,
+            "ST-P"
+          ],
+          [
+            44764,
+            "GQ-AN"
+          ],
+          [
+            41387,
+            "GY-BA"
+          ],
+          [
+            40705,
+            "SR-BR"
+          ],
+          [
+            37518,
+            "TT-ARI"
+          ]
+        ],
+        "employed_by_skill": [
+          [
+            5,
+            "ZW-MW"
+          ],
+          [
+            5,
+            "ZW-MV"
+          ],
+          [
+            5,
+            "ZW-MS"
+          ],
+          [
+            5,
+            "ZW-MN"
+          ],
+          [
+            5,
+            "ZW-MI"
+          ]
+        ],
+        "filled": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "jobs": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "jobs_reference": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "project_jobs": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "staffing_reference": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "unemployment_by_skill": [
+          [
+            5,
+            "ZW-MW"
+          ],
+          [
+            5,
+            "ZW-MV"
+          ],
+          [
+            5,
+            "ZW-MS"
+          ],
+          [
+            5,
+            "ZW-MN"
+          ],
+          [
+            5,
+            "ZW-MI"
+          ]
+        ],
+        "wage_indices": [
+          [
+            8,
+            "ZW-MW"
+          ],
+          [
+            8,
+            "ZW-MV"
+          ],
+          [
+            8,
+            "ZW-MS"
+          ],
+          [
+            8,
+            "ZW-MN"
+          ],
+          [
+            8,
+            "ZW-MI"
+          ]
+        ],
+        "wealth_indices": [
+          [
+            6,
+            "ZW-MW"
+          ],
+          [
+            6,
+            "ZW-MV"
+          ],
+          [
+            6,
+            "ZW-MS"
+          ],
+          [
+            6,
+            "ZW-MN"
+          ],
+          [
+            6,
+            "ZW-MI"
+          ]
+        ],
+        "working": [
+          [
+            5,
+            "ZW-MW"
+          ],
+          [
+            5,
+            "ZW-MV"
+          ],
+          [
+            5,
+            "ZW-MS"
+          ],
+          [
+            5,
+            "ZW-MN"
+          ],
+          [
+            5,
+            "ZW-MI"
+          ]
+        ]
+      },
+      "samples": {
+        "children": "{'1979': 0.001329085871043332, '1980': 0.001329085871043332, '1981': 0.001329085871043332, '1982': 0.001329085871043332, '1983': 0.001329085871043332, '1984': 0.001329085871043332, '1985': 0.001329085871043332, '1986': 0.001329085871043332, '1987': 0.001329085871043332, '1988': 0.001329085871043332, '1989': 0.001329085871043332, '1990': 0.00582838536290947, '1991': 0.00448607502069584, '1992': 0.004525580955313871, '1993': 0.004564040838453504}",
+        "class_living": "[92.73168464457704, 93.98641325560449, 98.18699299285366, 98.56103054113782, 94.06391277545183, 93.80151202989707]",
+        "class_risk_reference": "[0.009773999999999955, 0.008787951801910868, 0.06799999999999994, 0.06799999999999976, 0.010588499999999952, 0.004886999999999977]",
+        "class_shares": "[0.02184191851486714, 0.748765829961398, 0.06287701007375568, 0.048216628471898636, 0.10024310321356295, 0.01805550976451762]",
+        "courses": "[{'from': 2, 'funded_days': 1402.3039814866577, 'people_m': 1.5645067736516296e-05, 'required_days': 1461.0, 'started_day': 1, 'to': 4}, {'from': 2, 'funded_days': 1372.3039814866581, 'people_m': 1.2013248734851192e-05, 'required_days': 1461.0, 'started_day': 31, 'to': 4}, {'from': 2, 'funded_days': 1344.3039814866581, 'people_m': 8.27147355436505e-06, 'required_days': 1461.0, 'started_day': 59, 'to': 4}, {'from': 2, 'funded_days': 1313.3039814866577, 'people_m': 4.740073856008086e-06, 'required_days': 1461.0, 'started_day': 90, 'to': 4}, {'from': 2, 'funded_days': 1283.3039814866577, 'people_m': 1.3624835234354924e-06, 'required_days': 1461.0, 'started_day': 120, 'to': 4}]",
+        "employed_by_skill": "[0.007699647869280378, 0.01663495270610419, 0.006485850287476172, 0.002269182149697013, 0.0017269675344795737]",
+        "filled": "[[0.0007870310945510737, 1.2545147225080008e-05, 5.749962915862508e-06], [0.0025602919425916125, 0.00023424442888566092, 9.291112574762484e-05], [0.002150788026520455, 0.000263727322958394, 7.11042379553305e-05], [0.0019066885626068029, 0.00030832172690933136, 0.00013458730972495435], [0.007505532756270767, 0.0006166434538186627, 0.00011776389600933509], [0.002741778676279728, 0.000208425017474971, 8.684532460076315e-05], [0.009004518663820184, 0.0004376925366974394, 0.0005731791423650377], [0.0041638211402201235, 0.0001875825157274733, 0.0006448265351606657]]",
+        "jobs": "[[0.0008886334644940493, 1.4309438811377605e-05, 6.705826954866942e-06], [0.0028908147528264403, 0.00026718748388575254, 0.0001083565130005706], [0.0024284456213123124, 0.00030081671606189465, 8.292448533376418e-05], [0.0021528339538692894, 0.0003516826710974861, 0.0001569608747991803], [0.008474465141536592, 0.0007033653421949722, 0.0001373407654492828], [0.003095730652634657, 0.0002377369496593839, 0.00010128234340527219], [0.01016696376004823, 0.0004992475942847066, 0.0006684634664747975], [0.004701352755926279, 0.0002139632546934455, 0.0007520213997841447]]",
+        "jobs_reference": "[[0.0007773801152537135, 1.2517954406250205e-05, 5.866284288555314e-06], [0.002528896328486627, 0.0002337366814513508, 9.479071172818517e-05], [0.0021244139596498196, 0.0002631556685022921, 7.254267202599602e-05], [0.001883307768669139, 0.00030765340977357284, 0.00013731000217416124], [0.00741349606070952, 0.0006153068195471457, 0.00012014625190239109], [0.002708157578681528, 0.00020797323610978596, 8.860219982193098e-05], [0.008894100633568412, 0.00043674379583055056, 0.0005847745188247444], [0.004112762227935207, 0.00018717591249880724, 0.0006578713336778371]]",
+        "project_jobs": "[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]",
+        "staffing_reference": "[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0000000000000002]",
+        "unemployment_by_skill": "[0.0, 0.0, 0.0, 0.0, 0.0]",
+        "wage_indices": "[0.8157815351075013, 1.3080020875724665, 1.0987728047466339, 1.3609351566140209, 1.0461711809399805, 1.1509464766861413, 1.0465574707270184, 1.204471667825752]",
+        "wealth_indices": "[32.87674301540285, 44.351823324718865, 72.4650668885625, 106.40343948512417, 138.21571256375648, 338.1310711570154]",
+        "working": "[0.010394486694086952, 0.022457104207354667, 0.008797898285377224, 0.0030633847238120135, 0.0023313976642864065]"
+      }
+    },
+    "unallocated": {
+      "encoded_field_payload_estimates": {
+        "courses": 33096,
+        "jobs": 9234,
+        "filled": 9222,
+        "jobs_reference": 9202,
+        "project_jobs": 3277,
+        "class_living": 3239,
+        "wealth_indices": 3219,
+        "working": 3200,
+        "unemployment_by_skill": 2813,
+        "children": 2803,
+        "wage_indices": 1759,
+        "employed_by_skill": 1597,
+        "class_shares": 1418,
+        "class_risk_reference": 1300,
+        "staffing_reference": 1152,
+        "military_m": 618,
+        "labor_force_m": 607,
+        "retirees_m": 607,
+        "school_coverage": 537,
+        "reference_population_m": 516,
+        "living_standards": 509,
+        "participation": 342,
+        "baseline_education_share": 332,
+        "school_reference": 322,
+        "participation_reference": 288,
+        "opening_unemployment": 281,
+        "last_owner": 279,
+        "social_mobility": 192,
+        "training_capacity_m": 189,
+        "birth_rate_per_adult": 186,
+        "inherited_filled_m": 184,
+        "annual_graduates_m": 177,
+        "intake_month": 145,
+        "underemployed_m": 105
+      },
+      "element_counts": {
+        "children": 113,
+        "class_living": 174,
+        "class_risk_reference": 174,
+        "class_shares": 174,
+        "courses": 265,
+        "employed_by_skill": 145,
+        "filled": 232,
+        "jobs": 232,
+        "jobs_reference": 232,
+        "project_jobs": 232,
+        "staffing_reference": 232,
+        "unemployment_by_skill": 145,
+        "wage_indices": 232,
+        "wealth_indices": 174,
+        "working": 145
+      },
+      "largest_rows": {
+        "children": [
+          [
+            15,
+            "Seychelles"
+          ],
+          [
+            15,
+            "Mauritius"
+          ],
+          [
+            15,
+            "Maldives"
+          ],
+          [
+            15,
+            "Comoros"
+          ],
+          [
+            15,
+            "CapeVerde"
+          ]
+        ],
+        "class_living": [
+          [
+            6,
+            "Uruguay"
+          ],
+          [
+            6,
+            "Turkey"
+          ],
+          [
+            6,
+            "Tanzania"
+          ],
+          [
+            6,
+            "SouthKorea"
+          ],
+          [
+            6,
+            "SouthAfrica"
+          ]
+        ],
+        "class_risk_reference": [
+          [
+            6,
+            "Uruguay"
+          ],
+          [
+            6,
+            "Turkey"
+          ],
+          [
+            6,
+            "Tanzania"
+          ],
+          [
+            6,
+            "SouthKorea"
+          ],
+          [
+            6,
+            "SouthAfrica"
+          ]
+        ],
+        "class_shares": [
+          [
+            6,
+            "Uruguay"
+          ],
+          [
+            6,
+            "Turkey"
+          ],
+          [
+            6,
+            "Tanzania"
+          ],
+          [
+            6,
+            "SouthKorea"
+          ],
+          [
+            6,
+            "SouthAfrica"
+          ]
+        ],
+        "courses": [
+          [
+            90,
+            "CapeVerde"
+          ],
+          [
+            66,
+            "Seychelles"
+          ],
+          [
+            66,
+            "Comoros"
+          ],
+          [
+            42,
+            "Mauritius"
+          ],
+          [
+            1,
+            "Maldives"
+          ]
+        ],
+        "employed_by_skill": [
+          [
+            5,
+            "Uruguay"
+          ],
+          [
+            5,
+            "Turkey"
+          ],
+          [
+            5,
+            "Tanzania"
+          ],
+          [
+            5,
+            "SouthKorea"
+          ],
+          [
+            5,
+            "SouthAfrica"
+          ]
+        ],
+        "filled": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "jobs": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "jobs_reference": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "project_jobs": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "staffing_reference": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "unemployment_by_skill": [
+          [
+            5,
+            "Uruguay"
+          ],
+          [
+            5,
+            "Turkey"
+          ],
+          [
+            5,
+            "Tanzania"
+          ],
+          [
+            5,
+            "SouthKorea"
+          ],
+          [
+            5,
+            "SouthAfrica"
+          ]
+        ],
+        "wage_indices": [
+          [
+            8,
+            "Uruguay"
+          ],
+          [
+            8,
+            "Turkey"
+          ],
+          [
+            8,
+            "Tanzania"
+          ],
+          [
+            8,
+            "SouthKorea"
+          ],
+          [
+            8,
+            "SouthAfrica"
+          ]
+        ],
+        "wealth_indices": [
+          [
+            6,
+            "Uruguay"
+          ],
+          [
+            6,
+            "Turkey"
+          ],
+          [
+            6,
+            "Tanzania"
+          ],
+          [
+            6,
+            "SouthKorea"
+          ],
+          [
+            6,
+            "SouthAfrica"
+          ]
+        ],
+        "working": [
+          [
+            5,
+            "Uruguay"
+          ],
+          [
+            5,
+            "Turkey"
+          ],
+          [
+            5,
+            "Tanzania"
+          ],
+          [
+            5,
+            "SouthKorea"
+          ],
+          [
+            5,
+            "SouthAfrica"
+          ]
+        ]
+      },
+      "samples": {
+        "children": "{'1993': 0.0}",
+        "class_living": "[96.64423177695771, 96.64423177695771, 96.64423177695771, 96.64423177695771, 96.64423177695771, 96.64423177695771]",
+        "class_risk_reference": "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]",
+        "class_shares": "[0.1, 0.45, 0.15, 0.15, 0.12, 0.03]",
+        "courses": "[]",
+        "employed_by_skill": "[1.0336470515522329e-16, 1.1836248373384089e-16, 0.0, 0.0, 0.0]",
+        "filled": "[[3.8032425577629894e-17, 0.0, 0.0], [5.834519832931864e-18, 0.0, 0.0], [4.074902740460346e-17, 0.0, 0.0], [4.754053197203737e-18, 0.0, 0.0], [1.663918619021313e-17, 0.0, 0.0], [1.9448399443106237e-17, 0.0, 0.0], [6.417971816225057e-17, 0.0, 0.0], [3.208985908112526e-17, 0.0, 0.0]]",
+        "jobs": "[[3.8032425577629894e-17, 0.0, 0.0], [5.834519832931864e-18, 0.0, 0.0], [4.074902740460346e-17, 0.0, 0.0], [4.754053197203737e-18, 0.0, 0.0], [1.663918619021313e-17, 0.0, 0.0], [1.9448399443106237e-17, 0.0, 0.0], [6.417971816225057e-17, 0.0, 0.0], [3.2089859081125285e-17, 0.0, 0.0]]",
+        "jobs_reference": "[[4.453509436390251e-16, 0.0, 0.0], [6.83208833991686e-17, 0.0, 0.0], [4.771617253275268e-16, 0.0, 0.0], [5.566886795487813e-17, 0.0, 0.0], [1.9484103784207347e-16, 0.0, 0.0], [2.2773627799722865e-16, 0.0, 0.0], [7.515297173908547e-16, 0.0, 0.0], [3.7576485869542737e-16, 0.0, 0.0]]",
+        "project_jobs": "[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]",
+        "staffing_reference": "[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]",
+        "unemployment_by_skill": "[0.0, 1.3411276369444526e-15, 5.283939527487485e-16, 2.05486537180069e-16, 3.13485114856463e-16]",
+        "wage_indices": "[0.78, 1.25, 1.05, 1.3, 1.0, 1.1, 1.0, 1.15]",
+        "wealth_indices": "[33.04411910922074, 44.52144315791375, 72.47609125529962, 106.41562205181494, 138.4609739544291, 338.72665579092364]",
+        "working": "[1.5832356388748645e-16, 2.235498829289588e-15, 8.093402250811777e-16, 3.1474342086490265e-16, 4.801646803444222e-16]"
+      }
+    }
+  },
+  "fiscal_recovery": {
+    "nations": {
+      "encoded_field_payload_estimates": {
+        "money_journal": 14725036,
+        "observations": 720731,
+        "last_ai_reason": 12406,
+        "previous_primary": 3075,
+        "previous_trend": 2780,
+        "last_ai_action": 2227,
+        "opening_debt_bn": 1747,
+        "accumulating": 1422,
+        "previous_adjustment": 1254,
+        "opening_gdp": 944,
+        "observed_month_fraction": 925,
+        "confidence_pressure": 774,
+        "last_restructuring_day": 632,
+        "pending": 632,
+        "last_ai_review_day": 631,
+        "last_day": 631,
+        "opening_treasury_bn": 474,
+        "months_observed": 301,
+        "improving_months": 289,
+        "started_day": 215,
+        "stress_months": 189
+      },
+      "element_counts": {
+        "money_journal": 632,
+        "observations": 1791,
+        "accumulating": 26
+      },
+      "largest_rows": {
+        "money_journal": [
+          [
+            4,
+            "Zimbabwe"
+          ],
+          [
+            4,
+            "Zambia"
+          ],
+          [
+            4,
+            "Zaire"
+          ],
+          [
+            4,
+            "Yugoslavia"
+          ],
+          [
+            4,
+            "Yemen"
+          ]
+        ],
+        "observations": [
+          [
+            12,
+            "Zimbabwe"
+          ],
+          [
+            12,
+            "Zambia"
+          ],
+          [
+            12,
+            "Zaire"
+          ],
+          [
+            12,
+            "Yugoslavia"
+          ],
+          [
+            12,
+            "Yemen"
+          ]
+        ],
+        "accumulating": [
+          [
+            13,
+            "Yugoslavia"
+          ],
+          [
+            13,
+            "USSR"
+          ]
+        ]
+      },
+      "samples": {
+        "money_journal": "{'days': [{'closing_debt_bn': 5.527307449396363, 'closing_treasury_bn': 0.0, 'day': 1416, 'fiscal': {'construction_bn': 0.0, 'departments_bn': [[6.478752621509364e-05, 6.478752621509364e-05, 6.478752621509364e-05, 6.478752621509364e-05, 6.478752621509365e-05], [4.664701887486742e-05, 4.664701887486742e-05, 4.664701887486742e-05, 4.664701887486742e-05, 4.664701887486744e-05], [5.183002097207491e-05, 5.183002097207491e-05, 5.183002097207491e-05, 5.183002097207491e-05, 5.1830020972074904e-05], [7.256202936090488e-05, 7.256202936090488e-05, 7.256202936090488e-05, 7.256202936090488e-05, 7.25620293609049e-05], [0.0, 0.0, 0.0, 0.0, 4.0150016245973534e-05], [0.0, 4.66921278e-07, 2.4980288373000004e-06, 0.0, 0.0], [0.0, 1.0950004430720051e-05, 1.0950004430720051e-05, 1.0950004430720051e-05, 1.0950004430720055e-05], [0.000219000088614401, 0.000219000088614401, 0.000219000088614401, 0.0, 0.0], [1.8",
+        "observations": "[{'closing_debt_bn': 4.929905507709916, 'closing_gdp': 2.627709708341082, 'closing_treasury_bn': 0.0, 'gdp_years': 0.2190673832942688, 'interest_bn': 0.033424984458548676, 'month': 36, 'opening_debt_bn': 4.863094771873643, 'opening_gdp': 2.630591575685758, 'opening_treasury_bn': 0.0, 'revenue_bn': 0.028479766932434532, 'spending_bn': 0.061208196160268805, 'tax_gdp_years': 0.02847875982825494, 'year_fraction': 0.0833333333333333}, {'closing_debt_bn': 4.995104204400417, 'closing_gdp': 2.6252784572656376, 'closing_treasury_bn': 0.0, 'gdp_years': 0.2188676685726601, 'interest_bn': 0.03184924709077936, 'month': 37, 'opening_debt_bn': 4.929905507709916, 'opening_gdp': 2.627709708341082, 'opening_treasury_bn': 0.0, 'revenue_bn': 0.028453737577064278, 'spending_bn': 0.06114658417107055, 'tax_gdp_years': 0.028452796914445803, 'year_fraction': 0.08333333333333338}, {'closing_debt_bn': 5.0589371868",
+        "accumulating": "{'closing_debt_bn': 60.62044639747722, 'closing_gdp': 1746.521835932332, 'closing_treasury_bn': 0.0, 'gdp_years': 107.8497120790478, 'interest_bn': 0.09859135516179929, 'month': 43, 'opening_debt_bn': 72.84950836874533, 'opening_gdp': 1741.9570147643765, 'opening_treasury_bn': 0.0, 'revenue_bn': 45.99267197938909, 'spending_bn': 32.1551667809261, 'tax_gdp_years': 43.13988483161912, 'year_fraction': 0.06182795698924729}"
+      }
+    }
+  },
+  "economic_ai": {
+    "nations": {
+      "encoded_field_payload_estimates": {
+        "raw_supply_review": 2742974,
+        "supply_review": 137194,
+        "funding": 41450,
+        "reason": 19339,
+        "action": 2041,
+        "offered_reserves": 1670,
+        "project_kind": 1640,
+        "district": 1023,
+        "fiscal_year": 628,
+        "last_review_day": 627,
+        "project": 556,
+        "evaluations": 299,
+        "capacity_micros": 30
+      },
+      "element_counts": {
+        "offered_reserves": 314,
+        "raw_supply_review": 471,
+        "supply_review": 471,
+        "funding": 680
+      },
+      "largest_rows": {
+        "offered_reserves": [
+          [
+            2,
+            "Zimbabwe"
+          ],
+          [
+            2,
+            "Zambia"
+          ],
+          [
+            2,
+            "Zaire"
+          ],
+          [
+            2,
+            "Yugoslavia"
+          ],
+          [
+            2,
+            "Yemen"
+          ]
+        ],
+        "raw_supply_review": [
+          [
+            3,
+            "Zimbabwe"
+          ],
+          [
+            3,
+            "Zambia"
+          ],
+          [
+            3,
+            "Zaire"
+          ],
+          [
+            3,
+            "Yugoslavia"
+          ],
+          [
+            3,
+            "Yemen"
+          ]
+        ],
+        "supply_review": [
+          [
+            3,
+            "Zimbabwe"
+          ],
+          [
+            3,
+            "Zambia"
+          ],
+          [
+            3,
+            "Zaire"
+          ],
+          [
+            3,
+            "Yugoslavia"
+          ],
+          [
+            3,
+            "Yemen"
+          ]
+        ],
+        "funding": [
+          [
+            8,
+            "Yugoslavia"
+          ],
+          [
+            8,
+            "Yemen"
+          ],
+          [
+            8,
+            "Venezuela"
+          ],
+          [
+            8,
+            "Uzbekistan"
+          ],
+          [
+            8,
+            "Ukraine"
+          ]
+        ]
+      },
+      "samples": {
+        "offered_reserves": "[0.0, None]",
+        "raw_supply_review": "{'as_of_day': 1456, 'horizons_days': [30, 90, 365], 'lines': [{'allocable_stock': [18.900506556, 18.900506556, 18.900506556], 'blocked_now': False, 'civilian_operating_daily': 0.048092892, 'commodity': 'bauxite', 'contract_coverage': [0.0, 0.0, 0.0], 'contracted_in_monthly': 0.0, 'coverage': [19.2371568, 19.2371568, 19.2371568], 'demand': [0.192371568, 0.192371568, 0.192371568], 'domestic_coverage': [0.0, 0.0, 0.0], 'equipment_horizon': [0.0, 0.0, 0.0], 'equipment_remaining': 0.0, 'finite_remaining': 0.0, 'immediate_draw': 0.048092892, 'immediate_shortage': 0.0, 'materials_remaining': 0.0, 'military_recurring_monthly': 0.0, 'mine_remaining': 0.0, 'net_domestic_monthly': 0.0, 'pending': [0.336650244, 0.336650244, 0.336650244], 'prior_claims': [0.0, 0.0, 0.0], 'project_remaining': 0.0, 'reason': \"RUN, PLAN, and WATCH are covered by secured supply. Remaining project, mine, Materials and cus",
+        "supply_review": "{'as_of_day': 1456, 'horizon_days': 90, 'lines': [{'coverage': 239.130308633, 'domestic_contracts': -0.0, 'good': 'intermediates', 'imports': -0.0, 'operating_daily': 0.0, 'project_remaining': 0.0, 'projected_domestic': 0.0, 'reason': 'No installed operating use or unfinished project currently needs this good.', 'recent_domestic_daily': 0.233460639, 'shortage': 0.0, 'startup_reserve': 0.0, 'status': 'idle', 'stock': 239.130308633, 'storage_capacity': 250.0, 'storage_headroom': 10.869691367000001, 'target': 0.0}, {'coverage': 0.0, 'domestic_contracts': 0.0, 'good': 'capital_goods', 'imports': -0.0, 'operating_daily': 0.0, 'project_remaining': 0.0, 'projected_domestic': 0.0, 'reason': 'No installed operating use or unfinished project currently needs this good.', 'recent_domestic_daily': -0.0, 'shortage': 0.0, 'startup_reserve': 0.0, 'status': 'idle', 'stock': 0.0, 'storage_capacity': 250.0",
+        "funding": "{'annual_authority_bn': 10.690579603713896, 'as_of_day': 1456, 'available_authority_bn': 10.124618560071005, 'basis': 'Optimistic lower bound at the configured daily construction budget and renewed capital appropriations. Other projects, operating expenditure and conflict can extend it; physical inventory does not limit construction.', 'earliest_years': 0.5838246575342468, 'funding_years': 0.00677178041021246, 'remaining_work_cost_bn': 0.07103200000000007, 'unshared_work_years': 0.5838246575342468}"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "1c5f129faae0579703ceefb12ae49b435be8e6dc",
+  "generated_from": "cce849402181d0eda2118414ebad2ae6230933a2",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -866,6 +866,121 @@
       }
     },
     "France": {
+      "fr_an_jo_debats_19900827": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_an_jo_debats_19950519": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_2022_195_pdr_first_round_declaration": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_2022_197_pdr_proclamation_pdf": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_debre_communication_20070510": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_debre_communication_20120510": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_debre_investiture_address_20070516": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_debre_investiture_address_20120515": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_2007_141_pdr": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_2012_154_pdr": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_2017_171_pdr": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_88_60_pdr_19880511": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_95_81_pdr_19950512": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_decision_requests_20020509": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_dossier_documentaire_2017": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_fabius_investiture_address_20170514": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_fabius_investiture_address_20220507": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_fabius_proclamation_statement_20170510": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_investiture_page_2007": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_note_mai_2012_duree_des_mandats": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_proclamation_20020508": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_rapport_activite_2017": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_cc_sarkozy_installation_speech_20070516": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
       "fr_cnccfp_2024": {
         "commit": "4643bd97",
         "packet": "S10",
@@ -904,6 +1019,136 @@
       "fr_cnccfp_publication_page_2024": {
         "commit": "13b41be4",
         "packet": "S10",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_address_elysee_19950517": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_armed_forces_message_19950517": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_biography": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_declaration_20070515": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_investiture_declaration_20020516": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_chirac_reelection_declaration_20020505": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_hollande_declaration_20120515": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_hollande_interview_20170510": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_investiture_20220507": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_investiture_hollande": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_investiture_macron": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_investiture_sarkozy": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_accepts_balladur_resignation_19950510": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_congratulates_chirac_19950507": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_investiture_address_19880521": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_kohl_press_conference_19900104": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_letter_19950516": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_mitterrand_voeux_corps_diplomatique_19900103": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_elysee_passation_20170514": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_decree_prime_minister_20120515": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_dila_opendata_20260904": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_dila_opendata_20260905": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_proclamation_20070511": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_proclamation_20120511": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_proclamation_20170511": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
+        "via": "extract_first_added"
+      },
+      "fr_jorf_proclamation_20220428": {
+        "commit": "09b27c49",
+        "packet": "CLAUDE-C01-23",
         "via": "extract_first_added"
       }
     },
@@ -961,6 +1206,316 @@
       "in_aicc_transcript_rahul_gandhi_speech_20171216": {
         "commit": "f0da27b2",
         "packet": "CLAUDE-C01-20",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol10_evolution_of_bjp": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol2_presidential_speeches_part1": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol3_presidential_speeches_part2": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol4_foreign_policy_resolutions": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol5_political_resolutions": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_elib_party_document_vol6_economic_resolutions": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_org_advani_profile_19961019": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_org_lka_profile_biodata_20030317": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_org_swarna_jayanti_press_release_19970716": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_advani_opening_remarks_ne_19980411": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_advani_opening_remarks_ne_20051226": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_advani_speech_20050615": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_advani_statement_20041020": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_amit_shah_felicitation_20160202": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_amit_shah_presidential_address_national_council_20140809": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_amit_shah_re_elected_national_president_20160124": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_bjp_presidents_1980_2013_list_20140117": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_bjp_presidents_list_20251120": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_gadkari_announces_national_executive_20100316": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_gadkari_first_press_conference_as_president_20091224": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_gadkari_presidential_address_national_council_indore_20100218": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_gadkari_statement_no_second_term_20130122": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_gadkari_styled_former_president_20130127": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_general_secretary_report_nagpur_200008": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_jana_krishnamurthi_press_statement_20010329": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_jana_krishnamurthy_ne_address_20010324": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_jana_krishnamurthy_press_statement_20010318": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_laxman_nomination_20000802": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_laxman_presidential_address_nagpur_200008": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_laxman_press_statement_20010309": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_laxman_statement_20000831": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_laxman_statement_20000901": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_nadda_felicitation_speech_20260120": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_nadda_letter_to_karyakartas_20230117": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_naidu_first_press_conference_20020711": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_naidu_national_council_address_20020803": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_naidu_profile_20020701": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_national_election_officer_declaration_rajnath_singh_20130123": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_ne_resolution_political_situation_20010324": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_office_bearers_press_release_20010314": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_parliamentary_board_resolution_rajnath_singh_20091219": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_parliamentary_board_resolution_rajnath_singh_20140709": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_press_release_20010315": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_press_release_listing_20091228": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_press_release_office_bearers_20041030": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_press_statement_naidu_resignation_20041018": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_profile_gadkari_national_president_20091218": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_profile_national_president_amit_shah_20140709": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_rajat_jayanti_sandesh_20051230": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_rajnath_singh_acceptance_speech_newly_elected_20130123": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_rajnath_singh_national_council_address_20060120": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_rajnath_singh_statement_20060102": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_resolution_advani_resignation_20050608": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_returning_officer_notice_20260116": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_returning_officer_statement_20260119": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_shastri_press_statement_20020624": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_thakre_budget_statement_19990227": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_thakre_presidential_speech_gandhinagar_199805": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_site_thakre_press_statement_20000704": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_today_editorial_20020716": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_bjp_today_national_council_report_20041027": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
         "via": "extract_first_added"
       },
       "in_cabsec_council_list_20260623": {
@@ -1443,6 +1998,46 @@
         "packet": "CLAUDE-C01-20",
         "via": "extract_first_added"
       },
+      "in_kamal_sandesh_vol15_no03_20200201": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_kamal_sandesh_vol18_no03_20230201": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_kamal_sandesh_vol20_no24_20251216": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_kamal_sandesh_vol21_no02_20260116": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_ks_amit_shah_valmiki_jayanti_address_20161015": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_ks_nadda_address_national_convention_20240217": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_ks_nadda_appointed_working_president_20190617": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_ks_national_president_appoints_office_bearers_20260817": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
       "in_ls_bio_pv_narasimha_rao_xi_lok_sabha_20141024": {
         "commit": "f0da27b2",
         "packet": "CLAUDE-C01-20",
@@ -1873,6 +2468,11 @@
         "packet": "CLAUDE-C01-20",
         "via": "extract_first_added"
       },
+      "in_rs_debate_19911210_ekta_yatra_bjp_president": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
       "in_rs_debate_19960715_remarks_against_congress_president": {
         "commit": "f0da27b2",
         "packet": "CLAUDE-C01-20",
@@ -1911,6 +2511,21 @@
       "in_rs_papers_19910307": {
         "commit": "d57a7bd4",
         "packet": "CLAUDE-C01-11",
+        "via": "extract_first_added"
+      },
+      "in_rs_written_answers_19910108_usq1586_rath_yatra": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_rs_written_answers_19920304_usq1060_rocket_fire": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
+        "via": "extract_first_added"
+      },
+      "in_rs_written_answers_19920304_usq1067_flag_hoisting": {
+        "commit": "644ce003",
+        "packet": "CLAUDE-C01-27",
         "via": "extract_first_added"
       }
     },
@@ -4874,6 +5489,16 @@
         "packet": "S10",
         "via": "source_id_first_seen"
       },
+      "sa_boe_shura_law_ar_20250507": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_boe_shura_law_en_20250513": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_boe_succession_law": {
         "commit": "4643bd97",
         "packet": "S10",
@@ -4894,10 +5519,150 @@
         "packet": "S10",
         "via": "source_id_first_seen"
       },
+      "sa_embassy_humaid_appointed_20020207": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_humaid_statement_20020207": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_jubair_death_20020124": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_king_address_20010604": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_decrees_20010524": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_mourning_20020127": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_oath_19970714": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_oath_20010604": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_second_term_19970706": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_embassy_shura_session_20010605": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_naas_declaration_2020": {
         "commit": "4643bd97",
         "packet": "S10",
         "via": "source_id_first_seen"
+      },
+      "sa_shura_cv_alsheikh_20260808": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_cv_humaid_20020609": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_history_20020208": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_history_20090315": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_intro_en_20010527": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_law_text_20010627": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_magazine_column_20020623": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_magazine_p28_20020425": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_magazine_p8_20020824": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_news_20010614": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_news_20020116": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_news_20020401": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_news_a54_20161202": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_speeches_term1_20090415": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_speeches_term2_20090415": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_shura_statistics_20020208": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_a135_statement_20061019": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_a135_statement_resend_20061020": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
       },
       "sa_spa_abdullah_death_20150123_ar": {
         "commit": "ffcd27cd",
@@ -4919,6 +5684,41 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_allegiance_law_arts14_18_20061020": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_allegiance_law_arts1_5_20061020": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_commission_oath_20071210": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_dateline_20090228": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_dateline_20201020": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_dateline_20240906": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_english_news_20020212": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_spa_fahd_bio_20050801": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -4934,6 +5734,16 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_formation_reception_20071210": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_humaid_received_20020212": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_spa_mbn_pledge_20170621_ar": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -4942,6 +5752,41 @@
       "sa_spa_mbn_pledge_20170621_en": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_chair_obs_20151219": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_death_ar_20170503": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_death_en_20170503": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_interview_20080630": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_interview_addition_20080630": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_statement_ar_20071211": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_mishaal_statement_en_20071211": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
       "sa_spa_nayef_cp_20111027": {
@@ -4954,14 +5799,79 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_ninth_term_opening_20240918": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_20090301": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_20130219": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_20161213": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_20201111": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_addition_20130219": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_oath_notice_20201108": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a13_20090214": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_spa_order_a159_20150429": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_order_a15_20090214": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_spa_order_a160_20150429": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a164_statute_20071007": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a180_20071210": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a180_en_20071210": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a180_members_20071210": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
       "sa_spa_order_a255_20170621_ar": {
@@ -4972,6 +5882,41 @@
       "sa_spa_order_a255_20170621_en": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a45_20130111": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_order_a84_20240902": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_orders_20090214": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_orders_20130111": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_orders_20161202": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_orders_20201018_ar": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_orders_20201018_en": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
         "via": "extract_first_added"
       },
       "sa_spa_orders_20260813": {
@@ -5004,6 +5949,26 @@
         "packet": "CLAUDE-C01-06",
         "via": "extract_first_added"
       },
+      "sa_spa_shura_chair_obs_20260906": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_shura_chair_obs_20260907": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_shura_session_addendum_20020212": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
+      "sa_spa_statute_arts2_5_20071007": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
+      },
       "sa_spa_sultan_death_20111022": {
         "commit": "ffcd27cd",
         "packet": "CLAUDE-C01-06",
@@ -5013,6 +5978,11 @@
         "commit": "4643bd97",
         "packet": "S10",
         "via": "source_id_first_seen"
+      },
+      "sa_uqn_order_a84_20240902": {
+        "commit": "61a3402d",
+        "packet": "CLAUDE-C01-25",
+        "via": "extract_first_added"
       },
       "sa_wipo_basic_law_history": {
         "commit": "4643bd97",
@@ -5863,6 +6833,11 @@
       }
     },
     "Tonga": {
+      "to_act20_2010_amending_copy": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_act_constitution_amend_1990": {
         "commit": "e3cacf1c",
         "packet": "CLAUDE-C01-07",
@@ -6053,6 +7028,11 @@
         "packet": "CLAUDE-C01-08",
         "via": "extract_first_added"
       },
+      "to_ipu_2005": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_ipu_2008": {
         "commit": "4643bd97",
         "packet": "S10",
@@ -6081,6 +7061,66 @@
       "to_ipu_2025": {
         "commit": "af01abe7",
         "packet": "CLAUDE-C01-04",
+        "via": "extract_first_added"
+      },
+      "to_la_20101206_interim_note_archived": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20101221_lasike_elected": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20110114_oaths": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20110404_knesset_visit": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_2011_sitting_announced": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20120717_speaker_revoked": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20120719_fili_sea": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20120720_fakafanua_appointed": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20120723_new_speaker_starts": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20130828_acting_speaker": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20130905_acting_speaker_quorum": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_20140815_speaker_judiciary": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_la_20141209_special_sitting": {
@@ -6113,6 +7153,26 @@
         "packet": "CLAUDE-C01-08",
         "via": "extract_first_added"
       },
+      "to_la_amendment_no2_act21_2010": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_archives_2006": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_home_2004": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_ministers_page_2005": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_la_minutes_20180118": {
         "commit": "d2e44c9b",
         "packet": "CLAUDE-C01-08",
@@ -6121,6 +7181,96 @@
       "to_la_minutes_20190912": {
         "commit": "d2e44c9b",
         "packet": "CLAUDE-C01-08",
+        "via": "extract_first_added"
+      },
+      "to_la_news_china_visit_20260519": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_ministers_oath_20260818": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_mps_sworn_20180118": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_opening_20220111": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_pm_designate_20211215": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_pm_designate_20251216": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_speaker_china_20150224": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_speaker_gita_20180305": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_speaker_summit_20220217": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_news_speaker_sworn_20260122": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_notice_pm_meeting_20251212": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_obituary_fusitua_20140505": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_profile_tuilakepa_2011": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_profile_tuivakano_2011": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_release_speaker_appointment_to_20251219": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_speaker_page_2005": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_speakers_list_20110203": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_la_speakers_list_20111130": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_mcctil_incsoc_consultation_20260721": {
@@ -6136,6 +7286,11 @@
       "to_mic_20101221_designate": {
         "commit": "d2e44c9b",
         "packet": "CLAUDE-C01-08",
+        "via": "extract_first_added"
+      },
+      "to_mic_20120719_fakafanua_elected": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_mic_20170907_sovaleni_letter": {
@@ -6202,6 +7357,16 @@
         "commit": "4643bd97",
         "packet": "S10",
         "via": "source_id_first_seen"
+      },
+      "to_pmo_20020523_tuivakano_speaker": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_pmo_20060209_veikune_directives": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
       },
       "to_pmo_20060213_resignation": {
         "commit": "d2e44c9b",
@@ -6273,6 +7438,11 @@
         "packet": "CLAUDE-C01-07",
         "via": "extract_first_added"
       },
+      "to_pmo_20080602_speaker_reply": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_pmo_20080728_lord_chamberlain_profile": {
         "commit": "e3cacf1c",
         "packet": "CLAUDE-C01-07",
@@ -6296,6 +7466,11 @@
       "to_pmo_2008_pm_luncheon_address": {
         "commit": "e3cacf1c",
         "packet": "CLAUDE-C01-07",
+        "via": "extract_first_added"
+      },
+      "to_pmo_20100629_assembly_transcript": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_pmo_20141229_pm_elect": {
@@ -6356,6 +7531,26 @@
       "to_pmo_former_pms_2026": {
         "commit": "d2e44c9b",
         "packet": "CLAUDE-C01-08",
+        "via": "extract_first_added"
+      },
+      "to_pmo_legislative_assembly_page_2001": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_pmo_legislative_assembly_page_20011214": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_pmo_legislative_assembly_page_20030408": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_pmo_legislative_assembly_page_20041226": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_pmo_office_pm_2002": {
@@ -6428,6 +7623,11 @@
         "packet": "CLAUDE-C01-01",
         "via": "extract_first_added"
       },
+      "to_sc_r_v_lasike_cr285_2011": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_sc_tuivakano_v_police_20211028": {
         "commit": "af01abe7",
         "packet": "CLAUDE-C01-04",
@@ -6448,9 +7648,24 @@
         "packet": "CLAUDE-C01-04",
         "via": "extract_first_added"
       },
+      "to_tlr_1997": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
+      "to_tlr_2003": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
+        "via": "extract_first_added"
+      },
       "to_tlr_2006": {
         "commit": "e3cacf1c",
         "packet": "CLAUDE-C01-07",
+        "via": "extract_first_added"
+      },
+      "to_tlr_2007": {
+        "commit": "6af1e942",
+        "packet": "CLAUDE-C01-24",
         "via": "extract_first_added"
       },
       "to_un_a61_pv1": {

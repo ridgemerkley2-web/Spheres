@@ -1,0 +1,161 @@
+{
+  "format": "spheres-a1-readonly-reassessment/v1",
+  "recorded_utc": "2026-09-28T19:29:47.130929+00:00",
+  "reviewer": "Codex /root/review_source05",
+  "reviewed_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+  "status": "no_new_justified_runtime_repair_identified",
+  "a1_passed": false,
+  "qualification": false,
+  "source_changed": false,
+  "cargo_or_simulation_executed": false,
+  "reserved_seed_accessed": false,
+  "input_pins": [
+    {
+      "path": "spheres-sim/src/government.rs",
+      "bytes": 848551,
+      "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f"
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "bytes": 134202,
+      "sha256": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb"
+    },
+    {
+      "path": "spheres-sim/src/army_authority.rs",
+      "bytes": 11457,
+      "sha256": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053"
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "bytes": 548282,
+      "sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c"
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "bytes": 65134,
+      "sha256": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56"
+    },
+    {
+      "path": "docs/campaign-certification/S27/preparation/a1-20260928/README.md",
+      "bytes": 3742,
+      "sha256": "5fe728f61fb4991e1125c184198c5745f0b28d842392492e5b6de6a81ad7efc1"
+    },
+    {
+      "path": "docs/campaign-certification/S27/preparation/a1-20260928/evidence/trial-01-source.json",
+      "bytes": 363,
+      "sha256": "823a4241b4509a685ec5e6c3edd2981b8d331e3a0de5d35f2e4477cdb202807a"
+    },
+    {
+      "path": "docs/campaign-certification/S27/preparation/a1-20260928/evidence/trial-01-result.json",
+      "bytes": 620,
+      "sha256": "d689e5e2a7c4281223b998eacb1070a651bca701cdec1ca167b94058300810ff"
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-25-original12-country-counts.log",
+      "bytes": 4511,
+      "sha256": "db0ccd73ee0cbfaea8927722a69e1fe6d0aa7709f3c372427726e3d9112dd460"
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-24-seed0-trace-analysis.json",
+      "bytes": 16114,
+      "sha256": "f945fb7267d774b27d9ce43409aaf08923ecafcafb4b1b88f8cae8d4215d2a0f"
+    },
+    {
+      "path": "docs/political-arm/2026-09-22-calibration-repairs.md",
+      "bytes": 55587,
+      "sha256": "378454355a835be1414dee2cf783439d0830bcb41710240f57672790a1a801af"
+    }
+  ],
+  "recomputed_from_retained_original12_counts": [
+    {
+      "seed": 0,
+      "coups": 10,
+      "distinct_countries": 6,
+      "top_three_share": 0.6
+    },
+    {
+      "seed": 1,
+      "coups": 5,
+      "distinct_countries": 5,
+      "top_three_share": 0.6
+    },
+    {
+      "seed": 2,
+      "coups": 7,
+      "distinct_countries": 5,
+      "top_three_share": 0.7142857142857143
+    },
+    {
+      "seed": 3,
+      "coups": 7,
+      "distinct_countries": 7,
+      "top_three_share": 0.42857142857142855
+    },
+    {
+      "seed": 4,
+      "coups": 7,
+      "distinct_countries": 6,
+      "top_three_share": 0.5714285714285714
+    },
+    {
+      "seed": 5,
+      "coups": 8,
+      "distinct_countries": 6,
+      "top_three_share": 0.625
+    },
+    {
+      "seed": 6,
+      "coups": 8,
+      "distinct_countries": 6,
+      "top_three_share": 0.625
+    },
+    {
+      "seed": 7,
+      "coups": 7,
+      "distinct_countries": 6,
+      "top_three_share": 0.5714285714285714
+    },
+    {
+      "seed": 8,
+      "coups": 7,
+      "distinct_countries": 7,
+      "top_three_share": 0.42857142857142855
+    },
+    {
+      "seed": 9,
+      "coups": 7,
+      "distinct_countries": 6,
+      "top_three_share": 0.5714285714285714
+    },
+    {
+      "seed": 10,
+      "coups": 8,
+      "distinct_countries": 6,
+      "top_three_share": 0.625
+    },
+    {
+      "seed": 11,
+      "coups": 6,
+      "distinct_countries": 6,
+      "top_three_share": 0.5
+    }
+  ],
+  "median_coups": 7.0,
+  "median_top_three_share": 0.5857142857142856,
+  "median_distinct_countries": 6.0,
+  "runs_with_at_most_six_distinct_countries": 10,
+  "findings": [
+    "Current government and A1 acceptance test raw hashes match the recorded restored source/test.",
+    "The Army funding inverse is algebraically consistent with its target formula; explicit/player budget ownership guards remain active. No arithmetic or omitted affordable-command defect is demonstrated.",
+    "Current trigger requires present Army, settled non-interim party, live low effective loyalty, live discontent and accumulated pressure. Party/D4 lookups and attribution were reviewed without finding a mismatch.",
+    "Retained pre-month seed-0 observations do not prove exact internal firing-site state. They identify nine unaffordable pre-month appropriations and one slow-recovery Myanmar repeat, not a universal in-tick impossibility.",
+    "Government Army walk and trigger precede AI appropriation. Moving this deliberate schedule would be a behavior/model revision; no observed firing-site witness presently justifies it.",
+    "The retained original12 distribution has only five or six affected countries in ten runs. Removing repeats alone cannot lower a per-run top-three share below one half with six or fewer distinct countries. This is explanatory, not a replacement criterion."
+  ],
+  "next_bounded_diagnostic": "If authorized, add a test-only side-effect-free observer at the actual electoral Army walk/trigger/funding sites for the already-used fixed seed0 only, require identical complete final world/RNG/headlines, and retain all conditions plus quote/refusal state. No behavior candidate should follow without an actual causal witness.",
+  "limits": [
+    "Read-only source and retained-evidence review, not a new run or exhaustive correctness proof.",
+    "No empirical correction was adopted or independently researched in this reassessment.",
+    "A1 remains blocked; confidence coefficients, thresholds, cohorts and criteria remain unchanged."
+  ]
+}

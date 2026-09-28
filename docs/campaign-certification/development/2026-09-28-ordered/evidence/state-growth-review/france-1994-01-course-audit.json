@@ -1,0 +1,866 @@
+{
+  "source_sha256": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20",
+  "date": "1 Jan 1994",
+  "course_total": 496309,
+  "top": [
+    {
+      "district": "ST-P",
+      "owner": "SaoTome",
+      "courses": 48545,
+      "coarse_keys": 93,
+      "duplicate_exact_keys": 1,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.00010949870547795321,
+      "people_minmax": [
+        1.1238420729326884e-14,
+        4.908359122956476e-06
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            365,
+            1461.0
+          ],
+          "rows": 1093,
+          "unique_funded_days": 1092,
+          "funded_minmax": [
+            985.9867421635334,
+            1095.0
+          ],
+          "min_adjacent_difference": 0.0835193853729379,
+          "funded_round6_unique": 1092,
+          "people_m_sum": 8.296505571825173e-08
+        },
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 1092,
+          "unique_funded_days": 1092,
+          "funded_minmax": [
+            1349.9867421635327,
+            1459.0
+          ],
+          "min_adjacent_difference": 0.08351938537271053,
+          "funded_round6_unique": 1092,
+          "people_m_sum": 4.913415340719895e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 1092,
+          "unique_funded_days": 1092,
+          "funded_minmax": [
+            1319.9867421635329,
+            1429.0
+          ],
+          "min_adjacent_difference": 0.08351938537271053,
+          "funded_round6_unique": 1092,
+          "people_m_sum": 4.676359481152625e-06
+        }
+      ]
+    },
+    {
+      "district": "GQ-AN",
+      "owner": "EquatorialGuinea",
+      "courses": 44764,
+      "coarse_keys": 88,
+      "duplicate_exact_keys": 0,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 3.245882359601098e-06,
+      "people_minmax": [
+        5.339496750388765e-14,
+        3.5430444843078034e-07
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 913,
+          "unique_funded_days": 913,
+          "funded_minmax": [
+            546.5401394771894,
+            1428.0623118767273
+          ],
+          "min_adjacent_difference": 0.7662171880790538,
+          "funded_round6_unique": 913,
+          "people_m_sum": 2.2848308963496676e-07
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 913,
+          "unique_funded_days": 913,
+          "funded_minmax": [
+            516.5401394771891,
+            1398.0623118767273
+          ],
+          "min_adjacent_difference": 0.7662171880790538,
+          "funded_round6_unique": 913,
+          "people_m_sum": 2.0254609959728736e-07
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 913,
+          "unique_funded_days": 913,
+          "funded_minmax": [
+            488.5401394771887,
+            1370.0623118767278
+          ],
+          "min_adjacent_difference": 0.7662171880790538,
+          "funded_round6_unique": 913,
+          "people_m_sum": 1.718992447528793e-07
+        }
+      ]
+    },
+    {
+      "district": "GY-BA",
+      "owner": "Guyana",
+      "courses": 41387,
+      "coarse_keys": 79,
+      "duplicate_exact_keys": 44,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.00030192660020369365,
+      "people_minmax": [
+        1.0000594502490537e-14,
+        4.64716402447635e-05
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            334,
+            1461.0
+          ],
+          "rows": 1118,
+          "unique_funded_days": 1114,
+          "funded_minmax": [
+            918.7146015493214,
+            1126.0
+          ],
+          "min_adjacent_difference": 0.17906896711906484,
+          "funded_round6_unique": 1114,
+          "people_m_sum": 2.645951060574272e-08
+        },
+        {
+          "key": [
+            2,
+            4,
+            90,
+            1461.0
+          ],
+          "rows": 1115,
+          "unique_funded_days": 1114,
+          "funded_minmax": [
+            1162.7146015493204,
+            1370.0
+          ],
+          "min_adjacent_difference": 0.17906896711883746,
+          "funded_round6_unique": 1114,
+          "people_m_sum": 1.5735541657278808e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 1114,
+          "unique_funded_days": 1114,
+          "funded_minmax": [
+            1251.714601549322,
+            1459.0
+          ],
+          "min_adjacent_difference": 0.17906896711883746,
+          "funded_round6_unique": 1114,
+          "people_m_sum": 4.6551418454754214e-05
+        }
+      ]
+    },
+    {
+      "district": "SR-BR",
+      "owner": "Suriname",
+      "courses": 40705,
+      "coarse_keys": 82,
+      "duplicate_exact_keys": 0,
+      "zero_people": 0,
+      "below_prune": 2,
+      "complete_courses": 0,
+      "people_m": 0.00029482524915618686,
+      "people_minmax": [
+        4.6813745771955385e-15,
+        3.8282702224477335e-05
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 1080,
+          "unique_funded_days": 1080,
+          "funded_minmax": [
+            1365.517191481356,
+            1459.0
+          ],
+          "min_adjacent_difference": 0.07983182554130508,
+          "funded_round6_unique": 1080,
+          "people_m_sum": 3.830940135433378e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 1080,
+          "unique_funded_days": 1080,
+          "funded_minmax": [
+            1335.5171914813563,
+            1429.0
+          ],
+          "min_adjacent_difference": 0.07983182554130508,
+          "funded_round6_unique": 1080,
+          "people_m_sum": 3.495738189628586e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 1080,
+          "unique_funded_days": 1080,
+          "funded_minmax": [
+            1307.5171914813561,
+            1401.0
+          ],
+          "min_adjacent_difference": 0.07983182554130508,
+          "funded_round6_unique": 1080,
+          "people_m_sum": 2.2499941766467856e-05
+        }
+      ]
+    },
+    {
+      "district": "TT-ARI",
+      "owner": "TrinidadTobago",
+      "courses": 37518,
+      "coarse_keys": 68,
+      "duplicate_exact_keys": 1,
+      "zero_people": 0,
+      "below_prune": 2,
+      "complete_courses": 0,
+      "people_m": 0.0006043067642518576,
+      "people_minmax": [
+        8.744673741469692e-15,
+        0.0001271738177560722
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 1117,
+          "unique_funded_days": 1117,
+          "funded_minmax": [
+            1352.6167488718122,
+            1459.0
+          ],
+          "min_adjacent_difference": 0.08489144641248458,
+          "funded_round6_unique": 1117,
+          "people_m_sum": 0.00012727701037567923
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 1117,
+          "unique_funded_days": 1117,
+          "funded_minmax": [
+            1322.6167488718124,
+            1429.0
+          ],
+          "min_adjacent_difference": 0.08489144641248458,
+          "funded_round6_unique": 1117,
+          "people_m_sum": 5.7274654669055363e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 1117,
+          "unique_funded_days": 1117,
+          "funded_minmax": [
+            1294.6167488718127,
+            1401.0
+          ],
+          "min_adjacent_difference": 0.08489144641248458,
+          "funded_round6_unique": 1117,
+          "people_m_sum": 2.5773594601074736e-05
+        }
+      ]
+    },
+    {
+      "district": "CG-11",
+      "owner": "Congo",
+      "courses": 36218,
+      "coarse_keys": 95,
+      "duplicate_exact_keys": 0,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.001001417321484599,
+      "people_minmax": [
+        1.0004578602927232e-14,
+        0.0001798337876641883
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 997,
+          "unique_funded_days": 997,
+          "funded_minmax": [
+            1322.7598689365443,
+            1440.3625611378632
+          ],
+          "min_adjacent_difference": 0.10509501300725788,
+          "funded_round6_unique": 997,
+          "people_m_sum": 0.00017992280299051008
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 997,
+          "unique_funded_days": 997,
+          "funded_minmax": [
+            1292.759868936544,
+            1410.3625611378632
+          ],
+          "min_adjacent_difference": 0.10509501300725788,
+          "funded_round6_unique": 997,
+          "people_m_sum": 7.829244953514616e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 997,
+          "unique_funded_days": 997,
+          "funded_minmax": [
+            1264.759868936544,
+            1382.3625611378632
+          ],
+          "min_adjacent_difference": 0.10509501300725788,
+          "funded_round6_unique": 997,
+          "people_m_sum": 3.302613698807708e-05
+        }
+      ]
+    },
+    {
+      "district": "NL-BQ1",
+      "owner": "Netherlands",
+      "courses": 34754,
+      "coarse_keys": 40,
+      "duplicate_exact_keys": 88,
+      "zero_people": 0,
+      "below_prune": 4,
+      "complete_courses": 0,
+      "people_m": 0.00011167133742769212,
+      "people_minmax": [
+        4.13566446421993e-15,
+        1.73180240027684e-05
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            212,
+            1461.0
+          ],
+          "rows": 945,
+          "unique_funded_days": 945,
+          "funded_minmax": [
+            1116.2425474011773,
+            1244.6980154292692
+          ],
+          "min_adjacent_difference": 2.2737367544323206e-13,
+          "funded_round6_unique": 497,
+          "people_m_sum": 1.282295299552721e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            243,
+            1461.0
+          ],
+          "rows": 945,
+          "unique_funded_days": 930,
+          "funded_minmax": [
+            1085.2425474011777,
+            1213.698015429269
+          ],
+          "min_adjacent_difference": 2.2737367544323206e-13,
+          "funded_round6_unique": 497,
+          "people_m_sum": 5.770328847986603e-07
+        },
+        {
+          "key": [
+            2,
+            4,
+            577,
+            1461.0
+          ],
+          "rows": 945,
+          "unique_funded_days": 945,
+          "funded_minmax": [
+            751.2425474011777,
+            879.6980154292672
+          ],
+          "min_adjacent_difference": 1.1368683772161603e-13,
+          "funded_round6_unique": 497,
+          "people_m_sum": 4.432940613397874e-06
+        }
+      ]
+    },
+    {
+      "district": "ME-01",
+      "owner": "Montenegro",
+      "courses": 19831,
+      "coarse_keys": 66,
+      "duplicate_exact_keys": 2,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.0001809527960017168,
+      "people_minmax": [
+        1.8971176782659968e-13,
+        1.7864335138764546e-05
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            3,
+            974,
+            548.0
+          ],
+          "rows": 360,
+          "unique_funded_days": 359,
+          "funded_minmax": [
+            460.04197198992824,
+            486.0
+          ],
+          "min_adjacent_difference": 0.07102754730573224,
+          "funded_round6_unique": 359,
+          "people_m_sum": 2.8844436224660417e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            974,
+            1461.0
+          ],
+          "rows": 360,
+          "unique_funded_days": 359,
+          "funded_minmax": [
+            460.04197198992824,
+            486.0
+          ],
+          "min_adjacent_difference": 0.07102754730573224,
+          "funded_round6_unique": 359,
+          "people_m_sum": 1.0816663584247638e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 359,
+          "unique_funded_days": 359,
+          "funded_minmax": [
+            1433.0419719899303,
+            1459.0
+          ],
+          "min_adjacent_difference": 0.0710275473056754,
+          "funded_round6_unique": 359,
+          "people_m_sum": 1.7874204882438528e-05
+        }
+      ]
+    },
+    {
+      "district": "JO-AJ",
+      "owner": "Jordan",
+      "courses": 16153,
+      "coarse_keys": 67,
+      "duplicate_exact_keys": 0,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.001416659797741643,
+      "people_minmax": [
+        1.0003169454333614e-14,
+        0.00019869869495849424
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 709,
+          "unique_funded_days": 709,
+          "funded_minmax": [
+            1417.2460895178758,
+            1428.6910101897665
+          ],
+          "min_adjacent_difference": 0.005946130523852844,
+          "funded_round6_unique": 709,
+          "people_m_sum": 0.00019874080240783778
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 709,
+          "unique_funded_days": 709,
+          "funded_minmax": [
+            1387.2460895178751,
+            1398.691010189766
+          ],
+          "min_adjacent_difference": 0.005946130523852844,
+          "funded_round6_unique": 709,
+          "people_m_sum": 0.00018491165714503593
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 709,
+          "unique_funded_days": 709,
+          "funded_minmax": [
+            1359.2460895178742,
+            1370.6910101897658
+          ],
+          "min_adjacent_difference": 0.005946130523852844,
+          "funded_round6_unique": 709,
+          "people_m_sum": 8.543741995916819e-05
+        }
+      ]
+    },
+    {
+      "district": "MN-035",
+      "owner": "Mongolia",
+      "courses": 12446,
+      "coarse_keys": 64,
+      "duplicate_exact_keys": 111,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.0009054468474469739,
+      "people_minmax": [
+        4.1888059935787916e-14,
+        4.840917759230151e-05
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 631,
+          "unique_funded_days": 555,
+          "funded_minmax": [
+            1379.52181425021,
+            1392.5646327515806
+          ],
+          "min_adjacent_difference": 4.547473508864641e-13,
+          "funded_round6_unique": 550,
+          "people_m_sum": 4.275551264209375e-05
+        },
+        {
+          "key": [
+            2,
+            4,
+            455,
+            1461.0
+          ],
+          "rows": 558,
+          "unique_funded_days": 549,
+          "funded_minmax": [
+            956.3524591179294,
+            968.5646327515813
+          ],
+          "min_adjacent_difference": 0.0073549265400743025,
+          "funded_round6_unique": 549,
+          "people_m_sum": 3.3406021417689702e-09
+        },
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 550,
+          "unique_funded_days": 550,
+          "funded_minmax": [
+            1409.5218142502094,
+            1422.5646327515801
+          ],
+          "min_adjacent_difference": 0.007354926539846929,
+          "funded_round6_unique": 550,
+          "people_m_sum": 4.842729287769131e-05
+        }
+      ]
+    },
+    {
+      "district": "NI-AN",
+      "owner": "Nicaragua",
+      "courses": 8162,
+      "coarse_keys": 83,
+      "duplicate_exact_keys": 0,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.0035535931288144976,
+      "people_minmax": [
+        1.00033999558184e-14,
+        0.00026714012361581747
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            1,
+            1461.0
+          ],
+          "rows": 179,
+          "unique_funded_days": 179,
+          "funded_minmax": [
+            1437.8901705328537,
+            1457.847504181109
+          ],
+          "min_adjacent_difference": 0.010200895004572885,
+          "funded_round6_unique": 179,
+          "people_m_sum": 0.0002671421887017063
+        },
+        {
+          "key": [
+            2,
+            4,
+            31,
+            1461.0
+          ],
+          "rows": 179,
+          "unique_funded_days": 179,
+          "funded_minmax": [
+            1407.8901705328544,
+            1427.847504181109
+          ],
+          "min_adjacent_difference": 0.010200895004572885,
+          "funded_round6_unique": 179,
+          "people_m_sum": 0.00023915132213918726
+        },
+        {
+          "key": [
+            2,
+            4,
+            59,
+            1461.0
+          ],
+          "rows": 179,
+          "unique_funded_days": 179,
+          "funded_minmax": [
+            1379.8901705328542,
+            1399.847504181109
+          ],
+          "min_adjacent_difference": 0.010200895004572885,
+          "funded_round6_unique": 179,
+          "people_m_sum": 0.00020742196943307858
+        }
+      ]
+    },
+    {
+      "district": "PA-1",
+      "owner": "Panama",
+      "courses": 6821,
+      "coarse_keys": 67,
+      "duplicate_exact_keys": 7,
+      "zero_people": 0,
+      "below_prune": 0,
+      "complete_courses": 0,
+      "people_m": 0.0014597505527695267,
+      "people_minmax": [
+        1.0057171090124151e-14,
+        0.00014542060227437954
+      ],
+      "largest_start_groups": [
+        {
+          "key": [
+            2,
+            4,
+            516,
+            1461.0
+          ],
+          "rows": 301,
+          "unique_funded_days": 297,
+          "funded_minmax": [
+            897.1145712174769,
+            901.391482031971
+          ],
+          "min_adjacent_difference": 6.670665709407331e-05,
+          "funded_round6_unique": 297,
+          "people_m_sum": 1.467628075633699e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            485,
+            1461.0
+          ],
+          "rows": 299,
+          "unique_funded_days": 297,
+          "funded_minmax": [
+            928.1145712174764,
+            932.3914820319708
+          ],
+          "min_adjacent_difference": 6.670665709407331e-05,
+          "funded_round6_unique": 297,
+          "people_m_sum": 1.4098455308972627e-06
+        },
+        {
+          "key": [
+            2,
+            4,
+            396,
+            1461.0
+          ],
+          "rows": 298,
+          "unique_funded_days": 297,
+          "funded_minmax": [
+            1017.1145712174762,
+            1021.3914820319707
+          ],
+          "min_adjacent_difference": 6.670665709407331e-05,
+          "funded_round6_unique": 297,
+          "people_m_sum": 8.728574128622511e-07
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "duplicate_exact_keys": 258,
+    "zero_people": 0,
+    "below_prune": 8,
+    "complete_courses": 0
+  },
+  "fiscal_journal_sample": [
+    {
+      "nation": "Afghanistan",
+      "days": 45,
+      "decisions": 9,
+      "next_decision_id": 10,
+      "started_day": 0
+    },
+    {
+      "nation": "Albania",
+      "days": 45,
+      "decisions": 5,
+      "next_decision_id": 6,
+      "started_day": 0
+    },
+    {
+      "nation": "Algeria",
+      "days": 45,
+      "decisions": 7,
+      "next_decision_id": 8,
+      "started_day": 0
+    }
+  ],
+  "fiscal_day_rows": 7110,
+  "fiscal_max_days": 45,
+  "arrivals": {
+    "count": 174,
+    "duplicate_ids": 0,
+    "held": 0,
+    "oldest_dispatched": 1430
+  },
+  "cargo": {
+    "count": 3537,
+    "duplicate_ids": 0,
+    "held": 937,
+    "oldest_dispatched": 790
+  }
+}

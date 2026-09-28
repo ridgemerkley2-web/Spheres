@@ -1,0 +1,37 @@
+{
+  "command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/campaign",
+    "-p",
+    "test_stability_matrix.py"
+  ],
+  "cwd": "D:\\spheres-offload\\codex-next-20260928\\matrix-resource-runner",
+  "started_utc": "2026-09-28T19:36:52.103212+00:00",
+  "finished_utc": "2026-09-28T19:37:01.057013+00:00",
+  "exit_code": 0,
+  "scope": "Synthetic runner tests plus tiny Windows NTFS inheritance probe; no native campaign execution",
+  "source_files": [
+    {
+      "path": "tools/campaign/stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    },
+    {
+      "path": "tools/campaign/test_stability_matrix.py",
+      "bytes": 58922,
+      "sha256": "eaf335ce2851b589f15b0b5e9e6774c896ac9cc50b069cedf53a525109a42ae7"
+    }
+  ],
+  "log": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\matrix-resource-runner-review\\tests-01.log",
+    "bytes": 9776,
+    "sha256": "228c43ab863d687aee388053a22392049e12912c026d12e575944f84e7c449ba"
+  }
+}

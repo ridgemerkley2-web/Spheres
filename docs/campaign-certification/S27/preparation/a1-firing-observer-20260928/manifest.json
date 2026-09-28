@@ -1,0 +1,314 @@
+{
+  "format": "spheres-a1-portable-package/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "packaged_utc": "2026-09-28T20:06:40.937423+00:00",
+  "candidate_revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "portable_original_diagnostic_data_complete": true,
+  "observations_limit_bytes": 50000000,
+  "qualification": false,
+  "calibration_pass_claimed": false,
+  "reserved_holdouts_used": false,
+  "packaging_reran_native": false,
+  "originals_removed": false,
+  "compiler_binding_scope": "Coordinator execution.json source/executable binding retained verbatim; frozen executable SHA independently recomputed during packaging. This is not a reproducible-build attestation or a rerun by the evidence reviewer.",
+  "binary_external_reference": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\frozen-a1-observer-6818e4f0\\spheres-sim-observer.exe",
+    "bytes": 51475482,
+    "sha256": "27f282ad02daeaf9fcd527682387b0615c833a9a326a521cc5c029432ef78071",
+    "bundled": false,
+    "matches_original_execution_before_and_after": true
+  },
+  "native_report": {
+    "focused_tests": {
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "log": "execution/a1-observer-focused-build-02.log"
+    },
+    "initial_build_failure": {
+      "log": "execution/a1-observer-focused-build.log",
+      "reason": "Two include_str! research paths absent from sparse checkout; compile stopped before tests."
+    },
+    "ignored_observer_test": {
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "filtered_out": 1114,
+      "log": "execution/a1-firing-observer-run-01.log",
+      "months": 252,
+      "seed": 0,
+      "rows": 146525,
+      "coups": 10
+    },
+    "retained_final_worlds_equal": true
+  },
+  "files": [
+    {
+      "path": "analysis/analysis-run.log",
+      "encoding": "identity",
+      "bytes": 35255,
+      "sha256": "000e0f9335552056da542f87f206dc4088463729e4f490839e59db4febb6c976",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\analysis-run.log",
+      "original_bytes": 35255,
+      "original_sha256": "000e0f9335552056da542f87f206dc4088463729e4f490839e59db4febb6c976"
+    },
+    {
+      "path": "analysis/analyze.py",
+      "encoding": "identity",
+      "bytes": 5901,
+      "sha256": "9fe3f98295244f19e0fd37c4d7d9eda3547e7dd2f7c23cd8b38a93fc0968dd38",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\analyze.py",
+      "original_bytes": 5901,
+      "original_sha256": "9fe3f98295244f19e0fd37c4d7d9eda3547e7dd2f7c23cd8b38a93fc0968dd38"
+    },
+    {
+      "path": "analysis/check_trigger.py",
+      "encoding": "identity",
+      "bytes": 4891,
+      "sha256": "5004dd132655470bd35312ff4d62bc13a7c05688459023c5612d713c3febacb3",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\check_trigger.py",
+      "original_bytes": 4891,
+      "original_sha256": "5004dd132655470bd35312ff4d62bc13a7c05688459023c5612d713c3febacb3"
+    },
+    {
+      "path": "analysis/finalize.py",
+      "encoding": "identity",
+      "bytes": 9146,
+      "sha256": "179ac29e61417756f1b2d28790d06c33706965f0c21ae5d9e905d1d5e29983fc",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\finalize.py",
+      "original_bytes": 9146,
+      "original_sha256": "179ac29e61417756f1b2d28790d06c33706965f0c21ae5d9e905d1d5e29983fc"
+    },
+    {
+      "path": "analysis/firing-country-funding.json",
+      "encoding": "identity",
+      "bytes": 1028891,
+      "sha256": "183794b491b215af8572596a84fe0cfe14e2a980e49809686ab6fdc2df07c171",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\firing-country-funding.json",
+      "original_bytes": 1028891,
+      "original_sha256": "183794b491b215af8572596a84fe0cfe14e2a980e49809686ab6fdc2df07c171"
+    },
+    {
+      "path": "analysis/firing-windows.json",
+      "encoding": "identity",
+      "bytes": 1241193,
+      "sha256": "514c55fdb280e432c26a464f8623d67e1674f0a73392e8d78a9be6c91a92dab3",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\firing-windows.json",
+      "original_bytes": 1241193,
+      "original_sha256": "514c55fdb280e432c26a464f8623d67e1674f0a73392e8d78a9be6c91a92dab3"
+    },
+    {
+      "path": "analysis/manifest.json",
+      "encoding": "identity",
+      "bytes": 5927,
+      "sha256": "1392ec529b6d8f2af2c19dfc5315ab5a64b12838a038ee6986bb9459aeece362",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\manifest.json",
+      "original_bytes": 5927,
+      "original_sha256": "1392ec529b6d8f2af2c19dfc5315ab5a64b12838a038ee6986bb9459aeece362"
+    },
+    {
+      "path": "analysis/mechanical-check.json",
+      "encoding": "identity",
+      "bytes": 2089,
+      "sha256": "b94f77c534667dad9ed8efe08b85a4af0a3f55802ff87212f819d1bc037fd370",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\mechanical-check.json",
+      "original_bytes": 2089,
+      "original_sha256": "b94f77c534667dad9ed8efe08b85a4af0a3f55802ff87212f819d1bc037fd370"
+    },
+    {
+      "path": "analysis/README.md",
+      "encoding": "identity",
+      "bytes": 7346,
+      "sha256": "b3da00625fef130f24c3ffa7160d5242ad9672fa8e2fa29670d17f846e4efa45",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\README.md",
+      "original_bytes": 7346,
+      "original_sha256": "b3da00625fef130f24c3ffa7160d5242ad9672fa8e2fa29670d17f846e4efa45"
+    },
+    {
+      "path": "analysis/trigger-check.log",
+      "encoding": "identity",
+      "bytes": 10267,
+      "sha256": "ab5b99b384f505f64a65db8d0cdbb071e8ad994496bf34f7b1fc0713bee8a109",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\trigger-check.log",
+      "original_bytes": 10267,
+      "original_sha256": "ab5b99b384f505f64a65db8d0cdbb071e8ad994496bf34f7b1fc0713bee8a109"
+    },
+    {
+      "path": "analysis/trigger-confidence-check.json",
+      "encoding": "identity",
+      "bytes": 12789,
+      "sha256": "534b694eda8d5fcc5fc602e2f40e8656780a7d8d038a9e4ff2b32c80b9e82cd5",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\trigger-confidence-check.json",
+      "original_bytes": 12789,
+      "original_sha256": "534b694eda8d5fcc5fc602e2f40e8656780a7d8d038a9e4ff2b32c80b9e82cd5"
+    },
+    {
+      "path": "original-run/plan.json",
+      "encoding": "identity",
+      "bytes": 500,
+      "sha256": "f72ba8f2d4521c48f48214d1034b6466b20077ff17c42f9006b8c1aff4dd9281",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\plan.json",
+      "original_bytes": 500,
+      "original_sha256": "f72ba8f2d4521c48f48214d1034b6466b20077ff17c42f9006b8c1aff4dd9281"
+    },
+    {
+      "path": "original-run/result.json",
+      "encoding": "identity",
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\result.json",
+      "original_bytes": 94466,
+      "original_sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    },
+    {
+      "path": "original-run/observations.jsonl.gz",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "gzip_filename": "",
+      "compression_level": 9,
+      "bytes": 15387211,
+      "sha256": "b39a00d7c6eb7fef5f5f20ce105b64b4f33ec7440a45560d7177bd78d8a49186",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observations.jsonl",
+      "original_bytes": 240585752,
+      "original_sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49",
+      "decoded_roundtrip_verified": true
+    },
+    {
+      "path": "original-run/control-final.json.gz",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "gzip_filename": "",
+      "compression_level": 9,
+      "bytes": 269073,
+      "sha256": "90bab069e1c1e18c436023f9fa39c7f11d97d4c4ca7fd4b4fdcb3ad4e9943d58",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\control-final.json",
+      "original_bytes": 2137811,
+      "original_sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431",
+      "decoded_roundtrip_verified": true
+    },
+    {
+      "path": "original-run/observed-final.json.gz",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "gzip_filename": "",
+      "compression_level": 9,
+      "bytes": 269073,
+      "sha256": "90bab069e1c1e18c436023f9fa39c7f11d97d4c4ca7fd4b4fdcb3ad4e9943d58",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observed-final.json",
+      "original_bytes": 2137811,
+      "original_sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431",
+      "decoded_roundtrip_verified": true
+    },
+    {
+      "path": "execution/a1-firing-observer-run-01.log",
+      "encoding": "identity",
+      "bytes": 13603,
+      "sha256": "25023bd3ad151834d7d03db855ff0b9485b8804465c106231a93b71374fa717f",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01.log",
+      "original_bytes": 13603,
+      "original_sha256": "25023bd3ad151834d7d03db855ff0b9485b8804465c106231a93b71374fa717f"
+    },
+    {
+      "path": "execution/a1-observer-focused-build.log",
+      "encoding": "identity",
+      "bytes": 982,
+      "sha256": "5fa41c2f952a6b91f09a7332fbb2b3a5dfdb975ad4df4b6d7571c0da5c567403",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-observer-focused-build.log",
+      "original_bytes": 982,
+      "original_sha256": "5fa41c2f952a6b91f09a7332fbb2b3a5dfdb975ad4df4b6d7571c0da5c567403"
+    },
+    {
+      "path": "execution/a1-observer-focused-build-02.log",
+      "encoding": "identity",
+      "bytes": 804,
+      "sha256": "a21b41b4c9b00712ec9353c5d6f14190a8043824cca8f015c2fb63936c448547",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-observer-focused-build-02.log",
+      "original_bytes": 804,
+      "original_sha256": "a21b41b4c9b00712ec9353c5d6f14190a8043824cca8f015c2fb63936c448547"
+    },
+    {
+      "path": "execution/execution.json",
+      "encoding": "identity",
+      "bytes": 478,
+      "sha256": "d12bbd6fa3e99ac43e4949721f0bf4062f26defa62e91dd794178dda6e7c9829",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\frozen-a1-observer-6818e4f0\\execution.json",
+      "original_bytes": 478,
+      "original_sha256": "d12bbd6fa3e99ac43e4949721f0bf4062f26defa62e91dd794178dda6e7c9829"
+    },
+    {
+      "path": "source/spheres-sim/src/government.rs",
+      "encoding": "identity",
+      "bytes": 865338,
+      "sha256": "1022e0e65023408e59cecdcad423031bd766b003ee89aa0fde5d244edc84c824",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government.rs",
+      "original_bytes": 865338,
+      "original_sha256": "1022e0e65023408e59cecdcad423031bd766b003ee89aa0fde5d244edc84c824"
+    },
+    {
+      "path": "source/spheres-sim/src/government_a1_observer.rs",
+      "encoding": "identity",
+      "bytes": 14822,
+      "sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government_a1_observer.rs",
+      "original_bytes": 14822,
+      "original_sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14"
+    },
+    {
+      "path": "source/spheres-sim/src/politics.rs",
+      "encoding": "identity",
+      "bytes": 119714,
+      "sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\politics.rs",
+      "original_bytes": 119714,
+      "original_sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341"
+    },
+    {
+      "path": "source/spheres-sim/src/economy.rs",
+      "encoding": "identity",
+      "bytes": 118731,
+      "sha256": "9c62d57dc2357caf77b370ecfe2666dc1adc34154046c255ee6a9acd095325bd",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\economy.rs",
+      "original_bytes": 118731,
+      "original_sha256": "9c62d57dc2357caf77b370ecfe2666dc1adc34154046c255ee6a9acd095325bd"
+    },
+    {
+      "path": "source/spheres-sim/src/clock.rs",
+      "encoding": "identity",
+      "bytes": 6175,
+      "sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\clock.rs",
+      "original_bytes": 6175,
+      "original_sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8"
+    },
+    {
+      "path": "source/spheres-sim/src/lib.rs",
+      "encoding": "identity",
+      "bytes": 548282,
+      "sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\lib.rs",
+      "original_bytes": 548282,
+      "original_sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c"
+    },
+    {
+      "path": "verify_portable.py",
+      "encoding": "identity",
+      "bytes": 5187,
+      "sha256": "1f27a1e796a8fff3d130a05113d09dcb2c02e880a465a45cf92e78776e1be6cb",
+      "generated_for_packet": true
+    },
+    {
+      "path": "README.md",
+      "encoding": "identity",
+      "bytes": 4827,
+      "sha256": "d9665cec29b98e07ad966ac5d1767404f0564849712a546eba5536529b894228",
+      "generated_for_packet": true
+    },
+    {
+      "path": ".gitattributes",
+      "encoding": "identity",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+      "generated_for_packet": true
+    }
+  ]
+}

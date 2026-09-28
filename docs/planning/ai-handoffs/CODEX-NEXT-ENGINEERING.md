@@ -6,8 +6,10 @@ completed recovery, paired stability pilot and portable packaging work in
 This is an order of attempts, not a new requirement
 that every independent task must pass before work can continue. A blocked attempt
 retains its failure and evidence; it does not become complete. A1 is now blocked
-after diagnosis and rejected trial 01, and independent startup work is in progress.
-The remaining queued tasks retain their listed order.
+after diagnosis and rejected trial 01. Startup, controlled succession and all four
+ordered source reviews are complete as bounded tasks. The full matrix remains
+in progress after two preserved resource interruptions. Independent historical
+reviews followed those attempts; the matrix is not a research-data prerequisite.
 Query the [task queue](../ai-task-queue.json) with
 `python tools/planning/workboard.py --tasks --owner Codex`.
 
@@ -20,13 +22,19 @@ scope; an accepted research packet does not install historical people or art.
 | Order | Bounded task | Parent | Current state |
 |---|---|---|---|
 | 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | Blocked; A1 still fails |
-| 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | In progress after A1 attempt |
-| 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Queued |
-| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | Queued |
-| 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Queued |
-| 6 | `CODEX-C01-24-REVIEW` — Tongan Speakers | C01 review | Queued |
-| 7 | `CODEX-C01-25-REVIEW` — Saudi council chairs | C01 review | Queued |
-| 8 | `CODEX-C01-27-REVIEW` — BJP presidents | C01 review | Queued |
+| 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | Complete: 137 native + 137 browser |
+| 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Complete: 20 full archives verified |
+| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | In progress; full matrix not passed |
+| 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Complete: bounded acceptance |
+| 6 | `CODEX-C01-24-REVIEW` — Tongan Speakers | C01 review | Complete: bounded acceptance |
+| 7 | `CODEX-C01-25-REVIEW` — Saudi council chairs | C01 review | Complete: bounded acceptance |
+| 8 | `CODEX-C01-27-REVIEW` — BJP presidents | C01 review | Complete: bounded acceptance |
+
+Closeout evidence: [worldwide startup](../../campaign-certification/S24/preparation/worldwide-startup/README.md),
+[controlled succession](../../campaign-certification/S25/preparation/controlled-succession/README.md),
+[ordered historical intake](../../campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md)
+and [full attempt journal](../../campaign-certification/development/2026-09-28-ordered/README.md).
+Six of eight bounded tasks are complete. This does not close six canonical sessions.
 
 ## 1. Political calibration: CODEX-S27-A1-01
 
@@ -50,6 +58,16 @@ gates plus attribution; the trial worsened the displayed A1 concentration from
 recorded. No justified additional runtime correction was established, and no
 reserved seed was consumed. A1 stays blocked; independent startup work follows
 this attempted first task without claiming political or aggregate qualification.
+
+The later [exact firing observer](../../campaign-certification/S27/preparation/a1-firing-observer-20260928/README.md)
+closes the observation gap on the already-used seed 0, with 252 exact monthly
+world/RNG/headline comparisons, 146,525 retained snapshots and ten actual firings.
+All 151 eligible funding commands applied correctly. Nine firing cases lacked
+fiscal headroom; the remaining case had a recovered target while actual loyalty
+was still low. No further functional defect was established. Test-only hooks and
+the complete compressed diagnostic data are retained; coefficients, acceptance
+tests and reserved cohorts are unchanged. A1 remains blocked pending a justified
+causal policy/model correction rather than another ungrounded coefficient trial.
 
 ## 2. Startup: CODEX-S24-STARTUP-01
 
@@ -129,7 +147,7 @@ it cannot call inaccessible evidence verified or award country coverage.
 ## Separate remote inventory — no acceptance or added ordered task
 
 - Russia `CLAUDE-C01-28` is now **ready_for_review** at
-  `16153784875006149a68e69c5e83b925e51ca294`; original claim
+  latest follow-up `03141c43`; original claim
   `2c4d5bd725b84161fd742adec75febc6241b8c92` remains recorded. Its five party
   chains and submitted test/source claims require independent review.
 - South Africa `CLAUDE-C01-30` is **claimed**, not submitted, at
@@ -138,6 +156,8 @@ it cannot call inaccessible evidence verified or award country coverage.
 - Japan `CLAUDE-C01-29` remains held at its
   [existing source-review checkpoint](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md):
   150 passing test executions, 35/54 original responses reproduced and 19 unavailable.
+- India `CLAUDE-C01-33` is separately claimed on `claude/c01-in-33` at
+  `89decb6a`. This is inventory only; it adds no ninth task to the present order.
 
 These inventory updates import no research sources, runtime content or asset
 approvals and do not append unrequested reviews to the eight-task execution order.

@@ -1,0 +1,36 @@
+{
+  "format": "spheres-read-only-state-growth-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "source_revision": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+  "input_bytes": 135739703,
+  "input_sha256": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20",
+  "no_input_or_source_edits": true,
+  "qualification": false,
+  "files": [
+    {
+      "path": "france-1993-12-collections.json",
+      "bytes": 7943,
+      "sha256": "20cb9a8516beb72abe5ebb17e18e73f6e12ab015d7beda66dbbc7e522b63d670"
+    },
+    {
+      "path": "france-1993-12-raw-profile.json",
+      "bytes": 7009,
+      "sha256": "6dc8b6b001e048efc44f5cec2fad8cabe1a89f1d66b49ac7f4909234b0cb9b3e"
+    },
+    {
+      "path": "france-1994-01-course-audit.json",
+      "bytes": 21955,
+      "sha256": "868397b7c2b85a55d1c8efa2266a28d2875db745cbaf6d18bbab354fbe4e25c2"
+    },
+    {
+      "path": "france-1994-01-deep-collections.json",
+      "bytes": 32309,
+      "sha256": "fe1edb6ee9ce9490f6b5ae2e073e01ac663d0fa0d599f1ee817317c32f599b9e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5394,
+      "sha256": "1135e93a37746f336514635f37956db6828c677907d0927875077ad2825f273f"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+   Compiling spheres-sim v0.5.0 (D:\spheres-offload\codex-next-20260928\a1-firing-observer\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 16s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 3 tests
+test government::a1_observer::observed_army_walk_and_funding_keep_exact_control_state ... ok
+test government::a1_observer::observer_captures_actual_guard_and_firing_branches_without_driving_them ... ok
+test government::a1_observer::observer_is_off_by_default_and_snapshot_leaves_complete_world_unchanged ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 1112 filtered out; finished in 0.07s
+

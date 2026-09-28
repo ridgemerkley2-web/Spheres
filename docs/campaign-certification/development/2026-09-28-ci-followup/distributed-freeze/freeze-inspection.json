@@ -1,0 +1,68 @@
+{
+  "format": "spheres-distributed-freeze-monitor/v1",
+  "run_id": 36474011141,
+  "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "freeze_job": 109103066569,
+  "freeze_conclusion": "success",
+  "batch_manifest_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8",
+  "archives": {
+    "full-stability-frozen-1.zip": {
+      "bytes": 251763956,
+      "sha256": "c0b8cac48eb04e5c4bf171d44ae480bcc940e7884c236ab973963fed4621021f"
+    },
+    "full-stability-build-1.zip": {
+      "bytes": 2894,
+      "sha256": "01c82c408537147a638ca9ccd75a684518068f4a9e80844d2bddb32a3a2cb10c"
+    }
+  },
+  "bundle_files_verified": {
+    "native-test": {
+      "bytes": 349874624,
+      "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+    },
+    "plan.json": {
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    "stability_matrix.py": {
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    },
+    "distributed_stability.py": {
+      "bytes": 12526,
+      "sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f"
+    }
+  },
+  "cells": [
+    "france-1990",
+    "france-7",
+    "france-42",
+    "japan-1990",
+    "japan-7",
+    "japan-42",
+    "india-1990",
+    "india-7",
+    "india-42",
+    "brazil-1990",
+    "brazil-7",
+    "brazil-42",
+    "southafrica-1990",
+    "southafrica-7",
+    "southafrica-42",
+    "tonga-1990",
+    "tonga-7",
+    "tonga-42",
+    "saudiarabia-1990",
+    "saudiarabia-7",
+    "saudiarabia-42",
+    "ussr-1990",
+    "ussr-7",
+    "ussr-42"
+  ],
+  "native_compiler_artifact": "/home/runner/work/Spheres/Spheres/target/release/deps/spheres_web-ce73bb0dfee67027",
+  "native_build_success": true,
+  "native_execution_attempted_locally": false,
+  "campaign_results_verified": false,
+  "qualification": false,
+  "s25_complete": false
+}

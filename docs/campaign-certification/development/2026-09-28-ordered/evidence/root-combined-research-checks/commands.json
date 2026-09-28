@@ -1,0 +1,122 @@
+[
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_france_presidents_c01_23.py"
+    ],
+    "exit_code": 0,
+    "log": "1.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_tonga_speakers_c01_24.py"
+    ],
+    "exit_code": 0,
+    "log": "2.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_saudi_shura_allegiance_c01_25.py"
+    ],
+    "exit_code": 0,
+    "log": "3.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_india_bjp_presidents_c01_27.py"
+    ],
+    "exit_code": 0,
+    "log": "4.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign_research.py"
+    ],
+    "exit_code": 0,
+    "log": "5.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_import_cnccfp_census.py"
+    ],
+    "exit_code": 0,
+    "log": "6.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign.py"
+    ],
+    "exit_code": 5,
+    "log": "7.log"
+  },
+  {
+    "args": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_atlas.py"
+    ],
+    "exit_code": 5,
+    "log": "8.log"
+  }
+]

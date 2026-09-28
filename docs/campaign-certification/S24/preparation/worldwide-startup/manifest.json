@@ -1,0 +1,185 @@
+{
+  "format": "spheres-worldwide-startup-preparation/v1",
+  "status": "passed_bounded_engineering_preparation",
+  "qualification": false,
+  "parent_session": "S24",
+  "parent_session_closed": false,
+  "scope": "Current-build all-starter startup engineering; no historical acceptance, campaign certification or long-campaign qualification.",
+  "runtime_revision": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+  "binary_sha256": "fd6989f3cbbd60abb247fd289dc41eb12c30424222b1f09971ac0e7f9f50dec7",
+  "harness_revision": "c35310531c247e1c0754284672f7beb482d7f75c",
+  "seed": 17,
+  "started_utc": "2026-09-28T19:09:08.896Z",
+  "finished_utc": "2026-09-28T19:33:45.771Z",
+  "browser": {
+    "cases": 137,
+    "passed": 137,
+    "failed": 0,
+    "visible_days_per_country": 7,
+    "total_visible_days": 959,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "native_archives": 274,
+    "screenshots": 1096,
+    "retained_files": 1377,
+    "retained_bytes": 889233260,
+    "independent_verification": true,
+    "immutable_inputs_unchanged": true,
+    "cleanup": {
+      "browser_closed": true,
+      "server_stopped": true
+    },
+    "external_root": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-02",
+    "reports": [
+      {
+        "path": "browser-final/result.json",
+        "bytes": 4787108,
+        "sha256": "cbac7975a92da48526f236d3e78083b45289d6fc78892580f174216d99d5d2eb",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-02\\result.json"
+      },
+      {
+        "path": "browser-final/retained-verification.json",
+        "bytes": 155,
+        "sha256": "83d82e172ad97cd8513848e3f1882edd029c6637e63cc206e3134f8b7f48d96e",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-02\\retained-verification.json"
+      },
+      {
+        "path": "browser-final/independent-retained-verification.json",
+        "bytes": 155,
+        "sha256": "83d82e172ad97cd8513848e3f1882edd029c6637e63cc206e3134f8b7f48d96e",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-02\\independent-retained-verification.json"
+      }
+    ]
+  },
+  "git_bundle": {
+    "complete": false,
+    "representative_screenshots": 18,
+    "source_and_canonical_files": 7,
+    "captured_files": 35,
+    "requires_external_root_for_complete_verification": true,
+    "ledger": "artifact-ledger.json",
+    "copied_pins": "copied-artifact-pins.json"
+  },
+  "attempts": [
+    {
+      "id": "full-01",
+      "external_root": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-01",
+      "result": {
+        "path": "attempts/full-01/result.json",
+        "bytes": 4598659,
+        "sha256": "30a684579eaa74f471c308ea70fb2919ad64ab659e790e83afb6e8f2a9438055",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-full-01\\result.json"
+      },
+      "passed": false,
+      "cases": 137,
+      "passed_cases": 131,
+      "failed_countries": [
+        "Bahrain",
+        "CapeVerde",
+        "Comoros",
+        "Maldives",
+        "Mauritius",
+        "Seychelles"
+      ],
+      "runtime_revision": "3ec6e155a416f713149820f9d6276b5ad2e7d721",
+      "harness_revision": "4c8a7dab8b573ddd8f30c3ba4317820d708f4515",
+      "immutable_inputs_unchanged": true,
+      "cleanup": {
+        "browser_closed": true,
+        "server_stopped": true
+      }
+    },
+    {
+      "id": "islands-pilot-01",
+      "external_root": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-01",
+      "result": {
+        "path": "attempts/islands-pilot-01/result.json",
+        "bytes": 170887,
+        "sha256": "64fd660089a5ee24c292213a827cdf1c7e190068a03681229616813368a77cb7",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-01\\result.json"
+      },
+      "passed": false,
+      "cases": 6,
+      "passed_cases": 3,
+      "failed_countries": [
+        "CapeVerde",
+        "Maldives",
+        "Seychelles"
+      ],
+      "runtime_revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+      "harness_revision": "3fbd803d1376d9f3f3083c05254075ed44007190",
+      "immutable_inputs_unchanged": true,
+      "cleanup": {
+        "browser_closed": true,
+        "server_stopped": true
+      }
+    },
+    {
+      "id": "islands-pilot-02",
+      "external_root": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-02",
+      "result": {
+        "path": "attempts/islands-pilot-02/result.json",
+        "bytes": 254463,
+        "sha256": "cc93fb68ce74d2aef88d1331c3e0aed65d9e7ecbe1050675d8daa67330a2dfea",
+        "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-02\\result.json"
+      },
+      "passed": true,
+      "cases": 6,
+      "passed_cases": 6,
+      "failed_countries": [],
+      "runtime_revision": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+      "harness_revision": "c35310531c247e1c0754284672f7beb482d7f75c",
+      "immutable_inputs_unchanged": true,
+      "cleanup": {
+        "browser_closed": true,
+        "server_stopped": true
+      }
+    }
+  ],
+  "native_refresh": {
+    "passed": true,
+    "cases": 137,
+    "passed_cases": 137,
+    "failed_cases": 0,
+    "seed": 17,
+    "source_revision": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+    "source_revision_after": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+    "source_clean_after": true,
+    "binary_sha256": "fd6989f3cbbd60abb247fd289dc41eb12c30424222b1f09971ac0e7f9f50dec7",
+    "started_utc": "2026-09-28T19:31:59.172929+00:00",
+    "finished_utc": "2026-09-28T19:40:46.092727+00:00",
+    "scope": "Native API preflight of ordinary 1990 starters: reads, seven days and full campaign save/load. No browser interaction, successor activation, long campaign, adversarial recovery or content certification.",
+    "external_root": "D:\\spheres-offload\\codex-next-20260928\\startup-native-final-03",
+    "result": {
+      "path": "native-final/result.json",
+      "bytes": 81469,
+      "sha256": "00b6052ae0262205827dcf5aa20cc24bf12c5c07f94b5998393759519ee6d765",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-native-final-03\\result.json"
+    },
+    "stdout": {
+      "path": "native-final/stdout.log",
+      "bytes": 3092,
+      "sha256": "bfc3b1536498dd3bcbc61482c2b9811568740b488a49b1220da880b243a75e74",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-native-final-03.log"
+    }
+  },
+  "prior_native_invocation": {
+    "status": "refused_before_execution",
+    "case_count": 0,
+    "reason": "Expected revision differed from checkout HEAD; no campaign case ran. Separate from native03 and from product test failures.",
+    "log": {
+      "path": "attempts/native-final-02-refused.log",
+      "bytes": 623,
+      "sha256": "41d854a92903d5dbc33c10fd2d7119d7e33ccdeb434f5e0c08d449ba6b26c5d4",
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\startup-native-final-02.log"
+    }
+  }
+}
