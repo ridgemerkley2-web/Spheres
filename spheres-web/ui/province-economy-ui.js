@@ -269,6 +269,9 @@ function resetProvinceDossierState() {
   PROVINCE_DOSSIER_UI.views.clear();
   PROVINCE_DOSSIER_UI.opener=null;
   PROVINCE_DOSSIER_UI.cityOpener=null;
+  // City selection belongs to this world too; its card and keyboard focus must
+  // not be adopted into a loaded save or a newly started campaign.
+  if (typeof ui!=="undefined") ui.selectedCity=null;
   // A response issued by the previous world cannot become the new baseline.
   ++PROVINCE_POPULATION_REQUEST;
   PROVINCE_POPULATION=null;

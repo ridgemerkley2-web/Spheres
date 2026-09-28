@@ -350,11 +350,14 @@ test('province choices remain isolated and survive a loading-only drawer and ano
 
 test('a new campaign clears province choices and rejects previous DOM and pending readings',async()=>{
   const c=provinceRenderFixture();c.renderMap();
+  run(c,"ui.selectedCity={name:'Paris',lat:48.86,lon:2.35}; PROVINCE_DOSSIER_UI.cityOpener={id:'old-city-control'};");
   detail(c,'economy-projects').open=true;detail(c,'economy-projects').ontoggle();
   let resolve;c.api=()=>new Promise(done=>{resolve=done;});
   const pending=c.loadProvincePopulation('US-CA',true);
   c.resetProvinceDossierState();
   assert.equal(run(c,'selectedDistrict'),null);assert.equal(run(c,'PROVINCE_POPULATION'),null);
+  assert.equal(run(c,'ui.selectedCity'),null,'a city card from the replaced campaign cannot be restored');
+  assert.equal(run(c,'PROVINCE_DOSSIER_UI.cityOpener'),null,'an old city opener cannot regain focus');
   c.rememberProvinceDossier();
   assert.equal(run(c,'PROVINCE_DOSSIER_UI.views.size'),0,'old live DOM cannot reseed the new campaign cache');
   resolve({id:'US-CA',economy:reading({total_gdp_bn:999})});await pending;
