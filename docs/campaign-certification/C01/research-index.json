@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 34,
-    "sources": 1329,
-    "source_claims": 3731,
+    "institution_observations": 35,
+    "sources": 1378,
+    "source_claims": 3826,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -80,10 +80,10 @@
       "nation": "France",
       "packet": "docs/campaign-certification/C01/research/france.json",
       "organization_observations": 635,
-      "institution_observations": 0,
-      "role_observations": 0,
-      "source_claims": 1277,
-      "mapping_pending": 635,
+      "institution_observations": 1,
+      "role_observations": 1,
+      "source_claims": 1372,
+      "mapping_pending": 636,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -100,7 +100,8 @@
           "Overseas/local reporting identities need explicit territorial and campaign-jurisdiction review.",
           "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts.",
           "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
-          "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence."
+          "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
+          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -2101,7 +2102,8 @@
         "fr_cnccfp_1564",
         "fr_cnccfp_1573",
         "fr_cnccfp_1584",
-        "fr_cnccfp_1598"
+        "fr_cnccfp_1598",
+        "fr_presidency"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2673,8 +2675,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 1803439,
-      "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+      "bytes": 1987225,
+      "sha256": "fe6f1bc3a1eb840003809c44804ec3048d6ea3534de6fbec61967fbdb4403b07"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
@@ -2718,8 +2720,8 @@
     },
     {
       "path": "tools/avatars/import_cnccfp_census.py",
-      "bytes": 21317,
-      "sha256": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c"
+      "bytes": 24438,
+      "sha256": "93b11eedcc6a07ca4174cffd24962acfde369ee5920b28039acec4c410f2cc09"
     },
     {
       "path": "docs/campaign-certification/C01/countries.json",
