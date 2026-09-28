@@ -1,0 +1,14 @@
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index 5582c536..b90a94f5 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -9361,8 +9361,7 @@ pub fn ai_army_funding_floor(w: &WorldState, id: NationId) -> Option<f64> {
+     // loyalty. The .40 target retains the modest margin above the .35 line;
+     // it does not buy away a prospective programme veto or change loyalty
+     // directly. Beyond a full resource basket, further spending cannot help.
+-    let funded = ((0.40 - 0.20 + n.war_exhaustion * 0.45
+-        + army_civilian_confidence_penalty(w, id)) / 0.65).clamp(0.0, 1.0);
++    let funded = ((0.40 - 0.20 + n.war_exhaustion * 0.45) / 0.65).clamp(0.0, 1.0);
+     let resources = funded * 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+     let needed = resources * personnel / (n.gdp * 1_000_000_000.0);
+     let conditions = crate::economy::Conditions::of(w, id);

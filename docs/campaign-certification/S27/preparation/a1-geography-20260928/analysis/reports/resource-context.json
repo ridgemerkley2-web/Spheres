@@ -1,0 +1,3897 @@
+{
+  "summary": {
+    "no_coup_eligible_crisis_countries": 29,
+    "no_coup_eligible_crisis_checks": 3552,
+    "no_coup_resource_saturated_checks": 2390,
+    "no_coup_zero_penalty_checks": 629,
+    "no_coup_zero_leverage_checks": 433,
+    "no_coup_target_below_035_checks": 2,
+    "no_coup_countries_ever_saturated": [
+      "Argentina",
+      "Armenia",
+      "Azerbaijan",
+      "Belarus",
+      "Brazil",
+      "Colombia",
+      "Congo",
+      "Georgia",
+      "Kyrgyzstan",
+      "Nicaragua",
+      "PapuaNewGuinea",
+      "Philippines",
+      "Romania",
+      "Russia",
+      "SriLanka",
+      "Turkmenistan",
+      "Ukraine",
+      "Venezuela",
+      "Zambia"
+    ],
+    "no_coup_countries_always_saturated": [
+      "Argentina",
+      "Armenia",
+      "Azerbaijan",
+      "Belarus",
+      "Brazil",
+      "Georgia",
+      "Kyrgyzstan",
+      "Nicaragua",
+      "PapuaNewGuinea",
+      "Philippines",
+      "Romania",
+      "Russia",
+      "SriLanka",
+      "Turkmenistan",
+      "Ukraine",
+      "Venezuela"
+    ],
+    "no_crisis_at_any_check": [
+      "Albania",
+      "Australia",
+      "Austria",
+      "Bangladesh",
+      "Belgium",
+      "Belize",
+      "Botswana",
+      "Cameroon",
+      "Canada",
+      "CapeVerde",
+      "Chile",
+      "Cyprus",
+      "Czechoslovakia",
+      "Denmark",
+      "Fiji",
+      "Finland",
+      "France",
+      "Gabon",
+      "Germany",
+      "Ghana",
+      "Greece",
+      "Hungary",
+      "India",
+      "Ireland",
+      "Italy",
+      "Jamaica",
+      "Japan",
+      "Jordan",
+      "Kuwait",
+      "Lesotho",
+      "Luxembourg",
+      "Malawi",
+      "Malaysia",
+      "Malta",
+      "Morocco",
+      "Nepal",
+      "Netherlands",
+      "NewZealand",
+      "Norway",
+      "Pakistan",
+      "Portugal",
+      "Senegal",
+      "Singapore",
+      "SouthAfrica",
+      "SouthKorea",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Taiwan",
+      "Thailand",
+      "TrinidadTobago",
+      "Tunisia",
+      "UK",
+      "USA",
+      "Zimbabwe"
+    ],
+    "crisis_only_outside_eligibility": [
+      "Algeria",
+      "Honduras",
+      "Israel",
+      "Mexico",
+      "Mongolia",
+      "Paraguay",
+      "Poland"
+    ]
+  },
+  "countries": [
+    {
+      "country": "Argentina",
+      "eligible_crisis_checks": 110,
+      "target_below_035": 0,
+      "resource_saturated_checks": 110,
+      "zero_penalty_checks": 81,
+      "zero_leverage_checks": 81,
+      "min_target": {
+        "line": 5556,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.7473068515649071,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.10269314843509299,
+            "effective_loyalty": 0.707101135998618,
+            "executive_leverage": 0.2,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.707101135998618,
+            "resources_per_member": 27277.759021939648,
+            "target": 0.7473068515649071,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Argentina",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7597891826182458,
+            "prices": 1.0,
+            "total": 0.5798945913091229,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.10850000000000001,
+            "debt_gdp": 0.14807552668183105,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 2.4,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 144.91309480405437,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.016,
+            "political_capital": 17.07397591234671,
+            "population_m": 33.31957544252036,
+            "revenue_gdp": 0.16,
+            "spend_gdp": 0.2685,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.16
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.15,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ar_pj",
+            "months_in_office": 12,
+            "next_election": [
+              1991,
+              9
+            ],
+            "record": {
+              "government": "party:ar_pj",
+              "months": 12.0,
+              "performance": -1.1248681752287748
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.4240183619613582,
+      "max_resource_fraction": 1.7257318584471135
+    },
+    {
+      "country": "Armenia",
+      "eligible_crisis_checks": 175,
+      "target_below_035": 0,
+      "resource_saturated_checks": 175,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 29353,
+        "date": [
+          1994,
+          8,
+          1
+        ],
+        "value": 0.5222586885758426,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.3277413114241575,
+            "effective_loyalty": 0.6037775000303602,
+            "executive_leverage": 0.625,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6037775000303602,
+            "resources_per_member": 59295.58551620502,
+            "target": 0.5222586885758426,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Armenia",
+          "date": [
+            1994,
+            8,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.8269913740224745,
+            "prices": 1.0,
+            "total": 0.6134956870112372,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0625,
+            "balance_gdp": 0.0025000000000000022,
+            "debt_gdp": 0.040228579601462526,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 6.417644268566156,
+              "share": 0.017215704876225625,
+              "standing_affordable": true
+            },
+            "gdp_bn": 18.341330548379997,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.06,
+            "political_capital": 16.348191962931942,
+            "population_m": 3.448693519367248,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.2975,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.45,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "am_hhsh",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:am_hhsh",
+              "months": 12.0,
+              "performance": -1.9309781881185333
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 10165263067849370800,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 2.728050663072747,
+      "max_resource_fraction": 3.1845549978064875
+    },
+    {
+      "country": "Azerbaijan",
+      "eligible_crisis_checks": 160,
+      "target_below_035": 0,
+      "resource_saturated_checks": 160,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 29356,
+        "date": [
+          1994,
+          8,
+          1
+        ],
+        "value": 0.3665625000000001,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.48343749999999996,
+            "effective_loyalty": 0.5216127506631436,
+            "executive_leverage": 0.875,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.5216127506631436,
+            "resources_per_member": 51489.28187202955,
+            "target": 0.3665625000000001,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Azerbaijan",
+          "date": [
+            1994,
+            8,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 1.0350194331202558,
+            "prices": 1.0,
+            "total": 0.7,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0675,
+            "balance_gdp": 0.007500000000000007,
+            "debt_gdp": 0.012719607063207728,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 5.704346772978766,
+              "share": 0.02197102151347489,
+              "standing_affordable": true
+            },
+            "gdp_bn": 34.92693435821049,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.06,
+            "political_capital": 16.969043817976527,
+            "population_m": 7.5629243845773,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.2925,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.55,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "az_axc",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:az_axc",
+              "months": 12.0,
+              "performance": -2.122793938431488
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 10165263067849370800,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 2.6501027445884664,
+      "max_resource_fraction": 3.168782100218569
+    },
+    {
+      "country": "Belarus",
+      "eligible_crisis_checks": 177,
+      "target_below_035": 0,
+      "resource_saturated_checks": 177,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 33456,
+        "date": [
+          1995,
+          3,
+          1
+        ],
+        "value": 0.6124661974555554,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.23753380254444462,
+            "effective_loyalty": 0.6330495544333334,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6330495544333334,
+            "resources_per_member": 47572.43435084701,
+            "target": 0.6124661974555554,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Belarus",
+          "date": [
+            1995,
+            3,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.5234929543931643,
+            "prices": 1.0,
+            "total": 0.4617464771965822,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.05999999999999997,
+            "balance_gdp": 0.02999999999999997,
+            "debt_gdp": 0.00025,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 2.5610014911168655,
+              "share": 0.012926656725887564,
+              "standing_affordable": true
+            },
+            "gdp_bn": 92.93760927507836,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.03,
+            "political_capital": 26.230539181128606,
+            "population_m": 10.954267580467985,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.27,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.4,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "by_kpb",
+            "months_in_office": 19,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:by_kpb",
+              "months": 19.0,
+              "performance": -1.5415011962961165
+            },
+            "regime_bloc": null,
+            "settled_months": 19,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 13627186805325212134,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.5445993306624823,
+      "max_resource_fraction": 1.8586514819302946
+    },
+    {
+      "country": "Bolivia",
+      "eligible_crisis_checks": 128,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 58343,
+        "date": [
+          1998,
+          10,
+          1
+        ],
+        "value": 0.4490051882011402,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.006173571031317953,
+            "effective_loyalty": 0.4555469480566344,
+            "executive_leverage": 0.143,
+            "pressure": 0.0,
+            "public_mandate": 0.6818670389797814,
+            "raw_loyalty": 0.4555469480566344,
+            "resources_per_member": 2762.096207116272,
+            "target": 0.4490051882011402,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Bolivia",
+          "date": [
+            1998,
+            10,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.5981072685474227,
+            "prices": 0.0,
+            "total": 0.29905363427371134,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.08555338822805963,
+            "balance_gdp": 0.07137474351928341,
+            "debt_gdp": 0.8442281105084779,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 0.408435534258781,
+              "share": 0.011455741147051023,
+              "standing_affordable": true
+            },
+            "gdp_bn": 5.8442035833085,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.01417864470877623,
+            "political_capital": 30.610020826068304,
+            "population_m": 8.612548794575535,
+            "revenue_gdp": 0.3300000000000002,
+            "spend_gdp": 0.25862525648071677,
+            "state_invest_gdp": 0.035446611771940556,
+            "tax_rate": 0.3300000000000002
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.22,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "bo_adn",
+            "months_in_office": 16,
+            "next_election": [
+              2001,
+              6
+            ],
+            "record": {
+              "government": "party:bo_adn",
+              "months": 64.0,
+              "performance": -0.11849626499225191
+            },
+            "regime_bloc": null,
+            "settled_months": 64,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 5399048127451563220,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.3925827065114741,
+      "max_resource_fraction": 0.5237772905245505
+    },
+    {
+      "country": "Brazil",
+      "eligible_crisis_checks": 107,
+      "target_below_035": 0,
+      "resource_saturated_checks": 107,
+      "zero_penalty_checks": 37,
+      "zero_leverage_checks": 37,
+      "min_target": {
+        "line": 23273,
+        "date": [
+          1993,
+          10,
+          1
+        ],
+        "value": 0.7364327490581779,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.11356725094182213,
+            "effective_loyalty": 0.7459618836049583,
+            "executive_leverage": 0.34375,
+            "pressure": 0.0,
+            "public_mandate": 0.36382570225698363,
+            "raw_loyalty": 0.7459618836049583,
+            "resources_per_member": 30689.375778687176,
+            "target": 0.7364327490581779,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Brazil",
+          "date": [
+            1993,
+            10,
+            1
+          ],
+          "discontent": {
+            "growth": 0.7870596332477082,
+            "order_uncapped": 0.8809859303490618,
+            "prices": 0.0,
+            "total": 0.5979048918240726,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.03828493623434374,
+            "balance_gdp": 0.014284936234343737,
+            "debt_gdp": 0.0,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 2.9198291565643415,
+              "share": 0.004534472289571056,
+              "standing_affordable": true
+            },
+            "gdp_bn": 377.2235772796966,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.024,
+            "political_capital": 3.379508029963062,
+            "population_m": 161.21825298686568,
+            "revenue_gdp": 0.29890993623434375,
+            "spend_gdp": 0.284625,
+            "state_invest_gdp": 0.05,
+            "tax_rate": 0.29
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.1875,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "br_pfl",
+            "months_in_office": 12,
+            "next_election": [
+              1996,
+              10
+            ],
+            "record": {
+              "government": "party:br_pfl",
+              "months": 24.0,
+              "performance": -1.302696788006549
+            },
+            "regime_bloc": null,
+            "settled_months": 24,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 13024526240504434447,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 2.532304977762298,
+      "max_resource_fraction": 4.094347025978713
+    },
+    {
+      "country": "Bulgaria",
+      "eligible_crisis_checks": 125,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 125,
+      "zero_leverage_checks": 125,
+      "min_target": {
+        "line": 10122,
+        "date": [
+          1991,
+          9,
+          1
+        ],
+        "value": 0.5835295250871453,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.0,
+            "effective_loyalty": 0.5922056672552766,
+            "executive_leverage": 0.0,
+            "pressure": 0.0,
+            "public_mandate": 0.6086363302021425,
+            "raw_loyalty": 0.5922056672552766,
+            "resources_per_member": 7087.452881041562,
+            "target": 0.5835295250871453,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Bulgaria",
+          "date": [
+            1991,
+            9,
+            1
+          ],
+          "discontent": {
+            "growth": 0.456593699479482,
+            "order_uncapped": 0.4034621821032829,
+            "prices": 0.0,
+            "total": 0.29304983094753784,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.07000000000000002,
+            "balance_gdp": 0.025000000000000022,
+            "debt_gdp": 0.45153021038339686,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.230062389738432,
+              "share": 0.023466250735077118,
+              "standing_affordable": true
+            },
+            "gdp_bn": 20.317364925652477,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.045,
+            "political_capital": 26.665407399451052,
+            "population_m": 8.692903554510975,
+            "revenue_gdp": 0.45,
+            "spend_gdp": 0.425,
+            "state_invest_gdp": 0.18,
+            "tax_rate": 0.45
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.4,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "bg_bsp",
+            "months_in_office": 15,
+            "next_election": [
+              1992,
+              6
+            ],
+            "record": {
+              "government": "party:bg_bsp",
+              "months": 21.0,
+              "performance": -0.6634930668431118
+            },
+            "regime_bloc": null,
+            "settled_months": 21,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 5218714145316439766,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.5900454232109927,
+      "max_resource_fraction": 0.651963042591179
+    },
+    {
+      "country": "CentralAfricanRepublic",
+      "eligible_crisis_checks": 174,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 67185,
+        "date": [
+          2000,
+          1,
+          1
+        ],
+        "value": 0.6478149702148897,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.05300369205760052,
+            "effective_loyalty": 0.6585825666214481,
+            "executive_leverage": 0.6,
+            "pressure": 0.0,
+            "public_mandate": 0.4410936574054216,
+            "raw_loyalty": 0.6585825666214481,
+            "resources_per_member": 5285.2984082071835,
+            "target": 0.6478149702148897,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "CentralAfricanRepublic",
+          "date": [
+            2000,
+            1,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.6431958755884541,
+            "prices": 0.0,
+            "total": 0.3215979377942271,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.05061706984756628,
+            "balance_gdp": 0.0403238538032219,
+            "debt_gdp": 0.9987152631041142,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 0.763993003736178,
+              "share": 0.005199929352769865,
+              "standing_affordable": true
+            },
+            "gdp_bn": 2.0538958418583646,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.010293216044344385,
+            "political_capital": 37.1959877409565,
+            "population_m": 3.313347223989451,
+            "revenue_gdp": 0.27600000000000013,
+            "spend_gdp": 0.23567614619677824,
+            "state_invest_gdp": 0.035382930152433836,
+            "tax_rate": 0.27600000000000013
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5999999999999998,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "cf_rdc",
+            "months_in_office": 72,
+            "next_election": [
+              2000,
+              1
+            ],
+            "record": {
+              "government": "party:cf_rdc",
+              "months": 121.0,
+              "performance": -0.16473364356118744
+            },
+            "regime_bloc": "NonAligned",
+            "settled_months": 121,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 6031949272581619655,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.7695877617789898,
+      "max_resource_fraction": 0.9373314169125748
+    },
+    {
+      "country": "Colombia",
+      "eligible_crisis_checks": 164,
+      "target_below_035": 0,
+      "resource_saturated_checks": 98,
+      "zero_penalty_checks": 164,
+      "zero_leverage_checks": 164,
+      "min_target": {
+        "line": 57750,
+        "date": [
+          1998,
+          9,
+          1
+        ],
+        "value": 0.8031928508387423,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.0,
+            "effective_loyalty": 0.8116216094329344,
+            "executive_leverage": 0.0,
+            "pressure": 0.0,
+            "public_mandate": 0.6301774425284039,
+            "raw_loyalty": 0.8116216094329344,
+            "resources_per_member": 9325.927708422214,
+            "target": 0.8031928508387423,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Colombia",
+          "date": [
+            1998,
+            9,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.6998912859882308,
+            "prices": 0.0,
+            "total": 0.3499456429941154,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.010175956899663184,
+            "balance_gdp": -0.005447641202478315,
+            "debt_gdp": 0.8491496007741404,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.5664947911108258,
+              "share": 0.0051802994947359945,
+              "standing_affordable": true
+            },
+            "gdp_bn": 65.66042221643116,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.015623598102141499,
+            "political_capital": 28.22402940312834,
+            "population_m": 39.00920266605523,
+            "revenue_gdp": 0.2580000000000001,
+            "spend_gdp": 0.26344764120247843,
+            "state_invest_gdp": 0.03719904310033693,
+            "tax_rate": 0.2580000000000001
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.1875,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "co_adm19",
+            "months_in_office": 30,
+            "next_election": [
+              2000,
+              3
+            ],
+            "record": {
+              "government": "party:co_adm19",
+              "months": 30.0,
+              "performance": -0.25636841230985247
+            },
+            "regime_bloc": null,
+            "settled_months": 30,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 9219446787432148547,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.9279890012903728,
+      "max_resource_fraction": 1.4193404112139238
+    },
+    {
+      "country": "Comoros",
+      "eligible_crisis_checks": 142,
+      "target_below_035": 48,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 37500,
+        "date": [
+          1995,
+          10,
+          1
+        ],
+        "value": 0.3185619917011089,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.06838645996851525,
+            "effective_loyalty": 0.32635034032852306,
+            "executive_leverage": 0.571,
+            "pressure": 1.0267826604804955,
+            "public_mandate": 0.3872129491895756,
+            "raw_loyalty": 0.32635034032852306,
+            "resources_per_member": 2363.9213774235927,
+            "target": 0.3185619917011089,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Comoros",
+          "date": [
+            1995,
+            10,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7185525250491904,
+            "prices": 0.0,
+            "total": 0.3592762625245952,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.08840022773688605,
+            "debt_gdp": 1.0588902685123927,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.5255771305442218,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 0.5200796894245527,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.010170514203628146,
+            "political_capital": 51.03916908291337,
+            "population_m": 0.48468105887516283,
+            "revenue_gdp": 0.20600000000000007,
+            "spend_gdp": 0.2944002277368861,
+            "state_invest_gdp": 0.09322971353325799,
+            "tax_rate": 0.20600000000000007
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.58,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "km_undc",
+            "months_in_office": 55,
+            "next_election": [
+              1997,
+              3
+            ],
+            "record": {
+              "government": "party:km_undc",
+              "months": 55.0,
+              "performance": -0.24209278947210336
+            },
+            "regime_bloc": null,
+            "settled_months": 55,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 305708344578839429,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_firing",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.2876130025686524,
+      "max_resource_fraction": 0.6839975370046674
+    },
+    {
+      "country": "Congo",
+      "eligible_crisis_checks": 78,
+      "target_below_035": 0,
+      "resource_saturated_checks": 56,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 76670,
+        "date": [
+          2001,
+          5,
+          1
+        ],
+        "value": 0.7254440442593005,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.05415020949490698,
+            "effective_loyalty": 0.7435162824398381,
+            "executive_leverage": 0.24999999999999992,
+            "pressure": 0.0,
+            "public_mandate": 0.3212554451030252,
+            "raw_loyalty": 0.7435162824398381,
+            "resources_per_member": 6694.41179391553,
+            "target": 0.7254440442593005,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Congo",
+          "date": [
+            2001,
+            5,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.9096637809776519,
+            "prices": 0.0,
+            "total": 0.45483189048882594,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.26232696021463897,
+            "balance_gdp": 0.24054620831480372,
+            "debt_gdp": 0.737182739982818,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.8344943741359603,
+              "share": 0.00955078940559551,
+              "standing_affordable": true
+            },
+            "gdp_bn": 2.766190369474596,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.021780751899835245,
+            "political_capital": 21.594012540294433,
+            "population_m": 3.3093546522024035,
+            "revenue_gdp": 0.5020000000000002,
+            "spend_gdp": 0.2614537916851965,
+            "state_invest_gdp": 0.04667303978536122,
+            "tax_rate": 0.5020000000000002
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5399999999999997,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "cg_pct",
+            "months_in_office": 12,
+            "next_election": [
+              2005,
+              5
+            ],
+            "record": {
+              "government": "party:cg_pct",
+              "months": 12.0,
+              "performance": -0.5270752379765434
+            },
+            "regime_bloc": "Communist",
+            "settled_months": 12,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 5293117138092433986,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.8916834673141655,
+      "max_resource_fraction": 1.2920398553136934
+    },
+    {
+      "country": "DominicanRepublic",
+      "eligible_crisis_checks": 5,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 9183,
+        "date": [
+          1991,
+          7,
+          1
+        ],
+        "value": 0.352843661788492,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.04248179816610877,
+            "effective_loyalty": 0.4154521538611385,
+            "executive_leverage": 0.2,
+            "pressure": 0.0,
+            "public_mandate": 0.33520351025658196,
+            "raw_loyalty": 0.4154521538611385,
+            "resources_per_member": 2367.930445483838,
+            "target": 0.352843661788492,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "DominicanRepublic",
+          "date": [
+            1991,
+            7,
+            1
+          ],
+          "discontent": {
+            "growth": 0.5662725149677192,
+            "order_uncapped": 0.2853104315226248,
+            "prices": 0.0,
+            "total": 0.25590971875485624,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.14300000000000002,
+            "debt_gdp": 0.7057368474057664,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.05,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 7.103791336451513,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.007,
+            "political_capital": 29.219034985182983,
+            "population_m": 7.399912015294841,
+            "revenue_gdp": 0.12,
+            "spend_gdp": 0.263,
+            "state_invest_gdp": 0.055,
+            "tax_rate": 0.12
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.38,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "do_prd",
+            "months_in_office": 14,
+            "next_election": [
+              1994,
+              5
+            ],
+            "record": {
+              "government": "party:do_prd",
+              "months": 14.0,
+              "performance": -0.7271973459119415
+            },
+            "regime_bloc": null,
+            "settled_months": 14,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 2522204748046396436,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.3004610220102134,
+      "max_resource_fraction": 0.3008800971365682
+    },
+    {
+      "country": "Ecuador",
+      "eligible_crisis_checks": 109,
+      "target_below_035": 29,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 12700,
+        "date": [
+          1992,
+          2,
+          1
+        ],
+        "value": 0.25625945513210036,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.3016653490479273,
+            "effective_loyalty": 0.3136875719429279,
+            "executive_leverage": 1.0,
+            "pressure": 0.2996967837407303,
+            "public_mandate": 0.32666349133900585,
+            "raw_loyalty": 0.3136875719429279,
+            "resources_per_member": 4839.383047236236,
+            "target": 0.25625945513210036,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Ecuador",
+          "date": [
+            1992,
+            2,
+            1
+          ],
+          "discontent": {
+            "growth": 0.6987758515165035,
+            "order_uncapped": 0.4871929182204069,
+            "prices": 0.0,
+            "total": 0.38335162941350415,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.12127613109794924,
+            "debt_gdp": 0.9653897816425945,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 2.7517338434070293,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 13.98140133272956,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.018344892289380195,
+            "political_capital": 13.413347232042623,
+            "population_m": 11.071643243851147,
+            "revenue_gdp": 0.164,
+            "spend_gdp": 0.28527613109794925,
+            "state_invest_gdp": 0.05793123880856905,
+            "tax_rate": 0.164
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.22,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ec_id",
+            "months_in_office": 20,
+            "next_election": [
+              1994,
+              6
+            ],
+            "record": {
+              "government": "party:ec_id",
+              "months": 26.0,
+              "performance": -0.9951583162887648
+            },
+            "regime_bloc": null,
+            "settled_months": 26,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 7669352650489273030,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_pressure_not_ready",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.5066444892790103,
+      "max_resource_fraction": 0.7013663473109651
+    },
+    {
+      "country": "ElSalvador",
+      "eligible_crisis_checks": 29,
+      "target_below_035": 2,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 5650,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.15835216396118185,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.2888984687354792,
+            "effective_loyalty": 0.35551199794717653,
+            "executive_leverage": 0.6,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.35551199794717653,
+            "resources_per_member": 2849.629075227646,
+            "target": 0.15835216396118185,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "ElSalvador",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.933383998459763,
+            "order_uncapped": 0.5897076184158813,
+            "prices": 0.0,
+            "total": 0.48153060889989324,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.163,
+            "debt_gdp": 0.5541055250114711,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 5.1000000000000005,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 4.609694092280015,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.034,
+            "political_capital": 11.543705936311314,
+            "population_m": 5.5506777713055095,
+            "revenue_gdp": 0.1,
+            "spend_gdp": 0.263,
+            "state_invest_gdp": 0.03,
+            "tax_rate": 0.1
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.42,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "sv_arena",
+            "months_in_office": 12,
+            "next_election": [
+              1991,
+              3
+            ],
+            "record": {
+              "government": "party:sv_arena",
+              "months": 12.0,
+              "performance": -1.192638857960541
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.3307886199775444,
+      "max_resource_fraction": 0.3807133144462996
+    },
+    {
+      "country": "Georgia",
+      "eligible_crisis_checks": 8,
+      "target_below_035": 0,
+      "resource_saturated_checks": 8,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 33459,
+        "date": [
+          1995,
+          3,
+          1
+        ],
+        "value": 0.43601055375074177,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.4139894462492583,
+            "effective_loyalty": 0.5014944276135995,
+            "executive_leverage": 0.8122389821168877,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.5014944276135995,
+            "resources_per_member": 46487.88893275412,
+            "target": 0.43601055375074177,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Georgia",
+          "date": [
+            1995,
+            3,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7365489931229046,
+            "prices": 1.0,
+            "total": 0.5682744965614523,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.06624477964233773,
+            "balance_gdp": 0.02124477964233773,
+            "debt_gdp": 0.00703288547288358,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.7899967522152544,
+              "share": 0.019733354985231634,
+              "standing_affordable": true
+            },
+            "gdp_bn": 31.954776696337785,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.045,
+            "political_capital": 18.56061519350239,
+            "population_m": 5.781419000802547,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.27875522035766226,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5248955928467551,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ge_mrsm",
+            "months_in_office": 19,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:ge_mrsm",
+              "months": 19.0,
+              "performance": -2.0618097991855286
+            },
+            "regime_bloc": null,
+            "settled_months": 19,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 13627186805325212134,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 2.115998639139141,
+      "max_resource_fraction": 2.154066639718499
+    },
+    {
+      "country": "Guatemala",
+      "eligible_crisis_checks": 124,
+      "target_below_035": 34,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 10216,
+        "date": [
+          1991,
+          9,
+          1
+        ],
+        "value": 0.2117246426951108,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.23782606658546016,
+            "effective_loyalty": 0.26266161595879123,
+            "executive_leverage": 0.8,
+            "pressure": 1.041831382393894,
+            "public_mandate": 0.3663260536647342,
+            "raw_loyalty": 0.26266161595879123,
+            "resources_per_member": 2770.1196799499353,
+            "target": 0.2117246426951108,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Guatemala",
+          "date": [
+            1991,
+            9,
+            1
+          ],
+          "discontent": {
+            "growth": 0.8519336717492928,
+            "order_uncapped": 0.5462495689473068,
+            "prices": 0.0,
+            "total": 0.443511518823512,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.15950000000000003,
+            "debt_gdp": 0.5494380995653202,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 2.5500000000000003,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 7.006773308108659,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.017,
+            "political_capital": 19.84273989261667,
+            "population_m": 9.48879465491362,
+            "revenue_gdp": 0.08,
+            "spend_gdp": 0.23950000000000002,
+            "state_invest_gdp": 0.025,
+            "tax_rate": 0.08
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.45,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "gt_dcg",
+            "months_in_office": 10,
+            "next_election": [
+              1995,
+              11
+            ],
+            "record": {
+              "government": "party:gt_dcg",
+              "months": 21.0,
+              "performance": -1.089364522982491
+            },
+            "regime_bloc": null,
+            "settled_months": 21,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 5218714145316439766,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_firing",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.3406573638349495,
+      "max_resource_fraction": 0.6995685269571674
+    },
+    {
+      "country": "Guyana",
+      "eligible_crisis_checks": 10,
+      "target_below_035": 10,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 28747,
+        "date": [
+          1994,
+          7,
+          1
+        ],
+        "value": 0.0,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.29395093047160453,
+            "effective_loyalty": 0.17054020309874046,
+            "executive_leverage": 1.0,
+            "pressure": 1.1237593251023683,
+            "public_mandate": 0.3828721816207306,
+            "raw_loyalty": 0.17054020309874046,
+            "resources_per_member": 1269.6827662991875,
+            "target": 0.0,
+            "war_exhaustion": 0.07760068244328566
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Guyana",
+          "date": [
+            1994,
+            7,
+            1
+          ],
+          "discontent": {
+            "growth": 0.7967925853495557,
+            "order_uncapped": 0.5741429036974289,
+            "prices": 0.057064971778015006,
+            "total": 0.46560303151855714,
+            "war": 0.07760068244328566
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.06355802626255924,
+            "debt_gdp": 2.7640477324702823,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.3499999999999999,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 0.5643034516885278,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.009,
+            "political_capital": 6.430453647927384,
+            "population_m": 0.7039220712711008,
+            "revenue_gdp": 0.26000000000000006,
+            "spend_gdp": 0.3235580262625593,
+            "state_invest_gdp": 0.12205802626255931,
+            "tax_rate": 0.26000000000000006
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.55,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "gy_pnc",
+            "months_in_office": 12,
+            "next_election": [
+              1998,
+              7
+            ],
+            "record": {
+              "government": "party:gy_pnc",
+              "months": 12.0,
+              "performance": -1.0274904551762518
+            },
+            "regime_bloc": "Nationalist",
+            "settled_months": 12,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 13200338222955950481,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_firing",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.1714636300153674,
+      "max_resource_fraction": 0.1999937200644104
+    },
+    {
+      "country": "Kyrgyzstan",
+      "eligible_crisis_checks": 197,
+      "target_below_035": 0,
+      "resource_saturated_checks": 197,
+      "zero_penalty_checks": 196,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 29363,
+        "date": [
+          1994,
+          8,
+          1
+        ],
+        "value": 0.6646712426134647,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.18532875738653543,
+            "effective_loyalty": 0.6783473065974901,
+            "executive_leverage": 0.3749999999999999,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6783473065974901,
+            "resources_per_member": 17073.96257813991,
+            "target": 0.6646712426134647,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Kyrgyzstan",
+          "date": [
+            1994,
+            8,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.6412924289072485,
+            "prices": 1.0,
+            "total": 0.5206462144536242,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.057499999999999975,
+            "balance_gdp": 0.03249999999999997,
+            "debt_gdp": 0.017664613148915407,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.6633865151361626,
+              "share": 0.013910756565758917,
+              "standing_affordable": true
+            },
+            "gdp_bn": 16.789050631395728,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.025,
+            "political_capital": 19.87120661746099,
+            "population_m": 4.56800632828469,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.2675,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.35,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "kg_dkk",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:kg_dkk",
+              "months": 12.0,
+              "performance": -1.7629986312952255
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 10165263067849370800,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.0408656149095845,
+      "max_resource_fraction": 1.1879873417024736
+    },
+    {
+      "country": "Myanmar",
+      "eligible_crisis_checks": 78,
+      "target_below_035": 15,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 42677,
+        "date": [
+          1996,
+          7,
+          1
+        ],
+        "value": 0.2724498695832059,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.07799899627077683,
+            "effective_loyalty": 0.288738499174632,
+            "executive_leverage": 0.667,
+            "pressure": 1.030372238713254,
+            "public_mandate": 0.4293596333348731,
+            "raw_loyalty": 0.288738499174632,
+            "resources_per_member": 1345.0426875509609,
+            "target": 0.2724498695832059,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Myanmar",
+          "date": [
+            1996,
+            7,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7112540935501253,
+            "prices": 0.0,
+            "total": 0.3556270467750626,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.09966836016137776,
+            "debt_gdp": 1.4268934419178774,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.832531901956378,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 12.10791557842493,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.025550212679709187,
+            "political_capital": 48.896680911449685,
+            "population_m": 44.78172131580336,
+            "revenue_gdp": 0.1760000000000001,
+            "spend_gdp": 0.27566836016137786,
+            "state_invest_gdp": 0.06011814748166866,
+            "tax_rate": 0.1760000000000001
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5999999999999998,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "mm_nld",
+            "months_in_office": 26,
+            "next_election": [
+              1999,
+              5
+            ],
+            "record": {
+              "government": "party:mm_nld",
+              "months": 26.0,
+              "performance": -0.27491975764492954
+            },
+            "regime_bloc": "Nationalist",
+            "settled_months": 26,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 12124913455441718502,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_firing",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.2314597936215119,
+      "max_resource_fraction": 0.606984327288481
+    },
+    {
+      "country": "Nicaragua",
+      "eligible_crisis_checks": 197,
+      "target_below_035": 0,
+      "resource_saturated_checks": 197,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 19124,
+        "date": [
+          1993,
+          2,
+          1
+        ],
+        "value": 0.7107604792846225,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.13923952071537765,
+            "effective_loyalty": 0.7325769951409498,
+            "executive_leverage": 0.3791666666666667,
+            "pressure": 0.0,
+            "public_mandate": 0.3353391681827728,
+            "raw_loyalty": 0.7325769951409498,
+            "resources_per_member": 19653.195067576282,
+            "target": 0.7107604792846225,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Nicaragua",
+          "date": [
+            1993,
+            2,
+            1
+          ],
+          "discontent": {
+            "growth": 1.0,
+            "order_uncapped": 1.1416680836015547,
+            "prices": 0.0,
+            "total": 0.7,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.24012254436827507,
+            "debt_gdp": 1.0715191693213624,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 33.92289301029816,
+              "share": 0.0,
+              "standing_affordable": false
+            },
+            "gdp_bn": 2.433265914518618,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.2261526200686544,
+            "political_capital": 8.211801783687097,
+            "population_m": 4.47147221396785,
+            "revenue_gdp": 0.29000000000000004,
+            "spend_gdp": 0.5301225443682751,
+            "state_invest_gdp": 0.10855325763295409,
+            "tax_rate": 0.29000000000000004
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.49166666666666664,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ni_pcd",
+            "months_in_office": 12,
+            "next_election": [
+              1998,
+              2
+            ],
+            "record": {
+              "government": "party:ni_pcd",
+              "months": 12.0,
+              "performance": -2.1230281189076607
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 8856449865243797134,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.3717108706257004,
+      "max_resource_fraction": 3.4225592523344135
+    },
+    {
+      "country": "PapuaNewGuinea",
+      "eligible_crisis_checks": 159,
+      "target_below_035": 0,
+      "resource_saturated_checks": 159,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 10753,
+        "date": [
+          1991,
+          10,
+          1
+        ],
+        "value": 0.7629204053770985,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.0870795946229016,
+            "effective_loyalty": 0.7728467914444651,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.7728467914444651,
+            "resources_per_member": 11508.373442814009,
+            "target": 0.7629204053770985,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "PapuaNewGuinea",
+          "date": [
+            1991,
+            10,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.5008587408793692,
+            "prices": 0.0,
+            "total": 0.2504293704396846,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.06139013928518372,
+            "debt_gdp": 0.9016212997704004,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.9188222606264458,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 3.5985740875416434,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.012792148404176305,
+            "political_capital": 43.03573755006144,
+            "population_m": 4.809716015288546,
+            "revenue_gdp": 0.23700000000000004,
+            "spend_gdp": 0.29839013928518376,
+            "state_invest_gdp": 0.07309799088100746,
+            "tax_rate": 0.23700000000000004
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.15,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "pg_ind",
+            "months_in_office": 22,
+            "next_election": [
+              1992,
+              6
+            ],
+            "record": {
+              "government": "party:pg_ind",
+              "months": 22.0,
+              "performance": -0.28544505800894054
+            },
+            "regime_bloc": null,
+            "settled_months": 22,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 9772313440382054308,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.5885526281799847,
+      "max_resource_fraction": 3.111437446548713
+    },
+    {
+      "country": "Peru",
+      "eligible_crisis_checks": 211,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 24513,
+        "date": [
+          1993,
+          12,
+          1
+        ],
+        "value": 0.36976686879625886,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.17974080398941508,
+            "effective_loyalty": 0.391644135670554,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.2665517290305177,
+            "raw_loyalty": 0.391644135670554,
+            "resources_per_member": 4219.449818667127,
+            "target": 0.36976686879625886,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Peru",
+          "date": [
+            1993,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.9492565934426683,
+            "order_uncapped": 0.636453509142775,
+            "prices": 0.0,
+            "total": 0.5080780732599212,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.1631351206376029,
+            "debt_gdp": 0.6255240403713156,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.4499999999999997,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 22.931792492756124,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.023,
+            "political_capital": 14.591151836644594,
+            "population_m": 24.162812973268302,
+            "revenue_gdp": 0.09,
+            "spend_gdp": 0.2531351206376029,
+            "state_invest_gdp": 0.03,
+            "tax_rate": 0.09
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.3972975872479422,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "pe_apra",
+            "months_in_office": 44,
+            "next_election": [
+              1995,
+              4
+            ],
+            "record": {
+              "government": "party:pe_apra",
+              "months": 48.0,
+              "performance": -1.2195466647485778
+            },
+            "regime_bloc": null,
+            "settled_months": 48,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 14635745246202795593,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.4195072019724064,
+      "max_resource_fraction": 0.5742189630664484
+    },
+    {
+      "country": "Philippines",
+      "eligible_crisis_checks": 169,
+      "target_below_035": 0,
+      "resource_saturated_checks": 169,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 5619,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.6432708919025687,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.20672910809743134,
+            "effective_loyalty": 0.6605584603483663,
+            "executive_leverage": 0.714,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6605584603483663,
+            "resources_per_member": 10284.967964275833,
+            "target": 0.6432708919025687,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Philippines",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.024139064398575986,
+            "order_uncapped": 0.5440323880481904,
+            "prices": 0.0,
+            "total": 0.2768440069038104,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.14,
+            "debt_gdp": 0.7888826727069316,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.3,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 50.957341277548444,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.022,
+            "political_capital": 38.31177040768808,
+            "population_m": 64.6005828779651,
+            "revenue_gdp": 0.14,
+            "spend_gdp": 0.28,
+            "state_invest_gdp": 0.05,
+            "tax_rate": 0.14
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.24,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ph_ldp",
+            "months_in_office": 12,
+            "next_election": [
+              1992,
+              5
+            ],
+            "record": {
+              "government": "party:ph_ldp",
+              "months": 12.0,
+              "performance": -0.6140377345201556
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.3961965046009712,
+      "max_resource_fraction": 2.7965781449998777
+    },
+    {
+      "country": "Romania",
+      "eligible_crisis_checks": 181,
+      "target_below_035": 0,
+      "resource_saturated_checks": 181,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 83740,
+        "date": [
+          2002,
+          5,
+          1
+        ],
+        "value": 0.7998765783737056,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.05012342162629443,
+            "effective_loyalty": 0.8027393030106977,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.446316851591205,
+            "raw_loyalty": 0.8027393030106977,
+            "resources_per_member": 18470.8284271274,
+            "target": 0.7998765783737056,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Romania",
+          "date": [
+            2002,
+            5,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.661618931994693,
+            "prices": 0.0,
+            "total": 0.3308094659973465,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.09200000000000008,
+            "debt_gdp": 0.7385136845306102,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 5.250000000000001,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 66.49498233765863,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.035,
+            "political_capital": 41.42819136453057,
+            "population_m": 24.654449825522562,
+            "revenue_gdp": 0.34199999999999997,
+            "spend_gdp": 0.43400000000000005,
+            "state_invest_gdp": 0.2,
+            "tax_rate": 0.34199999999999997
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.42,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ro_fsn",
+            "months_in_office": 24,
+            "next_election": [
+              2002,
+              5
+            ],
+            "record": {
+              "government": "party:ro_fsn",
+              "months": 149.0,
+              "performance": -0.226281401367909
+            },
+            "regime_bloc": null,
+            "settled_months": 149,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 6771822948715053563,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.1292836036695932,
+      "max_resource_fraction": 1.5284822473174726
+    },
+    {
+      "country": "Russia",
+      "eligible_crisis_checks": 142,
+      "target_below_035": 0,
+      "resource_saturated_checks": 142,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 29341,
+        "date": [
+          1994,
+          8,
+          1
+        ],
+        "value": 0.5465716882550649,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.3034283117449353,
+            "effective_loyalty": 0.6168607327681999,
+            "executive_leverage": 0.625,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6168607327681999,
+            "resources_per_member": 65564.56553303919,
+            "target": 0.5465716882550649,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Russia",
+          "date": [
+            1994,
+            8,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.5876018387193626,
+            "prices": 1.0,
+            "total": 0.4938009193596813,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.08189439597284394,
+            "balance_gdp": 0.03689439597284394,
+            "debt_gdp": 0.140530500053839,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 4.475719281599638,
+              "share": 0.015161871456002415,
+              "standing_affordable": false
+            },
+            "gdp_bn": 1209.7112653124013,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.045,
+            "political_capital": 1.161117525092192,
+            "population_m": 154.28453389584112,
+            "revenue_gdp": 0.3193943959728439,
+            "spend_gdp": 0.2825,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.28
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.45,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ru_ldpr",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:ru_ldpr",
+              "months": 12.0,
+              "performance": -1.507217607998644
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 10165263067849370800,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 2.298708927574476,
+      "max_resource_fraction": 2.803492344975546
+    },
+    {
+      "country": "SaoTome",
+      "eligible_crisis_checks": 43,
+      "target_below_035": 5,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 39234,
+        "date": [
+          1996,
+          1,
+          1
+        ],
+        "value": 0.12988169308943268,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.14672055684258342,
+            "effective_loyalty": 0.20014885468362134,
+            "executive_leverage": 1.0,
+            "pressure": 1.041902791773874,
+            "public_mandate": 0.31528049380352335,
+            "raw_loyalty": 0.20014885468362134,
+            "resources_per_member": 866.735138912211,
+            "target": 0.12988169308943268,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "SaoTome",
+          "date": [
+            1996,
+            1,
+            1
+          ],
+          "discontent": {
+            "growth": 0.09963538456598917,
+            "order_uncapped": 0.660649442390794,
+            "prices": 0.0,
+            "total": 0.35025179810859486,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.009056990125324071,
+            "debt_gdp": 1.8321071523595143,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.2,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 0.10834189236402637,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.008,
+            "political_capital": 28.063095062394577,
+            "population_m": 0.13803941219696522,
+            "revenue_gdp": 0.2940000000000001,
+            "spend_gdp": 0.30305699012532417,
+            "state_invest_gdp": 0.10455699012532417,
+            "tax_rate": 0.2940000000000001
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.59,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "st_pcd",
+            "months_in_office": 15,
+            "next_election": [
+              1998,
+              10
+            ],
+            "record": {
+              "government": "party:st_pcd",
+              "months": 15.0,
+              "performance": -0.3090661607380579
+            },
+            "regime_bloc": "Nationalist",
+            "settled_months": 15,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 6170559758645138579,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_firing",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.11766262223665871,
+      "max_resource_fraction": 0.6651823833064161
+    },
+    {
+      "country": "SriLanka",
+      "eligible_crisis_checks": 109,
+      "target_below_035": 0,
+      "resource_saturated_checks": 109,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 5601,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.7541892792425887,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.09581072075741139,
+            "effective_loyalty": 0.7070362225416368,
+            "executive_leverage": 0.25,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.7070362225416368,
+            "resources_per_member": 8640.401825041801,
+            "target": 0.7541892792425887,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "SriLanka",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.011929325841556204,
+            "order_uncapped": 0.5010152645618736,
+            "prices": 0.0,
+            "total": 0.25289349744924805,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.10549999999999998,
+            "debt_gdp": 0.7546083540384628,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.4499999999999997,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 8.264732180474768,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.023,
+            "political_capital": 32.57895841273124,
+            "population_m": 16.57026297514952,
+            "revenue_gdp": 0.19,
+            "spend_gdp": 0.2955,
+            "state_invest_gdp": 0.07,
+            "tax_rate": 0.19
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.35,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "lk_unp",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              2
+            ],
+            "record": {
+              "government": "party:lk_unp",
+              "months": 12.0,
+              "performance": -0.9263153734111998
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.3300483091863042,
+      "max_resource_fraction": 2.0222286548768253
+    },
+    {
+      "country": "Suriname",
+      "eligible_crisis_checks": 219,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 26,
+      "zero_leverage_checks": 26,
+      "min_target": {
+        "line": 48585,
+        "date": [
+          1997,
+          5,
+          1
+        ],
+        "value": 0.40573094822037326,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.03738855707003451,
+            "effective_loyalty": 0.4138428601151016,
+            "executive_leverage": 0.2,
+            "pressure": 0.0,
+            "public_mandate": 0.2899213621179175,
+            "raw_loyalty": 0.4138428601151016,
+            "resources_per_member": 3514.5646201946092,
+            "target": 0.40573094822037326,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Suriname",
+          "date": [
+            1997,
+            5,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7108124027517484,
+            "prices": 0.0,
+            "total": 0.3554062013758742,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.06573922652727346,
+            "balance_gdp": 0.04451099448545548,
+            "debt_gdp": 0.8441551170177405,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 0.07506055416845667,
+              "share": 0.020727828347361598,
+              "standing_affordable": true
+            },
+            "gdp_bn": 0.6622434903238646,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.021228232041817976,
+            "political_capital": 49.1288430541487,
+            "population_m": 0.451891404693094,
+            "revenue_gdp": 0.33400000000000013,
+            "spend_gdp": 0.28948900551454465,
+            "state_invest_gdp": 0.07076077347272666,
+            "tax_rate": 0.33400000000000013
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.45,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "sr_fdo",
+            "months_in_office": 54,
+            "next_election": [
+              1997,
+              11
+            ],
+            "record": {
+              "government": "party:sr_fdo",
+              "months": 89.0,
+              "performance": -0.4546569939117213
+            },
+            "regime_bloc": null,
+            "settled_months": 89,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 13134979229547171101,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.3740300081390889,
+      "max_resource_fraction": 0.5670785947869599
+    },
+    {
+      "country": "Turkey",
+      "eligible_crisis_checks": 1,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 5505,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.3874523811615984,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.161610261359901,
+            "effective_loyalty": 0.4889122498584288,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.4889122498584288,
+            "resources_per_member": 7046.926945381824,
+            "target": 0.3874523811615984,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Turkey",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.14890949385398825,
+            "order_uncapped": 0.2420712764861541,
+            "prices": 0.5421804608753105,
+            "total": 0.2592536291889368,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.1675,
+            "debt_gdp": 0.36143610486191324,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 5.250000000000001,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 154.83105202853207,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.035,
+            "political_capital": 28.485056688588802,
+            "population_m": 57.18743661605448,
+            "revenue_gdp": 0.15,
+            "spend_gdp": 0.3175,
+            "state_invest_gdp": 0.08,
+            "tax_rate": 0.15
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.35,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "tr_anap",
+            "months_in_office": 12,
+            "next_election": [
+              1991,
+              10
+            ],
+            "record": {
+              "government": "party:tr_anap",
+              "months": 12.0,
+              "performance": -0.7352710561027617
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.5370194500330759,
+      "max_resource_fraction": 0.5370194500330759
+    },
+    {
+      "country": "Turkmenistan",
+      "eligible_crisis_checks": 121,
+      "target_below_035": 0,
+      "resource_saturated_checks": 121,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 94650,
+        "date": [
+          2003,
+          11,
+          1
+        ],
+        "value": 0.6497736666090712,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.20022633339092885,
+            "effective_loyalty": 0.6538091470205224,
+            "executive_leverage": 0.9999999999999993,
+            "pressure": 0.0,
+            "public_mandate": 0.14766008912230877,
+            "raw_loyalty": 0.6538091470205224,
+            "resources_per_member": 27361.23121431114,
+            "target": 0.6497736666090712,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Turkmenistan",
+          "date": [
+            2003,
+            11,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7909515517781958,
+            "prices": 0.0,
+            "total": 0.3954757758890979,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.06999999999999998,
+            "balance_gdp": 0.034999999999999976,
+            "debt_gdp": 0.0,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.3009407296799878,
+              "share": 0.012993728468800087,
+              "standing_affordable": true
+            },
+            "gdp_bn": 15.908618956418994,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.035,
+            "political_capital": 47.03098675849516,
+            "population_m": 4.151101177503713,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.265,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5999999999999998,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "tm_dpt",
+            "months_in_office": 47,
+            "next_election": [
+              2004,
+              12
+            ],
+            "record": {
+              "government": "party:tm_dpt",
+              "months": 47.0,
+              "performance": -0.3273356494069882
+            },
+            "regime_bloc": "NonAligned",
+            "settled_months": 47,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 8336838459058908401,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.612672212369519,
+      "max_resource_fraction": 1.8091654152063936
+    },
+    {
+      "country": "Ukraine",
+      "eligible_crisis_checks": 76,
+      "target_below_035": 0,
+      "resource_saturated_checks": 76,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 29344,
+        "date": [
+          1994,
+          8,
+          1
+        ],
+        "value": 0.594123381670874,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.2558766183291261,
+            "effective_loyalty": 0.6417309155579708,
+            "executive_leverage": 0.5,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.6417309155579708,
+            "resources_per_member": 48119.56296067039,
+            "target": 0.594123381670874,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Ukraine",
+          "date": [
+            1994,
+            8,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7492506871277056,
+            "prices": 1.0,
+            "total": 0.5746253435638529,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.05999999999999997,
+            "balance_gdp": 0.024999999999999967,
+            "debt_gdp": 0.04320660235937509,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 3.1689575288358536,
+              "share": 0.013873616474427645,
+              "standing_affordable": true
+            },
+            "gdp_bn": 402.8849181209578,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.035,
+            "political_capital": 21.131761819660507,
+            "population_m": 54.45305556895654,
+            "revenue_gdp": 0.3,
+            "spend_gdp": 0.275,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.3
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.4,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ua_kpu",
+            "months_in_office": 12,
+            "next_election": [
+              1995,
+              3
+            ],
+            "record": {
+              "government": "party:ua_kpu",
+              "months": 12.0,
+              "performance": -1.8376771759996195
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 10165263067849370800,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.7654060428481644,
+      "max_resource_fraction": 2.078520075784858
+    },
+    {
+      "country": "Uruguay",
+      "eligible_crisis_checks": 6,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 6591,
+        "date": [
+          1991,
+          2,
+          1
+        ],
+        "value": 0.3745050419218466,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.21922847349132651,
+            "effective_loyalty": 0.5021145430463465,
+            "executive_leverage": 0.6,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.5021145430463465,
+            "resources_per_member": 8168.824898690573,
+            "target": 0.3745050419218466,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Uruguay",
+          "date": [
+            1991,
+            2,
+            1
+          ],
+          "discontent": {
+            "growth": 1.0,
+            "order_uncapped": 0.03743901783240725,
+            "prices": 0.8828953449802794,
+            "total": 0.39529857791225953,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.015999999999999993,
+            "balance_gdp": -0.007000000000000006,
+            "debt_gdp": 0.32179130661357935,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.050000000000001,
+              "share": 0.015999999999999993,
+              "standing_affordable": true
+            },
+            "gdp_bn": 8.87915749857671,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.023,
+            "political_capital": 23.01334643939575,
+            "population_m": 3.139135085472659,
+            "revenue_gdp": 0.27,
+            "spend_gdp": 0.277,
+            "state_invest_gdp": 0.04,
+            "tax_rate": 0.27
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.12,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "uy_pn",
+            "months_in_office": 14,
+            "next_election": [
+              1994,
+              11
+            ],
+            "record": {
+              "government": "party:uy_pn",
+              "months": 14.0,
+              "performance": -0.7289500040945431
+            },
+            "regime_bloc": null,
+            "settled_months": 14,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 2612926488974232680,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.5999261974220353,
+      "max_resource_fraction": 0.6092940388081797
+    },
+    {
+      "country": "Venezuela",
+      "eligible_crisis_checks": 126,
+      "target_below_035": 0,
+      "resource_saturated_checks": 126,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 7086,
+        "date": [
+          1991,
+          3,
+          1
+        ],
+        "value": 0.7254035378392316,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.12459646216076843,
+            "effective_loyalty": 0.7035876226859008,
+            "executive_leverage": 0.286,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.7035876226859008,
+            "resources_per_member": 13016.335732039966,
+            "target": 0.7254035378392316,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Venezuela",
+          "date": [
+            1991,
+            3,
+            1
+          ],
+          "discontent": {
+            "growth": 0.9790235604128718,
+            "order_uncapped": 0.41457091822189757,
+            "prices": 0.0,
+            "total": 0.40309017119352314,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.11397092531665785,
+            "balance_gdp": 0.09297092531665785,
+            "debt_gdp": 0.4171857500449344,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.721837734136624,
+              "share": 0.009521081772422509,
+              "standing_affordable": true
+            },
+            "gdp_bn": 46.48691332871417,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.021,
+            "political_capital": 21.032371592968733,
+            "population_m": 20.456311505664903,
+            "revenue_gdp": 0.40497092531665785,
+            "spend_gdp": 0.312,
+            "state_invest_gdp": 0.08,
+            "tax_rate": 0.22
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.18,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ve_ad",
+            "months_in_office": 15,
+            "next_election": [
+              1993,
+              12
+            ],
+            "record": {
+              "government": "party:ve_ad",
+              "months": 15.0,
+              "performance": -0.9373774152590689
+            },
+            "regime_bloc": null,
+            "settled_months": 15,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 3689858589716333799,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 1.1002873298659623,
+      "max_resource_fraction": 1.8001265138791396
+    },
+    {
+      "country": "Yemen",
+      "eligible_crisis_checks": 29,
+      "target_below_035": 0,
+      "resource_saturated_checks": 0,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 5586,
+        "date": [
+          1990,
+          12,
+          1
+        ],
+        "value": 0.39272466894336505,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.3788823637025031,
+            "effective_loyalty": 0.5173412371690378,
+            "executive_leverage": 0.875,
+            "pressure": 0.0,
+            "public_mandate": 0.0,
+            "raw_loyalty": 0.5173412371690378,
+            "resources_per_member": 6779.296148574929,
+            "target": 0.39272466894336505,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Yemen",
+          "date": [
+            1990,
+            12,
+            1
+          ],
+          "discontent": {
+            "growth": 0.02247270830598124,
+            "order_uncapped": 0.5836415190726609,
+            "prices": 0.2193716526954992,
+            "total": 0.34018963173662653,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.0,
+            "balance_gdp": -0.1305,
+            "debt_gdp": 0.5360913688267789,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 9.9,
+              "share": 0.0,
+              "standing_affordable": true
+            },
+            "gdp_bn": 13.045009255591152,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.066,
+            "political_capital": 28.749698010665774,
+            "population_m": 14.44607759523237,
+            "revenue_gdp": 0.2,
+            "spend_gdp": 0.3305,
+            "state_invest_gdp": 0.072,
+            "tax_rate": 0.2
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.55,
+            "awaiting_first_election": false,
+            "elected": false,
+            "electoral": true,
+            "has_army": true,
+            "leader": "ye_gpc",
+            "months_in_office": 12,
+            "next_election": [
+              1993,
+              4
+            ],
+            "record": {
+              "government": "party:ye_gpc",
+              "months": 12.0,
+              "performance": -0.9921439549095382
+            },
+            "regime_bloc": null,
+            "settled_months": 12,
+            "unrestricted_mandate": false
+          },
+          "rng_state": 11524403931985738088,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.878685158781184,
+      "max_resource_fraction": 0.9375851937740219
+    },
+    {
+      "country": "Zambia",
+      "eligible_crisis_checks": 169,
+      "target_below_035": 0,
+      "resource_saturated_checks": 22,
+      "zero_penalty_checks": 0,
+      "zero_leverage_checks": 0,
+      "min_target": {
+        "line": 54383,
+        "date": [
+          1998,
+          3,
+          1
+        ],
+        "value": 0.6167168979035751,
+        "snapshot": {
+          "army": {
+            "civilian_confidence_penalty": 0.05985459235747738,
+            "effective_loyalty": 0.6233370706989143,
+            "executive_leverage": 0.333,
+            "pressure": 0.0,
+            "public_mandate": 0.34991334392723217,
+            "raw_loyalty": 0.6233370706989143,
+            "resources_per_member": 4420.711902923014,
+            "target": 0.6167168979035751,
+            "war_exhaustion": 0.0
+          },
+          "budget_ownership": {
+            "annual_plan": false,
+            "fiscal_recovery": false,
+            "on_the_books": false,
+            "player": false,
+            "programs_enrolled": false
+          },
+          "country": "Zambia",
+          "date": [
+            1998,
+            3,
+            1
+          ],
+          "discontent": {
+            "growth": 0.0,
+            "order_uncapped": 0.7427115888449745,
+            "prices": 0.0,
+            "total": 0.37135579442248723,
+            "war": 0.0
+          },
+          "fiscal": {
+            "affordable_military_share": 0.1549313509414758,
+            "balance_gdp": 0.1341276390749222,
+            "debt_gdp": 1.193034236359747,
+            "funding_quote": {
+              "clears_existing_hysteresis": false,
+              "price_pc": 1.4190470871840195,
+              "share": 0.011343397951993482,
+              "standing_affordable": true
+            },
+            "gdp_bn": 3.3999408807658003,
+            "interest_gdp": 0.0,
+            "mil_spend_gdp": 0.020803711866553613,
+            "political_capital": 41.17369646926331,
+            "population_m": 9.908056068221537,
+            "revenue_gdp": 0.40000000000000013,
+            "spend_gdp": 0.26587236092507793,
+            "state_invest_gdp": 0.05506864905852429,
+            "tax_rate": 0.40000000000000013
+          },
+          "government": {
+            "alive": true,
+            "authoritarianism": 0.5999999999999999,
+            "awaiting_first_election": false,
+            "elected": true,
+            "electoral": true,
+            "has_army": true,
+            "leader": "zm_mmd",
+            "months_in_office": 60,
+            "next_election": [
+              1998,
+              3
+            ],
+            "record": {
+              "government": "party:zm_mmd",
+              "months": 60.0,
+              "performance": -0.4793876891942117
+            },
+            "regime_bloc": "NonAligned",
+            "settled_months": 60,
+            "unrestricted_mandate": true
+          },
+          "rng_state": 5471080161908747293,
+          "rules": {
+            "crisis_intensity": 1.0,
+            "daily_simulation": false,
+            "ideology_blocs": true,
+            "ideology_takeover": true
+          },
+          "stage": "trigger_live_conditions_inactive",
+          "thresholds": {
+            "army": 0.35,
+            "discontent": 0.25,
+            "pressure": 1.0,
+            "settled_months": 12
+          }
+        }
+      },
+      "min_resource_fraction": 0.7206097628794276,
+      "max_resource_fraction": 1.1373874108207314
+    }
+  ]
+}

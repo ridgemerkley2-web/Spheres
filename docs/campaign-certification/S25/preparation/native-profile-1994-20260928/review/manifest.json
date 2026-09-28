@@ -1,0 +1,104 @@
+{
+  "format": "spheres-offline-review-packet/v1",
+  "reviewer": "Codex /root/s20_preflight",
+  "created_utc": "2026-09-28T21:52:45.769213+00:00",
+  "source_revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "qualification": false,
+  "files": [
+    {
+      "path": "analysis.json",
+      "bytes": 1342759,
+      "sha256": "dc148b36d0e2f0b4a5e80a5fdad503beec469c2fd08f504ded13098e7e04d3f3"
+    },
+    {
+      "path": "analyze.py",
+      "bytes": 12107,
+      "sha256": "113a9738c6dc131af3e373844ad5d48f1d76c92aec85a1c71c1cd1974f533d4f"
+    },
+    {
+      "path": "pinned-source/performance.rs",
+      "bytes": 41158,
+      "sha256": "980c8af882144948bcb941f3e8e4803a11a3e9851fe4dd9f8c0ed8d3f3ba6b9b"
+    },
+    {
+      "path": "pinned-source/s08_performance_diagnostics.rs",
+      "bytes": 10438,
+      "sha256": "e3de46f9cb0ce234249b0447318c166d56440b85882573cae89832397be79087"
+    },
+    {
+      "path": "pinned-source/s22_diagnosis.rs",
+      "bytes": 16140,
+      "sha256": "18826dea67ce05e4c7e42217fe3abc08596e7bf0e092b8136b68af8435521ab4"
+    },
+    {
+      "path": "pinned-source/s22_performance.rs",
+      "bytes": 26934,
+      "sha256": "548625dd401bde904d81592b2a5ae7638775520bcfe152b706b34ee4fe0c7c28"
+    },
+    {
+      "path": "pinned-source/s25_stability_tests.rs",
+      "bytes": 51674,
+      "sha256": "fa40b13bd9f9190cfb2dfbb211c387cba5fdb3c8a6683182a56c6d143ddbd58b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10443,
+      "sha256": "e72bece2fdbae94b0f5ca0f369852048388a877f9e7fc4d3abb1ae9ec68295b5"
+    },
+    {
+      "path": "retained/execution-start.json",
+      "bytes": 1941,
+      "sha256": "790162204ddbe8cf52a3895b86f7190135fa55a9703a872e56fabbbf10c211da"
+    },
+    {
+      "path": "retained/execution.json",
+      "bytes": 2410,
+      "sha256": "94b872a6de550990dcc6ad92dd9a0d087e63b50cc11b1212794240169eaf4654"
+    },
+    {
+      "path": "retained/process.csv",
+      "bytes": 10653,
+      "sha256": "f6a9a8eb084525fd20bbce3710065121abb4c4b4f28464072bc9b17b2f679a74"
+    },
+    {
+      "path": "retained/profile.json",
+      "bytes": 2738864,
+      "sha256": "c57492062ce0794bec55c8c9f8c21253f0633b9fa25effd28ec7afa6056a1b48"
+    },
+    {
+      "path": "retained/stderr.log",
+      "bytes": 3480,
+      "sha256": "dd0189f4964c863876e7fcb10a7b4997a53850a87010e8802226f14115b2d69a"
+    },
+    {
+      "path": "retained/stdout.log",
+      "bytes": 170,
+      "sha256": "a2d5e5171170390f633eb65a3b877fb5da6b27b60a2da381eaaf44a0b5d69750"
+    },
+    {
+      "path": "review-attempt-01.txt",
+      "bytes": 460,
+      "sha256": "a0833778375f43ecf31c1f039cbcd6d5c5e8b2c98a73213146a352b51718c582"
+    }
+  ],
+  "file_count_excluding_manifest": 15,
+  "total_bytes_excluding_manifest": 4269631,
+  "external_inputs": {
+    "binary": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+      "bytes": 353133206,
+      "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+    },
+    "input": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-native-profile-1994-01\\input.json",
+      "bytes": 135739703,
+      "sha256": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20"
+    },
+    "original_input": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\matrix-full-ssd-02-interrupted\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+      "bytes": 135739703,
+      "sha256": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20"
+    }
+  },
+  "scope": "Read-only retained native diagnostic analysis. No native run, build, repository edit or campaign mutation. All packet files except this self-excluding manifest are pinned."
+}

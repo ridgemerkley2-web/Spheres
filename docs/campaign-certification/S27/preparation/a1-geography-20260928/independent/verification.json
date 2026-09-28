@@ -1,0 +1,108 @@
+{
+  "format": "spheres-a1-geography-independent/v1",
+  "reviewer": "Codex /root/review_source05",
+  "passed": true,
+  "packet_manifest": {
+    "bytes": 13922,
+    "sha256": "d4b3d98f89981414bc97b10c56e1954de83f72a10194bc165ee992b9f8bdd500"
+  },
+  "payload_count_verified": 28,
+  "copied_input_pins_verified": 14,
+  "raw_and_git_source_files_verified": [
+    "spheres-sim/src/government.rs",
+    "spheres-sim/src/government_a1_observer.rs",
+    "spheres-sim/src/politics.rs",
+    "spheres-sim/src/economy.rs",
+    "spheres-sim/src/clock.rs",
+    "spheres-sim/src/lib.rs"
+  ],
+  "observer_packet": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-firing-observer-20260928",
+  "analysis_command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "D:\\spheres-offload\\codex-next-20260928\\a1-geography-analysis-01\\analyze_geography.py",
+    "--observations",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-firing-observer-20260928\\original-run\\observations.jsonl.gz",
+    "--result",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-firing-observer-20260928\\original-run\\result.json",
+    "--out",
+    "D:\\spheres-offload\\codex-next-20260928\\a1-geography-independent-01\\reproduced"
+  ],
+  "reproduction_exit_code": 0,
+  "reproduction_byte_exact": [
+    "countries.json",
+    "all-funding-actions.json"
+  ],
+  "summary_only_differences": [
+    {
+      "field": "observations_input.path",
+      "original": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\original-run\\observations.jsonl.gz",
+      "reproduced": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-firing-observer-20260928\\original-run\\observations.jsonl.gz"
+    },
+    {
+      "field": "result_input.path",
+      "original": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\original-run\\result.json",
+      "reproduced": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-firing-observer-20260928\\original-run\\result.json"
+    }
+  ],
+  "independent_raw_checks": {
+    "rows": 146525,
+    "decoded_bytes": 240585752,
+    "decoded_sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49",
+    "electoral_countries": 118,
+    "electoral_checks": 25769,
+    "firing_countries": [
+      "Comoros",
+      "Ecuador",
+      "Guatemala",
+      "Guyana",
+      "Myanmar",
+      "SaoTome"
+    ],
+    "actual_branches": {
+      "trigger_unsettled_interim_or_no_army": 6786,
+      "trigger_live_conditions_inactive": 18870,
+      "trigger_pressure_not_ready": 103,
+      "trigger_firing": 10
+    },
+    "nonfiring_branches": {
+      "trigger_unsettled_interim_or_no_army": 6417,
+      "trigger_live_conditions_inactive": 18476,
+      "trigger_pressure_not_ready": 1
+    },
+    "joint_guard_patterns": 18,
+    "eligible_joint": {
+      "loyal+low_discontent": 14843,
+      "loyal+crisis": 3945,
+      "hostile+crisis": 113,
+      "hostile+low_discontent": 82
+    },
+    "actual_funding_changes": 151,
+    "funding_country_count": 13,
+    "nonfiring_eligible_crisis_countries": 29,
+    "nonfiring_eligible_crisis_totals": {
+      "checks": 3552,
+      "zero_penalty": 629,
+      "zero_leverage": 433,
+      "saturated": 2390,
+      "target_below": 2
+    },
+    "political_increment_countries": {
+      "Myanmar": 9,
+      "Comoros": 1,
+      "Guatemala": 1,
+      "SaoTome": 1
+    },
+    "exact_witness_rows_checked": 198,
+    "el_salvador_december_line": 11740
+  },
+  "defects": [],
+  "limits": [
+    "One already-used seed0/252-month legacy trace; no simulations, Cargo or holdouts.",
+    "No causal treatment effect or A1 success follows from the descriptive counts.",
+    "Main analysis reproduced; supplementary fixed-path resource script was inspected, not executed. Its published resource/witness values were independently recomputed from original rows.",
+    "Compiler/execution binding retained and source pins verified; no reproducible-build attestation or native replay."
+  ]
+}

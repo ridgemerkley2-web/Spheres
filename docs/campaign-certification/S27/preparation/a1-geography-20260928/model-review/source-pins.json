@@ -1,0 +1,239 @@
+{
+  "format": "spheres-a1-model-review-sources/v1",
+  "observer_revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "current_integration_revision_observed": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+  "hash_scope": "Git object bytes are LF source content. Checkout raw hashes are separately labeled; no implicit normalization. No runtime execution or reproducible-build attestation.",
+  "sources": [
+    {
+      "path": "spheres-sim/src/government.rs",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+      "git_blob_bytes": 849546,
+      "git_blob_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          8484,
+          8499
+        ],
+        [
+          8501,
+          8515
+        ],
+        [
+          8556,
+          8594
+        ],
+        [
+          8705,
+          8719
+        ],
+        [
+          8765,
+          8779
+        ],
+        [
+          8832,
+          8845
+        ],
+        [
+          8926,
+          8962
+        ],
+        [
+          9359,
+          9393
+        ],
+        [
+          9395,
+          9427
+        ],
+        [
+          12537,
+          12569
+        ],
+        [
+          12625,
+          12655
+        ],
+        [
+          13572,
+          13625
+        ],
+        [
+          14450,
+          14488
+        ],
+        [
+          14513,
+          14562
+        ]
+      ],
+      "observer_checkout": {
+        "absolute_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government.rs",
+        "raw_bytes": 865338,
+        "raw_sha256": "1022e0e65023408e59cecdcad423031bd766b003ee89aa0fde5d244edc84c824",
+        "utf8_lf_equals_git_blob": true
+      }
+    },
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "ae16760b1158a9ead254b0d7e07c6606c7b6883d",
+      "git_blob_bytes": 117500,
+      "git_blob_sha256": "3c817af7c78c9cca6518f0e193c375a2f7b102a254fb498afec2a4b9aeaa03fa",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "3c817af7c78c9cca6518f0e193c375a2f7b102a254fb498afec2a4b9aeaa03fa",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          145,
+          185
+        ]
+      ],
+      "observer_checkout": {
+        "absolute_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\politics.rs",
+        "raw_bytes": 119714,
+        "raw_sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341",
+        "utf8_lf_equals_git_blob": true
+      }
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "d486c4278569a5241f50781b00f08aa61ff6f0f8",
+      "git_blob_bytes": 131714,
+      "git_blob_sha256": "aa0b9153db856ec1f3edf48d95735dee21bcc111e94c3e521163a07c05cb3566",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "aa0b9153db856ec1f3edf48d95735dee21bcc111e94c3e521163a07c05cb3566",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [],
+      "observer_checkout": {
+        "absolute_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\blocs.rs",
+        "raw_bytes": 134245,
+        "raw_sha256": "3cfcc5d96630c76affa4cfd05cc051bd857d59d833e931a62ac398649042c999",
+        "utf8_lf_equals_git_blob": true
+      }
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "dfd72ea40e2ca1bdc8456d045f385f5aef250475",
+      "git_blob_bytes": 64036,
+      "git_blob_sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          985,
+          993
+        ]
+      ],
+      "observer_checkout": {
+        "absolute_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\tests\\bloc_census.rs",
+        "raw_bytes": 65191,
+        "raw_sha256": "d68e8e615aade63fc15a8f3b30d97036cc6b2762febaf262f91211772c5fb76e",
+        "utf8_lf_equals_git_blob": true
+      }
+    },
+    {
+      "path": "SPEC.md",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "5db2d2ea80d7c73e0c9213eaf4dceb6c921e4717",
+      "git_blob_bytes": 85049,
+      "git_blob_sha256": "1c890955a9bf81224768eb48841491bfca35f4f52c2308c6f32924bc4aa25537",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "1c890955a9bf81224768eb48841491bfca35f4f52c2308c6f32924bc4aa25537",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          82,
+          84
+        ]
+      ]
+    },
+    {
+      "path": "BUGS.md",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "5900203e4201c8eb4c58b7a1f773e8024f6f0bc3",
+      "git_blob_bytes": 337631,
+      "git_blob_sha256": "596e745fda3607bad1cd257a728a29425b4403c245bc1fae6ef712d4d640bacc",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "596e745fda3607bad1cd257a728a29425b4403c245bc1fae6ef712d4d640bacc",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          3085,
+          3095
+        ]
+      ]
+    },
+    {
+      "path": "docs/political-arm/2026-09-22-calibration-repairs.md",
+      "revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+      "git_blob": "6704d4a9b9752e9b1b543d6ad7f3f5c4afbc02f9",
+      "git_blob_bytes": 55587,
+      "git_blob_sha256": "378454355a835be1414dee2cf783439d0830bcb41710240f57672790a1a801af",
+      "current_revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "current_git_blob_sha256": "378454355a835be1414dee2cf783439d0830bcb41710240f57672790a1a801af",
+      "same_git_bytes_at_current": true,
+      "excerpt_ranges_inclusive": [
+        [
+          8,
+          117
+        ]
+      ]
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "git_blob": "e9f6ad746b58be54e721670a33e983a4d7177ec3",
+      "git_blob_bytes": 10937,
+      "git_blob_sha256": "2766b03fe224813624ced4cf31584296613a33d8eb2cf9560a310b3e4fc3b43a"
+    },
+    {
+      "path": "docs/campaign-certification/S27/preparation/a1-20260928/README.md",
+      "revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "git_blob": "1993924631b5fc0859822642bde731f645d93983",
+      "git_blob_bytes": 3742,
+      "git_blob_sha256": "5fe728f61fb4991e1125c184198c5745f0b28d842392492e5b6de6a81ad7efc1"
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint27-rejected-model/README.md",
+      "revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "git_blob": "abac590352cf0ead024307990e85d6fdd9db5297",
+      "git_blob_bytes": 3644,
+      "git_blob_sha256": "a58d307a7251a125af3d94bbe0158b513e1e14af8ea98671c46ace04367a673a"
+    }
+  ],
+  "prior_analysis_inputs": [
+    {
+      "absolute_original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-geography-analysis-01\\manifest.json",
+      "bytes": 13922,
+      "sha256": "d4b3d98f89981414bc97b10c56e1954de83f72a10194bc165ee992b9f8bdd500"
+    },
+    {
+      "absolute_original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-geography-analysis-01\\reports\\summary.json",
+      "bytes": 6227,
+      "sha256": "08b3e301585088f6c4671765e6bc6712e44457576f27f4337959afc7beb11916"
+    },
+    {
+      "absolute_original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-geography-analysis-01\\reports\\resource-context.json",
+      "bytes": 120246,
+      "sha256": "7b9b7e25399c08fac0faeb35b88b88fa4a5d746ce056f94879552497f9514690"
+    },
+    {
+      "absolute_original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-geography-analysis-01\\reports\\el-salvador-sequence.json",
+      "bytes": 23091,
+      "sha256": "204fc63c3156ce21649e62e189b291376ae7dd1f11429eede53def6ecd7fa1c1"
+    },
+    {
+      "absolute_original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\manifest.json",
+      "bytes": 13955,
+      "sha256": "b3dc18e7c5cd2f3b6195d3625805e1f8aa61bcd82b52db31d39d0d2ffc94d497"
+    }
+  ]
+}

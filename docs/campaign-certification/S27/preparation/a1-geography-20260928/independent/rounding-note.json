@@ -1,0 +1,29 @@
+{
+  "format": "spheres-a1-geography-rounding-note/v1",
+  "blocking": false,
+  "finding": "The reported 12 political-compensation increments are those exceeding the script's explicit 1e-10 share criterion. Two additional algebraic differences are positive only at floating roundoff scale and have exactly zero recorded confidence penalty.",
+  "residuals": [
+    {
+      "country": "Guyana",
+      "date": [
+        1996,
+        7,
+        1
+      ],
+      "penalty": 0,
+      "share_residual": 3.469446951953614e-18
+    },
+    {
+      "country": "Laos",
+      "date": [
+        2001,
+        1,
+        1
+      ],
+      "penalty": 0,
+      "share_residual": 1.3877787807814457e-17
+    }
+  ],
+  "optional_wording": "12 paid increments with a decomposed excess share greater than 1e-10",
+  "scope": "No source/coefficient/test-threshold change; documentary precision only. The raw residuals remain retained in all-funding-actions.json."
+}

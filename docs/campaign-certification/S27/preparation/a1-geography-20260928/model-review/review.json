@@ -1,0 +1,44 @@
+{
+  "format": "spheres-a1-model-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-28T21:55:00.678672+00:00",
+  "scope": "Read-only source, existing tests/contracts and retained development-seed diagnostic review. No simulation, Cargo, test execution, new research, reserved cohort, source edit or task-status change.",
+  "observer_revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "current_integration_revision_observed": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+  "conclusion": "No justified mechanism correction identified; an explicit game-design decision and causal specification are required.",
+  "proposed_implementation": null,
+  "confirmed_contract_violation": false,
+  "a1_pass_claimed": false,
+  "qualification": false,
+  "geography_scope": "One retained development seed, 252 months; country-month exposures are not independent trials or evidence that a new mechanism would satisfy A1.",
+  "key_observations": {
+    "electoral_trigger_countries": 118,
+    "electoral_trigger_checks": 25769,
+    "actual_elected_coups": 10,
+    "firing_countries": 6,
+    "nonfiring_countries_with_eligible_crisis": 29,
+    "their_eligible_crisis_checks": 3552,
+    "their_target_at_or_above_point35": 3550,
+    "their_observed_ai_military_increases_entire_run": 0
+  },
+  "contract_resolution": {
+    "authorization": "Smallest justified political correction may change gameplay, but aggregate failure alone does not supply a causal model.",
+    "resources_vs_obedience": "Separate inputs/effects do not imply mathematically independent non-compensable loyalty ceilings. Existing documented formula is additive and caps useful provisioning; tests require both reachable paid recovery and political loss that remains unreachable even at saturation.",
+    "new_party_grace": "El Salvador changed accountable party; observed renewed grace follows an explicit contract, unlike an already-repaired same-party snap-election reset.",
+    "macro_crisis_gate": "Current electoral coup route explicitly requires live discontent >= .25. Original design notes acknowledge paid-army/non-street cases it does not represent; no unique new trigger is defined by that admission."
+  },
+  "single_unresolved_design_question": "Should a specifically modeled conflict between the civilian executive and an institution with removal leverage independently threaten obedience when provisioning is adequate and macro discontent is below .25? This is not a recommendation to add such a route: the current observation has no independent dispute signal with which to justify or calibrate it.",
+  "rejected_directions": [
+    "Do not repeat removal of civilian confidence from the AI inverse: retained trial worsened median top-three share from displayed .59 to .67.",
+    "Do not repeat stronger confidence coefficient search: retained trials include Algeria chronology/A2 regressions and A1 failure.",
+    "Do not relabel a new political loyalty ceiling or deletion of the live discontent guard as an arithmetic correction.",
+    "Do not add nation quotas, historical-calendar forced coups, selected seeds or weaker A1 thresholds."
+  ],
+  "possible_future_contract_requirements": [
+    "An observable causal trigger separate from merely high removal leverage or historical coup identity.",
+    "A player-visible prevention/response that does not erase already-paid equipment resources or bypass fiscal/command authority.",
+    "Explicit negative controls for quiet funded countries, no-Army/strong civilian-control states, ordinary new-party grace, and already-resolved crises.",
+    "Preserve the existing separately timed programme-veto/Algeria path or explicitly justify and review a changed interaction before measuring A1.",
+    "Predeclare the expected behavior and regressions before running unchanged A1-A10; no claim that this will improve aggregate spread."
+  ]
+}

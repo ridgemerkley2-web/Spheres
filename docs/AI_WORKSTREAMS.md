@@ -62,6 +62,20 @@ fixes a Windows short-path test expectation, retains the original failures, and
 records the independently verified full-matrix build/freeze. Its 71 tooling
 tests report 70 passes and one existing privilege-dependent skip.
 
+The later [A1 geography and model review](campaign-certification/S27/preparation/a1-geography-20260928/README.md)
+independently accounts for every electoral country in that retained development
+trace. Non-firing countries with eligible crises already retained adequate Army
+loyalty targets in 3,550 of 3,552 checks, without any recorded AI funding increase.
+No further implementation defect or supported replacement mechanism was found.
+The unchanged A1 gate remains failed; this analysis does not complete it.
+
+An [actual 31-day January 1994 diagnostic](campaign-certification/S25/preparation/native-profile-1994-20260928/README.md)
+also passed every observed/ordinary native-world and headline comparison. Its
+complete original checkpoint, reports and independent review are portable and
+verified. Ordinary native days averaged 87.34 ms on the recorded local machine;
+this diagnostic's extra daily comparisons do not predict the full matrix's
+completion time or qualify production memory.
+
 Russia C01-28 has a newer unreviewed follow-up at `03141c43`. South Africa C01-30
 is claimed at `68535825`; India C01-33 is separately claimed at `89decb6a`. These
 inventory entries are not new acceptance or additional tasks in the current order.

@@ -69,6 +69,15 @@ the complete compressed diagnostic data are retained; coefficients, acceptance
 tests and reserved cohorts are unchanged. A1 remains blocked pending a justified
 causal policy/model correction rather than another ungrounded coefficient trial.
 
+The [subsequent geography and contract review](../../campaign-certification/S27/preparation/a1-geography-20260928/README.md)
+covers all 118 countries exposed to the electoral route in that same trace.
+Independent reproduction confirms that the 29 non-firing countries with eligible
+crises received no recorded government-AI military increases and already had
+targets at or above .35 in 3,550 of 3,552 checks. Current formulas, live-crisis
+guards and genuine-government grace match their focused contracts. A separate
+civilian–military conflict mechanism remains an unspecified design possibility,
+not a demonstrated repair; no new trigger, coefficient trial or holdout was used.
+
 ## 2. Startup: CODEX-S24-STARTUP-01
 
 Reuse `tools/campaign/worldwide_preflight.py`; do not rebuild the earlier work
