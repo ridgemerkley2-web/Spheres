@@ -15,6 +15,24 @@
   "source_response_encoding": "text/html (served uncompressed; identity)",
   "source_response_checked_in": false,
   "stability_check": "Dossier: downloaded at 2026-09-26T02:15:47Z and again at 02:49:05Z; identical. Independent check: 02:55:45Z and 03:37:59Z; identical; a control request accepting gzip was served gzip-encoded (14,596 bytes). This packet: re-downloaded at 2026-09-26T03:53:57Z and again at 2026-09-26T04:27:16Z (33 minutes later); identical 42,384 bytes and SHA-256.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+        "downloaded_at": [
+          "2026-09-27T23:40:39Z",
+          "2026-09-28T00:15:42Z"
+        ],
+        "bytes": 42384,
+        "sha256": "c7919fd209edeb9dc9532796d93a7632c54b6beb9ad59149a9aedaa476705b35",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "content_comparison": "The recorded bytes are unchanged; each quotation in the rows was found verbatim in the capture's text (a Ukrainian translation, as labelled)."
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://zakon.rada.gov.ua/laws/show/v1861400-90/print, captured at 2025-05-31T19:26:16Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The live database page embeds a per-request statistics token and an update time, so it changes on every request and is not recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "The official Ukrainian database's Ukrainian-language text of this USSR act, read from a raw capture of 31 May 2025 because the live pages embed a per-request token. The capture's footer reads 'Законодавство України станом на 31.05.2025' and marks the act as not applied in Ukraine from 2022 under Law 2215-IX, a later Ukrainian status note that is not used. The Russian text as officially published is in the Congress stenographic report (su_snd4_steno_vol3), which carries the Premier and no-confidence procedure claims.",

@@ -22,6 +22,51 @@
     "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
   },
   "stability_check": "Dossier (parts B and C): live file downloaded at 2026-09-26T01:48:16Z, 01:57:15Z, 02:10:56Z (cache-busting '?cb='), 02:12:12Z, 02:26:01Z/02:26:02Z (plain and cache-busting), 02:53:10Z, 02:53:39Z (cache-busting '_cb=') and 02:57:04Z/02:57:05Z; capture at about 02:10Z and 02:26:00Z; identical. Independent checks: live file at 02:57:41Z (cache-busting '_chk='), 03:14:10Z, 03:14:15Z (cache-busting), 03:24:09Z and 03:27:42Z; identical; the CDX digest XBOY76DZ7UUFTRYS3MXBR444NT5FPJMC equals the base32 SHA-1 of these bytes for every capture from 2017-01-13 to 2021-12-04. This packet: re-downloaded at 2026-09-26T03:54:10Z and again at 2026-09-26T04:27:27Z (33 minutes later); identical 618,372 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:40:58Z",
+          "2026-09-28T00:16:30Z"
+        ],
+        "bytes": 618372,
+        "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "live_file_response",
+        "url": "https://vedomosti.sssr.su/1991/35.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:40:59Z",
+          "2026-09-28T00:16:33Z"
+        ],
+        "bytes": 618372,
+        "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "archive_cross_check": "Internet Archive CDX digest XBOY76DZ7UUFTRYS3MXBR444NT5FPJMC equals the base32 SHA-1 of the recorded 618,372 bytes for every HTTP 200 capture of the same URL from 2017-01-13 to 2025-07-18.",
+    "provenance": {
+      "host": "vedomosti.sssr.su. The SSSR.SU portal, which calls itself '(прообраз официального сайта)', is non-commercial and is registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345, 30 June 2010); it is not a state body or the publisher. The live file is static (Apache; Last-Modified Sun, 01 Jan 2017 02:07:33 GMT; ETag \"96f84-544fee5e62340\"). The host's index (https://vedomosti.sssr.su/) offers page-image PDFs only of 1991 Nos. 35, 36, 37, 38 and 41 and sends readers to naukaprava.ru (paid) for the other issues' scans; its HTML pages are a separate retyped transcription. The recorded identity is the Internet Archive's raw capture of the same URL made on 4 December 2021 (original server 'Jino.ru/mod_pizza').",
+      "edition": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, No. 35, 28 August 1991. The cover prints 'ISSN 0235-9936', '№ 35', '28 августа 1991 г.' and 'ИЗДАНИЕ ВЕРХОВНОГО СОВЕТА СССР МОСКВА'; the contents page 'ГОД ИЗДАНИЯ 3-й'; the imprint (printed p. 1411, PDF p. 5) 'Еженедельное издание Верховного Совета СССР', 'Отдел опубликования актов Секретариата Верховного Совета СССР: 103795, ГСП, Москва, Центр, улица Чехова, 3' and 'Ордена Трудового Красного Знамени типография «Известий Советов народных депутатов СССР» имени И. И. Скворцова-Степанова', with '28.08.91' and 'Зак 2981'; the back cover '20 к.' and 'Индекс 70163'. Arts. 981-1027. PDF pp. 3-25 carry printed pp. 1409-1431 (every running head read is the PDF page + 1406); PDF p. 26 is blank and PDF pp. 1-2 and 27-28 are the covers (28 PDF pages).",
+      "relation_to_print": "Full-page images of the printed issue, not a re-typeset text: every PDF page is one page image at 150 dpi (the covers carry two image layers), with an invisible OCR text layer made by ABBYY FineReader 11 (PDF metadata Producer). The images show the running heads, article numbers, signature, date and number blocks and the imprint as printed. The OCR layer is a search aid only, not a transcription of record: this review found it misreading printed characters (see corrections), so every quotation is checked against the image. PDF metadata Title 'Ведомости СНД СССР и ВС СССР, № 35, 28 августа 1991', created 1 January 2017.",
+      "legibility": "Cited PDF pp. 7, 8, 14, 15, 17, 18, 23 and 25 (printed pp. 1413, 1414, 1420, 1421, 1423, 1424, 1429 and 1431), the cover and the imprint page rendered at the native 150 dpi and read: every cited passage, including each date, number and signature block, is legible."
+    },
+    "content_comparison": "The recorded bytes are unchanged. The cited PDF pages were rendered from them and read from the page images, not the OCR layer, and every quotation in the rows was compared with the image; dashes, the Roman numeral of act numbers and guillemets are normalised as elsewhere in this packet.",
+    "corrections": [
+      {
+        "claim_id": "su_ss_res_2361i_presidium_removal_reference_19910822",
+        "was": "и сессия Верховного Совета СССР'",
+        "now": "и сессии Верховного Совета СССР'",
+        "evidence": "Art. 985's preamble (printed p. 1414, PDF p. 8) prints 'и сессии Верховного Совета СССР'; the OCR layer, from which the quotation had been taken, reads 'сессия'."
+      }
+    ],
+    "structural_fix": "The row su_ved35_presidium_under_chamber_chairs_19910821 now carries attested_on null beside its period and precision, as every leadership row carries attested_on (structural check, defect 3)."
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/35.pdf, captured at 2021-12-04T06:59:55Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "A page-image scan of the official gazette (ABBYY FineReader PDF with an OCR layer used only to search), hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). Parts B and C of the dossier recorded the same file under two identifiers; this packet keeps one source and one set of claims per article. The HTML transcription of the gazette on the same host is not used.",
@@ -63,7 +108,7 @@
       "role_title": "Chairman of the USSR Supreme Soviet",
       "event_kind": "removal_from_chairing_reference",
       "attested_on": "1991-08-22",
-      "text": "Supreme Soviet resolution 'О приостановлении исполнения А. И. Лукьяновым обязанностей Председателя Верховного Совета СССР' (art. 985) acts 'исходя из Постановления Президиума Верховного Совета СССР от 22 августа 1991 года об отстранении Председателя Верховного Совета СССР А. И. Лукьянова от ведения заседаний Президиума Верховного Совета СССР и сессия Верховного Совета СССР'.",
+      "text": "Supreme Soviet resolution 'О приостановлении исполнения А. И. Лукьяновым обязанностей Председателя Верховного Совета СССР' (art. 985) acts 'исходя из Постановления Президиума Верховного Совета СССР от 22 августа 1991 года об отстранении Председателя Верховного Совета СССР А. И. Лукьянова от ведения заседаний Президиума Верховного Совета СССР и сессии Верховного Совета СССР'.",
       "locator": "Art. 985, preamble, printed p. 1414 (PDF p. 8)"
     },
     {
@@ -257,6 +302,7 @@
       ],
       "role_title": "Chairman of the USSR Supreme Soviet",
       "event_kind": "presiding_arrangement_reported",
+      "attested_on": null,
       "period": {
         "from": "1991-08-21",
         "through": "1991-08-22"

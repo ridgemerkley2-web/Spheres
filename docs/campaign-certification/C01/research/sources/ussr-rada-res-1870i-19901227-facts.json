@@ -15,6 +15,24 @@
   "source_response_encoding": "text/html (served uncompressed; identity)",
   "source_response_checked_in": false,
   "stability_check": "Independent check (part A): downloaded at 2026-09-26T03:38:36Z and 03:40:30Z; identical (X-Page-Cache: MISS). This packet: re-downloaded at 2026-09-26T03:53:59Z and again at 2026-09-26T04:27:18Z (33 minutes later); identical 11,254 bytes and SHA-256.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+        "downloaded_at": [
+          "2026-09-27T23:40:46Z",
+          "2026-09-28T00:15:58Z"
+        ],
+        "bytes": 11254,
+        "sha256": "a78b05aef067e23e578ce9663505461d33457e4fcde71d9fb971cda26ee6dc62",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "content_comparison": "The recorded bytes are unchanged; each quotation in the rows was found verbatim in the capture's text (a Ukrainian translation, as labelled)."
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://zakon.rada.gov.ua/laws/show/v1870400-90/print, captured at 2025-05-31T19:59:47Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The live database page embeds a per-request statistics token and an update time, so it changes on every request and is not recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "The official Ukrainian database's Ukrainian-language text, read from a raw capture of 31 May 2025 from the same crawl as the Law 1861-I source; the live page embeds a per-request token. Found by the independent check of part A as a primary replacement for Rosarkhiv exhibit 09-32, whose 24 December 1990 attestation rests on a caption only and is now a lead.",

@@ -13,9 +13,42 @@
   "source_response_encoding": "application/pdf (served uncompressed; identity)",
   "source_response_checked_in": false,
   "stability_check": "Independent check (part C): downloaded at 2026-09-26T03:06:24Z, 03:13:09Z (cache-busting query) and 03:37:09Z; identical. This packet: re-downloaded at 2026-09-26T03:53:50Z and again at 2026-09-26T04:27:07Z (33 minutes later); identical 1,530,044 bytes and SHA-256.",
-  "provenance_note": "Static PDF file served by the non-official SSSR.SU project (Last-Modified Thu, 24 Mar 2016 23:32:43 GMT), requested without Accept-Encoding and served without Content-Encoding; cache-busting requests returned identical bytes, so it is a stored file, not one generated per request. No Internet Archive capture of it was found. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://sten.vs.sssr.su/12/6/2.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:40:54Z",
+          "2026-09-28T00:16:24Z"
+        ],
+        "bytes": 1530044,
+        "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "archive_cross_check": "Internet Archive CDX digest BHTJ6RRMIJITAAUZWD4TQ5UNM4KTXZXP equals the base32 SHA-1 of the recorded 1,530,044 bytes for every HTTP 200 capture of the same URL from 2016-09-11 to 2025-07-18, except one capture of 2021-12-02 that has a different digest. The raw capture https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/2.pdf (requested with 'Accept-Encoding: identity', served uncompressed) returned the recorded bytes and SHA-256 at 2026-09-28T00:18:32Z.",
+    "provenance": {
+      "host": "sten.vs.sssr.su (SSSR.SU portal; see the Vedomosti sources).",
+      "edition": "Верховный Совет СССР. Внеочередная сессия. Бюллетень № 2 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (title page; contents on printed pp. 61-85; the page footers carry the signature 'Внеочередная сессия Верховного Совета СССР. Стенотчет, часть I'); 44 PDF pages.",
+      "relation_to_print": "Full-page images of the printed bulletin (300 dpi bitonal) with an invisible ABBYY FineReader 11 OCR layer; not a re-typeset text.",
+      "legibility": "Cited PDF pp. 1, 3, 42 and 43 (the title page, printed pp. 61 and 100 and the unnumbered last text page) rendered and read from the page images: legible; the chamber figure of the registration was checked at 6x magnification against the page numbers' digits (see corrections)."
+    },
+    "content_comparison": "The recorded bytes are unchanged. The cited PDF pages were rendered from them and read from the page images, not the OCR layer, and every quotation in the rows was compared with the image; dashes, the Roman numeral of act numbers and guillemets are normalised as elsewhere in this packet.",
+    "corrections": [
+      {
+        "claim_id": "su_sten2_presidium_removal_not_approved_no_quorum_19910826",
+        "was": "(Council of the Union 153, Council of Nationalities 127,",
+        "now": "(Council of the Union 163, Council of Nationalities 127,",
+        "evidence": "The registration table (PDF p. 43) prints 163 for the Council of the Union: the digit matches the 6 of the page numbers on the same bulletin, and 163 + 127 = 290, the printed total; the OCR layer reads 153."
+      }
+    ]
+  },
+  "provenance_note": "Static PDF file served by the non-official SSSR.SU project (Last-Modified Thu, 24 Mar 2016 23:32:43 GMT), requested without Accept-Encoding and served without Content-Encoding; cache-busting requests returned identical bytes, so it is a stored file, not one generated per request. Pre-cutoff Internet Archive captures of the same URL carry the same bytes (see source_review); the packet's earlier statement that none was found is corrected by the CLAUDE-C01-SOURCE-26 review. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
-  "scope_note": "The official stenographic bulletin of the evening sitting of 26 August 1991, a page-image scan with an OCR layer, served as a static file by the non-official SSSR.SU project; no Internet Archive capture of it was found. Found by the independent check of part C. The bulletins recording the adoption of resolution 2361-I and the sittings of 27-29 August (12/6/3.pdf to 5.pdf) return HTTP 404.",
+  "scope_note": "The official stenographic bulletin of the evening sitting of 26 August 1991, a page-image scan with an OCR layer, served as a static file by the non-official SSSR.SU project; recorded as the live file, which is byte-identical to the Internet Archive's pre-cutoff captures of the same URL (see the extract's source_review). Found by the independent check of part C. The bulletins recording the adoption of resolution 2361-I and the sittings of 27-29 August (12/6/3.pdf to 5.pdf) return HTTP 404.",
   "visual_review": {
     "pdf_pages_one_based": [
       1,
@@ -53,7 +86,7 @@
       "role_title": "Chairman of the USSR Supreme Soviet",
       "event_kind": "approval_not_voted_no_quorum",
       "attested_on": "1991-08-26",
-      "text": "Deputy 'Зелинский И. П.' proposes that, 'учитывая, что Президиум Верховного Совета СССР своим решением 22 августа отстранил Лукьянова от ведения сессии Верховного Совета СССР', the sitting take note and 'Утвердить решение Президиума Верховного Совета'; the presiding officer replies 'кворума нет для того, чтобы утвердить это решение', and the proposal is only taken note of. Registration then shows 290 members (Council of the Union 153, Council of Nationalities 127, 'Кворума нет' in each) and a break is called until 20:30.",
+      "text": "Deputy 'Зелинский И. П.' proposes that, 'учитывая, что Президиум Верховного Совета СССР своим решением 22 августа отстранил Лукьянова от ведения сессии Верховного Совета СССР', the sitting take note and 'Утвердить решение Президиума Верховного Совета'; the presiding officer replies 'кворума нет для того, чтобы утвердить это решение', and the proposal is only taken note of. Registration then shows 290 members (Council of the Union 163, Council of Nationalities 127, 'Кворума нет' in each) and a break is called until 20:30.",
       "locator": "PDF pp. 42-43 (deputy Зелинский, the presiding officer's reply, the registration and the break)"
     }
   ],

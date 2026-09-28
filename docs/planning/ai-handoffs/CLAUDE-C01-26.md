@@ -70,8 +70,11 @@ Observation decisions:
 - SU-GOV-04 accepted in part: the last signature (24 November 1990, holder), the illness reports and telegram (26-27 December
   1990), the Minister of Finance's report for the government and a Deputy Chairman's signature (10 January 1991); no end and no
   acting Chairman stated.
-- SU-GOV-05 accepted: the Supreme Soviet's approval of 14 January 1991 (Izvestia No. 13; a dynamic page rendering with its
-  recorded request); holder attested 14 January 1991, no `from`.
+- SU-GOV-05 accepted at submission: the Supreme Soviet's approval of 14 January 1991 (Izvestia No. 13; a dynamic page rendering
+  whose recorded request presents a browser User-Agent to pass the site's anti-robot block); holder attested 14 January 1991, no
+  `from`. Withdrawn by the CLAUDE-C01-SOURCE-26 review (27-28 September 2026): the C01 rules do not allow that workaround and no
+  permissible alternative was found, so the source, its three claims and the holder are removed; SU-GOV-05 has no permissible
+  primary record, pending Codex's ruling.
 - SU-GOV-06 accepted in part: order 943р (19 August 1991; the last signature, holder, and the interim direction entrusted to
   the First Deputy Premier, a claim), УП-2443, УП-2444, the agenda acts, 2366-I, УП-2461 and 2367-I, the session report and
   2371-I; no `until` (integrator ruling requested: 22 or 28 August).
@@ -84,12 +87,14 @@ Observation decisions:
   chairmen's October elections are leads.
 - SU-GOV-10 accepted in part: ГС-13, the latest committee acts, RSFSR decree 299 and RSFSR resolution 2017-I; no lifecycle end.
 
-Holders. `su_government_head` (four): Николай Иванович Рыжков (attested 1990-01-12, 1990-11-24), Валентин Сергеевич Павлов
-(attested 1991-01-14, 1991-08-19). `su_supreme_soviet_chair` gains two after the unchanged CLAUDE-C01-05 observation of
-1990-03-14: Анатолий Иванович Лукьянов (attested 1990-03-15, 1991-08-22). No holder has a `from` or an `until`. Acting,
+Holders. `su_government_head` (four at submission, three after the CLAUDE-C01-SOURCE-26 review): Николай Иванович Рыжков
+(attested 1990-01-12, 1990-11-24), Валентин Сергеевич Павлов (attested 1991-08-19; the 1991-01-14 observation withdrawn).
+`su_supreme_soviet_chair` gains two after the unchanged CLAUDE-C01-05 observation of 1990-03-14: Анатолий Иванович Лукьянов
+(attested 1990-03-15, 1991-08-22). No holder has a `from` or an `until`. Acting,
 interim and presiding service and the interim committees are claims only.
 
-All 31 checker defects are handled: 29 applied and B13 and C12 applied in part. Every obtainable missing primary record the
+All 31 checker defects are handled: 30 applied and C12 applied in part (B1 and B2 are since superseded by the
+CLAUDE-C01-SOURCE-26 review, which withdrew the Izvestia source). Every obtainable missing primary record the
 checks found is imported; three primary records found by this packet on the legal portal are added (resolutions 1177 and 27,
 order 943р).
 
@@ -101,10 +106,16 @@ gains one role claim and one source and `su_presidency` one coverage item, their
 `docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md`; new
 `tools/avatars/test_ussr_government_supreme_soviet_c01_26.py`; `tools/avatars/test_ussr_research_s10h.py` and
 `tools/avatars/test_ussr_russia_transition_c01_05.py` (new exact totals, institution set, access dates, PDF set and
-work-order figures; the C01-05 vedomosti.sssr.su guard re-expressed to allow only scanned issue PDFs; none loosened); and,
+work-order figures, none loosened; and the C01-05 vedomosti.sssr.su guard relaxed to allow scanned issue PDFs, a loosening that
+needs the integrator's approval with the C12 ruling); and,
 outside this record's list, `tools/avatars/test_russia_heads_of_government_c01_19.py` (its one guard that no other
 head-of-government role exists re-expressed as `[ROLE, 'su_government_head']`, required by the new role). `russia.json` is
 unchanged. Separate commit: `docs/campaign-certification/C01/research-index.json` only.
+
+Source review (CLAUDE-C01-SOURCE-26, 27-28 September 2026 UTC; branch `claude/c01-source-26`): all responses re-downloaded
+twice, 41 of 41 identical; the Izvestia source withdrawn (30 sources and 74 claims remain); six quotations corrected from the
+page images; the six structural defects applied. See the report's "Source review (CLAUDE-C01-SOURCE-26)" and
+`docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-26.md`.
 
 Checks (26 September 2026 UTC): research-index regeneration and `--check` (367 sources, 2,123 claims); the USSR tests (27, 9
 of them new) and the Russia tests (29); the research tests (79); the campaign tests (9 pass, and `test_campaign_census` errors

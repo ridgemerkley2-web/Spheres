@@ -23,6 +23,41 @@
     }
   ],
   "stability_check": "Independent check (part A): downloaded at 2026-09-26T03:12Z and again at 03:40Z, the later download also with a cache-busting variant ('?cb=' in place of the timestamp query); identical bytes and SHA-256 (Last-Modified 23 May 2024). This packet: re-downloaded at 2026-09-26T03:52:53Z and again at 2026-09-26T04:26:29Z (33 minutes later); identical 30,424 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
+        "downloaded_at": [
+          "2026-09-27T23:40:28Z",
+          "2026-09-28T00:15:03Z"
+        ],
+        "bytes": 30424,
+        "sha256": "d795d3dddc4e07e1e2de030f4750f532ddedbf5fe13f2b52d864c4343891a236",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "facsimile_responses[0]",
+        "url": "https://docs.historyrussia.org/system/pages/016/529/09/images/small/6393cc1b12e1d2fd634203d8a0ea3b825adf2d9d.jpg?1716491916",
+        "downloaded_at": [
+          "2026-09-27T23:40:30Z",
+          "2026-09-28T00:15:07Z"
+        ],
+        "bytes": 37089,
+        "sha256": "55bda52a960e86dc79b42dff8381a59cfe7db60db28bab2d7004365f5930a892",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "provenance": {
+      "host": "docs.historyrussia.org, the Russian Historical Society's Электронная библиотека исторических документов (ЭБИД), run on the ИнфоРост platform: a non-official host, not the publisher. Both images are static files (nginx; Last-Modified Thu, 23 May 2024 19:19:03 and 19:18:38 GMT; the '?1716491941' and '?1716491916' queries are those upload times, not cache-busters). The document page (node 418646) embeds a per-request token and a view counter and is a locator only.",
+      "edition": "Собрание постановлений Правительства РСФСР 1990 No. 8, art. 59, printed pp. 194-202, in the bound volume the library describes as 'Собрание постановлений правительства РСФСР за 1990 г. № 1-25. — М.: Юрид. лит., б. г. — 648 с.' (Nos. 1-25 of 1990 bound together; record by Бобров Вадим, 30 December 2023). The recorded image is printed p. 202 (running head 'Ст. 59 — 202 —'; the issue number at the outer edge is cut off in the photograph) and the attached image printed p. 194 (the section heading 'ПОСТАНОВЛЕНИЯ СОВЕТА МИНИСТРОВ СССР И СОВЕТА МИНИСТРОВ РСФСР' and the title of art. 59); art. 60's first page prints the issue number ('№ 8 — 203 —').",
+      "relation_to_print": "Photographs of the pages of the bound printed volume (the gutter, the page curvature and the edge of the facing page are visible), served as the library's 'small' rendition (328 x 517 px, the largest the document page links; 'x_small' and 'xx_small' renditions also exist): images of the printed page, not a re-typeset text.",
+      "legibility": "Both images viewed at 3x magnification: the running heads, the section heading, the article number and title, the two signature blocks and 'Москва, 24 декабря 1989 г. № 1139' are legible; the body text is legible with effort at this resolution."
+    },
+    "content_comparison": "The recorded bytes are unchanged; both page images were viewed again and every quotation in the row matches the printed page."
+  },
   "provenance_note": "Static JPEG page image (the library's public 'small' rendition, about 328 x 480 pixels; larger renditions need a sign-in, which was not attempted), Last-Modified Thu, 23 May 2024 19:19:03 GMT, before the cutoff. The library's document page (https://docs.historyrussia.org/ru/nodes/418646) embeds a per-request security token and a view counter, so it is a locator only and has no recorded identity. The URL's numeric query is the file's upload timestamp, not a cache-buster; a request with a different query returned the same bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "Two static page images of the official RSFSR government gazette: printed p. 202 (signatures, date and number) is the recorded response and p. 194 (section heading and title) is attached. The library's document page for the article (node 418646) is a locator only: it embeds a per-request token and a view counter. A pre-period attestation, filed as context for SU-GOV-01.",

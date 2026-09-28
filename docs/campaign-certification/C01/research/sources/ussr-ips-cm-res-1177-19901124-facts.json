@@ -13,6 +13,24 @@
   "source_response_encoding": "windows-1251",
   "source_response_checked_in": false,
   "stability_check": "Found by this packet (no dossier or independent check): first downloaded at 2026-09-26T03:51:00Z. This packet: re-downloaded at 2026-09-26T03:52:19Z and again at 2026-09-26T04:25:54Z (33 minutes later); identical 52,149 bytes and SHA-256.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102084027&page=1&rdk=0",
+        "downloaded_at": [
+          "2026-09-27T23:40:37Z",
+          "2026-09-28T00:15:37Z"
+        ],
+        "bytes": 52149,
+        "sha256": "6ed687d8afc0bacf4ad9dad2302123b773070343eec55b4542311ffa935b0348",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "content_comparison": "The recorded bytes are unchanged, so the claims rest on the same text; each Russian quotation in the rows was found verbatim in the response's text (the portal's letter-spaced or capitalised heading words aside)."
+  },
   "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "Original-edition text read in full; the portal offers no facsimile. Found by this packet in the portal's date lists for June-December 1990, which were used for discovery only and are not recorded sources.",
