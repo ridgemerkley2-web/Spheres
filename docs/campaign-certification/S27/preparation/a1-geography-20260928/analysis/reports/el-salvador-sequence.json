@@ -1,0 +1,830 @@
+[
+  {
+    "line": 10222,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.13909248962296908,
+        "effective_loyalty": 0.35197612788999766,
+        "executive_leverage": 0.6,
+        "pressure": 0.0,
+        "public_mandate": 0.5040781029784606,
+        "raw_loyalty": 0.35197612788999766,
+        "resources_per_member": 2800.3617459570028,
+        "target": 0.3064988617141523,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1991,
+        9,
+        1
+      ],
+      "discontent": {
+        "growth": 0.723602909595753,
+        "order_uncapped": 0.5872005931129872,
+        "prices": 0.0,
+        "total": 0.4383208784756442,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.163,
+        "debt_gdp": 0.6981729448500346,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.529996941989269,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 14.6169322495406,
+        "population_m": 5.635161327057374,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.263,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.42,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_pdc",
+        "months_in_office": 9,
+        "next_election": [
+          1993,
+          12
+        ],
+        "record": {
+          "government": "party:sv_pdc",
+          "months": 9.0,
+          "performance": -1.017889496486461
+        },
+        "regime_bloc": null,
+        "settled_months": 9,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 5218714145316439766,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 10729,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.14100409932880745,
+        "effective_loyalty": 0.3472532949421725,
+        "executive_leverage": 0.6,
+        "pressure": 0.054692978154832116,
+        "public_mandate": 0.4932088768061827,
+        "raw_loyalty": 0.3472532949421725,
+        "resources_per_member": 2800.8085224298056,
+        "target": 0.30474779841174626,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1991,
+        10,
+        1
+      ],
+      "discontent": {
+        "growth": 0.6674136007020707,
+        "order_uncapped": 0.5866675938534092,
+        "prices": 0.0,
+        "total": 0.42681651706711876,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.163,
+        "debt_gdp": 0.7132364557436197,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.53071966863645,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 14.876656796641537,
+        "population_m": 5.644627408323728,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.263,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.42,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_pdc",
+        "months_in_office": 10,
+        "next_election": [
+          1993,
+          12
+        ],
+        "record": {
+          "government": "party:sv_pdc",
+          "months": 10.0,
+          "performance": -1.0112445958923908
+        },
+        "regime_bloc": null,
+        "settled_months": 10,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 9772313440382054308,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 11236,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.1428141447650873,
+        "effective_loyalty": 0.34283856478464114,
+        "executive_leverage": 0.6,
+        "pressure": 0.10884423085587466,
+        "public_mandate": 0.4828485400457029,
+        "raw_loyalty": 0.34283856478464114,
+        "resources_per_member": 2801.3854907786967,
+        "target": 0.30310599336685917,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1991,
+        11,
+        1
+      ],
+      "discontent": {
+        "growth": 0.6157282252654106,
+        "order_uncapped": 0.5860713203726841,
+        "prices": 0.0,
+        "total": 0.41618130523942415,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.163,
+        "debt_gdp": 0.7281639102705252,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.531652999789068,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 15.146766733730793,
+        "population_m": 5.65410939094398,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.263,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.42,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_pdc",
+        "months_in_office": 11,
+        "next_election": [
+          1993,
+          12
+        ],
+        "record": {
+          "government": "party:sv_pdc",
+          "months": 11.0,
+          "performance": -1.0034772346474434
+        },
+        "regime_bloc": null,
+        "settled_months": 11,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 5616541605573978142,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 11740,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.14371578584343908,
+        "effective_loyalty": 0.33880055075691395,
+        "executive_leverage": 0.6,
+        "pressure": 0.16178330466356525,
+        "public_mandate": 0.47300421362069434,
+        "raw_loyalty": 0.33880055075691395,
+        "resources_per_member": 2803.4094033317706,
+        "target": 0.30245842450736937,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1991,
+        12,
+        1
+      ],
+      "discontent": {
+        "growth": 0.5568161606268258,
+        "order_uncapped": 0.5854028974948627,
+        "prices": 0.0,
+        "total": 0.40406468087279657,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.163,
+        "debt_gdp": 0.7425681892161264,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.534926975977864,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 15.425625770775286,
+        "population_m": 5.663607301629614,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.263,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.42,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_pdc",
+        "months_in_office": 12,
+        "next_election": [
+          1993,
+          12
+        ],
+        "record": {
+          "government": "party:sv_pdc",
+          "months": 12.0,
+          "performance": -0.9944361212491678
+        },
+        "regime_bloc": null,
+        "settled_months": 12,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 17458848464114110369,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_pressure_not_ready",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 12255,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.3436433798487473,
+        "executive_leverage": 0.5583333333333333,
+        "pressure": 0.2086081269989788,
+        "public_mandate": 0.5190566770881132,
+        "raw_loyalty": 0.3436433798487473,
+        "resources_per_member": 2805.2743721210827,
+        "target": 0.44641897501987793,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1992,
+        1,
+        1
+      ],
+      "discontent": {
+        "growth": 0.5051685387105979,
+        "order_uncapped": 0.5846715861468407,
+        "prices": 0.0,
+        "total": 0.3933695008155399,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16383333333333336,
+        "debt_gdp": 0.7569058851011927,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.537943837254692,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 16.268574118195808,
+        "population_m": 5.67312116713698,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.26383333333333336,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.4033333333333333,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_arena",
+        "months_in_office": 1,
+        "next_election": [
+          1994,
+          12
+        ],
+        "record": {
+          "government": "party:sv_arena",
+          "months": 1.0,
+          "performance": -0.6308561123716947
+        },
+        "regime_bloc": null,
+        "settled_months": 1,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 13545754938394198757,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 12776,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.3482809428573362,
+        "executive_leverage": 0.5583333333333333,
+        "pressure": 0.24942763380274532,
+        "public_mandate": 0.5114355486995465,
+        "raw_loyalty": 0.3482809428573362,
+        "resources_per_member": 2807.7536212221185,
+        "target": 0.44670033559516625,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1992,
+        2,
+        1
+      ],
+      "discontent": {
+        "growth": 0.45344093304420713,
+        "order_uncapped": 0.5838774435701055,
+        "prices": 0.0,
+        "total": 0.3826269083938942,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16383333333333336,
+        "debt_gdp": 0.7708679136548832,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.5419543872710735,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 17.076313169090525,
+        "population_m": 5.682651014267378,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.26383333333333336,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.4033333333333333,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_arena",
+        "months_in_office": 2,
+        "next_election": [
+          1994,
+          12
+        ],
+        "record": {
+          "government": "party:sv_arena",
+          "months": 2.0,
+          "performance": -0.6295430686656166
+        },
+        "regime_bloc": null,
+        "settled_months": 2,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 7669352650489273030,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 13300,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.3527268564854785,
+        "executive_leverage": 0.5583333333333333,
+        "pressure": 0.21942763380274533,
+        "public_mandate": 0.5041594421145177,
+        "raw_loyalty": 0.3527268564854785,
+        "resources_per_member": 2811.8686090486995,
+        "target": 0.44707902348272177,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1992,
+        3,
+        1
+      ],
+      "discontent": {
+        "growth": 0.39292291739436747,
+        "order_uncapped": 0.5830096388302499,
+        "prices": 0.0,
+        "total": 0.37008940289399844,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16383333333333336,
+        "debt_gdp": 0.7841409021426572,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.548610985225836,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 17.849895155783173,
+        "population_m": 5.692196869867128,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.26383333333333336,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.4033333333333333,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_arena",
+        "months_in_office": 3,
+        "next_election": [
+          1994,
+          12
+        ],
+        "record": {
+          "government": "party:sv_arena",
+          "months": 3.0,
+          "performance": -0.626731852886076
+        },
+        "regime_bloc": null,
+        "settled_months": 3,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 2728257310807191218,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 13824,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.35699249489800666,
+        "executive_leverage": 0.5583333333333333,
+        "pressure": 0.18942763380274533,
+        "public_mandate": 0.4972371520185939,
+        "raw_loyalty": 0.35699249489800666,
+        "resources_per_member": 2817.008759663323,
+        "target": 0.4475188212083265,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1992,
+        4,
+        1
+      ],
+      "discontent": {
+        "growth": 0.32975815794645397,
+        "order_uncapped": 0.5820650476529342,
+        "prices": 0.0,
+        "total": 0.3569841554157579,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16383333333333336,
+        "debt_gdp": 0.7968706362000033,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.556925934749493,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 18.59303285405873,
+        "population_m": 5.701758760827644,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.26383333333333336,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.4033333333333333,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_arena",
+        "months_in_office": 4,
+        "next_election": [
+          1994,
+          12
+        ],
+        "record": {
+          "government": "party:sv_arena",
+          "months": 4.0,
+          "performance": -0.6223959926681142
+        },
+        "regime_bloc": null,
+        "settled_months": 4,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 12907222293859985868,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  },
+  {
+    "line": 14348,
+    "snapshot": {
+      "army": {
+        "civilian_confidence_penalty": 0.0,
+        "effective_loyalty": 0.36108323200228326,
+        "executive_leverage": 0.5583333333333333,
+        "pressure": 0.15942763380274533,
+        "public_mandate": 0.49062547187787725,
+        "raw_loyalty": 0.36108323200228326,
+        "resources_per_member": 2821.1204614908033,
+        "target": 0.4478977638819305,
+        "war_exhaustion": 0.0
+      },
+      "budget_ownership": {
+        "annual_plan": false,
+        "fiscal_recovery": false,
+        "on_the_books": false,
+        "player": false,
+        "programs_enrolled": false
+      },
+      "country": "ElSalvador",
+      "date": [
+        1992,
+        5,
+        1
+      ],
+      "discontent": {
+        "growth": 0.2817519775776767,
+        "order_uncapped": 0.5810628102281007,
+        "prices": 0.0,
+        "total": 0.3468818006295857,
+        "war": 0.0
+      },
+      "fiscal": {
+        "affordable_military_share": 0.0,
+        "balance_gdp": -0.16383333333333336,
+        "debt_gdp": 0.80964011612144,
+        "funding_quote": {
+          "clears_existing_hysteresis": false,
+          "price_pc": 5.1000000000000005,
+          "share": 0.0,
+          "standing_affordable": true
+        },
+        "gdp_bn": 4.5635772171174755,
+        "interest_gdp": 0.0,
+        "mil_spend_gdp": 0.034,
+        "political_capital": 19.307444908163067,
+        "population_m": 5.711336714085519,
+        "revenue_gdp": 0.1,
+        "spend_gdp": 0.26383333333333336,
+        "state_invest_gdp": 0.03,
+        "tax_rate": 0.1
+      },
+      "government": {
+        "alive": true,
+        "authoritarianism": 0.4033333333333333,
+        "awaiting_first_election": false,
+        "elected": true,
+        "electoral": true,
+        "has_army": true,
+        "leader": "sv_arena",
+        "months_in_office": 5,
+        "next_election": [
+          1994,
+          12
+        ],
+        "record": {
+          "government": "party:sv_arena",
+          "months": 5.0,
+          "performance": -0.6169553625669221
+        },
+        "regime_bloc": null,
+        "settled_months": 5,
+        "unrestricted_mandate": true
+      },
+      "rng_state": 7330786892652736679,
+      "rules": {
+        "crisis_intensity": 1.0,
+        "daily_simulation": false,
+        "ideology_blocs": true,
+        "ideology_takeover": true
+      },
+      "stage": "trigger_unsettled_interim_or_no_army",
+      "thresholds": {
+        "army": 0.35,
+        "discontent": 0.25,
+        "pressure": 1.0,
+        "settled_months": 12
+      }
+    }
+  }
+]

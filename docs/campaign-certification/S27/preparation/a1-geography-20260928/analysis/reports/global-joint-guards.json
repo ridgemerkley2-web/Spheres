@@ -1,0 +1,28 @@
+{
+  "actual_branches_no_coup_countries": {
+    "trigger_live_conditions_inactive": 18476,
+    "trigger_unsettled_interim_or_no_army": 6417,
+    "trigger_pressure_not_ready": 1
+  },
+  "all_electoral_joint_blockers": {
+    "loyalty_ge_0_35+discontent_lt_0_25+pressure_below_threshold": 14843,
+    "unsettled+interim+loyalty_ge_0_35+discontent_lt_0_25+pressure_below_threshold": 224,
+    "unsettled+loyalty_ge_0_35+discontent_lt_0_25+pressure_below_threshold": 897,
+    "unsettled+loyalty_ge_0_35+pressure_below_threshold": 1418,
+    "loyalty_ge_0_35+pressure_below_threshold": 3945,
+    "no_army+loyalty_ge_0_35+discontent_lt_0_25+pressure_below_threshold": 2432,
+    "no_army+unsettled+loyalty_ge_0_35+discontent_lt_0_25+pressure_below_threshold": 181,
+    "no_army+loyalty_ge_0_35+pressure_below_threshold": 933,
+    "no_army+unsettled+loyalty_ge_0_35+pressure_below_threshold": 426,
+    "none": 10,
+    "pressure_below_threshold": 103,
+    "unsettled+interim+loyalty_ge_0_35+pressure_below_threshold": 196,
+    "unsettled+pressure_below_threshold": 34,
+    "unsettled+interim+pressure_below_threshold": 22,
+    "discontent_lt_0_25+pressure_below_threshold": 82,
+    "unsettled+discontent_lt_0_25+pressure_below_threshold": 11,
+    "unsettled+interim+discontent_lt_0_25+pressure_below_threshold": 7,
+    "unsettled": 5
+  },
+  "note": "Joint keys list every simultaneously false prerequisite. A branch count reports the first guard actually returned; do not sum nonexclusive reasons."
+}

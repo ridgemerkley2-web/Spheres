@@ -1,0 +1,144 @@
+{
+  "no_coup_eligible_crisis_countries": 29,
+  "no_coup_eligible_crisis_checks": 3552,
+  "no_coup_resource_saturated_checks": 2390,
+  "no_coup_zero_penalty_checks": 629,
+  "no_coup_zero_leverage_checks": 433,
+  "no_coup_target_below_035_checks": 2,
+  "no_coup_countries_ever_saturated": [
+    "Argentina",
+    "Armenia",
+    "Azerbaijan",
+    "Belarus",
+    "Brazil",
+    "Colombia",
+    "Congo",
+    "Georgia",
+    "Kyrgyzstan",
+    "Nicaragua",
+    "PapuaNewGuinea",
+    "Philippines",
+    "Romania",
+    "Russia",
+    "SriLanka",
+    "Turkmenistan",
+    "Ukraine",
+    "Venezuela",
+    "Zambia"
+  ],
+  "no_coup_countries_always_saturated": [
+    "Argentina",
+    "Armenia",
+    "Azerbaijan",
+    "Belarus",
+    "Brazil",
+    "Georgia",
+    "Kyrgyzstan",
+    "Nicaragua",
+    "PapuaNewGuinea",
+    "Philippines",
+    "Romania",
+    "Russia",
+    "SriLanka",
+    "Turkmenistan",
+    "Ukraine",
+    "Venezuela"
+  ],
+  "no_crisis_at_any_check": [
+    "Albania",
+    "Australia",
+    "Austria",
+    "Bangladesh",
+    "Belgium",
+    "Belize",
+    "Botswana",
+    "Cameroon",
+    "Canada",
+    "CapeVerde",
+    "Chile",
+    "Cyprus",
+    "Czechoslovakia",
+    "Denmark",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Hungary",
+    "India",
+    "Ireland",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kuwait",
+    "Lesotho",
+    "Luxembourg",
+    "Malawi",
+    "Malaysia",
+    "Malta",
+    "Morocco",
+    "Nepal",
+    "Netherlands",
+    "NewZealand",
+    "Norway",
+    "Pakistan",
+    "Portugal",
+    "Senegal",
+    "Singapore",
+    "SouthAfrica",
+    "SouthKorea",
+    "Spain",
+    "Sweden",
+    "Switzerland",
+    "Taiwan",
+    "Thailand",
+    "TrinidadTobago",
+    "Tunisia",
+    "UK",
+    "USA",
+    "Zimbabwe"
+  ],
+  "crisis_only_outside_eligibility": [
+    "Algeria",
+    "Honduras",
+    "Israel",
+    "Mexico",
+    "Mongolia",
+    "Paraguay",
+    "Poland"
+  ]
+}
+
+No-coup target minima:
+Argentina 0.7473068515649071 110 110
+Armenia 0.5222586885758426 175 175
+Azerbaijan 0.3665625000000001 160 160
+Belarus 0.6124661974555554 177 177
+Bolivia 0.4490051882011402 0 128
+Brazil 0.7364327490581779 107 107
+Bulgaria 0.5835295250871453 0 125
+CentralAfricanRepublic 0.6478149702148897 0 174
+Colombia 0.8031928508387423 98 164
+Congo 0.7254440442593005 56 78
+DominicanRepublic 0.352843661788492 0 5
+ElSalvador 0.15835216396118185 0 29
+Georgia 0.43601055375074177 8 8
+Kyrgyzstan 0.6646712426134647 197 197
+Nicaragua 0.7107604792846225 197 197
+PapuaNewGuinea 0.7629204053770985 159 159
+Peru 0.36976686879625886 0 211
+Philippines 0.6432708919025687 169 169
+Romania 0.7998765783737056 181 181
+Russia 0.5465716882550649 142 142
+SriLanka 0.7541892792425887 109 109
+Suriname 0.40573094822037326 0 219
+Turkey 0.3874523811615984 0 1
+Turkmenistan 0.6497736666090712 121 121
+Ukraine 0.594123381670874 76 76
+Uruguay 0.3745050419218466 0 6
+Venezuela 0.7254035378392316 126 126
+Yemen 0.39272466894336505 0 29
+Zambia 0.6167168979035751 22 169

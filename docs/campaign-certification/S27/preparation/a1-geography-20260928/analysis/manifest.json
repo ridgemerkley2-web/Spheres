@@ -1,0 +1,301 @@
+{
+  "format": "spheres-a1-geography-analysis-manifest/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-28T21:43:55.384182+00:00",
+  "qualification": false,
+  "a1_pass_claimed": false,
+  "simulation_performed": false,
+  "holdouts_used": false,
+  "source_revision": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "observations_pin": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\original-run\\observations.jsonl.gz",
+    "bytes": 15387211,
+    "sha256": "b39a00d7c6eb7fef5f5f20ce105b64b4f33ec7440a45560d7177bd78d8a49186"
+  },
+  "observations_decoded_sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49",
+  "observations_decoded_bytes": 240585752,
+  "copied_input_pins": [
+    {
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\original-run\\result.json",
+      "retained_path": "inputs/observer-result.json",
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    },
+    {
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\execution\\execution.json",
+      "retained_path": "inputs/observer-execution.json",
+      "bytes": 478,
+      "sha256": "d12bbd6fa3e99ac43e4949721f0bf4062f26defa62e91dd794178dda6e7c9829"
+    },
+    {
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-analysis-01\\trigger-confidence-check.json",
+      "retained_path": "inputs/prior-trigger-confidence-check.json",
+      "bytes": 12789,
+      "sha256": "534b694eda8d5fcc5fc602e2f40e8656780a7d8d038a9e4ff2b32c80b9e82cd5"
+    },
+    {
+      "original_path": "D:\\spheres-offload\\codex-next-20260928\\a1-portable-01\\manifest.json",
+      "retained_path": "inputs/observer-portable-manifest.json",
+      "bytes": 13955,
+      "sha256": "b3dc18e7c5cd2f3b6195d3625805e1f8aa61bcd82b52db31d39d0d2ffc94d497"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-20260928\\README.md",
+      "retained_path": "prior-trials/inverse-removal/README.md",
+      "bytes": 3742,
+      "sha256": "5fe728f61fb4991e1125c184198c5745f0b28d842392492e5b6de6a81ad7efc1"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-20260928\\evidence\\trial-01-plan.md",
+      "retained_path": "prior-trials/inverse-removal/evidence/trial-01-plan.md",
+      "bytes": 1902,
+      "sha256": "695afae2e692dd89ac6176bb4222abbe2985227d466b4f4fe996e864cc9bfb62"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-20260928\\evidence\\trial-01-result.json",
+      "retained_path": "prior-trials/inverse-removal/evidence/trial-01-result.json",
+      "bytes": 620,
+      "sha256": "d689e5e2a7c4281223b998eacb1070a651bca701cdec1ca167b94058300810ff"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-20260928\\evidence\\trial-01-source.json",
+      "retained_path": "prior-trials/inverse-removal/evidence/trial-01-source.json",
+      "bytes": 363,
+      "sha256": "823a4241b4509a685ec5e6c3edd2981b8d331e3a0de5d35f2e4477cdb202807a"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S27\\preparation\\a1-20260928\\evidence\\trial-01-candidate.patch",
+      "retained_path": "prior-trials/inverse-removal/evidence/trial-01-candidate.patch",
+      "bytes": 952,
+      "sha256": "4fff296c45d05d03062d509b018b4d20f85de03f50a5466e7ef708771380ca23"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\verification\\evidence\\2026-09-22-completion\\checkpoint27-rejected-model\\README.md",
+      "retained_path": "prior-trials/confidence-27/README.md",
+      "bytes": 3644,
+      "sha256": "a58d307a7251a125af3d94bbe0158b513e1e14af8ea98671c46ace04367a673a"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\verification\\evidence\\2026-09-22-completion\\checkpoint27-rejected-model\\iteration-27-result.json",
+      "retained_path": "prior-trials/confidence-27/iteration-27-result.json",
+      "bytes": 3657,
+      "sha256": "bc1a87d2d27a870c1ebc2a3b4cc33f3c6f740c88c8afdb52344d8dc68990226c"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\verification\\evidence\\2026-09-22-completion\\checkpoint27-rejected-model\\iteration-27-candidate.patch",
+      "retained_path": "prior-trials/confidence-27/iteration-27-candidate.patch",
+      "bytes": 756,
+      "sha256": "163377b8b84035f9cbb0aaef96e2938826554fadfa1c1be6bf7d02b42625a9bd"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\verification\\evidence\\2026-09-22-completion\\checkpoint27-rejected-model\\checkpoint26-confidence120-independent-review.md",
+      "retained_path": "prior-trials/confidence-27/checkpoint26-confidence120-independent-review.md",
+      "bytes": 2119,
+      "sha256": "2e23ee650a258e45f8f6ae15e1c5315609fadd28c6b16c7f3fb7b356b34274d8"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\political-arm\\2026-09-22-calibration-repairs.md",
+      "retained_path": "prior-trials/calibration-repairs.md",
+      "bytes": 55587,
+      "sha256": "378454355a835be1414dee2cf783439d0830bcb41710240f57672790a1a801af"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government.rs",
+      "repo_path": "spheres-sim/src/government.rs",
+      "raw_bytes": 865338,
+      "raw_sha256": "1022e0e65023408e59cecdcad423031bd766b003ee89aa0fde5d244edc84c824",
+      "git_blob_bytes": 849546,
+      "git_blob_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government_a1_observer.rs",
+      "repo_path": "spheres-sim/src/government_a1_observer.rs",
+      "raw_bytes": 14822,
+      "raw_sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+      "git_blob_bytes": 14822,
+      "git_blob_sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\politics.rs",
+      "repo_path": "spheres-sim/src/politics.rs",
+      "raw_bytes": 119714,
+      "raw_sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341",
+      "git_blob_bytes": 117500,
+      "git_blob_sha256": "3c817af7c78c9cca6518f0e193c375a2f7b102a254fb498afec2a4b9aeaa03fa",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\economy.rs",
+      "repo_path": "spheres-sim/src/economy.rs",
+      "raw_bytes": 118731,
+      "raw_sha256": "9c62d57dc2357caf77b370ecfe2666dc1adc34154046c255ee6a9acd095325bd",
+      "git_blob_bytes": 116606,
+      "git_blob_sha256": "88552a12a1d4ce6ea6055c6923d314ec4245533b5c3697c9ebc9d2d3aad5e1c5",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\clock.rs",
+      "repo_path": "spheres-sim/src/clock.rs",
+      "raw_bytes": 6175,
+      "raw_sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8",
+      "git_blob_bytes": 6036,
+      "git_blob_sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\lib.rs",
+      "repo_path": "spheres-sim/src/lib.rs",
+      "raw_bytes": 548282,
+      "raw_sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c",
+      "git_blob_bytes": 537815,
+      "git_blob_sha256": "6e2957e649147f111d9579711ce42ee659bbe5828bee06664cb88bf9c7c34f8d",
+      "raw_equals_git_after_crlf_to_lf": true
+    }
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "analysis.log",
+      "bytes": 6483,
+      "sha256": "de23930a5a9485db0b724e309ef6bdf34c6d38f7ca02900138c764beb19199bf"
+    },
+    {
+      "path": "analyze_geography.py",
+      "bytes": 9326,
+      "sha256": "687480d66b373f5c5caa1e46de06070ae6a0f8fa450d91e35ea7170d37eabed0"
+    },
+    {
+      "path": "inputs/observer-execution.json",
+      "bytes": 478,
+      "sha256": "d12bbd6fa3e99ac43e4949721f0bf4062f26defa62e91dd794178dda6e7c9829"
+    },
+    {
+      "path": "inputs/observer-portable-manifest.json",
+      "bytes": 13955,
+      "sha256": "b3dc18e7c5cd2f3b6195d3625805e1f8aa61bcd82b52db31d39d0d2ffc94d497"
+    },
+    {
+      "path": "inputs/observer-result.json",
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    },
+    {
+      "path": "inputs/prior-trigger-confidence-check.json",
+      "bytes": 12789,
+      "sha256": "534b694eda8d5fcc5fc602e2f40e8656780a7d8d038a9e4ff2b32c80b9e82cd5"
+    },
+    {
+      "path": "prior-trials/calibration-repairs.md",
+      "bytes": 55587,
+      "sha256": "378454355a835be1414dee2cf783439d0830bcb41710240f57672790a1a801af"
+    },
+    {
+      "path": "prior-trials/confidence-27/checkpoint26-confidence120-independent-review.md",
+      "bytes": 2119,
+      "sha256": "2e23ee650a258e45f8f6ae15e1c5315609fadd28c6b16c7f3fb7b356b34274d8"
+    },
+    {
+      "path": "prior-trials/confidence-27/iteration-27-candidate.patch",
+      "bytes": 756,
+      "sha256": "163377b8b84035f9cbb0aaef96e2938826554fadfa1c1be6bf7d02b42625a9bd"
+    },
+    {
+      "path": "prior-trials/confidence-27/iteration-27-result.json",
+      "bytes": 3657,
+      "sha256": "bc1a87d2d27a870c1ebc2a3b4cc33f3c6f740c88c8afdb52344d8dc68990226c"
+    },
+    {
+      "path": "prior-trials/confidence-27/README.md",
+      "bytes": 3644,
+      "sha256": "a58d307a7251a125af3d94bbe0158b513e1e14af8ea98671c46ace04367a673a"
+    },
+    {
+      "path": "prior-trials/inverse-removal/evidence/trial-01-candidate.patch",
+      "bytes": 952,
+      "sha256": "4fff296c45d05d03062d509b018b4d20f85de03f50a5466e7ef708771380ca23"
+    },
+    {
+      "path": "prior-trials/inverse-removal/evidence/trial-01-plan.md",
+      "bytes": 1902,
+      "sha256": "695afae2e692dd89ac6176bb4222abbe2985227d466b4f4fe996e864cc9bfb62"
+    },
+    {
+      "path": "prior-trials/inverse-removal/evidence/trial-01-result.json",
+      "bytes": 620,
+      "sha256": "d689e5e2a7c4281223b998eacb1070a651bca701cdec1ca167b94058300810ff"
+    },
+    {
+      "path": "prior-trials/inverse-removal/evidence/trial-01-source.json",
+      "bytes": 363,
+      "sha256": "823a4241b4509a685ec5e6c3edd2981b8d331e3a0de5d35f2e4477cdb202807a"
+    },
+    {
+      "path": "prior-trials/inverse-removal/README.md",
+      "bytes": 3742,
+      "sha256": "5fe728f61fb4991e1125c184198c5745f0b28d842392492e5b6de6a81ad7efc1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9997,
+      "sha256": "b6d0f0950ccc75590adc76d87490ef5d5ea90b3f06eb1b38c94c609848c8d076"
+    },
+    {
+      "path": "reports/all-country-table.md",
+      "bytes": 12983,
+      "sha256": "b7f5d5d64401d897dcdceceb1d04d4272c0bf125d5fea66b9309e50a98a18330"
+    },
+    {
+      "path": "reports/all-funding-actions.json",
+      "bytes": 88359,
+      "sha256": "0a1dc67a3a4c4b81df705650e6393b7e4c389ec8eb7cef7456a0e72e6efb5740"
+    },
+    {
+      "path": "reports/countries.json",
+      "bytes": 228806,
+      "sha256": "6fe7677535aecf41fea18950ee6a8790fc70a2ee3e358f860341fba843e67d9f"
+    },
+    {
+      "path": "reports/el-salvador-sequence.json",
+      "bytes": 23091,
+      "sha256": "204fc63c3156ce21649e62e189b291376ae7dd1f11429eede53def6ecd7fa1c1"
+    },
+    {
+      "path": "reports/extreme-witnesses.json",
+      "bytes": 480710,
+      "sha256": "b7ccf3b368d9bd26ad66db9c33d66d841ec9ef7af5fe14d44e959368af25681c"
+    },
+    {
+      "path": "reports/global-joint-guards.json",
+      "bytes": 1486,
+      "sha256": "a77fec4cba1896407ea19e560bb20f44da38300e42a538c20b8d40f9eb0a3022"
+    },
+    {
+      "path": "reports/resource-context.json",
+      "bytes": 120246,
+      "sha256": "7b9b7e25399c08fac0faeb35b88b88fa4a5d746ce056f94879552497f9514690"
+    },
+    {
+      "path": "reports/summary.json",
+      "bytes": 6227,
+      "sha256": "08b3e301585088f6c4671765e6bc6712e44457576f27f4337959afc7beb11916"
+    },
+    {
+      "path": "resource-context.log",
+      "bytes": 3131,
+      "sha256": "c3471420b71818c60eae5e03fdb4c6f14451c5080404ff7be5746a52f33dfbe0"
+    },
+    {
+      "path": "resource_context.py",
+      "bytes": 3643,
+      "sha256": "1481e3496bd89bd6a6dd1af7f8770c4052f615d96f51617cf494e07e5a2d1a41"
+    }
+  ]
+}
