@@ -52,11 +52,15 @@ pub(crate) fn decode(text: &str) -> Result<Game, String> {
     // Typed Serde structs skip unknown fields, unlike Value, so successful typed
     // parsing alone is insufficient: even ignored numbers/depth must obey the
     // original JSON parser's limits. The validation walk retains no value tree.
-    if let Ok(file) = serde_json::from_str::<Campaign>(text) {
-        if file.format == "spheres-campaign" && file.version == VERSION
-            && serde_json::from_str::<CheckedJson>(text).is_ok()
-        {
-            return restore_campaign(file);
+    // A derived struct also accepts positional JSON arrays. The archive
+    // envelope historically requires an object with a named format field.
+    if text.trim_start().starts_with('{') {
+        if let Ok(file) = serde_json::from_str::<Campaign>(text) {
+            if file.format == "spheres-campaign" && file.version == VERSION
+                && serde_json::from_str::<CheckedJson>(text).is_ok()
+            {
+                return restore_campaign(file);
+            }
         }
     }
     // Preserve legacy migrations, last-key-wins duplicate handling and the
@@ -394,6 +398,25 @@ mod tests {
         let valid_unknown = format!("{},\"ignored_extension\":{{\"unicode\":\"é東京\",\"all\":[null,true,false,-1,1.25,\"text\"]}}}}", &archive[..archive.len()-1]);
         assert!(serde_json::from_str::<CheckedJson>(&valid_unknown).is_ok());
         assert_decode_oracle(&valid_unknown);
+    }
+
+    #[test]
+    fn typed_campaign_decode_preserves_rejection_of_positional_archive_arrays() {
+        let g = crate::Game::new(1990, Some(crate::NationId::France));
+        let archive = encode(&g).unwrap();
+        let value: Value = serde_json::from_str(&archive).unwrap();
+        let positional = Value::Array([
+            "format", "version", "world", "history", "log", "history_epoch",
+            "journey", "saved_date", "player", "saved_unix",
+        ].into_iter().map(|field| value[field].clone()).collect()).to_string();
+        assert!(serde_json::from_str::<Campaign>(&positional).is_ok(),
+            "the derived struct accepts this otherwise complete positional archive");
+        assert!(serde_json::from_str::<CheckedJson>(&positional).is_ok());
+        for text in [positional.clone(), format!(" \r\n\t{positional}")] {
+            assert!(decode_value(&text).is_err(), "the original named-format archive decoder rejects arrays");
+            assert_decode_oracle(&text);
+        }
+        assert_decode_oracle(&format!(" \r\n\t{archive}"));
     }
 
     #[test]
