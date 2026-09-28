@@ -1,0 +1,1762 @@
+{
+  "reviewer": "Codex /root/review_source05",
+  "scope": "Exact ordinary request observations, raw HTTP bodies retained externally; not an endpoint-stability guarantee. The initial script method label says HTTPS even for HTTP URLs; URL/final_url record the actual scheme. No browser UA, cookies or access-control workarounds.",
+  "external_body_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\c01-source-followups-review-20260928",
+  "results": [
+    {
+      "url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+      "expected_bytes": 14839,
+      "expected_sha256": "f6a4f3ea50f21498c838b8ba41b5f865e5b8d71b8f1d7d535a97ac407650c2e9",
+      "uses": [
+        {
+          "source_file": "ussr-garf-law-2392i-19910905-facts.json",
+          "source_id": "su_garf_exhibit_law_2392i",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:19.407009+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:20 GMT",
+        "Content-Type": "text/html; charset=UTF-8",
+        "Content-Length": "14839",
+        "Connection": "close",
+        "x-archive-orig-date": "Wed, 15 Apr 2026 03:36:51 GMT",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-accept-ranges": "bytes",
+        "x-archive-orig-keep-alive": "timeout=5, max=100",
+        "x-archive-orig-connection": "Keep-Alive",
+        "x-archive-orig-x-crawler-transfer-encoding": "chunked",
+        "x-archive-orig-content-length": "14839",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Wed, 15 Apr 2026 03:53:00 GMT",
+        "link": "<https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"timegate\", <https://web.archive.org/web/20190427121317/http://projects.rusarchives.ru:80/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"first memento\"; datetime=\"Sat, 27 Apr 2019 12:13:17 GMT\", <https://web.archive.org/web/20250421112219/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"prev memento\"; datetime=\"Mon, 21 Apr 2025 11:22:19 GMT\", <https://web.archive.org/web/20260415035300/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"memento\"; datetime=\"Wed, 15 Apr 2026 03:53:00 GMT\", <https://web.archive.org/web/20260415035300/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml>; rel=\"last memento\"; datetime=\"Wed, 15 Apr 2026 03:53:00 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "CC-MAIN-2026-17-1775805908881.15-0020/CC-MAIN-20260415025300-20260415055300-00419.warc.gz",
+        "server-timing": "captures_list;dur=0.362742, exclusion.robots;dur=0.043377, exclusion.robots.policy;dur=0.036070, esindex;dur=0.007007, cdx.remote;dur=7.111672, LoadShardBlock;dur=97.205203, PetaboxLoader3.datanode;dur=79.326166, load_resource;dur=177.320082, PetaboxLoader3.resolve;dur=121.373209",
+        "x-app-server": "wwwb-app266-dc8",
+        "x-ts": "200",
+        "x-tr": "297",
+        "set-cookie": "wb-p-SERVER=wwwb-app266; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.362742, exclusion.robots;dur=0.043377, exclusion.robots.policy;dur=0.036070, esindex;dur=0.007007, cdx.remote;dur=7.111672, LoadShardBlock;dur=97.205203, PetaboxLoader3.datanode;dur=79.326166, load_resource;dur=177.320082, PetaboxLoader3.resolve;dur=121.373209",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:20.020917+00:00",
+      "bytes": 14839,
+      "sha256": "f6a4f3ea50f21498c838b8ba41b5f865e5b8d71b8f1d7d535a97ac407650c2e9",
+      "matches_claimed_response": true,
+      "body_path": "responses/02.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20211228220220id_/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg",
+      "expected_bytes": 157151,
+      "expected_sha256": "c32c9177fd1f5e0b8aceb0e1092414cc41c392a0f8e2419932a225dde0d2a5b7",
+      "uses": [
+        {
+          "source_file": "ussr-garf-law-2392i-19910905-facts.json",
+          "source_id": "su_garf_exhibit_law_2392i",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "facsimile_responses"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:19.411881+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20211228220220id_/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:20 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "157151",
+        "Connection": "close",
+        "x-archive-orig-date": "Tue, 28 Dec 2021 21:22:29 GMT",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Wed, 31 Mar 2021 10:14:18 GMT",
+        "x-archive-orig-etag": "\"265df-5bed260ae5280\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "x-archive-orig-content-length": "157151",
+        "x-archive-orig-connection": "close",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Tue, 28 Dec 2021 22:02:20 GMT",
+        "link": "<http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"original\", <https://web.archive.org/web/timemap/link/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"timegate\", <https://web.archive.org/web/20211228220220/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"first memento\"; datetime=\"Tue, 28 Dec 2021 22:02:20 GMT\", <https://web.archive.org/web/20211228220220/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"memento\"; datetime=\"Tue, 28 Dec 2021 22:02:20 GMT\", <https://web.archive.org/web/20211228220220/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg>; rel=\"last memento\"; datetime=\"Tue, 28 Dec 2021 22:02:20 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "WPO-20211228214014-crawl894/WPO-20211228215931-02759.warc.gz",
+        "server-timing": "captures_list;dur=0.417651, exclusion.robots;dur=0.059171, exclusion.robots.policy;dur=0.051024, esindex;dur=0.007421, cdx.remote;dur=6.313706, LoadShardBlock;dur=99.606569, PetaboxLoader3.datanode;dur=357.999233, load_resource;dur=398.296429, PetaboxLoader3.resolve;dur=58.352570",
+        "x-app-server": "wwwb-app204-dc6",
+        "x-ts": "200",
+        "x-tr": "522",
+        "set-cookie": "wb-p-SERVER=wwwb-app204; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.417651, exclusion.robots;dur=0.059171, exclusion.robots.policy;dur=0.051024, esindex;dur=0.007421, cdx.remote;dur=6.313706, LoadShardBlock;dur=99.606569, PetaboxLoader3.datanode;dur=357.999233, load_resource;dur=398.296429, PetaboxLoader3.resolve;dur=58.352570",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:20.337581+00:00",
+      "bytes": 157151,
+      "sha256": "c32c9177fd1f5e0b8aceb0e1092414cc41c392a0f8e2419932a225dde0d2a5b7",
+      "matches_claimed_response": true,
+      "body_path": "responses/03.jpg"
+    },
+    {
+      "url": "https://web.archive.org/web/20211228220406id_/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg",
+      "expected_bytes": 117260,
+      "expected_sha256": "044b8701b377fc4c392f00e48dde11406a09d1f4d56c862e9a69260db3af46e7",
+      "uses": [
+        {
+          "source_file": "ussr-garf-law-2392i-19910905-facts.json",
+          "source_id": "su_garf_exhibit_law_2392i",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "facsimile_responses"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:19.411881+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20211228220406id_/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:20 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "117260",
+        "Connection": "close",
+        "x-archive-orig-date": "Tue, 28 Dec 2021 21:24:15 GMT",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Wed, 31 Mar 2021 10:14:18 GMT",
+        "x-archive-orig-etag": "\"1ca0c-5bed260ae5280\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "x-archive-orig-content-length": "117260",
+        "x-archive-orig-connection": "close",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Tue, 28 Dec 2021 22:04:06 GMT",
+        "link": "<http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"original\", <https://web.archive.org/web/timemap/link/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"timegate\", <https://web.archive.org/web/20211228220406/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"first memento\"; datetime=\"Tue, 28 Dec 2021 22:04:06 GMT\", <https://web.archive.org/web/20211228220406/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"memento\"; datetime=\"Tue, 28 Dec 2021 22:04:06 GMT\", <https://web.archive.org/web/20211228220406/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg>; rel=\"last memento\"; datetime=\"Tue, 28 Dec 2021 22:04:06 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "WPO-20211228211900-crawl892/WPO-20211228220102-03678.warc.gz",
+        "server-timing": "captures_list;dur=0.544029, exclusion.robots;dur=0.062072, exclusion.robots.policy;dur=0.052359, esindex;dur=0.008427, cdx.remote;dur=9.510177, LoadShardBlock;dur=119.925861, PetaboxLoader3.datanode;dur=93.826649, PetaboxLoader3.resolve;dur=97.251267, load_resource;dur=108.290467",
+        "x-app-server": "wwwb-app206-dc6",
+        "x-ts": "200",
+        "x-tr": "274",
+        "set-cookie": "wb-p-SERVER=wwwb-app206; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.544029, exclusion.robots;dur=0.062072, exclusion.robots.policy;dur=0.052359, esindex;dur=0.008427, cdx.remote;dur=9.510177, LoadShardBlock;dur=119.925861, PetaboxLoader3.datanode;dur=93.826649, PetaboxLoader3.resolve;dur=97.251267, load_resource;dur=108.290467",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:20.080356+00:00",
+      "bytes": 117260,
+      "sha256": "044b8701b377fc4c392f00e48dde11406a09d1f4d56c862e9a69260db3af46e7",
+      "matches_claimed_response": true,
+      "body_path": "responses/04.jpg"
+    },
+    {
+      "url": "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+      "expected_bytes": 9423,
+      "expected_sha256": "e2ab870b81a665e2c6318fd1a4c754a2fa0f347f2337058675398db68713ad95",
+      "uses": [
+        {
+          "source_file": "ussr-garf-res-1362i-19900315-facts.json",
+          "source_id": "su_garf_exhibit_res_1362i_19900315",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:20.020917+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:20 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "x-archive-orig-date": "Sat, 07 Dec 2019 08:04:38 GMT",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-accept-ranges": "bytes",
+        "x-archive-orig-connection": "close",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sat, 07 Dec 2019 08:04:38 GMT",
+        "link": "<http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"original\", <https://web.archive.org/web/timemap/link/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"timegate\", <https://web.archive.org/web/20190404044605/http://projects.rusarchives.ru:80/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"first memento\"; datetime=\"Thu, 04 Apr 2019 04:46:05 GMT\", <https://web.archive.org/web/20191118180906/http://projects.rusarchives.ru:80/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"prev memento\"; datetime=\"Mon, 18 Nov 2019 18:09:06 GMT\", <https://web.archive.org/web/20191207080438/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"memento\"; datetime=\"Sat, 07 Dec 2019 08:04:38 GMT\", <https://web.archive.org/web/20191219111131/http://projects.rusarchives.ru:80/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"next memento\"; datetime=\"Thu, 19 Dec 2019 11:11:31 GMT\", <https://web.archive.org/web/20251122042411/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml>; rel=\"last memento\"; datetime=\"Sat, 22 Nov 2025 04:24:11 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "WPO-20191207012726-crawl894/WPO-20191207054036-00637.warc.gz",
+        "server-timing": "captures_list;dur=0.343046, exclusion.robots;dur=0.041121, exclusion.robots.policy;dur=0.035170, esindex;dur=0.005988, cdx.remote;dur=8.021020, LoadShardBlock;dur=170.565735, PetaboxLoader3.datanode;dur=105.140032, PetaboxLoader3.resolve;dur=335.184334, load_resource;dur=280.474486",
+        "x-app-server": "wwwb-app204-dc6",
+        "x-ts": "200",
+        "x-tr": "474",
+        "set-cookie": "wb-p-SERVER=wwwb-app204; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.343046, exclusion.robots;dur=0.041121, exclusion.robots.policy;dur=0.035170, esindex;dur=0.005988, cdx.remote;dur=8.021020, LoadShardBlock;dur=170.565735, PetaboxLoader3.datanode;dur=105.140032, PetaboxLoader3.resolve;dur=335.184334, load_resource;dur=280.474486",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:20.681310+00:00",
+      "bytes": 9423,
+      "sha256": "e2ab870b81a665e2c6318fd1a4c754a2fa0f347f2337058675398db68713ad95",
+      "matches_claimed_response": true,
+      "body_path": "responses/05.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20191207080453id_/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg",
+      "expected_bytes": 157538,
+      "expected_sha256": "543c9efb25dedcab267b6505135da07a35a9928bec24b6b74c4593226970aee4",
+      "uses": [
+        {
+          "source_file": "ussr-garf-res-1362i-19900315-facts.json",
+          "source_id": "su_garf_exhibit_res_1362i_19900315",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "facsimile_responses"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:20.082361+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20191207080453id_/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:20 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "157538",
+        "Connection": "close",
+        "x-archive-orig-date": "Sat, 07 Dec 2019 08:04:54 GMT",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Mon, 18 May 2015 08:10:26 GMT",
+        "x-archive-orig-etag": "\"26762-51656b9ef0080\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "x-archive-orig-content-length": "157538",
+        "x-archive-orig-connection": "close",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sat, 07 Dec 2019 08:04:53 GMT",
+        "link": "<http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"original\", <https://web.archive.org/web/timemap/link/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"timegate\", <https://web.archive.org/web/20191207080453/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"first memento\"; datetime=\"Sat, 07 Dec 2019 08:04:53 GMT\", <https://web.archive.org/web/20191207080453/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"memento\"; datetime=\"Sat, 07 Dec 2019 08:04:53 GMT\", <https://web.archive.org/web/20250901093531/https://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"next memento\"; datetime=\"Mon, 01 Sep 2025 09:35:31 GMT\", <https://web.archive.org/web/20251113144234/https://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg>; rel=\"last memento\"; datetime=\"Thu, 13 Nov 2025 14:42:34 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "WPO-20191207054516-crawl894/WPO-20191207054516-00638.warc.gz",
+        "server-timing": "captures_list;dur=0.480890, exclusion.robots;dur=0.051973, exclusion.robots.policy;dur=0.043935, esindex;dur=0.009035, cdx.remote;dur=11.414015, LoadShardBlock;dur=71.959751, PetaboxLoader3.datanode;dur=59.468159, PetaboxLoader3.resolve;dur=48.732611, load_resource;dur=55.881708",
+        "x-app-server": "wwwb-app204-dc6",
+        "x-ts": "200",
+        "x-tr": "159",
+        "set-cookie": "wb-p-SERVER=wwwb-app204; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.480890, exclusion.robots;dur=0.051973, exclusion.robots.policy;dur=0.043935, esindex;dur=0.009035, cdx.remote;dur=11.414015, LoadShardBlock;dur=71.959751, PetaboxLoader3.datanode;dur=59.468159, PetaboxLoader3.resolve;dur=48.732611, load_resource;dur=55.881708",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:20.547052+00:00",
+      "bytes": 157538,
+      "sha256": "543c9efb25dedcab267b6505135da07a35a9928bec24b6b74c4593226970aee4",
+      "matches_claimed_response": true,
+      "body_path": "responses/06.jpg"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102084027&page=1&rdk=0",
+      "expected_bytes": 52149,
+      "expected_sha256": "6ed687d8afc0bacf4ad9dad2302123b773070343eec55b4542311ffa935b0348",
+      "uses": [
+        {
+          "source_file": "ussr-ips-cm-res-1177-19901124-facts.json",
+          "source_id": "su_ips_cm_res_1177_19901124",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:20.337581+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102084027&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:23 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "52149",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:23.958518+00:00",
+      "bytes": 52149,
+      "sha256": "6ed687d8afc0bacf4ad9dad2302123b773070343eec55b4542311ffa935b0348",
+      "matches_claimed_response": true,
+      "body_path": "responses/07.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010316&page=1&rdk=0",
+      "expected_bytes": 20265,
+      "expected_sha256": "09ae8fe92970994ed7e108f0da959a1242fcbe388fe681b59da1cba3f29f123f",
+      "uses": [
+        {
+          "source_file": "ussr-ips-cm-res-27-19910110-facts.json",
+          "source_id": "su_ips_cm_res_27_19910110",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:20.547052+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010316&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:21 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "20265",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:21.357095+00:00",
+      "bytes": 20265,
+      "sha256": "09ae8fe92970994ed7e108f0da959a1242fcbe388fe681b59da1cba3f29f123f",
+      "matches_claimed_response": true,
+      "body_path": "responses/08.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010231&page=1&rdk=0",
+      "expected_bytes": 52511,
+      "expected_sha256": "889da9f719499ba58720b976c29f378d31a84e8ba9eabe9fded290c5c46c14c9",
+      "uses": [
+        {
+          "source_file": "ussr-ips-cm-res-525-19900526-facts.json",
+          "source_id": "su_ips_cm_res_525_19900526",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:20.683314+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010231&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:21 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "52511",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:21.878169+00:00",
+      "bytes": 52511,
+      "sha256": "889da9f719499ba58720b976c29f378d31a84e8ba9eabe9fded290c5c46c14c9",
+      "matches_claimed_response": true,
+      "body_path": "responses/09.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012314&page=1&rdk=0",
+      "expected_bytes": 6925,
+      "expected_sha256": "b967d16d8b4a5dd6cb145225e991d848b5d2cfefd8be425c8629d575f585e53a",
+      "uses": [
+        {
+          "source_file": "ussr-ips-km-rasp-943r-19910819-facts.json",
+          "source_id": "su_km_rasp_943r_19910819",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:21.357095+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012314&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:22 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "6925",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:22.037194+00:00",
+      "bytes": 6925,
+      "sha256": "b967d16d8b4a5dd6cb145225e991d848b5d2cfefd8be425c8629d575f585e53a",
+      "matches_claimed_response": true,
+      "body_path": "responses/10.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013213&page=1&rdk=0",
+      "expected_bytes": 21408,
+      "expected_sha256": "222e799e295307c865b9b5de259e474ac8790da12df1f60c71f3a122f5b71431",
+      "uses": [
+        {
+          "source_file": "ussr-ips-kou-post-53-19911123-facts.json",
+          "source_id": "su_kou_post_53_19911123",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:21.879277+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013213&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:22 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "21408",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:22.757137+00:00",
+      "bytes": 21408,
+      "sha256": "222e799e295307c865b9b5de259e474ac8790da12df1f60c71f3a122f5b71431",
+      "matches_claimed_response": true,
+      "body_path": "responses/11.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119006&page=1&rdk=0",
+      "expected_bytes": 8608,
+      "expected_sha256": "e09fff16bc5515685dd8c9ad93a83e6a585083304e81179e9c797c4795d165ab",
+      "uses": [
+        {
+          "source_file": "ussr-ips-kou-rasp-212r-19911219-facts.json",
+          "source_id": "su_kou_rasp_212r_19911219",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:22.037194+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119006&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:22 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "8608",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:22.737297+00:00",
+      "bytes": 8608,
+      "sha256": "e09fff16bc5515685dd8c9ad93a83e6a585083304e81179e9c797c4795d165ab",
+      "matches_claimed_response": true,
+      "body_path": "responses/12.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012407&page=1&rdk=0",
+      "expected_bytes": 7876,
+      "expected_sha256": "62e4006ab45af626526d88b4df934cf3241480c121199d4ca064ac545535bedd",
+      "uses": [
+        {
+          "source_file": "ussr-ips-kou-rasp-23r-19910904-facts.json",
+          "source_id": "su_kou_rasp_23r_19910904",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:22.737297+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012407&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:23 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "7876",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:23.467232+00:00",
+      "bytes": 7876,
+      "sha256": "62e4006ab45af626526d88b4df934cf3241480c121199d4ca064ac545535bedd",
+      "matches_claimed_response": true,
+      "body_path": "responses/13.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012430&page=1&rdk=0",
+      "expected_bytes": 7340,
+      "expected_sha256": "d29cc413bc8a3f32c63b1a0abab6a61ddd22b4056edc59682fe20ec8016629eb",
+      "uses": [
+        {
+          "source_file": "ussr-ips-kou-rasp-25r-19910906-facts.json",
+          "source_id": "su_kou_rasp_25r_19910906",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:22.757137+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012430&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:23 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "7340",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:23.367302+00:00",
+      "bytes": 7340,
+      "sha256": "d29cc413bc8a3f32c63b1a0abab6a61ddd22b4056edc59682fe20ec8016629eb",
+      "matches_claimed_response": true,
+      "body_path": "responses/14.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012665&page=1&rdk=0",
+      "expected_bytes": 8464,
+      "expected_sha256": "00a8eed4e06d7aa612153eee364a450930dfcfe5c42a3571f6baefc3dc0f8e06",
+      "uses": [
+        {
+          "source_file": "ussr-ips-kou-rasp-62r-19911005-facts.json",
+          "source_id": "su_kou_rasp_62r_19911005",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:23.367302+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012665&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:24 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "8464",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:24.257295+00:00",
+      "bytes": 8464,
+      "sha256": "00a8eed4e06d7aa612153eee364a450930dfcfe5c42a3571f6baefc3dc0f8e06",
+      "matches_claimed_response": true,
+      "body_path": "responses/15.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119002&page=1&rdk=0",
+      "expected_bytes": 6843,
+      "expected_sha256": "cbf946f6962b6a4572161a20423ce9bc21fdec3c401bcc86a5f5d54ff5e5f378",
+      "uses": [
+        {
+          "source_file": "ussr-ips-mek-rasp-2r-19911010-facts.json",
+          "source_id": "su_mek_rasp_2r_19911010",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:23.467232+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119002&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:24 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "6843",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:24.077410+00:00",
+      "bytes": 6843,
+      "sha256": "cbf946f6962b6a4572161a20423ce9bc21fdec3c401bcc86a5f5d54ff5e5f378",
+      "matches_claimed_response": true,
+      "body_path": "responses/16.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119005&page=1&rdk=0",
+      "expected_bytes": 7853,
+      "expected_sha256": "f149257ed9ee134eeae4d9831ba3347bd65b1faccee9022c07d555616d5b11d7",
+      "uses": [
+        {
+          "source_file": "ussr-ips-mek-rasp-6r-19911112-facts.json",
+          "source_id": "su_mek_rasp_6r_19911112",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:23.958518+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102119005&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:24 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "7853",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:24.687301+00:00",
+      "bytes": 7853,
+      "sha256": "f149257ed9ee134eeae4d9831ba3347bd65b1faccee9022c07d555616d5b11d7",
+      "matches_claimed_response": true,
+      "body_path": "responses/17.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013298&page=1&rdk=0",
+      "expected_bytes": 7557,
+      "expected_sha256": "4a9457c3b64dbf64a5709a84a0c7d7d1d84db557ee5204eb99af240f5e76ced8",
+      "uses": [
+        {
+          "source_file": "ussr-ips-mgek-post-7-19911128-facts.json",
+          "source_id": "su_mgek_post_7_19911128",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:24.077410+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013298&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:24 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "7557",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:24.757317+00:00",
+      "bytes": 7557,
+      "sha256": "4a9457c3b64dbf64a5709a84a0c7d7d1d84db557ee5204eb99af240f5e76ced8",
+      "matches_claimed_response": true,
+      "body_path": "responses/18.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013609&page=1&rdk=0",
+      "expected_bytes": 6923,
+      "expected_sha256": "168225eb75ccad8cc8cc0861222dc41bdb6d57428fc73babf198bc4d79accdeb",
+      "uses": [
+        {
+          "source_file": "ussr-ips-mgek-rasp-23r-19911217-facts.json",
+          "source_id": "su_mgek_rasp_23r_19911217",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:24.258953+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013609&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:24 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "6923",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:24.937299+00:00",
+      "bytes": 6923,
+      "sha256": "168225eb75ccad8cc8cc0861222dc41bdb6d57428fc73babf198bc4d79accdeb",
+      "matches_claimed_response": true,
+      "body_path": "responses/19.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013103&page=1&rdk=0",
+      "expected_bytes": 7150,
+      "expected_sha256": "244348192719301c1f5d4b42b58d522e5522c612d52628249de0b7b8569a09ac",
+      "uses": [
+        {
+          "source_file": "ussr-ips-mgek-rasp-7r-19911115-facts.json",
+          "source_id": "su_mgek_rasp_7r_19911115",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:24.687301+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013103&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:25 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "7150",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:25.443266+00:00",
+      "bytes": 7150,
+      "sha256": "244348192719301c1f5d4b42b58d522e5522c612d52628249de0b7b8569a09ac",
+      "matches_claimed_response": true,
+      "body_path": "responses/20.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013526&page=1&rdk=0",
+      "expected_bytes": 25236,
+      "expected_sha256": "4bfe7135976067e09fd1bf6d913f8f3a81df9ff87f8bf26df7db039c6ecfc1dc",
+      "uses": [
+        {
+          "source_file": "ussr-ips-rsfsr-res-2017i-19911212-facts.json",
+          "source_id": "su_rsfsr_res_2017i_19911212",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:24.757317+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013526&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:25 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "25236",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:25.867491+00:00",
+      "bytes": 25236,
+      "sha256": "4bfe7135976067e09fd1bf6d913f8f3a81df9ff87f8bf26df7db039c6ecfc1dc",
+      "matches_claimed_response": true,
+      "body_path": "responses/21.body"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013665&page=1&rdk=0",
+      "expected_bytes": 24105,
+      "expected_sha256": "b73a9d55970f26cacdcb2292adf48506a1c57ea27f573b37d2856f480224bf7e",
+      "uses": [
+        {
+          "source_file": "ussr-ips-rsfsr-ukaz-299-19911219-facts.json",
+          "source_id": "su_rsfsr_ukaz_299_19911219",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:24.937299+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013665&page=1&rdk=0",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:44:26 GMT",
+        "Content-Type": "text/html; charset=windows-1251",
+        "Content-Length": "24105",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:44:26.583334+00:00",
+      "bytes": 24105,
+      "sha256": "b73a9d55970f26cacdcb2292adf48506a1c57ea27f573b37d2856f480224bf7e",
+      "matches_claimed_response": true,
+      "body_path": "responses/22.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+      "expected_bytes": 42384,
+      "expected_sha256": "c7919fd209edeb9dc9532796d93a7632c54b6beb9ad59149a9aedaa476705b35",
+      "uses": [
+        {
+          "source_file": "ussr-rada-law-1861i-19901226-facts.json",
+          "source_id": "su_rada_law_1861i_19901226",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:25.443266+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:26 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": "42384",
+        "Connection": "close",
+        "x-archive-orig-server": "nginx/1.19.0",
+        "x-archive-orig-date": "Sat, 31 May 2025 19:26:12 GMT",
+        "x-archive-orig-content-length": "42384",
+        "x-archive-orig-connection": "keep-alive",
+        "x-archive-orig-documentdate": "Sat, 31 May 2025 19:26:16 GMT",
+        "x-archive-orig-last-modified": "Sat, 31 May 2025 19:26:16 GMT",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sat, 31 May 2025 19:26:16 GMT",
+        "link": "<https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"timegate\", <https://web.archive.org/web/20220712200110/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"first memento\"; datetime=\"Tue, 12 Jul 2022 20:01:10 GMT\", <https://web.archive.org/web/20240828093249/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"prev memento\"; datetime=\"Wed, 28 Aug 2024 09:32:49 GMT\", <https://web.archive.org/web/20250531192616/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"memento\"; datetime=\"Sat, 31 May 2025 19:26:16 GMT\", <https://web.archive.org/web/20250531192616/https://zakon.rada.gov.ua/laws/show/v1861400-90/print>; rel=\"last memento\"; datetime=\"Sat, 31 May 2025 19:26:16 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "archiveteam_archivebot_go_20250602042826_9f3011ac/zakon.rada.gov.ua-inf-20250525-080834-7r7ve-00001.warc.gz",
+        "server-timing": "captures_list;dur=0.406792, exclusion.robots;dur=0.029975, exclusion.robots.policy;dur=0.022241, esindex;dur=0.006281, cdx.remote;dur=51.865279, LoadShardBlock;dur=159.862997, PetaboxLoader3.datanode;dur=163.231295, PetaboxLoader3.resolve;dur=63.355300, load_resource;dur=140.326878",
+        "x-app-server": "wwwb-app222-dc8",
+        "x-ts": "200",
+        "x-tr": "396",
+        "set-cookie": "wb-p-SERVER=wwwb-app222; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.406792, exclusion.robots;dur=0.029975, exclusion.robots.policy;dur=0.022241, esindex;dur=0.006281, cdx.remote;dur=51.865279, LoadShardBlock;dur=159.862997, PetaboxLoader3.datanode;dur=163.231295, PetaboxLoader3.resolve;dur=63.355300, load_resource;dur=140.326878",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:26.077433+00:00",
+      "bytes": 42384,
+      "sha256": "c7919fd209edeb9dc9532796d93a7632c54b6beb9ad59149a9aedaa476705b35",
+      "matches_claimed_response": true,
+      "body_path": "responses/23.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+      "expected_bytes": 11254,
+      "expected_sha256": "a78b05aef067e23e578ce9663505461d33457e4fcde71d9fb971cda26ee6dc62",
+      "uses": [
+        {
+          "source_file": "ussr-rada-res-1870i-19901227-facts.json",
+          "source_id": "su_rada_res_1870i_19901227",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:25.867491+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:26 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": "11254",
+        "Connection": "close",
+        "x-archive-orig-server": "nginx/1.19.0",
+        "x-archive-orig-date": "Sat, 31 May 2025 19:59:43 GMT",
+        "x-archive-orig-content-length": "11254",
+        "x-archive-orig-connection": "keep-alive",
+        "x-archive-orig-documentdate": "Sat, 31 May 2025 19:59:47 GMT",
+        "x-archive-orig-last-modified": "Sat, 31 May 2025 19:59:47 GMT",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sat, 31 May 2025 19:59:47 GMT",
+        "link": "<https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"timegate\", <https://web.archive.org/web/20250531195947/https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"first memento\"; datetime=\"Sat, 31 May 2025 19:59:47 GMT\", <https://web.archive.org/web/20250531195947/https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"memento\"; datetime=\"Sat, 31 May 2025 19:59:47 GMT\", <https://web.archive.org/web/20250531195947/https://zakon.rada.gov.ua/laws/show/v1870400-90/print>; rel=\"last memento\"; datetime=\"Sat, 31 May 2025 19:59:47 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "archiveteam_archivebot_go_20250602042826_9f3011ac/zakon.rada.gov.ua-inf-20250525-080834-7r7ve-00001.warc.gz",
+        "server-timing": "captures_list;dur=1.006994, exclusion.robots;dur=0.078844, exclusion.robots.policy;dur=0.059707, esindex;dur=0.012311, cdx.remote;dur=22.349176, LoadShardBlock;dur=181.489374, PetaboxLoader3.resolve;dur=154.488788, PetaboxLoader3.datanode;dur=75.808975, load_resource;dur=72.969558",
+        "x-app-server": "wwwb-app221-dc8",
+        "x-ts": "200",
+        "x-tr": "296",
+        "set-cookie": "wb-p-SERVER=wwwb-app221; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=1.006994, exclusion.robots;dur=0.078844, exclusion.robots.policy;dur=0.059707, esindex;dur=0.012311, cdx.remote;dur=22.349176, LoadShardBlock;dur=181.489374, PetaboxLoader3.resolve;dur=154.488788, PetaboxLoader3.datanode;dur=75.808975, load_resource;dur=72.969558",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:44:26.328338+00:00",
+      "bytes": 11254,
+      "sha256": "a78b05aef067e23e578ce9663505461d33457e4fcde71d9fb971cda26ee6dc62",
+      "matches_claimed_response": true,
+      "body_path": "responses/24.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20250718143642id_/https://snd.sssr.su/IV/III.pdf",
+      "expected_bytes": 12653342,
+      "expected_sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "uses": [
+        {
+          "source_file": "ussr-snd4-stenogram-vol3-19901226-facts.json",
+          "source_id": "su_snd4_steno_vol3",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:26.077433+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20250718143642id_/https://snd.sssr.su/IV/III.pdf",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:27 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "12653342",
+        "Connection": "close",
+        "x-archive-orig-date": "Fri, 18 Jul 2025 14:36:43 GMT",
+        "x-archive-orig-content-length": "12653342",
+        "x-archive-orig-connection": "close",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Sat, 25 May 2024 22:19:52 GMT",
+        "x-archive-orig-etag": "\"c1131e-6194eaee3639b\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Fri, 18 Jul 2025 14:36:42 GMT",
+        "link": "<https://snd.sssr.su/IV/III.pdf>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://snd.sssr.su/IV/III.pdf>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://snd.sssr.su/IV/III.pdf>; rel=\"timegate\", <https://web.archive.org/web/20240809015456/https://snd.sssr.su/IV/III.pdf>; rel=\"first memento\"; datetime=\"Fri, 09 Aug 2024 01:54:56 GMT\", <https://web.archive.org/web/20241124015727/https://snd.sssr.su/IV/III.pdf>; rel=\"prev memento\"; datetime=\"Sun, 24 Nov 2024 01:57:27 GMT\", <https://web.archive.org/web/20250718143642/https://snd.sssr.su/IV/III.pdf>; rel=\"memento\"; datetime=\"Fri, 18 Jul 2025 14:36:42 GMT\", <https://web.archive.org/web/20250718143642/https://snd.sssr.su/IV/III.pdf>; rel=\"last memento\"; datetime=\"Fri, 18 Jul 2025 14:36:42 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "SPNOUTLINKS-20250718142836-crawl902/SPNOUTLINKS-20250718143426-00693.warc.gz",
+        "server-timing": "captures_list;dur=0.637444, exclusion.robots;dur=0.051029, exclusion.robots.policy;dur=0.037563, esindex;dur=0.009492, cdx.remote;dur=18.633385, LoadShardBlock;dur=1336.691521, PetaboxLoader3.datanode;dur=1261.652262, PetaboxLoader3.resolve;dur=132.400228, load_resource;dur=258.928347",
+        "x-app-server": "wwwb-app246-dc8",
+        "x-ts": "200",
+        "x-tr": "1649",
+        "set-cookie": "wb-p-SERVER=wwwb-app246; path=/",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "BYPASS",
+        "Server-Timing": "captures_list;dur=0.637444, exclusion.robots;dur=0.051029, exclusion.robots.policy;dur=0.037563, esindex;dur=0.009492, cdx.remote;dur=18.633385, LoadShardBlock;dur=1336.691521, PetaboxLoader3.datanode;dur=1261.652262, PetaboxLoader3.resolve;dur=132.400228, load_resource;dur=258.928347",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0",
+        "X-location": "_pdf"
+      },
+      "completed_utc": "2026-09-28T13:44:29.217649+00:00",
+      "bytes": 12653342,
+      "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "matches_claimed_response": true,
+      "body_path": "responses/25.pdf"
+    },
+    {
+      "url": "https://snd.sssr.su/IV/III.pdf",
+      "expected_bytes": 12653342,
+      "expected_sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "uses": [
+        {
+          "source_file": "ussr-snd4-stenogram-vol3-19901226-facts.json",
+          "source_id": "su_snd4_steno_vol3",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "live_file_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:26.328338+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://snd.sssr.su/IV/III.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:27 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "12653342",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Sat, 25 May 2024 22:19:52 GMT",
+        "ETag": "\"c1131e-6194eaee3639b\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:32.013973+00:00",
+      "bytes": 12653342,
+      "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "matches_claimed_response": true,
+      "body_path": "responses/26.pdf"
+    },
+    {
+      "url": "https://web.archive.org/web/20240901125154id_/https://snd.sssr.su/V/5.pdf",
+      "expected_bytes": 1620327,
+      "expected_sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+      "uses": [
+        {
+          "source_file": "ussr-snd5-bulletin5-19910904-facts.json",
+          "source_id": "su_snd5_bulletin5_19910904",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:26.587404+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20240901125154id_/https://snd.sssr.su/V/5.pdf",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:27 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1620327",
+        "Connection": "close",
+        "x-archive-orig-date": "Sun, 01 Sep 2024 12:51:54 GMT",
+        "x-archive-orig-content-length": "1620327",
+        "x-archive-orig-connection": "keep-alive",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Mon, 03 Jun 2024 23:27:12 GMT",
+        "x-archive-orig-etag": "\"18b967-61a04ac42e3ff\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sun, 01 Sep 2024 12:51:54 GMT",
+        "link": "<https://snd.sssr.su/V/5.pdf>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://snd.sssr.su/V/5.pdf>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://snd.sssr.su/V/5.pdf>; rel=\"timegate\", <https://web.archive.org/web/20240809023007/https://snd.sssr.su/V/5.pdf>; rel=\"first memento\"; datetime=\"Fri, 09 Aug 2024 02:30:07 GMT\", <https://web.archive.org/web/20240809023007/https://snd.sssr.su/V/5.pdf>; rel=\"prev memento\"; datetime=\"Fri, 09 Aug 2024 02:30:07 GMT\", <https://web.archive.org/web/20240901125154/https://snd.sssr.su/V/5.pdf>; rel=\"memento\"; datetime=\"Sun, 01 Sep 2024 12:51:54 GMT\", <https://web.archive.org/web/20250718143643/https://snd.sssr.su/V/5.pdf>; rel=\"next memento\"; datetime=\"Fri, 18 Jul 2025 14:36:43 GMT\", <https://web.archive.org/web/20250718143643/https://snd.sssr.su/V/5.pdf>; rel=\"last memento\"; datetime=\"Fri, 18 Jul 2025 14:36:43 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "archiveteam_urls_20240901125309_64b5fccb/urls_20240901125309_64b5fccb.1725048243.megawarc.warc.zst",
+        "server-timing": "captures_list;dur=0.596267, exclusion.robots;dur=0.090679, exclusion.robots.policy;dur=0.077912, esindex;dur=0.008662, cdx.remote;dur=34.530194, LoadShardBlock;dur=514.779280, PetaboxLoader3.resolve;dur=410.496247, PetaboxLoader3.datanode;dur=168.164413, load_resource;dur=335.035472, loaddict;dur=25.491385",
+        "x-app-server": "wwwb-app249-dc8",
+        "x-ts": "200",
+        "x-tr": "912",
+        "set-cookie": "wb-p-SERVER=wwwb-app249; path=/",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "BYPASS",
+        "Server-Timing": "captures_list;dur=0.596267, exclusion.robots;dur=0.090679, exclusion.robots.policy;dur=0.077912, esindex;dur=0.008662, cdx.remote;dur=34.530194, LoadShardBlock;dur=514.779280, PetaboxLoader3.resolve;dur=410.496247, PetaboxLoader3.datanode;dur=168.164413, load_resource;dur=335.035472, loaddict;dur=25.491385",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0",
+        "X-location": "_pdf"
+      },
+      "completed_utc": "2026-09-28T13:44:27.985953+00:00",
+      "bytes": 1620327,
+      "sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+      "matches_claimed_response": true,
+      "body_path": "responses/27.pdf"
+    },
+    {
+      "url": "https://snd.sssr.su/V/5.pdf",
+      "expected_bytes": 1620327,
+      "expected_sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+      "uses": [
+        {
+          "source_file": "ussr-snd5-bulletin5-19910904-facts.json",
+          "source_id": "su_snd5_bulletin5_19910904",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "live_file_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:27.989596+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://snd.sssr.su/V/5.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:28 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1620327",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Mon, 03 Jun 2024 23:27:12 GMT",
+        "ETag": "\"18b967-61a04ac42e3ff\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:29.867689+00:00",
+      "bytes": 1620327,
+      "sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+      "matches_claimed_response": true,
+      "body_path": "responses/28.pdf"
+    },
+    {
+      "url": "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
+      "expected_bytes": 30424,
+      "expected_sha256": "d795d3dddc4e07e1e2de030f4750f532ddedbf5fe13f2b52d864c4343891a236",
+      "uses": [
+        {
+          "source_file": "ussr-sprsfsr-art59-19891224-facts.json",
+          "source_id": "su_sprsfsr_1990_8_art59_19891224",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:29.227685+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
+      "headers": {
+        "Server": "nginx/1.18.0 (Ubuntu)",
+        "Date": "Mon, 28 Sep 2026 13:44:29 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "30424",
+        "Last-Modified": "Thu, 23 May 2024 19:19:03 GMT",
+        "Connection": "close",
+        "ETag": "\"664f96a7-76d8\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:30.013609+00:00",
+      "bytes": 30424,
+      "sha256": "d795d3dddc4e07e1e2de030f4750f532ddedbf5fe13f2b52d864c4343891a236",
+      "matches_claimed_response": true,
+      "body_path": "responses/29.jpg"
+    },
+    {
+      "url": "https://docs.historyrussia.org/system/pages/016/529/09/images/small/6393cc1b12e1d2fd634203d8a0ea3b825adf2d9d.jpg?1716491916",
+      "expected_bytes": 37089,
+      "expected_sha256": "55bda52a960e86dc79b42dff8381a59cfe7db60db28bab2d7004365f5930a892",
+      "uses": [
+        {
+          "source_file": "ussr-sprsfsr-art59-19891224-facts.json",
+          "source_id": "su_sprsfsr_1990_8_art59_19891224",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "facsimile_responses"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:29.875345+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://docs.historyrussia.org/system/pages/016/529/09/images/small/6393cc1b12e1d2fd634203d8a0ea3b825adf2d9d.jpg?1716491916",
+      "headers": {
+        "Server": "nginx/1.18.0 (Ubuntu)",
+        "Date": "Mon, 28 Sep 2026 13:44:30 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "37089",
+        "Last-Modified": "Thu, 23 May 2024 19:18:38 GMT",
+        "Connection": "close",
+        "ETag": "\"664f968e-90e1\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:30.604681+00:00",
+      "bytes": 37089,
+      "sha256": "55bda52a960e86dc79b42dff8381a59cfe7db60db28bab2d7004365f5930a892",
+      "matches_claimed_response": true,
+      "body_path": "responses/30.jpg"
+    },
+    {
+      "url": "https://docs.historyrussia.org/system/pages/016/529/29/images/small/08390f990d8fd8b5127cefd8c1c749b501710421.jpg?1716491978",
+      "expected_bytes": 31779,
+      "expected_sha256": "20bd55b2a49687ec3bbec06de07c224d410825f3faac3dcfad86cf054478d65f",
+      "uses": [
+        {
+          "source_file": "ussr-sprsfsr-art60-19900112-facts.json",
+          "source_id": "su_sprsfsr_1990_8_art60_19900112",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:30.017613+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://docs.historyrussia.org/system/pages/016/529/29/images/small/08390f990d8fd8b5127cefd8c1c749b501710421.jpg?1716491978",
+      "headers": {
+        "Server": "nginx/1.18.0 (Ubuntu)",
+        "Date": "Mon, 28 Sep 2026 13:44:30 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "31779",
+        "Last-Modified": "Thu, 23 May 2024 19:19:40 GMT",
+        "Connection": "close",
+        "ETag": "\"664f96cc-7c23\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:30.747697+00:00",
+      "bytes": 31779,
+      "sha256": "20bd55b2a49687ec3bbec06de07c224d410825f3faac3dcfad86cf054478d65f",
+      "matches_claimed_response": true,
+      "body_path": "responses/31.jpg"
+    },
+    {
+      "url": "https://docs.historyrussia.org/system/pages/016/529/18/images/small/3ab9f0f2292a1a757ef549c07b6c9a2c96e01453.jpg?1716491944",
+      "expected_bytes": 38198,
+      "expected_sha256": "3ab7bcd66f9b5cc315d47d011d0d6bb779c4c2f925882f08f2812b62f404f9d2",
+      "uses": [
+        {
+          "source_file": "ussr-sprsfsr-art60-19900112-facts.json",
+          "source_id": "su_sprsfsr_1990_8_art60_19900112",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "facsimile_responses"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:30.605715+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://docs.historyrussia.org/system/pages/016/529/18/images/small/3ab9f0f2292a1a757ef549c07b6c9a2c96e01453.jpg?1716491944",
+      "headers": {
+        "Server": "nginx/1.18.0 (Ubuntu)",
+        "Date": "Mon, 28 Sep 2026 13:44:31 GMT",
+        "Content-Type": "image/jpeg",
+        "Content-Length": "38198",
+        "Last-Modified": "Thu, 23 May 2024 19:19:06 GMT",
+        "Connection": "close",
+        "ETag": "\"664f96aa-9536\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:31.317729+00:00",
+      "bytes": 38198,
+      "sha256": "3ab7bcd66f9b5cc315d47d011d0d6bb779c4c2f925882f08f2812b62f404f9d2",
+      "matches_claimed_response": true,
+      "body_path": "responses/32.jpg"
+    },
+    {
+      "url": "https://sten.vs.sssr.su/12/6/1.pdf",
+      "expected_bytes": 2252696,
+      "expected_sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+      "uses": [
+        {
+          "source_file": "ussr-sten-vs-bulletin1-19910826-facts.json",
+          "source_id": "su_sten_vs_bulletin1_19910826",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:30.747697+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://sten.vs.sssr.su/12/6/1.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:31 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "2252696",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Thu, 17 Mar 2016 04:33:11 GMT",
+        "ETag": "\"225f98-52e3720beafc0\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:33.283323+00:00",
+      "bytes": 2252696,
+      "sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+      "matches_claimed_response": true,
+      "body_path": "responses/33.pdf"
+    },
+    {
+      "url": "https://sten.vs.sssr.su/12/6/2.pdf",
+      "expected_bytes": 1530044,
+      "expected_sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+      "uses": [
+        {
+          "source_file": "ussr-sten-vs-bulletin2-19910826-facts.json",
+          "source_id": "su_sten_vs_bulletin2_19910826",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:31.317729+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://sten.vs.sssr.su/12/6/2.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:31 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1530044",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Thu, 24 Mar 2016 23:32:43 GMT",
+        "ETag": "\"1758bc-52ed3dcec3cc0\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:33.704422+00:00",
+      "bytes": 1530044,
+      "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+      "matches_claimed_response": true,
+      "body_path": "responses/34.pdf"
+    },
+    {
+      "url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+      "expected_bytes": 618372,
+      "expected_sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-35-19910828-facts.json",
+          "source_id": "su_ved_1991_35",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:32.074073+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:33 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "618372",
+        "Connection": "close",
+        "x-archive-orig-date": "Sat, 04 Dec 2021 06:59:54 GMT",
+        "x-archive-orig-content-length": "618372",
+        "x-archive-orig-connection": "keep-alive",
+        "x-archive-orig-server": "Jino.ru/mod_pizza",
+        "x-archive-orig-last-modified": "Sun, 01 Jan 2017 02:07:33 GMT",
+        "x-archive-orig-etag": "\"9f1077a-96f84-544fee5e62340\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sat, 04 Dec 2021 06:59:55 GMT",
+        "link": "<https://vedomosti.sssr.su/1991/35.pdf>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://vedomosti.sssr.su/1991/35.pdf>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://vedomosti.sssr.su/1991/35.pdf>; rel=\"timegate\", <https://web.archive.org/web/20170113133427/http://vedomosti.sssr.su/1991/35.pdf>; rel=\"first memento\"; datetime=\"Fri, 13 Jan 2017 13:34:27 GMT\", <https://web.archive.org/web/20211031083900/https://vedomosti.sssr.su/1991/35.pdf>; rel=\"prev memento\"; datetime=\"Sun, 31 Oct 2021 08:39:00 GMT\", <https://web.archive.org/web/20211204065955/https://vedomosti.sssr.su/1991/35.pdf>; rel=\"memento\"; datetime=\"Sat, 04 Dec 2021 06:59:55 GMT\", <https://web.archive.org/web/20220124004458/https://vedomosti.sssr.su/1991/35.pdf>; rel=\"next memento\"; datetime=\"Mon, 24 Jan 2022 00:44:58 GMT\", <https://web.archive.org/web/20251010091040/http://vedomosti.sssr.su/1991/35.pdf>; rel=\"last memento\"; datetime=\"Fri, 10 Oct 2025 09:10:40 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "CC-MAIN-2021-49-1637964362952.24-0022/CC-MAIN-20211204063651-20211204093651-00453.warc.gz",
+        "server-timing": "captures_list;dur=0.655650, exclusion.robots;dur=0.061146, exclusion.robots.policy;dur=0.046179, esindex;dur=0.010000, cdx.remote;dur=16.247285, LoadShardBlock;dur=405.863593, PetaboxLoader3.datanode;dur=191.829219, PetaboxLoader3.resolve;dur=507.537681, load_resource;dur=438.501730",
+        "x-app-server": "wwwb-app245-dc8",
+        "x-ts": "200",
+        "x-tr": "889",
+        "set-cookie": "wb-p-SERVER=wwwb-app245; path=/",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "BYPASS",
+        "Server-Timing": "captures_list;dur=0.655650, exclusion.robots;dur=0.061146, exclusion.robots.policy;dur=0.046179, esindex;dur=0.010000, cdx.remote;dur=16.247285, LoadShardBlock;dur=405.863593, PetaboxLoader3.datanode;dur=191.829219, PetaboxLoader3.resolve;dur=507.537681, load_resource;dur=438.501730",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0",
+        "X-location": "_pdf"
+      },
+      "completed_utc": "2026-09-28T13:44:33.479993+00:00",
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "matches_claimed_response": true,
+      "body_path": "responses/35.pdf"
+    },
+    {
+      "url": "https://vedomosti.sssr.su/1991/35.pdf",
+      "expected_bytes": 618372,
+      "expected_sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-35-19910828-facts.json",
+          "source_id": "su_ved_1991_35",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "live_file_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:33.321136+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://vedomosti.sssr.su/1991/35.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:34 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "618372",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Sun, 01 Jan 2017 02:07:33 GMT",
+        "ETag": "\"96f84-544fee5e62340\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:35.302160+00:00",
+      "bytes": 618372,
+      "sha256": "5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63",
+      "matches_claimed_response": true,
+      "body_path": "responses/36.pdf"
+    },
+    {
+      "url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+      "expected_bytes": 1303663,
+      "expected_sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-36-19910904-facts.json",
+          "source_id": "su_ved_1991_36",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:33.483999+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:34 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1303663",
+        "Connection": "close",
+        "x-archive-orig-date": "Wed, 20 Aug 2025 13:50:20 GMT",
+        "x-archive-orig-content-length": "1303663",
+        "x-archive-orig-connection": "close",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Sun, 01 Jan 2017 22:40:50 GMT",
+        "x-archive-orig-etag": "\"13e46f-545102076c080\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Wed, 20 Aug 2025 13:50:20 GMT",
+        "link": "<https://vedomosti.sssr.su/1991/36.pdf>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://vedomosti.sssr.su/1991/36.pdf>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://vedomosti.sssr.su/1991/36.pdf>; rel=\"timegate\", <https://web.archive.org/web/20170113133907/http://vedomosti.sssr.su/1991/36.pdf>; rel=\"first memento\"; datetime=\"Fri, 13 Jan 2017 13:39:07 GMT\", <https://web.archive.org/web/20250820135019/http://vedomosti.sssr.su/1991/36.pdf>; rel=\"prev memento\"; datetime=\"Wed, 20 Aug 2025 13:50:19 GMT\", <https://web.archive.org/web/20250820135020/https://vedomosti.sssr.su/1991/36.pdf>; rel=\"memento\"; datetime=\"Wed, 20 Aug 2025 13:50:20 GMT\", <https://web.archive.org/web/20251010091041/http://vedomosti.sssr.su/1991/36.pdf>; rel=\"next memento\"; datetime=\"Fri, 10 Oct 2025 09:10:41 GMT\", <https://web.archive.org/web/20251010091041/http://vedomosti.sssr.su/1991/36.pdf>; rel=\"last memento\"; datetime=\"Fri, 10 Oct 2025 09:10:41 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "SPNOUTLINKS-20250820132609-crawl917/SPNOUTLINKS-20250820133658-00995.warc.gz",
+        "server-timing": "captures_list;dur=0.348936, exclusion.robots;dur=0.031230, exclusion.robots.policy;dur=0.023441, esindex;dur=0.006428, cdx.remote;dur=7.466415, LoadShardBlock;dur=911.198196, PetaboxLoader3.datanode;dur=867.391580, PetaboxLoader3.resolve;dur=42.821000, load_resource;dur=68.022263",
+        "x-app-server": "wwwb-app218-dc8",
+        "x-ts": "200",
+        "x-tr": "999",
+        "set-cookie": "wb-p-SERVER=wwwb-app218; path=/",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "BYPASS",
+        "Server-Timing": "captures_list;dur=0.348936, exclusion.robots;dur=0.031230, exclusion.robots.policy;dur=0.023441, esindex;dur=0.006428, cdx.remote;dur=7.466415, LoadShardBlock;dur=911.198196, PetaboxLoader3.datanode;dur=867.391580, PetaboxLoader3.resolve;dur=42.821000, load_resource;dur=68.022263",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0",
+        "X-location": "_pdf"
+      },
+      "completed_utc": "2026-09-28T13:44:35.075926+00:00",
+      "bytes": 1303663,
+      "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "matches_claimed_response": true,
+      "body_path": "responses/37.pdf"
+    },
+    {
+      "url": "https://vedomosti.sssr.su/1991/36.pdf",
+      "expected_bytes": 1303663,
+      "expected_sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-36-19910904-facts.json",
+          "source_id": "su_ved_1991_36",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "live_file_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:33.714388+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://vedomosti.sssr.su/1991/36.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:34 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1303663",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Sun, 01 Jan 2017 22:40:50 GMT",
+        "ETag": "\"13e46f-545102076c080\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:35.484203+00:00",
+      "bytes": 1303663,
+      "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+      "matches_claimed_response": true,
+      "body_path": "responses/38.pdf"
+    },
+    {
+      "url": "https://vedomosti.sssr.su/1991/37.pdf",
+      "expected_bytes": 999248,
+      "expected_sha256": "3e77c34e4da247391f08d019c29bb24d9c94d28eeb6debda1efb95944eb603b0",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-37-19910911-facts.json",
+          "source_id": "su_ved_1991_37",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:35.077931+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://vedomosti.sssr.su/1991/37.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:35 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "999248",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Sun, 01 Jan 2017 22:41:09 GMT",
+        "ETag": "\"f3f50-545102198ab40\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:36.738180+00:00",
+      "bytes": 999248,
+      "sha256": "3e77c34e4da247391f08d019c29bb24d9c94d28eeb6debda1efb95944eb603b0",
+      "matches_claimed_response": true,
+      "body_path": "responses/39.pdf"
+    },
+    {
+      "url": "https://vedomosti.sssr.su/1991/41.pdf",
+      "expected_bytes": 556781,
+      "expected_sha256": "91cf65718b9dceaeb8cb4b4c6ce4eccf337af45afa3cdb897f197c97bdff902e",
+      "uses": [
+        {
+          "source_file": "ussr-ved-1991-41-19911009-facts.json",
+          "source_id": "su_ved_1991_41",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:35.304166+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://vedomosti.sssr.su/1991/41.pdf",
+      "headers": {
+        "Date": "Mon, 28 Sep 2026 13:44:35 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "556781",
+        "Connection": "close",
+        "Server": "Apache",
+        "Last-Modified": "Sat, 19 Nov 2016 21:30:06 GMT",
+        "ETag": "\"87eed-541ae20535380\"",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:44:36.759211+00:00",
+      "bytes": 556781,
+      "sha256": "91cf65718b9dceaeb8cb4b4c6ce4eccf337af45afa3cdb897f197c97bdff902e",
+      "matches_claimed_response": true,
+      "body_path": "responses/40.pdf"
+    },
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=525&a8type=1&a7type=4&a7from=26.05.1990&a7to=26.05.1990&sort=7&page=firstlast&lstsize=50",
+      "expected_bytes": 2936,
+      "expected_sha256": "93cfc7cb1bbbcf8c9a5caba20b07e71de142bb6d25ae0e59929c85783196abee",
+      "uses": [
+        {
+          "source_file": "ussr-ips-cm-res-525-19900526-facts.json",
+          "source_id": "su_ips_cm_res_525_19900526",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "portal_card_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:48:42.615755+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=525&a8type=1&a7type=4&a7from=26.05.1990&a7to=26.05.1990&sort=7&page=firstlast&lstsize=50",
+      "headers": {
+        "Server": "nginx/1.26.1",
+        "Date": "Mon, 28 Sep 2026 13:48:51 GMT",
+        "Content-Length": "2936",
+        "Connection": "close"
+      },
+      "completed_utc": "2026-09-28T13:48:51.797865+00:00",
+      "bytes": 2936,
+      "sha256": "93cfc7cb1bbbcf8c9a5caba20b07e71de142bb6d25ae0e59929c85783196abee",
+      "matches_claimed_response": true,
+      "body_path": "responses/41.body"
+    },
+    {
+      "url": "https://web.archive.org/web/20240901194604id_/https://snd.sssr.su/V/7.pdf",
+      "expected_bytes": 544323,
+      "expected_sha256": "236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4",
+      "uses": [
+        {
+          "source_file": "ussr-snd5-bulletin5-19910904-facts.json",
+          "source_id": "su_snd5_bulletin5_19910904",
+          "review": "CLAUDE-C01-SOURCE-26",
+          "role": "corroborating_responses[0]"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:48:42.615755+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20240901194604id_/https://snd.sssr.su/V/7.pdf",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:48:43 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "544323",
+        "Connection": "close",
+        "x-archive-orig-date": "Sun, 01 Sep 2024 19:46:04 GMT",
+        "x-archive-orig-content-length": "544323",
+        "x-archive-orig-connection": "keep-alive",
+        "x-archive-orig-server": "Apache",
+        "x-archive-orig-last-modified": "Mon, 03 Jun 2024 23:27:16 GMT",
+        "x-archive-orig-etag": "\"84e43-61a04ac826d94\"",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Sun, 01 Sep 2024 19:46:04 GMT",
+        "link": "<https://snd.sssr.su/V/7.pdf>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://snd.sssr.su/V/7.pdf>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://snd.sssr.su/V/7.pdf>; rel=\"timegate\", <https://web.archive.org/web/20240809013811/https://snd.sssr.su/V/7.pdf>; rel=\"first memento\"; datetime=\"Fri, 09 Aug 2024 01:38:11 GMT\", <https://web.archive.org/web/20240809013811/https://snd.sssr.su/V/7.pdf>; rel=\"prev memento\"; datetime=\"Fri, 09 Aug 2024 01:38:11 GMT\", <https://web.archive.org/web/20240901194604/https://snd.sssr.su/V/7.pdf>; rel=\"memento\"; datetime=\"Sun, 01 Sep 2024 19:46:04 GMT\", <https://web.archive.org/web/20250718143643/https://snd.sssr.su/V/7.pdf>; rel=\"next memento\"; datetime=\"Fri, 18 Jul 2025 14:36:43 GMT\", <https://web.archive.org/web/20250718143643/https://snd.sssr.su/V/7.pdf>; rel=\"last memento\"; datetime=\"Fri, 18 Jul 2025 14:36:43 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "archiveteam_urls_20240901194655_b43e242d/urls_20240901194655_b43e242d.1725048243.megawarc.warc.zst",
+        "server-timing": "captures_list;dur=0.908542, exclusion.robots;dur=0.093686, exclusion.robots.policy;dur=0.073757, esindex;dur=0.015518, cdx.remote;dur=8.667365, LoadShardBlock;dur=95.961045, PetaboxLoader3.datanode;dur=172.545583, PetaboxLoader3.resolve;dur=279.391531, load_resource;dur=390.278206, loaddict;dur=74.757388",
+        "x-app-server": "wwwb-app233-dc8",
+        "x-ts": "200",
+        "x-tr": "541",
+        "set-cookie": "wb-p-SERVER=wwwb-app233; path=/",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "BYPASS",
+        "Server-Timing": "captures_list;dur=0.908542, exclusion.robots;dur=0.093686, exclusion.robots.policy;dur=0.073757, esindex;dur=0.015518, cdx.remote;dur=8.667365, LoadShardBlock;dur=95.961045, PetaboxLoader3.datanode;dur=172.545583, PetaboxLoader3.resolve;dur=279.391531, load_resource;dur=390.278206, loaddict;dur=74.757388",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0",
+        "X-location": "_pdf"
+      },
+      "completed_utc": "2026-09-28T13:48:43.581053+00:00",
+      "bytes": 544323,
+      "sha256": "236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4",
+      "matches_claimed_response": true,
+      "body_path": "responses/42.pdf"
+    }
+  ]
+}

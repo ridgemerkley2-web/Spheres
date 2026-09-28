@@ -1,0 +1,33 @@
+✔ overview routes annual renewal, building counts and advice without changing the draft (3.2756ms)
+✔ overview reflects enacted plans and does not invent a construction count when unavailable (2.5117ms)
+✔ annual drafts adopt the current fiscal year without changing the saved draft (2.1812ms)
+✔ Welfare keeps the existing Pensions budget key and changes only its own allocation (3.6246ms)
+✔ ministry presses preserve tax, rate and unrelated orders and one atomic annual draft (3.6399ms)
+✔ revert discards every queued order and redraws the live budget (2.093ms)
+✔ closing the cabinet preserves drafts, removes modality and restores focus (2.0692ms)
+✔ cabinet keyboard navigation wraps tabs and traps focus without consuming native range keys (3.7503ms)
+✔ cabinet is an accessible modal with industry and a gameplay-shortcut guard (2.0213ms)
+✔ tab selection changes visibility and roving focus, never the pending budget (2.076ms)
+✔ industry tab delegates opening, mounts once and closes its read lifecycle on departure (2.1745ms)
+✔ cash-flow lifecycle follows overview visibility and preserves drafts (2.8129ms)
+✔ cash-flow shortcuts navigate to financial controls without changing the plan or issuing orders (3.9688ms)
+✔ an explicit cash-flow link reveals the summary after reopening the overview (1.5411ms)
+✔ industry actions reach specific existing controls without making economic orders (2.7777ms)
+✔ draft summary reacts to queued tax and includes interest exactly once (3.1729ms)
+✔ enacting an untouched first budget queues the inherited plan and advances exactly one day (3.1826ms)
+✔ a failed enact preserves the mixed draft and releases the busy guard for retry (3.0595ms)
+✔ all draft controls are inert only while the asynchronous enact is pending (4.6852ms)
+✔ dated command refusals are surfaced in the footer and live region after advance (3.7795ms)
+✔ the cabinet painting is local and the original vector remains available (9.0393ms)
+✔ effect previews index the served reference-anchored curve and respect its limits (2.4384ms)
+✔ budget cost distinguishes first enactment, cuts and reopening an enacted year (2.3293ms)
+✔ the treasury card distinguishes absent books from zero money and preserves annual units (2.3047ms)
+✔ debt-rate floor and debt-ratio spread are distinct in both budget explanations (3.4089ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 161.4549

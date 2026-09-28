@@ -3,8 +3,13 @@
 The Supreme Soviet's election or approval, the release decree, the Supreme Soviet's agreement, no confidence, the
 resignation statement, the suspension, the consent to arrest, the Congress's release and vote, acting or interim service
 and presiding arrangements stay separate dated claims. Holders are in-office signatures or the approval, with
-attested_on only: no from and no until. The CLAUDE-C01-05 su_president holders and every Russia holder are unchanged."""
+attested_on only: no from and no until. The CLAUDE-C01-05 su_president holders and every Russia holder are unchanged.
+
+The CLAUDE-C01-SOURCE-26 review (27-28 September 2026) withdrew the Izvestia source (its recorded response was obtained
+only by presenting a browser User-Agent past an anti-robot block), its three claims and the holder of 14 January 1991; the
+guards below keep that record, its request and its host out of the packet."""
 import copy
+from datetime import datetime
 import hashlib
 import json
 import re
@@ -14,7 +19,8 @@ from urllib.parse import parse_qs, urlsplit
 import campaign_research as research
 
 
-# The 31 sources this packet appends, in packet order (document dates ascending).
+# The 30 sources this packet appends, in packet order (document dates ascending); 31 as submitted, before the
+# CLAUDE-C01-SOURCE-26 review withdrew su_izvestia_19910115_no13_p1.
 NEW_SOURCES = [
     'su_sprsfsr_1990_8_art59_19891224',
     'su_sprsfsr_1990_8_art60_19900112',
@@ -25,7 +31,6 @@ NEW_SOURCES = [
     'su_snd4_steno_vol3',
     'su_rada_res_1870i_19901227',
     'su_ips_cm_res_27_19910110',
-    'su_izvestia_19910115_no13_p1',
     'su_km_rasp_943r_19910819',
     'su_sten_vs_bulletin1_19910826',
     'su_sten_vs_bulletin2_19910826',
@@ -60,7 +65,6 @@ RESPONSES = {
     'su_snd4_steno_vol3': (12653342, '398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897'),
     'su_rada_res_1870i_19901227': (11254, 'a78b05aef067e23e578ce9663505461d33457e4fcde71d9fb971cda26ee6dc62'),
     'su_ips_cm_res_27_19910110': (20265, '09ae8fe92970994ed7e108f0da959a1242fcbe388fe681b59da1cba3f29f123f'),
-    'su_izvestia_19910115_no13_p1': (171140, 'db9ec251483c04cfb54e78b02bb8d570115fb57b9586e7b375924b1eccea6847'),
     'su_km_rasp_943r_19910819': (6925, 'b967d16d8b4a5dd6cb145225e991d848b5d2cfefd8be425c8629d575f585e53a'),
     'su_sten_vs_bulletin1_19910826': (2252696, '849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a'),
     'su_sten_vs_bulletin2_19910826': (1530044, '22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd'),
@@ -91,7 +95,6 @@ ATTACHED = {
     'su_garf_exhibit_res_1362i_19900315': [('facsimile', 157538, '543c9efb25dedcab267b6505135da07a35a9928bec24b6b74c4593226970aee4')],
     'su_ips_cm_res_525_19900526': [('card', 2936, '93cfc7cb1bbbcf8c9a5caba20b07e71de142bb6d25ae0e59929c85783196abee')],
     'su_snd4_steno_vol3': [('live', 12653342, '398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897')],
-    'su_izvestia_19910115_no13_p1': [('supplementary', 161461, 'cf0204c6c9431629553ca7cc1e630022efb16f403a2d26a2483793802acbbe88')],
     'su_ved_1991_35': [('live', 618372, '5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63')],
     'su_ved_1991_36': [('live', 1303663, '87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f')],
     'su_snd5_bulletin5_19910904': [('live', 1620327, '9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65'), ('corroborating', 544323, '236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4')],
@@ -116,9 +119,6 @@ EVENTS = {
     'su_law_1862i_council_of_ministers_retains_powers_19901226': ('1990-12-26', 'continuation_of_powers', 'SU-GOV-03', None, 'su_government'),
     'su_rada_1870i_lukyanov_signs_as_chairman_19901227': ('1990-12-27', 'in_office_attestation', 'SU-GOV-02', 'su_supreme_soviet_chair', 'su_supreme_soviet'),
     'su_ips_cm_27_deputy_chairman_signs_19910110': ('1991-01-10', 'government_act_signed_by_deputy', 'SU-GOV-04', 'su_government_head', 'su_government'),
-    'su_izv13_president_submission_recited_19910114': ('1991-01-14', 'nomination_recited', 'SU-GOV-05', 'su_government_head', 'su_government'),
-    'su_izv13_vs_approves_pavlov_premier_19910114': ('1991-01-14', 'appointment_approval', 'SU-GOV-05', 'su_government_head', 'su_government'),
-    'su_izv13_lukyanov_signs_as_vs_chair_19910114': ('1991-01-14', 'in_office_attestation', 'SU-GOV-02', 'su_supreme_soviet_chair', 'su_supreme_soviet'),
     'su_km_943r_pavlov_signs_as_premier_19910819': ('1991-08-19', 'in_office_attestation', 'SU-GOV-06', 'su_government_head', 'su_government'),
     'su_km_943r_general_direction_entrusted_19910819': ('1991-08-19', 'interim_direction_entrusted', 'SU-GOV-06', 'su_government_head', 'su_government'),
     'su_sten_laptev_presiding_19910826': ('1991-08-26', 'presiding_officer_attestation', 'SU-GOV-08', 'su_supreme_soviet_chair', 'su_supreme_soviet'),
@@ -185,7 +185,6 @@ HOLDERS = {
     'su_government_head': [
         ('Николай Иванович Рыжков', '1990-01-12', None, None),
         ('Николай Иванович Рыжков', '1990-11-24', None, None),
-        ('Валентин Сергеевич Павлов', '1991-01-14', None, None),
         ('Валентин Сергеевич Павлов', '1991-08-19', None, None),
     ],
     'su_supreme_soviet_chair': [
@@ -194,7 +193,7 @@ HOLDERS = {
     ],
 }
 HOLDER_CLAIMS = {
-    'su_government_head': [['su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112'], ['su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124'], ['su_izv13_vs_approves_pavlov_premier_19910114'], ['su_km_943r_pavlov_signs_as_premier_19910819']],
+    'su_government_head': [['su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112'], ['su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124'], ['su_km_943r_pavlov_signs_as_premier_19910819']],
     'su_supreme_soviet_chair': [['su_garf_1362i_lukyanov_signs_as_chairman_19900315'], ['su_lukyanov_signs_presidium_2353i_2354i_19910822']],
 }
 # The CLAUDE-C01-05 su_president holders, unchanged.
@@ -240,8 +239,13 @@ LIVE = {
 }
 IMAGES = ['su_sprsfsr_1990_8_art59_19891224', 'su_sprsfsr_1990_8_art60_19900112']
 PDF_SOURCES = ['su_snd4_steno_vol3', 'su_sten_vs_bulletin1_19910826', 'su_sten_vs_bulletin2_19910826', 'su_ved_1991_35', 'su_ved_1991_36', 'su_snd5_bulletin5_19910904', 'su_ved_1991_37', 'su_ved_1991_41']
+# Withdrawn by the CLAUDE-C01-SOURCE-26 review: the Izvestia source, its extract, its three claims and the browser
+# User-Agent its recorded request presented; none may appear in the packet or any extract again.
+WITHDRAWN = ('su_izvestia_19910115_no13_p1', 'su_izv13_president_submission_recited_19910114',
+             'su_izv13_vs_approves_pavlov_premier_19910114', 'su_izv13_lukyanov_signs_as_vs_chair_19910114',
+             'ussr-izvestia-no13-19910115-facts.json', 'yandex.ru', 'request_note')
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
-DECISIONS = {'01': 'Accepted in part', '02': 'Accepted in part', '03': 'Accepted in part', '04': 'Accepted in part', '05': 'Accepted', '06': 'Accepted in part', '07': 'Accepted in part', '08': 'Accepted', '09': 'Accepted in part', '10': 'Accepted in part'}
+DECISIONS = {'01': 'Accepted in part', '02': 'Accepted in part', '03': 'Accepted in part', '04': 'Accepted in part', '05': 'Withdrawn', '06': 'Accepted in part', '07': 'Accepted in part', '08': 'Accepted', '09': 'Accepted in part', '10': 'Accepted in part'}
 
 GOV, GOV_ROLE, SS, SS_ROLE, PRES_ROLE = 'su_government', 'su_government_head', 'su_supreme_soviet', 'su_supreme_soviet_chair', 'su_president'
 GOV_TITLE = 'Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government'
@@ -249,9 +253,29 @@ GOV_NAME = 'Совет Министров СССР / Кабинет Минист
 TITLES = {GOV_ROLE: GOV_TITLE, SS_ROLE: 'Chairman of the USSR Supreme Soviet', PRES_ROLE: 'President of the USSR', None: None}
 RYZH, PAVL, LUK, GORB = 'Николай Иванович Рыжков', 'Валентин Сергеевич Павлов', 'Анатолий Иванович Лукьянов', 'Михаил Сергеевич Горбачев'
 NAMES = {RYZH, PAVL, LUK, GORB}
+# Every row that names a holder, exactly; every other row has holder_name None.
+ROW_HOLDERS = {
+    **dict.fromkeys(('su_sprsfsr_59_ryzhkov_signs_as_chairman_19891224', 'su_sprsfsr_60_ryzhkov_signs_as_chairman_19900112',
+                     'su_ips_cm_525_ryzhkov_signs_as_chairman_19900526', 'su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124',
+                     'su_steno4_ryzhkov_heart_attack_reported_19901226', 'su_steno4_congress_telegram_to_ryzhkov_19901226',
+                     'su_steno4_pavlov_reports_for_government_19901227', 'su_steno4_ryzhkov_health_report_19901227'), RYZH),
+    **dict.fromkeys(('su_garf_1362i_gorbachev_elected_president_19900315',), GORB),
+    **dict.fromkeys(('su_garf_1362i_lukyanov_signs_as_chairman_19900315', 'su_rada_1870i_lukyanov_signs_as_chairman_19901227',
+                     'su_sten_lukyanov_statement_19910824', 'su_sten_request_to_president_reference_19910822',
+                     'su_sten_statement_read_out_19910826', 'su_sten2_presidium_removal_not_approved_no_quorum_19910826',
+                     'su_ss_res_2361i_presidium_removal_reference_19910822', 'su_ss_res_2361i_approves_presidium_removal_19910826',
+                     'su_ss_res_2361i_resignation_statement_reference_19910826', 'su_ss_res_2361i_suspension_19910826',
+                     'su_lukyanov_signs_res_2350i_19910819', 'su_lukyanov_signs_presidium_2352i_19910821',
+                     'su_lukyanov_signs_presidium_2353i_2354i_19910822', 'su_ss_res_2368i_lukyanov_arrest_consent_19910829',
+                     'su_ved36_lukyanov_styled_chairman_19910828', 'su_snd5_lukyanov_release_vote_19910904',
+                     'su_cpd_res_2389i_lukyanov_released_19910904', 'su_ved37_release_reported_19910904'), LUK),
+    **dict.fromkeys(('su_km_943r_pavlov_signs_as_premier_19910819', 'su_ukaz_up2443_pavlov_released_19910822',
+                     'su_ukaz_up2443_criminal_case_stated_19910822', 'su_vs_2366i_agrees_to_pavlov_release_19910828',
+                     'su_vs_2371i_pavlov_named_among_organizers_19910829', 'su_ved36_consent_to_pavlov_release_reported_19910828'), PAVL),
+}
 # The vocabulary of event kinds. Only the two holder kinds may feed a holder observation, and only the claims pinned in
 # HOLDER_CLAIMS do: earlier, intermediate and pre-period signatures stay role claims.
-HOLDER_KINDS = {'in_office_attestation', 'appointment_approval'}
+HOLDER_KINDS = {'in_office_attestation'}
 ACTING_KINDS = {'interim_direction_entrusted', 'government_act_signed_by_deputy',
                 'presiding_officer_attestation', 'presiding_arrangement_reported', 'presiding_duties_assigned',
                 'chamber_chairman_statement_reported'}
@@ -265,14 +289,14 @@ BODY_KINDS = {'procedure', 'continuation_of_powers', 'agenda_adopted', 'agenda_p
               'committee_created', 'no_confidence', 'session_record_no_confidence', 'committee_act_signature',
               'continuation_of_apparatus', 'interim_functions_assigned', 'acts_in_name_of_union_government', 'sitting_scheduled',
               'abolition_decided', 'decision_announced', 'delegation_recalled', 'abolition_decreed_by_republic'}
-CONTEXT_KINDS = {'election_resolution', 'nomination_recited'}
+CONTEXT_KINDS = {'election_resolution'}
 VOCABULARY = HOLDER_KINDS | ACTING_KINDS | END_KINDS | BODY_KINDS | CONTEXT_KINDS
 NEVER_HOLDER = tuple(cid for cid in EVENTS if cid not in {c for ids in HOLDER_CLAIMS.values() for group in ids for c in group})
 # Days a holder must never start or end on: a successor's approval or signature, a release decree, the agreement with it, a
 # suspension, a consent to arrest, the Congress's release, an illness report and every other dated claim of this packet.
-NEVER_BOUNDARY = {v[0] for v in EVENTS.values() if v[0]} | {'1990-03-14', '1991-12-25', '1991-12-26'}
-TEMPTING_ENDS = ('su_steno4_ryzhkov_heart_attack_reported_19901226', 'su_izv13_vs_approves_pavlov_premier_19910114',
-                 'su_ukaz_up2443_pavlov_released_19910822', 'su_vs_2366i_agrees_to_pavlov_release_19910828',
+NEVER_BOUNDARY = {v[0] for v in EVENTS.values() if v[0]} | {'1990-03-14', '1991-01-14', '1991-12-25', '1991-12-26'}
+TEMPTING_ENDS = ('su_steno4_ryzhkov_heart_attack_reported_19901226', 'su_ukaz_up2443_pavlov_released_19910822',
+                 'su_vs_2366i_agrees_to_pavlov_release_19910828',
                  'su_ss_res_2361i_suspension_19910826', 'su_ss_res_2368i_lukyanov_arrest_consent_19910829',
                  'su_cpd_res_2389i_lukyanov_released_19910904', 'su_snd5_lukyanov_release_vote_19910904',
                  'su_vs_2367i_no_confidence_in_cabinet_19910828', 'su_rsfsr_ukaz_299_abolishes_committee_19911219')
@@ -287,7 +311,7 @@ STALE = ('su_garf_referendum_res_lukyanov_autograph_19901224', 'su_rada_1861i_ca
 # Leads (secondary, commercial, crowd-sourced, news, transcriptions, caption-only or signed-URL records): never an identity URL.
 LEAD_URL_MARKERS = ('garant', 'wikisource', 'wikipedia', 'aprel.org', 'naukaprava', 'izvestija.sssr.su', 'rusneb', 'prlib',
                     'consultant', 'sten.sr.vs.sssr.su', 'sten.vs.sssr.su/13/', 'sssr.su/1991-12.pdf', 'bigenc', 'cyberleninka',
-                    'economics.kiev.ua', '09-32', '/nodes/', 'yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/2',
+                    'economics.kiev.ua', '09-32', '/nodes/', 'yandex.ru/archive', 'yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/2',
                     '720a0706', 'type=original', 'vedomosti.sssr.su/1991/52', 'vedomosti.sssr.su/1990', 'vedomosti.sssr.su/1991/1/',
                     'nd=102010350', 'nd=102011538', 'nd=102012325', 'nd=102010393')
 # URL fragments that mark a response generated per request, a cache-busting query, a signed URL, an unresolved or non-raw
@@ -378,8 +402,7 @@ def c26_invariants(ussr, russia):
         for h in roles[rid][1]['holder_claims']:
             assert not {h['from'], h['until']} & NEVER_BOUNDARY, (rid, h['name'])
     # Distinct events stay distinct and in order.
-    for earlier, later in (('su_izv13_president_submission_recited_19910114', 'su_izv13_vs_approves_pavlov_premier_19910114'),
-                           ('su_ukaz_up2443_pavlov_released_19910822', 'su_vs_2366i_agrees_to_pavlov_release_19910828'),
+    for earlier, later in (('su_ukaz_up2443_pavlov_released_19910822', 'su_vs_2366i_agrees_to_pavlov_release_19910828'),
                            ('su_ss_res_2361i_presidium_removal_reference_19910822', 'su_ss_res_2361i_approves_presidium_removal_19910826'),
                            ('su_ss_res_2361i_suspension_19910826', 'su_ss_res_2368i_lukyanov_arrest_consent_19910829'),
                            ('su_ss_res_2368i_lukyanov_arrest_consent_19910829', 'su_cpd_res_2389i_lukyanov_released_19910904'),
@@ -417,15 +440,16 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (31, 77))
+        self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (30, 74))
         self.assertEqual([s['id'] for s in self.packet['sources'][10:]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (41, 98, 5, 6))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (40, 95, 5, 6))
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         dates = [self.sources[sid]['document_date'] for sid in NEW_SOURCES]
         self.assertEqual(dates, sorted(dates))
         self.assertEqual({v[1] for v in EVENTS.values()}, VOCABULARY)
         self.assertEqual(len(VOCABULARY), sum(map(len, (HOLDER_KINDS, ACTING_KINDS, END_KINDS, BODY_KINDS, CONTEXT_KINDS))))
-        self.assertEqual({v[2] for v in EVENTS.values()}, {f'SU-GOV-{n:02d}' for n in range(1, 11)})
+        # SU-GOV-05 has no claim after the CLAUDE-C01-SOURCE-26 review withdrew the Izvestia record; its section stays.
+        self.assertEqual({v[2] for v in EVENTS.values()}, {f'SU-GOV-{n:02d}' for n in range(1, 11)} - {'SU-GOV-05'})
         self.assertEqual(re.findall(r'^### (SU-GOV-\d\d)\b', self.report, re.M), [f'SU-GOV-{n:02d}' for n in range(1, 11)])
         texts = [self.raw] + [(research.ROOT / self.sources[sid]['snapshot']['path']).read_text(encoding='utf-8') for sid in NEW_SOURCES]
         for stale in STALE:
@@ -457,6 +481,7 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
                 self.assertIsNone(row['holder_name'], cid)
             if kind in ACTING_KINDS:
                 self.assertRegex(self.claims[cid]['uncertainty'], r'(?i)never a holder|claims? only', cid)
+        self.assertEqual({cid: row['holder_name'] for cid, row in self.rows.items() if row['holder_name'] is not None}, ROW_HOLDERS)
         for cid in ('su_steno4_ryzhkov_heart_attack_reported_19901226', 'su_steno4_congress_telegram_to_ryzhkov_19901226',
                     'su_steno4_pavlov_reports_for_government_19901227', 'su_steno4_ryzhkov_health_report_19901227'):
             self.assertEqual(self.rows[cid]['role_title_note'], 'The passage prints no office title for him.')
@@ -481,7 +506,10 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
                              r'(?i)(no until|not an end|not used as an end|no day on which|states no|not a boundary|no .*end)', cid)
         for cid in ('su_ukaz_up2443_pavlov_released_19910822', 'su_cpd_res_2389i_lukyanov_released_19910904'):
             self.assertIn('an integrator ruling is requested', self.claims[cid]['uncertainty'])
-        self.assertIn('no effect clause', self.claims['su_izv13_vs_approves_pavlov_premier_19910114']['uncertainty'])
+        # SU-GOV-05 has no permissible primary record after the review; the withdrawal is stated, not hidden.
+        unresolved = next(u for u in self.gov['coverage']['unresolved'] if u.startswith('SU-GOV-05'))
+        for phrase in ('no permissible primary record', 'anti-robot block', 'withdrew', 'integrator ruling'):
+            self.assertIn(phrase, unresolved)
         role = self.roles[GOV_ROLE][1]
         for phrase in ('no holder has from or until', 'claims only, never holders', 'procedure only, never a date',
                        'earliest and latest reviewed attestation'):
@@ -567,17 +595,30 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         for sid, url in LIVE.items():
             self.assertEqual((self.sources[sid]['url'], self.extracts[sid]['source_response_url']), (url, url))
             self.assertIn('stored file, not one generated per request', self.extracts[sid]['provenance_note'])
-        self.assertEqual(set(ARCHIVED) | set(HTTP_READ) | set(LIVE) | set(IMAGES) | {'su_izvestia_19910115_no13_p1'}, set(NEW_SOURCES))
+        self.assertEqual(set(ARCHIVED) | set(HTTP_READ) | set(LIVE) | set(IMAGES), set(NEW_SOURCES))
         for sid in IMAGES:
             self.assertIn('/nodes/', self.extracts[sid]['provenance_note'])
             self.assertIn('locator only', self.extracts[sid]['provenance_note'])
-        # The Izvestia page is a dynamic rendering: its request, its limits and its immutable preview are recorded.
-        izv = self.extracts['su_izvestia_19910115_no13_p1']
-        self.assertIn(USER_AGENT, izv['request_note'])
-        self.assertIn('403', izv['request_note'])
-        self.assertIn('dynamic HTML rendering', izv['provenance_note'])
-        self.assertIn('OlmOZleFDzl7N-_VvEEGR', izv['provenance_note'])
-        self.assertNotIn('a765e1e7', json.dumps(izv))
+        # The Izvestia record withdrawn by the CLAUDE-C01-SOURCE-26 review stays out: no id, extract, host, request or
+        # browser User-Agent anywhere in the packet or the extracts.
+        texts = [self.raw] + [(research.ROOT / self.sources[sid]['snapshot']['path']).read_text(encoding='utf-8') for sid in NEW_SOURCES]
+        for marker in WITHDRAWN + (USER_AGENT, 'Chrome/'):
+            for text in texts:
+                self.assertNotIn(marker, text, marker)
+        self.assertFalse((research.ROOT / research.RESEARCH / 'sources' / 'ussr-izvestia-no13-19910115-facts.json').exists())
+        # The review re-downloaded every recorded response twice, at least 30 minutes apart, and found the recorded bytes.
+        for sid in NEW_SOURCES:
+            review = self.extracts[sid]['source_review']
+            self.assertEqual(review['review'], 'CLAUDE-C01-SOURCE-26')
+            self.assertIn('No browser User-Agent', review['method'])
+            got = [(d['response'], d['bytes'], d['sha256']) for d in review['downloads']]
+            self.assertEqual(got[0], ('source_response', *RESPONSES[sid]), sid)
+            self.assertEqual([g[1:] for g in got[1:]], [a[1:] for a in ATTACHED.get(sid, [])], sid)
+            for row in review['downloads']:
+                first, second = (datetime.fromisoformat(t.replace('Z', '+00:00')) for t in row['downloaded_at'])
+                self.assertGreaterEqual((second - first).total_seconds(), 1800, (sid, row['response']))
+                self.assertEqual(row['result'], 'identical to the recorded identity on both downloads', sid)
+            self.assertTrue(self.sources[sid]['source_review'].startswith('CLAUDE-C01-SOURCE-26 '), sid)
         # PDFs record the pages read; the scans' non-official host is stated on every such source.
         for sid in NEW_SOURCES:
             if self.sources[sid]['source_type'].endswith('_non_official_host'):
@@ -610,7 +651,8 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
             self.assertRegex(path, r'^/1991/\d+\.pdf$')
         leads, added = self.section('Leads not imported'), self.section('Sources added')
         for marker in ('base.garant.ru/6334493', 'base.garant.ru/6336275', 'Закон_СССР_от_20.03.1991_№_2033-I', '09-32',
-                       'vedomosti.sssr.su/1991/52/', 'aprel.org/d04up2.pdf', 'izvestija.sssr.su/1991/201mv.pdf'):
+                       'vedomosti.sssr.su/1991/52/', 'aprel.org/d04up2.pdf', 'izvestija.sssr.su/1991/201mv.pdf',
+                       'yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/1'):
             self.assertIn(marker, leads, marker)
             self.assertNotIn(marker, added, marker)
 
@@ -654,10 +696,10 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         validator_cases = [
             (lambda p: source(p, 'su_ips_cm_res_1177_19901124')['snapshot'].update(sha256='0' * 64), 'checksum mismatch'),
             (lambda p: source(p, 'su_ved_1991_36')['snapshot'].update(bytes=1), 'checksum mismatch'),
-            (lambda p: holder(p, 3).update(until='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 2).update(until='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'su_snd5_lukyanov_release_vote_19910904').update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: holder(p, 1).update({'from': '1990-11-24', 'until': '1990-05-26'}), 'Reversed historical interval'),
-            (lambda p: holder(p, 2)['claim_ids'].append('su_km_943r_pavlov_signs_as_premier_19910819'), 'cited source'),
+            (lambda p: holder(p, 1)['claim_ids'].append('su_km_943r_pavlov_signs_as_premier_19910819'), 'cited source'),
             (lambda p: source(p, 'su_ips_cm_res_27_19910110').update(url=HTTP_READ['su_ips_cm_res_27_19910110']), 'Invalid public source URL'),
         ]
         for change, message in validator_cases:
@@ -672,8 +714,8 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
             ("successor's approval used as an end (Ryzhkov)", lambda p: holder(p, 1).update(until='1991-01-14')),
             ("successor's signature used as an end (the 1990-03-14 chair)", lambda p: holder(p, 0, SS_ROLE).update(until='1990-03-15')),
             ('illness report used as an end (Ryzhkov)', lambda p: holder(p, 1).update(until='1990-12-26')),
-            ('release decree used as an end (Pavlov)', lambda p: holder(p, 3).update(until='1991-08-22')),
-            ('agreement with the release used as an end (Pavlov)', lambda p: holder(p, 3).update(until='1991-08-28')),
+            ('release decree used as an end (Pavlov)', lambda p: holder(p, 2).update(until='1991-08-22')),
+            ('agreement with the release used as an end (Pavlov)', lambda p: holder(p, 2).update(until='1991-08-28')),
             ('suspension used as an end (Lukyanov)', lambda p: holder(p, 2, SS_ROLE).update(until='1991-08-26')),
             ('consent to arrest used as an end (Lukyanov)', lambda p: holder(p, 2, SS_ROLE).update(until='1991-08-29')),
             ("the Congress's release used as an end (Lukyanov)", lambda p: holder(p, 2, SS_ROLE).update(until='1991-09-04')),
@@ -691,7 +733,7 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
             ('cross-role holder (a chair holder on the government role)', lambda p: role(p)['holder_claims'].append(copy.deepcopy(holder(p, 1, SS_ROLE)))),
             ('cross-role holder (a Premier on the chair role)', lambda p: role(p, SS_ROLE)['holder_claims'].append(copy.deepcopy(holder(p, 2)))),
             ('cross-institution holder (a Premier on the USSR Presidency)', lambda p: role(p, PRES_ROLE)['holder_claims'].append(copy.deepcopy(holder(p, 2)))),
-            ('cross-role claim (the chair signature on the government role)', lambda p: role(p)['claim_ids'].append('su_izv13_lukyanov_signs_as_vs_chair_19910114')),
+            ('cross-role claim (the chair signature on the government role)', lambda p: role(p)['claim_ids'].append('su_rada_1870i_lukyanov_signs_as_chairman_19901227')),
             ('body claim moved onto the role (the interim committee)', lambda p: role(p)['claim_ids'].append('su_vs_2367i_committee_until_new_cabinet_19910828')),
             ('presidency holder changed', lambda p: holder(p, 0, PRES_ROLE).update(attested_on='1990-03-15')),
             ('existing chair holder changed', lambda p: holder(p, 0, SS_ROLE).update(until='1990-03-15')),
@@ -747,7 +789,7 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         self.assertEqual((country['institution_observations'], country['role_observations'], country['source_claims'],
-                          country['mapping_pending']), (4, 6, 98, 5))
+                          country['mapping_pending']), (4, 6, 95, 5))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'USSR'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

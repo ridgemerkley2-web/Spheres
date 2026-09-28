@@ -1,0 +1,9 @@
+
+running 4 tests
+test logistics::terminal_assembly_tests::terminal_identity_cache_drops_before_assignment_roster_and_calendar_changes ... ok
+test logistics::terminal_assembly_tests::terminal_identity_reads_observe_shared_company_xp_and_exact_paid_work ... ok
+test logistics::terminal_assembly_tests::terminal_identity_reuse_matches_actual_checkpoint_for_31_complete_days ... ignored, actual immutable 2015/2035 checkpoint, original terminal assembly for 31 days; no timing claims
+test logistics::terminal_assembly_tests::terminal_identity_reads_match_original_bits_and_first_duplicate_selection ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 1085 filtered out; finished in 0.09s
+

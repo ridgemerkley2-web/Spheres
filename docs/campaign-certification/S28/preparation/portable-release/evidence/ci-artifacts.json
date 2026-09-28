@@ -1,0 +1,44 @@
+{
+  "observed_utc": "2026-09-28 17:09:15 UTC",
+  "candidate": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49",
+  "artifacts": [
+    {
+      "id": 10985338369,
+      "name": "portable-package-windows-latest",
+      "size_in_bytes": 272387147,
+      "url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/artifacts/10985338369",
+      "archive_download_url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/artifacts/10985338369/zip",
+      "expired": false,
+      "created_at": "2026-09-28T17:08:32Z",
+      "expires_at": "2026-10-05T17:08:20Z",
+      "updated_at": "2026-09-28T17:08:32Z",
+      "digest": "sha256:6e7b0e9d7080f76b40e0af4e461b68116c3c0fe7257b4f41380ad8f8a8656f55",
+      "workflow_run": {
+        "id": 36454614585,
+        "repository_id": 1351683538,
+        "head_repository_id": 1351683538,
+        "head_branch": "codex/campaign-certification",
+        "head_sha": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49"
+      }
+    },
+    {
+      "id": 10984483788,
+      "name": "portable-package-ubuntu-latest",
+      "size_in_bytes": 272868868,
+      "url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/artifacts/10984483788",
+      "archive_download_url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/artifacts/10984483788/zip",
+      "expired": false,
+      "created_at": "2026-09-28T17:01:50Z",
+      "expires_at": "2026-10-05T17:01:39Z",
+      "updated_at": "2026-09-28T17:01:50Z",
+      "digest": "sha256:da6435d8ba276344751a81b21951342da6fab9416af151bc2f649d57088daacf",
+      "workflow_run": {
+        "id": 36454614585,
+        "repository_id": 1351683538,
+        "head_repository_id": 1351683538,
+        "head_branch": "codex/campaign-certification",
+        "head_sha": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49"
+      }
+    }
+  ]
+}

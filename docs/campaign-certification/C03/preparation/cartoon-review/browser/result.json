@@ -1,0 +1,241 @@
+{
+  "format": "spheres-c03-cartoon-review-browser/v1",
+  "task": "CLAUDE-C03-REVIEW-01",
+  "checks": {
+    "load": {
+      "items": 634,
+      "inputs_verified": 10
+    },
+    "filters": {
+      "tonga": 2,
+      "tonga_on_1990_06_01": 1,
+      "fictional": 4,
+      "france_missing_art": 36,
+      "search_salote": 1,
+      "era_2000s": 106,
+      "unknown_identity": 5
+    },
+    "keyboard": {
+      "columns": 4,
+      "start_index": 0,
+      "home": true,
+      "arrows": true,
+      "end": true,
+      "enter_opens": true,
+      "bracket_steps": true,
+      "roving_tabindex": true,
+      "focus_outline": "3px"
+    },
+    "side_by_side": {
+      "card_boxes": [
+        [
+          106,
+          152
+        ],
+        [
+          90,
+          132
+        ],
+        [
+          156,
+          218
+        ]
+      ],
+      "full_size": [
+        1024,
+        1536
+      ],
+      "verified": true,
+      "style_reference_strip": 3,
+      "selector_card": "spheres-web/ui/display-art/Tonga-a0341f8b063131dc.webp",
+      "reference_photo_deferred": true
+    },
+    "tamper": {
+      "changed_image_flagged": true,
+      "changed_input_fails_closed": true
+    },
+    "narrow": [
+      {
+        "width": 390,
+        "page": {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "outside": []
+        }
+      },
+      {
+        "width": 390,
+        "dialog": {
+          "scroll": 390,
+          "client": 390
+        }
+      },
+      {
+        "width": 320,
+        "page": {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "outside": []
+        }
+      },
+      {
+        "width": 320,
+        "dialog": {
+          "scroll": 320,
+          "client": 320
+        }
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/desktop-tonga-filter-side-by-side.jpg",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "bytes": 71766,
+      "sha256": "382febb157fe8e27efde335aaa647d5e00c8f1be64d25a7f859e51b6f18d6d5e"
+    },
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/desktop-missing-art-france.jpg",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "bytes": 116424,
+      "sha256": "4bd1e4cd26eb66036afe5e5ad6f329e2c4941219128ef2ca11f1fcf12fdc7dc9"
+    },
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/desktop-tupou-side-by-side-with-style-references.jpg",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "bytes": 75599,
+      "sha256": "efc4458733f29388bee7a680af4c2bb2e0a7f9ad8a1e8e5d768aa00345c061fe"
+    },
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/narrow-390-sheet.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 42696,
+      "sha256": "7aafac5345f0c624f9e09ce48336fca86b2f18f292fda1a3328d0a18b9a863b4"
+    },
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/narrow-390-detail-dialog.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 25012,
+      "sha256": "8e0c88002ed8c10bbcfd523bb874ecdd3de86b3d8b49aa757e013eb0204bc313"
+    },
+    {
+      "file": "docs/campaign-certification/C03/preparation/cartoon-review/browser/narrow-320-sheet.jpg",
+      "viewport": {
+        "width": 320,
+        "height": 700
+      },
+      "bytes": 34029,
+      "sha256": "b7af32f93215437d6f727d388db6c301b9df416a969550a20fecacd0b900e021"
+    }
+  ],
+  "started_utc": "2026-09-28T04:41:32.186Z",
+  "browser": {
+    "channel": "chrome",
+    "version": "154.0.8037.57",
+    "headless": true
+  },
+  "origin": "http://127.0.0.1:50312",
+  "inputs_verified_in_browser": [
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 290378,
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "bytes": 7666,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "bytes": 408800,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/ui/display-art/manifest.json",
+      "bytes": 133156,
+      "sha256": "afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5984743,
+      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "bytes": 3273947,
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+      "matches": true
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+      "matches": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/source-review-uk-v1.json",
+      "bytes": 5505,
+      "sha256": "16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1",
+      "matches": true
+    },
+    {
+      "path": "docs/campaign-certification/S10/c/manifest.json",
+      "bytes": 46295,
+      "sha256": "5fd649dec574a7e3f1bfedf8c5ac2740fd9e4d19101ef8de354fea5e4462baa4",
+      "matches": true
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/visual-review-sample.json",
+      "bytes": 16431,
+      "sha256": "b5ad58c194532222c0f8da7e465c6dede56223af4db67d92c396c4c740602061",
+      "matches": true
+    }
+  ],
+  "passed": true,
+  "finished_utc": "2026-09-28T04:41:34.891Z",
+  "revision": "1b029cad288a2fb19f378433895e31798313531b",
+  "revision_note": "HEAD when the journey ran; reviewer source hashes below are LF-normalized working-tree bytes.",
+  "export": {
+    "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+    "bytes": 770915,
+    "sha256": "27e727bba1f695a61157663b351ccaed867cf4c4d5ec8c788f9fc282e63cd513"
+  },
+  "reviewer_sources_sha256_lf": {
+    "tools/ui/cartoon-review/index.html": "520f2eac31d6538c61e506363e8bc2a04a4c6bd79ab088fc1b7ed5b00e1f340e",
+    "tools/ui/cartoon-review/cartoon-review.css": "ce7e8fc8e274a16bc14965f999def05d58a3ac491cbba7356f7b279c59a6d668",
+    "tools/ui/cartoon-review/cartoon-review.js": "8b0745f6bf2e435d5886910a04913da34cb56143ea0208b1850c73ddff355993",
+    "tools/ui/check_cartoon_review.cjs": "15e8854f468a3dda6faa6218dc939544ab9ef418bd7831c185f5e4d2c884400f",
+    "tools/avatars/cartoon_review.py": "c3b160bb4e623607f951cf99a8fe38530d4a0cfe3d6a3cb6ca887ec3871baaa2"
+  },
+  "requests": {
+    "count": 231,
+    "origins": [
+      "http://127.0.0.1:50312"
+    ],
+    "non_get": 0,
+    "http_errors": []
+  },
+  "page_errors": [],
+  "scope": "Static repository files only: no game server, API, saved campaign or campaign time. Screenshots are JPEG quality 70."
+}

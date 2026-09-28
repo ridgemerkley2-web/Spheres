@@ -1,0 +1,245 @@
+{
+  "schema": "spheres-c04-preparation-review/v1",
+  "task": "CLAUDE-C04-PREP-01",
+  "decision": "accepted_with_repairs_preparation_only",
+  "reviewed_utc": "2026-09-28T13:51:55.028141+00:00",
+  "reviewer": "Codex /root/s20_preflight",
+  "parent_source_review": "Codex /root reviewed bounded correction diff and supplied reproduced affiliation-bypass regression",
+  "remote_revision": "62aae6b76b4789bbb9501bdd768fa25176a66b15",
+  "deliverable_revision": "63389675d435baf8cb2a1023c471a44c9afdbc1b",
+  "preserved_authorship_cherry_pick": "d77d31ce17296e8568ecaa777ef653bca4f76803",
+  "integration_base": "75626a137d5efd1ca1cca0d6f76c4d8502909bee",
+  "scope": "Eight fictional France/Tonga proposal dossiers and a standalone checker only. No runtime, schema, artwork, global handoff, queue or workboard changes. Original failed regressions and source-access limitations remain retained.",
+  "c04_complete": false,
+  "c06_complete": false,
+  "s23_complete": false,
+  "runtime_installed": false,
+  "validation": {
+    "original_tests_passed": 65,
+    "new_regression_tests_before_fix": 71,
+    "new_regression_failing_subtests": 14,
+    "intermediate_tests_passed": 71,
+    "affiliation_tests_before_fix": 2,
+    "affiliation_tests_failed_before_fix": 2,
+    "final_tests_passed": 73,
+    "final_tests_failed": 0,
+    "final_validator_passed": true,
+    "native_or_broad_suites_run": false
+  },
+  "sources": {
+    "registered": 28,
+    "claim_summaries": 67,
+    "recapture_attempts": 18,
+    "original_bodies_reproduced": 9,
+    "different_html_bodies": 2,
+    "direct_access_failures": 7,
+    "verified_gzip_bodies": 11,
+    "scope": "Primary institutional gate review, not independent acceptance of every claim or proof of edition currency. Browser-rendered observations are separate from response-body hashes. Original blocked sources not retried."
+  },
+  "files": [
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md",
+      "bytes": 8298,
+      "sha256": "92c0229a59faf6b8a46576e61e80542ae80fa6deb8f13d1f775f2fec0ab811dd",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/affiliation-regressions-before-fix.log",
+      "bytes": 2428,
+      "sha256": "2ac4af2ee78dfde843c232eb6c6a3dd261764851da70804a4ceb39a4507f2e93",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/baseline-runs.json",
+      "bytes": 969,
+      "sha256": "887213d4159b94e5d154b9b9273a77149b5adb6143af5f3a091b4c5b3d4986d0",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/baseline-tests.log",
+      "bytes": 165,
+      "sha256": "87e9d4c62f519934dd00ce29d10b16862755e0584c437f74f04db7bac6405e8f",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/baseline-validator.log",
+      "bytes": 9330,
+      "sha256": "0eb55f6fb63b5a6f27d8f2fde7deabe295366f3b60619bca4817ad87024aba3b",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/browser-source-review.json",
+      "bytes": 2748,
+      "sha256": "3166aaed0f009d79aad8d77d8406186b4399d7ec505028b767fbc4592ec01adb",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/capture_sources.py",
+      "bytes": 2378,
+      "sha256": "ae215acf321c6f67e2242df30554b2eb863765016c31cf64f945e314f40816ac",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/claude-submission-handoff.md",
+      "bytes": 12377,
+      "sha256": "4700225c0c770a8ddc5107d2d7ba4b469c18e1609058a67d0a8ef98c82303286",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/final-runs.json",
+      "bytes": 1158,
+      "sha256": "77c39be1535b754dcb7b30c3ab0860863a1f93c4b122c103683cdcf95cd3dd7d",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/final-tests.log",
+      "bytes": 173,
+      "sha256": "1232239ccc82d54e3ddcc0b254f1f8de735434415f1ef1242ba5f804a60316fe",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/final-validator.log",
+      "bytes": 9330,
+      "sha256": "63178d14b63dc6002205e4108a433ae48cd8be184ca128b4e3752e6b6c5703d4",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/intermediate-71/final-runs.json",
+      "bytes": 1158,
+      "sha256": "2295c6b79747d6ef77164b50647beed8ed0a47983c575cb5ede760217635e39f",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/intermediate-71/final-tests.log",
+      "bytes": 171,
+      "sha256": "6dedd86c5e10b87b41997f6daa76dc837b17df66e265edcfca27d6db74a4ce9f",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/intermediate-71/final-validator.log",
+      "bytes": 9330,
+      "sha256": "63178d14b63dc6002205e4108a433ae48cd8be184ca128b4e3752e6b6c5703d4",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/new-regressions-before-fix.log",
+      "bytes": 16654,
+      "sha256": "cf4916005a15faa8d3f3e262d61df06310cec5ab18058af740b5d73ff91dc247",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/original-submission.json",
+      "bytes": 1458,
+      "sha256": "d36b7c239063ab2c762fc256d8673fbd37dc1378a23ffa6e9be6880705a570cc",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_an_compilation_2025.gz",
+      "bytes": 1904882,
+      "sha256": "9aa0885a5ea8ec659c5c92955a247f2619d78bf14493f40b6af946126d15f614",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_an_fiche3_2023.gz",
+      "bytes": 238908,
+      "sha256": "b6ab986163a22ac6370c920a5b4c4eb1a6cfb0920b56d89979ed6778438182e8",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_ps_reglement_2022.gz",
+      "bytes": 834387,
+      "sha256": "06e57e3e4a5a9f65f1b015e4479c2f09ba65df13dc4c9ad8be9983e70d074068",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_ps_statuts_2021.gz",
+      "bytes": 1110489,
+      "sha256": "9824ecd201135e7a1675b4410e0755c78acec4cb9eeeb5c5b1c170af1042f921",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_ps_textes_reference.gz",
+      "bytes": 255918,
+      "sha256": "f78a6e36f778b3417c5a4589032e37c077428b3bb8331a1626cc13c7019264df",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_rn_statuts_2022.gz",
+      "bytes": 32108,
+      "sha256": "fed2f0ad00af2bcb38f9ca1a4aa9398ec1e23278b112540103aa7095c586f061",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_fr_senat_ppl_2022.gz",
+      "bytes": 19218,
+      "sha256": "d173cf1172ed4beaa9d3afd717cb7ccd1cc1dcfa415cecd5ddbd12fcd491ed3b",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_to_constitution_2020.gz",
+      "bytes": 692837,
+      "sha256": "394462e0ded71e72d3ba4ee2e18cdac6fea608922d0733ef8211412337e6433a",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_to_electoral_act_2016.gz",
+      "bytes": 586477,
+      "sha256": "eb5a8a845177c1d4547fd8a89703b218ac709884df2bd5d2199dff9cc4642489",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_to_mcctil_incsoc_memo_2026.gz",
+      "bytes": 934386,
+      "sha256": "4f503ab648740248d0b66155ed4a2e5eb57cb6edb687771fdcca51b7aca7a149",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-bodies/src_to_pmo_pm_appointment_20251218.gz",
+      "bytes": 531643,
+      "sha256": "b94bfed5f01996182c5475a18eed551b3777e3b47e94692fcbee9aaa9ef6a0f0",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-body-verification.json",
+      "bytes": 559,
+      "sha256": "9ca2f55f1443e1e3cb8d01b0ba65a63de7d77d6466bfaa091d8f6d433adfe144",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/source-recapture.json",
+      "bytes": 12692,
+      "sha256": "b4b8a3e3e5938881825733a340346efe6991aabf745f8432c705c9cc1d4c16df",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/README.md",
+      "bytes": 17688,
+      "sha256": "288dbcf20b3e279818818c7ff336601d7474db22e895d0635ab2681f62d58859",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/proposals.json",
+      "bytes": 87414,
+      "sha256": "4f3b8cdab137c99bcb0aac3be646f0b948d333d38bf1e2a070d1301907c0ae72",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/sources.json",
+      "bytes": 70014,
+      "sha256": "36f36d56ef681a4550605879d49008fd6b49c2136e76dc7598f0ba8f138c4295",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "tools/avatars/check_successor_proposals.py",
+      "bytes": 45896,
+      "sha256": "83d7bbc3ff40c7fe853b67c3aa91c18bf908ab0a1fd9df5d88b10bbd837df8ed",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    },
+    {
+      "path": "tools/avatars/test_successor_proposals.py",
+      "bytes": 25921,
+      "sha256": "28dbdd719bd9f7beaeb82dcbee8f750bb4354cc34197d2ca8f85409e8231dbc1",
+      "identity": "Git blob bytes; no working-tree newline substitution"
+    }
+  ]
+}

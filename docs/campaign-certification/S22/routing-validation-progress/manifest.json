@@ -1,0 +1,350 @@
+{
+  "format": "spheres-s22-routing-validation-progress/v1",
+  "qualification": false,
+  "status": "completed_validation_only",
+  "packaged_utc": "2026-09-28T08:03:45.466Z",
+  "scope": "Completed 8de release compilation/focused tests/six actual oracles, 992 two empty-import actual oracles, and now-completed 992 full workspace regression. No final timing acceptance.",
+  "build": {
+    "revision": "8de6f2a0cc1f64932c28755539054fd7c852f3ca",
+    "scope": "cargo test --no-run release workspace compilation and release web build, not full workspace test execution",
+    "provenance": "8de/s22-diplomacy-routes-build-provenance.json"
+  },
+  "focused": {
+    "raw_pass_entries": 10,
+    "unique_passed": 9,
+    "unique_failed": 0,
+    "filters": [
+      {
+        "filter": "sovereignty-candidate_tests",
+        "passed": 2,
+        "failed": 0,
+        "ignored": 1,
+        "test_names": [
+          "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_sequential_proposals_and_same_day_reentry",
+          "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_ties_refusals_and_live_gates"
+        ]
+      },
+      {
+        "filter": "logistics-contract_dispatch_tests",
+        "passed": 4,
+        "failed": 0,
+        "ignored": 1,
+        "test_names": [
+          "logistics::contract_dispatch_tests::contract_nominal_reuse_preserves_barters_zero_invalid_and_congested_dispatches",
+          "logistics::contract_dispatch_tests::contract_nominal_reuse_reads_paid_terminal_experience_after_each_bundle",
+          "logistics::contract_dispatch_tests::contract_oracle_accepts_campaign_and_integrated_inputs_without_stripping_capabilities",
+          "logistics::contract_dispatch_tests::contract_posting_rebuilds_context_each_day_and_keeps_full_ledger_identical"
+        ]
+      },
+      {
+        "filter": "graph_handoff",
+        "passed": 3,
+        "failed": 0,
+        "ignored": 1,
+        "test_names": [
+          "campaign::transfer_path_tests::supply_graph_handoff_preserves_complete_opening_and_same_date_preparation",
+          "campaign_supply::graph_handoff_tests::campaign_graph_handoff_matches_fresh_graphs_for_complete_days",
+          "campaign_supply::graph_handoff_tests::deployment_graph_handoff_preserves_live_supply_and_rebuilds_changed_openings"
+        ]
+      },
+      {
+        "filter": "supply_graph_handoff",
+        "passed": 1,
+        "failed": 0,
+        "ignored": 0,
+        "test_names": [
+          "campaign::transfer_path_tests::supply_graph_handoff_preserves_complete_opening_and_same_date_preparation"
+        ]
+      }
+    ],
+    "unique_test_names": [
+      "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_sequential_proposals_and_same_day_reentry",
+      "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_ties_refusals_and_live_gates",
+      "logistics::contract_dispatch_tests::contract_nominal_reuse_preserves_barters_zero_invalid_and_congested_dispatches",
+      "logistics::contract_dispatch_tests::contract_nominal_reuse_reads_paid_terminal_experience_after_each_bundle",
+      "logistics::contract_dispatch_tests::contract_oracle_accepts_campaign_and_integrated_inputs_without_stripping_capabilities",
+      "logistics::contract_dispatch_tests::contract_posting_rebuilds_context_each_day_and_keeps_full_ledger_identical",
+      "campaign::transfer_path_tests::supply_graph_handoff_preserves_complete_opening_and_same_date_preparation",
+      "campaign_supply::graph_handoff_tests::campaign_graph_handoff_matches_fresh_graphs_for_complete_days",
+      "campaign_supply::graph_handoff_tests::deployment_graph_handoff_preserves_live_supply_and_rebuilds_changed_openings"
+    ],
+    "overlap": "supply_graph_handoff_preserves_complete_opening_and_same_date_preparation appears in graph_handoff and standalone supply_graph_handoff; counted once."
+  },
+  "actual_8de": [
+    {
+      "family": "compact",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_unchanged": true,
+      "contract_dispatches": null,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    },
+    {
+      "family": "compact",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_unchanged": true,
+      "contract_dispatches": null,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    },
+    {
+      "family": "contract",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_unchanged": true,
+      "contract_dispatches": 1209,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    },
+    {
+      "family": "contract",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_unchanged": true,
+      "contract_dispatches": 1395,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    },
+    {
+      "family": "graph",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_unchanged": true,
+      "contract_dispatches": null,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    },
+    {
+      "family": "graph",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_unchanged": true,
+      "contract_dispatches": null,
+      "scope": "Actual31day original-path full-world/headline equivalence; overlaps other oracles and possibly compilation, never timing qualification"
+    }
+  ],
+  "actual_992_empty_import": [
+    {
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "skipped_catalogues": 155,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_unchanged": true,
+      "scope": "Actual31day original-list full-world/headline equivalence; overlaps regression and lossless archival, no timing claims"
+    },
+    {
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "skipped_catalogues": 159,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_unchanged": true,
+      "scope": "Actual31day original-list full-world/headline equivalence; overlaps regression and lossless archival, no timing claims"
+    }
+  ],
+  "workspace_992": {
+    "suites": 66,
+    "passed": 1933,
+    "failed": 0,
+    "ignored": 100,
+    "finished_utc": "2026-09-28T07:59:51.6768897Z",
+    "provenance": "992/s22-routing-stock-workspace-provenance.json",
+    "scope": "Counts independently derived from completed raw log; ordinary correctness regression with concurrent task work, not qualification timing."
+  },
+  "review": "reviews/s22-empty-import-independent-review.md",
+  "runtime_provenance": [
+    "runtime/8de-provenance.json",
+    "runtime/992-provenance.json"
+  ],
+  "exclusions": [
+    "Native executables and repeated actual campaign inputs",
+    "No authoritative timing, qualification, S22/G5/CP1 closure"
+  ],
+  "files": [
+    {
+      "path": "8de/s22-diplomacy-routes-build-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-build-provenance.json",
+      "bytes": 381,
+      "sha256": "74cc8bad6b3ce639196e634e5c162c28f8d64b91394b97cac330eee8a16d6fd2",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-compact-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-compact-actual-2015.log",
+      "bytes": 228,
+      "sha256": "6d86ed95cc5fdcf9803442223c13f3f04718f9e7a99c8ee65193141f2d255c02",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-compact-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-compact-actual-2035.log",
+      "bytes": 228,
+      "sha256": "96ad0764b17db760d93a339df195b117a2d0498bcc24574e3a37c95501a8cdd1",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-compact-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-compact-actual-provenance.json",
+      "bytes": 2169,
+      "sha256": "a1055450de90d55db2b22c2e0a2fa6d32ed8d44abd0ecf5a53cefde3e429d382",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-contract-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-contract-actual-2015.log",
+      "bytes": 372,
+      "sha256": "997542ff7d9d8af7af23beca0f16fb6131bbab48cc8ef1d9a415120c7097f0e8",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-contract-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-contract-actual-2035.log",
+      "bytes": 372,
+      "sha256": "38fc09a7fc545244548702055ffd1874b62540c67bff12c3d667b4a8b6206b3b",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-contract-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-contract-actual-provenance.json",
+      "bytes": 2183,
+      "sha256": "605246ecb6f94c088b652c15387bc9bbbdc52ac24d74cf1418fe87d28a547e44",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-focused-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-focused-provenance.json",
+      "bytes": 579,
+      "sha256": "03af01043e2c9b77db629196b8c989aca7d3addb945846e8845a43e0af81257b",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-graph_handoff-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-graph_handoff-tests.log",
+      "bytes": 677,
+      "sha256": "162438c1b8c817376c260faf85b4672a1e5ef1a2e548f27a87b8b2fac111cf87",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-graph-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-graph-actual-2015.log",
+      "bytes": 242,
+      "sha256": "cc85c7ade56b16dc5754b93910afeb31408e9df1e9ae5748b00c2d09c7daf5db",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-graph-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-graph-actual-2035.log",
+      "bytes": 242,
+      "sha256": "c8904139315ac0a92821971dec403aaa65fa460b9222ce0e51c68337df79a075",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-graph-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-graph-actual-provenance.json",
+      "bytes": 2179,
+      "sha256": "8fcbc835e95f0c5371b72d59e4c5f4a071d1a7643886582742d6c1adbbff94a5",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-logistics-contract_dispatch_tests-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-logistics-contract_dispatch_tests-tests.log",
+      "bytes": 836,
+      "sha256": "3c0ac57c753674438dc6b0977c03de26a20e590d02292239a354328fcc56891e",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-server-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-server-build.log",
+      "bytes": 1407,
+      "sha256": "b7e2e2e11dee950dcc60d6998c2d4847840d756798e42b10e92baf931f69147d",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-sovereignty-candidate_tests-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-sovereignty-candidate_tests-tests.log",
+      "bytes": 535,
+      "sha256": "984ec03f23be3ae192fe2f61c51b56f735cb39167ca65add94e0bff0f0b5399d",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-supply_graph_handoff-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-supply_graph_handoff-tests.log",
+      "bytes": 238,
+      "sha256": "9a4755af45a2b1295e7d01e60963c363b88cb7549c500b93e2daa40de953e4c2",
+      "encoding": "identity"
+    },
+    {
+      "path": "8de/s22-diplomacy-routes-workspace-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-diplomacy-routes-workspace-build.log",
+      "bytes": 15565,
+      "sha256": "8a1f412f7a6db8620ec65983d387108a2bfb5a36d7df3777edff68df4608f783",
+      "encoding": "identity"
+    },
+    {
+      "path": "992/s22-empty-import-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-empty-import-actual-2015.log",
+      "bytes": 343,
+      "sha256": "fdaef1c5699e746b285fbb61cc7fff6f0708db8f8ef403b8a2c425207ac27f8f",
+      "encoding": "identity"
+    },
+    {
+      "path": "992/s22-empty-import-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-empty-import-actual-2035.log",
+      "bytes": 343,
+      "sha256": "c050786ce031babe0581578cbf8cb8347a5eb79ff1c079e62e6f0e237fac01b3",
+      "encoding": "identity"
+    },
+    {
+      "path": "992/s22-empty-import-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-empty-import-actual-provenance.json",
+      "bytes": 2144,
+      "sha256": "dccbfb32ea2b2e9e2c0d4063043a3b87aa0be39d0a338891b4716c4502e3a872",
+      "encoding": "identity"
+    },
+    {
+      "path": "992/s22-routing-stock-workspace-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-routing-stock-workspace-provenance.json",
+      "bytes": 344,
+      "sha256": "07abab8d2aa887a787690ad9ab0335bbee68d2a707c858dd3c0917289f530812",
+      "encoding": "identity"
+    },
+    {
+      "path": "992/s22-routing-stock-workspace-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-routing-stock-workspace-tests.log",
+      "bytes": 211858,
+      "sha256": "dddc100c846ebf7a13274a13f0fa12753e5fa3a86e9eca4cabc49937d6dfce48",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-empty-import-independent-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-empty-import-independent-review.md",
+      "bytes": 2220,
+      "sha256": "f6b4eb547c3a08940d52eaceca915b825ff242470530e19de0e6bc36ce686cf8",
+      "encoding": "identity"
+    },
+    {
+      "path": "runtime/8de-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-8de6f2a0\\provenance.json",
+      "bytes": 986,
+      "sha256": "0fb4ec23115de1511f7f085bd8ac45efe18eeff7e65c9984ecbf802edea2ca36",
+      "encoding": "identity"
+    },
+    {
+      "path": "runtime/992-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-992bc99a\\provenance.json",
+      "bytes": 1210,
+      "sha256": "7e033de91806e0bfd338e50b1980e89d4014bb7dcb49a9c55c1b0f699cc1ada1",
+      "encoding": "identity"
+    }
+  ]
+}

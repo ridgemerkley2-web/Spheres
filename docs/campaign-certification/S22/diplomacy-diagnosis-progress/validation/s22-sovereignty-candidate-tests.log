@@ -1,0 +1,11 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 22s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 3 tests
+test sovereignty::candidate_tests::compact_candidate_prefilter_preserves_sequential_proposals_and_same_day_reentry ... ok
+test sovereignty::candidate_tests::compact_candidate_prefilter_preserves_ties_refusals_and_live_gates ... ok
+test sovereignty::candidate_tests::compact_candidates_match_actual_checkpoint_for_31_complete_days ... ignored, actual checkpoint, original compact-search oracle; no timing claims
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1054 filtered out; finished in 0.17s
+

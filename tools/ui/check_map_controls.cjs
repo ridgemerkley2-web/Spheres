@@ -422,3 +422,27 @@ test('unmounted controls allow harmless sync and install calls', () => {
   assert.doesNotThrow(() => f.c.MapControls.sync()); assert.equal(f.c.MapControls.install(), false);
   assert.equal(f.calls.length, 0); f.assertViewOnly();
 });
+
+test('low detail preserves playable boundaries and labels while disabling relief and city geometry', () => {
+  const f = fixture(); const camera = JSON.stringify(f.c.ui.cam), mode = f.c.ui.mapMode;
+  const button = f.one('[data-map-preset="low"]'); button.focus(); button.click();
+  for (const key of ['relief', 'cities', 'features', 'grid']) assert.equal(f.c.ui.mapDetails[key], false);
+  for (const key of ['borders', 'provinces', 'labels']) assert.equal(f.c.ui.mapDetails[key], true);
+  assert.equal(f.c.GLOBE.options.showCities, false); assert.equal(f.c.GLOBE.options.showLabels, true);
+  assert.equal(JSON.stringify(f.c.ui.cam), camera); assert.equal(f.c.ui.mapMode, mode);
+  assert.equal(f.document.activeElement, f.one('[data-map-preset="low"]'));
+  assert.equal(f.one('[data-map-preset="low"]').getAttribute('aria-pressed'), 'true');
+  f.mount(); assert.equal(f.one('[data-map-preset="low"]').getAttribute('aria-pressed'), 'true');
+  f.one('[data-map-preset="standard"]').click();
+  for (const key of ['relief', 'cities', 'features', 'borders', 'provinces', 'labels']) assert.equal(f.c.ui.mapDetails[key], true);
+  assert.equal(f.c.GLOBE.options.showCities, true); f.assertViewOnly();
+});
+
+test('a custom detail choice cannot be mislabeled as the standard or low preset', () => {
+  const f = fixture(); f.c.MapControls.setPreset('low'); f.c.MapControls.toggleDetail('cities');
+  for (const preset of ['standard', 'low']) assert.equal(f.one('[data-map-preset="' + preset + '"]').getAttribute('aria-pressed'), 'false');
+  f.mount(); assert.equal(f.c.ui.mapDetails.cities, true); assert.equal(f.c.ui.mapDetails.relief, false);
+  const state = JSON.stringify(f.c.ui.mapDetails); f.calls.length = 0;
+  assert.equal(f.c.MapControls.setPreset('unknown'), false); assert.equal(JSON.stringify(f.c.ui.mapDetails), state);
+  assert.equal(f.calls.length, 0); f.assertViewOnly();
+});

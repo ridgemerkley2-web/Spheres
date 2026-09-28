@@ -1,0 +1,8 @@
+
+running 3 tests
+test industry_operations::snapshot_read_tests::connected_snapshot_matches_actual_checkpoint_and_eliminates_redundant_national_reads ... ignored, explicit immutable actual 2015/2035 snapshot parity; no timing or qualification claim
+test industry_operations::snapshot_read_tests::connected_snapshot_rebuilds_after_a_same_day_command ... ok
+test industry_operations::snapshot_read_tests::connected_snapshot_reuses_exact_ledger_across_ownership_fractional_and_missing_states ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1086 filtered out; finished in 0.59s
+

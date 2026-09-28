@@ -1,0 +1,9 @@
+
+running 4 tests
+test campaign::transfer_path_tests::supply_graph_handoff_preserves_complete_opening_and_same_date_preparation ... ok
+test campaign_supply::graph_handoff_tests::campaign_graph_handoff_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit actual-checkpoint original-path parity; no timing assertions
+test campaign_supply::graph_handoff_tests::campaign_graph_handoff_matches_fresh_graphs_for_complete_days ... ok
+test campaign_supply::graph_handoff_tests::deployment_graph_handoff_preserves_live_supply_and_rebuilds_changed_openings ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 1062 filtered out; finished in 0.79s
+

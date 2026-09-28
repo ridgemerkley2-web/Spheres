@@ -1,0 +1,9 @@
+
+running 4 tests
+test campaign_supply::deployment_capacity_tests::deployment_capacity_reuse_matches_actual_checkpoint_for_31_complete_days ... ignored, immutable actual-checkpoint 31-day original capacity reads; no timing assertions
+test campaign_supply::deployment_capacity_tests::deployment_capacity_reads_preserve_paths_bits_and_distinct_sea_factors ... ok
+test campaign_supply::deployment_capacity_tests::deployment_capacity_scope_observes_same_day_changes_and_drops_before_service ... ok
+test campaign_supply::deployment_capacity_tests::deployment_capacity_reuse_matches_complete_native_days ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 1107 filtered out; finished in 0.31s
+

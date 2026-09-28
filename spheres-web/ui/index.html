@@ -2596,7 +2596,8 @@
       <div class="menu-eyebrow">YOUR CAMPAIGNS</div><h1 id="savedCampaignTitle" tabindex="-1">Pick up where you left off.</h1>
       <p class="menu-section-intro">Load a saved world with its history and dispatches.</p>
       <div class="menu-save-panel">
-        <label class="menu-field">Saved campaign<select id="saveSlots" aria-label="Saved campaign"><option value="default">Checking saved campaigns…</option></select></label>
+        <label class="menu-field">Saved campaign<select id="saveSlots" aria-label="Saved campaign" aria-describedby="saveRecoveryStatus"><option value="default">Checking saved campaigns…</option></select></label>
+        <p id="saveRecoveryStatus" class="menu-save-note" role="status" hidden></p>
         <div class="menu-save-actions"><button class="menu-primary" id="loadBtn">Load campaign →</button><button class="menu-secondary" id="loadBackupBtn">Load previous backup</button></div>
         <p id="menuSaveEmpty" class="menu-empty" hidden>No saved campaigns yet. Start a new campaign to begin your story.</p>
         <div id="menuSaveCurrent" hidden><div class="menu-save-rule"></div><h2>Save your current campaign</h2><div class="menu-save-form"><label class="menu-field">Campaign name<input id="saveName" maxlength="64" placeholder="My-campaign" aria-label="New save name"></label><button class="menu-secondary" id="saveNamedBtn">Save campaign</button></div></div>
@@ -2677,7 +2678,7 @@
         <button id="agencyBtn" type="button" onclick="openAgency()">Decisions <span id="agencyCount"></span></button>
         <span class="grow"></span>
         <details class="arc-map-tools"><summary>Map layers</summary><div id="mapModes"></div></details>
-        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" onclick="openWorldFinder()">Find</button><button type="button" onclick="openGuidance('advisors')">Advisors</button><button type="button" onclick="openGuidance('tutorial')">Tutorial</button><button type="button" onclick="openBuildInfo()">About</button></nav>
+        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" id="worldFindBtn" onclick="openWorldFinder()">Find</button><button type="button" onclick="openGuidance('advisors')">Advisors</button><button type="button" onclick="openGuidance('tutorial')">Tutorial</button><button type="button" onclick="openBuildInfo()">About</button></nav>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
@@ -3721,8 +3722,13 @@ function renderMainMenuState() {
   $("#menuSaveEmpty").hidden = !Array.isArray(saves) || saves.length > 0;
   $("#loadBtn").hidden = !saves?.length;
   const locked = SESSION.busy || advancing || !!pendingAdvance || !!COMMAND_CHANNEL.pending || !!COMMAND_CHANNEL.busy;
-  $("#loadBtn").disabled = !saves?.length || locked;
   const slot = saves?.find(entry => entry.slot === $("#saveSlots").value);
+  $("#loadBtn").disabled = !slot || slot.current_exists === false || slot.readable === false || locked;
+  const problem = slot?.current_exists === false ? "The main save is missing." : slot?.readable === false ? "The main save is unreadable." : "";
+  $("#saveRecoveryStatus").hidden = !problem;
+  $("#saveRecoveryStatus").textContent = problem ? problem + (slot.backup
+    ? ` Try loading the previous backup${slot.metadata_from_backup && slot.date ? ` from ${slot.date}` : ""}.`
+    : " No previous backup is available.") : "";
   $("#loadBackupBtn").hidden = !slot?.backup;
   $("#loadBackupBtn").disabled = !slot?.backup || locked;
   $("#saveSlots").disabled = !saves?.length || SESSION.busy;
@@ -4859,6 +4865,7 @@ document.addEventListener("keydown", (e) => {
     if (PROD.open && PROD.mode === "build" && PROD.view !== "queue") { constructionInvalidatePreview(true); PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
     if (PROD.open && PROD.mode === "build" && PROD.selected) { productionSelect(null); return; }
     if (PROD.open) { closeProduction(); return; }
+    if (ui.selectedCity) { closeMapCity(); return; }
     if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
@@ -5410,6 +5417,16 @@ function ministryDial(m, b, spec, i) {
 /// the same width, so the eye reads it as the first line of the budget — which
 /// is what it is, since `economy::tick` pays it before anything else survives.
 /// Both figures and the rate are `S.policy.money`, off one `economy::Fiscal`.
+function interestRateExplanation(money) {
+  const floor = money.real_rate_floor_adjustment > 5e-7
+    ? ` · debt-rate floor ${fmt.pct(money.real_rate_after_floor, 2)} (${fmt.pp(money.real_rate_floor_adjustment, 2)} adjustment)`
+    : "";
+  const spread = money.spread > 5e-7
+    ? `${fmt.pp(money.spread, 2)} sovereign spread at ${fmt.pct(money.debt_gdp, 0)} of GDP`
+    : "no sovereign spread";
+  return `real policy rate ${fmt.pct(money.real_rate, 2)}${floor} · ${spread}`;
+}
+
 function interestRow(m) {
   const money = (S && S.policy && S.policy.money) || null;
   if (!money || !money.on_the_books) return "";
@@ -5422,7 +5439,7 @@ function interestRow(m) {
     <span class="ministry-arms"><div class="arm-line">
       <span class="an">Rate paid</span>
       <span class="av">${fmt.pct(money.effective_rate, 2)}</span>
-      <span class="ax">real ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7 ? ` ${fmt.pp(money.spread, 2)} sovereign spread at ${fmt.pct(money.debt_gdp, 0)} of GDP` : " · no spread below 60% of GDP"}</span>
+      <span class="ax">${interestRateExplanation(money)}</span>
     </div></span>
   </div>`;
 }
@@ -5507,10 +5524,8 @@ function moneyCard(m) {
               money.debt_gdp > 0.9 ? "down" : "")}
     ${statRow("Net position", (net >= 0 ? "creditor " : "debtor ") + fmt.bn(Math.abs(net)),
               net >= 0 ? "up" : "down")}
-    <div class="note">Debt costs ${fmt.pct(money.effective_rate, 2)} a year: a real policy rate of
-      ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7
-        ? ` plus a ${fmt.pct(money.spread, 2)} sovereign spread, which is what ${fmt.pct(money.debt_gdp, 0)} of GDP costs to carry`
-        : `, with no sovereign spread below 60% of GDP`}.</div>
+    <div class="note">Debt costs ${fmt.pct(money.effective_rate, 2)} a year:
+      ${interestRateExplanation(money)}.</div>
   </div>`;
 }
 
@@ -5571,7 +5586,7 @@ function industryNavigate(action) {
   } else if (action.action === "research") {
     closeGameDrawers(); openTech();
   } else if (action.action === "manufacture") {
-    PROD.mode = "manufacture"; openProduction();
+    openEquipment({tab:"companies"});
   } else if (action.action === "province" && action.district) {
     closeGameDrawers(); selectProvince(action.district, true);
   } else return false;
@@ -5708,8 +5723,16 @@ function closeEquipmentDrawer() {
   if (!wasOpen) return;
   $("#app").inert=false;
   const previous=EQUIPMENT_ROOM.lastFocus;
-  const target=previous?.isConnected && previous.getClientRects().length && !previous.closest?.('[hidden], [inert]') ? previous : $("#techBtn");
-  target?.focus({preventScroll:true});
+  // Touch launchers may blur to BODY when their pending handler disables them.
+  // A connected node alone is not a usable focus destination after a room closes.
+  const targets=[previous,$("#techBtn"),$('[data-drawer="intelDrawer"]'),$("#worldFindBtn")];
+  for (const target of targets) {
+    if (!target?.isConnected || target===document.body || target===document.documentElement || target.disabled
+      || !target.matches?.('button, a[href], input, select, textarea, [tabindex]')
+      || !target.getClientRects().length || target.closest?.('[hidden], [inert], [aria-hidden="true"]')) continue;
+    target.focus({preventScroll:true});
+    if (document.activeElement===target) break;
+  }
   EQUIPMENT_ROOM.lastFocus=null;
 }
 function equipmentExternalPending() {
@@ -9504,17 +9527,18 @@ async function loadDistrictSpecs() {
 }
 
 async function loadProvincePopulation(did, keepOld) {
-  const request = ++PROVINCE_POPULATION_REQUEST;
+  const request = ++PROVINCE_POPULATION_REQUEST, key=provinceReadingKey(), readDate=S?.date;
   if (!keepOld || !PROVINCE_POPULATION || PROVINCE_POPULATION.id !== did) {
     PROVINCE_POPULATION = { id: did, loading: true };
-    renderProvinceDossier();
-  }
+  } else PROVINCE_POPULATION = {...PROVINCE_POPULATION,refreshing:true};
+  renderProvinceDossier();
   try {
     const reading = await api("/api/district-population/" + encodeURIComponent(did));
-    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
-    PROVINCE_POPULATION = reading;
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did || key!==provinceReadingKey()) return;
+    if (!reading || reading.id!==did) throw new Error("The response did not match this province.");
+    PROVINCE_POPULATION = {...reading,read_date:readDate};
   } catch (e) {
-    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did || key!==provinceReadingKey()) return;
     PROVINCE_POPULATION = { id: did, error: e.message || "population unavailable" };
   }
   renderProvinceDossier();
@@ -9548,11 +9572,11 @@ function provinceDossierHtml() {
   const area = spec && spec.area_sqkm ? Math.round(spec.area_sqkm).toLocaleString("en-US") + " km²" : "loading…";
   const neighbours = spec ? (spec.adj || []) : [];
   const links = neighbours.length ? neighbours.map((id) => `<button type="button" class="province-tag"
-    onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
+    data-map-detail-focus="border-${logisticsEscAttr(id)}" onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
     : `<span class="province-tag">${spec ? "island / no land border" : "loading borders…"}</span>`;
   return `<div class="province-head"><div class="province-lock">Selected province</div>
-    <div class="province-title"><h2 id="provinceTitle">${escText(info.name)}</h2><button class="province-close"
-      onclick="closeProvince()" aria-label="Close">&times;</button></div>
+    <div class="province-title"><h2 id="provinceTitle" tabindex="-1" data-map-detail-heading>${escText(info.name)}</h2><button type="button" class="province-close" data-map-detail-focus="province-close"
+      onclick="closeProvince()" aria-label="Close province">&times;</button></div>
     <div class="province-owner">${escText(owner ? owner.name : ownerId || "Unaligned")} · ${escText(did)}</div></div>
     <div class="province-body"><div class="province-stats">
       <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
@@ -9561,9 +9585,9 @@ function provinceDossierHtml() {
       <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
     </div>
     <div class="province-feature"><span>Physical region</span>${escText(feature)}</div>
-    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ Center on map</button>
-      <button onclick="openNation('${ownerId}')">Nation dashboard</button></div>
-    ${ownerId === S.player ? `<div class="province-actions"><button data-construction-province="${logisticsEscAttr(did)}" onclick="openConstruction({province:this.dataset.constructionProvince})">Build here →</button></div>` : ""}
+    <div class="province-actions"><button type="button" data-map-detail-focus="province-center" onclick="centerProvince('${did}')">◎ Center on map</button>
+      <button type="button" data-map-detail-focus="province-nation" onclick="openNation('${ownerId}')" ${owner?'':'disabled'}>Nation dashboard</button></div>
+    ${ownerId === S.player ? `<div class="province-actions"><button type="button" data-map-detail-focus="province-build" data-construction-province="${logisticsEscAttr(did)}" onclick="openConstruction({province:this.dataset.constructionProvince})">Build here →</button></div>` : ""}
     ${provinceEconomyHtml(pop)}
     <details data-detail-key="geography"><summary>Population &amp; geography</summary>
     <p class="province-note">The residents remain with the province when borders move.</p><div class="province-stats">
@@ -9586,16 +9610,19 @@ function renderProvinceDossier() {
   const view = provinceDossierView(selectedDistrict);
   box.classList.toggle("open", open);
   box.setAttribute("aria-hidden", open ? "false" : "true");
+  box.setAttribute("aria-busy",String(open && (!PROVINCE_POPULATION || !!PROVINCE_POPULATION.loading || !!PROVINCE_POPULATION.refreshing)));
   box.innerHTML = open ? provinceDossierHtml() : "";
   box.dataset.province = selectedDistrict || "";
   economicRestoreDetails(box, view.details);
   box.scrollTop = view.scroll;
   wireProvinceDossierState(box);
+  restoreMapDetailFocus(box,view.focus);
 }
 
 window.selectProvince = function (did, move) {
   const info = DINDEX[did];
-  if (!info) return;
+  if (!info) return false;
+  if (!selectedDistrict) PROVINCE_DOSSIER_UI.opener=document.activeElement;
   selectedDistrict = did;
   SEL.dirty = true;
   renderProvinceDossier();
@@ -9603,6 +9630,8 @@ window.selectProvince = function (did, move) {
   if (move) camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
   loadDistrictSpecs();
   loadProvincePopulation(did, false);
+  document.getElementById('provinceTitle')?.focus({preventScroll:true});
+  return true;
 };
 
 window.centerProvince = function (did) {
@@ -9612,13 +9641,16 @@ window.centerProvince = function (did) {
   camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
 };
 
-window.closeProvince = function () {
+window.closeProvince = function (restoreFocus=true) {
+  const focused=rememberMapDetailFocus(document.getElementById('provinceDossier'));
   PROVINCE_POPULATION_REQUEST++;
   PROVINCE_POPULATION = null;
   selectedDistrict = null;
   SEL.dirty = true;
   renderProvinceDossier();
   if (GLOBE) GLOBE.render();
+  if (restoreFocus && focused) returnMapDetailFocus(PROVINCE_DOSSIER_UI.opener);
+  PROVINCE_DOSSIER_UI.opener=null;
 };
 
 /* ================= the GL physical underlay (RENDER) =================
@@ -11079,6 +11111,7 @@ const DEFERRED = Symbol("city build deferred");
 /// says so in the line above `t1`: it times the DRAW SUBMISSION, and mesh
 /// construction is paid when coverage changes.
 function drawCityLayer(view, cw, ch) {
+  if (ui.mapDetails?.cities === false) return 0;
   const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return 0;
   if (!window.CITIES || !window.TerrainSurface) return 0;
   const surface = g.surface; if (!surface || !surface.ready) return 0;
@@ -11235,6 +11268,20 @@ function cityBuffers(gl, hit, view, defer) {
       extentMetres: mesh.extentMetres, bounds: mesh.bounds };
   } catch (e) { placed = null; }
   if (!placed) return null;
+  // Reserve before upload: post-upload eviction briefly kept the entire old
+  // cache plus this mesh resident. Keep the same count and payload ceilings
+  // during allocation as well as after the frame. Refuse an oversized mesh
+  // rather than repeatedly uploading and evicting it.
+  if (placed.triangleCount > CITY_LAYER.cacheTriangles) return null;
+  let held = 0;
+  for (const e of cache.values()) held += e.tris;
+  while (cache.size && (cache.size >= CITY_LAYER.cache || held + placed.triangleCount > CITY_LAYER.cacheTriangles)) {
+    const oldest = cache.keys().next().value;
+    const dead = cache.get(oldest); cache.delete(oldest);
+    held -= dead.tris;
+    for (const b of dead.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(dead.vao);
+  }
   const vao = gl.createVertexArray();
   gl.bindVertexArray(vao);
   const bufs = [];
@@ -11249,23 +11296,6 @@ function cityBuffers(gl, hit, view, defer) {
   const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount,
     model, span: wantSpan, exaggeration, waterZoomFloor, fresh: true };
   cache.set(key, entry);
-  // Bounded BY BOTH COUNT AND SIZE, and the buffers go with the vertex array:
-  // deleting the array does NOT free them, which is the trap arsenal3d's cache
-  // had to be taught. Eviction takes the oldest, which is never the city just
-  // built and -- because the cap is twice the largest frame the selector can
-  // produce -- never one being drawn this frame either. The `cache.size > 1`
-  // guard is the backstop for that reasoning rather than a substitute for it:
-  // a single city over the whole cap would otherwise delete itself and be
-  // rebuilt every frame.
-  let held = 0;
-  for (const e of cache.values()) held += e.tris;
-  while (cache.size > 1 && (cache.size > CITY_LAYER.cache || held > CITY_LAYER.cacheTriangles)) {
-    const oldest = cache.keys().next().value;
-    const dead = cache.get(oldest); cache.delete(oldest);
-    held -= dead.tris;
-    for (const b of dead.bufs) gl.deleteBuffer(b);
-    gl.deleteVertexArray(dead.vao);
-  }
   return entry;
 }
 function glFail(reason) {
@@ -13980,8 +14010,10 @@ function onMapPick(e) {
 
 window.selectMapCity = function(city, focus = true) {
   camUserInput();
+  const entering=!ui.selectedCity || ui.selectedCity.name!==city.name || ui.selectedCity.lon!==city.lon || ui.selectedCity.lat!==city.lat;
+  if (!ui.selectedCity) PROVINCE_DOSSIER_UI.cityOpener=document.activeElement;
   ui.selectedCity = city;
-  closeProvince();
+  closeProvince(false);
   if (focus) {
     ui.mapMode = 'terrain'; ui.mapTilt = true;
     if (!ui.mapDetails) ui.mapDetails = {};
@@ -13991,18 +14023,34 @@ window.selectMapCity = function(city, focus = true) {
     renderMap();
   }
   renderMapCity();
+  if (entering) document.getElementById('mapCityTitle')?.focus({preventScroll:true});
   GLOBE?.schedule();
 };
-function renderMapCity() {
+function cityProvince(city) {
+  const w=Globe3D.project(city.lon,city.lat), code=countryAt(w[0],w[1]);
+  const district=code && districtAt(code,w[0],w[1]);
+  return district && DINDEX[district.id] ? district : null;
+}
+function closeMapCity(restoreFocus=true) {
+  const focused=rememberMapDetailFocus(document.getElementById('mapCityCard'));
+  ui.selectedCity=null; renderMapCity(); GLOBE?.schedule();
+  if (restoreFocus && focused) returnMapDetailFocus(PROVINCE_DOSSIER_UI.cityOpener);
+  PROVINCE_DOSSIER_UI.cityOpener=null;
+}
+function renderMapCity(savedFocus=rememberMapDetailFocus(document.getElementById('mapCityCard'))) {
   document.getElementById('mapCityCard')?.remove();
   const city = ui.selectedCity, stage = document.querySelector('#pane-map .globe-stage');
   if (!city || !stage) return;
   const card = document.createElement('aside'); card.id = 'mapCityCard'; card.className = 'map-city-card';
   card.setAttribute('aria-label', 'Selected city');
   const title = document.createElement('h2'); title.textContent = city.name;
+  title.id='mapCityTitle'; title.tabIndex=-1; title.dataset.mapDetailHeading='';
   const text = document.createElement('p');
   text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
   const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
+  const district=cityProvince(city), ownerId=district && nationOfDistrict(district.id), owner=ownerId && nationById(ownerId);
+  const ownerLine=document.createElement('p'); ownerLine.className='map-city-owner';
+  ownerLine.textContent=district ? `Current owner: ${owner?.name || ownerId || 'Unaligned'} · ${DINDEX[district.id].name}` : 'Province mapping unavailable at this location.';
   // A BIRDS-EYE OF THE CITY, and three things about it are worth stating here.
   //
   // WHAT IS SOURCED: the extent follows the record's population, the ground
@@ -14045,18 +14093,21 @@ function renderMapCity() {
     vignette._mountCity = () => Arsenal3D.mount(canvas, 'city:' + cityIndex + '/close', { pitch: 58 });
   }
   const actions = document.createElement('div');
-  const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
-  const province = document.createElement('button'); province.textContent = 'Province'; province.onclick = () => {
-    const w = Globe3D.project(city.lon, city.lat), code = countryAt(w[0],w[1]), d = code && districtAt(code,w[0],w[1]);
-    ui.selectedCity = null; renderMapCity(); if (d) selectProvince(d.id,false);
+  const focus = document.createElement('button'); focus.type='button'; focus.dataset.mapDetailFocus='city-explore'; focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
+  const province = document.createElement('button'); province.type='button'; province.dataset.mapDetailFocus='city-province'; province.textContent = 'Province'; province.disabled=!district; province.onclick = () => {
+    // Recheck the current geometry before dismissing the city; an unmapped city remains inspectable.
+    const current=cityProvince(city);
+    if (!current || !selectProvince(current.id,false)) return;
+    closeMapCity(false);
   };
-  const close = document.createElement('button'); close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => { ui.selectedCity=null; renderMapCity(); GLOBE?.schedule(); };
+  const close = document.createElement('button'); close.type='button'; close.dataset.mapDetailFocus='city-close'; close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => closeMapCity();
   actions.append(focus,province,close);
-  card.append(title,text,note);
+  card.append(title,text,ownerLine,note);
   if (vignette) card.append(vignette);
   card.append(actions);
   stage.append(card);
   if (vignette) { installSurfaceTreatment(); vignette._mountCity(); }
+  restoreMapDetailFocus(card,savedFocus);
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -14120,6 +14171,7 @@ function restoreMapControlFocus(saved) {
 /// globe that the world it is drawing has changed.
 function renderMap() {
   const mapFocus = rememberMapControlFocus();
+  const cityFocus = rememberMapDetailFocus(document.getElementById('mapCityCard'));
   const legendScroll = $("#pane-map .map-legend")?.scrollTop || 0;
   const modesScroll = $("#mapModes")?.scrollTop || 0;
   rememberProvinceDossier();
@@ -14177,7 +14229,7 @@ function renderMap() {
   if (!GL.ready && !GL.reason) glBoot();
   renderProvinceDossier();
 
-  renderMapCity();
+  renderMapCity(cityFocus);
   renderFlightMapCard();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
@@ -17135,6 +17187,11 @@ function setProductionMode(mode) {
 function openProduction() {
   if (!S || !S.player || (!S.production_summary && !S.manufacturing_summary)) return;
   const launchFocus = document.activeElement;
+  const launchProvince = launchFocus?.closest?.("#provinceDossier");
+  const returnOrigin = launchProvince && launchFocus.dataset?.mapDetailFocus ? {
+    campaign: PROVINCE_DOSSIER_UI.campaign, province: launchProvince.dataset.province,
+    key: launchFocus.dataset.mapDetailFocus,
+  } : null;
   if (LOGI.open) closeLogistics();
   if (stock.open) closeStock();
   if (tech.open) closeTech();
@@ -17145,6 +17202,7 @@ function openProduction() {
   PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
   MANU.view = "lines"; MANU.pickKit = null; MANU.error = null;
   PROD.lastFocus = launchFocus;
+  PROD.returnOrigin = returnOrigin;
   const panel = $("#productionPanel");
   panel.classList.remove("map-view");
   panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
@@ -17163,9 +17221,18 @@ function closeProduction() {
   if (panel) { panel.classList.remove("open", "map-view"); panel.setAttribute("aria-hidden", "true"); panel.setAttribute("aria-modal", "false"); }
   document.body.classList.remove("production-open");
   renderProductionDock();
-  const focus = PROD.lastFocus && PROD.lastFocus.isConnected && PROD.lastFocus.getClientRects().length ? PROD.lastFocus : $("#productionDockBtn");
+  const usable = element => element && !element.disabled && element.isConnected && element.getClientRects().length;
+  let focus = PROD.lastFocus;
+  if (PROD.returnOrigin) {
+    const origin = PROD.returnOrigin, dossier = $("#provinceDossier");
+    // Native readings may recreate the opener while Construction is open.
+    focus = origin.campaign === PROVINCE_DOSSIER_UI.campaign && dossier?.dataset.province === origin.province
+      ? [...dossier.querySelectorAll("[data-map-detail-focus]")].find(element => element.dataset.mapDetailFocus === origin.key && usable(element)) : null;
+  }
+  if (!usable(focus)) focus = $("#productionDockBtn");
   if (focus) focus.focus({ preventScroll: true });
   PROD.lastFocus = null;
+  PROD.returnOrigin = null;
   if (GLOBE) GLOBE.render();
 }
 function toggleProduction() { if (PROD.open) closeProduction(); else openConstruction(); }

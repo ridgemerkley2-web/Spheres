@@ -1,0 +1,5606 @@
+{
+  "batch": {
+    "control_commands": [],
+    "days_per_second": 4.091499658689738,
+    "elapsed_ms": 7576.684,
+    "final": {
+      "absolute_day": 3450,
+      "alive": true,
+      "archive": {
+        "first_dispatch": "1 Jan 1990",
+        "first_snapshot": "1 Jan 1990",
+        "last_dispatch": "12 Jun 1999",
+        "last_snapshot": "13 Jun 1999",
+        "lifespan_milestones": 3
+      },
+      "autonomous_policies": {
+        "economic_active": true,
+        "economic_competition": true,
+        "economic_plans": 141,
+        "economic_reviews": 282,
+        "military_active": true,
+        "military_enabled": true,
+        "military_plans": 141,
+        "military_reviews": 145,
+        "supplier_catalogue_active": true,
+        "supplier_catalogue_enabled": true,
+        "supplier_plans": 6,
+        "supplier_reviewed_plans": 6
+      },
+      "calendar": [
+        1999,
+        6,
+        13
+      ],
+      "capabilities": {
+        "campaign_initialized": true,
+        "fiscal_recovery": true,
+        "industry_rebuild": true,
+        "operational_warfare": 1,
+        "party_leadership": true,
+        "population": true,
+        "sector_contractors": true,
+        "supplier_operations_version": 1
+      },
+      "date": "13 Jun 1999",
+      "dispatches": 4787,
+      "feature_workload": {
+        "air_mission_orders": 1,
+        "airbases": 1,
+        "executive_bindings": 1,
+        "government_performance_records": 143,
+        "government_records": 143,
+        "operational_orders": 3,
+        "operational_reports": 4,
+        "operational_reserves": 140,
+        "party_leadership_assignments": 582,
+        "player_arsenal_holdings": 14,
+        "player_assigned_aircraft": 1,
+        "player_equipment_revisions": 2,
+        "player_military_strength": 38.20686693857093,
+        "player_squadrons": 1,
+        "world_arsenal_holding_rows": 794,
+        "world_assigned_aircraft": 1,
+        "world_military_strength": 1039.5447077762747,
+        "world_squadrons": 1
+      },
+      "history_epoch": 77,
+      "history_points": 1188,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": []
+      },
+      "owned_work": {
+        "advanced_components": 160.795320748,
+        "contractor_assignments": 238,
+        "contractor_roster": 794,
+        "operational_sectors": 9,
+        "operational_supply_buffers": 9,
+        "operational_supply_cargo": 43,
+        "operational_supply_receipt_day": 3449,
+        "operational_transfers": 102,
+        "supplier_active_refits": 0,
+        "supplier_ammunition_stock": 12,
+        "supplier_development": 0,
+        "supplier_equipment_stock": 2,
+        "supplier_equipment_wip": 0,
+        "supplier_pending_ammunition_deliveries": 0,
+        "supplier_pending_equipment_deliveries": 0,
+        "supplier_receipt_day": 3410,
+        "supplier_receivables": 0,
+        "supplier_refit_escrow_bn": -0.0,
+        "supplier_refit_locked_capital_bn": -0.0,
+        "supplier_retained_operation_receipts": 1,
+        "suppliers": 1
+      },
+      "pause_reason": null,
+      "player": "France",
+      "player_power": {
+        "as_of_day": 3449,
+        "capacity_daily": 5.084496129814623,
+        "completed_grid_levels": 1,
+        "facility_used_daily": 45.29919021792768,
+        "inherited_used_daily": 44.99502621872768,
+        "required_daily": 0.9013880000000001
+      },
+      "player_projects": 0,
+      "rules": {
+        "ai_aggression": 1.0,
+        "crisis_intensity": 1.0,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "historical_party_leadership": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "seed": 1990,
+      "shooting_wars": 1,
+      "world_fnv64": "5e2885a23e03ba8e"
+    },
+    "ordinary_days": 31,
+    "same_final_facts": true
+  },
+  "certified_profile_required": true,
+  "control_commands": [
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 0
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 1
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 2
+    },
+    {
+      "commands": [],
+      "event_pause": "War: France over Western Europe. Local superiority is opening ground; protect the supply corridor.",
+      "index": 3
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 4
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 5
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 6
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 7
+    },
+    {
+      "commands": [],
+      "event_pause": "France's unanswered a trade treaty from Comoros expires and is declined.",
+      "index": 8
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 9
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 10
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 11
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 12
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 13
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 14
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 15
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 16
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 17
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 18
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 19
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 20
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 21
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 22
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 23
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 24
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 25
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 26
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 27
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 28
+    },
+    {
+      "commands": [],
+      "event_pause": null,
+      "index": 29
+    },
+    {
+      "commands": [],
+      "event_pause": "War: France over Western Europe. Cohesion is low. A supplied pause or fighting withdrawal preserves the force.",
+      "index": 30
+    }
+  ],
+  "failure": null,
+  "final": {
+    "absolute_day": 3450,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "12 Jun 1999",
+      "last_snapshot": "13 Jun 1999",
+      "lifespan_milestones": 3
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 141,
+      "economic_reviews": 282,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 141,
+      "military_reviews": 145,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 6,
+      "supplier_reviewed_plans": 6
+    },
+    "calendar": [
+      1999,
+      6,
+      13
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "13 Jun 1999",
+    "dispatches": 4787,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 1,
+      "executive_bindings": 1,
+      "government_performance_records": 143,
+      "government_records": 143,
+      "operational_orders": 3,
+      "operational_reports": 4,
+      "operational_reserves": 140,
+      "party_leadership_assignments": 582,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 38.20686693857093,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 794,
+      "world_assigned_aircraft": 1,
+      "world_military_strength": 1039.5447077762747,
+      "world_squadrons": 1
+    },
+    "history_epoch": 77,
+    "history_points": 1188,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 160.795320748,
+      "contractor_assignments": 238,
+      "contractor_roster": 794,
+      "operational_sectors": 9,
+      "operational_supply_buffers": 9,
+      "operational_supply_cargo": 43,
+      "operational_supply_receipt_day": 3449,
+      "operational_transfers": 102,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 12,
+      "supplier_development": 0,
+      "supplier_equipment_stock": 2,
+      "supplier_equipment_wip": 0,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 3410,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 1,
+      "suppliers": 1
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 3449,
+      "capacity_daily": 5.084496129814623,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 45.29919021792768,
+      "inherited_used_daily": 44.99502621872768,
+      "required_daily": 0.9013880000000001
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 1,
+    "world_fnv64": "5e2885a23e03ba8e"
+  },
+  "format": "spheres-s22-profile/v1",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-01\\input.json",
+  "input_bytes": 63066434,
+  "input_fnv64": "5ad45bf730147baa",
+  "method": "31 sequential real daily advances. Raw stage clocks exclude loading, preparation, room reads, save I/O, network and browser. Whole turn includes simulation/history, state read/serialization and selected-history delta; its percentile is not a sum of percentiles. Rooms independently include read plus serialization after each timed turn. Batch reloads the identical input and measures 31 actual daily advances as one wall interval, including command selection/preflight and validity bookkeeping but no room/state serialization. Structural pass does not imply latency/memory acceptance; use frozen S01 limits separately.",
+  "mode": "measure_input",
+  "passed": true,
+  "renew_existing_budget": true,
+  "revision": "bb83d3b81d5e",
+  "samples": [
+    {
+      "date": "14 May 1999",
+      "facts": {
+        "absolute_day": 3420,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "13 May 1999",
+          "last_snapshot": "14 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 4,
+          "military_reviews": 4,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 0,
+          "supplier_reviewed_plans": 0
+        },
+        "calendar": [
+          1999,
+          5,
+          14
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "14 May 1999",
+        "dispatches": 4625,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.2211780924896,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.549503514045,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1188,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.274500778,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 3,
+          "operational_supply_receipt_day": 3419,
+          "operational_transfers": 39,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3419,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.381108651771534,
+          "inherited_used_daily": 45.076944652571534,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "28c9b0c79e8c5da2"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.2307,
+      "index": 0,
+      "rooms": [
+        {
+          "bytes": 332994,
+          "elapsed_ms": 27.996299999999998,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20214,
+          "elapsed_ms": 0.2945,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.2329,
+          "room": "construction"
+        },
+        {
+          "bytes": 28543,
+          "elapsed_ms": 0.2439,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10171,
+          "elapsed_ms": 0.8359,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 278.40959999999995,
+      "state_bytes": 3234547,
+      "state_read_model_ms": 37.7727,
+      "state_serialization_ms": 7.2517,
+      "whole_turn_ms": 324.6655
+    },
+    {
+      "date": "15 May 1999",
+      "facts": {
+        "absolute_day": 3421,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "14 May 1999",
+          "last_snapshot": "15 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 9,
+          "military_reviews": 9,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 0,
+          "supplier_reviewed_plans": 0
+        },
+        "calendar": [
+          1999,
+          5,
+          15
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "15 May 1999",
+        "dispatches": 4627,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.221323831470784,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.6170949997086,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1189,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.325194777,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 6,
+          "operational_supply_receipt_day": 3420,
+          "operational_transfers": 42,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3420,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.37838619202292,
+          "inherited_used_daily": 45.07422219282292,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "1c774436721dc844"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.0801999999999998,
+      "index": 1,
+      "rooms": [
+        {
+          "bytes": 337899,
+          "elapsed_ms": 23.8586,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20266,
+          "elapsed_ms": 0.2567,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.1775,
+          "room": "construction"
+        },
+        {
+          "bytes": 28549,
+          "elapsed_ms": 0.2388,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10174,
+          "elapsed_ms": 0.8503000000000001,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 261.1097,
+      "state_bytes": 3233039,
+      "state_read_model_ms": 38.3089,
+      "state_serialization_ms": 7.3321000000000005,
+      "whole_turn_ms": 307.8317
+    },
+    {
+      "date": "16 May 1999",
+      "facts": {
+        "absolute_day": 3422,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "15 May 1999",
+          "last_snapshot": "16 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 14,
+          "military_reviews": 14,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 1,
+          "supplier_reviewed_plans": 1
+        },
+        "calendar": [
+          1999,
+          5,
+          16
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "16 May 1999",
+        "dispatches": 4631,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.22147068064408,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.6886762608374,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1190,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.375888776,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 9,
+          "operational_supply_receipt_day": 3421,
+          "operational_transfers": 45,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3421,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.37566052087058,
+          "inherited_used_daily": 45.07149652167058,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "04e4b87341f07860"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.7297,
+      "index": 2,
+      "rooms": [
+        {
+          "bytes": 342726,
+          "elapsed_ms": 35.4403,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20208,
+          "elapsed_ms": 0.4126,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9014,
+          "room": "construction"
+        },
+        {
+          "bytes": 28530,
+          "elapsed_ms": 0.3988,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10168,
+          "elapsed_ms": 1.3136999999999999,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 205.1221,
+      "state_bytes": 3234406,
+      "state_read_model_ms": 38.4316,
+      "state_serialization_ms": 8.9739,
+      "whole_turn_ms": 254.2585
+    },
+    {
+      "date": "17 May 1999",
+      "facts": {
+        "absolute_day": 3423,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "16 May 1999",
+          "last_snapshot": "17 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 19,
+          "military_reviews": 19,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 2,
+          "supplier_reviewed_plans": 2
+        },
+        "calendar": [
+          1999,
+          5,
+          17
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "17 May 1999",
+        "dispatches": 4637,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.22137771386023,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.7594458511405,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1191,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.426582775,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 12,
+          "operational_supply_receipt_day": 3422,
+          "operational_transfers": 48,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3422,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.3729315704615,
+          "inherited_used_daily": 45.0687675712615,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "37d00a2329f7b282"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.4946,
+      "index": 3,
+      "rooms": [
+        {
+          "bytes": 347636,
+          "elapsed_ms": 32.0115,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20265,
+          "elapsed_ms": 0.3438,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.6311,
+          "room": "construction"
+        },
+        {
+          "bytes": 28528,
+          "elapsed_ms": 0.3033,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10207,
+          "elapsed_ms": 1.0312999999999999,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 296.8543,
+      "state_bytes": 3233667,
+      "state_read_model_ms": 55.5323,
+      "state_serialization_ms": 9.6507,
+      "whole_turn_ms": 363.5327
+    },
+    {
+      "date": "18 May 1999",
+      "facts": {
+        "absolute_day": 3424,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "17 May 1999",
+          "last_snapshot": "18 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 24,
+          "military_reviews": 24,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 3,
+          "supplier_reviewed_plans": 3
+        },
+        "calendar": [
+          1999,
+          5,
+          18
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "18 May 1999",
+        "dispatches": 4639,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.22094243889113,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.8311445715453,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1192,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.477276774,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 14,
+          "operational_supply_receipt_day": 3423,
+          "operational_transfers": 51,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3423,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.37019929983775,
+          "inherited_used_daily": 45.06603530063775,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "dcf85106a9c5d4f9"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.5472000000000001,
+      "index": 4,
+      "rooms": [
+        {
+          "bytes": 352734,
+          "elapsed_ms": 26.067,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20211,
+          "elapsed_ms": 0.27349999999999997,
+          "room": "industry"
+        },
+        {
+          "bytes": 33567,
+          "elapsed_ms": 1.6011,
+          "room": "construction"
+        },
+        {
+          "bytes": 28548,
+          "elapsed_ms": 0.26630000000000004,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10205,
+          "elapsed_ms": 0.8413,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 294.11359999999996,
+      "state_bytes": 3234770,
+      "state_read_model_ms": 53.9938,
+      "state_serialization_ms": 10.9426,
+      "whole_turn_ms": 360.5989
+    },
+    {
+      "date": "19 May 1999",
+      "facts": {
+        "absolute_day": 3425,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "18 May 1999",
+          "last_snapshot": "19 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 29,
+          "military_reviews": 29,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 4,
+          "supplier_reviewed_plans": 4
+        },
+        "calendar": [
+          1999,
+          5,
+          19
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "19 May 1999",
+        "dispatches": 4641,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.220438005743226,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.9082898829552,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1193,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.527970773,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 16,
+          "operational_supply_receipt_day": 3424,
+          "operational_transfers": 54,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3424,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.367463811610435,
+          "inherited_used_daily": 45.063299812410435,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "320e17ef684a6b48"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.5331,
+      "index": 5,
+      "rooms": [
+        {
+          "bytes": 357842,
+          "elapsed_ms": 32.1722,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20214,
+          "elapsed_ms": 0.3982,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.8411,
+          "room": "construction"
+        },
+        {
+          "bytes": 28561,
+          "elapsed_ms": 0.3624,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10208,
+          "elapsed_ms": 1.155,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 271.74730000000005,
+      "state_bytes": 3234595,
+      "state_read_model_ms": 54.4513,
+      "state_serialization_ms": 10.6664,
+      "whole_turn_ms": 338.39910000000003
+    },
+    {
+      "date": "20 May 1999",
+      "facts": {
+        "absolute_day": 3426,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "19 May 1999",
+          "last_snapshot": "20 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 34,
+          "military_reviews": 34,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 5,
+          "supplier_reviewed_plans": 5
+        },
+        "calendar": [
+          1999,
+          5,
+          20
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "20 May 1999",
+        "dispatches": 4643,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.2198659161812,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1036.9920071928257,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1194,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.578664772,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 16,
+          "operational_supply_receipt_day": 3425,
+          "operational_transfers": 57,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3425,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.364725132970065,
+          "inherited_used_daily": 45.060561133770065,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "47b9426528e301cf"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.4827,
+      "index": 6,
+      "rooms": [
+        {
+          "bytes": 362936,
+          "elapsed_ms": 31.734199999999998,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20212,
+          "elapsed_ms": 0.391,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.8132000000000001,
+          "room": "construction"
+        },
+        {
+          "bytes": 28587,
+          "elapsed_ms": 0.3546,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10205,
+          "elapsed_ms": 1.0959999999999999,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 354.48859999999996,
+      "state_bytes": 3234617,
+      "state_read_model_ms": 54.1531,
+      "state_serialization_ms": 11.1251,
+      "whole_turn_ms": 421.25
+    },
+    {
+      "date": "21 May 1999",
+      "facts": {
+        "absolute_day": 3427,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "20 May 1999",
+          "last_snapshot": "21 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 38,
+          "military_reviews": 38,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          21
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "21 May 1999",
+        "dispatches": 4645,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21929849544124,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.081673261457,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1195,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.629358771,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 17,
+          "operational_supply_receipt_day": 3426,
+          "operational_transfers": 60,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3426,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.361983256786026,
+          "inherited_used_daily": 45.057819257586026,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "7ef36def009399da"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.658,
+      "index": 7,
+      "rooms": [
+        {
+          "bytes": 366879,
+          "elapsed_ms": 35.949099999999994,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20213,
+          "elapsed_ms": 0.3966,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9215,
+          "room": "construction"
+        },
+        {
+          "bytes": 28546,
+          "elapsed_ms": 0.36000000000000004,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10206,
+          "elapsed_ms": 1.1954,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 217.72349999999997,
+      "state_bytes": 3234552,
+      "state_read_model_ms": 52.9494,
+      "state_serialization_ms": 11.960999999999999,
+      "whole_turn_ms": 284.2928
+    },
+    {
+      "date": "22 May 1999",
+      "facts": {
+        "absolute_day": 3428,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "21 May 1999",
+          "last_snapshot": "22 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 43,
+          "military_reviews": 43,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          22
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "22 May 1999",
+        "dispatches": 4647,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21873533636589,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.1724697242178,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1196,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.68005277,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3427,
+          "operational_transfers": 63,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3427,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.35923814104058,
+          "inherited_used_daily": 45.05507414184058,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "910ebd3b35ad3f91"
+      },
+      "history_delta_bytes": 3592,
+      "history_delta_serialization_ms": 1.4636,
+      "index": 8,
+      "rooms": [
+        {
+          "bytes": 371456,
+          "elapsed_ms": 34.042,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20212,
+          "elapsed_ms": 0.4106,
+          "room": "industry"
+        },
+        {
+          "bytes": 33567,
+          "elapsed_ms": 1.9704000000000002,
+          "room": "construction"
+        },
+        {
+          "bytes": 28552,
+          "elapsed_ms": 0.3848,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10145,
+          "elapsed_ms": 1.2528000000000001,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 225.8644,
+      "state_bytes": 3233863,
+      "state_read_model_ms": 54.3923,
+      "state_serialization_ms": 9.144400000000001,
+      "whole_turn_ms": 290.86560000000003
+    },
+    {
+      "date": "23 May 1999",
+      "facts": {
+        "absolute_day": 3429,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "22 May 1999",
+          "last_snapshot": "23 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 48,
+          "military_reviews": 48,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          23
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "23 May 1999",
+        "dispatches": 4648,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21817621405399,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.26428928236,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1197,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.730746769,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3428,
+          "operational_transfers": 66,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3428,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.35648963676066,
+          "inherited_used_daily": 45.052325637560656,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "af5131dddb812ddd"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.4544,
+      "index": 9,
+      "rooms": [
+        {
+          "bytes": 376053,
+          "elapsed_ms": 33.928399999999996,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20210,
+          "elapsed_ms": 0.4102,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 2.025,
+          "room": "construction"
+        },
+        {
+          "bytes": 28554,
+          "elapsed_ms": 0.39080000000000004,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10150,
+          "elapsed_ms": 1.2686,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 283.4159,
+      "state_bytes": 3233527,
+      "state_read_model_ms": 53.1113,
+      "state_serialization_ms": 11.422699999999999,
+      "whole_turn_ms": 349.4049
+    },
+    {
+      "date": "24 May 1999",
+      "facts": {
+        "absolute_day": 3430,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "23 May 1999",
+          "last_snapshot": "24 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 53,
+          "military_reviews": 53,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          24
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "24 May 1999",
+        "dispatches": 4649,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21762093067919,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.35751142673,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1198,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.781440768,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3429,
+          "operational_transfers": 69,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3429,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.35373761374902,
+          "inherited_used_daily": 45.04957361454902,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "ff7ca79c91e0f1ff"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.5589,
+      "index": 10,
+      "rooms": [
+        {
+          "bytes": 380858,
+          "elapsed_ms": 25.683799999999998,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20208,
+          "elapsed_ms": 0.27799999999999997,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.7155,
+          "room": "construction"
+        },
+        {
+          "bytes": 28565,
+          "elapsed_ms": 0.3358,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10150,
+          "elapsed_ms": 1.1720000000000002,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 286.5063,
+      "state_bytes": 3234771,
+      "state_read_model_ms": 55.389599999999994,
+      "state_serialization_ms": 10.6362,
+      "whole_turn_ms": 354.0914
+    },
+    {
+      "date": "25 May 1999",
+      "facts": {
+        "absolute_day": 3431,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "24 May 1999",
+          "last_snapshot": "25 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 58,
+          "military_reviews": 58,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          25
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "25 May 1999",
+        "dispatches": 4650,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21706929593736,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.4518324980786,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1199,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.832134767,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3430,
+          "operational_transfers": 72,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3430,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.3509823714084,
+          "inherited_used_daily": 45.0468183722084,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "0904c72aa34f659d"
+      },
+      "history_delta_bytes": 3591,
+      "history_delta_serialization_ms": 1.4890999999999999,
+      "index": 11,
+      "rooms": [
+        {
+          "bytes": 385734,
+          "elapsed_ms": 32.7735,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20212,
+          "elapsed_ms": 0.4165,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9968,
+          "room": "construction"
+        },
+        {
+          "bytes": 28561,
+          "elapsed_ms": 0.3907,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10150,
+          "elapsed_ms": 1.2960999999999998,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 259.5926,
+      "state_bytes": 3233388,
+      "state_read_model_ms": 51.841100000000004,
+      "state_serialization_ms": 10.645,
+      "whole_turn_ms": 323.56829999999997
+    },
+    {
+      "date": "26 May 1999",
+      "facts": {
+        "absolute_day": 3432,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "25 May 1999",
+          "last_snapshot": "26 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 63,
+          "military_reviews": 63,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          26
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "26 May 1999",
+        "dispatches": 4651,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21652112954472,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.549716228339,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1200,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.882828766,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3431,
+          "operational_transfers": 75,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3431,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.34822390420696,
+          "inherited_used_daily": 45.04405990500696,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "7a639663b82bd3a1"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.5291000000000001,
+      "index": 12,
+      "rooms": [
+        {
+          "bytes": 390496,
+          "elapsed_ms": 31.794900000000002,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20260,
+          "elapsed_ms": 0.4088,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9926000000000001,
+          "room": "construction"
+        },
+        {
+          "bytes": 28453,
+          "elapsed_ms": 0.38489999999999996,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10149,
+          "elapsed_ms": 1.2498,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 263.1515,
+      "state_bytes": 3234602,
+      "state_read_model_ms": 52.6556,
+      "state_serialization_ms": 11.252,
+      "whole_turn_ms": 328.5886
+    },
+    {
+      "date": "27 May 1999",
+      "facts": {
+        "absolute_day": 3433,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "26 May 1999",
+          "last_snapshot": "27 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 68,
+          "military_reviews": 68,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          27
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "27 May 1999",
+        "dispatches": 4652,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21597625769606,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.6482748274525,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1201,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.933522765,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3432,
+          "operational_transfers": 78,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3432,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.345462207225026,
+          "inherited_used_daily": 45.041298208025026,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "c5b3a6fb63a6e243"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.1566,
+      "index": 13,
+      "rooms": [
+        {
+          "bytes": 395108,
+          "elapsed_ms": 32.995999999999995,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20222,
+          "elapsed_ms": 0.4039,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9269999999999998,
+          "room": "construction"
+        },
+        {
+          "bytes": 28531,
+          "elapsed_ms": 0.39809999999999995,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10150,
+          "elapsed_ms": 1.1734,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 251.1604,
+      "state_bytes": 3234214,
+      "state_read_model_ms": 36.649800000000006,
+      "state_serialization_ms": 7.4144,
+      "whole_turn_ms": 296.3818
+    },
+    {
+      "date": "28 May 1999",
+      "facts": {
+        "absolute_day": 3434,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "27 May 1999",
+          "last_snapshot": "28 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 73,
+          "military_reviews": 73,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          28
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "28 May 1999",
+        "dispatches": 4653,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.215434512716506,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.7479521655482,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1202,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 159.984216764,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3433,
+          "operational_transfers": 81,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3433,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.34269711451866,
+          "inherited_used_daily": 45.03853311531866,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "5f73a22429580d46"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.3185,
+      "index": 14,
+      "rooms": [
+        {
+          "bytes": 399698,
+          "elapsed_ms": 31.2493,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20262,
+          "elapsed_ms": 0.3941,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.8579,
+          "room": "construction"
+        },
+        {
+          "bytes": 28586,
+          "elapsed_ms": 0.3591,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10149,
+          "elapsed_ms": 1.1821,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 215.79770000000002,
+      "state_bytes": 3234697,
+      "state_read_model_ms": 49.0955,
+      "state_serialization_ms": 8.338999999999999,
+      "whole_turn_ms": 274.5512
+    },
+    {
+      "date": "29 May 1999",
+      "facts": {
+        "absolute_day": 3435,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "28 May 1999",
+          "last_snapshot": "29 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 78,
+          "military_reviews": 78,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          29
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "29 May 1999",
+        "dispatches": 4654,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21489573271145,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.8491608426452,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1203,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.034910763,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3434,
+          "operational_transfers": 84,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3434,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.339928722228585,
+          "inherited_used_daily": 45.035764723028585,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "1e50e6346cc8d7cb"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.1376,
+      "index": 15,
+      "rooms": [
+        {
+          "bytes": 404481,
+          "elapsed_ms": 32.9405,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20191,
+          "elapsed_ms": 0.393,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9847,
+          "room": "construction"
+        },
+        {
+          "bytes": 28539,
+          "elapsed_ms": 0.2778,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10150,
+          "elapsed_ms": 0.9752,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 301.0566,
+      "state_bytes": 3234678,
+      "state_read_model_ms": 58.5348,
+      "state_serialization_ms": 8.5441,
+      "whole_turn_ms": 369.2738
+    },
+    {
+      "date": "30 May 1999",
+      "facts": {
+        "absolute_day": 3436,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "29 May 1999",
+          "last_snapshot": "30 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 83,
+          "military_reviews": 83,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          30
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "30 May 1999",
+        "dispatches": 4655,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.214359761231854,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 792,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1037.951124053834,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1204,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.085604762,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3435,
+          "operational_transfers": 87,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3435,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.33715706946054,
+          "inherited_used_daily": 45.03299307026054,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "a40baca83fa5789e"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.5634,
+      "index": 16,
+      "rooms": [
+        {
+          "bytes": 409172,
+          "elapsed_ms": 31.6469,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20213,
+          "elapsed_ms": 0.406,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 2.0121,
+          "room": "construction"
+        },
+        {
+          "bytes": 28581,
+          "elapsed_ms": 0.39580000000000004,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10151,
+          "elapsed_ms": 1.2141000000000002,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 217.79100000000003,
+      "state_bytes": 3233162,
+      "state_read_model_ms": 54.8411,
+      "state_serialization_ms": 10.249400000000001,
+      "whole_turn_ms": 284.44550000000004
+    },
+    {
+      "date": "31 May 1999",
+      "facts": {
+        "absolute_day": 3437,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "30 May 1999",
+          "last_snapshot": "31 May 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 88,
+          "military_reviews": 88,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          5,
+          31
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "31 May 1999",
+        "dispatches": 4656,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21382644696636,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.0550384157457,
+          "world_squadrons": 1
+        },
+        "history_epoch": 76,
+        "history_points": 1205,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.136298761,
+          "contractor_assignments": 0,
+          "contractor_roster": 793,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3436,
+          "operational_transfers": 90,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3436,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.33438210879902,
+          "inherited_used_daily": 45.03021810959902,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "37193397269ee3b9"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.0792,
+      "index": 17,
+      "rooms": [
+        {
+          "bytes": 413963,
+          "elapsed_ms": 32.9447,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20213,
+          "elapsed_ms": 0.42769999999999997,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 2.0498,
+          "room": "construction"
+        },
+        {
+          "bytes": 28538,
+          "elapsed_ms": 0.4157,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10149,
+          "elapsed_ms": 1.2807000000000002,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 245.2023,
+      "state_bytes": 3234710,
+      "state_read_model_ms": 35.5363,
+      "state_serialization_ms": 7.8604,
+      "whole_turn_ms": 289.6787
+    },
+    {
+      "date": "1 Jun 1999",
+      "facts": {
+        "absolute_day": 3438,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 May 1999",
+          "last_snapshot": "1 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 93,
+          "military_reviews": 93,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jun 1999",
+        "dispatches": 4661,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21329564345979,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.159797844887,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1176,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.18699276,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3437,
+          "operational_transfers": 93,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3437,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.33160389059644,
+          "inherited_used_daily": 45.02743989139644,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "a625f9c6176c8ffd"
+      },
+      "history_delta_bytes": 94666,
+      "history_delta_serialization_ms": 2.9425,
+      "index": 18,
+      "rooms": [
+        {
+          "bytes": 418535,
+          "elapsed_ms": 31.2981,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20209,
+          "elapsed_ms": 0.4267,
+          "room": "industry"
+        },
+        {
+          "bytes": 33567,
+          "elapsed_ms": 2.0191,
+          "room": "construction"
+        },
+        {
+          "bytes": 28551,
+          "elapsed_ms": 0.39849999999999997,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10141,
+          "elapsed_ms": 1.2361,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 217.6766,
+      "state_bytes": 3234167,
+      "state_read_model_ms": 57.7087,
+      "state_serialization_ms": 12.026800000000001,
+      "whole_turn_ms": 290.3555
+    },
+    {
+      "date": "2 Jun 1999",
+      "facts": {
+        "absolute_day": 3439,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "1 Jun 1999",
+          "last_snapshot": "2 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 98,
+          "military_reviews": 98,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          2
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "2 Jun 1999",
+        "dispatches": 4665,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21274957838112,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.268685920114,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1177,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.237686759,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3438,
+          "operational_transfers": 96,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3438,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.32892321750382,
+          "inherited_used_daily": 45.02475921830382,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "6ef60a03eb435776"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.3126,
+      "index": 19,
+      "rooms": [
+        {
+          "bytes": 423296,
+          "elapsed_ms": 31.9754,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20207,
+          "elapsed_ms": 0.41619999999999996,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.9916999999999998,
+          "room": "construction"
+        },
+        {
+          "bytes": 28521,
+          "elapsed_ms": 0.38499999999999995,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10145,
+          "elapsed_ms": 1.2061000000000002,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 279.8058,
+      "state_bytes": 3234607,
+      "state_read_model_ms": 49.677,
+      "state_serialization_ms": 7.783,
+      "whole_turn_ms": 338.5799
+    },
+    {
+      "date": "3 Jun 1999",
+      "facts": {
+        "absolute_day": 3440,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "2 Jun 1999",
+          "last_snapshot": "3 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 103,
+          "military_reviews": 103,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          3
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "3 Jun 1999",
+        "dispatches": 4667,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.212205834909504,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.3785813838279,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1178,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.288380758,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3439,
+          "operational_transfers": 99,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3439,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.32623889229352,
+          "inherited_used_daily": 45.02207489309352,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "5f53994f14a1d24f"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.5086,
+      "index": 20,
+      "rooms": [
+        {
+          "bytes": 427987,
+          "elapsed_ms": 29.7911,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20208,
+          "elapsed_ms": 0.41800000000000004,
+          "room": "industry"
+        },
+        {
+          "bytes": 33567,
+          "elapsed_ms": 1.9957999999999998,
+          "room": "construction"
+        },
+        {
+          "bytes": 28573,
+          "elapsed_ms": 0.36910000000000004,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10145,
+          "elapsed_ms": 1.1604,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 221.7792,
+      "state_bytes": 3234761,
+      "state_read_model_ms": 52.1978,
+      "state_serialization_ms": 11.2117,
+      "whole_turn_ms": 286.69820000000004
+    },
+    {
+      "date": "4 Jun 1999",
+      "facts": {
+        "absolute_day": 3441,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "3 Jun 1999",
+          "last_snapshot": "4 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 108,
+          "military_reviews": 108,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          4
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "4 Jun 1999",
+        "dispatches": 4668,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21166427294381,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.490289941336,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1179,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.339074757,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 18,
+          "operational_supply_receipt_day": 3440,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3440,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.32355086498361,
+          "inherited_used_daily": 45.01938686578361,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "bbb91a932c9fd36b"
+      },
+      "history_delta_bytes": 3568,
+      "history_delta_serialization_ms": 1.4227,
+      "index": 21,
+      "rooms": [
+        {
+          "bytes": 432651,
+          "elapsed_ms": 30.2366,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20206,
+          "elapsed_ms": 0.40030000000000004,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.9385999999999999,
+          "room": "construction"
+        },
+        {
+          "bytes": 28527,
+          "elapsed_ms": 0.3747,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10145,
+          "elapsed_ms": 1.2455,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 219.34619999999998,
+      "state_bytes": 3234591,
+      "state_read_model_ms": 53.7193,
+      "state_serialization_ms": 9.769,
+      "whole_turn_ms": 284.2579
+    },
+    {
+      "date": "5 Jun 1999",
+      "facts": {
+        "absolute_day": 3442,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "4 Jun 1999",
+          "last_snapshot": "5 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 113,
+          "military_reviews": 113,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          5
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "5 Jun 1999",
+        "dispatches": 4669,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.211124757618876,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.6032133136896,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1180,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.389768756,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 20,
+          "operational_supply_receipt_day": 3441,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3441,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.320859121761316,
+          "inherited_used_daily": 45.016695122561316,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "73f79bf3f73f6a59"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.1252,
+      "index": 22,
+      "rooms": [
+        {
+          "bytes": 437413,
+          "elapsed_ms": 21.5393,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20208,
+          "elapsed_ms": 0.28430000000000005,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.299,
+          "room": "construction"
+        },
+        {
+          "bytes": 28541,
+          "elapsed_ms": 0.2422,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10146,
+          "elapsed_ms": 0.8077,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 176.3907,
+      "state_bytes": 3234722,
+      "state_read_model_ms": 35.7604,
+      "state_serialization_ms": 5.9772,
+      "whole_turn_ms": 219.25449999999998
+    },
+    {
+      "date": "6 Jun 1999",
+      "facts": {
+        "absolute_day": 3443,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "5 Jun 1999",
+          "last_snapshot": "6 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 118,
+          "military_reviews": 118,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          6
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "6 Jun 1999",
+        "dispatches": 4670,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21058715124914,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.7176787920769,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1181,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.440462755,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 22,
+          "operational_supply_receipt_day": 3442,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3442,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.31816370607749,
+          "inherited_used_daily": 45.01399970687749,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "9048258852697fe8"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.5494,
+      "index": 23,
+      "rooms": [
+        {
+          "bytes": 442088,
+          "elapsed_ms": 28.400100000000002,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20209,
+          "elapsed_ms": 0.3122,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.4501,
+          "room": "construction"
+        },
+        {
+          "bytes": 28547,
+          "elapsed_ms": 0.2517,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10143,
+          "elapsed_ms": 0.9555,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 140.1246,
+      "state_bytes": 3234298,
+      "state_read_model_ms": 36.9174,
+      "state_serialization_ms": 9.9559,
+      "whole_turn_ms": 188.548
+    },
+    {
+      "date": "7 Jun 1999",
+      "facts": {
+        "absolute_day": 3444,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "6 Jun 1999",
+          "last_snapshot": "7 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 121,
+          "military_reviews": 121,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          7
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "7 Jun 1999",
+        "dispatches": 4671,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.21005132103765,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.8329778598713,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1182,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.491156754,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 25,
+          "operational_supply_receipt_day": 3443,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3443,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.31546434938053,
+          "inherited_used_daily": 45.01130035018053,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "0dd278a2da0ef5a7"
+      },
+      "history_delta_bytes": 3568,
+      "history_delta_serialization_ms": 1.6402,
+      "index": 24,
+      "rooms": [
+        {
+          "bytes": 444906,
+          "elapsed_ms": 31.6906,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20207,
+          "elapsed_ms": 0.4547,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 2.1022,
+          "room": "construction"
+        },
+        {
+          "bytes": 28538,
+          "elapsed_ms": 0.3998,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10145,
+          "elapsed_ms": 1.2962,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 126.93119999999999,
+      "state_bytes": 3234795,
+      "state_read_model_ms": 52.6142,
+      "state_serialization_ms": 11.2177,
+      "whole_turn_ms": 192.4041
+    },
+    {
+      "date": "8 Jun 1999",
+      "facts": {
+        "absolute_day": 3445,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "7 Jun 1999",
+          "last_snapshot": "8 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 125,
+          "military_reviews": 125,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          8
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "8 Jun 1999",
+        "dispatches": 4672,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.20951714336747,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1038.9486391225144,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1183,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.541850753,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 28,
+          "operational_supply_receipt_day": 3444,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3444,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.312761208470825,
+          "inherited_used_daily": 45.008597209270825,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "9b366317c8f4c374"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.727,
+      "index": 25,
+      "rooms": [
+        {
+          "bytes": 448706,
+          "elapsed_ms": 29.252299999999998,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20259,
+          "elapsed_ms": 0.44279999999999997,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 2.0454000000000003,
+          "room": "construction"
+        },
+        {
+          "bytes": 28557,
+          "elapsed_ms": 0.3901,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10144,
+          "elapsed_ms": 1.2666000000000002,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 144.7495,
+      "state_bytes": 3234514,
+      "state_read_model_ms": 56.634499999999996,
+      "state_serialization_ms": 12.4294,
+      "whole_turn_ms": 215.5411
+    },
+    {
+      "date": "9 Jun 1999",
+      "facts": {
+        "absolute_day": 3446,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "8 Jun 1999",
+          "last_snapshot": "9 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 129,
+          "military_reviews": 129,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          9
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "9 Jun 1999",
+        "dispatches": 4673,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.208984497924796,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.0662049604748,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1184,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.592544752,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 31,
+          "operational_supply_receipt_day": 3445,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3445,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.31005438880098,
+          "inherited_used_daily": 45.00589038960098,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "a22f65dfb2348a45"
+      },
+      "history_delta_bytes": 3593,
+      "history_delta_serialization_ms": 1.1720000000000002,
+      "index": 26,
+      "rooms": [
+        {
+          "bytes": 452393,
+          "elapsed_ms": 21.388299999999997,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20255,
+          "elapsed_ms": 0.2782,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.3095999999999999,
+          "room": "construction"
+        },
+        {
+          "bytes": 28533,
+          "elapsed_ms": 0.24630000000000002,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10146,
+          "elapsed_ms": 0.8118,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 186.8547,
+      "state_bytes": 3233611,
+      "state_read_model_ms": 37.3185,
+      "state_serialization_ms": 7.5687999999999995,
+      "whole_turn_ms": 232.9147
+    },
+    {
+      "date": "10 Jun 1999",
+      "facts": {
+        "absolute_day": 3447,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "9 Jun 1999",
+          "last_snapshot": "10 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 133,
+          "military_reviews": 133,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          10
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "10 Jun 1999",
+        "dispatches": 4674,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.208453267530246,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.1845633740518,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1185,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.643238751,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 34,
+          "operational_supply_receipt_day": 3446,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3446,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.307343885700554,
+          "inherited_used_daily": 45.003179886500554,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "23f2a2dd51ce3b1c"
+      },
+      "history_delta_bytes": 3569,
+      "history_delta_serialization_ms": 1.0756,
+      "index": 27,
+      "rooms": [
+        {
+          "bytes": 456200,
+          "elapsed_ms": 21.3755,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20210,
+          "elapsed_ms": 0.3809,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.3381,
+          "room": "construction"
+        },
+        {
+          "bytes": 28572,
+          "elapsed_ms": 0.2498,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10148,
+          "elapsed_ms": 0.8496,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 134.5114,
+      "state_bytes": 3232888,
+      "state_read_model_ms": 38.5999,
+      "state_serialization_ms": 7.1611,
+      "whole_turn_ms": 181.3486
+    },
+    {
+      "date": "11 Jun 1999",
+      "facts": {
+        "absolute_day": 3448,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "10 Jun 1999",
+          "last_snapshot": "11 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 137,
+          "military_reviews": 137,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          11
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "11 Jun 1999",
+        "dispatches": 4675,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.20792333797948,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.3033962133843,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1186,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.69393275,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 37,
+          "operational_supply_receipt_day": 3447,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3447,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.304629689359295,
+          "inherited_used_daily": 45.000465690159295,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "2aea8e78c093a526"
+      },
+      "history_delta_bytes": 3595,
+      "history_delta_serialization_ms": 1.4962,
+      "index": 28,
+      "rooms": [
+        {
+          "bytes": 459896,
+          "elapsed_ms": 29.1622,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20211,
+          "elapsed_ms": 0.4292,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 2.0298,
+          "room": "construction"
+        },
+        {
+          "bytes": 28543,
+          "elapsed_ms": 0.3917,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10149,
+          "elapsed_ms": 1.1688,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 165.85250000000002,
+      "state_bytes": 3234710,
+      "state_read_model_ms": 40.0936,
+      "state_serialization_ms": 8.0812,
+      "whole_turn_ms": 215.5244
+    },
+    {
+      "date": "12 Jun 1999",
+      "facts": {
+        "absolute_day": 3449,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "11 Jun 1999",
+          "last_snapshot": "12 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 141,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 141,
+          "military_reviews": 141,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          12
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "12 Jun 1999",
+        "dispatches": 4676,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.2073945978924,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.4225105756477,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1187,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.744626749,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 40,
+          "operational_supply_receipt_day": 3448,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 6,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3448,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.30191180149996,
+          "inherited_used_daily": 44.99774780229996,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "16f335379f09fd84"
+      },
+      "history_delta_bytes": 3594,
+      "history_delta_serialization_ms": 1.1332,
+      "index": 29,
+      "rooms": [
+        {
+          "bytes": 463722,
+          "elapsed_ms": 18.454,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20266,
+          "elapsed_ms": 0.3275,
+          "room": "industry"
+        },
+        {
+          "bytes": 33568,
+          "elapsed_ms": 1.3822,
+          "room": "construction"
+        },
+        {
+          "bytes": 28547,
+          "elapsed_ms": 0.24669999999999997,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10146,
+          "elapsed_ms": 0.8066,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 128.37879999999998,
+      "state_bytes": 3234817,
+      "state_read_model_ms": 37.326100000000004,
+      "state_serialization_ms": 8.5483,
+      "whole_turn_ms": 175.3872
+    },
+    {
+      "date": "13 Jun 1999",
+      "facts": {
+        "absolute_day": 3450,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "12 Jun 1999",
+          "last_snapshot": "13 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 282,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 141,
+          "military_reviews": 145,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          13
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "13 Jun 1999",
+        "dispatches": 4787,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.20686693857093,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.5447077762747,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1188,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.795320748,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 43,
+          "operational_supply_receipt_day": 3449,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 2,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3449,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.29919021792768,
+          "inherited_used_daily": 44.99502621872768,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "5e2885a23e03ba8e"
+      },
+      "history_delta_bytes": 3568,
+      "history_delta_serialization_ms": 1.3667,
+      "index": 30,
+      "rooms": [
+        {
+          "bytes": 463470,
+          "elapsed_ms": 18.3908,
+          "room": "equipment"
+        },
+        {
+          "bytes": 20214,
+          "elapsed_ms": 0.438,
+          "room": "industry"
+        },
+        {
+          "bytes": 33569,
+          "elapsed_ms": 1.9514,
+          "room": "construction"
+        },
+        {
+          "bytes": 28516,
+          "elapsed_ms": 0.2524,
+          "room": "ministry_budget"
+        },
+        {
+          "bytes": 10177,
+          "elapsed_ms": 0.8104,
+          "room": "campaign"
+        }
+      ],
+      "simulation_history_ms": 237.9537,
+      "state_bytes": 3231156,
+      "state_read_model_ms": 57.4869,
+      "state_serialization_ms": 10.8139,
+      "whole_turn_ms": 307.622
+    }
+  ],
+  "source_unchanged": true,
+  "starting": {
+    "absolute_day": 3419,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "12 May 1999",
+      "last_snapshot": "13 May 1999",
+      "lifespan_milestones": 3
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 0,
+      "economic_reviews": 0,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 0,
+      "military_reviews": 0,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 0,
+      "supplier_reviewed_plans": 0
+    },
+    "calendar": [
+      1999,
+      5,
+      13
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "13 May 1999",
+    "dispatches": 4623,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 1,
+      "executive_bindings": 1,
+      "government_performance_records": 143,
+      "government_records": 143,
+      "operational_orders": 3,
+      "operational_reports": 4,
+      "operational_reserves": 140,
+      "party_leadership_assignments": 582,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 38.22103346205204,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 792,
+      "world_assigned_aircraft": 1,
+      "world_military_strength": 1036.4845347487847,
+      "world_squadrons": 1
+    },
+    "history_epoch": 76,
+    "history_points": 1187,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 159.223806779,
+      "contractor_assignments": 0,
+      "contractor_roster": 793,
+      "operational_sectors": 0,
+      "operational_supply_buffers": 0,
+      "operational_supply_cargo": 0,
+      "operational_supply_receipt_day": null,
+      "operational_transfers": 36,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 12,
+      "supplier_development": 0,
+      "supplier_equipment_stock": 6,
+      "supplier_equipment_wip": 0,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 3410,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 1,
+      "suppliers": 1
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 3418,
+      "capacity_daily": 5.084496129814623,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 45.38382781833883,
+      "inherited_used_daily": 45.07966381913883,
+      "required_daily": 0.9013880000000001
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 1,
+    "world_fnv64": "d955ac9502ed04aa"
+  },
+  "summaries": {
+    "history_delta_serialization_ms": {
+      "max_ms": 2.9425,
+      "median_ms": 1.4827,
+      "p95_ms": 1.7297,
+      "samples": 31
+    },
+    "simulation_history_ms": {
+      "max_ms": 354.48859999999996,
+      "median_ms": 225.8644,
+      "p95_ms": 301.0566,
+      "samples": 31
+    },
+    "state_read_model_ms": {
+      "max_ms": 58.5348,
+      "median_ms": 52.6142,
+      "p95_ms": 57.7087,
+      "samples": 31
+    },
+    "state_serialization_ms": {
+      "max_ms": 12.4294,
+      "median_ms": 9.769,
+      "p95_ms": 12.026800000000001,
+      "samples": 31
+    },
+    "whole_turn_ms": {
+      "max_ms": 421.25,
+      "median_ms": 290.3555,
+      "p95_ms": 369.2738,
+      "samples": 31
+    }
+  }
+}

@@ -129,6 +129,11 @@ async function reviewCampaignCommand() {
   }catch(error){banner(error.message);}finally{syncCommandControls();finishCommandRecovery();}
 }
 let saveSlotsRead=0;
+function campaignSaveLabel(entry) {
+  const date=entry.metadata_from_backup ? `backup dated ${entry.date||"unknown date"}` : entry.date||"legacy date";
+  const issue=entry.current_exists===false ? "main save missing" : entry.readable===false ? "main save unreadable" : "";
+  return `${entry.slot} · ${entry.player||"campaign"} · ${date}${issue ? ` · ${issue} · ${entry.backup ? "backup available" : "no backup"}` : ""}`;
+}
 async function refreshSaveSlots() {
   const select=document.getElementById("saveSlots");if(!select)return;
   const read=++saveSlotsRead;
@@ -138,7 +143,7 @@ async function refreshSaveSlots() {
     const previous=select.value||SESSION.slot||"default";
     SESSION.saves=result.slots;select.replaceChildren();
     for(const entry of result.slots){const option=document.createElement("option");option.value=entry.slot;
-      option.textContent=`${entry.slot} · ${entry.player||"campaign"} · ${entry.date||"legacy date"}${entry.readable?"":" · damaged; try backup"}`;
+      option.textContent=campaignSaveLabel(entry);
       option.dataset.backup=String(entry.backup);select.append(option);}
     if(!result.slots.length){const option=document.createElement("option");option.value="default";option.textContent="No saved campaign yet";select.append(option);}
     if([...select.options].some(o=>o.value===previous))select.value=previous;

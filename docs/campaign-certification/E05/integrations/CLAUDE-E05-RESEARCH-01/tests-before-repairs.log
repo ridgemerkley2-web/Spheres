@@ -1,0 +1,113 @@
+......FFFFFFFF...............................F......................
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_sha256', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_sha256', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_sha256', value='not-a-sha')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_bytes', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_bytes', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_bytes', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_bytes', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_changed_response_requires_complete_recheck_identity (test_company_pilot.CompanyPilotTests.test_changed_response_requires_complete_recheck_identity) (field='recheck_bytes', value='1200')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 395, in test_changed_response_requires_complete_recheck_identity
+    self.assertViolation('provenance', 'recheck identity')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [provenance] containing 'recheck identity'; got []
+
+======================================================================
+FAIL: test_old_name_is_not_valid_on_exact_rename_day (test_company_pilot.CompanyPilotTests.test_old_name_is_not_valid_on_exact_rename_day)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 254, in test_old_name_is_not_valid_on_exact_rename_day
+    self.assertViolation('identity', 'was not the name of')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\planning\test_company_pilot.py", line 158, in assertViolation
+    self.assertTrue(hits, f'expected [{category}] containing {fragment!r}; got {items}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected [identity] containing 'was not the name of'; got []
+
+----------------------------------------------------------------------
+Ran 61 tests in 1.355s
+
+FAILED (failures=9)

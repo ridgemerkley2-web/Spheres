@@ -1,0 +1,50 @@
+{"cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-jp29", "revision": "e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7", "command": ["python", "-B", "-X", "utf8", "tools/avatars/campaign_census.py", "--check"], "started_utc": "2026-09-28T17:17:39.168130+00:00", "finished_utc": "2026-09-28T17:17:39.365636+00:00", "exit_code": 0, "scope": "Rerun after sparse checkout hydrated required data/source inputs; previous missing-input attempt retained"}
+{
+  "check": true,
+  "status": "partial_baseline_recorded_census_open",
+  "counts": {
+    "nation_identities": 160,
+    "starting_nations": 137,
+    "successor_nations": 23,
+    "represented_party_rows": 624,
+    "countries_with_party_rows": 148,
+    "countries_without_party_rows": 12,
+    "party_row_kind": {
+      "coalition": 3,
+      "party": 50,
+      "unknown": 571
+    },
+    "party_history_status": {
+      "gap": 571,
+      "partial": 53
+    },
+    "registered_components_or_name_phases": 20,
+    "historical_people": 590,
+    "historical_terms": 393,
+    "component_term_records": 65,
+    "historical_term_kind": {
+      "acting": 44,
+      "co_leader": 38,
+      "leader": 311
+    },
+    "executive_seed_observations": 132,
+    "institution_policy_records": 12,
+    "historical_executive_gameplay_grants": 93,
+    "future_seat_policies": 2,
+    "existing_lifecycle_records": 23,
+    "future_templates": 2556,
+    "historical_manifest_assets": 54,
+    "fictional_manifest_assets": 4,
+    "historical_art_snapshot_pending_jobs": 704,
+    "people_with_unknown_appearance_eligibility": 126,
+    "exhaustive_country_censuses": 0,
+    "unrepresented_organizations": null,
+    "work_orders_by_phase": {
+      "fictional_editorial_review": 316,
+      "historical_cartoon_jobs": 183,
+      "institution_and_office_roles": 160,
+      "known_historical_chains": 150,
+      "organization_census": 160
+    }
+  }
+}

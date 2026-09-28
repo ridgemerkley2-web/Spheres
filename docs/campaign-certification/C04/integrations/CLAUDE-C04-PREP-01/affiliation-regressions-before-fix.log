@@ -1,0 +1,29 @@
+FF
+======================================================================
+FAIL: test_presidential_pilot_affiliation_cannot_skip_ps_constraints (test_successor_proposals.ProposalPacketTests.test_presidential_pilot_affiliation_cannot_skip_ps_constraints)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 485, in test_presidential_pilot_affiliation_cannot_skip_ps_constraints
+    self.assertFlags('E_PARTY', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_PARTY, got []
+
+======================================================================
+FAIL: test_ps_role_affiliation_cannot_be_changed_to_skip_membership (test_successor_proposals.ProposalPacketTests.test_ps_role_affiliation_cannot_be_changed_to_skip_membership)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 477, in test_ps_role_affiliation_cannot_be_changed_to_skip_membership
+    self.assertFlags('E_ROLE_CONTRACT', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_CONTRACT, got []
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.405s
+
+FAILED (failures=2)

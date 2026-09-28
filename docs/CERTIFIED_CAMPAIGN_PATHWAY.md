@@ -1,13 +1,13 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S18 and S21 complete; S19 in progress with Claude; S20 and S22–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S22 complete; G4 earned; S23–S30 planned; G5 and CP1 unearned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
 integration branch: `codex/campaign-certification`.
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
-C01 and worldwide character work remain incomplete; CP1 is not earned.
+[G4 is earned](campaign-certification/G4/README.md). C01 and worldwide character work remain incomplete; CP1 is not earned.
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 and S21 are complete; S19 is in progress with Claude; S20 and S22–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S22 are complete; G4 is earned; S23–S30 remain planned. G5 and CP1 are unearned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -683,7 +683,7 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 - [x] Bound reassessment and budgets so countries do not redesign or rebase every day.
 - [x] Test major, small-country, domestic and imported acquisition paths; document any difficulty modifiers rather than hiding economic privileges.
 
-**Evidence:** [S17 qualification and policy boundaries](campaign-certification/S17/README.md). Both native platforms, exact browser checkpoints and desktop/narrow review passed. G4 and CP1 remain open.
+**Evidence:** [S17 qualification and policy boundaries](campaign-certification/S17/README.md). Both native platforms, exact browser checkpoints and desktop/narrow review passed. G4 is now earned; CP1 remains open.
 
 <a id="s18"></a>
 
@@ -697,34 +697,36 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 - [x] Each released configurable aircraft has a meaningful 100,000+ triangle inspection mesh, cheaper LODs, working component selection and validated export.
 - [x] Cockpit, engine and exterior quality are reviewed visually; unsupported future missions do not appear as functional campaign actions.
 
-**Evidence:** [S18 native pages, aircraft art and exact browser qualification](campaign-certification/S18/README.md). S19 is assigned to Claude through the AI workboard. G4 and CP1 remain open.
+**Evidence:** [S18 native pages, aircraft art and exact browser qualification](campaign-certification/S18/README.md). S19/S20 have now closed and G4 is earned; CP1 remains open.
 
 <a id="s19"></a>
 
 #### S19 — Build outcome-aware tutorial and advisor guidance
 
-**Status:** In progress with Claude · **Requires:** S06, S07, S10, S18
+**Status:** Complete · **Requires:** S06, S07, S10, S18
 
-Claim recorded at `97d126d` on `claude/s19-guidance-01`; the [handoff](planning/ai-handoffs/CLAUDE-S19-01.md)
-is not yet ready for review. A claim does not satisfy any completion criterion.
+Claude's submission was integrated and independently qualified by Codex.
+[Final ordinary campaign outcomes and persistence evidence](campaign-certification/S19/integration/CLOSEOUT.md).
 
 **Completion marker:** An optional first-hour route that recognizes successful campaign outcomes, plus concise current advice.
 
-- [ ] Detect actual budget enactment, useful project progress/output, purchase/service and mission results instead of only lessons read.
-- [ ] Advice explains why, opens the relevant real control and never enacts an order on its own.
-- [ ] Skipping, returning, stale readings, reloads and later campaigns preserve useful progress without false completions.
+- [x] Detect actual budget enactment, useful project progress/output, purchase/service and mission results instead of only lessons read.
+- [x] Advice explains why, opens the relevant real control and never enacts an order on its own.
+- [x] Skipping, returning, stale readings, reloads and later campaigns preserve useful progress without false completions.
 
 <a id="s20"></a>
 
 #### S20 — Unify map, province and accessible room navigation
 
-**Status:** Planned · **Requires:** S07, S10, S18
+**Status:** Complete · **Requires:** S07, S10, S18
 
 **Completion marker:** A consistent desktop/narrow-screen journey from map to province, facility, company and military decisions.
 
-- [ ] City/province inspection shows current ownership, construction, operating output and problems from actual records.
-- [ ] Primary controls work by keyboard and touch; focus, return navigation, loading and error states remain usable at 390px.
-- [ ] Retain honest geography/representative-city labels and consistent art framing, typography and information hierarchy.
+- [x] City/province inspection shows current ownership, construction, operating output and problems from actual records.
+- [x] Primary controls work by keyboard and touch; focus, return navigation, loading and error states remain usable at 390px.
+- [x] Retain honest geography/representative-city labels and consistent art framing, typography and information hierarchy.
+
+**Evidence:** [S20 exact native keyboard/touch, recovery and save-integrity closeout](campaign-certification/S20/README.md).
 
 <a id="s21"></a>
 
@@ -739,7 +741,7 @@ is not yet ready for review. A claim does not satisfy any completion criterion.
 - [x] Success, defeat, collapse and successor transition each have a valid continuation or clear terminal result; the full 2035 endpoint is supported.
 
 
-**Evidence:** [S21 qualification and continuation review](campaign-certification/S21/README.md). G4 remains open until S19 and S20 are complete.
+**Evidence:** [S21 qualification and continuation review](campaign-certification/S21/README.md). S19 and S20 are complete; [G4 is earned](campaign-certification/G4/README.md). CP1 remains open.
 
 ### 5 · Prove the campaign
 
@@ -747,19 +749,42 @@ is not yet ready for review. A claim does not satisfy any completion criterion.
 
 #### S22 — Repair art measurement and qualify performance
 
-**Status:** Planned · **Requires:** S18, S20
+**Status:** Complete · **Requires:** S18, S20
+
+Codex completed S22 on candidate `5d11dd6dae436eeca105dbaf0d02732cd768b35b`.
+The [closure evidence](campaign-certification/S22/manifest.json) records two
+complete passing rounds under the unchanged [measurement protocol](campaign-certification/S22/measurement-protocol.json):
+**18/18 early/mid/end-2035 native, map and renderer cells**, with independent
+frozen-helper verification. End-2035 confirmation simulation/history p95 was
+**237.4 ms** and whole-turn p95 **323.1374 ms**. The agreed reference machine,
+low-detail profile, memory, cold-load, control, cache and lifecycle checks retain
+their measured scope.
+
+Final validation passed **1,963 release tests, 0 failed, 112 ignored**, nine
+focused tests and eight actual 31-day world/headline comparisons. The current
+offline art audit passed **35 Node entries, 245 configurations, 33 assets and
+13 canonical GLB exports**. The [failed first pair](campaign-certification/S22/qualification-pair-01/README.md)
+remains failed at 17/18; its late confirmation p95 values of 323.6552 / 406.1905 ms,
+all prior failed preflights and validation attempts, diagnostic art overages and
+source scopes remain retained. Passing preflights did not substitute for the
+[new complete qualification pair](campaign-certification/S22/qualification-pair-02/README.md).
+S23 is next, owned by Claude and still planned pending C06. S24 awaits S23;
+G5 and CP1 remain unearned.
 
 **Completion marker:** A current art/memory audit and measured performance on the agreed reference machine and low-detail profile.
 
-- [ ] Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.
-- [ ] Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.
-- [ ] Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces.
+- [x] Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.
+- [x] Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.
+- [x] Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces.
 
 <a id="s23"></a>
 
 #### S23 — Audit certified-country history and cartoon coverage
 
-**Status:** Planned · **Requires:** C06, S10, S20
+**Status:** Planned · **Owner:** Claude · **Requires:** C06, S10, S20
+
+Next canonical session. C06 remains incomplete; the existing bounded
+CLAUDE-S23-MATRIX-01 preparation claim does not close the content gate.
 
 **Completion marker:** Every certified-country party/component and served historical/future appearance is covered by the agreed content standard.
 
@@ -772,6 +797,9 @@ is not yet ready for review. A claim does not satisfy any completion criterion.
 #### S24 — Run worldwide startup and adversarial recovery checks
 
 **Status:** Planned · **Requires:** S17, S19, S20, S21, S22, S23
+
+S22 is complete. S24 still awaits S23 and its required content qualification;
+independent successor-fixture preparation retains its existing bounded scope.
 
 **Completion marker:** All starting/successor identities and core recovery paths have an explicit pass/fail result.
 
@@ -1022,7 +1050,12 @@ separate from the still-required C06/S23 historical-content gates.
 - [ ] Repeat affected long-run, save, human-usability and performance gates; CP1 evidence alone cannot certify new mechanics.
 - [ ] Publish updated scope and content coverage without claiming every nation received a full human 45-year playthrough.
 
-## Authorized execution boundary
+## Execution history and current checkpoint
+
+The dated stop boundaries below are historical. The latest open-task closeout instruction
+supersedes those pauses: S01–S22 are complete, G4 is earned, and S23 is next.
+S23 remains planned with C06 open; S24 awaits S23. G5 and CP1 remain unearned.
+The canonical JSON owns the current state; older records retain their original scope.
 
 S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. The later instruction “Continue through S15” authorized S12–S15. They are complete on the recorded runtime and authored France flight journey. That instruction stopped execution after S15, with S16 awaiting a new instruction and G3 and CP1 still unearned at that point. No later campaign, content or release certificate is awarded.
 
@@ -1033,3 +1066,11 @@ On 21 September 2026, “next'” authorized S17. S17 is complete on its [record
 The following “next” authorized S18. It is now complete on its [recorded runtime and evidence](campaign-certification/S18/README.md): campaign flight pages use native state and the three CP1 aircraft families have inspected/exportable assets. Execution stops after S18. The subsequent request to split the roadmap assigns S19 and bounded historical research to Claude through the [AI workboard](AI_WORKSTREAMS.md); neither packet is claimed automatically. G4 and CP1 remain open.
 
 The subsequent “Next” authorized independently ready Codex-owned S21 while Claude continued its S19 claim. S21 is complete on its exact recorded runtime and evidence. S20 still waits for S19 integration; G4 and CP1 are not earned. Execution stops after this S21 work.
+
+On 28 September 2026 UTC, the instruction to fix and complete open tasks closed S19 and S20 with retained campaign evidence and earned G4. Codex then claimed S22 performance qualification under its frozen measurement protocol. C01, G5 and CP1 remained open at that checkpoint.
+
+Later on 28 September 2026 UTC, Codex completed [S22](campaign-certification/S22/manifest.json)
+on `5d11dd6dae436eeca105dbaf0d02732cd768b35b` after both complete qualification
+rounds passed all 18 cells. The prior failed pair01 and all earlier failures
+remain retained. S23 is the next canonical session, owned by Claude and still
+planned pending C06. S24 awaits S23; G5 and CP1 remain unearned.

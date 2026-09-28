@@ -1,0 +1,362 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-SOURCE-26",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewer_agent": "/root/review_source05",
+  "reviewed_commit": "569f8d2374170365999f2b06445d6cbe656ffc29",
+  "base_commit": "75626a137d5efd1ca1cca0d6f76c4d8502909bee",
+  "reviewed_utc": "2026-09-28T14:01:01.035126+00:00",
+  "decision": "Accept the bounded SOURCE-26 provenance/response-identity and transcription repair: all41 listed response bodies reproduce exactly by ordinary access, six correction-bearing passages agree with the scans, and withdrawal of the blocked Izvestia source is retained. This accepts no complete Soviet tenure chronology, broader C01-26/C12 historical determination, C01 coverage, or campaign gate.",
+  "repair_commit": null,
+  "response_count": 41,
+  "source_ids": [
+    "su_garf_exhibit_law_2392i",
+    "su_garf_exhibit_res_1362i_19900315",
+    "su_ips_cm_res_1177_19901124",
+    "su_ips_cm_res_27_19910110",
+    "su_ips_cm_res_525_19900526",
+    "su_km_rasp_943r_19910819",
+    "su_kou_post_53_19911123",
+    "su_kou_rasp_212r_19911219",
+    "su_kou_rasp_23r_19910904",
+    "su_kou_rasp_25r_19910906",
+    "su_kou_rasp_62r_19911005",
+    "su_mek_rasp_2r_19911010",
+    "su_mek_rasp_6r_19911112",
+    "su_mgek_post_7_19911128",
+    "su_mgek_rasp_23r_19911217",
+    "su_mgek_rasp_7r_19911115",
+    "su_rsfsr_res_2017i_19911212",
+    "su_rsfsr_ukaz_299_19911219",
+    "su_rada_law_1861i_19901226",
+    "su_rada_res_1870i_19901227",
+    "su_snd4_steno_vol3",
+    "su_snd5_bulletin5_19910904",
+    "su_sprsfsr_1990_8_art59_19891224",
+    "su_sprsfsr_1990_8_art60_19900112",
+    "su_sten_vs_bulletin1_19910826",
+    "su_sten_vs_bulletin2_19910826",
+    "su_ved_1991_35",
+    "su_ved_1991_36",
+    "su_ved_1991_37",
+    "su_ved_1991_41"
+  ],
+  "reviewed_extracts": [
+    "reviewed-extracts/ussr-garf-law-2392i-19910905-facts.json",
+    "reviewed-extracts/ussr-garf-res-1362i-19900315-facts.json",
+    "reviewed-extracts/ussr-ips-cm-res-1177-19901124-facts.json",
+    "reviewed-extracts/ussr-ips-cm-res-27-19910110-facts.json",
+    "reviewed-extracts/ussr-ips-cm-res-525-19900526-facts.json",
+    "reviewed-extracts/ussr-ips-km-rasp-943r-19910819-facts.json",
+    "reviewed-extracts/ussr-ips-kou-post-53-19911123-facts.json",
+    "reviewed-extracts/ussr-ips-kou-rasp-212r-19911219-facts.json",
+    "reviewed-extracts/ussr-ips-kou-rasp-23r-19910904-facts.json",
+    "reviewed-extracts/ussr-ips-kou-rasp-25r-19910906-facts.json",
+    "reviewed-extracts/ussr-ips-kou-rasp-62r-19911005-facts.json",
+    "reviewed-extracts/ussr-ips-mek-rasp-2r-19911010-facts.json",
+    "reviewed-extracts/ussr-ips-mek-rasp-6r-19911112-facts.json",
+    "reviewed-extracts/ussr-ips-mgek-post-7-19911128-facts.json",
+    "reviewed-extracts/ussr-ips-mgek-rasp-23r-19911217-facts.json",
+    "reviewed-extracts/ussr-ips-mgek-rasp-7r-19911115-facts.json",
+    "reviewed-extracts/ussr-ips-rsfsr-res-2017i-19911212-facts.json",
+    "reviewed-extracts/ussr-ips-rsfsr-ukaz-299-19911219-facts.json",
+    "reviewed-extracts/ussr-rada-law-1861i-19901226-facts.json",
+    "reviewed-extracts/ussr-rada-res-1870i-19901227-facts.json",
+    "reviewed-extracts/ussr-snd4-stenogram-vol3-19901226-facts.json",
+    "reviewed-extracts/ussr-snd5-bulletin5-19910904-facts.json",
+    "reviewed-extracts/ussr-sprsfsr-art59-19891224-facts.json",
+    "reviewed-extracts/ussr-sprsfsr-art60-19900112-facts.json",
+    "reviewed-extracts/ussr-sten-vs-bulletin1-19910826-facts.json",
+    "reviewed-extracts/ussr-sten-vs-bulletin2-19910826-facts.json",
+    "reviewed-extracts/ussr-ved-1991-35-19910828-facts.json",
+    "reviewed-extracts/ussr-ved-1991-36-19910904-facts.json",
+    "reviewed-extracts/ussr-ved-1991-37-19910911-facts.json",
+    "reviewed-extracts/ussr-ved-1991-41-19911009-facts.json"
+  ],
+  "scope_limits": [
+    "Non-official SSSR.SU/RussianHistoricalSociety scan hosts remain explicitly non-official; matching historical page-image bytes are not government authentication or portrait permission.",
+    "This independent review checks all41 response identities, the six corrected passages and selected document/provenance pages, not a new reading of every retained95 historical claim.",
+    "The blocked Izvestia body was not retrieved; its source, three claims and14January1991 holder remain withdrawn. SU-GOV-05 evidence gap remains.",
+    "Public low-resolution RHS images can support the readable signature/date passages but do not supply missing issue dates/imprints; no protected higher-resolution access attempted.",
+    "Broader C12 admissibility/tenure decisions, unrelated parties and parent C01/C06 remain pending."
+  ],
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 1436,
+      "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+    },
+    {
+      "path": "extras.py",
+      "bytes": 1381,
+      "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+    },
+    {
+      "path": "inspect_sources.py",
+      "bytes": 1366,
+      "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+    },
+    {
+      "path": "logs/census-check.log",
+      "bytes": 1914,
+      "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+    },
+    {
+      "path": "logs/census-complete-sparse-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "logs/git-diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/research-check-qualified.log",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "logs/research-generate-qualified.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "logs/research-generate.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "logs/tests-atlas.log",
+      "bytes": 1141,
+      "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+    },
+    {
+      "path": "logs/tests-brazil-qualified.log",
+      "bytes": 137,
+      "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+    },
+    {
+      "path": "logs/tests-brazil.log",
+      "bytes": 137,
+      "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+    },
+    {
+      "path": "logs/tests-campaign-complete-sparse.log",
+      "bytes": 120,
+      "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+    },
+    {
+      "path": "logs/tests-campaign.log",
+      "bytes": 2070,
+      "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+    },
+    {
+      "path": "logs/tests-research.log",
+      "bytes": 183,
+      "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+    },
+    {
+      "path": "logs/tests-russia.log",
+      "bytes": 133,
+      "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+    },
+    {
+      "path": "logs/tests-ussr.log",
+      "bytes": 132,
+      "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2998,
+      "sha256": "7e2a9cbd8ef25fb7209c87086adb1ba6cced205f35cb322c4eca370ae3915f30"
+    },
+    {
+      "path": "retrievals.json",
+      "bytes": 94139,
+      "sha256": "5f2c1e6609875b43eab0f40f5f4bd54aceb9fa3257fd580f30428df956972766"
+    },
+    {
+      "path": "retrieve.py",
+      "bytes": 3434,
+      "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+    },
+    {
+      "path": "reviewed-extracts/ussr-garf-law-2392i-19910905-facts.json",
+      "bytes": 8402,
+      "sha256": "3c62821246b15e2557590b40dfa0846e87a9e80067304791493ca0358cea8314"
+    },
+    {
+      "path": "reviewed-extracts/ussr-garf-res-1362i-19900315-facts.json",
+      "bytes": 8454,
+      "sha256": "c78cd16d6b4e63df980cc004b034675263dfa748888dbd08a64334e85af237e3"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-cm-res-1177-19901124-facts.json",
+      "bytes": 5556,
+      "sha256": "76afb0a18568a66e677024200725d7004a833c97800971507792da3f975a93bc"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-cm-res-27-19910110-facts.json",
+      "bytes": 5530,
+      "sha256": "bfcfda0dd349a75ad683dba6ff97e71b80cce755e1cf9435dbcb614b62c5fb3a"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-cm-res-525-19900526-facts.json",
+      "bytes": 6659,
+      "sha256": "58c5b7369f631ae073326f5c119998c7b46d34f0fb2d8b8237a856b1ee578ca2"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-km-rasp-943r-19910819-facts.json",
+      "bytes": 6251,
+      "sha256": "6bb922f1af343163b7f037b645a5f07125e6ae73e8bd2f42acaa6ff919002af0"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-kou-post-53-19911123-facts.json",
+      "bytes": 6777,
+      "sha256": "5556de622f34c5c5c77be3953d997d6b876270c5bff146fcfda1a4037d82b5a2"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-kou-rasp-212r-19911219-facts.json",
+      "bytes": 5330,
+      "sha256": "89f54acc7eb2f038171c2b785eb1a82dc52eb38ae491835877576830d18b48aa"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-kou-rasp-23r-19910904-facts.json",
+      "bytes": 5495,
+      "sha256": "df1417547b989aaf374f19751035471331cb713150f95aa96f0fdc99a58c9e22"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-kou-rasp-25r-19910906-facts.json",
+      "bytes": 5510,
+      "sha256": "a081b31cd1c9662667f2ad4290abdd1400d0e9a59f0067ff92b9e22f63c5ec4a"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-kou-rasp-62r-19911005-facts.json",
+      "bytes": 5472,
+      "sha256": "32c8ace93fa76a95ed567ffe1b9f259af05871c4811b594b68d3dc5388af3b0d"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-mek-rasp-2r-19911010-facts.json",
+      "bytes": 5178,
+      "sha256": "73730b4904c43516d8ef14250f7d6dc43f1d96f2581889d60786e28aa20fa865"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-mek-rasp-6r-19911112-facts.json",
+      "bytes": 5204,
+      "sha256": "0284def71a5429069818b29e3d513889f78a49f71f9102423af35c7593e2b6fd"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-mgek-post-7-19911128-facts.json",
+      "bytes": 5338,
+      "sha256": "8d72a73aea6ecf57bebcc894f69ef65bca7d65fd966a9043060d423d42e5bcdd"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-mgek-rasp-23r-19911217-facts.json",
+      "bytes": 5108,
+      "sha256": "28ec2b32c4b2d000dfb26fa1bfe9d22f786064c4ffea3db67d5e00db0f3d7977"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-mgek-rasp-7r-19911115-facts.json",
+      "bytes": 5215,
+      "sha256": "d9f2da6ca8c8d979ee4eff8059e018de6a4f7ae3244b50bb4ed12512083a79e8"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-rsfsr-res-2017i-19911212-facts.json",
+      "bytes": 5448,
+      "sha256": "ac1c8a70fcef7a5fa95f3ab21975209f46a99a5d07dac8a78f166f0b49a998ff"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ips-rsfsr-ukaz-299-19911219-facts.json",
+      "bytes": 5368,
+      "sha256": "29cafe71fda9b4feb7f74fae2b7e312f0fb860df21e59817a463be74d5eb35c1"
+    },
+    {
+      "path": "reviewed-extracts/ussr-rada-law-1861i-19901226-facts.json",
+      "bytes": 7604,
+      "sha256": "f334cdd7aef921a458b43f128ca83e2b25ff669e7973013bc57f62493bfdc613"
+    },
+    {
+      "path": "reviewed-extracts/ussr-rada-res-1870i-19901227-facts.json",
+      "bytes": 5761,
+      "sha256": "06c732e2153b933043481ed7a25b7526fab5153a109f1aca2bf885a7115aa083"
+    },
+    {
+      "path": "reviewed-extracts/ussr-snd4-stenogram-vol3-19901226-facts.json",
+      "bytes": 17519,
+      "sha256": "d2b94976bec3babd92502e25a08f968e25012ffaacf25536ddc6272b66e8543a"
+    },
+    {
+      "path": "reviewed-extracts/ussr-snd5-bulletin5-19910904-facts.json",
+      "bytes": 9917,
+      "sha256": "ea6a87f3d21277074e3326810d6615a1c2d79dbb2a83d0eeaf9f219dc9b668e7"
+    },
+    {
+      "path": "reviewed-extracts/ussr-sprsfsr-art59-19891224-facts.json",
+      "bytes": 9536,
+      "sha256": "b1851c354ddc2d68e77ec087d586b0c7c6a6fce0bf6428350ddac37a471f984f"
+    },
+    {
+      "path": "reviewed-extracts/ussr-sprsfsr-art60-19900112-facts.json",
+      "bytes": 9163,
+      "sha256": "55acdbce0142cd8f7a8f527f22228e53ccce812f0b0ac5b3d4fe5d72527956a4"
+    },
+    {
+      "path": "reviewed-extracts/ussr-sten-vs-bulletin1-19910826-facts.json",
+      "bytes": 10261,
+      "sha256": "c64a96f864dee22e507c61c23ba89bf563fd0ddf001d03401e7666155710c0c9"
+    },
+    {
+      "path": "reviewed-extracts/ussr-sten-vs-bulletin2-19910826-facts.json",
+      "bytes": 9270,
+      "sha256": "0e7558aa251e0eebf2bf8767c1a8d9255be07f7ca9b4e3c5bb93916b9ec5d7d9"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ved-1991-35-19910828-facts.json",
+      "bytes": 27651,
+      "sha256": "0fcaa0721ac623d0131eea0f55d1b8fd0dcf88da9506ddc2ca7749a4832af8fc"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ved-1991-36-19910904-facts.json",
+      "bytes": 19559,
+      "sha256": "acbdb003fc1cc99f244824614da524a17284a463640d8c391723df873838d0fb"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ved-1991-37-19910911-facts.json",
+      "bytes": 17089,
+      "sha256": "5ccd7955363c4afad6b644dba20510767cd1215541e56077fd180902959a4a1f"
+    },
+    {
+      "path": "reviewed-extracts/ussr-ved-1991-41-19911009-facts.json",
+      "bytes": 8536,
+      "sha256": "de77d0008490ddfb87af4f490bf52642206feab3b43d922985037526d3d137b9"
+    },
+    {
+      "path": "scoped-import.json",
+      "bytes": 3602,
+      "sha256": "a857880d346a4cdcfb1e3f2a0fb18981358769db7114f6306453e45ef98d1925"
+    },
+    {
+      "path": "verify-review.py",
+      "bytes": 977,
+      "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 1776,
+      "sha256": "2ca27ab1fad32b25fef57d46b263b5ffd475f9e7b577672be49cce1471c17be3"
+    },
+    {
+      "path": "withdrawal-scope.json",
+      "bytes": 489,
+      "sha256": "26621499a7c6f6395724bcf24335d3f3a5e2850c473a5cf497f808bcd6d6919a"
+    }
+  ],
+  "scoped_import_commit": "738986db4173985d41ebb5f2b6c97d5420fa57db"
+}

@@ -1,0 +1,167 @@
+{
+  "format": "spheres-c01-gap-audit-review/v1",
+  "task": "CLAUDE-C01-GAPS-01",
+  "reviewed_submission": "b4d953964d7f1ab720c3fe72a62f74437bc81edf",
+  "qualified_source": "12ee48f1ac1e73c589ed37524bfc49dbf37202e1",
+  "decision": "ready_for_integration_after_repairs",
+  "parent_complete": false,
+  "research_acceptance_changed": false,
+  "historical_cutoff": "2026-09-07",
+  "checks": [
+    {
+      "log": "evidence/gap-check.log",
+      "command": "python -B -X utf8 tools/avatars/certified_gap_ledger.py --check",
+      "passed": true
+    },
+    {
+      "log": "evidence/gap-tests.log",
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_certified_gap_ledger.py",
+      "passed": true,
+      "tests": 22
+    },
+    {
+      "log": "evidence/research-check.log",
+      "command": "python -B -X utf8 tools/avatars/campaign_research.py --check",
+      "passed": true
+    },
+    {
+      "log": "evidence/research-tests.log",
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_*research*.py",
+      "passed": true,
+      "tests": 79
+    },
+    {
+      "log": "evidence/c01-tests.log",
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_*c01*.py",
+      "passed": true,
+      "tests": 207
+    },
+    {
+      "log": "evidence/census-check.log",
+      "command": "python -B -X utf8 tools/avatars/campaign_census.py --check",
+      "passed": true
+    },
+    {
+      "log": "evidence/campaign-tests.log",
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_campaign*.py",
+      "passed": true,
+      "tests": 16
+    },
+    {
+      "log": "evidence/atlas-tests.log",
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "passed": true,
+      "tests": 11
+    },
+    {
+      "log": "evidence/workboard-check.log",
+      "command": "python -B -X utf8 tools/planning/workboard.py --check",
+      "passed": true
+    }
+  ],
+  "attribution_check": {
+    "log": "evidence/attribution-check.log",
+    "passed": true,
+    "sources": 1329,
+    "method": "Recompute source first-add/source-id history, compare all nation/source mappings with pinned attribution; generated_from metadata deliberately excluded."
+  },
+  "negative_control": {
+    "log": "evidence/submission-regressions.log",
+    "expected_failures": 3,
+    "unexpected_errors": 0,
+    "method": "Load submitted certified_gap_ledger.py with git show, run the three added FixtureLedger regression methods against it."
+  },
+  "setup_failures_retained": [
+    "evidence/sparse-setup-campaign-failed.log",
+    "evidence/sparse-setup-census-failed.log",
+    "evidence/eol-fixture-gap-failed.log",
+    "evidence/eol-fixture-negative-control-failed.log"
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 50,
+      "sha256": "5946fc40f23e1d107c0a12c7960b7b18ad11105b878125a890db9ca01771d0d5"
+    },
+    {
+      "path": "evidence/atlas-tests.log",
+      "bytes": 1141,
+      "sha256": "ccf8f1ef2d676c8a37bd0d50164b5507979b32cb1e592f1570ead223a019579b"
+    },
+    {
+      "path": "evidence/attribution-check.log",
+      "bytes": 393,
+      "sha256": "7d44ceb043c2ea3a0799e9bddc2103b6a0f4f56210c800596ea9f6288b1b6a52"
+    },
+    {
+      "path": "evidence/c01-tests.log",
+      "bytes": 313,
+      "sha256": "8a47121c8ea3093528ab31ce69cf5bd074ad09eed3cc36c0a0e685f787a9c154"
+    },
+    {
+      "path": "evidence/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "654de2bce0198e02ce47b84c4505f0504d3218bb0d1ee2babebf40fbc2da00c0"
+    },
+    {
+      "path": "evidence/census-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "evidence/eol-fixture-gap-failed.log",
+      "bytes": 1135,
+      "sha256": "cf9c162cf4174ed75e37d1d9028215d10caeed06258ab4747ef09a011502fd63"
+    },
+    {
+      "path": "evidence/eol-fixture-negative-control-failed.log",
+      "bytes": 5491,
+      "sha256": "376d4cf8fa69bb0e7920e9e721ac207e26f3707152eff2c8b9727b1432636dec"
+    },
+    {
+      "path": "evidence/gap-check.log",
+      "bytes": 258,
+      "sha256": "089e04688277d08bd3030edd5ea36f2917c1f3df919d9b54c98f9900858d41a9"
+    },
+    {
+      "path": "evidence/gap-tests.log",
+      "bytes": 126,
+      "sha256": "8f33d8cf60b6c7875b02c256e1b62f6c31bb6655c1d3ce4658f5f0dee30d7f79"
+    },
+    {
+      "path": "evidence/research-check.log",
+      "bytes": 251,
+      "sha256": "06864a3a07b2806cf125cf2c82df9b4eda434b57ceac43ba284ec818aa7d26bb"
+    },
+    {
+      "path": "evidence/research-tests.log",
+      "bytes": 183,
+      "sha256": "92dcb2516fee84c1c2f831efc0e495f221e9d0b61fbfec553572d8c6975321f0"
+    },
+    {
+      "path": "evidence/sparse-setup-campaign-failed.log",
+      "bytes": 2319,
+      "sha256": "5d9eac5b09d5f56a44c03b6189b3354206ba0bc05a06e9f804c2370fe5b8c973"
+    },
+    {
+      "path": "evidence/sparse-setup-census-failed.log",
+      "bytes": 2149,
+      "sha256": "548579065e9feb618d2c4b1a72b5a80dd52adf8ed5ad6d57242b82794e544461"
+    },
+    {
+      "path": "evidence/submission-regressions.log",
+      "bytes": 5624,
+      "sha256": "d84fecb48677e5d68863482e4d0f55057047940cfdecaaf6b76cb789fe517324"
+    },
+    {
+      "path": "evidence/workboard-check.log",
+      "bytes": 146,
+      "sha256": "a30e410eb48c5edf3ba2d43c555c5757b942f5f27eb1da771042cc3b9a9df2c2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4166,
+      "sha256": "d5b903131fb5f9455ca95a97b355b88a2a6ea002e5151ced0956ec18eb488fea"
+    }
+  ]
+}

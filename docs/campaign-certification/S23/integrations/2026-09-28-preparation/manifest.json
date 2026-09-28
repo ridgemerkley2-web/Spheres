@@ -1,0 +1,389 @@
+{
+  "format": "spheres-s23-preparation-integration/v1",
+  "decision": "Accept the six listed bounded tasks with reviewed fixes. S23 and C06 remain open; no historical country or artwork qualification awarded.",
+  "reviewed_utc": "2026-09-28T14:13:08.269015+00:00",
+  "reviewer": "Codex",
+  "head_before_closeout": "3574d5570945c69ff01e9c2b323aaf4d9a9d4ac2",
+  "s23_complete": false,
+  "c06_complete": false,
+  "g5_earned": false,
+  "cp1_certified": false,
+  "closed_tasks": [
+    "CLAUDE-C03-REVIEW-01",
+    "CLAUDE-C04-PREP-01",
+    "CLAUDE-S23-MATRIX-01",
+    "CLAUDE-C01-SOURCE-17",
+    "CLAUDE-C01-SOURCE-26",
+    "CODEX-C01-ACCEPTANCE-01"
+  ],
+  "final_checks": {
+    "commands_passed": 10,
+    "avatar_tests_passed": 469,
+    "failed": 0,
+    "skipped": 0,
+    "python": "3.13.12",
+    "pypdf": "6.17.0",
+    "runtime_trees_unchanged": true
+  },
+  "retained_initial_run": {
+    "avatar_tests": 469,
+    "failures": 1,
+    "pypdf": "6.10.0",
+    "cause": "PDF layout extraction interleaves wrapped names; unchanged test passes with qualified6.17.0."
+  },
+  "final_boundary_cases": 7093,
+  "review_packets": [
+    {
+      "path": "docs/campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/manifest.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 9621,
+      "sha256": "71dc79a8fad5ad57239733406113140ef44d122ab8cad609502956537605bf8e"
+    },
+    {
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/manifest.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 12037,
+      "sha256": "2a3d37e02f9f5466acfbb8969da1dd0e304fa2ac4b7de9ff831b42cebd726c2c"
+    },
+    {
+      "path": "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/manifest.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 5703,
+      "sha256": "730f8a3cc7528d21a5be43f49251929515a0d80e74e4eab961aa026ae3da01c8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/manifest.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 6430,
+      "sha256": "1e5b021ee3f95fff4e8de5b6888239648d443762ca679308d027e387f612a670"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/manifest.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 14436,
+      "sha256": "8f2469ef7a4b4624741748f32b9b141c10e13686a1376a4d0cc16f369b24ee8d"
+    }
+  ],
+  "current_reports": [
+    {
+      "path": "docs/planning/ai-task-queue.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 12203,
+      "sha256": "363d0ecbf63c59da60d4d657aacd38c18ae5ce8b5d3f673c9ca8d20b912419e8"
+    },
+    {
+      "path": "docs/planning/ai-workstreams.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 4667,
+      "sha256": "376a36880d3c5eddd36962f9cc9bd5fa13e5d459dcf1a691fd538261ca7e344e"
+    },
+    {
+      "path": "docs/planning/campaign-pathway.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 48632,
+      "sha256": "34d398b59c056644d06f4aeccd7a99243e41c61d772dc22fe24f45aefc163b28"
+    },
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "hash_scope": "utf8-lf",
+      "bytes": 21116,
+      "sha256": "c37bf00d70705bf783f3f7f31b98ffcc6756e3566b25824cb9927686b5312ab8"
+    },
+    {
+      "path": "docs/campaign-certification/S23/README.md",
+      "hash_scope": "utf8-lf",
+      "bytes": 4857,
+      "sha256": "2bd9292499366a092feb93310cb6c8c34720a277c166743928d08572670d7c80"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 114824,
+      "sha256": "e9bc905869c63dd7319bf98b886df71afa9fad90d843cc197090171b5b13064e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 935535,
+      "sha256": "84f53435cef6ed74673e5e4d85c2b46ac81ef4ce733e28f45b51611e6452c857"
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 205459,
+      "sha256": "f9edb686e7b6c7a43858e4b7b1d43d5d217d3574afb98dbfeb10e02508d89210"
+    },
+    {
+      "path": "docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 771335,
+      "sha256": "20db72c5c70171ad28e2cfd9a1b23457ae781660f9e9741c43e9742c738766f7"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-brazil.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 313512,
+      "sha256": "42d0d059950a25e5c9543b28f3adc150bd467dbd5c999c3d034970e050113cf6"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-france.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 427259,
+      "sha256": "0a8c508ad96b9eecdd656d32f789fbeb115a6cfb37edafdbc98fa2bb696f3783"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-india.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 280384,
+      "sha256": "e42d4b1c8acd3a476ce0aa93fadc1f08971b88f28df7fcec53b520cd9bea6ae5"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-japan.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 442987,
+      "sha256": "99a1219c7f05e3498caadd81b05bee3336ba883d9c63eeebe4fb0dc066348107"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-saudi-arabia.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 163044,
+      "sha256": "933b33604f79a782fb018da7dc787dd29b309a56823f523f9d840be59d1db4cc"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-south-africa.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 344128,
+      "sha256": "c26996e90fb461c09d097d5b64292f72ef4341da596be1dd05a6886ba5527123"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-tonga.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 240623,
+      "sha256": "6a5615465e80100d1b0ebad08ae967b603b26de561db2160cd52325dc11e080c"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/cases-ussr-russia.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 422343,
+      "sha256": "cd1d5eb2b246c2286bb0b380b902de21be8a5ff69acb0de3afc8e08a65ec3999"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/README.md",
+      "hash_scope": "utf8-lf",
+      "bytes": 31894,
+      "sha256": "7015dfb3bb4fb863280a25dda1f1d057ffbe0d6accd76a56c5757cbd3f91de30"
+    },
+    {
+      "path": "docs/campaign-certification/S23/preparation/boundary-matrix/summary.json",
+      "hash_scope": "utf8-lf",
+      "bytes": 72972,
+      "sha256": "85f35126bf573bc14baa7471cbea8c3303c2629e9c02d1fc93908162b76c878a"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "hash_scope": "raw",
+      "bytes": 177,
+      "sha256": "58f85647bd8e6bf99bbe4c9379d716819a0a720bcbf741c20c08a77b46f21bb9"
+    },
+    {
+      "path": "environment-diagnostics/.gitattributes",
+      "hash_scope": "raw",
+      "bytes": 20,
+      "sha256": "2199d532e3836627014a38692a34c49da747cd5baeb033c2a88b90d1490f1fe0"
+    },
+    {
+      "path": "environment-diagnostics/diagnostic.json",
+      "hash_scope": "raw",
+      "bytes": 3925,
+      "sha256": "bcda151b766d4d79c411384a389948dd243eff22799c4eef575fa901f7d5f2d1"
+    },
+    {
+      "path": "environment-diagnostics/pypdf-6.17-targeted.log",
+      "hash_scope": "raw",
+      "bytes": 296,
+      "sha256": "fcb93c2fcb7249a998035f42618975eabb1769e7b805bbccc3f40613ecbdddec"
+    },
+    {
+      "path": "environment-diagnostics/README.md",
+      "hash_scope": "raw",
+      "bytes": 2259,
+      "sha256": "13dbbb733e914492cd7f7047fec2116460fe1f646f2a6fea4b08c49a1ac0e9f5"
+    },
+    {
+      "path": "prior-checks/s23-gap-group-tests-final.log",
+      "hash_scope": "raw",
+      "bytes": 130,
+      "sha256": "38feca988019dbe48057f411487630114ecbfcea184fc345e5399156dccc5ed6"
+    },
+    {
+      "path": "prior-checks/s23-gap-group-tests.log",
+      "hash_scope": "raw",
+      "bytes": 1002,
+      "sha256": "4cccd04c570a3b2a8a6e3242d2096bac0b2f11df3b8207960c23b52f96f0e601"
+    },
+    {
+      "path": "prior-checks/s23-integrated-c04-tests.log",
+      "hash_scope": "raw",
+      "bytes": 178,
+      "sha256": "482529bb4a17fe4ee26285e7a20dac023ff0db66b0936e18d2d779cd611d0ae4"
+    },
+    {
+      "path": "prior-checks/s23-review-gap-claims-tests.log",
+      "hash_scope": "raw",
+      "bytes": 129,
+      "sha256": "e1d432e31cdcbaf80afedda8902016a7f4814180db0ec03b438cfef7b6fad509"
+    },
+    {
+      "path": "README.md",
+      "hash_scope": "raw",
+      "bytes": 5270,
+      "sha256": "f0b96453f97822b73d8bba64cf0a183ba6800edc6ca2cc4cc9f44875218ff094"
+    },
+    {
+      "path": "run-checks.py",
+      "hash_scope": "raw",
+      "bytes": 4924,
+      "sha256": "078f359734bf557f6319c9d3538b9ab602ae5a9dd4c344decb1c7a2b12ff678f"
+    },
+    {
+      "path": "source-hash-scopes.json",
+      "hash_scope": "raw",
+      "bytes": 4194,
+      "sha256": "200db40c36d7631276b93571899be0f3f4d4c4894770572aa7449e9061e56e09"
+    },
+    {
+      "path": "validation/avatar-suite.log",
+      "hash_scope": "raw",
+      "bytes": 1280,
+      "sha256": "924f8dced76dd9a7bb03aed0d1272a1f415c42976f3053cb388592faf45b29df"
+    },
+    {
+      "path": "validation/boundary-matrix-check.log",
+      "hash_scope": "raw",
+      "bytes": 235,
+      "sha256": "4db49ed13f08476214ba04806620d54c6875cb264b076b3313f360116ebe7457"
+    },
+    {
+      "path": "validation/cartoon-export-check.log",
+      "hash_scope": "raw",
+      "bytes": 336,
+      "sha256": "a06ff5831b1cf661958e0b734f4ce50ac46b45423adbada1d0560ff72b579502"
+    },
+    {
+      "path": "validation/census-check.log",
+      "hash_scope": "raw",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "validation/gap-ledger-check.log",
+      "hash_scope": "raw",
+      "bytes": 258,
+      "sha256": "78f7777f711a43ce0ea6dab35ae3af95c8d75c98ac3d1292e0b9b9a6e041f74e"
+    },
+    {
+      "path": "validation/research-check.log",
+      "hash_scope": "raw",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "validation/source-17-evidence.log",
+      "hash_scope": "raw",
+      "bytes": 119,
+      "sha256": "6c6e37f84f5573643a81a536feb4dd1166c7f427d17a705bd80f226518c5cb0c"
+    },
+    {
+      "path": "validation/source-26-evidence.log",
+      "hash_scope": "raw",
+      "bytes": 121,
+      "sha256": "7f6c5475a90db914faab4e12addd33b32c85c949caec91c15ad6ba2216fe7c1c"
+    },
+    {
+      "path": "validation/successor-validator.log",
+      "hash_scope": "raw",
+      "bytes": 208,
+      "sha256": "d4bc1afcb3665891e9c9b8acb4615c41a3e8502fab5114d5bd211bcae20471d5"
+    },
+    {
+      "path": "validation/validation.json",
+      "hash_scope": "raw",
+      "bytes": 443505,
+      "sha256": "e2b538a507f12ae4d731d084baace3b9ed8b3fdb4234ca330b2868292700b4ee"
+    },
+    {
+      "path": "validation/workboard-check.log",
+      "hash_scope": "raw",
+      "bytes": 146,
+      "sha256": "d4053cf89aa10e498ebf5b27a836c1cb41a539c681880275d5e58c6e38da4182"
+    },
+    {
+      "path": "validation-final/avatar-suite.log",
+      "hash_scope": "raw",
+      "bytes": 575,
+      "sha256": "4e439b6b42d3b552910946317eaca0722a5bcaa1c5f4640c91b1930be34caad0"
+    },
+    {
+      "path": "validation-final/boundary-matrix-check.log",
+      "hash_scope": "raw",
+      "bytes": 235,
+      "sha256": "4db49ed13f08476214ba04806620d54c6875cb264b076b3313f360116ebe7457"
+    },
+    {
+      "path": "validation-final/cartoon-export-check.log",
+      "hash_scope": "raw",
+      "bytes": 336,
+      "sha256": "a06ff5831b1cf661958e0b734f4ce50ac46b45423adbada1d0560ff72b579502"
+    },
+    {
+      "path": "validation-final/census-check.log",
+      "hash_scope": "raw",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "validation-final/gap-ledger-check.log",
+      "hash_scope": "raw",
+      "bytes": 258,
+      "sha256": "78f7777f711a43ce0ea6dab35ae3af95c8d75c98ac3d1292e0b9b9a6e041f74e"
+    },
+    {
+      "path": "validation-final/research-check.log",
+      "hash_scope": "raw",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "validation-final/source-17-evidence.log",
+      "hash_scope": "raw",
+      "bytes": 119,
+      "sha256": "6c6e37f84f5573643a81a536feb4dd1166c7f427d17a705bd80f226518c5cb0c"
+    },
+    {
+      "path": "validation-final/source-26-evidence.log",
+      "hash_scope": "raw",
+      "bytes": 121,
+      "sha256": "7f6c5475a90db914faab4e12addd33b32c85c949caec91c15ad6ba2216fe7c1c"
+    },
+    {
+      "path": "validation-final/successor-validator.log",
+      "hash_scope": "raw",
+      "bytes": 208,
+      "sha256": "d4bc1afcb3665891e9c9b8acb4615c41a3e8502fab5114d5bd211bcae20471d5"
+    },
+    {
+      "path": "validation-final/validation.json",
+      "hash_scope": "raw",
+      "bytes": 443802,
+      "sha256": "b1cec8283d7a2f6e5682a1fcdeb93ea0e204656fc6433940645e83b49d5a1b32"
+    },
+    {
+      "path": "validation-final/workboard-check.log",
+      "hash_scope": "raw",
+      "bytes": 146,
+      "sha256": "d4053cf89aa10e498ebf5b27a836c1cb41a539c681880275d5e58c6e38da4182"
+    }
+  ]
+}

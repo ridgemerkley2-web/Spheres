@@ -1,0 +1,642 @@
+{
+  "format": "spheres-s22-closure/v1",
+  "session": "S22",
+  "status": "complete",
+  "owner": "Codex",
+  "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "completed_utc": "2026-09-28T12:24:22.576Z",
+  "g5_earned": false,
+  "cp1_earned": false,
+  "scope": "Performance and art accounting on the declared Windows reference workstation, France/seed 1990 and actual 1999/2015/30-November-2035 inputs. Two complete frozen-candidate native/map/renderer rounds. No all-country, all-hardware, historical-coverage, human-playtest or release certification.",
+  "evidence_archive_commit": "51a48876c1e9d5b78244abf6580632bb6e4dee28",
+  "runtime_tree": {
+    "Cargo.toml": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+    "Cargo.lock": "4004d4796cd617d9f821203d7c815d4106fecef1",
+    "spheres-sim": "a418f91459b4aed82713f998030c2d0667309d1e",
+    "spheres-web": "c14513100794efb3d5a9df35dd61cd2489c3f8e8"
+  },
+  "acceptance": {
+    "passed": true,
+    "cells": 18,
+    "initial_round_passed": 9,
+    "confirmation_round_passed": 9,
+    "independent_verifier_passed": true,
+    "independent_raw_review_passed": true,
+    "identity_files_rehashed": 83,
+    "limits_changed": false,
+    "cell_retries": 0,
+    "cell_substitution": false,
+    "limits": {
+      "sim_p95_ms": 300,
+      "turn_p95_ms": 400,
+      "turn_max_ms": 750,
+      "memory_bytes": 1073741824,
+      "map_fps": 30,
+      "control_p95_ms": 200,
+      "viewer_fps": 60,
+      "inspection_min_triangles": 100000,
+      "inspection_max_triangles": 250000,
+      "city_triangles": 800000,
+      "city_models": 8,
+      "city_payload_bytes": 86400000,
+      "arsenal_triangles": 1200000
+    },
+    "workload": {
+      "samples": 31,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "dpr": 1,
+      "details": [
+        "standard",
+        "low"
+      ],
+      "views": [
+        {
+          "name": "world",
+          "zoom": 1.25,
+          "amplitude": 0.3
+        },
+        {
+          "name": "national",
+          "zoom": 8,
+          "amplitude": 0.07
+        },
+        {
+          "name": "regional",
+          "zoom": 40,
+          "amplitude": 0.015
+        },
+        {
+          "name": "paris-city",
+          "zoom": 1500,
+          "amplitude": 0.00036
+        }
+      ],
+      "centre": {
+        "lon": 2.3522,
+        "lat": 48.8566
+      },
+      "map_canvas": {
+        "width": 1920,
+        "height": 792,
+        "css_width": 1920,
+        "css_height": 792
+      },
+      "presets": {
+        "standard": {
+          "relief": true,
+          "borders": true,
+          "provinces": true,
+          "cities": true,
+          "labels": true,
+          "features": true,
+          "grid": false
+        },
+        "low": {
+          "relief": false,
+          "borders": true,
+          "provinces": true,
+          "cities": false,
+          "labels": true,
+          "features": false,
+          "grid": false
+        }
+      },
+      "settle_ms": 3000,
+      "active_ms": 12000,
+      "controls": [
+        "west",
+        "east",
+        "zoom-in",
+        "zoom-out"
+      ],
+      "controls_start_zoom": 8,
+      "control_selector": "[data-map-action=\"{action}\"]",
+      "native_renew_budget": true,
+      "native_certified": true,
+      "gpu_completion": "real WebGL finish after actual draw",
+      "layouts": [
+        {
+          "width": 390,
+          "height": 844
+        },
+        {
+          "width": 3440,
+          "height": 1440
+        }
+      ],
+      "browser_launch": {
+        "headless": true,
+        "channel": "msedge",
+        "extra_flags": []
+      }
+    }
+  },
+  "protocol": {
+    "git_blob": {
+      "path": "docs/campaign-certification/S22/measurement-protocol.json",
+      "bytes": 15725,
+      "sha256": "ceb0177475d01275b62c7aa20cea2e3b7c47cf1cd2d4900fe871fb7179c91640"
+    },
+    "qualification_frozen_worktree_bytes": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S22\\measurement-protocol.json",
+      "bytes": 15725,
+      "sha256": "ceb0177475d01275b62c7aa20cea2e3b7c47cf1cd2d4900fe871fb7179c91640"
+    },
+    "scope": "Frozen working bytes are separately preserved in the evidence archive. Git-blob hash is portable across checkout line endings; neither is a normalized replacement for the other."
+  },
+  "chronology": {
+    "frozen_utc": "2026-09-28T11:35:28.248Z",
+    "first_measurement_utc": "2026-09-28T11:35:48.236Z",
+    "last_measurement_utc": "2026-09-28T12:11:19.665Z",
+    "authoritative_verdict_utc": "2026-09-28T12:11:25.676Z",
+    "runner_finished_utc": "2026-09-28T12:12:05.272Z",
+    "independent_verdict_utc": "2026-09-28T12:13:21.662Z",
+    "scope": "Observed cells and journal windows do not overlap; no task build, test, preparation, archive work or Git transfer during measurement. Unrelated user applications remained open and uncontrolled."
+  },
+  "frozen_inputs": [
+    {
+      "id": "early-france-1999",
+      "date": "1999-05-13",
+      "end": "1999-06-13",
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "bytes": 63066434,
+        "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      }
+    },
+    {
+      "id": "mid-france-2015",
+      "date": "2015-01-01",
+      "end": "2015-02-01",
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+        "bytes": 130222370,
+        "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+      }
+    },
+    {
+      "id": "late-france-2035",
+      "date": "2035-11-30",
+      "end": "2035-12-31",
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+        "bytes": 145134799,
+        "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+      }
+    }
+  ],
+  "external_binary_pins": {
+    "native_test": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+      "bytes": 352865219,
+      "sha256": "a27da17d309391620c5df7f7d3c8306884c71ddedf4a5a598ea43e39e774e024"
+    },
+    "server": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\spheres-web.exe",
+      "bytes": 358617837,
+      "sha256": "618046decce08bd80400f7a3fe4bb4c51d288e234ad60d5cfedecc8bc7b03c3e"
+    }
+  },
+  "frozen_records": {
+    "hardware": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-hardware-qualification-02.json",
+      "bytes": 2838,
+      "sha256": "d1086f5df6174e7bf19d52252472da5a1f08c8ff164b6031281f54e4f7e32ede",
+      "encoding": "identity",
+      "payload": "d1086f5df6174e7bf19d52252472da5a1f08c8ff164b6031281f54e4f7e32ede"
+    },
+    "configuration": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-pair-02-config.json",
+      "bytes": 15824,
+      "sha256": "66b10797b3cebccf7af6a84d0c1ce1388b6ac5b9f8e237c306a375d405ffe20d",
+      "encoding": "identity",
+      "payload": "66b10797b3cebccf7af6a84d0c1ce1388b6ac5b9f8e237c306a375d405ffe20d"
+    },
+    "attempt_registry_snapshot": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-attempt-index.jsonl",
+      "bytes": 6632,
+      "sha256": "e8fc3d6dec7cd420edbf01a1707197530d71211fb2f52c0169d34a3707bb0ddb",
+      "encoding": "identity",
+      "payload": "e8fc3d6dec7cd420edbf01a1707197530d71211fb2f52c0169d34a3707bb0ddb"
+    },
+    "runner": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-run-declared-pair.cjs",
+      "bytes": 22242,
+      "sha256": "87697d812770a7c3939bcf6498a548c5a6d391b5091a8905e57977f039c2c5f2",
+      "encoding": "identity",
+      "payload": "87697d812770a7c3939bcf6498a548c5a6d391b5091a8905e57977f039c2c5f2"
+    },
+    "runner_supplement": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-run-declared-pair-02-notes.md",
+      "bytes": 1368,
+      "sha256": "221565952fbc995346ef091b6e441dbcfb350990aa9efee23e719ad6017782ed",
+      "encoding": "identity",
+      "payload": "221565952fbc995346ef091b6e441dbcfb350990aa9efee23e719ad6017782ed"
+    },
+    "lineage": {
+      "archive": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\reviewed-lineage.json",
+      "bytes": 19181,
+      "sha256": "0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f",
+      "encoding": "identity",
+      "payload": "0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f"
+    }
+  },
+  "native_results": [
+    {
+      "id": "r1-early-france-1999-native",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 128.8332,
+        "p95_ms": 182.24509999999998,
+        "max_ms": 186.1973
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 186.3946,
+        "p95_ms": 243.0344,
+        "max_ms": 243.8629
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 243,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 458428416,
+        "max_sampled_working_set_bytes": 373170176,
+        "os_peak_working_set_bytes": 416329728,
+        "max_observed_sample_gap_ms": 127.59610000000066,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 3517.5954,
+      "batch_days_per_second": 8.812838452085762,
+      "final_world_fnv64": "5e2885a23e03ba8e"
+    },
+    {
+      "id": "r1-mid-france-2015-native",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 152.2926,
+        "p95_ms": 257.4512,
+        "max_ms": 398.4279
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 218.8811,
+        "p95_ms": 314.1968,
+        "max_ms": 458.5752
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 551,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 852783104,
+        "max_sampled_working_set_bytes": 779354112,
+        "os_peak_working_set_bytes": 781721600,
+        "max_observed_sample_gap_ms": 130.53070000000298,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 5648.2107,
+      "batch_days_per_second": 5.488463806776897,
+      "final_world_fnv64": "5c486d0c186f921e"
+    },
+    {
+      "id": "r1-late-france-2035-native",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 169.7763,
+        "p95_ms": 251.31320000000002,
+        "max_ms": 389.8663
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 228.0383,
+        "p95_ms": 344.3258,
+        "max_ms": 444.8095
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 779,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 902717440,
+        "max_sampled_working_set_bytes": 859254784,
+        "os_peak_working_set_bytes": 898027520,
+        "max_observed_sample_gap_ms": 129.129099999991,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 6769.9837,
+      "batch_days_per_second": 4.5790361356409175,
+      "final_world_fnv64": "3c3f21d9d67bd7b8"
+    },
+    {
+      "id": "r2-early-france-1999-native",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 134.5881,
+        "p95_ms": 204.7656,
+        "max_ms": 218.6719
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 191.2437,
+        "p95_ms": 252.47809999999998,
+        "max_ms": 278.2701
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 240,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 457187328,
+        "max_sampled_working_set_bytes": 393207808,
+        "os_peak_working_set_bytes": 402300928,
+        "max_observed_sample_gap_ms": 131.2588999999989,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 3343.4602999999997,
+      "batch_days_per_second": 9.271831341918432,
+      "final_world_fnv64": "5e2885a23e03ba8e"
+    },
+    {
+      "id": "r2-mid-france-2015-native",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 155.38150000000002,
+        "p95_ms": 255.59510000000003,
+        "max_ms": 563.7391
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 219.3255,
+        "p95_ms": 312.0435,
+        "max_ms": 658.3375
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 542,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 978538496,
+        "max_sampled_working_set_bytes": 772599808,
+        "os_peak_working_set_bytes": 840454144,
+        "max_observed_sample_gap_ms": 129.88010000000213,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 5791.4153,
+      "batch_days_per_second": 5.352750302676446,
+      "final_world_fnv64": "5c486d0c186f921e"
+    },
+    {
+      "id": "r2-late-france-2035-native",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "passed": true,
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 174.6021,
+        "p95_ms": 237.4,
+        "max_ms": 354.9713
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 238.9591,
+        "p95_ms": 323.1374,
+        "max_ms": 409.3736
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 727,
+        "failed_samples": 2,
+        "max_sampled_private_bytes": 901349376,
+        "max_sampled_working_set_bytes": 866070528,
+        "os_peak_working_set_bytes": 891039744,
+        "max_observed_sample_gap_ms": 131.33789999999863,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "batch_elapsed_ms": 5314.8196,
+      "batch_days_per_second": 5.832747361735477,
+      "final_world_fnv64": "3c3f21d9d67bd7b8"
+    }
+  ],
+  "browser_results": {
+    "map_cells": 6,
+    "renderer_cells": 6,
+    "views_per_map_cell": 8,
+    "trusted_controls_per_map_cell": 62,
+    "minimum_map_fps": 32.0651270975245,
+    "maximum_control_p95_ms": 51.5,
+    "minimum_fighter_orbit_fps": 99.91333622207631,
+    "maximum_fighter_orbit_fps": 99.99750006246119,
+    "fighter_mesh_triangles": [
+      200446
+    ],
+    "inspection_visits_per_renderer_cell": 6,
+    "lifecycle_observations_per_renderer_cell": 47,
+    "functional_layouts": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 3440,
+        "height": 1440
+      }
+    ],
+    "scope": "Real GL completion. Mesh triangle counts exclude floor and extra renderer passes. Local control endpoint is paint opportunity plus GL completion, not physical scanout. Buffer/API-declared texture payload is not physical VRAM. Browser late remains 30 November 2035."
+  },
+  "correctness": {
+    "candidate": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+    "release": {
+      "passed": 1963,
+      "failed": 0,
+      "ignored": 112,
+      "suites": 66
+    },
+    "focused": {
+      "passed": 9
+    },
+    "actual_31_day_oracles": {
+      "passed": 8,
+      "dates": [
+        "2015-01-01",
+        "2035-11-30"
+      ],
+      "comparison": "Complete native worlds and returned/retained headlines for four pass-local changes. Final fingerprints and source hashes match."
+    },
+    "purchase_route_actual_cache_reuse": 0,
+    "initial_failures_preserved": true,
+    "evidence": "docs/campaign-certification/S22/pair02-validation/manifest.json"
+  },
+  "art": {
+    "candidate": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+    "configurations": 245,
+    "passes": 166,
+    "advisory_density_notes": 79,
+    "current_ceiling_quality_floor_export_failures": 0,
+    "assets": 33,
+    "reproduced_glbs": 13,
+    "node_entries_passed": 35,
+    "unchanged_source_pins_within_fresh_audit": 39,
+    "prior_proposal_diagnostic_overages": 33,
+    "raw_town_triangles": [
+      163671,
+      174540
+    ],
+    "submitted_town_triangles": [
+      149997,
+      149934
+    ],
+    "town_scene_ceiling": 150000,
+    "evidence": "docs/campaign-certification/S22/pair02-validation/art-5d11dd6d/result.json",
+    "scope": "Fresh final-candidate audit; prior audits retain original scope. CPU/base/backing-array accounting is separate from GL payload and excludes driver VRAM and renderer extras. Gallery TownMesh is separate from live CityMesh."
+  },
+  "archive": {
+    "manifest": {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "bytes": 846252,
+      "sha256": "d6ac60be3325b9fbbe70389630dc27ed62aef69197f676e54eadfe1221102b4f"
+    },
+    "original_pair_files": 636,
+    "original_pair_bytes": 6456235037,
+    "records": 782,
+    "payloads": 559,
+    "chunks": 565,
+    "encoded_bytes": 1504014691,
+    "decoded_encodings_verified": 587,
+    "full_physical_restore_executed": false,
+    "raw_duplicate_copies_removed": 42,
+    "reclaimed_bytes": 4737930442,
+    "external_binary_bodies_in_git": false,
+    "external_binary_bodies_verified_by_archive": false,
+    "root_verification": "docs/campaign-certification/S22/closeout-verification/root-archive-verification.json",
+    "git_blob_verification": "docs/campaign-certification/S22/closeout-verification/packet-git-blob-verification.json"
+  },
+  "retained_failed_pair": {
+    "candidate": "d50f7ee1a3440b00c8968b530e8e8b45aa0899fd",
+    "passed": false,
+    "passed_cells": 17,
+    "total_cells": 18,
+    "late_confirmation_simulation_p95_ms": 323.6552,
+    "late_confirmation_whole_turn_p95_ms": 406.1905,
+    "evidence": "docs/campaign-certification/S22/qualification-pair-01/manifest.json",
+    "scope": "Original failed verdict and all cells preserved. Historical packet statuses are unchanged."
+  },
+  "limitations": [
+    "One workstation/browser and France/seed 1990, not all countries/hardware or 1990 startup.",
+    "Native late window ends 31 December 2035; browser late remains 30 November.",
+    "Recorded input lineage independently reviewed, not a new independent replay of intervening campaign years.",
+    "Sampled private bytes can miss instantaneous peaks; OS working-set high water is a distinct observed measure.",
+    "Cold loading observed separately without an invented ceiling.",
+    "Released fighter inspection does not imply stock ownership.",
+    "No G5, CP1, worldwide content, human-playtest or release award."
+  ],
+  "next": {
+    "session": "S23",
+    "owner": "Claude",
+    "status": "planned",
+    "open_dependency": "C06",
+    "codex_next": "S24 awaits S23"
+  },
+  "files": [
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "bytes": 846252,
+      "sha256": "d6ac60be3325b9fbbe70389630dc27ed62aef69197f676e54eadfe1221102b4f"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/archive.cjs",
+      "bytes": 6137,
+      "sha256": "9f103ce7119a82668eb4efc77d68ebbf67175f74a88dd1155518949d19e377fa"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/frozen-manifest.json",
+      "bytes": 35236,
+      "sha256": "536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/verdict.json",
+      "bytes": 46176,
+      "sha256": "7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-verdict.json",
+      "bytes": 46176,
+      "sha256": "d9660d3d7903fbc38eff3e03bb07d96c7a44f3ae607a862765737d7c7f0d9b48"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-review.md",
+      "bytes": 6653,
+      "sha256": "7541ca23efd6c25fe164b0a336b081ad20784a6c96669aa9404605d0c83554e5"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-summary.json",
+      "bytes": 9895,
+      "sha256": "863d52d8d363f6d681ee1bd65cd26f486fd69e2cf08e8b32c5b3d50d5e327390"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/run-summary.json",
+      "bytes": 8147,
+      "sha256": "9711d8d749b3bc9a05c61befd3884a2e37ebae951b4da7cc5eec8b98a9d28ac6"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/archive-verification.json",
+      "bytes": 1101,
+      "sha256": "ae7c5491c863acca3fd8846fdc82664a811cf7d8f3a8f90ce2029e80f04bf60b"
+    },
+    {
+      "path": "docs/campaign-certification/S22/pair02-validation/manifest.json",
+      "bytes": 54412,
+      "sha256": "f8cb94b09b36be95644ebb27229f6e6297abd137872376c6f2588eafcd25e4fc"
+    },
+    {
+      "path": "docs/campaign-certification/S22/pair02-validation/art-5d11dd6d/result.json",
+      "bytes": 16844,
+      "sha256": "c6831a30222774cd096cd955f5ec59c7e016e7a930b9da53ea17984049a45c9c"
+    },
+    {
+      "path": "docs/campaign-certification/S22/pair02-validation/art-5d11dd6d/findings.json",
+      "bytes": 15193,
+      "sha256": "07824db6c222e8a9096709a55876df8ce714cccb24da0514a431841afa7dc6c9"
+    },
+    {
+      "path": "docs/campaign-certification/S22/qualification-pair-01/manifest.json",
+      "bytes": 831844,
+      "sha256": "ae0826ed7eb2f5cb8ea1ab57220c5ecc8f4950cdef2e42c0a87dd729aca410ec"
+    },
+    {
+      "path": "docs/campaign-certification/S22/closeout-verification/root-archive-verification.json",
+      "bytes": 1074,
+      "sha256": "92aef96589375ebbde4c40cba5d4581e2935cdd6e2f04246d4ad14ded402caa5"
+    },
+    {
+      "path": "docs/campaign-certification/S22/closeout-verification/packet-git-blob-verification.json",
+      "bytes": 188234,
+      "sha256": "8d0548e5b3f3767e2a8cc32be0107112314d2817e2020f723c56e5116a20248d"
+    },
+    {
+      "path": "docs/campaign-certification/S22/closeout-verification/validation-packet-verification.json",
+      "bytes": 282,
+      "sha256": "30bf0132752dd77a3c7e2f0df249101eff1850a0527d284c124a15dd78f2d454"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+✔ browser allowlist admits only the single local server origin (0.5978ms)
+✔ owned-path guard rejects root, siblings, absolute escapes and traversal (0.6117ms)
+✔ archive comparison retains every native byte except terminal timestamp (5.7603ms)
+✔ extracted executable identity refuses source binaries, wrong revisions and changed payloads (5.0723ms)
+✔ asset check rejects error text and tiny placeholder images (0.3015ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.5782

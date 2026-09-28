@@ -1,0 +1,22 @@
+# CLAUDE-C01-29 bounded independent content review
+
+Reviewer: Codex `/root/review_source05`. Date: 2026-09-28. Reviewed source/data revision: `e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7`. Read-only: no dossier, runtime, test or source changes; no tests run by this reviewer. Exact source IDs, URLs, selected claim IDs and returned-body pins are in `content-review.json`.
+
+## Actionable finding
+
+**JP29-CONTENT-01 — election-count wording.** `jp_sdp_fukushima_tenure_record_2003_2013` says Fukushima was *afterwards re-elected* in five consecutive elections; its uncertainty repeats *five uncontested re-elections*. The retrieved 25 July 2013 original says five consecutive uncontested election wins. The independently read contemporaneous 2012 report explicitly calls her January 2012 election her fifth; the 2009 report calls that one her fourth. The English wording therefore adds an unsupported five *additional* re-elections. Use neutral election-win wording, or explicitly retain the source ambiguity, in the claim and extract mirrors. This is a paraphrase/count-ambiguity finding, not a claim that the original is proven false or that a complete election history was independently reconstructed. This correction requires no holder-date changes.
+
+## Checked boundary semantics
+
+- **1990 / 1991:** the Diet speakers really are secretary-general Yamaguchi and secretary-general Yamahana, respectively. Their dated statements name Doi/Tanabe as party chair. The locators distinguish the officers' statements from ministerial replies identifying those officers.
+- **1993 / 1994:** Yamahana identifies himself as party chair on 25 January and explicitly says he remains chair on 24 September. Murayama's 13 October 1994 answer explicitly refers to his party chairmanship in addition to his prime-ministerial office. These are actual party-office attestations, not inference from a parliamentary group or government title.
+- **2003:** Fukushima herself says in Diet speech 222 of 26 November that she became party leader on 15 November. This supports `from: 2003-11-15` and the separate later attestation.
+- **2013:** the 25 July original quotes Fukushima saying she resigns that day, supporting the end-date claim. Yoshida himself identifies his new party leadership in Diet speech 315 on 24 October. Keeping this as an attestation rather than importing the conflicting later recollection's November start is appropriate.
+- **1996 rename:** the retrieved 2016 anniversary statement explicitly dates the name change to 19 January 1996. It supports a retrospectively attributed rename claim; it does not independently establish every leadership boundary, election-list identity or legal continuity. The dossier's stated restraint is appropriate.
+- **2023 / 2026 live corroboration only:** the party's current 1 December 2023 article names the incumbent and dates the photograph, while separately saying formal approval is due at the following convention. The current 2026 first-count and runoff notices support the reported vote counts and election sequence. The article published 10 April explicitly dates Fukushima's conference to 8 April; the 30 April article explicitly dates her convention address to 29 April. Election wins and publication dates should remain separate from the selected in-office observation dates, as the submission does.
+
+## Access and acceptance limits
+
+Eleven parent-retrieved original responses were content-read for the representative claims recorded in the JSON. The parent owns the broader 54-source provenance check; 35 returned bodies were available when this review was made, with 19 later archive captures still unavailable. Independent `web.open` accesses to five live party pages corroborated the selected 2023/2026 content, **not the archived bytes**. The Diet web tool returned access errors; the actual API JSON content was instead reviewed from the parent's returned bodies.
+
+The 2020 convention/split original bodies, 2022 original election page and July 2026 continuation were not independently content-verified here. This review does not turn submission-authored extracts into independently verified originals. No blanket verification of 111 claims, complete tenure coverage, C01 completion, runtime mapping, avatar rights or legal party continuity is asserted. Hold integration pending the bounded wording correction and resolution or explicitly accepted treatment of the original-source access gaps.

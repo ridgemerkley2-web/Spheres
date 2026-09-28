@@ -1,0 +1,1474 @@
+{
+ "format": "spheres-s23-boundary-matrix-cases/v1",
+ "case": "SaudiArabia",
+ "case_notes": [],
+ "identities": [
+  {
+   "identity": "SaudiArabia",
+   "name": "Saudi Arabia",
+   "start_1990": true,
+   "research_packet": "docs/campaign-certification/C01/research/saudi-arabia.json",
+   "production_party_rows": 0,
+   "national_emblem": {
+    "figure": "Faisal bin Abdulaziz Al Saud",
+    "years": "1906–1975",
+    "date_bound": false,
+    "counts_as_role_coverage": false,
+    "note": "Selector emblem from nation_figures.json; never an incumbent, never a fallback for person art."
+   },
+   "statistics": {
+    "roles": {
+     "research": 10,
+     "production_party": 0,
+     "executive": 1
+    },
+    "cases": 623,
+    "case_kinds": {
+     "attestation_day": 20,
+     "attestation_day_after": 20,
+     "cutoff_day": 11,
+     "cutoff_day_before": 11,
+     "fictional_end_exclusive": 11,
+     "fictional_last_day": 11,
+     "fictional_start_day": 11,
+     "future_2030": 11,
+     "handover_day_after": 7,
+     "handover_day_before": 7,
+     "handover_day_of": 7,
+     "reference_start": 11,
+     "reference_start_day_before": 11,
+     "yearly": 506
+    },
+    "observations_by_acceptance": {
+     "pending": 13,
+     "unattributed_intake": 3
+    },
+    "research_yearly_status": {
+     "bracketed": 22,
+     "uncertain": 32,
+     "unknown": 57,
+     "unresearched": 259
+    },
+    "production_party_yearly_status": {},
+    "production_party_yearly_image_bindings": {},
+    "executive_yearly_status": {
+     "bracketed": 10,
+     "uncertain": 16,
+     "unknown": 11
+    },
+    "people_without_bound_art_at_yearly_samples": 0,
+    "unbound_yearly_samples_without_art_job": [],
+    "fictional_candidates": 0,
+    "fictional_candidates_with_portrait": 0,
+    "fictional_executive_authorized": 0,
+    "research_roles_without_holder_observation": [
+     "sa_cabinet_ministers",
+     "sa_municipal_members",
+     "sa_shura_chair",
+     "sa_shura_members",
+     "sa_succession_chair",
+     "sa_succession_members",
+     "sa_succession_secretary"
+    ],
+    "windows_extending_past_recorded_death": [],
+    "registry_terms_with_unknown_end": []
+   },
+   "headline": [
+    "Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.",
+    "Research holder observations by acceptance: pending 13, unattributed_intake 3.",
+    "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
+    "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+    "Campaign-start comparison: historical_identity_not_established.",
+    "Paired executive research (research:sa_king, research:sa_pm): 0 of 37 yearly samples 1990-2026 identify a holder."
+   ]
+  }
+ ],
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "roles": [
+  {
+   "key": "executive",
+   "identity": "SaudiArabia",
+   "family": "production_national_executive",
+   "title": "King and Prime Minister",
+   "start_row": {
+    "name": "Fahd bin Abdulaziz Al Saud",
+    "office": "King and Prime Minister",
+    "since": "1982-06-13",
+    "tie": {
+     "pillar": "Party"
+    }
+   },
+   "office_link": {
+    "person": "fahd_bin_abdulaziz_al_saud",
+    "since": "1982-06-13"
+   },
+   "office_link_matches_start_row": true,
+   "paired_research_roles": [
+    "research:sa_king",
+    "research:sa_pm"
+   ],
+   "paired_research_roles_missing": [],
+   "pairing_basis": "Audit pairing by the office named in the 1990 executive row (or, for the successor Russia, the researched presidency). Comparison aid only; it is not an identity reconciliation, office mapping or research acceptance.",
+   "future_executive_policy": {
+    "fictional_candidates": 0,
+    "executive_authorized_candidates": 0,
+    "reviewed_future_office_grants": 0,
+    "note": "A fictional national executive can be seated only through an actual campaign succession; unauthorized pools leave a future executive unnamed."
+   },
+   "production_binding": "leaders_1990.json start row and party_leaders.json office_links at campaign start only; later incumbents are produced by play, never scheduled by date.",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:fahd_bin_abdulaziz_al_saud:1990-01-01:1990-01-02:v1","context":"fresh_campaign_start"}],"asset":[],"campaign":{"observed":"fresh_campaign_start","incumbent":"Fahd bin Abdulaziz Al Saud","person":"fahd_bin_abdulaziz_al_saud","verdict":"historical_identity_not_established"}},
+    {"date":"1990-08-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-08-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["sa_king#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2005-08-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#3","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2005-08-02","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-22","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-23","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_king#3","stated_end_day"],["sa_king#4","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-24","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#1","attested_on_day"],["sa_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#5","attested_on_day"],["sa_pm#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":[{"person":"fahd_bin_abdulaziz_al_saud","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[],"future":{"executive_authorized_candidates":0,"fictional_candidates":0}},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 63,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "bracketed": 10,
+     "uncertain": 16,
+     "unknown": 11
+    },
+    "boundary_cases": 3,
+    "attestation_cases": 10,
+    "yearly_image_bindings": {
+     "unbound": 37
+    }
+   }
+  },
+  {
+   "key": "research:sa_king",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_king",
+   "title": "King",
+   "kind": "head_of_state",
+   "entry": {
+    "id": "sa_crown",
+    "category": "institutions",
+    "name": "Saudi monarchy",
+    "kind": "monarchy",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "sa_king#1",
+    "sa_king#2",
+    "sa_king#3",
+    "sa_king#4",
+    "sa_king#5"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-08-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#2","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-08-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_king#3","before_stated_end"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#3","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-02","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-22","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_king#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-23","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_king#3","stated_end_day"],["sa_king#4","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-24","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_king#5","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 63,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "bracketed": 10,
+     "uncertain": 16,
+     "unknown": 11
+    },
+    "boundary_cases": 3,
+    "attestation_cases": 10
+   }
+  },
+  {
+   "key": "research:sa_crown_prince",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_crown_prince",
+   "title": "Crown Prince",
+   "kind": "institutional_office",
+   "entry": {
+    "id": "sa_crown",
+    "category": "institutions",
+    "name": "Saudi monarchy",
+    "kind": "monarchy",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "sa_crown_prince#1",
+    "sa_crown_prince#2",
+    "sa_crown_prince#3",
+    "sa_crown_prince#4",
+    "sa_crown_prince#5",
+    "sa_crown_prince#6",
+    "sa_crown_prince#7",
+    "sa_crown_prince#8",
+    "sa_crown_prince#9"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#3","before_stated_end"]],"possible_total":5},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_crown_prince#2","attested_on_day"],["sa_crown_prince#3","attested_on_day"]],"multiple_holders":["Abdullah bin Abdulaziz Al Saud","Sultan bin Abdulaziz Al Saud"]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-08-02","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-10-21","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-10-22","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_crown_prince#3","stated_end_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-10-23","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#4","before_stated_end"]],"possible_total":4},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-10-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_crown_prince#4","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-10-28","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#4","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#4","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-15","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#4","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-16","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_crown_prince#4","stated_end_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-17","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_crown_prince#5","before_stated_end"]],"possible_total":3},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_crown_prince#5","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-06-19","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-22","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-23","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_crown_prince#5","stated_end_day"],["sa_crown_prince#6","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-24","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#6","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-04-28","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#6","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-04-29","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_crown_prince#6","stated_end_day"],["sa_crown_prince#7","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-04-30","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#7","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#7","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#7","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-06-20","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_crown_prince#7","bracketed_by_evidence"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-06-21","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_crown_prince#7","stated_end_day"],["sa_crown_prince#8","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-06-22","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_crown_prince#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_crown_prince#9","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 77,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "bracketed": 12,
+     "uncertain": 16,
+     "unknown": 9
+    },
+    "boundary_cases": 15,
+    "attestation_cases": 16
+   }
+  },
+  {
+   "key": "research:sa_pm",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_pm",
+   "title": "Prime Minister",
+   "kind": "head_of_government",
+   "entry": {
+    "id": "sa_prime_minister",
+    "category": "institutions",
+    "name": "Office of the Prime Minister",
+    "kind": "executive_office",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "sa_pm#1",
+    "sa_pm#2"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-09-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_pm#2","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-14","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 56,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 4
+   }
+  },
+  {
+   "key": "research:sa_cabinet_ministers",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_cabinet_ministers",
+   "title": "Ministers",
+   "kind": "collective_seat",
+   "entry": {
+    "id": "sa_council_ministers",
+    "category": "institutions",
+    "name": "Council of Ministers (Cabinet)",
+    "kind": "collective_executive",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_shura_chair",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_shura_chair",
+   "title": "Chairman of the Shura Council",
+   "kind": "institutional_office",
+   "entry": {
+    "id": "sa_shura",
+    "category": "institutions",
+    "name": "Shura Council (Majlis Ash-Shura)",
+    "kind": "consultative_council",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_shura_members",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_shura_members",
+   "title": "Shura Council members",
+   "kind": "collective_seat",
+   "entry": {
+    "id": "sa_shura",
+    "category": "institutions",
+    "name": "Shura Council (Majlis Ash-Shura)",
+    "kind": "consultative_council",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_succession_chair",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_succession_chair",
+   "title": "Chairman",
+   "kind": "institutional_office",
+   "entry": {
+    "id": "sa_succession_commission",
+    "category": "institutions",
+    "name": "Succession Commission (Allegiance Commission)",
+    "kind": "royal_succession_institution",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_succession_secretary",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_succession_secretary",
+   "title": "Secretary General",
+   "kind": "institutional_office",
+   "entry": {
+    "id": "sa_succession_commission",
+    "category": "institutions",
+    "name": "Succession Commission (Allegiance Commission)",
+    "kind": "royal_succession_institution",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_succession_members",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_succession_members",
+   "title": "Commission members",
+   "kind": "collective_seat",
+   "entry": {
+    "id": "sa_succession_commission",
+    "category": "institutions",
+    "name": "Succession Commission (Allegiance Commission)",
+    "kind": "royal_succession_institution",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  },
+  {
+   "key": "research:sa_municipal_members",
+   "identity": "SaudiArabia",
+   "family": "research_role",
+   "role_id": "sa_municipal_members",
+   "title": "Municipal council members",
+   "kind": "collective_seat",
+   "entry": {
+    "id": "sa_municipal_councils",
+    "category": "institutions",
+    "name": "Municipal councils",
+    "kind": "local_representative_institutions",
+    "lifecycle": {
+     "status": "documented_at_specific_observations",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 52,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unresearched": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 0
+   }
+  }
+ ],
+ "observations": {
+  "sa_crown_prince#1": {
+   "role": "research:sa_crown_prince",
+   "name": null,
+   "identity_text": "King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.",
+   "claim": "sa_mbs_pm_appointment",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-27",
+   "sources": [
+    "sa_spa_pm_2022"
+   ],
+   "acceptance": "unattributed_intake",
+   "packets": [],
+   "source_classes": {
+    "unattributed_intake": 1
+   }
+  },
+  "sa_crown_prince#2": {
+   "role": "research:sa_crown_prince",
+   "name": "Abdullah bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2005-08-01",
+   "claim_ids": [
+    "sa_abdullah_cp_obs_20050801",
+    "sa_abdullah_family_pledge_20050801"
+   ],
+   "note": "Styled Crown Prince, Deputy Premier and Commander of the National Guard when King Fahd's death was announced on 1 August 2005; the same day's Royal Court statement reports the family pledge to him as King (SA-EXEC-01 and 02).",
+   "uncertainty": "A point observation: the start of his crown-princeship is outside the sources read. His accession ended it, but the statement gives no separate date for the family pledge, so until is null.",
+   "sources": [
+    "sa_spa_fahd_death_20050801_en",
+    "sa_spa_allegiance_20050801_ar"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#3": {
+   "role": "research:sa_crown_prince",
+   "name": "Sultan bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2011-10-22",
+   "attested_on": "2005-08-01",
+   "claim_ids": [
+    "sa_sultan_cp_selected_20050801",
+    "sa_sultan_death_20111022"
+   ],
+   "note": "Selected Crown Prince by King Abdullah after the family pledge, reported by the Royal Court statement dated 1 August 2005 (SA-EXEC-02). Died at dawn on Saturday 24/11/1432 AH, 22 October 2011, styled Crown Prince (SA-EXEC-03).",
+   "uncertainty": "The selection has no separate date or time beyond the statement date, so from is null. until is the stated day of death.",
+   "sources": [
+    "sa_spa_allegiance_20050801_ar",
+    "sa_spa_sultan_death_20111022"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#4": {
+   "role": "research:sa_crown_prince",
+   "name": "Nayef bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2012-06-16",
+   "attested_on": "2011-10-27",
+   "claim_ids": [
+    "sa_nayef_cp_order_a224",
+    "sa_nayef_death_20120616"
+   ],
+   "note": "Chosen Crown Prince by Royal Order A/224 of 29/11/1432 AH, 27 October 2011, after the Allegiance Commission was notified. Died on Saturday 26/7/1433 AH, 16 June 2012, styled Crown Prince (SA-EXEC-03).",
+   "uncertainty": "The order states no effective date, so from is null and attested_on is the order date. until is the stated day of death.",
+   "sources": [
+    "sa_spa_nayef_cp_20111027",
+    "sa_spa_nayef_death_20120616"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#5": {
+   "role": "research:sa_crown_prince",
+   "name": "Salman bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2015-01-23",
+   "attested_on": "2012-06-18",
+   "claim_ids": [
+    "sa_salman_cp_order_a139",
+    "sa_salman_king_pledge_20150123"
+   ],
+   "note": "Chosen Crown Prince by Royal Order A/139 of 28/7/1433 AH, 18 June 2012 (SA-EXEC-04). His crown-princeship ended when he received the pledge as King on 23 January 2015 (SA-EXEC-05).",
+   "uncertainty": "The order states no effective date, so from is null. until rests on his own accession in the 23 January 2015 statement, which then applies the crown-princeship vacancy provision; it is not taken from Muqrin's pledge.",
+   "sources": [
+    "sa_spa_salman_cp_20120618",
+    "sa_spa_abdullah_death_20150123_en"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#6": {
+   "role": "research:sa_crown_prince",
+   "name": "Muqrin bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2015-04-29",
+   "attested_on": "2015-01-23",
+   "claim_ids": [
+    "sa_muqrin_cp_pledge_20150123",
+    "sa_muqrin_relieved_a159"
+   ],
+   "note": "Received the pledge as Crown Prince on 23 January 2015 under item Second of Royal Order A/86 (SA-EXEC-05). Relieved at his own request of the crown princeship and the Deputy Premiership by Royal Order A/159 of 10/7/1436 AH, 29 April 2015 (SA-EXEC-06).",
+   "uncertainty": "The pledge has no stated time or effective-date wording, so from is null. until is the date of the relief order. His earlier Deputy Crown Prince office under A/86 is not a role in this packet.",
+   "sources": [
+    "sa_spa_abdullah_death_20150123_en",
+    "sa_spa_order_a159_20150429"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#7": {
+   "role": "research:sa_crown_prince",
+   "name": "Mohammed bin Nayef bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2017-06-21",
+   "attested_on": "2015-04-29",
+   "claim_ids": [
+    "sa_mbn_cp_a159",
+    "sa_mbn_relieved_20170621"
+   ],
+   "note": "Selected Crown Prince by item Second of Royal Order A/159 of 10/7/1436 AH, 29 April 2015; the pledge was called for and held that evening (SA-EXEC-06). Relieved by item First of Royal Order A/255 of 26/9/1438 AH, 21 June 2017 (SA-EXEC-07).",
+   "uncertainty": "The order states no effective date, so from is null and attested_on is the order date, not the evening pledge. until is the date of the relief order.",
+   "sources": [
+    "sa_spa_order_a159_20150429",
+    "sa_spa_order_a255_20170621_ar"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_crown_prince#8": {
+   "role": "research:sa_crown_prince",
+   "name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2017-06-21",
+   "claim_ids": [
+    "sa_mbs_cp_selected_20170621"
+   ],
+   "note": "Selected Crown Prince by item Second of Royal Order A/255 of 26/9/1438 AH, 21 June 2017, with 31 of 34 Allegiance Commission members recited in support (SA-EXEC-07). Separately styled Crown Prince on 27 September 2022 and 13 August 2026.",
+   "uncertainty": "The order states no effective date, so from is null. No end date is inferred, and continuity to 7 September 2026 is not established.",
+   "sources": [
+    "sa_spa_order_a255_20170621_ar"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 1
+   }
+  },
+  "sa_crown_prince#9": {
+   "role": "research:sa_crown_prince",
+   "name": null,
+   "identity_text": "The first order reconstitutes the Cabinet with its current members under the chairmanship of Prince Mohammed bin Salman bin Abdulaziz Al Saud, styled Crown Prince and Prime Minister, citing earlier royal orders that limit a Cabinet's term to four years.",
+   "claim": "sa_mbs_cp_pm_obs_20260813",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-13",
+   "uncertainty": "Attests both styles on this date. It does not establish uninterrupted tenure since 2017 (Crown Prince) or 2022 (Prime Minister).",
+   "sources": [
+    "sa_spa_orders_20260813"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 1
+   }
+  },
+  "sa_king#1": {
+   "role": "research:sa_king",
+   "name": null,
+   "identity_text": "The release identifies Salman bin Abdulaziz Al Saud as King.",
+   "claim": "sa_salman_king_observation",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-27",
+   "uncertainty": "This observation alone does not certify his full reign or continuity through the research cutoff.",
+   "sources": [
+    "sa_spa_pm_2022"
+   ],
+   "acceptance": "unattributed_intake",
+   "packets": [],
+   "source_classes": {
+    "unattributed_intake": 1
+   }
+  },
+  "sa_king#2": {
+   "role": "research:sa_king",
+   "name": "Fahd bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-08-08",
+   "claim_ids": [
+    "sa_fahd_king_obs_19900808",
+    "sa_fahd_death_announced_20050801"
+   ],
+   "note": "Observed as King on 8 August 1990 in a U.S. official record (SA-EXEC-01). The Royal Court announced his death on 1 August 2005 (26/6/1426 AH).",
+   "uncertainty": "The 1990 observation is a foreign record; no Saudi 1990 record, 1982 accession or 1996 delegation is sourced, and continuity between 1990 and 2005 is not observed. The death announcement states no day or hour of death, so until is null rather than the announcement date.",
+   "sources": [
+    "sa_bush41_address_19900808",
+    "sa_spa_fahd_death_20050801_ar"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_king#3": {
+   "role": "research:sa_king",
+   "name": "Abdullah bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2015-01-23",
+   "attested_on": "2005-08-01",
+   "claim_ids": [
+    "sa_abdullah_family_pledge_20050801",
+    "sa_abdullah_death_20150123"
+   ],
+   "note": "Family pledge as King reported by the Royal Court statement dated 1 August 2005 (SA-EXEC-02). Died at 1 a.m. on Friday 3/4/1436 AH, 23 January 2015, styled King (SA-EXEC-05).",
+   "uncertainty": "The accession statement gives no separate date for the family pledge, so attested_on is the statement date and from is null. until is the stated day of death. No observation between the two dates is recorded.",
+   "sources": [
+    "sa_spa_allegiance_20050801_ar",
+    "sa_spa_abdullah_death_20150123_en"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 2
+   }
+  },
+  "sa_king#4": {
+   "role": "research:sa_king",
+   "name": "Salman bin Abdulaziz Al Saud",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-01-23",
+   "claim_ids": [
+    "sa_salman_king_pledge_20150123"
+   ],
+   "note": "Received the pledge as King under the Basic Law, reported by the Royal Court statement of 23 January 2015 (SA-EXEC-05). Separately observed as King on 27 September 2022 and 13 August 2026.",
+   "uncertainty": "No coronation, oath, inauguration or effective-date wording is recorded, so from is null. No end date is inferred, and continuity to 7 September 2026 is not established.",
+   "sources": [
+    "sa_spa_abdullah_death_20150123_en"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 1
+   }
+  },
+  "sa_king#5": {
+   "role": "research:sa_king",
+   "name": null,
+   "identity_text": "SPA's English release datelined Jeddah, August 13, 2026 says King Salman bin Abdulaziz Al Saud issued royal orders that day.",
+   "claim": "sa_salman_king_obs_20260813",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-13",
+   "uncertainty": "A point observation 25 days before the cutoff. It does not certify continuity through 7 September 2026.",
+   "sources": [
+    "sa_spa_orders_20260813"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 1
+   }
+  },
+  "sa_pm#1": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.",
+   "claim": "sa_mbs_pm_appointment",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-09-27",
+   "sources": [
+    "sa_spa_pm_2022"
+   ],
+   "acceptance": "unattributed_intake",
+   "packets": [],
+   "source_classes": {
+    "unattributed_intake": 1
+   }
+  },
+  "sa_pm#2": {
+   "role": "research:sa_pm",
+   "name": null,
+   "identity_text": "The first order reconstitutes the Cabinet with its current members under the chairmanship of Prince Mohammed bin Salman bin Abdulaziz Al Saud, styled Crown Prince and Prime Minister, citing earlier royal orders that limit a Cabinet's term to four years.",
+   "claim": "sa_mbs_cp_pm_obs_20260813",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-13",
+   "uncertainty": "Attests both styles on this date. It does not establish uninterrupted tenure since 2017 (Crown Prince) or 2022 (Prime Minister).",
+   "sources": [
+    "sa_spa_orders_20260813"
+   ],
+   "acceptance": "pending",
+   "packets": [
+    "CLAUDE-C01-06"
+   ],
+   "source_classes": {
+    "pending": 1
+   }
+  }
+ },
+ "people": [
+  {
+   "person": "fahd_bin_abdulaziz_al_saud",
+   "name": "Fahd bin Abdulaziz Al Saud",
+   "born": null,
+   "died": null,
+   "portrait_windows": [],
+   "required_art_windows": [
+    {
+     "from": "1990-01-01",
+     "to": "1990-01-02"
+    }
+   ],
+   "board_status": "art_pending",
+   "pending_art_jobs": [
+    "cartoon:fahd_bin_abdulaziz_al_saud:1990-01-01:1990-01-02:v1"
+   ]
+  }
+ ],
+ "fictional_candidates": []
+}

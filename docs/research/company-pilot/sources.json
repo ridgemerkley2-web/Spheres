@@ -1,0 +1,3095 @@
+{
+  "schema": "spheres-company-pilot-sources-v1",
+  "research_cutoff": "2026-09-07",
+  "task": "CLAUDE-E05-RESEARCH-01",
+  "note": "Official evidence for the E05 important-company research pilot. Response bytes and SHA-256 are of the body received with a normal browser User-Agent and identity encoding. Source documents are not stored in the repository. Anchors are short locating phrases only; claims are paraphrased. No logo or image rights are implied.",
+  "sources": [
+    {
+      "id": "fr_knds_france_page",
+      "url": "https://knds.com/fr/filiales/knds-france",
+      "title": "KNDS France subsidiary page with dated heritage timeline",
+      "publisher": "KNDS",
+      "kind": "official_company",
+      "language": "fr",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Timeline years are carried in the page data; its 2045 MGCS entry is a future target and is not recorded.",
+      "response": {
+        "status": 200,
+        "bytes": 448869,
+        "sha256": "617b5fa900433610c9ef27bff5e3ba73c716ac8d662527bdc5fd184181d86abc",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://knds.com/fr/filiales/knds-france",
+        "fetched_utc": "2026-09-28T04:03:47.320573+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:06.680551+00:00",
+        "recheck_bytes": 448869,
+        "recheck_sha256": "617b5fa900433610c9ef27bff5e3ba73c716ac8d662527bdc5fd184181d86abc",
+        "minutes_after_first": 34.3
+      },
+      "claims": 7
+    },
+    {
+      "id": "fr_knds_group_history_en",
+      "url": "https://knds.com/en/about-us/history",
+      "title": "History | KNDS Group (dated news history)",
+      "publisher": "KNDS",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 483135,
+        "sha256": "32be887a9ad213978d2d43af20fe636267ede8fa0dbda978c19d78cc8cb52c47",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://knds.com/en/about-us/history",
+        "fetched_utc": "2026-09-28T04:04:36.042328+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:08.151715+00:00",
+        "recheck_bytes": 483135,
+        "recheck_sha256": "32be887a9ad213978d2d43af20fe636267ede8fa0dbda978c19d78cc8cb52c47",
+        "minutes_after_first": 33.5
+      },
+      "claims": 6
+    },
+    {
+      "id": "fr_knds_pr_renaming_2024",
+      "url": "https://knds.com/en/press-releases/uniform-brand-identity-land-defence-group-knds-completes-the-legal-renaming-of-its-group-companies",
+      "title": "Uniform brand identity: KNDS completes the legal renaming of its Group companies (press release, Amsterdam, 9 April 2024)",
+      "publisher": "KNDS",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2024-04-09",
+      "covers_through": "2024-04-09",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 325024,
+        "sha256": "6df36e7b82788fc7616fc1d8e036a84f1460bc80f6a1b219412e7514a1da4bc4",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://knds.com/en/press-releases/uniform-brand-identity-land-defence-group-knds-completes-the-legal-renaming-of-its-group-companies",
+        "fetched_utc": "2026-09-28T04:04:38.595241+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:09.721159+00:00",
+        "recheck_bytes": 325024,
+        "recheck_sha256": "6df36e7b82788fc7616fc1d8e036a84f1460bc80f6a1b219412e7514a1da4bc4",
+        "minutes_after_first": 33.5
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_bnf_giat_rdf",
+      "url": "https://data.bnf.fr/ark:/12148/cb12215621t.rdf",
+      "title": "Authority record GIAT industries. France (ark:/12148/cb12215621t), RDF export",
+      "publisher": "Bibliotheque nationale de France (data.bnf.fr)",
+      "kind": "national_library",
+      "language": "fr",
+      "published": "2017-08-25",
+      "covers_through": "2017-08-25",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 8293,
+        "sha256": "d7b6b0e1100c30c93b12ed986805ffb8223e380a6aee95f64cd2fd500fb4d944",
+        "content_type": "application/rdf+xml; charset=UTF-8",
+        "final_url": "https://data.bnf.fr/ark:/12148/cb12215621t.rdf",
+        "fetched_utc": "2026-09-28T04:06:14.101646+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:11.527438+00:00",
+        "recheck_bytes": 8293,
+        "recheck_sha256": "d7b6b0e1100c30c93b12ed986805ffb8223e380a6aee95f64cd2fd500fb4d944",
+        "minutes_after_first": 32.0
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_senat_ppl02_284",
+      "url": "https://www.senat.fr/leg/ppl02-284.html",
+      "title": "Proposition de loi n 284 (2002-2003) on certain DCN and GIAT Industries personnel, transmitted to the Senate on 7 May 2003",
+      "publisher": "Senat",
+      "kind": "parliament",
+      "language": "fr",
+      "published": "2003-05-07",
+      "covers_through": "2003-05-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 122177,
+        "sha256": "0e901d519ff322081e39162e407657db0c166bdc0eb6693809b96cb1b5eff7fa",
+        "content_type": "text/html",
+        "final_url": "https://www.senat.fr/leg/ppl02-284.html",
+        "fetched_utc": "2026-09-28T04:05:38.813453+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:12.045824+00:00",
+        "recheck_bytes": 122177,
+        "recheck_sha256": "0e901d519ff322081e39162e407657db0c166bdc0eb6693809b96cb1b5eff7fa",
+        "minutes_after_first": 32.6
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_an_q12_117468",
+      "url": "https://questions.assemblee-nationale.fr/q12/12-117468QE.htm",
+      "title": "Written question 117468 (12th legislature) and Ministry of Defence answer on the Nexter names",
+      "publisher": "Assemblee nationale",
+      "kind": "parliament",
+      "language": "fr",
+      "published": "2007-05-08",
+      "covers_through": "2007-05-08",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 4437,
+        "sha256": "426ca4399edc83db1d97bb55f84b5a62e771091a1f2dc25c79d4d460b3050d09",
+        "content_type": "text/html",
+        "final_url": "https://questions.assemblee-nationale.fr/q12/12-117468QE.htm",
+        "fetched_utc": "2026-09-28T04:05:10.917511+00:00",
+        "last_modified": "Thu, 28 Mar 2024 23:36:04 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T04:38:14.517216+00:00",
+        "recheck_bytes": 4437,
+        "recheck_sha256": "426ca4399edc83db1d97bb55f84b5a62e771091a1f2dc25c79d4d460b3050d09",
+        "minutes_after_first": 33.1
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_bodacc_knds_france_name_2024",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202400711716%22",
+      "title": "BODACC notice B202400711716: KNDS France, RCS Versailles 379 706 344, change of name and administration (published 2024-04-10)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2024-04-10",
+      "covers_through": "2024-04-10",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 2735,
+        "sha256": "7b4a92e12d745bc21479482f9e972547496244ef64fb493afe148e319be189d5",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202400711716%22",
+        "fetched_utc": "2026-09-28T04:14:02.874850+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:09.777998+00:00",
+        "recheck_bytes": 2735,
+        "recheck_sha256": "7b4a92e12d745bc21479482f9e972547496244ef64fb493afe148e319be189d5",
+        "minutes_after_first": 573.1
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_nexter_systems_2008",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200801261141%22",
+      "title": "BODACC notice B200801261141: NEXTER SYSTEMS, RCS 379 706 344 (published 2008-07-18)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2008-07-18",
+      "covers_through": "2008-07-18",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 3097,
+        "sha256": "ddf4f03c1fa3d0f263fbaf989ff5ae3fb61352ec20f3f552b67224175c1f0fc5",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200801261141%22",
+        "fetched_utc": "2026-09-28T04:14:04.285775+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:12.243489+00:00",
+        "recheck_bytes": 3097,
+        "recheck_sha256": "ddf4f03c1fa3d0f263fbaf989ff5ae3fb61352ec20f3f552b67224175c1f0fc5",
+        "minutes_after_first": 573.1
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_giat_industries_2008",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200800101070%22",
+      "title": "BODACC notice B200800101070: GIAT INDUSTRIES, RCS Versailles 352 751 143 (published 2008-01-16)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2008-01-16",
+      "covers_through": "2008-01-16",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 3441,
+        "sha256": "f506d07756a8ace6270812f9bf1503ab272f927e18005aa99ade11efea161809",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200800101070%22",
+        "fetched_utc": "2026-09-28T04:14:05.188167+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:14.669628+00:00",
+        "recheck_bytes": 3441,
+        "recheck_sha256": "f506d07756a8ace6270812f9bf1503ab272f927e18005aa99ade11efea161809",
+        "minutes_after_first": 573.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_nexter_giat_sale_2009",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22A200900251242%22",
+      "title": "BODACC notice A200900251242: business purchase by NEXTER SYSTEMS from GIAT INDUSTRIES (published 2009-02-05)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2009-02-05",
+      "covers_through": "2009-02-05",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 2568,
+        "sha256": "d312f7cc37534dc8b6a2b8c550d73a76f95889437d0f46d74cc0b3d2f47de797",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22A200900251242%22",
+        "fetched_utc": "2026-09-28T04:14:06.562994+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:16.960201+00:00",
+        "recheck_bytes": 2568,
+        "recheck_sha256": "d312f7cc37534dc8b6a2b8c550d73a76f95889437d0f46d74cc0b3d2f47de797",
+        "minutes_after_first": 573.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_knds_france_accounts_2026",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C2026008510733%22",
+      "title": "BODACC notice C2026008510733: KNDS France accounts filing for 2025 (published 2026-05-04)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2026-05-04",
+      "covers_through": "2026-05-04",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1546,
+        "sha256": "9f9b61e43d57b994bceb3204777417dc67abdc76d5c59449e6c453ccdd11a679",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C2026008510733%22",
+        "fetched_utc": "2026-09-28T04:28:34.064922+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:19.265295+00:00",
+        "recheck_bytes": 1546,
+        "recheck_sha256": "9f9b61e43d57b994bceb3204777417dc67abdc76d5c59449e6c453ccdd11a679",
+        "minutes_after_first": 558.8
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_giat_industries_accounts_2025",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C2025014321463%22",
+      "title": "BODACC notice C2025014321463: GIAT INDUSTRIES accounts filing for 2024 (published 2025-07-29)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2025-07-29",
+      "covers_through": "2025-07-29",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1563,
+        "sha256": "ffab827a7915059aa6ae8d0ba874cd3bd4da5190939d012e4bb8192582e0f913",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C2025014321463%22",
+        "fetched_utc": "2026-09-28T04:28:35.343872+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:21.728956+00:00",
+        "recheck_bytes": 1563,
+        "recheck_sha256": "ffab827a7915059aa6ae8d0ba874cd3bd4da5190939d012e4bb8192582e0f913",
+        "minutes_after_first": 558.8
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_knds_ammo_2024",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202400711714%22",
+      "title": "BODACC notice B202400711714: KNDS Ammo France, RCS Versailles 339 946 469, change of name and form (published 2024-04-10)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2024-04-10",
+      "covers_through": "2024-04-10",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1779,
+        "sha256": "5530b5e8b525380cfe63991fafb8f29532b385b04edfb77a78ebfb1fd6dafa82",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202400711714%22",
+        "fetched_utc": "2026-09-28T04:31:37.844094+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:24.037270+00:00",
+        "recheck_bytes": 1779,
+        "recheck_sha256": "5530b5e8b525380cfe63991fafb8f29532b385b04edfb77a78ebfb1fd6dafa82",
+        "minutes_after_first": 555.8
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bnf_dassault_rdf",
+      "url": "https://data.bnf.fr/ark:/12148/cb118687432.rdf",
+      "title": "Authority record Dassault Aviation (ark:/12148/cb118687432), RDF export",
+      "publisher": "Bibliotheque nationale de France (data.bnf.fr)",
+      "kind": "national_library",
+      "language": "fr",
+      "published": "2015-03-12",
+      "covers_through": "2015-03-12",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 60132,
+        "sha256": "971caf23931c889746fd2fb37e3af7951cee458b6475cbb5a0e4170e8a5d93b6",
+        "content_type": "application/rdf+xml; charset=UTF-8",
+        "final_url": "https://data.bnf.fr/ark:/12148/cb118687432.rdf",
+        "fetched_utc": "2026-09-28T04:09:46.937623+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:26.782406+00:00",
+        "recheck_bytes": 60132,
+        "recheck_sha256": "971caf23931c889746fd2fb37e3af7951cee458b6475cbb5a0e4170e8a5d93b6",
+        "minutes_after_first": 577.7
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_dassault_rfa2008",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/CNS/8888/01/FCCNS017870_20090319.pdf",
+      "title": "Dassault Aviation, Rapport financier annuel 2008 (filed through the French official storage mechanism (DILA info-financiere), 2009-03-19)",
+      "publisher": "Dassault Aviation",
+      "kind": "annual_report",
+      "language": "fr",
+      "published": "2009-03-19",
+      "covers_through": "2009-03-19",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 4871654,
+        "sha256": "f75d8ae67a2837df731e182c7d49dab4e006d4cad98fbd3bb0e28bf5d427ddfc",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/CNS/8888/01/FCCNS017870_20090319.pdf",
+        "fetched_utc": "2026-09-28T04:07:47.191309+00:00",
+        "last_modified": "Wed, 09 Jan 2019 21:06:38 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:33.714104+00:00",
+        "recheck_bytes": 4871654,
+        "recheck_sha256": "f75d8ae67a2837df731e182c7d49dab4e006d4cad98fbd3bb0e28bf5d427ddfc",
+        "minutes_after_first": 579.8
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_dassault_rfa2022",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW139395_20230321.pdf",
+      "title": "Dassault Aviation, Rapport financier annuel 2022 (filed through the French official storage mechanism (DILA info-financiere), 2023-03-21)",
+      "publisher": "Dassault Aviation",
+      "kind": "annual_report",
+      "language": "fr",
+      "published": "2023-03-21",
+      "covers_through": "2023-03-21",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 4616177,
+        "sha256": "d67e74f6a21889e6859f9cd27a480f5caf1ae3fe506a02a860e718ede937a5da",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW139395_20230321.pdf",
+        "fetched_utc": "2026-09-28T04:10:29.830622+00:00",
+        "last_modified": "Tue, 21 Mar 2023 18:00:59 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:40.259931+00:00",
+        "recheck_bytes": 4616177,
+        "recheck_sha256": "d67e74f6a21889e6859f9cd27a480f5caf1ae3fe506a02a860e718ede937a5da",
+        "minutes_after_first": 577.2
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_dassault_rfa2023_esef",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW139265_20240314.zip",
+      "title": "Dassault Aviation, Rapport financier annuel 2023, ESEF xhtml package (filed through the French official storage mechanism (DILA info-financiere), 2024-03-14)",
+      "publisher": "Dassault Aviation",
+      "kind": "annual_report",
+      "language": "fr",
+      "published": "2024-03-14",
+      "covers_through": "2024-03-14",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 2379721,
+        "sha256": "4ef646b3dfa0dc4efc115029d2cbbe79b52ab738ead1a841d049bde6bbc81e08",
+        "content_type": "application/zip",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW139265_20240314.zip",
+        "fetched_utc": "2026-09-28T04:10:47.840501+00:00",
+        "last_modified": "Thu, 14 Mar 2024 19:06:02 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:43.481087+00:00",
+        "recheck_bytes": 2379721,
+        "recheck_sha256": "4ef646b3dfa0dc4efc115029d2cbbe79b52ab738ead1a841d049bde6bbc81e08",
+        "minutes_after_first": 576.9
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_dassault_rfa2025_esef",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW130036_20260313.zip",
+      "title": "Dassault Aviation, Rapport financier annuel 2025, ESEF xhtml package (filed through the French official storage mechanism (DILA info-financiere), 2026-03-13)",
+      "publisher": "Dassault Aviation",
+      "kind": "annual_report",
+      "language": "fr",
+      "published": "2026-03-13",
+      "covers_through": "2026-03-13",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1657749,
+        "sha256": "7d9ebeecf4978f34c62ed25aad87e33b7fda310119c9637fc8b9cc11fcc749cb",
+        "content_type": "application/zip",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/8888/01/FCMKW130036_20260313.zip",
+        "fetched_utc": "2026-09-28T04:07:15.922778+00:00",
+        "last_modified": "Fri, 13 Mar 2026 19:05:36 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:46.498508+00:00",
+        "recheck_bytes": 1657749,
+        "recheck_sha256": "7d9ebeecf4978f34c62ed25aad87e33b7fda310119c9637fc8b9cc11fcc749cb",
+        "minutes_after_first": 580.5
+      },
+      "claims": 5
+    },
+    {
+      "id": "fr_dassault_pr_300th_rafale_en",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2025/10/FCMKW112004_20251007.pdf",
+      "title": "Dassault Aviation press release: Delivery of the 300th Rafale (Saint-Cloud, 7 October 2025; filed through the French official storage mechanism (DILA info-financiere))",
+      "publisher": "Dassault Aviation",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2025-10-07",
+      "covers_through": "2025-10-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 319229,
+        "sha256": "858dbaee3deace66938fbddb04f6e8c4610e0b3f3440aa7e1b8fb5bd873a48d5",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2025/10/FCMKW112004_20251007.pdf",
+        "fetched_utc": "2026-09-28T04:09:58.674684+00:00",
+        "last_modified": "Tue, 07 Oct 2025 17:00:56 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:49.595097+00:00",
+        "recheck_bytes": 319229,
+        "recheck_sha256": "858dbaee3deace66938fbddb04f6e8c4610e0b3f3440aa7e1b8fb5bd873a48d5",
+        "minutes_after_first": 577.8
+      },
+      "claims": 3
+    },
+    {
+      "id": "fr_dassault_pr_deliveries_2025_en",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2026/01/FCMKW118148_20260107.pdf",
+      "title": "Dassault Aviation financial release: 2025 deliveries, order intakes and backlog (7 January 2026; filed through the French official storage mechanism (DILA info-financiere))",
+      "publisher": "Dassault Aviation",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2026-01-07",
+      "covers_through": "2026-01-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 270350,
+        "sha256": "eaeecbf3d4d0c5b90760f124afdf8886ecf9cd9c5252090a501cb7f60dcb2e0b",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2026/01/FCMKW118148_20260107.pdf",
+        "fetched_utc": "2026-09-28T04:09:59.656870+00:00",
+        "last_modified": "Wed, 07 Jan 2026 18:01:38 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:52.177000+00:00",
+        "recheck_bytes": 270350,
+        "recheck_sha256": "eaeecbf3d4d0c5b90760f124afdf8886ecf9cd9c5252090a501cb7f60dcb2e0b",
+        "minutes_after_first": 577.9
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_thales_urd2023",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/125/8888/01/FC125526229_20240404.pdf",
+      "title": "Thales, Document d'enregistrement universel 2023 (filed through the French official storage mechanism (DILA info-financiere), 2024-04-04)",
+      "publisher": "Thales",
+      "kind": "registration_document",
+      "language": "fr",
+      "published": "2024-04-04",
+      "covers_through": "2024-04-04",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 8069258,
+        "sha256": "3c3470d601b250e879d63e2df458ba4cc093d9f42cc81e7e8e1161bc8f761f6b",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/125/8888/01/FC125526229_20240404.pdf",
+        "fetched_utc": "2026-09-28T04:12:03.647606+00:00",
+        "last_modified": "Thu, 04 Apr 2024 21:00:33 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:47:54.688740+00:00",
+        "recheck_bytes": 8069258,
+        "recheck_sha256": "3c3470d601b250e879d63e2df458ba4cc093d9f42cc81e7e8e1161bc8f761f6b",
+        "minutes_after_first": 575.9
+      },
+      "claims": 3
+    },
+    {
+      "id": "fr_naval_history_en",
+      "url": "https://www.naval-group.com/en/history",
+      "title": "Nearly 400 years of naval history | Naval Group",
+      "publisher": "Naval Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 107305,
+        "sha256": "688688fafc8800484dcb2092be2cbcfec29fa34173d401da3dddf75bd67695a7",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.naval-group.com/en/history",
+        "fetched_utc": "2026-09-28T04:11:12.904335+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:47:58.773688+00:00",
+        "recheck_bytes": 107305,
+        "recheck_sha256": "b5c24d9a62a3bb5ef5ebf9e5e73514bb34b6178a9c4392a3cefba60a76e15cc8",
+        "minutes_after_first": 576.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_naval_discover_en",
+      "url": "https://www.naval-group.com/en/discover-group",
+      "title": "Discover the group | Naval Group (shareholders as of 31 December 2025)",
+      "publisher": "Naval Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 114344,
+        "sha256": "ba8c58467102359f5e27024d1e30e98b4373dcc157e5433f38da47b9f5afcf07",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.naval-group.com/en/discover-group",
+        "fetched_utc": "2026-09-28T04:11:14.189561+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:01.732790+00:00",
+        "recheck_bytes": 114344,
+        "recheck_sha256": "62bfc53d429346108a5af4aaaf978015e1be9d4ef37c2cef36971fe055e69297",
+        "minutes_after_first": 576.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_an_q13_103471",
+      "url": "https://questions.assemblee-nationale.fr/dyn/13/questions/QANR5L13QE103471.pdf",
+      "title": "Written question 103471 (13th legislature) and Ministry of Defence answer on DCNS (answer published 9 August 2011)",
+      "publisher": "Assemblee nationale",
+      "kind": "parliament",
+      "language": "fr",
+      "published": "2011-08-09",
+      "covers_through": "2011-08-09",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 60649,
+        "sha256": "d70a967e41ce3a753c551265e739add22d4898415d9d825cba89007948581802",
+        "content_type": "application/pdf",
+        "final_url": "https://questions.assemblee-nationale.fr/dyn/13/questions/QANR5L13QE103471.pdf",
+        "fetched_utc": "2026-09-28T04:11:40.391768+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:04.583557+00:00",
+        "recheck_bytes": 60649,
+        "recheck_sha256": "d70a967e41ce3a753c551265e739add22d4898415d9d825cba89007948581802",
+        "minutes_after_first": 576.4
+      },
+      "claims": 3
+    },
+    {
+      "id": "fr_senat_r04_405",
+      "url": "https://www.senat.fr/rap/r04-405/r04-405_mono.html",
+      "title": "Rapport d'information n 405 (2004-2005): La modernisation de l'industrie militaire navale, des Arsenaux a DCN-SA (filed 16 June 2005)",
+      "publisher": "Senat, commission des finances",
+      "kind": "parliament",
+      "language": "fr",
+      "published": "2005-06-16",
+      "covers_through": "2005-06-16",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1046107,
+        "sha256": "6d2e066d67d4a1f7cc5eb4654dad30e15fc9f5c16ad10f506eed4cb9f6a46e1f",
+        "content_type": "text/html",
+        "final_url": "https://www.senat.fr/rap/r04-405/r04-405_mono.html",
+        "fetched_utc": "2026-09-28T04:16:31.866509+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:07.263609+00:00",
+        "recheck_bytes": 1046107,
+        "recheck_sha256": "6d2e066d67d4a1f7cc5eb4654dad30e15fc9f5c16ad10f506eed4cb9f6a46e1f",
+        "minutes_after_first": 571.6
+      },
+      "claims": 5
+    },
+    {
+      "id": "fr_bodacc_dcns_2008",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200800572144%22",
+      "title": "BODACC notice B200800572144: D C N S, RCS Paris 441 133 808 (published 2008-04-03)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2008-04-03",
+      "covers_through": "2008-04-03",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1665,
+        "sha256": "8673623dd67e04ee3a2eab91dc4f2800621e1dd6c38a4171a21bdbad0ad80ccc",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B200800572144%22",
+        "fetched_utc": "2026-09-28T04:14:01.907404+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:12.423959+00:00",
+        "recheck_bytes": 1665,
+        "recheck_sha256": "8673623dd67e04ee3a2eab91dc4f2800621e1dd6c38a4171a21bdbad0ad80ccc",
+        "minutes_after_first": 574.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_dcns_accounts_2017",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C201700866539%22",
+      "title": "BODACC notice C201700866539: D C N S accounts filing (published 2017-08-26)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2017-08-26",
+      "covers_through": "2017-08-26",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1511,
+        "sha256": "88a168e819ab1161795e1ba7ddc5c5b75a72b66b600f8a2ce87cfa43dddedae8",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22C201700866539%22",
+        "fetched_utc": "2026-09-28T04:14:00.351488+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:14.600127+00:00",
+        "recheck_bytes": 1511,
+        "recheck_sha256": "88a168e819ab1161795e1ba7ddc5c5b75a72b66b600f8a2ce87cfa43dddedae8",
+        "minutes_after_first": 574.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_naval_group_name_2017",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B201701961118%22",
+      "title": "BODACC notice B201701961118: NAVAL GROUP, RCS Paris 441 133 808, change of name (published 2017-10-12)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2017-10-12",
+      "covers_through": "2017-10-12",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1572,
+        "sha256": "efa7797467a11f4364deaeb05e283c2f75d1617627566d9134e2c3b3268f5add",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B201701961118%22",
+        "fetched_utc": "2026-09-28T04:13:59.428734+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:16.981328+00:00",
+        "recheck_bytes": 1572,
+        "recheck_sha256": "efa7797467a11f4364deaeb05e283c2f75d1617627566d9134e2c3b3268f5add",
+        "minutes_after_first": 574.3
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_bodacc_naval_group_2026",
+      "url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202601364577%22",
+      "title": "BODACC notice B202601364577: NAVAL GROUP administration change (published 2026-07-21)",
+      "publisher": "DILA - Bulletin officiel des annonces civiles et commerciales (BODACC), open-data record",
+      "kind": "official_register",
+      "language": "fr",
+      "published": "2026-07-21",
+      "covers_through": "2026-07-21",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1706,
+        "sha256": "8b7d8409d08e1feaf65e22f1cc7000e7c12206eaab3b6c447e637d03d4a1754d",
+        "content_type": "application/json; charset=utf-8",
+        "final_url": "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=id%3D%22B202601364577%22",
+        "fetched_utc": "2026-09-28T04:28:36.143327+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:19.531014+00:00",
+        "recheck_bytes": 1706,
+        "recheck_sha256": "8b7d8409d08e1feaf65e22f1cc7000e7c12206eaab3b6c447e637d03d4a1754d",
+        "minutes_after_first": 559.7
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_naval_pr_suffren_2020",
+      "url": "https://www.naval-group.com/sites/default/files/2020-11/20201106%20CP%20Livraison%20Suffren_VDEF_ENGL.pdf",
+      "title": "Naval Group press release: Naval Group delivers the Suffren to the DGA (Toulon, 6 November 2020)",
+      "publisher": "Naval Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2020-11-06",
+      "covers_through": "2020-11-06",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 92681,
+        "sha256": "80d4b25414b05d36e143ff806ff558d499704a9be9adcb30ad9c5a4f95070f41",
+        "content_type": "application/pdf",
+        "final_url": "https://www.naval-group.com/sites/default/files/2020-11/20201106%20CP%20Livraison%20Suffren_VDEF_ENGL.pdf",
+        "fetched_utc": "2026-09-28T04:14:35.706550+00:00",
+        "last_modified": "Fri, 06 Nov 2020 16:08:51 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:22.205792+00:00",
+        "recheck_bytes": 92681,
+        "recheck_sha256": "80d4b25414b05d36e143ff806ff558d499704a9be9adcb30ad9c5a4f95070f41",
+        "minutes_after_first": 573.8
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_naval_pr_fdi_2025",
+      "url": "https://www.naval-group.com/sites/default/files/2025-10/20251017_PR%20Delivery%20FDI%20Amiral%20Ronarc%27h.pdf",
+      "title": "Naval Group press release: Naval Group delivers the first defence and intervention frigate (Lorient, 17 October 2025)",
+      "publisher": "Naval Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2025-10-17",
+      "covers_through": "2025-10-17",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 76929,
+        "sha256": "24ed31784658a990a807aa9033c7fa09ace925d12fa2da2311055e4aa2dfc5c1",
+        "content_type": "application/pdf",
+        "final_url": "https://www.naval-group.com/sites/default/files/2025-10/20251017_PR%20Delivery%20FDI%20Amiral%20Ronarc%27h.pdf",
+        "fetched_utc": "2026-09-28T04:15:21.036576+00:00",
+        "last_modified": "Mon, 20 Oct 2025 09:54:32 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:25.249036+00:00",
+        "recheck_bytes": 76929,
+        "recheck_sha256": "24ed31784658a990a807aa9033c7fa09ace925d12fa2da2311055e4aa2dfc5c1",
+        "minutes_after_first": 573.1
+      },
+      "claims": 2
+    },
+    {
+      "id": "au_anao_future_sub_pdss_2023",
+      "url": "https://www.anao.gov.au/sites/default/files/2023-02/Auditor-General_Report_2022-23_12_PDSS_4.pdf",
+      "title": "Australian National Audit Office, Auditor-General Report No. 12 2022-23, Project Data Summary Sheet: Future Submarine SEA1000 Phase 1B",
+      "publisher": "Australian National Audit Office",
+      "kind": "audit_office",
+      "language": "en",
+      "published": "2023-02",
+      "covers_through": "2023-02",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 395842,
+        "sha256": "d1d984f5e05b5af199207a09a7710d4a1f3651a226d647fa5dd6cc084c2106e8",
+        "content_type": "application/pdf",
+        "final_url": "https://www.anao.gov.au/sites/default/files/2023-02/Auditor-General_Report_2022-23_12_PDSS_4.pdf",
+        "fetched_utc": "2026-09-28T04:16:14.725328+00:00",
+        "last_modified": "Thu, 09 Feb 2023 04:44:57 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:27.743623+00:00",
+        "recheck_bytes": 395842,
+        "recheck_sha256": "d1d984f5e05b5af199207a09a7710d4a1f3651a226d647fa5dd6cc084c2106e8",
+        "minutes_after_first": 572.2
+      },
+      "claims": 3
+    },
+    {
+      "id": "fr_renault_histoire",
+      "url": "https://www.renaultgroup.com/groupe/histoire/",
+      "title": "Notre histoire | Renault Group (dated history grid)",
+      "publisher": "Renault Group",
+      "kind": "official_company",
+      "language": "fr",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Page data carries year labels; entries after the cutoff are ignored.",
+      "response": {
+        "status": 200,
+        "bytes": 594000,
+        "sha256": "8bbec2850fb332e7709a67f55b487e33a24301db4b69b5b3c74a1332ca263ad9",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.renaultgroup.com/groupe/histoire/",
+        "fetched_utc": "2026-09-28T04:17:31.845165+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:30.180135+00:00",
+        "recheck_bytes": 595048,
+        "recheck_sha256": "ca55a36a75af9a5aa80c0ef9919432f8a394862a8745ffe59cfeccb5670abf77",
+        "minutes_after_first": 571.0,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 12
+    },
+    {
+      "id": "fr_renault_pr_nissan_shares_2024",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2024/09/FCMKW114288_20240927.pdf",
+      "title": "Renault Group press release: Renault Group sold to Nissan 195 473 600 Nissan shares for EUR 494 million (27 September 2024; filed through the French official storage mechanism (DILA info-financiere))",
+      "publisher": "Renault Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2024-09-27",
+      "covers_through": "2024-09-27",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 92713,
+        "sha256": "a89dbaa0848dcaae21a4803237df403f283eb1d40c8e3bf37ae16bc9ad75314f",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2024/09/FCMKW114288_20240927.pdf",
+        "fetched_utc": "2026-09-28T04:18:57.815314+00:00",
+        "last_modified": "Fri, 27 Sep 2024 07:00:34 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:33.085218+00:00",
+        "recheck_bytes": 92713,
+        "recheck_sha256": "a89dbaa0848dcaae21a4803237df403f283eb1d40c8e3bf37ae16bc9ad75314f",
+        "minutes_after_first": 569.6
+      },
+      "claims": 2
+    },
+    {
+      "id": "fr_renault_pr_nissan_accounting_2025",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2025/07/FCMKW115657_20250701.pdf",
+      "title": "Renault Group press release: Evolution of the accounting treatment of Renault Group's stake in Nissan (1 July 2025; filed through the French official storage mechanism (DILA info-financiere))",
+      "publisher": "Renault Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2025-07-01",
+      "covers_through": "2025-07-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 70763,
+        "sha256": "c671dce43a17a439254d9aab79b6d677a0190e8f9481be4642420ceb2b9b7f4c",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2025/07/FCMKW115657_20250701.pdf",
+        "fetched_utc": "2026-09-28T04:18:58.562236+00:00",
+        "last_modified": "Tue, 01 Jul 2025 07:00:23 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:35.322681+00:00",
+        "recheck_bytes": 70763,
+        "recheck_sha256": "c671dce43a17a439254d9aab79b6d677a0190e8f9481be4642420ceb2b9b7f4c",
+        "minutes_after_first": 569.6
+      },
+      "claims": 1
+    },
+    {
+      "id": "fr_renault_pr_h1_2026",
+      "url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2026/07/FCMKW115168_20260730.pdf",
+      "title": "Renault SA: Communication about the availability of the 2026 Half-Year Financial Report (30 July 2026; filed through the French official storage mechanism (DILA info-financiere))",
+      "publisher": "Renault Group",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2026-07-30",
+      "covers_through": "2026-07-30",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 42164,
+        "sha256": "4b5bed25fbec5445aa6a4f73fb3f4c016370ac794d8f93d793448bc4c8fc9a52",
+        "content_type": "application/pdf",
+        "final_url": "https://fr.ftp.opendatasoft.com/datadila/INFOFI/MKW/2026/07/FCMKW115168_20260730.pdf",
+        "fetched_utc": "2026-09-28T04:18:59.270537+00:00",
+        "last_modified": "Thu, 30 Jul 2026 07:01:20 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:48:37.561515+00:00",
+        "recheck_bytes": 42164,
+        "recheck_sha256": "4b5bed25fbec5445aa6a4f73fb3f4c016370ac794d8f93d793448bc4c8fc9a52",
+        "minutes_after_first": 569.6
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_nta_houjin",
+      "url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=8010401050387",
+      "title": "Corporate number 8010401050387, 三菱重工業株式会社: latest information and change history",
+      "publisher": "National Tax Agency (Japan), Corporate Number Publication Site",
+      "kind": "official_register",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The page is generated per request and stamps the retrieval time (令和8年9月28日, after the cutoff); only the dated record contents inside the window are used.",
+      "response": {
+        "status": 200,
+        "bytes": 30653,
+        "sha256": "881fee684a54aff725726b4311fe2382e8767dfe33328ae7639ecd2eaa757da5",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=8010401050387",
+        "fetched_utc": "2026-09-28T04:19:38.673794+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:41.526798+00:00",
+        "recheck_bytes": 30653,
+        "recheck_sha256": "66dd4513c70b56c280bbd946162a8bd3e9e9aa83b0b5f8d8157297ad6fb3ec67",
+        "minutes_after_first": 569.0,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_mhi_profile_en",
+      "url": "https://www.mhi.com/company/overview/profile",
+      "title": "Corporate Profile (figures for the year to 31 March 2026)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 608735,
+        "sha256": "66995b33145aa84b567776d98a204a37da74bac477bea49690ae9a8ccdf5a59a",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/company/overview/profile",
+        "fetched_utc": "2026-09-28T04:33:02.178068+00:00",
+        "last_modified": "Mon, 28 Sep 2026 02:56:50 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:43.805163+00:00",
+        "recheck_bytes": 608748,
+        "recheck_sha256": "e9ce4c3c33fa0d194f1284daaff6c37cc59187e27b1b1f4d0a4100c1fc252dfc",
+        "minutes_after_first": 555.7,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_loc_nagasaki_hist_ja",
+      "url": "https://www.mhi.com/jp/company/location/nagasakiw/history",
+      "title": "沿革: 長崎造船所 (Nagasaki Shipyard & Machinery Works timeline)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 633975,
+        "sha256": "eee1413ca990b625ba07158b222b419c166fc4dd32d414a6b6fcb605ce5ad253",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/company/location/nagasakiw/history",
+        "fetched_utc": "2026-09-28T04:13:01.503052+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:01:00 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:45.808757+00:00",
+        "recheck_bytes": 633988,
+        "recheck_sha256": "246ed0532a12676533b997049cd015e50aa31f0b615d8d183144bc8e5af17b3a",
+        "minutes_after_first": 575.7,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_loc_sagamihara_hist_ja",
+      "url": "https://www.mhi.com/jp/company/location/sagamiharaw/history",
+      "title": "沿革: 相模原製作所 (Sagamihara Machinery Works timeline)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 627452,
+        "sha256": "f653fe76a7c037619300464fd3dd021fa1b6a186e0fea0b97eb03a8fe89f9e1b",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/company/location/sagamiharaw/history",
+        "fetched_utc": "2026-09-28T04:13:02.217775+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:13:02 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:48.045729+00:00",
+        "recheck_bytes": 627465,
+        "recheck_sha256": "6d7f5266e90fe2e412d95f7213e7f42b0b52572bcea46e9cf9ffb77cdd9d1c05",
+        "minutes_after_first": 575.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_mhi_loc_nagoyaaero_hist_ja",
+      "url": "https://www.mhi.com/jp/company/location/nagoyaaerow/history",
+      "title": "沿革: 名古屋航空宇宙システム製作所 (Nagoya Aerospace Systems Works timeline)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 636514,
+        "sha256": "297e7d8ce31db5bfb66a0a92e9241cdc635b049c91b0731935a02bfeb735a423",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/company/location/nagoyaaerow/history",
+        "fetched_utc": "2026-09-28T04:12:57.635824+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:12:58 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:33.349422+00:00",
+        "recheck_bytes": 636527,
+        "recheck_sha256": "8adda6a88353c0a4bab5d917675b9b10fccf58bdc5e3bd99b8d010959300860b",
+        "minutes_after_first": 576.6,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_mhi_history_ja",
+      "url": "https://www.mhi.com/jp/company/overview/history.html",
+      "title": "沿革 (corporate history page)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 619172,
+        "sha256": "c63a30db33d30c4f07859d0dc448e716194bac191783e1e2ef5392b813f71e8d",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/company/overview/history.html",
+        "fetched_utc": "2026-09-28T04:10:43.059504+00:00",
+        "last_modified": "Mon, 28 Sep 2026 02:58:58 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:31.068037+00:00",
+        "recheck_bytes": 619185,
+        "recheck_sha256": "c2a560fdead0c4bc8f8ef5a27c1de359a4c6bb4275e6caf5a24ef2c48876b7ab",
+        "minutes_after_first": 578.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_yuho_fy2025",
+      "url": "https://www.mhi.com/jp/finance/library/financial/pdf/2025/2025_04_all.pdf",
+      "title": "有価証券報告書 2025年度 (1 April 2025 to 31 March 2026), Annual Securities Report (有価証券報告書) submitted through EDINET on 24 June 2026 (PDF from the MHI IR library)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "securities_filing",
+      "language": "ja",
+      "published": "2026-06-24",
+      "covers_through": "2026-06-24",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 1703686,
+        "sha256": "61eb34164b8338272a4504f5364d5d532e838d9abdf03b4145cede67017a8010",
+        "content_type": "application/pdf",
+        "final_url": "https://www.mhi.com/jp/finance/library/financial/pdf/2025/2025_04_all.pdf",
+        "fetched_utc": "2026-09-28T04:11:10.105140+00:00",
+        "last_modified": "Wed, 24 Jun 2026 04:00:44 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T14:01:19.977530+00:00",
+        "recheck_bytes": 1703686,
+        "recheck_sha256": "61eb34164b8338272a4504f5364d5d532e838d9abdf03b4145cede67017a8010",
+        "minutes_after_first": 590.2
+      },
+      "claims": 6
+    },
+    {
+      "id": "jp_mhi_pr_mhps_group_2014_ja",
+      "url": "https://www.mhi.com/jp/news/14012803.html",
+      "title": "三菱日立パワーシステムズのグループ会社について (press information, 28 January 2014)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2014-01-28",
+      "covers_through": "2014-01-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 624177,
+        "sha256": "e5d497dc0efae367cf889133435b090dbfb8f409654e3de819199bdf3b5e889f",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/14012803.html",
+        "fetched_utc": "2026-09-28T04:14:16.919219+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:14:17 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:53.298754+00:00",
+        "recheck_bytes": 624177,
+        "recheck_sha256": "cd7b1e0b6883fcf0a0435ceda30aae29af279e9705b469d47d974aa4a5dfb127",
+        "minutes_after_first": 574.6,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_mitsubishipower_rename_2020_ja",
+      "url": "https://power.mhi.com/jp/news/20200901.html",
+      "title": "三菱日立パワーシステムズ株式会社が「三菱パワー株式会社」に社名を変更 (press release, 1 September 2020)",
+      "publisher": "Mitsubishi Power, Ltd. (MHI group power-business site)",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2020-09-01",
+      "covers_through": "2020-09-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 554311,
+        "sha256": "4374b6366e523393e82b034162a18652dccd1bafa9162e3bd45dcb7b1b7d08af",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://power.mhi.com/jp/news/20200901.html",
+        "fetched_utc": "2026-09-28T04:13:51.820666+00:00",
+        "last_modified": "Sun, 27 Sep 2026 08:23:29 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:55.564171+00:00",
+        "recheck_bytes": 554311,
+        "recheck_sha256": "1303b464082995ca0d2f31603161f65e43a65223894621c7753cad2b47119a2b",
+        "minutes_after_first": 575.1,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_mitsubishipower_transfer_done_2021_en",
+      "url": "https://power.mhi.com/news/20211001.html",
+      "title": "Transfer of Mitsubishi Power Business to MHI Completed (press release, 1 October 2021)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2021-10-01",
+      "covers_through": "2021-10-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 558698,
+        "sha256": "9f10863b11955a336822d8cd6b44bfbe22b1bf2d3562e58ffced873bc18c3b57",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://power.mhi.com/news/20211001.html",
+        "fetched_utc": "2026-09-28T04:33:41.504075+00:00",
+        "last_modified": "Sun, 27 Sep 2026 13:34:42 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:48:58.318512+00:00",
+        "recheck_bytes": 558698,
+        "recheck_sha256": "3ef946b054aef999f96d248bfddf6101e3b0c782076548afeee0a6d4983f196e",
+        "minutes_after_first": 555.3,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_notice_spacejet_2023_ja",
+      "url": "https://www.mhi.com/jp/notice/notice_230207.html",
+      "title": "当社SpaceJet開発活動の中止に関するお知らせ (notice, 7 February 2023)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2023-02-07",
+      "covers_through": "2023-02-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 614649,
+        "sha256": "98afe96e3fa22a65153b1f41fe1d247ef4c885b6cff4276c3258fa68420c5a59",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/notice/notice_230207.html",
+        "fetched_utc": "2026-09-28T04:13:51.554342+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:13:46 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:00.532368+00:00",
+        "recheck_bytes": 614649,
+        "recheck_sha256": "9df67185520ffe765fe4643abe36ac51475a7d200da9cd1f7461000007770f58",
+        "minutes_after_first": 575.1,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_shipbuilding_reorg_2017_ja",
+      "url": "https://www.mhi.com/jp/news/1712015903.html",
+      "title": "船舶事業を再編し、三菱造船と三菱重工海洋鉄構の2社を設立 (press information, 1 December 2017)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2017-12-01",
+      "covers_through": "2017-12-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 627589,
+        "sha256": "959c54a7b5065a53791313062ecb82cdf9e19155bc8b7f699f51762110177e4a",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/1712015903.html",
+        "fetched_utc": "2026-09-28T04:16:01.195643+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:16:01 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:03.276924+00:00",
+        "recheck_bytes": 627589,
+        "recheck_sha256": "4fcea878c5fef91a5124627dd8312c3f655f7fefdf01aad4d798e729c01e52a6",
+        "minutes_after_first": 573.0,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_maritime_systems_2021_ja",
+      "url": "https://www.mhi.com/jp/news/21092801.html",
+      "title": "艦艇・官公庁船の新事業会社「三菱重工マリタイムシステムズ」が10月1日から営業開始 (press information, 28 September 2021)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2021-09-28",
+      "covers_through": "2021-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 626181,
+        "sha256": "619342c893a25419e6e665e243b2cf765bbfa3c51c0a2d8967175b31d36ad5bf",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/21092801.html",
+        "fetched_utc": "2026-09-28T04:15:47.770050+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:15:48 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:06.446464+00:00",
+        "recheck_bytes": 626181,
+        "recheck_sha256": "66361021d7020a62f2eb65f9a0e52a5edca2ede7e20f02a94f6abcb8f13b2406",
+        "minutes_after_first": 573.3,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_notice_logisnext_complete_2026_en",
+      "url": "https://www.mhi.com/notice/notice_260501.html",
+      "title": "Notification regarding the completion of procedures to take Logisnext Co., Ltd. (formerly Mitsubishi Logisnext) private and transfer the consolidated subsidiary (1 May 2026)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2026-05-01",
+      "covers_through": "2026-05-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 606110,
+        "sha256": "53c4a3e5e76b29bd3fd093b32c9362f021ff27d7750e2645d2e643f8eeb7e4e4",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/notice/notice_260501.html",
+        "fetched_utc": "2026-09-28T04:28:52.650259+00:00",
+        "last_modified": "Mon, 28 Sep 2026 03:02:21 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:09.194335+00:00",
+        "recheck_bytes": 606111,
+        "recheck_sha256": "70204c3ce77fd51ce86e722fc5137486b002864c0119707d0d0dbb0ea566b4e9",
+        "minutes_after_first": 560.3,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_crj_closing_2020_en",
+      "url": "https://www.mhi.com/news/20200507.html",
+      "title": "MHI and Bombardier Inc. agree on a June 1, 2020 closing date for the acquisition of the CRJ Program (press information, 7 May 2020)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2020-05-07",
+      "covers_through": "2020-05-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 614512,
+        "sha256": "f6cdf0f16ea0b535e17391466871066cc6d6eb2f9682f1a9797865263a19cf69",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/news/20200507.html",
+        "fetched_utc": "2026-09-28T04:15:08.469358+00:00",
+        "last_modified": "Mon, 28 Sep 2026 03:06:34 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:11.567916+00:00",
+        "recheck_bytes": 614513,
+        "recheck_sha256": "af675a53bc5e3f0cde2c0b4704903fd22fafcba8c74d246cd7cef34cfdd93af4",
+        "minutes_after_first": 574.1,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_australia_gpf_2026_ja",
+      "url": "https://www.mhi.com/jp/news/260418.html",
+      "title": "豪州政府と次期汎用フリゲートの共同開発・生産に関する契約締結 (press information, 18 April 2026)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2026-04-18",
+      "covers_through": "2026-04-18",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 626719,
+        "sha256": "ac9f047cc5e1c219de2871c14a87c26a8ae10f5998d748f35779289aeeb498ea",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/260418.html",
+        "fetched_utc": "2026-09-28T04:25:42.151822+00:00",
+        "last_modified": "Mon, 28 Sep 2026 03:16:54 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:13.787916+00:00",
+        "recheck_bytes": 626719,
+        "recheck_sha256": "304dce3b41854205c17d88d22e7270ea1c9b0077b82a4d858599a7331ae0a95b",
+        "minutes_after_first": 563.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_prod_f2_ja",
+      "url": "https://www.mhi.com/jp/business/products-services/space-defense/defense-aircraft/f-2-fighter",
+      "title": "F-2 戦闘機 (product page: programme plan and development/production history)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 627385,
+        "sha256": "2fd35520737dea58a396d828edc26405036d3d9c4aed744e32ef7b86e832f37c",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/business/products-services/space-defense/defense-aircraft/f-2-fighter",
+        "fetched_utc": "2026-09-28T04:21:43.598705+00:00",
+        "last_modified": "Mon, 28 Sep 2026 03:13:13 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:16.053681+00:00",
+        "recheck_bytes": 627385,
+        "recheck_sha256": "26130f54f1133b3e21d26dc49b701745d35a28eda41f85bf5a22890a88f43fde",
+        "minutes_after_first": 567.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_h3_prime_2014_ja",
+      "url": "https://www.mhi.com/jp/news/1403255515.html",
+      "title": "新型基幹ロケットの開発と打上げ輸送サービスを担うプライムコントラクター JAXAにより当社が選定される (press information, 25 March 2014)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2014-03-25",
+      "covers_through": "2014-03-25",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 625897,
+        "sha256": "2c785a6f76132d820a4e4e70e9a12b1ab00e6d4c4fa0f9429aeb88a386d64e01",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/1403255515.html",
+        "fetched_utc": "2026-09-28T04:17:45.794805+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:17:46 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:18.578825+00:00",
+        "recheck_bytes": 625897,
+        "recheck_sha256": "05367f3c06fd8779995845102042f7095703bdecdb87759731abf264b3be06af",
+        "minutes_after_first": 571.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_report2025_ads_en",
+      "url": "https://www.mhi.com/finance/library/annual/pdf/report_2025_17.pdf",
+      "title": "MHI REPORT 2025 (integrated report), section Aircraft, Defense & Space (report pp. 40-41)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "annual_report",
+      "language": "en",
+      "published": null,
+      "covers_through": "2025-12-12",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Year of publication is 2025; covers_through is the HTTP Last-Modified date of the file.",
+      "response": {
+        "status": 200,
+        "bytes": 935180,
+        "sha256": "f0798814d1102dd437027e51c0641b7863fbdd6cfdff91cb24f7a17fd31a447b",
+        "content_type": "application/pdf",
+        "final_url": "https://www.mhi.com/finance/library/annual/pdf/report_2025_17.pdf",
+        "fetched_utc": "2026-09-28T04:21:22.737149+00:00",
+        "last_modified": "Fri, 12 Dec 2025 06:16:06 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:21.833806+00:00",
+        "recheck_bytes": 935180,
+        "recheck_sha256": "f0798814d1102dd437027e51c0641b7863fbdd6cfdff91cb24f7a17fd31a447b",
+        "minutes_after_first": 568.0
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_mhi_pr_taigei_delivery_2022_ja",
+      "url": "https://www.mhi.com/jp/news/220309.html",
+      "title": "防衛省向け潜水艦「たいげい」型1番艦の引渡式を神戸造船所で実施 (press information, 9 March 2022)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2022-03-09",
+      "covers_through": "2022-03-09",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 636115,
+        "sha256": "c462d28195ce51c66df1cb01c1a88e10da1520cd7929c68d2a5e99d474c9401e",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/220309.html",
+        "fetched_utc": "2026-09-28T04:16:56.444810+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:16:31 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:24.353044+00:00",
+        "recheck_bytes": 636115,
+        "recheck_sha256": "8c3a805e77abac15198991334cf11e3c93326a0c992701925240cf60d7c54289",
+        "minutes_after_first": 572.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_mhi_pr_mogami_delivery_2022_ja",
+      "url": "https://www.mhi.com/jp/news/220428.html",
+      "title": "防衛省向け3,900トン型護衛艦「もがみ」引渡式 (press information, 28 April 2022)",
+      "publisher": "Mitsubishi Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2022-04-28",
+      "covers_through": "2022-04-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 637688,
+        "sha256": "755181f77ced3e7f130b2bff75a0b49cf2e3f903cb694b5170fcae48f42b51b1",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://www.mhi.com/jp/news/220428.html",
+        "fetched_utc": "2026-09-28T04:16:56.694443+00:00",
+        "last_modified": "Mon, 28 Sep 2026 04:16:35 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:27.832069+00:00",
+        "recheck_bytes": 637688,
+        "recheck_sha256": "348d6a9014ebae31b0351c1d02b1a2c72e881e5f942e569c4b8f6446b47946f2",
+        "minutes_after_first": 572.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_nta_register",
+      "url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1140001005719",
+      "title": "Corporate number 1140001005719, 川崎重工業株式会社: latest information and change history",
+      "publisher": "National Tax Agency (Japan), Corporate Number Publication Site",
+      "kind": "official_register",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The page is generated per request and stamps the retrieval time (令和8年9月28日, after the cutoff); only the dated record contents inside the window are used.",
+      "response": {
+        "status": 200,
+        "bytes": 19679,
+        "sha256": "fa21fbe7a7ab81e67f859f15ccaadd51b574202873e5d5770cbaed5fb0f9a44f",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1140001005719",
+        "fetched_utc": "2026-09-28T04:21:32.048492+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:01.521341+00:00",
+        "recheck_bytes": 19679,
+        "recheck_sha256": "957f951eefc2402c506fd1d3e7b319fcbee0ba63907b05612298023f39e3dda2",
+        "minutes_after_first": 568.5,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_yuho_fy2025",
+      "url": "https://www.khi.co.jp/ir/pdf/etc_260619-1j.pdf",
+      "title": "第203期 有価証券報告書 (1 April 2025 to 31 March 2026), submitted 19 June 2026; PDF of the inline XBRL attached to the correction report of 7 August 2026",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "securities_filing",
+      "language": "ja",
+      "published": "2026-08-07",
+      "covers_through": "2026-08-07",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 3811871,
+        "sha256": "7902b9a01a986b7d57e35841580af7833040fe56e36054f30c5e376a4cd4ab3d",
+        "content_type": "application/pdf",
+        "final_url": "https://www.khi.co.jp/ir/pdf/etc_260619-1j.pdf",
+        "fetched_utc": "2026-09-28T04:10:47.597597+00:00",
+        "last_modified": "Fri, 07 Aug 2026 04:14:24 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T14:01:21.349203+00:00",
+        "recheck_bytes": 3811871,
+        "recheck_sha256": "7902b9a01a986b7d57e35841580af7833040fe56e36054f30c5e376a4cd4ab3d",
+        "minutes_after_first": 590.6
+      },
+      "claims": 9
+    },
+    {
+      "id": "jp_khi_fr_fy2025_en",
+      "url": "https://global.kawasaki.com/en/corp/ir/library/pdf/etc_260619-1e.pdf",
+      "title": "Financial Report: Kawasaki Heavy Industries, Ltd. and Subsidiaries, years ended March 31, 2026 and 2025",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "annual_report",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-03-31",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The exact publication date was not recorded; covers_through is the fiscal year end it reports.",
+      "response": {
+        "status": 200,
+        "bytes": 1119289,
+        "sha256": "0ab39dd4000540f885be3b16d68c5adfac7d8ad7e377de31a68a83b8a9fd2729",
+        "content_type": "application/pdf",
+        "final_url": "https://global.kawasaki.com/en/corp/ir/library/pdf/etc_260619-1e.pdf",
+        "fetched_utc": "2026-09-28T04:25:27.139107+00:00",
+        "last_modified": "Wed, 02 Sep 2026 04:42:33 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:05.755329+00:00",
+        "recheck_bytes": 1119289,
+        "recheck_sha256": "0ab39dd4000540f885be3b16d68c5adfac7d8ad7e377de31a68a83b8a9fd2729",
+        "minutes_after_first": 564.6
+      },
+      "claims": 3
+    },
+    {
+      "id": "jp_khi_rs_history",
+      "url": "https://www.khi.co.jp/corporate/division/rs/history/",
+      "title": "沿革 | 鉄道車両 (rolling-stock business timeline)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 54895,
+        "sha256": "bf69a2828c2c171befd29b9f9eda8ee9f4f99d0e07f9f54a89bbeb737b3b7ab5",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/corporate/division/rs/history/",
+        "fetched_utc": "2026-09-28T04:12:10.974492+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:32:48 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:03.298503+00:00",
+        "recheck_bytes": 54895,
+        "recheck_sha256": "bf69a2828c2c171befd29b9f9eda8ee9f4f99d0e07f9f54a89bbeb737b3b7ab5",
+        "minutes_after_first": 577.9
+      },
+      "claims": 4
+    },
+    {
+      "id": "jp_khi_ship_history",
+      "url": "https://www.khi.co.jp/corporate/division/ship/history/",
+      "title": "沿革 | 船舶海洋ディビジョン (ship and offshore business timeline)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 59863,
+        "sha256": "b66e6844ccc5fcd6dd0d09a2e4425d0aaf7fddbffeb8ed7507bfe844b3c9d9d5",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/corporate/division/ship/history/",
+        "fetched_utc": "2026-09-28T04:12:11.364152+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:32:48 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:22.633304+00:00",
+        "recheck_bytes": 59863,
+        "recheck_sha256": "b66e6844ccc5fcd6dd0d09a2e4425d0aaf7fddbffeb8ed7507bfe844b3c9d9d5",
+        "minutes_after_first": 578.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_robot_history",
+      "url": "https://www.khi.co.jp/corporate/robot/history/",
+      "title": "沿革 | ロボット (robot business timeline)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 50736,
+        "sha256": "509b8224d156768efe27a61c228919785a06d45e135ed061b9938a201c2e0fd1",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/corporate/robot/history/",
+        "fetched_utc": "2026-09-28T04:12:12.067657+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:32:46 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:32.678449+00:00",
+        "recheck_bytes": 50736,
+        "recheck_sha256": "509b8224d156768efe27a61c228919785a06d45e135ed061b9938a201c2e0fd1",
+        "minutes_after_first": 578.3
+      },
+      "claims": 3
+    },
+    {
+      "id": "jp_khi_genealogy",
+      "url": "https://www.khi.co.jp/history/genealogy/",
+      "title": "年表 | Kawasakiの系譜 (company chronology)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 31070,
+        "sha256": "329d133d80ac819c7a8da143abe4465b740554651ac9c97bd9d375509017196a",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/history/genealogy/",
+        "fetched_utc": "2026-09-28T04:12:10.185210+00:00",
+        "last_modified": "Wed, 23 Apr 2025 08:17:30 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:11.078054+00:00",
+        "recheck_bytes": 31070,
+        "recheck_sha256": "329d133d80ac819c7a8da143abe4465b740554651ac9c97bd9d375509017196a",
+        "minutes_after_first": 578.0
+      },
+      "claims": 4
+    },
+    {
+      "id": "jp_khi_genealogy_en",
+      "url": "https://global.kawasaki.com/en/history/genealogy/",
+      "title": "Kawasaki Genealogy - Chronology Table",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 32207,
+        "sha256": "27bde98ae11d8deaf9e4b3e8a388e5e296d0b30ec560de9793668f60f961946f",
+        "content_type": "text/html",
+        "final_url": "https://global.kawasaki.com/en/history/genealogy/",
+        "fetched_utc": "2026-09-28T04:14:26.359445+00:00",
+        "last_modified": "Mon, 07 Apr 2025 02:32:12 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:13.743766+00:00",
+        "recheck_bytes": 32207,
+        "recheck_sha256": "27bde98ae11d8deaf9e4b3e8a388e5e296d0b30ec560de9793668f60f961946f",
+        "minutes_after_first": 575.8
+      },
+      "claims": 3
+    },
+    {
+      "id": "jp_khi_pr_list",
+      "url": "https://www.khi.co.jp/pressrelease/",
+      "title": "プレスリリース一覧 (press-release list)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "A running list; only the item dated on the cutoff day (2026-09-07) is used, later items are ignored.",
+      "response": {
+        "status": 200,
+        "bytes": 1142631,
+        "sha256": "7a33e1a6635a24f226e44edc33370eb1dfeeb458c609f9a745508ca5a439d230",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/pressrelease/",
+        "fetched_utc": "2026-09-28T04:16:12.590308+00:00",
+        "last_modified": "Thu, 24 Sep 2026 06:21:46 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:08.683742+00:00",
+        "recheck_bytes": 1142631,
+        "recheck_sha256": "7a33e1a6635a24f226e44edc33370eb1dfeeb458c609f9a745508ca5a439d230",
+        "minutes_after_first": 573.9
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_krm_message_en",
+      "url": "https://global.kawasaki.com/en/mobility/rail/message.html",
+      "title": "Message from the President | Kawasaki Railcar Manufacturing Co., Ltd.",
+      "publisher": "Kawasaki Heavy Industries, Ltd. (Kawasaki Railcar Manufacturing pages)",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 31732,
+        "sha256": "6d8dd2129a853c46ce7404c239dbcd91cfb974bdb407470612f4838495fedc17",
+        "content_type": "text/html;charset=utf-8",
+        "final_url": "https://global.kawasaki.com/en/mobility/rail/message.html",
+        "fetched_utc": "2026-09-28T04:22:01.377038+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:15.832675+00:00",
+        "recheck_bytes": 31732,
+        "recheck_sha256": "6d8dd2129a853c46ce7404c239dbcd91cfb974bdb407470612f4838495fedc17",
+        "minutes_after_first": 568.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_pr_mc_split_2021_en",
+      "url": "https://global.kawasaki.com/news_210331-4e.pdf",
+      "title": "Notice of the conclusion of an absorption-type company split agreement for the motorcycle and engine business (31 March 2021)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2021-03-31",
+      "covers_through": "2021-03-31",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 408556,
+        "sha256": "cf00eb08801ef6454363e95fa43ebe75d6eccceaf5f64a3b3c7675b2b9033640",
+        "content_type": "application/pdf",
+        "final_url": "https://global.kawasaki.com/news_210331-4e.pdf",
+        "fetched_utc": "2026-09-28T04:22:57.026710+00:00",
+        "last_modified": "Wed, 31 Mar 2021 02:17:13 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:18.144197+00:00",
+        "recheck_bytes": 408556,
+        "recheck_sha256": "cf00eb08801ef6454363e95fa43ebe75d6eccceaf5f64a3b3c7675b2b9033640",
+        "minutes_after_first": 567.4
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_pr_b787_1000",
+      "url": "https://www.khi.co.jp/pressrelease/detail/20191216_2.html",
+      "title": "ボーイング787型機1000号機用の前部胴体が完成 (press release, 16 December 2019)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2019-12-16",
+      "covers_through": "2019-12-16",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 33891,
+        "sha256": "c513b87ab3d3c4ec3d7eb1e2500e57aa225d9c834b8f65798814aa43b9680698",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/pressrelease/detail/20191216_2.html",
+        "fetched_utc": "2026-09-28T04:15:40.294372+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:37:54 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:20.687120+00:00",
+        "recheck_bytes": 33891,
+        "recheck_sha256": "c513b87ab3d3c4ec3d7eb1e2500e57aa225d9c834b8f65798814aa43b9680698",
+        "minutes_after_first": 574.7
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_pr_p1_delivery",
+      "url": "https://www.khi.co.jp/pressrelease/detail/20130326_1.html",
+      "title": "海上自衛隊向けＰ－１固定翼哨戒機の量産初号機を納入 (press release, 26 March 2013)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2013-03-26",
+      "covers_through": "2013-03-26",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 33947,
+        "sha256": "129109ddfe2dfad5bb2e1f2aa9760adf83b2187ef5451cb59a1f5a4ae55561e7",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/pressrelease/detail/20130326_1.html",
+        "fetched_utc": "2026-09-28T04:15:02.329740+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:38:30 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:24.934658+00:00",
+        "recheck_bytes": 33947,
+        "recheck_sha256": "129109ddfe2dfad5bb2e1f2aa9760adf83b2187ef5451cb59a1f5a4ae55561e7",
+        "minutes_after_first": 575.4
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_khi_pr_c2_delivery",
+      "url": "https://www.khi.co.jp/pressrelease/detail/20160630_1.html",
+      "title": "航空自衛隊向けＣ－２輸送機の量産初号機を納入 (press release, 30 June 2016)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2016-06-30",
+      "covers_through": "2016-06-30",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 34579,
+        "sha256": "1ad7bc772d27f49f178895d8d267c3a55b1cc6f5fcdf0e7ce3ebfdb572231da3",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/pressrelease/detail/20160630_1.html",
+        "fetched_utc": "2026-09-28T04:15:02.743138+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:38:10 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:26.978474+00:00",
+        "recheck_bytes": 34579,
+        "recheck_sha256": "1ad7bc772d27f49f178895d8d267c3a55b1cc6f5fcdf0e7ce3ebfdb572231da3",
+        "minutes_after_first": 575.4
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_khi_pr_hakugei_delivery",
+      "url": "https://www.khi.co.jp/pressrelease/detail/20230320_2.html",
+      "title": "潜水艦「はくげい」を引き渡し (press release, 20 March 2023)",
+      "publisher": "Kawasaki Heavy Industries, Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2023-03-20",
+      "covers_through": "2023-03-20",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 35147,
+        "sha256": "85cc242b3b2bb74e1c3dda9e73dc86d59b06c1206ff5279400ac9b64cac9c967",
+        "content_type": "text/html",
+        "final_url": "https://www.khi.co.jp/pressrelease/detail/20230320_2.html",
+        "fetched_utc": "2026-09-28T04:15:03.095736+00:00",
+        "last_modified": "Mon, 06 Jul 2026 08:37:24 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:30.740855+00:00",
+        "recheck_bytes": 35147,
+        "recheck_sha256": "85cc242b3b2bb74e1c3dda9e73dc86d59b06c1206ff5279400ac9b64cac9c967",
+        "minutes_after_first": 575.5
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_gsdf_aircraft",
+      "url": "https://www.mod.go.jp/gsdf/equipment/air/index.html",
+      "title": "航空機 | 陸上自衛隊 (JGSDF equipment: aircraft)",
+      "publisher": "Japan Ground Self-Defense Force (Ministry of Defense)",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 72366,
+        "sha256": "f6f12102120a4ada9d916b796eafb2d7599d9d2a37082057c7e36779676203d0",
+        "content_type": "text/html",
+        "final_url": "https://www.mod.go.jp/gsdf/equipment/air/index.html",
+        "fetched_utc": "2026-09-28T04:15:40.660912+00:00",
+        "last_modified": "Wed, 31 Dec 2025 15:06:42 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:28.834701+00:00",
+        "recheck_bytes": 72366,
+        "recheck_sha256": "51b8ca8521022a6bce9ec03a64b3a68e300351c7818e1901c3da839d0478819d",
+        "minutes_after_first": 574.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_nta_houjin",
+      "url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1010401010455",
+      "title": "Corporate number 1010401010455, 株式会社小松製作所 (Tokyo): latest information and change history",
+      "publisher": "National Tax Agency (Japan), Corporate Number Publication Site",
+      "kind": "official_register",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The page is generated per request and stamps the retrieval time (令和8年9月28日, after the cutoff); only the dated record contents inside the window are used.",
+      "response": {
+        "status": 200,
+        "bytes": 27911,
+        "sha256": "8d3756ca1b5705fc1720796543573dbfaad70a73a0e4287f8ae1417d0db21777",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1010401010455",
+        "fetched_utc": "2026-09-28T04:19:39.468702+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:35.665734+00:00",
+        "recheck_bytes": 27911,
+        "recheck_sha256": "c7b2011f8b39fca8a7694461733e3924eda5f5a03c01306bbe30cbad321d6ed7",
+        "minutes_after_first": 569.9,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 3
+    },
+    {
+      "id": "jp_komatsu_nta_houjin_namesake",
+      "url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=5100001018299",
+      "title": "Corporate number 5100001018299, 株式会社小松製作所 (Suwa, Nagano): an unrelated company with the same trade name",
+      "publisher": "National Tax Agency (Japan), Corporate Number Publication Site",
+      "kind": "official_register",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The page is generated per request and stamps the retrieval time (令和8年9月28日, after the cutoff); only the dated record contents inside the window are used.",
+      "response": {
+        "status": 200,
+        "bytes": 19013,
+        "sha256": "e4a9b517b5394c7f3ba81a51f08b8828d38ca25fb467be85dea5db51dd2d630b",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=5100001018299",
+        "fetched_utc": "2026-09-28T04:29:20.483062+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:57.659128+00:00",
+        "recheck_bytes": 19013,
+        "recheck_sha256": "a5f37d5aa2d7855311d49eedf1ca7caec420aacd6dc7a4ce085110befe1164d7",
+        "minutes_after_first": 560.6,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_profile_ja",
+      "url": "https://www.komatsu.jp/ja/aboutus/profile",
+      "title": "会社概要 (company profile, as of 1 April 2026)",
+      "publisher": "Komatsu Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 27078,
+        "sha256": "dce89241409cdb4b1a81c3c5c19e5a6f0887d6fcc6311d425c4cceefb73611a6",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.komatsu.jp/ja/aboutus/profile",
+        "fetched_utc": "2026-09-28T04:20:00.825649+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:37.486276+00:00",
+        "recheck_bytes": 27078,
+        "recheck_sha256": "dce89241409cdb4b1a81c3c5c19e5a6f0887d6fcc6311d425c4cceefb73611a6",
+        "minutes_after_first": 569.6
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_komatsu_history_ja",
+      "url": "https://www.komatsu.jp/ja/aboutus/history",
+      "title": "沿革 (corporate history timeline)",
+      "publisher": "Komatsu Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 57108,
+        "sha256": "4f33d9a0b49245a62fff5d7b8159b6dd5c26790c2a217f849692516bb8e1f0d9",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.komatsu.jp/ja/aboutus/history",
+        "fetched_utc": "2026-09-28T04:19:59.530754+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:40.241666+00:00",
+        "recheck_bytes": 57108,
+        "recheck_sha256": "4f33d9a0b49245a62fff5d7b8159b6dd5c26790c2a217f849692516bb8e1f0d9",
+        "minutes_after_first": 569.7
+      },
+      "claims": 6
+    },
+    {
+      "id": "jp_komatsu_asr_157_en",
+      "url": "https://www.komatsu.jp/en/-/media/home/ir/library/annual-security-report/en/157th_q4_hokokusyo_e.pdf?rev=678964ace0c3458a88b44bcecca63595&hash=63098FD6E14F67013EF62881934C0598",
+      "title": "Annual Securities Report, 157th fiscal year (1 April 2025 to 31 March 2026): company English translation of the report filed on 18 June 2026",
+      "publisher": "Komatsu Ltd.",
+      "kind": "annual_report",
+      "language": "en",
+      "published": "2026-06-18",
+      "covers_through": "2026-06-18",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 6613827,
+        "sha256": "0a4901f4dd2257c166ed66e68d6cec25b0dda04aed6fc86edd5c182212b7760f",
+        "content_type": "application/pdf",
+        "final_url": "https://www.komatsu.jp/en/-/media/home/ir/library/annual-security-report/en/157th_q4_hokokusyo_e.pdf?rev=678964ace0c3458a88b44bcecca63595&hash=63098FD6E14F67013EF62881934C0598",
+        "fetched_utc": "2026-09-28T04:20:54.840517+00:00",
+        "last_modified": "Tue, 23 Jun 2026 00:46:24 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:42.691895+00:00",
+        "recheck_bytes": 6613827,
+        "recheck_sha256": "0a4901f4dd2257c166ed66e68d6cec25b0dda04aed6fc86edd5c182212b7760f",
+        "minutes_after_first": 568.8
+      },
+      "claims": 4
+    },
+    {
+      "id": "jp_komatsu_nr_ahs_losbronces_2022_en",
+      "url": "https://www.komatsu.jp/en/newsroom/2022/20220603",
+      "title": "Komatsu announces to deploy Autonomous Haulage System at Anglo American Los Bronces mine (newsroom, 3 June 2022)",
+      "publisher": "Komatsu Ltd.",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2022-06-03",
+      "covers_through": "2022-06-03",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 25006,
+        "sha256": "c2d6801e59a03d9af3253c52244295267d6dff7efad14f4d39d28d2711236d2e",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.komatsu.jp/en/newsroom/2022/20220603",
+        "fetched_utc": "2026-09-28T04:24:55.945585+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:44.844428+00:00",
+        "recheck_bytes": 25006,
+        "recheck_sha256": "c2d6801e59a03d9af3253c52244295267d6dff7efad14f4d39d28d2711236d2e",
+        "minutes_after_first": 564.8
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_nr_wapc_kai_2017",
+      "url": "https://www.komatsu.jp/ja/newsroom/2017/20171226",
+      "title": "防衛省開発事業 装輪装甲車(改)に関するお知らせ (newsroom, 26 December 2017)",
+      "publisher": "Komatsu Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2017-12-26",
+      "covers_through": "2017-12-26",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 26045,
+        "sha256": "d5e911feb8b4aae50f274c847a5f02b1fc1ca6688421caab464f9a687201d1e4",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.komatsu.jp/ja/newsroom/2017/20171226",
+        "fetched_utc": "2026-09-28T04:23:20.318933+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:51.158205+00:00",
+        "recheck_bytes": 26045,
+        "recheck_sha256": "d5e911feb8b4aae50f274c847a5f02b1fc1ca6688421caab464f9a687201d1e4",
+        "minutes_after_first": 566.5
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_nr_wapc_kai_cancel_2018",
+      "url": "https://www.komatsu.jp/ja/newsroom/2018/20180727_2",
+      "title": "防衛省開発事業 装輪装甲車(改)試作研究事業中止に関するお知らせ (newsroom, 27 July 2018)",
+      "publisher": "Komatsu Ltd.",
+      "kind": "official_company",
+      "language": "ja",
+      "published": "2018-07-27",
+      "covers_through": "2018-07-27",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 25190,
+        "sha256": "49a5183edd6cd97ed8713b3761b9f2d1c2a8d24380a972f84cfff05cbe7ef3da",
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://www.komatsu.jp/ja/newsroom/2018/20180727_2",
+        "fetched_utc": "2026-09-28T04:23:53.789230+00:00"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:53.564680+00:00",
+        "recheck_bytes": 25190,
+        "recheck_sha256": "49a5183edd6cd97ed8713b3761b9f2d1c2a8d24380a972f84cfff05cbe7ef3da",
+        "minutes_after_first": 566.0
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_atla_next_wapc_2022",
+      "url": "https://www.mod.go.jp/atla/pinup/pinup041209.pdf",
+      "title": "（お知らせ）次期装輪装甲車（人員輸送型）の車種決定について, with attachment (9 December 2022)",
+      "publisher": "Ministry of Defense (Japan), Acquisition, Technology & Logistics Agency",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": "2022-12-09",
+      "covers_through": "2022-12-09",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 263421,
+        "sha256": "3997c53e9b3fd55408fa7a6c81bffda1d89e9e95eac8d895d4c63d6d5d85e1c0",
+        "content_type": "application/pdf",
+        "final_url": "https://www.mod.go.jp/atla/pinup/pinup041209.pdf",
+        "fetched_utc": "2026-09-28T04:18:42.089137+00:00",
+        "last_modified": "Fri, 09 Dec 2022 07:00:11 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:55.965181+00:00",
+        "recheck_bytes": 263421,
+        "recheck_sha256": "3997c53e9b3fd55408fa7a6c81bffda1d89e9e95eac8d895d4c63d6d5d85e1c0",
+        "minutes_after_first": 571.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_mod_wp2010_voice",
+      "url": "http://www.clearing.mod.go.jp/hakusho_data/2010/2010/html/mc347000.html",
+      "title": "Defense of Japan 2010 (white paper), Part III: (VOICE) column by Komatsu defence staff",
+      "publisher": "Ministry of Defense (Japan)",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": "2010",
+      "covers_through": "2010-12-31",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "White paper year 2010; the page carries no finer date.",
+      "response": {
+        "status": 200,
+        "bytes": 3459,
+        "sha256": "713202efa1875f8a049b1d1388a95d0fb1287aca9ccc7973adbb7a15def198b8",
+        "content_type": "text/html",
+        "final_url": "http://www.clearing.mod.go.jp/hakusho_data/2010/2010/html/mc347000.html",
+        "fetched_utc": "2026-09-28T04:22:35.739852+00:00",
+        "last_modified": "Thu, 06 Feb 2020 06:48:55 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:49:48.908842+00:00",
+        "recheck_bytes": 3459,
+        "recheck_sha256": "713202efa1875f8a049b1d1388a95d0fb1287aca9ccc7973adbb7a15def198b8",
+        "minutes_after_first": 567.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_gsdf2d_type96",
+      "url": "https://www.mod.go.jp/gsdf/nae/2d/kuniwomamoru/soubihin/sourin/96sourinnsoukousya.htm",
+      "title": "96式装輪装甲車 (JGSDF 2nd Division equipment page)",
+      "publisher": "Japan Ground Self-Defense Force, 2nd Division",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Undated page; the only in-window date is the HTTP Last-Modified header of the recorded response.",
+      "response": {
+        "status": 200,
+        "bytes": 5165,
+        "sha256": "b428b1f09bab07d25cb9b1902a4f2995d5fb77c4cd771a2783d0d30938c02eb2",
+        "content_type": "text/html",
+        "final_url": "https://www.mod.go.jp/gsdf/nae/2d/kuniwomamoru/soubihin/sourin/96sourinnsoukousya.htm",
+        "fetched_utc": "2026-09-28T04:22:41.940691+00:00",
+        "last_modified": "Sat, 17 Dec 2011 06:47:15 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:47.209015+00:00",
+        "recheck_bytes": 5165,
+        "recheck_sha256": "830b10d8d661297c5a8b79b14754cc93868d74e6f8aa448862b81c97289ab082",
+        "minutes_after_first": 567.1,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_komatsu_gsdf2d_lav",
+      "url": "https://www.mod.go.jp/gsdf/nae/2d/kuniwomamoru/soubihin/sourin/keisoukoukidou.htm",
+      "title": "軽装甲機動車 (JGSDF 2nd Division equipment page)",
+      "publisher": "Japan Ground Self-Defense Force, 2nd Division",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Undated page; the only in-window date is the HTTP Last-Modified header of the recorded response.",
+      "response": {
+        "status": 200,
+        "bytes": 5478,
+        "sha256": "8285fc2dca30d4d8be6ad7ddef358c11958696d32e69603d4282562c1714515f",
+        "content_type": "text/html",
+        "final_url": "https://www.mod.go.jp/gsdf/nae/2d/kuniwomamoru/soubihin/sourin/keisoukoukidou.htm",
+        "fetched_utc": "2026-09-28T04:23:00.003008+00:00",
+        "last_modified": "Sat, 17 Dec 2011 06:47:16 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:49:59.842691+00:00",
+        "recheck_bytes": 5478,
+        "recheck_sha256": "a3ef71f113f5df98ef3bd37d6424bd6bd0e52454f093e99a4575ff3375d73821",
+        "minutes_after_first": 567.0,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_20f_fy2026",
+      "url": "https://global.toyota/pages/global_toyota/ir/library/sec/20-F_202603_final.pdf",
+      "title": "Form 20-F for the fiscal year ended March 31, 2026, as filed with the U.S. SEC on June 10, 2026 (copy in the Toyota IR library)",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "securities_filing",
+      "language": "en",
+      "published": "2026-06-10",
+      "covers_through": "2026-06-10",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 5259321,
+        "sha256": "d87fcafd973de0774c79b887e104688faad2170112bd2754ec923567e5616483",
+        "content_type": "application/pdf",
+        "final_url": "https://global.toyota/pages/global_toyota/ir/library/sec/20-F_202603_final.pdf",
+        "fetched_utc": "2026-09-28T04:18:33.920347+00:00",
+        "last_modified": "Thu, 11 Jun 2026 01:00:01 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:34.567999+00:00",
+        "recheck_bytes": 5259321,
+        "recheck_sha256": "d87fcafd973de0774c79b887e104688faad2170112bd2754ec923567e5616483",
+        "minutes_after_first": 572.0
+      },
+      "claims": 5
+    },
+    {
+      "id": "jp_toyota_20f_fy2017",
+      "url": "https://global.toyota/pages/global_toyota/ir/library/sec/20-F_201703_final.pdf",
+      "title": "Form 20-F for the fiscal year ended March 31, 2017, as filed with the U.S. SEC on June 23, 2017 (copy in the Toyota IR library)",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "securities_filing",
+      "language": "en",
+      "published": "2017-06-23",
+      "covers_through": "2017-06-23",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 673575,
+        "sha256": "d1f5f0ed485433623a1174b388145c3ebe715a3b58e749fe51660c7862f8cdc7",
+        "content_type": "application/pdf",
+        "final_url": "https://global.toyota/pages/global_toyota/ir/library/sec/20-F_201703_final.pdf",
+        "fetched_utc": "2026-09-28T04:20:40.718156+00:00",
+        "last_modified": "Wed, 22 May 2024 02:52:50 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:44.235119+00:00",
+        "recheck_bytes": 673575,
+        "recheck_sha256": "d1f5f0ed485433623a1174b388145c3ebe715a3b58e749fe51660c7862f8cdc7",
+        "minutes_after_first": 570.1
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_yuho_fy2025",
+      "url": "https://global.toyota/pages/global_toyota/ir/library/securities-report/archives/archives_2026_03.pdf",
+      "title": "有価証券報告書 2026年3月期 (1 April 2025 to 31 March 2026), Annual Securities Report (有価証券報告書) submitted through EDINET on 10 June 2026 (PDF from the Toyota IR library)",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "securities_filing",
+      "language": "ja",
+      "published": "2026-06-10",
+      "covers_through": "2026-06-10",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 4241627,
+        "sha256": "c7b8d2f8256872937bd56961dcf64c2218a1d56bfef791e966b33be48a7f8ddd",
+        "content_type": "application/pdf",
+        "final_url": "https://global.toyota/pages/global_toyota/ir/library/securities-report/archives/archives_2026_03.pdf",
+        "fetched_utc": "2026-09-28T04:10:49.157782+00:00",
+        "last_modified": "Wed, 10 Jun 2026 06:45:01 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T14:01:23.151927+00:00",
+        "recheck_bytes": 4241627,
+        "recheck_sha256": "c7b8d2f8256872937bd56961dcf64c2218a1d56bfef791e966b33be48a7f8ddd",
+        "minutes_after_first": 590.6
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_nta_register",
+      "url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1180301018771",
+      "title": "Corporate number 1180301018771, トヨタ自動車株式会社: latest information and change history",
+      "publisher": "National Tax Agency (Japan), Corporate Number Publication Site",
+      "kind": "official_register",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "The page is generated per request and stamps the retrieval time (令和8年9月28日, after the cutoff); only the dated record contents inside the window are used.",
+      "response": {
+        "status": 200,
+        "bytes": 22921,
+        "sha256": "6ad9e4eb7d33695aba4098dda95535e9c89bff5139f08f80c4afcadfb05b24c9",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://www.houjin-bangou.nta.go.jp/henkorireki-johoto.html?selHouzinNo=1180301018771",
+        "fetched_utc": "2026-09-28T04:21:31.621430+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:38.116952+00:00",
+        "recheck_bytes": 22921,
+        "recheck_sha256": "799301447c69cf36e5d927c8eff41ffc88dbe05ce564f18b9b7d045377a13244",
+        "minutes_after_first": 569.1,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_toyota_75y_europe_1990",
+      "url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter1/section4/item4.html",
+      "title": "75 Years of Toyota: Overseas Business Expands Globally, Item 4. Europe",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 64655,
+        "sha256": "e5da3c891e029f0910bf58b3c488564054abe6f366cbf67ec75b9079711d8ce6",
+        "content_type": "text/html",
+        "final_url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter1/section4/item4.html",
+        "fetched_utc": "2026-09-28T04:20:58.966959+00:00",
+        "last_modified": "Mon, 05 Jun 2023 04:03:10 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:40.272421+00:00",
+        "recheck_bytes": 64655,
+        "recheck_sha256": "e5da3c891e029f0910bf58b3c488564054abe6f366cbf67ec75b9079711d8ce6",
+        "minutes_after_first": 569.7
+      },
+      "claims": 2
+    },
+    {
+      "id": "jp_toyota_75y_product_strategy",
+      "url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section6/item3.html",
+      "title": "75 Years of Toyota: Item 3. Reassessing Product Strategy",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 61912,
+        "sha256": "7cd749b38af455721fdc95e2b9cde6912c82dc5bd874174eebae4f5b5d566d0c",
+        "content_type": "text/html",
+        "final_url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section6/item3.html",
+        "fetched_utc": "2026-09-28T04:17:22.376669+00:00",
+        "last_modified": "Mon, 05 Jun 2023 04:03:19 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:42.316630+00:00",
+        "recheck_bytes": 61912,
+        "recheck_sha256": "7cd749b38af455721fdc95e2b9cde6912c82dc5bd874174eebae4f5b5d566d0c",
+        "minutes_after_first": 573.3
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_75y_restructuring",
+      "url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section7/item1.html",
+      "title": "75 Years of Toyota: Item 1. A Wave of Restructuring and a Push for Change in Awareness",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 68315,
+        "sha256": "702aca44fd9f4bd9cfcee1ecc7ccd9caa023e27bd16deb239b6d389a93f5e1a9",
+        "content_type": "text/html",
+        "final_url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section7/item1.html",
+        "fetched_utc": "2026-09-28T04:17:47.660504+00:00",
+        "last_modified": "Mon, 05 Jun 2023 04:03:20 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:47.007028+00:00",
+        "recheck_bytes": 68315,
+        "recheck_sha256": "702aca44fd9f4bd9cfcee1ecc7ccd9caa023e27bd16deb239b6d389a93f5e1a9",
+        "minutes_after_first": 573.0
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_75y_prius",
+      "url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section8/item1.html",
+      "title": "75 Years of Toyota: Item 1. Development of Prius and Hybrid Strategy",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 59771,
+        "sha256": "4004d019b7f476df3305a9511e5508a7a18e556e439958f8bfab86c8c2583eeb",
+        "content_type": "text/html",
+        "final_url": "https://www.toyota-global.com/company/history_of_toyota/75years/text/leaping_forward_as_a_global_corporation/chapter4/section8/item1.html",
+        "fetched_utc": "2026-09-28T04:17:09.795855+00:00",
+        "last_modified": "Mon, 05 Jun 2023 04:03:22 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:50:54.373678+00:00",
+        "recheck_bytes": 59771,
+        "recheck_sha256": "4004d019b7f476df3305a9511e5508a7a18e556e439958f8bfab86c8c2583eeb",
+        "minutes_after_first": 573.7
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_75y_megacruiser",
+      "url": "https://www.toyota-global.com/company/history_of_toyota/75years/vehicle_lineage/car/id60012597/index.html",
+      "title": "75 Years of Toyota: Vehicle Lineage, Mega Cruiser",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 13399,
+        "sha256": "8748b19c5540f72608b23cb3b9fcb2dc261cace6b79d945cce8456cea867d5b1",
+        "content_type": "text/html",
+        "final_url": "https://www.toyota-global.com/company/history_of_toyota/75years/vehicle_lineage/car/id60012597/index.html",
+        "fetched_utc": "2026-09-28T04:19:49.462888+00:00",
+        "last_modified": "Tue, 27 Oct 2020 15:33:34 GMT"
+      },
+      "byte_stability": {
+        "status": "byte_stable",
+        "recheck_utc": "2026-09-28T13:51:01.755827+00:00",
+        "recheck_bytes": 13399,
+        "recheck_sha256": "8748b19c5540f72608b23cb3b9fcb2dc261cace6b79d945cce8456cea867d5b1",
+        "minutes_after_first": 571.2
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_pr_tmmf_2001",
+      "url": "https://global.toyota/en/detail/207719",
+      "title": "Toyota's New French Plant Rolls Out Its 1st Yaris (news release, 31 January 2001)",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2001-01-31",
+      "covers_through": "2001-01-31",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 22554,
+        "sha256": "97a5d3e88eca567ea1ea9aa41519321490e0630485e7a30e7a98578e9c7e1166",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://global.toyota/en/detail/207719",
+        "fetched_utc": "2026-09-28T04:17:10.268791+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:52.462453+00:00",
+        "recheck_bytes": 22554,
+        "recheck_sha256": "5fe616641a44b6ba7a988930836129a511c11a390e13ca905aa484b04d671c6b",
+        "minutes_after_first": 573.7,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_pr_mirai_2014",
+      "url": "https://global.toyota/en/newsroom/toyota/22740159.html",
+      "title": "Toyota Ushers in the Future with Launch of 'Mirai' Fuel Cell Sedan (news release, 18 November 2014)",
+      "publisher": "Toyota Motor Corporation",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2014-11-18",
+      "covers_through": "2014-11-18",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 88939,
+        "sha256": "7988ded53a9693a46424574fd9df31a3167884c6b97818f30b996e02f5910f93",
+        "content_type": "text/html;charset=UTF-8",
+        "final_url": "https://global.toyota/en/newsroom/toyota/22740159.html",
+        "fetched_utc": "2026-09-28T04:19:54.919897+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:56.249768+00:00",
+        "recheck_bytes": 88939,
+        "recheck_sha256": "38cf36626c11d77737da9c15086c1cdcf747d104466754336509eee67aa1880e",
+        "minutes_after_first": 571.0,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_toyota_tme_tmmcz_2021",
+      "url": "https://newsroom.toyota.eu/toyota-assumes-full-ownership-of-kolin-plant-as-it-becomes-toyota-motor-manufacturing-czech-republic/",
+      "title": "Toyota assumes full ownership of Kolin plant as it becomes Toyota Motor Manufacturing Czech Republic (Toyota Europe newsroom, 1 January 2021)",
+      "publisher": "Toyota Motor Europe",
+      "kind": "official_company",
+      "language": "en",
+      "published": "2021-01-01",
+      "covers_through": "2021-01-01",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "response": {
+        "status": 200,
+        "bytes": 81920,
+        "sha256": "b1da11a6721821002bd20095479ecdbd6d36f40345e470d2381b899963765986",
+        "content_type": "text/html; charset=UTF-8",
+        "final_url": "https://newsroom.toyota.eu/toyota-assumes-full-ownership-of-kolin-plant-as-it-becomes-toyota-motor-manufacturing-czech-republic/",
+        "fetched_utc": "2026-09-28T04:20:59.325385+00:00"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:48.913284+00:00",
+        "recheck_bytes": 81919,
+        "recheck_sha256": "13649e7b5eb046303009db2911d0cd7bd22df83b890f9ab91cad018baf95d721",
+        "minutes_after_first": 569.8,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_gsdf_vehicles",
+      "url": "https://www.mod.go.jp/gsdf/equipment/ve/index.html",
+      "title": "車両 | 陸上自衛隊 (JGSDF equipment: vehicles)",
+      "publisher": "Japan Ground Self-Defense Force (Ministry of Defense)",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Undated page; the only in-window date is the HTTP Last-Modified header of the recorded response.",
+      "response": {
+        "status": 200,
+        "bytes": 87822,
+        "sha256": "e4cba657f4051b02ca6fbb69da9d1a215606d41129852280335a95f46ed7eac0",
+        "content_type": "text/html",
+        "final_url": "https://www.mod.go.jp/gsdf/equipment/ve/index.html",
+        "fetched_utc": "2026-09-28T04:19:19.802496+00:00",
+        "last_modified": "Thu, 22 Jan 2026 03:11:18 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:51:00.080654+00:00",
+        "recheck_bytes": 87822,
+        "recheck_sha256": "33173134975b2c791cdcf7982f68f4739934ef555ea50006fc2804ac53c2911c",
+        "minutes_after_first": 571.7,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 1
+    },
+    {
+      "id": "jp_gsdf_6d_vehicles",
+      "url": "https://www.mod.go.jp/gsdf/neae/6d/equipment_detail_03.htm",
+      "title": "車両 | 第６師団 (JGSDF 6th Division equipment: vehicles)",
+      "publisher": "Japan Ground Self-Defense Force, 6th Division",
+      "kind": "defence_ministry",
+      "language": "ja",
+      "published": null,
+      "covers_through": "2026-09-28",
+      "accessed": "2026-09-28",
+      "rights_note": "Derived factual observations with a short locating anchor only. No logo, product image, photograph, layout or expressive text is reproduced, and no image or logo rights are implied.",
+      "note": "Undated page; the only in-window date is the HTTP Last-Modified header of the recorded response.",
+      "response": {
+        "status": 200,
+        "bytes": 43579,
+        "sha256": "b8c6b13424abca5b40d940f3fc61da37cdc7567fdb8dbcfe1fc9168961cd064f",
+        "content_type": "text/html",
+        "final_url": "https://www.mod.go.jp/gsdf/neae/6d/equipment_detail_03.htm",
+        "fetched_utc": "2026-09-28T04:19:20.301063+00:00",
+        "last_modified": "Tue, 28 May 2024 01:49:44 GMT"
+      },
+      "byte_stability": {
+        "status": "changed",
+        "recheck_utc": "2026-09-28T13:50:58.289592+00:00",
+        "recheck_bytes": 43579,
+        "recheck_sha256": "c94f00483b14b6a3201b60e6dc5439117aa14ebfa6bb4b469b029ba631178d17",
+        "minutes_after_first": 571.6,
+        "anchors_reverified": true,
+        "note": "The response changed between downloads (page generated per request or updated); every claim anchor from this source was found again in the recheck response."
+      },
+      "claims": 3
+    }
+  ],
+  "inaccessible": [
+    {
+      "url": "https://www.dassault-aviation.com/en/passion/history/1916-to-2000/1986-2000/",
+      "attempted_utc": "2026-09-28T14:00:29+00:00",
+      "result": "Byte-stability rechecks at 13:48 and 14:00 UTC received an Incapsula bot-protection page (HTTP 200, 957 bytes) instead of the 232,458-byte page first downloaded at 04:42 UTC; not bypassed, so the page is not used as evidence",
+      "sought": "Dassault Aviation heritage page, 1986-2000 (date of the 1990 rename)"
+    },
+    {
+      "url": "https://www.economie.gouv.fr/files/20151125-avis_transfert_nexter.pdf",
+      "attempted_utc": "2026-09-28T04:05:10+00:00",
+      "result": "HTTP 403 Forbidden (one request; not retried)",
+      "sought": "Commission des participations et des transferts opinion on the 2015 Nexter transfer (KNDS)"
+    },
+    {
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb12215621t",
+      "attempted_utc": "2026-09-28T04:06:03+00:00",
+      "result": "HTTP 503 Service Unavailable; the data.bnf.fr RDF export of the same authority record was used instead",
+      "sought": "BnF catalogue record for GIAT Industries"
+    },
+    {
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509538/2023-11-02",
+      "attempted_utc": "2026-09-28T04:31:36+00:00",
+      "result": "HTTP 403 Forbidden (one request; not retried); the Senate text that cites the law was used",
+      "sought": "Law 89-924 creating GIAT Industries"
+    },
+    {
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000167979/",
+      "attempted_utc": "2026-09-28T04:31:37+00:00",
+      "result": "HTTP 403 Forbidden (one request; not retried)",
+      "sought": "Decree 90-582 (GIAT Industries)"
+    },
+    {
+      "url": "https://www.ccomptes.fr/fr",
+      "attempted_utc": "2026-09-28T04:41:21+00:00",
+      "result": "Connection timed out (WinError 10060); not retried",
+      "sought": "Cour des comptes reports on DCN/Naval Group and GIAT"
+    },
+    {
+      "url": "https://www.dassault-aviation.com/en/group/about-us/history/",
+      "attempted_utc": "2026-09-28T04:41:20+00:00",
+      "result": "HTTP 404 Not Found (guessed address)",
+      "sought": "Dassault Aviation corporate history page"
+    },
+    {
+      "url": "https://www.khi.co.jp/corporate/history/",
+      "attempted_utc": "2026-09-28T04:12:09+00:00",
+      "result": "HTTP 403 Forbidden (one request; not retried); the KHI chronology, division timelines and securities report were used",
+      "sought": "KHI corporate history page"
+    },
+    {
+      "url": "https://www.khi.co.jp/corporate/timeline/",
+      "attempted_utc": "2026-09-28T04:12:10+00:00",
+      "result": "HTTP 403 Forbidden (one request; not retried)",
+      "sought": "KHI corporate timeline page"
+    },
+    {
+      "url": "https://www.mod.go.jp/msdf/operation/meimei/r02/",
+      "attempted_utc": "2026-09-28T04:16:00+00:00",
+      "result": "HTTP 403 with a Cloudflare 'Just a moment...' challenge page; not retried and not solved (time recorded to the minute)",
+      "sought": "JMSDF ship naming and launch records (Taigei class, Mogami class)"
+    }
+  ],
+  "leads": [
+    {
+      "url": "https://www.aviationwire.jp/archives/270235",
+      "kind": "news",
+      "note": "SpaceJet cancellation coverage; reports Mitsubishi Aircraft to be liquidated (not verified officially)."
+    },
+    {
+      "url": "https://the-shashi.com/tse/7011/decisions/thermal-power-integration-2012/",
+      "kind": "encyclopaedia",
+      "note": "MHPS background with a 65/35 MHI/Hitachi split (not verified officially)."
+    },
+    {
+      "url": "https://www.nikkei.com/article/DGXZQOUC052G90V00C25A8000000/",
+      "kind": "news",
+      "note": "Australia selects the upgraded Mogami class (August 2025); MHI release used instead."
+    },
+    {
+      "url": "https://j-defense.ikaros.jp/docs/mod/005108.html",
+      "kind": "news",
+      "note": "Says MHI and Mitsubishi Electric signed the Australian frigate contract; MHI release names only MHI."
+    },
+    {
+      "url": "https://www.jetro.go.jp/biznews/2026/05/0855e2aed6313832.html",
+      "kind": "news",
+      "note": "JETRO brief on the Australian contract for three upgraded Mogami frigates."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitsubishi_Heavy_Industries",
+      "kind": "encyclopaedia",
+      "note": "Orientation only."
+    },
+    {
+      "url": "https://www.nikkei.com/article/DGXMZO41543080R20C19A2MM0000/",
+      "kind": "news",
+      "note": "February 2019 report that Komatsu stopped developing new GSDF vehicles; no official confirmation found."
+    },
+    {
+      "url": "https://japan-indepth.jp/?p=47023",
+      "kind": "news",
+      "note": "Commentary on Komatsu leaving armoured-vehicle development."
+    },
+    {
+      "url": "https://trafficnews.jp/post/81205",
+      "kind": "news",
+      "note": "Analysis of the Wheeled APC (Improved) cancellation."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Type_96_armored_personnel_carrier",
+      "kind": "encyclopaedia",
+      "note": "Gives a 1996 service entry for the Type 96; not verified officially."
+    },
+    {
+      "url": "https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%9D%BE%E8%A3%BD%E4%BD%9C%E6%89%80",
+      "kind": "encyclopaedia",
+      "note": "Orientation only."
+    },
+    {
+      "url": "https://www.patriagroup.com/newsroom/news/2022/patria-amvxp-8x8-vehicle-selected-by-japan-as-a-new-wheeled-armored-personnel-carrier-wapc-for-japan-ground-self-defense-force",
+      "kind": "news",
+      "note": "Patria's own announcement of the December 2022 selection (not a Komatsu or MOD source)."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kawasaki_Railcar_Manufacturing",
+      "kind": "encyclopaedia",
+      "note": "October 2021 rolling-stock spin-off."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kawasaki_Shipbuilding_Corporation",
+      "kind": "encyclopaedia",
+      "note": "2002 shipbuilding subsidiary."
+    },
+    {
+      "url": "https://www.kobe-np.co.jp/news/keizai/202303/0016162600.shtml",
+      "kind": "news",
+      "note": "Hakugei handover at Kobe, March 2023."
+    },
+    {
+      "url": "https://trafficnews.jp/post/111459",
+      "kind": "news",
+      "note": "Kawasaki Motors launched on 1 October 2021."
+    },
+    {
+      "url": "https://www.nikkei.com/article/DGXNASDD260Q7_W3A320C1TJ1000/",
+      "kind": "news",
+      "note": "First production P-1 delivered, March 2013."
+    },
+    {
+      "url": "https://www.automotiveworld.com/news/archion-corporation-launches-as-hino-and-fuso-holding-group/",
+      "kind": "news",
+      "note": "Holding company for Hino and Mitsubishi Fuso reportedly named ARCHION from 1 April 2026; name not confirmed officially here."
+    },
+    {
+      "url": "https://www.ccjdigital.com/business/article/15769483/merger-of-hino-fuso-officially-launching-in-april-2026",
+      "kind": "news",
+      "note": "Hino-Fuso integration timing."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Toyota_Motor_Manufacturing_France",
+      "kind": "encyclopaedia",
+      "note": "TMMF at Onnaing/Valenciennes."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Toyota_Mega_Cruiser",
+      "kind": "encyclopaedia",
+      "note": "Mega Cruiser and the JGSDF High Mobility Vehicle."
+    }
+  ]
+}

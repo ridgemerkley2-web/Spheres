@@ -1,0 +1,24 @@
+{"command": ["python", "-B", "-X", "utf8", "-m", "unittest", "test_japan_sdp_chairs_c01_29.JapanSdpChairsTests.test_retrospective_election_count_does_not_invent_additional_wins"], "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-jp29\\tools\\avatars", "source_parent": "3b30478562ec78c2392d0472061e773e23cb25dd", "scope": "New guard against unrepaired authored wording", "exit_code": 1, "utc": "2026-09-28T17:22:10.840759+00:00"}
+F
+======================================================================
+FAIL: test_retrospective_election_count_does_not_invent_additional_wins (test_japan_sdp_chairs_c01_29.JapanSdpChairsTests.test_retrospective_election_count_does_not_invent_additional_wins)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-jp29\tools\avatars\test_japan_sdp_chairs_c01_29.py", line 998, in test_retrospective_election_count_does_not_invent_additional_wins
+    self.assertEqual(claim['text'],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+                     "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor "
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     "and won five consecutive uncontested leader elections.")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "The [74 chars]and was afterwards re-elected unopposed in fiv[27 chars]ons." != "The [74 chars]and won five consecutive uncontested leader elections."
+- The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and was afterwards re-elected unopposed in five consecutive leader elections.
+?                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ ----------
++ The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and won five consecutive uncontested leader elections.
+?                                                                                    ^                   ++++++++++++
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+FAILED (failures=1)

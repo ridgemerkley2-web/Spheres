@@ -1,0 +1,207 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-SOURCE-05",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewed_commit": "66331d9d00704d5298f08c5d738631ee830350df",
+  "base_commit": "a33a89873273f2cd43097f77d401c58b709f3b98",
+  "reviewed_utc": "2026-09-28T03:39:05.967717+00:00",
+  "decision": "Accept the bounded recorded-response reproduction and its unchanged four claims. This does not resolve the archival leaf discrepancy, a TASS publication date, any country census or any campaign/session gate. Integration is a separate root action.",
+  "source_method": "curl 8.18.0 Windows, default User-Agent, Accept-Encoding: identity; same-URL retry after an initial 429 and more than five minutes of backoff; sequential requests. No alternate proxy or bypass. Downloaded bodies were hashed locally and all three facsimiles visually read at their original 724x1100 resolution. Original source bodies/images remain outside the repository.",
+  "direct_live_source": {
+    "url": "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+    "curl_exit": 28,
+    "outcome": "Connection timed out after 15006 milliseconds; HTTP 000, no response body. No live source hash asserted."
+  },
+  "initial_archive_response": {
+    "response_date": "Mon, 28 Sep 2026 03:31:55 GMT",
+    "http_status": 429,
+    "bytes": 117,
+    "sha256": "ae138caf8767f7be2fe6f47f1663b0e2e28d903264707aa9b6f73bb7b223902c",
+    "is_source_identity": false
+  },
+  "reproduced_sources": [
+    {
+      "utc": "2026-09-28T03:37:19.679448+00:00",
+      "url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 15700,
+      "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+      "expected_bytes": 15700,
+      "expected_sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+      "matches": true,
+      "headers_file": "retry-page.headers.txt",
+      "local_body": "retry-page.html"
+    },
+    {
+      "utc": "2026-09-28T03:37:25.107950+00:00",
+      "url": "https://web.archive.org/web/20191208064007id_/https://projects.rusarchives.ru/statehood/images/09-37-1-postanovlenie-vybory-prezident.jpg",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 98762,
+      "sha256": "9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2",
+      "expected_bytes": 98762,
+      "expected_sha256": "9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2",
+      "matches": true,
+      "headers_file": "image-1.headers.txt",
+      "local_body": "image-1.jpg"
+    },
+    {
+      "utc": "2026-09-28T03:37:31.373083+00:00",
+      "url": "https://web.archive.org/web/20191208064008id_/https://projects.rusarchives.ru/statehood/images/09-37-2-postanovlenie-vybory-prezident.jpg",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 133816,
+      "sha256": "0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229",
+      "expected_bytes": 133816,
+      "expected_sha256": "0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229",
+      "matches": true,
+      "headers_file": "image-2.headers.txt",
+      "local_body": "image-2.jpg"
+    },
+    {
+      "utc": "2026-09-28T03:37:37.125968+00:00",
+      "url": "https://web.archive.org/web/20191208064005id_/https://projects.rusarchives.ru/statehood/images/09-37-3-postanovlenie-vybory-prezident.jpg",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 114508,
+      "sha256": "188d308d5631fdb54d5873014d3f3a9b7a91b0f9c97cd337b21173c5a09e328e",
+      "expected_bytes": 114508,
+      "expected_sha256": "188d308d5631fdb54d5873014d3f3a9b7a91b0f9c97cd337b21173c5a09e328e",
+      "matches": true,
+      "headers_file": "image-3.headers.txt",
+      "local_body": "image-3.jpg"
+    }
+  ],
+  "content_review": {
+    "page": "Caption gives 19 June 1991 and GARF F.10026 Op.8 D.204 L.6-7; separate image captions give L.6, L.6ob., L.7.",
+    "image_1": "Resolution 20-25, 19 June 1991, three decisions on the report, approval and TASS publication; typed signatory labels Kazakov and Prozorov. Handwritten folio 5.",
+    "image_2": "12 June voting, 88 districts, six candidates, electorate/turnout and all six vote totals/percentages match the four recorded claims. Handwritten folio 6.",
+    "image_3": "Invalid ballots, Article 15 election findings for Yeltsin and Rutskoi agree. Handwritten folio 7.",
+    "unresolved": "Caption versus folio numbering remains unresolved. No official-publication date or start-of-office inference accepted.",
+    "scope": "Only recorded page and three image captures reproduced independently. The additional historical capture matrix and CDX crawl-source narrative were not independently rerun."
+  },
+  "scope_comparison": {
+    "russia_change_limited_to_assigned_source_review_and_snapshot": true,
+    "extract_change_limited_to_source_review_and_provenance_note": true,
+    "all_claims_and_dates_unchanged": true,
+    "all_existing_test_method_ast_bodies_unchanged": true,
+    "existing_test_methods_removed": false
+  },
+  "checks": [
+    {
+      "command": "python -B -X utf8 tools/avatars/campaign_research.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/campaign_census.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_ussr*.py'",
+      "exit_code": 0,
+      "tests_passed": 28,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_russia*.py'",
+      "exit_code": 0,
+      "tests_passed": 29,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "exit_code": 0,
+      "tests_passed": 79,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_campaign*.py'",
+      "exit_code": 0,
+      "tests_passed": 16,
+      "skipped": 0
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "exit_code": 0,
+      "tests_passed": 11,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/planning/workboard.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff a33a8987..66331d9d --check",
+      "exit_code": 0
+    }
+  ],
+  "mutation_checks": {
+    "mode": "in-memory copies, no worktree source mutation",
+    "rejected": [
+      "altered recorded SHA",
+      "single download",
+      "changed folio wording",
+      "changed claim number",
+      "removed capture",
+      "post-cutoff capture",
+      "invented live SHA",
+      "changed facsimile SHA",
+      "changed packet-summary SHA",
+      "false leaf resolution"
+    ],
+    "rejected_count": 10
+  },
+  "evidence": [
+    {
+      "path": "evidence/.gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "evidence/image-1.headers.txt",
+      "bytes": 1971,
+      "sha256": "72cd3a5cd6d3cf6a81a0484f0bed1f2a51454c80f1a60a288e7d22307550e835"
+    },
+    {
+      "path": "evidence/image-2.headers.txt",
+      "bytes": 1971,
+      "sha256": "0d41fda3abee6e68e39b3e5891694c1f55cb602436f54242c8a92449e5c897f5"
+    },
+    {
+      "path": "evidence/image-3.headers.txt",
+      "bytes": 1972,
+      "sha256": "b2d5b91c3236735081d10f592bf8866d59787c27b23ca8ae8f23ab5b190b11ce"
+    },
+    {
+      "path": "evidence/independent-downloads.json",
+      "bytes": 2425,
+      "sha256": "97bcf919062000283fa9a2420e4d9012f1d051a1425a39f4312faef6624be7e0"
+    },
+    {
+      "path": "evidence/official-page.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/recorded-page.headers.txt",
+      "bytes": 363,
+      "sha256": "b3543708ff55f67fb807ac21d0163bde91ee1becdb9b4c2bf0f3815cc54c75c1"
+    },
+    {
+      "path": "evidence/retry-page.headers.txt",
+      "bytes": 1991,
+      "sha256": "30c82ad88032f5336b56a99f5239c70fbf8857c2709d1eb26c90801e182d0af0"
+    },
+    {
+      "path": "evidence/scope-identities.json",
+      "bytes": 1476,
+      "sha256": "9d383c3156372b23cfa4142f2cb9e1be3275c56b89209d15ce501277cec73860"
+    }
+  ]
+}

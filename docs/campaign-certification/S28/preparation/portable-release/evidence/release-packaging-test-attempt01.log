@@ -1,0 +1,16 @@
+Retained diagnostic excerpt from the first packaging test invocation (not a complete stdout transcript).
+Command: python -B -m unittest discover -s tools/release -p test_package_windows.py -v
+Result: Ran 18 tests in 25.193s; FAILED (errors=1).
+All other test methods passed. Windows subcase below failed; Linux subcase completed.
+
+ERROR: test_roundtrip_platforms_modes_and_patched_licenses (test_package_windows.PackagingTests.test_roundtrip_platforms_modes_and_patched_licenses) (platform='windows')
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\release\test_package_windows.py", line 108, in test_roundtrip_platforms_modes_and_patched_licenses
+    result = release.extract_verified(archive, self.base/(platform+'-extracted'))
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\release\release_package.py", line 521, in extract_verified
+    rename_new(stage, destination)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\release\release_package.py", line 259, in rename_new
+    os.rename(source, destination)
+PermissionError: [WinError 5] Access is denied: 'C:\Users\ridge\AppData\Local\Temp\tmpfb3bi1pj\.spheres-package-aah_xv8j' -> 'C:\Users\ridge\AppData\Local\Temp\tmpfb3bi1pj\windows-extracted'
+
+Follow-up: added bounded retry for only Windows errors 5/32/33 while the destination remains absent. Each os.rename remains no-replace; no changes to extraction hash assertions.

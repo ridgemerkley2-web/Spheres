@@ -1,0 +1,129 @@
+{
+  "reviewer": "Codex /root/review_source05",
+  "scope": "Exact ordinary request observations, raw HTTP bodies retained externally; not an endpoint-stability guarantee. The initial script method label says HTTPS even for HTTP URLs; URL/final_url record the actual scheme. No browser UA, cookies or access-control workarounds.",
+  "external_body_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\c01-source-followups-review-20260928",
+  "results": [
+    {
+      "url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+      "expected_bytes": 24950218,
+      "expected_sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+      "uses": [
+        {
+          "source_file": "brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+          "source_id": "br_cn_dcn1_20230102_p20_26",
+          "review": "CLAUDE-C01-SOURCE-17",
+          "role": "source_response"
+        },
+        {
+          "source_file": "brazil-congress-dcn-lula-diploma-20230102-facts.json",
+          "source_id": "br_cn_dcn1_20230102_p18_19",
+          "review": "CLAUDE-C01-SOURCE-17",
+          "role": "source_response"
+        },
+        {
+          "source_file": "brazil-congress-dcn-lula-posse-20230102-facts.json",
+          "source_id": "br_cn_dcn1_20230102_p1_8",
+          "review": "CLAUDE-C01-SOURCE-17",
+          "role": "source_response"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:44:19.407009+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary HTTPS GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:44:21 GMT",
+        "Content-Type": "application/pdf",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "access-control-allow-origin": "*",
+        "content-disposition": "attachment; filename=DCN-1-2023.pdf",
+        "cache-control": "public, max-age=1800",
+        "x-content-type-options": "nosniff",
+        "content-security-policy": "default-src 'self' *.senado.leg.br *.googletagmanager.com *.google-analytics.com google-analytics.com analytics.google.com vlibras.gov.br *.vlibras.gov.br cdn.jsdelivr.net gov.br; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.senado.leg.br *.googletagmanager.com *.google-analytics.com google-analytics.com analytics.google.com *.vlibras.gov.br vlibras.gov.br cdn.jsdelivr.net connect.facebook.net; style-src 'self' 'unsafe-inline' *.senado.leg.br *.vlibras.gov.br; font-src 'self' data: *.senado.leg.br fonts.gstatic.com use.typekit.net vlibras.gov.br cdn.jsdelivr.net static3.avast.com; img-src 'self' data: blob: *.senado.leg.br *.senado.gov.br *.vlibras.gov.br vlibras.gov.br cdn.jsdelivr.net *.googletagmanager.com *.google-analytics.com google-analytics.com analytics.google.com translate.google.com www.facebook.com www.gstatic.com; object-src 'self' *.senado.leg.br; frame-src 'self' *.senado.leg.br; worker-src 'self' blob:; frame-ancestors 'self'; form-action 'self' *.senado.gov.br *.senado.leg.br; block-all-mixed-content; base-uri 'self'; manifest-src 'self' data: *.senado.gov.br:* *.senado.leg.br *.congressonacional.leg.br; upgrade-insecure-requests; report-uri https://adm.senado.gov.br/csp-report-collector/collect",
+        "Age": "0",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "Accept-Ranges": "bytes"
+      },
+      "completed_utc": "2026-09-28T13:47:08.050507+00:00",
+      "bytes": 24950218,
+      "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+      "matches_claimed_response": true,
+      "body_path": "responses/01.pdf"
+    },
+    {
+      "url": "https://web.archive.org/web/20230109012106id_/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=",
+      "expected_bytes": 24950218,
+      "expected_sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+      "uses": [
+        {
+          "review": "CLAUDE-C01-SOURCE-17",
+          "role": "independent_capture"
+        }
+      ],
+      "attempt": 1,
+      "started_utc": "2026-09-28T13:48:42.615755+00:00",
+      "request_headers": {
+        "Accept-Encoding": "identity"
+      },
+      "user_agent": "Python-urllib default",
+      "method": "ordinary GET; no cookies, UA override, cache-buster, or access-control workaround",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20230109012106id_/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Mon, 28 Sep 2026 13:48:44 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "24950218",
+        "Connection": "close",
+        "x-archive-orig-server": "nginx",
+        "x-archive-orig-date": "Mon, 09 Jan 2023 01:21:07 GMT",
+        "x-archive-orig-content-length": "24950218",
+        "x-archive-orig-connection": "close",
+        "x-archive-orig-access-control-allow-origin": "*",
+        "x-archive-orig-referrer-policy": "strict-origin-when-cross-origin",
+        "x-archive-orig-cache-control": "public, max-age=1800",
+        "x-archive-orig-x-content-type-options": "nosniff",
+        "x-archive-orig-content-security-policy": "default-src 'self' *.senado.leg.br vlibras.gov.br *.vlibras.gov.br gov.br *.google-analytics.com analytics.google.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: *.senado.leg.br *.vlibras.gov.br vlibras.gov.br connect.facebook.net www.google-analytics.com ssl.google-analytics.com google-analytics.com analytics.google.com; style-src 'self' 'unsafe-inline' *.senado.leg.br *.vlibras.gov.br; font-src 'self' data: *.senado.leg.br fonts.gstatic.com use.typekit.net vlibras.gov.br static3.avast.com; img-src 'self' data: blob: *.senado.leg.br *.senado.gov.br *.vlibras.gov.br vlibras.gov.br www.google-analytics.com ssl.google-analytics.com google-analytics.com analytics.google.com translate.google.com www.facebook.com www.gstatic.com; object-src 'self' *.senado.leg.br; frame-src 'self' *.senado.leg.br; worker-src 'self' blob:; frame-ancestors 'self'; form-action 'self' *.senado.gov.br *.senado.leg.br; block-all-mixed-content; base-uri 'self'; manifest-src 'self' data: *.senado.gov.br:* *.senado.leg.br *.congressonacional.leg.br; upgrade-insecure-requests; report-uri https://adm.senado.gov.br/csp-report-collector/collect",
+        "x-archive-orig-age": "467",
+        "x-archive-orig-x-frame-options": "SAMEORIGIN",
+        "x-archive-orig-strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-archive-orig-accept-ranges": "bytes",
+        "cache-control": "max-age=1800",
+        "accept-ranges": "bytes",
+        "memento-datetime": "Mon, 09 Jan 2023 01:21:06 GMT",
+        "link": "<https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"original\", <https://web.archive.org/web/timemap/link/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"timemap\"; type=\"application/link-format\", <https://web.archive.org/web/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"timegate\", <https://web.archive.org/web/20230109012106/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"first memento\"; datetime=\"Mon, 09 Jan 2023 01:21:06 GMT\", <https://web.archive.org/web/20230109012106/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"memento\"; datetime=\"Mon, 09 Jan 2023 01:21:06 GMT\", <https://web.archive.org/web/20230109012106/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>; rel=\"last memento\"; datetime=\"Mon, 09 Jan 2023 01:21:06 GMT\"",
+        "content-security-policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org",
+        "x-archive-src": "WPO-20230108083804-crawl835/WPO-20230108083804-00045.warc.gz",
+        "server-timing": "captures_list;dur=0.486991, exclusion.robots;dur=0.051301, exclusion.robots.policy;dur=0.034740, esindex;dur=0.006581, cdx.remote;dur=26.976052, LoadShardBlock;dur=152.356508, PetaboxLoader3.resolve;dur=79.796531, PetaboxLoader3.datanode;dur=702.955737, load_resource;dur=1659.442224",
+        "x-app-server": "wwwb-app264-dc8",
+        "x-ts": "200",
+        "x-tr": "1861",
+        "set-cookie": "wb-p-SERVER=wwwb-app264; path=/",
+        "X-location": "All",
+        "X-AS": "7922",
+        "X-RL": "0",
+        "X-NA": "0",
+        "X-Page-Cache": "MISS",
+        "Server-Timing": "captures_list;dur=0.486991, exclusion.robots;dur=0.051301, exclusion.robots.policy;dur=0.034740, esindex;dur=0.006581, cdx.remote;dur=26.976052, LoadShardBlock;dur=152.356508, PetaboxLoader3.resolve;dur=79.796531, PetaboxLoader3.datanode;dur=702.955737, load_resource;dur=1659.442224",
+        "X-NID": "COMCAST-7922",
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Permissions-Policy": "interest-cohort=()",
+        "X-sd": "0"
+      },
+      "completed_utc": "2026-09-28T13:48:45.266784+00:00",
+      "bytes": 24950218,
+      "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+      "matches_claimed_response": true,
+      "body_path": "responses/43.pdf"
+    }
+  ]
+}

@@ -1,0 +1,1347 @@
+{
+  "format": "spheres-s23-saved-boundary-comparison/v1",
+  "status": "read_only_observation_not_campaign_validation",
+  "save": "..\\evidence\\s22-late-input-reviewed\\s22-2035-11-30.json.gz",
+  "save_identity": {
+    "path": "..\\evidence\\s22-late-input-reviewed\\s22-2035-11-30.json.gz",
+    "bytes": 24310728,
+    "sha256": "42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b",
+    "gzip": true,
+    "decoded_bytes": 145134799,
+    "decoded_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+  },
+  "campaign_date": "2035-11-30",
+  "historical_period": {
+    "historical_from": "1990-01-01",
+    "historical_through": "2026-09-07",
+    "fictional_from": "2026-09-08",
+    "fictional_until_exclusive": "2036-01-01",
+    "date_convention": "Production and portrait windows are half-open [from, to). Research boundary days report both the ending and the starting observation."
+  },
+  "inputs": [
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "bytes": 6105,
+      "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "bytes": 89406,
+      "sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
+      "bytes": 4478,
+      "sha256": "1466be2b6e79d1580bbf84f4970d6d04b0ba8d726d815f2ce5a8378be93e7d20",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md",
+      "bytes": 3404,
+      "sha256": "5f6c244627328cef1461597739cf6353766f44ca93de17ce9b0765c790a1e353",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md",
+      "bytes": 4607,
+      "sha256": "1cbe851ea9db1d77fb5d808013d7fbec7bbf3b11b5ad12b4050746a9e2e84a9b",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+      "bytes": 8025,
+      "sha256": "ae2a2ec522d7670fa06f4a14ca1ccf556863c96a7a02e00a5b4ae35217673e5a",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+      "bytes": 10834,
+      "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/represented-organizations.json",
+      "bytes": 793318,
+      "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
+      "bytes": 64132,
+      "sha256": "0b0e97d43d00c5199f3a1a9648615f5c398d9fbee0cacd9e8ef520b3e06d2902",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
+      "bytes": 113398,
+      "sha256": "41c82148d2601dab1abfc8c8221494176335d77471e995674757b0aa63ca38c4",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
+      "bytes": 63984,
+      "sha256": "5c471a52b1e9418b27d8c378f71bf58afeee822d7f271dac914fba3a0e6c670f",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "bytes": 774754,
+      "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "bytes": 1803439,
+      "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-inc-presidents-1990-2026-20.md",
+      "bytes": 96091,
+      "sha256": "b8172bbf02a9d890c1ee721e7d93412e97d5c221f3b29af57940c6fd14238875",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-presidents-1990-2026-15.md",
+      "bytes": 77948,
+      "sha256": "c82ef7d94eeee02beb3af5490569549bd06a8fb61a5f1c907676441ac4d92358",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-prime-ministers-1990-2026-11.md",
+      "bytes": 81506,
+      "sha256": "dff87f78665c377061ecd2dd7efa2a78e0ee573694fb4b8d852ac68fa13b6acd",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "bytes": 846631,
+      "sha256": "1bedf89e1d13d1f391b23030c6bb5e7b16fe23b347c7a64487a6c387c66e82bf",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
+      "bytes": 97494,
+      "sha256": "61c63b8e98969d62f18e9c04d536f8fed319237bad84784d5bd79bd4ea16663b",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-1990-2006-12.md",
+      "bytes": 110869,
+      "sha256": "64ee66ac781eaf0eb6b9cfe81859ac9232da14e8e03847168efe5b1759252a94",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md",
+      "bytes": 145816,
+      "sha256": "5411d0741948981af0402a438228966b92e2116e7bda0275d10ecfa9be1dd544",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 1393225,
+      "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md",
+      "bytes": 88713,
+      "sha256": "9fba91d4572d718865f55b8d04df1711a46a231cc648e14636f726f89d6ffac0",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
+      "bytes": 63150,
+      "sha256": "4fd67be8aab5856e70f078548c7efa1bd27f9c1ab8a2837a746a6effd3622c47",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "bytes": 575140,
+      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "bytes": 93763,
+      "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+      "bytes": 37877,
+      "sha256": "b54db2a5a22577d68f96569b6d178537a50134ef55d1a9028a1d2e4d1d4a7065",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-anc-presidents-1990-2026-16.md",
+      "bytes": 71961,
+      "sha256": "0de5271ce08d0701aa122f24c64c2142d8adfcc5bea682fab432a1c0019570d2",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
+      "bytes": 76200,
+      "sha256": "bf7889dcb1fa4dc9d7fee2587262274e1c3870874d2b647444033d6a1360e054",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-heads-of-state-1990-2024-09.md",
+      "bytes": 59692,
+      "sha256": "b5c918f74bf42f23cad40540c999d4c985d979b476b07c98557b8cd658d713e7",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "bytes": 740024,
+      "sha256": "ba404b46f685442aa9d3798cf437de0f489d742912b1fb9a6084993dc9f6d16f",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+      "bytes": 37983,
+      "sha256": "a11076bba20dea088fefe7882e47586a8454c3c67f4f001c048c4c92f296a703",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+      "bytes": 34940,
+      "sha256": "755f9db2abfb5c26e7d916f845bcba279c5ffdc41c8d895489437f9996b46f7d",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+      "bytes": 47832,
+      "sha256": "7d2c21a3aa595c929cd108bdd265dc97e488b4ac6a259b2e5cd7a528ccd5eec9",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+      "bytes": 12502,
+      "sha256": "fbe5cd350fed63d1811c26d303e11d39f47c586fe0addd50189d8f8f438c1149",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+      "bytes": 18258,
+      "sha256": "a3dbf99ceb61db7a284086ba1bb5accd7ee961146768f774879a8232d611c6a5",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+      "bytes": 33174,
+      "sha256": "abebeb4921d35213e0b2920a01ce96f7359d7910634d226115b9d5e39acbb0b5",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 360940,
+      "sha256": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
+      "bytes": 72704,
+      "sha256": "69ed13a48616260054892a7bdab7cacb810485ac453a20116be21fb908ba1c1a",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-russia-transition-1991-05.md",
+      "bytes": 46385,
+      "sha256": "2a758b8add47dc7122ea4202d2c3477fd3bd43813d61b04b287b13515e517d63",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 191099,
+      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "bytes": 554063,
+      "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+      "bytes": 3256,
+      "sha256": "c886b419e2824543584c5284270be2546c1788e476bc6299c962b20bd00c8066",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "bytes": 117104,
+      "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "bytes": 86656,
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/src/clock.rs",
+      "bytes": 6036,
+      "sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility.rs",
+      "bytes": 11005,
+      "sha256": "3a60b808c4adca72b4397d35962b5bb09ac919934d4a58c174107f3c29846204",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "bytes": 100912,
+      "sha256": "c55bdce3a7e16ce82d4bcab14a55ff6cc3eda4e29e29417108bb931260948605",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_future.rs",
+      "bytes": 18526,
+      "sha256": "7e47558b42844dad3d422ed8acc084f09952e61722286e82cf4862af1612bc5e",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "bytes": 7666,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "bytes": 3273947,
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5984743,
+      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "bytes": 408800,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 290378,
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "bytes": 7945,
+      "sha256": "3204b4110758b208f0dc1561d81783e05af800e9b737ff6a0d970f25dab57a2f",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "bytes": 20216,
+      "sha256": "85ad4f7b772043eeedfeb50633bfcb11dc2ddf52c671911e0d466dd082beed51",
+      "newline_normalized": true,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/e-m-s-namboodiripad-cartoon-1990-v1.png",
+      "bytes": 1443844,
+      "sha256": "f60612579f0ac009e53217af3e4ce31d75cd1f611b498b72deb9d58aea06cd51",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/eiichi-nagasue-cartoon-1990-v1.png",
+      "bytes": 1367264,
+      "sha256": "a76b669fc9de556c7c947ba5876ac4fd84765312efea8f9f72f016801b83a4b1",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png",
+      "bytes": 1469870,
+      "sha256": "83baf7337b0db19fb5ee166c79c8b954c54ddd5c9216475b3a5ddcafecb08284",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
+      "bytes": 1370935,
+      "sha256": "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-02-cartoon-2030-v1.png",
+      "bytes": 1463661,
+      "sha256": "ccdcb58e5c02d49b91b438e3dc384e15058efc3c57f8f5345d4670cc8ceef47e",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-03-cartoon-2030-v1.png",
+      "bytes": 1386847,
+      "sha256": "8bfbe4042a0b0c9a94b534c8c373b4e538978d8e24138642b9e48de696f60b76",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-04-cartoon-2030-v1.png",
+      "bytes": 1412742,
+      "sha256": "70d461fab389822f25564a5fb0a647f5adab7171cd4365a185f14b9cc2f7e898",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
+      "bytes": 1474524,
+      "sha256": "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/hugo-napoleao-cartoon-1990-v1.png",
+      "bytes": 1482124,
+      "sha256": "0dd672e2a73182c96df9f3977049745c34b34285df4ed55914830abb55be2d07",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/jacques-chirac-cartoon-1990-v1.png",
+      "bytes": 1693382,
+      "sha256": "7a67e59cd20d5e51e0d3895b6f6be035ca7599ecf5361c877c44c77630ed812a",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/jean-marie-le-pen-cartoon-1990-v1.png",
+      "bytes": 1428894,
+      "sha256": "98c0aba4191e8b00d645a125509b5d21acb9c08ce1dcb92cdf8e3d9e6030c089",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/koshiro-ishida-cartoon-1990-v2.png",
+      "bytes": 1396917,
+      "sha256": "eea4b12a4802dc6ac7beb0386282fce875fb750770b031d48730dbe3f5281cca",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1990-v2.png",
+      "bytes": 1485122,
+      "sha256": "13ba50a0da0f72ce837ca90f5b30cec5c59c52cb52b85c73622e8541488b201a",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
+      "bytes": 1414590,
+      "sha256": "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/luiz-gushiken-cartoon-1990-v1.png",
+      "bytes": 1443030,
+      "sha256": "3ba15ba71a6c490658849f520f29d1f76a72116565f00404b9990ec0955968a1",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
+      "bytes": 1486793,
+      "sha256": "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/oliver-tambo-cartoon-1990-v1.png",
+      "bytes": 1691776,
+      "sha256": "da750d8c2900559e08e9e57481f63cab53aaf4febafc6bbf7afde88b3ed2ea00",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/pierre-mauroy-cartoon-1990-v1.png",
+      "bytes": 1590944,
+      "sha256": "620f25ca31027fceaf16bff159229fb6d8467235f0972dbca916cfe0ed2c5b76",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/rajiv-gandhi-cartoon-1990-v1.png",
+      "bytes": 1367478,
+      "sha256": "30a750a85b8fe767041e9d5bc783a9cd5c6a1ab236c699b153268b253623a8e2",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/s-r-bommai-cartoon-1990-v1.png",
+      "bytes": 1401817,
+      "sha256": "1ca40f0cce1955ed02ac3aaf1bb48c7dfe01e21791f49cd55189edfa867c297f",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png",
+      "bytes": 1328441,
+      "sha256": "bfa602f3ebad31e5e81f0e84f881f0827c9f486da8ad44ef0a62a4763e84f67b",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+      "bytes": 1655402,
+      "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/tetsuzo-fuwa-cartoon-1990-v1.png",
+      "bytes": 1335091,
+      "sha256": "68a1e180742458c7d6f2b815167cd23be3cce780c8a3d20499d866f91230bfdb",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
+      "bytes": 1476438,
+      "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/valery-giscard-d-estaing-cartoon-1990-v1.png",
+      "bytes": 1420999,
+      "sha256": "f240bdd9f3acb2832983e5891cf4df5da508ad32fcbc8e7471bc29f6ff85ab16",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/zephania-mothopeng-cartoon-1990-v1.png",
+      "bytes": 1443545,
+      "sha256": "8e8a53ab1773ba17788ac2144bef871d75eb8e2e0cbb59e7282711d16e447625",
+      "newline_normalized": false,
+      "exists": true
+    },
+    {
+      "path": "tools/avatars/certified_boundary_matrix.py",
+      "bytes": 97239,
+      "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4",
+      "newline_normalized": true,
+      "exists": true
+    }
+  ],
+  "interpretation": "Saved identity observations only: no native loading, replay, integrity validation, historical overwrite or S23 acceptance is performed.",
+  "identities": [
+    {
+      "identity": "France",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:fr_ps",
+          "campaign_holders": [
+            "pierre_mauroy"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "pierre_mauroy",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_rpr",
+          "campaign_holders": [
+            "jacques_chirac"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "jacques_chirac",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_federation",
+          "campaign_holders": [
+            "valery_giscard_d_estaing"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "valery_giscard_d_estaing",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_pr",
+          "campaign_holders": [
+            "francois_leotard"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "francois_leotard",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_dl",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:fr_udf/fr_udf_cds",
+          "campaign_holders": [
+            "pierre_mehaignerie"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "pierre_mehaignerie",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_fd",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:fr_udf/fr_udf_radical",
+          "campaign_holders": [
+            "yves_galland"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "yves_galland",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_psd",
+          "campaign_holders": [
+            "andre_santini"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "andre_santini",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_perspectives",
+          "campaign_holders": [
+            "herve_de_charette"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "herve_de_charette",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_ppdf",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:fr_udf/fr_udf_direct",
+          "campaign_holders": [
+            "paul_girod"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "paul_girod",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_udf/fr_udf_pril",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:fr_pcf",
+          "campaign_holders": [
+            "georges_marchais"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "georges_marchais",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:fr_fn",
+          "campaign_holders": [
+            "jean_marie_le_pen"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "jean_marie_le_pen",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "Japan",
+      "executive": {
+        "campaign": {
+          "person": "sadakazu_tanigaki",
+          "name": "Sadakazu Tanigaki",
+          "source": "saved_executive_assignment"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "historical_identity_not_established",
+        "image": {
+          "person": "sadakazu_tanigaki",
+          "binding": "unbound",
+          "reason": "no_portrait_record",
+          "art_job": "none_covers_date"
+        }
+      },
+      "parties": [
+        {
+          "role": "party:jp_ldp",
+          "campaign_holders": [
+            "sadakazu_tanigaki"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "sadakazu_tanigaki",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:jp_jsp/jp_jsp_1945",
+          "campaign_holders": [
+            "takako_doi"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "takako_doi",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:jp_jsp/jp_sdp_1996",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:jp_komeito/jp_komeito_1964",
+          "campaign_holders": [
+            "koshiro_ishida"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "koshiro_ishida",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:jp_komeito/jp_komei_1994",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:jp_komeito/jp_komeito_1998",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:jp_jcp",
+          "campaign_holders": [
+            "tetsuzo_fuwa"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "tetsuzo_fuwa",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:jp_dsp",
+          "campaign_holders": [
+            "eiichi_nagasue"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "eiichi_nagasue",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "India",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:in_inc",
+          "campaign_holders": [
+            "rajiv_gandhi"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "rajiv_gandhi",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:in_jd",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:in_bjp",
+          "campaign_holders": [
+            "lal_krishna_advani"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "lal_krishna_advani",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:in_cpm",
+          "campaign_holders": [
+            "e_m_s_namboodiripad"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "e_m_s_namboodiripad",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "Brazil",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:br_pmdb",
+          "campaign_holders": [
+            "ulysses_guimaraes"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "ulysses_guimaraes",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:br_pfl",
+          "campaign_holders": [
+            "hugo_napoleao"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "hugo_napoleao",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:br_prn",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:br_pt",
+          "campaign_holders": [
+            "gleisi_hoffmann"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "gleisi_hoffmann",
+              "binding": "unbound",
+              "reason": "no_portrait_record",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:br_pdt",
+          "campaign_holders": [
+            "leonel_brizola"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "leonel_brizola",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:br_pds",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        }
+      ]
+    },
+    {
+      "identity": "SouthAfrica",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:za_anc",
+          "campaign_holders": [
+            "oliver_tambo"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "oliver_tambo",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:za_np",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:za_ifp",
+          "campaign_holders": [
+            "mangosuthu_buthelezi"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "mangosuthu_buthelezi",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:za_ff",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:za_dp",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:za_pac",
+          "campaign_holders": [
+            "zephania_mothopeng"
+          ],
+          "reference_holders": [],
+          "verdict": "historical_identity_not_established",
+          "images": [
+            {
+              "person": "zephania_mothopeng",
+              "binding": "unbound",
+              "reason": "no_record_covers_date",
+              "art_job": "none_covers_date"
+            }
+          ]
+        },
+        {
+          "role": "party:za_acdp",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        }
+      ]
+    },
+    {
+      "identity": "Tonga",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": []
+    },
+    {
+      "identity": "SaudiArabia",
+      "executive": {
+        "campaign": {
+          "person": "fahd_bin_abdulaziz_al_saud",
+          "name": "Fahd bin Abdulaziz Al Saud",
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "historical_identity_not_established",
+        "image": {
+          "person": "fahd_bin_abdulaziz_al_saud",
+          "binding": "unbound",
+          "reason": "no_portrait_record",
+          "art_job": "none_covers_date"
+        }
+      },
+      "parties": []
+    },
+    {
+      "identity": "USSR",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "saved_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:su_cpsu",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:su_dr",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:su_soyuz",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        }
+      ]
+    },
+    {
+      "identity": "Russia",
+      "executive": {
+        "campaign": {
+          "person": null,
+          "name": null,
+          "source": "no_leadership_row"
+        },
+        "historical": {
+          "status": "inapplicable",
+          "reason": "after_historical_cutoff"
+        },
+        "verdict": "campaign_role_vacant",
+        "image": null
+      },
+      "parties": [
+        {
+          "role": "party:ru_ldpr",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:ru_vybor",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:ru_kprf",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:ru_apr",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        },
+        {
+          "role": "party:ru_yabloko",
+          "campaign_holders": [],
+          "reference_holders": [],
+          "verdict": "campaign_role_vacant",
+          "images": []
+        }
+      ]
+    }
+  ]
+}

@@ -101,3 +101,36 @@ test('load actions stay locked for active work and unconfirmed receipts without 
     assert.equal(f.node('#saveSlots').value,'France');
   }
 });
+
+test('a missing or unreadable main save exposes backup recovery without enabling ordinary Load',()=>{
+  for(const entry of [
+    {current_exists:false,readable:false,metadata_from_backup:true},
+    {current_exists:true,readable:false,metadata_from_backup:true},
+  ]){
+    const f=fixture();f.c.SESSION.saves=[{slot:'recover',backup:true,...entry}];
+    f.node('#saveSlots').value='recover';f.run('renderMainMenuState()');
+    assert.equal(f.node('#menuSaveEmpty').hidden,true);
+    assert.equal(f.node('#loadBtn').disabled,true);
+    assert.equal(f.node('#loadBackupBtn').hidden,false);
+    assert.equal(f.node('#loadBackupBtn').disabled,false);
+    assert.equal(f.node('#saveRecoveryStatus').hidden,false);
+    assert.match(f.node('#saveRecoveryStatus').textContent,/main save is.*Try loading the previous backup/);
+    f.c.SESSION.busy=true;f.run('renderMainMenuState()');
+    assert.equal(f.node('#loadBackupBtn').disabled,true);
+    f.c.SESSION.busy=false;f.run('renderMainMenuState()');
+    assert.equal(f.node('#loadBtn').disabled,true);
+    assert.equal(f.node('#loadBackupBtn').disabled,false);
+  }
+});
+
+test('save labels distinguish absent, damaged and intact primary files without claiming backup validity',()=>{
+  const code=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/campaign-ui.js'),'utf8');
+  const begin=code.indexOf('function campaignSaveLabel('),end=code.indexOf('\n}',begin);
+  assert(begin>=0 && end>begin,'Missing shipped save label helper');
+  const c=vm.createContext({});vm.runInContext(code.slice(begin,end+2),c);
+  const label=entry=>c.campaignSaveLabel({slot:'France',player:'France',date:'1 Jan 1990',...entry});
+  assert.match(label({current_exists:false,readable:false,backup:true,metadata_from_backup:true}),/backup dated 1 Jan 1990.*main save missing.*backup available/);
+  assert.match(label({current_exists:true,readable:false,backup:true,metadata_from_backup:true}),/backup dated 1 Jan 1990.*main save unreadable.*backup available/);
+  assert.match(label({current_exists:true,readable:false,backup:false}),/main save unreadable.*no backup/);
+  assert.equal(label({current_exists:true,readable:true,backup:true}),'France · France · 1 Jan 1990');
+});

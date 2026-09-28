@@ -1,0 +1,603 @@
+{
+  "contract_version": 2,
+  "contract_bounds": {
+    "vehicle_lod0": [
+      20000,
+      150000,
+      false
+    ],
+    "specialist_lod0": [
+      8000,
+      48000,
+      false
+    ],
+    "aircraft_lod0": [
+      100000,
+      250000,
+      true
+    ],
+    "vehicle_lod1": [
+      4000,
+      12000,
+      false
+    ],
+    "vehicle_lod2": [
+      300,
+      1500,
+      false
+    ],
+    "building_near": [
+      2000,
+      12000,
+      false
+    ],
+    "building_far": [
+      100,
+      800,
+      false
+    ],
+    "scene": [
+      null,
+      150000,
+      false
+    ]
+  },
+  "canonical_file_set": [
+    "spheres-air-fighter.glb",
+    "spheres-air-light-attack.glb",
+    "spheres-air-tactical-strike.glb",
+    "spheres-ground-air-defense.glb",
+    "spheres-ground-apc.glb",
+    "spheres-ground-artillery.glb",
+    "spheres-ground-ifv.glb",
+    "spheres-ground-recon.glb",
+    "spheres-tank-balanced.glb",
+    "spheres-tank-destroyer.glb",
+    "spheres-tank-heavy.glb",
+    "spheres-tank-light.glb",
+    "spheres-tank-mobile.glb"
+  ],
+  "graded": 245,
+  "pass": 166,
+  "advisory_density_notes": 79,
+  "actual_current_ceiling_failures": [],
+  "actual_required_floor_failures": [],
+  "actual_export_failures": [],
+  "superseded_proposal_overages": [
+    {
+      "asset": "ground.tank_standard.baseline.v1",
+      "config": "baseline",
+      "tris": 64840,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 19840,
+      "text": "**OVER by 19,840 (44.1%)**"
+    },
+    {
+      "asset": "ground.tank_standard.baseline.v1",
+      "config": "heaviest",
+      "tris": 74044,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 29044,
+      "text": "**OVER by 29,044 (64.5%)**"
+    },
+    {
+      "asset": "ground.tank_heavy.baseline.v1",
+      "config": "baseline",
+      "tris": 69728,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 24728,
+      "text": "**OVER by 24,728 (55.0%)**"
+    },
+    {
+      "asset": "ground.tank_heavy.baseline.v1",
+      "config": "heaviest",
+      "tris": 80476,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 35476,
+      "text": "**OVER by 35,476 (78.8%)**"
+    },
+    {
+      "asset": "ground.tank_light.baseline.v1",
+      "config": "baseline",
+      "tris": 64840,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 19840,
+      "text": "**OVER by 19,840 (44.1%)**"
+    },
+    {
+      "asset": "ground.tank_light.baseline.v1",
+      "config": "heaviest",
+      "tris": 74044,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 29044,
+      "text": "**OVER by 29,044 (64.5%)**"
+    },
+    {
+      "asset": "ground.tank_destroyer.baseline.v1",
+      "config": "baseline",
+      "tris": 64840,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 19840,
+      "text": "**OVER by 19,840 (44.1%)**"
+    },
+    {
+      "asset": "ground.tank_destroyer.baseline.v1",
+      "config": "heaviest",
+      "tris": 74044,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 29044,
+      "text": "**OVER by 29,044 (64.5%)**"
+    },
+    {
+      "asset": "ground.ground_ifv.baseline.v1",
+      "config": "heaviest",
+      "tris": 47716,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 2716,
+      "text": "**OVER by 2,716 (6.0%)**"
+    },
+    {
+      "asset": "ground.ground_artillery.baseline.v1",
+      "config": "heaviest",
+      "tris": 47472,
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "state": "OVER",
+      "over": 2472,
+      "text": "**OVER by 2,472 (5.5%)**"
+    },
+    {
+      "asset": "aviation.air_fighter.baseline.v1",
+      "config": "baseline LOD0",
+      "tris": 200446,
+      "budget": {
+        "min": 25000,
+        "max": 60000
+      },
+      "state": "OVER",
+      "over": 140446,
+      "text": "**OVER by 140,446 (234.1%)**"
+    },
+    {
+      "asset": "aviation.air_light_attack.baseline.v1",
+      "config": "baseline LOD0",
+      "tris": 199326,
+      "budget": {
+        "min": 25000,
+        "max": 60000
+      },
+      "state": "OVER",
+      "over": 139326,
+      "text": "**OVER by 139,326 (232.2%)**"
+    },
+    {
+      "asset": "aviation.air_tactical_strike.baseline.v1",
+      "config": "baseline LOD0",
+      "tris": 228640,
+      "budget": {
+        "min": 25000,
+        "max": 60000
+      },
+      "state": "OVER",
+      "over": 168640,
+      "text": "**OVER by 168,640 (281.1%)**"
+    },
+    {
+      "asset": "site.infrastructure.v1",
+      "config": "near complete/L5/building",
+      "tris": 29440,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 17440,
+      "text": "**OVER by 17,440 (145.3%)**"
+    },
+    {
+      "asset": "site.civilian_industry.v1",
+      "config": "near complete/L5/building",
+      "tris": 37666,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 25666,
+      "text": "**OVER by 25,666 (213.9%)**"
+    },
+    {
+      "asset": "site.power_grid.v1",
+      "config": "near complete/L5/building",
+      "tris": 37236,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 25236,
+      "text": "**OVER by 25,236 (210.3%)**"
+    },
+    {
+      "asset": "site.research_center.v1",
+      "config": "near complete/L5/building",
+      "tris": 31464,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 19464,
+      "text": "**OVER by 19,464 (162.2%)**"
+    },
+    {
+      "asset": "site.arms_plant.v1",
+      "config": "near complete/L5/building",
+      "tris": 34320,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 22320,
+      "text": "**OVER by 22,320 (186.0%)**"
+    },
+    {
+      "asset": "site.machinery_works.v1",
+      "config": "near complete/L5/building",
+      "tris": 36252,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 24252,
+      "text": "**OVER by 24,252 (202.1%)**"
+    },
+    {
+      "asset": "site.generation.v1",
+      "config": "near complete/L5/building",
+      "tris": 37544,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 25544,
+      "text": "**OVER by 25,544 (212.9%)**"
+    },
+    {
+      "asset": "site.processing_plant.v1",
+      "config": "near complete/L5/building",
+      "tris": 33454,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 21454,
+      "text": "**OVER by 21,454 (178.8%)**"
+    },
+    {
+      "asset": "site.freight_terminal.v1",
+      "config": "near complete/L5/building",
+      "tris": 35114,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 23114,
+      "text": "**OVER by 23,114 (192.6%)**"
+    },
+    {
+      "asset": "site.warehouse.v1",
+      "config": "near complete/L5/building",
+      "tris": 32690,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 20690,
+      "text": "**OVER by 20,690 (172.4%)**"
+    },
+    {
+      "asset": "site.automation.v1",
+      "config": "near complete/L5/building",
+      "tris": 32000,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 20000,
+      "text": "**OVER by 20,000 (166.7%)**"
+    },
+    {
+      "asset": "site.efficiency.v1",
+      "config": "near complete/L5/building",
+      "tris": 31740,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 19740,
+      "text": "**OVER by 19,740 (164.5%)**"
+    },
+    {
+      "asset": "site.starter_industry.v1",
+      "config": "near complete/L5/building",
+      "tris": 28848,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 16848,
+      "text": "**OVER by 16,848 (140.4%)**"
+    },
+    {
+      "asset": "site.office_district.v1",
+      "config": "near complete/L5/building",
+      "tris": 31034,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 19034,
+      "text": "**OVER by 19,034 (158.6%)**"
+    },
+    {
+      "asset": "site.shipyard.v1",
+      "config": "near complete/L5/building",
+      "tris": 29008,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 17008,
+      "text": "**OVER by 17,008 (141.7%)**"
+    },
+    {
+      "asset": "site.advanced_industry.v1",
+      "config": "near complete/L5/building",
+      "tris": 29012,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 17012,
+      "text": "**OVER by 17,012 (141.8%)**"
+    },
+    {
+      "asset": "town.kit.row_house",
+      "config": "close, maximum size",
+      "tris": 16382,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 4382,
+      "text": "**OVER by 4,382 (36.5%)**"
+    },
+    {
+      "asset": "town.kit.university",
+      "config": "close, maximum size",
+      "tris": 16656,
+      "budget": {
+        "row": "Building close view / map",
+        "cell": "2–12k / 100–800",
+        "min": 2000,
+        "max": 12000
+      },
+      "state": "OVER",
+      "over": 4656,
+      "text": "**OVER by 4,656 (38.8%)**"
+    },
+    {
+      "asset": "town.temperate.mixed.v1",
+      "config": "raw close id 1997",
+      "tris": 163671,
+      "budget": {
+        "row": "Scene assembly",
+        "cell": "Target ≤150k visible triangles initially",
+        "min": null,
+        "max": 150000
+      },
+      "state": "OVER",
+      "over": 13671,
+      "text": "**OVER by 13,671 (9.1%)**"
+    },
+    {
+      "asset": "town.temperate.residential.v1",
+      "config": "raw close id 1994",
+      "tris": 174540,
+      "budget": {
+        "row": "Scene assembly",
+        "cell": "Target ≤150k visible triangles initially",
+        "min": null,
+        "max": 150000
+      },
+      "state": "OVER",
+      "over": 24540,
+      "text": "**OVER by 24,540 (16.4%)**"
+    }
+  ],
+  "raw_town_blocks": [
+    {
+      "district": "mixed",
+      "full_close_triangles": 163671,
+      "actual_draw_plan_triangles": 149997,
+      "scene_ceiling": 150000,
+      "headroom": 3
+    },
+    {
+      "district": "residential",
+      "full_close_triangles": 174540,
+      "actual_draw_plan_triangles": 149934,
+      "scene_ceiling": 150000,
+      "headroom": 66
+    },
+    {
+      "district": "commercial",
+      "full_close_triangles": 125494,
+      "actual_draw_plan_triangles": 125494,
+      "scene_ceiling": 150000,
+      "headroom": 24506
+    },
+    {
+      "district": "civic",
+      "full_close_triangles": 128377,
+      "actual_draw_plan_triangles": 128377,
+      "scene_ceiling": 150000,
+      "headroom": 21623
+    },
+    {
+      "district": "industrial",
+      "full_close_triangles": 84250,
+      "actual_draw_plan_triangles": 84250,
+      "scene_ceiling": 150000,
+      "headroom": 65750
+    }
+  ],
+  "aircraft_inspection": [
+    {
+      "asset": "aviation.air_fighter.baseline.v1",
+      "triangles": 200446,
+      "base_attribute_bytes": 21648168,
+      "cpu_backing_bytes": 22249506
+    },
+    {
+      "asset": "aviation.air_light_attack.baseline.v1",
+      "triangles": 199326,
+      "base_attribute_bytes": 21527208,
+      "cpu_backing_bytes": 22125186
+    },
+    {
+      "asset": "aviation.air_tactical_strike.baseline.v1",
+      "triangles": 228640,
+      "base_attribute_bytes": 24693120,
+      "cpu_backing_bytes": 25379040
+    }
+  ],
+  "hypothetical_inventory": {
+    "vehicles": {
+      "n": 9,
+      "tris": 513040,
+      "bytes": 55408320,
+      "cpuBytes": 56947440
+    },
+    "sites": {
+      "n": 16,
+      "tris": 526822,
+      "bytes": 56896776,
+      "cpuBytes": 56896776
+    },
+    "blocks": {
+      "n": 5,
+      "tris": 676332,
+      "bytes": 73043856,
+      "cpuBytes": 73043856
+    },
+    "total": {
+      "n": 30,
+      "tris": 1716194,
+      "bytes": 185348952,
+      "cpuBytes": 186888072
+    },
+    "map": {
+      "n": 30,
+      "tris": 541872,
+      "bytes": 58522176,
+      "cpuBytes": 60061296,
+      "vehicleShare": 513040
+    }
+  },
+  "boundaries": [
+    "The 22 September contract-v2 reconciliation predates this audit; its source patch is retained. No current or legacy limits changed in this audit.",
+    "33 original-proposal overages remain explicitly retained. Two complete raw town blocks exceed150000; current gallery camera submissions fit the unchanged ceiling.",
+    "The gallery adaptive TownMesh planner is not the campaign globe CityMesh path. This offline pass does not qualify the campaign city renderer.",
+    "CPU mesh backing and base attributes exclude derived renderer surface attributes, floor/shadow/texture resources, driver overhead and application heap. These are explicit scope limits, not live-residency figures.",
+    "The hypothetical inventory excludes aircraft; aircraft detail payloads are separately recorded. No current frame draws the inventory total.",
+    "Baseline aircraft and all twelve baseline detail levels are measured. Greedy ground-component sweeps are not exhaustive proofs of every possible component combination.",
+    "No frame rates, cold-load/control/tick performance or driver VRAM are measured by these checks."
+  ]
+}

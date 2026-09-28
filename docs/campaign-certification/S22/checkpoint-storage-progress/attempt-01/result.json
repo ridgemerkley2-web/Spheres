@@ -1,0 +1,287 @@
+{
+  "format": "s22-intermediate-checkpoint-compression-result/v1",
+  "started_utc": "2026-09-28T07:53:44.0059981Z",
+  "finished_utc": "2026-09-28T07:53:45.3977367Z",
+  "qualification": false,
+  "reason": "Recover local headroom by losslessly compressing only redundant intermediate task-generated annual preparation checkpoints; canonical and actual-input saves remain raw and unchanged.",
+  "inventory_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression\\inventory.json",
+  "operations_journal": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression\\operations.jsonl",
+  "free_bytes_before": 4488990720,
+  "free_bytes_after": 4488974336,
+  "compressed_count": 0,
+  "raw_bytes_removed": null,
+  "gzip_bytes_retained": null,
+  "records": [],
+  "skipped": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2000-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.6761386Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2001-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.6900185Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2002-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.6934124Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2003-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.6960476Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2004-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.6985876Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2005-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7011763Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2007-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7042868Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2008-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7071617Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2009-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7096208Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2010-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7121007Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2011-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7145589Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2012-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7170687Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2013-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7194678Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2014-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7219240Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2016-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7243950Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2017-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7269289Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2018-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7294053Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2019-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7319350Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2020-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7343975Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2021-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7368620Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2022-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7393025Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2023-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7419909Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2024-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7445638Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2025-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7474788Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2026-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7502454Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2027-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7529722Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2028-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7558370Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2029-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7588532Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2030-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7615814Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2031-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7641110Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2032-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7667387Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2033-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7691772Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2034-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7718478Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-01-01.json",
+      "error": "Checkpoint refreshed after inventory",
+      "utc": "2026-09-28T07:53:44.7743666Z",
+      "action": "Raw file retained unless the durable prior journal records its completed removal; any partial gzip remains for inspection"
+    }
+  ],
+  "protected_before": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 114060874,
+      "sha256": "90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "bytes": 145134799,
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 130222370,
+      "sha256": "e3f977d81def8f5efa5906bd1ce9d0b8e6fa8bada23d30fca9531588b3695b31"
+    }
+  ],
+  "protected_after": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 114060874,
+      "sha256": "90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "bytes": 145134799,
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 130222370,
+      "sha256": "e3f977d81def8f5efa5906bd1ce9d0b8e6fa8bada23d30fca9531588b3695b31"
+    }
+  ],
+  "protected_sources_unchanged": true,
+  "scope": "Only exact inventoried disposable annual checkpoints in three task saves directories; no recursive deletion, reports/profile changes, source input removal, repository edit, freeze or qualification."
+}

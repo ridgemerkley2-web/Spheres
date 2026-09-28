@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "integration_branch": "codex/campaign-certification",
   "status_source": "docs/planning/campaign-pathway.json",
   "workstreams": [
@@ -37,7 +37,7 @@
         "S20",
         "S21"
       ],
-      "next": "S18 and S21 complete. Independent narrow equipment and province navigation are integrated. S20 awaits final S19 later-outcome qualification; G4 remains open."
+      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned, and S22 performance qualification is complete on its separately recorded candidate and evidence."
     },
     {
       "id": "guidance",
@@ -46,7 +46,7 @@
         "S19"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S19-01.md",
-      "next": "Claude implementation remains integrated. Codex verified construction payment/completion/output through save/resume at 24d05428. Actual company purchase/payment/delivery and squadron readiness/flown results remain before S19 closure; query --task CODEX-S19-LATER-01. Claude provides bounded repairs only. Evidence: docs/campaign-certification/S19/integration/PAYMENT_RETENTION.md."
+      "next": "Retain accepted S19 implementation and ordinary later-outcome qualification. Construction/output, paid purchases/delivery, supported flight, readiness and save/resume are closed in docs/campaign-certification/S19/integration/CLOSEOUT.md. Claude provides bounded repairs only for reproduced defects."
     },
     {
       "id": "characters",
@@ -62,7 +62,7 @@
         "S23"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
-      "next": "Six additional independent sections are assigned in CLAUDE-EXPANDED-NEXT.md. Character tasks: C01 gap ledger, C03 cartoon review workbench, C04 fictional successor pilot and S23 boundary audit. SOURCE-06/26 and C01-23/25 are submitted, not accepted; SOURCE-05/17 and C01-24/27 retain their claims. Query --tasks --owner Claude. Preserve historical acceptance and the frozen 2026-09-07 cutoff; preparation does not close parent sessions."
+      "next": "C01-GAPS-01, C03-REVIEW-01, C04-PREP-01, S23-MATRIX-01 and SOURCE-05/06/17/26 are accepted bounded deliveries; their parent character sessions remain open. C01-23/24/25/27 await independent historical review. Preserve active Russia/Japan claims C01-28/29 and retain the accepted bounded S24/E05 preparation, with their recorded limits. Query --tasks --owner Claude. Research cutoff stays 2026-09-07. S23 remains planned pending C06. Next content slice: reconcile an accepted Tonga research batch into dated identities, then a reviewed 6-8-cartoon batch; no parent session or country certificate until its acceptance criteria are met."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. Its historical 42-overrun reading is retained in docs/campaign-certification/S22/preparation/README.md. Current docs/art/P0_BUDGETS.md grades 245 configurations: 166 pass, 79 advisory density notes, zero ceiling or required-quality-floor failures. Adaptive town scenes preserve raw close meshes while enforcing the unchanged 150,000-triangle actual submission ceiling; raw full-block overages remain diagnostics. Exact local/hosted readings: docs/campaign-certification/verification/2026-09-22-completion.md. S22 remains planned after S20; full campaign performance and human qualification stay open. The six-session timing export and 137-country preflight do not close performance/worldwide gates. Claude owns the independent CLAUDE-S24-SUCCESSORS-01 preparation packet; Codex retains canonical S24 ownership, production integration and final qualification."
+      "next": "S22 is complete on 5d11dd6dae436eeca105dbaf0d02732cd768b35b; docs/campaign-certification/S22/manifest.json indexes the evidence. Both complete rounds of qualification pair02 passed all 18 declared cells, and independent frozen-helper verification passed under the unchanged protocol. End-2035 confirmation simulation/history and whole-turn p95 are 237.4 / 323.1374 ms. Final validation passed 1,963 release tests (0 failed, 112 ignored), nine focused tests, eight actual 31-day comparisons, 35 Node entries, 245 art configurations, 33 assets and 13 canonical GLB exports. Preserve the failed 17/18 pair01, all prior validation/preflight failures, 33 historical diagnostic art overages, source scopes and restoration records. S23 is next, Claude-owned and planned pending C06; Codex-owned S24 awaits S23. CLAUDE-S24-SUCCESSORS-01 is accepted preparation after independent 5d11 fixture/browser checks and evidence repairs. CODEX-S24-BUDGET-01 fixes its rate-floor explanation finding on 52e1c2ab, with separate exact-build proof. Namibia/East Timor activation remains unavailable. None of this completes S24. G5, CP1 and human qualification remain unearned."
     },
     {
       "id": "human-playtests",
@@ -84,7 +84,7 @@
       "sessions": [
         "S26"
       ],
-      "next": "Real independent human sessions after S24; Codex prepares the build and Claude can review findings."
+      "next": "CODEX-S26-PREP-01 is complete: facilitator kit, anonymous records and evidence/coverage validator under docs/campaign-certification/S26/preparation. No human sessions recorded. Actual independent human qualification still requires S24 and the canonical criteria."
     },
     {
       "id": "military-expansion",
@@ -104,7 +104,7 @@
       "sessions": [
         "E05"
       ],
-      "next": "CLAUDE-E05-RESEARCH-01 is available now for eight sourced France/Japan company dossiers and proposed catalog mappings. Research only; runtime company expansion and E05 completion remain gated on S30/CP1.",
+      "next": "CLAUDE-E05-RESEARCH-01 is accepted bounded research/validator preparation with independent retrieval and explicit claim-level verification limits. No runtime installation or full historical certification; company mechanics and E05 completion remain after CP1.",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md"
     }
   ],

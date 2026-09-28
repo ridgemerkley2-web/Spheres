@@ -1,0 +1,69 @@
+{
+  "base_commit": "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c",
+  "claude_commit": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+  "scoped_import_commit": "13a6b5b4c648698cacfb693851488d0181bdca56",
+  "repair_commit": "8c2b3e1d235c1dfea223e5e7e4d27641ce6775b2",
+  "files": [
+    {
+      "path": "docs/research/company-pilot/sources.json",
+      "bytes": 155439,
+      "sha256": "bedd7163b245d062a7dfc2c558bd19daf05333e7abc074a5c36a42840e2422d6"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_dassault_aviation.json",
+      "bytes": 23333,
+      "sha256": "6685c374dffae4e1d41219ed2e19852db2558195fd0cfea53b8cb8bd3aa95d9d"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_knds_france.json",
+      "bytes": 28901,
+      "sha256": "5cdd427464666273c63aa668d61df71d87828577bb70c7821e8c9365ce734fa2"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_naval_group.json",
+      "bytes": 27780,
+      "sha256": "3dbe51f4463be8227382bac6afbfa817d25e44a958ce83ad754e2165199e7f3a"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/fr_renault.json",
+      "bytes": 18412,
+      "sha256": "e0a26fb99eeafbb0090d8a1291c51d28c121e4c6b0313c8a076aaeac32889877"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_kawasaki_heavy_industries.json",
+      "bytes": 46197,
+      "sha256": "4756191a8fffc224afe05da3a8f7e88936061502b095f086b8e1b1e0879ca102"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_komatsu.json",
+      "bytes": 29124,
+      "sha256": "e0e8845681c2424d588615f3031607aa9de6a7e9e6f24bdc4311962a1fa711e3"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_mitsubishi_heavy_industries.json",
+      "bytes": 43176,
+      "sha256": "8c23989dee91c68db7c567ceb83f1056f0aa3e2f7226d65a3f898e839ba81866"
+    },
+    {
+      "path": "docs/research/company-pilot/dossiers/jp_toyota_motor.json",
+      "bytes": 27193,
+      "sha256": "4a758de976c7f7944a213a3a89689a24aca87a240f022eb7d7ac786c4b845ac0"
+    },
+    {
+      "path": "docs/research/company-pilot/README.md",
+      "bytes": 16391,
+      "sha256": "fecea01fe3ff92dd798665cd8919b81c62502829ffd55bd3cd1937fff032801f"
+    },
+    {
+      "path": "tools/planning/check_company_pilot.py",
+      "bytes": 40685,
+      "sha256": "1db79ec8adc85196fef93f69786e4c3970a2a657d14f371e885617395b7107d7"
+    },
+    {
+      "path": "tools/planning/test_company_pilot.py",
+      "bytes": 27548,
+      "sha256": "3215941820c9f24d4b40fa80746a29741e3fa11a0be3f2173c15ef56bf90ef72"
+    }
+  ],
+  "game_input_pins": "Exact eight read-only game input SHA256 values in check-after-repairs.log; no runtime file is changed."
+}

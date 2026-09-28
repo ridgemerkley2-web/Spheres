@@ -90,7 +90,18 @@ pub(super) fn prepare_bundle(w: &WorldState, legs: &[(NationId, NationId, Commod
 }
 
 pub(super) fn prepare_bundle_with_context(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)],
-    used: &BTreeMap<String, f64>, mut context: Option<&mut ContractForecastRoutes<'_>>) -> Bundle {
+    used: &BTreeMap<String, f64>, context: Option<&mut ContractForecastRoutes<'_>>) -> Bundle {
+    prepare_bundle_impl(w, legs, used, context, None)
+}
+
+pub(super) fn prepare_bundle_with_nominal(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)],
+    used: &BTreeMap<String, f64>, nominal: &mut ClearingRoutes) -> Bundle {
+    prepare_bundle_impl(w, legs, used, None, Some(nominal))
+}
+
+fn prepare_bundle_impl(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)],
+    used: &BTreeMap<String, f64>, mut context: Option<&mut ContractForecastRoutes<'_>>,
+    mut nominal: Option<&mut ClearingRoutes>) -> Bundle {
     let mut result = Bundle { routes: vec![], demand: BTreeMap::new(), ratio: 1.0 };
     for &(seller, buyer, commodity, quantity) in legs {
         let route = if !quantity.is_finite() || quantity < 0.0 {
@@ -98,7 +109,10 @@ pub(super) fn prepare_bundle_with_context(w: &WorldState, legs: &[(NationId, Nat
         } else {
             let nominal = match context.as_deref_mut() {
                 Some(read) => read.plan(seller, buyer),
-                None => plan(w, seller, buyer),
+                None => match nominal.as_deref_mut() {
+                    Some(read) => read.plan(w, seller, buyer),
+                    None => plan(w, seller, buyer),
+                },
             };
             let capacities = context.as_ref().and_then(|read| read.capacities.as_deref());
             nominal.map(|p| select(w, seller, buyer, p, quantity * tonnes_per_unit(commodity), used, capacities, None).0)

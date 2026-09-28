@@ -1,0 +1,240 @@
+{
+  "format": "spheres-package-smoke/v1",
+  "scope": "Extracted portable package functional/offline smoke; not full campaign certification or performance qualification",
+  "revision": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49",
+  "archive": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\portable-package-01\\SPHERES-0.6.0-Windows.zip",
+    "sha256": "6e1bd2c9dccbb40ea8613519249bad9584b7cc4256fbf22868729f9c6abb32a4"
+  },
+  "driver_sha256": "d4686073eb6297871d58627ffd25b1e92a5a2c013472ea935f2073e0d1fe6671",
+  "extractor_sha256": "18a2a27b0357b05abafb3ddd53cce37761e995dd038d43307af466b1de6bde36",
+  "started_utc": "2026-09-28T16:55:50.247Z",
+  "finished_utc": "2026-09-28T16:56:04.486Z",
+  "passed": true,
+  "model": {
+    "platform": "air_fighter",
+    "triangles": 200446,
+    "draws": [
+      {
+        "type": "webgl",
+        "draws": 31,
+        "width": 592,
+        "height": 360
+      }
+    ]
+  },
+  "assets": [
+    {
+      "path": "/art/pages/nation-selection-v1.webp",
+      "bytes": 147710,
+      "sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+      "expected": {
+        "bytes": 147710,
+        "committed_sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+        "sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+        "source": "spheres-web/ui/page-art/nation-selection-v1.webp"
+      },
+      "content_type": "image/webp"
+    },
+    {
+      "path": "/art/pages/saved-campaigns-v1.webp",
+      "bytes": 146948,
+      "sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+      "expected": {
+        "bytes": 146948,
+        "committed_sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+        "sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+        "source": "spheres-web/ui/page-art/saved-campaigns-v1.webp"
+      },
+      "content_type": "image/webp"
+    },
+    {
+      "path": "/art/pages/tank-designer-v1.webp",
+      "bytes": 169266,
+      "sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+      "expected": {
+        "bytes": 169266,
+        "committed_sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+        "sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+        "source": "spheres-web/ui/page-art/tank-designer-v1.webp"
+      },
+      "content_type": "image/webp"
+    },
+    {
+      "path": "/height-detail.png",
+      "bytes": 6258094,
+      "sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a",
+      "expected": {
+        "bytes": 6258094,
+        "committed_sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a",
+        "sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a",
+        "source": "spheres-web/ui/height-detail.png"
+      },
+      "content_type": "image/png"
+    },
+    {
+      "path": "/relief.png",
+      "bytes": 2856812,
+      "sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6",
+      "expected": {
+        "bytes": 2856812,
+        "committed_sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6",
+        "sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6",
+        "source": "spheres-web/ui/relief.png"
+      },
+      "content_type": "image/png"
+    },
+    {
+      "path": "/terrain-tiles/manifest.json",
+      "bytes": 253962,
+      "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+      "expected": {
+        "bytes": 253962,
+        "committed_sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+        "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+        "source": "spheres-web/ui/terrain-tiles/manifest.json"
+      },
+      "content_type": "application/json"
+    },
+    {
+      "path": "/terrain-tiles/x00_y00.png",
+      "bytes": 8909,
+      "sha256": "ccfed8f56803ca69be3981fe9ab84a211363d7bf7310ef0a48e281dc072215b3",
+      "expected": {
+        "bytes": 8909,
+        "committed_sha256": "ccfed8f56803ca69be3981fe9ab84a211363d7bf7310ef0a48e281dc072215b3",
+        "sha256": "ccfed8f56803ca69be3981fe9ab84a211363d7bf7310ef0a48e281dc072215b3",
+        "source": "spheres-web/ui/terrain-tiles/x00_y00.png"
+      },
+      "content_type": "image/png"
+    },
+    {
+      "path": "/arsenal-models.js",
+      "bytes": 456286,
+      "sha256": "ffafc27e63057b020d275b0963500b882be8583f8cae9e924b5cbd90edd4eddb",
+      "expected": {
+        "bytes": 456286,
+        "committed_sha256": "77f850c6be4a89978f478505a453d49e389fb7660b5e15d52bc420f0f6a08ef7",
+        "sha256": "ffafc27e63057b020d275b0963500b882be8583f8cae9e924b5cbd90edd4eddb",
+        "source": "spheres-web/ui/arsenal-models.js"
+      },
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "/equipment-mesh.js",
+      "bytes": 180994,
+      "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+      "expected": {
+        "bytes": 180994,
+        "committed_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+        "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+        "source": "spheres-web/ui/equipment-mesh.js"
+      },
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "/equipment-model.js",
+      "bytes": 47269,
+      "sha256": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73",
+      "expected": {
+        "bytes": 47269,
+        "committed_sha256": "356403f2a135ca3ac12fa46de0483091d663cfa339de0c043fdb2a5201a03b82",
+        "sha256": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73",
+        "source": "spheres-web/ui/equipment-model.js"
+      },
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "/equipment-export.js",
+      "bytes": 8868,
+      "sha256": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd",
+      "expected": {
+        "bytes": 8868,
+        "committed_sha256": "4057adc8ae13d8c2c107b2fe7a797e8018b16a37adcc88a91a347604fb355475",
+        "sha256": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd",
+        "source": "spheres-web/ui/equipment-export.js"
+      },
+      "content_type": "application/javascript; charset=utf-8"
+    }
+  ],
+  "errors": [],
+  "console_errors": [],
+  "blocked_requests": [],
+  "http_errors": [],
+  "server_stopped": true,
+  "screenshots": [
+    {
+      "path": "nation-selection-desktop.png",
+      "sha256": "2887554bfbc10a70cfad275dffc87a148633edfeee27314faa30b3c71644556e",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "width": 1320,
+        "scroll": 1320
+      }
+    },
+    {
+      "path": "map-1440.png",
+      "sha256": "3ee4e8e31661b2ea29b18660a27327c4c23ee9ab5fb0312e53dea91760ae3a7c",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "path": "map-390.png",
+      "sha256": "d42af5069fb6f51123f39142128e7ad8d0e6a6dd4bdc7c9f835ceec7d5f06214",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "width": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "path": "embedded-aircraft-designer.png",
+      "sha256": "75fef346e1d7918f341aa10eba67d4576612a2e7571fc921070057d39c400a3e",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    {
+      "path": "backup-recovery-1440.png",
+      "sha256": "80c11ad9d61facd0663b4d00647873296ba18559f323011b002f0f5f1f9be957",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "width": 920,
+        "scroll": 920
+      }
+    },
+    {
+      "path": "backup-recovery-390.png",
+      "sha256": "bb7208e16f8954f08458694f0f637dfb60d16642dbaf6b424725bb400aaf75cc",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "width": 390,
+        "scroll": 390
+      }
+    }
+  ],
+  "full_result": "result.json.gz"
+}

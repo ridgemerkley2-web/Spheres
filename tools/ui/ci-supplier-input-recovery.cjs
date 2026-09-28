@@ -39,7 +39,7 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
     }
     assert(ready,'Server startup');
     browser=await chromium.launch({headless:true,...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
-    page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+    page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce',hasTouch:process.env.SPHERES_NAVIGATION_CLOSEOUT==='1'});
     page.on('pageerror',e=>evidence.errors.push(e.message));
     page.on('request',r=>{if(r.method()==='POST')evidence.requests.push({route:new URL(r.url()).pathname,payload:r.postDataJSON()});});
     const tap=async selector=>{evidence.actions.push({click:selector});await page.locator(selector).click();};
@@ -61,7 +61,7 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
       await tap('[data-equipment-record="1:3"] h3');
     }
     await page.goto(url);
-    for(const name of ['index.html','competition-ui.js','equipment-ui.js','equipment-ui.css']){
+    for(const name of ['index.html','competition-ui.js','equipment-ui.js','equipment-ui.css',...(process.env.SPHERES_NAVIGATION_CLOSEOUT==='1'?['province-economy-ui.js']:[])]){
       const response=await page.request.get(url+(name==='index.html'?'/':'/'+name)),served=await response.body();
       assert(served.equals(fs.readFileSync(path.join(root,'spheres-web/ui',name))),'Served asset '+name);
       evidence.assets.push({name,sha256:sha(served)});
@@ -70,6 +70,22 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
     evidence.actions.push({select:'#saveSlots',value:'s19-input'});await page.locator('#saveSlots').selectOption('s19-input');
     await tap('#loadBtn');await page.waitForFunction(()=>S?.player&&!SESSION.busy);
     evidence.before={state:await state(),industry:await read('industry'),companies:await read('companies')};
+    if(process.env.SPHERES_NAVIGATION_CLOSEOUT==='1'){
+      evidence.scope='S20 native map/city/province and room navigation, keyboard/touch, read recovery and save purity';
+      const helper=path.join(__dirname,'navigation-closeout.cjs');
+      evidence.navigation_driver_sha256=sha(fs.readFileSync(helper));fs.copyFileSync(helper,path.join(out,'navigation-driver.cjs'));
+      await require(helper)({page,tap,state,read,shot,evidence});
+      assert(evidence.navigation.passed);assert.deepEqual(evidence.errors,[]);assert.equal(sha(fs.readFileSync(binary)),evidence.binary_sha256);
+      evidence.passed=true;return;
+    }
+    if(process.env.SPHERES_GUIDANCE_FLIGHT==='1'){
+      evidence.scope='Ordinary aircraft procurement and later guidance flight qualification from a recorded campaign';
+      const helper=path.join(__dirname,'guidance-flight-route.cjs');
+      evidence.flight_driver_sha256=sha(fs.readFileSync(helper));fs.copyFileSync(helper,path.join(out,'flight-driver.cjs'));
+      await require(helper)({page,tap,state,read,shot,evidence});
+      assert.deepEqual(evidence.errors,[]);assert.equal(sha(fs.readFileSync(binary)),evidence.binary_sha256);
+      evidence.passed=true;return;
+    }
     if(process.env.SPHERES_SUPPLIER_GRID_RECOVERY==='1'){
       evidence.scope='Ordinary grid recovery and equipment purchase/delivery from a recorded component-producing campaign';
       const helper=path.join(__dirname,'supplier-production-route.cjs');

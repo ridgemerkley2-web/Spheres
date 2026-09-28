@@ -1,0 +1,32 @@
+{
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/planning",
+        "-p",
+        "test_company_pilot.py"
+      ],
+      "python_executable": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "started_utc": "2026-09-28T14:58:34.769749+00:00",
+      "exit_code": 0,
+      "log": "final-tests.log"
+    },
+    {
+      "command": [
+        "python",
+        "tools/planning/check_company_pilot.py"
+      ],
+      "python_executable": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "started_utc": "2026-09-28T14:58:36.296689+00:00",
+      "exit_code": 0,
+      "log": "final-check.log"
+    }
+  ],
+  "earlier_logs": "tests-before-repairs.log records the intentionally red expanded suite; tests-after-repairs.log and check-after-repairs.log record the repaired earlier passes. These earlier logs are preserved."
+}

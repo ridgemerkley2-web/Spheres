@@ -1,0 +1,234 @@
+{
+  "pass": true,
+  "errors": [],
+  "proposals": 8,
+  "packet_inputs": [
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/c04-successor-review/docs/campaign-certification/C04/preparation/france-tonga/proposals.json",
+      "bytes": 86797,
+      "sha256": "cc2882ccda191ac69169bebca2193b99971903bd109dac51e23aedce73fa5d01"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/c04-successor-review/docs/campaign-certification/C04/preparation/france-tonga/sources.json",
+      "bytes": 69600,
+      "sha256": "1260efe01c4688ac284d47e15c409158b22fd5057980d66798df1585ef77492a"
+    }
+  ],
+  "repository_inputs": [
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "bytes": 3273947,
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492"
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "bytes": 7666,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5984743,
+      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "bytes": 2972,
+      "sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "bytes": 26453,
+      "sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26"
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "bytes": 86656,
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 290378,
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d"
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "bytes": 408800,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962"
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "bytes": 554063,
+      "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "bytes": 774754,
+      "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "bytes": 1803439,
+      "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "bytes": 846631,
+      "sha256": "1bedf89e1d13d1f391b23030c6bb5e7b16fe23b347c7a64487a6c387c66e82bf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 1393225,
+      "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "bytes": 575140,
+      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "bytes": 93763,
+      "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "bytes": 740024,
+      "sha256": "ba404b46f685442aa9d3798cf437de0f489d742912b1fb9a6084993dc9f6d16f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 360940,
+      "sha256": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 191099,
+      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/README.md",
+      "bytes": 16396,
+      "sha256": "bb0881cf8de5bb309c5fc14981bfe55359f838536f019047e1fcd29c5d35b4eb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
+      "bytes": 64748,
+      "sha256": "ec4914f8bba6ee23c1f776f248abb558a6cfd5a2b07099948099f1342ee3ddb3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
+      "bytes": 114338,
+      "sha256": "d422122c7077c7e9fdd66e15eda9779bad353170a898d24ff917e5c7e52646b8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
+      "bytes": 64630,
+      "sha256": "2499aea46444e0d9219ce50c69cacfa146fb307e93413331ca8eb002ca7a5017"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-inc-presidents-1990-2026-20.md",
+      "bytes": 96819,
+      "sha256": "6a650551711e262cf42e44d2d624dad5a6c4833f6b799c987c0b84b9a3597fea"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-presidents-1990-2026-15.md",
+      "bytes": 78617,
+      "sha256": "da1094630b6ad586eb14790afac414ae473d25c4ee66f1b56e774706e3fb967e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india-prime-ministers-1990-2026-11.md",
+      "bytes": 82283,
+      "sha256": "112ac511661498e50c8194a7cd48b8523ca8538b9c40ab99bf7116edc80cf3f4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
+      "bytes": 98307,
+      "sha256": "23116b4595952d46ff3f640e6539b98f3eb5a2d0614e3827b74fe1475e634caf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-1990-2006-12.md",
+      "bytes": 111797,
+      "sha256": "767de78c5bf5b2e498346eb9c58928d0f454a79e68dc5d28082cd55359547a6c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md",
+      "bytes": 146917,
+      "sha256": "8a3bd56d1487d67e7c3b091e95cb3635fbf9b759b59763e289b895f111c74ed4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md",
+      "bytes": 89419,
+      "sha256": "a330e05f6ac8478bde494d897c205272e415c26625d25abb4a0d470f458b5188"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
+      "bytes": 63733,
+      "sha256": "fafdaec0b601edfcd2cf7aab08707e11dd461289ff73aad87b38688c3b2b14c1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+      "bytes": 38382,
+      "sha256": "15b9d08b9d280c306b37753032476a132be236b89ce318ded9e896cbb3956886"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-anc-presidents-1990-2026-16.md",
+      "bytes": 72617,
+      "sha256": "f91d95fb25657f5d3f1cd8fe6ab9bbddcc49f399a7f869e1711f8d61fffdac30"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
+      "bytes": 76892,
+      "sha256": "43dc00393aea2552dc57becd463c9397311f7e67bc214cf1b49a515640c248f0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/south-africa-heads-of-state-1990-2024-09.md",
+      "bytes": 60272,
+      "sha256": "55640cea7eca5efaa04cdb6205efb0b30a35db5bc69ec139f9cf63ab6e7b38b6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+      "bytes": 38442,
+      "sha256": "bc75d020f9a534ab397ed9dd860f3202626c99adfd40d25dd7c1ab26a3e81598"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+      "bytes": 35398,
+      "sha256": "4a31f7a03a0cc8639e4a3e89c96beb72b29b1cc890e9e5872fa232ad5be9b086"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+      "bytes": 48380,
+      "sha256": "c1b647efba4d64bd2ddb7845e7411bff8870db9023fcb0252cedbff26d426cc9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+      "bytes": 12718,
+      "sha256": "28b27f2fe133942ec4680463a24b6d8892d2b966401d19f835c8ddbe142edaa1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+      "bytes": 18531,
+      "sha256": "422141647394fa12dd68ec0bb6438623f44e10ae0a428c05839374942504bfb7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+      "bytes": 33606,
+      "sha256": "aae4ab1b52ca534755cf4af14b88a79c3343e89921c719591efc844a17f71f62"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
+      "bytes": 73328,
+      "sha256": "4b94698b4922b7a42ed1532c1278b0ffb7a744984a2727d781b06805a8c89006"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr-russia-transition-1991-05.md",
+      "bytes": 46962,
+      "sha256": "184024bb0548724d903dca42fa5f8fd24094251f041d95d04b7c86ecad473612"
+    }
+  ]
+}

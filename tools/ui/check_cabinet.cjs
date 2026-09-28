@@ -81,7 +81,7 @@ function fixture(names) {
     notes: 0,
     renders: 0,
   });
-  const helpers = [...new Set(['cabinetIsOpen', ...names])];
+  const helpers = [...new Set(['cabinetIsOpen', 'interestRateExplanation', ...names])];
   vm.runInContext(`${ministrySource()}
     const CAB = {tab:'overview', ministry:'health', lastFocus:null, busy:false, error:''};
     const ARCADE_ROOMS = {sheetFocus:null, worldFocus:null, helpFocus:null};
@@ -334,6 +334,7 @@ test('cash-flow shortcuts navigate to financial controls without changing the pl
     function closeGameDrawers(){routes.push(['close']);}
     function openStock(){routes.push(['resources']);}
     function openCompetition(){routes.push(['exchange']);}
+    function competitionFocusGood(good,quantity){routes.push(['trade-focus',good,quantity]);}
     function competitionSetTab(tab){routes.push(['exchange-tab',tab]);}
     queued=[{kind:'program_budget',health:0.04}];
     cashFlowNavigate({action:'budget',ministry:'defense',department:3});`);
@@ -352,7 +353,7 @@ test('cash-flow shortcuts navigate to financial controls without changing the pl
   evaluate(c, 'cashFlowNavigate({action:"policy",control:"invalid"})');
   assert.equal(c.document.activeElement.id,'cab-tab-policy');
   evaluate(c, `cashFlowNavigate({action:'construction',district:'US-CA',project:2});
-    cashFlowNavigate({action:'industry'});cashFlowNavigate({action:'resources'});cashFlowNavigate({action:'trade'});`);
+    cashFlowNavigate({action:'industry'});cashFlowNavigate({action:'resources'});cashFlowNavigate({action:'trade',good:'advanced_components',quantity:0.4441});`);
   const before=plain(c,'routes');
   evaluate(c,'busy=true');
   assert.equal(evaluate(c,'cashFlowNavigate({action:"budget"})'),false);
@@ -360,6 +361,7 @@ test('cash-flow shortcuts navigate to financial controls without changing the pl
   assert.deepEqual(plain(c,'queued'),[{kind:'program_budget',health:0.04}]);
   assert(before.some(row=>row[0]==='construction'&&row[1].project===2));
   assert(before.some(row=>row[0]==='exchange-tab'&&row[1]==='trade'));
+  assert.deepEqual(before.find(row=>row[0]==='trade-focus'),['trade-focus','advanced_components',0.4441]);
 });
 
 test('an explicit cash-flow link reveals the summary after reopening the overview', () => {
@@ -374,17 +376,19 @@ test('an explicit cash-flow link reveals the summary after reopening the overvie
 
 test('industry actions reach specific existing controls without making economic orders', () => {
   const c = fixture(['industryNavigate']);
-  evaluate(c, `S.player='USA'; let routes=[]; const PG={department:4}; const COMP={trade:{good:'intermediates'}}; const PROD={};
+  evaluate(c, `S.player='USA'; let routes=[]; const PG={department:4};
     function openConstruction(options){routes.push(['construction',options]);}
     function openConstructionCabinet(tab){routes.push(['cabinet',tab]);}
     function openStock(){routes.push(['resources']);}
     function openCompetition(){routes.push(['exchange']);}
+    function competitionFocusGood(good,quantity){routes.push(['trade-focus',good,quantity]);}
     function competitionSetTab(tab){routes.push(['exchange-tab',tab]);}
     function closeGameDrawers(){routes.push(['close']);}
     function openTech(){routes.push(['research']);}
     function openNation(id){routes.push(['nation',id]);}
     function selectNationView(tab){routes.push(['nation-tab',tab]);}
-    function openProduction(){routes.push(['manufacture',PROD.mode]);}
+    function openProduction(){assert.fail('Equipment management must not open legacy production');}
+    function openEquipment(options){routes.push(['equipment',options]);}
     function selectProvince(district,focus){routes.push(['province',district,focus]);}
     queued=[{kind:'tax',value:0.3}];
     industryNavigate({action:'budget',ministry:'science',department:0});`);
@@ -392,14 +396,13 @@ test('industry actions reach specific existing controls without making economic 
   assert.equal(evaluate(c, 'PG.department'), 0);
   assert.equal(c.document.activeElement.id, 'pgShare-6-0');
   evaluate(c, `industryNavigate({action:'construction',district:'US-CA',kind:'generation',project:2});
-    industryNavigate({action:'trade',good:'capital_goods'});
+    industryNavigate({action:'trade',good:'capital_goods',quantity:2.5});
     industryNavigate({action:'research'});industryNavigate({action:'manufacture'});
     industryNavigate({action:'province',district:'US-CA'});`);
   assert.deepEqual(plain(c, 'routes'), [
     ['cabinet','budget'], ['construction',{province:'US-CA',kind:'generation',project:2}],
-    ['exchange'],['exchange-tab','trade'],['close'],['research'],['manufacture','manufacture'],['close'],['province','US-CA',true]
+    ['trade-focus','capital_goods',2.5],['exchange'],['exchange-tab','trade'],['close'],['research'],['equipment',{tab:'companies'}],['close'],['province','US-CA',true]
   ]);
-  assert.equal(evaluate(c, 'COMP.trade.good'), 'capital_goods');
   const prior = plain(c, 'routes');
   evaluate(c, 'pendingAdvance={};');
   assert.equal(evaluate(c, 'industryNavigate({action:"resources"})'), false);
@@ -560,4 +563,31 @@ test('the treasury card distinguishes absent books from zero money and preserves
   assert.match(open, /Debt: \$150bn/);
   assert.match(open, /debtor \$50bn/);
   assert.doesNotMatch(open, /NaN|undefined/);
+});
+
+test('debt-rate floor and debt-ratio spread are distinct in both budget explanations', () => {
+  const c = fixture(['interestRow', 'moneyCard']);
+  evaluate(c, `S.policy = {money:{on_the_books:true, treasury_bn:0,
+    revenue_bn:25, spend_bn:20, interest_bn:-0.56, balance_bn:5.56,
+    interest_gdp:-0.0056, balance_gdp:0.0556, debt_bn:28, debt_gdp:0.28,
+    net_position_bn:-28, effective_rate:-0.02, real_rate:-0.349,
+    real_rate_after_floor:-0.02, real_rate_floor_adjustment:0.329, spread:0}};`);
+  for (const helper of ['interestRow', 'moneyCard']) {
+    const html = evaluate(c, helper + '(m)');
+    assert.match(html, /debt-rate floor/i);
+    assert.match(html, /-2\.00%/);
+    assert.match(html, /no sovereign spread/i);
+    assert.doesNotMatch(html, /32\.90.*sovereign spread|NaN|undefined/);
+  }
+  evaluate(c, 'S.policy.money.debt_gdp = 0.9; S.policy.money.spread = 0.018; S.policy.money.effective_rate = -0.002;');
+  for (const helper of ['interestRow', 'moneyCard']) {
+    const html = evaluate(c, helper + '(m)');
+    assert.match(html, /debt-rate floor/i);
+    assert.match(html, /sovereign spread/i);
+    assert.doesNotMatch(html, /no sovereign spread/);
+  }
+  evaluate(c, 'S.policy.money.real_rate = 0.03; S.policy.money.real_rate_after_floor = 0.03; S.policy.money.real_rate_floor_adjustment = 0;');
+  for (const helper of ['interestRow', 'moneyCard']) {
+    assert.doesNotMatch(evaluate(c, helper + '(m)'), /debt-rate floor/i);
+  }
 });

@@ -1,0 +1,54 @@
+{
+  "format": "spheres-review-source-equivalence/v1",
+  "runtime_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "review_baseline": "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c",
+  "harness_revision": "321357702e9bea0ac6b01c29b46a9edb9178237a",
+  "comparison": "Exact Git tree/blob objects; raw served assets separately checked in attempt02. Does not include root F1 changes.",
+  "paths": [
+    {
+      "path": "spheres-sim",
+      "git_objects_by_revision": {
+        "5d11dd6dae436eeca105dbaf0d02732cd768b35b": "a418f91459b4aed82713f998030c2d0667309d1e",
+        "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c": "a418f91459b4aed82713f998030c2d0667309d1e",
+        "321357702e9bea0ac6b01c29b46a9edb9178237a": "a418f91459b4aed82713f998030c2d0667309d1e"
+      },
+      "equal": true
+    },
+    {
+      "path": "spheres-cli",
+      "git_objects_by_revision": {
+        "5d11dd6dae436eeca105dbaf0d02732cd768b35b": "ca897ed6da3fca5a39ccc4c253187d2549fde325",
+        "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c": "ca897ed6da3fca5a39ccc4c253187d2549fde325",
+        "321357702e9bea0ac6b01c29b46a9edb9178237a": "ca897ed6da3fca5a39ccc4c253187d2549fde325"
+      },
+      "equal": true
+    },
+    {
+      "path": "spheres-web",
+      "git_objects_by_revision": {
+        "5d11dd6dae436eeca105dbaf0d02732cd768b35b": "c14513100794efb3d5a9df35dd61cd2489c3f8e8",
+        "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c": "c14513100794efb3d5a9df35dd61cd2489c3f8e8",
+        "321357702e9bea0ac6b01c29b46a9edb9178237a": "c14513100794efb3d5a9df35dd61cd2489c3f8e8"
+      },
+      "equal": true
+    },
+    {
+      "path": "Cargo.toml",
+      "git_objects_by_revision": {
+        "5d11dd6dae436eeca105dbaf0d02732cd768b35b": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+        "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+        "321357702e9bea0ac6b01c29b46a9edb9178237a": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e"
+      },
+      "equal": true
+    },
+    {
+      "path": "Cargo.lock",
+      "git_objects_by_revision": {
+        "5d11dd6dae436eeca105dbaf0d02732cd768b35b": "4004d4796cd617d9f821203d7c815d4106fecef1",
+        "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c": "4004d4796cd617d9f821203d7c815d4106fecef1",
+        "321357702e9bea0ac6b01c29b46a9edb9178237a": "4004d4796cd617d9f821203d7c815d4106fecef1"
+      },
+      "equal": true
+    }
+  ]
+}

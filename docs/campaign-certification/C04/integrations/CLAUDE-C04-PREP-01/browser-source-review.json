@@ -1,0 +1,43 @@
+{
+  "reviewer": "Codex /root/s20_preflight",
+  "reviewed_utc": "2026-09-28T13:49:12.617089+00:00",
+  "scope": "Web-tool rendered primary-source content; not independently retained original response bytes. Direct capture failures remain failures; no authentication/access workaround or original blocked URL retry. No comprehensive current-law or all67-claim certification.",
+  "sources": [
+    {
+      "source": "src_to_parliament_how_it_works",
+      "url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "locators": "Composition, parties and non-elected ministers sections",
+      "result": "Rendered primary page inspected. Corroborates institutional distinctions; direct byte recapture returned406."
+    },
+    {
+      "source": "src_to_parliament_pm_procedure_2010",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "locators": "2010 procedure note",
+      "result": "Rendered primary page inspected; Constitution Schedule remains the primary governing text. Direct byte recapture returned406."
+    },
+    {
+      "source": "src_fr_memento_pres_2022",
+      "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/91689/587275/file/Memento-presidentielle-2022.pdf",
+      "locators": "PDF pages8-9, eligibility and presentation spread",
+      "result": "Rendered official memento inspected: age18, elector/civic eligibility and500 presentations/30 territories/one-tenth concentration. Direct byte recapture returned403;2022 edition currency at cutoff remains unresolved."
+    },
+    {
+      "source": "src_fr_pcf_statuts_39",
+      "url": "https://assets.nationbuilder.com/pcf/pages/15897/attachments/original/1684999315/document_-_Statuts_39e_Congr%C3%A8s.pdf?1684999315",
+      "locators": "Articles8,12.4,13; PDF pages14-16",
+      "result": "Rendered party-linked PDF inspected: winning-list secretary, gender balance and general nine-year executive rule. Direct byte recapture returned403; no reproduced-body claim."
+    },
+    {
+      "source": "src_fr_pcf_statuts_page",
+      "url": "https://www.pcf.fr/statuts_du_pcf_adopt_s_au_39e_congr_s",
+      "locators": "Statute download link",
+      "result": "Rendered party page links39th-Congress statutes. Direct byte recapture returned403."
+    },
+    {
+      "source": "src_fr_rn_statuts_2022",
+      "url": "https://rassemblementnational.fr/statuts-du-rassemblement-national",
+      "locators": "Articles8,10",
+      "result": "Rendered party rules inspected; leadership and parliamentary office remain distinct.200 response differs from submission hash and is preserved as a new capture, not replacement."
+    }
+  ]
+}

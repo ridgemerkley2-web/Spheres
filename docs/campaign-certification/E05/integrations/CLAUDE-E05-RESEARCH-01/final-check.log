@@ -1,0 +1,9 @@
+PASS: 8 dossiers (France 4, Japan 4); 99 official sources (65 byte-stable, 34 changed and re-verified), 10 inaccessible recorded; 195 claims; 55 products announced 3, cancelled 3, fictional 0, historical 49; 32 proposed mappings. Research only; no game data changed.
+  input spheres-sim/data/nations/france.json sha256 0fddbc44e01060b8d8345909cc04cfcf34a53adf15c04dd432b192944f0c106f
+  input spheres-sim/data/nations/japan.json sha256 02d3f2afbf5dff48abed9e86929e3fdd9708d0770e9dd3a0c06b262f1d6a5a5a
+  input spheres-sim/src/arsenal.rs sha256 e425a1e0ed05d8b0d82dd55dfc51b0d991404fccec023f60271df12ef4a40685
+  input spheres-sim/src/companies.rs sha256 b117e441821feb6a0aefe5dc9b8b59065ec11b1845e32600e1cec8accd11d04c
+  input spheres-sim/src/equipment.rs sha256 a7e9451df51fdcc3bde70500401244e074b2e93ba27c723927b228a09a3722b4
+  input spheres-sim/src/equipment_ammunition_production.rs sha256 d3b7eb49e83e0cc8739933db8f8ac3224be4632964bdf44f8e9315a3f29653f6
+  input spheres-sim/src/sector_contractors.rs sha256 171212168b0bf8449100459a9944af9e7e80aad43bacbdf2dd9da43d1e6f9c67
+  input spheres-sim/src/supplier_catalogue.rs sha256 879b9366eb9043a50c9a3bace0d16554b3e012baac065d80a570a84c467cc847

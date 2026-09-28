@@ -1,0 +1,9 @@
+
+running 4 tests
+test campaign_supply::permission_scope_tests::permission_scope_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit immutable actual-checkpoint 31-day original permission reads; no timing assertions
+test campaign_supply::permission_scope_tests::permission_scope_preserves_each_search_live_reservations_and_complete_supply ... ok
+test campaign_supply::permission_scope_tests::permission_scope_matches_complete_native_days_with_original_access_reads ... ok
+test campaign_supply::permission_scope_tests::permission_scope_reuses_only_immutable_queries_and_fresh_scopes_observe_mutations ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 1085 filtered out; finished in 0.44s
+

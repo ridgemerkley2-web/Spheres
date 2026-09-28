@@ -1,0 +1,12 @@
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-guards-preflight\browser-06mwgM
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-guards-preflight\browser-06mwgM\result.json
+AssertionError [ERR_ASSERTION]: First released fighter entry must submit actual GL geometry
+    at run (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\s22-renderer-browser.cjs:249:9)
+    at async run (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\s22-performance-browser.cjs:151:7) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

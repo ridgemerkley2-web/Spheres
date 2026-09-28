@@ -42,7 +42,7 @@ function element(nation='USA') {
 function fixture(extra=[]) {
   const box=element(),calls=[];
   const c=vm.createContext({box,calls,
-    document:{activeElement:null,querySelector:selector=>selector==='#nationEconomicLedger'?box:null},
+    document:{activeElement:null,getElementById:()=>null,querySelector:selector=>selector==='#nationEconomicLedger'?box:null},
     closeSheet:()=>calls.push('close-sheet'),showTab:tab=>calls.push(['tab',tab]),
     selectProvince:(id,move)=>calls.push(['province',id,move]),
     api:async url=>{calls.push(url);return reading();},
@@ -350,11 +350,14 @@ test('province choices remain isolated and survive a loading-only drawer and ano
 
 test('a new campaign clears province choices and rejects previous DOM and pending readings',async()=>{
   const c=provinceRenderFixture();c.renderMap();
+  run(c,"ui.selectedCity={name:'Paris',lat:48.86,lon:2.35}; PROVINCE_DOSSIER_UI.cityOpener={id:'old-city-control'};");
   detail(c,'economy-projects').open=true;detail(c,'economy-projects').ontoggle();
   let resolve;c.api=()=>new Promise(done=>{resolve=done;});
   const pending=c.loadProvincePopulation('US-CA',true);
   c.resetProvinceDossierState();
   assert.equal(run(c,'selectedDistrict'),null);assert.equal(run(c,'PROVINCE_POPULATION'),null);
+  assert.equal(run(c,'ui.selectedCity'),null,'a city card from the replaced campaign cannot be restored');
+  assert.equal(run(c,'PROVINCE_DOSSIER_UI.cityOpener'),null,'an old city opener cannot regain focus');
   c.rememberProvinceDossier();
   assert.equal(run(c,'PROVINCE_DOSSIER_UI.views.size'),0,'old live DOM cannot reseed the new campaign cache');
   resolve({id:'US-CA',economy:reading({total_gdp_bn:999})});await pending;
@@ -421,6 +424,37 @@ test('the existing province loader carries economy and rejects stale province re
   assert.equal(run(c,'PROVINCE_POPULATION.economy.total_gdp_bn'),50,'keepOld preserves a reading while the next arrives');
   requests[2].resolve({id:'FR-IDF',economy:reading({total_gdp_bn:55})});await third;
   assert.equal(run(c,'PROVINCE_POPULATION.economy.total_gdp_bn'),55);
+});
+
+test('province failure exposes a guarded read-only Retry and successful reading date',async()=>{
+  const c=fixture(['loadProvincePopulation']);let calls=0;
+  c.api=async()=>{calls++;throw new Error('Offline <script>');};
+  await c.loadProvincePopulation('US-CA',false);
+  const error=c.provinceEconomyHtml(run(c,'PROVINCE_POPULATION'));
+  assert.match(error,/data-province-retry/);assert.match(error,/Offline &lt;script&gt;/);
+  const button={},box={dataset:{province:'US-CA'},querySelectorAll:selector=>selector==='[data-province-retry]'?[button]:[]};
+  c.wireProvinceDossierState(box);
+  c.api=async()=>{calls++;return {id:'US-CA',economy:reading()};};button.onclick();await new Promise(setImmediate);
+  assert.equal(calls,2);assert.equal(run(c,'PROVINCE_POPULATION.read_date'),'2 Jan 1991');
+  assert.match(c.provinceEconomyHtml(run(c,'PROVINCE_POPULATION')),/Reading for 2 Jan 1991/);
+  c.resetProvinceDossierState();button.onclick();await new Promise(setImmediate);
+  assert.equal(calls,2,'old campaign Retry cannot issue a new read');
+});
+
+test('province requests keep old receipt dates during refresh and reject changed-day or mismatched data',async()=>{
+  const c=provinceRenderFixture(),requests=[];c.renderMap();
+  run(c,"PROVINCE_POPULATION.read_date='2 Jan 1991'; S.date='3 Jan 1991'; S.day=3;");
+  c.api=url=>new Promise(resolve=>requests.push({url,resolve}));
+  const pending=c.loadProvincePopulation('US-CA',true);
+  assert.equal(c.provinceBox.attributes['aria-busy'],'true');
+  assert.match(c.provinceBox.innerHTML,/Reading for 2 Jan 1991 · refreshing/);
+  run(c,"S.date='4 Jan 1991'; S.day=4;");requests[0].resolve({id:'US-CA',economy:reading({total_gdp_bn:999})});await pending;
+  assert.doesNotMatch(c.provinceBox.innerHTML,/\$999bn/);
+  const next=c.loadProvincePopulation('US-CA',true);requests[1].resolve({id:'US-CA',economy:reading({total_gdp_bn:123})});await next;
+  assert.equal(c.provinceBox.attributes['aria-busy'],'false');assert.match(c.provinceBox.innerHTML,/Reading for 4 Jan 1991/);
+  const wrong=c.loadProvincePopulation('US-CA',false);requests[2].resolve({id:'FR-IDF',economy:reading({total_gdp_bn:888})});await wrong;
+  assert.match(c.provinceBox.innerHTML,/did not match this province/);assert.doesNotMatch(c.provinceBox.innerHTML,/\$888bn/);
+  assert.equal(c.provinceBox.attributes['aria-busy'],'false');
 });
 
 test('styles keep narrow dossiers contained, large touch controls and reduced-motion support',()=>{
