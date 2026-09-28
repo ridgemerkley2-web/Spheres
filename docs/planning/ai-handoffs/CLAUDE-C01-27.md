@@ -72,29 +72,29 @@ Touched paths (nothing else):
 
 The packet gains 74 sources and 167 claims and one party role (`in_bjp_president`, National President of the Bharatiya
 Janata Party, `party_leader`) on the existing recognition observation, whose identity, recognition row, lifecycle,
-coverage status and empty game mapping are unchanged. The role has twenty holder observations: L. K. Advani (observed 8
-January 1991, 16 July 1997 and 20 October 2004), Murli Manohar Joshi (10 December 1991), Kushabhau Thakre (27 February
+coverage status and empty game mapping are unchanged. The role has nineteen holder observations: L. K. Advani (observed
+8 January 1991, 16 July 1997 and 20 October 2004), Murli Manohar Joshi (10 December 1991), Kushabhau Thakre (27 February
 1999), Bangaru Laxman (observed 31 August 2000; stated end 14 March 2001, when the office bearers accepted his
-resignation 'with immediate effect'), K. Jana Krishnamurthi (24 March 2001), M. Venkaiah Naidu (stated start 1 July 2002,
-from the party journal), Rajnath Singh (2 January 2006 and 2 March 2013), Nitin Gadkari (24 December 2009 and 22 January
-2013), Amit Shah (9 July 2014, 2 February 2016 and 17 June 2019), J. P. Nadda (stated start 20 January 2020, from the
-party organ; observed 17 January 2023 and 15 December 2025) and Nitin Nabin (stated start 20 January 2026, from the
-party's same-day release and the party organ; observed 17 August 2026). National Council and National Executive
-resolutions under multi-day headings, election steps (schedules, nominations, scrutiny, sole-candidate announcements,
-results, declarations, certificates), President-elect stylings, acceptances, endorsements and entrustments, an
-appointment awaiting ratification, the acting presidency of March 2001, the working presidencies of 2019 and 2025, a term
-extension, handover statements, farewells, 'outgoing', 'former' and 'Ex' stylings, resignations and their
-consideration, acceptance without a day of effect, rejection or recording, retrospective spans, lists and recollections,
-and addresses that name no speaker are claims only. The thirteen prime-minister, eight president and ten
-Congress-president holders are unchanged, and no claim or source is shared between the party role and any other role or
-institution.
+resignation 'with immediate effect'), M. Venkaiah Naidu (stated start 1 July 2002, from the party journal), Rajnath
+Singh (2 January 2006 and 2 March 2013), Nitin Gadkari (24 December 2009 and 22 January 2013), Amit Shah (9 July 2014, 2
+February 2016 and 17 June 2019), J. P. Nadda (stated start 20 January 2020, from the party organ; observed 17 January
+2023 and 15 December 2025) and Nitin Nabin (stated start 20 January 2026, from the party's same-day release and the
+party organ; observed 17 August 2026). National Council and National Executive resolutions under multi-day headings,
+election steps (schedules, nominations, scrutiny, sole-candidate announcements, results, declarations, certificates),
+President-elect stylings, acceptances, endorsements and entrustments, an appointment awaiting ratification, the acting
+presidency of March 2001, the working presidencies of 2019 and 2025, a term extension, handover statements, farewells,
+'outgoing', 'former' and 'Ex' stylings, resignations and their consideration, acceptance without a day of effect,
+rejection or recording, retrospective spans, lists and recollections, and addresses that name no speaker are claims
+only. The thirteen prime-minister, eight president and ten Congress-president holders are unchanged, and no claim or
+source is shared between the party role and any other role or institution.
 
 Decisions for the reviewer:
 
-- K. Jana Krishnamurthi's observation of 24 March 2001 is this packet's ruling on check B6: the National Executive's
-  entrustment of 'the responsibility of party presidentship', with the party's same-day 'National President' heading, is
-  read as a substantive presidency after the acting designation of 14 March 2001. If the ruling is declined, remove that
-  one holder; nothing else depends on it.
+- K. Jana Krishnamurthi's service from 14 March 2001 stays claims only (check B6). The office bearers made him acting
+  president on 14 March 2001. On 24 March 2001 the party heads his address 'National President' and he says the
+  Executive has 'entrusted the responsibility of party presidentship' to him, but the same address places him in the
+  Chair because of the office bearers' request, and no source states that the acting arrangement ended or that he was
+  elected or appointed President; like the INC's interim presidency of 2019-2022, his service is claims only.
 - Two holders (Advani and Joshi in 1991) are dated by English Rajya Sabha records, because the party's own records of
   1990-1992 print multi-day meeting headings or name no speaker; the undated Rajya Sabha page of 8 January 1991 is dated
   by the store file of the same printed sheet, recorded as a date anchor.
@@ -113,7 +113,7 @@ Observation decisions:
 | BJP-PRES-02 | Accepted in part: Joshi observed 10 Dec 1991 (Rajya Sabha, English); continuations 1992-1993; 'Ex-President' by December 1993; no election record |
 | BJP-PRES-03 | Accepted in part: unnamed 1993 and 1995 election statements; Advani observed 16 Jul 1997; handover announced 2 May 1998 for the next day |
 | BJP-PRES-04 | Accepted in part: Thakre elected unanimously and President-elect 2 May 1998, observed 27 Feb 1999; Laxman observed 31 Aug 2000, stated end 14 Mar 2001 |
-| BJP-PRES-05 | Accepted in part: Jana Krishnamurthi acting 14 Mar 2001 (claims), observed 24 Mar 2001 (ruling); Naidu stated start 1 Jul 2002 |
+| BJP-PRES-05 | Accepted in part: Jana Krishnamurthi acting from 14 Mar 2001, styled National President 24 Mar 2001 and 24 Jun 2002 (claims only); Naidu stated start 1 Jul 2002 |
 | BJP-PRES-06 | Accepted in part: Naidu's resignation accepted 18 Oct 2004 (no day of effect); Advani observed 20 Oct 2004; endorsement 27 Oct 2004; Rajnath Singh observed 2 Jan 2006 |
 | BJP-PRES-07 | Accepted in part: Gadkari observed 24 Dec 2009 and 22 Jan 2013; Rajnath Singh declared 23 Jan 2013 and observed 2 Mar 2013 |
 | BJP-PRES-08 | Accepted in part: Amit Shah observed 9 Jul 2014, 2 Feb 2016 and 17 Jun 2019; re-election, continuation and handover are claims |

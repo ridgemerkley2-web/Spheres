@@ -406,7 +406,7 @@ EVENTS = {
     'in_bjp_jana_krishnamurthy_styled_president_20010318':
         ('2001-03-18', 'acting_service_attestation', 'BJP-PRES-05', JK),
     'in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324':
-        ('2001-03-24', 'in_office_attestation', 'BJP-PRES-05', JK),
+        ('2001-03-24', 'acting_service_attestation', 'BJP-PRES-05', JK),
     'in_bjp_ne_entrusted_presidentship_to_jana_krishnamurthy_20010324':
         ('2001-03-24', 'national_executive_entrustment_statement', 'BJP-PRES-05', JK),
     'in_bjp_laxman_resignation_letter_dated_20010313_recalled':
@@ -418,11 +418,11 @@ EVENTS = {
     'in_bjp_ne_resolution_laxman_resigned_as_president_20010324':
         ('2001-03-24', 'resignation_recorded', 'BJP-PRES-04', BL),
     'in_bjp_jana_krishnamurthi_styled_president_20010329':
-        ('2001-03-29', 'in_office_continuation_attestation', 'BJP-PRES-05', JK),
+        ('2001-03-29', 'acting_service_attestation', 'BJP-PRES-05', JK),
     'in_bjp_jana_krishnamurthi_taken_charge_recalled_2001':
         (None, 'assumption_recalled_retrospective', 'BJP-PRES-05', JK),
     'in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624':
-        ('2002-06-24', 'in_office_continuation_attestation', 'BJP-PRES-05', JK),
+        ('2002-06-24', 'acting_service_attestation', 'BJP-PRES-05', JK),
     'in_bjp_naidu_profile_span_ist_july_2002_onwards':
         (None, 'retrospective_term_span', 'BJP-PRES-05', VN),
     'in_bjp_naidu_president_first_press_conference_20020711':
@@ -697,7 +697,10 @@ ENDINGS = ('in_bjp_ne_resolution_ex_president_joshi_199312',
            'in_ks_former_national_president_nitin_gadkari_20260120')
 INTERIM = ('in_bjp_jana_krishnamurthi_designated_acting_president_20010314',
            'in_bjp_jana_krishnamurthy_styled_president_20010318',
+           'in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324',
            'in_bjp_jana_krishnamurthy_accepted_acting_responsibility_recalled_2001',
+           'in_bjp_jana_krishnamurthi_styled_president_20010329',
+           'in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624',
            'in_ks_parliamentary_board_appoints_nadda_working_president_20190617',
            'in_ks_nadda_takes_charge_working_president_2019',
            'in_ks_life_sketch_nadda_working_president_onwards_2019',
@@ -720,8 +723,6 @@ CONTINUATION = ('in_bjp_ne_resolution_narrates_president_advani_199004',
                 'in_bjp_thakre_press_statement_as_president_20000704',
                 'in_bjp_laxman_statement_as_president_20000901',
                 'in_bjp_laxman_press_statement_as_president_20010309',
-                'in_bjp_jana_krishnamurthi_styled_president_20010329',
-                'in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624',
                 'in_bjp_naidu_president_first_press_conference_20020711',
                 'in_bjp_naidu_chairs_meeting_as_party_president_20041018',
                 'in_bjp_advani_constitutes_national_executive_20041030',
@@ -809,7 +810,6 @@ HOLDERS = [
     (A, '1997-07-16', None, None),
     (KT, '1999-02-27', None, None),
     (BL, '2000-08-31', None, '2001-03-14'),
-    (JK, '2001-03-24', None, None),
     (VN, None, '2002-07-01', None),
     (A, '2004-10-20', None, None),
     (RS, '2006-01-02', None, None),
@@ -832,7 +832,6 @@ HOLDER_CLAIMS = [
     ['in_bjp_thakre_styled_president_budget_statement_19990227'],
     ['in_bjp_laxman_styled_president_maiden_press_conference_20000831',
      'in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314'],
-    ['in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324'],
     ['in_bjp_today_naidu_took_over_on_july_1_20020701'],
     ['in_bjp_advani_statement_as_president_20041020'],
     ['in_bjp_rajnath_singh_styled_national_president_20060102'],
@@ -849,9 +848,9 @@ HOLDER_CLAIMS = [
     ['in_ks_nabin_appoints_national_office_bearers_20260817'],
 ]
 HOLDER_REVIEW = [
-    'BJP-PRES-01', 'BJP-PRES-02', 'BJP-PRES-03', 'BJP-PRES-04', 'BJP-PRES-04', 'BJP-PRES-05', 'BJP-PRES-05',
-    'BJP-PRES-06', 'BJP-PRES-06', 'BJP-PRES-07', 'BJP-PRES-07', 'BJP-PRES-07', 'BJP-PRES-08', 'BJP-PRES-08',
-    'BJP-PRES-08', 'BJP-PRES-09', 'BJP-PRES-09', 'BJP-PRES-09', 'BJP-PRES-10', 'BJP-PRES-10'
+    'BJP-PRES-01', 'BJP-PRES-02', 'BJP-PRES-03', 'BJP-PRES-04', 'BJP-PRES-04', 'BJP-PRES-05', 'BJP-PRES-06',
+    'BJP-PRES-06', 'BJP-PRES-07', 'BJP-PRES-07', 'BJP-PRES-07', 'BJP-PRES-08', 'BJP-PRES-08', 'BJP-PRES-08',
+    'BJP-PRES-09', 'BJP-PRES-09', 'BJP-PRES-09', 'BJP-PRES-10', 'BJP-PRES-10'
 ]
 NEVER_HOLDER = ELECTIONS + ENDINGS + INTERIM + CONTINUATION + RETROSPECTIVE + UNNAMED + CONTEXT
 HOLDER_OBSERVATIONS = tuple(cid for cid, e in EVENTS.items()
@@ -870,16 +869,17 @@ GROUPS = ((ELECTIONS, ELECTIONS_KINDS), (ENDINGS, ENDINGS_KINDS), (INTERIM, INTE
 # 'with immediate effect' for Laxman.
 STARTS = [(VN, '2002-07-01'), (JPN, '2020-01-20'), (NN, '2026-01-20')]
 ENDS = [(BL, '2001-03-14')]
-# Working presidencies and the acting presidency are claims only: no holder of these names is dated inside them.
+# Working presidencies and the acting presidency are claims only: no holder of these names is dated inside them. The
+# acting service from 14 March 2001 has no stated end, so its window runs until Naidu's stated start of 1 July 2002.
 WORKING = {JPN: ('2019-06-17', '2020-01-19'), NN: ('2025-12-14', '2026-01-19')}
-ACTING = (JK, '2001-03-14', '2001-03-23')
+ACTING = (JK, '2001-03-14', '2002-06-30')
 HOLDER_DATES = {d for h in HOLDERS for d in h[1:] if d}
 # Dates that are never any holder's attested_on, start or end: elections, nominations, declarations, endorsements,
 # President-elect stylings, prospective announcements and undated assumptions; farewells, handovers, predecessor
 # references, resignations and their consideration, acceptance without effect or rejection; acting and working service,
 # extensions and continuations; recollections and retrospective statements; and the rejected candidate days (the
 # bio-data's start, the announced handover of 3 May 1998, the Silver Jubilee convention's last day, the Gadkari profile
-# page's date and the post-cutoff meeting of 1 September 2026).
+# page's date and the meeting of 1 September 2026, known only from a rendering modified after the cutoff).
 NEVER_HOLDER_DATE = sorted(({e[0] for cid, e in EVENTS.items() if cid in NEVER_HOLDER and e[0]} - HOLDER_DATES)
                            | {'1986-05-09', '1998-05-03', '2005-12-30', '2009-12-18', '2026-09-01'})
 # Claims printed without a structured date: multi-day meetings, spans, year- or month-only statements, undated lists and
@@ -1125,7 +1125,7 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
         self.assertFalse(set(holder_claims) & set(NEVER_HOLDER))
         self.assertEqual(set(holder_claims) | set(NEVER_HOLDER), set(self.new_claims))
         self.assertEqual(sorted(holder_claims), sorted(HOLDER_OBSERVATIONS))
-        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(HOLDERS)), (22, 145, 20))
+        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(HOLDERS)), (21, 146, 19))
         self.assertEqual(list(EVENTS), self.new_claims)
         for group, kinds in GROUPS:
             self.assertEqual({EVENTS[cid][1] for cid in group}, kinds)
@@ -1254,7 +1254,7 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
             self.assertEqual(rows[cid]['event_kind'], 'assumption_recalled_retrospective', cid)
             self.assertIn('CLAUDE-C01-15 check C1', claims[cid]['uncertainty'], cid)
         self.assertNotIn('immediate effect', claims['in_bjp_naidu_resignation_accepted_20041018']['text'])
-        self.assertIn("'Ist July 2002 onwards President'", self.role['holder_claims'][6]['note'])
+        self.assertIn("'Ist July 2002 onwards President'", self.role['holder_claims'][5]['note'])
         scope = self.role['scope_note']
         for phrase in ('no in_prime_minister or in_presidency claim or source feeds this role',
                        'none of its claims feeds either institution', 'in_inc_president is untouched',
@@ -1472,13 +1472,13 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
             (lambda p: source(p, 'in_kamal_sandesh_vol21_no02_20260116')['snapshot'].update(bytes=1), 'checksum mismatch'),
             (lambda p: source(p, 'in_bjp_site_returning_officer_statement_20260119')['snapshot'].update(
                 path=REPORT.as_posix()), 'escapes'),
-            (lambda p: holder(p, 19).update(attested_on='2026-09-08'), 'exceeds cutoff'),
-            (lambda p: holder(p, 19).update(until='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 18).update(attested_on='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 18).update(until='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'in_ks_nabin_appoints_national_office_bearers_20260817').update(attested_on='2026-09-08'),
              'exceeds cutoff'),
             (lambda p: claim(p, 'in_bjp_presidents_list_nadda_2020_present').update(
                 period={'from': '2020-01-20', 'through': '2026-09-30'}), 'exceeds cutoff'),
-            (lambda p: holder(p, 6).update(until='2002-01-01'), 'Reversed historical interval'),
+            (lambda p: holder(p, 5).update(until='2002-01-01'), 'Reversed historical interval'),
             (lambda p: holder(p, 3)['claim_ids'].append('in_bjp_laxman_styled_president_maiden_press_conference_20000831'),
              'cited source'),
             (lambda p: role(p)['claim_ids'].append('in_does_not_exist'), 'Unknown'),
@@ -1491,55 +1491,58 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
         rule_cases = [
             # A successor's observation or start used as an end.
             ('successor observation used as an end (Advani 1991)', lambda p: holder(p, 0).update(until='1991-12-10')),
-            ('successor start used as an end (Jana Krishnamurthi)', lambda p: holder(p, 5).update(until='2002-07-01')),
+            ('successor start used as the end of the acting service (Jana Krishnamurthi)',
+             lambda p: role(p)['holder_claims'].insert(5, extra_holder(
+                 JK, '2001-03-24', 'in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324',
+                 until='2002-07-01'))),
             ('successor start cited as an end (Amit Shah)',
-             cite(14, 'in_ks_nadda_took_charge_20200120', until='2020-01-20')),
-            ('successor start used as an end (Nadda)', lambda p: holder(p, 17).update(until='2026-01-20')),
-            ('an end invented at the cutoff (Nabin)', lambda p: holder(p, 19).update(until='2026-09-07')),
+             cite(13, 'in_ks_nadda_took_charge_20200120', until='2020-01-20')),
+            ('successor start used as an end (Nadda)', lambda p: holder(p, 16).update(until='2026-01-20')),
+            ('an end invented at the cutoff (Nabin)', lambda p: holder(p, 18).update(until='2026-09-07')),
             # A handover, farewell, 'outgoing' or 'former' styling, resignation or decision used as an end.
             ('handover cited as an end (Amit Shah)',
-             cite(14, 'in_ks_amit_shah_hands_over_charge_20200120', until='2020-01-20')),
-            ('handover cited as an end (Nadda)', cite(17, 'in_ks_nadda_hands_over_charge_20260120', until='2026-01-20')),
+             cite(13, 'in_ks_amit_shah_hands_over_charge_20200120', until='2020-01-20')),
+            ('handover cited as an end (Nadda)', cite(16, 'in_ks_nadda_hands_over_charge_20260120', until='2026-01-20')),
             ('ex-President styling cited as an end (Nadda)',
-             cite(17, 'in_bjp_nadda_styled_ex_national_president_20260120', until='2026-01-20')),
+             cite(16, 'in_bjp_nadda_styled_ex_national_president_20260120', until='2026-01-20')),
             ('farewell day used as an end (Advani 1998)', lambda p: holder(p, 2).update(until='1998-05-02')),
             ('announced handover day used as an end (Advani 1998)', lambda p: holder(p, 2).update(until='1998-05-03')),
             ('resignation accepted without effect cited as an end (Naidu)',
-             cite(6, 'in_bjp_naidu_resignation_accepted_20041018', until='2004-10-18')),
-            ('rejected resignation used as an end (Advani 2005)', lambda p: holder(p, 7).update(until='2005-06-08')),
+             cite(5, 'in_bjp_naidu_resignation_accepted_20041018', until='2004-10-18')),
+            ('rejected resignation used as an end (Advani 2005)', lambda p: holder(p, 6).update(until='2005-06-08')),
             ('decision not to seek a second term cited as an end (Gadkari)',
-             cite(10, 'in_bjp_gadkari_decides_not_to_seek_second_term_20130122', until='2013-01-22')),
-            ('former styling used as an end (Gadkari)', lambda p: holder(p, 10).update(until='2013-01-27')),
-            ('outgoing styling used as an end (Rajnath Singh 2014)', lambda p: holder(p, 11).update(until='2014-07-09')),
+             cite(9, 'in_bjp_gadkari_decides_not_to_seek_second_term_20130122', until='2013-01-22')),
+            ('former styling used as an end (Gadkari)', lambda p: holder(p, 9).update(until='2013-01-27')),
+            ('outgoing styling used as an end (Rajnath Singh 2014)', lambda p: holder(p, 10).update(until='2014-07-09')),
             ('tender of resignation used as the end (Laxman)', lambda p: holder(p, 4).update(until='2001-03-13')),
             ('stated end removed but until kept (Laxman)', lambda p: holder(p, 4)['claim_ids'].pop()),
             ('until dropped while its claim is cited (Laxman)', lambda p: holder(p, 4).update(until=None)),
             # An election, nomination, declaration, appointment, recollection or undated assumption used as a start.
             ('declaration used as a start (Rajnath Singh 2013)',
-             lambda p: holder(p, 11).update({'attested_on': None, 'from': '2013-01-23'})),
-            ('declaration cited by a start (Nabin)', cite(18, 'in_ks_laxman_declares_nabin_elected_20260120')),
+             lambda p: holder(p, 10).update({'attested_on': None, 'from': '2013-01-23'})),
+            ('declaration cited by a start (Nabin)', cite(17, 'in_ks_laxman_declares_nabin_elected_20260120')),
             ('recollection used as a start (Advani 2004)',
-             lambda p: holder(p, 7).update({'attested_on': None, 'from': '2004-10-18'})),
+             lambda p: holder(p, 6).update({'attested_on': None, 'from': '2004-10-18'})),
             ('appointment cited as a start (Advani 2004)',
-             cite(7, 'in_bjp_advani_appointed_president_ratification_pending_20041018',
+             cite(6, 'in_bjp_advani_appointed_president_ratification_pending_20041018',
                   **{'attested_on': None, 'from': '2004-10-18'})),
             ('recollection cited by a start (Nadda 2023 recollection)',
-             cite(15, 'in_ks_nadda_took_charge_20200120_recalled')),
-            ('profile span cited by a start (Naidu)', cite(6, 'in_bjp_naidu_profile_span_ist_july_2002_onwards')),
+             cite(14, 'in_ks_nadda_took_charge_20200120_recalled')),
+            ('profile span cited by a start (Naidu)', cite(5, 'in_bjp_naidu_profile_span_ist_july_2002_onwards')),
             ('undated assumption used as a start (Thakre)',
              lambda p: holder(p, 3).update({'attested_on': None, 'from': '1998-05-03'})),
             ('retrospective list used as a start (Gadkari)',
-             lambda p: holder(p, 9).update({'attested_on': None, 'from': '2010-01-01'})),
-            ('stated start replaced by a continuation (Naidu)', lambda p: holder(p, 6).update(
+             lambda p: holder(p, 8).update({'attested_on': None, 'from': '2010-01-01'})),
+            ('stated start replaced by a continuation (Naidu)', lambda p: holder(p, 5).update(
                 claim_ids=['in_bjp_naidu_president_first_press_conference_20020711'],
                 sources=['in_bjp_site_naidu_first_press_conference_20020711'])),
             ('President-elect styling used as an observation (Thakre)', lambda p: holder(p, 3).update(attested_on='1998-05-02')),
             ('newly elected styling used as an observation (Rajnath Singh 2013)',
-             lambda p: holder(p, 11).update(attested_on='2013-01-23')),
-            ('election result cited by a holder (Amit Shah 2016)', cite(13, 'in_bjp_amit_shah_re_elected_heading_20160124')),
+             lambda p: holder(p, 10).update(attested_on='2013-01-23')),
+            ('election result cited by a holder (Amit Shah 2016)', cite(12, 'in_bjp_amit_shah_re_elected_heading_20160124')),
             ('continuation claim cited by a holder (Joshi)', cite(1, 'in_bjp_ne_resolution_assault_bjp_president_joshi_19930227')),
             ('extension cited by a holder (Nadda 2023)',
-             cite(16, 'in_ks_national_executive_extends_nadda_tenure_to_june_2024_20230117')),
+             cite(15, 'in_ks_national_executive_extends_nadda_tenure_to_june_2024_20230117')),
             ('multi-day meeting added as a holder (Advani 1990)', lambda p: role(p)['holder_claims'].insert(
                 0, extra_holder(A, '1990-07-21', 'in_bjp_ne_resolution_authorises_party_president_advani_199007'))),
             ('unnamed address added as a holder (1993)', lambda p: role(p)['holder_claims'].insert(
@@ -1547,13 +1550,17 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
             # Acting or working service added as a holder.
             ('acting service added as a holder (Jana Krishnamurthi)', lambda p: role(p)['holder_claims'].insert(
                 5, extra_holder(JK, '2001-03-18', 'in_bjp_jana_krishnamurthy_styled_president_20010318'))),
+            ('acting service observed on 24 March 2001 added as a holder (Jana Krishnamurthi)',
+             lambda p: role(p)['holder_claims'].insert(5, extra_holder(
+                 JK, '2001-03-24', 'in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324'))),
             ('acting designation day used as an observation (Jana Krishnamurthi)',
-             lambda p: holder(p, 5).update(attested_on='2001-03-14')),
+             lambda p: role(p)['holder_claims'].insert(5, extra_holder(
+                 JK, '2001-03-14', 'in_bjp_jana_krishnamurthi_designated_acting_president_20010314'))),
             ('working presidency added as a holder (Nadda 2019)', lambda p: role(p)['holder_claims'].insert(
-                15, extra_holder(JPN, '2019-06-17', 'in_ks_parliamentary_board_appoints_nadda_working_president_20190617'))),
+                14, extra_holder(JPN, '2019-06-17', 'in_ks_parliamentary_board_appoints_nadda_working_president_20190617'))),
             ('working presidency added as a holder (Nabin 2025)', lambda p: role(p)['holder_claims'].insert(
-                18, extra_holder(NN, '2025-12-15', 'in_ks_nabin_assumes_working_presidency_20251215'))),
-            ('working presidency used as a start (Nadda)', lambda p: holder(p, 15).update({'from': '2019-06-17'})),
+                17, extra_holder(NN, '2025-12-15', 'in_ks_nabin_assumes_working_presidency_20251215'))),
+            ('working presidency used as a start (Nadda)', lambda p: holder(p, 14).update({'from': '2019-06-17'})),
             # Cross-role, cross-party and cross-institution holders and claims.
             ('prime minister added as a party President', lambda p: role(p)['holder_claims'].append(
                 extra_holder('Narendra Modi', '2024-06-09', 'in_modi_appointed_pm_communique_20240609'))),
@@ -1564,10 +1571,10 @@ class IndiaBjpPresidentsTests(unittest.TestCase):
             ('party President moved into the prime-ministership',
              lambda p: pm_role(p)['holder_claims'].append(role(p)['holder_claims'].pop(5))),
             ('party President added to the presidency',
-             lambda p: president_role(p)['holder_claims'].append(copy.deepcopy(holder(p, 19)))),
+             lambda p: president_role(p)['holder_claims'].append(copy.deepcopy(holder(p, 18)))),
             ('party President added to the Congress role',
-             lambda p: inc_role(p)['holder_claims'].append(copy.deepcopy(holder(p, 9)))),
-            ('prime-ministership claim cited by a party President', cite(8, 'in_rao_appointed_pm_wef_19910621')),
+             lambda p: inc_role(p)['holder_claims'].append(copy.deepcopy(holder(p, 8)))),
+            ('prime-ministership claim cited by a party President', cite(7, 'in_rao_appointed_pm_wef_19910621')),
             ('party claim moved onto the prime-ministership', lambda p: (
                 pm_role(p)['claim_ids'].append('in_bjp_press_release_president_advani_19970716'),
                 pm_role(p)['sources'].append('in_bjp_org_swarna_jayanti_press_release_19970716'))),
