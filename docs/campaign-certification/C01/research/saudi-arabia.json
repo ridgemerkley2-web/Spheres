@@ -260,10 +260,41 @@
         }
       ],
       "scope_note": "Used only as the 1990 opening-window observation of King Fahd (SA-EXEC-01). No Saudi record from 1990 was retrieved.",
+      "source_review": {
+        "review": "CLAUDE-C01-SOURCE-06",
+        "reviewed_on": "2026-09-27",
+        "method": "Re-hashed the retained 21 September response; downloaded the url three times on 27 September 2026 (Pacific time; one with a cache-busting query, the last more than 30 minutes after the first); diffed the bodies line by line; compared the title, heading and article bytes; searched the Internet Archive.",
+        "originally_recorded_response": {
+          "accessed_date": "2026-09-21",
+          "bytes": 31889,
+          "sha256": "539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3"
+        },
+        "live_response": {
+          "retrieved_on": "2026-09-27",
+          "bytes": 32782,
+          "sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c",
+          "identical_downloads": 3
+        },
+        "content_comparison": "Six changed hunks (+893 bytes), all dynamic page furniture from a site update: a Drupal 10 to 11 generator tag, renamed asset aggregates, moved and added script tags, and site-search attributes; no token or timestamp. The title, page-title heading and article element (9,701 bytes, SHA-256 a24fc94cc2331063a6f76b46553227a6e3351a71e7b899301464ab332e283bbf) are byte-identical, including the consultation paragraph and the editorial Note naming King Fahd bin `Abd al-`Aziz Al Sa`ud of Saudi Arabia. No factual content changed.",
+        "reproducible_identity": {
+          "kind": "address_span",
+          "bytes": 8979,
+          "sha256": "4bf739376d87f635a7687bf06f792ee84d504b921c9db9b82c85ffa7b055a4bf",
+          "rule": "Raw-body bytes from '<p>In the life of a nation' through the '</p>' closing the '<p>Note: ' paragraph."
+        },
+        "archive_capture_of_url": null,
+        "corroborating_archive_capture": {
+          "url": "https://web.archive.org/web/20211205194503id_/https://bush41library.tamu.edu/archives/public-papers/2147",
+          "bytes": 16655,
+          "sha256": "247a050e3c68b78a72c1ee68590d9526683508cee8b65bd2ca92cd6636caa325",
+          "note": "Raw pre-cutoff capture of the Library's former page for the same item (2147), fetched with Accept-Encoding: identity; its address span is byte-identical. A different URL, so it corroborates rather than replaces the originally recorded response."
+        },
+        "result": "The claim, its date and its holder are unchanged. The observation stays title-only and does not establish Fahd's accession or uninterrupted tenure."
+      },
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
-        "bytes": 2245,
-        "sha256": "9d823e0b3e46c4dcec758c9493e83411e4db508cf97a9c216f2b208074c8d483",
+        "bytes": 13185,
+        "sha256": "1b27b30a8837d78b2a6400a021c123e4699ed3467895a275330639fd198c6b1c",
         "kind": "derived_factual_extract"
       }
     },
