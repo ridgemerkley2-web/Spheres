@@ -32,3 +32,32 @@ test('first-draw observer ignores zero-count calls and records actual GL complet
   assert.equal(probe.contexts[0].first_draw.completed_ms,4);probe.setPhase('campaign-save-load');gl.drawArrays(4,0,6);
   assert.equal(finishes,2);assert.equal(probe.contexts[0].first_draw_by_phase.length,2);assert.equal(draws,4);
 });
+test('inspection first draw belongs to the nested GL canvas and mounted specification, not the selected draft or thumbnail',()=>{
+  let time=0,finishes=0;
+  const slot={},canvas={id:'',isConnected:true,width:640,height:480,
+    matches:selector=>selector==='canvas[data-equipment-focus="model-canvas"]',
+    closest:selector=>selector==='[data-model-canvas]'?slot:null};
+  const thumbnail={id:'',isConnected:false,width:256,height:256,matches:()=>false};
+  const makeGl=canvas=>({canvas,isContextLost:()=>false,finish(){finishes++;time+=2;},drawArrays(){time++;}});
+  const viewerGl=makeGl(canvas),thumbnailGl=makeGl(thumbnail);
+  function Canvas(gl){this.gl=gl;}Canvas.prototype.getContext=function(){return this.gl;};
+  const viewer={host:{contains:node=>node===canvas},key:JSON.stringify({platform:'mbt',components:{}})};
+  const context=vm.createContext({window:{},HTMLCanvasElement:Canvas,performance:{timeOrigin:1000,now:()=>time},
+    EQUIPMENT_VIEWER:viewer,EQUIP:{draft:{platform:'air_fighter'}}});
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'s22-browser-observation.js'),'utf8'),context);
+  new Canvas(viewerGl).getContext('webgl');new Canvas(thumbnailGl).getContext('webgl2');
+  const probe=context.window.__s22PageObservation;probe.setPhase('inspection-first-fighter');
+  thumbnailGl.drawArrays(4,0,300);viewerGl.drawArrays(4,0,300);
+  assert.equal(probe.contexts[1].first_draw.inspection_canvas,false,'offscreen thumbnail is excluded');
+  let events=probe.contexts[0].first_draw_by_phase;
+  assert.equal(events[0].inspection_canvas,true,'physical child canvas is recognized despite not matching the slot attribute');
+  assert.equal(events[0].rendered_platform,'mbt');assert.equal(events[0].design_platform,'air_fighter');
+  assert(!events.some(draw=>draw.rendered_platform==='air_fighter'),'changing only the draft is not a fighter draw');
+  viewer.key=JSON.stringify({platform:'air_fighter',components:{air_engine:'engine'}});
+  viewerGl.drawArrays(4,0,0);assert.equal(events.length,1,'zero geometry cannot certify a new model');
+  viewerGl.drawArrays(4,0,300003);viewerGl.drawArrays(4,0,300003);
+  assert.equal(events.length,2,'same context records the first real fighter draw in the same phase');
+  assert.equal(events[1].rendered_platform,'air_fighter');assert.equal(events[1].count,300003);
+  assert.equal(events[1].model_key,viewer.key);assert(events[1].completed_ms>events[1].started_ms);
+  assert.equal(finishes,3,'each model/context phase completes the actual submitted draw only once');
+});

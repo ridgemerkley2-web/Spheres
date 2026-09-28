@@ -243,9 +243,10 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       assert(current[0].metrics.draw_calls>0,'Ready inspection must have submitted actual geometry');
       proof.inspection_loads??=[];proof.inspection_loads.push({visit,elapsed_ms:performance.now()-visitStarted,kind:visit===0?'first native inspection visit':'repeat visit',method:'Visible room and family navigation to ready released fighter with actual GPU draw submissions; includes Playwright interaction/observation overhead, not compositor presentation time.'});
       if(visit===0){
-        const observed=await page.evaluate(()=>JSON.parse(JSON.stringify(__s22PageObservation)));
+        const observed=record('s22-first-inspection-draws',await page.evaluate(()=>JSON.parse(JSON.stringify(__s22PageObservation))));
         const fighter=observed.contexts.flatMap(context=>context.first_draw_by_phase.map(draw=>({context_id:context.id,...draw})))
-          .find(draw=>draw.phase==='inspection-first-fighter'&&draw.inspection_canvas&&draw.design_platform==='air_fighter');
+          .find(draw=>draw.phase==='inspection-first-fighter'&&draw.inspection_canvas&&draw.connected&&draw.width>0&&draw.height>0&&
+            draw.rendered_platform==='air_fighter'&&draw.design_platform==='air_fighter');
         assert(fighter,'First released fighter entry must submit actual GL geometry');
         proof.cold_inspection={first_entry:true,before_city_lifecycle_work:true,first_fighter_draw:fighter,
           entry_phase:observed.phases.find(p=>p.name==='inspection-first-entry'),fighter_phase:observed.phases.find(p=>p.name==='inspection-first-fighter'),
