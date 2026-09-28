@@ -14,9 +14,9 @@ use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
-use spheres_sim::{apply_command, load, save, tick_month, Command};
+use spheres_sim::{apply_command, save, tick_month, Command};
 #[cfg(test)]
-use spheres_sim::tick_day;
+use spheres_sim::{load, tick_day};
 use std::collections::BTreeMap;
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
