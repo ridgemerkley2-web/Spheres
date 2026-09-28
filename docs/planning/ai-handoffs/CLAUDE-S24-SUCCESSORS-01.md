@@ -1,7 +1,8 @@
 # CLAUDE-S24-SUCCESSORS-01 — successor-country fixture harness
 
-Owner: Claude. State: **queued**. Parent: S24, **preparation only**; Codex owns S24 closure.
-Suggested branch: `claude/s24-successors-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: S24, **preparation only**; Codex owns S24 closure.
+Branch: `claude/s24-successors-01`. Base: `e41aa18d` (current `codex/campaign-certification`). Claim commit: this record's first commit on
+the branch. Touched paths: only the owned paths below. Next checkpoint: the 23-row inventory, the isolated harness with tests, and raw results for at least three executed cases, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
