@@ -1,0 +1,1229 @@
+{
+  "format": "spheres-c04-proposal-sources/v1",
+  "task": "CLAUDE-C04-PREP-01",
+  "accessed_note": "All requests were made on 27 September 2026 local time (UTC timestamps in fetch_log fall on 28 September). Each downloaded record carries the bytes and SHA-256 of the exact response read; hashes of dynamic pages are marked hash_reproducible false or null. Downloads were deleted after reading; no copy is committed.",
+  "method": "curl with a normal desktop browser User-Agent, following redirects; no login, registration, cookie acceptance, CAPTCHA or bot-challenge bypass. Blocked pages were recorded, not worked around. PDF text was read with pdftotext/pypdf; locators give PDF page numbers.",
+  "research_cutoff": "2026-09-07",
+  "sources": [
+    {
+      "id": "src_to_constitution_2020",
+      "title": "Constitution of Tonga, CAP. 1.01, 2020 Revised Edition",
+      "publisher": "Attorney General's Office, Tonga",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "kind": "primary_institutional",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 789048,
+      "sha256": "197f1dcaf64c3267e589354aafdc2783dae7fac9f4d3b296808d21d45f7004de",
+      "fetched_utc": "2026-09-28T03:56:48Z",
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "hash_reproducible": true,
+      "edition": "2020 Revised Edition",
+      "c01_source_id": "to_constitution_2020",
+      "notes": "Byte-identical to the copy recorded in the C01 Tonga packet (789,048 bytes, same SHA-256). A consolidated edition: later amendments were not checked and nothing is backdated.",
+      "claims": [
+        {
+          "id": "to_c23_convict_disability",
+          "text": "A person convicted and sentenced to more than two years' imprisonment may not hold any office under the Government, vote for or be elected a representative unless pardoned by the King with a declaration freeing them from the disability; the disability is suspended during the 42-day appeal period and any appeal.",
+          "locator": "Clause 23, PDF p. 12"
+        },
+        {
+          "id": "to_c27_age_of_maturity",
+          "text": "No person may succeed to any tofi'a or title before age 21, save members of the Royal Family, who are deemed of age at 18.",
+          "locator": "Clause 27, PDF p. 12"
+        },
+        {
+          "id": "to_c32_throne_succession",
+          "text": "Succession to the Crown and Throne is hereditary: only those born in marriage may succeed, the eldest male child and the heirs of his body first, then the female line; fallback choices are made by the King with the consent of the nobles or by the nobles of the Assembly, the representatives of the people having no voice.",
+          "locator": "Clause 32, PDF pp. 14-15"
+        },
+        {
+          "id": "to_c42_43_regent",
+          "text": "The King may appoint a Prince Regent during absence abroad; absent a declared wish, a regent for a minor heir is chosen by ballot of the Legislative Assembly in which the representatives of the people have no voice.",
+          "locator": "Clauses 42-43, PDF p. 17"
+        },
+        {
+          "id": "to_c44_titles",
+          "text": "Giving titles of honour is the King's prerogative; hereditary titles held by chiefs of hereditary lands and by nobles of the Assembly cannot be taken away except for treason, in which case the King appoints a member of that family to succeed.",
+          "locator": "Clause 44, PDF p. 17"
+        },
+        {
+          "id": "to_c50_privy_council",
+          "text": "The King appoints a Privy Council composed of such people as he sees fit to call; the King in Privy Council finally determines appeals on hereditary estates and titles.",
+          "locator": "Clause 50(1)-(2), PDF p. 18"
+        },
+        {
+          "id": "to_c50a_prime_minister",
+          "text": "The King appoints as Prime Minister, from amongst the elected representatives, the person recommended by the Legislative Assembly under the Schedule or clause 50B; the Prime Minister holds office until another is appointed, the appointment is revoked under clause 50B, death, resignation or ceasing to be an elected representative other than by dissolution, or ineligibility.",
+          "locator": "Clause 50A(1)-(2), PDF pp. 18-19"
+        },
+        {
+          "id": "to_c50b_no_confidence",
+          "text": "A vote of no confidence deems the Prime Minister and all Ministers resigned. It needs five working days' notice and has no effect within 18 months after a general election, within six months before the four-year election deadline, or within 12 months of the last such motion. A replacement recommendation within 48 hours leads to appointment; otherwise the King dissolves the Assembly, an election follows within 90 days and an interim Prime Minister is appointed.",
+          "locator": "Clause 50B(1)-(4), PDF pp. 19-20"
+        },
+        {
+          "id": "to_c51_cabinet",
+          "text": "Executive authority vests in the Cabinet, collectively responsible to the Legislative Assembly. The Cabinet is the Prime Minister and Ministers nominated by the Prime Minister and appointed by the King; the Prime Minister may nominate no more than four Ministers who are not elected representatives, and the Prime Minister and Cabinet must be fewer than half of the elected members excluding the Speaker.",
+          "locator": "Clause 51(1)-(2), PDF p. 20"
+        },
+        {
+          "id": "to_c51_tenure_nonelected",
+          "text": "Ministers remain until revocation on the Prime Minister's recommendation or under clause 50B, death, resignation, dismissal after impeachment or ineligibility, with a caretaker proviso after elections. A Minister who is not an elected representative sits and votes in the Assembly with a representative's rights except in a no-confidence vote. Executive authority excludes powers vested in the King or King in Council and royal prerogatives.",
+          "locator": "Clause 51(3), (6), (7), PDF pp. 20-21"
+        },
+        {
+          "id": "to_c59_60_composition",
+          "text": "The Legislative Assembly comprises the representatives of the nobles, the representatives of the people and all Cabinet members. Nine nobles are elected by the nobles from their number and seventeen representatives of the people by qualified electors.",
+          "locator": "Clauses 59-60, PDF p. 22"
+        },
+        {
+          "id": "to_c61_speaker",
+          "text": "The Speaker is one of the elected representatives of the nobles, appointed by the King on the Assembly's recommendation after a Prime Minister is appointed.",
+          "locator": "Clause 61(1), PDF p. 22"
+        },
+        {
+          "id": "to_c63_nobles",
+          "text": "No person disabled by insanity or by clause 23 may succeed to the position of a noble; every noble may vote in the nobles' election and sit if chosen.",
+          "locator": "Clause 63, PDF p. 23"
+        },
+        {
+          "id": "to_c64_electors",
+          "text": "Every Tongan subject aged 21 or more who is not a noble, not insane or imbecile and not disabled by clause 23 may, if registered, vote for the representatives of the people; a resident abroad votes only if registered and present in Tonga.",
+          "locator": "Clause 64, PDF p. 23"
+        },
+        {
+          "id": "to_c65_representatives",
+          "text": "Representatives of the people are chosen by ballot; any qualified elector may nominate as a candidate in the constituency where registered, unless an outstanding court order for a specific sum remains unpaid on nomination day; an overseas resident qualifies only after three months' presence in Tonga within the six months before the election.",
+          "locator": "Clause 65, PDF p. 24"
+        },
+        {
+          "id": "to_c76_77_elections",
+          "text": "A by-election follows the death or resignation of a representative or deprivation after impeachment. General elections are ordinarily held every four years, the Assembly otherwise standing dissolved four years after the last general election; the King may dissolve it at pleasure and fixes the election date after consulting the Speaker.",
+          "locator": "Clauses 76-77, PDF p. 27"
+        },
+        {
+          "id": "to_c79_entrenchment",
+          "text": "Amendments may not affect the law of liberty, the succession to the Throne or the titles and hereditary estates of the nobles.",
+          "locator": "Clause 79, PDF p. 27"
+        },
+        {
+          "id": "to_c111_titles_succession",
+          "text": "Hereditary estates and titles descend under a fixed law of succession to children born in wedlock, male line first, then brothers and sisters, reverting to the Crown when no lawful heir exists.",
+          "locator": "Clause 111, PDF pp. 36-37"
+        },
+        {
+          "id": "to_schedule_pm_procedure",
+          "text": "After a general election the Interim Speaker invites nominations for Prime Minister Designate, each seconded by two other elected representatives; all elected representatives of the people and of the nobles vote by secret ballot, eliminating the lowest until one candidate has more than half; the Lord Chamberlain then summons the designate for appointment. For other vacancies, except after no confidence, the Speaker follows the same procedure.",
+          "locator": "Schedule paras (1), (3), (6), PDF pp. 38-39"
+        }
+      ]
+    },
+    {
+      "id": "src_to_electoral_act_2016",
+      "title": "Electoral Act, CAP. 04.08, 2016 Revised Edition",
+      "publisher": "Attorney General's Office, Tonga",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1989/1989-0022/ElectoralAct_2.pdf",
+      "kind": "primary_institutional",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 692300,
+      "sha256": "5e94696c7db874ab6ceb9ca0015d466cd4fb1d6d94f1db39af3541cf87fe12e9",
+      "fetched_utc": "2026-09-28T03:57:42Z",
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1989/1989-0022/ElectoralAct_2.pdf",
+      "hash_reproducible": true,
+      "edition": "2016 Revised Edition",
+      "notes": "Consolidated edition; amendments after 2016 were not verified.",
+      "claims": [
+        {
+          "id": "to_ea_s8_nominations",
+          "text": "After writs issue, the Supervisor publishes the nomination day or days, 21 to 28 days after the writ and at most two consecutive days; nominations are received at the Electoral Commission Office for Tongatapu and at the Governor's or Government Representative's office elsewhere.",
+          "locator": "s. 8(1)-(2), PDF p. 12"
+        },
+        {
+          "id": "to_ea_s9_candidates",
+          "text": "A candidate for the people's seats is nominated on Form 4 signed by 50 qualified electors of the constituency, assents and declares in writing, may stand only where registered, deposits $400 that is never refunded, and delivers Supreme Court and Magistrate's Court clearances of outstanding orders under clause 65. The section does not apply to elections of representatives of the nobles.",
+          "locator": "s. 9(2)-(4), (6), PDF p. 12"
+        }
+      ]
+    },
+    {
+      "id": "src_to_parliament_how_it_works",
+      "title": "How Parliament works?",
+      "publisher": "Legislative Assembly of Tonga",
+      "url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "kind": "official_explanatory",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 62362,
+      "sha256": "988d459a2de6776a5a4ae079344cf081634a2b97baec0fd76acd6fbccff3d14f",
+      "fetched_utc": "2026-09-28T03:58:07Z",
+      "final_url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "hash_reproducible": false,
+      "edition": "Page states Last Updated: 15 January 2025",
+      "c01_source_id": "to_parliament_work_2025",
+      "notes": "Dynamic page: it carries a hit counter, so the response hash is of the copy read and is not expected to reproduce. The Constitution governs where the page simplifies.",
+      "claims": [
+        {
+          "id": "to_parl_composition_pm",
+          "text": "The Assembly comprises 17 people's representatives elected by the people and 9 nobles' representatives elected by the nobles, and after a general election nominates the Prime Minister from among its members.",
+          "locator": "Sections Relationship between Parliament and Executive; PM and the Cabinet"
+        },
+        {
+          "id": "to_parl_no_party_system",
+          "text": "Members not appointed Ministers in practice form an informal opposition; the page states that Tonga does not have a political party system.",
+          "locator": "Section Role of a Member",
+          "uncertainty": "A description of parliamentary arrangements, not a register; C01 separately records party observations (to_parliament_party_warning)."
+        },
+        {
+          "id": "to_parl_nonelected_ministers",
+          "text": "Up to four non-elected Ministers appointed on the Prime Minister's nomination represent no constituency but become members and are accountable to the Assembly like elected members. The same page says the Prime Minister may appoint up to 12 Ministers, a simplification of clause 51(2)(b).",
+          "locator": "Sections Role of a Member; Relationship between Parliament and Executive"
+        }
+      ]
+    },
+    {
+      "id": "src_to_parliament_pm_procedure_2010",
+      "title": "Interim Speaker clarifies procedure for nomination and appointment of the Prime Minister",
+      "publisher": "Legislative Assembly of Tonga",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "kind": "official_explanatory",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 59448,
+      "sha256": "0120eb4a1da5a56451e5f9117248ff661c0a9dd29c141e6f42b65e513452a0ae",
+      "fetched_utc": "2026-09-28T03:58:08Z",
+      "final_url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "hash_reproducible": false,
+      "edition": "Created 06 December 2010; last updated 27 January 2025",
+      "c01_source_id": "to_reform_procedure_2010",
+      "notes": "Dynamic page with a hit counter; hash of the copy read only.",
+      "claims": [
+        {
+          "id": "to_parl_pm_procedure_note",
+          "text": "The Assembly's explanatory note for the first application of the Schedule describes nominations for Prime Minister Designate seconded by two elected representatives, a secret ballot of the elected representatives of the people and of the nobles, elimination rounds until one candidate has more than half of the votes, and appointment of the designate by the King.",
+          "locator": "Explanatory note, numbered steps",
+          "uncertainty": "Describes the first application of the procedure; the Constitution and its Schedule govern."
+        }
+      ]
+    },
+    {
+      "id": "src_to_mcctil_incsoc_memo_2026",
+      "title": "Consultation Memorandum: Seeking Stakeholder Input on a Proposed New Incorporated Societies Act (21 July 2026)",
+      "publisher": "Ministry of Commerce, Consumer, Trade, Innovation and Labour (MCCTIL), Tonga",
+      "url": "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf",
+      "kind": "primary_institutional",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 985683,
+      "sha256": "d70f817469fcbfa77e721ae5d4fe270638d7c8d645be1db93277b6f13efcb757",
+      "fetched_utc": "2026-09-28T03:58:10Z",
+      "final_url": "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf",
+      "hash_reproducible": true,
+      "edition": "Dated 21 July 2026",
+      "c01_source_id": "to_mcctil_incsoc_consultation_20260721",
+      "notes": "Registry-practice evidence dated before the cutoff; it names no political party.",
+      "claims": [
+        {
+          "id": "to_mcctil_society_formation",
+          "text": "Under the current Incorporated Societies Act, incorporation requires a paper application signed by five members of the proposed society with two copies of its rules and photo identification of the signatories; on incorporation the society becomes a separate legal entity with perpetual succession.",
+          "locator": "Sections 1.0 and 2.2, PDF pp. 1 and 3"
+        },
+        {
+          "id": "to_mcctil_rules_officers",
+          "text": "A society's rules must address the matters in section 5 of the Act, including the appointment of officers of the society and the mode of summoning and holding general meetings and voting.",
+          "locator": "Section 2.4, PDF p. 6",
+          "uncertainty": "Whether any Tongan political organization is incorporated, and under what rules, is not shown; C01 records one trial testimony for the People's Party only."
+        }
+      ]
+    },
+    {
+      "id": "src_to_pmo_pm_appointment_20251218",
+      "title": "Lord Fakafanua appointed as the 20th Prime Minister of Tonga (media release, 18 December 2025)",
+      "publisher": "Prime Minister's Office, Tonga",
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "kind": "primary_institutional",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 539369,
+      "sha256": "d3459e32943d0afb46c6d6924df60a225241b729c320a7d2a0f3aeec3c59066e",
+      "fetched_utc": "2026-09-28T03:58:12Z",
+      "final_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "hash_reproducible": true,
+      "edition": "Dated 18 December 2025",
+      "c01_source_id": "to_pm_appointment_2025",
+      "notes": "Used only for procedure and the hereditary-route pattern; the appointee is a real person and appears in no proposal.",
+      "claims": [
+        {
+          "id": "to_pmo_2025_nobles_route",
+          "text": "The release reports an appointment under clause 50A(1) following the Assembly's Prime Minister Designate election three days earlier, and describes the appointee as a nobles' representative for Ha'apai: the premiership can be reached through a hereditary nobles' seat, a route no fictional draft may use.",
+          "locator": "PDF p. 1, first and second paragraphs"
+        },
+        {
+          "id": "to_pmo_2025_caption_styles",
+          "text": "The release's photograph caption styles its subjects Lord, Lady, HRH Princess, HSH Prince and HRH Crown Princess, including the titles Ma'afu, Fakafanua and Fotofili and the names Kalaniuvalu and Tuku'aho.",
+          "locator": "PDF p. 2, photograph caption",
+          "uncertainty": "Used only to guard invented names against noble and royal names."
+        }
+      ]
+    },
+    {
+      "id": "src_fr_an_compilation_2025",
+      "title": "Règlement de l'Assemblée nationale; Instruction générale du Bureau; ordonnance 58-1100; lois organiques; Constitution (compilation, juillet 2025)",
+      "publisher": "Assemblée nationale",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "kind": "primary_institutional",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 2043148,
+      "sha256": "aef831f1a450ac06371f7b298d2284e34bcd8cb8699e2c065041ef305ff39465",
+      "fetched_utc": "2026-09-28T03:59:46Z",
+      "final_url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "hash_reproducible": true,
+      "edition": "Cover: JUILLET 2025",
+      "notes": "Official Assemblée compilation reproducing its rules and the Constitution with amendment notes. The Légifrance consolidation and the Conseil constitutionnel text were blocked, so this is the constitutional text read. Changes after July 2025 were not checked.",
+      "claims": [
+        {
+          "id": "fr_const_art3",
+          "text": "Article 3: national sovereignty belongs to the people; electors are all adult French nationals of both sexes enjoying civil and political rights, under conditions set by law.",
+          "locator": "Constitution art. 3, compilation PDF p. 262"
+        },
+        {
+          "id": "fr_const_art4",
+          "text": "Article 4: political parties and groupings contribute to the exercise of suffrage and form and act freely.",
+          "locator": "Constitution art. 4, compilation PDF p. 262"
+        },
+        {
+          "id": "fr_const_art6",
+          "text": "Article 6: the President of the Republic is elected for five years by direct universal suffrage; no one may exercise more than two consecutive terms; an organic law sets the details.",
+          "locator": "Constitution art. 6, compilation PDF p. 263"
+        },
+        {
+          "id": "fr_const_art7",
+          "text": "Article 7: election by absolute majority with a second round fourteen days later between the two leading candidates; in a vacancy or definitive incapacity the President of the Senate provisionally exercises the functions and the new election is held 20 to 35 days later.",
+          "locator": "Constitution art. 7, compilation PDF pp. 263-264"
+        },
+        {
+          "id": "fr_const_art8",
+          "text": "Article 8: the President of the Republic appoints the Prime Minister and, on the Prime Minister's proposal, the other members of the Government.",
+          "locator": "Constitution art. 8, compilation PDF p. 264"
+        },
+        {
+          "id": "fr_const_art12",
+          "text": "Article 12: after a dissolution, general elections are held 20 to 40 days later, and no new dissolution may take place in the year following those elections.",
+          "locator": "Constitution art. 12, compilation PDF p. 265"
+        },
+        {
+          "id": "fr_const_art20_23",
+          "text": "Articles 20 and 23: the Government determines and conducts national policy and is responsible to Parliament; membership of the Government is incompatible with any parliamentary mandate.",
+          "locator": "Constitution arts. 20 and 23, compilation PDF p. 268"
+        },
+        {
+          "id": "fr_const_art24_25",
+          "text": "Articles 24-25: Parliament comprises the National Assembly, whose deputies (at most 577) are elected by direct suffrage, and the Senate; an organic law fixes term, membership, eligibility, ineligibilities and incompatibilities.",
+          "locator": "Constitution arts. 24-25, compilation PDF p. 269"
+        },
+        {
+          "id": "fr_const_art89",
+          "text": "Article 89, last paragraph: the republican form of government cannot be the subject of a revision.",
+          "locator": "Constitution art. 89, compilation PDF p. 296"
+        },
+        {
+          "id": "fr_an_reg_art19",
+          "text": "Règlement article 19: deputies may form groups by political affinity; no group may have fewer than fifteen members, not counting affiliated deputies; a group is constituted by a political declaration signed by its members with the member list and the group president's name, published in the Journal officiel.",
+          "locator": "Règlement art. 19, al. 1-2, compilation PDF p. 24"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_an_fiche3_2023",
+      "title": "Fiche de synthèse n° 3 : L'élection des députés",
+      "publisher": "Assemblée nationale",
+      "url": "https://questions.assemblee-nationale.fr/contenu/telechargement/625543/file/Fiche%203%20-%20Election%20des%20d%C3%A9put%C3%A9s.pdf",
+      "kind": "official_explanatory",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 246107,
+      "sha256": "9e70a73826518c8c7c2d81cf42f3b8c1e0039db3e3d3d400ffb1418e203df9b8",
+      "fetched_utc": "2026-09-28T04:01:20Z",
+      "final_url": "https://questions.assemblee-nationale.fr/contenu/telechargement/625543/file/Fiche%203%20-%20Election%20des%20d%C3%A9put%C3%A9s.pdf",
+      "hash_reproducible": true,
+      "edition": "Septembre 2023",
+      "notes": null,
+      "claims": [
+        {
+          "id": "fr_fiche3_eligibility",
+          "text": "Any French person of either sex aged at least eighteen, enjoying civic rights and not within a personal or professional ineligibility may stand; a candidate must meet the conditions for being an elector on the first-round date.",
+          "locator": "Points-clés, PDF p. 1; section II, PDF p. 4"
+        },
+        {
+          "id": "fr_fiche3_term",
+          "text": "The 577 deputies are elected for five years by direct universal suffrage.",
+          "locator": "Points-clés, PDF p. 1"
+        },
+        {
+          "id": "fr_fiche3_noncumul",
+          "text": "Since organic law no. 2014-125 of 14 February 2014, applied from the June 2017 legislative elections, local executive functions may not be combined with a deputy's mandate.",
+          "locator": "Section I, replacement of deputies, PDF p. 3"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_memento_leg_2024",
+      "title": "Élections législatives de 2024 : mémento à l'usage des candidats (version du 11/06/2024)",
+      "publisher": "Ministère de l'Intérieur et des Outre-mer (copy hosted by the Île-de-France prefecture)",
+      "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/117474/875542/file/Memento%20candidat-Elections-legislatives-2024.pdf",
+      "kind": "official_explanatory",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 3470262,
+      "sha256": "f0769e32820bb55a597b6c5d5eee74285c42c59d39eb2059bb4ad6d954915c5b",
+      "fetched_utc": "2026-09-28T03:59:42Z",
+      "final_url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/117474/875542/file/Memento%20candidat-Elections-legislatives-2024.pdf",
+      "hash_reproducible": true,
+      "edition": "Version du 11/06/2024",
+      "notes": "The ministry's own page was blocked by a bot challenge; this is the prefecture-hosted copy. The PDF text layer omits parts of some lines (fonts without a text mapping); only legible items are used.",
+      "claims": [
+        {
+          "id": "fr_mleg_age",
+          "text": "Eligibility is assessed on the first-round date and includes being 18 years old; the memento cites articles L. 2 and L.O. 127 for these cumulative conditions.",
+          "locator": "Section 2.1, PDF p. 7",
+          "uncertainty": "Two other bullet items in this list are partly missing from the text layer and are not relied on."
+        },
+        {
+          "id": "fr_mleg_one_constituency",
+          "text": "A candidate may not stand in more than one constituency (art. L. 156) or be the substitute of another candidate (art. L. 155).",
+          "locator": "Section 2.2, PDF p. 7"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_memento_pres_2022",
+      "title": "Élection du Président de la République 2022 : mémento à l'usage des candidats (v. 27/01/2022)",
+      "publisher": "Ministère de l'Intérieur and Ministère de l'Europe et des Affaires étrangères (copy hosted by the Île-de-France prefecture)",
+      "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/91689/587275/file/Memento-presidentielle-2022.pdf",
+      "kind": "official_explanatory",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 514632,
+      "sha256": "cb15790330b0787c3ca1c304c1060e846f0bb4a0bb909f1700f31d3941fbdf54",
+      "fetched_utc": "2026-09-28T04:02:30Z",
+      "final_url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/91689/587275/file/Memento-presidentielle-2022.pdf",
+      "hash_reproducible": true,
+      "edition": "v. 27/01/2022; states it was submitted to the Conseil constitutionnel for opinion",
+      "notes": "Used for the organic-law conditions because Légifrance and the Conseil constitutionnel were blocked. Amendments between 2022 and the cutoff were not verified.",
+      "claims": [
+        {
+          "id": "fr_mpres_eligibility",
+          "text": "To be eligible for President a person must be French and aged 18 (art. L. 2), have elector status (art. L.O. 127), not be deprived of eligibility by a court (arts. L. 6 and L. 199), not be under guardianship or curatorship (art. L.O. 129) and have met national-service obligations (art. L. 45); the Conseil constitutionnel checks eligibility (Constitution art. 58).",
+          "locator": "Section 2.1, PDF pp. 8-9"
+        },
+        {
+          "id": "fr_mpres_500",
+          "text": "Under article 3 of Law 62-1292 of 6 November 1962 each candidate must be presented by at least 500 citizens holding listed elected offices, including members of Parliament, regional and departmental councillors and mayors.",
+          "locator": "Section 2.2.1, PDF p. 9"
+        },
+        {
+          "id": "fr_mpres_spread",
+          "text": "Presenters must include elected officials of at least 30 departments or overseas collectivities, with no more than one tenth from any single one.",
+          "locator": "Section 2.2.1, PDF p. 9"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_senat_ppl_2022",
+      "title": "Proposition de loi organique n° 563 (2021-2022), exposé des motifs : qualification préalable des candidats à l'élection présidentielle",
+      "publisher": "Sénat",
+      "url": "https://www.senat.fr/leg/exposes-des-motifs/ppl21-563-expose.html",
+      "kind": "official_legislative_document",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 116686,
+      "sha256": "557379ef64c4146199ff923fbad00cb58fe9e1c59e2b27d62b5023bc327cc3fb",
+      "fetched_utc": "2026-09-28T04:01:37Z",
+      "final_url": "https://www.senat.fr/leg/exposes-des-motifs/ppl21-563-expose.html",
+      "hash_reproducible": true,
+      "edition": null,
+      "notes": "A bill's explanatory statement, used only to corroborate the sponsorship rule it describes as current law.",
+      "claims": [
+        {
+          "id": "fr_senat_500_history",
+          "text": "The statement records that the 1962 law sets the conditions for presidential candidacy and that the sponsorship requirement rose from 100 elected officials in the first three direct elections to 500 in a 1976 reform.",
+          "locator": "Exposé des motifs, opening paragraphs"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_elysee_constitution_en",
+      "title": "Constitution of 4 October 1958 (English translation)",
+      "publisher": "Présidence de la République (Élysée)",
+      "url": "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958",
+      "kind": "institutional_corroboration",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 328953,
+      "sha256": "fde30f3dae7a9b4d7e2618065dafe087dd6534f593f73d296dfa597bb62e0324",
+      "fetched_utc": "2026-09-28T03:58:40Z",
+      "final_url": "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958",
+      "hash_reproducible": null,
+      "edition": null,
+      "notes": "The existing France record in spheres-sim/data/party_executive_eligibility.json cites this page.",
+      "claims": [
+        {
+          "id": "fr_elysee_en_art6_7",
+          "text": "The English text of articles 6 and 7 matches the French text read in the Assemblée compilation: a five-year term by direct universal suffrage, at most two consecutive terms, and a two-round absolute-majority election.",
+          "locator": "Articles 6-7"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_ps_statuts_2021",
+      "title": "Statuts du Parti socialiste (septembre 2021, congrès de Villeurbanne)",
+      "publisher": "Parti socialiste",
+      "url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/REFORME_Statuts_V9.pdf",
+      "kind": "party_statute",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 1258707,
+      "sha256": "8a5806444949203de5416c04fbded8560f82b414c40467de4dd1f4a43cac2621",
+      "fetched_utc": "2026-09-28T04:03:17Z",
+      "final_url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/REFORME_Statuts_V9.pdf",
+      "hash_reproducible": true,
+      "edition": "Cover: Septembre 2021, Congrès de Villeurbanne; file REFORME_Statuts_V9.pdf uploaded June 2026",
+      "notes": "Linked as the party's statutes from its reference-texts page. Amendments by later congresses were not verified.",
+      "claims": [
+        {
+          "id": "fr_ps_membership_age",
+          "text": "Membership is individual and free; the minimum age for membership is 15.",
+          "locator": "Art. 2.1.1.1.1, PDF p. 8"
+        },
+        {
+          "id": "fr_ps_first_secretary_role",
+          "text": "The First Secretary is the party's legal representative and presides over the National Secretariat and the Bureau national.",
+          "locator": "Art. 2.6.4, PDF p. 12"
+        },
+        {
+          "id": "fr_ps_seniority",
+          "text": "Save exceptions decided by the congress, no one may sit on the National Council, the Bureau national or the national conflict, financial-control or membership bodies without at least three consecutive years of membership.",
+          "locator": "Art. 2.6.5, PDF p. 12"
+        },
+        {
+          "id": "fr_ps_congress_timing",
+          "text": "The national congress meets within six months after presidential and legislative elections and also at mid-term.",
+          "locator": "Art. 3.2.1, PDF p. 13"
+        },
+        {
+          "id": "fr_ps_first_secretary_election",
+          "text": "Members vote on national orientation motions; a week later all members elect the First Secretary by secret ballot, the candidates being the first signatories of the two leading motions who wish to stand. After a prolonged vacancy the National Council elects a First Secretary until the next congress.",
+          "locator": "Art. 3.2.7, PDF p. 14"
+        },
+        {
+          "id": "fr_ps_national_candidacy_seniority",
+          "text": "Candidates for public elective office must be paid-up members, meet electoral-code eligibility and, for national elections, the conditions of article 2.6.5; save exceptions decided by the National Council, three consecutive years of membership are required to stand in legislative, senatorial and European elections.",
+          "locator": "Art. 5.1.5, PDF p. 19"
+        },
+        {
+          "id": "fr_ps_presidential_designation",
+          "text": "The party's candidate for President of the Republic is designated by a vote of members; the congress or National Council fixes the candidacy and voting arrangements.",
+          "locator": "Art. 5.3.1, PDF p. 20"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_ps_reglement_2022",
+      "title": "Règlement intérieur du Parti socialiste (4 octobre 2022)",
+      "publisher": "Parti socialiste",
+      "url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/PS_Reglement_Interieur_VDec22.pdf",
+      "kind": "party_statute",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 871539,
+      "sha256": "3ca838017544dfd85ec700f9a2541c2ea0651718d328f5e848c09ce4e00cac9d",
+      "fetched_utc": "2026-09-28T04:03:19Z",
+      "final_url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/PS_Reglement_Interieur_VDec22.pdf",
+      "hash_reproducible": true,
+      "edition": "4 octobre 2022",
+      "notes": null,
+      "claims": [
+        {
+          "id": "fr_ps_ri_no_extra_condition",
+          "text": "The internal rules implement article 3.2.7 through voter-list procedures and add no further candidacy condition for First Secretary.",
+          "locator": "Règlement intérieur art. 3.2.7, PDF p. 13",
+          "uncertainty": "Negative finding from reading the article and searching the text."
+        }
+      ]
+    },
+    {
+      "id": "src_fr_ps_textes_reference",
+      "title": "Les textes de référence",
+      "publisher": "Parti socialiste",
+      "url": "https://www.parti-socialiste.fr/textes_de_r_f_rences",
+      "kind": "institutional_corroboration",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 726278,
+      "sha256": "8d72fc9fbc75c4da6a11717875e298e07bf14e2a09090a24f8554cadaebc7ec4",
+      "fetched_utc": "2026-09-28T04:03:08Z",
+      "final_url": "https://parti-socialiste.fr/les-textes-de-reference/",
+      "hash_reproducible": null,
+      "edition": null,
+      "notes": "Live WordPress page; the requested URL redirected to parti-socialiste.fr/les-textes-de-reference/.",
+      "claims": [
+        {
+          "id": "fr_ps_reference_page",
+          "text": "The party's reference-texts page offers the statutes (REFORME_Statuts_V9.pdf) and the December 2022 internal rules for download.",
+          "locator": "Download links under Les statuts and Le règlement intérieur"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_pcf_statuts_39",
+      "title": "Statuts du Parti communiste français adoptés au 39e Congrès",
+      "publisher": "Parti communiste français",
+      "url": "https://assets.nationbuilder.com/pcf/pages/15897/attachments/original/1684999315/document_-_Statuts_39e_Congr%C3%A8s.pdf?1684999315",
+      "kind": "party_statute",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "bytes": 408628,
+      "sha256": "3d7abdc6118d6d2134e395c0d1427322e97589abda35586a066f3247fc3ad702",
+      "fetched_utc": "2026-09-28T04:04:09Z",
+      "final_url": "https://assets.nationbuilder.com/pcf/pages/15897/attachments/original/1684999315/document_-_Statuts_39e_Congr%C3%A8s.pdf?1684999315",
+      "hash_reproducible": true,
+      "edition": "39th Congress text (asset uploaded May 2023)",
+      "notes": "Hosted on the party's asset server and linked from pcf.fr. A later congress may have amended the statutes before the cutoff; that was not verified.",
+      "claims": [
+        {
+          "id": "fr_pcf_congress",
+          "text": "The congress meets at least every three years and whenever the National Council decides.",
+          "locator": "Art. 8, PDF p. 14"
+        },
+        {
+          "id": "fr_pcf_list_secretary",
+          "text": "Governing bodies are elected by secret ballot on lists; alternative lists need 10% of congress members from at least a quarter of departments and each includes a proposed secretary; the secretary is the person whose list obtains the most votes.",
+          "locator": "Art. 12.4, PDF p. 16"
+        },
+        {
+          "id": "fr_pcf_rotation",
+          "text": "All elected bodies are gender-balanced and, as a general rule, holding the same executive function is limited to nine years.",
+          "locator": "Art. 13, PDF p. 16"
+        },
+        {
+          "id": "fr_pcf_candidates_exclusion",
+          "text": "Members decide candidacies; persons convicted of attacks on human dignity, racial hatred or sexist and sexual violence may not be party candidates.",
+          "locator": "Art. 20, PDF p. 21"
+        },
+        {
+          "id": "fr_pcf_presidential",
+          "text": "For the presidential election the national conference drafts the candidacy proposal, which is submitted to a vote of all members.",
+          "locator": "Art. 20.2, PDF p. 21"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_pcf_statuts_page",
+      "title": "Statuts du PCF adoptés au 39e Congrès (page)",
+      "publisher": "Parti communiste français",
+      "url": "https://www.pcf.fr/statuts_du_pcf_adopt_s_au_39e_congr_s",
+      "kind": "institutional_corroboration",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 46805,
+      "sha256": "3f721076332eb839af22612401241f7dc860f654cc5029390805fa172801d9aa",
+      "fetched_utc": "2026-09-28T04:03:10Z",
+      "final_url": "https://www.pcf.fr/statuts_du_pcf_adopt_s_au_39e_congr_s",
+      "hash_reproducible": null,
+      "edition": null,
+      "notes": null,
+      "claims": [
+        {
+          "id": "fr_pcf_page_link",
+          "text": "The pcf.fr page presents the statutes adopted at the 39th Congress and links the PDF read for this packet.",
+          "locator": "Page body, link text en cliquant sur ce lien"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_rn_statuts_2022",
+      "title": "Statuts du Rassemblement National",
+      "publisher": "Rassemblement National",
+      "url": "https://rassemblementnational.fr/statuts-du-rassemblement-national",
+      "kind": "party_statute",
+      "access_status": "downloaded",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 136116,
+      "sha256": "25b1c1e70f18f12912332c33f9c4517541513f24c657292702b01b0a0c9f25d6",
+      "fetched_utc": "2026-09-28T04:04:58Z",
+      "final_url": "https://rassemblementnational.fr/statuts-du-rassemblement-national",
+      "hash_reproducible": null,
+      "edition": "Page states the statutes were modified by the extraordinary general assembly of 5 November 2022",
+      "notes": "Live page read after the cutoff; only the 2022 statute text is used.",
+      "claims": [
+        {
+          "id": "fr_rn_president",
+          "text": "Candidacies for the party presidency require nomination by at least 20% of the enlarged National Council; the President is elected by the ordinary General Assembly by a majority of votes cast, and the mandate ends at the next Congress.",
+          "locator": "Art. 10(1)-(2)"
+        },
+        {
+          "id": "fr_rn_membership_loss",
+          "text": "Membership is lost by a competing candidacy, or support for one, against a candidacy presented or supported by the association.",
+          "locator": "Art. 8(6)"
+        },
+        {
+          "id": "fr_rn_presidential_leave",
+          "text": "The President may take up to twelve months' leave in the event of a presidential candidacy, the vacancy rules then applying.",
+          "locator": "Art. 10"
+        }
+      ]
+    },
+    {
+      "id": "src_fr_legifrance_lo127",
+      "title": "Code électoral, article LO127",
+      "publisher": "Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023882645",
+      "kind": "primary_institutional",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5843,
+      "sha256": "da23aa5e536679a92a43045dd45d9a6abf3c8a801a95daf724cebe573b4a28f3",
+      "fetched_utc": "2026-09-28T03:58:41Z",
+      "final_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023882645",
+      "block_note": "Bot challenge: Cloudflare \"Just a moment... Enable JavaScript and cookies to continue\" page. Not bypassed; no content read.",
+      "intended_use": "Deputy and presidential eligibility (read instead through the ministry mementos and the Assemblée summary).",
+      "claims": []
+    },
+    {
+      "id": "src_fr_cc_constitution",
+      "title": "Texte intégral de la Constitution du 4 octobre 1958 en vigueur",
+      "publisher": "Conseil constitutionnel",
+      "url": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur",
+      "kind": "primary_institutional",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html",
+      "bytes": 94,
+      "sha256": "9221cfedfc5e03790f46c7890bca21fcc47c5788d89dab0aa0799c492b6ae78a",
+      "fetched_utc": "2026-09-28T03:58:39Z",
+      "final_url": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur",
+      "block_note": "HTTP 403 \"Request forbidden by administrative rules\" (web application firewall). Not bypassed.",
+      "intended_use": "Constitution text (read instead in the Assemblée compilation).",
+      "claims": []
+    },
+    {
+      "id": "src_fr_cc_loi_62_1292",
+      "title": "Loi n° 62-1292 du 6 novembre 1962 (fondements textuels)",
+      "publisher": "Conseil constitutionnel",
+      "url": "https://www.conseil-constitutionnel.fr/fondements-textuels/loi-n-62-1292-du-6-novembre-1962-relative-a-l-election-du-president-de-la-republique-au-suffrage",
+      "kind": "primary_institutional",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html",
+      "bytes": 94,
+      "sha256": "9221cfedfc5e03790f46c7890bca21fcc47c5788d89dab0aa0799c492b6ae78a",
+      "fetched_utc": "2026-09-28T04:01:35Z",
+      "final_url": "https://www.conseil-constitutionnel.fr/fondements-textuels/loi-n-62-1292-du-6-novembre-1962-relative-a-l-election-du-president-de-la-republique-au-suffrage",
+      "block_note": "HTTP 403 \"Request forbidden by administrative rules\" (web application firewall). Not bypassed.",
+      "intended_use": "Presidential election law (read instead through the 2022 presidential memento).",
+      "claims": []
+    },
+    {
+      "id": "src_fr_interieur_candidat",
+      "title": "Élections législatives : je suis candidat",
+      "publisher": "Ministère de l'Intérieur",
+      "url": "https://www.elections.interieur.gouv.fr/scrutins/elections-legislatives/elections-legislatives-je-suis-candidat",
+      "kind": "official_explanatory",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5976,
+      "sha256": "02e3bbfcc27a9768778309bd676bd1e05d416335c37ffdfb96810aa15c494c45",
+      "fetched_utc": "2026-09-28T03:59:27Z",
+      "final_url": "https://www.elections.interieur.gouv.fr/scrutins/elections-legislatives/elections-legislatives-je-suis-candidat",
+      "block_note": "Bot challenge: Cloudflare \"Just a moment... Enable JavaScript and cookies to continue\" page. Not bypassed; no content read.",
+      "intended_use": null,
+      "claims": []
+    },
+    {
+      "id": "src_fr_interieur_memento_page",
+      "title": "Élections législatives 2024 - Memento du candidat",
+      "publisher": "Ministère de l'Intérieur",
+      "url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/elections-legislatives-2024-memento-du-candidat",
+      "kind": "official_explanatory",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5977,
+      "sha256": "a8289a29bb2d4a142d3ce9295c88c12908a10f54bac2bb2638a5a93d2c7829e4",
+      "fetched_utc": "2026-09-28T03:59:28Z",
+      "final_url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/elections-legislatives-2024-memento-du-candidat",
+      "block_note": "Bot challenge: Cloudflare \"Just a moment... Enable JavaScript and cookies to continue\" page. Not bypassed; no content read.",
+      "intended_use": "Ministry page for the memento (a prefecture copy was read instead).",
+      "claims": []
+    },
+    {
+      "id": "src_fr_infogouv_presidentielle",
+      "title": "Quelles sont les conditions pour être candidat à l'élection présidentielle ?",
+      "publisher": "info.gouv.fr (Service d'information du Gouvernement)",
+      "url": "https://www.info.gouv.fr/actualite/quelles-sont-les-conditions-pour-etre-candidat-a-l-election-presidentielle",
+      "kind": "official_explanatory",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5978,
+      "sha256": "cd05bab3844743e739632d452f70d3023ea9ff15a688cd0cee2504d18a3a8020",
+      "fetched_utc": "2026-09-28T04:02:01Z",
+      "final_url": "https://www.info.gouv.fr/actualite/quelles-sont-les-conditions-pour-etre-candidat-a-l-election-presidentielle",
+      "block_note": "Bot challenge: Cloudflare \"Just a moment... Enable JavaScript and cookies to continue\" page. Not bypassed; no content read.",
+      "intended_use": null,
+      "claims": []
+    },
+    {
+      "id": "src_fr_viepublique_500",
+      "title": "Parrainage des candidats à la présidentielle, les 500 signatures",
+      "publisher": "vie-publique.fr (DILA)",
+      "url": "https://www.vie-publique.fr/eclairage/23872-parrainage-des-candidats-la-presidentielle-les-500-signatures",
+      "kind": "official_explanatory",
+      "access_status": "blocked",
+      "accessed_date": "2026-09-27",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 299,
+      "sha256": "6625f13fec98f565b6797828d397d6c7b93451afb551d3fba9554bd4df44898c",
+      "fetched_utc": "2026-09-28T04:02:02Z",
+      "final_url": "https://www.vie-publique.fr/eclairage/23872-parrainage-des-candidats-la-presidentielle-les-500-signatures",
+      "block_note": "HTTP 200 with a 299-byte JavaScript redirect stating \"This website requires JS enabled and cookies\". Not bypassed; no content read.",
+      "intended_use": null,
+      "claims": []
+    },
+    {
+      "id": "src_fr_haute_loire_presentation",
+      "title": "Présentation règlementaire des candidats",
+      "publisher": "Préfecture de la Haute-Loire",
+      "url": "http://www.haute-loire.gouv.fr/presentation-reglementaire-des-candidats-a1953.html",
+      "kind": "official_explanatory",
+      "access_status": "unreachable",
+      "accessed_date": "2026-09-27",
+      "http_status": null,
+      "content_type": null,
+      "bytes": 0,
+      "sha256": null,
+      "fetched_utc": "2026-09-28T04:01:37Z",
+      "final_url": "http://www.haute-loire.gouv.fr/presentation-reglementaire-des-candidats-a1953.html",
+      "block_note": "curl error 52: empty reply from server over plain HTTP. Not retried by other means.",
+      "intended_use": null,
+      "claims": []
+    },
+    {
+      "id": "src_fr_an_reglement_page",
+      "title": "Règlement de l'Assemblée nationale (guessed page path)",
+      "publisher": "Assemblée nationale",
+      "url": "https://www.assemblee-nationale.fr/dyn/connaissance/reglement-de-l-assemblee-nationale",
+      "kind": "primary_institutional",
+      "access_status": "not_found",
+      "accessed_date": "2026-09-27",
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 64577,
+      "sha256": "f114d332095e411b834eea9691a897c60b63f63b3b8e105d35a11e31550858c2",
+      "fetched_utc": "2026-09-28T03:59:29Z",
+      "final_url": "https://www.assemblee-nationale.fr/dyn/connaissance/reglement-de-l-assemblee-nationale",
+      "block_note": "HTTP 404 for a guessed path; the PDF compilation was used instead.",
+      "intended_use": null,
+      "claims": []
+    },
+    {
+      "id": "src_fr_elysee_constitution_fr",
+      "title": "La Constitution du 4 octobre 1958 (guessed French page path)",
+      "publisher": "Présidence de la République (Élysée)",
+      "url": "https://www.elysee.fr/la-presidence/la-constitution-du-4-octobre-1958",
+      "kind": "institutional_corroboration",
+      "access_status": "not_found",
+      "accessed_date": "2026-09-27",
+      "http_status": 404,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 92276,
+      "sha256": "36d46a5e20a4a3d1f5a17857da34730d3eb2f3f7a8711523c7afb5c22146d6ac",
+      "fetched_utc": "2026-09-28T03:59:30Z",
+      "final_url": "https://www.elysee.fr/la-presidence/la-constitution-du-4-octobre-1958",
+      "block_note": "HTTP 404 for a guessed path; the English page and the Assemblée compilation were used.",
+      "intended_use": null,
+      "claims": []
+    }
+  ],
+  "fetch_log": [
+    {
+      "file": "to-constitution-2020.pdf",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 789048,
+      "sha256": "197f1dcaf64c3267e589354aafdc2783dae7fac9f4d3b296808d21d45f7004de",
+      "fetched_utc": "2026-09-28T03:56:48Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "to-electoral-act-2016.pdf",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1989/1989-0022/ElectoralAct_2.pdf",
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1989/1989-0022/ElectoralAct_2.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 692300,
+      "sha256": "5e94696c7db874ab6ceb9ca0015d466cd4fb1d6d94f1db39af3541cf87fe12e9",
+      "fetched_utc": "2026-09-28T03:57:42Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "to-parliament-how-it-works.html",
+      "url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "final_url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "http_status": "200",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 62362,
+      "sha256": "988d459a2de6776a5a4ae079344cf081634a2b97baec0fd76acd6fbccff3d14f",
+      "fetched_utc": "2026-09-28T03:58:07Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "to-parliament-pm-procedure.html",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "final_url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "http_status": "200",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 59448,
+      "sha256": "0120eb4a1da5a56451e5f9117248ff661c0a9dd29c141e6f42b65e513452a0ae",
+      "fetched_utc": "2026-09-28T03:58:08Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "to-mcctil-incsoc-memo-2026.pdf",
+      "url": "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf",
+      "final_url": "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 985683,
+      "sha256": "d70f817469fcbfa77e721ae5d4fe270638d7c8d645be1db93277b6f13efcb757",
+      "fetched_utc": "2026-09-28T03:58:10Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "to-pmo-pm-appointment-20251218.pdf",
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "final_url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 539369,
+      "sha256": "d3459e32943d0afb46c6d6924df60a225241b729c320a7d2a0f3aeec3c59066e",
+      "fetched_utc": "2026-09-28T03:58:12Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-constitution-cc.html",
+      "url": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur",
+      "final_url": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur",
+      "http_status": "403",
+      "content_type": "text/html",
+      "bytes": 94,
+      "sha256": "9221cfedfc5e03790f46c7890bca21fcc47c5788d89dab0aa0799c492b6ae78a",
+      "fetched_utc": "2026-09-28T03:58:39Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-constitution-elysee-en.html",
+      "url": "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958",
+      "final_url": "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958",
+      "http_status": "200",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 328953,
+      "sha256": "fde30f3dae7a9b4d7e2618065dafe087dd6534f593f73d296dfa597bb62e0324",
+      "fetched_utc": "2026-09-28T03:58:40Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-legifrance-lo127.html",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023882645",
+      "final_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023882645",
+      "http_status": "403",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5843,
+      "sha256": "da23aa5e536679a92a43045dd45d9a6abf3c8a801a95daf724cebe573b4a28f3",
+      "fetched_utc": "2026-09-28T03:58:41Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-interieur-leg-candidat.html",
+      "url": "https://www.elections.interieur.gouv.fr/scrutins/elections-legislatives/elections-legislatives-je-suis-candidat",
+      "final_url": "https://www.elections.interieur.gouv.fr/scrutins/elections-legislatives/elections-legislatives-je-suis-candidat",
+      "http_status": "403",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5976,
+      "sha256": "02e3bbfcc27a9768778309bd676bd1e05d416335c37ffdfb96810aa15c494c45",
+      "fetched_utc": "2026-09-28T03:59:27Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-interieur-memento-2024.html",
+      "url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/elections-legislatives-2024-memento-du-candidat",
+      "final_url": "https://www.interieur.gouv.fr/actualites/actualites-du-ministere/elections-legislatives-2024-memento-du-candidat",
+      "http_status": "403",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5977,
+      "sha256": "a8289a29bb2d4a142d3ce9295c88c12908a10f54bac2bb2638a5a93d2c7829e4",
+      "fetched_utc": "2026-09-28T03:59:28Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-an-reglement.html",
+      "url": "https://www.assemblee-nationale.fr/dyn/connaissance/reglement-de-l-assemblee-nationale",
+      "final_url": "https://www.assemblee-nationale.fr/dyn/connaissance/reglement-de-l-assemblee-nationale",
+      "http_status": "404",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 64577,
+      "sha256": "f114d332095e411b834eea9691a897c60b63f63b3b8e105d35a11e31550858c2",
+      "fetched_utc": "2026-09-28T03:59:29Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-elysee-constitution-fr.html",
+      "url": "https://www.elysee.fr/la-presidence/la-constitution-du-4-octobre-1958",
+      "final_url": "https://www.elysee.fr/la-presidence/la-constitution-du-4-octobre-1958",
+      "http_status": "404",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 92276,
+      "sha256": "36d46a5e20a4a3d1f5a17857da34730d3eb2f3f7a8711523c7afb5c22146d6ac",
+      "fetched_utc": "2026-09-28T03:59:30Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-memento-leg-2024-idf.pdf",
+      "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/117474/875542/file/Memento%20candidat-Elections-legislatives-2024.pdf",
+      "final_url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/117474/875542/file/Memento%20candidat-Elections-legislatives-2024.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 3470262,
+      "sha256": "f0769e32820bb55a597b6c5d5eee74285c42c59d39eb2059bb4ad6d954915c5b",
+      "fetched_utc": "2026-09-28T03:59:42Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-an-reglement-17.pdf",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "final_url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 2043148,
+      "sha256": "aef831f1a450ac06371f7b298d2284e34bcd8cb8699e2c065041ef305ff39465",
+      "fetched_utc": "2026-09-28T03:59:46Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-an-reglement-15.pdf",
+      "url": "https://www.assemblee-nationale.fr/dyn/15/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "final_url": "https://www.assemblee-nationale.fr/dyn/15/divers/texte_reference/02_reglement_assemblee_nationale.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 2041000,
+      "sha256": "ff3b97190f90085d721ff335da70e4c3f5ad357673c0b2147e9d2b12695a0a35",
+      "fetched_utc": "2026-09-28T03:59:48Z",
+      "curl_exit": 0,
+      "note": "Superseded 15th-legislature edition of the same compilation; not used."
+    },
+    {
+      "file": "fr-an-fiche3-election-deputes.pdf",
+      "url": "https://questions.assemblee-nationale.fr/contenu/telechargement/625543/file/Fiche%203%20-%20Election%20des%20d%C3%A9put%C3%A9s.pdf",
+      "final_url": "https://questions.assemblee-nationale.fr/contenu/telechargement/625543/file/Fiche%203%20-%20Election%20des%20d%C3%A9put%C3%A9s.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 246107,
+      "sha256": "9e70a73826518c8c7c2d81cf42f3b8c1e0039db3e3d3d400ffb1418e203df9b8",
+      "fetched_utc": "2026-09-28T04:01:20Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-cc-loi-62-1292.html",
+      "url": "https://www.conseil-constitutionnel.fr/fondements-textuels/loi-n-62-1292-du-6-novembre-1962-relative-a-l-election-du-president-de-la-republique-au-suffrage",
+      "final_url": "https://www.conseil-constitutionnel.fr/fondements-textuels/loi-n-62-1292-du-6-novembre-1962-relative-a-l-election-du-president-de-la-republique-au-suffrage",
+      "http_status": "403",
+      "content_type": "text/html",
+      "bytes": 94,
+      "sha256": "9221cfedfc5e03790f46c7890bca21fcc47c5788d89dab0aa0799c492b6ae78a",
+      "fetched_utc": "2026-09-28T04:01:35Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-senat-ppl21-563.html",
+      "url": "https://www.senat.fr/leg/exposes-des-motifs/ppl21-563-expose.html",
+      "final_url": "https://www.senat.fr/leg/exposes-des-motifs/ppl21-563-expose.html",
+      "http_status": "200",
+      "content_type": "text/html",
+      "bytes": 116686,
+      "sha256": "557379ef64c4146199ff923fbad00cb58fe9e1c59e2b27d62b5023bc327cc3fb",
+      "fetched_utc": "2026-09-28T04:01:37Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-hauteloire-presentation.html",
+      "url": "http://www.haute-loire.gouv.fr/presentation-reglementaire-des-candidats-a1953.html",
+      "final_url": "http://www.haute-loire.gouv.fr/presentation-reglementaire-des-candidats-a1953.html",
+      "http_status": "000",
+      "content_type": null,
+      "bytes": 0,
+      "sha256": null,
+      "fetched_utc": "2026-09-28T04:01:37Z",
+      "curl_exit": 52
+    },
+    {
+      "file": "fr-infogouv-presidentielle.html",
+      "url": "https://www.info.gouv.fr/actualite/quelles-sont-les-conditions-pour-etre-candidat-a-l-election-presidentielle",
+      "final_url": "https://www.info.gouv.fr/actualite/quelles-sont-les-conditions-pour-etre-candidat-a-l-election-presidentielle",
+      "http_status": "403",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 5978,
+      "sha256": "cd05bab3844743e739632d452f70d3023ea9ff15a688cd0cee2504d18a3a8020",
+      "fetched_utc": "2026-09-28T04:02:01Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-viepublique-500.html",
+      "url": "https://www.vie-publique.fr/eclairage/23872-parrainage-des-candidats-la-presidentielle-les-500-signatures",
+      "final_url": "https://www.vie-publique.fr/eclairage/23872-parrainage-des-candidats-la-presidentielle-les-500-signatures",
+      "http_status": "200",
+      "content_type": "text/html",
+      "bytes": 299,
+      "sha256": "6625f13fec98f565b6797828d397d6c7b93451afb551d3fba9554bd4df44898c",
+      "fetched_utc": "2026-09-28T04:02:02Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-memento-pres-2022-idf.pdf",
+      "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/91689/587275/file/Memento-presidentielle-2022.pdf",
+      "final_url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/91689/587275/file/Memento-presidentielle-2022.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 514632,
+      "sha256": "cb15790330b0787c3ca1c304c1060e846f0bb4a0bb909f1700f31d3941fbdf54",
+      "fetched_utc": "2026-09-28T04:02:30Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-ps-textes-reference.html",
+      "url": "https://www.parti-socialiste.fr/textes_de_r_f_rences",
+      "final_url": "https://parti-socialiste.fr/les-textes-de-reference/",
+      "http_status": "200",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 726278,
+      "sha256": "8d72fc9fbc75c4da6a11717875e298e07bf14e2a09090a24f8554cadaebc7ec4",
+      "fetched_utc": "2026-09-28T04:03:08Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-pcf-statuts-39.html",
+      "url": "https://www.pcf.fr/statuts_du_pcf_adopt_s_au_39e_congr_s",
+      "final_url": "https://www.pcf.fr/statuts_du_pcf_adopt_s_au_39e_congr_s",
+      "http_status": "200",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 46805,
+      "sha256": "3f721076332eb839af22612401241f7dc860f654cc5029390805fa172801d9aa",
+      "fetched_utc": "2026-09-28T04:03:10Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-ps-statuts-v9.pdf",
+      "url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/REFORME_Statuts_V9.pdf",
+      "final_url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/REFORME_Statuts_V9.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 1258707,
+      "sha256": "8a5806444949203de5416c04fbded8560f82b414c40467de4dd1f4a43cac2621",
+      "fetched_utc": "2026-09-28T04:03:17Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-ps-reglement-dec22.pdf",
+      "url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/PS_Reglement_Interieur_VDec22.pdf",
+      "final_url": "https://parti-socialiste.fr/wp-content/uploads/2026/06/PS_Reglement_Interieur_VDec22.pdf",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 871539,
+      "sha256": "3ca838017544dfd85ec700f9a2541c2ea0651718d328f5e848c09ce4e00cac9d",
+      "fetched_utc": "2026-09-28T04:03:19Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-pcf-statuts-39.pdf",
+      "url": "https://assets.nationbuilder.com/pcf/pages/15897/attachments/original/1684999315/document_-_Statuts_39e_Congr%C3%A8s.pdf?1684999315",
+      "final_url": "https://assets.nationbuilder.com/pcf/pages/15897/attachments/original/1684999315/document_-_Statuts_39e_Congr%C3%A8s.pdf?1684999315",
+      "http_status": "200",
+      "content_type": "application/pdf",
+      "bytes": 408628,
+      "sha256": "3d7abdc6118d6d2134e395c0d1427322e97589abda35586a066f3247fc3ad702",
+      "fetched_utc": "2026-09-28T04:04:09Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-rn-statuts.html",
+      "url": "https://rassemblementnational.fr/statuts-du-rassemblement-national",
+      "final_url": "https://rassemblementnational.fr/statuts-du-rassemblement-national",
+      "http_status": "200",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 136116,
+      "sha256": "25b1c1e70f18f12912332c33f9c4517541513f24c657292702b01b0a0c9f25d6",
+      "fetched_utc": "2026-09-28T04:04:58Z",
+      "curl_exit": 0
+    },
+    {
+      "file": "fr-rn-cni.html",
+      "url": "https://rassemblementnational.fr/instances/commission-nationale-investiture",
+      "final_url": "https://rassemblementnational.fr/instances/commission-nationale-investiture",
+      "http_status": "200",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 121567,
+      "sha256": "16c07a6fc0e23e84dfd58a7ba8717cc6271147b456cd9828deb294e53bc86215",
+      "fetched_utc": "2026-09-28T04:05:02Z",
+      "curl_exit": 0,
+      "note": "Read to look for an investiture rule; it lists members only. Not used."
+    }
+  ]
+}
