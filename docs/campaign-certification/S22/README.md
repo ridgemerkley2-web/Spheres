@@ -2,19 +2,25 @@
 
 **Status: in progress. Owner: Codex.**
 
-Actual input preparation is complete through **30 November 2035**. The latest
-candidate, `d50f7ee1`, passes seven focused tests, six actual 31-day comparisons
-and the full release workspace regression: **1,954 passed, 0 failed, 108 ignored
-across 66 suites**. Both isolated 2015 and end-2035 native preflights now pass
-every unchanged latency and memory limit. Earlier failures remain unchanged
-in the linked packets. The full 18-cell native/browser qualification pair has
-not started, and neither S22, G5 nor CP1 is earned.
+Actual input preparation is complete through **30 November 2035**. The first
+full qualification pair at `d50f7ee1` is complete and **failed: 17 of 18 cells
+passed**. Across both rounds, all 12 browser cases, measured memory limits
+and exact campaign-state checks passed. The second round's end-2035 native cell fails
+simulation/history p95 **323.6552 ms > 300 ms** and whole-turn p95
+**406.1905 ms > 400 ms**. The first full round passed; it cannot replace the
+failed confirmation. All raw artifacts and the frozen manifest are retained in
+the [complete pair01 archive](qualification-pair-01/README.md).
+
+The same candidate passed the full release workspace regression: **1,954 passed,
+0 failed, 108 ignored across 66 suites**, seven focused tests and six actual
+31-day comparisons. Earlier preflights passed, but the complete pair governs
+qualification. S22, G5 and CP1 remain unearned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
 start the next canonical session after S20/G4. They preserve the engineering
 targets from [S01](../S01/PERFORMANCE_BASELINE.md) and the existing
-[art contract](../../art/3D_MODEL_MASTER_ROADMAP.md). No current runtime timing
-qualification is claimed by this packet.
+[art contract](../../art/3D_MODEL_MASTER_ROADMAP.md). No session-level performance
+qualification is earned by this packet.
 
 A pre-qualification clarification fixes the 31-click local camera sequence and
 labels its measured endpoint as paint opportunity plus GPU completion, not proven
@@ -31,9 +37,9 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | At d50f7ee1, isolated 2015 and end-2035 pass all unchanged native latency and memory limits. These are preflights; the complete 18-cell qualification pair remains required |
-| Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
-| City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
+| Native 31-day timing and headless memory | Pair01: five of six native cells pass. All memory/state checks pass; confirmation end-2035 fails simulation/history p95 323.6552 ms and whole-turn p95 406.1905 ms |
+| Actual rendered map, aircraft and UI performance | All six map and six renderer cells pass in complete pair01 on d50f7ee1; the overall pair remains failed by native latency |
+| City/inspection caches, context recovery, loading and layouts | Both rounds pass actual draw attribution, cache/context/cleanup, loading, 390px/3440px layouts, navigation and read-only state checks |
 | S22 closure | **Not earned** |
 
 The original S19 save has economic competition disabled, which also gates
@@ -43,6 +49,14 @@ that adopted lineage with actual activity evidence. The original passive
 `prepare01` remains a diagnostic; its unchanged source is preserved.
 
 ## Current runtime findings
+
+The [pair01 archive](qualification-pair-01/README.md) preserves every one of the
+18 declared cells, including the failed confirmation, without retries or selected
+replacement runs. Raw-save copies were removed only after exact hash/size and
+gzip round-trip verification; every original path has a restore mapping. The
+archive retains traces, screenshots, probes, logs, profiles, frozen prerequisites
+and final verdict. Runtime binary bodies remain external with exact hash pins.
+
 
 The [route/UI packet](route-ui-progress/README.md) retains all four 2015 daily
 diagnoses, route regressions and failed browser attempts. At `1a8c07d7`, 49
@@ -272,8 +286,8 @@ The offline inventory excludes renderer-derived attributes, floors, shadows,
 textures, driver overhead and application heap. It is neither live residency
 nor a frame-rate result. Aircraft are measured separately from the hypothetical
 ground/site/town inventory. The gallery **TownMesh** path is separate from the
-campaign globe **CityMesh** path, which still needs final-candidate runtime
-qualification despite its bounded functional preflight.
+campaign globe **CityMesh** path. Both map and renderer paths subsequently pass
+both pair01 browser rounds; the overall S22 pair still fails native latency.
 
 ## Evidence preservation and next action
 
@@ -283,9 +297,9 @@ retained as captured: its original staging layout was
 `work/campaign-certification/evidence/s22-preflight-art/`, next to `integration`.
 The exact portable command arguments and source hashes are in `result.json`.
 
-Next, freeze all completed, reviewed dated
-inputs, candidate/configuration manifest and attempt IDs before executing the
-protocol's two complete qualification rounds. Preserve every
-failed attempt and fix the cause without raising a threshold. S22 completion
-does not follow from the offline audit, and no G5, CP1, worldwide-history or
+Next, reduce the confirmed end-2035 CPU cost while preserving exact behavior,
+then freeze the new candidate and attempt IDs and execute a new complete
+18-cell pair. Preserve pair01 and every other failed attempt; no cell substitution
+or threshold change is allowed. The initial round and 12 passing browser cells
+do not earn S22 while confirmation fails. No G5, CP1, worldwide-history or
 human-playtest completion is awarded here.

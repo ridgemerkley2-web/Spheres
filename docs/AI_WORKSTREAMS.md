@@ -11,7 +11,7 @@ CP1 certification and worldwide character coverage remain open.
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
-| S22 art and performance | **In progress.** All three actual inputs are ready. Full d50f7ee1 release regression: 1,954 passed, 0 failed, 108 ignored. Seven focused tests and six actual 31-day comparisons pass. Isolated 2015 and end-2035 now pass all native latency and memory limits. Original failed attempts remain retained. | Codex: [current evidence](campaign-certification/S22/README.md), [latest validation and preflights](campaign-certification/S22/margin-progress/README.md), [prior failures and repairs](campaign-certification/S22/pass-local-progress/README.md). Next: freeze the reviewed inputs and unchanged candidate, then run the full 18-cell qualification pair; no threshold changes. |
+| S22 art and performance | **In progress.** Complete d50f7ee1 pair01: **17/18 cells pass; overall failed**. All 12 browser cases, all memory and exact-state checks pass. Confirmation end-2035 native p95 fails at 323.6552 ms simulation/history and 406.1905 ms whole-turn. Full release regression remains 1,954 passed, 0 failed, 108 ignored. | Codex: [complete failed pair and restoration](campaign-certification/S22/qualification-pair-01/README.md), [current evidence](campaign-certification/S22/README.md). Next: optimize late CPU cost, validate exact behavior, then run a new complete 18-cell pair; no threshold changes or selected-cell retries. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
 | C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
 | Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
@@ -19,15 +19,15 @@ CP1 certification and worldwide character coverage remain open.
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
 
-S22's latest isolated d50f7ee1 preflights both pass: 2015 simulation/whole-turn
-p95 **260.5369 / 316.5608 ms**, maximum **478.3212 ms**; end-2035 p95
-**240.6596 / 312.8513 ms**, maximum **433.3893 ms**. Both memory limits pass.
-Seven focused tests, six actual 31-day comparisons and the full release
-workspace pass at this candidate, preserving complete native worlds/headlines
-and input hashes. All original failed attempts remain unchanged. These bounded
-preflight defects are fixed, but the full 18-cell qualification pair has not started;
-S22, G5 and CP1 remain unearned. Source review and bounded parity checks cannot
-replace the two complete qualifying rounds.
+S22's first complete qualification pair at d50f7ee1 measured all 18 declared
+cells. The initial full round passed; the confirmation failed only its end-2035
+native cell: simulation/history p95 **323.6552 > 300 ms** and whole-turn p95
+**406.1905 > 400 ms**. All 12 browser cases, memory limits and exact campaign-state
+checks passed. The whole-turn maximum remained within 750 ms. Earlier passing
+preflights and the release regression cannot override this result. Every cell,
+frozen prerequisite and final verdict is losslessly retained, with explicit
+restore mappings for deduplicated raw saves. S22, G5 and CP1 remain unearned;
+the next candidate needs two new complete qualifying rounds.
 
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
 [campaign-pathway.json](planning/campaign-pathway.json) owns session status, dependencies,
