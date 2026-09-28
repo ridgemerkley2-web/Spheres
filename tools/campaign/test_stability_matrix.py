@@ -3,6 +3,7 @@ import copy
 import gzip
 import hashlib
 import json
+import shutil
 from pathlib import Path
 import tempfile
 import unittest
@@ -418,7 +419,15 @@ class NativeEvidenceTests(unittest.TestCase):
         def edit(value, root):
             path = root / "resumed/saves/final.json"
             path.write_bytes(path.read_bytes().replace(b"true", b"null"))
-        with self.assertRaisesRegex(matrix.InvalidEvidence, "Archives differ"):
+        with self.assertRaisesRegex(matrix.InvalidEvidence, "Actual archive fingerprint"):
+            self.validate_case(edit=edit)
+
+    def test_same_length_both_leg_drift_cannot_match_stale_native_fingerprints(self):
+        def edit(value, root):
+            for leg in ("uninterrupted", "resumed"):
+                path = root / leg / "saves/final.json"
+                path.write_bytes(path.read_bytes().replace(b"true", b"null"))
+        with self.assertRaisesRegex(matrix.InvalidEvidence, "Actual archive fingerprint"):
             self.validate_case(edit=edit)
 
     def test_missing_actual_archive_or_changed_request_rejected(self):
@@ -431,6 +440,123 @@ class NativeEvidenceTests(unittest.TestCase):
             path.write_bytes(path.read_bytes().replace(b"France", b"Brazil"))
         with self.assertRaises(matrix.InvalidEvidence):
             self.validate_case(edit=changed)
+
+
+def make_retained_fixture(root, fail_first=False):
+    """Build a mocked completed run with real gzip files; no native execution."""
+    root = Path(root)
+    binary = root / "synthetic-binary"
+    binary.write_bytes(b"synthetic fixture only")
+    calls = []
+    class FakeProcess:
+        def __init__(self, args, **kwargs):
+            request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+            cell = {k: request[k] for k in ("id", "country", "seed", "through")}
+            native = Path(kwargs["env"]["SPHERES_S25_OUT"])
+            result = synthetic_native_report(native, cell)
+            matrix.write_json_new(native / "result.json", result)
+            calls.append(request["id"])
+            self.returncode = 101 if fail_first and len(calls) == 1 else 0
+            kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
+        def wait(self, timeout=None):
+            return self.returncode
+    out = root / "run"
+    with patch.object(matrix.subprocess, "Popen", FakeProcess):
+        matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out)
+    return out
+
+
+class RetainedVerificationTests(unittest.TestCase):
+    def test_compressed_run_reverified_without_binary_or_process_or_writes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = make_retained_fixture(root)
+            (root / "synthetic-binary").unlink()
+            before = {str(p.relative_to(out)): matrix.file_pin(p)["sha256"] for p in out.rglob("*") if p.is_file()}
+            with patch.object(matrix.subprocess, "Popen", side_effect=AssertionError("Must not launch native")):
+                verified = matrix.verify_retained_run(out)
+            after = {str(p.relative_to(out)): matrix.file_pin(p)["sha256"] for p in out.rglob("*") if p.is_file()}
+            self.assertEqual(before, after)
+            self.assertTrue(verified["integrity_verified"])
+            self.assertTrue(verified["passed"])
+            self.assertFalse(verified["native_reexecuted"])
+            self.assertFalse(verified["qualification"])
+            self.assertEqual(verified["archives_verified"], 4)
+
+    def test_relocated_bundle_keeps_original_provenance_and_validates_locally(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = make_retained_fixture(root)
+            moved = root / "relocated"
+            shutil.copytree(out, moved)
+            verified = matrix.verify_retained_run(moved)
+            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
+            self.assertEqual(verified["source"], str(moved.resolve()))
+            self.assertTrue(verified["passed"])
+
+    def test_restore_new_directory_verifies_every_decoded_original_and_keeps_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = make_retained_fixture(root)
+            restored = root / "restored"
+            receipt = matrix.restore_retained_run(out, restored)
+            self.assertTrue(receipt["restored_integrity_verified"])
+            self.assertEqual(len(receipt["restored"]), 4)
+            for row in receipt["restored"]:
+                self.assertEqual(matrix.file_pin(restored / row["relative"])["sha256"], row["sha256"])
+                self.assertFalse((out / row["relative"]).exists())
+            self.assertTrue(matrix.verify_retained_run(restored)["passed"])
+            with self.assertRaisesRegex(matrix.InvalidEvidence, "already exists"):
+                matrix.restore_retained_run(out, restored)
+
+    def test_failed_attempt_is_reviewable_but_never_promoted(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = make_retained_fixture(Path(tmp), fail_first=True)
+            verified = matrix.verify_retained_run(out)
+            self.assertTrue(verified["integrity_verified"])
+            self.assertFalse(verified["passed"])
+            self.assertEqual(verified["coverage"]["passed"], 1)
+            self.assertFalse(verified["coverage"]["requested_plan_passed"])
+
+    def test_changed_gzip_and_unlisted_or_missing_files_refused(self):
+        for mode in ("gzip", "extra", "missing"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                out = make_retained_fixture(Path(tmp))
+                if mode == "gzip":
+                    target = next(out.glob("cells/*/native/uninterrupted/saves/final.json.gz"))
+                    target.write_bytes(target.read_bytes()[:-1] + b"x")
+                elif mode == "extra":
+                    (out / "unlisted.json").write_text("{}")
+                else:
+                    next(out.glob("cells/*/native/result.json")).unlink()
+                with self.assertRaises((matrix.InvalidEvidence, FileNotFoundError)):
+                    matrix.verify_retained_run(out)
+
+    def test_recomputed_result_ledger_cannot_hide_short_native_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = make_retained_fixture(Path(tmp))
+            proof = matrix.read_json(out / "result.json")
+            outcome = proof["cells"][0]
+            cell = out / "cells" / outcome["id"]
+            target = cell / "native/result.json"
+            native = matrix.read_json(target)
+            native["end_native_date"] = "1991-02-02"
+            target.write_bytes(matrix.json_bytes(native))
+            new_pin = matrix.file_pin(target)
+            outcome["native_result"] = new_pin
+            for row in outcome["files"]:
+                if row["relative"] == "native/result.json":
+                    row.update(new_pin)
+            (cell / "verdict.json").write_bytes(matrix.json_bytes(outcome))
+            (out / "result.json").write_bytes(matrix.json_bytes(proof))
+            with self.assertRaisesRegex(matrix.InvalidEvidence, "Short/incorrect native date"):
+                matrix.verify_retained_run(out)
+
+    def test_cli_verification_cannot_trigger_execution_or_overwrite_output(self):
+        with patch.object(matrix.subprocess, "Popen") as spawn:
+            self.assertEqual(matrix.main(["--verify", "unused", "--binary", "forbidden"]), 2)
+            self.assertEqual(matrix.main(["--restore", "unused"]), 2)
+            spawn.assert_not_called()
 
 
 if __name__ == "__main__":

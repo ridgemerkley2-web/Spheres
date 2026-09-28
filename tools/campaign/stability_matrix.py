@@ -13,6 +13,17 @@ not native campaign evidence. All verdicts retain qualification=false.
 Only runner-created campaign archives may be replaced by verified gzip payloads.
 Their original SHA-256/byte count and restore names remain in archive-manifest.json.
 Reports, logs, requests and the original plan are never overwritten or removed.
+
+Review a completed (possibly relocated) run without native execution:
+  python tools/campaign/stability_matrix.py --verify <retained-run>
+Restore its original archive bytes, keeping both originals and gzip evidence:
+  python tools/campaign/stability_matrix.py --verify <retained-run> --restore <NEW-directory>
+Verification rehashes all retained files, streams/decompresses every restore
+payload, independently recomputes the native raw/canonical FNV fingerprints,
+and reruns report/test-log/coverage checks. It preserves an original failed
+verdict and never awards certification. The original binary is not executed or
+required locally; its recorded provenance remains explicit. Full restoration
+is claimed only after the new directory passes the same verifier.
 """
 from __future__ import annotations
 
@@ -23,8 +34,9 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -182,20 +194,23 @@ def owned_file(root, relative):
     return resolved
 
 
-def canonical_archive_pin(path):
-    """Hash exact archive content except its terminal wall-clock saved_unix.
+def archive_content_pins(path, compressed=False):
+    """Independently link native FNV reports to the actual raw/canonical bytes.
 
-    Use a bounded tail, never a parsed/duplicated 100MB JSON tree. Internal
-    saved_unix strings remain significant, as do key order and all other bytes.
+    Both FNV states share the entire large prefix; only the bounded terminal
+    wall-clock member differs. SHA-256 proves canonical pair equality too.
+    No parsed or duplicated world-sized JSON tree is needed.
     """
     digest = hashlib.sha256()
-    total, tail = 0, b""
-    with Path(path).open("rb") as stream:
+    total, tail, prefix_fnv = 0, b"", 0xcbf29ce484222325
+    opener = gzip.open if compressed else open
+    with opener(path, "rb") as stream:
         while block := stream.read(1024 * 1024):
             pending = tail + block
             if len(pending) > 256:
                 prefix, tail = pending[:-256], pending[-256:]
                 digest.update(prefix)
+                prefix_fnv = fnv_update(prefix_fnv, prefix)
                 total += len(prefix)
             else:
                 tail = pending
@@ -203,8 +218,14 @@ def canonical_archive_pin(path):
     require(match is not None and int(match[2]) <= 2 ** 64 - 1, "Missing canonical terminal saved_unix timestamp")
     retained = match[1] + b"}"
     digest.update(retained)
-    return {"bytes": total + len(retained), "sha256": digest.hexdigest(),
-            "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."}
+    return {"canonical": {"bytes": total + len(retained), "sha256": digest.hexdigest(),
+                          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."},
+            "file_fnv64": f"{fnv_update(prefix_fnv, tail):016x}",
+            "canonical_fnv64": f"{fnv_update(prefix_fnv, retained):016x}"}
+
+
+def canonical_archive_pin(path, compressed=False):
+    return archive_content_pins(path, compressed)["canonical"]
 
 
 def archive_campaign_files(root, names, journal, records=None):
@@ -306,19 +327,23 @@ def finite(value, nonnegative=False):
     return type(value) in (int, float) and math.isfinite(value) and (not nonnegative or value >= 0)
 
 
-def fnv64(data):
-    value = 0xcbf29ce484222325
+def fnv_update(value, data):
     for byte in data:
-        value = ((value ^ byte) * 0x100000001b3) & ((1 << 64) - 1)
-    return f"{value:016x}"
+        value = ((value ^ byte) * 0x100000001b3) & 0xffffffffffffffff
+    return value
+
+
+def fnv64(data):
+    return f"{fnv_update(0xcbf29ce484222325, data):016x}"
 
 
 def is_fnv(value):
     return type(value) is str and re.fullmatch(r"[0-9a-f]{16}", value) is not None
 
 
-def validate_native_result(result, cell, revision, native_root):
+def validate_native_result(result, cell, revision, native_root, retained_archives=None, recorded_native_root=None):
     native_root = Path(native_root).resolve(strict=True)
+    recorded_native_root = recorded_native_root or str(native_root)
     full = cell["through"] == FULL_THROUGH
     expected_end = day(cell["through"]) + dt.timedelta(days=1)
     days = (expected_end - START).days
@@ -426,7 +451,7 @@ def validate_native_result(result, cell, revision, native_root):
     provenance = result["provenance"]
     require(type(provenance) is dict, "Missing native provenance")
     expected_request = native_root.parent / "request.json"
-    require(Path(provenance.get("request_path", "")).resolve() == expected_request, "Wrong native request provenance")
+    require(logical_path(provenance.get("request_path", "")) == recorded_join(recorded_parent(recorded_native_root), "request.json"), "Wrong native request provenance")
     request_bytes = expected_request.read_bytes()
     require(type(provenance.get("request_bytes")) is int and provenance["request_bytes"] == len(request_bytes), "Wrong native request byte count")
     require(provenance.get("request_fnv64") == fnv64(request_bytes) and provenance.get("request_unchanged") is True, "Changed or incorrect native request")
@@ -442,11 +467,19 @@ def validate_native_result(result, cell, revision, native_root):
         require(leg in ("uninterrupted", "resumed") and kind in (("final", "sandbox") if full else ("final",)) and (kind, leg) not in pairs, "Missing/duplicate archive leg")
         checkpoint = terminal if kind == "final" else comparisons[-1]
         require(artifact["path"] == f"{leg}/saves/{kind}.json" and artifact["date"] == checkpoint["date"], "Wrong archive save path/date")
-        path = owned_file(native_root, artifact["path"])
-        pin = file_pin(path)
+        if retained_archives is None:
+            path = owned_file(native_root, artifact["path"])
+            pin = file_pin(path)
+            actual_fingerprints = archive_content_pins(path)
+        else:
+            matches = [r for r in retained_archives if r["original_relative"] == artifact["path"]]
+            require(len(matches) == 1, "Final archive missing/duplicated in restore map")
+            retained_archive = verify_archive_record(native_root, recorded_native_root, matches[0])
+            pin = matches[0]["original"]
+            actual_fingerprints = archive_content_pins(retained_archive, compressed=True)
+        canonical = actual_fingerprints["canonical"]
         require(type(artifact["bytes"]) is int and artifact["bytes"] == pin["bytes"] and pin["bytes"] > 0, "Final save size mismatch")
-        require(is_fnv(artifact["file_fnv64"]) and artifact["canonical_fnv64"] == checkpoint["canonical_fnv64"], "Final save fingerprint disagrees with terminal")
-        canonical = canonical_archive_pin(path)
+        require(artifact["file_fnv64"] == actual_fingerprints["file_fnv64"] and artifact["canonical_fnv64"] == actual_fingerprints["canonical_fnv64"] == checkpoint["canonical_fnv64"], "Actual archive fingerprint disagrees with artifact or checkpoint")
         require(canonical["bytes"] == checkpoint["canonical_bytes"], "Actual final archive canonical length disagrees with comparison")
         pairs[(kind, leg)] = canonical
         retained.append({"leg": leg, "kind": kind, "file": pin, "canonical": canonical})
@@ -456,6 +489,235 @@ def validate_native_result(result, cell, revision, native_root):
     return {"comparisons": len(schedule), "calendar_days_each_leg": days,
             "checks": checks, "actions": len(actions), "final_archives": retained,
             "actual_final_pair_sha256_equal": True}
+
+
+def logical_path(value):
+    require(type(value) is str and value, "Missing recorded path")
+    return value.replace("\\", "/").rstrip("/")
+
+
+def recorded_parent(value):
+    return logical_path(value).rsplit("/", 1)[0]
+
+
+def recorded_join(root, *parts):
+    return "/".join([logical_path(root), *parts])
+
+
+def validate_pin(pin):
+    require(type(pin) is dict and set(pin) == {"path", "bytes", "sha256"}, "Malformed file pin")
+    require(integer(pin["bytes"]) and type(pin["sha256"]) is str and re.fullmatch(r"[0-9a-f]{64}", pin["sha256"]), "Invalid file digest/size")
+    value = pin["path"]
+    require(type(value) is str and (PureWindowsPath(value).is_absolute() or PurePosixPath(value).is_absolute()), "File pin path is not absolute")
+
+
+def verify_pin(path, pin, recorded_path=None):
+    validate_pin(pin)
+    if recorded_path is not None:
+        require(logical_path(pin["path"]) == logical_path(recorded_path), "Recorded file path mismatch")
+    observed = file_pin(path)
+    require(all(observed[k] == pin[k] for k in ("sha256", "bytes")), f"Retained file changed: {path}")
+    return observed
+
+
+def verify_archive_record(root, recorded_root, record):
+    required = {"original", "original_relative", "gzip", "gzip_relative", "decoded", "roundtrip_verified", "raw_removed", "restore"}
+    require(type(record) is dict and set(record) == required, "Malformed archive restoration record")
+    name = record["original_relative"]
+    require(name in declared_archive_names(), "Unapproved native archive restore path")
+    require(record["gzip_relative"] == name + ".gz", "Gzip restoration path mismatch")
+    require(record["roundtrip_verified"] is True and type(record["raw_removed"]) is bool, "Archive was not verified")
+    require(type(record["restore"]) is str and record["restore"], "Missing archive restore instructions")
+    validate_pin(record["original"])
+    require(logical_path(record["original"]["path"]) == recorded_join(recorded_root, name), "Original archive path mismatch")
+    require(record["decoded"] == {k: record["original"][k] for k in ("bytes", "sha256")}, "Decoded restoration pin mismatch")
+    packed = owned_file(root, record["gzip_relative"])
+    verify_pin(packed, record["gzip"], recorded_join(recorded_root, name + ".gz"))
+    with gzip.open(packed, "rb") as stream:
+        decoded = hash_stream(stream)
+    require(decoded == record["decoded"], "Retained gzip does not restore the declared original bytes")
+    raw = Path(root) / name
+    if raw.exists():
+        verify_pin(owned_file(root, name), record["original"], recorded_join(recorded_root, name))
+    else:
+        require(record["raw_removed"] is True, "Unremoved original archive is missing")
+    return packed
+
+
+def declared_archive_names():
+    return {f"{leg}/saves/{filename}" for leg in ("uninterrupted", "resumed")
+            for filename in ("final.json", "sandbox.json", "failure.json", "monthly.json", "monthly.json.bak")}
+
+
+def verify_retained_run(root):
+    """Rehash and revalidate a completed attempt without launching native code.
+
+    Original absolute paths remain provenance, not a requirement to review on
+    the original machine. All reads use confined local relative paths; gzip
+    streams are compared to original hashes without writing giant raw copies.
+    A coherent failed/incomplete run remains failed, never promoted.
+    """
+    root = Path(root).resolve(strict=True)
+    require(root.is_dir(), "Retained run is not a directory")
+    freeze = read_json(owned_file(root, "freeze.json"))
+    proof = read_json(owned_file(root, "result.json"))
+    plan = validate_plan(read_json(owned_file(root, "plan.json")))
+    require(freeze.get("format") == "spheres-stability-freeze/v1", "Unsupported freeze format")
+    require(proof.get("format") == "spheres-stability-matrix-result/v1", "Unsupported matrix result")
+    revision = freeze.get("candidate_revision")
+    require(type(revision) is str and REVISION_RE.fullmatch(revision), "Invalid frozen candidate")
+    origin = recorded_parent(freeze["frozen_plan"]["path"])
+    verify_pin(root / "plan.json", freeze["frozen_plan"], recorded_join(origin, "plan.json"))
+    verify_pin(root / "plan.json", freeze["plan"])
+    verify_pin(root / "stability_matrix.py", freeze["frozen_harness"], recorded_join(origin, "stability_matrix.py"))
+    verify_pin(root / "stability_matrix.py", freeze["harness"])
+    validate_pin(freeze["binary"])
+    require(freeze.get("native_test") == TEST_NAME and freeze.get("expected_compiled_revision") == revision[:12], "Frozen native execution identity mismatch")
+    require(freeze.get("scope") == plan["scope"] and proof.get("scope") == plan["scope"] and proof.get("plan_id") == plan["id"], "Plan scope mismatch")
+    require(proof.get("revision") == revision and type(proof.get("binary_unchanged")) is bool and type(proof.get("interrupted")) is bool, "Invalid matrix identity/completion record")
+    require(freeze.get("qualification") is False and freeze.get("s25_complete") is False and proof.get("qualification") is False and proof.get("s25_complete") is False, "Unsupported certification claim")
+    cells = proof.get("cells")
+    require(type(cells) is list, "Missing retained cell outcomes")
+    summary = coverage(plan, cells)
+    require(proof.get("coverage") == summary, "Recorded matrix coverage disagrees with cell outcomes")
+    computed_pass = summary["requested_plan_passed"] and proof["binary_unchanged"] and not proof["interrupted"]
+    require(type(proof.get("passed")) is bool and proof["passed"] == computed_pass, "Matrix pass claim disagrees with its records")
+    require([c["id"] for c in cells] == [c["id"] for c in plan["cells"][:len(cells)]], "Cells were reordered, retried, or cherry-picked")
+    journal_path = owned_file(root, "journal.jsonl")
+    with journal_path.open("rb") as stream:
+        events = [parse_json(line) for line in stream if line.strip()]
+    require(events and events[0].get("event") == "matrix_started" and events[-1].get("event") == "matrix_finished", "Missing matrix journal boundaries")
+    require(events[0].get("revision") == revision and events[0].get("scope") == plan["scope"], "Journal identity mismatch")
+    require(events[-1].get("coverage") == summary and events[-1].get("passed") == proof["passed"], "Journal final outcome mismatch")
+    started = [e for e in events if e.get("event") == "cell_started"]
+    finished = [e for e in events if e.get("event") == "cell_finished"]
+    require([e.get("id") for e in started] == [c["id"] for c in cells] == [e.get("id") for e in finished], "Missing/duplicate native attempt journal rows")
+    expected_files = {"freeze.json", "result.json", "plan.json", "stability_matrix.py", "journal.jsonl"}
+    verified_cells, archives = [], []
+    for cell, outcome, begin, finish in zip(plan["cells"], cells, started, finished):
+        prefix = "cells/" + cell["id"]
+        cell_root = root / prefix
+        native_root = cell_root / "native"
+        native_origin = recorded_join(origin, prefix, "native")
+        local_files = outcome.get("files")
+        require(type(local_files) is list and local_files, "Missing cell file ledger")
+        seen = set()
+        for entry in local_files:
+            require(type(entry) is dict and set(entry) == {"relative", "path", "bytes", "sha256"}, "Malformed retained file ledger entry")
+            relative = entry["relative"]
+            require(relative not in seen, "Duplicate retained file")
+            seen.add(relative)
+            path = owned_file(cell_root, relative)
+            verify_pin(path, {k: entry[k] for k in ("path", "bytes", "sha256")}, recorded_join(origin, prefix, relative))
+            expected_files.add(prefix + "/" + relative)
+        require({"stdout.log", "stderr.log", "execution.json", "archive-manifest.json", "request.json"} <= seen, "Cell execution evidence missing")
+        verdict_path = owned_file(root, prefix + "/verdict.json")
+        require(read_json(verdict_path) == outcome, "Cell verdict differs from matrix result")
+        expected_files.add(prefix + "/verdict.json")
+        request_path = cell_root / "request.json"
+        require(read_json(request_path) == {"format": "spheres-stability-cell/v1", **cell, "revision": revision}, "Frozen cell request mismatch")
+        verify_pin(request_path, begin["request"], recorded_join(origin, prefix, "request.json"))
+        execution = read_json(cell_root / "execution.json")
+        require(execution.get("args") == [freeze["binary"]["path"], "--exact", TEST_NAME, "--ignored", "--nocapture", "--test-threads=1"], "Wrong native test invocation")
+        require(logical_path(execution.get("cwd")) == recorded_join(origin, prefix), "Wrong native working directory")
+        env = execution.get("environment")
+        require(type(env) is dict and set(env) == {"SPHERES_S25_REQUEST", "SPHERES_S25_OUT"}, "Wrong native environment record")
+        require(logical_path(env["SPHERES_S25_REQUEST"]) == recorded_join(origin, prefix, "request.json") and logical_path(env["SPHERES_S25_OUT"]) == native_origin, "Wrong native request/output isolation")
+        require(finite(execution.get("elapsed_seconds"), True), "Invalid elapsed execution time")
+        if outcome["passed"]:
+            require(execution.get("binary_before") == freeze["binary"] == execution.get("binary_after"), "Binary drift in a passing cell")
+            require(type(execution.get("exit_code")) is int and execution["exit_code"] == 0, "Passing native test did not exit zero")
+        require(finish.get("passed") is outcome["passed"] and finish.get("exit_code") == execution.get("exit_code") and finish.get("failure") == outcome.get("failure"), "Journal cell outcome mismatch")
+        archive_manifest = read_json(cell_root / "archive-manifest.json")
+        records = outcome.get("archives")
+        require(archive_manifest == {"format": "spheres-stability-archives/v1", "archives": records} and type(records) is list, "Archive manifest/outcome mismatch")
+        require(len({r["original_relative"] for r in records}) == len(records), "Duplicate archive restoration map")
+        for record in records:
+            verify_archive_record(native_root, native_origin, record)
+            prepared = [e for e in events if e.get("event") == "archive_verified_before_removal"
+                        and e.get("record", {}).get("original") == record["original"]]
+            removed = [e for e in events if e.get("event") == "archive_raw_removed"
+                       and e.get("original_relative") == record["original_relative"]
+                       and e.get("sha256") == record["original"]["sha256"]]
+            # A same-state archive may have the same digest in multiple cells;
+            # the complete prepared record still pins the unique absolute path.
+            require(len(prepared) == 1 and prepared[0]["record"] == {**record, "raw_removed": False}, "Archive lacked pre-removal restoration evidence")
+            if record["raw_removed"]:
+                require(removed, "Missing archive removal journal record")
+            if (native_root / record["original_relative"]).exists():
+                expected_files.add(prefix + "/native/" + record["original_relative"])
+            archives.append({"relative": prefix + "/native/" + record["original_relative"], "record": record})
+        if outcome["passed"]:
+            require(outcome.get("failure") is None and "archive_failure" not in outcome, "Passing cell retains failure")
+            require(outcome.get("test_execution") == validate_test_log(cell_root / "stdout.log"), "Native executed-test summary mismatch")
+            result_path = owned_file(native_root, "result.json")
+            verify_pin(result_path, outcome["native_result"], recorded_join(native_origin, "result.json"))
+            validated = validate_native_result(read_json(result_path), cell, revision, native_root, records, native_origin)
+            require(validated == outcome.get("native_validation"), "Replayed native validation differs from recorded result")
+        verified_cells.append({"id": cell["id"], "passed": outcome["passed"], "files_verified": len(local_files), "archives_verified": len(records)})
+    if (root / "restoration.json").exists():
+        restored = read_json(owned_file(root, "restoration.json"))
+        require(restored.get("format") == "spheres-stability-restoration/v1" and restored.get("qualification") is False, "Unknown restoration sidecar")
+        expected_files.add("restoration.json")
+    actual_files = set()
+    for path in root.rglob("*"):
+        require(not path.is_symlink(), "Symlink in retained run")
+        if path.is_file():
+            relative = path.relative_to(root).as_posix()
+            owned_file(root, relative)
+            actual_files.add(relative)
+    require(actual_files == expected_files, "Unlisted or missing retained artifacts")
+    return {"format": "spheres-stability-retained-verification/v1", "integrity_verified": True,
+            "native_reexecuted": False, "source": str(root), "recorded_origin": origin,
+            "candidate_revision": revision, "frozen_harness_sha256": freeze["frozen_harness"]["sha256"],
+            "verifier": file_pin(Path(__file__)), "binary_reexecuted_or_rebuilt": False,
+            "passed": proof["passed"], "coverage": summary, "cells": verified_cells,
+            "files_verified": len(actual_files), "archives_verified": len(archives),
+            "qualification": False, "s25_complete": False}
+
+
+def restore_retained_run(source, destination):
+    """Copy a verified bundle and restore each archive into a NEW directory."""
+    source = Path(source).resolve(strict=True)
+    destination = Path(destination).resolve()
+    require(not destination.exists(), "Restore destination already exists")
+    verified = verify_retained_run(source)
+    destination.mkdir(parents=True, exist_ok=False)
+    restored = []
+    for path in sorted(source.rglob("*")):
+        if not path.is_file() or path.name == "restoration.json":
+            continue
+        relative = path.relative_to(source).as_posix()
+        incoming = owned_file(source, relative)
+        target = destination / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        before = file_pin(incoming)
+        with incoming.open("rb") as reader, target.open("xb") as writer:
+            shutil.copyfileobj(reader, writer, length=1024 * 1024)
+        verify_pin(target, before)
+        require(file_pin(incoming) == before, "Source changed during restoration")
+    proof = read_json(destination / "result.json")
+    for outcome in proof["cells"]:
+        native_root = destination / "cells" / outcome["id"] / "native"
+        for record in outcome["archives"]:
+            target = native_root / record["original_relative"]
+            if not target.exists():
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with gzip.open(owned_file(native_root, record["gzip_relative"]), "rb") as reader, target.open("xb") as writer:
+                    shutil.copyfileobj(reader, writer, length=1024 * 1024)
+            verify_pin(target, record["original"])
+            restored.append({"relative": target.relative_to(destination).as_posix(),
+                             "bytes": record["original"]["bytes"], "sha256": record["original"]["sha256"]})
+    # Revalidate the entire restored bundle before recording completion. On any
+    # error the partial NEW directory is left intact, never reported complete.
+    replayed = verify_retained_run(destination)
+    receipt = {"format": "spheres-stability-restoration/v1", "created_utc": utc_now(),
+               "source": str(source), "destination": str(destination), "restored": restored,
+               "source_integrity_verified": verified["integrity_verified"],
+               "restored_integrity_verified": replayed["integrity_verified"],
+               "native_reexecuted": False, "qualification": False}
+    write_json_new(destination / "restoration.json", receipt)
+    return receipt
 
 
 def run_matrix(binary, revision, plan_path, out, timeout=None):
@@ -592,13 +854,24 @@ def discover_campaign_archives(root):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--binary", required=True, type=Path)
-    parser.add_argument("--revision", required=True)
-    parser.add_argument("--plan", required=True, type=Path)
-    parser.add_argument("--out", required=True, type=Path)
+    parser.add_argument("--binary", type=Path)
+    parser.add_argument("--revision")
+    parser.add_argument("--plan", type=Path)
+    parser.add_argument("--out", type=Path)
     parser.add_argument("--timeout-seconds", type=float)
+    parser.add_argument("--verify", type=Path, help="Read-only verification of retained raw/compressed evidence; never runs native code")
+    parser.add_argument("--restore", type=Path, help="With --verify: restore all original archive bytes into a NEW directory")
     args = parser.parse_args(argv)
     try:
+        if args.verify is not None:
+            require(all(value is None for value in (args.binary, args.revision, args.plan, args.out, args.timeout_seconds)), "Verification cannot be combined with native execution arguments")
+            proof = verify_retained_run(args.verify)
+            if args.restore is not None:
+                proof["restoration"] = restore_retained_run(args.verify, args.restore)
+            print(json.dumps(proof, indent=2))
+            return 0 if proof["passed"] else 1
+        require(args.restore is None, "--restore requires --verify")
+        require(all(value is not None for value in (args.binary, args.revision, args.plan, args.out)), "Execution requires --binary, --revision, --plan and --out")
         proof = run_matrix(args.binary, args.revision, args.plan, args.out, args.timeout_seconds)
     except Exception as error:
         print(f"Stability runner refused: {type(error).__name__}: {error}", file=sys.stderr)
