@@ -32,7 +32,7 @@ fn compact_candidate_prefilter_preserves_ties_refusals_and_live_gates() {
     let base = fixture();
     let expected = NationId::Canada.min(NationId::UK);
     assert_eq!(candidate(&base, NationId::USA, false), Some(expected));
-    for barrier in 0..13 {
+    for barrier in 0..16 {
         let mut w = base.clone();
         match barrier {
             0 => {},
@@ -47,7 +47,10 @@ fn compact_candidate_prefilter_preserves_ties_refusals_and_live_gates() {
             9 => domination::subjugate(&mut w, NationId::USA, expected),
             10 => w.rules.economic_competition = false,
             11 => w.statecraft.pacts.reverse(),
-            _ => { let pact = w.statecraft.pacts[0].clone(); w.statecraft.pacts.push(pact); },
+            12 => { let pact = w.statecraft.pacts[0].clone(); w.statecraft.pacts.push(pact); },
+            13 => { for pact in &mut w.statecraft.pacts { std::mem::swap(&mut pact.a, &mut pact.b); } },
+            14 => w.statecraft.pacts.push(Pact { a: NationId::USA, b: NationId::USA, since_year: 1990, since_month: 1 }),
+            _ => w.statecraft.pacts.push(Pact { a: NationId::France, b: NationId::UK, since_year: 1990, since_month: 1 }),
         }
         let before = crate::save(&w);
         for patron in [NationId::USA, NationId::Canada, NationId::UK, NationId::France] {
@@ -96,7 +99,8 @@ fn compact_candidates_match_actual_checkpoint_for_31_complete_days() {
     let source = std::fs::read_to_string(&path).unwrap();
     let mut value: serde_json::Value = serde_json::from_str(&source).unwrap();
     // Accept the complete campaign envelope without serializing its world again.
-    let world = if value.get("world").is_some() { value["world"].take() } else { value };
+    let world = if value.get("world").is_some() { value["world"].take() } else { value.take() };
+    drop(value);
     let mut actual = crate::load_value(world).unwrap();
     assert!(enabled(&actual));
     assert!(actual.year == 2015 || actual.year == 2035);
