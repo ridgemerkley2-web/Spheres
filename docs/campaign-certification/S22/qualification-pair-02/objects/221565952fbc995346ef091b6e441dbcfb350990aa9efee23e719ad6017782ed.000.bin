@@ -1,0 +1,9 @@
+# S22 second declared qualification pair
+
+This note supersedes the runner's original draft-status description without changing the historical draft file or runner bytes. The unchanged runner completed pair01 on d50f7ee1; its final result was failed, with 17 of 18 cells passing. The exact failure remains archived and is not replaced by this attempt.
+
+Pair02 uses candidate 5d11dd6dae436eeca105dbaf0d02732cd768b35b after source review, release build, focused tests, full regression and actual-checkpoint parity validation. It must be frozen only after those records and isolated native preflight results exist. This note itself is preparation, not proof of success.
+
+The original measurement protocol, every numerical limit, all three actual campaign inputs, both complete rounds, viewport, browser configuration and runner implementation remain unchanged. The attempt uses new output roots and the same append-only attempt registry. No task build, test, compression, archive verification or Git transfer may overlap a measured cell. Unrelated user applications remain open and uncontrolled.
+
+Final qualification is determined exclusively by the frozen helper's completed verification of all 18 cells. Preflights, source reviews, passing regression, and this note do not qualify S22. A numeric failure remains a failure, without selected retries or replacement cells.

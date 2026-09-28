@@ -1,0 +1,318 @@
+// DRAFT external S22 orchestrator. Never freezes a manifest or replaces a cell.
+// This file has not been executed. See s22-run-declared-pair.md before use.
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const cp = require('node:child_process');
+
+const canonical = p => fs.realpathSync(p).replace(/\\/g, '/').toLowerCase();
+const read = p => JSON.parse(fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, ''));
+const sha = p => {
+  const hash = crypto.createHash('sha256'), fd = fs.openSync(p, 'r');
+  const buffer = Buffer.allocUnsafe(4 * 1024 * 1024);
+  try { for (;;) { const size = fs.readSync(fd, buffer, 0, buffer.length, null);
+    if (!size) break; hash.update(buffer.subarray(0, size)); } }
+  finally { fs.closeSync(fd); }
+  return hash.digest('hex');
+};
+function exclusiveJson(file, value) {
+  const fd = fs.openSync(file, 'wx');
+  try { fs.writeFileSync(fd, JSON.stringify(value, null, 2) + '\n'); fs.fsyncSync(fd); }
+  finally { fs.closeSync(fd); }
+}
+function disjoint(a, b) {
+  const aa = path.resolve(a).toLowerCase(), bb = path.resolve(b).toLowerCase();
+  return aa !== bb && !aa.startsWith(bb + path.sep) && !bb.startsWith(aa + path.sep);
+}
+function options(argv) {
+  const allowed = ['manifest', 'candidate', 'native', 'server', 'powershell', 'node-path', 'journal-directory'];
+  assert.equal(argv.length, allowed.length * 2, 'Supply every documented named argument exactly once');
+  const result = {};
+  for (let i = 0; i < argv.length; i += 2) {
+    const name = argv[i].replace(/^--/, '');
+    assert(allowed.includes(name) && argv[i] === '--' + name && !result[name], 'Unknown/duplicate option');
+    assert(argv[i + 1], 'Missing argument'); result[name] = argv[i + 1];
+  }
+  assert.match(result.candidate, /^[a-f0-9]{40}$/);
+  return result;
+}
+function childEnvironment(nodePath) {
+  const env = { ...process.env };
+  for (const key of Object.keys(env)) if (/^SPHERES_/i.test(key) || /^(NODE_OPTIONS|NODE_PATH)$/i.test(key)) delete env[key];
+  env.NODE_PATH = nodePath;
+  return env;
+}
+function child(file, args, cwd, env, stdoutPath, stderrPath) {
+  return new Promise((resolve, reject) => {
+    const stdout = fs.openSync(stdoutPath, 'wx'), stderr = fs.openSync(stderrPath, 'wx');
+    let processHandle;
+    try { processHandle = cp.spawn(file, args, { cwd, env, windowsHide: true, shell: false,
+      stdio: ['ignore', stdout, stderr] }); }
+    catch (error) { fs.closeSync(stdout); fs.closeSync(stderr); reject(error); return; }
+    processHandle.once('error', reject);
+    processHandle.once('close', (code, signal) => {
+      fs.closeSync(stdout); fs.closeSync(stderr); resolve({ exit_code: code, signal });
+    });
+  });
+}
+function evidenceStamp(record, manifest) {
+  const start = Date.parse(record.started_utc), finish = Date.parse(record.finished_utc);
+  assert(Number.isFinite(start) && Number.isFinite(finish) && finish >= start);
+  assert(start >= Date.parse(manifest.frozen_utc), 'Cell must start after freeze');
+}
+function failedNativeStructure(helper, row, profile, fixture, cell) {
+  const finite = value => assert(typeof value === 'number' && Number.isFinite(value) && value >= 0,
+    'Missing/nonfinite/negative raw native observation');
+  const sameSummary = (actual, values) => {
+    const expected = helper.summary(values);
+    for (const key of Object.keys(expected)) assert.equal(actual?.[key], expected[key]);
+  };
+  const fields = ['simulation_history_ms', 'state_read_model_ms', 'state_serialization_ms',
+    'history_delta_serialization_ms', 'whole_turn_ms'];
+  helper.certified(profile.starting);
+  for (const [index, sample] of profile.samples.entries()) {
+    assert.equal(sample.index, index); assert.equal(profile.control_commands[index].index, index);
+    assert(Array.isArray(profile.control_commands[index].commands));
+    const expected = new Date(fixture.date + 'T00:00:00Z'); expected.setUTCDate(expected.getUTCDate() + index + 1);
+    assert.deepEqual(sample.facts.calendar, expected.toISOString().slice(0, 10).split('-').map(Number));
+    helper.certified(sample.facts, index >= 29);
+    fields.forEach(key => finite(sample[key]));
+    const stages = fields.slice(0, 4).reduce((sum, key) => sum + sample[key], 0);
+    assert(sample.whole_turn_ms + Math.max(1, stages) * 1e-12 >= stages, 'Whole turn excludes sequential stages');
+    for (const key of ['state_bytes', 'history_delta_bytes']) assert(Number.isSafeInteger(sample[key]) && sample[key] > 0);
+  }
+  assert.deepEqual(profile.final, profile.samples.at(-1).facts);
+  for (const key of fields) sameSummary(profile.summaries?.[key], profile.samples.map(s => s[key]));
+  sameSummary(row.latency?.simulation_history, profile.samples.map(s => s.simulation_history_ms));
+  sameSummary(row.latency?.whole_turn, profile.samples.map(s => s.whole_turn_ms));
+  assert.deepEqual(row.latency.batch, profile.batch);
+  assert.deepEqual(profile.batch.control_commands, profile.control_commands.map(c => c.commands).filter(c => c.length));
+  finite(profile.batch.elapsed_ms); assert(profile.batch.elapsed_ms > 0); finite(profile.batch.days_per_second);
+  const throughput = 31000 / profile.batch.elapsed_ms;
+  assert(Math.abs(profile.batch.days_per_second - throughput) <= Math.max(1, throughput) * 1e-12);
+  assert.equal(sha(path.join(cell.output_path, 'input.json')), fixture.input.sha256);
+  const csv = fs.readFileSync(path.join(cell.output_path, 'memory-samples.csv'), 'utf8').replace(/^\uFEFF/, '').trim().split(/\r?\n/);
+  assert.equal(csv.shift(), 'elapsed_ms,private_bytes,working_set_bytes,os_peak_working_set_bytes');
+  const memory = csv.map(line => {
+    const fields = line.split(','); assert.equal(fields.length, 4);
+    assert(fields.every(v => /^\d+(?:\.\d+)?$/.test(v)), 'Blank/non-numeric memory cell');
+    const values = fields.map(Number); values.forEach(finite);
+    assert(values.slice(1).every(v => Number.isSafeInteger(v) && v > 0), 'Missing resident memory counters');
+    return values;
+  });
+  assert(memory.length > 0); assert.equal(row.memory.samples, memory.length);
+  let largestGap = 0;
+  for (let i = 1; i < memory.length; i++) {
+    assert(memory[i][0] >= memory[i - 1][0]); largestGap = Math.max(largestGap, memory[i][0] - memory[i - 1][0]);
+  }
+  assert.equal(row.memory.max_sampled_private_bytes, Math.max(...memory.map(m => m[1])));
+  assert.equal(row.memory.max_sampled_working_set_bytes, Math.max(...memory.map(m => m[2])));
+  const osPeak = Math.max(...memory.map(m => m[3])); finite(row.memory.os_peak_working_set_bytes);
+  assert(row.memory.os_peak_working_set_bytes >= osPeak);
+  assert(Number.isSafeInteger(row.memory.failed_samples) && row.memory.failed_samples >= 0);
+  if (!row.memory.failed_samples) assert.equal(row.memory.os_peak_working_set_bytes, osPeak);
+  finite(row.memory.nominal_interval_ms); assert(row.memory.nominal_interval_ms > 0 && row.memory.nominal_interval_ms <= 100);
+  finite(row.memory.max_observed_sample_gap_ms);
+  assert(Math.abs(largestGap - row.memory.max_observed_sample_gap_ms) <= .001001);
+  finite(row.wall_seconds); assert(row.wall_seconds > 0);
+  assert(memory.at(-1)[0] <= row.wall_seconds * 1000 + .000501);
+}
+function checkResultEnvelope(helper, manifest, cell, fixture, outcome) {
+  assert.equal(outcome.signal, null, 'Signalled child is an interrupted/structural failure');
+  assert([0, 1].includes(outcome.exit_code), 'Unexpected process exit');
+  if (cell.role === 'native') {
+    const resultFile = path.join(cell.output_path, 'runner-result.json');
+    const row = read(resultFile), profile = read(path.join(cell.output_path, 'profile.json'));
+    assert.equal(row.format, 'spheres-s22-runner/v1'); assert.equal(row.mode, 'measure');
+    assert.equal(row.candidate_revision, manifest.candidate_revision);
+    assert.equal(row.test_binary_sha256, manifest.binaries.native_test.sha256);
+    assert.equal(canonical(row.test_binary), canonical(manifest.binaries.native_test.path));
+    assert.equal(canonical(row.original_input), canonical(fixture.input.path));
+    assert.equal(row.wrapper_sha256, manifest.files['tools/campaign/run-s22-profile.ps1'].sha256);
+    assert.equal(row.original_input_sha256_before, fixture.input.sha256);
+    assert.equal(row.original_input_sha256_after, fixture.input.sha256);
+    assert.equal(row.copied_input_sha256_before, fixture.input.sha256);
+    assert.equal(row.copied_input_sha256_after, fixture.input.sha256);
+    assert.equal(canonical(row.evidence_root), canonical(cell.output_path));
+    assert.equal(canonical(row.copied_input), canonical(path.join(cell.output_path, 'input.json')));
+    assert.equal(canonical(row.profile_json), canonical(path.join(cell.output_path, 'profile.json')));
+    assert.deepEqual(row.arguments, ['performance::s22_measure_checkpoint', '--ignored', '--exact', '--nocapture', '--test-threads=1']);
+    assert.deepEqual(row.child_environment, { SPHERES_S22_INPUT: row.copied_input, SPHERES_S22_OUT: row.profile_json,
+      SPHERES_S22_RENEW_BUDGET: '1', SPHERES_S22_REQUIRE_CERTIFIED: '1' });
+    assert.deepEqual(row.frozen_limits, { simulation_history_p95_ms: 300, whole_turn_p95_ms: 400,
+      whole_turn_max_ms: 750, sampled_private_bytes: 1073741824, observed_os_peak_working_set_bytes: 1073741824 });
+    assert.equal(row.source_unchanged, true); assert.equal(row.exit_code, 0, 'Native structural test failed');
+    assert.equal(profile.format, 'spheres-s22-profile/v1'); assert.equal(profile.mode, 'measure_input');
+    assert.equal(profile.revision, manifest.candidate_revision.slice(0, 12));
+    assert.equal(profile.passed, true); assert.equal(profile.failure, null);
+    assert.equal(profile.source_unchanged, true); assert.equal(profile.certified_profile_required, true);
+    assert.equal(canonical(profile.input), canonical(row.copied_input)); assert.equal(profile.input_bytes, fixture.input.bytes);
+    assert.match(profile.input_fnv64, /^[a-f0-9]{16}$/);
+    assert.equal(profile.renew_existing_budget, true); assert.equal(profile.samples.length, 31);
+    assert.equal(profile.control_commands.length, 31); assert.equal(profile.batch.ordinary_days, 31);
+    assert.equal(profile.batch.same_final_facts, true); assert.deepEqual(profile.batch.final, profile.final);
+    assert.equal(profile.starting.calendar.join('-'), fixture.date.split('-').map(Number).join('-'));
+    assert.equal(profile.final.calendar.join('-'), fixture.end.split('-').map(Number).join('-'));
+    evidenceStamp(row, manifest);
+    if (row.passed) {
+      assert.equal(outcome.exit_code, 0); helper.nativeCell(manifest, cell, fixture);
+      return { result_file: resultFile, result_sha256: sha(resultFile), status: 'passed' };
+    }
+    // Only explicitly reported frozen numerical failures are ordinary failed
+    // measurements. A crash, incomplete test or malformed result halts the pair.
+    const numericalFailures = new Set([
+      'Simulation/history p95 exceeds frozen 300 ms limit.',
+      'Whole-turn p95 exceeds frozen 400 ms limit.',
+      'Whole-turn maximum exceeds frozen 750 ms limit.',
+      'Observed native memory exceeds the frozen 1 GiB ceiling.',
+    ]);
+    assert.equal(outcome.exit_code, 1); assert.equal(row.numerical_acceptance, false);
+    assert(Array.isArray(row.failures) && row.failures.length && row.failures.every(f => numericalFailures.has(f)),
+      'Native non-numerical failure requires inspection; do not continue automatically');
+    failedNativeStructure(helper, row, profile, fixture, cell);
+    return { result_file: resultFile, result_sha256: sha(resultFile), status: 'failed_measurement', failures: row.failures };
+  }
+  const directory = helper.browserChild(cell.output_path), resultFile = path.join(directory, 'result.json');
+  const row = read(resultFile);
+  evidenceStamp(row, manifest);
+  assert.equal(row.qualification, true); assert.equal(row.revision, manifest.candidate_revision);
+  assert.equal(row.binary_sha256, manifest.binaries.server.sha256);
+  assert.equal(row.checkpoint_sha256, fixture.input.sha256);
+  assert.equal(row.driver_sha256, manifest.files['tools/ui/s22-performance-browser.cjs'].sha256);
+  assert.equal(canonical(row.out), canonical(directory));
+  assert.equal(row.build.revision, manifest.candidate_revision.slice(0, 12));
+  assert.deepEqual(row.browser_launch, manifest.workload.browser_launch);
+  assert.equal(row.reference_gpu.reference_hardware_match, true);
+  assert.deepEqual(row.errors, []); assert(!row.trace_failure); helper.validateTrace(row, directory);
+  assert(Array.isArray(row.cells));
+  if (cell.role === 'renderer') { assert.equal(row.cells.length, 0); assert(row.renderer); }
+  else { assert(!row.renderer); assert.equal(row.cells.length, 2); }
+  if (row.passed) {
+    assert.equal(outcome.exit_code, 0); helper.browserCell(manifest, cell, fixture);
+    return { result_file: resultFile, result_sha256: sha(resultFile), status: 'passed' };
+  }
+  assert.equal(outcome.exit_code, 1);
+  const failure = String(row.failure || '');
+  const finalMapFailure = cell.role === 'map' && /^AssertionError[^\n]*: Frozen browser performance\/layout limits failed; raw evidence retained/.test(failure);
+  const viewerFpsFailure = cell.role === 'renderer' && /^AssertionError[^\n]*: Released fighter orbit completed-draw FPS [\d.]+ is below the unchanged 60 FPS target/.test(failure);
+  assert(finalMapFailure || viewerFpsFailure, 'Browser structural/functional interruption requires inspection');
+  if (finalMapFailure) {
+    assert(row.cells.every(c => c.views?.length === 4 && c.inputs?.length === 31));
+    assert.equal(row.memory_complete, true, 'Missing accounting is structural, not a performance-limit failure');
+    helper.processMemory(row.browser_process_memory_before); helper.processMemory(row.browser_process_memory_after);
+    for (const memory of [row.memory_before, row.memory_after, ...row.cells.map(c => c.memory)]) helper.mapMemory(memory);
+    helper.validateCold(row); helper.validateLayout(row.layout_functional, directory);
+    for (const [detailIndex, preset] of row.cells.entries()) {
+      assert.equal(preset.detail, manifest.workload.details[detailIndex]);
+      assert.deepEqual(preset.viewport, manifest.workload.viewport); assert.equal(preset.dpr, 1);
+      for (const [viewIndex, view] of preset.views.entries()) {
+        assert.deepEqual(view.view, manifest.workload.views[viewIndex]); assert.equal(view.map_mode, 'terrain');
+        assert.deepEqual(view.map_details, manifest.workload.presets[preset.detail]);
+        assert.deepEqual(view.active_canvas, manifest.workload.map_canvas);
+        assert.equal(view.ready, true); assert.equal(view.workload_valid, true); assert.equal(view.buffers.context_losses, 0);
+        helper.mapPhase(view.settle, 3000);
+        assert.equal(view.fps, helper.mapPhase(view.measured, 12000));
+      }
+      try { helper.inputs(preset.inputs); }
+      catch (error) { assert.equal(error.message, 'Raw control p95 exceeds 200 ms', 'Malformed control workload'); }
+    }
+    assert.match(row.before_save, /^[a-f0-9]{64}$/);
+    assert.equal(row.before_save, row.after_save);
+  } else {
+    assert(row.renderer.viewer_orbit?.sample?.raw_frames?.length > 0);
+    assert.equal(row.renderer.viewer_orbit.passed, false);
+  }
+  return { result_file: resultFile, result_sha256: sha(resultFile), status: 'failed_measurement', failures: [failure] };
+}
+
+async function main() {
+  const opt = options(process.argv.slice(2));
+  const manifestPath = fs.realpathSync(opt.manifest), manifest = read(manifestPath);
+  assert.equal(opt.candidate, manifest.candidate_revision);
+  assert.equal(canonical(opt.native), canonical(manifest.binaries.native_test.path));
+  assert.equal(canonical(opt.server), canonical(manifest.binaries.server.path));
+  assert(path.isAbsolute(opt.powershell) && fs.statSync(opt.powershell).isFile());
+  assert(path.isAbsolute(opt['node-path']) && fs.statSync(opt['node-path']).isDirectory());
+  const verifierPath = path.join(manifest.repository, 'tools/campaign/s22-qualification.cjs');
+  assert.equal(sha(verifierPath), manifest.files['tools/campaign/s22-qualification.cjs'].sha256);
+  const helper = require(verifierPath);
+  helper.identity(manifest, manifestPath);
+  const ownHash = sha(__filename);
+  assert(manifest.provenance.some(record => canonical(record.path) === canonical(__filename) && record.sha256 === ownHash),
+    'Include this external orchestrator in config.provenance_paths before the root freezes the manifest');
+  // Refuse interleaved rounds even though all tuple combinations exist.
+  assert.deepEqual(manifest.cells.map(cell => cell.round), manifest.rounds.flatMap(round => Array(9).fill(round)));
+  for (const cell of manifest.cells) assert(!fs.existsSync(cell.output_path), 'No existing output/retry is allowed: ' + cell.id);
+  const run = path.resolve(opt['journal-directory']);
+  assert(!fs.existsSync(run), 'Journal directory already exists; this runner never resumes or overwrites');
+  for (const cell of manifest.cells) assert(disjoint(run, cell.output_path), 'Runner logs must be outside every cell output parent');
+  fs.mkdirSync(run, { recursive: false });
+  const journalPath = path.join(run, 'journal.jsonl'), journal = fs.openSync(journalPath, 'ax');
+  const append = row => { fs.writeSync(journal, JSON.stringify({ utc: new Date().toISOString(), ...row }) + '\n'); fs.fsyncSync(journal); };
+  const runtime = { node: { path: process.execPath, sha256: sha(process.execPath), version: process.version },
+    powershell: { path: fs.realpathSync(opt.powershell), sha256: sha(opt.powershell) }, node_path: opt['node-path'] };
+  const environment = childEnvironment(opt['node-path']);
+  let stopRequested = false;
+  const signal = name => { stopRequested = true; append({ event: 'stop_requested', signal: name,
+    policy: 'Do not kill applications or the active child; stop before the next declared cell.' }); };
+  const sigint = () => signal('SIGINT'), sigterm = () => signal('SIGTERM');
+  process.on('SIGINT', sigint); process.on('SIGTERM', sigterm);
+  const rows = []; let launchedCells = 0;
+  append({ event: 'pair_start', attempt_id: manifest.attempt_id, manifest: manifestPath, manifest_sha256: sha(manifestPath),
+    runner: __filename, runner_sha256: ownHash, candidate: opt.candidate, runtime, planned_cells: manifest.cells.map(c => c.id) });
+  try {
+    for (const [index, cell] of manifest.cells.entries()) {
+      assert(!stopRequested, 'Stop requested; no remaining cells will launch');
+      helper.identity(manifest, manifestPath); assert.equal(sha(__filename), ownHash);
+      assert(!fs.existsSync(cell.output_path), 'Cell output already exists: ' + cell.id);
+      const fixture = manifest.cases.find(c => c.id === cell.case);
+      const stem = String(index + 1).padStart(2, '0') + '-' + cell.id;
+      const stdout = path.join(run, stem + '.stdout.log'), stderr = path.join(run, stem + '.stderr.log');
+      let executable, args, env = { ...environment };
+      if (cell.role === 'native') {
+        executable = opt.powershell;
+        args = ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', path.join(manifest.repository, 'tools/campaign/run-s22-profile.ps1'),
+          '-TestBinary', manifest.binaries.native_test.path, '-CandidateRevision', opt.candidate,
+          '-InputSave', fixture.input.path, '-InputSha256', fixture.input.sha256,
+          '-EvidenceRoot', cell.output_path, '-Mode', 'measure', '-RenewBudget', '-RequireCertified'];
+      } else {
+        executable = process.execPath; args = [path.join(manifest.repository, 'tools/ui/s22-performance-browser.cjs')];
+        Object.assign(env, { SPHERES_BINARY: manifest.binaries.server.path, SPHERES_EXPECTED_REVISION: opt.candidate,
+          SPHERES_S22_CHECKPOINT: fixture.input.path, SPHERES_S22_CHECKPOINT_SHA256: fixture.input.sha256,
+          SPHERES_S22_OUTPUT: cell.output_path, SPHERES_S22_QUALIFY: '1', SPHERES_BROWSER_CHANNEL: 'msedge' });
+        if (cell.role === 'renderer') env.SPHERES_S22_RENDERERS = '1';
+      }
+      const invocation = { id: cell.id, index, round: cell.round, case: cell.case, role: cell.role,
+        output_path: cell.output_path, executable, args, working_directory: manifest.repository,
+        environment: Object.fromEntries(Object.entries(env).filter(([key]) => /^SPHERES_|^NODE_PATH$/.test(key))), stdout, stderr };
+      append({ event: 'cell_start', ...invocation });
+      launchedCells += 1;
+      let outcome;
+      try { outcome = await child(executable, args, manifest.repository, env, stdout, stderr); }
+      catch (error) { append({ event: 'cell_exit', id: cell.id, exit_code: null, launch_error: String(error.stack || error) }); throw error; }
+      append({ event: 'cell_exit', id: cell.id, ...outcome });
+      helper.identity(manifest, manifestPath); assert.equal(sha(__filename), ownHash);
+      const result = checkResultEnvelope(helper, manifest, cell, fixture, outcome);
+      rows.push({ id: cell.id, ...outcome, ...result });
+      append({ event: 'cell_result', id: cell.id, ...result });
+    }
+    const verdict = helper.verify(manifestPath);
+    exclusiveJson(path.join(run, 'verdict.json'), verdict);
+    append({ event: 'pair_end', status: verdict.status, passed: verdict.passed, executed_cells: rows.length,
+      verdict: path.join(run, 'verdict.json'), verdict_sha256: sha(path.join(run, 'verdict.json')) });
+    process.exitCode = verdict.passed ? 0 : 1;
+  } catch (error) {
+    append({ event: 'pair_halted', launch_attempts: launchedCells, recorded_results: rows.length,
+      status: 'structural_error_or_interrupted', error: String(error.stack || error) });
+    process.exitCode = 2;
+  } finally {
+    exclusiveJson(path.join(run, 'run-summary.json'), { attempt_id: manifest.attempt_id, finished_utc: new Date().toISOString(),
+      launch_attempts: launchedCells, executed_cells: rows, complete: rows.length === 18, exit_code: process.exitCode ?? 2,
+      scope: 'Orchestration only. The immutable verifier verdict is authoritative; no failed evidence is rewritten or promoted.' });
+    process.removeListener('SIGINT', sigint); process.removeListener('SIGTERM', sigterm);
+    fs.closeSync(journal);
+  }
+}
+if (require.main === module) main().catch(error => { console.error(error.stack || error); process.exitCode = 2; });

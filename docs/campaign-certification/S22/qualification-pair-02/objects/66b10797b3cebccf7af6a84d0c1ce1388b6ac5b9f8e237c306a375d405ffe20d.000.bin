@@ -1,0 +1,203 @@
+{
+  "schema": "spheres-s22-qualification-config/v1",
+  "attempt_id": "s22-qualification-pair-02",
+  "repository": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+  "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "protocol_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/docs/campaign-certification/S22/measurement-protocol.json",
+  "hardware_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-hardware-qualification-02.json",
+  "source_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s19-flight-funded-recovery/france-t9dIxt/server/saves/s19-flight-qualified.json",
+  "lineage_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/reviewed-lineage.json",
+  "provenance_paths": [
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01-interruption.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-late-input-reviewed/manifest.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-run-declared-pair.cjs",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-run-declared-pair.md",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-run-declared-pair-syntax-check.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-build-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-focused-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-workspace-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-deployment-actual-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-industry-actual-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-arrival-access-actual-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-purchase-route-actual-provenance.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-source-reviews.md",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-art-final-5d11dd6d\\result.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-art-final-5d11dd6d\\findings.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-art-final-5d11dd6d\\audit.cjs",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-run-declared-pair-02-notes.md",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01-runner\\verdict.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01-manifest.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pair02-final-isolated-01\\invocation.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pair02-final-isolated-01\\runner-result.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pair02-final-isolated-01\\profile.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pair02-final-isolated-01\\invocation.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pair02-final-isolated-01\\runner-result.json",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pair02-final-isolated-01\\profile.json"
+  ],
+  "binaries": {
+    "native_test": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+    "server": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\spheres-web.exe"
+  },
+  "cases": [
+    {
+      "id": "early-france-1999",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/campaigns/saves/s22-adopted-input.json"
+    },
+    {
+      "id": "mid-france-2015",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/campaigns/saves/s22-2015-01-01.json"
+    },
+    {
+      "id": "late-france-2035",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/campaigns/saves/s22-2035-11-30.json"
+    }
+  ],
+  "registry_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-attempt-index.jsonl",
+  "cells": [
+    {
+      "id": "r1-early-france-1999-native",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-early-france-1999-native"
+    },
+    {
+      "id": "r1-early-france-1999-map",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-early-france-1999-map"
+    },
+    {
+      "id": "r1-early-france-1999-renderer",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-early-france-1999-renderer"
+    },
+    {
+      "id": "r1-mid-france-2015-native",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-mid-france-2015-native"
+    },
+    {
+      "id": "r1-mid-france-2015-map",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-mid-france-2015-map"
+    },
+    {
+      "id": "r1-mid-france-2015-renderer",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-mid-france-2015-renderer"
+    },
+    {
+      "id": "r1-late-france-2035-native",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-late-france-2035-native"
+    },
+    {
+      "id": "r1-late-france-2035-map",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-late-france-2035-map"
+    },
+    {
+      "id": "r1-late-france-2035-renderer",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r1-late-france-2035-renderer"
+    },
+    {
+      "id": "r2-early-france-1999-native",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-early-france-1999-native"
+    },
+    {
+      "id": "r2-early-france-1999-map",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-early-france-1999-map"
+    },
+    {
+      "id": "r2-early-france-1999-renderer",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-early-france-1999-renderer"
+    },
+    {
+      "id": "r2-mid-france-2015-native",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-mid-france-2015-native"
+    },
+    {
+      "id": "r2-mid-france-2015-map",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-mid-france-2015-map"
+    },
+    {
+      "id": "r2-mid-france-2015-renderer",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-mid-france-2015-renderer"
+    },
+    {
+      "id": "r2-late-france-2035-native",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-late-france-2035-native"
+    },
+    {
+      "id": "r2-late-france-2035-map",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-late-france-2035-map"
+    },
+    {
+      "id": "r2-late-france-2035-renderer",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-02/r2-late-france-2035-renderer"
+    }
+  ]
+}

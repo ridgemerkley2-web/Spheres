@@ -1,0 +1,77 @@
+# Draft external S22 qualification runner
+
+`s22-run-declared-pair.cjs` remains a draft and has **not launched a qualification pair**.
+The existing `s22-run-declared-pair-syntax-check.json` records a successful
+`node --check` (exit 0) at `2026-09-28T08:41:27.8894411Z`, scoped to syntax only.
+The checked SHA256, `87697d812770a7c3939bcf6498a548c5a6d391b5091a8905e57977f039c2c5f2`,
+still matches the unchanged runner bytes. Syntax acceptance does not establish
+runtime correctness or qualification readiness.
+It creates no manifest and performs no preparation. Root must review the script,
+coordinate a quiet machine, freeze the actual hardware/candidate/inputs, and
+authorize launch separately. This file is outside the repository by request.
+
+Add the final runner path to the qualification config's `provenance_paths` before
+freeze. The script requires its own bytes to be among the immutable manifest
+records. A later runner edit therefore requires a new pair. Root supplies the
+already frozen manifest, exact declared binary paths, PowerShell 7 executable,
+and bundled `NODE_PATH` directory containing Playwright. Run it using the intended
+Node executable. It records the Node and PowerShell executable hashes and never
+changes the manifest or its registered output roots.
+
+Invocation template (placeholders are not evidence):
+
+```powershell
+& $NodeExe 'C:/absolute/evidence/s22-run-declared-pair.cjs' `
+  --manifest 'C:/absolute/evidence/pair-manifest.json' `
+  --candidate FULL_40_CHARACTER_CANDIDATE_REVISION `
+  --native 'C:/absolute/immutable/native-test.exe' `
+  --server 'C:/absolute/immutable/spheres-web.exe' `
+  --powershell 'C:/Program Files/PowerShell/7/pwsh.exe' `
+  --node-path 'C:/absolute/bundled/node_modules' `
+  --journal-directory 'C:/absolute/evidence/new-pair-runner-logs'
+```
+
+The journal directory's parent must already exist. The directory itself and all
+18 declared cell roots must be absent. The runner logs must be disjoint from the
+cell roots; in particular browser parents must contain only their one generated
+`browser-*` directory. Existing outputs, journals, wrong identities, interleaved
+rounds and changed files are rejected. No resume, retry, replacement, pooled
+summary, alternate candidate, threshold adjustment or promoted preflight exists.
+
+Cells launch serially in exact manifest order, all nine initial cells before
+confirmation. Native arguments enforce `measure`, ordinary budget renewal and
+certified capabilities. Browser children get qualification mode, msedge, the
+exact expected revision/input SHA/binary/output parent and explicit bundled
+`NODE_PATH`; renderer mode is set only for renderer cells. Stale `SPHERES_*` and
+`NODE_OPTIONS` values are removed from child environments. All child launches use
+`shell: false` and `windowsHide: true`; no visible helper windows are requested.
+
+`journal.jsonl` is create-only and append-only, with flushed start/exit/result
+events per cell. Stdout/stderr files are create-only and outside cell outputs.
+Known native numerical-limit failures and the harness's explicit browser final
+performance failures remain failed measurements and do not select replacements;
+the rest of the declared pair continues. Missing/malformed evidence, an unknown
+error, an interrupted child, wrong identity or incomplete structural native test
+halts the pair and retains all files. A viewer FPS failure occurs before some
+later outer-browser observations; it is retained as a failed measurement, never
+treated as complete qualification. A failed cell can never be promoted by this
+script's result classification; the unchanged verifier makes the final verdict.
+Failed native numerical results still require finite consecutive daily rows,
+certified facts, exact raw summaries, batch equivalence and intact memory CSV
+observations before continuation. A failed final map result requires complete
+memory/cold-load/layout evidence and valid workload/raw draw observations; the
+final assertion's inclusion of missing accounting does not turn a structural
+failure into an ordinary FPS failure. Functional interruptions halt for review.
+
+The runner performs identity hashing and evidence inspection only between cells,
+not concurrently with measurements. It neither kills other applications nor
+times out a measurement. SIGINT/SIGTERM requests stop the next launch and lets the
+owned active child finish naturally. Force-closing the runner can leave a start
+without an exit record; that attempt must be retained and investigated, not
+resumed into these paths. Browser-driver cleanup remains the existing driver's
+responsibility and applies only to its own disposable processes.
+
+Exit 0 means the immutable helper passed both complete rounds; exit 1 means the
+pair completed with a failed verdict; exit 2 means a structural/interruption
+halt. `verdict.json` is written only after all 18 launches complete. The run summary
+is orchestration metadata, not an independent S22 acceptance decision.
