@@ -368,7 +368,7 @@ Limits: Declaration 142-N of the Council of Republics and order 141-N (26 Decemb
 
 31 sources as submitted and 30 after the source review, each with a checked-in derived factual extract under [sources/](sources/)
 (`ussr-*-facts.json`, LF, format `spheres-c01-derived-factual-table/v1`, with its own checksum in the packet; 196,601 bytes in
-all as submitted, 257,484 bytes for the 30 extracts with the review's notes). Each extract
+all as submitted, 258,161 bytes for the 30 extracts with the review's notes). Each extract
 records the original response's URL, byte count and SHA-256, the attached responses, a stability record and one row per claim
 (claim_id, observation, role, `holder_name` with the printed form or `persons_named`, role title, event kind, date, text,
 locator). Original pages, PDFs and images are not checked in; no emblem, seal, signature image or photograph is republished.
@@ -431,7 +431,7 @@ qualify (see [Source review](#source-review-claude-c01-source-26)); acceptance r
 ## Response identities and stability checks
 
 Every recorded response was downloaded at least three times, and each identity is the response of a stored page or file, not
-one generated per request, with one disclosed exception (Izvestia, below):
+one generated per request; the one exception at submission, Izvestia, was withdrawn by the source review (below):
 
 - the dossier's downloads, including a delayed re-download 30 minutes or more after the first and, for the static files,
   cache-busting requests;
@@ -668,11 +668,11 @@ Method. Every recorded response and every attached response was downloaded again
 User-Agent, an explicit `Accept-Encoding: identity` header, no cookies, no cache-busting query), in a first pass at
 2026-09-27T23:40:28Z-23:42:16Z and a second at 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are 32 to 36
 minutes apart. Byte counts and SHA-256 were compared with the extracts. No browser User-Agent was sent to any host, and no
-block was worked around. The cited pages of every scanned PDF were rendered from the recorded bytes with pypdfium2 at the
-scan's native resolution and read from the page images, not from the OCR layer; the facsimile images were viewed again; and
-every Russian quotation in the HTML sources was matched against the response text. Each remaining source record now carries a
-`source_review` note and each extract a `source_review` object with the method, both download times, the identities, the
-content comparison and any correction.
+block was worked around. The cited pages of every scanned PDF were rendered from the recorded bytes with pypdfium2 (the
+Vedomosti at 150 dpi, half their page images' native 300 dpi) and read from the page images, not from the OCR layer; the
+facsimile images were viewed again; and every Russian quotation in the HTML sources was matched against the response text.
+Each remaining source record now carries a `source_review` note and each extract a `source_review` object with the method,
+both download times, the identities, the content comparison and any correction.
 
 ### Part 1: the Vedomosti scans and the Russian Historical Society copies
 
@@ -689,15 +689,15 @@ missing ones, and bulletin No. 1's title page carries a library accession stamp.
 | Issue | Edition as printed | Printed pages | Cited pages read from the page images | Identity (both passes identical) |
 |---|---|---|---|---|
 | No. 35, 28 Aug 1991 | Cover "ISSN 0235-9936", "№ 35", "28 августа 1991 г.", "ИЗДАНИЕ ВЕРХОВНОГО СОВЕТА СССР МОСКВА"; contents "ГОД ИЗДАНИЯ 3-й"; imprint (p. 1411) "Еженедельное издание Верховного Совета СССР", "Отдел опубликования актов Секретариата Верховного Совета СССР", "28.08.91", "Зак 2981", printer "типография «Известий Советов народных депутатов СССР» имени И. И. Скворцова-Степанова"; back cover "20 к.", "Индекс 70163"; arts. 981-1027 | 1409-1431 on PDF pp. 3-25 (running head = PDF page + 1406); PDF p. 26 blank; 28 PDF pages | PDF pp. 7, 8, 14, 15, 17, 18, 23, 25 (pp. 1413-1431): legible; one quotation corrected | IA capture 20211204065955, 618,372 bytes, `5a8c0630…c55a63`; live file the same |
-| No. 36, 4 Sep 1991 | Cover "ISSN 0235-9936", "№ 36", "4 сентября 1991 г."; "ГОД ИЗДАНИЯ 3-й"; imprint (p. 1435) as No. 35 with "04.09.91", "Зак 3385"; back cover "20 к.", "Индекс 70163"; arts. 1028-1068 | 1433-1470 on PDF pp. 3-40 (PDF page + 1430); PDF pp. 41-42 blank; 44 PDF pages | PDF pp. 13, 15, 17, 38, 39, 40 (pp. 1443-1470): legible; one quotation corrected | IA capture 20250820135020, 1,303,663 bytes, `87abb4c1…075b6f`; live file the same |
+| No. 36, 4 Sep 1991 | Cover "ISSN 0235-9936", "№ 36", "4 сентября 1991 г."; "ГОД ИЗДАНИЯ 3-й"; imprint (p. 1435) as No. 35 with "04.09 91.", "Зак 3385"; back cover "20 к.", "Индекс 70163"; arts. 1028-1068 | 1433-1470 on PDF pp. 3-40 (PDF page + 1430); PDF pp. 41-42 blank; 44 PDF pages | PDF pp. 13, 15, 17, 38, 39, 40 (pp. 1443-1470): legible; one quotation corrected | IA capture 20250820135020, 1,303,663 bytes, `87abb4c1…075b6f`; live file the same |
 | No. 37, 11 Sep 1991 | Cover "ISSN 0235-9936", "№ 37", "11 сентября 1991 г."; "ГОД ИЗДАНИЯ 3-й"; imprint (p. 1474) with "11.09.91", "Зак. 3418"; back cover "20 к.", "Индекс 70163"; arts. 1069-1095; a reader's pencil circles in the contents | 1473-1502 on PDF pp. 3-32 (PDF page + 1470); PDF pp. 33-34 blank; 36 PDF pages | PDF pp. 15, 17, 18, 26, 31, 32 (pp. 1485-1502): legible; two quotations corrected | live file, 999,248 bytes, `3e77c34e…b603b0`; raw capture 20240915135709 the same |
 | No. 41, 9 Oct 1991 | "Ведомости Верховного Совета СССР"; cover "ISSN 0235-9936", "№ 41", "9 октября 1991 г."; "ГОД ИЗДАНИЯ 54-й"; imprint (p. 1566) with "09.10.91", "Зак. 3978"; back cover "20 к.", "Индекс 70163"; arts. 1151-1164 | 1565-1584 on PDF pp. 3-22 (PDF page + 1562); 24 PDF pages | PDF p. 20 (p. 1582): legible | live file, 556,781 bytes, `91cf6571…ff902e`; raw capture 20240906045835 the same |
 
-Relation to the printed gazette. Each PDF is a sequence of full-page images of a printed issue, one image per page at 150 dpi
-(two image layers on the covers), with an invisible OCR text layer made by ABBYY FineReader 11 (PDF metadata; the files were
-created on 2 November 2016 and 1 January 2017). The images show the running heads, article numbers, signature, date and number
-blocks, the imprint and even a reader's pencil marks, so they reproduce the printed issue rather than re-typeset it. The OCR
-layer is only a search aid.
+Relation to the printed gazette. Each PDF is a sequence of full-page images of a printed issue, one image per page (the printed
+pages 300 dpi bitonal, the covers layered colour images), with an invisible OCR text layer made by ABBYY FineReader 11 (PDF
+metadata; the files were created on 2 November 2016 and 1 January 2017). The images show the running heads, article numbers,
+signature, date and number blocks, the imprint and even a reader's pencil marks, so they reproduce the printed issue rather than
+re-typeset it. The OCR layer is only a search aid.
 
 The Russian Historical Society copies (arts. 59 and 60 of *Собрание постановлений Правительства РСФСР* 1990 No. 8) come from
 the Society's Электронная библиотека исторических документов (docs.historyrussia.org, on the ИнфоРост platform), a
@@ -708,7 +708,9 @@ wide, the largest the document page links), static files uploaded on 23 May 2024
 times). Printed pp. 194 and 202 (art. 59) and 203 and 214 (art. 60, running head "№ 8 — 203 — Ст. 60") were viewed at 3x
 magnification: the headings, titles, both signature blocks ("Председатель Совета Министров СССР Н. Рыжков", "Председатель
 Совета Министров РСФСР А. Власов") and the place, date and number lines are legible, the body text legible with effort. All four
-images (30,424, 37,089, 31,779 and 38,198 bytes) were identical on both passes.
+images (30,424, 37,089, 31,779 and 38,198 bytes) were identical on both passes. None of the four photographed pages prints the
+issue's date or a printer's imprint, and the library's volume record gives only the publisher ("Юрид. лит.") and no year, so
+neither is documented for these copies.
 
 Why these PDFs can qualify as primary facsimiles while the same host's HTML stays excluded. A facsimile carries the official
 publication itself: the gazette's own pages with its title, issue number, date, imprint, page numbers and the printed signature
@@ -781,8 +783,8 @@ letter-spaced and capitalised heading words aside); the Rada and GARF quotations
 
 ### Files, identities and checks
 
-Changed: `ussr.json` (199,067 bytes, SHA-256 `6a648d4b…6e7cc9`; 40 sources and 95 claims, from 41 and 98), the 30 remaining
-extracts (257,484 bytes in all with their review notes), the removed `ussr-izvestia-no13-19910115-facts.json`, this report,
+Changed: `ussr.json` (199,067 bytes, SHA-256 `68b7d66a…69c0b8`; 40 sources and 95 claims, from 41 and 98), the 30 remaining
+extracts (258,161 bytes in all with their review notes), the removed `ussr-izvestia-no13-19910115-facts.json`, this report,
 `test_ussr_government_supreme_soviet_c01_26.py` (counts 30/74 and 40/95, the withdrawn record's absence, `ROW_HOLDERS`, the
 review notes' pairs of downloads at least 30 minutes apart, `yandex.ru/archive` among lead markers; four mutations' holder indices
 and one mutation's claim follow the removal, and all 41 mutations still fail), `test_ussr_research_s10h.py` (40/95, 30 table extracts, 95

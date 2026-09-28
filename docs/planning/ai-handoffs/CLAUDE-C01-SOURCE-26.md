@@ -37,9 +37,15 @@ remaining gaps.
 
 ## Submission (ready_for_review)
 
-Result commits on `claude/c01-source-26`, after the claim commit `529a3ebb`: "Review source for CLAUDE-C01-SOURCE-26" (every
-file below except the index) and "Regenerate the C01 research index for CLAUDE-C01-SOURCE-26" (`research-index.json` only), the
-two commits at the branch head at submission. Report: the new section "Source review (CLAUDE-C01-SOURCE-26)" at the end of
+Result commits on `claude/c01-source-26`, after the claim commit `529a3ebb`: "Review source for CLAUDE-C01-SOURCE-26"
+(`4bb1b3a7`; every file below except the index) and "Regenerate the C01 research index for CLAUDE-C01-SOURCE-26" (`c1f537f2`;
+`research-index.json` only), the two commits at the branch head at submission. The verifier's fixes follow in two more commits:
+"Apply verifier fixes to CLAUDE-C01-SOURCE-26" (the Vedomosti page images described as 300 dpi bitonal, the No. 36 imprint date
+quoted as printed, the Russian Historical Society copies' undocumented issue date and imprint, and the report's per-request
+exception marked withdrawn; six extracts, `ussr.json`, the report and this record) and "Regenerate the C01 research index after
+CLAUDE-C01-SOURCE-26 fixes" (`research-index.json` only). When the fixes were made, `codex/campaign-certification` was at
+`e41aa18d`; its commits since `a33a8987` touch none of this repair's files, so no merge was needed. Report: the new section
+"Source review (CLAUDE-C01-SOURCE-26)" at the end of
 `docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md`. Codex decides acceptance; the
 tests that admit the scans are not historical proof.
 
@@ -55,13 +61,13 @@ Part 1, provenance and legibility (details in each extract's `source_review.prov
 
 - vedomosti.sssr.su (the SSSR.SU portal: self-described "прообраз официального сайта", non-commercial, registered as the media
   outlet "Информационное агентство «СССР»", ИА № ФС77-40345; not a state body or the publisher) serves page-image PDFs of 1991
-  Nos. 35-38 and 41 only; its HTML pages are a retyped transcription. Each PDF is one 150 dpi image per printed page with an
-  ABBYY FineReader 11 OCR layer, not a re-typeset text.
+  Nos. 35-38 and 41 only; its HTML pages are a retyped transcription. Each PDF is one 300 dpi bitonal image per printed page
+  (covers in colour layers) with an ABBYY FineReader 11 OCR layer, not a re-typeset text.
 - No. 35 (28 Aug 1991; imprint p. 1411 "28.08.91", "Зак 2981", the Izvestia printing house, Pushkinskaya pl. 5; printed pp.
   1409-1431 on PDF pp. 3-25): IA capture `https://web.archive.org/web/20211204065955id_/https://vedomosti.sssr.su/1991/35.pdf`,
   618,372 bytes, SHA-256 `5a8c0630da633ac68ef5c0514c05107497a9e84cda82541d561bc22013c55a63`, and the live file identical on both
   passes; cited PDF pp. 7, 8, 14, 15, 17, 18, 23, 25 legible.
-- No. 36 (4 Sep 1991; imprint p. 1435 "04.09.91", "Зак 3385"; pp. 1433-1470 on PDF pp. 3-40): IA capture 20250820135020,
+- No. 36 (4 Sep 1991; imprint p. 1435 "04.09 91.", "Зак 3385"; pp. 1433-1470 on PDF pp. 3-40): IA capture 20250820135020,
   1,303,663 bytes, `87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f`, live file identical; cited PDF pp. 13, 15,
   17, 38, 39, 40 legible.
 - No. 37 (11 Sep 1991; imprint p. 1474 "11.09.91", "Зак. 3418"; pp. 1473-1502 on PDF pp. 3-32): live file
@@ -74,7 +80,7 @@ Part 1, provenance and legibility (details in each extract's `source_review.prov
   the bound volume "Собрание постановлений правительства РСФСР за 1990 г. № 1-25. — М.: Юрид. лит., б. г. — 648 с.", No. 8,
   printed pp. 202 and 194 (art. 59; 30,424 bytes `d795d3dd…91a236`, 37,089 bytes `55bda52a…30a892`) and 214 and 203 (art. 60;
   31,779 bytes `20bd55b2…78d65f`, 38,198 bytes `3ab7bcd6…f404f9d2`), 328 px wide; headings, signatures, dates and numbers legible
-  at 3x magnification.
+  at 3x magnification; the photographed pages print neither the issue's date nor a printer's imprint.
 - Why the PDFs and not the host's HTML: the PDFs are images of the official publication (its own pages, imprint and page
   numbers), so every quotation can be checked against the page; the HTML is the host's own text. The review found the OCR text
   wrong in five quotations (below), exactly what a transcription would carry unchecked.
@@ -107,8 +113,8 @@ has a comma) and `su_sten2_presidium_removal_not_approved_no_quorum_19910826` (C
 PDF p. 43). No date, holder, event kind or locator changed.
 
 Files: `docs/campaign-certification/C01/research/ussr.json` (40 sources, 95 claims; 199,067 bytes, SHA-256
-`6a648d4b01a0488bdd99105dc12312de591871d191428c6986ac9c050a6e7cc9`); the 30 remaining `ussr-*-facts.json` extracts of
-CLAUDE-C01-26 (each with a `source_review`; 257,484 bytes in all) and the removed `ussr-izvestia-no13-19910115-facts.json`; the
+`68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8`); the 30 remaining `ussr-*-facts.json` extracts of
+CLAUDE-C01-26 (each with a `source_review`; 258,161 bytes in all) and the removed `ussr-izvestia-no13-19910115-facts.json`; the
 report; `tools/avatars/test_ussr_government_supreme_soviet_c01_26.py` and `tools/avatars/test_ussr_research_s10h.py` (changed
 values, the `ROW_HOLDERS` pin and stricter absence guards; nothing loosened); this record; and, outside this record's list but
 named by its defect list, `docs/planning/ai-handoffs/CLAUDE-C01-26.md` (defects 1, 5 and 6). Separate commit:
@@ -117,7 +123,9 @@ named by its defect list, `docs/planning/ai-handoffs/CLAUDE-C01-26.md` (defects 
 
 Checks (28 September 2026 UTC, sparse worktree with game data, not widened): `campaign_research.py` regeneration and `--check`
 (1,328 sources, 3,728 claims); `campaign_census.py --check` exit 0; USSR tests 27, Russia 29, research 79, campaign 16 (census
-included), all pass; atlas Node check 11 pass; `workboard.py --check` pass (44 markers); `git diff --check` clean on these paths.
+included), all pass; atlas Node check 11 pass; `workboard.py --check` pass (44 markers); `git diff --check` clean on these
+paths. Rerun after the verifier's fixes, also on 28 September 2026 UTC: the same results (the index regeneration changes only
+`ussr.json`'s SHA-256).
 
 Remaining gaps: SU-GOV-05 needs an official facsimile of Vedomosti 1991 No. 4 (art. 80); Codex's rulings on the withdrawn
 Izvestia identity, the SSSR.SU and RHS facsimiles (C12) and the C01-05 guard loosening; an earlier permissible attestation of
