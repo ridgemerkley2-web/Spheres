@@ -284,7 +284,11 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
   const expected=structuredClone(before),actual=structuredClone(after);delete expected.saved_unix;delete actual.saved_unix;
   assert.deepEqual(actual,expected,'Read/navigation/review/cancel must preserve the complete campaign envelope');
   const writes=evidence.requests.slice(requestStart);
-  assert(writes.every(r=>['/api/save','/api/load','/api/construction-preview'].includes(r.route)),'Only visible saves, campaign load and read-only construction previews are permitted');
+  // Campaign entry refreshes the ministry quote; equipment entry reviews its
+  // default design. These POST endpoints borrow the world immutably in main.rs
+  // just like construction-preview. No quote is an order or a time advance.
+  assert(writes.every(r=>['/api/save','/api/load','/api/construction-preview','/api/program-preview','/api/equipment-preview'].includes(r.route)),
+    'Only visible saves/load and the three verified read-only preview endpoints are permitted');
   assert(!writes.some(r=>r.route==='/api/advance'||r.route==='/api/command'));
   proof.permitted_requests=writes;proof.checks.push('Before/after saves match completely except validated storage timestamp; world, history, log and journey are unchanged');
   proof.passed=true;console.log('PASS: native map/province/facility/equipment navigation, keyboard/touch, delayed/error recovery and full saved-campaign purity');
