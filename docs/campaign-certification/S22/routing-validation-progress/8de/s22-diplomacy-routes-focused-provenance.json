@@ -1,0 +1,19 @@
+{
+  "candidate_revision": "8de6f2a0cc1f64932c28755539054fd7c852f3ca",
+  "started_utc": "2026-09-28T07:43:38.8182446Z",
+  "finished_utc": "2026-09-28T07:43:40.1945346Z",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-8de6f2a0\\sim-tests.exe",
+  "filters": [
+    "sovereignty::candidate_tests",
+    "logistics::contract_dispatch_tests",
+    "graph_handoff",
+    "supply_graph_handoff"
+  ],
+  "exit_codes": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "qualification": false
+}

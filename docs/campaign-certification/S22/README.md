@@ -5,8 +5,9 @@
 This progress snapshot includes completed actual input preparation through
 **30 November 2035**, the full `9823b070` release regression, both failed
 isolated 2015/2035 latency preflights, and sovereignty parity checks at
-`6de1d997`. The newer combined contract/campaign routing implementation is
-integrated at the `8de6f2a0` snapshot with build/tests still ongoing. No complete
+`6de1d997`. Combined contract/campaign routing passed focused and actual-input
+checks at `8de6f2a0`; the newer `992bc99a` stock guard passed both actual-input
+oracles and the full release workspace regression. No complete
 qualification pair has started and neither S22, G5 nor CP1 is earned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
@@ -30,7 +31,7 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | Both isolated 9823b070 cases complete with memory below both limits but fail latency; newer combined repairs require validation and fresh measurements |
+| Native 31-day timing and headless memory | Both isolated 9823b070 cases complete with memory below both limits but fail latency; newer combined repairs pass correctness checks and require fresh measurements |
 | Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
 | City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
 | S22 closure | **Not earned** |
@@ -95,8 +96,19 @@ not the repair's performance effect.
 Contract freight dispatch now reuses only nominal searches within one posting
 pass, and immediate military supply can consume deployment's already-built
 graph. Both implementations and their fixture adapters are integrated at
-8de6f2a0; root's combined build/tests are ongoing at this evidence cutoff.
-Their source reviews do not substitute for executed checks or qualification.
+8de6f2a0. The [routing validation packet](routing-validation-progress/README.md)
+records nine unique focused test passes and six actual-2015/2035 31-day oracle
+passes. The later 992bc99a empty-stock guard passed two additional actual-input
+oracles and the full release workspace regression: **1,933 passed, 0 failed,
+100 ignored across 66 suites**. These correctness checks do not establish a
+performance improvement or qualification.
+
+The [checkpoint storage record](checkpoint-storage-progress/README.md) retains
+both maintenance attempts and restore instructions for 34 intermediate annual
+checkpoints now stored losslessly in adjacent local gzip files. The first attempt
+changed no files; the successful attempt recovered 3.60 GB of payload. Canonical
+1999/2006/2015/end-2035 saves, both resume inputs and original S19 remain unchanged.
+This local storage operation does not qualify runtime performance.
 
 The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
 all 18 cells across two unchanged-candidate rounds, with raw evidence, complete

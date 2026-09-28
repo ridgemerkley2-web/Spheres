@@ -1,0 +1,56 @@
+{
+  "format": "s22-protected-input-preservation-check/v1",
+  "verified_utc": "2026-09-28T08:03:45.440Z",
+  "qualification": false,
+  "scope": "Fresh read-only hash checks of six preserved task-directory saves plus original S19; all34 adjacent compressed artifacts rehashed against completed compression manifest. Original gzip roundtrips were verified before removals, not rerun by this packaging step.",
+  "protected_task_saves": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "verified_current_bytes": 114060874,
+      "verified_current_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "verified_current_bytes": 63066434,
+      "verified_current_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "verified_current_bytes": 130222370,
+      "verified_current_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 114060874,
+      "sha256": "90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f",
+      "verified_current_bytes": 114060874,
+      "verified_current_sha256": "90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "bytes": 145134799,
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "verified_current_bytes": 145134799,
+      "verified_current_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 130222370,
+      "sha256": "e3f977d81def8f5efa5906bd1ce9d0b8e6fa8bada23d30fca9531588b3695b31",
+      "verified_current_bytes": 130222370,
+      "verified_current_sha256": "e3f977d81def8f5efa5906bd1ce9d0b8e6fa8bada23d30fca9531588b3695b31"
+    }
+  ],
+  "original_s19": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s19-flight-funded-recovery/france-t9dIxt/server/saves/s19-flight-qualified.json",
+    "bytes": 63066286,
+    "sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c"
+  },
+  "retained_gzip_hashes_verified": 34
+}
