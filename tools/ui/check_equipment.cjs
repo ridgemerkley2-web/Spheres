@@ -1265,6 +1265,31 @@ test('S18 flight pages separate live records, retain local drafts, and never inv
   c.eq.busy=false;c.S={session_id:'other',player:'Japan'};c.equipmentResetCampaign();assert.equal(c.eq.flightPage,'command');assert.equal(c.eq.flightAircraft,null);
 });
 
+test('supplier input recovery preserves industry, component and construction targets without orders',async()=>{
+  const c=shellFixture();loaded(c);
+  for(const action of [{action:'industry'},{action:'trade',good:'advanced_components',quantity:0.4441}]){
+    c.room.hidden=false;c.eq.open=true;
+    assert.equal(await c.equipmentNavigate(action),true);
+    assert.deepEqual(c.calls.at(-1),['budget',action]);
+  }
+  c.room.hidden=false;c.eq.open=true;
+  await c.equipmentNavigate({action:'construction',kind:'advanced_industry'});
+  assert.deepEqual(c.calls.at(-1),['construction',{kind:'advanced_industry'}]);
+  assert.equal(c.requests.length,0);
+});
+
+test('supplier input cards preserve small shortages, compact large stock and disclose missing readings',()=>{
+  const c=fixture();
+  const rows=[{name:'Advanced components',unit:'components',required:0.4441,available:0,missing:0.4441},
+    {name:'Iron <untrusted>',unit:'resource units',required:55,available:30554889.0925,missing:null}];
+  const before=plain(rows),html=c.equipmentSupplierInputsHtml(rows);
+  assert.match(html,/0\.4441/);assert.match(html,/30\.5549M/);
+  assert.match(html,/title="30554889\.0925"/);assert.match(html,/eq-supplier-input--short/);
+  assert.match(html,/Iron &lt;untrusted&gt;/);assert.match(html,/>—<\/dd>/);
+  assert(!html.includes('NaN'));assert.deepEqual(rows,before);
+  assert.equal(c.equipmentSupplierInputsHtml([]),'');
+});
+
 test('s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight',async()=>{
   const c=shellFixture();loaded(c,flightSnapshot());c.room.hidden=false;c.eq.draft.name='Unfinished aircraft';
   const commands=[

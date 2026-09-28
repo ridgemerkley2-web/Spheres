@@ -55,6 +55,9 @@ observations. The initial failing run is retained alongside the successful resul
 
 ### Remaining limitation found during this run
 
+**Resolved prospectively at `24d05428`:** [payment retention qualification](PAYMENT_RETENTION.md).
+The following describes the earlier `72d3414d` run, not the current behavior.
+
 Once the completed project leaves the active queue, its earlier `work_paid`
 milestone reads **Not yet**, although completion and output remain achieved.
 The current native reader enumerates active projects only. Preserve or recover

@@ -1,0 +1,60 @@
+{
+  "runtime_revision": "2cb1da4a2234bbc7d312f019126113f4ed2ed765",
+  "runtime_fix_commit": "8b93372e8cf616eb67bd52567c7466ee551931f0",
+  "first_hour_passed": true,
+  "first_hour_driver_commit": "2cb1da4a2234bbc7d312f019126113f4ed2ed765",
+  "first_hour_driver_sha256": "d6f946d59790602b60d0acf04508da4ba84156f09e70278a632de04900dbc9cb",
+  "driver_provenance": "Raw evidence hardcodes driver_committed=false. The captured raw hash was independently matched, and normalized bytes equal the committed Git blob. Only CRLF-to-LF normalization was needed for that Git comparison.",
+  "focused_tests": {
+    "company_web_passed": 16,
+    "company_web_existing_ignored": 1,
+    "company_sim_passed": 11,
+    "guidance_outcomes_passed": 25,
+    "equipment_company_guidance_ui_passed": 218
+  },
+  "limitation": "First-hour regression is not later procurement, flown-mission or full campaign certification.",
+  "saves": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-contractor-first-hour-20260927\\france-LGWpmV\\server-y3ePTA\\saves\\s19-first-hour.json",
+      "sha256": "a76d2ddcc51b2ca66ac053e57618206b599993355fdf9cf358f9472451eeba55",
+      "bytes": 16322042
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-contractor-first-hour-20260927\\france-LGWpmV\\server-y3ePTA\\saves\\s19-preview-after.json",
+      "sha256": "c893722771a59d5cfae0e91ab6c97a481dc69b64ca16433465536b290ccb7c9f",
+      "bytes": 13529675
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-contractor-first-hour-20260927\\france-LGWpmV\\server-y3ePTA\\saves\\s19-preview-before.json",
+      "sha256": "fcb8dac0778170c8f14714a559f34d548a04aa03c47218eb164973b3a28c0ef7",
+      "bytes": 13529675
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-contractor-first-hour-20260927\\france-LGWpmV\\server-y3ePTA\\saves\\s19-read-after.json",
+      "sha256": "e2806360dcde12ef8f1c3f412af96b9c0c5860d157d2660b007f4d37c0e53528",
+      "bytes": 13181864
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-contractor-first-hour-20260927\\france-LGWpmV\\server-y3ePTA\\saves\\s19-read-before.json",
+      "sha256": "b3062e7e542378306cb0959574a082658f51c0b26fe6e48ca7e3d37a7ac357ac",
+      "bytes": 13181864
+    }
+  ],
+  "files": {
+    ".gitattributes": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342",
+    "exploratory-investment-refusal.png": "c3934c0e5bcbf173f234eb7252f701ec57470f9e27e0316ce9c02f612212468d",
+    "exploratory-plant-result.json": "86b2bc5ba3378fce5da571f15e481603528531f0bac448971aa3fe8204073089",
+    "first-hour-driver.cjs": "d6f946d59790602b60d0acf04508da4ba84156f09e70278a632de04900dbc9cb",
+    "guidance-loaded.json": "f0bdddecae435da8aabb699891fa32c04b1e86c597f135d5af03b7b3ebdc1be8",
+    "guidance-narrow.json": "81452021430e3677cae6a14356ca87b0ab49c599b1d84e4a63d8bbc1271082b8",
+    "narrow-route-panel.png": "47972b51ab9facca79f69085cfadf284d74e949abb1488755ccad1557580892a",
+    "result.json": "92a87bbfdd660b1ac7e295d9d1e9ae4d0e354bf8d66bc12a3c9aeb953fa5e749",
+    "route-final-desktop.png": "f9aad0948481d1051351cd95ed132b682c706babc60d947a25439fc14f3631a6",
+    "s19-contractor-build-clean.log": "3e89f6d06041ee86a402b6fef51650e2bd5a6a98e956c088886c785fdae63394",
+    "s19-contractor-first-hour.log": "331dcfa000b9168caeef0a611eedc18069889c87ad676360e8b1abb943a02446",
+    "s19-contractor-native-tests.log": "bafbd1789bdeaa07dfd0d1ac3fc09e9993de8b0302cbdb187507a923e977292b",
+    "s19-contractor-prerequisite-tests.log": "61f0a35ee315c1910eb80c498d26952b6b160da77d57041bbc2dd102057185b7",
+    "s19-contractor-ui-tests.log": "bf37a7ac39537de4ddb426fbd1c0c1685ad1a8db08a08bff4994816ab5c2a11e",
+    "s19-procurement-guidance-tests.log": "3d926f36ace5219ac7e4dd4a0319a476f5bcb467243d40496c838c2568f2dd91"
+  }
+}

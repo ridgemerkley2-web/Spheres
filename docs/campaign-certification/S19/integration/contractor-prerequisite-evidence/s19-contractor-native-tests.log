@@ -1,0 +1,385 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 28s
+     Running unittests src\lib.rs (target\debug\deps\spheres_sim-5be7f0e1cd6d9f7f.exe)
+
+running 11 tests
+test companies::tests::unavailable_quotes_and_refused_orders_do_not_enroll_the_company_layer ... ok
+test companies::tests::unused_company_book_is_sparse_and_does_not_move_the_world ... ok
+test companies::tests::ordinary_transactions_do_not_upgrade_old_tank_books_and_unsupported_designs_are_atomic ... ok
+test companies::tests::ammunition_license_is_sparse_free_of_stock_and_preserves_old_equipment_schema ... ok
+test companies::tests::s08_development_working_capital_matches_original_quote_arithmetic_and_token ... ok
+test companies::tests::s08_disposable_company_trial_preserves_refusals_and_never_settles_live_money ... ok
+test companies::tests::s08_idle_capitalization_preserves_other_buyers_import_settlement_and_refunds ... ok
+test companies::tests::all_implemented_families_freeze_the_existing_profile_without_another_factory_or_free_stock ... ok
+test companies::tests::s08_idle_capitalization_falls_back_for_global_budget_and_receipt_effects ... ok
+test companies::tests::s08_retained_company_trial_matches_native_dispatch_and_future_settlement ... ok
+test companies::tests::s08_idle_capitalization_matches_native_errors_and_future_settlement ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 1021 filtered out; finished in 1.80s
+
+     Running tests\agency.rs (target\debug\deps\agency-6c340241f6e15a6e.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+     Running tests\ammunition_reserves.rs (target\debug\deps\ammunition_reserves-8bc2c960e1cd007b.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\aviation_ammunition.rs (target\debug\deps\aviation_ammunition-d42f220cd7b020d9.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\bloc_census.rs (target\debug\deps\bloc_census-cb539f86ad1cca60.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests\campaign_aims.rs (target\debug\deps\campaign_aims-5bf1603d718058bd.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+     Running tests\campaign_identity.rs (target\debug\deps\campaign_identity-42a80f42ff8a7909.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+     Running tests\campaign_movement_audit.rs (target\debug\deps\campaign_movement_audit-0980e22ad4b681fe.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\campaign_operations.rs (target\debug\deps\campaign_operations-0ae7a7d6d1639b48.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests\campaign_peace.rs (target\debug\deps\campaign_peace-5a4d5f4076e45bc6.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests\campaign_peace_audit.rs (target\debug\deps\campaign_peace_audit-21bcaf27eee765bf.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests\campaign_population.rs (target\debug\deps\campaign_population-02cf26faca482f3a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests\capital_damage_audit.rs (target\debug\deps\capital_damage_audit-4dce14e76157d28f.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\companies_integration.rs (target\debug\deps\companies_integration-1beab770a2c4477a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 27 filtered out; finished in 0.00s
+
+     Running tests\company_ammunition.rs (target\debug\deps\company_ammunition-886437b22eee6920.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s
+
+     Running tests\company_refits.rs (target\debug\deps\company_refits-c25563e9fd463b33.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.00s
+
+     Running tests\daily.rs (target\debug\deps\daily-00d606c0f72dc5b3.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+     Running tests\daily_balance.rs (target\debug\deps\daily_balance-c31cd442b3a92800.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+     Running tests\economic_ai_supply.rs (target\debug\deps\economic_ai_supply-2f7f7bceb6056a82.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 18 filtered out; finished in 0.00s
+
+     Running tests\economic_competition.rs (target\debug\deps\economic_competition-7ee035132e3b4348.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 18 filtered out; finished in 0.00s
+
+     Running tests\economic_sovereignty.rs (target\debug\deps\economic_sovereignty-7be852efc2470efe.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+     Running tests\economic_sphere_intervention.rs (target\debug\deps\economic_sphere_intervention-215e370c867e3e37.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests\endowment_channel_probe.rs (target\debug\deps\endowment_channel_probe-c4e7a4eae2c07730.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\endowment_margin_probe.rs (target\debug\deps\endowment_margin_probe-7101f51b88df38a6.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\equipment_integration.rs (target\debug\deps\equipment_integration-858bed4665d81eae.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests\equipment_supply_automation.rs (target\debug\deps\equipment_supply_automation-b811ed4f8424c27b.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+     Running tests\ground_equipment_integration.rs (target\debug\deps\ground_equipment_integration-7bae4f654cd6a90e.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\growth_decomposition.rs (target\debug\deps\growth_decomposition-c31409c1ab891a21.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 20 filtered out; finished in 0.00s
+
+     Running tests\industry_planning.rs (target\debug\deps\industry_planning-f67d1ecb03409d79.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.00s
+
+     Running tests\materials.rs (target\debug\deps\materials-747e4586e95f17aa.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 17 filtered out; finished in 0.00s
+
+     Running tests\materials_accounting.rs (target\debug\deps\materials_accounting-bd7eedbc8d3c1a62.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests\materials_ai_bootstrap.rs (target\debug\deps\materials_ai_bootstrap-da01fc5fc03bda6a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests\materials_ai_timing.rs (target\debug\deps\materials_ai_timing-55a692753169f985.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\materials_ai_warehouse.rs (target\debug\deps\materials_ai_warehouse-e0f2ec79484362de.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests\materials_planning.rs (target\debug\deps\materials_planning-c972473d03793bb8.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests\military_operations.rs (target\debug\deps\military_operations-fd04e8f37ab7b474.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+     Running tests\ministries.rs (target\debug\deps\ministries-80aa1462f1ac4a1a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 19 filtered out; finished in 0.00s
+
+     Running tests\research.rs (target\debug\deps\research-951ba26e87ad9825.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests\research_centers.rs (target\debug\deps\research_centers-df26d231d07b18b1.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 15 filtered out; finished in 0.00s
+
+     Running tests\s02_entitlements.rs (target\debug\deps\s02_entitlements-67d5d98a15c7d92c.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\s02_fiscal.rs (target\debug\deps\s02_fiscal-c81a047902f38902.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.00s
+
+     Running tests\s02_industry.rs (target\debug\deps\s02_industry-b6ac4d3ce944ef86.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+     Running tests\s02_integration.rs (target\debug\deps\s02_integration-8e673c77dc696e0a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests\s02_population.rs (target\debug\deps\s02_population-69e1e9d64aae680f.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s
+
+     Running tests\s02_succession.rs (target\debug\deps\s02_succession-7fb353f1f1dbee3b.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\s03_integration.rs (target\debug\deps\s03_integration-adf78274f3a10e50.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\s03_supplier_operations.rs (target\debug\deps\s03_supplier_operations-359725a5c409aeb1.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests\s04_integration.rs (target\debug\deps\s04_integration-b1f27b3a87a01b9e.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests\s04_peace_boundaries.rs (target\debug\deps\s04_peace_boundaries-b087af0d59ac35c9.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests\s05_master_fiscal.rs (target\debug\deps\s05_master_fiscal-e25aa48718fe264d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests\s06_money_journal.rs (target\debug\deps\s06_money_journal-dff9a1bcc4f8e068.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests\s07_construction_operations.rs (target\debug\deps\s07_construction_operations-0040d37aec5f8cea.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests\s08_supplier_catalogue.rs (target\debug\deps\s08_supplier_catalogue-41b829dcd17863e0.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests\s08_supplier_lifecycle.rs (target\debug\deps\s08_supplier_lifecycle-65c9f91411ff66b0.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests\sample_size_audit.rs (target\debug\deps\sample_size_audit-c7690325f9d313a1.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests\sector_profiles.rs (target\debug\deps\sector_profiles-f527e8241d76143d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests\small_country_modules.rs (target\debug\deps\small_country_modules-b97fea36972369e7.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+     Running tests\starting_industry.rs (target\debug\deps\starting_industry-4e694e8e0a1cf310.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+     Running tests\starting_industry_planning.rs (target\debug\deps\starting_industry_planning-f1eddf69d9505862.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests\starting_industry_priority.rs (target\debug\deps\starting_industry_priority-2c94195a0e603979.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests\strategic_raw_supply.rs (target\debug\deps\strategic_raw_supply-d1040e5cb014bf69.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.00s
+
+     Running tests\treasury.rs (target\debug\deps\treasury-3654b613d231ab4d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+

@@ -5563,7 +5563,7 @@ function industryNavigate(action) {
   } else if (action.action === "resources") {
     openStock();
   } else if (action.action === "trade") {
-    if (["intermediates","capital_goods"].includes(action.good)) COMP.trade.good = action.good;
+    competitionFocusGood(action.good,action.quantity);
     openCompetition();
     competitionSetTab("trade");
   } else if (action.action === "inherited") {
@@ -5668,6 +5668,7 @@ function cashFlowNavigate(action) {
   } else if (action.action === "resources") {
     closeGameDrawers(); openStock();
   } else if (action.action === "trade") {
+    competitionFocusGood(action.good,action.quantity);
     openCompetition(); competitionSetTab("trade");
   } else return false;
   return true;
@@ -5756,7 +5757,7 @@ async function equipmentNavigate(action) {
   if (action.action==="research" && action.equipment===true) {
     equipmentSelectTab("research"); equipmentRevealRecord(action.id); return true;
   }
-  if (!["research","budget","construction","manufacture","resources","trade"].includes(action.action)) return false;
+  if (!["research","budget","construction","manufacture","resources","trade","industry"].includes(action.action)) return false;
   const state=S;
   closeEquipmentDrawer();
   if (action.action==="research") {
@@ -5764,7 +5765,7 @@ async function equipmentNavigate(action) {
     if (state!==S || !tech.open) return false;
     const index=tech.byId?.get(action.id);
     if (index!=null) { setTechView(tech.data?.[index]?.domain || action.domain || tech.curDomain,true); techNodeClick(index); }
-  } else if (action.action==="budget" || action.action==="trade") {
+  } else if (action.action==="budget" || action.action==="trade" || action.action==="industry") {
     return cashFlowNavigate(action);
   } else if (action.action==="construction") {
     openConstruction({kind:action.kind,province:action.district,project:action.project});

@@ -1,0 +1,55 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.54s
+     Running unittests src\main.rs (target\debug\deps\spheres_web-6b38d3535f7b8b27.exe)
+
+running 18 tests
+test equipment_view::company_view_tests::company_board_and_review_are_pure_and_do_not_grant_opening_assets ... ok
+test equipment_view::company_view_tests::company_confirmation_owns_one_slot_and_only_one_capital_receivable ... ok
+test equipment_view::company_view_tests::company_parser_uses_player_authority_and_preserves_review_token ... ok
+test equipment_view::company_view_tests::company_quote_token_expires_when_funding_or_capital_changes ... ok
+test equipment_view::company_view_tests::contractor_without_a_plant_explains_construction_before_review ... ok
+test equipment_view::company_view_tests::every_current_platform_commissions_its_exact_model_through_a_company ... ok
+test equipment_view::company_view_tests::lost_company_response_replays_receipt_without_creating_another_company ... ok
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... ok
+test equipment_view::company_view_tests::s08_declared_small_country_purchase_policy_uses_the_actual_priced_budget_review ... ok
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... ok
+test equipment_view::company_view_tests::s08_live_paid_product_work_is_distinct_from_last_capital_review ... ok
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... ok
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... ok
+test equipment_view::company_view_tests::s08_request_local_supplier_reads_preserve_both_board_sections ... ok
+test equipment_view::company_view_tests::supplier_input_recovery_shows_exact_shortfall_without_ordering_goods ... ok
+test equipment_view::company_view_tests::tank_designer_commissions_supplier_and_retains_original_independent_specs ... ok
+
+test result: ok. 17 passed; 0 failed; 1 ignored; 0 measured; 422 filtered out; finished in 7.35s
+
+     Running tests\http_connections.rs (target\debug\deps\http_connections-a7fac5aa8c3fbe7f.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+

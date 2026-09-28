@@ -520,7 +520,28 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
     let market=company_supplier_market(w,me);
     company_board_from_reads(w,me,&raw,&market)
 }
+// Reuse the simulation's exact next-work input quote. Historical status text is
+// not a supply estimate, and another product's scheduled packet is not this one's.
+fn company_input_recovery(operation:&Value, actions:&mut Vec<Value>)->Vec<Value> {
+    let Some(inputs)=operation["next_packet"]["inputs"].as_array() else {return vec![]};
+    if operation["grandfathered"]==true {return vec![];}
+    let mut rows=vec![];
+    for input in inputs {
+        let (Some(required),Some(available),Some(missing))=(input["required"].as_f64(),input["available"].as_f64(),input["missing"].as_f64()) else {continue};
+        if ![required,available,missing].iter().all(|n|n.is_finite()&&*n>=0.0) {continue;}
+        rows.push(input.clone());
+        if missing>0.0 && input["key"]=="advanced_components" {
+            actions.push(nav("Inspect operating industry",json!({"action":"industry"})));
+            actions.push(nav("Review advanced-components plant",json!({"action":"construction","kind":"advanced_industry"})));
+            actions.push(nav("Review component imports",json!({"action":"trade","good":"advanced_components","quantity":missing})));
+        } else if missing>0.0 {
+            actions.push(nav(&format!("Inspect {} supply",company_text(input,"name")),json!({"action":"resources","commodity":input["key"]})));
+        }
+    }
+    rows
+}
 fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
+    let operations=spheres_sim::supplier_operations::snapshot(w,me);
     let empty=Vec::new();
     let firms=raw["companies"].as_array().unwrap_or(&empty);
     let site_options: Vec<_>=raw["sites"].as_array().unwrap_or(&empty).iter().filter(|s|company_count(s,"slots")>0).map(|s| {
@@ -538,6 +559,14 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
             company_cash_input("capital_mn","Initial working capital",25.0),
         ]);
         establish["detail"]=json!("A new state contractor leases one existing completed plant slot. Choose an explicit initial investment; its own account pays for tooling and finished stock.");
+        if !site_options.iter().any(|s|s["enabled"]==true) {
+            establish["enabled"]=json!(false);
+            establish["reason"]=json!(if site_options.is_empty() {
+                "Build and complete an Arms Plant before establishing a manufacturer. Use Build an arms plant below."
+            } else {
+                "No completed Arms Plant slot is available. Review existing commitments or build another arms plant."
+            });
+        }
         actions.push(establish);
     } else {actions.push(nav("Design a vehicle",json!({"action":"equipment","tab":"designer"})));}
     actions.push(nav("Review procurement funding",json!({"action":"budget","ministry":"defense","department":3})));
@@ -601,9 +630,16 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
                 metrics.push(metric("Compatible mission stores",eq::ammo_def(&air.store_family).map_or(air.store_family.as_str(),|def|def.name)));
                 metrics.push(metric("Mission stores included","None · acquire separately"));
             }
+            let mut supply_inputs=vec![];
+            if operations["enabled"]==true && !cancelled {
+                if let Some(operation)=operations["companies"].as_array().and_then(|rows|rows.iter().find(|op|
+                    op["company"].as_u64()==Some(id) && op["work_id"].as_u64()==Some(pid) && op["work_kind"]=="equipment")) {
+                    supply_inputs=company_input_recovery(operation,&mut product_actions);
+                }
+            }
             product_rows.push(json!({"id":format!("{}:{}",id,pid),"company":id,"product":pid,"name":p["name"],"supplier_name":firm["name"],
                 "family":p["family"],"platform_name":p["platform_name"],"unit_label":p["unit_label"],
-                "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],
+                "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],"supply_inputs":supply_inputs,
                 "progress":if !certified&&dev_days>0.0{Some((dev_work/dev_days).clamp(0.0,1.0))}else{None},
                 "milestones":[{"label":"Engineering and trials","value":if certified{"Certified".to_string()}else{format!("{dev_work:.1} / {dev_days:.0} work days")},"detail":"Government-funded development"},
                     {"label":"Production readiness","value":format!("{:.1} / {} tooling days",company_amount(p,"tooling_work_days"),company_count(p,"tooling_days")),"detail":"Company-funded tooling"},
@@ -633,7 +669,11 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
     product_rows.extend(ammunition_products);deliveries.extend(ammunition_deliveries);
     actions.push(nav("Buy ammunition and manage reserves",json!({"action":"equipment","tab":"ammunition"})));
     let total_cash:f64=firms.iter().map(|f|company_amount(f,"cash_bn")).sum();
-    let warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
+    let mut warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
+    if let Some(reason)=actions.iter().find(|a|a["command"]["kind"]=="company_establish" && a["enabled"]==false)
+        .and_then(|a|a["reason"].as_str()) {
+        warnings.push(reason.to_string());
+    }
     json!({"nation":me,"date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),
         "overview":{"title":"Companies & Procurement","status":if firms.is_empty(){"Establish your first manufacturer"}else{"Domestic equipment procurement"},
         "detail":"Design the vehicle and commission its development. Buy finished equipment and compatible ammunition from your manufacturer's stock.",
@@ -652,6 +692,28 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
 mod company_view_tests {
     use super::*;
     const ME:NationId=NationId::France;
+    #[test]
+    fn supplier_input_recovery_shows_exact_shortfall_without_ordering_goods() {
+        // Authored quote tests presentation, not an earned campaign outcome.
+        let mut operation=json!({"grandfathered":false,"next_packet":{"inputs":[
+            {"key":"advanced_components","name":"Advanced components","unit":"components",
+                "required":0.4441,"available":0.1,"missing":0.3441},
+            {"key":"iron","name":"Iron","unit":"resource units","required":55.0,"available":100.0,"missing":0.0}
+        ]}});
+        let before=operation.clone();let mut actions=vec![];
+        let inputs=company_input_recovery(&operation,&mut actions);
+        assert_eq!(operation,before);
+        assert_eq!(inputs,operation["next_packet"]["inputs"].as_array().unwrap().clone());
+        assert!(actions.iter().all(|a|a.get("command").is_none()));
+        assert!(actions.iter().any(|a|a["navigate"]["kind"]=="advanced_industry"));
+        assert!(actions.iter().any(|a|a["navigate"]["good"]=="advanced_components" && a["navigate"]["quantity"]==0.3441));
+        operation["next_packet"]["inputs"][0]["missing"]=json!(0.0);
+        actions.clear();company_input_recovery(&operation,&mut actions);
+        assert!(actions.is_empty(),"Available stock does not need recovery navigation");
+        operation["grandfathered"]=json!(true);
+        let inputs=company_input_recovery(&operation,&mut actions);
+        assert!(inputs.is_empty(),"Legacy paid work must retain its original input terms");
+    }
     fn fixture()->(super::super::Game,String) {
         let mut g=super::super::Game::new(1990,Some(ME));
         super::super::play_rules(&mut g);
@@ -719,6 +781,24 @@ mod company_view_tests {
             "annual_procurement_bn_at_review":annual_procurement_bn,
             "no_immediate_cash_debt_authority_property_or_research_grant":true,
             "tradeoff":"Transfer 2.5 percentage points of GDP from Infrastructure to Defense, prioritising procurement while preserving absolute personnel, operations and maintenance funding. This deliberately reduces infrastructure appropriations; future authority must accrue through actual days."})
+    }
+    #[test]
+    fn contractor_without_a_plant_explains_construction_before_review() {
+        let mut g=super::super::Game::new(1990,Some(ME));
+        super::super::play_rules(&mut g);
+        spheres_sim::programs::set_construction_budget(&mut g.world,ME,0.0).unwrap();
+        let before=spheres_sim::save(&g.world);
+        let board=view(&g.world,ME,&g.session_id);
+        let actions=board["companies"]["overview"]["actions"].as_array().unwrap();
+        let establish=actions.iter().find(|a|a["command"]["kind"]=="company_establish").unwrap();
+        assert_eq!(establish["enabled"],false);
+        assert!(establish["reason"].as_str().unwrap().contains("Build and complete an Arms Plant"));
+        assert!(board["companies"]["overview"]["warnings"].as_array().unwrap().contains(&establish["reason"]));
+        assert!(actions.iter().any(|a|a["enabled"]==true && a["navigate"]["kind"]=="arms_plant"));
+        let quote=preview(&g.world,ME,&g.session_id,&json!({"command":establish_command("")})).unwrap();
+        assert_eq!(quote["valid"],false);
+        assert!(quote["blockers"][0].as_str().unwrap().contains("Build an arms plant first"),"{quote}");
+        assert_eq!(spheres_sim::save(&g.world),before);
     }
     #[test]
     fn company_board_and_review_are_pure_and_do_not_grant_opening_assets() {

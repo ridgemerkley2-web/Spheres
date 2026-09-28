@@ -93,7 +93,10 @@ fn construction(g:&crate::Game,me:NationId)->Value {
         (s.output_daily.is_finite()&&s.output_daily>0.0).then(||
             json!({"district":s.district,"district_name":districts::name_of(&s.district),"kind":s.kind.key(),"day":o.day,"output_daily":s.output_daily}))
     }).collect();
-    json!({"projects":projects,"completions":completions,"operating":operating,"mines":mines})
+    let payments:Vec<Value>=w.production.industry.latest_construction_payments.get(&me).into_iter()
+        .map(|p|json!({"id":p.project,"district":p.district,"district_name":districts::name_of(&p.district),
+            "kind":p.kind.key(),"last_day":p.day,"last_spent_bn":p.amount_bn})).collect();
+    json!({"projects":projects,"completions":completions,"operating":operating,"mines":mines,"payments":payments})
 }
 
 fn research(w:&WorldState,me:NationId)->Value {
@@ -181,6 +184,22 @@ pub(crate) fn outcomes_json(g:&crate::Game,me:NationId)->Value {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn retained_construction_payments_belong_to_the_payer_not_the_current_owner() {
+        let mut g=crate::Game::new(1,Some(NationId::France));
+        g.world.rules.production_system=true;
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::France).unwrap().0.clone();
+        g.world.production.industry.latest_construction_payments.insert(NationId::France,industry::ConstructionPayment {
+            project:7,district:district.clone(),kind:ProjectKind::StarterIndustry,day:0,amount_bn:0.002,
+        });
+        g.world.districts.insert(district,NationId::Germany);
+        let france=construction(&g,NationId::France);
+        assert_eq!(france["payments"][0]["last_day"],0);
+        assert_eq!(france["payments"][0]["last_spent_bn"],0.002);
+        assert_eq!(france["payments"].as_array().unwrap().len(),1);
+        assert!(construction(&g,NationId::Germany)["payments"].as_array().unwrap().is_empty());
+    }
 
     #[test]
     fn guidance_log_dates_parse_only_the_exact_served_format() {

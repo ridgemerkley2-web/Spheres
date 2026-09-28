@@ -438,6 +438,7 @@ pub fn establishment_quote(
     };
     q.reason=actor(w,n).or_else(||equipment::name_refusal(name)).or_else(||(!finite_money(capital,true)).then(||"Choose positive initial capital between $1,000 and $1,000bn.".into()))
         .or_else(||w.companies.firms.iter().any(|c|c.nation==n).then(||"This first release supports one player-established state contractor per country.".into()))
+        .or_else(||district.trim().is_empty().then(||"Choose a province with a free completed Arms Plant slot. Build an arms plant first if none are listed.".into()))
         .or_else(||crate::control::blocker(w,n,district))
         .or_else(||(w.districts.get(district)!=Some(&n)).then(||"Choose a domestic province under government control.".into()))
         .or_else(||(crate::manufacturing::used_slots(w,n,district)>=crate::manufacturing::plant_slots(w,district) as usize).then(||"Choose a free completed Arms Plant slot; construction creates facilities, companies do not.".into()))

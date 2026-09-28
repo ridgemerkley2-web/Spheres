@@ -186,6 +186,21 @@ test('construction needs dated paid work; completion and output are later milest
   c.completions=[{day:-3,text:'x',district:null,kind:null}];assert.equal(step(run(late),'construction').status,'unknown');
 });
 
+test('retained native payments keep work paid after a project leaves the active queue',()=>{
+  const r=reading(),c=r.outcomes.construction;
+  c.payments=[{id:7,kind:'starter_industry',district:'FRA_le-de-france',district_name:'Île-de-France',last_day:150,last_spent_bn:.002}];
+  const milestone=()=>mile(contract(run(r)),'construction','work_paid');
+  assert.equal(milestone().status,'done');
+  assert.equal(milestone().date,'1990-05-31');
+  assert.match(milestone().detail,/Île-de-France/);
+  assert.deepEqual(mile(run(JSON.parse(JSON.stringify(r))),'construction','work_paid'),milestone());
+  c.payments[0].last_day=152;assert.equal(milestone().status,'pending');
+  c.payments[0].last_day=150;c.payments[0].last_spent_bn=0;assert.equal(milestone().status,'pending');
+  c.payments[0].last_spent_bn=-1;assert.equal(milestone().status,'unknown');
+  c.payments=null;assert.equal(milestone().status,'unknown');
+  delete c.payments;assert.equal(milestone().status,'pending');
+});
+
 test('paid mine work funded from the construction budget counts as construction work',()=>{
   const r=reading(),today=151,c=r.outcomes.construction,mine={district:'FR-NOR',commodity:'coal',spent_bn:0,last_day:null,progress_days:0,total_days:120};
   c.mines=[{...mine}];let route=contract(run(r)),s=step(route,'construction');

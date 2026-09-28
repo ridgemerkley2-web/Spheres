@@ -1,0 +1,29 @@
+[s19] build provenance
+[s19] fresh France
+[s19] 1 initial route
+[s19] 2 reading vs result
+[s19] 2b lesson skip
+[s19] 3 finances
+[s19] 3b advisors route-next
+[s19] 4 construction
+[s19] 4a preview without confirm
+[s19] 4 construction
+[s19] 4b command before result
+[s19] 4 construction
+[s19] 5 research design
+[s19] 6 air force
+[s19] 6a command before result
+[s19] 6 air force
+[s19] 7 procurement
+[s19] 7c later procurement
+S19 guidance evidence: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s19-procurement-20260927\france-DZrGlq\result.json
+AssertionError [ERR_ASSERTION]: No company stock after 540 ordinary days; inspect development and finance blockers in progress evidence
+    at laterProcurement (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\guidance-later-procurement.cjs:135:3)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-guidance-route.cjs:894:7 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
