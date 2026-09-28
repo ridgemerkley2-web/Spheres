@@ -5,6 +5,22 @@ Start from this branch, not `master` or an older Claude branch. S01–S18 and S2
 Claude's S19 implementation is integrated; later-campaign browser qualification remains.
 CP1 certification and worldwide character coverage remain open.
 
+## Latest checkpoint — 27 September
+
+| Area | Verified state | Next owner / action |
+|---|---|---|
+| S19 construction | Payment, completion and output survive save/load and Continue (`24d05428`). | Codex: retain this evidence while qualifying later outcomes. |
+| S19 manufacturer prerequisites | Missing-plant blocker repaired (`8b93372e`); clean build `2cb1da4a` passes 270 focused checks and the full first-hour browser regression. | Codex: continue ordinary company development, stock purchase and delivery. |
+| S19 longer campaign | Real plant, manufacturer, paid tank development and completed tooling reached. The full route did **not** pass: the warehouse lacks advanced components, so no finished stock or delivery was produced. | Codex: resolve the ordinary supplier-input workflow, then qualify purchase/payment/delivery and save/resume, followed by readiness and a supported flown mission. |
+| S20 shared interface | Waiting on S19 closure. | Codex: start only after the remaining S19 evidence passes. |
+| C01 source follow-ups | SOURCE-06 submitted at `93467faa` and is **ready for review**, not merged or accepted. SOURCE-05/17/26 remain claimed. | Codex has a [bounded SOURCE-06 review task](planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md); Claude continues the other claimed repairs, then C01-23/24/25/27. |
+
+[Contractor repair and exact validation evidence](campaign-certification/S19/integration/CONTRACTOR_PREREQUISITE.md).
+[Supplier-input checkpoint, recorded campaign and next actions](campaign-certification/S19/integration/PROCUREMENT_SUPPLY.md).
+The 270 checks are focused checks on this repair, not a new full-workspace test
+claim. Observed construction or company creation alone does not qualify purchase,
+delivery, readiness, flight or CP1. Canonical roadmap status is unchanged.
+
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
 [campaign-pathway.json](planning/campaign-pathway.json) owns session status, dependencies,
 acceptance criteria and evidence. [ai-workstreams.json](planning/ai-workstreams.json)
@@ -101,18 +117,21 @@ python tools/planning/workboard.py --task CLAUDE-C01-SOURCE-05
 The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
 packet state and dependencies separately from canonical session status.
 [Claude's current task list](planning/ai-handoffs/CLAUDE-C01-NEXT.md) assigns four
-source-review follow-ups (now claimed on their own branches), then the existing
+source-review follow-ups (SOURCE-06 ready for review; SOURCE-05/17/26 claimed), then the existing
 C01-23/24/25/27 claims. Codex's next
 campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md):
 actual procurement/delivery and flown results with save/resume qualification.
 Construction payment, completion and output are already verified together.
+The immediate gameplay task is supplying advanced components to the certified
+manufacturer through ordinary production or arrived purchases, not granting stock.
 
 Copy this into Claude to continue bounded research:
 
 > Fetch origin/codex/campaign-certification and read docs/AI_WORKSTREAMS.md and
 > run `python tools/planning/workboard.py --tasks --owner Claude`. Read
-> docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md. Address the four source follow-ups
-> in priority order, then finish existing claims C01-23/24/25/27. Preserve their
+> docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md. Continue source follow-ups
+> SOURCE-05/17/26 in priority order, then finish existing claims C01-23/24/25/27.
+> SOURCE-06 at 93467faa is awaiting Codex review; do not duplicate it. Preserve their
 > branches and incorporate current integration. C01-05/06/09–22/26 are already
 > merged research, with historical acceptance pending; do not recreate them.
 > Return bounded ready-for-review commits with source evidence and full applicable

@@ -19,12 +19,12 @@
       "id": "CLAUDE-C01-SOURCE-06",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 2,
       "title": "Compare the changed Bush Library response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "next": "Review submission 93467faaef254a71b4a776d00e56c16dda963eca on claude/c01-source-06: changed Bush Library response, content-span comparison and corroborating archive identity. Not yet merged or historically accepted.",
       "branch": "claude/c01-source-06",
       "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
     },
@@ -111,14 +111,14 @@
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "Construction payment, completion and output persist through save/load and Continue at 24d05428; 1,888 native and 1,703 UI tests pass. Next establish a manufacturer, fund normal development, purchase stock, verify payment/delivery, then qualify readiness and flown results with save/resume."
+      "next": "Resolve the ordinary advanced-components supply workflow from the recorded 1 July 1993 France campaign. Plant, manufacturer, paid certification and tooling were observed, but the full later route failed with zero stock after 540 days. Then qualify purchase/payment/delivery and save-resume, followed by readiness and flown results. Contractor prerequisite fix and first-hour regression pass; S19 remains open."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
       "owner": "Codex",
       "session": "C01",
       "state": "blocked",
-      "priority": 2,
+      "priority": 3,
       "title": "Independently review source follow-ups before historical acceptance",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [
@@ -128,6 +128,17 @@
         "CLAUDE-C01-SOURCE-26"
       ],
       "next": "Independently compare the returned primary content, record unresolved limitations, and accept only the bounded claims supported by evidence. Passing technical tests alone does not close C01."
+    },
+    {
+      "id": "CODEX-C01-SOURCE-06-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "queued",
+      "priority": 2,
+      "title": "Review the submitted Bush Library source repair",
+      "handoff": "docs/planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md",
+      "depends_on": [],
+      "next": "Independently review claude/c01-source-06 at 93467faaef254a71b4a776d00e56c16dda963eca, reproduce source/content identity and affected checks, then merge only if accepted. Preserve the title-only observation; C01 remains open."
     }
   ]
 }

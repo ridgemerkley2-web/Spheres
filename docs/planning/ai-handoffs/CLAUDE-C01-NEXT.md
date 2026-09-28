@@ -1,9 +1,15 @@
 # Claude — next bounded research tasks
 
-Updated 27 September 2026. Integration base: `474df63e` on `codex/campaign-certification`.
+Updated 27 September 2026. Fetch the latest `codex/campaign-certification`; runtime
+checkpoint `2cb1da4a` follows the original assignment base `474df63e`.
 The machine-readable task queue is `docs/planning/ai-task-queue.json`; query it with
 `python tools/planning/workboard.py --tasks --owner Claude` or `--task TASK_ID`.
 This is a work assignment, not a claim that Claude has begun a repair.
+
+SOURCE-06 was submitted at `93467faaef254a71b4a776d00e56c16dda963eca` on
+`claude/c01-source-06` and is **ready for Codex review**, not merged or accepted.
+Do not duplicate that submission. SOURCE-05/17/26 remain claimed on their existing
+branches; continue those repairs, then the existing C01-23/24/25/27 claims below.
 
 ## First: resolve source-review follow-ups
 
