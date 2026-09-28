@@ -1,0 +1,35 @@
+{
+  "schema": "spheres-s22-lineage-review-validation/v1",
+  "started_utc": "2026-09-28T06:56:25.469Z",
+  "finished_utc": "2026-09-28T06:56:31.517Z",
+  "qualification": false,
+  "checks": {
+    "actual_save_hashes_and_nested_dates": true,
+    "runner_source_and_copy_hashes": true,
+    "recorded_commands_and_journal_monotonicity": true,
+    "retained_failure_explicit": true,
+    "lineage_schema_reachability_and_evidence_hashes": true,
+    "late_gzip_round_trip": true
+  },
+  "structural_result": {
+    "reviewed_by": "Codex /root/review_gap_submission",
+    "reviewed_utc": "2026-09-28T06:56:31.515Z",
+    "links": 4,
+    "scope": "Hashes and recorded checkpoint/date linkage independently checked against an explicit reviewed provenance record. This does not independently replay the intervening campaign years."
+  },
+  "late_compressed": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-late-input-reviewed/s22-2035-11-30.json.gz",
+    "bytes": 24310728,
+    "sha256": "42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b"
+  },
+  "lineage_file": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/reviewed-lineage.json",
+    "bytes": 19181,
+    "sha256": "0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f"
+  },
+  "config_fragment": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/reviewed-lineage-config-fragment.json",
+    "bytes": 10830,
+    "sha256": "7317dec43e515ae615c301f73bb42053860ba8a34f5b7171be0290ebcc5a4890"
+  }
+}
