@@ -279,6 +279,43 @@
       "depends_on": [],
       "review_revision": "3eeb6c4e",
       "next": "Facilitator kit and observation/evidence validator complete; 23 synthetic tests pass. No human observations; actual S26 remains dependent on S24 and real participants."
+    },
+    {
+      "id": "CODEX-S24-RECOVERY-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "complete",
+      "priority": 19,
+      "title": "Repair and verify campaign recovery",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "Closed: three storage repairs, visible backup recovery,440native plus1asset test,64UI and five actual active-work browser cases pass. Evidence: docs/campaign-certification/S24/repairs/campaign-recovery/README.md. Worldwide S24 remains pending."
+    },
+    {
+      "id": "CODEX-S25-RUNNER-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "in_progress",
+      "priority": 20,
+      "title": "Build paired long-campaign stability runner",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S24-RECOVERY-01"
+      ],
+      "next": "Implement native paired runner and strict matrix coverage verifier; exercise France1990/Tonga7 pilot across annual renewal. Full24-cell qualification remains separate."
+    },
+    {
+      "id": "CODEX-S28-PACKAGE-01",
+      "owner": "Codex",
+      "session": "S28",
+      "state": "queued",
+      "priority": 21,
+      "title": "Verify portable release identity and recovery",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S25-RUNNER-01"
+      ],
+      "next": "After the stability pilot, harden package identity/collisions/reproducibility/licenses and run extracted offline smoke checks. Final frozen-release qualification remains separate."
     }
   ]
 }
