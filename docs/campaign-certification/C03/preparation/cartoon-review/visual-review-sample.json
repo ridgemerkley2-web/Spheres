@@ -1,0 +1,143 @@
+{
+  "format": "spheres-c03-visual-review-sample/v1",
+  "reviewer": "Claude (CLAUDE-C03-REVIEW-01 preparation packet)",
+  "reviewed_on": "2026-09-27",
+  "statement": "Visual notes and proposed fixes only. Nothing here approves, accepts, rejects or replaces any artwork, and the review decisions recorded in the manifests are unchanged. Every decision is either fixes_proposed or reference_check_required; the export tool refuses any approval or acceptance value.",
+  "method": "Each 1024x1536 master PNG was viewed at full resolution. Card-size renderings at the game's government card (106x152), narrow card (90x132) and featured leadership card (156x218) sizes were made with Pillow LANCZOS, object-fit contain and bottom alignment in a scratch folder that is not committed. Faces and hands were cropped and viewed at native resolution. Figure bounding boxes, margins, background colours and fabric-to-background luminance contrast were measured from pixels. Likeness was compared only with the reference photographs retained in the repository (Tupou IV, Kaifu and Doi); the other references are not in the repository and were not downloaded, so those entries compare the drawing with its recorded prompt instead.",
+  "sizes_viewed": ["106x152 government card", "90x132 narrow card", "156x218 featured leadership card", "1024x1536 full size"],
+  "cross_sample_observations": [
+    "At 106x152 every sampled face is about 18 px wide and about 25 px tall, so identity on small cards rests on hair, costume colour and silhouette rather than facial likeness. The person-portrait schema already accepts an optional normalized crop; a reviewed head-and-shoulders card crop would need a separate UI change.",
+    "All sampled backgrounds are the approved opaque dark teal (#0f222a to #152830 against the anchor's #152830), so background consistency holds.",
+    "Face rendering drifts from the anchor: several faces carry dense painterly shading and fine wrinkles where the anchor uses flat cel shading and a bold contour.",
+    "Figure scale on cards varies with margins and pose: top margins range from 33 px (Brizola, raised arms) to 70 px (anchor), so fitted figures appear at different sizes side by side.",
+    "Dark garments separate from the teal background mainly through the outline (luminance contrast 1.0-1.2:1 even for the anchor's navy skirt); garments that also match the background hue, such as Nakano Emi's teal suit, nearly vanish at card size."
+  ],
+  "entries": [
+    {
+      "item": "historical:taufaahau_tupou_iv#0",
+      "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+      "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+      "decision": "fixes_proposed",
+      "compared_with": ["spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg (1985 identity reference, CC BY-SA 4.0)", "style anchor spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"],
+      "card_size": "Reads as a stout older man in a brown suit with grey hair. The brown suit separates from the teal by hue. The face is too small to recognise at 106x152 and 90x132, and it is smaller than on neighbouring cards because the broad figure (643 px wide against the anchor's 458 px) is fitted by height.",
+      "full_size": "The brown suit, cream shirt and brown-and-cream striped tie match the 1985 reference. The hair is drawn as tight grey curls over the crown, whereas the reference shows sleeker, wavy grey hair brushed back from a higher, receding hairline. The upper eyelids are lighter than the heavy lids in the reference. Face and hands carry dense painterly shading and fine wrinkles rather than the anchor's flat cel shading. The head is not enlarged relative to the body as the anchor's is.",
+      "fixes": [
+        "Redraw the hair as the reference's sleeker, wavy grey hair brushed back from a higher, receding hairline instead of tight curls over the crown.",
+        "Give the eyes the heavier upper lids seen in the 1985 reference.",
+        "Simplify face and hand shading to the anchor's flat cel shading and bold contour.",
+        "Enlarge the head slightly toward the anchor's proportions so the face holds up at 106x152 despite the broad body."
+      ],
+      "automated_findings": "None for this item; the recorded 1990-only interval and CC BY-SA 4.0 derivative licence are consistent with the S10.c record."
+    },
+    {
+      "item": "historical:toshiki_kaifu#0",
+      "asset": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
+      "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
+      "decision": "fixes_proposed",
+      "compared_with": ["spheres-web/ui/person-portraits/references/toshiki-kaifu-inauguration-1989.jpg (1989 identity reference, CC BY 4.0)"],
+      "card_size": "The blue suit (about 2.4:1 luminance contrast against the background, the best in the sample) and dark hair read clearly; the face is not individually recognisable at 106x152 or 90x132.",
+      "full_size": "The white shirt and the navy tie with small red and white dots match the 1989 reference. The face is rounder and shorter than the reference's long face with prominent cheekbones. The hair covers more of the forehead than the reference's swept-back hair with its high, receding hairline. The suit is a more saturated blue than the reference's grey-blue. The small round Diet member badge on the reference lapel is absent. Hands, shoes and folder are clean.",
+      "fixes": [
+        "Lengthen the face and narrow the cheeks toward the 1989 reference.",
+        "Raise the hairline and sweep the hair back from the forehead, keeping the grey at the sides.",
+        "Desaturate the suit toward the reference's grey-blue.",
+        "Optionally add the small round Diet member badge on the left lapel, as seen in the reference."
+      ],
+      "automated_findings": "None for this item."
+    },
+    {
+      "item": "historical:takako_doi#0",
+      "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png",
+      "sha256": "bfa602f3ebad31e5e81f0e84f881f0827c9f486da8ad44ef0a62a4763e84f67b",
+      "decision": "reference_check_required",
+      "compared_with": ["spheres-web/ui/person-portraits/references/takako-doi-april-1991.jpg (April 1991 identity reference, CC BY 4.0; a low-resolution profile crop from a group photograph)"],
+      "card_size": "The red skirt suit and voluminous black hair make this the most distinctive figure in the sample at 106x152 and 90x132. The hair comes close to the top edge of the card.",
+      "full_size": "The red jacket, cream round-neck top, gold brooch and small round earring follow the prompt and the reference. The only reference in the repository is a low-resolution profile, so the frontal face cannot be checked against it. The brooch is an ornate round floral cluster, whereas the prompt asked for a plain gold brooch and the reference shows a branch-shaped spray. The earring is gold, whereas the reference suggests a pale pearl stud. The hair is a larger, rounder mass at the crown and sides than the reference's short cut, which ends above the collar. The top and bottom margins are 42 and 41 px, against the anchor's 70 and 73 px.",
+      "fixes": [
+        "Obtain and record a frontal period reference; the current profile crop cannot verify the facial likeness.",
+        "Reduce the hair volume at the crown and sides toward the April 1991 reference's short cut ending above the collar.",
+        "Redraw the brooch as a plain or branch-shaped gold brooch (prompt and reference), and use a pale pearl stud earring.",
+        "Restore margins of about 64-70 px above the hair and below the shoes so the figure matches the anchor's scale on cards.",
+        "Cover the automated coverage gap (1996-09-30 to 2003-11-01) with a separate older appearance variant instead of extending this interval."
+      ],
+      "automated_findings": "coverage_gap"
+    },
+    {
+      "item": "historical:jacques_chirac#0",
+      "asset": "spheres-web/ui/person-portraits/jacques-chirac-cartoon-1990-v1.png",
+      "sha256": "7a67e59cd20d5e51e0d3895b6f6be035ca7599ecf5361c877c44c77630ed812a",
+      "decision": "reference_check_required",
+      "compared_with": ["submitted prompt and reference note in tools/avatars/person-prompts/world-france-1990-v1.json; the recorded reference (Commons Jacques_Chirac_1990_(crop).jpg) is not in the repository and was not downloaded"],
+      "card_size": "The grey check jacket over black trousers reads well. The check pattern resolves to grey texture at 106x152, which is acceptable. The dark trousers separate from the teal mainly by their outline (about 1.1:1 luminance contrast).",
+      "full_size": "The drawing follows the submitted prompt closely: slicked-back dark hair with a receding hairline, long nose, large ears, hooded eyes, a grey plaid tweed blazer, a black tie and dark trousers, holding a blue folder. The face has deep nasolabial folds and forehead lines, which are heavier than the anchor's line work. The sport jacket, black tie and odd trousers come from the prompt, so this review cannot confirm them against the period photograph.",
+      "fixes": [
+        "Retain or re-record the 1990 reference and confirm the tweed jacket, black tie and odd trousers against it; if the reference shows a matching suit, redraw the costume as one.",
+        "Reduce the deep facial line work to the anchor's simpler cel shading.",
+        "Record the reference photograph's licence (automated finding reference_rights_not_recorded)."
+      ],
+      "automated_findings": "reference_rights_not_recorded"
+    },
+    {
+      "item": "historical:rajiv_gandhi#0",
+      "asset": "spheres-web/ui/person-portraits/rajiv-gandhi-cartoon-1990-v1.png",
+      "sha256": "30a750a85b8fe767041e9d5bc783a9cd5c6a1ab236c699b153268b253623a8e2",
+      "decision": "fixes_proposed",
+      "compared_with": ["submitted prompt and reference note in tools/avatars/person-prompts/world-india-1990-v1.json; the recorded reference is a photo-agency page that is not in the repository and was not downloaded"],
+      "card_size": "The white Gandhi cap, kurta and churidar have the highest contrast in the sample and read immediately at 106x152 and 90x132. The white figure is noticeably brighter than the neighbouring dark-suited cards.",
+      "full_size": "The cap, the high-collar kurta with its chest pocket, the white pyjama trousers and the dark loafers follow the prompt. The outline on the white garments is thin and grey along the sleeves and hem instead of the anchor's heavy dark contour, so the silhouette softens at full size. The strong brows, greying temples, clean-shaven face and closed smile are as prompted. The clasped hands are acceptable.",
+      "fixes": [
+        "Clip the appearance interval to end by 1991-05-22 (exclusive); it currently runs to 1995-01-01, after the recorded death on 1991-05-21 (automated finding interval_after_death).",
+        "Strengthen the outer contour of the white kurta and trousers to the anchor's bold dark line.",
+        "Record the rights basis for the identity reference, which is a commercial photo-agency page (automated finding reference_rights_not_recorded)."
+      ],
+      "automated_findings": "interval_after_death, reference_rights_not_recorded"
+    },
+    {
+      "item": "historical:leonel_brizola#0",
+      "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
+      "sha256": "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7",
+      "decision": "fixes_proposed",
+      "compared_with": ["submitted prompt in tools/avatars/person-prompts/world-brazil-1990-v1.json; the 1989 rally reference is not in the repository and was not downloaded"],
+      "card_size": "With both arms raised, the figure is 727 px wide and the raised hand is 33 px from the top edge, so after fitting the body and head are smaller than on neighbouring cards. The face is turned up and away and is not readable at 106x152.",
+      "full_size": "The submitted prompt asked for an upright stance with one hand relaxed and one lightly open at the waist; the drawing instead copies the reference photograph's rally pose with both arms raised. The face is in strong three-quarter profile, looking upward. The head is small relative to the long legs compared with the anchor's enlarged head. The silver swept-back hair, long nose and broad smile match the prompt.",
+      "fixes": [
+        "Redraw in the prompted neutral stance (one hand relaxed, one lightly open at the waist) instead of the raised-arms rally pose copied from the reference.",
+        "Turn the face toward the viewer at a slight three-quarter angle so the likeness reads on cards.",
+        "Restore the anchor's slightly enlarged head and proportions of about 5.5 heads.",
+        "Keep at least 64 px above the highest point of the figure.",
+        "Cover the automated coverage gap (1995-01-01 to 2004-06-21) with a later appearance variant."
+      ],
+      "automated_findings": "coverage_gap, reference_rights_not_recorded"
+    },
+    {
+      "item": "historical:oliver_tambo#0",
+      "asset": "spheres-web/ui/person-portraits/oliver-tambo-cartoon-1990-v1.png",
+      "sha256": "da750d8c2900559e08e9e57481f63cab53aaf4febafc6bbf7afde88b3ed2ea00",
+      "decision": "fixes_proposed",
+      "compared_with": ["submitted prompt in tools/avatars/person-prompts/world-south-africa-1990-v1.json; the December 1990 homecoming reference is not in the repository and was not downloaded"],
+      "card_size": "The grey suit, glasses and raised fist read at 106x152. The raised fist widens the figure (621 px) and reads as a rally gesture on a neutral government card.",
+      "full_size": "The prompt asked for large dark square aviator glasses with lightly tinted lenses; the drawing has brown rectangular frames with clear lenses. The prompt asked for a relaxed standing pose with one hand lightly open; the drawing raises a fist, as in the homecoming reference. The grey moustache and short beard, the bald crown with grey hair at the sides, the grey suit and the burgundy patterned tie follow the prompt. The lowered left hand has over-long, splayed fingers with an extended index finger.",
+      "fixes": [
+        "Redraw the glasses as the prompted large dark square aviator frames with lightly tinted lenses.",
+        "Either use the prompted relaxed pose, or record the raised fist in the era note as an intentional, sourced period gesture.",
+        "Redraw the left hand with natural finger lengths and a relaxed curl.",
+        "Clip the appearance interval to end by 1993-04-25 (exclusive); it currently runs to 1995-01-01, after the recorded death on 1993-04-24 (automated finding interval_after_death)."
+      ],
+      "automated_findings": "interval_after_death, reference_rights_not_recorded"
+    },
+    {
+      "item": "fictional:fictional_v1_japan_jp_ldp_main_01#0",
+      "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
+      "sha256": "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b",
+      "decision": "fixes_proposed",
+      "compared_with": ["submitted prompt in tools/avatars/person-prompts/expansion-2035-batch3.json (an original fictional design with no identity reference)"],
+      "card_size": "The dark teal trouser suit matches the background in both hue and value (trousers #0f262d to #112c34 on #12252e; luminance contrast 1.00-1.08:1). At 106x152 and 90x132 only the face, the cream blouse and the outline separate the figure, and the legs nearly disappear.",
+      "full_size": "The shoulder-length black hair with silver strands, the hair tucked behind one ear, the small pale studs, the watch, the cream notebook and the low heels follow the prompt. The bold outline and cel shading match the anchor. The manifest carries the fictional credit and design review, and the reviewer labels the figure as not a real person.",
+      "fixes": [
+        "Change the suit to a colour that separates from the #12252e background in hue and value (for example mid grey, stone or burgundy); the prompt itself specified dark teal, so revise the prompt as well.",
+        "Before further use, check that the invented face does not resemble a real Japanese politician; this review did not check that."
+      ],
+      "automated_findings": "None for this item."
+    }
+  ]
+}
