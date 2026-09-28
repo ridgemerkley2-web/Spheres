@@ -1,0 +1,1815 @@
+{
+  "format": "spheres-c04-fictional-successor-proposals/v1",
+  "task": "CLAUDE-C04-PREP-01",
+  "parent_session": "C04",
+  "status": "proposal_only_preparation",
+  "installed": false,
+  "c04_complete": false,
+  "base_revision": "e41aa18d",
+  "historical_research_cutoff": "2026-09-07",
+  "fictional_from": "2026-09-08",
+  "fictional_until_inclusive": "2035-12-31",
+  "until_exclusive": "2036-01-01",
+  "notice": "Eight invented characters for review. None is a real person, a forecast, a candidate list entry, a portrait or an installed game record. Full C04 still requires accepted C02 inputs, reviewed artwork and later integration.",
+  "expected_counts": {
+    "France": 4,
+    "Tonga": 4
+  },
+  "selection_contract": {
+    "selection": "actual_succession_events_only",
+    "incumbents_retained": true,
+    "date_triggers_allowed": false,
+    "aligned_with": "spheres-sim/src/party_leadership_future.rs policy(): selection actual_succession_events_only, incumbents_retained true"
+  },
+  "biography_rule": "Before 2026-09-08 a draft has only an undated private or professional background: no public office, party membership, candidacy or election. Every political step is a conditional gameplay possibility inside the window.",
+  "role_catalog": [
+    {
+      "role_id": "fr_ps_first_secretary",
+      "nation": "France",
+      "category": "party_leadership",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Premier secrétaire du Parti socialiste (First Secretary of the Socialist Party)",
+      "organization": "Parti socialiste",
+      "game_party_row": "fr_ps",
+      "legal_minimum_age": 15,
+      "legal_minimum_age_refs": [
+        "src_fr_ps_statuts_2021#fr_ps_membership_age"
+      ],
+      "legal_minimum_age_note": "The membership floor; no separate age rule for the First Secretary was found.",
+      "plausibility_band": {
+        "min": 35,
+        "max": 75,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "Elected by secret ballot of all members from the first signatories of the two leading national orientation motions; after a prolonged vacancy the National Council elects a First Secretary until the next congress.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_first_secretary_election"
+          ]
+        },
+        {
+          "text": "The First Secretary presides over the Bureau national, whose members need three consecutive years of membership.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_first_secretary_role",
+            "src_fr_ps_statuts_2021#fr_ps_seniority"
+          ]
+        },
+        {
+          "text": "The national congress meets within six months after presidential and legislative elections and at mid-term.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_congress_timing"
+          ]
+        },
+        {
+          "text": "The internal rules add no further candidacy condition.",
+          "source_refs": [
+            "src_fr_ps_reglement_2022#fr_ps_ri_no_extra_condition"
+          ]
+        },
+        {
+          "text": "Parties form and act freely under the Constitution.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art4"
+          ]
+        }
+      ],
+      "executive_policy": "party_only: a party first secretary is not a national executive (existing France institution record in spheres-sim/data/party_executive_eligibility.json).",
+      "repository_evidence": [
+        "spheres-sim/data/party_leaders.json fr_ps identity_note separates the first secretary from the President, Prime Minister and presidential nominee, and labels provisional/acting leadership separately."
+      ]
+    },
+    {
+      "role_id": "fr_pcf_national_secretary",
+      "nation": "France",
+      "category": "party_leadership",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Secrétaire national du Parti communiste français (National Secretary)",
+      "organization": "Parti communiste français",
+      "game_party_row": "fr_pcf",
+      "legal_minimum_age": null,
+      "legal_minimum_age_refs": [],
+      "legal_minimum_age_note": "No age rule was found in the 39th Congress statutes; the authored band applies.",
+      "plausibility_band": {
+        "min": 30,
+        "max": 75,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "The congress meets at least every three years.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_congress"
+          ]
+        },
+        {
+          "text": "Governing bodies are elected on lists; each list proposes a secretary, and the secretary is the person whose list obtains the most votes.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_list_secretary"
+          ]
+        },
+        {
+          "text": "The same executive function is generally limited to nine years; elected bodies are gender-balanced.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_rotation"
+          ]
+        }
+      ],
+      "executive_policy": "party_only.",
+      "repository_evidence": [
+        "spheres-sim/data/party_leaders.json fr_pcf identity_note: the title became national secretary in 1994 and a presidency is not interchangeable with it."
+      ]
+    },
+    {
+      "role_id": "fr_president_contender",
+      "nation": "France",
+      "category": "executive_eligibility",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Candidate for President of the Republic (presidential contender)",
+      "organization": null,
+      "game_party_row": null,
+      "legal_minimum_age": 18,
+      "legal_minimum_age_refs": [
+        "src_fr_memento_pres_2022#fr_mpres_eligibility"
+      ],
+      "legal_minimum_age_note": "Read through the ministry memento because Légifrance and the Conseil constitutionnel were blocked.",
+      "plausibility_band": {
+        "min": 35,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "Five-year term by direct universal suffrage; no more than two consecutive terms; two-round absolute-majority election.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art6",
+            "src_fr_an_compilation_2025#fr_const_art7",
+            "src_fr_elysee_constitution_en#fr_elysee_en_art6_7"
+          ]
+        },
+        {
+          "text": "Eligibility: French, aged 18, elector status, not deprived of eligibility, not under guardianship, national-service obligations met.",
+          "source_refs": [
+            "src_fr_memento_pres_2022#fr_mpres_eligibility"
+          ]
+        },
+        {
+          "text": "At least 500 presentations by listed elected officials from at least 30 departments or overseas collectivities, no more than one tenth from any one.",
+          "source_refs": [
+            "src_fr_memento_pres_2022#fr_mpres_500",
+            "src_fr_memento_pres_2022#fr_mpres_spread",
+            "src_fr_senat_ppl_2022#fr_senat_500_history"
+          ]
+        },
+        {
+          "text": "In a vacancy the President of the Senate acts provisionally and a new election follows within 20 to 35 days; the President appoints the Prime Minister.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art7",
+            "src_fr_an_compilation_2025#fr_const_art8"
+          ]
+        }
+      ],
+      "executive_policy": "presidential_contender: France requires an explicit future_office_grants entry before any new named national executive (spheres-sim/data/party_executive_eligibility.json institutions[France]).",
+      "repository_evidence": [
+        "spheres-sim/src/party_executive_eligibility.rs reviewed_office_role(France) = PresidentialContender; future_office_grants is empty."
+      ]
+    },
+    {
+      "role_id": "fr_national_assembly_deputy",
+      "nation": "France",
+      "category": "collective_institution",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Député(e) à l'Assemblée nationale (one of 577 seats), with an optional parliamentary-group presidency",
+      "organization": "Assemblée nationale",
+      "game_party_row": null,
+      "legal_minimum_age": 18,
+      "legal_minimum_age_refs": [
+        "src_fr_an_fiche3_2023#fr_fiche3_eligibility",
+        "src_fr_memento_leg_2024#fr_mleg_age"
+      ],
+      "plausibility_band": {
+        "min": 25,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "577 deputies elected by direct suffrage for five years; an organic law fixes eligibility and incompatibilities.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art24_25",
+            "src_fr_an_fiche3_2023#fr_fiche3_term"
+          ]
+        },
+        {
+          "text": "French, aged at least 18, enjoying civic rights, outside every ineligibility; one constituency only.",
+          "source_refs": [
+            "src_fr_an_fiche3_2023#fr_fiche3_eligibility",
+            "src_fr_memento_leg_2024#fr_mleg_age",
+            "src_fr_memento_leg_2024#fr_mleg_one_constituency"
+          ]
+        },
+        {
+          "text": "No combination with a local executive function.",
+          "source_refs": [
+            "src_fr_an_fiche3_2023#fr_fiche3_noncumul"
+          ]
+        },
+        {
+          "text": "Groups need at least fifteen members and name their president in a signed political declaration.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_an_reg_art19"
+          ]
+        },
+        {
+          "text": "After a dissolution elections follow within 20 to 40 days and no new dissolution may occur for a year; Government members may not hold a parliamentary mandate.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art12",
+            "src_fr_an_compilation_2025#fr_const_art20_23"
+          ]
+        }
+      ],
+      "executive_policy": "not an executive role; the current single-office engine has no deputy or group seat.",
+      "repository_evidence": [
+        "spheres-sim/src/government.rs France polity: ruling \"the National Assembly\", two-round elections every 60 months; no individual seats."
+      ]
+    },
+    {
+      "role_id": "to_peoples_representative",
+      "nation": "Tonga",
+      "category": "collective_institution",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Representative of the people in the Legislative Assembly (one of 17 people's seats)",
+      "organization": "Legislative Assembly of Tonga (Fale Alea)",
+      "game_party_row": null,
+      "legal_minimum_age": 21,
+      "legal_minimum_age_refs": [
+        "src_to_constitution_2020#to_c64_electors",
+        "src_to_constitution_2020#to_c65_representatives"
+      ],
+      "plausibility_band": {
+        "min": 25,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "Seventeen people's representatives are elected by qualified electors; the nine nobles' seats are elected by and from the nobles.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c59_60_composition",
+            "src_to_parliament_how_it_works#to_parl_composition_pm"
+          ]
+        },
+        {
+          "text": "Electors are Tongan subjects aged 21 or more who are not nobles and not disqualified; a candidate stands only where registered and has no outstanding court order for a specific sum.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c64_electors",
+            "src_to_constitution_2020#to_c65_representatives"
+          ]
+        },
+        {
+          "text": "Nomination on Form 4 signed by 50 constituency electors, a non-refundable $400 deposit and court clearances.",
+          "source_refs": [
+            "src_to_electoral_act_2016#to_ea_s9_candidates",
+            "src_to_electoral_act_2016#to_ea_s8_nominations"
+          ]
+        },
+        {
+          "text": "Sentences over two years disqualify from candidacy and any Government office unless pardoned.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c23_convict_disability"
+          ]
+        },
+        {
+          "text": "General elections every four years unless earlier dissolved; by-elections follow death, resignation or impeachment.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c76_77_elections"
+          ]
+        }
+      ],
+      "executive_policy": "not an executive role.",
+      "c01_refs": [
+        "c01:tonga.json#to_legislative_assembly",
+        "c01:tonga.json#to_peoples_representatives",
+        "c01:tonga.json#to_tec_2025_no_party_column"
+      ]
+    },
+    {
+      "role_id": "to_prime_minister_via_peoples_seat",
+      "nation": "Tonga",
+      "category": "executive_eligibility",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Prime Minister, reached only through a people's representative seat",
+      "organization": "Office of the Prime Minister / Cabinet",
+      "game_party_row": null,
+      "legal_minimum_age": 21,
+      "legal_minimum_age_refs": [
+        "src_to_constitution_2020#to_c64_electors",
+        "src_to_constitution_2020#to_c65_representatives"
+      ],
+      "legal_minimum_age_note": "Via the people's-seat qualification; the nobles' route is hereditary and excluded.",
+      "plausibility_band": {
+        "min": 35,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "The King appoints as Prime Minister an elected representative recommended by the Assembly under the Schedule or clause 50B.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c50a_prime_minister"
+          ]
+        },
+        {
+          "text": "Nominations seconded by two elected representatives; secret ballot with elimination until one candidate has more than half; the Speaker runs the same procedure for other vacancies.",
+          "source_refs": [
+            "src_to_constitution_2020#to_schedule_pm_procedure",
+            "src_to_parliament_pm_procedure_2010#to_parl_pm_procedure_note"
+          ]
+        },
+        {
+          "text": "A no-confidence motion has no effect within 18 months after a general election, within six months before the election deadline or within 12 months of a previous motion.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c50b_no_confidence"
+          ]
+        },
+        {
+          "text": "The premiership can also be reached from a nobles' seat; fictional drafts may use only the people's route.",
+          "source_refs": [
+            "src_to_pmo_pm_appointment_20251218#to_pmo_2025_nobles_route"
+          ]
+        }
+      ],
+      "executive_policy": "No Tonga executive-role record exists (reviewed_office_role has no Tonga entry); a Tonga institution record would be needed first.",
+      "c01_refs": [
+        "c01:tonga.json#to_prime_minister",
+        "c01:tonga.json#to_pm"
+      ]
+    },
+    {
+      "role_id": "to_nonelected_cabinet_minister",
+      "nation": "Tonga",
+      "category": "collective_institution",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Cabinet Minister who is not an elected representative (at most four at a time)",
+      "organization": "Cabinet of Tonga",
+      "game_party_row": null,
+      "legal_minimum_age": null,
+      "legal_minimum_age_refs": [],
+      "legal_minimum_age_note": "Clause 51 sets no age; the authored band applies.",
+      "plausibility_band": {
+        "min": 30,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "Ministers are nominated by the Prime Minister and appointed by the King; no more than four may be non-elected; the Cabinet is collectively responsible.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_cabinet"
+          ]
+        },
+        {
+          "text": "A non-elected Minister sits and votes in the Assembly except in no-confidence votes, represents no constituency and leaves office on revocation, 50B, death, resignation, impeachment dismissal or ineligibility.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_tenure_nonelected",
+            "src_to_parliament_how_it_works#to_parl_nonelected_ministers"
+          ]
+        },
+        {
+          "text": "Sentences over two years disqualify from any office under the Government unless pardoned.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c23_convict_disability"
+          ]
+        }
+      ],
+      "executive_policy": "Collective executive seat; no runtime seat model exists.",
+      "c01_refs": [
+        "c01:tonga.json#to_cabinet",
+        "c01:tonga.json#to_ministers"
+      ]
+    },
+    {
+      "role_id": "to_ptoa_party_leader",
+      "nation": "Tonga",
+      "category": "party_leadership",
+      "hereditary": false,
+      "fictional_proposals_allowed": true,
+      "office": "Leader of the Democratic Party of the Friendly Islands (PTOA); the equivalence of \"Leader\" and \"President\" is unresolved",
+      "organization": "Democratic Party of the Friendly Islands (PTOA)",
+      "game_party_row": null,
+      "legal_minimum_age": null,
+      "legal_minimum_age_refs": [],
+      "legal_minimum_age_note": "The organization's rules are not public; the authored band applies.",
+      "plausibility_band": {
+        "min": 30,
+        "max": 80,
+        "basis": "authored game assumption, not a legal rule"
+      },
+      "eligibility_rules": [
+        {
+          "text": "An incorporated society files a paper application signed by five members with its rules, which must provide for the appointment of officers; any party's own rules decide its leader.",
+          "source_refs": [
+            "src_to_mcctil_incsoc_memo_2026#to_mcctil_society_formation",
+            "src_to_mcctil_incsoc_memo_2026#to_mcctil_rules_officers"
+          ]
+        },
+        {
+          "text": "The Assembly describes Tonga as having no political party system; candidates stand and are returned as individuals.",
+          "source_refs": [
+            "src_to_parliament_how_it_works#to_parl_no_party_system",
+            "c01:tonga.json#to_tec_2025_no_party_column"
+          ]
+        }
+      ],
+      "executive_policy": "party_only; leading an organization confers no seat.",
+      "c01_refs": [
+        "c01:tonga.json#to_dpfi",
+        "c01:tonga.json#to_dpfi_leader",
+        "c01:tonga.json#to_dpfi_president",
+        "c01:tonga.json#to_parliament_party_warning"
+      ]
+    }
+  ],
+  "excluded_roles": [
+    {
+      "role_id": "to_king",
+      "nation": "Tonga",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "King (Crown and Throne of Tonga)",
+      "reason": "Hereditary succession by lawful descent; a fictional holder would manufacture royal parentage, and the succession is entrenched against amendment.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c32_throne_succession",
+        "src_to_constitution_2020#to_c79_entrenchment"
+      ],
+      "c01_refs": [
+        "c01:tonga.json#to_king"
+      ]
+    },
+    {
+      "role_id": "to_royal_family_and_regency",
+      "nation": "Tonga",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "Heir, member of the Royal Family, or Prince Regent",
+      "reason": "Membership of the Royal Family and the heirship are matters of descent; a regency is a royal appointment or a ballot without the people's representatives. Any fictional holder would invent royal parentage.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c27_age_of_maturity",
+        "src_to_constitution_2020#to_c32_throne_succession",
+        "src_to_constitution_2020#to_c42_43_regent"
+      ]
+    },
+    {
+      "role_id": "to_noble_title_holder",
+      "nation": "Tonga",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "Noble (holder of a hereditary title and estate)",
+      "reason": "Titles and estates pass by a fixed law of succession and are protected from removal and amendment; a fictional title-holder would manufacture a peerage and a lineage.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c44_titles",
+        "src_to_constitution_2020#to_c111_titles_succession",
+        "src_to_constitution_2020#to_c63_nobles",
+        "src_to_constitution_2020#to_c79_entrenchment"
+      ]
+    },
+    {
+      "role_id": "to_nobles_representative",
+      "nation": "Tonga",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "Representative of the nobles (one of nine nobles' seats)",
+      "reason": "Elected by the nobles from their own number, so eligibility depends on holding a hereditary title.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c59_60_composition",
+        "src_to_constitution_2020#to_c63_nobles"
+      ],
+      "c01_refs": [
+        "c01:tonga.json#to_nobles_representatives"
+      ]
+    },
+    {
+      "role_id": "to_speaker",
+      "nation": "Tonga",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "Speaker and Deputy Speaker of the Legislative Assembly",
+      "reason": "The Speaker must be an elected nobles' representative, so the office is reachable only through a hereditary title.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c61_speaker"
+      ],
+      "c01_refs": [
+        "c01:tonga.json#to_speaker"
+      ]
+    },
+    {
+      "role_id": "to_privy_councillor",
+      "nation": "Tonga",
+      "category": "collective_institution",
+      "hereditary": false,
+      "fictional_proposals_allowed": false,
+      "office": "Privy Councillor",
+      "reason": "Not hereditary in itself, but members are called at the King's pleasure, with no gameplay selection path, and the Council finally decides hereditary title and estate appeals. Excluded from this pilot.",
+      "source_refs": [
+        "src_to_constitution_2020#to_c50_privy_council"
+      ],
+      "c01_refs": [
+        "c01:tonga.json#to_privy_councillors"
+      ]
+    },
+    {
+      "role_id": "fr_hereditary_office",
+      "nation": "France",
+      "category": "hereditary_office",
+      "hereditary": true,
+      "fictional_proposals_allowed": false,
+      "office": "None exists",
+      "reason": "The republican form of government cannot be revised; there is no hereditary public office to propose.",
+      "source_refs": [
+        "src_fr_an_compilation_2025#fr_const_art89"
+      ]
+    },
+    {
+      "role_id": "fr_prime_minister",
+      "nation": "France",
+      "category": "executive_eligibility",
+      "hereditary": false,
+      "fictional_proposals_allowed": false,
+      "office": "Prime Minister and members of the Government",
+      "reason": "Not proposed in this pilot: appointment is at the President's choice, Government membership excludes a parliamentary mandate, and the single-office engine has no separate Prime Minister.",
+      "source_refs": [
+        "src_fr_an_compilation_2025#fr_const_art8",
+        "src_fr_an_compilation_2025#fr_const_art20_23"
+      ]
+    }
+  ],
+  "excluded_party_rows": [
+    {
+      "nation": "France",
+      "party": "fr_rpr",
+      "reason": "The RPR ended with its 2002 merger; the roster forbids invented post-2002 RPR leaders.",
+      "evidence": "spheres-sim/data/party_leaders.json parties[fr_rpr].identity_note: \"Ended rows must not acquire invented post-2002 RPR leaders.\""
+    },
+    {
+      "nation": "France",
+      "party": "fr_udf",
+      "reason": "A federation whose branches divided; the roster assigns no invented single successor chain after 2007.",
+      "evidence": "spheres-sim/data/party_leaders.json parties[fr_udf].identity_note: \"this row is not assigned an invented single 2007-2026 successor chain.\""
+    }
+  ],
+  "tonga_hereditary_name_guard": [
+    {
+      "token": "Ma'afu",
+      "source_refs": [
+        "src_to_pmo_pm_appointment_20251218#to_pmo_2025_caption_styles"
+      ]
+    },
+    {
+      "token": "Fakafanua",
+      "source_refs": [
+        "src_to_pmo_pm_appointment_20251218#to_pmo_2025_caption_styles"
+      ]
+    },
+    {
+      "token": "Fotofili",
+      "source_refs": [
+        "src_to_pmo_pm_appointment_20251218#to_pmo_2025_caption_styles"
+      ]
+    },
+    {
+      "token": "Kalaniuvalu",
+      "source_refs": [
+        "src_to_pmo_pm_appointment_20251218#to_pmo_2025_caption_styles"
+      ]
+    },
+    {
+      "token": "Tuku'aho",
+      "source_refs": [
+        "src_to_pmo_pm_appointment_20251218#to_pmo_2025_caption_styles"
+      ]
+    },
+    {
+      "token": "Tupou",
+      "source_refs": [
+        "c01:tonga.json#to_king"
+      ]
+    }
+  ],
+  "proposals": [
+    {
+      "draft_id": "draft_c04_fr_01",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "France",
+      "name": {
+        "display": "Ondine Rivasseau",
+        "given": "Ondine",
+        "family": "Rivasseau",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "female",
+      "role": {
+        "role_id": "fr_ps_first_secretary",
+        "category": "party_leadership"
+      },
+      "party_affiliation": {
+        "game_party_row": "fr_ps",
+        "note": "Proposed for the fr_ps row (Parti socialiste); any party membership is post-cutoff gameplay fiction."
+      },
+      "age": {
+        "birth_year": 1978,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 50,
+        "oldest_age_at_window_end": 57
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2029-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "No fictional party membership may begin before 2026-09-08; three consecutive years for the national bodies the First Secretary presides over (art. 2.6.5) gives 2029-09-08. Conservative reading: art. 2.6.5 names the bodies, not the post.",
+        "gates": [
+          {
+            "kind": "vacancy",
+            "text": "An actual fr_ps leadership vacancy reached through campaign succession in play."
+          },
+          {
+            "kind": "party_process",
+            "text": "Members' secret ballot between the first signatories of the two leading motions, or a National Council election after a prolonged vacancy.",
+            "source_refs": [
+              "src_fr_ps_statuts_2021#fr_ps_first_secretary_election"
+            ]
+          },
+          {
+            "kind": "statutory",
+            "text": "Three consecutive years of fictional membership, all accrued inside the fictional window.",
+            "source_refs": [
+              "src_fr_ps_statuts_2021#fr_ps_seniority"
+            ]
+          },
+          {
+            "kind": "authored_plausibility",
+            "text": "Has held a fictional seat on the National Council or Bureau national in play before standing."
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented labour-law lecturer at a regional university who later ran a free legal clinic for tenants and seasonal workers in a mid-sized city in western France.",
+        "hypothetical_path_after_cutoff": "In play she may join the Parti socialiste once the fictional window opens, keep her membership for three consecutive years, win a seat on its national bodies and put her name first on a national orientation motion. She could become First Secretary only if a congress reaches a leadership vote, or the National Council fills a prolonged vacancy, and members choose her. Each step is a gameplay possibility, never a scheduled event or a forecast."
+      },
+      "career_constraints": [
+        {
+          "text": "Candidates are the first signatories of the two leading motions; all members vote by secret ballot.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_first_secretary_election"
+          ]
+        },
+        {
+          "text": "National bodies require three consecutive years of membership; the First Secretary presides over the Bureau national.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_seniority",
+            "src_fr_ps_statuts_2021#fr_ps_first_secretary_role"
+          ]
+        },
+        {
+          "text": "Congress follows presidential and legislative elections and meets at mid-term, so a leadership vote is not available on arbitrary dates.",
+          "source_refs": [
+            "src_fr_ps_statuts_2021#fr_ps_congress_timing"
+          ]
+        },
+        {
+          "text": "Acting or provisional leadership is a separate labelled role in the historical roster; this draft is never made acting leader automatically.",
+          "source_refs": [],
+          "basis": "authored_plausibility"
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a tall, angular woman in her early fifties with a chin-length salt-and-pepper bob tucked behind one ear, heavy round tortoiseshell glasses, a charcoal blazer over a rust-coloured roll-neck, dark trousers and a canvas satchel stuffed with annotated papers. Warm, attentive half-smile, one hand raised mid-explanation. No rose emblem, party logo, tricolour sash or real-person likeness.",
+        "depicted_age_range": [
+          50,
+          57
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "party_only",
+        "note": "A party first secretary is not a national executive."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "spheres-web/data/future_candidates_2035.json fr_ps successor list (existing slots fictional_v1_france_fr_ps_main_01..04)",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-04",
+          "UM-05"
+        ]
+      },
+      "source_refs": [
+        "src_fr_ps_statuts_2021#fr_ps_first_secretary_election",
+        "src_fr_ps_statuts_2021#fr_ps_seniority"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_fr_02",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "France",
+      "name": {
+        "display": "Loïc Ferrandou",
+        "given": "Loïc",
+        "family": "Ferrandou",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "male",
+      "role": {
+        "role_id": "fr_pcf_national_secretary",
+        "category": "party_leadership"
+      },
+      "party_affiliation": {
+        "game_party_row": "fr_pcf",
+        "note": "Proposed for the fr_pcf row (Parti communiste français); any party membership is post-cutoff gameplay fiction."
+      },
+      "age": {
+        "birth_year": 1983,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 42,
+        "oldest_age_at_window_end": 52
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "No statutory seniority rule was found, so the window opens with the fictional period; the authored congress-cycle gate below keeps the path plausible.",
+        "gates": [
+          {
+            "kind": "vacancy",
+            "text": "An actual fr_pcf leadership vacancy in play, including a congress at which the incumbent does not continue."
+          },
+          {
+            "kind": "party_process",
+            "text": "Heads the list that obtains the most votes at a congress convened in play.",
+            "source_refs": [
+              "src_fr_pcf_statuts_39#fr_pcf_list_secretary",
+              "src_fr_pcf_statuts_39#fr_pcf_congress"
+            ]
+          },
+          {
+            "kind": "authored_plausibility",
+            "text": "Has completed at least one fictional congress cycle as a member and national council member in play."
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented rail-maintenance technician who became a vocational-training instructor and coordinated a network of apprenticeship workshops in an industrial valley of central France.",
+        "hypothetical_path_after_cutoff": "In play he may join the Parti communiste français after the fictional window opens, be elected a congress delegate and a national council member, and head a list at a congress convened in play. He would become national secretary only if that list obtains the most votes. Nothing here predicts a congress result or a change of leadership."
+      },
+      "career_constraints": [
+        {
+          "text": "The congress meets at least every three years.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_congress"
+          ]
+        },
+        {
+          "text": "The secretary is the person whose list obtains the most votes; alternative lists need 10% of congress members from a quarter of departments.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_list_secretary"
+          ]
+        },
+        {
+          "text": "The same executive function is generally limited to nine years.",
+          "source_refs": [
+            "src_fr_pcf_statuts_39#fr_pcf_rotation"
+          ]
+        },
+        {
+          "text": "Proposed for the national-secretary title only; no separate party presidency is created.",
+          "source_refs": [],
+          "basis": "authored_plausibility"
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a broad-shouldered man in his mid-forties with a close-cropped dark beard greying at the chin, short curly hair, a navy work jacket over a checked flannel shirt, sturdy boots and a clipboard under one arm. Open, energetic expression. No hammer-and-sickle, party logo or real-person likeness.",
+        "depicted_age_range": [
+          42,
+          52
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "party_only"
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "spheres-web/data/future_candidates_2035.json fr_pcf successor list (existing slots fictional_v1_france_fr_pcf_main_01..04)",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-04",
+          "UM-05"
+        ]
+      },
+      "source_refs": [
+        "src_fr_pcf_statuts_39#fr_pcf_list_secretary"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_fr_03",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "France",
+      "name": {
+        "display": "Gwenola Pérignac",
+        "given": "Gwenola",
+        "family": "Pérignac",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "female",
+      "role": {
+        "role_id": "fr_president_contender",
+        "category": "executive_eligibility"
+      },
+      "party_affiliation": {
+        "game_party_row": "fr_ps",
+        "note": "Proposed for the fr_ps row; the presidential role itself is party-independent."
+      },
+      "age": {
+        "birth_year": 1974,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 54,
+        "oldest_age_at_window_end": 61
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2029-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "The PS applies its three-year membership rule to candidacies for national elections (arts. 5.1.5 and 2.6.5); membership cannot begin before 2026-09-08, giving 2029-09-08 unless the National Council grants an exception in play.",
+        "gates": [
+          {
+            "kind": "election",
+            "text": "A presidential election reached in play, at the end of a term or after a vacancy.",
+            "source_refs": [
+              "src_fr_an_compilation_2025#fr_const_art7"
+            ]
+          },
+          {
+            "kind": "nomination",
+            "text": "At least 500 valid presentations from elected officials of 30 or more departments or overseas collectivities.",
+            "source_refs": [
+              "src_fr_memento_pres_2022#fr_mpres_500",
+              "src_fr_memento_pres_2022#fr_mpres_spread"
+            ]
+          },
+          {
+            "kind": "party_process",
+            "text": "Designated by a vote of PS members under arrangements fixed by the congress or National Council.",
+            "source_refs": [
+              "src_fr_ps_statuts_2021#fr_ps_presidential_designation"
+            ]
+          },
+          {
+            "kind": "statutory",
+            "text": "Three consecutive years of fictional membership for a national candidacy, or a National Council exception.",
+            "source_refs": [
+              "src_fr_ps_statuts_2021#fr_ps_national_candidacy_seniority"
+            ]
+          },
+          {
+            "kind": "authored_plausibility",
+            "text": "Has held a fictional national office or national party office in play before contending."
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented public-health physician who directed a network of rural health centres and later chaired a non-profit federation of home-care nursing services.",
+        "hypothetical_path_after_cutoff": "In play she may join the Parti socialiste after the fictional window opens and, once the party's seniority rule is met or waived, seek its designation for a presidential election by a vote of members. She would reach the ballot only by gathering the presentations required by law from elected officials, and would hold office only by winning an election reached in play. Nothing here schedules a candidacy, a victory or a transfer of office."
+      },
+      "career_constraints": [
+        {
+          "text": "Five-year term, at most two consecutive terms, two-round absolute-majority election.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art6",
+            "src_fr_an_compilation_2025#fr_const_art7"
+          ]
+        },
+        {
+          "text": "French, aged 18, elector status, no court-ordered ineligibility, not under guardianship.",
+          "source_refs": [
+            "src_fr_memento_pres_2022#fr_mpres_eligibility"
+          ]
+        },
+        {
+          "text": "500 presentations spread over at least 30 departments or collectivities, at most one tenth from one.",
+          "source_refs": [
+            "src_fr_memento_pres_2022#fr_mpres_500",
+            "src_fr_memento_pres_2022#fr_mpres_spread"
+          ]
+        },
+        {
+          "text": "In a vacancy the President of the Senate acts; this draft never becomes interim President.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art7"
+          ]
+        },
+        {
+          "text": "The party first secretary, the Prime Minister and the presidential nominee are separate offices; this draft is not the PS first-secretary draft.",
+          "source_refs": [],
+          "basis": "authored_plausibility"
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a composed woman in her mid-fifties of medium height with thick silver hair in a low chignon, strong dark eyebrows, small silver stud earrings, a deep teal trouser suit over a white open-collar shirt and flat walking shoes, a small caduceus lapel pin nodding to her medical past. Calm, measured expression. No tricolour sash, party logo or real-person likeness.",
+        "depicted_age_range": [
+          54,
+          61
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "presidential_contender",
+        "status": "not_granted",
+        "required_record": "spheres-sim/data/party_executive_eligibility.json future_office_grants: executive_role presidential_contender, basis authored_fictional_executive_role, source_role \"fictional party successor\", bound to a catalog identity (see UM-01, UM-02)."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "spheres-sim/data/party_executive_eligibility.json future_office_grants, after a catalog identity exists",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-02",
+          "UM-03",
+          "UM-04",
+          "UM-05"
+        ]
+      },
+      "source_refs": [
+        "src_fr_memento_pres_2022#fr_mpres_500",
+        "src_fr_ps_statuts_2021#fr_ps_presidential_designation"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_fr_04",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "France",
+      "name": {
+        "display": "Anatole Villaume",
+        "given": "Anatole",
+        "family": "Villaume",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "male",
+      "role": {
+        "role_id": "fr_national_assembly_deputy",
+        "category": "collective_institution"
+      },
+      "party_affiliation": {
+        "game_party_row": "fr_fn",
+        "note": "Proposed for the fr_fn row, which the roster records as the Front national renamed Rassemblement national in 2018."
+      },
+      "age": {
+        "birth_year": 1988,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 37,
+        "oldest_age_at_window_end": 47
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "Deputies need only elector status and age 18; a legislative election or by-election can be reached in play at any time, so the window opens with the fictional period.",
+        "gates": [
+          {
+            "kind": "election",
+            "text": "Wins a legislative general election or by-election reached in play.",
+            "source_refs": [
+              "src_fr_an_fiche3_2023#fr_fiche3_eligibility"
+            ]
+          },
+          {
+            "kind": "party_process",
+            "text": "The party's endorsement for one constituency; its investiture procedure was not researched.",
+            "source_refs": [
+              "src_fr_rn_statuts_2022#fr_rn_membership_loss"
+            ]
+          },
+          {
+            "kind": "institutional_selection",
+            "text": "Optional: chosen as president by a group of at least fifteen deputies.",
+            "source_refs": [
+              "src_fr_an_compilation_2025#fr_an_reg_art19"
+            ]
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented pharmacist from a small market town in north-eastern France who ran an independent dispensary and organised a volunteer transport scheme for elderly residents of surrounding villages.",
+        "hypothetical_path_after_cutoff": "In play he may join the Rassemblement national after the fictional window opens and seek its endorsement in a single constituency. He becomes a deputy only by winning a legislative election or by-election in play. A group presidency would further require a group of at least fifteen deputies to choose him; the party presidency is a separate office he does not hold."
+      },
+      "career_constraints": [
+        {
+          "text": "577 deputies, five-year term, direct universal suffrage.",
+          "source_refs": [
+            "src_fr_an_fiche3_2023#fr_fiche3_term",
+            "src_fr_an_compilation_2025#fr_const_art24_25"
+          ]
+        },
+        {
+          "text": "French, aged 18, civic rights, no ineligibility; one constituency only.",
+          "source_refs": [
+            "src_fr_an_fiche3_2023#fr_fiche3_eligibility",
+            "src_fr_memento_leg_2024#fr_mleg_one_constituency"
+          ]
+        },
+        {
+          "text": "No local executive function alongside the mandate.",
+          "source_refs": [
+            "src_fr_an_fiche3_2023#fr_fiche3_noncumul"
+          ]
+        },
+        {
+          "text": "The RN presidency is elected by the General Assembly on nominations from 20% of the enlarged National Council; it is distinct from a deputy or group presidency.",
+          "source_refs": [
+            "src_fr_rn_statuts_2022#fr_rn_president"
+          ]
+        },
+        {
+          "text": "After a dissolution elections follow within 20 to 40 days, with no second dissolution for a year.",
+          "source_refs": [
+            "src_fr_an_compilation_2025#fr_const_art12"
+          ]
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a lean man in his late thirties with neatly side-parted chestnut hair, a short boxed beard, rimless glasses, a navy quilted gilet over a pale blue shirt with rolled sleeves, and a small green-cross pharmacy pin on his lapel. Earnest, slightly guarded expression. No flame logo, party emblem, tricolour sash or real-person likeness.",
+        "depicted_age_range": [
+          37,
+          47
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "party_only",
+        "note": "A deputy seat is a collective legislative seat, not a national executive role."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "No runtime target: the engine has no deputy or group seat (UM-03); a fr_fn successor slot would be needed for party use (UM-01).",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-03",
+          "UM-04",
+          "UM-05"
+        ]
+      },
+      "source_refs": [
+        "src_fr_an_fiche3_2023#fr_fiche3_eligibility",
+        "src_fr_an_compilation_2025#fr_an_reg_art19"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_to_01",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "Tonga",
+      "name": {
+        "display": "Lesieli Fotu",
+        "given": "Lesieli",
+        "family": "Fotu",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "female",
+      "role": {
+        "role_id": "to_peoples_representative",
+        "category": "collective_institution"
+      },
+      "party_affiliation": {
+        "game_party_row": null,
+        "note": "No game party row exists for Tonga; the draft would stand as an individual."
+      },
+      "age": {
+        "birth_year": 1984,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 41,
+        "oldest_age_at_window_end": 51
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "A by-election can occur at any time after a death, resignation or impeachment, and general elections at least every four years, so the window opens with the fictional period; winning a seat in play is the gate.",
+        "gates": [
+          {
+            "kind": "election",
+            "text": "Wins a people's constituency at a general election or by-election reached in play.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c76_77_elections"
+            ]
+          },
+          {
+            "kind": "statutory",
+            "text": "Registered elector aged 21 or more, not a noble, no outstanding court order; nomination signed by 50 electors with the deposit and court clearances.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c64_electors",
+              "src_to_constitution_2020#to_c65_representatives",
+              "src_to_electoral_act_2016#to_ea_s9_candidates"
+            ]
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented secondary-school science teacher from an outer-island village of Vava'u who later coordinated a women's handicraft and fisheries cooperative and a solar-lighting programme for remote households.",
+        "hypothetical_path_after_cutoff": "In play she may register as an elector in a Vava'u constituency and stand, formally as an individual, when a general election or by-election occurs. She holds a people's seat only if she wins one in play."
+      },
+      "career_constraints": [
+        {
+          "text": "Seventeen people's seats; the nobles' seats are hereditary-only and excluded.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c59_60_composition"
+          ]
+        },
+        {
+          "text": "Qualified elector nominating in the constituency where registered; no outstanding court order for a specific sum.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c65_representatives"
+          ]
+        },
+        {
+          "text": "Form 4 signed by 50 constituency electors, $400 deposit, court clearances.",
+          "source_refs": [
+            "src_to_electoral_act_2016#to_ea_s9_candidates"
+          ]
+        },
+        {
+          "text": "A sentence over two years disqualifies unless pardoned.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c23_convict_disability"
+          ]
+        },
+        {
+          "text": "Returns carry no party labels; candidates stand as individuals.",
+          "source_refs": [
+            "c01:tonga.json#to_tec_2025_no_party_column"
+          ]
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a sturdy woman in her early forties with thick black hair in a low bun held by a carved comb, a bright floral puletaha, a finely woven kiekie at the waist for formal occasions and flat sandals, holding a woven pandanus folder of meeting notes. Friendly, determined expression. No royal regalia, chiefly insignia, party logo or real-person likeness.",
+        "depicted_age_range": [
+          41,
+          51
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "not_applicable",
+        "note": "A legislative seat, not an executive role."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "No runtime target: Tonga has no party rows and no seat model (UM-06, UM-10).",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-06",
+          "UM-10"
+        ]
+      },
+      "source_refs": [
+        "src_to_constitution_2020#to_c65_representatives",
+        "src_to_electoral_act_2016#to_ea_s9_candidates"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_to_02",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "Tonga",
+      "name": {
+        "display": "Sitani Lolohea",
+        "given": "Sitani",
+        "family": "Lolohea",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "male",
+      "role": {
+        "role_id": "to_prime_minister_via_peoples_seat",
+        "category": "executive_eligibility"
+      },
+      "party_affiliation": {
+        "game_party_row": null,
+        "note": "No game party row exists for Tonga; premiers are formally independent members."
+      },
+      "age": {
+        "birth_year": 1971,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 54,
+        "oldest_age_at_window_end": 64
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "The Prime Minister must be an elected representative; a people's seat can be won at a by-election at any time, so the window opens with the fictional period and the seat is the first gate.",
+        "gates": [
+          {
+            "kind": "election",
+            "text": "Holds a people's seat won in play (the nobles' route is excluded).",
+            "source_refs": [
+              "src_to_constitution_2020#to_c65_representatives"
+            ]
+          },
+          {
+            "kind": "vacancy",
+            "text": "An actual premiership vacancy in play: after a general election, a no-confidence vote, death or resignation.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c50a_prime_minister",
+              "src_to_constitution_2020#to_c50b_no_confidence"
+            ]
+          },
+          {
+            "kind": "institutional_selection",
+            "text": "Nominated and seconded by two elected representatives and recommended by more than half in a secret ballot.",
+            "source_refs": [
+              "src_to_constitution_2020#to_schedule_pm_procedure"
+            ]
+          },
+          {
+            "kind": "appointment_by_institution",
+            "text": "Appointed by the King on that recommendation.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c50a_prime_minister"
+            ]
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented civil engineer who managed road and water-supply works across Tongatapu and later ran a small construction-safety training business.",
+        "hypothetical_path_after_cutoff": "In play he may first win a Tongatapu people's seat at a general election or by-election. Only as a sitting elected representative could he be nominated, seconded by two other elected representatives, and recommended by a majority in a secret ballot for appointment as Prime Minister."
+      },
+      "career_constraints": [
+        {
+          "text": "Appointment only from among elected representatives recommended by the Assembly.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c50a_prime_minister"
+          ]
+        },
+        {
+          "text": "Seconded nominations and elimination ballots until one candidate has a majority.",
+          "source_refs": [
+            "src_to_constitution_2020#to_schedule_pm_procedure",
+            "src_to_parliament_pm_procedure_2010#to_parl_pm_procedure_note"
+          ]
+        },
+        {
+          "text": "No-confidence limits: none within 18 months of a general election, six months before the deadline or 12 months after a previous motion.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c50b_no_confidence"
+          ]
+        },
+        {
+          "text": "All people's-seat qualifications apply: 21, not a noble, registered, 50 signatures, deposit and clearances.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c64_electors",
+            "src_to_electoral_act_2016#to_ea_s9_candidates"
+          ]
+        },
+        {
+          "text": "The premiership has also been reached from a nobles' seat; that hereditary route is not used.",
+          "source_refs": [
+            "src_to_pmo_pm_appointment_20251218#to_pmo_2025_nobles_route"
+          ]
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a heavy-set man in his mid-fifties with close-cropped greying hair, a trimmed moustache and rectangular reading glasses pushed up on his forehead, wearing a dark tupenu with a finely woven ta'ovala over a white shirt and dark jacket, polished black sandals, rolled engineering drawings under one arm. Steady, thoughtful expression. No royal regalia, chiefly insignia or real-person likeness.",
+        "depicted_age_range": [
+          54,
+          64
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "tonga_prime_minister_contender",
+        "status": "unmodelled",
+        "note": "No Tonga executive-role record or premiership model exists (UM-06, UM-08)."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "No runtime target: Tonga is modelled as a non-electoral kingdom (UM-06).",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-06",
+          "UM-08"
+        ]
+      },
+      "source_refs": [
+        "src_to_constitution_2020#to_c50a_prime_minister",
+        "src_to_constitution_2020#to_schedule_pm_procedure"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_to_03",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "Tonga",
+      "name": {
+        "display": "Pisila Tukuafu",
+        "given": "Pisila",
+        "family": "Tukuafu",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "female",
+      "role": {
+        "role_id": "to_nonelected_cabinet_minister",
+        "category": "collective_institution"
+      },
+      "party_affiliation": {
+        "game_party_row": null,
+        "note": "Not affiliated: a technocratic nominee."
+      },
+      "age": {
+        "birth_year": 1979,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 46,
+        "oldest_age_at_window_end": 56
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "A Prime Minister may make or change ministerial nominations whenever a government is formed or reshuffled in play; no statutory waiting period applies.",
+        "gates": [
+          {
+            "kind": "vacancy",
+            "text": "A Cabinet vacancy or new government formed in play, with fewer than four non-elected Ministers already serving.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c51_cabinet"
+            ]
+          },
+          {
+            "kind": "nomination",
+            "text": "Nominated by the Prime Minister.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c51_cabinet"
+            ]
+          },
+          {
+            "kind": "appointment_by_institution",
+            "text": "Appointed by the King on that nomination.",
+            "source_refs": [
+              "src_to_constitution_2020#to_c51_cabinet"
+            ]
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented public-finance specialist who managed budget-reform programmes for a regional development organisation in the Pacific and later taught public administration at a tertiary institute in Nuku'alofa.",
+        "hypothetical_path_after_cutoff": "In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would leave office with the government that nominated her or on its recommendation."
+      },
+      "career_constraints": [
+        {
+          "text": "At most four non-elected Ministers; the Cabinet must be fewer than half of the elected members excluding the Speaker.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_cabinet"
+          ]
+        },
+        {
+          "text": "Sits and votes except in no-confidence votes and represents no constituency.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_tenure_nonelected",
+            "src_to_parliament_how_it_works#to_parl_nonelected_ministers"
+          ]
+        },
+        {
+          "text": "Leaves office on revocation, no confidence, death, resignation, impeachment dismissal or ineligibility.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_tenure_nonelected"
+          ]
+        },
+        {
+          "text": "A sentence over two years bars any Government office unless pardoned.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c23_convict_disability"
+          ]
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a slim woman in her late forties with shoulder-length wavy black hair streaked with grey and oval glasses, wearing a navy puletaha with a subtle white flower print and a woven kiekie, a slim laptop bag over one shoulder. Crisp, focused expression. No royal regalia, chiefly insignia or real-person likeness.",
+        "depicted_age_range": [
+          46,
+          56
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "not_applicable",
+        "note": "A seat in the collective executive; no individual executive grant applies."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "No runtime target: no Cabinet seat model exists (UM-06, UM-10).",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-06",
+          "UM-10"
+        ]
+      },
+      "source_refs": [
+        "src_to_constitution_2020#to_c51_cabinet"
+      ]
+    },
+    {
+      "draft_id": "draft_c04_to_04",
+      "status": "proposal_only_not_installed",
+      "fictional": true,
+      "fiction_label": "FICTIONAL SPHERES DRAFT: an invented character, not a real person, not a forecast of any appointment or election, and not installed in the game.",
+      "nation": "Tonga",
+      "name": {
+        "display": "Kalolo Vaikona",
+        "given": "Kalolo",
+        "family": "Vaikona",
+        "authored": true,
+        "name_check": "Invented; no match in the repository real-person corpus (validator) and no public-figure match in a lead web search on 27 September 2026. Private individuals cannot be excluded; editorial review required."
+      },
+      "presentation": "male",
+      "role": {
+        "role_id": "to_ptoa_party_leader",
+        "category": "party_leadership"
+      },
+      "party_affiliation": {
+        "game_party_row": null,
+        "note": "Proposed for the documented organization C01 records as to_dpfi (PTOA); there is no game row."
+      },
+      "age": {
+        "birth_year": 1976,
+        "birth_year_basis": "Authored fictional attribute used only for age checks; not a registry record and not a dated historical event.",
+        "youngest_age_at_window_start": 49,
+        "oldest_age_at_window_end": 59
+      },
+      "eligibility_window": {
+        "kind": "potential_eligibility_window",
+        "earliest_from": "2026-09-08",
+        "until_inclusive": "2035-12-31",
+        "derivation": "The organization's own rules decide its leader and are not public; the window opens with the fictional period and a vacancy is the gate.",
+        "gates": [
+          {
+            "kind": "vacancy",
+            "text": "An actual vacancy in the organization's leadership in play."
+          },
+          {
+            "kind": "party_process",
+            "text": "Chosen under the organization's own rules, which are not public.",
+            "source_refs": [
+              "src_to_mcctil_incsoc_memo_2026#to_mcctil_rules_officers"
+            ]
+          }
+        ],
+        "meaning": "A window of possible eligibility only: never a predicted appointment, a scheduled election result or an automatic replacement of any incumbent."
+      },
+      "succession_contract": {
+        "selection": "actual_succession_events_only",
+        "incumbents_retained": true,
+        "replaces_incumbent_on_date": false,
+        "date_triggered": false,
+        "predicted_appointment": false,
+        "automatic_acting_role": false,
+        "note": "Eligible only if an actual vacancy or election is reached in play and every gate is met; a date never seats this character, and every incumbent, including historical and already-saved holders, is retained."
+      },
+      "hereditary_status": {
+        "holds_hereditary_title": false,
+        "claims_royal_or_noble_descent": false,
+        "parentage": "not_specified",
+        "note": "No parentage, family line, title or estate is invented for this character."
+      },
+      "biography": {
+        "label": "FICTIONAL BIOGRAPHY",
+        "background_undated": true,
+        "background_scope": "private_professional_only",
+        "background_before_cutoff": "An invented community-radio producer and youth rugby coach from a village in eastern Tongatapu who later managed a small printing and publishing cooperative.",
+        "hypothetical_path_after_cutoff": "In play he may join a political organization such as the Democratic Party of the Friendly Islands (PTOA) after the fictional window opens and be chosen as its leader only under that organization's own rules, if its leadership falls vacant. Leading it would not give him a seat: he would still need to win a people's constituency as an individual candidate."
+      },
+      "career_constraints": [
+        {
+          "text": "Society rules must provide for the appointment of officers; PTOA's rules were not obtained.",
+          "source_refs": [
+            "src_to_mcctil_incsoc_memo_2026#to_mcctil_rules_officers",
+            "c01:tonga.json#to_dpfi_president"
+          ]
+        },
+        {
+          "text": "The Assembly describes no party system; members outside Cabinet form an informal opposition.",
+          "source_refs": [
+            "src_to_parliament_how_it_works#to_parl_no_party_system",
+            "c01:tonga.json#to_parliament_party_warning"
+          ]
+        },
+        {
+          "text": "Whether the office is styled Leader or President is unresolved in C01.",
+          "source_refs": [
+            "c01:tonga.json#to_dpfi_leader",
+            "c01:tonga.json#to_dpfi_president"
+          ]
+        }
+      ],
+      "appearance_brief": {
+        "label": "FICTIONAL APPEARANCE BRIEF (text only)",
+        "style": "approved Spheres full-body cartoon style (C03 standard)",
+        "text": "Full-body cartoon: a wiry man in his early fifties with a shaved head and a neat salt-and-pepper goatee, wearing a patterned island shirt under a simple ta'ovala and a dark tupenu, with a well-worn radio headset around his neck. Lively, persuasive expression. No royal regalia, chiefly insignia, party logo or real-person likeness.",
+        "depicted_age_range": [
+          49,
+          59
+        ],
+        "image_generated": false,
+        "no_real_likeness": true,
+        "art_status": "No artwork requested or produced; a reviewed cartoon is a later C04 deliverable."
+      },
+      "executive_eligibility": {
+        "proposed_role": "party_only",
+        "note": "Leading an organization confers no seat or executive role."
+      },
+      "contract_mapping": {
+        "status": "unresolved",
+        "runtime_installed": false,
+        "target": "No runtime target: Tonga has no party rows (UM-06, UM-09).",
+        "blocking_mappings": [
+          "UM-01",
+          "UM-06",
+          "UM-09"
+        ]
+      },
+      "source_refs": [
+        "src_to_mcctil_incsoc_memo_2026#to_mcctil_rules_officers"
+      ]
+    }
+  ],
+  "unresolved_institutional_mappings": [
+    {
+      "id": "UM-01",
+      "nation": "France and Tonga",
+      "mapping": "Draft IDs are not runtime catalog identities. The catalog derives IDs from nation, party, component and one of four slots, and each saved binding hash covers name, birth, party and appearance seed; renaming an existing template would change saved identities.",
+      "evidence": "spheres-sim/src/party_leadership_future.rs catalog(), binding_hash(); candidates_per_component = 4; comment \"New historical research must not rename an already-saved fictional person.\"",
+      "decision_needed": "Choose an additive authored-identity list or a fifth slot per row, with its own ID namespace and saved-hash tests."
+    },
+    {
+      "id": "UM-02",
+      "nation": "France",
+      "mapping": "No fictional French successor can currently take national executive office: France requires an explicit presidential contender grant, future_office_grants is empty, and each grant must name an existing catalog identity with source_role \"fictional party successor\".",
+      "evidence": "spheres-sim/data/party_executive_eligibility.json institutions[France], future_office_grants []; party_executive_eligibility.rs validate_policy()",
+      "decision_needed": "After UM-01, review and add one presidential_contender grant for draft_c04_fr_03 (or its catalog successor)."
+    },
+    {
+      "id": "UM-03",
+      "nation": "France",
+      "mapping": "The France polity is single-office (\"ruling: the National Assembly\"): there is no separate presidency, Prime Minister, cohabitation, deputy seat or parliamentary group, so the presidential contender and the deputy have no runtime slot.",
+      "evidence": "spheres-sim/src/government.rs France Polity; party_executive_eligibility.json France gameplay_assumption",
+      "decision_needed": "Decide whether presidential and collective seats are modelled or whether these drafts stay reference-only."
+    },
+    {
+      "id": "UM-04",
+      "nation": "France",
+      "mapping": "The C01 France packet has no reconciled mapping from registered organizations to the five game rows; this packet relies on roster identity notes (fr_ps and fr_pcf continuous names; FN renamed RN in 2018) and excludes fr_rpr and fr_udf.",
+      "evidence": "docs/campaign-certification/C01/research/france.json coverage.unresolved; spheres-sim/data/party_leaders.json identity notes",
+      "decision_needed": "Confirm the fr_ps, fr_pcf and fr_fn row identities in C01/C02 before integration."
+    },
+    {
+      "id": "UM-05",
+      "nation": "France",
+      "mapping": "Party statutes may have changed before the cutoff: the PS site serves its September 2021 statutes, the PCF page its 39th Congress text, and the RN page its 2022 text. Later amendments were not verified.",
+      "evidence": "sources.json src_fr_ps_statuts_2021, src_fr_pcf_statuts_39, src_fr_rn_statuts_2022",
+      "decision_needed": "Re-check the statute versions in force on 7 September 2026 during C02."
+    },
+    {
+      "id": "UM-06",
+      "nation": "Tonga",
+      "mapping": "Tonga has no game party rows and is modelled as a non-electoral kingdom (next election (0, 0), ruling \"the House of Tupou\"), so no succession event can ever select a Tonga fictional successor; the elected-premiership order of the 2010 reform is not modelled.",
+      "evidence": "spheres-sim/src/government.rs Tonga Polity; leadership_production_2035.json countries[Tonga].party_rows = 0",
+      "decision_needed": "Model the post-2010 institutions (people's seats, Assembly-recommended Prime Minister, Cabinet) before any Tonga draft can be integrated."
+    },
+    {
+      "id": "UM-07",
+      "nation": "Tonga",
+      "mapping": "The simulation's party pillar for Tonga is \"the thirty-three hereditary nobles\"; it is a hereditary body and must never receive fictional people.",
+      "evidence": "spheres-sim/src/government.rs Tonga pillars: pl(Pillar::Party, \"the thirty-three hereditary nobles\")",
+      "decision_needed": "Keep that pillar outside any fictional-successor path."
+    },
+    {
+      "id": "UM-08",
+      "nation": "Tonga",
+      "mapping": "No Tonga executive-role policy exists: reviewed_office_role() has no Tonga entry, so if Tonga rows were ever added their fictional successors would default to legacy executive eligibility without review, although Tongan premiers are formally independent members.",
+      "evidence": "spheres-sim/src/party_executive_eligibility.rs reviewed_office_role(); party_executive_eligibility.json institutions (no Tonga record)",
+      "decision_needed": "Add a sourced Tonga institution record and a non-party executive path before integration."
+    },
+    {
+      "id": "UM-09",
+      "nation": "Tonga",
+      "mapping": "PTOA leadership rules are not public: society rules are filed on paper, C01 records separate \"Party leader\" and \"President of the party\" observations whose equivalence is unresolved, and returns carry no party labels.",
+      "evidence": "sources.json to_mcctil_rules_officers; C01 tonga.json to_dpfi_leader, to_dpfi_president, to_tec_2025_no_party_column",
+      "decision_needed": "Obtain PTOA's rules or treat the role as reference-only."
+    },
+    {
+      "id": "UM-10",
+      "nation": "Tonga",
+      "mapping": "Collective institutions (people's seats, Cabinet) have no runtime seat model; the only shared-seat policy covers two German co-chairs.",
+      "evidence": "spheres-sim/data/future_party_leadership_seats.json (Germany only)",
+      "decision_needed": "Decide on a collective-seat model or keep these drafts reference-only."
+    }
+  ],
+  "observations_on_existing_contract": [
+    "All 60 existing France templates are party_only, so under the current contract no fictional French successor can reach national office until UM-01 and UM-02 are resolved.",
+    "The existing LDP pilot biographies describe undated, already-held Diet membership. This packet applies a stricter rule (no office, party membership or candidacy before 2026-09-08); C04 should choose one rule for all countries.",
+    "Tonga maps to the shared \"pacific\" name pool (Malia, Ana, Alisi, Mele; Sione, Manu, Tavita, Tevita; Latu, Tau, Tui, Moala), which has had no Tonga review: \"Tui\" resembles the chiefly title element Tu'i, and \"Latu\" is the surname of a minister recorded in C01. It matters only if Tonga rows are added.",
+    "The existing French pool surname \"Faure\" is shared with the PS first secretary recorded in party_leaders.json; existing fr_fn and fr_udf templates use it. Coincidental, flagged for editorial review.",
+    "The Assembly page's \"up to 12 Ministers\" simplifies clause 51(2)(b); the Constitution governs."
+  ]
+}
