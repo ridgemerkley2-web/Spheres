@@ -12,7 +12,7 @@ This packet adds one party role to [india.json](india.json): `in_bjp_president` 
 Janata Party", kind `party_leader`) on the existing recognition observation `in_eci_20240323_np_03` (Bharatiya Janata
 Party). The observation's identity, recognition row, lifecycle (`unresearched`), coverage status
 (`reporting_identity_only`) and empty game mapping are unchanged; only its sources, claim ids, role list and one coverage
-note grow. The packet adds 74 sources and 167 claims, appended after the CLAUDE-C01-20 sources, twenty holder
+note grow. The packet adds 74 sources and 167 claims, appended after the CLAUDE-C01-20 sources, nineteen holder
 observations (three with a stated start and one with a stated end), a role scope note and one bounded note in the packet
 coverage. It adds no organization, institution, game mapping, lifespan, portrait or avatar, and it changes nothing that
 CLAUDE-C01-11, CLAUDE-C01-15 or CLAUDE-C01-20 added: the thirteen prime-minister, eight president and ten
@@ -33,7 +33,7 @@ reason.
 | BJP-PRES-02 | Murli Manohar Joshi's presidency | **Accepted in part:** observed on 10 Dec 1991 (Rajya Sabha, item headed 'REGARDING "EKTA YATRA" BY B.J.P. PRESIDENT'); two written answers of 4 Mar 1992 (one in Hindi) and the party's resolution of 27 Feb 1993 attest him again; the resolutions of March and December 1992 style him President under multi-day headings; 'Ex-President' by the National Executive of 18-19 Dec 1993; no record of his election or of the day he assumed or left the office |
 | BJP-PRES-03 | Advani's return (1993) | **Accepted in part:** the unnamed addresses of 18 Jun 1993 ('elected me once again President') and 10 Nov 1995 ('for yet another term') are claims; the resolutions of December 1993, February 1996 and April 1998 style him President under multi-day headings; observed on 16 Jul 1997 by the party's 'Press Release by President, Shri Lal Krishna Advani'; the handover was announced on 2 May 1998 for the next day; the bio-data's 'July, 1993' and 'May 2, 1998' are retrospective |
 | BJP-PRES-04 | Kushabhau Thakre (1998) and Bangaru Laxman (2000) | **Accepted in part:** Thakre elected unanimously and styled President-elect on 2 May 1998 (no day of election printed); his 'I assume this office' at the session of 3 and 4 May 1998 has no printed day; observed on 27 Feb 1999; Laxman's nominations filed on 2 Aug 2000, his address to the National Council of 27-28 Aug 2000, observed on 31 Aug 2000; his resignation accepted 'with immediate effect' by the office bearers on 14 Mar 2001, the one stated end |
-| BJP-PRES-05 | K. Jana Krishnamurthi (2001) and M. Venkaiah Naidu (2002) | **Accepted in part:** Jana Krishnamurthi designated acting president on 14 Mar 2001 (claims only); observed on 24 Mar 2001, when the party heads his National Executive address 'National President' and he says the Executive has entrusted the presidentship to him (this packet's ruling); still National President on 24 Jun 2002; Naidu took over from him on 1 Jul 2002 by the party journal (stated start); no record of the body that chose Naidu, and no stated end for either |
+| BJP-PRES-05 | K. Jana Krishnamurthi (2001) and M. Venkaiah Naidu (2002) | **Accepted in part:** Jana Krishnamurthi designated acting president on 14 Mar 2001 (claims only); styled 'National President' on 24 Mar 2001, when he says the Executive has entrusted the presidentship to him, and still on 24 Jun 2002, but no source states that the acting service became a presidency (claims only); Naidu took over from him on 1 Jul 2002 by the party journal (stated start); no record of the body that chose Naidu, and no stated end for either |
 | BJP-PRES-06 | Advani (2004) and Rajnath Singh (2005) | **Accepted in part:** on 18 Oct 2004 Naidu's resignation accepted without a stated day of effect and the office bearers resolved to appoint Advani, ratification to follow; Advani observed on 20 Oct 2004 (his 'two days ago' is a recollection); the National Council endorsed his election on 27 Oct 2004 (the release of 30 Oct names the National Executive); his resignation rejected on 8 Jun 2005; 'the last meeting which I shall be presiding over' on 26 Dec 2005; Rajnath Singh observed on 2 Jan 2006; no record of Rajnath Singh's election or of the day either took charge or left the office |
 | BJP-PRES-07 | Nitin Gadkari (2009) and Rajnath Singh (2013) | **Accepted in part:** the profile headed 'BJP National President' carries two item dates (18 and 19 Dec 2009) and dates no holder; Gadkari observed on 24 Dec 2009 and on 22 Jan 2013, the day he decided not to seek a second term; 'former BJP National President' by 27 Jan 2013; Rajnath Singh declared elected unopposed on 23 Jan 2013 and styled 'Newly Elected President' that day; observed on 2 Mar 2013; no record of the day either took charge or left the office |
 | BJP-PRES-08 | Amit Shah (2014, re-elected 2016) | **Accepted in part:** observed on 9 Jul 2014 (the day the Parliamentary Board thanked the 'outgoing' Rajnath Singh), on 2 Feb 2016 (after the re-election reported on 24 Jan 2016) and on 17 Jun 2019 (the Parliamentary Board meeting that made J. P. Nadda Working President); his request to be relieved and his continuation until the organisational elections (17 Jun 2019) and his handover of charge (20 Jan 2020) are claims; no record of the day he took charge in 2014 or left the office |
@@ -49,7 +49,6 @@ The resulting holder observations of `in_bjp_president`, in date order:
 | L. K. Advani | 1997-07-16 | null | null | the party's 'Press Release by President, Shri Lal Krishna Advani', 16 Jul 1997: 'As President of the BJP' |
 | Kushabhau Thakre | 1999-02-27 | null | null | the party's 'Statement on Union Budget 1999-2000 issued by Shri Kushabhau Thakre, President, BJP' |
 | Bangaru Laxman | 2000-08-31 | null | 2001-03-14 | the party's 'Statement issued by Shri Bangaru Laxman, President BJP'; end: the office bearers' release of 14 Mar 2001, 'unanimously decided to accept the resignation with immediate effect' |
-| K. Jana Krishnamurthi | 2001-03-24 | null | null | the party's heading 'Address of Shri K. Jana Krishnamurthy National President, BJP' to the National Executive, which he says has 'entrusted the responsibility of party presidentship' to him (this packet's ruling) |
 | M. Venkaiah Naidu | null | 2002-07-01 | null | BJP Today, July 16-31, 2002: 'he took over from Shri Jana Krishnamurthi on July 1, his 53rd birth anniversary as the president' |
 | L. K. Advani | 2004-10-20 | null | null | the party's 'Statement issued by Shri L.K. Advani President' at his press conference |
 | Rajnath Singh | 2006-01-02 | null | null | 'The statement released by the BJP National President, Shri Rajnath Singh' |
@@ -85,10 +84,12 @@ entrustments, an appointment awaiting ratification, prospective announcements, a
 statements, farewells, 'outgoing', 'former' and 'Ex' stylings, predecessor references, resignations and their
 consideration, acceptance without a stated day of effect, rejection or recording, a decision not to seek another term,
 the acting presidency of March 2001, the working presidencies of 2019 and 2025, a term extension, later attestations of a
-holder already observed (`in_office_continuation_attestation`), retrospective spans, lists, biographies and profile
-headings, recollections of an assumption or a selection, and addresses that name no speaker. Parliament records are used
-only where they record the party office: Rajya Sabha records date Advani and Joshi in 1991, because the party's own
-records of 1990-1992 print multi-day meeting headings or name no speaker.
+holder already observed (`in_office_continuation_attestation`), retrospective spans, lists, biographies, a profile
+heading whose page and the site's listing print different days (Gadkari, December 2009), recollections of an assumption
+or a selection, and addresses that name no speaker. A dated release whose own heading names and styles the holder, such
+as the profile released on 9 July 2014, is a same-day in-office attestation. Parliament records are used only where they
+record the party office: Rajya Sabha records date Advani and Joshi in 1991, because the party's own records of 1990-1992
+print multi-day meeting headings or name no speaker.
 
 Rulings on the questions the parts and checks left open:
 
@@ -116,13 +117,11 @@ Rulings on the questions the parts and checks left open:
   `until`. The atlas shows only "Observed on" for a holder with `attested_on`, so his note carries the end. The letter of
   13 March 2001 (recalled on 24 March), the release of 15 March and the National Executive's resolution of 24 March 2001
   are separate claims.
-- **K. Jana Krishnamurthi's presidency from 24 March 2001 (check B6; this packet's ruling, for the integrator to
-  confirm).** The office bearers made him acting president on 14 March 2001, and his service until 23 March (styled
-  President on 18 March) is claims only. On 24 March 2001 the party heads his address to the National Executive 'National
-  President', and he tells the Executive that it has 'entrusted the responsibility of party presidentship' to him. This
-  packet reads the Executive's entrustment, with the same-day heading, as a statement of a substantive presidency and
-  observes him on 24 March 2001 with no start. If the ruling is declined, that holder is removed and he stays claims
-  only; nothing else changes.
+- **K. Jana Krishnamurthi's service from 14 March 2001 stays claims only (check B6).** The office bearers made him
+  acting president on 14 March 2001. On 24 March 2001 the party heads his address 'National President' and he says the
+  Executive has 'entrusted the responsibility of party presidentship' to him, but the same address places him in the
+  Chair because of the office bearers' request, and no source states that the acting arrangement ended or that he was
+  elected or appointed President; like the INC's interim presidency of 2019-2022, his service is claims only.
 - **Naidu's start is accepted from the party journal (checks B3 and B5).** BJP Today's editorial for July 16-31, 2002
   says 'he took over from Shri Jana Krishnamurthi on July 1, his 53rd birth anniversary as the president'. The profile's
   'Ist July 2002 onwards President' is a retrospective span and not the basis, and Jana Krishnamurthi's end is not
@@ -198,9 +197,9 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 14 Mar 2001 | Laxman: resignation letter considered; Laxman: resignation accepted with immediate effect; Jana Krishnamurthi: acting president designated; Laxman: acceptance recalled | `in_bjp_office_bearers_consider_laxman_letter_20010314` (claim), `in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314` (end), `in_bjp_jana_krishnamurthi_designated_acting_president_20010314` (claim), `in_bjp_office_bearers_acceptance_recalled_20010314` (claim) |
 | 15 Mar 2001 | Laxman: stepped down | `in_bjp_laxman_has_stepped_down_pending_enquiry_20010315` (claim) |
 | 18 Mar 2001 | Jana Krishnamurthi: acting service | `in_bjp_jana_krishnamurthy_styled_president_20010318` (claim) |
-| 24 Mar 2001 | Jana Krishnamurthi: in office; Jana Krishnamurthi: entrustment by the National Executive stated; Laxman: resignation recorded | `in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324` (observed), `in_bjp_ne_entrusted_presidentship_to_jana_krishnamurthy_20010324` (claim), `in_bjp_ne_resolution_laxman_resigned_as_president_20010324` (claim) |
-| 29 Mar 2001 | Jana Krishnamurthi: in office again | `in_bjp_jana_krishnamurthi_styled_president_20010329` (claim) |
-| 24 Jun 2002 | Jana Krishnamurthi: in office again | `in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624` (claim) |
+| 24 Mar 2001 | Jana Krishnamurthi: acting service; Jana Krishnamurthi: entrustment by the National Executive stated; Laxman: resignation recorded | `in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324` (claim), `in_bjp_ne_entrusted_presidentship_to_jana_krishnamurthy_20010324` (claim), `in_bjp_ne_resolution_laxman_resigned_as_president_20010324` (claim) |
+| 29 Mar 2001 | Jana Krishnamurthi: acting service | `in_bjp_jana_krishnamurthi_styled_president_20010329` (claim) |
+| 24 Jun 2002 | Jana Krishnamurthi: acting service | `in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624` (claim) |
 | 1 Jul 2002 | Naidu: assumption of charge stated; Jana Krishnamurthi: predecessor reference | `in_bjp_today_naidu_took_over_on_july_1_20020701` (start), `in_bjp_today_jana_krishnamurthi_predecessor_20020701` (claim) |
 | 11 Jul 2002 | Naidu: in office again | `in_bjp_naidu_president_first_press_conference_20020711` (claim) |
 | 3 Aug 2002 | unnamed: endorsement stated | `in_bjp_national_council_address_endorsement_stated_20020803` (claim) |
@@ -377,8 +376,8 @@ address thanks his fellow workers 'for having accepted and endorsed this decisio
 and 'With much reluctance, the resignation was accepted' (`in_bjp_naidu_resignation_accepted_20041018`); on 27 October
 2004 'Shri Venkaiah Naidu gave his farewell speech'.
 
-Decision: accepted in part. Jana Krishnamurthi is observed on 24 March 2001 (this packet's ruling on check B6); Naidu
-holds from 1 July 2002 (stated start).
+Decision: accepted in part. Jana Krishnamurthi's service from 14 March 2001 is claims only; Naidu holds from 1 July 2002
+(stated start).
 
 Limits: no National Executive resolution electing or confirming Jana Krishnamurthi, no day of his assumption and no day
 his office ended was found, and his acting service from 14 March 2001 is claims only. No record of the body that chose
@@ -508,7 +507,9 @@ August 2026' (`in_ks_nabin_appoints_national_office_bearers_20260817`).
 Decision: accepted. Nabin holds from 20 January 2026 (stated start) and is observed on 17 August 2026, before the cutoff.
 
 Limits: the working presidency is claims only. A Kamal Sandesh post on a meeting of 1 September 2026 exists only as a
-rendering modified after the cutoff and is a lead, as are the party's releases of 22 and 26 January 2026.
+rendering modified after the cutoff and is a lead, as are the party's releases of 22 and 26 January 2026. Kamal
+Sandesh's page of the appointments prints 'Published on: 16 Aug, 2026', a day before the appointment day in its text,
+and was modified on 2 September 2026 before its only capture; the day is kept as the text prints it.
 
 ## Sources added
 
@@ -813,7 +814,7 @@ No site terms, licences or cookie banners were accepted, no CAPTCHA or challenge
 | B3 | Naidu and Advani had both attested_on and a proposed start | **Applied**: Naidu has `from` 2002-07-01 and no attested_on; Advani's start is declined and he is observed on 20 Oct 2004; every holder has the model's shape |
 | B4 | Advani's proposed start cited the appointment | **Applied**: the appointment is an `appointment_decision` claim; the recollection is `assumption_recalled_retrospective`; no start (see B3) |
 | B5 | Naidu's profile was misquoted and used as a start | **Applied**: 'Ist July 2002 onwards President' is quoted as printed, as a `retrospective_term_span`; the start rests on BJP Today's editorial (B-R1) |
-| B6 | Jana Krishnamurthi's substantive presidency needed a ruling | **Applied**: the ruling is stated under How a start and an end are decided: observed on 24 Mar 2001 from the National Executive's entrustment and the same-day 'National President' heading, for the integrator to confirm; his acting service is claims only and the test pins the acting window |
+| B6 | Jana Krishnamurthi's substantive presidency needed a ruling | **Applied**: the ruling is stated under How a start and an end are decided: no source states that the acting service of 14 Mar 2001 ended or became a presidency, so his service, including the 'National President' heading and the entrustment he recalled on 24 Mar 2001, is claims only; the test pins the acting window from 14 Mar 2001 to 30 Jun 2002 |
 | B7 | The 24 Mar 2001 address's recollection held three events | **Applied**: the letter of 13 Mar 2001 (`resignation_tendered`), the recalled acceptance of the 14th and the recalled acting responsibility (no structured date) are separate claims; the letter's quoted text is noted |
 | B8 | Same-day stylings merged with undated recollections (2001, 2006) | **Applied**: each styling is its own claim dated by the statement; the recollections store no structured date; the acceptance of 2 Jan 2006 stays dated and is not a start |
 | B9 | The National Council's 2004 endorsement was not found | **Applied**: BJP Today's report (B-R2) is imported with separate claims for the endorsement, Naidu's farewell and Vajpayee's 'the 5th time'; the release's 'National Executive' claim is kept as printed and the conflict noted |
@@ -938,9 +939,10 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     library.bjp.org, the Rajya Sabha store and Arquivo.pt), the 2026-09-28 access date and their rows to the party role;
     the source list is the original, C01-11, C01-15, C01-20 and then C01-27 sources.
   - `test_india_prime_ministers_c01_11.py` and `test_india_presidents_c01_15.py`: the source list now ends with the BJP
-    role's sources (74 sources and 167 claims pinned); roles 4 (from 3); the rows beyond each packet's own are the
-    presidency's or a party role's, the BJP rows numbered BJP-PRES only; the packet coverage has eleven notes with
-    CLAUDE-C01-20's at index 9 and CLAUDE-C01-27's last; the index has four role observations.
+    role's sources (74 sources and 167 claims pinned); roles 4 (from 3); each packet's own claims share none with the
+    BJP role, and in `test_india_prime_ministers_c01_11.py` the rows beyond C01-11's are the presidency's or a party
+    role's, the BJP rows numbered BJP-PRES only; the packet coverage has eleven notes with CLAUDE-C01-20's at index 9
+    and CLAUDE-C01-27's last; the index has four role observations.
   - `test_india_inc_presidents_c01_20.py`: the party-leader roles are exactly the BJP role and the INC role; the source
     list ends with the BJP sources; roles 4 (from 3); the packet coverage has eleven notes with the INC note at index 9
     and the BJP note last; the index has four role observations. Its INC assertions are unchanged.
@@ -948,8 +950,10 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   the handoff. The sparse checkout was not widened.
 - The atlas (`tools/ui/leadership-research-review.js`) shows "Observed on" for a holder with `attested_on`; Bangaru
   Laxman's note carries his end. No UI code changed.
-- The party role's event-kind vocabulary is pinned in `test_india_bjp_presidents_c01_27.py`; it extends the CLAUDE-C01-20
-  kinds with kinds for the acting presidency, working presidencies, term extensions and the Returning Officer's steps.
+- The party role's event-kind vocabulary is pinned in `test_india_bjp_presidents_c01_27.py`: it shares 21 of its 60
+  kinds with the CLAUDE-C01-20 vocabulary, and the other 39 are its own (among them kinds for National Council and
+  National Executive statements, resignations, the acting presidency, working presidencies, term extensions and the
+  Returning Officer's steps).
 - `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator; this
   handoff is self-proposed and not registered there.
 
