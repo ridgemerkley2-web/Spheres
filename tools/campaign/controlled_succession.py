@@ -117,7 +117,9 @@ def archive_source(root, relative, manifest):
 
 def archive_identity(archive, world, slot, date, player, observation, rules):
     year, month, day = map(int, date.split("-"))
-    require((world.get("year"), world.get("month"), world.get("day")) == (year, month, day),
+    # World serializes day 1 by omission (serde first_day/is_first_day).
+    # Apply that exact native default, never the requested checkpoint's day.
+    require((world.get("year"), world.get("month"), world.get("day", 1)) == (year, month, day),
             f"Archive native calendar differs at {slot}")
     require(world.get("player") == player and world.get("rules") == rules, "Archive player or rules changed")
     require(archive.get("saved_date") == f"{day} Jan 1990", "Archive saved date differs")

@@ -42,6 +42,8 @@ def fixture(root):
                                  "ended_day": 1, "outcome": "government ended"}] if selected else []} }},
                "history": [{"synthetic": True}], "log": [], "journey": journey,
                "saved_date": f"{int(date[-2:])} Jan 1990", "player": player, "saved_unix": 1}
+        if before:
+            del raw["world"]["world"]["day"]  # Native World omits the first day.
         for leg in ("uninterrupted", "resumed"):
             relative = f"{leg}/saves/{slot}.json"
             path = root / relative
@@ -88,6 +90,23 @@ class ControlledVerifierTests(unittest.TestCase):
         self.assertEqual(proof["archive_pairs"], 10)
         self.assertFalse(proof["qualification"])
         self.assertFalse(proof["organic_history"])
+
+    def test_native_omitted_day_means_only_first_day(self):
+        for index in (0, 1):
+            slot, date, player = c.schedule()[index]
+            archive, world = c.read_archive(self.root / f"uninterrupted/saves/{slot}.json", False)
+            world.pop("day", None)
+            args = (archive, world, slot, date, player, self.report["observations"][index], self.report["initial_rules"])
+            if index == 0:
+                c.archive_identity(*args)
+            else:
+                with self.assertRaisesRegex(c.shared.InvalidEvidence, "calendar"):
+                    c.archive_identity(*args)
+        for invalid in (None, 0, 2):
+            archive, world = c.read_archive(self.root / "uninterrupted/saves/before_collapse.json", False)
+            world["day"] = invalid
+            with self.subTest(day=invalid), self.assertRaisesRegex(c.shared.InvalidEvidence, "calendar"):
+                c.archive_identity(archive, world, "before_collapse", "1990-01-01", "USSR", self.report["observations"][0], self.report["initial_rules"])
 
     def test_rejects_wrong_modified_or_unpinned_build(self):
         for key, value in [("revision", "b"*40), ("compiled_revision", REVISION[:12]+"-modified"), ("seed", 7), ("id", "ordinary-ussr")]:
