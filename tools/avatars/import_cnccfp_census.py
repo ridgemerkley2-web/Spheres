@@ -216,6 +216,8 @@ def merge_supplement(packet, raw=None):
         path = snapshot.get('path') if isinstance(snapshot, dict) else None
         if not isinstance(path, str) or not (ROOT / path).resolve().is_relative_to(allowed):
             raise ValueError(f"France supplement snapshot outside research/sources: {source['id']}")
+        if not (ROOT / path).is_file():
+            raise ValueError(f"France supplement snapshot missing or not a file: {source['id']}")
     packet['sources'].extend(sources)
     packet['institutions'] = institutions
     packet['coverage']['unresolved'].extend(notes)

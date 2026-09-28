@@ -464,6 +464,10 @@ class FrancePresidentsTests(unittest.TestCase):
             (encoded(lambda v: v['sources'][0]['snapshot'].update(
                 path='docs/campaign-certification/C01/research/sources/../france.json')), 'outside research/sources'),
             (encoded(lambda v: v['sources'][0].pop('snapshot')), 'outside research/sources'),
+            (encoded(lambda v: v['sources'][0]['snapshot'].update(
+                path='docs/campaign-certification/C01/research/sources/france-missing-review.json')), 'missing or not a file'),
+            (encoded(lambda v: v['sources'][0]['snapshot'].update(
+                path='docs/campaign-certification/C01/research/sources')), 'missing or not a file'),
         ]
         for raw, message in cases:
             with self.subTest(message=message, raw=raw[:40]), self.assertRaisesRegex(ValueError, message):
@@ -506,6 +510,14 @@ class FrancePresidentsTests(unittest.TestCase):
         for stale in STALE:
             self.assertNotIn(stale, self.raw, stale)
             self.assertNotIn(stale, json.dumps(self.extracts, ensure_ascii=False), stale)
+
+    def test_coverage_hours_preserve_explicit_midnight_effects(self):
+        supplement = json.loads(self.supplement_bytes)
+        notes = ' '.join(supplement['institutions'][0]['coverage']['unresolved'])
+        self.assertNotIn('no source fixes the hour at which any term began', notes)
+        self.assertIn('2002 and 2022', notes)
+        self.assertIn('0 heure', notes)
+        self.assertIn('2007, 2012 and 2017', notes)
 
     def test_holders_are_exactly_as_intended(self):
         presidency_invariants(self.packet)

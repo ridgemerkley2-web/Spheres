@@ -89,9 +89,11 @@ dates come from the archive's date line, which is marked "Seul le prononcé fait
 `import_cnccfp_census.py` keeps generating the CNCCFP packet exactly as before and then calls `merge_supplement` (documented in
 the module docstring). The supplement has exactly three keys: its `sources` are appended after the eight CNCCFP sources, its
 `institutions` become the packet's institutions (the generated packet had none), and its `coverage_unresolved` notes are appended
-to the packet's `coverage.unresolved`. The build fails loudly on a missing supplement, invalid JSON, any other key, a malformed
-source, claim, institution or note, a source, claim or entry id that collides with the generated packet or within the supplement,
-and a snapshot path that is missing or resolves outside `research/sources`. The supplement sits in a subfolder, so
+to the packet's `coverage.unresolved`. The build fails loudly on a missing supplement, invalid JSON, any other key, malformed
+source/claim/institution container or id structure or a malformed note, a source, claim or entry id that collides with the generated packet or within the supplement,
+and a snapshot path that is missing, is not a file or resolves outside `research/sources`. These merge guards check the basic
+container/id shape and confined file presence; the shared research validator separately checks the complete source, claim and
+institution schema, references and snapshot checksums. The supplement sits in a subfolder, so
 `campaign_research.py`'s non-recursive `research/*.json` glob never treats it as a packet; the merged packet is validated like any
 other. Built with an empty supplement, the importer reproduces the previous `france.json` byte for byte (SHA-256
 `6ac88df4…4b112c`, pinned by the new test). Codex must accept this mechanism before any later France packet relies on it.
