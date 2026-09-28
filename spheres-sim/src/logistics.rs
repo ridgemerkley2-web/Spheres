@@ -1859,9 +1859,41 @@ pub(crate) fn for_new_arrivals(w: &mut WorldState, mut credit: impl FnMut(Nation
     }
 }
 
+// Exact ordered arrival-cache key without copying every saved node's strings.
+// Names remain part of due-route keys; transit keys deliberately retain the
+// original ID-only equivalence, including its first encountered refusal text.
+struct ArrivalAccessKey<'a> {
+    seller: NationId,
+    buyer: NationId,
+    nodes: &'a [RouteNode],
+    names: bool,
+}
+impl Ord for ArrivalAccessKey<'_> {
+    fn cmp(&self, other: &Self) -> Ordering {
+        (self.seller, self.buyer, self.names).cmp(&(other.seller, other.buyer, other.names))
+            .then_with(|| if self.names {
+                self.nodes.iter().map(|n| (n.id.as_str(), n.name.as_str()))
+                    .cmp(other.nodes.iter().map(|n| (n.id.as_str(), n.name.as_str())))
+            } else {
+                self.nodes.iter().map(|n| n.id.as_str()).cmp(other.nodes.iter().map(|n| n.id.as_str()))
+            })
+    }
+}
+impl PartialOrd for ArrivalAccessKey<'_> {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> { Some(self.cmp(other)) }
+}
+impl PartialEq for ArrivalAccessKey<'_> {
+    fn eq(&self, other: &Self) -> bool { self.cmp(other) == Ordering::Equal }
+}
+impl Eq for ArrivalAccessKey<'_> {}
+
 // True means this date's freight pass ran, including when it posted an empty
 // arrival list. False never permits a caller to consume retained old arrivals.
 fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
+    #[cfg(test)]
+    if arrival_access_tests::ORIGINAL.with(|flag| flag.get()) {
+        return arrival_access_tests::original_post_arrivals(w, reuse_due_routes);
+    }
     if !enabled(w) {
         return false;
     }
@@ -1877,18 +1909,21 @@ fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
     w.logistics.usage_tonnes.clear();
     w.logistics.arrivals.clear();
     w.logistics.route_cache.clear();
-    let old = std::mem::take(&mut w.logistics.cargo);
+    let mut old = std::mem::take(&mut w.logistics.cargo);
     let mut keep = vec![];
     let mut arrivals = vec![];
+    let mut delivered = Vec::with_capacity(old.len());
     // Repeated consignments may share a booked path. Control and permissions
     // do not change during this arrival pass, so one exact path check suffices.
-    let mut open_routes: BTreeMap<(NationId, NationId, Vec<String>), Result<(), String>> = BTreeMap::new();
+    let mut open_routes: BTreeMap<ArrivalAccessKey<'_>, Result<(), String>> = BTreeMap::new();
     // Due/held consignments also share pure access checks. Keep this separate
     // from the existing in-transit cache: saved names affect exact refusal
     // text, even when the ordered node IDs are identical. No movement, stock,
     // ownership or permissions change until this arrival pass has finished.
-    let mut due_routes: BTreeMap<(NationId, NationId, Vec<(String, String)>), Result<(), String>> = BTreeMap::new();
-    for mut c in old {
+    let mut due_routes: BTreeMap<ArrivalAccessKey<'_>, Result<(), String>> = BTreeMap::new();
+    // Only due dates and hold reasons change while keys borrow the independent
+    // route fields. No cargo is moved until both caches have been dropped.
+    for c in &mut old {
         if daily && c.due_day.is_none() {
             // Legacy freight arrived at the END of due_month: preserve that
             // known boundary, rather than adding months to the load date.
@@ -1902,26 +1937,35 @@ fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
             else { c.due_month > now };
         if in_transit {
             if w.rules.military_operations {
-                let key = (c.seller, c.buyer, c.route.nodes.iter().map(|n| n.id.clone()).collect());
+                let key = ArrivalAccessKey { seller: c.seller, buyer: c.buyer, nodes: &c.route.nodes, names: false };
+                #[cfg(test)]
+                arrival_access_tests::record_key(&key, open_routes.contains_key(&key));
                 c.hold_reason = open_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone().err();
             }
-            keep.push(c);
+            delivered.push(false);
             continue;
         }
         let access = if reuse_due_routes {
-            let key = (c.seller, c.buyer, c.route.nodes.iter().map(|n| (n.id.clone(), n.name.clone())).collect());
+            let key = ArrivalAccessKey { seller: c.seller, buyer: c.buyer, nodes: &c.route.nodes, names: true };
+            #[cfg(test)]
+            arrival_access_tests::record_key(&key, due_routes.contains_key(&key));
             due_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone()
         } else { route_open(w, c.seller, c.buyer, &c.route) };
         match access {
             Ok(()) => {
                 c.hold_reason = None;
-                arrivals.push(c)
+                delivered.push(true)
             }
             Err(reason) => {
                 c.hold_reason = Some(reason);
-                keep.push(c)
+                delivered.push(false)
             }
         }
+    }
+    drop(open_routes);
+    drop(due_routes);
+    for (c, arrived) in old.into_iter().zip(delivered) {
+        if arrived { arrivals.push(c); } else { keep.push(c); }
     }
     arrivals.sort_by_key(|c| c.id);
     keep.sort_by_key(|c| c.id);
@@ -1933,6 +1977,10 @@ fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
 #[cfg(test)]
 #[path = "logistics_arrival_payload_tests.rs"]
 mod arrival_payload_tests;
+
+#[cfg(test)]
+#[path = "logistics_arrival_access_tests.rs"]
+mod arrival_access_tests;
 
 pub fn pending(w: &WorldState, buyer: NationId, c: Commodity) -> f64 {
     w.logistics
