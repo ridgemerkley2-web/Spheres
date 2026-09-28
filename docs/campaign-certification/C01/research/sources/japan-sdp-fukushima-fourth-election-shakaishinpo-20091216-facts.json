@@ -1,0 +1,72 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+  "source_url": "https://web.archive.org/web/20110531215640id_/http://www5.sdp.or.jp/news/newslist091216.htm",
+  "original_url": "http://www5.sdp.or.jp/news/newslist091216.htm",
+  "archive_capture_utc": "2011-05-31T21:56:40Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 7177,
+  "source_response_sha256": "52d75adb7a420fd96b47dc20056b4aa18104f6d7fbb3099fcbe51d19f9f94955",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "GYHO4Q7JJ64CNSQNJ7OQ6EBKWKKXMCKS",
+  "source_character_encoding": "Shift_JIS (cp932)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20110531215640id_/http://www5.sdp.or.jp/news/newslist091216.htm' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-05-31T21:56:40Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Sat, 19 Dec 2009 06:13:56 GMT. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher (part B): downloaded on 28 September 2026 (UTC) at 14:35:59Z (plain); 14:48:25Z (plain); 15:10:55Z (plain), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:37:31Z and 16:12:57Z, 35 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Party site news list reprinting 社会新報 of 16 December 2009 (capture 31 May 2011) on 福島みずほ's uncontested fourth election as party leader. Her ministerial wording in the appeal (大臣としての職責) is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_leader_election_2009_notice_20091204",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": null,
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "chair_election_notice",
+      "attested_on": "2009-12-04",
+      "text": "The SDP leader election was announced on the 4th.",
+      "locator": {
+        "section": "「具体的成果を出す」福島党首が４選で決意",
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_fourth_election_decided_20091204",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "result_declared",
+      "attested_on": "2009-12-04",
+      "text": "No one other than the incumbent 福島みずほ党首 had filed by the 15:00 close the same day, and 福島党首's fourth election, unopposed, was decided; the term is two years.",
+      "locator": {
+        "section": "「具体的成果を出す」福島党首が４選で決意",
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_in_office_20091209",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2009-12-09",
+      "text": "The same issue reports that 社民党の福島党首 spoke at a press conference on the 9th about the Futenma relocation.",
+      "locator": {
+        "section": "移設が利権絡みならば問題",
+        "paragraph": 1
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}

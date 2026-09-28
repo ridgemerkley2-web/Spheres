@@ -1,0 +1,97 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_fukushima_resignation_kaiken_20130725",
+  "source_url": "https://web.archive.org/web/20130820115925id_/http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+  "original_url": "http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+  "archive_capture_utc": "2013-08-20T11:59:25Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 11741,
+  "source_response_sha256": "55e6a2b845d476fc09fdf8527d952b0b76ef1536a21a17246941c931a685b98e",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "NMV4S3EJBGGUCOGIBVAQWJO64VOJBH6H",
+  "source_character_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20130820115925id_/http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-08-20T11:59:25Z; that form replays the archived bytes unchanged. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher (part B): downloaded on 28 September 2026 (UTC) at 14:03:06Z (plain); 14:46:53Z (plain), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:35:59Z and 16:11:18Z, 35 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Party web page (TOPICS, お知らせ, posted 25 July 2013) on 福島みずほ's resignation after the July 2013 House of Councillors election.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_fukushima_in_office_20130725",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2013-07-25",
+      "text": "The page reports that 社民党の福島みずほ党首 stated her intention to resign at the standing committee on the 25th.",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_resignation_intent_20130725",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "resignation_intent_announced",
+      "attested_on": "2013-07-25",
+      "text": "At the standing executive committee on the 25th 福島みずほ党首 stated her intention to resign, taking responsibility for the defeats in the general election and the House of Councillors election.",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_resignation_accepted_20130725",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2013-07-25",
+      "text": "The standing committee accepted 福島みずほ党首's stated intention and confirmed that an acting leader (党首代行) would be appointed until a new leader was chosen.",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_end_stated_20130725",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "end_of_office_stated",
+      "attested_on": "2013-07-25",
+      "text": "At the press conference that followed, 福島党首 said she was taking responsibility for the defeats and resigning as of today ('本日で辞任する').",
+      "locator": {
+        "paragraph": 2
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_tenure_record_2003_2013",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and was afterwards re-elected unopposed in five consecutive leader elections.",
+      "locator": {
+        "paragraph": 4
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}

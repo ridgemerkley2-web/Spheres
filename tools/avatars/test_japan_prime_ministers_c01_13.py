@@ -12,6 +12,9 @@ import campaign_research as research
 # CLAUDE-C01-18 (stacked on this packet) adds sources for the LDP presidency role only, after this packet's; its exact
 # sources and the LDP holders are pinned in its own test.
 import test_japan_ldp_presidents_c01_18 as ldp
+# CLAUDE-C01-29 adds sources for a new party role, jp_sdp_chair, only, after CLAUDE-C01-18's; its exact sources and
+# holders are pinned in its own test.
+import test_japan_sdp_chairs_c01_29 as sdp
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -1946,10 +1949,11 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         self.assertEqual([s['id'] for s in later_sources(self.packet)], NEW_SOURCES)
-        self.assertEqual(len(self.packet['sources']), ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES) + len(ldp.NEW_SOURCES))
+        self.assertEqual(len(self.packet['sources']),
+                         ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES) + len(ldp.NEW_SOURCES) + len(sdp.NEW_SOURCES))
         self.assertEqual([s['id'] for s in self.packet['sources'][ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES):]],
-                         ldp.NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 5))
+                         ldp.NEW_SOURCES + sdp.NEW_SOURCES)
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 6))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual(self.new_claims, NEW_CLAIMS)
         self.assertEqual(set(EVENTS), set(self.rows))
@@ -2062,9 +2066,9 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         unresolved = self.office['coverage']['unresolved']
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         self.assertEqual([u[:40] for u in unresolved[-4:-1]], [u[:40] for u in INSTITUTION_UNRESOLVED])
-        # This packet's note is at index 9, followed only by CLAUDE-C01-18's (pinned in its own test).
+        # This packet's note is at index 9, followed only by CLAUDE-C01-18's and CLAUDE-C01-29's (pinned in their own tests).
         self.assertTrue(self.packet['coverage']['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
-        self.assertEqual(len(self.packet['coverage']['unresolved']), 11)
+        self.assertEqual(len(self.packet['coverage']['unresolved']), 12)
         self.assertEqual(sum('CLAUDE-C01-13' in u for u in self.packet['coverage']['unresolved']), 1)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -2360,7 +2364,7 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Japan')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 5))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (8, 6))
 
 
 if __name__ == '__main__':

@@ -15413,6 +15413,2143 @@
           "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. Prints 麻生総裁 (surname and title). The day he stepped down is not stated; never an until for 麻生太郎, and no end is inferred from the successor's election."
         }
       ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19900406",
+      "title": "第118回国会 衆議院 予算委員会 第5号 (1990-04-06)",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111805261X00519900406&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第5号 (1990-04-06), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/111805261X00519900406. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Recorded at meeting level because the party-officer identification and the statement are in different speeches.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19900406-facts.json",
+        "bytes": 5657,
+        "sha256": "92089b3f2f42fbdeca8d4ce2bd1d04a7e970e5e269fb6326fa842d08ddc09b5f"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_named_chair_by_secretary_general_19900406",
+          "text": "In the House of Representatives Budget Committee on 6 April 1990, 山口鶴男, whom the same record identifies as the party's secretary-general (his own account of a 書記長・幹事長会談 with 小沢幹事長 in speech 5, and the Prime Minister's reply to '山口書記長' in speech 6), says of the party's policy that '土井委員長はかねがね強調いたしておられます' (speech 74): a party officer's same-day statement naming 土井 as chair.",
+          "attested_on": "1990-04-06",
+          "locator": {
+            "issueID": "111805261X00519900406",
+            "speechOrder": [
+              5,
+              6,
+              74
+            ],
+            "speaker": "山口鶴男 (5, 74); 海部俊樹 (6, identifies him as 山口書記長)"
+          },
+          "uncertainty": "Dates the holder observation of 6 April 1990; not a start, because no source states the day office took effect. The first dated statement by a party officer naming her in the office found after 1 January 1990 (earlier 1990 records name her only in the Prime Minister's replies, or in speeches whose speakers the record does not identify as party officers); not continuity from 1 January 1990."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19901019",
+      "title": "第119回国会 衆議院 予算委員会 第1号 (1990-10-19)",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111905261X00119901019&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第1号 (1990-10-19), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/111905261X00119901019. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Whole-meeting record (api/meeting) of the House of Representatives Budget Committee of 19 October 1990 (345 speeches). Recorded at meeting level because the party-officer identification and the statement are in different speeches: speech 131 is by 山口鶴男 (日本社会党・護憲共同); in speech 327 another member (米沢隆, 民社党) refers to \"山口書記長\", so the record identifies 山口鶴男 as the party's 書記長 on that day. Only the recollection of the party leaders' meeting is imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19901019-facts.json",
+        "bytes": 6029,
+        "sha256": "33969148523296309381f3db01623bdfb0a68fef8e9c7c86db69d563de35e943"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_leaders_meeting_recalled_by_secretary_general",
+          "text": "山口鶴男, whom the same record identifies as secretary-general ('先ほど山口書記長の意見でも', speech 327), recalls in speech 131 a party leaders' meeting (党首会談) with the Prime Minister on 'August 22' (八月二十二日; no year printed), attended for the party by '土井委員長、私、大出国対委員長'.",
+          "locator": {
+            "issueID": "111905261X00119901019",
+            "speechOrder": [
+              131,
+              327
+            ],
+            "speaker": "山口鶴男 (131); 米沢隆 (327, identifies him as 山口書記長)"
+          },
+          "uncertainty": "A recollection made on 19 October 1990 that prints no year, so no structured date is stored (the context, the Gulf crisis and the Prime Minister's press conference of 八月二十九日, points to 1990). A continuation of the holder observation dated 1990-04-06; never a holder and not a boundary. The officer identification comes from a member of another party (speech 327)."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_profile_2000_retrospective",
+      "title": "社民党 衆議院議員 土井たか子 プロフィール（archived 16 May 2000; page last modified 31 August 1999）",
+      "url": "https://web.archive.org/web/20000516232711id_/http://www.sdp.or.jp:80/central/representatives/doi.html",
+      "original_url": "http://www.sdp.or.jp/central/representatives/doi.html",
+      "publisher": "Social Democratic Party (社会民主党, www.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_biography_retrospective",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party's own profile page of its member 土井たか子 (then 党首), raw capture of 16 May 2000 (server Last-Modified 31 August 1999). Retrospective biography: its month/year dates are kept as printed and give no structured date and no boundary. The Speaker office it also mentions is a state office and is not imported; its 党首 entries are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-profile-2000-retrospective-20000516-facts.json",
+        "bytes": 5717,
+        "sha256": "fa555ffcf4594100884dd39e1a28fdc6c8420418e1caf263421aa5693155baaa"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_profile_chair_from_september_1986",
+          "text": "The party profile states that 土井 became chair of 日本社会党 (中央執行委員長) in September 1986 (\"8６年9月…就任\"), i.e. she held the office when the period opens (retrospective; printed month only).",
+          "locator": {
+            "section": "◇プロフィール／略歴",
+            "paragraph": 2
+          },
+          "uncertainty": "Retrospective biography (page last modified 31 August 1999); month only and before the period: no structured date, never a holder boundary."
+        },
+        {
+          "id": "jp_sdp_doi_profile_resigned_july_1991",
+          "text": "The same profile of 土井たか子 states that she resigned in July 1991 (\"91年7月辞任\").",
+          "locator": {
+            "section": "◇プロフィール／略歴",
+            "paragraph": 2
+          },
+          "uncertainty": "Month-only retrospective statement; it does not give the day of the announcement, of any acceptance by a party organ, or of effect, and names no acting chair. No structured date and no until; never a holder boundary. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19910820",
+      "title": "第121回国会 衆議院 予算委員会 第1号 (1991-08-20)",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112105261X00119910820&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第1号 (1991-08-20), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112105261X00119910820. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Recorded at meeting level because the party-officer identification and the statement are in different speeches.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19910820-facts.json",
+        "bytes": 5670,
+        "sha256": "c2ed37f553b409c216b0bf901e9e5eff139ee2c249c04b75813b66d336b6a5e5"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_tanabe_named_chair_by_secretary_general_19910820",
+          "text": "In the House of Representatives Budget Committee on 20 August 1991, 山花貞夫 introduces himself as having become secretary-general at the recent party convention ('さきの党大会で書記長に就任いたしました山花貞夫であります', speech 49; a minister's answer calls him '山花書記長', speech 73) and later says '過日の代表質問で田邊委員長が指摘しましたとおり' (speech 74): a party officer's same-day statement naming 田邊 as chair.",
+          "attested_on": "1991-08-20",
+          "locator": {
+            "issueID": "112105261X00119910820",
+            "speechOrder": [
+              49,
+              73,
+              74
+            ],
+            "speaker": "山花貞夫 (49, 74); 中尾栄一 (73, calls him 山花書記長)"
+          },
+          "uncertainty": "Dates the holder observation of 20 August 1991; not a start, because no source states the day office took effect. The first dated statement by a party officer naming him in the office found; the convention (さきの党大会) is not dated, and neither 田邊誠's selection nor the end of 土井たか子's office is dated by this record."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_plenary_19930125",
+      "title": "第126回国会 衆議院 本会議 第2号 (1993-01-25), speech 3",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112605254X00219930125&speechNumber=3&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 3 of the 衆議院 本会議 第2号 (1993-01-25), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112605254X00219930125. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech: 山花貞夫's representative question in the House of Representatives plenary of 25 January 1993, which opens with his own statement that he has newly assumed the office of chair of 日本社会党. The rest of the speech (for the group 日本社会党・護憲民主連合) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19930125-facts.json",
+        "bytes": 5689,
+        "sha256": "7483aa35efa89cfe4dfa5e4007a19c63281a9d3d28d58a8d8d1373b7e0a9815d"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yamahana_self_stated_chair_19930125",
+          "text": "山花貞夫 introduces himself in the plenary of 25 January 1993 as having newly assumed office as chair of 日本社会党 (\"新しく日本社会党の委員長に就任いたしました山花貞夫であります\"): the chair's own statement of holding the office on that day, and the first dated one found.",
+          "attested_on": "1993-01-25",
+          "locator": {
+            "issueID": "112605254X00219930125",
+            "speechOrder": [
+              3
+            ],
+            "speaker": "山花貞夫"
+          },
+          "uncertainty": "Dates the holder observation of 1993-01-25; not a start, because no source states the day office took effect. \"就任いたしました\" gives no day, so this is not an assumption_stated claim and gives no from date; his January 1993 election is not dated by this record, and nothing here dates the end of 田邊誠's tenure."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_plenary_19930924",
+      "title": "第128回国会 参議院 本会議 第3号 (1993-09-24), speech 32",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112815254X00319930924&speechNumber=32&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 32 of the 参議院 本会議 第3号 (1993-09-24), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112815254X00319930924. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech: 山花貞夫, then a minister, answering in the House of Councillors plenary of 24 September 1993. He prefaces the answer with a statement about his party office; only that party-office wording is imported, nothing about his ministerial office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-sdp-chair-19930924-facts.json",
+        "bytes": 5669,
+        "sha256": "1a90a38c64d70366e8490a1a067db4881e883c13ab18aa17a58c6d8f4c8afe15"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yamahana_still_chair_19930924",
+          "text": "Answering questions that had treated him as no longer chair, 山花貞夫 states that he is still chair of 日本社会党 (\"なお日本社会党の委員長でございます\") and later speaks of \"社会党委員長としての私\": his own statement of holding the office on 24 September 1993, the latest found.",
+          "attested_on": "1993-09-24",
+          "locator": {
+            "issueID": "112815254X00319930924",
+            "speechOrder": [
+              32
+            ],
+            "speaker": "山花貞夫 (国務大臣)"
+          },
+          "uncertainty": "Party-office wording inside a ministerial answer (the ministerial office is excluded). It shows him in office on this day; the questioner had treated him as no longer chair, and the record does not say why. It is not an end date and does not date any resignation announcement. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19941013",
+      "title": "第131回国会 衆議院 予算委員会 第3号 (1994-10-13), speech 76",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113105261X00319941013&speechNumber=76&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 76 of the 衆議院 予算委員会 第3号 (1994-10-13), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113105261X00319941013. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19941013-facts.json",
+        "bytes": 5534,
+        "sha256": "0f74ab3b6dd408fdc9ea5da54af36eaa77696adb71e2da0fe0e93538c08e1584"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_19941013",
+          "text": "村山富市 (printed ○村山内閣総理大臣) says \"私は党の委員長であり\" (I am the party chair) in explaining why his answers and the party's policy should coincide: his own statement of holding the party office on this day.",
+          "attested_on": "1994-10-13",
+          "locator": {
+            "issueID": "113105261X00319941013",
+            "speechOrder": [
+              76
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Dates the holder observation of 13 October 1994; not a start, because no source states the day office took effect. The first dated statement by 村山富市 himself, or by a party officer, naming him in the office found after his September 1993 election (the Prime Minister's reply of 12 May 1994 that addressed him as 村山委員長 is a lead, not a party officer's statement). Party-office wording in an answer given as Prime Minister; the prime-ministership (jp_pm) is excluded."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_19941018",
+      "title": "第131回国会 参議院 予算委員会 第3号 (1994-10-18), speech 272",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113115261X00319941018&speechNumber=272&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 272 of the 参議院 予算委員会 第3号 (1994-10-18), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113115261X00319941018. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19941018-facts.json",
+        "bytes": 5562,
+        "sha256": "e9213952ee5d9833af5bcaba292e0074db2b1971e14d81656f1702d1863ad544"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_19941018",
+          "text": "村山富市 says that \"as party chair\" (\"私は党の委員長として\") he had until then stated, on a certain understanding, the view that the Self-Defense Forces were unconstitutional: his own statement of holding the party office on this day.",
+          "attested_on": "1994-10-18",
+          "locator": {
+            "issueID": "113115261X00319941018",
+            "speechOrder": [
+              272
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Party-office wording in an answer given as Prime Minister; the state office is excluded. A later attestation of the holder observation dated 1994-10-13, not a new observation and not a boundary. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19950206",
+      "title": "第132回国会 衆議院 予算委員会 第9号 (1995-02-06), speech 213",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113205261X00919950206&speechNumber=213&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 213 of the 衆議院 予算委員会 第9号 (1995-02-06), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113205261X00919950206. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19950206-facts.json",
+        "bytes": 5551,
+        "sha256": "d329b4cc0cf6e343a19e48dd888603119fdab92b4250a8a15a632f9c241aa8f0"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_19950206",
+          "text": "村山富市 (printed ○村山内閣総理大臣) says he was chair of 社会党 at the time of the Uruguay Round decision \"and still am now\" (\"今もそうですけれども\"): his own statement of holding the party office on this day.",
+          "attested_on": "1995-02-06",
+          "locator": {
+            "issueID": "113205261X00919950206",
+            "speechOrder": [
+              213
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Party-office wording in an answer given as Prime Minister; the state office is excluded. A later attestation of the holder observation dated 1994-10-13, not a new observation and not a boundary. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_19950519",
+      "title": "第132回国会 参議院 予算委員会 第20号 (1995-05-19), speech 104",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113215261X02019950519&speechNumber=104&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 104 of the 参議院 予算委員会 第20号 (1995-05-19), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113215261X02019950519. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19950519-facts.json",
+        "bytes": 5529,
+        "sha256": "cf67a94d3b3f866d7ac04a904880dd4062ec0b49c950c149eedc7a8536be42ff"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_19950519",
+          "text": "村山富市 says that the opinion he has just given is the same \"as 社会党委員長\" (\"これは社会党委員長としても同じであります\"): his own statement of holding the party office on this day.",
+          "attested_on": "1995-05-19",
+          "locator": {
+            "issueID": "113215261X02019950519",
+            "speechOrder": [
+              104
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Party-office wording in an answer given as Prime Minister; the state office is excluded. A later attestation of the holder observation dated 1994-10-13, not a new observation and not a boundary. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19951011_s99",
+      "title": "第134回国会 衆議院 予算委員会 第2号 (1995-10-11), speech 99",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113405261X00219951011&speechNumber=99&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 99 of the 衆議院 予算委員会 第2号 (1995-10-11), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113405261X00219951011. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s99-facts.json",
+        "bytes": 5599,
+        "sha256": "aa9dd567800b0d531e824bb28a560878b0e9eb2903a1ac3f752bf7d25efd8994"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_s99_19951011",
+          "text": "村山富市 (printed ○村山内閣総理大臣) says he is giving the explanation \"as party chair\" and speaks \"on the chair's responsibility\" (\"私は委員長の責任において\") about the party's 1995 declaration: his own statement of holding the party office on this day.",
+          "attested_on": "1995-10-11",
+          "locator": {
+            "issueID": "113405261X00219951011",
+            "speechOrder": [
+              99
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Party-office wording in an answer given as Prime Minister; the state office is excluded. A later attestation of the holder observation dated 1994-10-13, not a new observation and not a boundary. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_budget_19951011_s101",
+      "title": "第134回国会 衆議院 予算委員会 第2号 (1995-10-11), speech 101",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113405261X00219951011&speechNumber=101&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 101 of the 衆議院 予算委員会 第2号 (1995-10-11), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113405261X00219951011. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech of 村山富市 while Prime Minister (30 June 1994 - January 1996). Only his party-office wording is imported; nothing about the Prime Minister's office, designation or cabinet.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s101-facts.json",
+        "bytes": 5538,
+        "sha256": "29e3ee3956ca59f6762b6db355456b0c7d728fab1945fb0edca69a507fba2d77"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_self_stated_chair_s101_19951011",
+          "text": "村山富市 (printed ○村山内閣総理大臣) repeats that he is saying this \"as party chair\" (\"私が党の委員長として申し上げている\"): his own statement of holding the party office on this day.",
+          "attested_on": "1995-10-11",
+          "locator": {
+            "issueID": "113405261X00219951011",
+            "speechOrder": [
+              101
+            ],
+            "speaker": "村山富市 (内閣総理大臣)"
+          },
+          "uncertainty": "Party-office wording in an answer given as Prime Minister; the state office is excluded. A later attestation of the holder observation dated 1994-10-13, not a new observation and not a boundary. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hr_plenary_19960124",
+      "title": "第136回国会 衆議院 本会議 第2号 (1996-01-24), speech 8",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113605254X00219960124&speechNumber=8&recordPacking=json",
+      "publisher": "House of Representatives (衆議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 8 of the 衆議院 本会議 第2号 (1996-01-24), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113605254X00219960124. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. One speech: the representative question of 佐藤観樹 in the House of Representatives plenary of 24 January 1996, which opens with his own statement that he has become 幹事長 of 社会民主党 (a party officer by his own statement; a reply in the same meeting, not recorded here, also addresses him as 佐藤幹事長). Used only for the organization's new name; he speaks for a three-group coalition, which is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19960124-facts.json",
+        "bytes": 5804,
+        "sha256": "e80ce4519c1235b46305696dd698579429ba3c51763ca2ab657ef8322a61e533"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_renamed_party_named_by_secretary_general_19960124",
+          "text": "On 24 January 1996 佐藤観樹 introduces himself as having just become 幹事長 of 社会民主党 (\"このたび、社会民主党の幹事長になりました\"): a same-day party-officer statement using the organization's new name 社会民主党 (the renaming itself is not mentioned).",
+          "attested_on": "1996-01-24",
+          "locator": {
+            "issueID": "113605254X00219960124",
+            "speechOrder": [
+              8
+            ],
+            "speaker": "佐藤観樹"
+          },
+          "uncertainty": "A claim about the organization only: it shows the name in use on this day but states neither the renaming decision nor the day it took effect, and says nothing about the 党首 or the change of the office's title; never a holder and never a merge of identities."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_statement_20th_anniversary_20160119",
+      "title": "社会民主党２０年に当たって（声明）２０１６年１月１９日 社会民主党",
+      "url": "https://web.archive.org/web/20160125221536id_/http://www5.sdp.or.jp:80/comment/2016/01/19/%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%EF%BC%92%EF%BC%90%E5%B9%B4%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%EF%BC%88%E5%A3%B0%E6%98%8E%EF%BC%89/",
+      "original_url": "http://www5.sdp.or.jp/comment/2016/01/19/%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%EF%BC%92%EF%BC%90%E5%B9%B4%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%EF%BC%88%E5%A3%B0%E6%98%8E%EF%BC%89/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_statement_retrospective",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party statement of 19 January 2016 on the 20th anniversary of the renaming, raw capture of 25 January 2016. Its account of 1996 is a retrospective history; the printed day is kept in the text and given no structured date.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-statement-20th-anniversary-20160119-facts.json",
+        "bytes": 5297,
+        "sha256": "21ca4d4c0b2adebffdec2786edf2bc1a5120457ff667ffb0afc14e7baeda8420"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_renaming_retrospective_anniversary_statement",
+          "text": "The party's 2016 anniversary statement says that 日本社会党 changed its name to 社会民主党 on 19 January 1996 (\"１９９６年１月１９日…社会民主党に党名を変更し\") and that \"today\" (19 January 2016) marks 20 years since it was reborn from 日本社会党.",
+          "locator": {
+            "section": "statement body",
+            "paragraph": 1
+          },
+          "uncertainty": "Retrospective, written twenty years later: the printed day stays in the text, and no structured date is stored; never a holder boundary. It does not separate the decision (a convention vote) from the taking effect, and says nothing about the 党首. A claim about the organization only, never a merge of identities."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_statement_murayama_obituary_20251017",
+      "title": "【談話】村山富市元首相のご逝去を悼む ２０２５年１０月１７日 社会民主党幹事長 服部良一",
+      "url": "https://web.archive.org/web/20251017084702id_/https://sdp.or.jp/statement/murayama-3/",
+      "original_url": "https://sdp.or.jp/statement/murayama-3/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_statement_retrospective",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party statement (談話) of 17 October 2025 on the death of 村山富市, raw capture of the same day. Its biography is retrospective: month/year dates kept as printed, no structured date. Prime-ministerial content is not imported; its December 1996 handover is imported as a retrospective claim that conflicts with the party's 1996 records.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-statement-murayama-obituary-20251017-facts.json",
+        "bytes": 7420,
+        "sha256": "b472d74ec9f47a9b16792c394919c2683e88e5a0e784b7f50aba505c5d7b9fe0"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_murayama_obituary_chair_retrospective",
+          "text": "The statement calls 村山 \"社民党初代党首で日本社会党委員長\", says that among party posts he held 国会対策委員長 and 中央執行委員長, and that in 1993 he supported the 細川連立政権 \"as chair of the largest governing party\" (\"９３年の…与党第一党の委員長として\").",
+          "locator": {
+            "section": "statement body",
+            "paragraph": "3-4"
+          },
+          "uncertainty": "Retrospective; gives no day or month for his election as chair (September 1993) or for the end of the 委員長 title: no structured date, never a holder boundary. The prime-ministerial wording of the statement is not imported."
+        },
+        {
+          "id": "jp_sdp_murayama_obituary_renaming_retrospective",
+          "text": "The statement says that in January 1996 he changed the party's name from 日本社会党 to 社会民主党 (\"９６年１月には日本社会党の党名を社会民主党に変更し\").",
+          "locator": {
+            "section": "statement body",
+            "paragraph": 6
+          },
+          "uncertainty": "Month-only retrospective; decision and taking effect not separated: no structured date, never a holder boundary. A claim about the organization only."
+        },
+        {
+          "id": "jp_sdp_murayama_obituary_first_party_leader_retrospective",
+          "text": "The statement on 村山富市元首相 says that at the first SDP convention in March of the same year (1996) he became the first 党首 (\"同年３月の第１回社民党大会で初代党首に就任されました\").",
+          "locator": {
+            "section": "statement body",
+            "paragraph": 6
+          },
+          "uncertainty": "Month-only retrospective: no structured date, no from, never a holder boundary. It places his becoming the first 党首 at a March 1996 convention rather than at the January renaming; no contemporaneous record was found to settle this."
+        },
+        {
+          "id": "jp_sdp_murayama_obituary_handover_to_doi_retrospective",
+          "text": "The statement on 村山富市元首相 says that at the second extraordinary convention in December of the same year (1996) he passed the party leader's post to 土井たか子元委員長 ('同年１２月の第２回臨時大会では党首の座を土井たか子元委員長にバトンを渡されました').",
+          "locator": {
+            "section": "statement body",
+            "paragraph": 6
+          },
+          "uncertainty": "Month-only retrospective: no structured date, never an until or a holder boundary. It conflicts with the party's own report of 30 November 1996, which already calls her 土井たか子党首, and with her address of 22 December 1996, in which the convention confirmed her; neither the day 村山富市's leadership ended nor the day hers began is stated. Never a holder boundary."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_kenren_kanjicho_meeting_19961130",
+      "title": "社会民主党　都道府県連合幹事長会議 (report of the meeting of 30 November 1996)",
+      "url": "https://web.archive.org/web/20031219113138id_/http://www5.sdp.or.jp:80/central/activity/kenrenkanji.html",
+      "original_url": "http://www5.sdp.or.jp/central/activity/kenrenkanji.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party report on the 都道府県連合幹事長会議, listed under 1996 in the party's 党大会等議事録 index (index date 1996/12/06). Used for the first dated in-office attestation of 土井たか子 as 党首 after her September 1996 succession, and for the secretary-general's report on how she took office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-kenren-kanjicho-meeting-19961130-facts.json",
+        "bytes": 5765,
+        "sha256": "8367138410ec9f14c3bb827b199ec34e9b5803fe9d66d88eddbf6a7c46c9cb1c"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_in_office_kanjicho_meeting_19961130",
+          "text": "The party reports that at its 都道府県連合幹事長会議 on 30 November the opening address was given by 土井たか子党首, who said the party would make a distinct, visible effort in the Diet debates.",
+          "attested_on": "1996-11-30",
+          "locator": {
+            "paragraph": 3,
+            "section": "冒頭あいさつに立った土井たか子党首は"
+          },
+          "uncertainty": "Dates the holder observation of 1996-11-30; not a start, because no source states the day office took effect. The page prints \"１１月３０日\" without a year; 1996 follows from the text (来年の都議選、九八年参院選; the second extraordinary convention \"今月二十二日\") and from the party index, which files it under 1996. A party report, not a verbatim record."
+        },
+        {
+          "id": "jp_sdp_doi_assumption_reported_to_meeting_19961130",
+          "text": "At the same meeting 伊藤幹事長 reported on the 土井党首就任 that took place under the emergency around the dissolution of the Diet, and on the executive arrangements since, and asked for approval; the meeting approved the secretary-general's report.",
+          "attested_on": "1996-11-30",
+          "locator": {
+            "paragraph": 4,
+            "section": "伊藤幹事長は報告のなかで"
+          },
+          "uncertainty": "Gives no day for the assumption (only that it happened amid the dissolution emergency, itself undated here) and no day for 村山富市's departure. The approval covers the whole report (\"伊藤幹事長報告を了承\"). A report and approval, not a start date; the page says the forthcoming convention would include approval of the change to 土井党首 (\"土井党首への交代承認\"). Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_second_rinji_convention_19961222",
+      "title": "社会民主党第２回臨時党大会（９６年１２月２２日）　土井たか子党首のあいさつ",
+      "url": "https://web.archive.org/web/20031219110410id_/http://www5.sdp.or.jp:80/central/activity/doi-aisatsu.html",
+      "original_url": "http://www5.sdp.or.jp/central/activity/doi-aisatsu.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 土井たか子's address as 党首 to the second extraordinary party convention, 22 December 1996. Used for the convention's confirmation of her as 党首 and a same-day in-office attestation. Her remark about her earlier years as JSP chair is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-second-rinji-convention-19961222-facts.json",
+        "bytes": 5581,
+        "sha256": "21c1fe5e1b0d71f8b0862678a4cb3d14e75301a23ad80eb1f22eb19c2f30c639"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_convention_approval_19961222",
+          "text": "Opening her address, 土井たか子党首 says she has just been confirmed as party leader of the SDP by the convention through the regular procedure (\"正規の手続きを経て\").",
+          "attested_on": "1996-12-22",
+          "locator": {
+            "paragraph": 2,
+            "section": "私は、ただいま正規の手続きを経て"
+          },
+          "uncertainty": "A confirmation (信任) by the convention, not a start: she already held the office (see the 30 November meeting). The day she assumed the office is not stated. Never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_in_office_second_rinji_convention_19961222",
+          "text": "The record, dated 22 December 1996, is headed as the address of 土井たか子党首 to the second extraordinary convention of the SDP.",
+          "attested_on": "1996-12-22",
+          "locator": {
+            "section": "heading: 社会民主党第２回臨時党大会（９６年１２月２２日）"
+          },
+          "uncertainty": "Same-day record naming her as 党首 at the convention that confirmed her; a later attestation of the holder observation dated 1996-11-30, never a holder and not a boundary; it does not date her assumption."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_reelection_shakaishinpo_19980121",
+      "title": "再選の土井党首、社民党の役割を強調 (社会新報１／２１, 1998)",
+      "url": "https://web.archive.org/web/20020619173724id_/http://www5.sdp.or.jp:80/central/shinpou/newsfiles98/1doi-saisen0121.html",
+      "original_url": "http://www5.sdp.or.jp/central/shinpou/newsfiles98/1doi-saisen0121.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party organ 社会新報 (issue of 21 January 1998, as printed in the page title \"社会新報１／２１\"; year from the party site folder newsfiles98) on the uncontested re-election of 土井たか子 as 党首. Used for the 1998 re-election (her second SDP leader election).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-reelection-shakaishinpo-19980121-facts.json",
+        "bytes": 6093,
+        "sha256": "9b422ba79eaaa0d32f9d574927748e5d400cd5c7213d93aaad15c47a0761bfb7"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_leader_renotice_19980108",
+          "text": "The party's leader election was re-announced (再告示) on the 8th.",
+          "attested_on": "1998-01-08",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Only \"八日\" is printed; January 1998 follows from the issue date in the title (１／２１) and the folder newsfiles98. The first notice, of which this is a re-notice, is not described. Never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_reelection_confirmed_19980110",
+          "text": "No candidate other than 土井党首 filed by the closing on the 10th, and 土井党首's election was confirmed; she then received the certificate of election from the head of the election headquarters.",
+          "attested_on": "1998-01-10",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Only \"十日\" is printed; month and year inferred as for the re-notice. An uncontested election result, not a start of term. Never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_in_office_shakaishinpo_19980121",
+          "text": "The 21 January issue calls her \"再選の土井党首\" and reports that 土井党首 held a press conference on taking up her second term (二期目就任).",
+          "attested_on": "1998-01-21",
+          "locator": {
+            "section": "headline and paragraph 2"
+          },
+          "uncertainty": "Dates the holder observation of 1998-01-21; not a start, because no source states the day office took effect. Dated by the issue date printed in the page title (１／２１; year from folder newsfiles98). The press conference itself is not dated, so the start of the second term is not established."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_fifth_rinji_convention_19980830",
+      "title": "１９９８年８月３０日　社会民主党第５回臨時全国大会　土井たか子党首あいさつ",
+      "url": "https://web.archive.org/web/20000917114251id_/http://www.sdp.or.jp:80/central/activity/1taikaidoi0830.html",
+      "original_url": "http://www.sdp.or.jp/central/activity/1taikaidoi0830.html",
+      "publisher": "Social Democratic Party (社会民主党, www.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 土井たか子's address as 党首 to the fifth extraordinary convention, 30 August 1998, after the July 1998 House of Councillors election. Used as a later attestation within the 1998 term. The CDX digest of this capture (O2VUK3HWYOZY6EORK6KTUTZA3MZNYCBO) differs from the base32 SHA-1 of the served bytes (an early ARC record; reason not determined); the served bytes were identical on every download.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-fifth-rinji-convention-19980830-facts.json",
+        "bytes": 5205,
+        "sha256": "a90d42cd3d7efef29eb30a076b0ce280e1d54ddf918c2c1402b36555915ae9c8"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_in_office_fifth_rinji_convention_19980830",
+          "text": "Addressing the fifth extraordinary convention, 土井たか子党首 says responsibility for the House of Councillors election result rests wholly with her as party leader (\"党首たる私\"), and that after days of agonising over her position she resolved to exert herself once more.",
+          "attested_on": "1998-08-30",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A later attestation of the same holder observation (1998 re-election); no election, start or end. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_third_term_danwa_20000121",
+      "title": "党首選３選にあたって（談話）　２０００年１月２１日　社会民主党　党首　土井たか子",
+      "url": "https://web.archive.org/web/20001118090400id_/http://www.sdp.or.jp:80/central/timebeing/tousyu0121.html",
+      "original_url": "http://www.sdp.or.jp/central/timebeing/tousyu0121.html",
+      "publisher": "Social Democratic Party (社会民主党, www.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party statement of 21 January 2000 by 党首 土井たか子 on her third election as SDP leader. Used for the 2000 re-election and its in-office attestation.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-term-danwa-20000121-facts.json",
+        "bytes": 5233,
+        "sha256": "15dbcbd2781a1cc72ece449dad988d2a0b9296eab0dbf586c420e1df1167106c"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_third_election_statement_2000",
+          "text": "In a statement on her third leader election, 土井たか子 says that, since the party became the SDP, she has taken on the leadership for the third time.",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "The statement is dated 21 January 2000 but does not itself print the day of the election (the 社会新報 of 26 January 2000 dates the uncontested election to 21 January). An election reference, not a start. Never a holder. No structured date is stored."
+        },
+        {
+          "id": "jp_sdp_doi_in_office_third_term_danwa_20000121",
+          "text": "The statement dated 21 January 2000 is signed by 社会民主党 党首 土井たか子.",
+          "attested_on": "2000-01-21",
+          "locator": {
+            "section": "date line and signature"
+          },
+          "uncertainty": "Dates the holder observation of 2000-01-21; not a start, because no source states the day office took effect. Same-day statement signed by her as 党首; does not date the start of the third term."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_third_election_shakaishinpo_20000126",
+      "title": "社会新報ヘッドライン　２０００年１月２６日号　土井たか子党首の無投票3選が決まる",
+      "url": "https://web.archive.org/web/20001023191956id_/http://www.sdp.or.jp:80/central/shinpou/newsfiles/headline0126.html",
+      "original_url": "http://www.sdp.or.jp/central/shinpou/newsfiles/headline0126.html",
+      "publisher": "Social Democratic Party (社会民主党, www.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party organ 社会新報 headline page, issue of 26 January 2000, on 土井たか子's uncontested third election as party leader on 21 January 2000.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-election-shakaishinpo-20000126-facts.json",
+        "bytes": 4874,
+        "sha256": "5390b0374a2b8079f3a0cea1889ea6c8f76ada8ba4c6f340e0791f05770ffac0"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_third_election_declared_20000121",
+          "text": "Filings for the leader election closed on 21 January with no candidate other than 土井たか子党首, and her uncontested third election was decided (term two years); after the 3 p.m. close on the 21st the head of the election headquarters declared that the headquarters confirmed 土井たか子さん's election as party leader.",
+          "attested_on": "2000-01-21",
+          "locator": {
+            "section": "土井たか子党首の無投票3選が決まる",
+            "paragraph": 1
+          },
+          "uncertainty": "An uncontested election and its declaration, not a start of term. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_resignation_kaiken_20031113",
+      "title": "土井たか子党首　記者会見　2003年11月13日",
+      "url": "https://web.archive.org/web/20031208183856id_/http://www5.sdp.or.jp:80/central/news/news1113.html",
+      "original_url": "http://www5.sdp.or.jp/central/news/news1113.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party transcript of 土井たか子's press conference of 13 November 2003 announcing her resignation after the 9 November general election.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-kaiken-20031113-facts.json",
+        "bytes": 5943,
+        "sha256": "9aa513c8fa832a687653ff90aa1e64330693f64d3890fd77324279d7ae522090"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_in_office_resignation_kaiken_20031113",
+          "text": "At the press conference 土井たか子 says the one who bears responsibility for the defeat is herself, as party leader.",
+          "attested_on": "2003-11-13",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Later attestation of the holder in office on the day she announced her resignation. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_intent_20031113",
+          "text": "土井たか子 announces that she has decided to resign as party leader to take responsibility for the election defeat.",
+          "attested_on": "2003-11-13",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "An announced intention; she says the formal resignation will be stated at the party's national representatives' meeting on the 15th. No end day stated."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_accepted_standing_committee_20031113",
+          "text": "土井たか子 says that today a meeting of the three party officers was held, followed by the standing executive committee (常任幹事会), where she stated her resignation and obtained its assent.",
+          "attested_on": "2003-11-13",
+          "locator": {
+            "paragraph": 5
+          },
+          "uncertainty": "Assent of the standing committee, not the effective end; conflicts with her 15 November address, which puts the three-officer meeting on the 11th and says the committee on the 13th received her 辞意表明. Never an until."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_doi_resignation_greeting_20031115",
+      "title": "２００３年１１月１５日　社民党都道府県連合代表者会議　土井たか子党首の辞任あいさつ",
+      "url": "https://web.archive.org/web/20031208185818id_/http://www5.sdp.or.jp:80/central/news/news111502.html",
+      "original_url": "http://www5.sdp.or.jp/central/news/news111502.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 土井たか子's resignation address to the meeting of prefectural federation representatives, 15 November 2003. Used for her formal resignation, the steps she recalls, her 1996 succession to 村山富市 (year only), and the same-day selection of 福島瑞穂.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-greeting-20031115-facts.json",
+        "bytes": 8172,
+        "sha256": "8459ead6f87ee7fdfef38e1beee759fd6f94ea8f05921b1cee1cc81c08c0c005"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_doi_in_office_resignation_greeting_20031115",
+          "text": "The record dated 15 November 2003 is headed as the resignation address of 土井たか子党首.",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "section": "heading"
+          },
+          "uncertainty": "Same-day record naming her 党首 while she resigns; by her own account a new leader was chosen earlier that day, so this does not show who held the office at the end of the day. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_submitted_20031115",
+          "text": "土井たか子 tells the representatives' meeting that she has decided to resign as party leader and that she is stating her resignation to them at the opening of the meeting today.",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "paragraph": 2,
+            "section": "本日は都道府県連合代表者会議の冒頭に"
+          },
+          "uncertainty": "A formal statement of resignation to the meeting; the record does not state the day the office ended or a vote accepting it. Never an until."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_recalled_three_officers_20031111",
+          "text": "土井たか子 recalls that on the 11th the three party officers met and accepted her resignation.",
+          "attested_on": "2003-11-11",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Recollection with a stated day (\"１１日\", following \"１１月９日\"). Conflicts with the 13 November press conference, which says the three-officer meeting was held that day. Never an until."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_recalled_standing_committee_20031113",
+          "text": "土井たか子 recalls that on the 13th the regular standing executive committee received her statement of intent to resign.",
+          "attested_on": "2003-11-13",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Recollection with a stated day; the committee received (受け止め) the 辞意表明, not an effective end. Never an until."
+        },
+        {
+          "id": "jp_sdp_murayama_predecessor_recalled",
+          "text": "土井たか子 recalls that in 1996 she took over from 村山富市前党首 and that her time as leader began with the general election immediately after.",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "Year only (1996); gives no day for 村山富市's departure or for her assumption. Retrospective; never a holder boundary. Never an until. No structured date is stored."
+        },
+        {
+          "id": "jp_sdp_fukushima_selection_reported_by_doi_20031115",
+          "text": "土井たか子 tells the meeting that at the joint plenary meeting of both houses' members held just before, 福島瑞穂さん was chosen as the new party leader.",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "paragraph": 6
+          },
+          "uncertainty": "A selection reported the same day; not a start of office. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_inaugural_greeting_20031115",
+      "title": "２００３年１１月１５日　社民党都道府県連合代表者会議　福島瑞穂　新党首就任あいさつ",
+      "url": "https://web.archive.org/web/20031119041447id_/http://www5.sdp.or.jp:80/central/news/news111501.html",
+      "original_url": "http://www5.sdp.or.jp/central/news/news111501.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 福島瑞穂's inaugural address as new party leader to the prefectural federation representatives' meeting, 15 November 2003.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-inaugural-greeting-20031115-facts.json",
+        "bytes": 5897,
+        "sha256": "36d46ee1fbfc697832fd9afa5e25ce5bdd1b9a043e439741fd9ea2d8b058a63f"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_joint_plenary_selection_20031115",
+          "text": "福島瑞穂 says that at today's joint plenary meeting of both houses' members she was chosen as the new party leader.",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A selection; the assumption is dated separately (Diet statement of 26 November). Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_inaugural_greeting_20031115",
+          "text": "The record dated 15 November 2003 is headed as 福島瑞穂's inaugural address as new party leader (新党首就任あいさつ).",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "section": "heading"
+          },
+          "uncertainty": "Cited, with the statement of assumption, by the holder observation from 2003-11-15; the record itself states no day of assumption. Same-day record naming her as the new leader giving her inaugural address."
+        },
+        {
+          "id": "jp_sdp_doi_resignation_greeting_referred_20031115",
+          "text": "福島瑞穂 notes that 土井党首 had given her resignation address and thanks 土井党首 for leading the party for seven years from 1996.",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "paragraph": 6
+          },
+          "uncertainty": "Same-day reference to the resignation address; no end day stated."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20031126",
+      "title": "第158回国会 参議院 予算委員会 第1号 (2003-11-26), speech 222",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=115815261X00120031126&speechNumber=222&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 222 of the 参議院 予算委員会 第1号 (2003-11-26), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/115815261X00120031126. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Diet minutes, House of Councillors Budget Committee, 26 November 2003, speech 222: 福島瑞穂's first question as SDP leader, stating the day she became leader. Only her own party-office statement is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20031126-facts.json",
+        "bytes": 6081,
+        "sha256": "de6944e164418ba73324a5f97d2510f3dbefa339a2b2c87b382d967e66366b44"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_assumption_stated_20031115",
+          "text": "福島瑞穂 states that on 15 November she became the new leader of the SDP ('私は、十一月十五日、社民党の新党首になりました').",
+          "attested_on": "2003-11-15",
+          "locator": {
+            "issueID": "115815261X00120031126",
+            "speechOrder": [
+              222
+            ],
+            "speaker": "福島瑞穂"
+          },
+          "uncertainty": "States the day office was assumed (the holder's from, 2003-11-15). The sentence prints \"十一月十五日\" without a year; the statement is made on 26 November 2003. Consistent with the party record of her selection by the joint plenary on 15 November 2003."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_diet_20031126",
+          "text": "福島瑞穂, speaking on 26 November 2003 as the SDP's new leader, says this is her first question.",
+          "attested_on": "2003-11-26",
+          "locator": {
+            "issueID": "115815261X00120031126",
+            "speechOrder": [
+              222
+            ],
+            "speaker": "福島瑞穂"
+          },
+          "uncertainty": "Own statement of holding the office on a dated occasion. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_eighth_convention_20031213",
+      "title": "社会民主党第８回定期全国大会　党首あいさつ　２００３年１２月１３日　党首　福島瑞穂",
+      "url": "https://web.archive.org/web/20040205234202id_/http://www5.sdp.or.jp:80/central/activity/aisatsu20031213.html",
+      "original_url": "http://www5.sdp.or.jp/central/activity/aisatsu20031213.html",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 福島瑞穂's address as 党首 to the eighth regular convention, 13 December 2003: the convention's confirmation of her and her reference to 土井たか子's tenure and resignation.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-eighth-convention-20031213-facts.json",
+        "bytes": 6510,
+        "sha256": "59436f20dc34f9f02ebb30b65defdc08e16fb02156fcedc58b108b57a8b57d90"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_convention_approval_20031213",
+          "text": "福島瑞穂 opens by saying she has just been confirmed by the convention as party leader.",
+          "attested_on": "2003-12-13",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A confirmation by the convention, not a start (she became leader on 15 November by her own statement). Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_eighth_convention_20031213",
+          "text": "The address dated 13 December 2003 is signed 党首 福島瑞穂.",
+          "attested_on": "2003-12-13",
+          "locator": {
+            "section": "heading"
+          },
+          "uncertainty": "Later attestation of the same holder observation. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_doi_former_leader_referred_20031213",
+          "text": "福島瑞穂 refers to 土井たか子前党首, who resigned to take responsibility for the general election defeat.",
+          "attested_on": "2003-12-13",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Same-day reference to her as former leader; gives no end day."
+        },
+        {
+          "id": "jp_sdp_doi_term_span_recalled",
+          "text": "福島瑞穂 says 土井たか子 led the party for seven years and some months from September 1996 (\"９６年９月から\").",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Month only (September 1996); no structured date. Retrospective; never a holder boundary."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+      "title": "09年12月16日・社会新報（09年12月16日号）　「具体的成果を出す」福島党首が４選で決意",
+      "url": "https://web.archive.org/web/20110531215640id_/http://www5.sdp.or.jp/news/newslist091216.htm",
+      "original_url": "http://www5.sdp.or.jp/news/newslist091216.htm",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party site news list reprinting 社会新報 of 16 December 2009 (capture 31 May 2011) on 福島みずほ's uncontested fourth election as party leader. Her ministerial wording in the appeal (大臣としての職責) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fourth-election-shakaishinpo-20091216-facts.json",
+        "bytes": 6133,
+        "sha256": "7b5d535f6fb29b028bfe5897bd6375e23639eea562126e1bcc0939ba0b5ca3f4"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2009_notice_20091204",
+          "text": "The SDP leader election was announced on the 4th.",
+          "attested_on": "2009-12-04",
+          "locator": {
+            "section": "「具体的成果を出す」福島党首が４選で決意",
+            "paragraph": 1
+          },
+          "uncertainty": "Only \"４日\" is printed; December 2009 follows from the issue date (09年12月16日号) in the title. A notice. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_fourth_election_decided_20091204",
+          "text": "No one other than the incumbent 福島みずほ党首 had filed by the 15:00 close the same day, and 福島党首's fourth election, unopposed, was decided; the term is two years.",
+          "attested_on": "2009-12-04",
+          "locator": {
+            "section": "「具体的成果を出す」福島党首が４選で決意",
+            "paragraph": 1
+          },
+          "uncertainty": "Day as for the notice. An uncontested re-election, not a start of term. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_20091209",
+          "text": "The same issue reports that 社民党の福島党首 spoke at a press conference on the 9th about the Futenma relocation.",
+          "attested_on": "2009-12-09",
+          "locator": {
+            "section": "移設が利権絡みならば問題",
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 2009-12-09; not a start, because no source states the day office took effect. Only \"９日\" is printed; December 2009 from the issue date. First dated in-office attestation after the 4 December re-election found in this source (the post-election press conference is not dated)."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+      "title": "12年2月1日号・社会新報（12年2月1日号）　党首再選で福島党首が抱負",
+      "url": "https://web.archive.org/web/20120614095542id_/http://www5.sdp.or.jp/news/newslist120201.htm",
+      "original_url": "http://www5.sdp.or.jp/news/newslist120201.htm",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party site news list reprinting 社会新報 of 1 February 2012 (capture 14 June 2012) on 福島みずほ's uncontested fifth election as party leader (notice 20 January 2012), the term in which she resigned in July 2013.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fifth-election-shakaishinpo-20120201-facts.json",
+        "bytes": 6122,
+        "sha256": "81da99c4e9739a771f0a7757a03fd29f262bd8b58fd9fb982058bfef2ba4e04c"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2012_notice_20120120",
+          "text": "The leader election at the end of the term was announced on 20 January.",
+          "attested_on": "2012-01-20",
+          "locator": {
+            "section": "党首再選で福島党首が抱負",
+            "paragraph": 1
+          },
+          "uncertainty": "Year from the issue date (12年2月1日号). A notice. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_fifth_election_decided_20120120",
+          "text": "No one other than the incumbent 福島みずほ党首 filed by the 15:00 close the same day, and 福島党首's fifth election, unopposed, was decided (term two years); after the re-election 福島党首 held a press conference.",
+          "attested_on": "2012-01-20",
+          "locator": {
+            "section": "党首再選で福島党首が抱負",
+            "paragraph": 1
+          },
+          "uncertainty": "An uncontested re-election, not a start of term; the post-election press conference is not dated. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_20120124",
+          "text": "The same issue reports that 福島党首 spoke to reporters in the Diet on 24 January about the prime minister's policy speech.",
+          "attested_on": "2012-01-24",
+          "locator": {
+            "section": "second item",
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 2012-01-24; not a start, because no source states the day office took effect. First dated in-office attestation after the 20 January 2012 re-election found in this source."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_resignation_kaiken_20130725",
+      "title": "福島みずほ党首辞任記者会見 (TOPICS, 投稿日：2013-07-25)",
+      "url": "https://web.archive.org/web/20130820115925id_/http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "original_url": "http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (TOPICS, お知らせ, posted 25 July 2013) on 福島みずほ's resignation after the July 2013 House of Councillors election.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json",
+        "bytes": 7595,
+        "sha256": "8724ba871f1d8bad8cddc9ae8f2fd8860581da879e6cbc162202a7a0a397cfa3"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_in_office_20130725",
+          "text": "The page reports that 社民党の福島みずほ党首 stated her intention to resign at the standing committee on the 25th.",
+          "attested_on": "2013-07-25",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Same-day record naming her 党首 on the day she resigned. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_resignation_intent_20130725",
+          "text": "At the standing executive committee on the 25th 福島みずほ党首 stated her intention to resign, taking responsibility for the defeats in the general election and the House of Councillors election.",
+          "attested_on": "2013-07-25",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Intent statement; see the separate end claim. Never an until."
+        },
+        {
+          "id": "jp_sdp_fukushima_resignation_accepted_20130725",
+          "text": "The standing committee accepted 福島みずほ党首's stated intention and confirmed that an acting leader (党首代行) would be appointed until a new leader was chosen.",
+          "attested_on": "2013-07-25",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Acceptance by the standing committee; the acting leader is designated on 1 August (separate source). Never an until."
+        },
+        {
+          "id": "jp_sdp_fukushima_end_stated_20130725",
+          "text": "At the press conference that followed, 福島党首 said she was taking responsibility for the defeats and resigning as of today ('本日で辞任する').",
+          "attested_on": "2013-07-25",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "States the day office ended (the holder's until, 2013-07-25). States the day the office ends (25 July 2013) in her quoted words, as reported by the party; the page date and \"２５日\" fix the day."
+        },
+        {
+          "id": "jp_sdp_fukushima_tenure_record_2003_2013",
+          "text": "The page adds that 福島党首 became leader in November 2003 as 土井たか子党首's successor and was afterwards re-elected unopposed in five consecutive leader elections.",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "Retrospective; month only for the assumption and no dates for the five uncontested re-elections; of these the December 2009 and January 2012 ones were found as contemporaneous records (2005 and 2007 not found). Never a holder boundary. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_mataichi_acting_leader_20130805",
+      "title": "党首代表代行に又市幹事長 (TOPICS, 投稿日：2013-08-05)",
+      "url": "https://web.archive.org/web/20130820140124id_/http://www5.sdp.or.jp/topics/2013/08/05/%e5%85%9a%e9%a6%96%e4%bb%a3%e8%a1%a8%e4%bb%a3%e8%a1%8c%e3%81%ab%e5%8f%88%e5%b8%82%e5%b9%b9%e4%ba%8b%e9%95%b7/",
+      "original_url": "http://www5.sdp.or.jp/topics/2013/08/05/%e5%85%9a%e9%a6%96%e4%bb%a3%e8%a1%a8%e4%bb%a3%e8%a1%8c%e3%81%ab%e5%8f%88%e5%b8%82%e5%b9%b9%e4%ba%8b%e9%95%b7/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on the designation of secretary-general 又市征治 as acting leader after 福島みずほ's resignation. Acting service is a claim only, never a holder.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-acting-leader-20130805-facts.json",
+        "bytes": 5380,
+        "sha256": "92b3ef304b0ec23ad19c89dc8edb2ce6b778e427e073ab45c6c41ee48d18726d"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_mataichi_acting_designated_20130801",
+          "text": "The standing executive committee decided on the 1st to appoint 又市征治幹事長 as acting leader (党首代行) until a new leader was chosen after the resignation of 福島みずほ前党首.",
+          "attested_on": "2013-08-01",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Only \"１日\" is printed; August follows from the posting date 2013-08-05 and the sequence (resignation 25 July). Acting service only; never a holder of the office."
+        },
+        {
+          "id": "jp_sdp_fukushima_former_20130805",
+          "text": "The page, posted 5 August 2013, calls her 福島みずほ前党首.",
+          "attested_on": "2013-08-05",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Reference to her as former leader; gives no end day."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2013_decided_20130830",
+      "title": "党首選挙の早期実施へ (TOPICS, 投稿日：2013-08-30)",
+      "url": "https://web.archive.org/web/20131122043121id_/http://www5.sdp.or.jp/topics/2013/08/30/%e5%85%9a%e9%a6%96%e9%81%b8%e6%8c%99%e3%81%ae%e6%97%a9%e6%9c%9f%e5%ae%9f%e6%96%bd%e3%81%b8/",
+      "original_url": "http://www5.sdp.or.jp/topics/2013/08/30/%e5%85%9a%e9%a6%96%e9%81%b8%e6%8c%99%e3%81%ae%e6%97%a9%e6%9c%9f%e5%ae%9f%e6%96%bd%e3%81%b8/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on the standing committee's decision of 29 August 2013 to hold a leader election.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-decided-20130830-facts.json",
+        "bytes": 5460,
+        "sha256": "397a332f0d4cff5a481f8284933fb7e4f555ac017d6de7af8e58d8265ad673c5"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_called_20130829",
+          "text": "On 29 August the party's standing executive committee set up the leader election headquarters and decided to hold a leader election; it also set the sixth national representatives' meeting for 26 October.",
+          "attested_on": "2013-08-29",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A decision to hold an election; no candidate or holder. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2013_term_procedure",
+          "text": "The page explains that a new leader's term runs for two years from the next regular convention, and that the national representatives' meeting would be asked to approve the new leader also serving the rest of 福島みずほ前党首's term.",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "Procedure only, never a date. Never a holder. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2013_schedule_20130907",
+      "title": "党首選の告示は９月２７日 (TOPICS, 投稿日：2013-09-07)",
+      "url": "https://web.archive.org/web/20131122043054id_/http://www5.sdp.or.jp/topics/2013/09/07/%e5%85%9a%e9%a6%96%e9%81%b8%e3%81%ae%e5%91%8a%e7%a4%ba%e3%81%af%ef%bc%99%e6%9c%88%ef%bc%92%ef%bc%97%e6%97%a5/",
+      "original_url": "http://www5.sdp.or.jp/topics/2013/09/07/%e5%85%9a%e9%a6%96%e9%81%b8%e3%81%ae%e5%91%8a%e7%a4%ba%e3%81%af%ef%bc%99%e6%9c%88%ef%bc%92%ef%bc%97%e6%97%a5/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on the leader election schedule set on 5 September 2013.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-schedule-20130907-facts.json",
+        "bytes": 4723,
+        "sha256": "1852f9a88002460d5c889ab6a4300c3a24f2eff43505444c6e5bb819b99b34b2"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2013_schedule_20130905",
+          "text": "At its first meeting on the 5th the leader election headquarters set the schedule: notice 27 September 2013, filing the same day 10:00-15:00, voting 12-13 October, count 14 October.",
+          "attested_on": "2013-09-05",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A schedule decision; \"５日\" is dated by the posting (2013-09-07) and the preceding post (headquarters to meet on 9月5日). Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_yoshida_leader_election_page_2013",
+      "title": "社民党　党首選挙　１０月１４日開票　新党首　吉田忠智　決定！ (election/2013leader/leader_top.htm)",
+      "url": "https://web.archive.org/web/20131014174026id_/http://www5.sdp.or.jp/election/2013leader/leader_top.htm",
+      "original_url": "http://www5.sdp.or.jp/election/2013leader/leader_top.htm",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The party's 2013 leader election page as captured after the count (capture 14 October 2013 UTC). Used for the notice, the filings, the count and the declaration.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-leader-election-page-2013-20131014-facts.json",
+        "bytes": 6527,
+        "sha256": "75d1152e666ff7c8f3f15289b6ea8f35da9c451a45e3f1d9df2127ed4be054ce"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2013_notice_20130927",
+          "text": "The page says the SDP leader election was announced (告示) on the 27th.",
+          "attested_on": "2013-09-27",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "The page prints \"２７日\" without a month; September 2013 follows from the schedule page (告示＝２０１３年９月２７日) and the count date on this page. A notice, not a filing. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2013_filings_20130927",
+          "text": "Two candidates filed: 石川大我 (Toshima ward councillor) and 吉田忠智 (member of the House of Councillors), making it the first leader election by the whole membership since 1996.",
+          "attested_on": "2013-09-27",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Day as for the notice. Filings name two candidates; no holder. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2013_count_20131014",
+          "text": "At the count on 14 October: 17,410 eligible voters, 12,478 votes cast, 12,225 valid; 石川大我さん 2,239 votes, 吉田忠智さん 9,986 votes.",
+          "attested_on": "2013-10-14",
+          "locator": {
+            "paragraph": 3
+          },
+          "uncertainty": "A vote count; the declaration is a separate claim. Never a holder."
+        },
+        {
+          "id": "jp_sdp_yoshida_result_declared_20131014",
+          "text": "The party confirms that, as a result of the 14 October count, 吉田忠智さん was elected (headline: 新党首 吉田忠智 決定！).",
+          "attested_on": "2013-10-14",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "An election result, not a start of office. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20131024",
+      "title": "第185回国会 参議院 予算委員会 第2号 (2013-10-24), speech 315",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=118515261X00220131024&speechNumber=315&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 315 of the 参議院 予算委員会 第2号 (2013-10-24), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/118515261X00220131024. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Diet minutes, House of Councillors Budget Committee, 24 October 2013, speech 315: 吉田忠智's first question as SDP leader.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20131024-facts.json",
+        "bytes": 6056,
+        "sha256": "4879e60f28d087aa401a945f49f318f090f88b616d6c253262eeb8a18b0f3545"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yoshida_election_recalled_diet_2013",
+          "text": "吉田忠智 says he was chosen in the party's first leader election in seventeen years, since the Socialist Party era.",
+          "locator": {
+            "issueID": "118515261X00220131024",
+            "speechOrder": [
+              315
+            ],
+            "speaker": "吉田忠智"
+          },
+          "uncertainty": "Refers to the election without dating it. Never a holder. No structured date is stored."
+        },
+        {
+          "id": "jp_sdp_yoshida_in_office_diet_20131024",
+          "text": "吉田忠智 says that he has taken on the weighty office of SDP leader and that, having become leader, this is his first question ('党首になりまして今日は初めての質問であります').",
+          "attested_on": "2013-10-24",
+          "locator": {
+            "issueID": "118515261X00220131024",
+            "speechOrder": [
+              315
+            ],
+            "speaker": "吉田忠智"
+          },
+          "uncertainty": "Dates the holder observation of 2013-10-24; not a start, because no source states the day office took effect. Own statement of holding the office on 24 October 2013. Conflicts with his recollection of 24 February 2018 that he took over from 福島みずほ前党首 on 1 November 2013."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_yoshida_teirei_kaiken_20131106",
+      "title": "吉田忠智党首・定例記者会見（2013年11月6日） (TOPICS, 投稿日：2013-11-06)",
+      "url": "https://web.archive.org/web/20131122043046id_/http://www5.sdp.or.jp/topics/2013/11/06/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%83%bb%e5%ae%9a%e4%be%8b%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "original_url": "http://www5.sdp.or.jp/topics/2013/11/06/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%83%bb%e5%ae%9a%e4%be%8b%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page listing the topics of 吉田忠智党首's regular press conference of 6 November 2013 (the page body is a list of topics only).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-teirei-kaiken-20131106-facts.json",
+        "bytes": 4762,
+        "sha256": "48b6d674965781a91468473a337dbf17c23ae3051344186880bebca9417f1b30"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yoshida_in_office_kaiken_20131106",
+          "text": "The party page headed 吉田忠智党首・定例記者会見 is dated 6 November 2013.",
+          "attested_on": "2013-11-06",
+          "locator": {
+            "section": "heading and date line"
+          },
+          "uncertainty": "Later attestation of the same holder observation (first dated party record after the 1 November 2013 takeover he recalls in 2018). A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_yoshida_candidacy_2015_20151204",
+      "title": "吉田党首が党首選立候補の意思表明 (TOPICS, 投稿日：2015-12-04; 社会新報２０１５年１２月２日号より)",
+      "url": "https://web.archive.org/web/20161126230723id_/http://www5.sdp.or.jp/topics/2015/12/04/%e5%90%89%e7%94%b0%e5%85%9a%e9%a6%96%e3%81%8c%e5%85%9a%e9%a6%96%e9%81%b8%e7%ab%8b%e5%80%99%e8%a3%9c%e3%81%ae%e6%84%8f%e6%80%9d%e8%a1%a8%e6%98%8e/",
+      "original_url": "http://www5.sdp.or.jp/topics/2015/12/04/%e5%90%89%e7%94%b0%e5%85%9a%e9%a6%96%e3%81%8c%e5%85%9a%e9%a6%96%e9%81%b8%e7%ab%8b%e5%80%99%e8%a3%9c%e3%81%ae%e6%84%8f%e6%80%9d%e8%a1%a8%e6%98%8e/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page reprinting 社会新報 (2 December 2015) on 吉田忠智's intention to stand in the leader election announced for 4 December 2015. The result of that election was not found.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-candidacy-2015-20151204-facts.json",
+        "bytes": 5552,
+        "sha256": "be3b4f3de771c3efa73d742971df676d60343d63a06b70baf04ffbc62df4a3ee"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yoshida_in_office_20151126",
+          "text": "At the standing executive committee on 26 November, 吉田党首 said his work as party leader was only half done.",
+          "attested_on": "2015-11-26",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Later attestation of the 2013 holder observation (incumbent before a vote); the month of \"１１月２６日\" is printed, the year follows from the reprint date. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_yoshida_candidacy_intent_20151126",
+          "text": "吉田党首 stated his intention to stand in the leader election to be announced on 4 December, wishing to serve another two years.",
+          "attested_on": "2015-11-26",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "An intention to stand, not a filing or an election; the 2015 result is not established by this source. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_yoshida_stays_on_20160905",
+      "title": "吉田忠智党首は続投 (TOPICS, 投稿日：2016-09-05)",
+      "url": "https://web.archive.org/web/20161126220321id_/http://www5.sdp.or.jp/topics/2016/09/05/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%81%af%e7%b6%9a%e6%8a%95/",
+      "original_url": "http://www5.sdp.or.jp/topics/2016/09/05/%e5%90%89%e7%94%b0%e5%bf%a0%e6%99%ba%e5%85%9a%e9%a6%96%e3%81%af%e7%b6%9a%e6%8a%95/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on 吉田忠智 withdrawing the resignation intention he had stated after losing his seat in July 2016.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-stays-on-20160905-facts.json",
+        "bytes": 6012,
+        "sha256": "351d28b3626111324dd6bf5074fb792b73e2422c053d6d3a8dafc149ac981553"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yoshida_resignation_intent_20160714",
+          "text": "The page recalls that at the standing committee on 14 July, right after the House of Councillors election, 吉田忠智党首 had stated his intention to resign.",
+          "attested_on": "2016-07-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A stated day for an intention; no end followed (withdrawn 1 September)."
+        },
+        {
+          "id": "jp_sdp_yoshida_resignation_withdrawn_20160901",
+          "text": "Following discussion at the standing committee on 1 September and its wish that he continue, 吉田忠智党首 withdrew his intention to resign.",
+          "attested_on": "2016-09-01",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A withdrawal of a resignation intention; no new election. Never an until."
+        },
+        {
+          "id": "jp_sdp_yoshida_in_office_20160901",
+          "text": "At the press conference after the committee 吉田忠智党首 said he would continue to carry the weight of the office of SDP leader.",
+          "attested_on": "2016-09-01",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Later attestation (continuation) on the day of the committee. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2018_renotice_20180120",
+      "title": "党首選は再告示へ (TOPICS, 投稿日：2018-01-20; 社会新報２０１８年１月２４日号より)",
+      "url": "https://web.archive.org/web/20190722040948id_/http://www5.sdp.or.jp/topics/2018/01/20/%E5%85%9A%E9%A6%96%E9%81%B8%E3%81%AF%E5%86%8D%E5%91%8A%E7%A4%BA%E3%81%B8/",
+      "original_url": "http://www5.sdp.or.jp/topics/2018/01/20/%E5%85%9A%E9%A6%96%E9%81%B8%E3%81%AF%E5%86%8D%E5%91%8A%E7%A4%BA%E3%81%B8/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報 reprint) on the January 2018 leader election notice that drew no candidates, and the re-notice. The CDX digest of this capture (42N24Z7Y5IZ3YQNOTDHCKQZHHBH6YML6) differs from the base32 SHA-1 of the served bytes (the stored record was chunked-encoded, x-archive-orig-transfer-encoding: chunked); the served bytes were identical on every download.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2018-renotice-20180120-facts.json",
+        "bytes": 5736,
+        "sha256": "731e28584db588367b05ba4295badc9027fb9ced376feb40c8d2d8c86907ab1f"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2018_notice_20180112",
+          "text": "The SDP leader election was announced on the 12th, but no candidate had filed by the close of filings that day.",
+          "attested_on": "2018-01-12",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Only \"１２日\" is printed; January 2018 follows from the posting date and the schedule that follows. A notice; no candidate, no holder. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2018_reschedule",
+          "text": "The election headquarters decided to re-announce the election on 26 January, with campaigning 27 January-9 February, voting 10-11 February and the count on 12 February.",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "The day of the decision is not printed; the listed days are a schedule, not events. Never a holder. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_mataichi_uncontested_2018_20180208",
+      "title": "又市征治さん　新党首就任へ (TOPICS, 投稿日：2018-02-08)",
+      "url": "https://web.archive.org/web/20190722040945id_/http://www5.sdp.or.jp/topics/2018/02/08/%E5%8F%88%E5%B8%82%E5%BE%81%E6%B2%BB%E3%81%95%E3%82%93%E3%80%80%E6%96%B0%E5%85%9A%E9%A6%96%E5%B0%B1%E4%BB%BB%E3%81%B8/",
+      "original_url": "http://www5.sdp.or.jp/topics/2018/02/08/%E5%8F%88%E5%B8%82%E5%BE%81%E6%B2%BB%E3%81%95%E3%82%93%E3%80%80%E6%96%B0%E5%85%9A%E9%A6%96%E5%B0%B1%E4%BB%BB%E3%81%B8/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on the uncontested election of 又市征治 in the re-announced leader election of 26 January 2018. The CDX digest of this capture (HTPDD6L2U4SJQYYBKMJDOAYZLPBALJBG) differs from the base32 SHA-1 of the served bytes (the stored record was chunked-encoded, x-archive-orig-transfer-encoding: chunked); the served bytes were identical on every download.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-uncontested-2018-20180208-facts.json",
+        "bytes": 6472,
+        "sha256": "dcce45be21c9539af6f8cb063e8f5d46e465d14c29106a2eec54a984a3b26eab"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_mataichi_renotice_20180126",
+          "text": "The SDP leader election was announced on 26 January.",
+          "attested_on": "2018-01-26",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A notice (the re-notice after the 12 January notice drew no candidates). Never a holder."
+        },
+        {
+          "id": "jp_sdp_mataichi_uncontested_election_20180126",
+          "text": "As no one other than 又市征治 (secretary-general and election committee chair) filed by the close of filings, his uncontested election was decided.",
+          "attested_on": "2018-01-26",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "The day follows from the notice day and same-day filing close; not printed separately. An election, not a start: the page says he would formally take office at the late-February convention. Never a holder."
+        },
+        {
+          "id": "jp_sdp_mataichi_term_procedure_2018",
+          "text": "The page adds that the leader's term is two years and that 又市征治 would formally take office at the party convention in late February that elects the new executive.",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Procedure and plan only; never a date. Never a holder. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_yoshida_last_greeting_20180224",
+      "title": "党首あいさつ（吉田忠智）　２０１８年２月２４日　社会民主党第１６回定期全国大会",
+      "url": "https://web.archive.org/web/20190426141337id_/http://www5.sdp.or.jp/comment/2018/02/24/%e5%85%9a%e9%a6%96%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/",
+      "original_url": "http://www5.sdp.or.jp/comment/2018/02/24/%e5%85%9a%e9%a6%96%e3%81%82%e3%81%84%e3%81%95%e3%81%a4/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 吉田忠智's last address as 党首 to the 16th regular convention, 24 February 2018, recalling the day he took over and explaining his departure.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-last-greeting-20180224-facts.json",
+        "bytes": 6192,
+        "sha256": "43db7ea660db13bc0496b86616372192c7103302f80d94dc5b982ba0bcd665bb"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_yoshida_in_office_last_greeting_20180224",
+          "text": "吉田忠智's address dated 24 February 2018 is given as the party leader's address; he closes it as the 党首あいさつ.",
+          "attested_on": "2018-02-24",
+          "locator": {
+            "section": "date line and closing paragraph"
+          },
+          "uncertainty": "Later attestation; he is still speaking as leader at the opening of the convention. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_yoshida_takeover_recalled_20131101",
+          "text": "吉田忠智 recalls that on 1 November 2013 he took over from 福島みずほ前党首 and has served as leader for four years and four months.",
+          "attested_on": "2013-11-01",
+          "locator": {
+            "paragraph": "the paragraph beginning 私は、２０１３年１１月１日に"
+          },
+          "uncertainty": "A recollection made on 24 February 2018 that states the day; it conflicts with his own Diet statement of 24 October 2013 that he had already become leader, so it is never a from (and never a holder). The 2013 party note on the term procedure (approval by the national representatives' meeting of 26 October 2013) may explain a formal takeover later than the 14 October election."
+        },
+        {
+          "id": "jp_sdp_yoshida_departure_recalled_2018",
+          "text": "吉田忠智 says that after the party failed to gain seats in the last general election he felt he had to take responsibility, that a leader without a Diet seat faced many constraints, and that 又市幹事長 had agreed to succeed him (又市次期党首).",
+          "locator": {
+            "paragraph": "same paragraph"
+          },
+          "uncertainty": "Explains his departure but states no day on which his office ended. Never an until. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_mataichi_inaugural_greeting_20180225",
+      "title": "党首就任あいさつ（又市征治）　２０１８年２月２５日　社会民主党第１６回定期全国大会",
+      "url": "https://web.archive.org/web/20190427204110id_/http://www5.sdp.or.jp/comment/2018/02/25/%e5%85%9a%e9%a6%96%e5%b0%b1%e4%bb%bb%e3%81%82%e3%81%84%e3%81%95%e3%81%a4%ef%bc%88%e5%8f%88%e5%b8%82%e5%be%81%e6%b2%bb%ef%bc%89/",
+      "original_url": "http://www5.sdp.or.jp/comment/2018/02/25/%e5%85%9a%e9%a6%96%e5%b0%b1%e4%bb%bb%e3%81%82%e3%81%84%e3%81%95%e3%81%a4%ef%bc%88%e5%8f%88%e5%b8%82%e5%be%81%e6%b2%bb%ef%bc%89/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party record of 又市征治's inaugural address as 党首 at the close of the 16th regular convention, 25 February 2018.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-inaugural-greeting-20180225-facts.json",
+        "bytes": 4805,
+        "sha256": "963301420dc3ce6afd8c13eee11a6a1346bea4bf5a2ed446b110b832e5e372ba"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_mataichi_in_office_inaugural_greeting_20180225",
+          "text": "The address dated 25 February 2018 is headed 党首就任あいさつ and signed 社会民主党党首 又市征治.",
+          "attested_on": "2018-02-25",
+          "locator": {
+            "section": "heading and signature"
+          },
+          "uncertainty": "Dates the holder observation of 2018-02-25; not a start, because no source states the day office took effect. Same-day record naming him as 党首 at his inaugural address; the day of assumption is not otherwise stated."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_diet_hc_budget_20180302",
+      "title": "第196回国会 参議院 予算委員会 第5号 (2018-03-02), speech 347",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=119615261X00520180302&speechNumber=347&recordPacking=json",
+      "publisher": "House of Councillors (参議院); minutes served by the National Diet Library's Diet minutes search system (国会会議録検索システム) API",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "official_diet_minutes_api_json_download_and_read",
+      "source_type": "primary_diet_minutes_api_json",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Diet minutes API's JSON for speech 347 of the 参議院 予算委員会 第5号 (2018-03-02), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/119615261X00520180302. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Diet minutes, House of Councillors Budget Committee, 2 March 2018, speech 347: 又市征治 says he has recently become SDP leader. His parliamentary group (希望の会) is not the party office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20180302-facts.json",
+        "bytes": 5257,
+        "sha256": "f449a47c5be136b91b410df12a1707f9468c0a6b681b5e9e56ff7e165f5ece33"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_mataichi_in_office_diet_20180302",
+          "text": "又市征治 says that he recently took office as leader of the SDP.",
+          "attested_on": "2018-03-02",
+          "locator": {
+            "issueID": "119615261X00520180302",
+            "speechOrder": [
+              347
+            ],
+            "speaker": "又市征治"
+          },
+          "uncertainty": "\"先頃\" gives no day of assumption; own statement of holding the office on 2 March 2018. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_top_page_17th_convention_2020",
+      "title": "社民党OfficialWeb│トップページ (capture 24 March 2020; news item 2020.2.28 社民党第１７回定期全国大会 福島さん７年ぶりに党首返り咲き)",
+      "url": "https://web.archive.org/web/20200324082830id_/http://www5.sdp.or.jp:80/",
+      "original_url": "http://www5.sdp.or.jp/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Capture of the party home page of 24 March 2020. Its News block carries the 社会新報 report (dated 2020.2.28) of the 17th regular convention of 22-23 February 2020. The report's own post was not archived, so the home-page capture is used; only that news item is used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-top-page-17th-convention-2020-20200324-facts.json",
+        "bytes": 6430,
+        "sha256": "8cadda37ab7605f289ce8621347e30dde3b3c63f1c7e094c989b680608b2b5c3"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_uncontested_election_20200222",
+          "text": "The party held its 17th regular convention on 22 and 23 February; in the leader election 副党首 福島みずほ was chosen unopposed as new party leader on the first day, returning to the post after seven years.",
+          "attested_on": "2020-02-22",
+          "locator": {
+            "section": "News: 福島さん７年ぶりに党首返り咲き"
+          },
+          "uncertainty": "The day follows from \"２月２２，２３の両日\" and \"初日の党首選挙\"; the year from the item's 2020.2.28 date line and the 17th convention. An uncontested election at the convention, not a start; never a holder."
+        },
+        {
+          "id": "jp_sdp_mataichi_in_office_convention_20200222",
+          "text": "In his address at the opening of the convention 又市党首 criticised the prime minister's constitutional plans.",
+          "attested_on": "2020-02-22",
+          "locator": {
+            "section": "News: 福島さん７年ぶりに党首返り咲き"
+          },
+          "uncertainty": "Names 又市征治 as 党首 at the opening of the convention on its first day (22 February, derived as for the election). A later attestation of the holder observation dated 2018-02-25; no resignation, end day or reason for his departure is given, so no end is established. A continuation: never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_new_leader_news_item_20200228",
+          "text": "The party's news item dated 2020.2.28 (headline 福島さん７年ぶりに党首返り咲き; reprinted from 社会新報 of 4 March 2020) calls her 福島みずほ新党首, and the accompanying item of the same date prints 福島みずほ新党首あいさつ (要旨), in which she says she has newly taken office as the new leader ('新たに新党首に就任させていただきました') and that the convention has ended.",
+          "attested_on": "2020-02-28",
+          "locator": {
+            "section": "News list, items dated 2020.2.28: 社民党第１７回定期全国大会 (report; 福島みずほ新党首あいさつ（要旨）)"
+          },
+          "uncertainty": "Dates the holder observation of 28 February 2020 by the items' date line; not a start, because no source states the day office took effect (her address, given at the end of the two-day convention, is not dated, and 就任 wording is not a day). The page is a home-page capture of 24 March 2020."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_convention_agenda_2020_20201022",
+      "title": "臨時党大会　議案確定 (TOPICS, 投稿日：2020-10-22)",
+      "url": "https://web.archive.org/web/20201205022156id_/http://www5.sdp.or.jp/topics/2020/10/22/%E8%87%A8%E6%99%82%E5%85%9A%E5%A4%A7%E4%BC%9A%E3%80%80%E8%AD%B0%E6%A1%88%E7%A2%BA%E5%AE%9A/",
+      "original_url": "http://www5.sdp.or.jp/topics/2020/10/22/%E8%87%A8%E6%99%82%E5%85%9A%E5%A4%A7%E4%BC%9A%E3%80%80%E8%AD%B0%E6%A1%88%E7%A2%BA%E5%AE%9A/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on the standing committee's decision of the agenda for the 14 November 2020 extraordinary convention (response to the Constitutional Democratic Party's call to merge). A claim about the organization only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-convention-agenda-2020-20201022-facts.json",
+        "bytes": 4882,
+        "sha256": "92a7fe3d50aa5f59fe02bd186e1906b448f53ed215b08f2daaafa10ea056e460"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_convention_agenda_decided_20201022",
+          "text": "On the afternoon of 22 October the standing committee decided the motion for the 14 November extraordinary convention: members would mutually accept both choices, keeping the SDP or answering the call and joining the Constitutional Democratic Party.",
+          "attested_on": "2020-10-22",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A motion decided by the executive, not the convention's decision. About the organization only; no organization is mapped or merged."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_edano_meeting_20201117",
+      "title": "福島党首と枝野代表が会談 (TOPICS, 投稿日：2020-11-17)",
+      "url": "https://web.archive.org/web/20210125100528id_/http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/",
+      "original_url": "http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/",
+      "publisher": "Social Democratic Party (社会民主党, www5.sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page on 福島党首 reporting the 14 November 2020 convention decision to the leader of the Constitutional Democratic Party.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-edano-meeting-20201117-facts.json",
+        "bytes": 5450,
+        "sha256": "1c600573f02b243846d71970196dd32ec465163d7e1981f1c2a142809014ccdf"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_split_decision_20201114",
+          "text": "The page reports that the extraordinary convention of 14 November passed by majority the motion that both choices, keeping the SDP and joining the Constitutional Democratic Party, be mutually accepted.",
+          "attested_on": "2020-11-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A claim about the organization only (members allowed to take either path); no organization identity is mapped or merged, and no leadership change follows from it."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_20201117",
+          "text": "On 17 November, at a meeting of the two parties' leaders, 福島党首 reported the convention's decision to 枝野代表.",
+          "attested_on": "2020-11-17",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Later attestation of the 2020 holder observation. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_reelection_12th_20220114",
+      "title": "第12回社会民主党党首選挙の結果、福島みずほ党首の再選となりました (お知らせ 2022.01.14)",
+      "url": "https://web.archive.org/web/20220116094341id_/https://sdp.or.jp/information/%E7%AC%AC12%E5%9B%9E%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%E5%85%9A%E9%A6%96%E9%81%B8%E6%8C%99%E3%81%AE%E7%B5%90%E6%9E%9C%E3%80%81%E7%A6%8F%E5%B3%B6%E3%81%BF%E3%81%9A%E3%81%BB%E5%85%9A%E9%A6%96/",
+      "original_url": "https://sdp.or.jp/information/%E7%AC%AC12%E5%9B%9E%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%E5%85%9A%E9%A6%96%E9%81%B8%E6%8C%99%E3%81%AE%E7%B5%90%E6%9E%9C%E3%80%81%E7%A6%8F%E5%B3%B6%E3%81%BF%E3%81%9A%E3%81%BB%E5%85%9A%E9%A6%96/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party notice of 14 January 2022 on the 12th leader election, in which 福島みずほ was re-elected unopposed.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-12th-20220114-facts.json",
+        "bytes": 7487,
+        "sha256": "d164f4d5c668bd59c87c08a6b3aeff9eb1b6970cd823125c6b45566b13cf3c3f"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2022_notice_20220114",
+          "text": "The 12th leader election was announced today (14 January 2022) at 10:00, with filings closing at 15:00.",
+          "attested_on": "2022-01-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A notice. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_filing_2022_20220114",
+          "text": "福島みずほ現党首 filed with the recommendation of the Kanagawa federation and 387 members; no one else sought to stand.",
+          "attested_on": "2022-01-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A filing by the incumbent, named 現党首 on the day (incumbent before the declaration). Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_reelection_declared_20220114",
+          "text": "She was re-elected unopposed; after receiving the certificate of election 福島党首 held a press conference.",
+          "attested_on": "2022-01-14",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "An uncontested re-election; the page says the new term was to begin after the convention of 19-20 March approved the result. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_20220114",
+          "text": "After receiving the certificate, 福島党首 thanked the members and stated the party's role at a press conference.",
+          "attested_on": "2022-01-14",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Dates the holder observation of 2022-01-14; not a start, because no source states the day office took effect. Same-day record naming her 党首 after the re-election."
+        },
+        {
+          "id": "jp_sdp_fukushima_new_term_planned_2022",
+          "text": "The notice says the convention planned for 19-20 March would approve the result, after which 福島瑞穂党首's new term was to begin.",
+          "locator": {
+            "paragraph": 4
+          },
+          "uncertainty": "A plan; no event is attested and no start is established. Never a holder. No structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_reelection_20231201",
+      "title": "社民党の党首選で福島党首が無投票で再選 (社会新報 2023.12.01)",
+      "url": "https://web.archive.org/web/20231201213844id_/https://sdp.or.jp/sdp-paper/toushusen-2/",
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-2/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報, 1 December 2023) on the leader election at the end of the term, in which 福島みずほ was re-elected unopposed (the re-election before the 2024 convention).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-20231201-facts.json",
+        "bytes": 5681,
+        "sha256": "61d27553887f7a295a2ac814fd2c1dc5d1b712ea7b1c0a7c465b5ef154c5f3e0"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2023_notice_20231201",
+          "text": "The leader election at the end of the term was announced on 1 December.",
+          "attested_on": "2023-12-01",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A notice. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_reelection_declared_20231201",
+          "text": "The incumbent 福島みずほ党首 was elected unopposed, her third consecutive election, as no one else stood.",
+          "attested_on": "2023-12-01",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "An uncontested re-election, not a start of term. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_in_office_20231201",
+          "text": "A photograph caption dated 1 December shows 福島党首 receiving flowers from party staff to celebrate her election.",
+          "attested_on": "2023-12-01",
+          "locator": {
+            "section": "photo caption"
+          },
+          "uncertainty": "Dates the holder observation of 2023-12-01; not a start, because no source states the day office took effect. Same-day record naming her 党首 after the re-election."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_schedule_20260220",
+      "title": "【党首選挙告示日の前倒しのお知らせ】 (お知らせ 2026.02.20)",
+      "url": "https://web.archive.org/web/20260312035200id_/https://sdp.or.jp/information/toushusen-3/",
+      "original_url": "https://sdp.or.jp/information/toushusen-3/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party notice of 20 February 2026 on the new leader election schedule. The first capture (20260220031259) redirects to the recorded capture 20260312035200.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-schedule-20260220-facts.json",
+        "bytes": 4495,
+        "sha256": "3ed14a18b6f83275f0df09210f684263d3ead8cc467c43c755317c531cc5c712"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2026_schedule_20260218",
+          "text": "At a meeting held by circulation on 18 February the election headquarters moved the notice day: notice 4 March, filing 10:00-13:00, campaigning 5-20 March, voting 21-22 March, count 23 March.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A schedule decision; the listed days are plans, not events. The page calls it a change of the notice day; an earlier schedule (notice 23 January 2026) appears on the lead page information/touhushusen/ (not recorded). Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_candidates_20260306",
+      "title": "３月１２日号に党首選候補３氏の政見「私の訴え」全文を掲載 (社会新報 2026.03.06)",
+      "url": "https://web.archive.org/web/20260306044954id_/https://sdp.or.jp/sdp-paper/toushusen-5/",
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-5/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報, 6 March 2026) on the 4 March 2026 notice and the three candidacies, with the candidates' statements.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-candidates-20260306-facts.json",
+        "bytes": 5695,
+        "sha256": "36956c9a6281144fd80ede963650cb344d8019bb591070f848f64b8887f1c444"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2026_notice_20260304",
+          "text": "The SDP leader election was announced on 4 March.",
+          "attested_on": "2026-03-04",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "A notice. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2026_filings_20260304",
+          "text": "Three candidates filed: 大椿ゆうこ前副党首, ラサール石井副党首 and 福島みずほ党首, the first leader election in thirteen years, with about 5,200 members and associate members as voters.",
+          "attested_on": "2026-03-04",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Filings by three candidates; no holder is named by the filings. The deputy leader (副党首) titles are another office and not imported. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_incumbent_20260304",
+          "text": "The report names the incumbent as 福島みずほ党首（参院議員） among the candidates filing on 4 March.",
+          "attested_on": "2026-03-04",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Incumbent attested before the vote; belongs to the holder observation dated 2023-12-01. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_first_count_20260323",
+      "title": "2026党首選挙の結果と再告示について (お知らせ 2026.03.23, 社民党党首選挙実施本部)",
+      "url": "https://web.archive.org/web/20260324042609id_/https://sdp.or.jp/information/saikokujitoushusen/",
+      "original_url": "https://sdp.or.jp/information/saikokujitoushusen/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Election headquarters notice of 23 March 2026: first-round count and re-notice of a run-off.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-first-count-20260323-facts.json",
+        "bytes": 5253,
+        "sha256": "e75ef39fd1cda1142a55652a89447761b01c004adcbfe6f83a54326fd0978a32"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2026_first_round_count_20260323",
+          "text": "Count of the election announced on 4 March (voting 21-22 March, count 23 March): 5,041 voters, 4,140 valid votes; 福島みずほ 1,876, 大椿ゆうこ 1,297, ラサール石井 967. No candidate had a majority of valid votes.",
+          "attested_on": "2026-03-23",
+          "locator": {
+            "section": "1.開票結果について / 2.各得票数について / 3."
+          },
+          "uncertainty": "A count with no winner. Never a holder."
+        },
+        {
+          "id": "jp_sdp_leader_election_2026_renotice_20260323",
+          "text": "Under rule 10, a run-off between the top two was announced on 23 March 2026, with campaigning 23 March-3 April, voting 4-5 April and the count on 6 April.",
+          "attested_on": "2026-03-23",
+          "locator": {
+            "section": "【再選挙日程】"
+          },
+          "uncertainty": "A re-notice; the voting and count days are a schedule. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_leader_election_2026_rerun_result_20260406",
+      "title": "2026年党首選挙(再選挙)の開票結果について (お知らせ 2026.04.06, 社民党党首選挙実施本部)",
+      "url": "https://web.archive.org/web/20260406155003id_/https://sdp.or.jp/information/260406result/",
+      "original_url": "https://sdp.or.jp/information/260406result/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Election headquarters notice of 6 April 2026 reporting the run-off count and the winner.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-rerun-result-20260406-facts.json",
+        "bytes": 5012,
+        "sha256": "4d601189bdc1c2440c647430605678e8ab04de046d698c8b2131fc71a866df67"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_leader_election_2026_rerun_count_20260406",
+          "text": "Run-off count (voting 4-5 April, count 6 April): 福島みずほ 2,364, 大椿ゆうこ 1,792; 5,086 voters, 4,156 valid votes.",
+          "attested_on": "2026-04-06",
+          "locator": {
+            "section": "2. 開票結果"
+          },
+          "uncertainty": "A vote count. Never a holder."
+        },
+        {
+          "id": "jp_sdp_fukushima_elected_2026_20260406",
+          "text": "The headquarters reports that, as a result of the run-off, 福島みずほさん was elected.",
+          "attested_on": "2026-04-06",
+          "locator": {
+            "section": "記 1. 当選者"
+          },
+          "uncertainty": "An election result, not a start; names her 福島みずほさん, not as leader. Never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_kaiken_20260408",
+      "title": "【４月８日の福島党首会見】大椿氏らへの配慮を欠いた党首選結果会見で謝罪 (社会新報 2026.04.10)",
+      "url": "https://web.archive.org/web/20260410042414id_/https://sdp.or.jp/sdp-paper/toushusen-6/",
+      "original_url": "https://sdp.or.jp/sdp-paper/toushusen-6/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報, 10 April 2026) on 福島みずほ's press conference as 党首 on 8 April 2026, the first dated attestation after the 6 April count.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260408-facts.json",
+        "bytes": 4417,
+        "sha256": "c745a7813e11463366dffd5dec8e3302bbd27c94a1a27f3b2029bcf321f95097"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_in_office_kaiken_20260408",
+          "text": "The SDP's 福島みずほ党首 held a press conference at the House of Councillors members' building on 8 April.",
+          "attested_on": "2026-04-08",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Dates the holder observation of 2026-04-08; not a start, because no source states the day office took effect. First dated in-office attestation found after the 6 April run-off result."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_21st_convention_20260429",
+      "title": "【社民党第21回定期全国大会】改憲発議の阻止へ党の総力を (社会新報 2026.04.30)",
+      "url": "https://web.archive.org/web/20260516150409id_/https://sdp.or.jp/sdp-paper/taikai-5/",
+      "original_url": "https://sdp.or.jp/sdp-paper/taikai-5/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報, 30 April 2026) on the 21st regular convention of 28-29 April 2026. The first capture (20260430001142) redirects to the recorded capture 20260516150409.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-21st-convention-20260429-facts.json",
+        "bytes": 4434,
+        "sha256": "9b2ba138cf0aefd642e98bb9c598f72cc6750cbf80a99887167f8c9d86e37751"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_in_office_21st_convention_20260429",
+          "text": "On the second day, the 29th, 福島みずほ党首 addressed the 21st regular convention.",
+          "attested_on": "2026-04-29",
+          "locator": {
+            "paragraph": 2
+          },
+          "uncertainty": "Later attestation of the 2026 holder observation; the page names the new deputy leader and secretary-general, other offices not imported. A continuation: never a holder."
+        }
+      ]
+    },
+    {
+      "id": "jp_sdp_fukushima_kaiken_20260729",
+      "title": "【7月29日の福島党首会見】熊本地震救援対策に全力 (社会新報 2026.07.30)",
+      "url": "https://web.archive.org/web/20260815230711id_/https://sdp.or.jp/sdp-paper/toushu-125/",
+      "original_url": "https://sdp.or.jp/sdp-paper/toushu-125/",
+      "publisher": "Social Democratic Party (社会民主党, sdp.or.jp), via Internet Archive raw capture",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+      "source_type": "primary_party_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Party web page (社会新報, 30 July 2026; capture 15 August 2026) on 福島みずほ's press conference as 党首 on 29 July 2026: a later attestation before the cutoff.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260729-facts.json",
+        "bytes": 4436,
+        "sha256": "091529b790fcbd76a9bac9483ac45aafb85b893ff04f6523371280413a87e499"
+      },
+      "claims": [
+        {
+          "id": "jp_sdp_fukushima_in_office_kaiken_20260729",
+          "text": "The SDP's 福島みずほ党首 held a press conference at the House of Councillors members' building on 29 July.",
+          "attested_on": "2026-07-29",
+          "locator": {
+            "paragraph": 1
+          },
+          "uncertainty": "Later attestation before the 7 September 2026 cutoff. A continuation: never a holder."
+        }
+      ]
     }
   ],
   "organizations": [
@@ -15864,12 +18001,583 @@
         "until": null,
         "note": "Participation at one election does not establish organization birth, dissolution or continuity."
       },
-      "roles": [],
+      "roles": [
+        {
+          "id": "jp_sdp_chair",
+          "title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+          "kind": "party_leader",
+          "sources": [
+            "jp_sdp_diet_hr_budget_19900406",
+            "jp_sdp_diet_hr_budget_19901019",
+            "jp_sdp_doi_profile_2000_retrospective",
+            "jp_sdp_diet_hr_budget_19910820",
+            "jp_sdp_diet_hr_plenary_19930125",
+            "jp_sdp_diet_hc_plenary_19930924",
+            "jp_sdp_diet_hr_budget_19941013",
+            "jp_sdp_diet_hc_budget_19941018",
+            "jp_sdp_diet_hr_budget_19950206",
+            "jp_sdp_diet_hc_budget_19950519",
+            "jp_sdp_diet_hr_budget_19951011_s99",
+            "jp_sdp_diet_hr_budget_19951011_s101",
+            "jp_sdp_diet_hr_plenary_19960124",
+            "jp_sdp_statement_20th_anniversary_20160119",
+            "jp_sdp_statement_murayama_obituary_20251017",
+            "jp_sdp_doi_kenren_kanjicho_meeting_19961130",
+            "jp_sdp_doi_second_rinji_convention_19961222",
+            "jp_sdp_doi_reelection_shakaishinpo_19980121",
+            "jp_sdp_doi_fifth_rinji_convention_19980830",
+            "jp_sdp_doi_third_term_danwa_20000121",
+            "jp_sdp_doi_third_election_shakaishinpo_20000126",
+            "jp_sdp_doi_resignation_kaiken_20031113",
+            "jp_sdp_doi_resignation_greeting_20031115",
+            "jp_sdp_fukushima_inaugural_greeting_20031115",
+            "jp_sdp_diet_hc_budget_20031126",
+            "jp_sdp_fukushima_eighth_convention_20031213",
+            "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+            "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+            "jp_sdp_fukushima_resignation_kaiken_20130725",
+            "jp_sdp_mataichi_acting_leader_20130805",
+            "jp_sdp_leader_election_2013_decided_20130830",
+            "jp_sdp_leader_election_2013_schedule_20130907",
+            "jp_sdp_yoshida_leader_election_page_2013",
+            "jp_sdp_diet_hc_budget_20131024",
+            "jp_sdp_yoshida_teirei_kaiken_20131106",
+            "jp_sdp_yoshida_candidacy_2015_20151204",
+            "jp_sdp_yoshida_stays_on_20160905",
+            "jp_sdp_leader_election_2018_renotice_20180120",
+            "jp_sdp_mataichi_uncontested_2018_20180208",
+            "jp_sdp_yoshida_last_greeting_20180224",
+            "jp_sdp_mataichi_inaugural_greeting_20180225",
+            "jp_sdp_diet_hc_budget_20180302",
+            "jp_sdp_top_page_17th_convention_2020",
+            "jp_sdp_convention_agenda_2020_20201022",
+            "jp_sdp_fukushima_edano_meeting_20201117",
+            "jp_sdp_fukushima_reelection_12th_20220114",
+            "jp_sdp_fukushima_reelection_20231201",
+            "jp_sdp_leader_election_2026_schedule_20260220",
+            "jp_sdp_leader_election_2026_candidates_20260306",
+            "jp_sdp_leader_election_2026_first_count_20260323",
+            "jp_sdp_leader_election_2026_rerun_result_20260406",
+            "jp_sdp_fukushima_kaiken_20260408",
+            "jp_sdp_fukushima_21st_convention_20260429",
+            "jp_sdp_fukushima_kaiken_20260729"
+          ],
+          "claim_ids": [
+            "jp_sdp_doi_named_chair_by_secretary_general_19900406",
+            "jp_sdp_doi_leaders_meeting_recalled_by_secretary_general",
+            "jp_sdp_doi_profile_chair_from_september_1986",
+            "jp_sdp_doi_profile_resigned_july_1991",
+            "jp_sdp_tanabe_named_chair_by_secretary_general_19910820",
+            "jp_sdp_yamahana_self_stated_chair_19930125",
+            "jp_sdp_yamahana_still_chair_19930924",
+            "jp_sdp_murayama_self_stated_chair_19941013",
+            "jp_sdp_murayama_self_stated_chair_19941018",
+            "jp_sdp_murayama_self_stated_chair_19950206",
+            "jp_sdp_murayama_self_stated_chair_19950519",
+            "jp_sdp_murayama_self_stated_chair_s99_19951011",
+            "jp_sdp_murayama_self_stated_chair_s101_19951011",
+            "jp_sdp_renamed_party_named_by_secretary_general_19960124",
+            "jp_sdp_renaming_retrospective_anniversary_statement",
+            "jp_sdp_murayama_obituary_chair_retrospective",
+            "jp_sdp_murayama_obituary_renaming_retrospective",
+            "jp_sdp_murayama_obituary_first_party_leader_retrospective",
+            "jp_sdp_murayama_obituary_handover_to_doi_retrospective",
+            "jp_sdp_doi_in_office_kanjicho_meeting_19961130",
+            "jp_sdp_doi_assumption_reported_to_meeting_19961130",
+            "jp_sdp_doi_convention_approval_19961222",
+            "jp_sdp_doi_in_office_second_rinji_convention_19961222",
+            "jp_sdp_doi_leader_renotice_19980108",
+            "jp_sdp_doi_reelection_confirmed_19980110",
+            "jp_sdp_doi_in_office_shakaishinpo_19980121",
+            "jp_sdp_doi_in_office_fifth_rinji_convention_19980830",
+            "jp_sdp_doi_third_election_statement_2000",
+            "jp_sdp_doi_in_office_third_term_danwa_20000121",
+            "jp_sdp_doi_third_election_declared_20000121",
+            "jp_sdp_doi_in_office_resignation_kaiken_20031113",
+            "jp_sdp_doi_resignation_intent_20031113",
+            "jp_sdp_doi_resignation_accepted_standing_committee_20031113",
+            "jp_sdp_doi_in_office_resignation_greeting_20031115",
+            "jp_sdp_doi_resignation_submitted_20031115",
+            "jp_sdp_doi_resignation_recalled_three_officers_20031111",
+            "jp_sdp_doi_resignation_recalled_standing_committee_20031113",
+            "jp_sdp_murayama_predecessor_recalled",
+            "jp_sdp_fukushima_selection_reported_by_doi_20031115",
+            "jp_sdp_fukushima_joint_plenary_selection_20031115",
+            "jp_sdp_fukushima_in_office_inaugural_greeting_20031115",
+            "jp_sdp_doi_resignation_greeting_referred_20031115",
+            "jp_sdp_fukushima_assumption_stated_20031115",
+            "jp_sdp_fukushima_in_office_diet_20031126",
+            "jp_sdp_fukushima_convention_approval_20031213",
+            "jp_sdp_fukushima_in_office_eighth_convention_20031213",
+            "jp_sdp_doi_former_leader_referred_20031213",
+            "jp_sdp_doi_term_span_recalled",
+            "jp_sdp_leader_election_2009_notice_20091204",
+            "jp_sdp_fukushima_fourth_election_decided_20091204",
+            "jp_sdp_fukushima_in_office_20091209",
+            "jp_sdp_leader_election_2012_notice_20120120",
+            "jp_sdp_fukushima_fifth_election_decided_20120120",
+            "jp_sdp_fukushima_in_office_20120124",
+            "jp_sdp_fukushima_in_office_20130725",
+            "jp_sdp_fukushima_resignation_intent_20130725",
+            "jp_sdp_fukushima_resignation_accepted_20130725",
+            "jp_sdp_fukushima_end_stated_20130725",
+            "jp_sdp_fukushima_tenure_record_2003_2013",
+            "jp_sdp_mataichi_acting_designated_20130801",
+            "jp_sdp_fukushima_former_20130805",
+            "jp_sdp_leader_election_called_20130829",
+            "jp_sdp_leader_election_2013_term_procedure",
+            "jp_sdp_leader_election_2013_schedule_20130905",
+            "jp_sdp_leader_election_2013_notice_20130927",
+            "jp_sdp_leader_election_2013_filings_20130927",
+            "jp_sdp_leader_election_2013_count_20131014",
+            "jp_sdp_yoshida_result_declared_20131014",
+            "jp_sdp_yoshida_election_recalled_diet_2013",
+            "jp_sdp_yoshida_in_office_diet_20131024",
+            "jp_sdp_yoshida_in_office_kaiken_20131106",
+            "jp_sdp_yoshida_in_office_20151126",
+            "jp_sdp_yoshida_candidacy_intent_20151126",
+            "jp_sdp_yoshida_resignation_intent_20160714",
+            "jp_sdp_yoshida_resignation_withdrawn_20160901",
+            "jp_sdp_yoshida_in_office_20160901",
+            "jp_sdp_leader_election_2018_notice_20180112",
+            "jp_sdp_leader_election_2018_reschedule",
+            "jp_sdp_mataichi_renotice_20180126",
+            "jp_sdp_mataichi_uncontested_election_20180126",
+            "jp_sdp_mataichi_term_procedure_2018",
+            "jp_sdp_yoshida_in_office_last_greeting_20180224",
+            "jp_sdp_yoshida_takeover_recalled_20131101",
+            "jp_sdp_yoshida_departure_recalled_2018",
+            "jp_sdp_mataichi_in_office_inaugural_greeting_20180225",
+            "jp_sdp_mataichi_in_office_diet_20180302",
+            "jp_sdp_fukushima_uncontested_election_20200222",
+            "jp_sdp_mataichi_in_office_convention_20200222",
+            "jp_sdp_fukushima_new_leader_news_item_20200228",
+            "jp_sdp_convention_agenda_decided_20201022",
+            "jp_sdp_split_decision_20201114",
+            "jp_sdp_fukushima_in_office_20201117",
+            "jp_sdp_leader_election_2022_notice_20220114",
+            "jp_sdp_fukushima_filing_2022_20220114",
+            "jp_sdp_fukushima_reelection_declared_20220114",
+            "jp_sdp_fukushima_in_office_20220114",
+            "jp_sdp_fukushima_new_term_planned_2022",
+            "jp_sdp_leader_election_2023_notice_20231201",
+            "jp_sdp_fukushima_reelection_declared_20231201",
+            "jp_sdp_fukushima_in_office_20231201",
+            "jp_sdp_leader_election_2026_schedule_20260218",
+            "jp_sdp_leader_election_2026_notice_20260304",
+            "jp_sdp_leader_election_2026_filings_20260304",
+            "jp_sdp_fukushima_incumbent_20260304",
+            "jp_sdp_leader_election_2026_first_round_count_20260323",
+            "jp_sdp_leader_election_2026_renotice_20260323",
+            "jp_sdp_leader_election_2026_rerun_count_20260406",
+            "jp_sdp_fukushima_elected_2026_20260406",
+            "jp_sdp_fukushima_in_office_kaiken_20260408",
+            "jp_sdp_fukushima_in_office_21st_convention_20260429",
+            "jp_sdp_fukushima_in_office_kaiken_20260729"
+          ],
+          "holder_claims": [
+            {
+              "name": "土井たか子",
+              "attested_on": "1990-04-06",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hr_budget_19900406"
+              ],
+              "claim_ids": [
+                "jp_sdp_doi_named_chair_by_secretary_general_19900406"
+              ],
+              "note": "Observed on 6 April 1990: the party secretary-general 山口鶴男's statement in the House of Representatives Budget Committee that '土井委員長はかねがね強調いたしておられます', the first dated statement by a party officer naming her in the office found after 1 January 1990. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; nothing attests 1 January 1990 itself; her September 1986 assumption and July 1991 resignation are month-only retrospective claims, and no party record of her 1991 resignation, of its acceptance or of an acting chair was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "田邊誠",
+              "attested_on": "1991-08-20",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hr_budget_19910820"
+              ],
+              "claim_ids": [
+                "jp_sdp_tanabe_named_chair_by_secretary_general_19910820"
+              ],
+              "note": "Observed on 20 August 1991: the party secretary-general 山花貞夫's statement in the House of Representatives Budget Committee '過日の代表質問で田邊委員長が指摘しましたとおり'. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; neither his 1991 selection nor his resignation (December 1992 to January 1993) is attested by a party record or a party officer's dated statement; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "山花貞夫",
+              "attested_on": "1993-01-25",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hr_plenary_19930125"
+              ],
+              "claim_ids": [
+                "jp_sdp_yamahana_self_stated_chair_19930125"
+              ],
+              "note": "Observed on 25 January 1993: his own statement in the House of Representatives plenary that he has newly taken office as chair of 日本社会党 ('新しく日本社会党の委員長に就任いたしました'); 就任 without a day is not a start. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his statement of 24 September 1993 that he is still chair is a continuation; his later recollection, as a minister holding no party office, that he resigned gives no day and is a lead; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "村山富市",
+              "attested_on": "1994-10-13",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hr_budget_19941013"
+              ],
+              "claim_ids": [
+                "jp_sdp_murayama_self_stated_chair_19941013"
+              ],
+              "note": "Observed on 13 October 1994: his own statement in the House of Representatives Budget Committee '私は党の委員長であり' (party-office wording only; the prime-ministership is excluded). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his September 1993 election is not attested by a party record or a party officer's dated statement; the January 1996 renaming and his becoming 党首 are claims, and his September 1996 departure is attested only retrospectively; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "土井たか子",
+              "attested_on": "1996-11-30",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_doi_kenren_kanjicho_meeting_19961130"
+              ],
+              "claim_ids": [
+                "jp_sdp_doi_in_office_kanjicho_meeting_19961130"
+              ],
+              "note": "Observed on 30 November 1996: the party's report of its 都道府県連合幹事長会議, whose opening address was given by 土井たか子党首 (the page prints 11月30日; the year follows from the report and the party's index). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the day she took over from 村山富市 is not stated (the secretary-general's report of her 就任 gives no day; later retrospectives say 1996 and September 1996); the convention's confirmation of 22 December 1996 is a claim; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "土井たか子",
+              "attested_on": "1998-01-21",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_doi_reelection_shakaishinpo_19980121"
+              ],
+              "claim_ids": [
+                "jp_sdp_doi_in_office_shakaishinpo_19980121"
+              ],
+              "note": "Observed on 21 January 1998: the party organ 社会新報 (issue of 21 January 1998) calling her 再選の土井党首 after her uncontested re-election. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the re-notice (8 January) and the confirmation of her election (10 January) are claims; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "土井たか子",
+              "attested_on": "2000-01-21",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_doi_third_term_danwa_20000121"
+              ],
+              "claim_ids": [
+                "jp_sdp_doi_in_office_third_term_danwa_20000121"
+              ],
+              "note": "Observed on 21 January 2000: her statement on her third election, dated 21 January 2000 and signed 社会民主党 党首 土井たか子. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; her 2003 resignation was announced on 13 November and stated to the representatives' meeting on 15 November 2003, and no source states the day her office ended; no record of a 2002 election was found; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": null,
+              "from": "2003-11-15",
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hc_budget_20031126",
+                "jp_sdp_fukushima_inaugural_greeting_20031115"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_assumption_stated_20031115",
+                "jp_sdp_fukushima_in_office_inaugural_greeting_20031115"
+              ],
+              "note": "From 15 November 2003: her own statement in the House of Councillors Budget Committee on 26 November 2003 that on 15 November she became the new leader of the SDP ('私は、十一月十五日、社民党の新党首になりました'), with the party's record of her inaugural address as new leader (新党首就任あいさつ) dated 15 November 2003. Not a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No end is stated for this observation: her re-elections of 2009 and 2012 have their own observations, and those of 2005 and 2007 were not found; the joint plenary selection and the convention's confirmation of 13 December 2003 are claims, and no end is inferred from a later election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2009-12-09",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_in_office_20091209"
+              ],
+              "note": "Observed on 9 December 2009: the party organ 社会新報 (issue of 16 December 2009) reporting 社民党の福島党首's press conference of the 9th (month and year from the issue date); party-office naming only, her ministerial office is excluded. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the notice and her uncontested fourth election (4 December 2009) are claims; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2012-01-24",
+              "from": null,
+              "until": "2013-07-25",
+              "sources": [
+                "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+                "jp_sdp_fukushima_resignation_kaiken_20130725"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_in_office_20120124",
+                "jp_sdp_fukushima_end_stated_20130725"
+              ],
+              "note": "Observed on 24 January 2012: the party organ 社会新報 (issue of 1 February 2012) reporting that 福島党首 spoke to reporters in the Diet on 24 January, after her uncontested fifth election of 20 January 2012. Until 25 July 2013: the party's report of her resignation press conference, dated 2013-07-25, quoting her '本日で辞任する'. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "The end is stated by her own words as the party reported them (resigning as of today, 25 July 2013); the standing committee's acceptance and the acting leader designated on 1 August 2013 are claims, and the acting leader is never a holder. No start is stated; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; no end is inferred from a successor's election."
+            },
+            {
+              "name": "吉田忠智",
+              "attested_on": "2013-10-24",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_diet_hc_budget_20131024"
+              ],
+              "claim_ids": [
+                "jp_sdp_yoshida_in_office_diet_20131024"
+              ],
+              "note": "Observed on 24 October 2013: his own statement in the House of Councillors Budget Committee that, having become leader of the SDP, this is his first question ('党首になりまして今日は初めての質問であります'). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his recollection of 24 February 2018 that he took over on 1 November 2013 conflicts with this statement and is never a from; the 14 October 2013 count and declaration are claims; no record of a 2015 result was found; his withdrawn 2016 resignation intention and his 2018 explanation of his departure state no end day; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "又市征治",
+              "attested_on": "2018-02-25",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_mataichi_inaugural_greeting_20180225"
+              ],
+              "claim_ids": [
+                "jp_sdp_mataichi_in_office_inaugural_greeting_20180225"
+              ],
+              "note": "Observed on 25 February 2018: his address to the 16th regular convention, dated 25 February 2018, headed 党首就任あいさつ and signed 社会民主党党首 又市征治; 就任 in a heading is not a day. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; his uncontested election on the re-notice of 26 January 2018 is a claim, and the party said he would formally take office at the late-February convention; no source states the day his office ended in 2020; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2020-02-28",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_top_page_17th_convention_2020"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_new_leader_news_item_20200228"
+              ],
+              "note": "Observed on 28 February 2020: the party's news items dated 2020.2.28 calling her 福島みずほ新党首 and printing her address as new leader ('新たに新党首に就任させていただきました'). Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; her uncontested election on the first day of the 22-23 February 2020 convention is a claim; the November 2020 convention decision is a claim about the organization only; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2022-01-14",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_fukushima_reelection_12th_20220114"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_in_office_20220114"
+              ],
+              "note": "Observed on 14 January 2022: the party's notice of the result of its 12th leader election, dated 14 January 2022, reporting 福島党首's press conference after her uncontested re-election. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the notice said the new term would begin after the March 2022 convention approved the result, which is a plan, not a start; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2023-12-01",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_fukushima_reelection_20231201"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_in_office_20231201"
+              ],
+              "note": "Observed on 1 December 2023: the party organ's report of her uncontested re-election, whose photograph caption dated 1 December names 福島党首. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            },
+            {
+              "name": "福島瑞穂",
+              "attested_on": "2026-04-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_sdp_fukushima_kaiken_20260408"
+              ],
+              "claim_ids": [
+                "jp_sdp_fukushima_in_office_kaiken_20260408"
+              ],
+              "note": "Observed on 8 April 2026: the party organ's report of 社民党の福島みずほ党首's press conference of 8 April 2026, after the 6 April run-off count. Not a start, a continuous term, a biography or a likeness authorization.",
+              "uncertainty": "No start or end is stated by any source reviewed; the party's rules start a new two-year term at the next regular convention, so this re-election observation may fall in the previous term; the 4 March notice, the inconclusive 23 March count, the re-notice and the 6 April run-off count and declaration are claims; the 29 April and 29 July 2026 attestations are continuations; elections, selections, notices, filings, declarations, convention approvals, resignation announcements and acceptances, acting arrangements, predecessor references and retrospective records are claims only, and no end is inferred from a successor's election."
+            }
+          ],
+          "scope_note": "CLAUDE-C01-29 adds this role, following the office named in its handoff across the renaming of January 1996: the chair (委員長, formally 中央執行委員長) of 日本社会党 and, from the renaming, the party leader (党首) of 社会民主党. The renaming and the November 2020 convention decision are claims about the organization only; this role does not merge 日本社会党 with this observation, map either to a game party or to 立憲民主党, or give the organization a lifecycle. Sixteen holder observations, one per election or selection found, are dated by a party officer's same-day statement or the chair's own statement of the office in the Diet minutes, or by a same-day party record; only 福島瑞穂 (15 November 2003, by her own statement of the day she became leader) has a stated start, and only her 2012 observation has a stated end (25 July 2013, her words as the party reported them). Party elections and selections, notices, filings, counts and declarations, convention approvals, announced, submitted, accepted and withdrawn resignations, acting arrangements (党首代行), predecessor references (前党首), continuation attestations and retrospective records are claims that never feed a holder; party rules are procedure only, never a date. Do not infer an outgoing chair's last day from a successor's election, and never read the prime-ministership (jp_pm), a ministerial or Speaker office or a parliamentary group into this office, or the reverse."
+        }
+      ],
       "sources": [
-        "jp_tokyo_pr_2025"
+        "jp_tokyo_pr_2025",
+        "jp_sdp_diet_hr_budget_19900406",
+        "jp_sdp_diet_hr_budget_19901019",
+        "jp_sdp_doi_profile_2000_retrospective",
+        "jp_sdp_diet_hr_budget_19910820",
+        "jp_sdp_diet_hr_plenary_19930125",
+        "jp_sdp_diet_hc_plenary_19930924",
+        "jp_sdp_diet_hr_budget_19941013",
+        "jp_sdp_diet_hc_budget_19941018",
+        "jp_sdp_diet_hr_budget_19950206",
+        "jp_sdp_diet_hc_budget_19950519",
+        "jp_sdp_diet_hr_budget_19951011_s99",
+        "jp_sdp_diet_hr_budget_19951011_s101",
+        "jp_sdp_diet_hr_plenary_19960124",
+        "jp_sdp_statement_20th_anniversary_20160119",
+        "jp_sdp_statement_murayama_obituary_20251017",
+        "jp_sdp_doi_kenren_kanjicho_meeting_19961130",
+        "jp_sdp_doi_second_rinji_convention_19961222",
+        "jp_sdp_doi_reelection_shakaishinpo_19980121",
+        "jp_sdp_doi_fifth_rinji_convention_19980830",
+        "jp_sdp_doi_third_term_danwa_20000121",
+        "jp_sdp_doi_third_election_shakaishinpo_20000126",
+        "jp_sdp_doi_resignation_kaiken_20031113",
+        "jp_sdp_doi_resignation_greeting_20031115",
+        "jp_sdp_fukushima_inaugural_greeting_20031115",
+        "jp_sdp_diet_hc_budget_20031126",
+        "jp_sdp_fukushima_eighth_convention_20031213",
+        "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+        "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+        "jp_sdp_fukushima_resignation_kaiken_20130725",
+        "jp_sdp_mataichi_acting_leader_20130805",
+        "jp_sdp_leader_election_2013_decided_20130830",
+        "jp_sdp_leader_election_2013_schedule_20130907",
+        "jp_sdp_yoshida_leader_election_page_2013",
+        "jp_sdp_diet_hc_budget_20131024",
+        "jp_sdp_yoshida_teirei_kaiken_20131106",
+        "jp_sdp_yoshida_candidacy_2015_20151204",
+        "jp_sdp_yoshida_stays_on_20160905",
+        "jp_sdp_leader_election_2018_renotice_20180120",
+        "jp_sdp_mataichi_uncontested_2018_20180208",
+        "jp_sdp_yoshida_last_greeting_20180224",
+        "jp_sdp_mataichi_inaugural_greeting_20180225",
+        "jp_sdp_diet_hc_budget_20180302",
+        "jp_sdp_top_page_17th_convention_2020",
+        "jp_sdp_convention_agenda_2020_20201022",
+        "jp_sdp_fukushima_edano_meeting_20201117",
+        "jp_sdp_fukushima_reelection_12th_20220114",
+        "jp_sdp_fukushima_reelection_20231201",
+        "jp_sdp_leader_election_2026_schedule_20260220",
+        "jp_sdp_leader_election_2026_candidates_20260306",
+        "jp_sdp_leader_election_2026_first_count_20260323",
+        "jp_sdp_leader_election_2026_rerun_result_20260406",
+        "jp_sdp_fukushima_kaiken_20260408",
+        "jp_sdp_fukushima_21st_convention_20260429",
+        "jp_sdp_fukushima_kaiken_20260729"
       ],
       "claim_ids": [
-        "jp_pr2025_submission_10"
+        "jp_pr2025_submission_10",
+        "jp_sdp_doi_named_chair_by_secretary_general_19900406",
+        "jp_sdp_doi_leaders_meeting_recalled_by_secretary_general",
+        "jp_sdp_doi_profile_chair_from_september_1986",
+        "jp_sdp_doi_profile_resigned_july_1991",
+        "jp_sdp_tanabe_named_chair_by_secretary_general_19910820",
+        "jp_sdp_yamahana_self_stated_chair_19930125",
+        "jp_sdp_yamahana_still_chair_19930924",
+        "jp_sdp_murayama_self_stated_chair_19941013",
+        "jp_sdp_murayama_self_stated_chair_19941018",
+        "jp_sdp_murayama_self_stated_chair_19950206",
+        "jp_sdp_murayama_self_stated_chair_19950519",
+        "jp_sdp_murayama_self_stated_chair_s99_19951011",
+        "jp_sdp_murayama_self_stated_chair_s101_19951011",
+        "jp_sdp_renamed_party_named_by_secretary_general_19960124",
+        "jp_sdp_renaming_retrospective_anniversary_statement",
+        "jp_sdp_murayama_obituary_chair_retrospective",
+        "jp_sdp_murayama_obituary_renaming_retrospective",
+        "jp_sdp_murayama_obituary_first_party_leader_retrospective",
+        "jp_sdp_murayama_obituary_handover_to_doi_retrospective",
+        "jp_sdp_doi_in_office_kanjicho_meeting_19961130",
+        "jp_sdp_doi_assumption_reported_to_meeting_19961130",
+        "jp_sdp_doi_convention_approval_19961222",
+        "jp_sdp_doi_in_office_second_rinji_convention_19961222",
+        "jp_sdp_doi_leader_renotice_19980108",
+        "jp_sdp_doi_reelection_confirmed_19980110",
+        "jp_sdp_doi_in_office_shakaishinpo_19980121",
+        "jp_sdp_doi_in_office_fifth_rinji_convention_19980830",
+        "jp_sdp_doi_third_election_statement_2000",
+        "jp_sdp_doi_in_office_third_term_danwa_20000121",
+        "jp_sdp_doi_third_election_declared_20000121",
+        "jp_sdp_doi_in_office_resignation_kaiken_20031113",
+        "jp_sdp_doi_resignation_intent_20031113",
+        "jp_sdp_doi_resignation_accepted_standing_committee_20031113",
+        "jp_sdp_doi_in_office_resignation_greeting_20031115",
+        "jp_sdp_doi_resignation_submitted_20031115",
+        "jp_sdp_doi_resignation_recalled_three_officers_20031111",
+        "jp_sdp_doi_resignation_recalled_standing_committee_20031113",
+        "jp_sdp_murayama_predecessor_recalled",
+        "jp_sdp_fukushima_selection_reported_by_doi_20031115",
+        "jp_sdp_fukushima_joint_plenary_selection_20031115",
+        "jp_sdp_fukushima_in_office_inaugural_greeting_20031115",
+        "jp_sdp_doi_resignation_greeting_referred_20031115",
+        "jp_sdp_fukushima_assumption_stated_20031115",
+        "jp_sdp_fukushima_in_office_diet_20031126",
+        "jp_sdp_fukushima_convention_approval_20031213",
+        "jp_sdp_fukushima_in_office_eighth_convention_20031213",
+        "jp_sdp_doi_former_leader_referred_20031213",
+        "jp_sdp_doi_term_span_recalled",
+        "jp_sdp_leader_election_2009_notice_20091204",
+        "jp_sdp_fukushima_fourth_election_decided_20091204",
+        "jp_sdp_fukushima_in_office_20091209",
+        "jp_sdp_leader_election_2012_notice_20120120",
+        "jp_sdp_fukushima_fifth_election_decided_20120120",
+        "jp_sdp_fukushima_in_office_20120124",
+        "jp_sdp_fukushima_in_office_20130725",
+        "jp_sdp_fukushima_resignation_intent_20130725",
+        "jp_sdp_fukushima_resignation_accepted_20130725",
+        "jp_sdp_fukushima_end_stated_20130725",
+        "jp_sdp_fukushima_tenure_record_2003_2013",
+        "jp_sdp_mataichi_acting_designated_20130801",
+        "jp_sdp_fukushima_former_20130805",
+        "jp_sdp_leader_election_called_20130829",
+        "jp_sdp_leader_election_2013_term_procedure",
+        "jp_sdp_leader_election_2013_schedule_20130905",
+        "jp_sdp_leader_election_2013_notice_20130927",
+        "jp_sdp_leader_election_2013_filings_20130927",
+        "jp_sdp_leader_election_2013_count_20131014",
+        "jp_sdp_yoshida_result_declared_20131014",
+        "jp_sdp_yoshida_election_recalled_diet_2013",
+        "jp_sdp_yoshida_in_office_diet_20131024",
+        "jp_sdp_yoshida_in_office_kaiken_20131106",
+        "jp_sdp_yoshida_in_office_20151126",
+        "jp_sdp_yoshida_candidacy_intent_20151126",
+        "jp_sdp_yoshida_resignation_intent_20160714",
+        "jp_sdp_yoshida_resignation_withdrawn_20160901",
+        "jp_sdp_yoshida_in_office_20160901",
+        "jp_sdp_leader_election_2018_notice_20180112",
+        "jp_sdp_leader_election_2018_reschedule",
+        "jp_sdp_mataichi_renotice_20180126",
+        "jp_sdp_mataichi_uncontested_election_20180126",
+        "jp_sdp_mataichi_term_procedure_2018",
+        "jp_sdp_yoshida_in_office_last_greeting_20180224",
+        "jp_sdp_yoshida_takeover_recalled_20131101",
+        "jp_sdp_yoshida_departure_recalled_2018",
+        "jp_sdp_mataichi_in_office_inaugural_greeting_20180225",
+        "jp_sdp_mataichi_in_office_diet_20180302",
+        "jp_sdp_fukushima_uncontested_election_20200222",
+        "jp_sdp_mataichi_in_office_convention_20200222",
+        "jp_sdp_fukushima_new_leader_news_item_20200228",
+        "jp_sdp_convention_agenda_decided_20201022",
+        "jp_sdp_split_decision_20201114",
+        "jp_sdp_fukushima_in_office_20201117",
+        "jp_sdp_leader_election_2022_notice_20220114",
+        "jp_sdp_fukushima_filing_2022_20220114",
+        "jp_sdp_fukushima_reelection_declared_20220114",
+        "jp_sdp_fukushima_in_office_20220114",
+        "jp_sdp_fukushima_new_term_planned_2022",
+        "jp_sdp_leader_election_2023_notice_20231201",
+        "jp_sdp_fukushima_reelection_declared_20231201",
+        "jp_sdp_fukushima_in_office_20231201",
+        "jp_sdp_leader_election_2026_schedule_20260218",
+        "jp_sdp_leader_election_2026_notice_20260304",
+        "jp_sdp_leader_election_2026_filings_20260304",
+        "jp_sdp_fukushima_incumbent_20260304",
+        "jp_sdp_leader_election_2026_first_round_count_20260323",
+        "jp_sdp_leader_election_2026_renotice_20260323",
+        "jp_sdp_leader_election_2026_rerun_count_20260406",
+        "jp_sdp_fukushima_elected_2026_20260406",
+        "jp_sdp_fukushima_in_office_kaiken_20260408",
+        "jp_sdp_fukushima_in_office_21st_convention_20260429",
+        "jp_sdp_fukushima_in_office_kaiken_20260729"
       ],
       "coverage": {
         "status": "partial",
@@ -15880,7 +18588,8 @@
         "unresolved": [
           "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
           "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
-          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification.",
+          "SDP chairs 1990-2026 (CLAUDE-C01-29): jp_sdp_chair has sixteen holder observations of seven people (土井たか子, 田邊誠, 山花貞夫, 村山富市, 土井たか子 again, 福島瑞穂, 吉田忠智, 又市征治 and 福島瑞穂 again). Still open: party records of 1990-1996 (no contemporaneous JSP record was found online; 1990-1995 holders rest on party officers' Diet statements); the days of the 1991 and January 1993 selections, of 村山富市's September 1993 election and of 土井たか子's September 1996 succession; the decision and effective day of the January 1996 renaming and whether 党首 dates from it or from a March 1996 convention; the 2002, 2005, 2007 and 2015 elections; the end of every chair's office except 福島瑞穂's in July 2013; and the relation between this election-list observation and 日本社会党 or 立憲民主党, which stays unresolved."
         ]
       }
     },
@@ -19422,7 +22131,8 @@
       "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here.",
       "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
       "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
-      "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995."
+      "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995.",
+      "SDP chairs 1990-2026 (CLAUDE-C01-29): the 社会民主党 observation gains its first party role, jp_sdp_chair (日本社会党委員長, then 社会民主党党首), with sixteen holder observations from 土井たか子 (1990) to 福島瑞穂 (2026); 福島瑞穂 alone has a stated start (15 November 2003) and a stated end (25 July 2013, on her 2012 observation). The 1996 renaming and the 2020 convention decision are organization claims, never a merge or mapping. Party office, the prime-ministership and other state offices stay separate both ways. Still open: contemporaneous party records for 1990-1996, several election days and every other end of office."
     ]
   }
 }

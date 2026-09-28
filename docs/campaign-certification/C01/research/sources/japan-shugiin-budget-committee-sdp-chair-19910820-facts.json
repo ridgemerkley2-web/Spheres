@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_diet_hr_budget_19910820",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112105261X00119910820&recordPacking=json",
+  "diet_record": {
+    "issueID": "112105261X00119910820",
+    "house": "衆議院",
+    "meeting": "予算委員会",
+    "issue": "第1号",
+    "sitting_date": "1991-08-20",
+    "response": "whole meeting record",
+    "speeches_in_response": 253,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/112105261X00119910820"
+  },
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 560358,
+  "source_response_sha256": "0028ee34fb897d7030d9684d4ba05d08f200bafff051a5eb22c335fdd7538220",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "ZIJGEDWAPB22LYX3OFE2H2Y5JBSIBVXN",
+  "source_character_encoding": "UTF-8 (JSON)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://kokkai.ndl.go.jp/api/meeting?issueID=112105261X00119910820&recordPacking=json' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (the integrator): downloaded on 28 September 2026 (UTC) at 15:01:22Z (plain); 15:01:22Z (cache-busting query); 15:31:58Z (plain), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:37:44Z and 16:13:17Z, 35 minutes apart, and at 16:14:18Z (cache-busting query), each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第1号 (1991-08-20), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112105261X00119910820. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office. Recorded at meeting level because the party-officer identification and the statement are in different speeches.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Diet minutes API JSON decoded and the cited speeches read in full; no page images viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_tanabe_named_chair_by_secretary_general_19910820",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-02",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "田邊誠",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-08-20",
+      "text": "In the House of Representatives Budget Committee on 20 August 1991, 山花貞夫 introduces himself as having become secretary-general at the recent party convention ('さきの党大会で書記長に就任いたしました山花貞夫であります', speech 49; a minister's answer calls him '山花書記長', speech 73) and later says '過日の代表質問で田邊委員長が指摘しましたとおり' (speech 74): a party officer's same-day statement naming 田邊 as chair.",
+      "locator": {
+        "issueID": "112105261X00119910820",
+        "speechOrder": [
+          49,
+          73,
+          74
+        ],
+        "speaker": "山花貞夫 (49, 74); 中尾栄一 (73, calls him 山花書記長)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}
