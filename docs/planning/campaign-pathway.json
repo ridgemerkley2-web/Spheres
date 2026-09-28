@@ -507,7 +507,7 @@
       "id": "S19",
       "phase": "experience",
       "title": "Build outcome-aware tutorial and advisor guidance",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S06",
         "S07",
@@ -529,19 +529,27 @@
         "ready_for_review": true,
         "submitted_commit": "7de625393fe6dc214e39ebd084424d04b229614b"
       },
-      "evidence": "../campaign-certification/S19/integration/README.md",
+      "evidence": "../campaign-certification/S19/integration/CLOSEOUT.md",
       "integration": {
         "commit": "2400800bee73ecbc39bedaebba10bbe573a42ade",
         "candidate": "bf47af2a9752cbd62710af1fcfda6dd3e8396dcc",
         "implementation_accepted": true,
-        "remaining": "Later-campaign browser qualification of purchase/delivery, completed project output and flown mission results; preserve the original acceptance criteria."
+        "remaining": "None within S19; see ordinary later-outcome closeout evidence."
+      },
+      "completed_date": "2026-09-28",
+      "closure": {
+        "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+        "evidence": "docs/campaign-certification/S19/integration/flight-closeout-evidence/manifest.json",
+        "reviewer": "Codex",
+        "qualified_campaign_date": "1999-05-13",
+        "cp1_earned": false
       }
     },
     {
       "id": "S20",
       "phase": "experience",
       "title": "Unify map, province and accessible room navigation",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S07",
         "S10",
@@ -552,7 +560,12 @@
         "City/province inspection shows current ownership, construction, operating output and problems from actual records.",
         "Primary controls work by keyboard and touch; focus, return navigation, loading and error states remain usable at 390px.",
         "Retain honest geography/representative-city labels and consistent art framing, typography and information hierarchy."
-      ]
+      ],
+      "claim": {
+        "owner": "Codex",
+        "base": "ad498418",
+        "scope": "Complete existing province/city focus and read recovery, actual facility-to-company navigation and exact native desktop/narrow keyboard/touch proof."
+      }
     },
     {
       "id": "S21",
@@ -971,15 +984,15 @@
     ]
   },
   "last_completed_session": "S21",
-  "next_session": "S19",
+  "next_session": "S20",
   "execution": {
     "authorized_through": "S21",
     "stop_boundary": "S21",
-    "status": "stopped",
+    "status": "in_progress",
     "previous_stop": "S18",
-    "instruction": "Next: independently ready Codex-owned S21 while Claude works on S19; S20 remains waiting",
-    "instruction_date": "2026-09-21",
-    "next_session_requires_instruction": true
+    "instruction": "Fix and complete open tasks; close S19 and S20 with retained native evidence, then publish the synchronized roadmap.",
+    "instruction_date": "2026-09-28",
+    "next_session_requires_instruction": false
   },
   "gate_decisions": {
     "G1": {

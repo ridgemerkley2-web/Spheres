@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "tasks": [
     {
       "id": "CLAUDE-C01-SOURCE-05",
@@ -24,7 +24,7 @@
       "title": "Compare the changed Bush Library response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Bounded Bush Library repair accepted after independent review63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open.",
+      "next": "Bounded Bush Library repair accepted after independent review 63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open.",
       "branch": "claude/c01-source-06",
       "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
     },
@@ -32,12 +32,12 @@
       "id": "CLAUDE-C01-SOURCE-17",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 3,
       "title": "Compare the changed Brazilian Senate diary response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "next": "Remote handoff declares ready_for_review at efeac5461022ed27f27973cbc215615339ee5c10. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission.",
       "branch": "claude/c01-source-17",
       "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17"
     },
@@ -94,24 +94,24 @@
       "id": "CLAUDE-C01-27",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 8,
       "title": "Finish existing claim: BJP presidents",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-in-27",
       "depends_on": [],
-      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+      "next": "Remote handoff declares ready_for_review at 31035e253f5dd35e87ebac72aecac379a3db5402. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission."
     },
     {
       "id": "CODEX-S19-LATER-01",
       "owner": "Codex",
       "session": "S19",
-      "state": "in_progress",
+      "state": "complete",
       "priority": 1,
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "Procurement qualified on unchanged runtime c8a59bfd: real Advanced Industry and local grid, company stock, one tank bought/paid 1 February 1997 and delivered 8 February. Native guidance plus named save/load, Continue and narrow UI pass; see PROCUREMENT_DELIVERY.md. Next obtain aircraft, form/support a squadron, verify readiness and a supported flown mission with retained native outcomes and save/resume. S19 remains open."
+      "next": "S19 closed: actual construction/output, company payment/delivery and supported flight on 10 May 1999, funded readiness recovery, save/load/Continue and fresh-campaign isolation all qualified. See S19/integration/CLOSEOUT.md. Proceed with S20; CP1 remains open."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
@@ -138,7 +138,7 @@
       "title": "Review the submitted Bush Library source repair",
       "handoff": "docs/planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md",
       "depends_on": [],
-      "next": "Bounded Bush Library repair accepted after independent review63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open."
+      "next": "Bounded Bush Library repair accepted after independent review 63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open."
     },
     {
       "id": "CLAUDE-C01-GAPS-01",
@@ -157,56 +157,66 @@
       "id": "CLAUDE-C03-REVIEW-01",
       "owner": "Claude",
       "session": "C03",
-      "state": "queued",
+      "state": "claimed",
       "priority": 10,
       "title": "Build a cartoon review workbench",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
       "depends_on": [],
-      "next": "Implement an isolated small-card/full-size cartoon reviewer, asset validation and a six-to-eight portrait visual audit; no production artwork installation. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote claim inspected at 28b3c5773f2d886c6133fbbc00d71cdb8ff06f10. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "branch": "claude/c03-review-01",
+      "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10"
     },
     {
       "id": "CLAUDE-C04-PREP-01",
       "owner": "Claude",
       "session": "C04",
-      "state": "queued",
+      "state": "claimed",
       "priority": 11,
       "title": "Prepare a fictional successor pilot",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C04-PREP-01.md",
       "depends_on": [],
-      "next": "Deliver eight clearly fictional France/Tonga proposals, institutional research, appearance briefs and a validator; no runtime candidate installation. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote claim inspected at f1547abd111f580ea2045c57906cc1d1af3356f1. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "branch": "claude/c04-prep-01",
+      "claim_revision": "f1547abd111f580ea2045c57906cc1d1af3356f1"
     },
     {
       "id": "CLAUDE-S23-MATRIX-01",
       "owner": "Claude",
       "session": "S23",
-      "state": "queued",
+      "state": "claimed",
       "priority": 12,
       "title": "Build the historical and cartoon boundary audit",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md",
       "depends_on": [],
-      "next": "Implement deterministic date/role/art coverage checks against current inputs; retain actual coverage gaps and all canonical S23 prerequisites. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote claim inspected at b4c021ab911851382856061a8c2c00b716b7b6f7. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "branch": "claude/s23-matrix-01",
+      "claim_revision": "b4c021ab911851382856061a8c2c00b716b7b6f7"
     },
     {
       "id": "CLAUDE-S24-SUCCESSORS-01",
       "owner": "Claude",
       "session": "S24",
-      "state": "queued",
+      "state": "claimed",
       "priority": 13,
       "title": "Build successor-country fixture coverage",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
       "depends_on": [],
-      "next": "Inventory all 23 expected successor identities and build an isolated activation/load/UI harness; label seeded fixtures and unrun cases. Codex retains full S24 qualification. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote claim inspected at 328db12863fffe35378102b54e952d4c43fdca8c. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "branch": "claude/s24-successors-01",
+      "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c"
     },
     {
       "id": "CLAUDE-E05-RESEARCH-01",
       "owner": "Claude",
       "session": "E05",
-      "state": "queued",
+      "state": "claimed",
       "priority": 14,
       "title": "Research important French and Japanese companies",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
       "depends_on": [],
-      "next": "Deliver eight sourced company dossiers and proposed catalog mappings. Research only now; production integration remains after S30/CP1. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote claim inspected at 1966fb06e0e7c9653910abfe40a9d9662bfdaf21. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "branch": "claude/e05-research-01",
+      "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21"
     }
   ]
 }

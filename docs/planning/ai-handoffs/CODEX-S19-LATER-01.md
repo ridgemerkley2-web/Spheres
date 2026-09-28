@@ -1,6 +1,6 @@
 # CODEX-S19-LATER-01 — later outcome qualification
 
-Owner: Codex. State: in progress (construction and procurement qualified; flight remains). Parent S19 remains in progress; no closure is claimed.
+Owner: Codex. State: **complete**. S19 closed after ordinary later-outcome qualification on 28 September 2026 UTC.
 Start from `codex/campaign-certification` at or after `474df63e`.
 
 Use a separate native preview and campaign save. Extend the existing
@@ -113,3 +113,7 @@ and superseded Continue test timing attempt remain labeled as failures.
 route, form/support a squadron, and verify readiness plus a supported flown result
 under an eligible conflict. Retain construction/procurement outcomes and their
 save/resume behavior. S19, S20 and CP1 completion are not implied by this checkpoint.
+
+## Closed
+
+[Accepted S19 closeout and full evidence](../../campaign-certification/S19/integration/CLOSEOUT.md): real paid aircraft/stores, supported flight, recovered readiness, save/load/Continue and fresh-campaign isolation all pass. Earlier entries above are historical checkpoints, not current open work.

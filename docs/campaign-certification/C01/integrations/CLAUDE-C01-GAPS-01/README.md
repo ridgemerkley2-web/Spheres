@@ -72,12 +72,3 @@ The eight explicitly tracked in-flight research/source-repair targets must remai
 excluded from new batches. If one is integrated or newly accepted simultaneously,
 review the generator's `IN_FLIGHT`/attribution classification before regeneration;
 do not bypass its drift failure or infer acceptance from a branch name.
-
-## Accepted integration — 28 September UTC
-
-Codex merged reviewed tip `157aac55` with the repaired implementation, resolved
-the handoff in favor of this reviewed decision, marked the bounded queue task
-complete, regenerated the ledger against the current queue, and reran all 22 gap
-tests, exact generated-output check and workboard validation successfully.
-The accepted deliverable is the gap-audit tool and planning ledger. C01 and all
-pending source/content acceptance remain open.

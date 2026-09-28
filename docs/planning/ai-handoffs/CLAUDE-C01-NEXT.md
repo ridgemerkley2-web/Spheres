@@ -6,22 +6,23 @@ The machine-readable task queue is `docs/planning/ai-task-queue.json`; query it 
 `python tools/planning/workboard.py --tasks --owner Claude` or `--task TASK_ID`.
 This is a work assignment, not a claim that Claude has begun a repair.
 
-SOURCE-06 was submitted at `93467faaef254a71b4a776d00e56c16dda963eca` on
-`claude/c01-source-06` and is **ready for Codex review**, not merged or accepted.
-SOURCE-26 at `c1f537f2`, C01-23 at `9c0f5c14`, and C01-25 at `c06839c1` also
-declare ready_for_review in their remote handoffs at the latest fetch. This is submission
-inventory only, not acceptance. Do not duplicate these submissions. SOURCE-05 also declares ready_for_review at `66331d9d`; it remains unverified. SOURCE-17
-and C01-27 retain their existing claims. C01-24 now declares ready_for_review at
-`a7a9e39c`, and the gap-ledger packet C01-GAPS-01 at `b4d95396`; both await independent review. Six additional independent sections are
-available in [the expanded task list](CLAUDE-EXPANDED-NEXT.md); they do not wait on these repairs.
+Updated inventory, 28 September 2026 UTC: SOURCE-05 and SOURCE-06 are **complete**
+after independent Codex source/content review, merged at `00860644` and `9f94f684`.
+C01-GAPS-01 is also **complete**, accepted with repairs at `68a38eb4`. These bounded
+closures do not promote the parent research packets to complete historical coverage.
+
+SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, C01-24 `a7a9e39c`,
+C01-25 `c06839c1`, and C01-27 `31035e25` declare `ready_for_review`. Their remote
+handoffs were read; independent acceptance remains pending. Do not duplicate them.
+The five remaining [expanded sections](CLAUDE-EXPANDED-NEXT.md) are now claimed.
 
 ## Existing source-review follow-ups
 
-1. **CLAUDE-C01-SOURCE-05:** reproduce the Russian archive response for the 19 June
+1. **CLAUDE-C01-SOURCE-05 — complete:** Historical assignment: reproduce the Russian archive response for the 19 June
    1991 CEC resolution, or provide an accessible primary facsimile/archive with a
    content-level comparison. The Codex spot-check timed out; do not infer a wrong
    claim from that timeout. Preserve the unresolved leaf-number discrepancy.
-2. **CLAUDE-C01-SOURCE-06:** compare the Bush Presidential Library's 8 August 1990
+2. **CLAUDE-C01-SOURCE-06 — complete:** Historical assignment: compare the Bush Presidential Library's 8 August 1990
    address against the recorded extract. Identify dynamic-page changes versus
    changed factual content. Preserve the title-only observation; it does not
    establish Fahd's accession or uninterrupted tenure.
@@ -53,8 +54,7 @@ retain disclosed limitations and propose further bounded review separately.
 | C01-25 | `claude/c01-sa-25` | Saudi Shura Council / Allegiance Commission chairs |
 | C01-27 | `claude/c01-in-27` | BJP presidents, 1990–2026 |
 
-C01-23/24/25 are now submitted for review at the heads above.
-C01-27 retains its claim. Preserve each branch; fetch current integration before
+C01-23/24/25/27 are now submitted for review at the heads above. Preserve each branch; fetch current integration before
 continuing unfinished work. Do not
 restart these as new packet IDs. Follow their existing bounded deliverables.
 Regenerate the shared research index separately; run tests with actual game data
@@ -70,5 +70,4 @@ fictional successor proposals and company research; production cartoon/leader
 installation remains outside those packets. C01, G4 and CP1 remain open; the
 previously earned G2 gameplay gate does not certify complete historical content.
 The research cutoff stays 7 September 2026; successors
-after that are explicitly fictional. S19 later-outcome qualification belongs to
-Codex; Claude supplies targeted fixes only when a reproduced defect is handed off.
+after that are explicitly fictional. S19 later-outcome qualification is complete. Codex is closing S20; Claude supplies targeted fixes only when a reproduced defect is handed off.

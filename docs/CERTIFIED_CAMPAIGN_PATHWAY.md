@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S18 and S21 complete; S19 in progress with Claude; S20 and S22–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S19 and S21 complete; S20 in progress; S22–S30 planned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 and S21 are complete; S19 is in progress with Claude; S20 and S22–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S19 and S21 are complete; S20 is in progress; S22–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |

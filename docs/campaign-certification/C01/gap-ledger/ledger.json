@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 10340,
-      "sha256": "f0202ef101e6dbf54332fb643bb61936edfe9833820dc42cda8a67e83cd31b9c"
+      "bytes": 10699,
+      "sha256": "7127b59e360339894dc5018fa0219f07017bb4f981662c30ab7b3ef7dfe8f2c4"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -298,7 +298,7 @@
     },
     {
       "task": "CLAUDE-C01-27",
-      "state": "claimed",
+      "state": "ready_for_review",
       "branch": "claude/c01-in-27",
       "case": "India",
       "scope": "Bharatiya Janata Party presidents, 1990-2026",
@@ -309,7 +309,7 @@
     },
     {
       "task": "CLAUDE-C01-SOURCE-17",
-      "state": "claimed",
+      "state": "ready_for_review",
       "branch": "claude/c01-source-17",
       "case": "Brazil",
       "scope": "Source-review repair of the DCN No. 1/2023 records (no coverage change)",

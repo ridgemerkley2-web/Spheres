@@ -1,6 +1,8 @@
 # CODEX-C01-SOURCE-06-REVIEW — submitted source repair
 
-Owner: Codex. State: queued. Parent C01 remains incomplete.
+Owner: Codex. State: **complete**. Parent C01 remains incomplete.
+
+The following was the original review brief; the completed decision is recorded below.
 
 Review `claude/c01-source-06` at
 `93467faaef254a71b4a776d00e56c16dda963eca` (submission commits `006561f8` and

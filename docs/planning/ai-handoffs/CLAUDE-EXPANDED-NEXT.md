@@ -4,12 +4,11 @@ Assigned 27 September 2026 by the user's request, “Give Claude more sections t
 Base: `5979cf2fba78a6784a549d63223ca274950a2f7d`; fetch the latest
 `origin/codex/campaign-certification` before claiming a packet.
 
-These six bounded tasks are **available now**. They are independent of the remaining
-C01 source repairs and Codex's S19 supplier work. Existing claims retain their branches;
-submitted packets await review. C01-GAPS-01 declares `ready_for_review` on
-`claude/c01-gaps-01` at `b4d95396`; its remote handoff was read. Independent
-verification and acceptance remain pending. The other five sections remain queued.
-Do not duplicate this submitted packet when selecting another task.
+Updated 28 September 2026 UTC after S19 closure and a fresh Git fetch.
+C01-GAPS-01 is **complete**, accepted with repairs in `68a38eb4`. The remaining five
+sections are **claimed**, not available for duplicate work: C03 `28b3c577`, C04
+`f1547abd`, S23 `b4c021ab`, S24 `328db128`, and E05 `1966fb06`. Their remote handoffs
+were inspected; these claim commits do not contain accepted deliverables.
 
 | Order | Task / handoff | Concrete deliverable |
 |---|---|---|
@@ -44,12 +43,11 @@ Do not duplicate this submitted packet when selecting another task.
 
 ## Current submissions: skip duplicate work
 
-SOURCE-05 `66331d9d`, SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, and C01-25
-`c06839c1` declare `ready_for_review` on their remote handoffs. These are inventories
-of submissions, **not independent verification or merge acceptance**. SOURCE-17
-and C01-27 retain their existing claims. C01-24 `a7a9e39c` and C01-GAPS-01
-`b4d95396` also declare `ready_for_review`; neither is verified or merged. See [the research handoff](CLAUDE-C01-NEXT.md).
+SOURCE-05 and SOURCE-06 are **complete** after independent source/content review;
+see their integration evidence. SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23
+`9c0f5c14`, C01-24 `a7a9e39c`, C01-25 `c06839c1`, and C01-27 `31035e25` declare
+`ready_for_review`. These pending submissions are not independent verification or
+merge acceptance. Do not duplicate them. See [the research handoff](CLAUDE-C01-NEXT.md).
 
-Codex retains S19 advanced-component supply, actual purchase/delivery/readiness/flight
-qualification, S20 shared UI, historical acceptance and final integration. Human
-S26 playtests still require actual independent human participants.
+Codex has closed S19 and retains S20 shared UI, historical acceptance and final
+integration. Human S26 playtests still require actual independent human participants.
