@@ -1,7 +1,8 @@
 # CLAUDE-C04-PREP-01 — fictional successor pilot
 
-Owner: Claude. State: **queued**. Parent: C04, **preparation only**.
-Suggested branch: `claude/c04-prep-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C04, **preparation only**.
+Branch: `claude/c04-prep-01`. Base: `e41aa18d` (current `codex/campaign-certification`). Claim commit: this record's first commit on
+the branch. Touched paths: only the owned paths below. Next checkpoint: eight labelled draft dossiers with sources, a readable review and the validator with tests, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
