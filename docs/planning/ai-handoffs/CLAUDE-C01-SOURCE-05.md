@@ -52,7 +52,7 @@ response was an `X-Page-Cache: MISS`. Times are UTC, from 2026-09-27 23:40:28 to
 | Response | Bytes | SHA-256 | Downloads |
 |---|---|---|---|
 | Recorded page, capture 20230604070106 (`source_response_url`) | 15,700 | `54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e` | 2026-09-27T23:42:08Z, 2026-09-28T00:16:28Z, 2026-09-28T00:55:57Z; exact match each time |
-| Page captures 20210225052658, 20210511100649, 20210612153223, 20210924090951, 20230929012544 (revisit) | 15,700 | the same | one download each; exact match |
+| Page captures 20210225052658, 20210511100649, 20210612153223, 20210924090951, 20230929012544 (revisit) | 15,700 | the same | one download each (20210924090951 twice, at 2026-09-27T23:42:54Z and 2026-09-28T00:19:33Z); exact match each time |
 | Page captures 20190823005913, 20191208064002 | 16,109 | `aadfea65a688e27838a92da1f8d483eb5acb5bd52a02ad7c514c832a25493a24` | one download each; differ from the recorded page only in the Yandex.Metrika counter script |
 | Facsimile 1, capture 20191208064007 | 98,762 | `9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2` | 2026-09-27T23:43:29Z, 2026-09-28T00:17:14Z; exact match each time |
 | Facsimile 2, capture 20191208064008 | 133,816 | `0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229` | 2026-09-27T23:43:30Z, 2026-09-28T00:18:01Z; exact match each time |
@@ -89,7 +89,7 @@ numbering is adopted.
 - `docs/campaign-certification/C01/research/sources/russia-garf-cec-result-19910619-facts.json`: a new
   `source_review` object holds the trigger, the method, every official-host attempt, every download with its
   identity, the capture table, the facsimile identities, six transient archive failures (five HTTP 429 rate
-  limits and one refused connection, all retried) and the content comparison. The provenance note gains one
+  limits and one failed connection (curl exit 7), all retried) and the content comparison. The provenance note gains one
   sentence ("not checked into this repository"). Snapshot 7,436 bytes (`6a1084e3…f690d3`) to 27,871 bytes
   (`23667eb7080c58e9466442dcd1cbb7ac96a9453e28db603cf2ef8694248d1e02`).
 - `docs/campaign-certification/C01/research/russia.json`: the `ru_garf_cec_result_19910619` source record gains a
