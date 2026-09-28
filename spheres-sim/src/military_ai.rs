@@ -412,10 +412,16 @@ fn ground_stores(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result
 }
 
 fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<String, String> {
-    let mut offers = co::domestic_offers(w, n);
-    offers.extend(co::import_offers(w, n));
+    procure_observed(w, n, allowance, &mut None)
+}
+
+fn procure_observed(
+    w: &mut WorldState, n: NationId, allowance: &mut f64, observer: &mut DetailedObserver<'_>,
+) -> Result<String, String> {
+    let mut offers = observe(observer, "review.procure.offers.domestic", Some(n), || co::domestic_offers(w, n));
+    offers.extend(observe(observer, "review.procure.offers.import", Some(n), || co::import_offers(w, n)));
     offers.retain(|o| !o.ammunition && o.ready_stock > 0);
-    offers.sort_by(|a, b| {
+    observe(observer, "review.procure.sort", Some(n), || offers.sort_by(|a, b| {
         // Meet missing roles before growing an existing one, then prefer domestic
         // stock at an equal price. No fabricated supplier or special price.
         let have = |o: &co::ImportOffer| {
@@ -426,7 +432,7 @@ fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<Strin
             .then_with(|| a.unit_price_bn.total_cmp(&b.unit_price_bn))
             .then_with(|| (a.seller != n).cmp(&(b.seller != n)))
             .then_with(|| (a.seller, a.company, a.product).cmp(&(b.seller, b.company, b.product)))
-    });
+    }));
     let mut why="No finished eligible company stock is available. Development and tooling cannot be bypassed.".to_string();
     for o in offers {
         let class = category(o.platform.as_deref().unwrap_or(""));
@@ -435,7 +441,8 @@ fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<Strin
         } else {
             target(w, n)
         };
-        let gap = goal.saturating_sub(committed_units(w, n, class));
+        let gap = observe(observer, "review.procure.candidate_gap", Some(n), ||
+            goal.saturating_sub(committed_units(w, n, class)));
         if gap == 0 {
             why="Fleet targets include owned, refitting and inbound units; no duplicate order is needed.".into();
             continue;
@@ -457,17 +464,19 @@ fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<Strin
             continue;
         }
         let q = if o.seller == n {
-            co::purchase_quote(w, n, o.company, o.product, quantity)
+            observe(observer, "review.procure.quote.domestic", Some(n), ||
+                co::purchase_quote(w, n, o.company, o.product, quantity))
         } else {
-            co::import_purchase_quote(w, n, o.seller, o.company, o.product, false, quantity)
+            observe(observer, "review.procure.quote.import", Some(n), ||
+                co::import_purchase_quote(w, n, o.seller, o.company, o.product, false, quantity))
         };
         if !q.valid {
             why = q.reason.unwrap_or_default();
             continue;
         }
-        if upkeep(w, n) + pending_upkeep(w, n) + q.maintenance_bn_day
-            > support_authority(w, n) + 1e-10
-        {
+        if observe(observer, "review.procure.support_gate", Some(n), ||
+            upkeep(w, n) + pending_upkeep(w, n) + q.maintenance_bn_day
+                > support_authority(w, n) + 1e-10) {
             why="Purchase deferred: current Maintenance & supply funding cannot sustain this fleet addition.".into();
             continue;
         }
@@ -491,7 +500,12 @@ fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<Strin
                 quote: q.token,
             }
         };
-        act(w, n, order)?;
+        // Keep the ordinary reviewed command and its atomic trial unchanged.
+        // These optional clocks distinguish a real transaction from merely
+        // hashing a candidate quote; neither stage is an extra procurement pass.
+        let stage = if o.seller == n { "review.procure.command.domestic" }
+            else { "review.procure.command.import" };
+        observe(observer, stage, Some(n), || act(w, n, order))?;
         *allowance = (*allowance - q.cost_bn).max(0.0);
         return Ok(format!("Bought {quantity} {} from {}. Paid stock is in ordinary delivery; it adds no combat capability before arrival.",o.product_name,o.supplier_name));
     }
@@ -1039,7 +1053,15 @@ fn review_impl(w: &mut WorldState, n: NationId, observer: &mut DetailedObserver<
     let mut allowance = review_limit(w, n);
     plan.purchase_limit_bn = allowance;
     // Delivered stock is useful before starting another long development.
-    plan.procurement = observe(observer, "review.procure", Some(n), || procure(w, n, &mut allowance)).unwrap_or_else(|why| why);
+    let procurement_started = observer.as_ref().map(|_| std::time::Instant::now());
+    plan.procurement = if observer.is_some() {
+        procure_observed(w, n, &mut allowance, observer)
+    } else {
+        procure(w, n, &mut allowance)
+    }.unwrap_or_else(|why| why);
+    if let (Some(observer), Some(started)) = (observer.as_deref_mut(), procurement_started) {
+        observer("review.procure", Some(n), started.elapsed());
+    }
     let stores = observe(observer, "review.ground_stores", Some(n), || ground_stores(w, n, &mut allowance)).unwrap_or_else(|why| why);
     plan.support.push(' ');
     plan.support.push_str(&stores);

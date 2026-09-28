@@ -266,6 +266,52 @@ fn small_country_imports_one_aircraft_without_research_or_factory_grants() {
 }
 
 #[test]
+fn procurement_leaf_observations_preserve_native_decisions_allowance_and_complete_world() {
+    let (stock, _) = stocked();
+    for (nation, cap, sustainable, command_stage) in [
+        (HOME, 1.0, true, Some("review.procure.command.domestic")),
+        (SMALL, 1.0, true, Some("review.procure.command.import")),
+        (HOME, 0.0, true, None),
+        (HOME, 1.0, false, None),
+    ] {
+        let mut plain = stock.clone();
+        support(&mut plain, nation).unwrap();
+        if nation == SMALL {
+            // Same explicitly authored appropriation as the ordinary import
+            // regression above; observation itself never injects resources.
+            plain.nation_mut(nation).program_budget.as_mut().unwrap().available_bn[DEF][3] = 1.0;
+        }
+        if !sustainable {
+            plain.nation_mut(nation).program_budget.as_mut().unwrap().departments[DEF][2] = 0;
+        }
+        let mut observed = plain.clone();
+        let (mut plain_cap, mut observed_cap) = (cap, cap);
+        let expected = procure(&mut plain, nation, &mut plain_cap);
+        let mut rows = Vec::new();
+        let actual = procure_observed(&mut observed, nation, &mut observed_cap,
+            &mut Some(&mut |stage, country, elapsed| rows.push((stage.to_owned(), country, elapsed))));
+        assert_eq!(actual, expected, "decision {nation:?}/{cap}/{sustainable}");
+        assert_eq!(observed_cap.to_bits(), plain_cap.to_bits(), "exact remaining allowance");
+        assert_eq!(crate::save(&observed), crate::save(&plain), "complete native world");
+        assert_eq!(observed.headlines, plain.headlines);
+        assert!(rows.iter().all(|(_, country, _)| *country == Some(nation)));
+        for stage in ["review.procure.offers.domestic", "review.procure.offers.import", "review.procure.sort"] {
+            assert_eq!(rows.iter().filter(|(name, _, _)| name == stage).count(), 1);
+        }
+        let commands: Vec<_> = rows.iter().filter(|(name, _, _)| name.starts_with("review.procure.command."))
+            .map(|(name, _, _)| name.as_str()).collect();
+        assert_eq!(commands, command_stage.into_iter().collect::<Vec<_>>());
+        if command_stage.is_some() {
+            assert!(actual.unwrap().starts_with("Bought "));
+            assert!(rows.iter().any(|(name, _, _)| name.starts_with("review.procure.quote.")));
+            assert!(rows.iter().any(|(name, _, _)| name == "review.procure.support_gate"));
+        } else if !sustainable {
+            assert!(actual.unwrap().contains("Maintenance"));
+        }
+    }
+}
+
+#[test]
 fn cash_upkeep_access_and_player_control_block_staff_without_inventory_grants() {
     let (mut w, _) = stocked();
     w.nation_mut(HOME).treasury_bn = Some(0.0);
