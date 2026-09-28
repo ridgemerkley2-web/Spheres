@@ -6,6 +6,7 @@ import json
 import shutil
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
 
@@ -442,7 +443,7 @@ class NativeEvidenceTests(unittest.TestCase):
             self.validate_case(edit=changed)
 
 
-def make_retained_fixture(root, fail_first=False):
+def make_retained_fixture(root, fail_first=False, scope="pilot", interrupt_first=False, **options):
     """Build a mocked completed run with real gzip files; no native execution."""
     root = Path(root)
     binary = root / "synthetic-binary"
@@ -459,10 +460,15 @@ def make_retained_fixture(root, fail_first=False):
             self.returncode = 101 if fail_first and len(calls) == 1 else 0
             kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
         def wait(self, timeout=None):
+            if interrupt_first and len(calls) == 1 and self.returncode == 0:
+                self.returncode = -9
+                raise KeyboardInterrupt()
             return self.returncode
+        def kill(self):
+            self.returncode = -9
     out = root / "run"
     with patch.object(matrix.subprocess, "Popen", FakeProcess):
-        matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out)
+        matrix.run_matrix(binary, REV, HERE / f"stability-{scope}.json", out, **options)
     return out
 
 
@@ -490,7 +496,9 @@ class RetainedVerificationTests(unittest.TestCase):
             moved = root / "relocated"
             shutil.copytree(out, moved)
             verified = matrix.verify_retained_run(moved)
-            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
+            # The runner records a resolved origin; Windows TEMP may use an
+            # 8.3 alias (RUNNER~1) for that same directory.
+            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out.resolve())))
             self.assertEqual(verified["source"], str(moved.resolve()))
             self.assertTrue(verified["passed"])
 
@@ -557,6 +565,473 @@ class RetainedVerificationTests(unittest.TestCase):
             self.assertEqual(matrix.main(["--verify", "unused", "--binary", "forbidden"]), 2)
             self.assertEqual(matrix.main(["--restore", "unused"]), 2)
             spawn.assert_not_called()
+
+
+class ConcurrentMatrixTests(unittest.TestCase):
+    def test_jobs_bounds_rejected_before_creating_output_or_launch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            for jobs in (0, 9, -1, True, 1.5, "2"):
+                with self.subTest(jobs=jobs), patch.object(matrix.subprocess, "Popen") as spawn:
+                    with self.assertRaisesRegex(matrix.InvalidEvidence, "Jobs"):
+                        matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", root / "unused", jobs=jobs)
+                    spawn.assert_not_called()
+                    self.assertFalse((root / "unused").exists())
+
+    def test_two_cells_can_finish_out_of_order_but_results_and_verifier_stay_canonical(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            first, second = [cell["id"] for cell in plan()["cells"]]
+            release_first = threading.Event()
+            actual_wait = matrix.concurrent.futures.wait
+            def wait_then_release(*args, **kwargs):
+                result = actual_wait(*args, **kwargs)
+                if result[0]:
+                    release_first.set()  # second worker already journalled its finish
+                return result
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    self.identity = request["id"]
+                    cell = {k: request[k] for k in ("id", "country", "seed", "through")}
+                    native = Path(kwargs["env"]["SPHERES_S25_OUT"])
+                    matrix.write_json_new(native / "result.json", synthetic_native_report(native, cell))
+                    kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
+                    self.returncode = 0
+                def wait(self, timeout=None):
+                    if self.identity == first:
+                        assert release_first.wait(10), "second independent worker did not finish"
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), patch.object(matrix.concurrent.futures, "wait", wait_then_release):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out, jobs=2)
+            self.assertTrue(result["passed"])
+            self.assertEqual([c["id"] for c in result["cells"]], [first, second])
+            events = [matrix.parse_json(line) for line in (out / "journal.jsonl").read_bytes().splitlines()]
+            self.assertEqual([e["id"] for e in events if e["event"] == "cell_started"], [first, second])
+            self.assertEqual([e["id"] for e in events if e["event"] == "cell_finished"], [second, first])
+            self.assertEqual(matrix.read_json(out / "freeze.json")["jobs"], 2)
+            self.assertTrue(matrix.verify_retained_run(out)["passed"])
+            frozen = matrix.read_json(out / "freeze.json")
+            frozen["jobs"] = 1
+            (out / "freeze.json").write_bytes(matrix.json_bytes(frozen))
+            with self.assertRaisesRegex(matrix.InvalidEvidence, "concurrency mismatch"):
+                matrix.verify_retained_run(out)
+
+    def test_full_plan_attempts_each_declared_cell_once_with_bounded_overlap_and_failures_retained(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            mutex, first_wave = threading.Lock(), threading.Event()
+            active, peak, count = 0, 0, 0
+            ids = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    nonlocal active, peak, count
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    with mutex:
+                        active += 1
+                        peak = max(peak, active)
+                        count += 1
+                        ids.append(request["id"])
+                        if count == 3:
+                            first_wave.set()
+                    self.returncode = 101  # deliberately failed native attempt, no retry
+                def wait(self, timeout=None):
+                    nonlocal active
+                    assert first_wave.wait(10), "configured workers did not overlap"
+                    with mutex:
+                        active -= 1
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=3)
+            self.assertEqual(peak, 3)
+            self.assertEqual(active, 0)
+            self.assertEqual(len(ids), 24)
+            self.assertEqual(set(ids), {c["id"] for c in plan("full")["cells"]})
+            self.assertEqual(result["coverage"]["attempted"], 24)
+            self.assertEqual(result["coverage"]["passed"], 0)
+            self.assertFalse(result["passed"])
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_observed_binary_drift_stops_new_dispatch_and_retains_already_started_cells(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"original")
+            both_started = threading.Event()
+            calls = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    calls.append(matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])["id"])
+                    if len(calls) == 2:
+                        both_started.set()
+                    self.returncode = 0
+                def wait(self, timeout=None):
+                    assert both_started.wait(10)
+                    binary.write_bytes(b"changed")
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=2)
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(result["coverage"]["attempted"], 2)
+            self.assertFalse(result["binary_unchanged"])
+            self.assertFalse(result["passed"])
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_interrupt_kills_and_reaps_owned_children_and_does_not_dispatch_remaining_plan(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            both_started = threading.Event()
+            children = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    self.ended = threading.Event()
+                    self.returncode = None
+                    self.killed = self.reaped = False
+                    children.append(self)
+                    if len(children) == 2:
+                        both_started.set()
+                def wait(self, timeout=None):
+                    assert self.ended.wait(10), "owned child was not stopped"
+                    self.reaped = True
+                    return self.returncode
+                def kill(self):
+                    self.killed = True
+                    self.returncode = -9
+                    self.ended.set()
+            def interrupt_once(*args, **kwargs):
+                assert both_started.wait(10)
+                raise KeyboardInterrupt()
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), patch.object(matrix.concurrent.futures, "wait", interrupt_once):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=2)
+            self.assertEqual(len(children), 2)
+            self.assertTrue(all(child.killed and child.reaped for child in children))
+            self.assertTrue(result["interrupted"])
+            self.assertFalse(result["passed"])
+            self.assertEqual(result["coverage"]["attempted"], 2)
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_journal_rejects_oversubscription_duplicate_missing_and_premature_finishes(self):
+        cells = [{"id": "a"}, {"id": "b"}, {"id": "c"}]
+        def rows(sequence):
+            return [{"event": "cell_" + kind, "id": identity} for kind, identity in sequence]
+        good = rows([("started", "a"), ("started", "b"), ("finished", "b"),
+                     ("started", "c"), ("finished", "a"), ("finished", "c")])
+        matrix.validate_attempt_journal(good, cells, 2)
+        bad = [good[:-1], good + [good[-1]], [good[2]] + good, good + [good[0]],
+               rows([("started", "a"), ("started", "b"), ("started", "c"),
+                     ("finished", "a"), ("finished", "b"), ("finished", "c")]),
+               [{"event": "binary_changed_matrix_halted"}] + good]
+        for events in bad:
+            with self.subTest(events=events), self.assertRaises(matrix.InvalidEvidence):
+                matrix.validate_attempt_journal(events, cells, 2)
+        with self.assertRaises(matrix.InvalidEvidence):
+            matrix.validate_attempt_journal(good, cells, 1)
+
+    def test_legacy_serial_bundle_keeps_old_order_requirement_without_jobs_fields(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = make_retained_fixture(Path(tmp))
+            for name in ("freeze.json", "result.json"):
+                obj = matrix.read_json(out / name)
+                obj.pop("jobs")
+                (out / name).write_bytes(matrix.json_bytes(obj))
+            events = [matrix.parse_json(line) for line in (out / "journal.jsonl").read_bytes().splitlines()]
+            events[0].pop("jobs")
+            (out / "journal.jsonl").write_bytes(b"".join(matrix.json_bytes(e).replace(b"\n", b" ") + b"\n" for e in events))
+            self.assertTrue(matrix.verify_retained_run(out)["passed"])
+            finishes = [i for i, event in enumerate(events) if event["event"] == "cell_finished"]
+            events[finishes[0]], events[finishes[1]] = events[finishes[1]], events[finishes[0]]
+            (out / "journal.jsonl").write_bytes(b"".join(matrix.json_bytes(e).replace(b"\n", b" ") + b"\n" for e in events))
+            with self.assertRaises(matrix.InvalidEvidence):
+                matrix.verify_retained_run(out)
+
+    def test_cli_execution_defaults_to_one_job_and_preserves_explicit_jobs(self):
+        arguments = ["--binary", "native.exe", "--revision", REV, "--plan", "plan.json", "--out", "new-output"]
+        for extra, expected in (([], 1), (["--jobs", "3"], 3)):
+            with self.subTest(jobs=expected), patch.object(matrix, "run_matrix", return_value={"passed": True, "coverage": {}}) as run:
+                self.assertEqual(matrix.main(arguments + extra), 0)
+                run.assert_called_once_with(Path("native.exe"), REV, Path("plan.json"), Path("new-output"), None, expected, scratch_root=None, compress_scratch=False, min_free_bytes=None, only_cell=None, batch_sha256=None)
+
+    def test_cli_verification_refuses_jobs_before_native_execution(self):
+        with patch.object(matrix.subprocess, "Popen") as spawn:
+            self.assertEqual(matrix.main(["--verify", "unused", "--jobs", "2"]), 2)
+            spawn.assert_not_called()
+
+
+class ResourceExecutionTests(unittest.TestCase):
+    def test_scratch_success_is_lossless_offloaded_reviewable_and_restorable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            scratch = root / "ssd"
+            out = make_retained_fixture(root, scratch_root=scratch, min_free_bytes=1)
+            self.assertFalse(any((scratch / "cells").iterdir()))
+            self.assertTrue((scratch / "scratch-owner.json").is_file())
+            checked = matrix.verify_retained_run(out)
+            self.assertTrue(checked["passed"])
+            self.assertEqual(checked["archives_verified"], 4)
+            moved = root / "relocated"
+            shutil.copytree(out, moved)
+            self.assertTrue(matrix.verify_retained_run(moved)["passed"])
+            restored = matrix.restore_retained_run(moved, root / "restored")
+            self.assertEqual(len(restored["restored"]), 4)
+            receipt = matrix.read_json(next(out.glob("cells/*/transfer.json")))
+            self.assertTrue(receipt["verified_before_cleanup"])
+            self.assertTrue(all(row["original"]["sha256"] == row["retained"]["sha256"] for row in receipt["files"]))
+
+    def test_failed_and_interrupted_cells_retain_all_archives_without_promotion(self):
+        for mode in ("failed", "interrupted"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                out = make_retained_fixture(root, fail_first=mode == "failed", interrupt_first=mode == "interrupted",
+                                            scratch_root=root / "ssd", min_free_bytes=1)
+                proof = matrix.read_json(out / "result.json")
+                self.assertFalse(proof["passed"])
+                self.assertEqual(proof["coverage"]["attempted"], 1 if mode == "interrupted" else 2)
+                self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+                self.assertFalse(any((root / "ssd/cells").iterdir()))
+                self.assertTrue(list(out.glob("cells/*/native/*/saves/*.gz")))
+
+    def test_unsafe_existing_overlapping_roots_and_reserves_refused_without_launch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"fixture")
+            existing = root / "existing"
+            existing.mkdir()
+            sentinel = existing / "user.txt"
+            sentinel.write_text("unchanged")
+            choices = [(existing, root / "out", {}), (root / "same", root / "same", {}),
+                       (root / "parent", root / "parent/out", {}), (root / "parent/in", root / "parent", {}),
+                       (root / "scratch", root / "out", {"min_free_bytes": 0})]
+            for scratch, out, extra in choices:
+                with self.subTest(scratch=scratch), patch.object(matrix.subprocess, "Popen") as spawn, self.assertRaises(matrix.InvalidEvidence):
+                    matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out, scratch_root=scratch, **extra)
+                spawn.assert_not_called()
+            self.assertEqual(sentinel.read_text(), "unchanged")
+
+    def test_disk_reserve_stops_before_launch_and_keeps_full_requested_plan(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            with patch.object(matrix.shutil, "disk_usage", return_value=type("Usage", (), {"free": 4})()):
+                out = make_retained_fixture(root, scratch_root=root / "ssd", min_free_bytes=5)
+            proof = matrix.read_json(out / "result.json")
+            self.assertTrue(proof["resource_halted"])
+            self.assertEqual(proof["coverage"]["attempted"], 0)
+            self.assertEqual(len(proof["coverage"]["missing_requested"]), 2)
+            self.assertFalse(proof["passed"])
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_corrupt_offload_does_not_remove_unverified_scratch_and_halts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original_copy = matrix.shutil.copyfileobj
+            def corrupt(reader, writer, **kwargs):
+                original_copy(reader, writer, **kwargs)
+                writer.write(b"corrupt")
+            with patch.object(matrix.shutil, "copyfileobj", corrupt):
+                out = make_retained_fixture(root, scratch_root=root / "ssd", min_free_bytes=1)
+            proof = matrix.read_json(out / "result.json")
+            self.assertFalse(proof["passed"])
+            self.assertTrue(proof["resource_halted"])
+            self.assertEqual(proof["coverage"]["attempted"], 1)
+            self.assertIn("retention_failure", proof["cells"][0])
+            self.assertTrue(list((root / "ssd").glob("cells/*/native/*/saves/*.gz")))
+            with self.assertRaises(matrix.InvalidEvidence):
+                matrix.verify_retained_run(out)
+
+    def test_cleanup_failure_keeps_verified_copy_and_remaining_scratch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original_unlink = Path.unlink
+            def deny(path, *args, **kwargs):
+                if path.name == "request.json" and "ssd" in path.parts:
+                    raise PermissionError("synthetic cleanup lock")
+                return original_unlink(path, *args, **kwargs)
+            with patch.object(Path, "unlink", deny):
+                out = make_retained_fixture(root, scratch_root=root / "ssd", min_free_bytes=1)
+            proof = matrix.read_json(out / "result.json")
+            self.assertFalse(proof["passed"])
+            self.assertEqual(proof["coverage"]["attempted"], 1)
+            self.assertTrue(list((root / "ssd").glob("cells/*/request.json")))
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_transfer_source_drift_and_changed_ownership_never_delete_original(self):
+        for mode in ("drift", "owner"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                scratch, out = root / "ssd", root / "out"
+                out.mkdir()
+                setup = matrix.setup_scratch(scratch, out, False)
+                source = scratch / "cells/france-1990"
+                source.mkdir(parents=True)
+                raw = source / "important.txt"
+                raw.write_bytes(b"retained original")
+                if mode == "owner":
+                    (scratch / "scratch-owner.json").write_text("{}")
+                copy = matrix.shutil.copyfileobj
+                def drift(reader, writer, **kwargs):
+                    copy(reader, writer, **kwargs)
+                    raw.write_bytes(b"changed original")
+                with patch.object(matrix.shutil, "copyfileobj", drift if mode == "drift" else copy), self.assertRaises(matrix.InvalidEvidence):
+                    matrix.offload_cell(source, out / "cells/france-1990", scratch, setup, lambda row: None)
+                self.assertTrue(raw.is_file())
+
+    def test_live_disk_guard_kills_only_owned_child_retains_evidence_and_halts_dispatch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"fixture")
+            started = threading.Event()
+            children = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    self.ended = threading.Event()
+                    self.returncode = None
+                    self.reaped = False
+                    children.append(self)
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    cell = {k: request[k] for k in ("id", "country", "seed", "through")}
+                    native = Path(kwargs["env"]["SPHERES_S25_OUT"])
+                    matrix.write_json_new(native / "result.json", synthetic_native_report(native, cell))
+                    kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
+                    started.set()
+                def wait(self, timeout=None):
+                    assert self.ended.wait(10), "disk guard did not stop owned child"
+                    self.reaped = True
+                    return self.returncode
+                def kill(self):
+                    self.returncode = -9
+                    self.ended.set()
+            def free(_):
+                return type("Usage", (), {"free": 4 if started.is_set() else 100})()
+            out = root / "out"
+            with patch.object(matrix.shutil, "disk_usage", free), patch.object(matrix.subprocess, "Popen", FakeProcess):
+                proof = matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out,
+                                          scratch_root=root / "ssd", min_free_bytes=5)
+            self.assertEqual(len(children), 1)
+            self.assertTrue(children[0].reaped)
+            self.assertTrue(proof["resource_halted"])
+            self.assertFalse(proof["passed"])
+            self.assertEqual(proof["coverage"]["attempted"], 1)
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    @unittest.skipUnless(matrix.os.name == "nt", "NTFS is a Windows-only optional facility")
+    def test_actual_ntfs_directory_compression_inherits_without_changing_payload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = root / "out"
+            out.mkdir()
+            scratch = root / "ssd"
+            setup = matrix.setup_scratch(scratch, out, True)
+            self.assertTrue(setup["compression"]["directory_compressed_attribute"])
+            child = scratch / "cells/test/native/resumed/saves/probe.json"
+            child.parent.mkdir(parents=True)
+            raw = b"tiny synthetic compression probe, no campaign\n" * 1024
+            child.write_bytes(raw)
+            self.assertTrue(child.stat().st_file_attributes & 0x800)
+            self.assertEqual(child.read_bytes(), raw)
+
+    def test_reparse_attribute_is_rejected_even_without_symlink_support(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original = matrix.linked_path
+            with patch.object(matrix, "linked_path", side_effect=lambda p: p == root or original(p)), self.assertRaises(matrix.InvalidEvidence):
+                matrix.plain_path(root / "future-child")
+
+    def test_scratch_symlink_is_rejected_before_any_delete(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            external = root / "external"
+            external.mkdir()
+            sentinel = external / "keep.txt"
+            sentinel.write_text("keep")
+            alias = root / "alias"
+            try:
+                alias.symlink_to(external, target_is_directory=True)
+            except OSError:
+                self.skipTest("Host does not allow creation of directory symlinks")
+            with self.assertRaisesRegex(matrix.InvalidEvidence, "symlink/reparse"):
+                matrix.plain_path(alias / "new-run")
+            self.assertEqual(sentinel.read_text(), "keep")
+
+
+class ShardExecutionTests(unittest.TestCase):
+    BATCH = "c" * 64
+
+    def test_arbitrary_full_plan_cell_passes_only_its_frozen_shard_and_replays(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            chosen = plan("full")["cells"][-1]["id"]
+            out = make_retained_fixture(root, scope="full", only_cell=chosen, batch_sha256=self.BATCH)
+            proof = matrix.read_json(out / "result.json")
+            self.assertEqual([c["id"] for c in proof["cells"]], [chosen])
+            self.assertTrue(proof["selected_cell_passed"])
+            self.assertFalse(proof["passed"])
+            self.assertFalse(proof["coverage"]["full_matrix_passed"])
+            self.assertEqual(len(proof["coverage"]["missing_full_cases"]), 23)
+            checked = matrix.verify_retained_run(out)
+            self.assertTrue(checked["selected_cell_passed"])
+            self.assertFalse(checked["passed"])
+            self.assertEqual(checked["batch_sha256"], self.BATCH)
+            self.assertEqual(matrix.main(["--verify", str(out)]), 0)
+
+    def test_shard_and_scratch_together_preserve_original_request_identity(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            chosen = plan("full")["cells"][7]["id"]
+            out = make_retained_fixture(root, scope="full", only_cell=chosen, batch_sha256=self.BATCH,
+                                        scratch_root=root / "ssd", min_free_bytes=1)
+            checked = matrix.verify_retained_run(out)
+            self.assertTrue(checked["selected_cell_passed"])
+            self.assertFalse(checked["passed"])
+            self.assertEqual(checked["archives_verified"], 4)
+
+    def test_selection_batch_pair_scope_and_jobs_are_fail_closed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "native"
+            binary.write_bytes(b"synthetic")
+            chosen = plan("full")["cells"][0]["id"]
+            cases = [("full", {"only_cell": chosen}), ("full", {"batch_sha256": self.BATCH}),
+                     ("pilot", {"only_cell": chosen, "batch_sha256": self.BATCH}),
+                     ("full", {"only_cell": "missing", "batch_sha256": self.BATCH}),
+                     ("full", {"only_cell": chosen, "batch_sha256": "C" * 64}),
+                     ("full", {"only_cell": chosen, "batch_sha256": self.BATCH, "jobs": 2})]
+            for scope, options in cases:
+                with self.subTest(options=options), patch.object(matrix.subprocess, "Popen") as spawn, self.assertRaises(matrix.InvalidEvidence):
+                    matrix.run_matrix(binary, REV, HERE / f"stability-{scope}.json", root / "out", **options)
+                spawn.assert_not_called()
+
+    def test_changed_batch_and_promoted_matrix_claim_are_rejected(self):
+        for mode in ("batch", "matrix"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                out = make_retained_fixture(root, scope="full", only_cell=plan("full")["cells"][3]["id"], batch_sha256=self.BATCH)
+                proof = matrix.read_json(out / "result.json")
+                proof["batch_sha256" if mode == "batch" else "passed"] = "d" * 64 if mode == "batch" else True
+                (out / "result.json").write_bytes(matrix.json_bytes(proof))
+                with self.assertRaises(matrix.InvalidEvidence):
+                    matrix.verify_retained_run(out)
+
+    def test_failed_shard_never_returns_success(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = make_retained_fixture(root, fail_first=True, scope="full", only_cell=plan("full")["cells"][0]["id"], batch_sha256=self.BATCH)
+            checked = matrix.verify_retained_run(out)
+            self.assertFalse(checked["selected_cell_passed"])
+            self.assertFalse(checked["passed"])
+            self.assertEqual(matrix.main(["--verify", str(out)]), 1)
 
 
 if __name__ == "__main__":

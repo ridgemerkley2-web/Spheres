@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\campaign\worldwide_preflight.py", line 129, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\campaign\worldwide_preflight.py", line 36, in main
+    assert revision == args.expected_revision and len(revision) == 40
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

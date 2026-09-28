@@ -1,0 +1,346 @@
+{
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-ssd-02\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+  "bytes": 135739703,
+  "sha256": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20",
+  "kind": "exact raw JSON value byte spans; source read-only",
+  "top": [
+    {
+      "field": "world",
+      "bytes": 107103841,
+      "share_percent": 78.904,
+      "kind": "{",
+      "fields": [
+        {
+          "field": "world",
+          "bytes": 107103633,
+          "kind": "{"
+        },
+        {
+          "field": "format",
+          "bytes": 25,
+          "kind": "\""
+        },
+        {
+          "field": "company_network_version",
+          "bytes": 1,
+          "kind": "1"
+        },
+        {
+          "field": "economy_version",
+          "bytes": 1,
+          "kind": "1"
+        },
+        {
+          "field": "equipment_version",
+          "bytes": 1,
+          "kind": "7"
+        },
+        {
+          "field": "party_leadership_version",
+          "bytes": 1,
+          "kind": "1"
+        },
+        {
+          "field": "supplier_operations_version",
+          "bytes": 1,
+          "kind": "1"
+        },
+        {
+          "field": "version",
+          "bytes": 1,
+          "kind": "1"
+        },
+        {
+          "field": "warfare_version",
+          "bytes": 1,
+          "kind": "1"
+        }
+      ]
+    },
+    {
+      "field": "history",
+      "bytes": 28452641,
+      "share_percent": 20.961,
+      "kind": "["
+    },
+    {
+      "field": "log",
+      "bytes": 182999,
+      "share_percent": 0.135,
+      "kind": "["
+    },
+    {
+      "field": "journey",
+      "bytes": 56,
+      "share_percent": 0.0,
+      "kind": "{",
+      "fields": [
+        {
+          "field": "beyond_2035",
+          "bytes": 5,
+          "kind": "f"
+        },
+        {
+          "field": "observing",
+          "bytes": 5,
+          "kind": "f"
+        },
+        {
+          "field": "transitions",
+          "bytes": 2,
+          "kind": "["
+        }
+      ]
+    },
+    {
+      "field": "format",
+      "bytes": 18,
+      "share_percent": 0.0,
+      "kind": "\""
+    },
+    {
+      "field": "saved_date",
+      "bytes": 12,
+      "share_percent": 0.0,
+      "kind": "\""
+    },
+    {
+      "field": "saved_unix",
+      "bytes": 10,
+      "share_percent": 0.0,
+      "kind": "1"
+    },
+    {
+      "field": "player",
+      "bytes": 8,
+      "share_percent": 0.0,
+      "kind": "\""
+    },
+    {
+      "field": "history_epoch",
+      "bytes": 2,
+      "share_percent": 0.0,
+      "kind": "1"
+    },
+    {
+      "field": "version",
+      "bytes": 1,
+      "share_percent": 0.0,
+      "kind": "1"
+    }
+  ],
+  "world_detail": {
+    "world": [
+      {
+        "field": "population_system",
+        "bytes": 71837269,
+        "kind": "{"
+      },
+      {
+        "field": "fiscal_recovery",
+        "bytes": 15607885,
+        "kind": "{"
+      },
+      {
+        "field": "logistics",
+        "bytes": 9944763,
+        "kind": "{"
+      },
+      {
+        "field": "economic_ai",
+        "bytes": 2979326,
+        "kind": "{"
+      },
+      {
+        "field": "starting_industry",
+        "bytes": 1563111,
+        "kind": "{"
+      },
+      {
+        "field": "nations",
+        "bytes": 1532218,
+        "kind": "["
+      },
+      {
+        "field": "province_economy",
+        "bytes": 1189825,
+        "kind": "{"
+      },
+      {
+        "field": "sector_contractors",
+        "bytes": 1001341,
+        "kind": "{"
+      },
+      {
+        "field": "resources",
+        "bytes": 481727,
+        "kind": "{"
+      },
+      {
+        "field": "governments",
+        "bytes": 151750,
+        "kind": "{"
+      },
+      {
+        "field": "companies",
+        "bytes": 149089,
+        "kind": "{"
+      },
+      {
+        "field": "production",
+        "bytes": 99473,
+        "kind": "{"
+      },
+      {
+        "field": "military_ai",
+        "bytes": 98841,
+        "kind": "{"
+      },
+      {
+        "field": "leadership",
+        "bytes": 95054,
+        "kind": "["
+      },
+      {
+        "field": "party_leadership",
+        "bytes": 91528,
+        "kind": "{"
+      },
+      {
+        "field": "relations",
+        "bytes": 80951,
+        "kind": "["
+      },
+      {
+        "field": "district_population",
+        "bytes": 74054,
+        "kind": "{"
+      },
+      {
+        "field": "districts",
+        "bytes": 50365,
+        "kind": "{"
+      },
+      {
+        "field": "commerce",
+        "bytes": 26076,
+        "kind": "{"
+      },
+      {
+        "field": "campaign",
+        "bytes": 11168,
+        "kind": "{"
+      },
+      {
+        "field": "materials",
+        "bytes": 6442,
+        "kind": "{"
+      },
+      {
+        "field": "daily",
+        "bytes": 5180,
+        "kind": "{"
+      },
+      {
+        "field": "supplier_operations",
+        "bytes": 4813,
+        "kind": "{"
+      },
+      {
+        "field": "statecraft",
+        "bytes": 4251,
+        "kind": "{"
+      },
+      {
+        "field": "theatres",
+        "bytes": 4076,
+        "kind": "["
+      },
+      {
+        "field": "headlines",
+        "bytes": 3964,
+        "kind": "["
+      },
+      {
+        "field": "domination",
+        "bytes": 2718,
+        "kind": "{"
+      },
+      {
+        "field": "campaign_peace",
+        "bytes": 1843,
+        "kind": "{"
+      },
+      {
+        "field": "agency",
+        "bytes": 1277,
+        "kind": "{"
+      },
+      {
+        "field": "supplier_catalogue",
+        "bytes": 1107,
+        "kind": "{"
+      },
+      {
+        "field": "district_population_scale",
+        "bytes": 641,
+        "kind": "["
+      },
+      {
+        "field": "rules",
+        "bytes": 389,
+        "kind": "{"
+      },
+      {
+        "field": "flags",
+        "bytes": 371,
+        "kind": "["
+      },
+      {
+        "field": "sanctions",
+        "bytes": 61,
+        "kind": "["
+      },
+      {
+        "field": "rng",
+        "bytes": 30,
+        "kind": "{"
+      },
+      {
+        "field": "oil_price",
+        "bytes": 17,
+        "kind": "2"
+      },
+      {
+        "field": "player",
+        "bytes": 8,
+        "kind": "\""
+      },
+      {
+        "field": "player_set_rate",
+        "bytes": 5,
+        "kind": "f"
+      },
+      {
+        "field": "year",
+        "bytes": 4,
+        "kind": "1"
+      },
+      {
+        "field": "access",
+        "bytes": 2,
+        "kind": "["
+      },
+      {
+        "field": "conflicts",
+        "bytes": 2,
+        "kind": "["
+      },
+      {
+        "field": "month",
+        "bytes": 1,
+        "kind": "1"
+      }
+    ]
+  }
+}

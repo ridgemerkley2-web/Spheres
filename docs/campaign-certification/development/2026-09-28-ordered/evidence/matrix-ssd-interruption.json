@@ -1,0 +1,53 @@
+{
+  "reason": "Operator stopped this incomplete SSD attempt before growing saves exhaust system disk. Eightactivecases reachedabout1993; individual125MBmonthlyarchives vs13MBopening. Preserveall checkpoints and audit causalstate growth before rerun. No native assertion failure, full-matrix pass, or qualification is claimed.",
+  "passed": false,
+  "utc": "2026-09-28T19:11:51.7032533Z",
+  "wrapper": {
+    "ProcessId": 31600,
+    "ParentProcessId": 24860,
+    "CommandLine": "\"C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\" -B -X utf8 tools/campaign/stability_matrix.py --binary ..\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --revision ae8084e853a8eb01ef4d834017af3e94c8e2cc82 --plan tools/campaign/stability-full.json --jobs 8 --out ..\\evidence\\codex-next-matrix-ssd-02"
+  },
+  "completed_cells": 0,
+  "children": [
+    {
+      "ProcessId": 28080,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 19504,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 30824,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 28480,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 19372,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 29204,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 25404,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    },
+    {
+      "ProcessId": 27132,
+      "ParentProcessId": 31600,
+      "CommandLine": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1"
+    }
+  ]
+}

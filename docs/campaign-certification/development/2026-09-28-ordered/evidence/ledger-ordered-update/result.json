@@ -1,0 +1,112 @@
+{
+  "format": "spheres-gap-ledger-integration-update/v1",
+  "source_head": "cce849402181d0eda2118414ebad2ae6230933a2",
+  "scope": "Only gap ledger code, focused tests and generated outputs edited; no queue, acceptance README, research/runtime data or global status edits; no commit performed.",
+  "first_addition_attribution": {
+    "CLAUDE-C01-23": {
+      "import": "09b27c49fe736e90a4ec5a6ca7fd3cdb56d434ac",
+      "original": "febf26e362673cc3d9e4d0ffe9c5d3e3cfd2135b",
+      "source_count": 49
+    },
+    "CLAUDE-C01-24": {
+      "import": "6af1e942f1444e3b7426c62581502cca5b2cd222",
+      "original": "8b96d0330bdeeb210d8c1eab20a580a8738d6701",
+      "source_count": 49
+    },
+    "CLAUDE-C01-25": {
+      "import": "61a3402d11586a1b8e5527e048fb86fae4124f6c",
+      "original": "e15ffa131dea1cd82fc3af0eb45a843cc3b21592",
+      "source_count": 71
+    },
+    "CLAUDE-C01-27": {
+      "import": "644ce0035420c3ff38e2cb87acbd907e87b9269d",
+      "original": "84e056b9727e4be44c8dab2a014cf606b7576f38",
+      "source_count": 74
+    }
+  },
+  "tests": {
+    "before": "22 fixture tests ran; checked-in suite setup failed on completed C01-23 lacking completion handler",
+    "after": "28 tests passed (26 prior plus2 new completion regressions); --refresh-attribution and --check passed"
+  },
+  "in_flight": [
+    "CLAUDE-C01-28",
+    "CLAUDE-C01-29",
+    "CLAUDE-C01-30"
+  ],
+  "completed_research": [
+    "CLAUDE-C01-23",
+    "CLAUDE-C01-24",
+    "CLAUDE-C01-25",
+    "CLAUDE-C01-27"
+  ],
+  "completed_repairs": [
+    "CLAUDE-C01-SOURCE-05",
+    "CLAUDE-C01-SOURCE-06",
+    "CLAUDE-C01-SOURCE-17",
+    "CLAUDE-C01-SOURCE-26"
+  ],
+  "totals": {
+    "cases": 8,
+    "represented_rows": 35,
+    "party_chains_with_unresolved_days": 50,
+    "research_roles": 60,
+    "research_roles_with_unresolved_days": 51,
+    "next_batches": 12,
+    "next_items": 85
+  },
+  "files": [
+    {
+      "path": "tools/avatars/certified_gap_ledger.py",
+      "bytes": 67088,
+      "sha256": "bf7206a28ecd2f1d12d01abe493502e152fe878b365967139f7316eb018cf143"
+    },
+    {
+      "path": "tools/avatars/test_certified_gap_ledger.py",
+      "bytes": 35516,
+      "sha256": "d31fbec175613d57a2237ecd39b652007e8c966bf9de9191c96656cb61ec806e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
+      "bytes": 244247,
+      "sha256": "7db7a4e1c842161d80b6e0e4f83eb604767224e5d8b8b35ee534d730ef1d796c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "bytes": 1015111,
+      "sha256": "4792239023b7ddd664b900a4868301df7c681b6f0386c00946425ab1a8a45565"
+    },
+    {
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.md",
+      "bytes": 83663,
+      "sha256": "332124dc52bef0f2e3bfd8d03cf2c948088e4f58bb4d46d5182140a37722a9ca"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ledger-ordered-update\\baseline-01.log",
+      "bytes": 1389,
+      "sha256": "754526b283b85e25b815f4ddf4c957c524db9b1be25b6c9ec324398fd573b578"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ledger-ordered-update\\baseline-02.log",
+      "bytes": 1589,
+      "sha256": "81474925448c3eb86542f9156e6c23840de41831017fda51c11ff476ebe8640d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ledger-ordered-update\\refresh-01.log",
+      "bytes": 259,
+      "sha256": "890104ce96761fb7de08647bb2d64a9548de84fbe1eb2d90b5ef244ef23e4c95"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ledger-ordered-update\\validation-01.log",
+      "bytes": 132,
+      "sha256": "071a915bd5d15d1bafcc229b2c626a875d175891914c276644e9216f2d521826"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\ledger-ordered-update\\validation-02.log",
+      "bytes": 258,
+      "sha256": "cdbcf57aa7f87bded8859a8bc43d087cfef34f7c85f63715f32db032825e216f"
+    }
+  ],
+  "qualification": false
+}

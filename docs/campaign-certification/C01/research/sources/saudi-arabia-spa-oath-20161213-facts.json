@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_oath_20161213",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/fe176a401b",
+  "original_url": "https://www.spa.gov.sa/fe176a401b",
+  "portal_metadata": {
+    "uuid": "fe176a401b",
+    "locale": "ar",
+    "published_at_utc": "2016-12-13T12:43:06Z",
+    "date_hijri_field": "1438-03-14"
+  },
+  "title_as_published": "عام / أمام خادم الحرمين الشريفين ، رئيس مجلس الشورى وأعضاء وعضوات المجلس يؤدون القَسَم",
+  "source_title": "عام / أمام خادم الحرمين الشريفين ، رئيس مجلس الشورى وأعضاء وعضوات المجلس يؤدون القَسَم (13 December 2016)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2016-12-13",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/fe176a401b",
+  "source_response_bytes": 5809,
+  "source_response_sha256": "a5204e5b50233ff6c628cdf90f1dd0323bdda7229fb3e4f91781c3584898e904",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "ddb1139026b3356dca24902c170011df6af7403d7c3077f7be67b50e1724bc7f",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part B, which downloaded it three or four times on 2026-09-26 UTC (plain and cache-busting requests), the last at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:51:18Z and again at 2026-09-28T00:34:40Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (5809 bytes, SHA-256 a5204e5b50233ff6c628cdf90f1dd0323bdda7229fb3e4f91781c3584898e904).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/fe176a401b loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Located by the independent check of part B. The opening of the seventh term's first year on 14 December 2016 is a separate item (a lead).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_oath_20161213",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "2016-12-13",
+      "text": "SPA, Riyadh 14 Rabi al-Awwal 1438 / 13 December 2016: at the Royal Court in Al-Yamamah Palace 'معالي رئيس مجلس الشورى الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' and the members took the oath 'today' before King Salman, who then addressed them.",
+      "locator": "Dateline and paragraphs 1-4; trailer 15:43 Makkah time"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

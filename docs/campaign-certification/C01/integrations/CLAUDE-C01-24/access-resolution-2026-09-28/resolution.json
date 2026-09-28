@@ -1,0 +1,103 @@
+{
+  "format": "spheres-bounded-source-resolution/v1",
+  "task": "CLAUDE-C01-24",
+  "reviewed_commit": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+  "reviewer": "Codex /root/review_source05",
+  "reviewed_at_utc": "2026-09-28T19:04:59.835081+00:00",
+  "recommendation": "accepted_for_integration",
+  "scope": "Resolve only the five inaccessible originals; combined packet recommendation relies on the separately attributed prior 44-source review by /root/review_gap_submission. No full country/parent acceptance.",
+  "prior_held_review_commit": "c042f39ce0e5b371f0dd7ad2b14089ed8503d0cb",
+  "prior_review_preserved": [
+    {
+      "path": "../review-2026-09-28/README.md",
+      "bytes": 4631,
+      "sha256": "40c307c0bf759f4a707bb8eaba08cea277fbae99450a5faba74fd8f6366fd67a"
+    },
+    {
+      "path": "../review-2026-09-28/source-review.json",
+      "bytes": 44054,
+      "sha256": "fc93531e21384041858ab5227712de18c4e0c22c1709c50ab4766eec7b76bbe7"
+    },
+    {
+      "path": "../review-2026-09-28/manifest.json",
+      "bytes": 3181,
+      "sha256": "46b71aa1f6cf6ef3f0967e39ac2959de257aaf66e0a3b47c69991b0d42fa49ed"
+    }
+  ],
+  "new_originals": 5,
+  "new_claims": 5,
+  "combined_originals": 49,
+  "combined_claims": 82,
+  "source_data_modified": false,
+  "tests_rerun": false,
+  "tests_scope": "The prior technical review remains applicable because source/test data are unchanged; no new execution claimed.",
+  "task_closed": false,
+  "parent_gates_closed": [],
+  "sources": [
+    {
+      "source_id": "to_la_20110114_oaths",
+      "url": "https://web.archive.org/web/20110518092811id_/http://www.parliament.gov.to:80/the-news/269-prime-minister-and-members-takes-their-oath.html",
+      "body_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20110114_oaths.resolve04.bin",
+      "bytes": 19349,
+      "sha256": "feca9a69fc29a75ad6ab2c7a443264425fc7ebd78ee96eaac0d6a172eab5b3c9",
+      "claim_ids": [
+        "to_lasike_speaker_administers_oaths_20110114"
+      ],
+      "content_review": "supported",
+      "finding": "Publication and body explicitly identify Lord Lasike as Speaker administering member oaths on Friday morning 14 January 2011. This is an office attestation, not a royal appointment date."
+    },
+    {
+      "source_id": "to_la_20110404_knesset_visit",
+      "url": "https://web.archive.org/web/20110518043655id_/http://www.parliament.gov.to:80/the-news/274-speaker-of-the-israel-knesset-to-visit-tonga-on-the-7-of-april-2011.html",
+      "body_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20110404_knesset_visit.resolve04.bin",
+      "bytes": 20625,
+      "sha256": "5bb4d01936cae4b74738efb2a27563c81024db6e5a2e55a6cf18a67047b0205b",
+      "claim_ids": [
+        "to_lasike_speaker_styled_20110404"
+      ],
+      "content_review": "supported",
+      "finding": "The 4 April notice styles Lasike Speaker in announcing the planned 7 April Knesset visit. It supports identity as styled on the notice date; it does not prove the future visit occurred."
+    },
+    {
+      "source_id": "to_la_news_speaker_china_20150224",
+      "url": "https://web.archive.org/web/20150702052047id_/http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/338-speaker-continues-to-pursue-vision-to-boost-tourism-fisheries-and-education-in-tonga",
+      "body_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_speaker_china_20150224.resolve04.bin",
+      "bytes": 43468,
+      "sha256": "73c01ed5fdda819262b92a00e4b689d52c389db3ef34709060bdecfb72c7f82f",
+      "claim_ids": [
+        "to_speaker_tuivakano_styled_20150224"
+      ],
+      "content_review": "supported",
+      "finding": "The 24 February article, textual photo captions and delegation list identify Tu’ivakano as Speaker. The trip is described as recent and later dated 10–18 February; the packet correctly uses the article as a dated office observation, not a tenure start."
+    },
+    {
+      "source_id": "to_la_news_mps_sworn_20180118",
+      "url": "https://web.archive.org/web/20180302230312id_/http://parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/607-mps-take-oaths-of-office-today",
+      "body_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_mps_sworn_20180118.resolve04.bin",
+      "bytes": 36585,
+      "sha256": "64fc85aa31068343783d860e07579bbd000536f3210189aca88e0a0ea80cc0b5",
+      "claim_ids": [
+        "to_speaker_fakafanua_sworn_news_20180118"
+      ],
+      "content_review": "supported",
+      "finding": "The 18 January article names Lord Speaker Fakafanua among those sworn that day and separately calls Tu’ilakepa Deputy Speaker. This supports the oath event without replacing royal appointment or establishing a tenure start."
+    },
+    {
+      "source_id": "to_la_news_speaker_gita_20180305",
+      "url": "https://web.archive.org/web/20180322080929id_/http://www.parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/611-speaker-acknowledges-continuous-support-post-cyclone-gita",
+      "body_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_speaker_gita_20180305.resolve04.bin",
+      "bytes": 37874,
+      "sha256": "0cd4e36b223392a50dae1601e5786045cbcc01ce22b6d2a76940400554d10198",
+      "claim_ids": [
+        "to_speaker_fakafanua_styled_20180305"
+      ],
+      "content_review": "supported",
+      "finding": "The 5 March article names Fakafanua as Speaker addressing the first sitting in the temporary chamber after Gita. It supports that point attestation, not an appointment or first day in the office."
+    }
+  ],
+  "limitations": [
+    "No license agreement form was submitted, no previously excluded source imported, and no runtime/portrait installed.",
+    "All prior chronological/coverage uncertainty remains. No oath, planned meeting, acting or interim service is promoted into a substantive tenure boundary.",
+    "The five final responses supplement preserved earlier failed attempts; the old held review is historical evidence, superseded only in its access-based recommendation."
+  ]
+}

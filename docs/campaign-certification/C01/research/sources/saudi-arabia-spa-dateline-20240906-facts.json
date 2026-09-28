@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_dateline_20240906",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/N2166760",
+  "original_url": "https://www.spa.gov.sa/N2166760",
+  "portal_metadata": {
+    "uuid": "N2166760",
+    "locale": "ar",
+    "published_at_utc": "2024-09-06T10:56:24Z",
+    "date_hijri_field": "1446-03-03"
+  },
+  "title_as_published": "بيئي / \"الأرصاد\" ينبه من أمطار غزيرة على منطقة الباحة ومحافظاتها",
+  "source_title": "SPA item of 6 September 2024 (rain warning for Al-Baha): calendar equivalence only",
+  "accessed_date": "2026-09-27",
+  "published_date": "2024-09-06",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/N2166760",
+  "source_response_bytes": 1958,
+  "source_response_sha256": "fc5780cc8826c4b87e08a9f6f966d3ff6205cf0143534d6c052d0e10e100e37d",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "25a49397f84a960a60d9714574e25744c033a714f6f082045defa68e47cf601e",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:55Z and again at 2026-09-28T00:34:07Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (1958 bytes, SHA-256 fc5780cc8826c4b87e08a9f6f966d3ff6205cf0143534d6c052d0e10e100e37d).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/N2166760 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An unrelated SPA item used only for its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_calendar_14460303_20240906",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "calendar_equivalence",
+      "attested_on": "2024-09-06",
+      "text": "An unrelated SPA report datelined Al-Baha prints 03 Rabi al-Awwal 1446 as 06 September 2024.",
+      "locator": "Dateline"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

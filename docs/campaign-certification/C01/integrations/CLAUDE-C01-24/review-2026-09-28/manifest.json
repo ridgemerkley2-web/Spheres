@@ -1,0 +1,101 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-24",
+  "status": "held_original_sources_unavailable",
+  "reviewed_commit": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+  "reviewer": "Codex /root/review_gap_submission",
+  "qualification": false,
+  "decision": "44/49 original bodies and77/82 claims independently verified; five retrievals/content checks pending. No data repair or parent acceptance.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4631,
+      "sha256": "40c307c0bf759f4a707bb8eaba08cea277fbae99450a5faba74fd8f6366fd67a"
+    },
+    {
+      "path": "retrieval-attempts.json",
+      "bytes": 79547,
+      "sha256": "459915db5f0e5536aaa1c7f7b14839eb6c5bef132cfcdc1feb60b1e9b79a6698"
+    },
+    {
+      "path": "retrieve.py",
+      "bytes": 2668,
+      "sha256": "531e9b8092f58bd1560ec266bb399be7d06e7980378ed6d83886b80dac5e988a"
+    },
+    {
+      "path": "retry-final.py",
+      "bytes": 2872,
+      "sha256": "b1f2df2df6d841d8635666c151747826dbcb47a665ef2822d722d5728ea11948"
+    },
+    {
+      "path": "retry.py",
+      "bytes": 2872,
+      "sha256": "7c190d49b3e54ffa7ae0f4a17391339a8170c91b45348292e6a130dc5256d6e9"
+    },
+    {
+      "path": "scope-review.json",
+      "bytes": 6231,
+      "sha256": "0b6723372ceeb432b01691b06bb627e4d007327e8049cc678d074391865a96d9"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 44054,
+      "sha256": "fc93531e21384041858ab5227712de18c4e0c22c1709c50ab4766eec7b76bbe7"
+    },
+    {
+      "path": "technical-atlas.log",
+      "bytes": 1118,
+      "sha256": "aa9b784f1f7273845d41c9d5618c1d600d6cc7f35cb0edd4f7cdeb6191bbc3f7"
+    },
+    {
+      "path": "technical-campaign.log",
+      "bytes": 120,
+      "sha256": "6abb8f77560315c41291f14c9e979500317dd41d60ce246a4eb3c548fd752f04"
+    },
+    {
+      "path": "technical-census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "technical-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "technical-index.log",
+      "bytes": 251,
+      "sha256": "2b73095c60d66130fb1021c342ddfdeb04fda10e6d628481cb9acaf28d51ba4b"
+    },
+    {
+      "path": "technical-research.log",
+      "bytes": 183,
+      "sha256": "ac5bdcea2f4a9310dc8124e0ce8315b735e59c0af09c74063defc21c9a31a3d1"
+    },
+    {
+      "path": "technical-summary.json",
+      "bytes": 3064,
+      "sha256": "95763792921e81d43039617eb7d7a413cc2bc3373c4577e41d487db00a2eb0a3"
+    },
+    {
+      "path": "technical-tonga-02.log",
+      "bytes": 183,
+      "sha256": "1285fca134b51f27340d9327c12c1aaf42848203ccd037f5a6ca9ab90a4d3d51"
+    },
+    {
+      "path": "technical-tonga.log",
+      "bytes": 1038,
+      "sha256": "e589cf3cbadb5ab74247ce429ab5c1e93af9d13ee8c7db2177333889a5903d00"
+    },
+    {
+      "path": "technical-workboard.log",
+      "bytes": 146,
+      "sha256": "fea48f4670d1b09ae63edc66cc7a343b0ec07f3d65321d6d3865b552dfb87705"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Captured evidence preserves its received bytes, including line endings.
+*.json text eol=lf
+README.md text eol=lf
+browser-final/** -text -whitespace
+attempts/** -text -whitespace
+native-final/** -text -whitespace

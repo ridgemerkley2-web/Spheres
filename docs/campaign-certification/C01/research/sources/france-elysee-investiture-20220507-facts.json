@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_investiture_20220507",
+  "source_url": "https://web.archive.org/web/20260618065523id_/https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+  "original_url": "https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+  "archive_capture_utc": "2026-06-18T06:55:23Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2022-05-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 220883,
+  "source_response_sha256": "92512babbe078fda318cace93b49fba10199f4de44251c0bf6bd44b529978e6b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-18T06:55:23Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Chosen by this packet in place of the part C capture of the same page, which the Internet Archive serves gzip-compressed even to requests for identity encoding. This packet downloaded it at 2026-09-27 23:53Z, again at 2026-09-28 00:23Z and at 2026-09-28 00:25Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding). It replaces the part C capture of 26 January 2023, which the archive serves gzip-compressed even to requests for identity encoding; the article and the reproduced address are the same in both. The address is marked 'Seul le prononcé fait foi'.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML article and the reproduced address read in full; header news blocks ignored; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_macron_says_ending_term_began_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "term_start_retrospective_statement",
+      "attested_on": "2017-05-14",
+      "text": "In the investiture address of 7 May 2022 reproduced on the page, the speaker says: 'Oui, le peuple français n'a pas prolongé le mandat qui s'achève, commencé le 14 mai 2017.'",
+      "locator": {
+        "item": "'Discours du Président de la République lors de la Cérémonie d'investiture' card dated '7 mai 2022', paragraph beginning 'Oui, le peuple français'"
+      }
+    },
+    {
+      "claim_id": "fr_macron_investiture_second_term_20220507",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2022-05-07",
+      "text": "The Élysée reports that 'Emmanuel Macron a été officiellement investi Président de la République, pour un second mandat ce samedi 7 mai', in a ceremony held in the salle des fêtes of the Élysée Palace 'à 11 heures'.",
+      "locator": {
+        "item": "article body, first and second sentences"
+      }
+    },
+    {
+      "claim_id": "fr_fabius_proclaims_results_at_investiture_20220507",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "ceremonial_proclamation_at_investiture",
+      "attested_on": "2022-05-07",
+      "text": "It states that Laurent Fabius, President of the Constitutional Council, 'a proclamé officiellement les résultats du scrutin du 24 avril', and that the Grand Chancellor of the Legion of Honour then handed the head of State the grand master's insignia.",
+      "locator": {
+        "item": "article body, third sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

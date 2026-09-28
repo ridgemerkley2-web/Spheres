@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_20120717_speaker_revoked",
+  "source_url": "https://web.archive.org/web/20130411091047id_/http://www.mic.gov.to:80/legislative-assembly/3924-king-revokes-speakers-parliamentary-appointment",
+  "original_url": "http://www.mic.gov.to/legislative-assembly/3924-king-revokes-speakers-parliamentary-appointment",
+  "archive_capture_utc": "2013-04-11T09:10:47Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-07-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 31363,
+  "source_response_sha256": "86e849be93a43fc3b5351694a72c2a3cc4d3f5e35773c0e27e8cccca019c1638",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:05:16Z and again at 2026-09-28T01:02:57Z (UTC), 57 minutes later, from the same URL: both responses were 31363 bytes with SHA-256 86e849be93a43fc3b5351694a72c2a3cc4d3f5e35773c0e27e8cccca019c1638. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2013-04-11T09:10:47Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Release 'Issued by the: Office of the Legislative Assembly', with the in-text dateline '17 July 2012', on the government portal (raw Internet Archive capture of 11 April 2013).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_lasike_speaker_appointment_revoked_20120717",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "revocation_of_appointment",
+      "attested_on": "2012-07-17",
+      "text": "The Office of the Legislative Assembly's release states: '17 July 2012. His Majesty King Tupou VI under Clause 61(2) (c) of the Constitution has revoked Lord Lasike's appointment as the Speaker of the Legislative Assembly of Tonga effective immediately', and that this 'was conveyed in a letter to Havea Hikule'o Tu'uhetoka on the 17th of July 2012'.",
+      "locator": "Article body, first and second text paragraphs",
+      "uncertainty": "The revocation instrument itself was not seen and its own signature date is not printed; the release dates the letter conveying it to 17 July 2012 and says the revocation took effect immediately. The addressee is printed as Havea Hikule'o Tu'uhetoka; identity rests on the release naming Lord Lasike, not on matching spellings."
+    },
+    {
+      "claim_id": "to_lasike_ceased_elected_representative_20120709",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "loss_of_seat",
+      "attested_on": "2012-07-09",
+      "text": "The release states that the letter advised him of the consequence of his conviction on 9 July 2012 by the Supreme Court of an offence under section 4(2)(b) of the Arms and Ammunition Act, punishable by imprisonment for a maximum of 5 years (the sentence is unfinished as printed); in a separate paragraph, in the release's own voice, it states that 'Under Clause 23 of the Constitution the decision was effective from the date of his conviction and he is no longer an elected representative to the Legislative Assembly of Tonga'.",
+      "locator": "Article body, second and third text paragraphs",
+      "uncertainty": "Concerns his seat as an elected nobles' representative, the ground for revocation under clause 61(2)(c); it is not read as the end of the Speakership, which the release says was revoked effective immediately on 17 July. 'The decision was effective from the date of his conviction' is kept as printed."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

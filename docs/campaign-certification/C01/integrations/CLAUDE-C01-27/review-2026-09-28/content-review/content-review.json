@@ -1,0 +1,1602 @@
+{
+  "format": "spheres-independent-research-content-review/v1",
+  "task": "CLAUDE-C01-27",
+  "reviewer": "Codex /root/review_gap_submission",
+  "reviewed_at_utc": "2026-09-28T19:06:43.432171+00:00",
+  "reviewed_commit": "0765c590c120d3aed3291dccec9d391670110543",
+  "research_cutoff": "2026-09-07",
+  "recommendation": "accept_bounded_research_subject_to_parent_technical_and_isolation_review",
+  "counts": {
+    "exact_source_bodies_rehashed": 74,
+    "auxiliary_date_anchor_bodies_rehashed": 1,
+    "claims_reviewed": 167,
+    "holder_observations_reviewed": 19,
+    "express_starts": 3,
+    "express_ends": 1,
+    "cited_pdf_pages_visually_inspected": 30,
+    "auxiliary_pdf_pages_visually_inspected": 2,
+    "actionable_content_findings": 0
+  },
+  "qualification": false,
+  "runtime_acceptance": false,
+  "avatar_acceptance": false,
+  "parent_scope_complete": false,
+  "input_ledgers": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\combined-index.json",
+      "bytes": 76677,
+      "sha256": "8767588b388e91a6600f5c2e3c2abdefc5ce370b6e9bf0f486f835cc744b4569"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\date-anchor-retrieval.json",
+      "bytes": 892,
+      "sha256": "737b9e95d5ca19fa46862ba057f934639e5d456ef20df500c0667e6c6e98b5d4"
+    }
+  ],
+  "research_file_raw_worktree_pin": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\review-in27\\docs\\campaign-certification\\C01\\research\\india.json",
+    "bytes": 1153096,
+    "sha256": "173c1c93ba538e99e453d7e9b9476c4094ea191c124c5ad76cb60198de0301c0"
+  },
+  "research_file_git_blob": "e33d9637baf96915a130678b326bd36f62c7864b",
+  "notes": [
+    "All 74 original response bodies were rehashed locally against the parent retrieval ledger before reading; this reviewer did not conduct the India HTTP retrievals.",
+    "All 167 added claim texts and their material office/date propositions were checked against the relevant original passages. HTML body text and cited PDF text layers were read; 30 cited PDF pages plus both pages of the auxiliary date anchor were rendered and visually inspected. This is not a claim to have read every unrelated page in the six long party-document volumes.",
+    "All 19 holder observations were checked, including the three express assumption dates and the one immediate-effect resignation end. No additional holder, boundary, government-office equivalence, avatar permission, or game mapping is approved.",
+    "The Jan 1991 Advani source appositive may describe the 1990 narrated event rather than incumbency on the answer date. The packet explicitly preserves that uncertainty and gives only an attestation, not a term interval or opening-day holder.",
+    "The auxiliary Rajya Sabha file repeats columns 323-324 and continues the same question on column 325 with the 8 January 1991 date. The source date anchor is supported; no source timestamp or filename alone was used as proof.",
+    "Conflicting 1991 compilation headings, retrospective years, 2004 Council/Executive naming, Gadkari 2009 page/list dates, 2016 versus 2017 retrospective re-election years, and January 2026 sole-nominee/result dates remain explicit claims or uncertainties; they do not fabricate starts or ends.",
+    "Jana Krishnamurthi acting service and Nadda/Nabin working presidencies remain claim-only under the submission scope. Later substantive stylings and predecessor references are retained rather than erased.",
+    "Naidu 1 July 2002 is stated in the contemporaneous party journal. Nadda 20 January 2020 is stated on journal page 6. Nabin 20 January 2026 is stated both in the same-day release and journal page 6; the 19 January notice announces only one proposed name. Laxman resignation acceptance explicitly takes immediate effect on 14 March 2001.",
+    "The December 2025 and January 2026 issue publication dates differ from their fortnight labels; pages 36 support 19 December 2025 and 24 January 2026. The August 2026 page publication/text/modification discrepancy is disclosed and not converted into a term boundary.",
+    "No actionable material content defect found. Recommend bounded research acceptance only, subject to parent technical/isolation review. C01, C06, S23, WC1 and CP1 remain open; no runtime or portrait acceptance.",
+    "No India tracked files edited, no India tests or native/browser commands executed by this reviewer. Parent owns those independent checks and final ordered acceptance."
+  ],
+  "sources": [
+    {
+      "source_id": "in_bjp_elib_party_document_vol5_political_resolutions",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol5_political_resolutions.bin",
+        "bytes": 3810049,
+        "sha256": "33ddad0dcd6f64726a041646440ef66379ff6c88cdc4ee26cf0edb85c20022f5"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_ne_resolution_narrates_president_advani_199004",
+        "in_bjp_ne_resolution_bjp_president_rath_yatra_199011",
+        "in_bjp_ne_resolution_our_president_joshi_ekta_yatra_199203",
+        "in_bjp_ne_resolution_release_joshi_president_bjp_199212",
+        "in_bjp_ne_resolution_assault_bjp_president_joshi_19930227",
+        "in_bjp_ne_resolution_our_president_advani_199312",
+        "in_bjp_ne_resolution_ex_president_joshi_199312",
+        "in_bjp_ne_resolution_party_president_advani_hawala_199602"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        136,
+        137,
+        202,
+        203,
+        218,
+        220,
+        242,
+        246,
+        247,
+        268,
+        292
+      ],
+      "pdf_pages_visually_inspected": [
+        202,
+        203,
+        246,
+        268
+      ]
+    },
+    {
+      "source_id": "in_bjp_elib_party_document_vol6_economic_resolutions",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol6_economic_resolutions.bin",
+        "bytes": 3111032,
+        "sha256": "043834819a685a58cf6b9ae8eb2379e3ce47c1d76a93dd7713ae470374babb07"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_ne_resolution_authorises_party_president_advani_199007"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        163,
+        189,
+        196,
+        205,
+        209
+      ],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_rs_written_answers_19910108_usq1586_rath_yatra",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_rs_written_answers_19910108_usq1586_rath_yatra.bin",
+        "bytes": 100324,
+        "sha256": "df546af7447066924d4b2b83f2e82c0f74fb0a5061ab8e0649e90fb48725b9ad"
+      },
+      "claim_ids_reviewed": [
+        "in_rs_sahay_advani_president_bjp_rath_yatra_19910108"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1
+      ],
+      "pdf_pages_visually_inspected": [
+        1
+      ]
+    },
+    {
+      "source_id": "in_bjp_elib_party_document_vol3_presidential_speeches_part2",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol3_presidential_speeches_part2.bin",
+        "bytes": 2822399,
+        "sha256": "d12b2d2d86819f7ddebac2b8eb51096fbed3c931d47f3c4220342836ded59a20"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_valedictory_joshi_taking_over_tomorrow_19910131",
+        "in_bjp_valedictory_joshi_to_assume_presidency_tomorrow_1991",
+        "in_bjp_outgoing_president_farewell_five_year_tenure_199101",
+        "in_bjp_nc_jaipur_new_president_accepts_presidentship_19910201",
+        "in_bjp_nc_jaipur_advani_declined_third_term_19910201"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        3,
+        28,
+        31,
+        32,
+        73,
+        74,
+        85,
+        203,
+        204
+      ],
+      "pdf_pages_visually_inspected": [
+        28,
+        31,
+        85
+      ]
+    },
+    {
+      "source_id": "in_bjp_org_advani_profile_19961019",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_org_advani_profile_19961019.bin",
+        "bytes": 3567,
+        "sha256": "463e92e7a0ac792268fed6c6718d9e187b1385a2a823e5f0c12d21db3cf38ad0"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_profile_advani_president_until_199101"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_org_lka_profile_biodata_20030317",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_org_lka_profile_biodata_20030317.bin",
+        "bytes": 10760,
+        "sha256": "41036bbbe496d2fa54de7e2eaefd1eede2c5b952b9248c9c778a82d3afd96955"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_biodata_advani_president_19860509_to_1991",
+        "in_bjp_biodata_advani_president_199307_to_19980502"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_elib_party_document_vol10_evolution_of_bjp",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol10_evolution_of_bjp.bin",
+        "bytes": 1409320,
+        "sha256": "2d33ba5938c217d67d1cbfc715a1b6b7c3d6dcb88307d090177f61ad0d79f6a4"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_evolution_advani_national_president_except_1991_93",
+        "in_bjp_evolution_joshi_president_1991_1993",
+        "in_bjp_evolution_advani_president_swarna_jayanti_yatra_19970518"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        20,
+        21,
+        31,
+        40
+      ],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_rs_debate_19911210_ekta_yatra_bjp_president",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_rs_debate_19911210_ekta_yatra_bjp_president.bin",
+        "bytes": 83271,
+        "sha256": "16d162004276da02b0ad7259d74ef8ce3cd7c210aa3787a2b6a12a2bb6a4bf23"
+      },
+      "claim_ids_reviewed": [
+        "in_rs_narayanasamy_ekta_yatra_bjp_president_joshi_19911210"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        2,
+        3
+      ],
+      "pdf_pages_visually_inspected": [
+        1,
+        2
+      ]
+    },
+    {
+      "source_id": "in_rs_written_answers_19920304_usq1060_rocket_fire",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_rs_written_answers_19920304_usq1060_rocket_fire.bin",
+        "bytes": 44815,
+        "sha256": "5c3a7881bdd28d660196c83357ff6b169badac4d3d0890092307ea6a816936e4"
+      },
+      "claim_ids_reviewed": [
+        "in_rs_question_joshi_president_bjp_rocket_fire_19920304"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1
+      ],
+      "pdf_pages_visually_inspected": [
+        1
+      ]
+    },
+    {
+      "source_id": "in_rs_written_answers_19920304_usq1067_flag_hoisting",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_rs_written_answers_19920304_usq1067_flag_hoisting.bin",
+        "bytes": 59344,
+        "sha256": "fc4df69aa85e1287999c6c70b43b7b16be3cb1a3465fe37492db7ec747fe807f"
+      },
+      "claim_ids_reviewed": [
+        "in_rs_jacob_answer_bjp_president_joshi_flag_hoisting_19920304"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        2
+      ],
+      "pdf_pages_visually_inspected": [
+        1,
+        2
+      ]
+    },
+    {
+      "source_id": "in_bjp_elib_party_document_vol2_presidential_speeches_part1",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol2_presidential_speeches_part1.bin",
+        "bytes": 2118173,
+        "sha256": "d6b44cbfd05642a16cb1b57959a03a21b01f384d039ad3871410c1384ff6df83"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_nc_bangalore_elected_once_again_president_19930618",
+        "in_bjp_nc_bangalore_joshi_proposed_name_19930618",
+        "in_bjp_nc_bangalore_joshi_stewardship_predecessor_19930618",
+        "in_bjp_nc_mumbai_elected_president_yet_another_term_19951110",
+        "in_bjp_ne_new_delhi_last_meeting_during_tenure_19980411",
+        "in_bjp_ne_gandhinagar_i_as_president_19980502",
+        "in_bjp_ne_gandhinagar_handover_announced_for_tomorrow_19980502",
+        "in_bjp_ne_gandhinagar_thakre_elected_unanimously_19980502",
+        "in_bjp_ne_gandhinagar_thakre_president_elect_19980502",
+        "in_bjp_ne_gandhinagar_farewell_as_party_president_19980502"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        296,
+        298,
+        310,
+        311,
+        316,
+        372,
+        438
+      ],
+      "pdf_pages_visually_inspected": [
+        310,
+        438
+      ]
+    },
+    {
+      "source_id": "in_bjp_org_swarna_jayanti_press_release_19970716",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_org_swarna_jayanti_press_release_19970716.bin",
+        "bytes": 24191,
+        "sha256": "0eb50f1109f6b90d928a72f52a3870304b946a2e18f5c797e8318fdf2681918e"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_press_release_president_advani_19970716"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_elib_party_document_vol4_foreign_policy_resolutions",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_elib_party_document_vol4_foreign_policy_resolutions.bin",
+        "bytes": 2538135,
+        "sha256": "ba547ac20a962cc9bd983d1064126abecdd37577da5d20c95c12c3bfaa77729b"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_ne_resolution_gratitude_party_president_advani_199804"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        81,
+        82,
+        223,
+        225
+      ],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_advani_opening_remarks_ne_19980411",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_advani_opening_remarks_ne_19980411.bin",
+        "bytes": 35726,
+        "sha256": "76916f4cc8e0f55f9d75025c5c125e89efafcf813a002e4c0e710da6fcf31904"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_advani_new_president_to_be_declared_next_week_19980411",
+        "in_bjp_advani_outgoing_president_last_ne_19980411"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_thakre_presidential_speech_gandhinagar_199805",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_thakre_presidential_speech_gandhinagar_199805.bin",
+        "bytes": 35968,
+        "sha256": "c4bc6c891a41fc6d49b2a7ab94e2c75cec2d30235d888cd50a8c6cf3e935f8c2"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_thakre_thanks_party_for_unanimous_election_199805",
+        "in_bjp_thakre_states_he_assumes_office_199805",
+        "in_bjp_thakre_speaks_as_president_national_council_199805"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_thakre_budget_statement_19990227",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_thakre_budget_statement_19990227.bin",
+        "bytes": 8112,
+        "sha256": "22db19ee147876c4e31af13920e9a9513a659b8380b771eec12daa77ac0fc04e"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_thakre_styled_president_budget_statement_19990227"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_thakre_press_statement_20000704",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_thakre_press_statement_20000704.bin",
+        "bytes": 4440,
+        "sha256": "7c5119c79ec709e9c37f248f95dc058cf14e0f5edaadd9ddf57352e3a89359da"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_thakre_press_statement_as_president_20000704"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_laxman_nomination_20000802",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_laxman_nomination_20000802.bin",
+        "bytes": 10983,
+        "sha256": "5394657a29dd4cd0984bc5614afa0ded540f80258032e6a897d41295ca7b508c"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_nomination_papers_filed_20000802",
+        "in_bjp_thakre_outgoing_president_present_20000802"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_laxman_presidential_address_nagpur_200008",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_laxman_presidential_address_nagpur_200008.bin",
+        "bytes": 133649,
+        "sha256": "6672c98e7612b6f292d5d1873721d166553af43e02e2406c165592a1defbb5cb"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_thanks_council_for_electing_him_fifth_president_200008",
+        "in_bjp_laxman_names_thakre_immediate_predecessor_200008"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_general_secretary_report_nagpur_200008",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_general_secretary_report_nagpur_200008.bin",
+        "bytes": 44599,
+        "sha256": "5471202185e3fb71b2398bb5864a82039fba56f5a5051f9554284c73d5a18c60"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gs_report_thakre_took_over_at_gandhinagar_1998"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_laxman_statement_20000831",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_laxman_statement_20000831.bin",
+        "bytes": 18262,
+        "sha256": "9554a703e65331364b736c4335b42b6d28fcdb7c568647e7ffc5bd35b54f643e"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_styled_president_maiden_press_conference_20000831",
+        "in_bjp_laxman_took_over_reins_recalled_maiden_press_conference_200008"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_laxman_statement_20000901",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_laxman_statement_20000901.bin",
+        "bytes": 20465,
+        "sha256": "6c94660b81ac31c8e6b5f652e9def50232360868663b8dd22d05641d86a99b33"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_statement_as_president_20000901",
+        "in_bjp_laxman_took_over_presidency_at_nagpur_session_200008"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_laxman_press_statement_20010309",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_laxman_press_statement_20010309.bin",
+        "bytes": 7888,
+        "sha256": "0808ef1f2f34083bcc059c706c506533787e035bd28038c1926f441dcef4d7c4"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_press_statement_as_president_20010309"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_office_bearers_press_release_20010314",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_office_bearers_press_release_20010314.bin",
+        "bytes": 5816,
+        "sha256": "b9261b7f54969d294a8aae7f75a7377adc2f9f06a72ffb30a4ff39c9f148fe5b"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_office_bearers_consider_laxman_letter_20010314",
+        "in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314",
+        "in_bjp_jana_krishnamurthi_designated_acting_president_20010314"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_press_release_20010315",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_press_release_20010315.bin",
+        "bytes": 11219,
+        "sha256": "e8ac6e05e2a64247533c1cba2f22af2766bd8a7ca31cea12043c4dd06646ebaa"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_laxman_has_stepped_down_pending_enquiry_20010315"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_jana_krishnamurthy_press_statement_20010318",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_jana_krishnamurthy_press_statement_20010318.bin",
+        "bytes": 10853,
+        "sha256": "15a82af6b69e49cd56f33b52592d2e1d357e87d598fb4a5510f421f29bbf063c"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_jana_krishnamurthy_styled_president_20010318"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_jana_krishnamurthy_ne_address_20010324",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_jana_krishnamurthy_ne_address_20010324.bin",
+        "bytes": 23578,
+        "sha256": "1acdbd7ba5bf2a1cad69e15a0ddd455f8f20d7e464aacfc4c319eef7f58a5bc3"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324",
+        "in_bjp_ne_entrusted_presidentship_to_jana_krishnamurthy_20010324",
+        "in_bjp_laxman_resignation_letter_dated_20010313_recalled",
+        "in_bjp_office_bearers_acceptance_recalled_20010314",
+        "in_bjp_jana_krishnamurthy_accepted_acting_responsibility_recalled_2001"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_ne_resolution_political_situation_20010324",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_ne_resolution_political_situation_20010324.bin",
+        "bytes": 16071,
+        "sha256": "2d45d7b043094324437189fb65c1867f8fc946b50f644e94fd8a34c0f7cbf01a"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_ne_resolution_laxman_resigned_as_president_20010324"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_jana_krishnamurthi_press_statement_20010329",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_jana_krishnamurthi_press_statement_20010329.bin",
+        "bytes": 16372,
+        "sha256": "1b9e9a4e98f3fed99028c7aa9e203c3a6abee6e669146ae66c5a253a8c59c482"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_jana_krishnamurthi_styled_president_20010329",
+        "in_bjp_jana_krishnamurthi_taken_charge_recalled_2001"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_shastri_press_statement_20020624",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_shastri_press_statement_20020624.bin",
+        "bytes": 5870,
+        "sha256": "94bfc48904da4d8023372709a9b53e131c2962fb3ec65027ca517fd0dd2f8037"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_national_president_jana_krishnamurthi_constitutes_committee_20020624"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_naidu_profile_20020701",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_naidu_profile_20020701.retry.bin",
+        "bytes": 22063,
+        "sha256": "b524e4d3ee878f82f3c2699982f2438880ee7cd754059e03184b58b8f6e18b92"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_naidu_profile_span_ist_july_2002_onwards"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_naidu_first_press_conference_20020711",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_naidu_first_press_conference_20020711.retry.bin",
+        "bytes": 17606,
+        "sha256": "e379da92f8bff0219ac6f529fb184fd8bb2e8c531a8ac4be126264c75a566dde"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_naidu_president_first_press_conference_20020711",
+        "in_bjp_naidu_entrusted_and_accepted_recalled_2002"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_today_editorial_20020716",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_today_editorial_20020716.retry.bin",
+        "bytes": 8628,
+        "sha256": "121728d4ebf9617d8fb7382979a9472a8ceb00c103630b5e0f637de4aa0fd499"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_today_naidu_took_over_on_july_1_20020701",
+        "in_bjp_today_jana_krishnamurthi_predecessor_20020701"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_naidu_national_council_address_20020803",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_naidu_national_council_address_20020803.retry.bin",
+        "bytes": 86460,
+        "sha256": "b864c13744e4a6707d14eb4fae549967a57f5d3846fda9de8521ea4b194a79ca"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_national_council_address_endorsement_stated_20020803"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_press_statement_naidu_resignation_20041018",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_press_statement_naidu_resignation_20041018.retry.bin",
+        "bytes": 5685,
+        "sha256": "fe4232cb0a40f0852fbf7aa92a995185497426a1a538ead01cb737f2edb4743b"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_naidu_chairs_meeting_as_party_president_20041018",
+        "in_bjp_naidu_offers_resignation_20041018",
+        "in_bjp_naidu_resignation_accepted_20041018",
+        "in_bjp_advani_appointed_president_ratification_pending_20041018"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_advani_statement_20041020",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_advani_statement_20041020.retry.bin",
+        "bytes": 25103,
+        "sha256": "1129703f17c57ddc5ab0df95e16843ee1c96e9ddc48c05a4838037aa41313208"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_advani_statement_as_president_20041020",
+        "in_bjp_advani_assumed_office_two_days_ago_recalled_20041018"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_today_national_council_report_20041027",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_today_national_council_report_20041027.retry.bin",
+        "bytes": 13669,
+        "sha256": "a92ec6f429b0e59b73cb334c0c67517bbf0ff9f71128342f8532dad00f933776"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_today_national_council_endorses_advani_election_20041027",
+        "in_bjp_today_outgoing_president_naidu_farewell_20041027",
+        "in_bjp_today_vajpayee_fifth_time_advani_appointed_2004"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_press_release_office_bearers_20041030",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_press_release_office_bearers_20041030.retry.bin",
+        "bytes": 79065,
+        "sha256": "e48ed67a018b75fdd7ab78ea31d7bcea158edb1dac6290a06979ab0909637cd0"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_advani_elected_by_national_executive_20041027",
+        "in_bjp_advani_constitutes_national_executive_20041030"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_resolution_advani_resignation_20050608",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_resolution_advani_resignation_20050608.retry.bin",
+        "bytes": 7570,
+        "sha256": "8dff1d2cd5a2afac46a0e914df6d35449309fc13c4f0e46323b6fcac24fbfa29"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_parliamentary_board_rejects_advani_resignation_20050608"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_advani_speech_20050615",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_advani_speech_20050615.retry.bin",
+        "bytes": 24489,
+        "sha256": "356702ffa3d27c80a685290fa1f99ed69a8d6b739e36953f85c3d3f64e7c2c09"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_advani_styled_president_after_resignation_episode_20050615"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_advani_opening_remarks_ne_20051226",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_advani_opening_remarks_ne_20051226.retry.bin",
+        "bytes": 13330,
+        "sha256": "b6f4e69e65b89f13240e43631ceb39c72c058e0792937280f7cc5b9e20bbe304"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_advani_styled_president_opening_remarks_20051226",
+        "in_bjp_advani_last_meeting_he_will_preside_20051226"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_rajat_jayanti_sandesh_20051230",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_rajat_jayanti_sandesh_20051230.bin",
+        "bytes": 40023,
+        "sha256": "6099088f1d715f4fb3152ee96d1d0161a0f98bbf6c1494afbc424cac6c13f316"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_rajat_jayanti_national_convention_dated_2005"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_rajnath_singh_statement_20060102",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_rajnath_singh_statement_20060102.bin",
+        "bytes": 8405,
+        "sha256": "01d1b4061f41be0f17163f428cae2f7a4de71e6d262dba7cab10ba646b3553bf"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_rajnath_singh_styled_national_president_20060102",
+        "in_bjp_rajnath_singh_accepts_office_20060102",
+        "in_bjp_rajnath_singh_taken_over_recalled_2006"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_rajnath_singh_national_council_address_20060120",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_rajnath_singh_national_council_address_20060120.bin",
+        "bytes": 70234,
+        "sha256": "c0940aca25290fd58f8fcfec8dd634c6d03b77692dce88a0781281dd06c2be51"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_rajnath_singh_styled_president_national_council_20060120",
+        "in_bjp_rajnath_singh_responsibility_placed_after_convention_recalled_2005"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_profile_gadkari_national_president_20091218",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_profile_gadkari_national_president_20091218.bin",
+        "bytes": 42195,
+        "sha256": "512d377daefe9acffa8a6587f1e2d8dcb0a0e1afca7be18e5f3e7a97e59dc568"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_profile_heading_national_president_200912"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_parliamentary_board_resolution_rajnath_singh_20091219",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_parliamentary_board_resolution_rajnath_singh_20091219.bin",
+        "bytes": 27136,
+        "sha256": "96a0f6d7df42d380f0ecd28ce63406c5b0fb580457eec732af9f067191749ec1"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_parliamentary_board_thanks_rajnath_singh_for_tenure_20091219"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_gadkari_first_press_conference_as_president_20091224",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_gadkari_first_press_conference_as_president_20091224.bin",
+        "bytes": 34928,
+        "sha256": "7e18342428d0969d7b935798fa834858022abf7b0dfa485012824f48b3d773e9"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_first_press_conference_as_president_20091224",
+        "in_bjp_gadkari_entrusted_new_responsibility_recalled_2009"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_press_release_listing_20091228",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_press_release_listing_20091228.bin",
+        "bytes": 47742,
+        "sha256": "a8499b4367337d9b36ece18ab8f0acb696d1b702b1c14fb1d7a441fb3c0a9956"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_listing_dates_gadkari_profile_20091219"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_gadkari_presidential_address_national_council_indore_20100218",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_gadkari_presidential_address_national_council_indore_20100218.bin",
+        "bytes": 80095,
+        "sha256": "aa6b085313f78b276cb61ca1a9101af1e8e12b4a892fa6200839ea2130580867"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_styled_national_president_indore_address_20100218",
+        "in_bjp_gadkari_presidential_address_council_elected_him_20100218"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_gadkari_announces_national_executive_20100316",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_gadkari_announces_national_executive_20100316.bin",
+        "bytes": 83228,
+        "sha256": "af9c1cf809bf9e3642bbda3941f879a571845711639b0edbb8d6dbf3e0e09256"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_announces_national_executive_as_president_20100316"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_gadkari_statement_no_second_term_20130122",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_gadkari_statement_no_second_term_20130122.bin",
+        "bytes": 82918,
+        "sha256": "6bd1f49a8a29213e5c6ca62331d7e360b7cc4736afb6d046abc81358c48f6782"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_styled_national_president_statement_20130122",
+        "in_bjp_gadkari_decides_not_to_seek_second_term_20130122"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_national_election_officer_declaration_rajnath_singh_20130123",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_national_election_officer_declaration_rajnath_singh_20130123.bin",
+        "bytes": 510935,
+        "sha256": "32e7d314a50dfc1b7abd93810ebfda57f7d596121c131bc22da45b8cf92df532"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_national_president_election_process_completed_20130123",
+        "in_bjp_gehlot_declares_rajnath_singh_elected_unopposed_20130123"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1
+      ],
+      "pdf_pages_visually_inspected": [
+        1
+      ]
+    },
+    {
+      "source_id": "in_bjp_site_rajnath_singh_acceptance_speech_newly_elected_20130123",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_rajnath_singh_acceptance_speech_newly_elected_20130123.bin",
+        "bytes": 81330,
+        "sha256": "e9a82d0f54c95d802d4c77b28f93815ff97ee2b42813cc9ec54001092557914d"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_rajnath_singh_styled_newly_elected_president_20130123"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_gadkari_styled_former_president_20130127",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_gadkari_styled_former_president_20130127.bin",
+        "bytes": 84724,
+        "sha256": "1f00274dcc0a43150f1bbd84e4834c2900d6ed9d4aa479abe2c8934f5026b12c"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_gadkari_styled_former_national_president_20130127"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_rajnath_singh_presidential_address_national_council_20130302.retry.bin",
+        "bytes": 159181,
+        "sha256": "9d046824395207416f23a1d6e0dc0579d6a0657e2b1a8346fc953c8b785c49c7"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_rajnath_singh_presidential_address_national_council_20130302",
+        "in_bjp_rajnath_singh_took_over_again_recalled_2013"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_bjp_presidents_1980_2013_list_20140117",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_bjp_presidents_1980_2013_list_20140117.retry.bin",
+        "bytes": 60215,
+        "sha256": "ccbb3f8afa3129fb2033480b687556250ca04c041f5108978ba90e0eb15086f3"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_presidents_list_jana_krishnamurthy_2001_to_2002",
+        "in_bjp_presidents_list_gadkari_2010_to_2013",
+        "in_bjp_presidents_list_rajnath_singh_2013_to_present"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_parliamentary_board_resolution_rajnath_singh_20140709",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_parliamentary_board_resolution_rajnath_singh_20140709.retry.bin",
+        "bytes": 69735,
+        "sha256": "918e060f286920e258676dff45bd8ec8f1ecc3569a475e0a621e4262094ce115"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_parliamentary_board_thanks_outgoing_president_rajnath_singh_20140709"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_profile_national_president_amit_shah_20140709",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_profile_national_president_amit_shah_20140709.retry.bin",
+        "bytes": 74948,
+        "sha256": "561aec7e5ee5064417d238009b5549bfda3a7b02e5e86fbf4de3cece64a7084e"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_amit_shah_styled_national_president_profile_20140709"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_amit_shah_presidential_address_national_council_20140809",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_amit_shah_presidential_address_national_council_20140809.retry.bin",
+        "bytes": 101609,
+        "sha256": "c886ac72423db1a97e791d787d82072cf55d6285f8d8c763dc67885ea610d1da"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_amit_shah_styled_president_national_council_address_20140809",
+        "in_bjp_amit_shah_presidential_address_thanks_council_for_election_20140809",
+        "in_bjp_amit_shah_recalls_rajnath_singh_tenure_20140809"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_amit_shah_re_elected_national_president_20160124",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_amit_shah_re_elected_national_president_20160124.retry.bin",
+        "bytes": 72410,
+        "sha256": "805c932deaa508f32577bd2f88eee416ee73134e1e6ada0e396407b7fb0f33ec"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_amit_shah_nomination_filed_national_president_20160124",
+        "in_bjp_amit_shah_re_elected_heading_20160124"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_amit_shah_felicitation_20160202",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_amit_shah_felicitation_20160202.retry.bin",
+        "bytes": 76078,
+        "sha256": "d8104fcf252978ce78732b4833f8e462d080b4cd5fcde3505dd71a46ce0e8f86"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_amit_shah_styled_national_president_felicitation_20160202"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_ks_amit_shah_valmiki_jayanti_address_20161015",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_ks_amit_shah_valmiki_jayanti_address_20161015.retry.bin",
+        "bytes": 18829,
+        "sha256": "68a8cd1917e184da0be0e1789062f9d031b69b6ae8e63005a56c993546e27c89"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_amit_shah_styled_bjp_national_president_20161015"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_ks_nadda_appointed_working_president_20190617",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_ks_nadda_appointed_working_president_20190617.bin",
+        "bytes": 30947,
+        "sha256": "3003480b831e8a1bfeea844409a09de8c0f11242a95ec4b33dcbcec24c4025ea"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_amit_shah_styled_national_president_at_board_meeting_20190617",
+        "in_ks_parliamentary_board_appoints_nadda_working_president_20190617",
+        "in_ks_amit_shah_request_to_be_relieved_reported_20190617",
+        "in_ks_amit_shah_continues_national_president_20190617",
+        "in_ks_amit_shah_became_president_july_2014_recalled_2019",
+        "in_ks_nadda_takes_charge_working_president_2019",
+        "in_ks_life_sketch_nadda_working_president_onwards_2019"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_kamal_sandesh_vol15_no03_20200201",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_kamal_sandesh_vol15_no03_20200201.bin",
+        "bytes": 3452018,
+        "sha256": "03d5e769396cc0f7509238f2b3e16921f81ebd0df8fd63be3c30e1c41cd74c79"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_nadda_elected_unopposed_11th_president_20200120",
+        "in_ks_nadda_took_charge_20200120",
+        "in_ks_nadda_nomination_sole_candidate_20200120",
+        "in_ks_radha_mohan_singh_declares_nadda_elected_20200120",
+        "in_ks_amit_shah_hands_over_charge_20200120",
+        "in_ks_life_sketch_nadda_working_president_period_2019_2020",
+        "in_ks_life_sketch_nadda_elected_unopposed_20200120",
+        "in_ks_gadkari_styled_former_party_president_20200120",
+        "in_ks_rajnath_singh_styled_former_party_president_20200120",
+        "in_ks_radha_mohan_singh_hands_certificate_to_nadda_2020",
+        "in_ks_amit_shah_today_nadda_takes_over_2020"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        3,
+        6,
+        7,
+        8,
+        9,
+        12
+      ],
+      "pdf_pages_visually_inspected": [
+        6,
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "source_id": "in_bjp_site_nadda_letter_to_karyakartas_20230117",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_bjp_site_nadda_letter_to_karyakartas_20230117.bin",
+        "bytes": 109764,
+        "sha256": "8bdac60556ae1e4b6b0bd8982fa4ae9f9a22c4366f9a7f9a2e9d86bd8d8030f9"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_nadda_styled_national_president_letter_20230117"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_kamal_sandesh_vol18_no03_20230201",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_kamal_sandesh_vol18_no03_20230201.bin",
+        "bytes": 3893800,
+        "sha256": "86b4773c6eb826ddd38ce3668824f99a55c44849d2a61852be5513e4fdf5251a"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_national_executive_extends_nadda_tenure_to_june_2024_20230117",
+        "in_ks_amit_shah_announces_extension_20230117",
+        "in_ks_nadda_took_charge_20200120_recalled"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        8
+      ],
+      "pdf_pages_visually_inspected": [
+        8
+      ]
+    },
+    {
+      "source_id": "in_ks_nadda_address_national_convention_20240217",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_ks_nadda_address_national_convention_20240217.bin",
+        "bytes": 24183,
+        "sha256": "255b81f465be62d2f6870dbc70cbeafe83b1838671276397aca5bdc052ceddd6"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_nadda_styled_national_president_convention_20240217"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_bjp_site_bjp_presidents_list_20251120",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_bjp_presidents_list_20251120.bin",
+        "bytes": 83494,
+        "sha256": "523a4c17c0a46fa41f27b5402adfef127a81ce76e8f370fa3621210bd0ed5978"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_presidents_list_gadkari_2010_2013",
+        "in_bjp_presidents_list_rajnath_singh_2005_2009_2013_2014",
+        "in_bjp_presidents_list_amit_shah_2014_2017_2017_2020",
+        "in_bjp_presidents_list_nadda_2020_present"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_kamal_sandesh_vol20_no24_20251216",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_kamal_sandesh_vol20_no24_20251216.retry.bin",
+        "bytes": 1855901,
+        "sha256": "4436fe02345c3cfa06f9d605f6e74bf282ee58adc71ead469325af5de66f80ad"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_parliamentary_board_appoints_nabin_working_president_20251214",
+        "in_ks_nabin_assumes_working_presidency_20251215",
+        "in_ks_nadda_styled_national_president_20251215"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        2,
+        6,
+        36
+      ],
+      "pdf_pages_visually_inspected": [
+        2,
+        6,
+        36
+      ]
+    },
+    {
+      "source_id": "in_bjp_site_returning_officer_notice_20260116",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_returning_officer_notice_20260116.retry.bin",
+        "bytes": 659783,
+        "sha256": "24f5fc1b928e4ed6109c1eaa5ae37b1bd4cea6ba8e3cdc4bfc7972426cb11557"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_returning_officer_announces_president_election_schedule_20260116"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1
+      ],
+      "pdf_pages_visually_inspected": [
+        1
+      ]
+    },
+    {
+      "source_id": "in_bjp_site_returning_officer_statement_20260119",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_returning_officer_statement_20260119.retry.bin",
+        "bytes": 441845,
+        "sha256": "43a4cdb66469889ed9bdcbfff4befce64c8ed6fc6dd07fd810a34ef983ef264c"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_nabin_nominations_filed_20260119",
+        "in_bjp_nabin_nominations_valid_on_scrutiny_20260119",
+        "in_bjp_returning_officer_announces_only_nabin_proposed_20260119"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1
+      ],
+      "pdf_pages_visually_inspected": [
+        1
+      ]
+    },
+    {
+      "source_id": "in_bjp_site_nadda_felicitation_speech_20260120",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_bjp_site_nadda_felicitation_speech_20260120.retry.bin",
+        "bytes": 101761,
+        "sha256": "b0daf4fca5ef0dd95843e0308970e42e9dc469b823a510ab440c68be2778eb6c"
+      },
+      "claim_ids_reviewed": [
+        "in_bjp_nadda_says_nabin_assumed_charge_today_20260120",
+        "in_bjp_nadda_styled_ex_national_president_20260120"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    },
+    {
+      "source_id": "in_kamal_sandesh_vol21_no02_20260116",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-final-retry\\bodies\\in_kamal_sandesh_vol21_no02_20260116.bin",
+        "bytes": 1853966,
+        "sha256": "37da7adcbe88a98e051bd01181d0e27d5627e7b4501b6aed44f51d6ea2c56c8a"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_nabin_elected_unopposed_stated_20260119",
+        "in_ks_laxman_declares_nabin_elected_20260120",
+        "in_ks_nabin_assumes_charge_national_president_20260120",
+        "in_ks_nadda_hands_over_charge_20260120",
+        "in_ks_nabin_working_president_appointed_20251214_recalled",
+        "in_ks_former_national_president_rajnath_singh_20260120",
+        "in_ks_former_national_president_amit_shah_20260120",
+        "in_ks_former_national_president_nitin_gadkari_20260120"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [
+        1,
+        6,
+        7,
+        8,
+        9,
+        36
+      ],
+      "pdf_pages_visually_inspected": [
+        6,
+        7,
+        36
+      ]
+    },
+    {
+      "source_id": "in_ks_national_president_appoints_office_bearers_20260817",
+      "original": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\in_ks_national_president_appoints_office_bearers_20260817.retry.bin",
+        "bytes": 87779,
+        "sha256": "9f0ee4234af85c678e14ecfc7894cb37103f602172fd6938b96061d0dd76301b"
+      },
+      "claim_ids_reviewed": [
+        "in_ks_nabin_appoints_national_office_bearers_20260817"
+      ],
+      "material_claim_review": "no_actionable_discrepancy_with_disclosed_scope",
+      "cited_pdf_text_pages_read": [],
+      "pdf_pages_visually_inspected": []
+    }
+  ],
+  "auxiliary_date_anchor": {
+    "original": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\in27-source-preparation\\bodies\\advani-date-anchor.pdf",
+      "bytes": 180594,
+      "sha256": "5a201ebcca9a545a5ecc20d805ad7ccb08d1fbb714f40e39197384aab6794baa"
+    },
+    "pages_visually_inspected": [
+      1,
+      2
+    ]
+  },
+  "holder_observations": [
+    {
+      "name": "L. K. Advani",
+      "attested_on": "1991-01-08",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_rs_written_answers_19910108_usq1586_rath_yatra"
+      ],
+      "claim_ids": [
+        "in_rs_sahay_advani_president_bjp_rath_yatra_19910108"
+      ],
+      "note": "Observed on 8 January 1991: in the Rajya Sabha's written answers the Minister of State for Home Affairs, Shri Subodh Kant Sahay, says 'Shri L. K. Advani, President BJP' conducted the Rath Yatra of 1990 (in English, on the official debates store; the date line is printed on the facing column), the earliest single-day record adopted in the period.",
+      "uncertainty": "No start: he became President before the period (the party's 2003 bio-data gives 'May 9, 1986', a retrospective list entry), and no record reviewed attests the holder on 1 January 1990 itself; the party's resolutions of April, July and November 1990 style him President under multi-day headings. No end: the farewell announcing Dr. Joshi's taking over 'tomorrow' is printed twice under conflicting headings (31 January and 1-3 February 1991) and names no speaker, the address of 1 February 1991 says only that he declined a third term, and the party's 1996 profile says 'until January 1991' (retrospective); Joshi's later observation is not used as his end."
+    },
+    {
+      "name": "Murli Manohar Joshi",
+      "attested_on": "1991-12-10",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_rs_debate_19911210_ekta_yatra_bjp_president"
+      ],
+      "claim_ids": [
+        "in_rs_narayanasamy_ekta_yatra_bjp_president_joshi_19911210"
+      ],
+      "note": "Observed on 10 December 1991: in the Rajya Sabha, under the item headed 'REGARDING \"EKTA YATRA\" BY B.J.P. PRESIDENT', Shri V. Narayanasamy asks for 'this Ekta Yatra, by the BJP President, Dr. Murli Manohar Joshi' to be stopped (in English, on the official debates store).",
+      "uncertainty": "No start: the farewell announces his taking over 'tomorrow' (31 January or 1-3 February 1991 by conflicting headings) and the unnamed acceptance address of 1 February 1991 says the presidentship has been entrusted, but no record states the day he assumed the office. No end: he is 'Ex-President' by the National Executive of 18-19 December 1993 and the address of 18 June 1993 speaks of his stewardship in the past tense, without a day; Advani's return is not used as his end. The party's own single-day record naming him is the resolution of 27 February 1993 (a continuation)."
+    },
+    {
+      "name": "L. K. Advani",
+      "attested_on": "1997-07-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_org_swarna_jayanti_press_release_19970716"
+      ],
+      "claim_ids": [
+        "in_bjp_press_release_president_advani_19970716"
+      ],
+      "note": "Observed on 16 July 1997: the party's release headed 'Press Release by President, Shri Lal Krishna Advani', dated 16 July 1997, in which the author writes 'As President of the BJP'; the earliest single-day record adopted after his return to the presidency.",
+      "uncertainty": "No start: the address of 18 June 1993 thanking the National Council for electing its speaker 'once again President' names no speaker, the party's 2003 bio-data gives 'July, 1993' (retrospective), and no record states the day of the election or of his taking charge; the re-election of 10 November 1995 is stated without a day. No end: on 2 May 1998 the unnamed speaker announced the handover for 'tomorrow', the bio-data gives 'May 2, 1998' and a report of 2000 says Thakre took over at the session of 3 and 4 May 1998; none states the day the office ended."
+    },
+    {
+      "name": "Kushabhau Thakre",
+      "attested_on": "1999-02-27",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_thakre_budget_statement_19990227"
+      ],
+      "claim_ids": [
+        "in_bjp_thakre_styled_president_budget_statement_19990227"
+      ],
+      "note": "Observed on 27 February 1999: the party heads a statement 'Statement on Union Budget 1999-2000 issued by Shri Kushabhau Thakre, President, BJP', the earliest single-day party styling of him found.",
+      "uncertainty": "No start: he was declared elected after 11 April 1998 on a day no record gives, and at the National Council session of 3 and 4 May 1998 he said 'I assume this office', but the day of delivery is not printed. No end: on 2 August 2000 he was the 'outgoing President' and on 27-28 August 2000 his successor called him 'my immediate predecessor', without a day; Bangaru Laxman's election is not used as his end."
+    },
+    {
+      "name": "Bangaru Laxman",
+      "attested_on": "2000-08-31",
+      "from": null,
+      "until": "2001-03-14",
+      "sources": [
+        "in_bjp_site_laxman_statement_20000831",
+        "in_bjp_site_office_bearers_press_release_20010314"
+      ],
+      "claim_ids": [
+        "in_bjp_laxman_styled_president_maiden_press_conference_20000831",
+        "in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314"
+      ],
+      "note": "Observed on 31 August 2000: the party heads the statement of his maiden press conference 'Statement issued by Shri Bangaru Laxman, President BJP'. The atlas shows only 'Observed on' for a holder with attested_on, so this note carries the end: 14 March 2001, when the available office bearers, by the party's release of that day, 'unanimously decided to accept the resignation with immediate effect'.",
+      "uncertainty": "No start: his nominations were filed on 2 August 2000 and he took over 'at the two-day National Council session, which concluded in Nagpur on August 28', but no record gives the declaration or the day of assumption. The end is day-only and rests on the office bearers' release; the resignation letter is dated 13 March 2001 in a later record, and the National Executive recorded the resignation on 24 March 2001 without a day."
+    },
+    {
+      "name": "M. Venkaiah Naidu",
+      "attested_on": null,
+      "from": "2002-07-01",
+      "until": null,
+      "sources": [
+        "in_bjp_today_editorial_20020716"
+      ],
+      "claim_ids": [
+        "in_bjp_today_naidu_took_over_on_july_1_20020701"
+      ],
+      "note": "From 1 July 2002: the party journal BJP Today (issue of July 16-31, 2002) says 'he took over from Shri Jana Krishnamurthi on July 1, his 53rd birth anniversary as the president'; the party's profile dated 1 July 2002 lists 'Ist July 2002 onwards President' and he held his 'first press conference on becoming President' on 11 July 2002.",
+      "uncertainty": "The start is day-only and rests on the party journal's editorial, a party statement of the day of his taking over published in the next issue; no record of the selecting body or of an election or ratification was found (the National Council address of 3 August 2002 speaks of workers having 'accepted and endorsed this decision' and names no speaker). No end: on 18 October 2004 his resignation was accepted without a stated day of effect, and Advani's appointment that day is not used as his end."
+    },
+    {
+      "name": "L. K. Advani",
+      "attested_on": "2004-10-20",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_advani_statement_20041020"
+      ],
+      "claim_ids": [
+        "in_bjp_advani_statement_as_president_20041020"
+      ],
+      "note": "Observed on 20 October 2004: the party heads the statement of his press conference 'Statement issued by Shri L.K. Advani President'.",
+      "uncertainty": "No start: the office bearers resolved on 18 October 2004 to appoint him, with ratification by the National Council to follow, and his statement of 20 October recalls 'assuming the office ... two days ago', a recollection in passing that does not date a start (CLAUDE-C01-15 check C1); the National Council endorsed his election on 27 October 2004 (the party's release names the National Executive). No end: his resignation of June 2005 was rejected, and on 26 December 2005 he said it was the last meeting he would preside over; no record states the day his office ended, and Rajnath Singh's styling is not used as his end."
+    },
+    {
+      "name": "Rajnath Singh",
+      "attested_on": "2006-01-02",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_rajnath_singh_statement_20060102"
+      ],
+      "claim_ids": [
+        "in_bjp_rajnath_singh_styled_national_president_20060102"
+      ],
+      "note": "Observed on 2 January 2006: the party heads his statement 'The statement released by the BJP National President, Shri Rajnath Singh'.",
+      "uncertainty": "No start: the statement's 'I am accepting the office' is in the present tense and 'I have taken over' is undated, and on 20 January 2006 he said the responsibility was placed on him at the conclusion of the Silver Jubilee convention (dated 28-30 December 2005 by the party) without a day; no record of his election or its declaration was found. No end: the Parliamentary Board thanked him on 19 December 2009 'for the leadership provided by him to the party during his tenure as president', without a day."
+    },
+    {
+      "name": "Nitin Gadkari",
+      "attested_on": "2009-12-24",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_gadkari_first_press_conference_as_president_20091224"
+      ],
+      "claim_ids": [
+        "in_bjp_gadkari_first_press_conference_as_president_20091224"
+      ],
+      "note": "Observed on 24 December 2009: the party dates the statement in which he meets the national media 'in my first press conference as President of the BJP'.",
+      "uncertainty": "No start: the party's profile headed 'BJP National President' is dated 18 December 2009 on its page and 19 December 2009 in the site's listing, and no record gives the selecting body, the day of selection or the day he took charge; at the National Council of 18 February 2010 he said the leadership and the Council had elected him, without a day. No end here (see the observation of 22 January 2013)."
+    },
+    {
+      "name": "Nitin Gadkari",
+      "attested_on": "2013-01-22",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_gadkari_statement_no_second_term_20130122"
+      ],
+      "claim_ids": [
+        "in_bjp_gadkari_styled_national_president_statement_20130122"
+      ],
+      "note": "Observed on 22 January 2013: the party heads his statement 'Press statement issued by BJP National President, Shri Nitin Gadkari' and 'Statement by Sh. Nitin Gadkari, President'.",
+      "uncertainty": "No start (see the observation of 24 December 2009). No end: the same statement says he decided not to seek a second term, which is not a resignation, and by 27 January 2013 the party styles him 'former BJP National President'; no record states the day his office ended, and Rajnath Singh's election of 23 January 2013 is not used as his end."
+    },
+    {
+      "name": "Rajnath Singh",
+      "attested_on": "2013-03-02",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302"
+      ],
+      "claim_ids": [
+        "in_bjp_rajnath_singh_presidential_address_national_council_20130302"
+      ],
+      "note": "Observed on 2 March 2013: the party's page dated that day is headed 'Presidential speech by Shri Rajnath Singh at BJP National Council Meeting at Talkatora Stadium' (the meeting of 2-3 March 2013).",
+      "uncertainty": "No start: the National Election Officer declared him elected unopposed on 23 January 2013 and the party calls him 'Newly Elected President' that day, but no record states the day he took charge ('after taking over the responsibility of the national president again' is undated); 2 March is the page's date, and the Hindi text of the address is filed as 3 March. No end: on 9 July 2014 the Parliamentary Board called him the 'outgoing Party President', without a day."
+    },
+    {
+      "name": "Amit Shah",
+      "attested_on": "2014-07-09",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_profile_national_president_amit_shah_20140709"
+      ],
+      "claim_ids": [
+        "in_bjp_amit_shah_styled_national_president_profile_20140709"
+      ],
+      "note": "Observed on 9 July 2014: the party's release of that day is headed 'Profile of BJP National President, Shri Amit Shah', on the day the Parliamentary Board thanked the 'outgoing' President Rajnath Singh.",
+      "uncertainty": "No start: no party record of the decision naming him, its body or the day he took charge was found; at the National Council of 9 August 2014 he spoke of 'my election as the BJP's National President' without a day. No end here (see the observations of 2016 and 2019)."
+    },
+    {
+      "name": "Amit Shah",
+      "attested_on": "2016-02-02",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_amit_shah_felicitation_20160202"
+      ],
+      "claim_ids": [
+        "in_bjp_amit_shah_styled_national_president_felicitation_20160202"
+      ],
+      "note": "Observed on 2 February 2016: the party's release of that day is headed 'Members from different communities felicitating BJP National President, Shri Amit Shah' and its Hindi body speaks of his being named BJP President again.",
+      "uncertainty": "No start: his re-election is reported on 24 January 2016 (nominations filed that day) without a declaration text, and a re-election is not a new start. No end here (see the observation of 2019)."
+    },
+    {
+      "name": "Amit Shah",
+      "attested_on": "2019-06-17",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_ks_nadda_appointed_working_president_20190617"
+      ],
+      "claim_ids": [
+        "in_ks_amit_shah_styled_national_president_at_board_meeting_20190617"
+      ],
+      "note": "Observed on 17 June 2019: the party organ Kamal Sandesh reports the Parliamentary Board meeting of that day, attended by 'Union Home Minister and BJP National President Shri Amit Shah', which made J. P. Nadda National Working President.",
+      "uncertainty": "No start (see the observation of 2014). No end: his request to be relieved was reported that day, the party said he would continue as National President until the organisational elections, and on 20 January 2020 he handed over charge to J. P. Nadda; a handover statement is never an until, and the day is also his successor's taking charge, which is not used as his end."
+    },
+    {
+      "name": "J. P. Nadda",
+      "attested_on": null,
+      "from": "2020-01-20",
+      "until": null,
+      "sources": [
+        "in_kamal_sandesh_vol15_no03_20200201"
+      ],
+      "claim_ids": [
+        "in_ks_nadda_took_charge_20200120"
+      ],
+      "note": "From 20 January 2020: the party organ Kamal Sandesh (Vol. 15, No. 03, 01-15 February, 2020) reports that he 'took charge from the outgoing Party National President and Union Home Minister Shri Amit Shah on 20 January, 2020', after his unopposed election that day.",
+      "uncertainty": "The start is day-only and rests on the party organ's report of the day's events. His National Working Presidency from 17 June 2019 is claims only. No end here (see the later observations)."
+    },
+    {
+      "name": "J. P. Nadda",
+      "attested_on": "2023-01-17",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_bjp_site_nadda_letter_to_karyakartas_20230117"
+      ],
+      "claim_ids": [
+        "in_bjp_nadda_styled_national_president_letter_20230117"
+      ],
+      "note": "Observed on 17 January 2023: the party's page of that day is headed 'Letter : Hon'ble BJP National President Shri J.P. Nadda to the Party Karyakartas', on the day the National Executive extended his tenure 'till June 2024'.",
+      "uncertainty": "No start (see the holder from 20 January 2020). No end: the extension names a month ('till June 2024'), which is not an until; no record of a further extension or of a constitutional amendment on the tenure was found."
+    },
+    {
+      "name": "J. P. Nadda",
+      "attested_on": "2025-12-15",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_kamal_sandesh_vol20_no24_20251216"
+      ],
+      "claim_ids": [
+        "in_ks_nadda_styled_national_president_20251215"
+      ],
+      "note": "Observed on 15 December 2025: Kamal Sandesh (Vol. 20, No. 24) reports that 'BJP National President and Union Minister Shri JP Nadda' was present when Nitin Nabin assumed charge as National Working President that day.",
+      "uncertainty": "No start (see the holder from 20 January 2020). No end: on 20 January 2026 he handed over charge to Nitin Nabin and the party called him 'Ex National President'; a handover statement and a predecessor reference are never an until, and the day is also his successor's start, which is not used as his end. The party still styled him National President on 25 December 2025 (a lead)."
+    },
+    {
+      "name": "Nitin Nabin",
+      "attested_on": null,
+      "from": "2026-01-20",
+      "until": null,
+      "sources": [
+        "in_bjp_site_nadda_felicitation_speech_20260120",
+        "in_kamal_sandesh_vol21_no02_20260116"
+      ],
+      "claim_ids": [
+        "in_bjp_nadda_says_nabin_assumed_charge_today_20260120",
+        "in_ks_nabin_assumes_charge_national_president_20260120"
+      ],
+      "note": "From 20 January 2026: the party's release of that day quotes the outgoing President saying 'Today is a very historic day, as the young, energetic and talented National President Shri Nitin Nabin has assumed charge as the National President', and Kamal Sandesh (Vol. 21, No. 02, published on 24 January 2026) says he 'formally assumed charge at the party headquarters in New Delhi on 20 January 2026'.",
+      "uncertainty": "The start is day-only. His National Working Presidency from 14 and 15 December 2025 is claims only, and the National Returning Officer's announcement of 19 January 2026 that only his name had been proposed is an election claim. No end here (see the observation of 17 August 2026)."
+    },
+    {
+      "name": "Nitin Nabin",
+      "attested_on": "2026-08-17",
+      "from": null,
+      "until": null,
+      "sources": [
+        "in_ks_national_president_appoints_office_bearers_20260817"
+      ],
+      "claim_ids": [
+        "in_ks_nabin_appoints_national_office_bearers_20260817"
+      ],
+      "note": "Observed on 17 August 2026: Kamal Sandesh's page, as captured on 4 September 2026, says 'Bharatiya Janata Party Hon'ble National President Shri Nitin Nabin is pleased to appoint' the new national office bearers 'on 17 August 2026'.",
+      "uncertainty": "No start (see the holder from 20 January 2026). No end: no vacancy, resignation or acting President is recorded before the cutoff of 7 September 2026. The page prints 'Published on: 16 Aug, 2026', a day before the appointment day its text gives, and its metadata records a modification on 2 September 2026; its only capture (4 September 2026) is of the modified page, so the day is kept as the text prints it, and either day is before the cutoff."
+    }
+  ],
+  "technical_tests_run_by_this_reviewer": [],
+  "tracked_edits": []
+}

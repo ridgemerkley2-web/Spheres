@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_an_jo_debats_19950519",
+  "source_url": "https://archives.assemblee-nationale.fr/10/cri/1994-1995-ordinaire2/003.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 44865,
+  "source_response_sha256": "b4bfce4a6b11eacd4f88d91cae1826f02716d13a053b7337dd81e89e6096754d",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF on the Assemblée nationale's archive host (Apache; Last-Modified 6 February 2021, ETag \"af41-5baa6d2b57c80\"), a typeset reconstruction of the sitting record (Acrobat Distiller, 2008), linked from https://archives.assemblee-nationale.fr/10/cri/10-1994-1995-ordinaire2.html. The sitting's first item, on the end of M. Jacques Chirac's deputy mandate recorded in the Journal officiel of 16 May 1995, concerns an Assembly seat and is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Pages 1 (sommaire) and 2 (items 1 and 2: the letter and the start of the message) rendered and read by the part A researcher; text layer re-read."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_chirac_letter_to_assembly_as_president_19950518",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": "JACQUES CHIRAC",
+      "role_title": "Président de la République",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1995-05-18",
+      "text": "At the sitting of 19 May 1995 the President of the Assembly reads a letter from the President of the Republic dated 'Paris, le 18 mai 1995', sent under Article 18 of the Constitution and signed JACQUES CHIRAC, and the message it transmits, which says 'la façon dont s'est opérée la transition d'un septennat à l'autre' shows the continuity of the institutions.",
+      "locator": {
+        "pdf_page": 2,
+        "printed_page": 2,
+        "item": "2 - Message de M. le Président de la République"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

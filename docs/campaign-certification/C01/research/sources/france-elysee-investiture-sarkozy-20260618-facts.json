@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_investiture_sarkozy",
+  "source_url": "https://web.archive.org/web/20260618045617id_/https://www.elysee.fr/la-presidence/l-investiture-de-nicolas-sarkozy",
+  "original_url": "https://www.elysee.fr/la-presidence/l-investiture-de-nicolas-sarkozy",
+  "archive_capture_utc": "2026-06-18T04:56:17Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 247821,
+  "source_response_sha256": "6c9c86b3489f6fe42616fcd244c4d6298142afb5649bda5e4725a3a77af021af",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-18T04:56:17Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 15 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day. The page also reproduces the 16 May 2007 installation address, recorded once from the Présidence print.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML main content read (narrative paragraphs and the document card); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_elysee_sarkozy_received_by_chirac_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République",
+      "event_kind": "handover_meeting",
+      "attested_on": "2007-05-16",
+      "text": "The Élysée states that M. Jacques CHIRAC received M. Nicolas SARKOZY, 'élu le 6 mai 2007 Président de la République', at the Élysée Palace 'à 11 heures le mercredi 16 mai 2007'.",
+      "locator": {
+        "html": "main content, first paragraph"
+      }
+    },
+    {
+      "claim_id": "fr_elysee_sarkozy_investiture_ceremony_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2007-05-16",
+      "text": "It states that after their meeting M. Nicolas SARKOZY went to the Salle des Fêtes, where the President of the Constitutional Council proclaimed the official results of the presidential election.",
+      "locator": {
+        "html": "main content, second paragraph, first clause"
+      }
+    },
+    {
+      "claim_id": "fr_elysee_sarkozy_investiture_record_signed_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_record_signed",
+      "attested_on": "2007-05-16",
+      "text": "It states that the proclamation was followed by 'la signature du procès-verbal d'investiture, M. Nicolas SARKOZY devenant alors le 6ème président de la Vème République'.",
+      "locator": {
+        "html": "main content, second paragraph, closing clause"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

@@ -1,0 +1,92 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_2022_197_pdr_proclamation_pdf",
+  "source_url": "https://web.archive.org/web/20230127073042id_/https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+  "original_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+  "archive_capture_utc": "2023-01-27T07:30:42Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2022-04-27",
+  "access_method": "downloaded_archived_raw_capture_pdf_text_and_page_render_review",
+  "source_response_bytes": 161083,
+  "source_response_sha256": "70ea188084dadcd92fcd28b0a6c7d35f3f0c623f8345e34cc1aed82bf1759643",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original file, captured at 2023-01-27T07:30:42Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part C researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 31 to 85 minutes later; the part C check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 27 January 2023 of the Council's static PDF (original Last-Modified 27 April 2022; embedded CreationDate 27 April 2022), served without Content-Encoding. The Council's HTML page for the same decision is not recorded: one rendering per decision, and its Journal officiel reference is now taken from the Journal officiel's own page.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      8,
+      9
+    ],
+    "method": "Text layer of all nine pages read; pages 1, 8 and 9 rendered and read by the part C researcher; page 2 (visas) read from the text layer for this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2022_cites_macron_proclamation_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République",
+      "event_kind": "proclamation_reference",
+      "attested_on": "2017-05-10",
+      "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2017 proclamant M. Emmanuel MACRON Président de la République et de la date à laquelle celui-ci a pris ses fonctions'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "visa 'Au vu de la décision du Conseil constitutionnel du 10 mai 2017'"
+      }
+    },
+    {
+      "claim_id": "fr_2022_second_round_held_20220424",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "election_round",
+      "attested_on": null,
+      "period": {
+        "from": "2022-04-23",
+        "through": "2022-04-24"
+      },
+      "text": "The decision records the second round 'auquel il a été procédé les 23 et 24 avril 2022': 48 752 339 registered, 32 057 325 votes cast; M. Emmanuel MACRON 18 768 639 and Mme Marine LE PEN 13 288 686.",
+      "locator": {
+        "page": 8,
+        "item": "paragraph 22 and the sentence after the results"
+      }
+    },
+    {
+      "claim_id": "fr_cc_proclaims_macron_president_20220427",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "result_proclamation",
+      "attested_on": "2022-04-27",
+      "text": "'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME M. Emmanuel MACRON Président de la République française'; the decision was deliberated at the sittings of 25, 26 and 27 April 2022 and 'Rendu public le 27 avril 2022'.",
+      "locator": {
+        "page": "8-9",
+        "item": "operative paragraph after 'EN CONSÉQUENCE'; closing formula"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2022_states_effect_from_20220427",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "stated_start_of_term",
+      "attested_on": "2022-04-27",
+      "text": "The same operative sentence proclaims him President 'à compter du 14 mai 2022 à 0 heure'.",
+      "locator": {
+        "page": 8,
+        "item": "operative paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

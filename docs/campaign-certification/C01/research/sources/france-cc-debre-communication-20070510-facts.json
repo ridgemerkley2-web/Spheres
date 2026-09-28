@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_debre_communication_20070510",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/20070510/declaration.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-05-10",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 39241,
+  "source_response_sha256": "5acfc124a4ee2361814503287d9b0ee2e8b0c7a78d4b58692d99cab23a4f9828",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 17 February 2010, ETag \"4b7bd564-9949\"; embedded CreationDate 10 May 2007). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "All five pages read from the text layer; page 1 (the proclamation statement) rendered and read by the part B researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2007_results_arrested_session_20070510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République française",
+      "event_kind": "result_declaration_oral",
+      "attested_on": "2007-05-10",
+      "text": "On Thursday 10 May 2007 the President of the Constitutional Council states that the second-round results were settled by the Council at its sitting of 10 May 2007 and that 'le Conseil constitutionnel proclame M. Nicolas SARKOZY Président de la République française'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "heading and first paragraphs"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2007_mandate_begins_by_20070510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République française",
+      "event_kind": "term_start_upper_bound",
+      "attested_on": "2007-05-10",
+      "text": "The communication states: 'Son mandat de cinq ans, fixé par la Constitution, débutera au plus tard le 16 mai à minuit.'",
+      "locator": {
+        "pdf_page": 1,
+        "item": "paragraph 'Son mandat de cinq ans'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

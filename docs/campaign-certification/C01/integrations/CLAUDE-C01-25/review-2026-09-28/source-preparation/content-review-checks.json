@@ -1,0 +1,75 @@
+{
+  "format": "spheres-bounded-review-checks/v1",
+  "submission": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+  "baseline_scope_isolation": {
+    "base": "a33a8987",
+    "existing_32_sources_unchanged": true,
+    "masked_appended_claims_and_two_owned_role_changes_equal_base": true,
+    "runtime_files_changed": false,
+    "existing_source_repair_must_preserve": "sa_bush41_address_19900808 differs in integration 83046c162098d59a6c4532f4173041f82cfd79b3; do not restore full old packet"
+  },
+  "test_executions": 123,
+  "checks": [
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p test_saudi*.py -v",
+      "passed": true,
+      "tests": 17,
+      "log_path": "../sa25-saudi-tests.log",
+      "bytes": 3246,
+      "sha256": "c9a1b98aafbb705658903994a2046b8154682a551095a93720dd54f4e6c65983"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p test_*research*.py -v",
+      "passed": true,
+      "tests": 79,
+      "log_path": "../sa25-research-tests.log",
+      "bytes": 14711,
+      "sha256": "4fa69c6174ff0cefb4bb29b42585103f698fad606af37200c141f5d1a5c7cedb"
+    },
+    {
+      "command": "python -B -m unittest discover -s tools/avatars -p test_campaign*.py -v",
+      "passed": true,
+      "tests": 16,
+      "log_path": "../sa25-campaign-tests.log",
+      "bytes": 2544,
+      "sha256": "5f1dc38ffac5645ce5b6c40fb3493a9071f046a65453c9bd69221372497dcb22"
+    },
+    {
+      "command": "node tools/ui/check_leadership_research_review.cjs",
+      "passed": true,
+      "tests": 11,
+      "log_path": "../sa25-atlas-tests.log",
+      "bytes": 1138,
+      "sha256": "5cd29de22b2c32b2a8891b69ea4401655f6ea93b1233bff31cadbabe94998ba9"
+    },
+    {
+      "command": "python -B tools/avatars/campaign_research.py --check",
+      "passed": true,
+      "tests": null,
+      "log_path": "../sa25-index-check.log",
+      "bytes": 251,
+      "sha256": "7a470ddf96bec09722c3affa641081f3ad36934e20183fd757c6e37324a3c9d3"
+    },
+    {
+      "command": "python -B tools/avatars/campaign_census.py --check",
+      "passed": true,
+      "tests": null,
+      "log_path": "../sa25-census-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "command": "python -B tools/planning/workboard.py --check",
+      "passed": true,
+      "tests": null,
+      "log_path": "../sa25-workboard-check.log",
+      "bytes": 146,
+      "sha256": "fea48f4670d1b09ae63edc66cc7a343b0ec07f3d65321d6d3865b552dfb87705"
+    }
+  ],
+  "initial_invocation_error": {
+    "path": "../sa25-tests.log",
+    "reason": "Mistyped nonexistent test_campaign module; Saudi and research modules passed, command exited 1. Retained, then exact discover commands above passed."
+  },
+  "git_diff_check_passed": true
+}

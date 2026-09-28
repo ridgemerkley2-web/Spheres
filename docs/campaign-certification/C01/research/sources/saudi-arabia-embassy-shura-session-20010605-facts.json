@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_shura_session_20010605",
+  "source_url": "https://web.archive.org/web/20010711173052id_/http://www.saudiembassy.net:80/press_release/01-spa/06-05-shura.htm",
+  "original_url": "http://www.saudiembassy.net:80/press_release/01-spa/06-05-shura.htm",
+  "archive_capture_utc": "2001-07-11T17:30:52Z",
+  "source_title": "Shura Council Holds First Session of Third Term (June 5, 2001)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2001-06-05",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20010711173052id_/http://www.saudiembassy.net:80/press_release/01-spa/06-05-shura.htm",
+  "source_response_bytes": 3721,
+  "source_response_sha256": "d84467cba193de28677bdcaf995ab2f1a90cf6e26a0d933de613b650dd70f94c",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:48:37Z and again at 2026-09-28T00:31:21Z, 42 minutes later; both identical (3721 bytes, SHA-256 d84467cba193de28677bdcaf995ab2f1a90cf6e26a0d933de613b650dd70f94c).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20010711173052 of http://www.saudiembassy.net:80/press_release/01-spa/06-05-shura.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/01-spa/; an official Saudi government publication in English, not the Arabic original. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_chairs_first_session_20010605",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad bin Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "2001-06-05",
+      "text": "Release dated June 5, 2001: the Council 'held the first session of its third four-year term in Riyadh today under the chairmanship of Shaikh Muhammad bin Jubair, whose term of office has been renewed', with the newly appointed Deputy Chairman Dr. Bakri Shatta.",
+      "locator": "Paragraph 1"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

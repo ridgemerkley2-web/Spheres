@@ -1,0 +1,14 @@
+   Compiling spheres-sim v0.5.0 (D:\spheres-offload\codex-next-20260928\a1-firing-observer\spheres-sim)
+error: couldn't read `spheres-sim\src\../../docs/research/usa-party-roles-1990-starter.json`: The system cannot find the path specified. (os error 3)
+ --> spheres-sim\src\party_executive_eligibility_tests.rs:7:18
+  |
+7 |     for text in [include_str!("../../docs/research/usa-party-roles-1990-starter.json"),
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: couldn't read `spheres-sim\src\../../docs/research/france-party-leaders-1990-2026.json`: The system cannot find the path specified. (os error 3)
+ --> spheres-sim\src\party_executive_eligibility_tests.rs:8:9
+  |
+8 |         include_str!("../../docs/research/france-party-leaders-1990-2026.json")]
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: could not compile `spheres-sim` (lib test) due to 2 previous errors

@@ -1,0 +1,109 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_note_mai_2012_duree_des_mandats",
+  "source_url": "https://web.archive.org/web/20250224042741id_/https://www.conseil-constitutionnel.fr/election-presidentielle-2012/mai-2012-proclamation-des-resultats-de-l-election-presidentielle-et-duree-des-mandats",
+  "original_url": "https://www.conseil-constitutionnel.fr/election-presidentielle-2012/mai-2012-proclamation-des-resultats-de-l-election-presidentielle-et-duree-des-mandats",
+  "archive_capture_utc": "2025-02-24T04:27:41Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 48899,
+  "source_response_sha256": "5750873809367f267d29c72c6480d4e19fbe74aaa8668ca4347dad339529c4e1",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-02-24T04:27:41Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 24 February 2025 of the Council's undated explanatory note; it links Jean-Louis Debré's address of 15 May 2012, so it was completed on or after that day. The live page is a Drupal render with a per-request form token and is not a reproducible identity. The note is retrospective: its dated statements are claims only, never boundaries.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full, including the two document links; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_note_mitterrand_second_mandate_due_end_19950521",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "M. Mitterrand",
+      "role_title": "Président de la République",
+      "event_kind": "computed_term_expiry_retrospective",
+      "attested_on": "1995-05-21",
+      "text": "The note states: 'À la suite de sa réélection en 1988, M. Mitterrand voyait son second mandat s'achever le 21 mai 1995 à 0 heure', the Council fixing the entry into office for a renewed mandate 'jour pour jour' from the expiry of the previous one.",
+      "locator": {
+        "html": "paragraph beginning 'À la suite de sa réélection en 1988'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_note_chirac_1995_passation_19950517",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "transfer_of_powers_retrospective",
+      "attested_on": "1995-05-17",
+      "text": "The note states: 'En 1995, la passation des pouvoirs avec Monsieur Jacques Chirac s'est, à nouveau d'un commun accord entre les deux Présidents, tenue le 17 mai'.",
+      "locator": {
+        "html": "paragraph beginning 'En 1995, la passation des pouvoirs', first clause"
+      }
+    },
+    {
+      "claim_id": "fr_cc_note_chirac_first_mandate_end_20020517",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "computed_term_expiry_retrospective",
+      "attested_on": "2002-05-17",
+      "text": "The same sentence continues: 'le mandat de ce dernier s'achevant le 17 mai 2002 à 0 heure'.",
+      "locator": {
+        "html": "paragraph beginning 'En 1995, la passation des pouvoirs', closing clause"
+      }
+    },
+    {
+      "claim_id": "fr_cc_note_passation_sarkozy_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur Nicolas Sarkozy",
+      "role_title": "Président de la République",
+      "event_kind": "transfer_of_powers_retrospective",
+      "attested_on": "2007-05-16",
+      "text": "The note states: 'La passation des pouvoirs avec Monsieur Nicolas Sarkozy s'est tenue le 16 mai 2007.'",
+      "locator": {
+        "html": "paragraph beginning 'En 1995, la passation des pouvoirs', second sentence"
+      }
+    },
+    {
+      "claim_id": "fr_cc_note_sarkozy_mandate_expiry_20120516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur Nicolas Sarkozy",
+      "role_title": "Président de la République",
+      "event_kind": "computed_term_expiry_retrospective",
+      "attested_on": "2012-05-16",
+      "text": "It adds: 'En application de l'article 6 de la Constitution, le mandat de ce dernier vient ainsi à échéance le 16 mai 2012 à 0 heure.'",
+      "locator": {
+        "html": "paragraph beginning 'En 1995, la passation des pouvoirs', final sentence"
+      }
+    },
+    {
+      "claim_id": "fr_cc_note_links_debre_address_hollande_investiture",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "François Hollande",
+      "role_title": "Président de la République",
+      "event_kind": "document_link_title",
+      "attested_on": null,
+      "printed_date": null,
+      "text": "The note links the PDF ceremonie_du_PR.pdf under the title 'Discours de Jean-Louis Debré, Président du conseil constitutionnel, lors de l'investiture de François Hollande, Président de la République'.",
+      "locator": {
+        "html": "link after the note text",
+        "href": "/sites/default/files/as/root/bank_mm/discours_interventions/2012/ceremonie_du_PR.pdf"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

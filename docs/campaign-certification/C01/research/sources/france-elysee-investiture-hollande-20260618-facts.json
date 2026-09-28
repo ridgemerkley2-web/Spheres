@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_investiture_hollande",
+  "source_url": "https://web.archive.org/web/20260618045558id_/https://www.elysee.fr/linvestiture-de-francois-hollande",
+  "original_url": "https://www.elysee.fr/linvestiture-de-francois-hollande",
+  "archive_capture_utc": "2026-06-18T04:55:58Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 221593,
+  "source_response_sha256": "bfe0451958ce14edc13d01a8463ba2050cff083039e1588991a296dedb5890ad",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-18T04:55:58Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 15 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML main content read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_elysee_hollande_received_by_sarkozy_20120515",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François Hollande",
+      "role_title": "Président de la République",
+      "event_kind": "handover_meeting",
+      "attested_on": "2012-05-15",
+      "text": "The Élysée states that 'Le mardi 15 mai 2012 à 10h00, M. François Hollande a été accueilli par M. Nicolas Sarkozy au Palais de l'Élysée' following his election on 6 May 2012 as seventh President of the Fifth Republic, and that after their meeting he accompanied M. Nicolas Sarkozy to the steps.",
+      "locator": {
+        "html": "main content, first paragraph and the first sentence of the second"
+      }
+    },
+    {
+      "claim_id": "fr_elysee_hollande_investiture_ceremony_20120515",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François Hollande",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2012-05-15",
+      "text": "It states that he then received from General Georgelin, Grand Chancellor, the insignia of Grand Master of the Legion of Honour, and that the investiture ceremony continued with the proclamation of the official results presided over by Jean-Louis Debré, President of the Constitutional Council.",
+      "locator": {
+        "html": "main content, second and third paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

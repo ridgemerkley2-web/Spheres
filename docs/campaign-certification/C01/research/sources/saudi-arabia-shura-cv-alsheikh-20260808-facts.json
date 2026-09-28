@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_cv_alsheikh_20260808",
+  "source_url": "https://web.archive.org/web/20260808032029id_/https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+  "original_url": "https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+  "archive_capture_utc": "2026-08-08T03:20:29Z",
+  "source_title": "Shura Council biography page: عبدالله بن محمد بن إبراهيم آل الشيخ (Arabic), Internet Archive capture 20260808032029",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260808032029id_/https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+  "source_response_bytes": 60974,
+  "source_response_sha256": "b44a27c228fd17253825edc5955f76b80da1655143881b3b1018bc0a8c84ef57",
+  "source_response_encoding": "gzip transport; the recorded identity is the uncompressed body (HTML, UTF-8)",
+  "transport_response": {
+    "bytes": 15780,
+    "sha256": "4b9b72d3545d58e9a53ed2a3c4ddc6534585e2227f24b88de3a2eb141872edd2",
+    "content_encoding": "gzip"
+  },
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part B): downloaded on 2026-09-26 at 02:10-02:11 UTC and again at 02:44 UTC, identical; its independent check re-downloaded it at 02:53 UTC and obtained the same gzip transport body and, decompressed, the same body. This packet: downloaded at 2026-09-27T23:50:00Z and again at 2026-09-28T00:32:53Z, 42 minutes later; both identical (60974 bytes, SHA-256 b44a27c228fd17253825edc5955f76b80da1655143881b3b1018bc0a8c84ef57).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20260808032029 of https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. The archived original was itself gzip-encoded, so web.archive.org replays the id_ body with Content-Encoding: gzip even to Accept-Encoding: identity: curl without --compressed saves the 15780-byte gzip transport body (SHA-256 4b9b72d3545d58e9a53ed2a3c4ddc6534585e2227f24b88de3a2eb141872edd2), and curl --compressed saves the 60974-byte body. Following the house convention, the recorded identity is the uncompressed body. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's own retrospective biography, captured before the cutoff. The archived original was gzip-encoded, so the raw capture is replayed with Content-Encoding: gzip.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_cv_a13_retrospective_20260808",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-04",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2026-08-08",
+      "text": "The Council's biography page for 'صاحب المعالي الشيخ الدكتور/ عبدالله بن محمد بن إبراهيم آل الشيخ', as archived on 8 August 2026, says that after serving as Minister of Justice (Royal Order 2/125 of 19/3/1413 AH) he was appointed Chairman of the Shura Council by Royal Order A/13 of 19/2/1430 AH.",
+      "locator": "Page heading; section المؤهلات العلمية, final sentence of its paragraph"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

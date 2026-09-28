@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_2022_195_pdr_first_round_declaration",
+  "source_url": "https://web.archive.org/web/20250210041806id_/https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+  "original_url": "https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+  "archive_capture_utc": "2025-02-10T04:18:06Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2022-04-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 80571,
+  "source_response_sha256": "2a71fddfb61ec37262619dc0c577318246a73a5a615726516ef6e3a85f05f71d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-02-10T04:18:06Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part C researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 31 to 85 minutes later; the part C check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 10 February 2025 of the Council's decision page (served without Content-Encoding; the x-archive-orig-x-crawler-content-encoding header only records the original crawl).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML operative text read in full; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_2022_first_round_held_20220410",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "election_round",
+      "attested_on": null,
+      "period": {
+        "from": "2022-04-09",
+        "through": "2022-04-10"
+      },
+      "text": "Article 1 of the Council's declaration gives the results of the first round, 'auquel il a été procédé les 9 et 10 avril 2022', for twelve candidates; paragraph 20 finds that no candidate obtained the absolute majority of votes cast.",
+      "locator": {
+        "item": "paragraph 20; 'LE CONSEIL CONSTITUTIONNEL DÉCLARE : Article 1er'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_first_round_results_declared_20220413",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-07",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "result_declaration_first_round",
+      "attested_on": "2022-04-13",
+      "text": "The Council declared the first-round results on 13 April 2022 ('Rendu public le 13 avril 2022'); Article 2 says the proclamation of the results of the whole election will follow under the decree of 8 March 2001; the reference line gives 'JORF n°0088 du 14 avril 2022, texte n° 1'.",
+      "locator": {
+        "item": "Articles 2 and 3; closing formula and reference line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

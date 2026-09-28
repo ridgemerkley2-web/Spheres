@@ -1,0 +1,15792 @@
+//! Government — parties, elections, coalitions, and the regimes that hold power
+//! without any of them.
+//!
+//! What was here before this module was four lines in `politics.rs`: every four
+//! years in November, a democracy gained three stability, or eight if times were
+//! bad. That is a slider, and BIBLE section 4 names the party-popularity slider
+//! as one of the five things this game replaces — with "political capital as a
+//! real budget, coalitions, and legitimacy earned by delivery", so that
+//! *governing becomes a constraint rather than a colour*.
+//!
+//! The four claims this module has to make good on:
+//!
+//! 1. **The parties are real.** Every one below existed under that name in this
+//!    period, and its opening support is the share it actually won at the last
+//!    national election before January 1990. Sources are on each block.
+//! 2. **Support moves because of what the economy did to people.** Nobody sets a
+//!    popularity number. Inflation, the growth the government delivered or did
+//!    not, the war it is fighting, and the order it is keeping push support away
+//!    from whoever is in office and toward whichever family of opposition that
+//!    particular pain favours. Prices going up help the hard-money right; a
+//!    recession helps the left; a war and a disintegrating state help the
+//!    nationalists.
+//! 3. **The result is something you have to govern with.** A first-past-the-post
+//!    system manufactures majorities out of pluralities; proportional systems do
+//!    not, and then somebody has to assemble a coalition and pay to hold it.
+//! 4. **The coalition constrains you.** A broad, ideologically stretched
+//!    government bleeds political capital every month and holds a lower ceiling
+//!    than a single-party majority. That is the bite: the same tax rise costs
+//!    Italy's five-party pentapartito more than it costs a British government
+//!    with a hundred-seat majority, because Italy has to buy four other parties'
+//!    consent out of the same budget.
+//!
+//! Authoritarian regimes get the other half. No elections; legitimacy bought
+//! from the institutions that could remove you — the army, the party apparatus,
+//! the security services, the merchants, the clergy — and a coup when the buying
+//! stops. Nothing here is scheduled and nothing is named after a country: the
+//! 1991 August coup and the 1990 dismissal of a Pakistani government are both
+//! reachable, and neither is written down.
+
+use crate::world::*;
+use serde::{Deserialize, Serialize};
+
+// ---------------------------------------------------------------------------
+// Ideology
+// ---------------------------------------------------------------------------
+
+/// The party families of late-twentieth-century politics. A family is not a
+/// flavour label: it decides which discontents a party collects, and how far it
+/// is from a would-be coalition partner.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Family {
+    Communist,
+    SocialDemocratic,
+    Green,
+    Liberal,
+    ChristianDemocratic,
+    Conservative,
+    Nationalist,
+    Religious,
+    Agrarian,
+    /// A party that is a coalition in itself — Congress, the PMDB, Solidarity,
+    /// DEMOS. Cheap to govern with and impossible to hold together.
+    BigTent,
+    /// Organised around a place rather than a programme.
+    Regionalist,
+}
+
+impl Family {
+    /// Position on two axes: economic left(-1)..right(+1), and
+    /// cosmopolitan(-1)..national(+1). Coalition distance is the plane between
+    /// them, which is why a Green and a Nationalist cannot sit in the same
+    /// cabinet however close their economics.
+    pub fn axis(self) -> (f64, f64) {
+        match self {
+            Family::Communist => (-1.00, -0.20),
+            Family::SocialDemocratic => (-0.50, -0.10),
+            Family::Green => (-0.40, -0.60),
+            Family::Liberal => (0.20, -0.50),
+            Family::ChristianDemocratic => (0.30, 0.10),
+            Family::Conservative => (0.60, 0.30),
+            Family::Nationalist => (0.20, 1.00),
+            Family::Religious => (0.20, 0.70),
+            Family::Agrarian => (-0.10, 0.40),
+            Family::BigTent => (0.00, 0.00),
+            Family::Regionalist => (-0.20, 0.60),
+        }
+    }
+    pub fn label(self) -> &'static str {
+        match self {
+            Family::Communist => "communist",
+            Family::SocialDemocratic => "social democratic",
+            Family::Green => "green",
+            Family::Liberal => "liberal",
+            Family::ChristianDemocratic => "christian democratic",
+            Family::Conservative => "conservative",
+            Family::Nationalist => "nationalist",
+            Family::Religious => "religious",
+            Family::Agrarian => "agrarian",
+            Family::BigTent => "big tent",
+            Family::Regionalist => "regionalist",
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Blocs
+// ---------------------------------------------------------------------------
+
+/// The five ideological blocs of the political arm ("The Political Arm of
+/// SPHERES", revision 2, decision D6). A bloc is coarser than a family: it is
+/// the side a party or an institution would be counted on in the world's
+/// argument of 1990, which is what foreign backing, a takeover and the map's
+/// ideology mode all read. THE ORDER IS FIXED — ties break in enum order
+/// everywhere, so reordering these variants would move a timeline.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+pub enum Bloc {
+    Western,
+    Communist,
+    Nationalist,
+    Islamist,
+    NonAligned,
+}
+
+impl Bloc {
+    pub const ALL: [Bloc; 5] =
+        [Bloc::Western, Bloc::Communist, Bloc::Nationalist, Bloc::Islamist, Bloc::NonAligned];
+    pub fn label(self) -> &'static str {
+        match self {
+            Bloc::Western => "Western",
+            Bloc::Communist => "Communist",
+            Bloc::Nationalist => "Nationalist",
+            Bloc::Islamist => "Islamist",
+            Bloc::NonAligned => "Non-Aligned",
+        }
+    }
+    /// The stable key the browser and the saves use.
+    pub fn key(self) -> &'static str {
+        match self {
+            Bloc::Western => "western",
+            Bloc::Communist => "communist",
+            Bloc::Nationalist => "nationalist",
+            Bloc::Islamist => "islamist",
+            Bloc::NonAligned => "non_aligned",
+        }
+    }
+    pub fn parse(s: &str) -> Option<Bloc> {
+        Some(match s.trim().to_lowercase().replace('-', "_").as_str() {
+            "western" | "west" => Bloc::Western,
+            "communist" => Bloc::Communist,
+            "nationalist" => Bloc::Nationalist,
+            "islamist" => Bloc::Islamist,
+            "non_aligned" | "nonaligned" | "non_aligned_movement" => Bloc::NonAligned,
+            _ => return None,
+        })
+    }
+}
+
+impl Family {
+    /// The bloc a family is counted on when its party carries no override.
+    /// Two families are too broad to default well and are overridden row by
+    /// row on the table below: `BigTent`, where a democratic umbrella formed
+    /// against a party-state (Solidarity, DEMOS, Civic Forum) is Western and
+    /// the state big tents (Congress, the PRI, Golkar, the NDP) stay
+    /// Non-Aligned; and `Religious`, where the Islamist parties keep the
+    /// default and the ten non-Islamic confessional parties are Western.
+    pub fn bloc(self) -> Bloc {
+        match self {
+            Family::Liberal
+            | Family::ChristianDemocratic
+            | Family::Conservative
+            | Family::SocialDemocratic
+            | Family::Green
+            | Family::Agrarian => Bloc::Western,
+            Family::Communist => Bloc::Communist,
+            Family::Nationalist => Bloc::Nationalist,
+            Family::Religious => Bloc::Islamist,
+            Family::BigTent | Family::Regionalist => Bloc::NonAligned,
+        }
+    }
+}
+
+fn family_distance(a: Family, b: Family) -> f64 {
+    let (ax, ay) = a.axis();
+    let (bx, by) = b.axis();
+    ((ax - bx).powi(2) + (ay - by).powi(2)).sqrt()
+}
+
+// ---------------------------------------------------------------------------
+// The transcribed data
+// ---------------------------------------------------------------------------
+
+/// One real party, with the share it actually won at the last national election
+/// before the game opens.
+pub struct PartySpec {
+    /// Stable id, written into saves and typed by the player. Never rename.
+    pub id: &'static str,
+    pub name: &'static str,
+    /// The name in its own language where that is the name people used.
+    pub native: &'static str,
+    pub family: Family,
+    /// Vote share at that last election, 0..1. Normalised at seating.
+    pub start: f64,
+    /// Nobody will sit in cabinet with them. A real institution of this period —
+    /// Italy's *conventio ad excludendum* against the PCI and the MSI, France's
+    /// cordon sanitaire against the Front National.
+    pub pariah: bool,
+    /// The bloc this party is counted on where the family default is wrong.
+    /// `None` on the great majority of rows; every `Some` is a transcribed
+    /// decision with its source on the row. Read through `bloc_of`, never
+    /// directly.
+    pub bloc: Option<Bloc>,
+    /// The legal or organisational SUCCESSOR of a Marxist-Leninist ruling
+    /// party — the MSZP out of the MSZMP, the SdRP/SLD out of the PZPR, the
+    /// BSP out of the BCP — or that ruling party itself reorganised or
+    /// renamed after 1 January 1990 (R3(d), Ridge's ruling of 2026-09-06:
+    /// "so the ex-communist-return bar reads the historical event - a
+    /// successor party led back into government by ballot - rather than
+    /// reclassifying social democrats as communists"). `false` on every row
+    /// but the transcribed ones; every `true` carries a
+    /// `// successor_of_ruling_party:` comment with its source on the row,
+    /// asserted by `every_successor_flag_has_a_source`. Read by the census's
+    /// A5 bar through `successor_of_ruling_party`; nothing in the tick reads
+    /// it. A ruling party that kept its name and organisation (the CPSU, the
+    /// CPC, the CPV, FRELIMO, the PAICV) is not a successor and carries no
+    /// flag.
+    pub successor_of_ruling_party: bool,
+}
+
+impl PartySpec {
+    /// Pin a party to a bloc other than its family's default. A const builder
+    /// so the six hundred rows that keep the default do not change.
+    pub const fn aligned(self, bloc: Bloc) -> PartySpec {
+        PartySpec { bloc: Some(bloc), ..self }
+    }
+    /// Mark a party the successor of a Marxist-Leninist ruling party (R3(d)).
+    /// A const builder on the `aligned` pattern, so the six hundred rows
+    /// that are not one do not change.
+    pub const fn successor(self) -> PartySpec {
+        PartySpec { successor_of_ruling_party: true, ..self }
+    }
+}
+
+const fn p(
+    id: &'static str,
+    name: &'static str,
+    native: &'static str,
+    family: Family,
+    start: f64,
+) -> PartySpec {
+    PartySpec { id, name, native, family, start, pariah: false, bloc: None, successor_of_ruling_party: false }
+}
+const fn pariah(
+    id: &'static str,
+    name: &'static str,
+    native: &'static str,
+    family: Family,
+    start: f64,
+) -> PartySpec {
+    PartySpec { id, name, native, family, start, pariah: true, bloc: None, successor_of_ruling_party: false }
+}
+
+/// How votes become seats. The choice is not cosmetic: it decides whether a
+/// plurality is a government or the beginning of a negotiation.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Electoral {
+    /// Single-member plurality. Roughly obeys the cube law — a party with 55% of
+    /// the two-party vote takes about 63% of the seats — so majorities are
+    /// manufactured out of pluralities.
+    FirstPastThePost,
+    /// Two rounds with a runoff: majoritarian, but less brutally so.
+    TwoRound,
+    /// Proportional with the ordinary continental 5% threshold.
+    Proportional,
+    /// Proportional with a 10% threshold — Turkey's, the highest in Europe, put
+    /// in place by the 1982 constitution to keep small parties out.
+    ProportionalHighBar,
+    /// Proportional with a 1% threshold — Israel's until 1992, which is why the
+    /// Knesset carries a dozen parties and no government is ever one party.
+    ProportionalLowBar,
+    /// Japan's multi-member districts with a single non-transferable vote, in
+    /// force until the 1994 reform. Mildly majoritarian.
+    SingleNonTransferable,
+}
+
+impl Electoral {
+    /// (seat-share exponent, threshold). The exponent is the majoritarian bias:
+    /// 1.0 is proportional, 3.0 is the cube law.
+    fn shape(self) -> (f64, f64) {
+        match self {
+            Electoral::FirstPastThePost => (3.0, 0.0),
+            Electoral::TwoRound => (2.0, 0.05),
+            Electoral::Proportional => (1.0, 0.05),
+            Electoral::ProportionalHighBar => (1.0, 0.10),
+            Electoral::ProportionalLowBar => (1.0, 0.01),
+            Electoral::SingleNonTransferable => (1.6, 0.0),
+        }
+    }
+    pub fn label(self) -> &'static str {
+        match self {
+            Electoral::FirstPastThePost => "first past the post",
+            Electoral::TwoRound => "two-round majoritarian",
+            Electoral::Proportional => "proportional (5% threshold)",
+            Electoral::ProportionalHighBar => "proportional (10% threshold)",
+            Electoral::ProportionalLowBar => "proportional (1% threshold)",
+            Electoral::SingleNonTransferable => "multi-member, single non-transferable vote",
+        }
+    }
+}
+
+/// An institution that can remove a government which is not elected.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Pillar {
+    Army,
+    Party,
+    Security,
+    Business,
+    Clergy,
+}
+impl Pillar {
+    pub fn parse(s: &str) -> Option<Pillar> {
+        Some(match s.trim().to_lowercase().as_str() {
+            "army" | "military" | "guard" => Pillar::Army,
+            "party" | "apparatus" | "court" => Pillar::Party,
+            "security" | "police" | "intelligence" => Pillar::Security,
+            "business" | "merchants" | "money" => Pillar::Business,
+            "clergy" | "church" | "ulema" => Pillar::Clergy,
+            _ => return None,
+        })
+    }
+    pub fn key(self) -> &'static str {
+        match self {
+            Pillar::Army => "army",
+            Pillar::Party => "party",
+            Pillar::Security => "security",
+            Pillar::Business => "business",
+            Pillar::Clergy => "clergy",
+        }
+    }
+}
+
+/// A named pillar of one specific regime. Real institutions, because "the army"
+/// is not a thing that removes a government — the Republican Guard is.
+pub struct PillarSpec {
+    pub pillar: Pillar,
+    pub name: &'static str,
+}
+const fn pl(pillar: Pillar, name: &'static str) -> PillarSpec {
+    PillarSpec { pillar, name }
+}
+
+/// Everything the model knows about how one nation is governed.
+pub struct Polity {
+    pub nation: NationId,
+    pub system: Electoral,
+    /// Maximum length of a parliament, in months.
+    pub term_months: u32,
+    /// The next election actually due when the game opens, where one was.
+    /// (0, 0) means the regime does not hold them — until it liberalises, at
+    /// which point the party table below becomes live.
+    pub next: (i32, u32),
+    pub parties: &'static [PartySpec],
+    /// What is in power when nobody votes, and who could take it away.
+    pub ruling: &'static str,
+    pub pillars: &'static [PillarSpec],
+}
+
+/// A government is electoral when the regime is open enough to be removed by a
+/// vote. The threshold takes in Pakistan (Benazir Bhutto's 1988 government,
+/// which a president dismissed in August 1990 — the model reaches that through
+/// instability, not a date) and leaves out Kuwait, whose National Assembly the
+/// Emir dissolved in 1986 and did not recall until 1992.
+pub const ELECTORAL_CEILING: f64 = 0.60;
+
+/// Openness is necessary but not sufficient: a state whose party table is
+/// empty — Saudi Arabia, the smaller Gulf monarchies, Brunei, the Maldives,
+/// all transcription rather than gaps — has nothing a vote could be cast FOR,
+/// however far its authoritarianism falls. Treating one as electoral sent it
+/// down a branch where `hold_election` had nobody to seat and nothing to
+/// reset: the government "fell" and went to polls that could not be held,
+/// every month, for a decade of game time. A no-party state therefore stays a
+/// pillar regime at any level of openness, until a party system is transcribed
+/// for it.
+pub fn is_electoral(w: &WorldState, id: NationId) -> bool {
+    w.nation_opt(id).is_some_and(|n| n.alive && n.authoritarianism < ELECTORAL_CEILING)
+        && polity_in(w, id).is_some_and(|p| !p.parties.is_empty())
+}
+
+// The tables. Vote shares are from the last national election before January
+// 1990 in each country; where a party's founding postdates that election its
+// share is its result at the first one it contested, noted on the block.
+pub const POLITIES: &[Polity] = &[
+    // United States — 1988 House of Representatives popular vote: Democrats
+    // 53.4%, Republicans 45.5%. SPHERES models the legislature a government has
+    // to carry rather than a head of state, so the congressional vote is the
+    // right row: divided government is the American form of the coalition
+    // problem. https://history.house.gov/Institution/Election-Statistics/
+    Polity {
+        nation: NationId::USA,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1992, 11),
+        parties: &[
+            p("us_dem", "Democratic Party", "", Family::Liberal, 0.534),
+            p("us_rep", "Republican Party", "", Family::Conservative, 0.455),
+        ],
+        ruling: "the Congress of the United States",
+        pillars: &[],
+    },
+    // Soviet Union — Article 6 of the 1977 constitution still gave the CPSU its
+    // monopoly on 1 January 1990; the Congress of People's Deputies repealed it
+    // on 14 March. The party table is the one that formed once it did, and it
+    // goes live only if the regime opens up. Support shares are the 1993 Russian
+    // Duma party-list result, the first fully contested election on this
+    // territory. The pillars are the ones that actually moved in August 1991.
+    Polity {
+        nation: NationId::USSR,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("su_cpsu", "Communist Party of the Soviet Union", "Kommunisticheskaya Partiya Sovetskogo Soyuza", Family::Communist, 0.40),
+            p("su_dr", "Democratic Russia", "Demokraticheskaya Rossiya", Family::Liberal, 0.35),
+            p("su_soyuz", "Soyuz group", "Soyuz", Family::Nationalist, 0.25),
+        ],
+        ruling: "the Communist Party of the Soviet Union",
+        pillars: &[
+            pl(Pillar::Army, "the Soviet Army"),
+            pl(Pillar::Party, "the Central Committee apparatus"),
+            pl(Pillar::Security, "the Committee for State Security (KGB)"),
+        ],
+    },
+    // Russia — 1993 State Duma party-list vote: LDPR 22.9%, Russia's Choice
+    // 15.5%, CPRF 12.4%, Women of Russia 8.1%, Agrarians 8.0%, Yabloko 7.9%.
+    // The first election a post-Soviet Russia held, and the one that told
+    // everyone the transition was not going to be liberal.
+    Polity {
+        nation: NationId::Russia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ru_ldpr", "Liberal Democratic Party of Russia", "Liberalno-demokraticheskaya partiya Rossii", Family::Nationalist, 0.229),
+            p("ru_vybor", "Russia's Choice", "Vybor Rossii", Family::Liberal, 0.155),
+            // successor_of_ruling_party: Communist Party of the RSFSR (CPSU branch, banned 1991) - founded 14 February 1993 at the Second Extraordinary Congress of Russian Communists 'where it declared itself to be the successor of the Communist Party of the RSFSR'; 1993-02-14. https://en.wikipedia.org/wiki/Communist_Party_of_the_Russian_Federation
+            p("ru_kprf", "Communist Party of the Russian Federation", "Kommunisticheskaya partiya Rossiyskoy Federatsii", Family::Communist, 0.124).successor(),
+            // bloc -> Communist: The collective-farm lobby, the KPRF's ally in every Duma. https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia
+            p("ru_apr", "Agrarian Party of Russia", "Agrarnaya partiya Rossii", Family::Agrarian, 0.080).aligned(Bloc::Communist),
+            p("ru_yabloko", "Yabloko", "Yabloko", Family::Liberal, 0.079),
+        ],
+        ruling: "the Presidency of the Russian Federation",
+        pillars: &[
+            pl(Pillar::Army, "the Russian Armed Forces"),
+            pl(Pillar::Security, "the security services"),
+            pl(Pillar::Business, "the new financial groups"),
+        ],
+    },
+    // Ukraine — 1998 Verkhovna Rada party-list vote: CPU 24.7%, Rukh 9.4%,
+    // Socialist/Peasant bloc 8.6%, People's Democratic Party 5.0%. The 1994
+    // election was fought largely by independents, so 1998 is the first result
+    // that reads as a party system.
+    Polity {
+        nation: NationId::Ukraine,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Soviet-era Communist Party of Ukraine (banned 30 August 1991) - 1st Congress of the newly founded KPU 19 June 1993 'officially designated as the 29th Congress to denote it as a direct successor to the Soviet KPU'; 1993-06-19. https://en.wikipedia.org/wiki/Communist_Party_of_Ukraine
+            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.247).successor(),
+            p("ua_rukh", "People's Movement of Ukraine", "Narodnyi Rukh Ukrayiny", Family::Nationalist, 0.094),
+            p("ua_spu", "Socialist Party of Ukraine", "Sotsialistychna partiya Ukrayiny", Family::SocialDemocratic, 0.086),
+            p("ua_ndp", "People's Democratic Party", "Narodno-demokratychna partiya", Family::Liberal, 0.050),
+        ],
+        ruling: "the Presidency of Ukraine",
+        pillars: &[
+            pl(Pillar::Army, "the Ukrainian Armed Forces"),
+            pl(Pillar::Business, "the industrial directors"),
+        ],
+    },
+    // China — the Communist Party of China, eight months after Tiananmen. The
+    // pillars are the ones Deng actually had to hold: the army he called on in
+    // June 1989, the party apparatus, the security ministry, and the coastal
+    // provinces whose growth was the regime's remaining argument.
+    Polity {
+        nation: NationId::China,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cn_cpc", "Communist Party of China", "Zhongguo Gongchandang", Family::Communist, 1.00),
+        ],
+        ruling: "the Communist Party of China",
+        pillars: &[
+            pl(Pillar::Army, "the People's Liberation Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of State Security"),
+            pl(Pillar::Business, "the coastal provinces"),
+        ],
+    },
+    // Japan — House of Representatives, 6 July 1986: LDP 49.4%, JSP 17.2%,
+    // Komeito 9.4%, JCP 8.8%, DSP 6.4%. That Diet is the sitting one in January
+    // 1990; the next election was six weeks away, on 18 February 1990.
+    Polity {
+        nation: NationId::Japan,
+        system: Electoral::SingleNonTransferable,
+        term_months: 48,
+        next: (1990, 2),
+        parties: &[
+            p("jp_ldp", "Liberal Democratic Party", "Jiyu-Minshuto", Family::Conservative, 0.494),
+            p("jp_jsp", "Japan Socialist Party", "Nihon Shakaito", Family::SocialDemocratic, 0.172),
+            // bloc -> Western: Buddhist, not Islamist. https://en.wikipedia.org/wiki/K%C5%8Dmeit%C5%8D_(1962%E2%80%931998)
+            p("jp_komeito", "Komeito", "Komeito", Family::Religious, 0.094).aligned(Bloc::Western),
+            p("jp_jcp", "Japanese Communist Party", "Nihon Kyosanto", Family::Communist, 0.088),
+            p("jp_dsp", "Democratic Socialist Party", "Minshato", Family::SocialDemocratic, 0.064),
+        ],
+        ruling: "the National Diet",
+        pillars: &[],
+    },
+    // Germany — Bundestag, 25 January 1987 (Federal Republic): CDU/CSU 44.3%,
+    // SPD 37.0%, FDP 9.1%, Greens 8.3%. The next election, 2 December 1990, was
+    // the first all-German one.
+    Polity {
+        nation: NationId::Germany,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 12),
+        parties: &[
+            p("de_union", "Christian Democratic Union / Christian Social Union", "CDU/CSU", Family::ChristianDemocratic, 0.443),
+            p("de_spd", "Social Democratic Party of Germany", "Sozialdemokratische Partei Deutschlands", Family::SocialDemocratic, 0.370),
+            p("de_fdp", "Free Democratic Party", "Freie Demokratische Partei", Family::Liberal, 0.091),
+            p("de_gruene", "The Greens", "Die Grunen", Family::Green, 0.083),
+        ],
+        ruling: "the Bundestag",
+        pillars: &[],
+    },
+    // United Kingdom — general election of 11 June 1987: Conservative 42.2%,
+    // Labour 30.8%, SDP-Liberal Alliance 22.6%, SNP and Plaid Cymru 2.2%. Next
+    // due by mid-1992; it came on 9 April.
+    Polity {
+        nation: NationId::UK,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1992, 4),
+        parties: &[
+            p("uk_con", "Conservative Party", "", Family::Conservative, 0.422),
+            p("uk_lab", "Labour Party", "", Family::SocialDemocratic, 0.308),
+            p("uk_lib", "Liberal Democrats", "SDP-Liberal Alliance", Family::Liberal, 0.226),
+            p("uk_nat", "Scottish National Party and Plaid Cymru", "", Family::Regionalist, 0.022),
+        ],
+        ruling: "the House of Commons",
+        pillars: &[],
+    },
+    // France — National Assembly first round, 5 June 1988: PS 34.8%, RPR 19.2%,
+    // UDF 18.5%, PCF 11.3%, FN 9.7%. The Front National took 9.7% of the vote
+    // and one seat, and no party would govern with it: the cordon sanitaire is
+    // transcribed here as a pariah flag, not invented.
+    Polity {
+        nation: NationId::France,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (1993, 3),
+        parties: &[
+            p("fr_ps", "Socialist Party", "Parti Socialiste", Family::SocialDemocratic, 0.348),
+            p("fr_rpr", "Rally for the Republic", "Rassemblement pour la Republique", Family::Conservative, 0.192),
+            p("fr_udf", "Union for French Democracy", "Union pour la Democratie Francaise", Family::Liberal, 0.185),
+            p("fr_pcf", "French Communist Party", "Parti Communiste Francais", Family::Communist, 0.113),
+            pariah("fr_fn", "National Front", "Front National", Family::Nationalist, 0.097),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Italy — Chamber of Deputies, 14 June 1987: DC 34.3%, PCI 26.6%, PSI 14.3%,
+    // MSI 5.9%, PRI 3.7%, PSDI 3.0%, PLI 2.1%. The largest party and the second
+    // largest were both barred from governing together by the conventio ad
+    // excludendum, which is exactly why the pentapartito existed and why Italy
+    // had forty-eight governments in forty-five years.
+    Polity {
+        nation: NationId::Italy,
+        // No effective threshold before the 1993 reform: the Imperiali quotient
+        // and the national remainder pool seated a party on two percent of the
+        // vote. That is not a detail — it is the reason a government needed five
+        // parties in it, and modelling Italy with the ordinary continental 5%
+        // bar quietly deleted the PRI, the PSDI and the PLI from the chamber and
+        // with them the whole pentapartito.
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (1992, 4),
+        parties: &[
+            p("it_dc", "Christian Democracy", "Democrazia Cristiana", Family::ChristianDemocratic, 0.343),
+            pariah("it_pci", "Italian Communist Party", "Partito Comunista Italiano", Family::Communist, 0.266),
+            p("it_psi", "Italian Socialist Party", "Partito Socialista Italiano", Family::SocialDemocratic, 0.143),
+            pariah("it_msi", "Italian Social Movement", "Movimento Sociale Italiano", Family::Nationalist, 0.059),
+            p("it_pri", "Italian Republican Party", "Partito Repubblicano Italiano", Family::Liberal, 0.037),
+            p("it_psdi", "Italian Democratic Socialist Party", "Partito Socialista Democratico Italiano", Family::SocialDemocratic, 0.030),
+            p("it_pli", "Italian Liberal Party", "Partito Liberale Italiano", Family::Liberal, 0.021),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // India — 9th Lok Sabha, November 1989: Congress(I) 39.5%, Janata Dal 17.8%,
+    // BJP 11.4%, CPI(M) 6.5%. Congress won the most seats and did not take
+    // office; V. P. Singh's National Front governed as a minority with the BJP
+    // and the Left supporting from outside, and fell in November 1990. This
+    // model produces that shape from the arithmetic rather than scripting it.
+    Polity {
+        nation: NationId::India,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 11),
+        parties: &[
+            p("in_inc", "Indian National Congress (I)", "", Family::BigTent, 0.395),
+            p("in_jd", "Janata Dal", "", Family::Agrarian, 0.178),
+            // bloc -> Nationalist: Hindu nationalist rather than confessional. https://en.wikipedia.org/wiki/Bharatiya_Janata_Party
+            p("in_bjp", "Bharatiya Janata Party", "", Family::Religious, 0.114).aligned(Bloc::Nationalist),
+            p("in_cpm", "Communist Party of India (Marxist)", "", Family::Communist, 0.065),
+        ],
+        ruling: "the Lok Sabha",
+        pillars: &[],
+    },
+    // Pakistan — National Assembly, 16 November 1988: PPP 38.5%, the Islami
+    // Jamhoori Ittehad 30.2%, MQM 5.4%. Benazir Bhutto's government held office
+    // in January 1990 and was dismissed by President Ishaq Khan that August.
+    Polity {
+        nation: NationId::Pakistan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 11),
+        parties: &[
+            p("pk_ppp", "Pakistan Peoples Party", "", Family::SocialDemocratic, 0.385),
+            // bloc -> Western: The anti-PPP alliance of the establishment right, not an Islamist movement. https://en.wikipedia.org/wiki/Islami_Jamhoori_Ittehad
+            p("pk_iji", "Islami Jamhoori Ittehad", "Islamic Democratic Alliance", Family::Religious, 0.302).aligned(Bloc::Western),
+            p("pk_mqm", "Muttahida Qaumi Movement", "", Family::Regionalist, 0.054),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Pakistan Army"),
+            pl(Pillar::Security, "the Inter-Services Intelligence"),
+        ],
+    },
+    // Iraq — the Arab Socialist Ba'ath Party, and behind it the three
+    // institutions that kept Saddam Hussein alive: the Republican Guard, the
+    // party apparatus, and the intelligence directorate. Real coup attempts in
+    // 1990-96 came from exactly these.
+    Polity {
+        nation: NationId::Iraq,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("iq_baath", "Arab Socialist Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 1.00),
+        ],
+        ruling: "the Revolutionary Command Council",
+        pillars: &[
+            pl(Pillar::Army, "the Republican Guard"),
+            pl(Pillar::Party, "the Ba'ath Party apparatus"),
+            pl(Pillar::Security, "the Mukhabarat"),
+        ],
+    },
+    // Kuwait — the Emir dissolved the National Assembly in 1986 and ruled by
+    // decree until 1992. What holds the state is the ruling family, the merchant
+    // houses that financed it since before oil, and a small army.
+    Polity {
+        nation: NationId::Kuwait,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("kw_dem", "Kuwaiti Democratic Forum", "al-Minbar al-Dimuqrati al-Kuwayti", Family::Liberal, 0.55),
+            p("kw_islam", "Islamic Constitutional Movement", "al-Haraka al-Dusturiyya al-Islamiyya", Family::Religious, 0.45),
+        ],
+        ruling: "the House of Al Sabah",
+        pillars: &[
+            pl(Pillar::Party, "the ruling family"),
+            pl(Pillar::Business, "the merchant houses"),
+            pl(Pillar::Army, "the Kuwaiti Army"),
+        ],
+    },
+    // Saudi Arabia — no parties, no assembly at all until the Consultative
+    // Council of 1992. The bargain is the one struck in 1744 and renewed after
+    // 1979: the family rules, the ulema legitimise, the merchants are paid, and
+    // the National Guard is kept separate from the regular army on purpose.
+    Polity {
+        nation: NationId::SaudiArabia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Saud",
+        pillars: &[
+            pl(Pillar::Party, "the Al Saud family council"),
+            pl(Pillar::Clergy, "the ulema"),
+            pl(Pillar::Army, "the Saudi Arabian National Guard"),
+            pl(Pillar::Business, "the merchant houses"),
+        ],
+    },
+    // Iran — the Islamic Republic eighteen months after Khomeini's death. The
+    // Majlis was elected but only from candidates the Guardian Council allowed,
+    // so this is a regime with factions rather than an electorate: the Combatant
+    // Clergy Association against the Association of Combatant Clerics, which is
+    // the split that produced Rafsanjani and later Khatami.
+    Polity {
+        nation: NationId::Iran,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ir_jrm", "Combatant Clergy Association", "Jame'e-ye Rouhaniyat-e Mobarez", Family::Religious, 0.60),
+            p("ir_mrm", "Association of Combatant Clerics", "Majma'-e Rouhaniyoun-e Mobarez", Family::SocialDemocratic, 0.40),
+        ],
+        ruling: "the Office of the Supreme Leader",
+        pillars: &[
+            pl(Pillar::Clergy, "the seminaries of Qom"),
+            pl(Pillar::Army, "the Islamic Revolutionary Guard Corps"),
+            pl(Pillar::Security, "the Ministry of Intelligence"),
+            pl(Pillar::Business, "the bazaar"),
+        ],
+    },
+    // South Korea — National Assembly, 26 April 1988: DJP 34.0%, RDP 23.8%, PPD
+    // 19.3%, NDRP 15.6%. The first assembly under the 1987 constitution and the
+    // first in which the ruling party lost its majority. On 22 January 1990,
+    // three weeks into the game, the DJP, the RDP and the NDRP merged into the
+    // Democratic Liberal Party — a coalition by another name, which is what this
+    // model will make of the same numbers.
+    Polity {
+        nation: NationId::SouthKorea,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1992, 4),
+        parties: &[
+            p("kr_djp", "Democratic Justice Party", "Minju Jeongui-dang", Family::Conservative, 0.340),
+            p("kr_rdp", "Reunification Democratic Party", "Tongil Minju-dang", Family::Liberal, 0.238),
+            p("kr_ppd", "Party for Peace and Democracy", "Pyeonghwa Minju-dang", Family::SocialDemocratic, 0.193),
+            p("kr_ndrp", "New Democratic Republican Party", "Sinminju Gonghwa-dang", Family::Conservative, 0.156),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[pl(Pillar::Army, "the Republic of Korea Army")],
+    },
+    // Poland — the semi-free election of 4 June 1989, in which Solidarity's
+    // Citizens' Committee took 99 of the 100 Senate seats and every one of the
+    // 161 Sejm seats it was permitted to contest. The Polish United Workers'
+    // Party dissolved itself on 29 January 1990, four weeks into the game. Next
+    // fully free election: 27 October 1991.
+    Polity {
+        nation: NationId::Poland,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Solidarity_Citizens%27_Committee
+            p("pl_solidarity", "Solidarity Citizens' Committee", "Komitet Obywatelski Solidarnosc", Family::BigTent, 0.60).aligned(Bloc::Western),
+            // successor_of_ruling_party: Polish United Workers' Party (PZPR) - SdRP founded 28 January 1990 as 'the main party of the successor parties'; ran as the Democratic Left Alliance (SLD) coalition from 1991; folded into SLD 15 April 1999; 1990-01-28. https://en.wikipedia.org/wiki/Social_Democracy_of_the_Republic_of_Poland
+            p("pl_sld", "Democratic Left Alliance", "Sojusz Lewicy Demokratycznej", Family::Communist, 0.22).successor(),
+            p("pl_psl", "Polish People's Party", "Polskie Stronnictwo Ludowe", Family::Agrarian, 0.12),
+            p("pl_sd", "Alliance of Democrats", "Stronnictwo Demokratyczne", Family::Liberal, 0.06),
+        ],
+        ruling: "the Sejm",
+        pillars: &[],
+    },
+    // Brazil — Chamber of Deputies, 15 November 1986: PMDB 48.1%, PFL 17.7%,
+    // PDS 6.8%, PDT 5.0%, PT 3.3%. Sarney's PMDB still holds the chamber in
+    // January 1990; Fernando Collor, elected that December on the PRN ticket he
+    // had built for the purpose, takes office in March. Brazilian presidents
+    // govern with a chamber they never control, which is the coalitional
+    // presidentialism this table is describing.
+    Polity {
+        nation: NationId::Brazil,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 10),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the military regime, heterogeneous by design. https://en.wikipedia.org/wiki/Brazilian_Democratic_Movement
+            p("br_pmdb", "Brazilian Democratic Movement Party", "Partido do Movimento Democratico Brasileiro", Family::BigTent, 0.40).aligned(Bloc::Western),
+            p("br_pfl", "Liberal Front Party", "Partido da Frente Liberal", Family::Conservative, 0.18),
+            p("br_prn", "National Reconstruction Party", "Partido da Reconstrucao Nacional", Family::Liberal, 0.15),
+            p("br_pt", "Workers' Party", "Partido dos Trabalhadores", Family::SocialDemocratic, 0.12),
+            p("br_pdt", "Democratic Labour Party", "Partido Democratico Trabalhista", Family::SocialDemocratic, 0.08),
+            p("br_pds", "Democratic Social Party", "Partido Democratico Social", Family::Conservative, 0.07),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Indonesia — the New Order permitted three organisations and no more.
+    // People's Representative Council, 23 April 1987: Golkar 73.2%, PPP 16.0%,
+    // PDI 10.9%. Suharto's real constituency was ABRI, which held seats in the
+    // assembly by right under dwifungsi.
+    Polity {
+        nation: NationId::Indonesia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("id_golkar", "Golkar", "Golongan Karya", Family::BigTent, 0.732),
+            p("id_ppp", "United Development Party", "Partai Persatuan Pembangunan", Family::Religious, 0.160),
+            p("id_pdi", "Indonesian Democratic Party", "Partai Demokrasi Indonesia", Family::SocialDemocratic, 0.109),
+        ],
+        ruling: "the New Order",
+        pillars: &[
+            pl(Pillar::Army, "ABRI"),
+            pl(Pillar::Party, "Golkar"),
+            pl(Pillar::Business, "the conglomerates"),
+        ],
+    },
+    // Egypt — People's Assembly, 6 April 1987: NDP 69.6%, the Islamic Alliance
+    // of the Labour Party, the Liberals and the Muslim Brotherhood 17.0%, New
+    // Wafd 10.9%. A hegemonic-party system: the elections were held and the
+    // result was known in advance, which is why Mubarak's Egypt is modelled as a
+    // regime with pillars rather than an electorate.
+    Polity {
+        nation: NationId::Egypt,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("eg_ndp", "National Democratic Party", "al-Hizb al-Watani al-Dimuqrati", Family::BigTent, 0.696),
+            p("eg_alliance", "Islamic Alliance", "al-Tahaluf al-Islami", Family::Religious, 0.170),
+            p("eg_wafd", "New Wafd Party", "Hizb al-Wafd al-Jadid", Family::Liberal, 0.109),
+        ],
+        ruling: "the National Democratic Party",
+        pillars: &[
+            pl(Pillar::Army, "the Egyptian Armed Forces"),
+            pl(Pillar::Party, "the National Democratic Party"),
+            pl(Pillar::Security, "State Security Investigations"),
+            pl(Pillar::Clergy, "al-Azhar"),
+        ],
+    },
+    // Israel — Knesset, 1 November 1988: Likud 31.1%, the Alignment 30.0%, Shas
+    // 4.7%, Agudat Yisrael 4.5%, Ratz 4.3%, the National Religious Party 3.9%,
+    // Tehiya 3.1%. A 1% threshold and no party ever near half the seats. The
+    // national unity government of 1988 fell on 15 March 1990 on a motion of no
+    // confidence — the only one ever carried in Israeli history — and that is
+    // the shape the arithmetic here produces without being told to.
+    Polity {
+        nation: NationId::Israel,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1992, 11),
+        parties: &[
+            p("il_likud", "Likud", "Likud", Family::Conservative, 0.311),
+            p("il_labour", "Alignment", "Ma'arach", Family::SocialDemocratic, 0.300),
+            // bloc -> Western: Haredi, not Islamist. https://en.wikipedia.org/wiki/Shas
+            p("il_shas", "Shas", "Shas", Family::Religious, 0.047).aligned(Bloc::Western),
+            // bloc -> Western: Haredi, not Islamist. https://en.wikipedia.org/wiki/Agudat_Yisrael
+            p("il_agudat", "Agudat Yisrael", "Agudat Yisrael", Family::Religious, 0.045).aligned(Bloc::Western),
+            p("il_ratz", "Citizens' Rights Movement", "Ratz", Family::Liberal, 0.043),
+            // bloc -> Western: Religious Zionist, not Islamist. https://en.wikipedia.org/wiki/National_Religious_Party
+            p("il_mafdal", "National Religious Party", "Mafdal", Family::Religious, 0.039).aligned(Bloc::Western),
+            p("il_tehiya", "Tehiya", "Tehiya", Family::Nationalist, 0.031),
+        ],
+        ruling: "the Knesset",
+        pillars: &[],
+    },
+    // Turkey — Grand National Assembly, 29 November 1987: ANAP 36.3%, SHP 24.7%,
+    // DYP 19.1%, DSP 8.5%, Welfare 7.2%. The 10% national threshold, written
+    // into the 1982 constitution by the generals who had just left office, gave
+    // Ozal's 36% of the vote 65% of the seats.
+    Polity {
+        nation: NationId::Turkey,
+        system: Electoral::ProportionalHighBar,
+        term_months: 60,
+        next: (1991, 10),
+        parties: &[
+            p("tr_anap", "Motherland Party", "Anavatan Partisi", Family::Conservative, 0.363),
+            p("tr_shp", "Social Democratic Populist Party", "Sosyaldemokrat Halkci Parti", Family::SocialDemocratic, 0.247),
+            p("tr_dyp", "True Path Party", "Dogru Yol Partisi", Family::Conservative, 0.191),
+            p("tr_dsp", "Democratic Left Party", "Demokratik Sol Parti", Family::SocialDemocratic, 0.085),
+            p("tr_rp", "Welfare Party", "Refah Partisi", Family::Religious, 0.072),
+        ],
+        ruling: "the Grand National Assembly",
+        pillars: &[pl(Pillar::Army, "the Turkish General Staff")],
+    },
+    // Nigeria — Babangida's Armed Forces Ruling Council, five years into a
+    // transition programme that kept slipping. Two parties existed in January
+    // 1990 and both had been created by military decree in 1989, with their
+    // manifestos written for them. Their shares are the 12 June 1993
+    // presidential result, the election that was annulled.
+    Polity {
+        nation: NationId::Nigeria,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ng_sdp", "Social Democratic Party", "", Family::SocialDemocratic, 0.583),
+            p("ng_nrc", "National Republican Convention", "", Family::Conservative, 0.417),
+        ],
+        ruling: "the Armed Forces Ruling Council",
+        pillars: &[
+            pl(Pillar::Army, "the Nigerian Army"),
+            pl(Pillar::Security, "the State Security Service"),
+            pl(Pillar::Business, "the oil bureaucracy"),
+        ],
+    },
+    // Vietnam — the Communist Party of Vietnam, four years into doi moi and the
+    // year Soviet money stops arriving. No competing organisation is legal.
+    Polity {
+        nation: NationId::Vietnam,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("vn_cpv", "Communist Party of Vietnam", "Dang Cong san Viet Nam", Family::Communist, 1.00),
+        ],
+        ruling: "the Communist Party of Vietnam",
+        pillars: &[
+            pl(Pillar::Army, "the People's Army of Vietnam"),
+            pl(Pillar::Party, "the Politburo"),
+            pl(Pillar::Security, "the Ministry of Public Security"),
+        ],
+    },
+    // Yugoslavia — the League of Communists of Yugoslavia, whose 14th
+    // Extraordinary Congress broke up on 22 January 1990, three weeks into the
+    // game, when the Slovene delegation walked out and the Croats followed. The
+    // federation's remaining pillar after that was the JNA. The parties listed
+    // are the republican fronts that won the 1990 elections, and they only
+    // become live if a federal Yugoslavia somehow opens up rather than breaking.
+    Polity {
+        nation: NationId::Yugoslavia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("yu_skj", "League of Communists of Yugoslavia", "Savez komunista Jugoslavije", Family::Communist, 0.55),
+            p("yu_fronts", "the republican national fronts", "", Family::Nationalist, 0.45),
+        ],
+        ruling: "the League of Communists of Yugoslavia",
+        pillars: &[
+            pl(Pillar::Army, "the Yugoslav People's Army"),
+            pl(Pillar::Party, "the League of Communists"),
+            pl(Pillar::Security, "the State Security Service"),
+        ],
+    },
+    // Serbia — 9 December 1990, the first multiparty election in Serbia since
+    // 1938: Milosevic's Socialist Party of Serbia 46.1%, the Serbian Renewal
+    // Movement 15.8%, the Democratic Party 7.4%. Elections were held and the
+    // state television was not neutral, which is why Serbia is modelled with
+    // pillars as well as parties.
+    Polity {
+        nation: NationId::Serbia,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: League of Communists of Serbia (SKS) merged with the Socialist Alliance of Working People to create the SPS at the 17 July 1990 congress; 1990-07-17. https://en.wikipedia.org/wiki/Socialist_Party_of_Serbia
+            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.461).successor(),
+            p("rs_spo", "Serbian Renewal Movement", "Srpski pokret obnove", Family::Nationalist, 0.158),
+            p("rs_ds", "Democratic Party", "Demokratska stranka", Family::Liberal, 0.074),
+        ],
+        ruling: "the Socialist Party of Serbia",
+        pillars: &[
+            pl(Pillar::Army, "the Yugoslav People's Army"),
+            pl(Pillar::Party, "the Socialist Party"),
+            pl(Pillar::Security, "the State Security Service"),
+        ],
+    },
+    // Croatia — 22 April 1990: Tudjman's Croatian Democratic Union 41.9%, the
+    // reformed League of Communists 35.0%, the Coalition of National Accord
+    // 15.3%. First round, first free election since 1938.
+    Polity {
+        nation: NationId::Croatia,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("hr_hdz", "Croatian Democratic Union", "Hrvatska demokratska zajednica", Family::Nationalist, 0.419),
+            // successor_of_ruling_party: League of Communists of Croatia (SKH) - rebranded SKH-Party of Democratic Reform in February 1990, ran in the 1990 election as SKH-SDP, adopted the SDP name 3 November 1990; 1990-02. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Croatia
+            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.350).successor(),
+            p("hr_kns", "Coalition of National Accord", "Koalicija narodnog sporazuma", Family::Liberal, 0.153),
+        ],
+        ruling: "the Sabor",
+        pillars: &[],
+    },
+    // Slovenia — 8 April 1990: the DEMOS opposition coalition 54.0%, the Party
+    // of Democratic Renewal 17.3%, the Liberal Democrats 14.5%. DEMOS was six
+    // parties in a trenchcoat and came apart within two years of winning, which
+    // is what a big-tent coalition costs to hold.
+    Polity {
+        nation: NationId::Slovenia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.540).aligned(Bloc::Western),
+            // successor_of_ruling_party: League of Communists of Slovenia (ZKS) - renamed ZKS-Party of Democratic Renewal 4 February 1990; became the United List of Social Democrats (ZLSD) at the 29 May 1993 congress; 1990-02-04. https://en.wikipedia.org/wiki/Social_Democrats_(Slovenia)
+            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.173).successor(),
+            p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.145),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Bosnia and Herzegovina — 18 November 1990. The three national parties took
+    // the vote almost exactly in proportion to the census: the Party of
+    // Democratic Action 35.8%, the Serbian Democratic Party 30.0%, the Croatian
+    // Democratic Union of BiH 18.4%, the reformed communists 6.0%. They then
+    // formed a government together, because the arithmetic left no alternative,
+    // and it held for about a year. There is no more expensive coalition in this
+    // model, and there was none in life either.
+    Polity {
+        nation: NationId::Bosnia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Nationalist: DISAGREES WITH THE DESIGN (which lists it Western): the source describes the SDA at founding as "a party of the Muslim cultural-historical circle" and "a broad nationalist and conservative movement", transcribed 2026-09-05. https://en.wikipedia.org/wiki/Party_of_Democratic_Action
+            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Nationalist),
+            p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.300),
+            p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.184),
+            // successor_of_ruling_party: League of Communists of Bosnia and Herzegovina - SDP BiH 'is considered the successor of the League of Communists of Bosnia and Herzegovina'; SK BiH dissolved 24 February 1991, succeeded by SDP BiH; SDP BiH re-established 27 December 1992; 1991-02-24. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Bosnia_and_Herzegovina ; https://en.wikipedia.org/wiki/League_of_Communists_of_Bosnia_and_Herzegovina
+            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060).successor(),
+        ],
+        ruling: "the Assembly",
+        pillars: &[],
+    },
+    // Spain — Congress of Deputies, 29 October 1989: PSOE 39.6%, PP 25.8%,
+    // IU 9.1%, CDS 7.9%, CiU 5.0%, PNV 1.2%, HB 1.1%. Gonzalez's third term,
+    // and the last of his majorities. The next election was due by October 1993
+    // and came on 6 June.
+    // https://en.wikipedia.org/wiki/1989_Spanish_general_election
+    Polity {
+        nation: NationId::Spain,
+        // The legal bar is 3% within each constituency, but the fifty-two
+        // provincial districts are small enough that what actually decides who
+        // sits is regional concentration, not a national share. The PNV took
+        // 1.2% of the Spanish vote and five seats; a 5% national threshold
+        // would delete the Basque and Catalan nationalists from the Cortes and
+        // with them the entire arithmetic of Spanish minority government, which
+        // is the same mistake the Italy block above records having avoided.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("es_psoe", "Spanish Socialist Workers' Party", "Partido Socialista Obrero Espanol", Family::SocialDemocratic, 0.396),
+            p("es_pp", "People's Party", "Partido Popular", Family::Conservative, 0.258),
+            p("es_iu", "United Left", "Izquierda Unida", Family::Communist, 0.091),
+            p("es_cds", "Democratic and Social Centre", "Centro Democratico y Social", Family::Liberal, 0.079),
+            p("es_ciu", "Convergence and Union", "Convergencia i Unio", Family::Regionalist, 0.050),
+            p("es_pnv", "Basque Nationalist Party", "Partido Nacionalista Vasco", Family::Regionalist, 0.012),
+            // The genuine article, and the reason the pariah flag is not a
+            // French and Italian curiosity: Herri Batasuna was ETA's political
+            // wing, and its deputies did not merely go uncourted — they refused
+            // to take the seats they had won. Nobody in Madrid would govern
+            // with them and they would not have sat if asked.
+            pariah("es_hb", "Herri Batasuna", "Herri Batasuna", Family::Regionalist, 0.011),
+        ],
+        ruling: "the Congress of Deputies",
+        pillars: &[],
+    },
+
+    // ======================================================================
+    // Western Europe, the rest of it. Eleven parliamentary democracies, no
+    // pillars anywhere, and every `next` below is a real scheduled date.
+    // Two things recur and are worth stating once rather than eleven times:
+    //   * Shares are first-preference or party-list votes at the last national
+    //     election BEFORE 1 January 1990, and none of them sum to 1.0 —
+    //     published results are rounded and minor parties are not all listed.
+    //     They are not padded. The seating pass normalises.
+    //   * Where a country's real electoral law has no equivalent in the
+    //     `Electoral` enum, the substitution is named in the block rather than
+    //     quietly made.
+    // ======================================================================
+
+    // Netherlands - Tweede Kamer, 6 September 1989: CDA 35.3%, PvdA 31.9%,
+    // VVD 14.6%, D66 7.9%, GroenLinks 4.1%, SGP 1.9%, GPV 1.2%, RPF 1.0%.
+    // Lubbers III, the CDA-PvdA cabinet that replaced seven years of CDA-VVD
+    // when the second Lubbers cabinet fell in May 1989 over the National
+    // Environmental Policy Plan. The next election was due and came on
+    // 3 May 1994. https://en.wikipedia.org/wiki/1989_Dutch_general_election
+    Polity {
+        nation: NationId::Netherlands,
+        // The purest proportional system in Europe: one national constituency,
+        // and the threshold is simply the quota for one of 150 seats, 0.67%.
+        // ProportionalLowBar's 1% is the closest the enum comes and it is
+        // still slightly too high — the three small confessional parties below
+        // each hold seats on shares that a 5% bar would erase, and a Dutch
+        // parliament without them is not a Dutch parliament.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1994, 5),
+        parties: &[
+            p("nl_cda", "Christian Democratic Appeal", "Christen-Democratisch Appel", Family::ChristianDemocratic, 0.353),
+            p("nl_pvda", "Labour Party", "Partij van de Arbeid", Family::SocialDemocratic, 0.319),
+            p("nl_vvd", "People's Party for Freedom and Democracy", "Volkspartij voor Vrijheid en Democratie", Family::Liberal, 0.146),
+            p("nl_d66", "Democrats 66", "Democraten 66", Family::Liberal, 0.079),
+            p("nl_gl", "Green Left", "GroenLinks", Family::Green, 0.041),
+            // The three of these are not a rounding error and not
+            // interchangeable: they are the remains of the confessional pillar
+            // that organised Dutch society until the 1960s, they sit on the
+            // Bible Belt from Zeeland to Overijssel, and the SGP had been in
+            // the Tweede Kamer continuously since 1922 without ever once
+            // being in government. A model that deletes them loses the thing
+            // that made Dutch politics consociational in the first place.
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformed_Political_Party
+            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019).aligned(Bloc::Western),
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformed_Political_League
+            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012).aligned(Bloc::Western),
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformatory_Political_Federation
+            p("nl_rpf", "Reformatory Political Federation", "Reformatorische Politieke Federatie", Family::Religious, 0.010).aligned(Bloc::Western),
+        ],
+        ruling: "the Tweede Kamer",
+        pillars: &[],
+    },
+
+    // Belgium - Chamber of Representatives, 13 December 1987: CVP 19.5%,
+    // PS 15.6%, SP 14.9%, PVV 11.6%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
+    // Ecolo 2.6%, Vlaams Blok 1.9%, FDF 1.2%. Martens VIII took 148 days to
+    // form. The next election was due December 1991 and came on 24 November.
+    // https://en.wikipedia.org/wiki/1987_Belgian_general_election
+    Polity {
+        nation: NationId::Belgium,
+        // D'Hondt in twenty arrondissement constituencies with no legal
+        // threshold at all until 2003.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 11),
+        parties: &[
+            // The single most important fact about this table is that there is
+            // no national party in it. The Christian democrats split into CVP
+            // and PSC in 1968, the liberals into PVV and PRL in 1971, the
+            // socialists into SP and PS in 1978, and the greens were born
+            // separately as Agalev and Ecolo. Each pair below is one political
+            // family that partitioned itself along the language border and
+            // then never reunited. They are entered as separate parties
+            // because that is what they were: separate lists, separate
+            // leaders, separate electorates, coalition partners at best.
+            p("be_cvp", "Christian People's Party (Flemish)", "Christelijke Volkspartij", Family::ChristianDemocratic, 0.195),
+            p("be_ps", "Socialist Party (Francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.156),
+            p("be_sp", "Socialist Party (Flemish)", "Socialistische Partij", Family::SocialDemocratic, 0.149),
+            p("be_pvv", "Party for Freedom and Progress (Flemish)", "Partij voor Vrijheid en Vooruitgang", Family::Liberal, 0.116),
+            p("be_prl", "Liberal Reformist Party (Francophone)", "Parti Reformateur Liberal", Family::Liberal, 0.094),
+            p("be_vu", "People's Union", "Volksunie", Family::Regionalist, 0.081),
+            p("be_psc", "Christian Social Party (Francophone)", "Parti Social Chretien", Family::ChristianDemocratic, 0.080),
+            p("be_agalev", "Live Differently (Flemish greens)", "Anders Gaan Leven", Family::Green, 0.045),
+            p("be_ecolo", "Ecolo (Francophone greens)", "Ecologistes Confederes", Family::Green, 0.026),
+            // A FOURTH pariah, entered deliberately and against the standing
+            // instruction not to add one, because this is the case the word
+            // was coined for rather than a case that resembles it. On 10 May
+            // 1989 every other Flemish party in the country signed an
+            // agreement never to govern, negotiate or make any accord with
+            // Vlaams Blok; the signed document is what Belgians and then
+            // everybody else began calling the cordon sanitaire, and it held
+            // without a single breach for the next thirty years, through the
+            // party's dissolution for racism by the Court of Cassation in
+            // 2004 and its immediate re-founding as Vlaams Belang. It is a
+            // stricter and better-documented exclusion than the French one
+            // already in this table. If a reviewer disagrees, the fix is one
+            // word — pariah to p — and the vote share is unaffected either
+            // way. https://en.wikipedia.org/wiki/Cordon_sanitaire_(politics)
+            pariah("be_vb", "Flemish Bloc", "Vlaams Blok", Family::Nationalist, 0.019),
+            p("be_fdf", "Democratic Front of Francophones", "Front Democratique des Francophones", Family::Regionalist, 0.012),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+
+    // Sweden - Riksdag, 18 September 1988: SAP 43.2%, Moderates 18.3%,
+    // People's Party 12.2%, Centre 11.3%, Left Party Communists 5.8%,
+    // Greens 5.5%, Christian Democrats 2.9%. Carlsson's Social Democratic
+    // minority government, which resigned on 15 February 1990 when the Riksdag
+    // threw out its price-and-wage freeze and returned a week later without
+    // the strike ban in it. The Greens entering in 1988 were the first new
+    // party in the Riksdag in seventy years.
+    // https://en.wikipedia.org/wiki/1988_Swedish_general_election
+    Polity {
+        nation: NationId::Sweden,
+        // Sweden's bar is 4% nationally (or 12% in a constituency), so the
+        // 5% Proportional variant is the near fit; ProportionalLowBar's 1%
+        // would seat the Christian Democrats, who in fact won nothing in 1988
+        // on 2.9% and entered only in 1991 in alliance.
+        system: Electoral::Proportional,
+        // Three-year fixed terms, in force from 1970 until the 1994 reform
+        // took them back to four. This is the only 36-month term in the table
+        // and it is transcribed, not a slip.
+        term_months: 36,
+        next: (1991, 9),
+        parties: &[
+            p("se_sap", "Social Democratic Party", "Sveriges socialdemokratiska arbetareparti", Family::SocialDemocratic, 0.432),
+            p("se_m", "Moderate Party", "Moderata samlingspartiet", Family::Conservative, 0.183),
+            p("se_fp", "People's Party - The Liberals", "Folkpartiet liberalerna", Family::Liberal, 0.122),
+            // Agrarian and not a misfiling: the Centre Party was the Farmers'
+            // League until 1957 and its 1988 vote is still rural, though the
+            // issue it rode was nuclear power.
+            p("se_c", "Centre Party", "Centerpartiet", Family::Agrarian, 0.113),
+            p("se_vpk", "Left Party Communists", "Vansterpartiet kommunisterna", Family::Communist, 0.058),
+            p("se_mp", "Green Party", "Miljopartiet de grona", Family::Green, 0.055),
+            p("se_kds", "Christian Democratic Union", "Kristdemokratiska samhallspartiet", Family::ChristianDemocratic, 0.029),
+        ],
+        ruling: "the Riksdag",
+        pillars: &[],
+    },
+
+    // Switzerland - National Council, 18 October 1987: FDP 22.9%, CVP 19.6%,
+    // SPS 18.4%, SVP 11.0%, Greens 4.9%, LdU 4.2%, LPS 2.7%, National Action
+    // 2.5%, EVP 1.9%, Labour 0.8%. Next election 20 October 1991.
+    // https://en.wikipedia.org/wiki/1987_Swiss_federal_election
+    Polity {
+        nation: NationId::Switzerland,
+        // Proportional in twenty-six cantonal constituencies, no national
+        // threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("ch_fdp", "Free Democratic Party", "Freisinnig-Demokratische Partei", Family::Liberal, 0.229),
+            p("ch_cvp", "Christian Democratic People's Party", "Christlichdemokratische Volkspartei", Family::ChristianDemocratic, 0.196),
+            p("ch_sps", "Social Democratic Party", "Sozialdemokratische Partei", Family::SocialDemocratic, 0.184),
+            // Agrarian in 1987 and correctly so: this was the Party of
+            // Farmers, Traders and Independents until 1971 and was still a
+            // Bernese and Zurich rural party at this election. Blocher took
+            // the Zurich cantonal party in 1977 and the national party's
+            // direction only after 1992, over the European Economic Area
+            // referendum; nothing in this record anticipates that.
+            p("ch_svp", "Swiss People's Party", "Schweizerische Volkspartei", Family::Agrarian, 0.110),
+            p("ch_gps", "Green Party", "Grune Partei der Schweiz", Family::Green, 0.049),
+            p("ch_ldu", "Ring of Independents", "Landesring der Unabhangigen", Family::Liberal, 0.042),
+            p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Liberal, 0.027),
+            p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
+            // bloc -> Western: Protestant, not Islamist. https://en.wikipedia.org/wiki/Evangelical_People%27s_Party_of_Switzerland
+            p("ch_evp", "Evangelical People's Party", "Evangelische Volkspartei", Family::Religious, 0.019).aligned(Bloc::Western),
+            p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
+        ],
+        // The one place in this batch where `ruling` is doing real work. The
+        // Federal Council is a seven-member executive elected by parliament
+        // and never removed by it, held since 1959 to the Zauberformel of
+        // 2 FDP : 2 CVP : 2 SPS : 1 SVP regardless of how the vote moves. The
+        // election below is real and matters for the chambers; it does not
+        // change who governs, which is a fact about Switzerland rather than a
+        // shortcoming of the model.
+        ruling: "the Federal Council",
+        pillars: &[],
+    },
+
+    // Austria - Nationalrat, 23 November 1986: SPO 43.1%, OVP 41.3%,
+    // FPO 9.7%, Greens 4.8%. The grand coalition of Vranitzky and Mock, formed
+    // in January 1987 after Haider took the FPO leadership in September 1986
+    // and the SPO ended its coalition with it the same week. The next election
+    // was due and came on 7 October 1990, inside the game's first year.
+    // https://en.wikipedia.org/wiki/1986_Austrian_legislative_election
+    Polity {
+        nation: NationId::Austria,
+        // A 4% national threshold was only introduced in 1992; in 1986 a party
+        // needed a Grundmandat in one of nine regional districts, which in
+        // practice bit at about the same level. Proportional's 5% is the fit.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 10),
+        parties: &[
+            p("at_spo", "Social Democratic Party of Austria", "Sozialdemokratische Partei Osterreichs", Family::SocialDemocratic, 0.431),
+            p("at_ovp", "Austrian People's Party", "Osterreichische Volkspartei", Family::ChristianDemocratic, 0.413),
+            // Filed Nationalist rather than Liberal, which is a judgement about
+            // September 1986 and not about the party's whole history: the FPO
+            // held the Liberal International seat and was in government with
+            // the SPO under Steger until Haider beat him at the Innsbruck
+            // congress, at which point the coalition ended within days and the
+            // party's vote doubled at the next four elections on immigration.
+            // In January 1990 it is a national-populist party that still holds
+            // a liberal membership card. It was expelled from the Liberal
+            // International in 1993.
+            p("at_fpo", "Freedom Party of Austria", "Freiheitliche Partei Osterreichs", Family::Nationalist, 0.097),
+            p("at_gruene", "The Greens - The Green Alternative", "Die Grune Alternative", Family::Green, 0.048),
+        ],
+        ruling: "the Nationalrat",
+        pillars: &[],
+    },
+
+    // Portugal - Assembly of the Republic, 19 July 1987: PSD 50.2%, PS 22.2%,
+    // CDU 12.1%, PRD 4.9%, CDS 4.4%. Cavaco Silva's absolute majority, the
+    // first single-party majority since the revolution of 1974 and the end of
+    // thirteen years in which no government finished a term. Next election
+    // 6 October 1991, which he won again.
+    // https://en.wikipedia.org/wiki/1987_Portuguese_legislative_election
+    Polity {
+        nation: NationId::Portugal,
+        // D'Hondt in twenty-two districts, no legal threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("pt_psd", "Social Democratic Party", "Partido Social Democrata", Family::Liberal, 0.502),
+            p("pt_ps", "Socialist Party", "Partido Socialista", Family::SocialDemocratic, 0.222),
+            // The CDU is a standing coalition of the Communist Party and the
+            // Greens and contested as one list; it is entered as one party
+            // because that is how the votes were cast. The PCP had been the
+            // best-organised clandestine party under the Estado Novo and was
+            // still, in 1990, the only unreconstructed pro-Soviet communist
+            // party of any size in Western Europe.
+            p("pt_cdu", "Unitary Democratic Coalition", "Coligacao Democratica Unitaria", Family::Communist, 0.121),
+            // bloc -> Western: Centrist party of a NATO democracy. https://en.wikipedia.org/wiki/Democratic_Renewal_Party_(Portugal)
+            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049).aligned(Bloc::Western),
+            p("pt_cds", "Democratic and Social Centre", "Centro Democratico e Social", Family::ChristianDemocratic, 0.044),
+        ],
+        ruling: "the Assembly of the Republic",
+        pillars: &[],
+    },
+
+    // Greece - Hellenic Parliament, 5 November 1989: New Democracy 46.2%,
+    // PASOK 40.7%, Synaspismos 11.0%. Three parties and no more: the
+    // published result carries a tail of minor lists, and none of them is
+    // separately verifiable against the source cited below, so none is
+    // entered. The shares sum to 0.979 and are not padded. This is the SECOND of three
+    // elections in eleven months - 18 June 1989, 5 November 1989, 8 April 1990
+    // - and neither of the first two produced a government. What sat on
+    // 1 January 1990 was an ecumenical caretaker cabinet under Xenophon
+    // Zolotas, a central banker with no party, holding office precisely until
+    // the third election could be held. `next` is therefore (1990, 4): a real
+    // scheduled election, three months into the game.
+    // https://en.wikipedia.org/wiki/November_1989_Greek_legislative_election
+    Polity {
+        nation: NationId::Greece,
+        // The substitution, stated. Greece used SIMPLE proportional in 1989
+        // rather than the reinforced proportional that normally manufactured
+        // majorities there, and it did so deliberately: PASOK legislated the
+        // change in 1989 knowing it was going to lose, so that New Democracy
+        // could not govern alone either. That worked exactly as intended and
+        // is why there were three elections. `Proportional` (5%) stands in for
+        // a 3% bar; there is no enum member for "a threshold chosen by the
+        // outgoing government to deny its successor a majority", which is what
+        // the real rule amounted to.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 4),
+        parties: &[
+            p("gr_nd", "New Democracy", "Nea Dimokratia", Family::Conservative, 0.462),
+            p("gr_pasok", "Panhellenic Socialist Movement", "Panellinio Sosialistiko Kinima", Family::SocialDemocratic, 0.407),
+            // Synaspismos was at this moment the strangest coalition in
+            // European politics: the orthodox KKE and the eurocommunist Greek
+            // Left running one list, and between July and October 1989 they
+            // had governed IN COALITION WITH New Democracy - communists and
+            // conservatives in one cabinet - for the sole purpose of sending
+            // Andreas Papandreou for trial over the Koskotas affair.
+            p("gr_syn", "Coalition of the Left and Progress", "Synaspismos tis Aristeras kai tis Proodou", Family::Communist, 0.110),
+        ],
+        ruling: "the Hellenic Parliament",
+        pillars: &[],
+    },
+
+    // Denmark - Folketing, 10 May 1988: Social Democrats 29.8%,
+    // Conservatives 19.3%, Socialist People's Party 13.0%, Venstre 11.8%,
+    // Progress Party 9.0%, Social Liberals 5.6%, Centre Democrats 4.7%,
+    // Christian People's Party 2.0%, Common Course 1.9%. Schluter's third
+    // cabinet, a minority of Conservatives, Venstre and Social Liberals.
+    // `next` is (1990, 12), the election Schluter actually called for
+    // 12 December 1990; the four-year term would have run to May 1992. The
+    // Spain block above set the same precedent of entering the date the
+    // election came rather than the last date it could have.
+    // https://en.wikipedia.org/wiki/1988_Danish_general_election
+    Polity {
+        nation: NationId::Denmark,
+        // A 2% national threshold, the lowest in Europe, which is why nine
+        // parties are listed and why no Danish government since 1971 has had a
+        // majority. ProportionalLowBar's 1% is the nearest.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 12),
+        parties: &[
+            p("dk_a", "Social Democrats", "Socialdemokratiet", Family::SocialDemocratic, 0.298),
+            p("dk_c", "Conservative People's Party", "Det Konservative Folkeparti", Family::Conservative, 0.193),
+            p("dk_f", "Socialist People's Party", "Socialistisk Folkeparti", Family::Communist, 0.130),
+            // Venstre means "left" and is the liberal party of the farmers.
+            // The name is 1870s seating, not a description, and it is entered
+            // Liberal because that is what it is.
+            p("dk_v", "Venstre, Liberal Party of Denmark", "Venstre", Family::Liberal, 0.118),
+            // Glistrup's tax revolt of 1973, which took 15.9% at its first
+            // election and had turned to immigration by 1988. The other Nordic
+            // parties of this family in this batch are Norway's FrP and
+            // Finland's SMP; unlike Belgium's Vlaams Blok, no formal cordon
+            // was ever signed against any of the three, which is exactly why
+            // they are entered with p() and it is not.
+            p("dk_z", "Progress Party", "Fremskridtspartiet", Family::Nationalist, 0.090),
+            p("dk_b", "Danish Social Liberal Party", "Det Radikale Venstre", Family::Liberal, 0.056),
+            p("dk_cd", "Centre Democrats", "Centrum-Demokraterne", Family::Liberal, 0.047),
+            p("dk_krf", "Christian People's Party", "Kristeligt Folkeparti", Family::ChristianDemocratic, 0.020),
+            p("dk_fk", "Common Course", "Faelles Kurs", Family::Communist, 0.019),
+        ],
+        ruling: "the Folketing",
+        pillars: &[],
+    },
+
+    // Norway - Storting, 11 September 1989: Labour 34.3%, Conservative 22.2%,
+    // Progress 13.0%, Socialist Left 10.1%, Christian People's 8.5%,
+    // Centre 6.5%, Liberal 3.2%. Syse's Conservative-Centre-Christian
+    // coalition, which fell on 29 October 1990 when the Centre Party walked
+    // out over the European Economic Area negotiations.
+    // https://en.wikipedia.org/wiki/1989_Norwegian_parliamentary_election
+    Polity {
+        nation: NationId::Norway,
+        // 4% for levelling seats.
+        system: Electoral::Proportional,
+        // Four years, and the Storting CANNOT be dissolved early - Norway has
+        // no snap elections at all, a constitutional peculiarity it has kept
+        // since 1814. So (1993, 9) is not an estimate: it is the date, and the
+        // government that fell in October 1990 was replaced without one.
+        term_months: 48,
+        next: (1993, 9),
+        parties: &[
+            p("no_ap", "Labour Party", "Arbeiderpartiet", Family::SocialDemocratic, 0.343),
+            p("no_h", "Conservative Party", "Hoyre", Family::Conservative, 0.222),
+            p("no_frp", "Progress Party", "Fremskrittspartiet", Family::Nationalist, 0.130),
+            p("no_sv", "Socialist Left Party", "Sosialistisk Venstreparti", Family::Communist, 0.101),
+            p("no_krf", "Christian Democratic Party", "Kristelig Folkeparti", Family::ChristianDemocratic, 0.085),
+            // The Centre Party is the old Agrarian League and it is the hinge
+            // of Norwegian politics on exactly one question: it brought down
+            // the government over Europe in 1990 and led the winning No
+            // campaign in the referendum of 1994.
+            p("no_sp", "Centre Party", "Senterpartiet", Family::Agrarian, 0.065),
+            p("no_v", "Liberal Party", "Venstre", Family::Liberal, 0.032),
+        ],
+        ruling: "the Storting",
+        pillars: &[],
+    },
+
+    // Finland - Eduskunta, 15-16 March 1987: SDP 24.1%, National Coalition
+    // 23.1%, Centre 17.6%, SKDL 9.4%, Rural Party 6.3%, Swedish People's 5.3%,
+    // Democratic Alternative 4.2%, Greens 4.0%, Christian League 2.6%.
+    // Holkeri's cabinet was the first since the war to seat the National
+    // Coalition Party in government with the Social Democrats - the
+    // "red-earth" arrangement that broke a taboo about what Moscow would
+    // tolerate in a Finnish cabinet, and it held for a full term.
+    // https://en.wikipedia.org/wiki/1987_Finnish_parliamentary_election
+    Polity {
+        nation: NationId::Finland,
+        // D'Hondt in fifteen districts, no national threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 3),
+        parties: &[
+            p("fi_sdp", "Social Democratic Party", "Suomen Sosialidemokraattinen Puolue", Family::SocialDemocratic, 0.241),
+            p("fi_kok", "National Coalition Party", "Kansallinen Kokoomus", Family::Conservative, 0.231),
+            p("fi_kesk", "Centre Party", "Suomen Keskusta", Family::Agrarian, 0.176),
+            // The SKDL was the electoral front of the Finnish communists, and
+            // DEVA below is the Stalinist minority that split off in 1986 and
+            // ran separately in 1987. Both are entered because both were on
+            // the ballot; they merged into the Left Alliance in 1990, which
+            // the model is not told about.
+            p("fi_skdl", "Finnish People's Democratic League", "Suomen Kansan Demokraattinen Liitto", Family::Communist, 0.094),
+            p("fi_smp", "Finnish Rural Party", "Suomen Maaseudun Puolue", Family::Nationalist, 0.063),
+            // Filed Regionalist because that is what it is: a language party
+            // for the 5-6% of Finns whose mother tongue is Swedish, spread
+            // along the coast and in Aland, which has sat in almost every
+            // Finnish cabinet since 1917 by being indispensable to all of them.
+            p("fi_rkp", "Swedish People's Party", "Svenska folkpartiet", Family::Regionalist, 0.053),
+            p("fi_deva", "Democratic Alternative", "Demokraattinen Vaihtoehto", Family::Communist, 0.042),
+            p("fi_vihr", "Green League", "Vihrea Liitto", Family::Green, 0.040),
+            p("fi_skl", "Finnish Christian League", "Suomen Kristillinen Liitto", Family::ChristianDemocratic, 0.026),
+        ],
+        ruling: "the Eduskunta",
+        pillars: &[],
+    },
+
+    // Ireland - Dail Eireann, 15 June 1989, first preferences: Fianna Fail
+    // 44.1%, Fine Gael 29.3%, Labour 9.5%, Progressive Democrats 5.5%,
+    // Workers' Party 5.0%, Greens 1.5%, Sinn Fein 1.2%. Haughey called the
+    // election early looking for a majority, lost seats, and formed the first
+    // coalition Fianna Fail had entered in the sixty-three years of its
+    // existence - the party's entire claim had been that it alone could
+    // govern alone. Next election 25 November 1992.
+    // https://en.wikipedia.org/wiki/1989_Irish_general_election
+    Polity {
+        nation: NationId::Ireland,
+        // The substitution, stated plainly: Ireland uses the single
+        // transferable vote in three-, four- and five-seat constituencies,
+        // and there is no STV member in this enum. The shares entered are
+        // FIRST PREFERENCES, which is the only figure comparable to a party
+        // list vote; STV's transfers then move seats around in ways a list
+        // system cannot reproduce - it is why the Progressive Democrats and
+        // the Workers' Party were persistently under-rewarded and why a
+        // transfer-friendly party like Labour outperformed its first count.
+        // ProportionalLowBar is the closest available because STV in small
+        // districts has no legal threshold, only an arithmetic one.
+        system: Electoral::ProportionalLowBar,
+        // Five years is the constitutional maximum for a Dail, the longest
+        // term in this table.
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            // Fianna Fail and Fine Gael are not left and right, and filing
+            // them by economic family would be inventing a cleavage the
+            // country did not have. They are the two sides of the Treaty of
+            // 1921 and the civil war that followed it, and voters inherited
+            // the allegiance. Fianna Fail is entered BigTent for that reason.
+            // bloc -> Western: Governing party of a liberal democracy. https://en.wikipedia.org/wiki/Fianna_F%C3%A1il
+            p("ie_ff", "Fianna Fail", "Fianna Fail - The Republican Party", Family::BigTent, 0.441).aligned(Bloc::Western),
+            p("ie_fg", "Fine Gael", "Fine Gael", Family::ChristianDemocratic, 0.293),
+            p("ie_lab", "Labour Party", "Pairti Lucht Oibre", Family::SocialDemocratic, 0.095),
+            p("ie_pd", "Progressive Democrats", "An Phairti Daonlathach", Family::Liberal, 0.055),
+            p("ie_wp", "Workers' Party", "Pairti na nOibrithe", Family::Communist, 0.050),
+            p("ie_gp", "Green Party", "Comhaontas Glas", Family::Green, 0.015),
+            // Entered with p() and not pariah(), which is a deliberate line.
+            // Sinn Fein was excluded in 1990 as completely as any party in
+            // Europe - section 31 of the Broadcasting Authority Act banned its
+            // spokesmen from Irish radio and television from 1971 until 1994,
+            // and no party would have sat with it. But that exclusion was a
+            // ministerial order and a convention, not a signed pact between
+            // the other parties, which is the distinction this table's pariah
+            // flag has been drawing since Italy; and unlike Herri Batasuna it
+            // took its Dail seats when it won them after 1986. It won none in
+            // 1989.
+            p("ie_sf", "Sinn Fein", "Sinn Fein", Family::Nationalist, 0.012),
+        ],
+        ruling: "Dail Eireann",
+        pillars: &[],
+    },
+    // ---- Eastern Europe --------------------------------------------------
+    // Four of these five hold their first free election inside the first six
+    // months of the game and the fifth holds none at all, so this is the one
+    // stretch of the table where `next` is doing real work rather than
+    // scheduling a formality.
+    //
+    // Czechoslovakia — the Federal Assembly, House of the People, 8-9 June
+    // 1990: the first free election since 1946 and the last before the state
+    // dissolved. The assembly sitting on 1 January 1990 is the one elected
+    // unopposed in 1986 and then co-opted wholesale in December, so the shares
+    // below are June's, on the same convention Poland and Spain use.
+    //
+    // ARITHMETIC, STATED SO IT CAN BE CHECKED: the published results are
+    // per-republic — Civic Forum 53.15% in the Czech lands, Public Against
+    // Violence 32.54% in Slovakia — and this table needs one federal number
+    // per party. Each republic's share is weighted by its population at the
+    // 1991 census, 10.30m against 5.27m, i.e. 0.661 and 0.339. Two independent
+    // checks on that weighting land where they should: the Communists come out
+    // at 0.136 against the federal 13.6% actually reported, and Civic Forum
+    // plus Public Against Violence come out at 0.461 against the reported
+    // 46.6%. https://en.wikipedia.org/wiki/1990_Czechoslovak_parliamentary_election
+    Polity {
+        nation: NationId::Czechoslovakia,
+        // 5% in the Czech lands, 3% in Slovakia. Proportional is the closer of
+        // the two available bars and it keeps the Moravians and the Hungarian
+        // coalition out of the federal chamber, which is where they were.
+        system: Electoral::Proportional,
+        // Two years, not four, and deliberately: the June 1990 Federal Assembly
+        // was elected as a constituent body to write a constitution it never
+        // agreed on. The next election came on 5-6 June 1992 and produced Klaus
+        // and Meciar, who divided the country within seven months.
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Civic_Forum
+            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.351).aligned(Bloc::Western),
+            // successor_of_ruling_party: Communist Party of Czechoslovakia (KSC), the row's own party - reorganised in 1990 as a federation of the KSCM (established 31 March 1990) and the Communist Party of Slovakia (which became the Party of the Democratic Left: KSS 22 Nov 1990 -> SDL 1 Feb 1992); federation dissolved 1992; 1990-03-31. https://en.wikipedia.org/wiki/Communist_Party_of_Bohemia_and_Moravia ; https://en.wikipedia.org/wiki/Party_of_the_Democratic_Left_(Slovakia)
+            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.136).successor(),
+            // Listed separately from Civic Forum rather than merged into it,
+            // because the difference between them is the entire subject of this
+            // nation's file. They were allied, they were not one party, and the
+            // Hyphen War of January to April 1990 — a constitutional crisis
+            // about where to put a hyphen in the state's own name — was fought
+            // between their two parliamentary clubs.
+            // bloc -> Western: Civic Forum's Slovak twin. https://en.wikipedia.org/wiki/Public_Against_Violence
+            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.110).aligned(Bloc::Western),
+            p("cs_kdh", "Christian Democratic Movement", "Krestanskodemokraticke hnutie", Family::ChristianDemocratic, 0.064),
+            p("cs_kdu", "Christian and Democratic Union", "Krestanska a demokraticka unie", Family::ChristianDemocratic, 0.057),
+            p("cs_hsd", "Movement for Self-governing Democracy - Moravia and Silesia", "Hnuti za samospravnou demokracii - Spolecnost pro Moravu a Slezsko", Family::Regionalist, 0.052),
+            p("cs_sns", "Slovak National Party", "Slovenska narodna strana", Family::Nationalist, 0.037),
+            p("cs_egy", "Coexistence", "Egyutteles - Spoluzitie", Family::Regionalist, 0.029),
+            p("cs_ds", "Democratic Party", "Demokraticka strana", Family::Conservative, 0.015),
+        ],
+        ruling: "the Federal Assembly",
+        pillars: &[],
+    },
+    // Hungary — National Assembly, 25 March and 8 April 1990, the first free
+    // election since 1945: MDF 24.7%, SZDSZ 21.4%, FKGP 11.7%, MSZP 10.9%,
+    // Fidesz 8.9%, KDNP 6.5%, MSZMP 3.7%, on the national list vote of the
+    // first round. Antall's MDF-FKGP-KDNP coalition took office on 23 May and
+    // ran the full four years — the only government in this region to manage
+    // it. https://en.wikipedia.org/wiki/1990_Hungarian_parliamentary_election
+    Polity {
+        nation: NationId::Hungary,
+        // Mixed-member: 176 single-member seats, 152 county list seats, 58
+        // national compensation seats, with a 4% bar on the list vote (raised
+        // to 5% in 1994). Proportional's 5% is the nearest available and it
+        // gets the load-bearing case right: the unreconstructed MSZMP polled
+        // 3.7% and won nothing, which is how the Hungarian communist party
+        // left the chamber it had occupied for forty-two years.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("hu_mdf", "Hungarian Democratic Forum", "Magyar Demokrata Forum", Family::Conservative, 0.247),
+            p("hu_szdsz", "Alliance of Free Democrats", "Szabad Demokratak Szovetsege", Family::Liberal, 0.214),
+            p("hu_fkgp", "Independent Smallholders' Party", "Fuggetlen Kisgazdapart", Family::Agrarian, 0.117),
+            // successor_of_ruling_party: Hungarian Socialist Workers' Party (MSZMP) - dissolved and refounded itself as the MSZP; 'one of two legal successors'; 1989-10-07. https://en.wikipedia.org/wiki/Hungarian_Socialist_Party
+            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109).successor(),
+            // Liberal, and in 1990 that is not a projection backwards from what
+            // Fidesz later became: it was founded in 1988 as a youth movement
+            // with an upper age limit of 35, sat in the Liberal International
+            // from 1992, and campaigned in 1990 to Antall's left on everything
+            // except the economy.
+            p("hu_fidesz", "Alliance of Young Democrats", "Fiatal Demokratak Szovetsege", Family::Liberal, 0.089),
+            p("hu_kdnp", "Christian Democratic People's Party", "Kereszatenydemokrata Neppart", Family::ChristianDemocratic, 0.065),
+            // successor_of_ruling_party: Hungarian Socialist Workers' Party (MSZMP) - re-established under the old name by members who opposed the MSZP transformation; the other legal successor; 1989-12-17. https://en.wikipedia.org/wiki/Hungarian_Workers%27_Party
+            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037).successor(),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Romania — Assembly of Deputies, 20 May 1990: the National Salvation
+    // Front 66.3%, UDMR 7.2%, the National Liberals 6.4%, the Ecological
+    // Movement 2.6%, the Christian-Democratic Peasants 2.6%, AUR 2.1%. Five
+    // months after taking power by revolution, the Front broke its pledge not
+    // to contest the election and won two thirds of a chamber against parties
+    // with no access to state television.
+    // https://en.wikipedia.org/wiki/1990_Romanian_general_election
+    Polity {
+        nation: NationId::Romania,
+        // No legal threshold at all in 1990 — a 3% bar arrived in 1992 — which
+        // is why sixteen parties took seats behind the Front. ProportionalLowBar
+        // is the only entry in this enum that reproduces that.
+        system: Electoral::ProportionalLowBar,
+        // A constituent assembly, like Czechoslovakia's and Bulgaria's: elected
+        // to write the constitution adopted in December 1991, dissolved for the
+        // election of 27 September 1992.
+        term_months: 24,
+        next: (1990, 5),
+        parties: &[
+            p("ro_fsn", "National Salvation Front", "Frontul Salvarii Nationale", Family::BigTent, 0.663),
+            p("ro_udmr", "Democratic Union of Hungarians in Romania", "Uniunea Democrata Maghiara din Romania", Family::Regionalist, 0.072),
+            p("ro_pnl", "National Liberal Party", "Partidul National Liberal", Family::Liberal, 0.064),
+            p("ro_mer", "Ecological Movement of Romania", "Miscarea Ecologista din Romania", Family::Green, 0.026),
+            p("ro_pntcd", "Christian-Democratic National Peasants' Party", "Partidul National Taranesc Crestin Democrat", Family::ChristianDemocratic, 0.026),
+            p("ro_aur", "Romanian National Unity Alliance", "Alianta pentru Unitatea Romanilor", Family::Nationalist, 0.021),
+        ],
+        ruling: "the Assembly of Deputies",
+        // Romania is the one entry in this region carrying both a party table
+        // and a pillar, and the reason is the Mineriad. On 13-15 June 1990 the
+        // government called the Jiu Valley miners to Bucharest to clear
+        // University Square and thanked them for it; the army had already been
+        // the arbiter in December 1989. An elected government whose last resort
+        // is not the courts is described by both fields at once.
+        pillars: &[pl(Pillar::Army, "the Romanian Army")],
+    },
+    // Bulgaria — the Grand National Assembly, 10 and 17 June 1990, on the
+    // proportional half of the ballot: the Bulgarian Socialist Party 47.2%,
+    // the Union of Democratic Forces 36.2%, the Agrarians 8.0%, the Movement
+    // for Rights and Freedoms 6.0%. The only ruling communist party in the
+    // region to win a free election outright, seven months after removing
+    // Zhivkov itself and ten weeks after renaming itself.
+    // https://en.wikipedia.org/wiki/1990_Bulgarian_general_election
+    Polity {
+        nation: NationId::Bulgaria,
+        // Half the 400 seats by party list with a 4% bar, half in single-member
+        // constituencies. Proportional is the closer of the two, and it is the
+        // half that decided the result.
+        system: Electoral::Proportional,
+        // Also a constituent assembly: it wrote the constitution of 12 July
+        // 1991 and dissolved for the election of 13 October 1991.
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            // Communist rather than SocialDemocratic, on the same reading that
+            // labels Poland's SLD Communist: on 1 January 1990 this is the
+            // Bulgarian Communist Party, in office since 1944, and it does not
+            // change its name until 3 April.
+            // successor_of_ruling_party: Bulgarian Communist Party - 'abandoned Marxism-Leninism and refounded itself as the BSP in April 1990'; 1990-04-03. https://en.wikipedia.org/wiki/Bulgarian_Socialist_Party
+            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472).successor(),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Union_of_Democratic_Forces_(Bulgaria)
+            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362).aligned(Bloc::Western),
+            p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
+            // The party of the Turkish minority that the previous government
+            // had spent five years trying to assimilate and then expel.
+            // Founded 4 January 1990, four days into this start state, and the
+            // constitution written by the assembly it entered forbade parties
+            // formed on ethnic lines — which it survived by a court ruling
+            // rather than by anyone's goodwill. Not a pariah: it was nobody's
+            // coalition partner in 1990 and everybody's after 2001.
+            p("bg_dps", "Movement for Rights and Freedoms", "Dvizhenie za prava i svobodi", Family::Regionalist, 0.060),
+        ],
+        ruling: "the Grand National Assembly",
+        pillars: &[],
+    },
+    // Albania — the last orthodox Stalinist state in Europe, and the only
+    // nation in this region for which `next` is (0, 0). The People's Assembly
+    // elected on 1 February 1987 recorded a 100% turnout and 99.99% for the
+    // Democratic Front's single list; that is not an election and the model is
+    // not given one. Opposition parties were legalised on 11 December 1990,
+    // after the game opens, and the shares below are the first real result —
+    // 31 March 1991, in which the Party of Labour won the countryside and lost
+    // every city including the seat of Ramiz Alia himself. They go live only
+    // if the regime opens up, which is the convention the USSR block sets.
+    // https://en.wikipedia.org/wiki/1991_Albanian_parliamentary_election
+    Polity {
+        nation: NationId::Albania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Party of Labour of Albania (PPSh), the row's own party - 'At an extraordinary congress on 10-13 June 1991, the PPSh reorganized as the PS'; 1991-06-13. https://en.wikipedia.org/wiki/Socialist_Party_of_Albania
+            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562).successor(),
+            p("al_pd", "Democratic Party of Albania", "Partia Demokratike e Shqiperise", Family::Liberal, 0.387),
+            p("al_omonia", "Omonia", "Omonoia", Family::Regionalist, 0.007),
+        ],
+        ruling: "the Party of Labour of Albania",
+        // Named institutions, not "the army". The Sigurimi ran the internal
+        // exile system and had roughly one informer for every three adults by
+        // the estimates published after 1992; the Party of Labour's Central
+        // Committee was the only body that could remove a leader and did not;
+        // and the People's Army was the force that manned 170,000 bunkers
+        // against an invasion that never came. All three were gone within
+        // two years of this start state.
+        pillars: &[
+            pl(Pillar::Security, "the Sigurimi"),
+            pl(Pillar::Party, "the Central Committee of the Party of Labour"),
+            pl(Pillar::Army, "the Albanian People's Army"),
+        ],
+    },
+
+    // ---------------------------------------------------------------------
+    // The other ten Soviet successors.
+    //
+    // None of these governments exists in January 1990 and none of them is
+    // reached by `every_government_is_reachable_in_january_1990`, which walks
+    // the living. They become live the month `dissolve_ussr` pushes the
+    // republic onto the board, and `ensure` seeds this table then.
+    //
+    // Every block is the founding national vote that put the republic's first
+    // sovereign parliament or president in place: for most of them the
+    // republican Supreme Soviet elections of spring 1990, the first
+    // competitive elections held on that soil since the annexations, and for a
+    // few the first post-independence contest, because the 1990 result there
+    // was a one-party formality that published no comparable shares.
+    //
+    // Every one of the ten carries `next: (0, 0)`, and that is not laziness.
+    // A date pinned here would be a date in the past by the time the union
+    // actually comes apart in this model, which is somewhere in the nineties
+    // and different in every seed. `tick` already handles exactly this case -
+    // an electoral nation with no election scheduled is given eighteen months
+    // and a headline, "sets a date for its first free elections" - and that is
+    // a truer description of what these countries did than any constant would
+    // be. Where the republic starts above the electoral ceiling instead, the
+    // pillars below are what it rests on and the parties wait for the day it
+    // opens up.
+    // ---------------------------------------------------------------------
+
+    // Belarus - Supreme Soviet of the Byelorussian SSR, 4 March 1990 with
+    // runoffs into May. Seat shares, not votes: the Communist Party of
+    // Byelorussia took the overwhelming majority of the 310 seats and the
+    // Belarusian Popular Front's opposition caucus settled at around 37 of
+    // them. Belarus is the republic where the old apparatus was least disturbed
+    // by 1991, and that is the fact this table exists to carry.
+    // https://en.wikipedia.org/wiki/1990_Byelorussian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Belarus,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Communist Party of Byelorussia, the row's own party - activities suspended 25 August 1991 to 3 February 1993; the Party of Communists of Belarus (PKB) founded 7 December 1991 'as the legal successor to the ruling Communist Party of Byelorussia'; CPB voted to join the PKB at its XXXII congress 25 April 1993; 1991-12-07. https://en.wikipedia.org/wiki/Communist_Party_of_Byelorussia ; https://en.wikipedia.org/wiki/Party_of_Communists_of_Belarus
+            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850).successor(),
+            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.120),
+        ],
+        ruling: "the Supreme Soviet",
+        pillars: &[
+            pl(Pillar::Army, "the Belorussian Military District's inheritance"),
+            pl(Pillar::Party, "the collective-farm and industrial nomenklatura"),
+            pl(Pillar::Security, "the State Security Committee"),
+        ],
+    },
+
+    // Kazakhstan - 1 December 1991 presidential election: Nursultan Nazarbayev
+    // unopposed with 98.8%. Azat and Zheltoqsan, the two national-democratic
+    // movements that would have contested it, were refused registration, so
+    // there is genuinely no second row to transcribe. A single party here is
+    // the correct description of the republic and not a gap in it.
+    // https://en.wikipedia.org/wiki/1991_Kazakh_presidential_election
+    Polity {
+        nation: NationId::Kazakhstan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kz_snek", "Union of People's Unity of Kazakhstan", "Qazaqstan Halyq Birligi Odagy", Family::BigTent, 0.988),
+        ],
+        ruling: "the Presidency of the Republic of Kazakhstan",
+        pillars: &[
+            pl(Pillar::Army, "the Kazakh Armed Forces"),
+            pl(Pillar::Party, "the presidential apparatus"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the oil and metals groups"),
+        ],
+    },
+
+    // Uzbekistan - 29 December 1991 presidential election: Islam Karimov 86.0%,
+    // Muhammad Salih of Erk 12.7%. Erk was banned within two years and Salih
+    // left the country; Birlik, the larger opposition movement, was never
+    // allowed onto the ballot at all. The First Secretary became the President
+    // without an interval, which is why the pillars here are the Soviet ones
+    // under new names.
+    // https://en.wikipedia.org/wiki/1991_Uzbek_presidential_election
+    Polity {
+        nation: NationId::Uzbekistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Communist Party of Uzbekistan - 'founded in October 1991 after the Communist Party of Uzbekistan voted to cut its ties with the CPSU'; 'the legal successor of the Communist Party of Uzbekistan'; 1991-10. https://en.wikipedia.org/wiki/People%27s_Democratic_Party_of_Uzbekistan
+            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860).successor(),
+            p("uz_erk", "Erk Democratic Party", "Erk Demokratik Partiyasi", Family::Liberal, 0.127),
+        ],
+        ruling: "the Presidency of the Republic of Uzbekistan",
+        pillars: &[
+            pl(Pillar::Army, "the Turkestan Military District's inheritance"),
+            pl(Pillar::Party, "the People's Democratic Party apparatus"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+
+    // Kyrgyzstan - 12 October 1991 presidential election: Askar Akayev, running
+    // unopposed after the Supreme Soviet declined to register a second
+    // candidate, 95.3% on a 90% turnout. The number is a formality; the fact
+    // worth transcribing happened a year earlier, on 27 October 1990, when the
+    // same Supreme Soviet elected Akayev — the president of the Academy of
+    // Sciences, a physicist who had never held party office — over Absamat
+    // Masaliyev, the First Secretary. Kyrgyzstan is the only Soviet republic
+    // where the party boss ran for the new presidency and lost, which is why
+    // this is the one polity in Central Asia that rests on something other than
+    // the apparatus it inherited, and why there is no Party pillar below.
+    // https://en.wikipedia.org/wiki/1991_Kyrgyz_presidential_election
+    Polity {
+        nation: NationId::Kyrgyzstan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kg_dkk", "Democratic Movement of Kyrgyzstan", "Demokratiyaluu Kyrgyzstan Kyymyly", Family::Liberal, 0.953),
+        ],
+        ruling: "the Presidency of the Kyrgyz Republic",
+        pillars: &[
+            pl(Pillar::Army, "what the Turkestan Military District left behind"),
+            pl(Pillar::Security, "the State Committee for National Security"),
+        ],
+    },
+
+    // Tajikistan - 24 November 1991 presidential election: Rahmon Nabiyev of
+    // the Communist Party 56.9%, Davlat Khudonazarov 30.1%. Khudonazarov was a
+    // filmmaker from Gorno-Badakhshan carrying the whole of the opposition at
+    // once — the Democratic Party, Rastokhez and the Islamic Renaissance Party
+    // on one ticket — and the result is the closest presidential contest held
+    // anywhere in Central Asia. It is also the only one in this group that was
+    // seriously disputed, and the dispute did not end at the count: the
+    // Dushanbe square protests of March 1992 followed from it and the civil war
+    // followed from those. Nothing here schedules that war. What this table
+    // records is a government elected by 57% of a republic whose other 43% did
+    // not accept the result, which is the condition it was in.
+    // https://en.wikipedia.org/wiki/1991_Tajik_presidential_election
+    Polity {
+        nation: NationId::Tajikistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Communist Party of Tajikistan, the row's own party - after independence 'voted to rename itself the Socialist Party of Tajikistan to circumvent the ban'; ban lifted by December 1991 and the Communist Party name resumed; 1991-12. https://en.wikipedia.org/wiki/Communist_Party_of_Tajikistan
+            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.569).successor(),
+            p("tj_hnt", "Democratic Party of Tajikistan", "Hizbi Demokrati Tojikiston", Family::Liberal, 0.301),
+        ],
+        ruling: "the Presidency of the Republic of Tajikistan",
+        pillars: &[
+            pl(Pillar::Party, "the Leninabad and Kulob regional machines"),
+            pl(Pillar::Security, "the interior ministry and the KGB residue"),
+        ],
+    },
+
+    // Turkmenistan - 27 October 1990 presidential election: Saparmurat Niyazov
+    // unopposed, 98.3%. The earliest presidential election in any Soviet
+    // republic and the emptiest: the Communist Party of Turkmenistan renamed
+    // itself the Democratic Party in December 1991 and remained the only legal
+    // party in the country until 2012. Agzybirlik, the one opposition movement,
+    // was banned in January 1990 before the ballot was printed, so a single row
+    // is again the correct description and not a gap. Niyazov took 99.5% at the
+    // re-run of 21 June 1992 and had the Mejlis extend his term indefinitely in
+    // 1999. https://en.wikipedia.org/wiki/1990_Turkmen_presidential_election
+    Polity {
+        nation: NationId::Turkmenistan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Communist Party of Turkmenistan - 'created following the dissolution of the Soviet Union as a successor party to the Communist Party of Turkmenistan'; 1991-12-16. https://en.wikipedia.org/wiki/Democratic_Party_of_Turkmenistan
+            p("tm_dpt", "Democratic Party of Turkmenistan", "Turkmenistanyn Demokratik Partiyasy", Family::BigTent, 0.983).successor(),
+        ],
+        ruling: "the Presidency of Turkmenistan",
+        pillars: &[
+            pl(Pillar::Army, "the Turkmen share of the Turkestan Military District"),
+            pl(Pillar::Party, "the presidential apparatus and the Niyazov cult"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the gas ministry"),
+        ],
+    },
+
+    // Georgia - Supreme Council, 28 October 1990: Zviad Gamsakhurdia's Round
+    // Table-Free Georgia 64.0%, the Communist Party of Georgia 29.6%. The first
+    // multi-party election in any Soviet republic won outright by the
+    // opposition, and the government it produced was overthrown by its own
+    // National Guard fourteen months later.
+    // https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Georgia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.640),
+            p("ge_kpg", "Communist Party of Georgia", "Sakartvelos Komunisturi Partia", Family::Communist, 0.296),
+        ],
+        ruling: "the Supreme Council of Georgia",
+        pillars: &[
+            pl(Pillar::Army, "the National Guard and the Mkhedrioni"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+
+    // Armenia - 16 October 1991 presidential election: Levon Ter-Petrosyan of
+    // the Pan-Armenian National Movement 83.0%, Paruyr Hayrikyan 7.2%, Sos
+    // Sargsyan of the Dashnaks 4.3%. Held five weeks after the independence
+    // referendum, with the Karabakh war already running and the Azerbaijani
+    // blockade closing.
+    // https://en.wikipedia.org/wiki/1991_Armenian_presidential_election
+    Polity {
+        nation: NationId::Armenia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: Liberal-nationalist democratic movement that won the 1990 Supreme Soviet against the party-state. https://en.wikipedia.org/wiki/Pan-Armenian_National_Movement
+            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830).aligned(Bloc::Western),
+            p("am_ansd", "National Self-Determination Union", "Azgayin Inknoroshum Miavorum", Family::Nationalist, 0.072),
+            p("am_hhd", "Armenian Revolutionary Federation", "Hay Heghapokhakan Dashnaktsutyun", Family::SocialDemocratic, 0.043),
+        ],
+        ruling: "the Presidency of the Republic of Armenia",
+        pillars: &[
+            pl(Pillar::Army, "the Armenian Army and the Karabakh volunteers"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+
+    // Azerbaijan - 7 June 1992 presidential election: Abulfaz Elchibey of the
+    // Popular Front 59.4%, Nizami Suleymanov 33.0%. The 1990 Supreme Soviet
+    // election was run by the Communist Party under the state of emergency
+    // imposed after Black January and published no comparable shares, so 1992
+    // is the first result that describes the country. Elchibey lasted a year:
+    // Karabakh took his government down, as it had taken down the one before.
+    // https://en.wikipedia.org/wiki/1992_Azerbaijani_presidential_election
+    Polity {
+        nation: NationId::Azerbaijan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.594),
+            // bloc -> Western: The Popular Front opposition bloc of 1990: anti-communist, democratic, for independence. https://en.wikipedia.org/wiki/Azerbaijan_Popular_Front_Party
+            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330).aligned(Bloc::Western),
+        ],
+        ruling: "the Presidency of the Republic of Azerbaijan",
+        pillars: &[
+            pl(Pillar::Army, "the Azerbaijani Army and the OMON detachments"),
+            pl(Pillar::Security, "the Ministry of National Security"),
+            pl(Pillar::Business, "the state oil company"),
+        ],
+    },
+
+    // Lithuania - Supreme Council, 24 February 1990 with runoffs in March. Seat
+    // shares of 141: Sajudis-endorsed candidates 91, the Communist Party of
+    // Lithuania that had already broken with Moscow about 40, the Polish
+    // electoral caucus around 7. This is the parliament that declared
+    // independence on 11 March 1990, eleven days after it was seated, and it is
+    // the earliest of the three Baltic declarations.
+    // https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Lithuania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Sajudis
+            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645).aligned(Bloc::Western),
+            // successor_of_ruling_party: Communist Party of Lithuania (independent of the CPSU since December 1989) - 'the main body of the CPL reorganized as the DLPL'; 1990-12. https://en.wikipedia.org/wiki/Democratic_Labour_Party_of_Lithuania
+            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284).successor(),
+            p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
+        ],
+        ruling: "the Seimas",
+        pillars: &[],
+    },
+
+    // Latvia - Supreme Council, 18 March 1990. Seat shares of 201: the Popular
+    // Front of Latvia 131, the pro-Soviet Equal Rights caucus 55. The Front had
+    // the two-thirds it needed to vote the restoration of independence on 4 May,
+    // and Equal Rights is the parliamentary form of the Russophone third of the
+    // country that the citizenship law of 1994 then left outside the electorate.
+    // https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Latvia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Latvia
+            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652).aligned(Bloc::Western),
+            p("lv_lidz", "Equal Rights", "Lidztiesiba", Family::Communist, 0.274),
+        ],
+        ruling: "the Saeima",
+        pillars: &[],
+    },
+
+    // Estonia - 20 September 1992 Riigikogu election: Pro Patria 22.0%, Safe
+    // Home 13.6%, the Popular Front 12.3%, the Moderates 9.7%, the National
+    // Independence Party 8.8%, Estonian Citizen 6.9%. The first election
+    // anywhere in the former union held under a restored pre-war constitution,
+    // and the first in which only citizens of the inter-war republic and their
+    // descendants could vote. The shares sum to 0.733 because the remainder went
+    // to lists that took no seats; padding it to 1.0 would be inventing.
+    // https://en.wikipedia.org/wiki/1992_Estonian_parliamentary_election
+    Polity {
+        nation: NationId::Estonia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ee_isamaa", "Pro Patria", "Isamaa", Family::Conservative, 0.220),
+            p("ee_kk", "Safe Home", "Kindel Kodu", Family::Agrarian, 0.136),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Estonia
+            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123).aligned(Bloc::Western),
+            p("ee_mood", "Moderates", "Moodukad", Family::SocialDemocratic, 0.097),
+            p("ee_ersp", "Estonian National Independence Party", "Eesti Rahvusliku Soltumatuse Partei", Family::Nationalist, 0.088),
+            p("ee_ek", "Estonian Citizen", "Eesti Kodanik", Family::Nationalist, 0.069),
+        ],
+        ruling: "the Riigikogu",
+        pillars: &[],
+    },
+
+    // Moldova - 27 February 1994 parliamentary election: the Agrarian
+    // Democratic Party 43.2%, the Socialist Party and Unity Movement bloc
+    // 22.0%, the Bloc of Peasants and Intellectuals 9.2%, the Christian
+    // Democratic Popular Front 7.5%. The 1990 Supreme Soviet election was
+    // fought by candidates rather than parties, so 1994 is the first party
+    // result, and it is a vote against union with Romania taken after
+    // Transnistria was already gone.
+    // https://en.wikipedia.org/wiki/1994_Moldovan_parliamentary_election
+    Polity {
+        nation: NationId::Moldova,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("md_pdam", "Agrarian Democratic Party", "Partidul Democrat Agrar din Moldova", Family::Agrarian, 0.432),
+            p("md_sb", "Socialist Party and Unity Movement bloc", "Blocul Partidul Socialist si Miscarea Unitate-Edinstvo", Family::Communist, 0.220),
+            p("md_bti", "Bloc of Peasants and Intellectuals", "Blocul Taranilor si Intelectualilor", Family::Liberal, 0.092),
+            p("md_fpcd", "Christian Democratic Popular Front", "Frontul Popular Crestin Democrat", Family::Nationalist, 0.075),
+        ],
+        ruling: "the Parliament of the Republic of Moldova",
+        pillars: &[],
+    },
+    // ---- Latin America ----------------------------------------------------
+    //
+    // Ten chambers, and the striking thing about the set is the date on each
+    // one. Nine of these ten are elected bodies, and eight of the nine were
+    // seated after 1985. South America had been governed by soldiers almost
+    // everywhere in 1980 and by civilians almost everywhere by 1990, which is
+    // the largest change in the region's politics this century and the reason
+    // the shares below are so recent. What they are not is stable: the parties
+    // holding these majorities in January 1990 are mostly gone by 2000.
+
+    // Argentina — Chamber of Deputies, 14 May 1989, held with the presidential
+    // election Carlos Menem won for the Justicialists with 47.5%: PJ 44.7%, UCR
+    // 28.8%, the Alianza de Centro around the UCeDe 6.9%, Izquierda Unida 3.5%,
+    // and a long tail of provincial parties of which the Neuquen People's
+    // Movement is the durable one. Raul Alfonsin handed power over five months
+    // early, in July 1989, because hyperinflation had made governing impossible.
+    // Half the chamber renews every two years, so the next round is due in
+    // September 1991.
+    // https://en.wikipedia.org/wiki/1989_Argentine_general_election
+    Polity {
+        nation: NationId::Argentina,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 9),
+        parties: &[
+            p("ar_pj", "Justicialist Party", "Partido Justicialista", Family::BigTent, 0.447),
+            p("ar_ucr", "Radical Civic Union", "Union Civica Radical", Family::Liberal, 0.288),
+            p("ar_ucede", "Union of the Democratic Centre", "Union del Centro Democratico", Family::Conservative, 0.069),
+            p("ar_iu", "United Left", "Izquierda Unida", Family::Communist, 0.035),
+            p("ar_mpn", "Neuquen People's Movement", "Movimiento Popular Neuquino", Family::Regionalist, 0.015),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Mexico — Chamber of Deputies, 6 July 1988: PRI 51.1%, the Cardenista
+    // Frente Democratico Nacional 29.1%, PAN 18.0%. The count famously stopped
+    // when "se cayo el sistema" and resumed with the PRI ahead; the ballots were
+    // burned in 1992. The FDN becomes the PRD in May 1989 and is entered under
+    // that name with its 1988 share. Deputies serve three years, so the midterm
+    // falls in August 1991. The PRI had not lost a presidential election since
+    // its founding in 1929 and does not lose one until 2000 — which the model
+    // has to reach through legitimacy, not through a date.
+    // https://en.wikipedia.org/wiki/1988_Mexican_general_election
+    Polity {
+        nation: NationId::Mexico,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 8),
+        parties: &[
+            p("mx_pri", "Institutional Revolutionary Party", "Partido Revolucionario Institucional", Family::BigTent, 0.511),
+            p("mx_prd", "Party of the Democratic Revolution", "Partido de la Revolucion Democratica", Family::SocialDemocratic, 0.291),
+            p("mx_pan", "National Action Party", "Partido Accion Nacional", Family::ChristianDemocratic, 0.180),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Chile — Chamber of Deputies, 14 December 1989, the first since 1973, held
+    // under the constitution the outgoing regime wrote in 1980 and with the
+    // binomial system it designed to give the right half the seats on a third of
+    // the vote. Party lists inside the two blocs: PDC 26.0%, RN 18.3%, PPD
+    // 11.5%, UDI 9.8%, PS 7.0%, PR 3.9%. Patricio Aylwin of the Concertacion
+    // took the presidency with 55.2% and is inaugurated on 11 March 1990 — so
+    // the game opens with Pinochet still in the palace and the successor already
+    // elected, which is why Chile's authoritarianism figure is not a democracy's.
+    // https://en.wikipedia.org/wiki/1989_Chilean_general_election
+    Polity {
+        nation: NationId::Chile,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 12),
+        parties: &[
+            p("cl_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.260),
+            p("cl_rn", "National Renewal", "Renovacion Nacional", Family::Conservative, 0.183),
+            p("cl_ppd", "Party for Democracy", "Partido por la Democracia", Family::SocialDemocratic, 0.115),
+            p("cl_udi", "Independent Democratic Union", "Union Democrata Independiente", Family::Conservative, 0.098),
+            p("cl_ps", "Socialist Party of Chile", "Partido Socialista de Chile", Family::SocialDemocratic, 0.070),
+            p("cl_pr", "Radical Party", "Partido Radical", Family::Liberal, 0.039),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Colombia — Chamber of Representatives, 9 March 1986: Liberals 48.6%,
+    // Social Conservatives 37.8%, the Patriotic Union 1.3%. The UP was the
+    // civilian party the FARC founded under the 1984 ceasefire, and between 1986
+    // and 1990 somewhere upward of two thousand of its members were murdered,
+    // including both of its presidential candidates. The M-19 Democratic
+    // Alliance is entered at 2.7%, its result in the congressional election of
+    // March 1990, the month it disarmed. That election is the next one due when
+    // the game opens, which is why `next` is three months away rather than three
+    // years.
+    // https://en.wikipedia.org/wiki/1986_Colombian_parliamentary_election
+    Polity {
+        nation: NationId::Colombia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("co_pl", "Colombian Liberal Party", "Partido Liberal Colombiano", Family::Liberal, 0.486),
+            p("co_psc", "Social Conservative Party", "Partido Social Conservador", Family::Conservative, 0.378),
+            p("co_adm19", "M-19 Democratic Alliance", "Alianza Democratica M-19", Family::SocialDemocratic, 0.027),
+            p("co_up", "Patriotic Union", "Union Patriotica", Family::Communist, 0.013),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+    // Venezuela — Chamber of Deputies, 4 December 1988: AD 43.3%, COPEI 31.1%,
+    // MAS 10.3%, MEP 1.8%, La Causa R 1.6%. The Punto Fijo pact of 1958 gave
+    // Venezuela thirty years of two-party alternation and the most stable
+    // democracy in South America; ten weeks after this table was voted, the army
+    // shot several hundred people in Caracas during the Caracazo, and the pact
+    // never recovered. Five-year terms, next due December 1993.
+    // https://en.wikipedia.org/wiki/1988_Venezuelan_general_election
+    Polity {
+        nation: NationId::Venezuela,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 12),
+        parties: &[
+            p("ve_ad", "Democratic Action", "Accion Democratica", Family::SocialDemocratic, 0.433),
+            p("ve_copei", "Social Christian Party", "Comite de Organizacion Politica Electoral Independiente", Family::ChristianDemocratic, 0.311),
+            p("ve_mas", "Movement Towards Socialism", "Movimiento al Socialismo", Family::Communist, 0.103),
+            p("ve_mep", "People's Electoral Movement", "Movimiento Electoral del Pueblo", Family::SocialDemocratic, 0.018),
+            p("ve_causar", "Radical Cause", "La Causa Radical", Family::Communist, 0.016),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Peru — Chamber of Deputies, 14 April 1985: APRA 50.1%, Izquierda Unida
+    // 23.0%, the Convergencia Democratica around the PPC 12.0%, Accion Popular
+    // 7.3%. Alan Garcia's single term ends in hyperinflation and a war he is
+    // losing, and the next election is due three months after the game opens.
+    //
+    // Cambio 90 is deliberately NOT in this table, and the omission is the
+    // honest reading rather than an oversight. Alberto Fujimori built it in 1989
+    // out of evangelical congregations and informal traders' guilds, and it took
+    // 16.5% of the Chamber on 8 April 1990. The convention this module uses
+    // elsewhere — enter a party founded after the last election at its first
+    // contested share, as Colombia's AD M-19 is entered above — cannot be
+    // applied here: 50.1 + 23.0 + 12.0 + 7.3 already accounts for 92.4% of the
+    // 1985 vote, so adding 16.5 gives a chamber in which 108.9% of the
+    // electorate voted, and the sum check would rightly reject it. A 1985 table
+    // with a 1990 party bolted on is not a transcription of either election.
+    // Fujimori's outsider is left for the model to produce out of a collapsing
+    // party system, which is the whole premise.
+    // https://en.wikipedia.org/wiki/1985_Peruvian_general_election
+    Polity {
+        nation: NationId::Peru,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 4),
+        parties: &[
+            p("pe_apra", "Peruvian Aprista Party", "Partido Aprista Peruano", Family::SocialDemocratic, 0.501),
+            p("pe_iu", "United Left", "Izquierda Unida", Family::Communist, 0.230),
+            p("pe_ppc", "Christian People's Party", "Partido Popular Cristiano", Family::ChristianDemocratic, 0.120),
+            p("pe_ap", "Popular Action", "Accion Popular", Family::Liberal, 0.073),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Cuba — one legal party since 1965, and no national election a voter could
+    // change anything with: the National Assembly was chosen indirectly by the
+    // municipal assemblies until the 1993 reform introduced direct election of
+    // deputies, still uncontested. What holds the state is the FAR under Raul
+    // Castro, the party apparatus, and the Ministry of the Interior — and in
+    // July 1989 the regime tried and shot General Arnaldo Ochoa, the most
+    // decorated officer of the Angolan war, and purged MININT down to the bone.
+    // That was a regime securing exactly these three pillars against exactly the
+    // risk this table models.
+    // https://en.wikipedia.org/wiki/Case_of_the_10
+    Polity {
+        nation: NationId::Cuba,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cu_pcc", "Communist Party of Cuba", "Partido Comunista de Cuba", Family::Communist, 1.00),
+        ],
+        ruling: "the Council of State",
+        pillars: &[
+            pl(Pillar::Army, "the Revolutionary Armed Forces"),
+            pl(Pillar::Party, "the Communist Party of Cuba"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Bolivia — general election, 7 May 1989: MNR 25.7%, ADN 25.2%, MIR 21.8%,
+    // CONDEPA 12.3%, Izquierda Unida 7.2%. Nobody came near a majority, so
+    // Congress chose the president, and it chose the man who came third: Jaime
+    // Paz Zamora of the MIR took office on 6 August 1989 in the Acuerdo
+    // Patriotico with Hugo Banzer's ADN — the general who had jailed and exiled
+    // him a decade earlier. Bolivia's arithmetic produces coalitions nobody
+    // would design, which is the case for letting the coalition former run on
+    // real shares rather than on a hand-picked government.
+    // https://en.wikipedia.org/wiki/1989_Bolivian_general_election
+    Polity {
+        nation: NationId::Bolivia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            // bloc -> Western: A competitive democratic party (25.6% in 1989), moderate centre-left turning market-oriented, not a state party. https://en.wikipedia.org/wiki/Revolutionary_Nationalist_Movement
+            p("bo_mnr", "Nationalist Revolutionary Movement", "Movimiento Nacionalista Revolucionario", Family::BigTent, 0.257).aligned(Bloc::Western),
+            p("bo_adn", "Nationalist Democratic Action", "Accion Democratica Nacionalista", Family::Conservative, 0.252),
+            p("bo_mir", "Revolutionary Left Movement", "Movimiento de la Izquierda Revolucionaria", Family::SocialDemocratic, 0.218),
+            p("bo_condepa", "Conscience of the Fatherland", "Conciencia de Patria", Family::Regionalist, 0.123),
+            p("bo_iu", "United Left", "Izquierda Unida", Family::Communist, 0.072),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Ecuador — congressional election of 31 January 1988, held with the
+    // presidential first round Rodrigo Borja of the Izquierda Democratica went
+    // on to win: ID 24.6%, PRE 14.7%, PSC 12.5%, DP 11.5%, the Radical Liberals
+    // 8.0%, MPD 5.4%. Provincial deputies serve two years against the national
+    // deputies' four, so the midterm falls on 17 June 1990 and Borja loses his
+    // majority in it. These shares are the least certain in this region's table
+    // and ecuador.json says so in its own words rather than here.
+    // https://en.wikipedia.org/wiki/1988_Ecuadorian_general_election
+    Polity {
+        nation: NationId::Ecuador,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 6),
+        parties: &[
+            p("ec_id", "Democratic Left", "Izquierda Democratica", Family::SocialDemocratic, 0.246),
+            p("ec_pre", "Ecuadorian Roldosist Party", "Partido Roldosista Ecuatoriano", Family::BigTent, 0.147),
+            p("ec_psc", "Social Christian Party", "Partido Social Cristiano", Family::Conservative, 0.125),
+            p("ec_dp", "Popular Democracy", "Democracia Popular", Family::ChristianDemocratic, 0.115),
+            p("ec_plre", "Ecuadorian Radical Liberal Party", "Partido Liberal Radical Ecuatoriano", Family::Liberal, 0.080),
+            p("ec_mpd", "Popular Democratic Movement", "Movimiento Popular Democratico", Family::Communist, 0.054),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Uruguay — general election, 26 November 1989: the National Party 38.9%,
+    // the Colorados 30.3%, the Frente Amplio 21.2%, Nuevo Espacio 9.0%. Luis
+    // Alberto Lacalle takes office on 1 March 1990, the second government since
+    // the dictatorship ended, and the first alternation between the two historic
+    // parties in twenty-eight years. The Frente Amplio takes Montevideo the same
+    // day and never gives it back. Five-year terms with no immediate
+    // re-election, so the next is due November 1994.
+    // https://en.wikipedia.org/wiki/1989_Uruguayan_general_election
+    Polity {
+        nation: NationId::Uruguay,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 11),
+        parties: &[
+            p("uy_pn", "National Party", "Partido Nacional", Family::Conservative, 0.389),
+            p("uy_pc", "Colorado Party", "Partido Colorado", Family::Liberal, 0.303),
+            p("uy_fa", "Broad Front", "Frente Amplio", Family::SocialDemocratic, 0.212),
+            p("uy_ne", "New Space", "Nuevo Espacio", Family::SocialDemocratic, 0.090),
+        ],
+        ruling: "the General Assembly",
+        pillars: &[],
+    },
+
+    // ===================== Middle East =====================
+
+    // Syria — the People's Council elected 10-11 February 1986, which was the
+    // sitting chamber in January 1990: 195 seats, of which the Ba'ath took 129.
+    // Article 8 of the 1973 constitution made the Ba'ath "the leading party in
+    // society and the state" and its share of the chamber was allocated, not
+    // won, so the four junior parties of the National Progressive Front and the
+    // vetted independents who held the other 66 seats are deliberately NOT
+    // entered as parties. Listing them would imply a choice that Article 8 had
+    // removed, and the same judgement is what the Iraq and China blocks above
+    // record. The shares therefore sum to 0.662 rather than to 1.0, which is
+    // legal here and is the honest shape of the thing.
+    // https://en.wikipedia.org/wiki/1986_Syrian_parliamentary_election
+    Polity {
+        nation: NationId::Syria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sy_baath", "Arab Socialist Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.662),
+        ],
+        ruling: "the Regional Command of the Ba'ath Party",
+        pillars: &[
+            // Named institutions rather than "the army", per the rule the Iraq
+            // block sets. The Republican Guard under Adnan Makhlouf and the
+            // Third Armoured Division were the units stationed to hold Damascus
+            // rather than to face Israel; the Defence Companies that had done
+            // that job were broken up after Rifaat al-Assad's move of 1984.
+            pl(Pillar::Army, "the Republican Guard and the Third Armoured Division"),
+            pl(Pillar::Party, "the Ba'ath Party Regional Command"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+
+    // Jordan — Chamber of Deputies, 8 November 1989. The first general election
+    // since 1967 and the answer to the Ma'an bread riots of that April. Parties
+    // were still illegal, so all 647 candidates for 80 seats stood as
+    // independents and the result is recorded as blocs: the Muslim Brotherhood
+    // took 22 seats and independent Islamists a further 12, leftist and
+    // pan-Arab candidates about 13, and tribal and pro-government independents
+    // the remaining 33. Those are SEAT shares of 80, not vote shares, because
+    // Jordan published no national vote totals; they are named as blocs because
+    // that is what they were, and inventing party labels for them would be
+    // worse. The next election was due four years on and was held on 8 November
+    // 1993, under a new one-vote law written specifically to cut the
+    // Brotherhood's bloc down.
+    // https://en.wikipedia.org/wiki/1989_Jordanian_general_election
+    Polity {
+        nation: NationId::Jordan,
+        // Multi-member districts in which an elector had as many votes as the
+        // district had seats — the block vote, which is MORE majoritarian than
+        // the single non-transferable vote this enum offers. The 1993 law
+        // literally made it SNTV. The 1.6 exponent therefore understates the
+        // bias of the 1989 system rather than overstating it, which is stated
+        // here rather than papered over by reaching for FirstPastThePost's 3.0,
+        // a single-member shape Jordan did not use.
+        system: Electoral::SingleNonTransferable,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("jo_ikhwan", "Muslim Brotherhood and allied Islamists", "al-Ikhwan al-Muslimun", Family::Religious, 0.425),
+            p("jo_tribal", "Tribal and pro-government independents", "", Family::Conservative, 0.4125),
+            p("jo_left", "Leftist and pan-Arab independents", "", Family::SocialDemocratic, 0.1625),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[
+            // Jordan is below the electoral ceiling and still carries pillars,
+            // which Pakistan's block above establishes as legal and which is
+            // the truth here: the King appointed and dismissed prime ministers
+            // without reference to the chamber that had just been elected, and
+            // the East Bank Bedouin regiments were the institution that decided
+            // Black September in 1970.
+            pl(Pillar::Army, "the Jordanian Armed Forces and the Bedouin regiments"),
+            pl(Pillar::Party, "the Hashemite court"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+
+    // Lebanon — and this is the block that most needs its reasoning written
+    // down, because a confessional parliamentary republic reading as
+    // non-electoral looks like an error.
+    //
+    // In January 1990 Lebanon had no election due and no election possible. The
+    // Chamber of Deputies sitting was the one elected in 1972; it had extended
+    // its own mandate every few years for eighteen years. The presidency had
+    // changed hands twice in fourteen months, once by assassination — Rene
+    // Moawad, blown up on 22 November 1989, seventeen days after taking office
+    // — and once by rival proclamation, and there were two cabinets claiming to
+    // be the government. Power in Lebanon did not change hands by vote, and no
+    // vote could have made it. That is what `authoritarianism` above 0.60 gates
+    // here: not repression — the Lebanese state had no capacity to repress
+    // anybody — but a closed route to office.
+    //
+    // `parties` is empty, which Saudi Arabia's block above establishes as legal.
+    // It is also the correct transcription: the organised political forces in
+    // Lebanon in 1990 were militias, they held no seats worth counting in a
+    // chamber elected before most of them existed, and they are all in the
+    // pillar list instead, which is exactly where an institution that can
+    // remove a government belongs.
+    // https://en.wikipedia.org/wiki/Taif_Agreement
+    Polity {
+        nation: NationId::Lebanon,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the rival cabinets of Michel Aoun and Selim Hoss",
+        pillars: &[
+            pl(Pillar::Army, "the Lebanese Forces of Samir Geagea"),
+            pl(Pillar::Security, "the Syrian Army in the Bekaa and West Beirut"),
+            pl(Pillar::Clergy, "Hezbollah and the Revolutionary Guard contingent at Baalbek"),
+            pl(Pillar::Party, "the Amal Movement"),
+            pl(Pillar::Business, "the Progressive Socialist Party's administration in the Chouf"),
+        ],
+    },
+
+    // United Arab Emirates — no parties have ever been legal and the Federal
+    // National Council was wholly appointed until 2006, so `parties` is empty
+    // on the Saudi precedent. The pillars are the two that actually decided
+    // Emirati politics: the Supreme Council of Rulers, in which each of the
+    // seven emirates holds a veto, and the split between the federal Union
+    // Defence Force and the brigades Abu Dhabi and Dubai kept for themselves
+    // until the unification of 1976 — the fault line the federal crisis of
+    // 1978-79 ran along.
+    Polity {
+        nation: NationId::UAE,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Supreme Council of Rulers",
+        pillars: &[
+            pl(Pillar::Party, "the Supreme Council of Rulers"),
+            pl(Pillar::Army, "the Union Defence Force and the Abu Dhabi brigades"),
+            pl(Pillar::Business, "the Dubai merchant houses"),
+        ],
+    },
+
+    // Qatar — no assembly, no parties, an appointed Advisory Council. The
+    // pillar that matters is the second one and it is not decoration: Sheikh
+    // Hamad bin Khalifa had been crown prince and Minister of Defence since
+    // 1977, had taken over the running of the state through the late 1980s, and
+    // deposed his own father with the armed forces on 27 June 1995 while the
+    // Emir was abroad. An army that removes a government is the definition this
+    // table uses, and in Qatar's case it did.
+    Polity {
+        nation: NationId::Qatar,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Al Thani",
+        pillars: &[
+            pl(Pillar::Party, "the Al Thani family council"),
+            pl(Pillar::Army, "the Qatar Armed Forces under the Crown Prince"),
+            pl(Pillar::Business, "the merchant families of Doha"),
+        ],
+    },
+
+    // Oman — Sultan Qaboos ruled without an assembly of any kind. The State
+    // Consultative Council of 1981 was appointed and the Majlis al-Shura that
+    // replaced it in November 1991 had indirectly selected members and no power
+    // to legislate. The Ibadi ulema are a real pillar and not a borrowed one:
+    // Oman's imamate was a genuine rival government in the interior as recently
+    // as the Jebel Akhdar war of 1954-59, and the office of Grand Mufti is the
+    // institution that settled which of the two the country belonged to.
+    Polity {
+        nation: NationId::Oman,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan of Oman",
+        pillars: &[
+            pl(Pillar::Army, "the Sultan's Armed Forces"),
+            pl(Pillar::Party, "the Diwan of the Royal Court"),
+            pl(Pillar::Clergy, "the Ibadi ulema and the office of the Grand Mufti"),
+            pl(Pillar::Business, "the Omani merchant houses"),
+        ],
+    },
+
+    // Yemen — House of Representatives, 27 April 1993: the first free
+    // multiparty election ever held on the Arabian peninsula, and the thing the
+    // unification of 22 May 1990 was supposed to be for. Shares below are SEAT
+    // shares of 301, not vote shares, because Yemen's constituency vote totals
+    // were not reliably published: General People's Congress 123, Islah 62,
+    // Yemeni Socialist Party 56, Ba'ath 7, Nasserists 1, independents 47. They
+    // therefore sum to 0.827 and the missing 0.173 is the independents, who are
+    // not a party. The alignment is the country's fault line drawn exactly: the
+    // GPC was Saleh's northern machine, the YSP was the former ruling party of
+    // the south, and each still had its own army. They went to war in May 1994.
+    // https://en.wikipedia.org/wiki/1993_Yemeni_parliamentary_election
+    Polity {
+        nation: NationId::Yemen,
+        // 301 single-member constituencies, plurality. The one unambiguous
+        // electoral system in this branch.
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 4),
+        parties: &[
+            p("ye_gpc", "General People's Congress", "al-Mu'tamar al-Sha'bi al-'Amm", Family::BigTent, 0.409),
+            p("ye_islah", "Yemeni Congregation for Reform", "al-Tajammu' al-Yamani lil-Islah", Family::Religious, 0.206),
+            p("ye_ysp", "Yemeni Socialist Party", "al-Hizb al-Ishtiraki al-Yamani", Family::Communist, 0.186),
+            p("ye_baath", "Yemeni Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.023),
+            p("ye_nasserist", "Nasserist Unionist People's Organisation", "al-Tanzim al-Wahdawi al-Sha'bi al-Nasiri", Family::Nationalist, 0.003),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            // Below the electoral ceiling and still carrying pillars, on the
+            // Pakistan precedent, because the whole of Yemen's tragedy is that
+            // unification merged two governments and never merged their two
+            // armies. Naming them separately is the transcription.
+            pl(Pillar::Army, "the northern forces under President Saleh's officers"),
+            pl(Pillar::Party, "the Yemeni Socialist Party's southern divisions"),
+            pl(Pillar::Clergy, "the tribal confederations of Hashid and Bakil"),
+        ],
+    },
+
+    // Bahrain — the 1973 constitution and the elected National Assembly lasted
+    // twenty months; the Emir dissolved the Assembly in August 1975 and ruled
+    // by decree under the State Security Law of 1974 until 2001. No parties.
+    // The security pillar is named specifically because it was a specific
+    // thing: the State Security service and its Special Branch were run by Ian
+    // Henderson, a British officer, from 1966 to 1998, and the 1981 coup plot
+    // by the Iranian-trained Islamic Front for the Liberation of Bahrain is
+    // what it existed to stop.
+    Polity {
+        nation: NationId::Bahrain,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Al Khalifa",
+        pillars: &[
+            pl(Pillar::Party, "the Al Khalifa family council"),
+            pl(Pillar::Security, "the State Security service and its Special Branch"),
+            pl(Pillar::Army, "the Bahrain Defence Force"),
+            pl(Pillar::Business, "the Sunni merchant families and the Chamber of Commerce"),
+        ],
+    },
+    // Algeria — the one government in this table whose party shares come from an
+    // election held AFTER the game opens, and the convention at the top of this
+    // block is what permits it: the last national vote before January 1990 was
+    // the single-list FLN legislative of February 1987, and the Islamic
+    // Salvation Front did not exist until 18 February 1989, so its share is its
+    // result at the first election it contested. That was the municipal poll of
+    // 12 June 1990: FIS 54.2%, FLN 28.1%, RCD 2.1%, PNSD 1.6%, PSD 1.1%, PRA
+    // 0.8%, PAGS 0.3%, independents 11.7%, on a 65.2% turnout.
+    //
+    // These are retained SUPPORT PROXIES, normalized over the represented
+    // parties, not measured January popularity or national parliamentary seats.
+    // The opening national chamber is seated separately by opening_seats:
+    // FLN won all 295 seats in February 1987 and remained the only represented
+    // party throughout 1990. FIS was legal by late 1989, so it belongs in the
+    // support model without being installed as the opening government.
+    // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+    // https://www.ecoi.net/en/document/1280981.html (US State Department, 1989)
+    // https://www.ecoi.net/en/document/1324300.html (US State Department, 1990)
+    //
+    // Algeria remains below the electoral ceiling, allowing a later vote to
+    // change the government. December 1991 is the model's existing historical
+    // election timing, not a date already announced in January 1990. The
+    // chamber override does not prescribe an election winner or army response.
+    // https://en.wikipedia.org/wiki/1990_Algerian_local_elections
+    Polity {
+        nation: NationId::Algeria,
+        // Two-round majority in single-member districts, which is the system the
+        // December 1991 election actually used and the reason it produced 188
+        // seats for the FIS out of 231 decided in the first round on 47.5% of
+        // the vote. A proportional table here would understate by half the thing
+        // that frightened the generals.
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (1991, 12),
+        parties: &[
+            p("dz_fis", "Islamic Salvation Front", "al-Jabhah al-Islamiyah lil-Inqadh", Family::Religious, 0.542),
+            p("dz_fln", "National Liberation Front", "Jabhat al-Tahrir al-Watani", Family::Nationalist, 0.281),
+            p("dz_rcd", "Rally for Culture and Democracy", "Rassemblement pour la Culture et la Democratie", Family::Liberal, 0.021),
+            p("dz_pnsd", "National Party for Solidarity and Development", "Parti National pour la Solidarite et le Developpement", Family::BigTent, 0.016),
+            p("dz_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.011),
+            p("dz_pra", "Party of Algerian Renewal", "Parti du Renouveau Algerien", Family::Liberal, 0.008),
+            p("dz_pags", "Socialist Vanguard Party", "Parti de l'Avant-Garde Socialiste", Family::Communist, 0.003),
+        ],
+        ruling: "the National People's Assembly",
+        // Pillars as well as parties, on the Serbia precedent above: an
+        // electorate that can vote and an institution that can overrule it are
+        // both facts about Algeria in 1990, and the second is the one everybody
+        // in Algiers called simply le pouvoir.
+        pillars: &[
+            pl(Pillar::Army, "the Armee Nationale Populaire"),
+            pl(Pillar::Security, "the Securite Militaire"),
+            pl(Pillar::Party, "the FLN apparatus"),
+        ],
+    },
+    // Morocco — Chamber of Representatives, 14 September 1984: Constitutional
+    // Union 24.8%, National Rally of Independents 17.2%, Popular Movement 15.5%,
+    // Istiqlal 15.3%, Socialist Union of Popular Forces 12.4%, National
+    // Democratic Party 8.9%, Party of Progress and Socialism 2.3%. Only 199 of
+    // the 306 seats were directly elected; the other 107 came from electoral
+    // colleges of councillors and professional chambers, which is a mechanism
+    // for guaranteeing the outcome and is why this is a regime with pillars.
+    //
+    // Above the electoral ceiling, and the test is the one that matters: the
+    // King appointed the government whoever won, Driss Basri's interior
+    // ministry administered the count, and the election due in 1990 was simply
+    // postponed by referendum to 1993. A chamber that cannot change a
+    // government is not an electorate. The party table is kept in full anyway,
+    // because Morocco's opposition was real — Istiqlal and the USFP took 27.7%
+    // between them and repeatedly refused office — and because it is what the
+    // model needs the day the monarchy liberalises.
+    // https://en.wikipedia.org/wiki/1984_Moroccan_general_election
+    Polity {
+        nation: NationId::Morocco,
+        system: Electoral::FirstPastThePost,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[
+            p("ma_uc", "Constitutional Union", "al-Ittihad al-Dusturi", Family::Conservative, 0.248),
+            p("ma_rni", "National Rally of Independents", "Rassemblement National des Independants", Family::Liberal, 0.172),
+            p("ma_mp", "Popular Movement", "al-Haraka al-Sha'biyya", Family::Agrarian, 0.155),
+            p("ma_istiqlal", "Istiqlal Party", "Hizb al-Istiqlal", Family::Nationalist, 0.153),
+            p("ma_usfp", "Socialist Union of Popular Forces", "al-Ittihad al-Ishtiraki lil-Quwwat al-Sha'biyya", Family::SocialDemocratic, 0.124),
+            p("ma_pnd", "National Democratic Party", "al-Hizb al-Watani al-Dimuqrati", Family::Conservative, 0.089),
+            p("ma_pps", "Party of Progress and Socialism", "Hizb al-Taqaddum wal-Ishtirakiyya", Family::Communist, 0.023),
+        ],
+        ruling: "the Royal Cabinet",
+        pillars: &[
+            pl(Pillar::Party, "the Makhzen"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+            pl(Pillar::Army, "the Royal Armed Forces"),
+            // Not decoration and not the same as Iran's seminaries: the King is
+            // Amir al-Mu'minin, Commander of the Faithful, under article 19 of
+            // the constitution. Moroccan religious authority is an attribute of
+            // the throne rather than a rival to it, which is exactly why the
+            // Islamist challenge that broke Algeria did not break Morocco.
+            pl(Pillar::Clergy, "the Commandership of the Faithful"),
+        ],
+    },
+    // Tunisia — Chamber of Deputies, 2 April 1989: the Constitutional Democratic
+    // Rally 80.6% and all 141 seats; independents 13.7% and none; the Movement
+    // of Socialist Democrats 3.8%, the Popular Unity Party 0.7%, the Unionist
+    // Democratic Union 0.4%, all likewise none. A system in which one voter in
+    // seven returns nobody at all is not one a vote can remove, which is the
+    // whole reason Tunisia sits above the ceiling despite having held a
+    // genuinely contested election fifteen months before the game opens.
+    // https://en.wikipedia.org/wiki/1989_Tunisian_general_election
+    Polity {
+        nation: NationId::Tunisia,
+        // Majority list in multi-member constituencies: the list with the most
+        // votes in a governorate took every seat in it. First-past-the-post is
+        // the closest thing in this enum and it is closer than it looks — the
+        // 80.6%-to-141-seats result IS the winner-take-all arithmetic.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tn_rcd", "Constitutional Democratic Rally", "al-Tajammu' al-Dusturi al-Dimuqrati", Family::BigTent, 0.806),
+            // Ennahda is entered under its own name at the independents' share
+            // because that is what the independents were. Denied legal
+            // recognition, it ran its candidates as independents and the
+            // article records academics quoting official results between 10%
+            // and 17% for them nationally; 13.68% is the figure in the
+            // published table and is what is transcribed. NOT flagged pariah:
+            // Ennahda was not shunned by other parties, it was refused a
+            // registration, and by 1991 it was being suppressed outright. The
+            // pariah flag is for a cordon sanitaire among parties, not for a
+            // ban by the state.
+            p("tn_nahda", "Ennahda Movement", "Harakat al-Nahda", Family::Religious, 0.137),
+            p("tn_mds", "Movement of Socialist Democrats", "Harakat al-Dimuqratiyin al-Ishtirakiyin", Family::SocialDemocratic, 0.038),
+            p("tn_pup", "Popular Unity Party", "Hizb al-Wahda al-Sha'biyya", Family::SocialDemocratic, 0.007),
+            p("tn_udu", "Unionist Democratic Union", "al-Ittihad al-Dimuqrati al-Wahdawi", Family::Nationalist, 0.004),
+        ],
+        ruling: "the Constitutional Democratic Rally",
+        pillars: &[
+            pl(Pillar::Party, "the Constitutional Democratic Rally"),
+            // The order here is the Tunisian peculiarity and it is deliberate.
+            // Bourguiba and then Ben Ali kept the army small and out of politics
+            // on purpose, and the consequence is that the man who took the
+            // presidency on 7 November 1987 was the interior minister. In
+            // Tunisia the police outrank the generals.
+            pl(Pillar::Security, "the Directorate of State Security"),
+            pl(Pillar::Business, "the UTICA employers' union"),
+            pl(Pillar::Army, "the Tunisian Armed Forces"),
+        ],
+    },
+    // Libya — no parties, and not through neglect: Law 71 of 1972 made forming
+    // one a capital offence, and Gaddafi's formula was that he who forms a party
+    // betrays. An empty party table is therefore the correct transcription,
+    // exactly as it is for Saudi Arabia above and for the same reason — there
+    // was no assembly of any kind that a party could have sat in. Formally
+    // Gaddafi held no office after 1979 and the General People's Congress
+    // governed; actually the revolutionary committees did, and the pillars below
+    // are the institutions that would have had to move to remove him.
+    Polity {
+        nation: NationId::Libya,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the General People's Congress",
+        pillars: &[
+            pl(Pillar::Party, "the Revolutionary Committees Movement"),
+            pl(Pillar::Security, "the Jamahiriya Security Organisation"),
+            // Named specifically because it is not the army. The regular army
+            // was deliberately starved after the coup attempts of the 1970s and
+            // routed in Chad in 1987; what actually guarded Tripoli was a
+            // praetorian force recruited from the leader's own tribe.
+            pl(Pillar::Army, "the Revolutionary Guard Corps"),
+            pl(Pillar::Business, "the National Oil Corporation"),
+        ],
+    },
+    // Sudan — National Assembly, April 1986, the last free election before the
+    // game opens and the one Omar al-Bashir's coup of 30 June 1989 annulled:
+    // the Umma Party 38.4%, the Democratic Unionist Party 29.7%, the National
+    // Islamic Front 18.5%, the Sudanese National Party 2.2%, the Communist Party
+    // 1.7%. Thirty-seven southern constituencies could not be polled at all
+    // because of the war, which is the fact this table cannot express and the
+    // separatism figure in sudan.json has to carry instead.
+    //
+    // Six months old at the start of the simulation, and modelled as a regime
+    // rather than an electorate because that is precisely what it had just
+    // become: parliament dissolved, every party in the list below banned, the
+    // prime minister it elected in prison, and the trade unions gone.
+    // https://en.wikipedia.org/wiki/1986_Sudanese_parliamentary_election
+    Polity {
+        nation: NationId::Sudan,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sd_umma", "National Umma Party", "Hizb al-Umma al-Qawmi", Family::Religious, 0.384),
+            // bloc -> Western: DISAGREES WITH THE DESIGN (which lists it Islamist): the Khatmiyya-tied DUP "espouses democratic pluralism, a mixed economy, and secularism" per the source, transcribed 2026-09-05. https://en.wikipedia.org/wiki/Democratic_Unionist_Party_(Sudan)
+            p("sd_dup", "Democratic Unionist Party", "al-Hizb al-Ittihadi al-Dimuqrati", Family::Religious, 0.297).aligned(Bloc::Western),
+            p("sd_nif", "National Islamic Front", "al-Jabhah al-Islamiyah al-Qawmiyah", Family::Religious, 0.185),
+            p("sd_snp", "Sudanese National Party", "al-Hizb al-Qawmi al-Sudani", Family::Regionalist, 0.022),
+            p("sd_scp", "Sudanese Communist Party", "al-Hizb al-Shuyu'i al-Sudani", Family::Communist, 0.017),
+        ],
+        ruling: "the Revolutionary Command Council for National Salvation",
+        pillars: &[
+            pl(Pillar::Army, "the Sudanese Armed Forces"),
+            // The banned party that supplied the government its programme. The
+            // NIF is in the table above as an electoral force and here as an
+            // institution, and both are true at once: Hassan al-Turabi held no
+            // office in 1990 and wrote the policy anyway.
+            pl(Pillar::Party, "the National Islamic Front"),
+            pl(Pillar::Security, "the National Security Service"),
+            // Raised by decree in 1989 as a parallel army answerable to the
+            // Islamist movement rather than the general staff, which is the
+            // classic coup-proofing move and the reason this regime outlasted
+            // the officers who made it.
+            pl(Pillar::Army, "the Popular Defence Forces"),
+        ],
+    },
+
+    // ======================================================================
+    // Sub-Saharan Africa (branch feat/r-ssafrica)
+    //
+    // A note on method, because this region strains the table's stated rule
+    // more than Europe does. The rule is "vote shares are from the last
+    // national election before January 1990". In nine of these eleven
+    // countries there was no such election in any meaningful sense: the last
+    // poll was a single-list referendum on the one legal party, or a whites-
+    // only franchise, or nothing at all. So the second half of the rule does
+    // most of the work here — "where a party's founding postdates that
+    // election its share is its result at the first one it contested" — and
+    // the Nigeria block above is the precedent, since it carries the 12 June
+    // 1993 result for parties that existed by decree in 1989.
+    //
+    // Where that has been done it is stated on the block, with the real
+    // pre-1990 poll named beside it. The alternative was to give the sim an
+    // Africa in which the ANC, UNITA and the SDF do not exist, which would
+    // be a worse lie than a dated share.
+    // ======================================================================
+
+    // South Africa — and this is the hardest transcription in the block, so
+    // both answers are on the record. The last election before the game opens
+    // was for the House of Assembly on 6 September 1989: National Party 48.2%,
+    // Conservative Party 31.2%, Democratic Party 20.0%. That was a whites-only
+    // roll of about 3.2m voters in a country of some 40m, and its shares
+    // describe who was allowed to vote rather than who held the country. The
+    // shares entered instead are from 27 April 1994, the first election on a
+    // universal franchise and the first that measured South Africa: ANC
+    // 62.65%, NP 20.39%, IFP 10.54%, Freedom Front 2.17%, DP 1.73%, PAC 1.25%,
+    // ACDP 0.45%. Every one of those organisations existed in January 1990 —
+    // the ANC and PAC were unbanned on 2 February, four weeks into the game —
+    // so this is the "first election it contested" rule rather than an
+    // invention. `next` is (0, 0) and the pillars are non-empty because the
+    // authoritarianism figure of 0.62 in southafrica.json sits above the 0.60
+    // electoral ceiling, which is the correct reading of a state whose
+    // government could not be removed by the governed.
+    // https://en.wikipedia.org/wiki/1994_South_African_general_election
+    Polity {
+        nation: NationId::SouthAfrica,
+        // Proportional with a very low effective bar: the 1994 election used
+        // national and provincial party lists with 400 seats and no formal
+        // threshold, which is how the ACDP took two seats on 0.45%. The same
+        // choice as Israel's, and for the same reason — a high bar here would
+        // delete exactly the small parties whose presence is the point.
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("za_anc", "African National Congress", "", Family::BigTent, 0.6265),
+            p("za_np", "National Party", "Nasionale Party", Family::Conservative, 0.2039),
+            p("za_ifp", "Inkatha Freedom Party", "iNkatha yeNkululeko yeSizwe", Family::Regionalist, 0.1054),
+            // The Volksfront's electoral successor, and the reason
+            // southafrica.json carries a separatism figure at all: the Freedom
+            // Front's entire programme was an Afrikaner volkstaat.
+            p("za_ff", "Freedom Front", "Vryheidsfront", Family::Nationalist, 0.0217),
+            p("za_dp", "Democratic Party", "", Family::Liberal, 0.0173),
+            p("za_pac", "Pan Africanist Congress", "", Family::Nationalist, 0.0125),
+            // bloc -> Western: Christian, not Islamist. https://en.wikipedia.org/wiki/African_Christian_Democratic_Party
+            p("za_acdp", "African Christian Democratic Party", "", Family::Religious, 0.0045).aligned(Bloc::Western),
+        ],
+        ruling: "the tricameral Parliament",
+        pillars: &[
+            pl(Pillar::Army, "the South African Defence Force"),
+            pl(Pillar::Security, "the Security Branch of the South African Police"),
+            pl(Pillar::Business, "the Chamber of Mines"),
+        ],
+    },
+
+    // Ethiopia — the People's Democratic Republic, proclaimed on 12 September
+    // 1987 when the Derg dissolved itself into a civilian constitution and the
+    // National Shengo was elected on a single Workers' Party of Ethiopia list.
+    // No competing organisation was legal, so one party at 1.00, which is the
+    // same shape as the Vietnam block above. Mengistu announced a mixed economy
+    // on 5 March 1990 and the WPE renamed itself in an attempt to broaden; both
+    // were far too late, and Addis Ababa fell on 28 May 1991.
+    Polity {
+        nation: NationId::Ethiopia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("et_wpe", "Workers' Party of Ethiopia", "Ye'Ityopya Serategnoch Party", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Ethiopia",
+        pillars: &[
+            // Named formations rather than "the army", per the rule this table
+            // sets itself. The Second Revolutionary Army was the Eritrean
+            // command and it was destroyed at Afabet in March 1988 and again at
+            // Massawa in February 1990 — a pillar that had already given way
+            // three weeks after the game opens.
+            pl(Pillar::Army, "the Second Revolutionary Army"),
+            pl(Pillar::Party, "the WPE Politburo"),
+            pl(Pillar::Security, "the Ministry of Public and National Security"),
+        ],
+    },
+
+    // Kenya — a one-party state in law. Section 2A of the constitution, added
+    // by amendment in June 1982, made KANU the sole legal party; the general
+    // election of 21 March 1988 was contested inside it by queue-voting in
+    // public, which is how the mlolongo system got its name and its reputation.
+    // Section 2A was repealed in December 1991 and Kenya voted multi-party in
+    // December 1992.
+    Polity {
+        nation: NationId::Kenya,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ke_kanu", "Kenya African National Union", "", Family::BigTent, 1.00),
+        ],
+        ruling: "the Kenya African National Union",
+        pillars: &[
+            pl(Pillar::Party, "the KANU Governing Council"),
+            pl(Pillar::Security, "the Special Branch"),
+            // The army is a pillar here in the strict sense the doc comment
+            // means: it is what could remove the government, and in Kenya it
+            // is what nearly did. The air force rose on 1 August 1982 and Moi
+            // answered by disbanding it outright and rebuilding it under army
+            // command.
+            pl(Pillar::Army, "the Kenya Army"),
+        ],
+    },
+
+    // Ghana — the Provisional National Defence Council, eight years in and
+    // with no legislature of any kind. Parties had been banned since Rawlings
+    // took power on 31 December 1981, so there was no pre-1990 election to
+    // transcribe; the shares are the presidential poll of 3 November 1992, the
+    // first vote after the ban was lifted in May 1992 — Rawlings 58.4%,
+    // Adu Boahen 30.3%, Limann 6.7%, Darko 2.8%, Erskine 1.8%.
+    // https://en.wikipedia.org/wiki/1992_Ghanaian_presidential_election
+    Polity {
+        nation: NationId::Ghana,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("gh_ndc", "National Democratic Congress", "", Family::SocialDemocratic, 0.584),
+            p("gh_npp", "New Patriotic Party", "", Family::Liberal, 0.303),
+            p("gh_pnc", "People's National Convention", "", Family::SocialDemocratic, 0.067),
+            p("gh_nip", "National Independence Party", "", Family::Liberal, 0.028),
+            p("gh_php", "People's Heritage Party", "", Family::SocialDemocratic, 0.018),
+        ],
+        ruling: "the Provisional National Defence Council",
+        pillars: &[
+            pl(Pillar::Army, "the Ghana Armed Forces"),
+            pl(Pillar::Security, "the Bureau of National Investigations"),
+            // Street-level surveillance and rationing committees, and the
+            // organisation that made the PNDC something other than a junta.
+            pl(Pillar::Party, "the Committees for the Defence of the Revolution"),
+        ],
+    },
+
+    // Zaire — the Popular Movement of the Revolution, sole legal party since
+    // 1967 and written into the constitution as the party every Zairean
+    // belonged to by birth. The last election, in September 1987, was a single
+    // MPR list. On 24 April 1990 Mobutu announced the Third Republic and a
+    // three-party system; the UDPS, founded illegally by thirteen dissident
+    // parliamentarians in 1982, became legal and never got the election it was
+    // promised — the Sovereign National Conference of 1991-92 ended in
+    // deadlock and the first real vote in Congo was in 2006. So the table
+    // carries the MPR alone, and the point of the block is that the party
+    // slot is empty of everything else.
+    Polity {
+        nation: NationId::Zaire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("zr_mpr", "Popular Movement of the Revolution", "Mouvement Populaire de la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the Popular Movement of the Revolution",
+        pillars: &[
+            // The distinction this table insists on, and Zaire is the textbook
+            // case of it: the Forces Armees Zairoises could not defend the
+            // country and were not meant to. The Division Speciale
+            // Presidentielle was Israeli-trained, paid, and the only formation
+            // that mattered — the FAZ mutinied over pay in September 1991 and
+            // looted Kinshasa, and the DSP put it down.
+            pl(Pillar::Army, "the Division Speciale Presidentielle"),
+            pl(Pillar::Security, "the Service National d'Intelligence et de Protection"),
+            // The copper monopoly was the fiscal state. Its Kamoto gallery
+            // collapsed in September 1990 and the government's revenue went
+            // with it.
+            pl(Pillar::Business, "Gecamines"),
+        ],
+    },
+
+    // Angola — the MPLA-Workers' Party, Marxist-Leninist and sole legal party
+    // since independence in November 1975. No election had ever been held, so
+    // the shares are the legislative poll of 29-30 September 1992, the first
+    // one ever and the one whose result Savimbi rejected: MPLA 53.74%, UNITA
+    // 34.10%, FNLA 2.40%, PLD 2.39%, PRS 2.27%. The war resumed within weeks
+    // and killed more people in the two years after that election than in the
+    // sixteen before it.
+    // https://en.wikipedia.org/wiki/1992_Angolan_general_election
+    Polity {
+        nation: NationId::Angola,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: MPLA-Party of Labour (MPLA-PT, 1977-1990), the row's own party - 'On its third congress in December 1990, it declared social democracy to be its official ideology'; the source gives the name-reversion date only as 1990; 1990-12. https://en.wikipedia.org/wiki/MPLA
+            p("ao_mpla", "MPLA", "Movimento Popular de Libertacao de Angola", Family::SocialDemocratic, 0.5374).successor(),
+            // NOT marked pariah, deliberately. A pariah in this table is a
+            // party inside a parliament that nobody will govern with — the
+            // Italian, French and Spanish cordons. UNITA was an armed rival
+            // that took a third of the vote and then went back to the bush.
+            // That is a civil war, which the model has other machinery for,
+            // and the roster's rule that no fourth cordon sanitaire be
+            // invented is the right rule here.
+            p("ao_unita", "UNITA", "Uniao Nacional para a Independencia Total de Angola", Family::Nationalist, 0.3410),
+            p("ao_fnla", "FNLA", "Frente Nacional de Libertacao de Angola", Family::Nationalist, 0.0240),
+            p("ao_pld", "Liberal Democratic Party", "Partido Liberal Democratico", Family::Liberal, 0.0239),
+            p("ao_prs", "Social Renewal Party", "Partido de Renovacao Social", Family::SocialDemocratic, 0.0227),
+        ],
+        ruling: "the MPLA Political Bureau",
+        pillars: &[
+            pl(Pillar::Army, "the Forcas Armadas Populares de Libertacao de Angola"),
+            pl(Pillar::Party, "the MPLA Political Bureau"),
+            pl(Pillar::Security, "the Ministerio da Seguranca do Estado"),
+        ],
+    },
+
+    // Zimbabwe — the only nation in this block below the electoral ceiling
+    // besides Senegal, and the call is argued in full in zimbabwe.json. The
+    // shares are a real, contested, pre-1990 election: the House of Assembly
+    // common roll of 28-30 March 1990, ZANU-PF 80.6%, ZUM 16.5%,
+    // ZANU-Ndonga 1.9%, UANC 0.6%. Mugabe put a one-party state to the
+    // ZANU-PF politburo that September and lost the argument; the next
+    // parliamentary election was duly held on 8-9 April 1995, which is what
+    // `next` carries.
+    // https://en.wikipedia.org/wiki/1990_Zimbabwean_general_election
+    Polity {
+        nation: NationId::Zimbabwe,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1995, 4),
+        parties: &[
+            // BigTent rather than Communist, though ZANU-PF still called
+            // itself Marxist-Leninist in 1990: what it actually was is the
+            // thing this family describes — a liberation front that had
+            // absorbed its rival wholesale under the Unity Accord of 22
+            // December 1987 and contained everything from war veterans to
+            // the commercial farming lobby's accommodationists.
+            p("zw_zanupf", "Zimbabwe African National Union - Patriotic Front", "", Family::BigTent, 0.806),
+            p("zw_zum", "Zimbabwe Unity Movement", "", Family::Liberal, 0.165),
+            p("zw_zanun", "ZANU-Ndonga", "", Family::Nationalist, 0.019),
+            p("zw_uanc", "United African National Council", "", Family::Conservative, 0.006),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            // A pillar on an electoral government, which the Turkey block
+            // above establishes is legal and sometimes necessary. The CIO
+            // reported to the prime minister, not to parliament, and it ran
+            // Gukurahundi in Matabeleland between 1983 and 1987. An
+            // accountable legislature and an unaccountable intelligence
+            // service in the same state is the whole of Zimbabwe's 0.58.
+            pl(Pillar::Security, "the Central Intelligence Organisation"),
+        ],
+    },
+
+    // Tanzania — Chama Cha Mapinduzi, sole legal party since the merger of
+    // TANU and the Afro-Shirazi Party in February 1977, and the election of
+    // 28 October 1990 (which returned Ali Hassan Mwinyi for a second term)
+    // was a single-party one. Nyerere gave up the party chairmanship that
+    // August and told the CCM to consider opposition parties; the Nyalali
+    // Commission reported in 1991 and the constitution was amended in May
+    // 1992, which is the liberalisation this block is waiting for.
+    Polity {
+        nation: NationId::Tanzania,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tz_ccm", "Chama Cha Mapinduzi", "Chama Cha Mapinduzi", Family::BigTent, 1.00),
+        ],
+        ruling: "Chama Cha Mapinduzi",
+        pillars: &[
+            // The party genuinely outranked the state here, which is not true
+            // of most of the single-party regimes in this block: the CCM's
+            // National Executive Committee chose the sole presidential
+            // candidate and the electorate confirmed him.
+            pl(Pillar::Party, "the CCM National Executive Committee"),
+            pl(Pillar::Army, "the Tanzania People's Defence Force"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+
+    // Uganda — the Movement system, which is not quite a one-party state and
+    // is certainly not a multi-party one. Parties were never banned; they
+    // were forbidden to campaign, field candidates or hold rallies, and
+    // elections to the National Resistance Council on 11-28 February 1989
+    // were fought on "individual merit" with no party labels at all. There
+    // is therefore no pre-1990 vote share to transcribe. The shares entered
+    // are the presidential election of 9 May 1996, the first national vote
+    // Uganda held: Museveni 74.2%, Ssemogerere 23.7%, Mayanja 2.2%.
+    Polity {
+        nation: NationId::Uganda,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ug_nrm", "National Resistance Movement", "", Family::BigTent, 0.742),
+            // Ssemogerere led the Democratic Party and stood in 1996 for a
+            // DP-UPC alliance, which is why his share sits against the DP.
+            p("ug_dp", "Democratic Party", "", Family::ChristianDemocratic, 0.237),
+            p("ug_ku", "Kibirige Mayanja's campaign", "", Family::Liberal, 0.022),
+        ],
+        ruling: "the National Resistance Movement",
+        pillars: &[
+            pl(Pillar::Army, "the National Resistance Army"),
+            pl(Pillar::Party, "the National Resistance Council"),
+            pl(Pillar::Security, "the Internal Security Organisation"),
+        ],
+    },
+
+    // Senegal — a genuine multi-party democracy and the only one in this
+    // block with an ordinary pre-1990 election to transcribe. National
+    // Assembly, 28 February 1988: Parti Socialiste 71.3%, Parti Democratique
+    // Senegalais 24.7%, and the small left lists behind them. The result was
+    // disputed violently, Dakar went under a state of emergency and Wade was
+    // convicted and given a suspended sentence — and then joined a government
+    // of national unity in April 1991, which is the Senegalese pattern. The
+    // Assembly's five-year term ran from February 1988, so the next was due
+    // in early 1993; it was held on 9 May.
+    // https://en.wikipedia.org/wiki/1988_Senegalese_general_election
+    Polity {
+        nation: NationId::Senegal,
+        // Mixed in reality — 70 seats by departmental majority list and 50 by
+        // national proportional list. Proportional is the closer of the two
+        // available choices and it is the national list that decides anything:
+        // the PS swept nearly every department, and without the proportional
+        // half the PDS's quarter of the vote would have produced almost no
+        // seats at all.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 2),
+        parties: &[
+            p("sn_ps", "Socialist Party", "Parti Socialiste du Senegal", Family::SocialDemocratic, 0.713),
+            p("sn_pds", "Senegalese Democratic Party", "Parti Democratique Senegalais", Family::Liberal, 0.247),
+            p("sn_ldmpt", "Democratic League - Labour Party Movement", "Ligue Democratique - Mouvement pour le Parti du Travail", Family::Communist, 0.014),
+            p("sn_pit", "Party of Independence and Labour", "Parti de l'Independance et du Travail", Family::Communist, 0.013),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Cameroon — the Cameroon People's Democratic Movement, sole legal party
+    // (as the Cameroon National Union until 1985) from 1966 until the law of
+    // 19 December 1990. The last poll before the game opens was the single-
+    // list legislative election of 24 April 1988. The shares entered are the
+    // first multi-party legislative election, 1 March 1992: CPDM 45.4%, UNDP
+    // 18.9%, UPC 12.7%, MDR 6.2%. The Social Democratic Front — launched at
+    // Bamenda on 26 May 1990 with six people shot dead at the rally, and the
+    // organisation that broke the single-party state — boycotted that
+    // election, which is why the party with the best claim to have earned a
+    // place in this table does not appear in it. Recorded here rather than
+    // padded in.
+    Polity {
+        nation: NationId::Cameroon,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cm_cpdm", "Cameroon People's Democratic Movement", "Rassemblement Democratique du Peuple Camerounais", Family::BigTent, 0.454),
+            p("cm_undp", "National Union for Democracy and Progress", "Union Nationale pour la Democratie et le Progres", Family::Liberal, 0.189),
+            p("cm_upc", "Cameroon People's Union", "Union des Populations du Cameroun", Family::SocialDemocratic, 0.127),
+            p("cm_mdr", "Movement for the Defence of the Republic", "Mouvement pour la Defense de la Republique", Family::Conservative, 0.062),
+        ],
+        ruling: "the Cameroon People's Democratic Movement",
+        pillars: &[
+            // The formation that tried to remove Biya on 6 April 1984 and
+            // failed after two days of fighting in Yaounde, and was rebuilt
+            // afterwards as the thing that keeps him.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the CPDM Central Committee"),
+            pl(Pillar::Security, "the Delegation Generale a la Surete Nationale"),
+        ],
+    },
+    // Bangladesh — Jatiya Sangsad, 3 March 1988: Jatiya Party 68.4% and 251 of
+    // 300 seats, the Combined Opposition Party 12.6%, the Freedom Party 3.3%,
+    // JSD (Siraj) 1.2%, independents 13.5%. THOSE SHARES DESCRIBE A BOYCOTT,
+    // not an electorate, and are entered as such: the Awami League, the BNP, the
+    // Communist Party, Jamaat-e-Islami and four other parties all refused to
+    // contest. Official turnout was 52.5% and was not believed by anyone,
+    // including the Western diplomat who called it a mockery of an election.
+    // This is why Ershad is modelled with pillars as well as a parliament — the
+    // parliament is decorative and the army is not. He resigned on 6 December
+    // 1990, eleven months into the game, and nothing here schedules that.
+    // https://en.wikipedia.org/wiki/1988_Bangladeshi_general_election
+    Polity {
+        nation: NationId::Bangladesh,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("bd_jp", "Jatiya Party", "Jatiya Party", Family::BigTent, 0.684),
+            p("bd_cop", "Combined Opposition Party", "", Family::Liberal, 0.126),
+            p("bd_freedom", "Bangladesh Freedom Party", "", Family::Nationalist, 0.033),
+            p("bd_jsd", "Jatiya Samajtantrik Dal (Siraj)", "", Family::SocialDemocratic, 0.012),
+        ],
+        ruling: "the Jatiya Party",
+        pillars: &[
+            pl(Pillar::Army, "the Bangladesh Army"),
+            pl(Pillar::Party, "the Jatiya Party"),
+        ],
+    },
+    // Sri Lanka — Parliament, 15 February 1989: UNP 50.7% and 125 seats, SLFP
+    // 31.9% and 67, EROS 4.1%, SLMC 3.6%, TULF 3.4%, the United Socialist
+    // Alliance 2.9%, MEP 1.6%. Turnout 63.6%. Premadasa had taken the
+    // presidency on 19 December 1988 and this parliament followed. The term is
+    // six years, so the scheduled date is February 1995; in the event the
+    // parliament was dissolved early and the election came in August 1994,
+    // which the model is free to produce and is not told.
+    //
+    // The reason this is a democracy in the table and not a regime with pillars
+    // is that these elections decided who governed. The reason its
+    // authoritarianism is 0.35 and not Spain's 0.13 is that they were held
+    // under emergency rule, during the JVP insurrection, in the same months as
+    // tens of thousands of disappearances.
+    // https://en.wikipedia.org/wiki/1989_Sri_Lankan_parliamentary_election
+    Polity {
+        nation: NationId::SriLanka,
+        // Sri Lanka's proportional system carries a 12.5% preference threshold
+        // within each district, which is high — but the districts return small
+        // enough panels that the Tamil and Muslim parties, whose vote is
+        // geographically concentrated in the north and east, take seats on
+        // national shares of 3-4%. A high-bar national rule would delete EROS,
+        // the TULF and the SLMC from parliament together and with them every
+        // Tamil voice inside the constitutional system, at the exact moment the
+        // question in Sri Lankan politics was whether such a voice existed.
+        system: Electoral::ProportionalLowBar,
+        term_months: 72,
+        next: (1995, 2),
+        parties: &[
+            p("lk_unp", "United National Party", "Eksath Jathika Pakshaya", Family::Conservative, 0.507),
+            p("lk_slfp", "Sri Lanka Freedom Party", "Sri Lanka Nidahas Pakshaya", Family::SocialDemocratic, 0.319),
+            p("lk_eros", "Eelam Revolutionary Organisation of Students", "", Family::Regionalist, 0.041),
+            p("lk_slmc", "Sri Lanka Muslim Congress", "", Family::Regionalist, 0.036),
+            p("lk_tulf", "Tamil United Liberation Front", "", Family::Regionalist, 0.034),
+            p("lk_usa", "United Socialist Alliance", "", Family::Communist, 0.029),
+            p("lk_mep", "Mahajana Eksath Peramuna", "Mahajana Eksath Peramuna", Family::Nationalist, 0.016),
+        ],
+        ruling: "the Parliament",
+        pillars: &[],
+    },
+    // Nepal — THE EMPTY PARTY LIST IS THE TRANSCRIPTION, not a gap. Nepal in
+    // January 1990 was the partyless Panchayat: parties had been banned since
+    // King Mahendra's coup of 15 December 1960, and the referendum of 2 May
+    // 1980 had confirmed the Panchayat over a party system by 55% to 45%. The
+    // Rastriya Panchayat was elected, and elected on an explicitly non-party
+    // basis, so there are no shares to state. Saudi Arabia sets the precedent
+    // in this table for a state whose assembly has no parties in it.
+    //
+    // The Jana Andolan launched on 18 February 1990, seven weeks after the
+    // start; the ban was lifted on 8 April and a constitutional monarchy
+    // followed in November. The pillars below are what the model must dismantle
+    // to produce that, and it is not told to.
+    // https://en.wikipedia.org/wiki/1990_Nepalese_revolution
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Panchayat",
+        pillars: &[
+            pl(Pillar::Party, "the palace secretariat"),
+            pl(Pillar::Army, "the Royal Nepal Army"),
+            pl(Pillar::Business, "the Rana and Chhetri landholding families"),
+        ],
+    },
+    // Afghanistan — the PDPA, in the third year of National Reconciliation and
+    // the eleventh month after the Soviet withdrawal. The 1987 constitution had
+    // formally ended the one-party state and a National Assembly was elected in
+    // April 1988 with seats reserved for opposition that never took them; the
+    // party renamed itself Watan in June 1990. None of that changed who
+    // decided. Modelled as a single party at 1.00 on the Iraq pattern, because
+    // that is what the institution was, with the four pillars that actually
+    // held Najibullah up.
+    //
+    // The fourth pillar is the one that matters and is the reason this entry is
+    // not simply a copy of Iraq's. Kabul did not hold the country with its own
+    // army; it held it with paid regional militias, above all Abdul Rashid
+    // Dostum's Jowzjani 53rd Division. When the Soviet money that paid them
+    // stopped at the end of 1991, Dostum changed sides in March 1992 and the
+    // government fell in weeks. That dependency is stated here as a pillar so
+    // the model can find the consequence rather than be handed it.
+    Polity {
+        nation: NationId::Afghanistan,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: People's Democratic Party of Afghanistan, the row's own party - 'in June 1990 he [Najibullah] renamed the party the Homeland Party. The party dropped the Marxist-Leninist ideology'; 1990-06. https://en.wikipedia.org/wiki/People%27s_Democratic_Party_of_Afghanistan
+            p("af_pdpa", "People's Democratic Party of Afghanistan", "Hizb-i Dimukratik-i Khalq-i Afghanistan", Family::Communist, 1.00).successor(),
+        ],
+        ruling: "the People's Democratic Party of Afghanistan",
+        pillars: &[
+            pl(Pillar::Army, "the Afghan Armed Forces"),
+            pl(Pillar::Security, "WAD, the state information service"),
+            pl(Pillar::Party, "the PDPA apparatus"),
+            pl(Pillar::Business, "the paid regional militias"),
+        ],
+    },
+    // Myanmar — SLORC, and the most awkward dating decision in this table,
+    // made in the open. The shares below are the general election of 27 MAY
+    // 1990: NLD 59.9% and 392 of 492 seats, NUP 21.2% and 10 seats, SNLD 1.7%
+    // and 23, the Arakan League for Democracy 1.2%, the Mon National Democratic
+    // Front 1.1%, PND 0.6%, CNLD 0.4%, UPNO 0.3%. Turnout 72.6%.
+    //
+    // That is FOUR MONTHS AFTER the start of the game, and every other block in
+    // this table looks backwards. It is used anyway because there is nothing to
+    // look back at: SLORC abolished the Pyithu Hluttaw on 18 September 1988,
+    // the elections before that were single-party BSPP affairs under a
+    // constitution that no longer existed, and the May 1990 vote is the only
+    // measurement of Burmese political opinion in the entire period. The
+    // parties listed were legally registered and campaigning in January 1990
+    // under the Political Parties Registration Law of 1988, so they existed at
+    // the start; only the count is forward-dated.
+    //
+    // next is (0, 0) and the pillars are non-empty because the junta annulled
+    // the result it lost and governed for twenty-one more years. Aung San Suu
+    // Kyi had been under house arrest since 20 July 1989 and led the NLD to
+    // that landslide from inside it.
+    // https://en.wikipedia.org/wiki/1990_Myanmar_general_election
+    Polity {
+        nation: NationId::Myanmar,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mm_nld", "National League for Democracy", "Amyotha Dimokarasi Aphwehcuhpaii", Family::Liberal, 0.599),
+            p("mm_nup", "National Unity Party", "Taingyintha Silonenyinyutye Party", Family::Nationalist, 0.212),
+            p("mm_snld", "Shan Nationalities League for Democracy", "", Family::Regionalist, 0.017),
+            p("mm_ald", "Arakan League for Democracy", "", Family::Regionalist, 0.012),
+            p("mm_mndf", "Mon National Democratic Front", "", Family::Regionalist, 0.011),
+            p("mm_pnd", "Party for National Democracy", "", Family::Liberal, 0.006),
+            p("mm_cnld", "Chin National League for Democracy", "", Family::Regionalist, 0.004),
+            p("mm_upno", "Union Pa-O National Organisation", "", Family::Regionalist, 0.003),
+        ],
+        ruling: "the State Law and Order Restoration Council",
+        pillars: &[
+            pl(Pillar::Army, "the Tatmadaw"),
+            pl(Pillar::Security, "the Directorate of Defence Services Intelligence"),
+            pl(Pillar::Business, "the Union of Myanmar Economic Holdings"),
+        ],
+    },
+
+    // ---- East and Southeast Asia -------------------------------------------
+
+    // North Korea — the Workers' Party of Korea. The Supreme People's Assembly
+    // sitting in January 1990 is the eighth, elected on 2 November 1986; the
+    // ninth was elected on 22 April that year. Both were single-list ballots of
+    // the Democratic Front for the Reunification of the Fatherland returned at
+    // effectively 100%, so the table carries the WPK alone: the Korean Social
+    // Democratic Party and the Chondoist Chongu Party exist, hold seats, and
+    // have never contested anything. The pillars are the ones Kim Il Sung
+    // actually held, and the succession to Kim Jong Il ran through the second
+    // of them — he took the Organisation and Guidance Department in 1973,
+    // fifteen years before he was given the army.
+    Polity {
+        nation: NationId::NorthKorea,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kp_wpk", "Workers' Party of Korea", "Choson Rodongdang", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Korea",
+        pillars: &[
+            pl(Pillar::Army, "the Korean People's Army"),
+            pl(Pillar::Party, "the Organisation and Guidance Department"),
+            pl(Pillar::Security, "the State Security Department"),
+        ],
+    },
+
+    // Taiwan — the supplementary Legislative Yuan election of 2 December 1989,
+    // the first contested by a legal opposition: Kuomintang 60.1%, Democratic
+    // Progressive Party 28.3%, independents and minor parties the rest. It was
+    // supplementary because most of the chamber was still held by members
+    // elected in mainland constituencies in 1947 who had never faced a voter
+    // and were not retired until December 1991, which is also why the next
+    // full-chamber election here is the one of December 1992.
+    //
+    // The single non-transferable vote is Taiwan's actual system in this period
+    // and not a borrowing from the Japan block above: multi-member districts,
+    // one vote, no transfers, and the factional nomination discipline that goes
+    // with it. The garrison command that enforced martial law until July 1987
+    // is a pillar because in January 1990 the transition was still reversible.
+    Polity {
+        nation: NationId::Taiwan,
+        system: Electoral::SingleNonTransferable,
+        term_months: 36,
+        next: (1992, 12),
+        parties: &[
+            p("tw_kmt", "Kuomintang", "Zhongguo Guomindang", Family::Conservative, 0.601),
+            p("tw_dpp", "Democratic Progressive Party", "Minzhu Jinbudang", Family::Liberal, 0.283),
+            p("tw_ind", "independents and minor parties", "", Family::BigTent, 0.116),
+        ],
+        ruling: "the Legislative Yuan",
+        pillars: &[
+            pl(Pillar::Army, "the Republic of China Armed Forces"),
+            pl(Pillar::Party, "the Kuomintang Central Standing Committee"),
+        ],
+    },
+
+    // Mongolia — the Mongolian People's Revolutionary Party, whose monopoly
+    // under Article 82 of the constitution was intact on 1 January 1990 and
+    // gone by 23 March. The demonstrations in Sukhbaatar Square had been
+    // running since 10 December 1989 and the whole Politburo resigned on 9
+    // March. `next` is (0, 0) because on the day the game opens this is a
+    // one-party state; the party table is the result of the People's Great
+    // Hural election of 29 July 1990 — the first multiparty vote in Asia's
+    // second communist state, which the MPRP won — and it goes live if and
+    // when the regime opens. Nothing here schedules that.
+    // MPRP 62.3%, Mongolian Democratic Party 24.3%, Social Democrats 5.6%,
+    // National Progress 5.6%.
+    // https://en.wikipedia.org/wiki/1990_Mongolian_parliamentary_election
+    Polity {
+        nation: NationId::Mongolia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Mongolian People's Revolutionary Party, the row's own party - ruling party 1921-1990, kept name and organisation through the 1990 revolution, 'subsequently abandoned Marxism-Leninism in favour of democratic socialism'; contested 1990 and 1992 as the same party; 1990. https://en.wikipedia.org/wiki/Mongolian_People%27s_Party
+            p("mn_mprp", "Mongolian People's Revolutionary Party", "Mongol Ardyn Khuvisgalt Nam", Family::Communist, 0.623).successor(),
+            p("mn_mdp", "Mongolian Democratic Party", "Mongolyn Ardchilsan Nam", Family::Liberal, 0.243),
+            p("mn_msdp", "Mongolian Social Democratic Party", "Mongolyn Sotsial Demokrat Nam", Family::SocialDemocratic, 0.056),
+            p("mn_mnpp", "Mongolian National Progress Party", "Mongolyn Undesnii Devshliin Nam", Family::Conservative, 0.056),
+        ],
+        ruling: "the Mongolian People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Mongolian People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of Public Security"),
+        ],
+    },
+
+    // Thailand — House of Representatives, 24 July 1988, the election that made
+    // Chatichai Choonhavan the first prime minister since 1976 to have sat in
+    // the chamber that chose him. The shares are of the 357 seats rather than of
+    // the vote, and that is a transcription decision worth stating: Thai results
+    // of the period were reported by seat, the districts returned two and three
+    // members apiece on a bloc vote, and a national popular share compiled out
+    // of them would be an artefact. Chart Thai 87, Social Action 54, Democrat
+    // 48, Ruam Thai 35, Prachakorn Thai 31, Rassadorn 21, Muan Chon 17, Palang
+    // Dharma 14, and fifty seats spread across nine smaller parties which are
+    // not entered.
+    //
+    // The next election was due by July 1992 and `next` says March 1992, which
+    // is when it was actually held — after the army removed this government on
+    // 23 February 1991. Hence the pillar, which is not decoration: the Royal
+    // Thai Army had taken power eleven times since 1932 and was to do it again
+    // thirteen months into the game.
+    // https://en.wikipedia.org/wiki/1988_Thai_general_election
+    Polity {
+        nation: NationId::Thailand,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1992, 3),
+        parties: &[
+            p("th_chartthai", "Thai Nation Party", "Chart Thai", Family::Conservative, 0.244),
+            p("th_sap", "Social Action Party", "Kit Sangkhom", Family::Conservative, 0.151),
+            p("th_democrat", "Democrat Party", "Prachathipat", Family::Liberal, 0.134),
+            p("th_ruamthai", "United Thai People's Party", "Ruam Thai", Family::Conservative, 0.098),
+            p("th_pkt", "Thai Citizens' Party", "Prachakorn Thai", Family::Nationalist, 0.087),
+            p("th_rassadorn", "People's Party", "Rassadorn", Family::BigTent, 0.059),
+            p("th_muanchon", "Mass Party", "Muan Chon", Family::BigTent, 0.048),
+            // bloc -> Western: Buddhist, not Islamist. https://en.wikipedia.org/wiki/Palang_Dharma_Party
+            p("th_palangdharma", "Righteous Force Party", "Palang Dharma", Family::Religious, 0.039).aligned(Bloc::Western),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Royal Thai Army")],
+    },
+
+    // Malaysia — general election of 3 August 1986: Barisan Nasional 55.8%,
+    // Democratic Action Party 21.0%, Pan-Malaysian Islamic Party 15.6%, with
+    // Parti Bersatu Sabah inside the Front at the time and out of it by 1990.
+    // That Dewan Rakyat is the sitting one when the game opens and the next
+    // election is nine months away, on 21 October 1990 — the one Tengku
+    // Razaleigh contested at the head of Semangat 46 after losing the UMNO
+    // presidency by forty-three votes and having the party he lost it in
+    // declared an unlawful society for the irregularities in that ballot.
+    // https://en.wikipedia.org/wiki/1986_Malaysian_general_election
+    Polity {
+        nation: NationId::Malaysia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 10),
+        parties: &[
+            p("my_bn", "National Front", "Barisan Nasional", Family::BigTent, 0.558),
+            p("my_dap", "Democratic Action Party", "", Family::SocialDemocratic, 0.210),
+            p("my_pas", "Pan-Malaysian Islamic Party", "Parti Islam Se-Malaysia", Family::Religious, 0.156),
+            p("my_pbs", "United Sabah Party", "Parti Bersatu Sabah", Family::Regionalist, 0.045),
+        ],
+        ruling: "the Dewan Rakyat",
+        pillars: &[],
+    },
+
+    // Singapore — general election of 3 September 1988, the first fought on
+    // group representation constituencies: People's Action Party 63.2%,
+    // Workers' Party 16.7%, Singapore Democratic Party 11.5%, National
+    // Solidarity Party 8.6%. The PAP took 80 of 81 seats on that 63%, which is
+    // what a first-past-the-post system does to an opposition that cannot
+    // concentrate, and it is why the electoral system here is not cosmetic.
+    // Lee Kuan Yew handed the premiership to Goh Chok Tong in November 1990
+    // without an election; the next one fell in August 1991.
+    // https://en.wikipedia.org/wiki/1988_Singaporean_general_election
+    Polity {
+        nation: NationId::Singapore,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 8),
+        parties: &[
+            p("sg_pap", "People's Action Party", "", Family::Conservative, 0.632),
+            p("sg_wp", "Workers' Party", "", Family::SocialDemocratic, 0.167),
+            p("sg_sdp", "Singapore Democratic Party", "", Family::Liberal, 0.115),
+            p("sg_nsp", "National Solidarity Party", "", Family::SocialDemocratic, 0.086),
+        ],
+        ruling: "the Parliament of Singapore",
+        pillars: &[],
+    },
+
+    // Philippines — House of Representatives, 11 May 1987, the first election
+    // under the constitution ratified three months earlier. Shares are of the
+    // 200 elected seats, and there is a reason no popular vote appears: the
+    // election was contested by personal coalitions — Lakas ng Bansa, PDP-Laban,
+    // the Grand Alliance for Democracy — which dissolved and recombined inside
+    // the term, and the LDP was assembled out of the winners afterwards. A
+    // national vote share for parties that did not exist as national parties
+    // would be an invention. The transitional House sat five years; later terms
+    // run three, which is what `term_months` carries.
+    //
+    // The pillar is not a formality. Corazon Aquino faced seven coup attempts
+    // between 1986 and 1990, the largest of them in December 1989, a month
+    // before the game opens, put down with American aircraft flying cover out
+    // of Clark.
+    Polity {
+        nation: NationId::Philippines,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1992, 5),
+        parties: &[
+            // bloc -> Western: Aquino's governing coalition, a treaty ally. https://en.wikipedia.org/wiki/Laban_ng_Demokratikong_Pilipino
+            p("ph_ldp", "Struggle of Democratic Filipinos", "Laban ng Demokratikong Pilipino", Family::BigTent, 0.660).aligned(Bloc::Western),
+            p("ph_gad", "Grand Alliance for Democracy", "", Family::Conservative, 0.100),
+            p("ph_np", "Nacionalista Party", "Partido Nacionalista", Family::Conservative, 0.075),
+            p("ph_lp", "Liberal Party", "Partido Liberal", Family::Liberal, 0.070),
+            p("ph_ind", "independents", "", Family::BigTent, 0.095),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Armed Forces of the Philippines")],
+    },
+
+    // Cambodia — the State of Cambodia, governed by the Kampuchean People's
+    // Revolutionary Party, which renamed itself the Cambodian People's Party in
+    // October 1991 and dropped Marxism-Leninism along with the name. The last
+    // National Assembly election, 1 May 1981, was a single list. Vietnamese
+    // troops left in September 1989; the Paris agreements are twenty-two months
+    // away and the Khmer Rouge still hold ground in the west with Chinese and
+    // Thai supply lines behind them. A regime whose army is the only thing
+    // between it and three insurgencies, which is what the pillars say.
+    Polity {
+        nation: NationId::Cambodia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: Kampuchean People's Revolutionary Party, the row's own party - 'In 1991, the party was renamed to the Cambodian People's Party' and 'abandoned the one-party system and Marxism-Leninism'; 1991. https://en.wikipedia.org/wiki/Cambodian_People%27s_Party
+            p("kh_kprp", "Kampuchean People's Revolutionary Party", "Pak Pracheachon Padevat Kampuchea", Family::Communist, 1.00).successor(),
+        ],
+        ruling: "the Kampuchean People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Cambodian People's Armed Forces"),
+            pl(Pillar::Party, "the Politburo"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+
+    // Laos — the Lao People's Revolutionary Party, in power since December 1975
+    // and still governing without a constitution when the game opens; one was
+    // promulgated in August 1991. The Supreme People's Assembly elected on 26
+    // March 1989 was the first national election since 1975 and every candidate
+    // on the ballot had been vetted by the party, so the table carries the LPRP
+    // alone rather than inventing an opposition out of the handful of approved
+    // non-members.
+    Polity {
+        nation: NationId::Laos,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("la_lprp", "Lao People's Revolutionary Party", "Phak Pasason Pativat Lao", Family::Communist, 1.00),
+        ],
+        ruling: "the Lao People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Lao People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Canada — general election of 21 November 1988, the free-trade election:
+    // Progressive Conservative 43.0%, Liberal 31.9%, NDP 20.4%, Reform 2.1%.
+    // Mulroney's second majority, won on the Canada-United States Free Trade
+    // Agreement his opponents had between them a clear majority against. The
+    // next election was due by November 1993 and came on 25 October, when the
+    // party in this list at 43.0% was reduced to two seats.
+    // https://en.wikipedia.org/wiki/1988_Canadian_federal_election
+    //
+    // The Bloc Quebecois is deliberately absent. It was founded on 15 June
+    // 1990, five and a half months after the game starts, out of the wreckage
+    // of Meech Lake — so it contested no election before January 1990 and has
+    // no transcribed share to enter. Putting it in the table with an invented
+    // opening number would be scripting the Canadian crisis instead of letting
+    // the separatism figure in canada.json produce it.
+    Polity {
+        nation: NationId::Canada,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 10),
+        parties: &[
+            p("ca_pc", "Progressive Conservative Party", "", Family::Conservative, 0.430),
+            p("ca_lib", "Liberal Party of Canada", "", Family::Liberal, 0.319),
+            p("ca_ndp", "New Democratic Party", "", Family::SocialDemocratic, 0.204),
+            // Reform ran candidates only west of Ontario in 1988 and won no
+            // seats. Filed Regionalist rather than Conservative because that is
+            // what it was in 1988 — Western alienation, an elected Senate, and
+            // "the West wants in" — whatever it became after 1993.
+            p("ca_reform", "Reform Party of Canada", "", Family::Regionalist, 0.021),
+        ],
+        ruling: "the House of Commons",
+        pillars: &[],
+    },
+    // Australia — House of Representatives, 11 July 1987, first-preference
+    // votes: ALP 45.8%, Liberal 34.4%, National 11.5%, Democrats 6.0%. This is
+    // the last election BEFORE January 1990 and therefore the right one, even
+    // though the next was only eleven weeks away: Hawke went to the country
+    // again on 24 March 1990 and won a fourth term with a minority of the
+    // two-party preferred vote.
+    // https://en.wikipedia.org/wiki/1987_Australian_federal_election
+    Polity {
+        nation: NationId::Australia,
+        // A substitution, and a visible one. Australia elects the House by
+        // full preferential voting — an instant runoff — which is not in the
+        // Electoral enum. The two candidates were TwoRound, which is what an
+        // instant runoff literally is, and FirstPastThePost. FirstPastThePost
+        // is entered because of what this enum actually controls: a majority
+        // bonus and a threshold, (3.0, 0.0) against TwoRound's (2.0, 0.05).
+        // Australia's single-member districts manufacture majorities at least
+        // as hard as Britain's — the ALP took 86 of 148 seats on 45.8% of the
+        // primary vote in 1987 — and TwoRound's 5% national threshold would
+        // have seated the Democrats, who polled 6.0% and won exactly zero
+        // House seats that year and every other. Choosing the mechanism that
+        // reproduces the outcome over the one that shares the name.
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 3),
+        parties: &[
+            p("au_alp", "Australian Labor Party", "", Family::SocialDemocratic, 0.458),
+            p("au_lib", "Liberal Party of Australia", "", Family::Conservative, 0.344),
+            // The Coalition's two halves are entered separately because they
+            // are separate parties with separate leaders and separate rooms,
+            // and because the National Party is agrarian in a way the Liberals
+            // have never been: it exists to represent farmers and country
+            // towns, and it splits from its partner over exactly that.
+            p("au_nat", "National Party of Australia", "", Family::Agrarian, 0.115),
+            p("au_dem", "Australian Democrats", "", Family::Liberal, 0.060),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // New Zealand — general election of 15 August 1987: Labour 48.0%,
+    // National 44.0%, Democrats 5.7%. The fourth Labour government's second
+    // term, and it did not survive it: Lange resigned in August 1989, Palmer
+    // holds the office when the game opens, Moore replaced him on 4 September
+    // 1990, and National won 67 of 97 seats on 27 October.
+    // https://en.wikipedia.org/wiki/1987_New_Zealand_general_election
+    Polity {
+        nation: NationId::NewZealand,
+        // Genuinely first past the post, in a unicameral parliament, with no
+        // upper house and no written constitution to slow it down. New Zealand
+        // adopted mixed-member proportional representation at the referendum of
+        // 6 November 1993 and first used it in 1996 — six years past this table
+        // and reachable by the model rather than written into it.
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 10),
+        parties: &[
+            p("nz_lab", "New Zealand Labour Party", "", Family::SocialDemocratic, 0.480),
+            p("nz_nat", "New Zealand National Party", "", Family::Conservative, 0.440),
+            p("nz_dem", "Democratic Party", "Social Credit", Family::Liberal, 0.057),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // ---------------------------------------------------------------------
+    // The Caribbean (branch feat/r2-caribbean). Four Westminster or
+    // presidential democracies and one army.
+    // ---------------------------------------------------------------------
+    // Dominican Republic — presidential election of 16 May 1986: Joaquin
+    // Balaguer (PRSC) 41.8%, Jacobo Majluta (PRD) 39.7%, Juan Bosch (PLD)
+    // 18.5%. The presidential vote rather than the Chamber of Deputies vote
+    // of the same day (PRSC 40.6%, PRD 33.5%, PLD 18.3%, LE 5.3%), because in
+    // a Dominican presidential system the president is the government in a
+    // way the American president is not — which is the opposite of the
+    // reasoning applied to the United States above, and deliberately so.
+    // Balaguer had to be re-elected in May 1990 and was, by 24,470 votes over
+    // Bosch out of 1.9m cast, in a count both the Church and the opposition
+    // disputed for months.
+    // https://en.wikipedia.org/wiki/1986_Dominican_Republic_general_election
+    Polity {
+        nation: NationId::DominicanRepublic,
+        // Plurality, single round, no runoff. Dominican law required no
+        // absolute majority in 1986 or 1990, which is exactly how a man with
+        // 41.8% governed; the two-round requirement arrived with the
+        // constitutional reform of 1994.
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1990, 5),
+        parties: &[
+            // Balaguer's party was a full member of the Christian Democrat
+            // International, and that is why it is filed here. What it
+            // actually was is a personal machine: Balaguer had been Trujillo's
+            // last puppet president, governed 1966-78 on American support and
+            // a great deal of political killing, and came back in 1986 at 79.
+            p("do_prsc", "Social Christian Reformist Party", "Partido Reformista Social Cristiano", Family::ChristianDemocratic, 0.418),
+            p("do_prd", "Dominican Revolutionary Party", "Partido Revolucionario Dominicano", Family::SocialDemocratic, 0.397),
+            // A SUBSTITUTION, STATED. Juan Bosch's PLD in 1986 was to the left
+            // of the PRD and organised on cadre lines — closed cells, a
+            // vetting period before membership, a discipline borrowed from
+            // Leninist practice by a man who was not a Leninist. The Family
+            // enum has no "left-nationalist cadre party" and Communist would
+            // be a straight libel, so SocialDemocratic is entered for both
+            // and the difference between them is recorded here instead. They
+            // were bitter rivals: the PLD exists because Bosch walked out of
+            // the PRD he had founded, in 1973.
+            p("do_pld", "Dominican Liberation Party", "Partido de la Liberacion Dominicana", Family::SocialDemocratic, 0.185),
+        ],
+        ruling: "the Presidency",
+        pillars: &[],
+    },
+    // Haiti — no election, and that is the transcription. The presidential
+    // and legislative elections of 17 January 1988 produced Leslie Manigat,
+    // whom the army removed on 20 June; the legislature elected that day was
+    // dissolved the same week; Henri Namphy was overthrown by Prosper Avril
+    // on 17 September 1988; and Avril is what governs Haiti in January 1990.
+    // He declared a state of siege on 20 January — inside the game's first
+    // month — arrested and beat opposition figures on television, and
+    // resigned under American pressure on 10 March 1990.
+    //
+    // `parties: &[]` follows the Saudi precedent: an empty table is the
+    // correct transcription rather than a gap, because the last vote was
+    // annulled by the army and the next was ten months away. The parties that
+    // took the December 1990 election — Aristide's Lavalas above all — had
+    // contested nothing before the start date and entering an opening share
+    // for them would be scripting the Haitian revolution rather than letting
+    // a stability of 24 and an authoritarianism of 0.78 produce it.
+    // https://en.wikipedia.org/wiki/Prosper_Avril
+    Polity {
+        nation: NationId::Haiti,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Armed Forces of Haiti",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees d'Haiti"),
+            // The Service d'Information National, and behind it the chefs de
+            // section: 562 army-appointed headmen who policed rural Haiti,
+            // drew no salary, and lived on the fines they levied. This is the
+            // apparatus the Duvaliers built out of the Tontons Macoute and
+            // the army inherited when they left.
+            pl(Pillar::Security, "the Service d'Information National"),
+            // The import houses of Port-au-Prince. A dozen families held the
+            // licences, and every Haitian government since 1957 has needed
+            // them because the customs house was the treasury.
+            pl(Pillar::Business, "the Port-au-Prince import houses"),
+        ],
+    },
+    // Jamaica — general election of 9 February 1989: PNP 56.6%, JLP 43.3%,
+    // on a turnout of 78.4%. Michael Manley's return after eight and a half
+    // years of Edward Seaga, and a quiet election by Jamaican standards: the
+    // campaign of 1980 had killed something near 800 people and this one was
+    // fought under a code of conduct the two leaders signed. Next due by
+    // February 1994; it came on 30 March 1993, after Manley had already
+    // resigned the office to P. J. Patterson in March 1992.
+    // https://en.wikipedia.org/wiki/1989_Jamaican_general_election
+    Polity {
+        nation: NationId::Jamaica,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 2),
+        parties: &[
+            p("jm_pnp", "People's National Party", "", Family::SocialDemocratic, 0.566),
+            // The name is the trap. The Jamaica Labour Party was founded by a
+            // trade unionist and is the conservative party: Seaga governed
+            // from 1980 on IMF terms and American alignment, broke relations
+            // with Cuba in 1981, and supported the invasion of Grenada.
+            p("jm_jlp", "Jamaica Labour Party", "", Family::Conservative, 0.433),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // Trinidad and Tobago — general election of 15 December 1986: NAR 66.3%,
+    // PNM 32.0%, NJAC 1.5%. The largest mandate in the country's history, 33
+    // of 36 seats, ending thirty unbroken years of People's National Movement
+    // government.
+    // https://en.wikipedia.org/wiki/1986_Trinidad_and_Tobago_general_election
+    Polity {
+        nation: NationId::TrinidadTobago,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 12),
+        parties: &[
+            // BigTent is not a hedge here, it is the description. The NAR was
+            // an alliance of four parties — the ULF, the DAC, the ONR and
+            // Tapia House — welded together in 1985 for the sole purpose of
+            // beating the PNM, and it came apart on schedule: Basdeo Panday
+            // and three others were expelled in 1988 and founded the United
+            // National Congress in April 1989.
+            // bloc -> Western: Governing party of a Commonwealth democracy. https://en.wikipedia.org/wiki/National_Alliance_for_Reconstruction
+            p("tt_nar", "National Alliance for Reconstruction", "", Family::BigTent, 0.663).aligned(Bloc::Western),
+            p("tt_pnm", "People's National Movement", "", Family::Conservative, 0.320),
+            p("tt_njac", "National Joint Action Committee", "", Family::Nationalist, 0.015),
+            // The United National Congress is deliberately absent, on the
+            // same ground the Bloc Quebecois is absent from the Canadian
+            // table above: it was founded in April 1989, contested no
+            // national election before January 1990, and therefore has no
+            // transcribed share. By December 1991 it took 13 seats and became
+            // the opposition. Entering an opening number for it would be
+            // scripting the collapse of the NAR instead of letting a
+            // BigTent's own coalition arithmetic produce it.
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // The Bahamas — general election of 19 June 1987: PLP 53.5%, FNM 43.2%,
+    // independents 3.1%, Labour 0.1%. Pindling's fifth consecutive term and
+    // his last full one. Next due by June 1992; it came on 19 August 1992 and
+    // the Free National Movement won 32 of 49 seats, ending twenty-five years
+    // of Progressive Liberal Party government.
+    // https://en.wikipedia.org/wiki/1987_Bahamian_general_election
+    Polity {
+        nation: NationId::Bahamas,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1992, 6),
+        parties: &[
+            p("bs_plp", "Progressive Liberal Party", "", Family::SocialDemocratic, 0.535),
+            p("bs_fnm", "Free National Movement", "", Family::Conservative, 0.432),
+            // The Labour Party's 0.12% and the two independents' 3.1% are not
+            // entered: independents are not a party the model can move
+            // support toward, and a party with one vote in a thousand would
+            // be noise in an electorate of 100,000.
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[],
+    },
+
+    // ===== Central Africa (branch feat/r2-centafrica) ======================
+    //
+    // Six regimes, and every one of them is a single-party state on 1 January
+    // 1990. That is the finding rather than a shortcut: the wave that took all
+    // six apart — Gabon's Rendez-vous de Mars, Congo's Conference Nationale
+    // Souveraine, Sao Tome's referendum, the Central African and Equatoguinean
+    // transitions, and in Chad a rebellion rather than a conference — all of it
+    // is inside three years of this start date and NONE of it is scheduled
+    // here. What the model is handed is six regimes with pillars and no
+    // parliament, and it is left to knock them over or not.
+    //
+    // A note on where the vote shares come from, because it differs by country
+    // and each block says which it used. Three of the six eventually published
+    // percentages at their first competitive election and those are entered
+    // (Sao Tome 1991, Equatorial Guinea 1993, the Central African Republic's
+    // 1993 presidential first round, on the same footing as Ghana's block
+    // above). Two published SEATS ONLY and no percentages — Gabon 1990 and
+    // Congo 1992 — and for those the seat share is entered with the
+    // substitution declared, because a seat share somebody counted beats a
+    // vote share nobody did. Chad had no competitive election until 1996 and
+    // carries its single party alone at 1.00, exactly as Zaire's block does.
+
+    // Chad — the Union Nationale pour l'Independance et la Revolution, Hissene
+    // Habre's sole legal party from its founding congress of June 1984. The
+    // only vote in the country between 1969 and 1996 was the single-UNIR-list
+    // legislative election of 8 July 1990, five months before Habre lost
+    // N'Djamena, and it is not an election this table can transcribe shares
+    // from. The first competitive one was the presidential poll of June-July
+    // 1996, six years out and won by the man who was still in Darfur when this
+    // game opens. So the party slot holds UNIR alone, and the point of the
+    // block — as in Zaire's — is that it holds nothing else.
+    Polity {
+        nation: NationId::Chad,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("td_unir", "National Union for Independence and Revolution", "Union Nationale pour l'Independance et la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Union for Independence and Revolution",
+        pillars: &[
+            // The distinction this table insists on. The Forces Armees
+            // Nationales Tchadiennes beat the Libyan army in 1987 and were
+            // then purged of the Zaghawa officers who did it; what held Habre
+            // in power after April 1989 was not them.
+            pl(Pillar::Army, "the Forces Armees Nationales Tchadiennes"),
+            // The Direction de la Documentation et de la Securite reported to
+            // the president in person. Chad's own truth commission of 1992
+            // attributed something over 40,000 deaths to it, and Habre was
+            // convicted in Dakar in 2016 on that record.
+            pl(Pillar::Security, "the Direction de la Documentation et de la Securite"),
+            pl(Pillar::Party, "the UNIR Bureau Politique"),
+        ],
+    },
+
+    // Central African Republic — the Rassemblement Democratique Centrafricain,
+    // Andre Kolingba's party, sole legal one from 1986, confirmed by a
+    // referendum on 21 November 1986 (91.2%) and a single-list legislative
+    // election on 31 July 1987. The shares entered are the FIRST ROUND of the
+    // presidential election of 22 August 1993, the first free vote the country
+    // ever held: Patasse 38.03%, Goumba 22.10%, Dacko 20.49%, Kolingba 12.33%,
+    // Lakoue 2.44%, Malendoma 2.07%. Ruth-Rolland's 1.02% and Bozize's 1.53%
+    // are recorded here rather than entered, to keep the table to six.
+    // Kolingba finished FOURTH in his own country and handed over, which is the
+    // result that makes these shares worth entering: they measure a real
+    // electorate rather than a boycott. Presidential first-round shares are
+    // used because the concurrent legislative election published seats only —
+    // the same substitution Ghana's block above makes and for the same reason.
+    // https://en.wikipedia.org/wiki/1993_Central_African_general_election
+    Polity {
+        nation: NationId::CentralAfricanRepublic,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[
+            p("cf_mlpc", "Movement for the Liberation of the Central African People", "Mouvement de Liberation du Peuple Centrafricain", Family::SocialDemocratic, 0.3803),
+            p("cf_fpp", "Patriotic Front for Progress", "Front Patriotique pour le Progres", Family::SocialDemocratic, 0.2210),
+            p("cf_mdd", "Movement for Democracy and Development", "Mouvement pour la Democratie et le Developpement", Family::Liberal, 0.2049),
+            p("cf_rdc", "Central African Democratic Rally", "Rassemblement Democratique Centrafricain", Family::BigTent, 0.1233),
+            p("cf_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.0244),
+            p("cf_fc", "Civic Forum", "Forum Civique", Family::Conservative, 0.0207),
+        ],
+        ruling: "the Central African Democratic Rally",
+        pillars: &[
+            // Recruited heavily from Kolingba's own Yakoma after 1981, which is
+            // why the army that mutinied in 1996 mutinied along that line.
+            pl(Pillar::Army, "the Forces Armees Centrafricaines"),
+            pl(Pillar::Security, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the RDC Comite Directeur"),
+        ],
+    },
+
+    // Congo-Brazzaville — the Parti Congolais du Travail, Marxist-Leninist and
+    // the sole legal party since 31 December 1969, with the last single-list
+    // election to the Assemblee Nationale Populaire on 24 September 1989. The
+    // shares entered are SEAT SHARES from the first multi-party election, 24
+    // June and 19 July 1992, and the substitution is declared because no vote
+    // percentages were published for it: UPADS 39 of 125, MCDDI 29, PCT 18,
+    // RDPS 9, RDD 5, UFD 3, UPSD 2. They sum to 0.84 rather than 1.00 because
+    // eight further parties took one seat each and eight independents were
+    // elected, and padding that gap with a party nobody counted would be worse
+    // than leaving it. What the numbers say is the thing worth saying: the
+    // party that had governed for twenty-three years came THIRD, and then the
+    // three men at the top of this list each raised a militia and fought a war
+    // in 1993 and again in 1997.
+    // https://en.wikipedia.org/wiki/1992_Republic_of_the_Congo_parliamentary_election
+    Polity {
+        nation: NationId::Congo,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cg_upads", "Pan-African Union for Social Democracy", "Union Panafricaine pour la Democratie Sociale", Family::SocialDemocratic, 0.312),
+            p("cg_mcddi", "Congolese Movement for Democracy and Integral Development", "Mouvement Congolais pour la Democratie et le Developpement Integral", Family::Conservative, 0.232),
+            p("cg_pct", "Congolese Party of Labour", "Parti Congolais du Travail", Family::Communist, 0.144),
+            p("cg_rdps", "Rally for Democracy and Social Progress", "Rassemblement pour la Democratie et le Progres Social", Family::SocialDemocratic, 0.072),
+            p("cg_rdd", "Rally for Democracy and Development", "Rassemblement pour la Democratie et le Developpement", Family::Liberal, 0.040),
+            p("cg_ufd", "Union of Democratic Forces", "Union des Forces Democratiques", Family::Liberal, 0.024),
+            p("cg_upsd", "Union for Social Progress and Democracy", "Union pour le Progres Social et la Democratie", Family::SocialDemocratic, 0.016),
+        ],
+        ruling: "the Congolese Party of Labour",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees Congolaises"),
+            pl(Pillar::Party, "the PCT Comite Central"),
+            pl(Pillar::Security, "the Direction Generale de la Securite d'Etat"),
+        ],
+    },
+
+    // Gabon — the Parti Democratique Gabonais, Omar Bongo's, sole legal party
+    // from March 1968 until the constitutional revision of May 1990. The shares
+    // are SEAT SHARES from the first multi-party election, 16 September with
+    // re-runs on 21 and 28 October 1990 — nine months into the game — because
+    // no vote percentages were published: PDG 63 of 120, MORENA-Bucherons 20,
+    // PGP 18, MORENA-Originel 7, APSG 6, USG 4, CRP 1, UGDD 1. Results in 32 of
+    // 120 constituencies were annulled for fraud and re-run, which is the sort
+    // of thing that makes a percentage meaningless and a seat count merely
+    // disputed.
+    //
+    // Nothing here schedules that election, and the block is deliberately a
+    // pillars-and-no-parliament regime at t=0: on 1 January 1990 Gabon had a
+    // one-party National Assembly, and what turned it into the list above was a
+    // public-sector strike wave that had already started, a national conference
+    // in March and April, the death of Joseph Rendjambe on 23 May, a rising at
+    // Port-Gentil and 500 French paratroopers.
+    // https://en.wikipedia.org/wiki/1990_Gabonese_parliamentary_election
+    Polity {
+        nation: NationId::Gabon,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ga_pdg", "Gabonese Democratic Party", "Parti Democratique Gabonais", Family::BigTent, 0.525),
+            p("ga_rnb", "National Rally of Woodcutters", "Rassemblement National des Bucherons", Family::Liberal, 0.1667),
+            p("ga_pgp", "Gabonese Progress Party", "Parti Gabonais du Progres", Family::SocialDemocratic, 0.15),
+            p("ga_morena", "MORENA-Originel", "Mouvement de Redressement National", Family::Nationalist, 0.0583),
+            p("ga_apsg", "Association for Socialism in Gabon", "Association pour le Socialisme au Gabon", Family::SocialDemocratic, 0.05),
+            p("ga_usg", "Gabonese Socialist Union", "Union Socialiste Gabonaise", Family::SocialDemocratic, 0.0333),
+            p("ga_crp", "Circle for Renewal and Progress", "Cercle pour le Renouveau et le Progres", Family::Liberal, 0.0083),
+            p("ga_ugdd", "Gabonese Union for Democracy and Development", "Union Gabonaise pour la Democratie et le Developpement", Family::Liberal, 0.0083),
+        ],
+        ruling: "the Gabonese Democratic Party",
+        pillars: &[
+            // The formation, not the institution: the Garde Presidentielle was
+            // better equipped than the Forces Armees Gabonaises and answered to
+            // the president rather than to the ministry.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the PDG Bureau Politique"),
+            // The other pillar of this regime was a company. Elf Gabon paid the
+            // rent that paid everyone else, and the Elf-Aquitaine relationship
+            // with the presidency is the thing the Elf affair of the 1990s was
+            // eventually prosecuted over in Paris.
+            pl(Pillar::Business, "Elf Gabon"),
+        ],
+    },
+
+    // Equatorial Guinea — the Partido Democratico de Guinea Ecuatorial,
+    // founded in 1987 as Obiang's sole legal party. The shares are the
+    // legislative election of 21 November 1993, the first multi-party vote
+    // since 1968: PDGE 69.79%, CSDP 10.28%, UDS 7.36%, PL 6.36%, CLD 2.51%.
+    // THOSE SHARES DESCRIBE A BOYCOTT, not an electorate, and are entered as
+    // such on the same footing as Bangladesh's block above: the Plataforma de
+    // Oposicion Conjunta, eight parties between them, refused to contest, the
+    // opposition put turnout near 20% against an official 67%, and Spain's
+    // foreign minister said publicly that the election was neither free nor
+    // fair. The parties that did stand won 12 of 80 seats. This is why the
+    // regime is modelled with pillars as well as a party list.
+    // https://en.wikipedia.org/wiki/1993_Equatorial_Guinean_parliamentary_election
+    Polity {
+        nation: NationId::EquatorialGuinea,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("gq_pdge", "Democratic Party of Equatorial Guinea", "Partido Democratico de Guinea Ecuatorial", Family::BigTent, 0.6979),
+            p("gq_csdp", "Social Democratic and Popular Convergence", "Convergencia Social Democratica y Popular", Family::SocialDemocratic, 0.1028),
+            p("gq_uds", "Social Democratic Union", "Union Democratica Social", Family::SocialDemocratic, 0.0736),
+            p("gq_pl", "Liberal Party", "Partido Liberal", Family::Liberal, 0.0636),
+            p("gq_cld", "Liberal Democratic Convention", "Convencion Liberal Democratica", Family::Liberal, 0.0251),
+        ],
+        ruling: "the Democratic Party of Equatorial Guinea",
+        pillars: &[
+            // Not the national army. The guard that kept Obiang alive through
+            // the coup attempt of August 1988 was several hundred Moroccan
+            // soldiers sent by Hassan II in 1979 and still in the palace at
+            // Malabo in 1990 — a pillar of this regime that was not
+            // Equatoguinean at all, which is a fact worth having in the table.
+            pl(Pillar::Army, "the Moroccan presidential guard"),
+            pl(Pillar::Security, "the Guardia Nacional"),
+            pl(Pillar::Party, "the PDGE"),
+        ],
+    },
+
+    // Sao Tome and Principe — the Movimento de Libertacao de Sao Tome e
+    // Principe, sole legal party since independence on 12 July 1975 and Manuel
+    // Pinto da Costa president throughout. The shares are the legislative
+    // election of 20 January 1991, the first free multi-party election in
+    // lusophone Africa: PCD-GR 59.33% and 33 of 55 seats, MLSTP/PSD 33.31% and
+    // 21, CODO 5.71% and 1, FCD 1.65% and none. Turnout 76.7%.
+    //
+    // Those are real percentages of a real electorate, and this is the one
+    // block in this region where the ruling party lost and left. The MLSTP
+    // central committee resolved on multipartyism in December 1989, the new
+    // constitution passed a referendum on 22 August 1990 with about 72%, and
+    // eleven weeks later the party that had governed for fifteen years was in
+    // opposition. NOTHING HERE SCHEDULES ANY OF THAT — the block opens as a
+    // one-party regime with three pillars, and saotome.json sets
+    // authoritarianism at 0.62, only just above the model's electoral ceiling,
+    // which is where the possibility lives.
+    // https://en.wikipedia.org/wiki/1991_S%C3%A3o_Tom%C3%A9an_legislative_election
+    Polity {
+        nation: NationId::SaoTome,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("st_pcd", "Democratic Convergence Party", "Partido de Convergencia Democratica - Grupo de Reflexao", Family::Liberal, 0.5933),
+            // successor_of_ruling_party: MLSTP, the row's own party - 'At the MLSTP Party Congress in October 1990 ... the party's name was amended to the Movement for the Liberation of Sao Tome and Principe - Social Democratic Party (MLSTP-PSD)'; 1990-10. https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_%E2%80%93_Social_Democratic_Party
+            p("st_mlstp", "MLSTP/Social Democratic Party", "Movimento de Libertacao de Sao Tome e Principe", Family::SocialDemocratic, 0.3331).successor(),
+            p("st_codo", "Opposition Democratic Coalition", "Coligacao Democratica da Oposicao", Family::Liberal, 0.0571),
+            p("st_fcd", "Christian Democratic Front", "Frente Democrata-Crista", Family::ChristianDemocratic, 0.0165),
+        ],
+        ruling: "the Movement for the Liberation of Sao Tome and Principe",
+        pillars: &[
+            // Six hundred men, and for most of the period not even them: the
+            // garrison that actually secured the islands after the coup scare
+            // of 1978 was about a thousand Angolan FAPLA troops, withdrawn in
+            // 1991. The smallest army in this roster propping up the least
+            // authoritarian regime in this region, which is not a coincidence.
+            pl(Pillar::Army, "the Forcas Armadas de Sao Tome e Principe"),
+            pl(Pillar::Party, "the MLSTP Comite Central"),
+        ],
+    },
+
+    // ===== Central America (branch feat/r2-centam) =====
+    //
+    // Seven electoral polities, and every one of them is under the 0.60
+    // authoritarianism ceiling, which for this region in this decade is a
+    // stronger statement than it looks. In 1980 four of these seven were run by
+    // soldiers or by a single party. By January 1990 all seven had a legislature
+    // somebody had voted for, and inside the following fifteen months four of
+    // them held an election that turned the government over. That is the
+    // Esquipulas decade, and none of it is scripted — what is transcribed here
+    // is the last vote before the game opens and the date of the next one.
+
+    // Guatemala — Congress of the Republic, 3 November 1985, the first election
+    // after twenty-nine years of military rule. National-list vote shares:
+    // Christian Democracy 38.64%, National Centre Union 20.23%, PDCN-PRG
+    // 13.78%, MLN-PID 12.56%, Nationalist Authentic Centre 6.29%, Social
+    // Democrats 3.42%, National Renewal 3.15%. The national-list column is used
+    // rather than the district one because it is a single countrywide
+    // constituency and therefore the closest thing to a national vote share;
+    // the two columns differ by under two points for every party anyway.
+    //
+    // Vinicio Cerezo took the presidency in the runoff with 68.4% and governed
+    // a state whose army he did not command: coup attempts in May 1988 and May
+    // 1989, and a war against the URNG that had been running since 1960. The
+    // next election is nine months away as the game opens — 11 November 1990,
+    // which the UCN's Jorge Carpio led on the first round and Jorge Serrano of
+    // the small MAS won on the second. MAS is deliberately absent from this
+    // table for the reason peru.rs gives about Cambio 90: it did not exist in
+    // 1985, the seven parties here already account for 98% of that vote, and a
+    // 1985 table with a 1990 winner bolted onto it is a transcription of
+    // neither election. An outsider taking a collapsing party system is
+    // something the model should be able to produce.
+    // https://en.wikipedia.org/wiki/1985_Guatemalan_general_election
+    Polity {
+        nation: NationId::Guatemala,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 11),
+        parties: &[
+            p("gt_dcg", "Guatemalan Christian Democracy", "Democracia Cristiana Guatemalteca", Family::ChristianDemocratic, 0.3864),
+            p("gt_ucn", "National Centre Union", "Union del Centro Nacional", Family::Liberal, 0.2023),
+            p("gt_pdcn", "PDCN-PR", "Partido Democratico de Cooperacion Nacional - Partido Revolucionario", Family::Liberal, 0.1378),
+            p("gt_mln", "MLN-PID", "Movimiento de Liberacion Nacional - Partido Institucional Democratico", Family::Nationalist, 0.1256),
+            p("gt_can", "Nationalist Authentic Centre", "Central Autentica Nacionalista", Family::Nationalist, 0.0629),
+            p("gt_psd", "Social Democratic Party", "Partido Socialista Democratico", Family::SocialDemocratic, 0.0342),
+            p("gt_pnr", "National Renewal Party", "Partido Nacional Renovador", Family::Conservative, 0.0315),
+        ],
+        ruling: "the Congress of the Republic",
+        pillars: &[],
+    },
+
+    // Honduras — general election, 26 November 1989. Rafael Leonardo Callejas of
+    // the National Party took 52.30% against the Liberal Carlos Roberto Flores'
+    // 44.31% and was inaugurated on 27 January 1990, four weeks into the game's
+    // first month: the second consecutive transfer of power between parties
+    // since the army returned to barracks in 1982, and the first in which the
+    // opposition won.
+    //
+    // The presidential shares are entered as the congressional ones and that is
+    // a fact about the ballot rather than a shortcut. Honduras used a single
+    // ballot — the papeleta unica — until the reform of 1993, so a vote for a
+    // presidential candidate was simultaneously and inseparably a vote for that
+    // party's departmental deputy list. The seats followed: National 71, Liberal
+    // 56, Christian Democrats 1, PINU 0, of 128. The residual 3.4% is split
+    // between PDCH and PINU on that seat outcome and IS A REASONED
+    // APPORTIONMENT RATHER THAN A TRANSCRIPTION — the two parties' separate
+    // shares are the one figure in this block I could not retrieve.
+    // https://en.wikipedia.org/wiki/1989_Honduran_general_election
+    Polity {
+        nation: NationId::Honduras,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("hn_pn", "National Party of Honduras", "Partido Nacional de Honduras", Family::Conservative, 0.5230),
+            p("hn_pl", "Liberal Party of Honduras", "Partido Liberal de Honduras", Family::Liberal, 0.4431),
+            p("hn_pdch", "Christian Democratic Party", "Partido Democrata Cristiano de Honduras", Family::ChristianDemocratic, 0.019),
+            p("hn_pinu", "Innovation and Unity Party", "Partido Innovacion y Unidad", Family::SocialDemocratic, 0.015),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+
+    // El Salvador — Legislative Assembly, 20 March 1988: ARENA 48.10%, the
+    // Christian Democrats 35.10%, the National Coalition Party 8.46%. ARENA took
+    // 31 of 60 seats and Alfredo Cristiani won the presidency outright a year
+    // later, on 19 March 1989. The next Assembly election is fourteen months
+    // away, on 10 March 1991.
+    //
+    // THE LARGEST POLITICAL FORCE IN EL SALVADOR IS NOT IN THIS TABLE AND MUST
+    // NOT BE. The FMLN was an army in January 1990, not a party: it had put
+    // several thousand fighters into San Salvador in the offensive of 11
+    // November 1989 and it did not contest an election until March 1994, having
+    // become a party under the Chapultepec accords of 16 January 1992. Entering
+    // it here with a later vote share would be scripting the peace settlement
+    // into the starting conditions of the war. What the model has instead is a
+    // legislature in which the party founded by the man who ordered the
+    // archbishop shot holds a majority, a stability figure of 25, and a
+    // civil-war dynamic that has to find its own ending.
+    // https://en.wikipedia.org/wiki/1988_Salvadoran_legislative_election
+    Polity {
+        nation: NationId::ElSalvador,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 3),
+        parties: &[
+            p("sv_arena", "Nationalist Republican Alliance", "Alianza Republicana Nacionalista", Family::Nationalist, 0.4810),
+            p("sv_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.3510),
+            p("sv_pcn", "National Coalition Party", "Partido de Conciliacion Nacional", Family::Conservative, 0.0846),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Nicaragua — National Assembly, 4 November 1984: FSLN 66.97%, Democratic
+    // Conservatives 14.04%, Independent Liberals 9.60%, Popular Social
+    // Christians 5.56%, and three Marxist parties to the Sandinistas' left
+    // taking under 4% between them. Daniel Ortega took the presidency on the
+    // same share. Much of the right boycotted: the Coordinadora Democratica
+    // stood aside arguing there were no guarantees, while American and British
+    // observers reported the voting itself as broadly free.
+    //
+    // THE NEXT ELECTION IS THREE WEEKS AFTER THE GAME OPENS AND THIS TABLE IS
+    // THE 1984 RESULT, WHICH IS THE POINT. On 25 February 1990 Violeta
+    // Chamorro's UNO took 54.7% to Ortega's 40.8% and the Sandinistas handed
+    // over power on 25 April. Every poll had Ortega ahead; the CIA had him
+    // ahead; the FSLN had him ahead. A model fed the numbers below would have
+    // him ahead too, and it should — the whole discipline of iron rule 3 is that
+    // history is calibration and not script, and the most surprising election in
+    // the hemisphere's modern history has to be reachable from a starting state
+    // that does not know it is coming. `next` is (1990, 2) and the shares are
+    // 1984's; what happens in February is the model's business.
+    // https://en.wikipedia.org/wiki/1984_Nicaraguan_general_election
+    Polity {
+        nation: NationId::Nicaragua,
+        system: Electoral::Proportional,
+        term_months: 72,
+        next: (1990, 2),
+        parties: &[
+            p("ni_fsln", "Sandinista National Liberation Front", "Frente Sandinista de Liberacion Nacional", Family::Communist, 0.6697),
+            p("ni_pcd", "Democratic Conservative Party", "Partido Conservador Democrata", Family::Conservative, 0.1404),
+            p("ni_pli", "Independent Liberal Party", "Partido Liberal Independiente", Family::Liberal, 0.0960),
+            p("ni_ppsc", "Popular Social Christian Party", "Partido Popular Social Cristiano", Family::ChristianDemocratic, 0.0556),
+            p("ni_pcdn", "Communist Party of Nicaragua", "Partido Comunista de Nicaragua", Family::Communist, 0.0145),
+            p("ni_psn", "Nicaraguan Socialist Party", "Partido Socialista Nicaraguense", Family::Communist, 0.0131),
+            p("ni_mapml", "MAP-ML", "Movimiento de Accion Popular - Marxista Leninista", Family::Communist, 0.0103),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Costa Rica — Legislative Assembly, 2 February 1986: PLN 47.83% and 29 of
+    // 57 seats, PUSC 41.45% and 25, the communist coalition Pueblo Unido and two
+    // others sharing the remaining 3. Oscar Arias took the presidency with
+    // 52.34% on a peace platform against a more hawkish opponent, and in
+    // December 1987 collected the Nobel Peace Prize for the Esquipulas II plan
+    // that the other six polities in this block were all living inside.
+    //
+    // The next election is three weeks away — 4 February 1990, which Rafael
+    // Angel Calderon Fournier of the PUSC won, turning the presidency over to
+    // the opposition for the third consecutive time. The same shape as the
+    // Colombia row: `next` is a month out rather than three years, because a
+    // roster transcribed as of January 1990 catches several countries mid-cycle
+    // and pretending otherwise would hide the most interesting month in them.
+    // Costa Rica bars presidents from re-election and deputies from consecutive
+    // terms, which is why alternation here is the norm rather than a crisis.
+    // https://en.wikipedia.org/wiki/1986_Costa_Rican_general_election
+    Polity {
+        nation: NationId::CostaRica,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 2),
+        parties: &[
+            p("cr_pln", "National Liberation Party", "Partido Liberacion Nacional", Family::SocialDemocratic, 0.4783),
+            p("cr_pusc", "Social Christian Unity Party", "Partido Unidad Social Cristiana", Family::ChristianDemocratic, 0.4145),
+            p("cr_pu", "United People", "Pueblo Unido", Family::Communist, 0.0435),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Panama — the election of 7 May 1989, annulled by Manuel Noriega three days
+    // later and reinstated by the Electoral Tribunal on 27 December, a week
+    // after the United States invaded. The recount confirmed 58 of 67
+    // legislators, 51 of them for the ADOC opposition coalition and six for
+    // Noriega's PRD.
+    //
+    // The shares below are the presidential vote decomposed by the coalition
+    // party whose ballot line each vote arrived on, which in the Panamanian
+    // system is the closest available thing to a party vote: ADOC's 71.19% for
+    // Guillermo Endara splits PDC 40.18, MOLIRENA 20.28, Authentic Liberals
+    // 10.72, and COLINA's 28.38% for Carlos Duque splits PRD 18.52, Labour and
+    // Agrarian 5.42, with the rest under 2% each. Endara's own Panamenista party
+    // does not appear because it had been struck off and he stood on his
+    // partners' lines — the winner of the election was legally not a member of
+    // any party that contested it. Five years to the next, on 8 May 1994, which
+    // the PRD won: Panama returned Torrijos' party to power by ballot four years
+    // after the United States removed it by force, and nothing here should stop
+    // the model finding that.
+    // https://en.wikipedia.org/wiki/1989_Panamanian_general_election
+    Polity {
+        nation: NationId::Panama,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 5),
+        parties: &[
+            p("pa_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.4018),
+            p("pa_molirena", "Nationalist Republican Liberal Movement", "Movimiento Liberal Republicano Nacionalista", Family::Conservative, 0.2028),
+            p("pa_prd", "Democratic Revolutionary Party", "Partido Revolucionario Democratico", Family::SocialDemocratic, 0.1852),
+            p("pa_pla", "Authentic Liberal Party", "Partido Liberal Autentico", Family::Liberal, 0.1072),
+            p("pa_pala", "Labour and Agrarian Party", "Partido Laborista Agrario", Family::Agrarian, 0.0542),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Belize — general election, 4 September 1989: the People's United Party
+    // 50.87% and 15 of 28 seats, the United Democratic Party 49.02% and 13. A
+    // margin of 1,086 votes in a country of 189,000 turned the government over,
+    // returning George Price — the man who had led Belize to independence and
+    // then lost the first election after it in 1984 — to the premiership.
+    //
+    // First past the post in 28 single-member constituencies, which at this
+    // scale means the seat outcome and the vote share can and do diverge: the
+    // cube law this module applies to FPTP is doing real work on a two-point
+    // margin. Five-year term, so `next` is September 1994; Price in fact called
+    // it early, on 30 June 1993, and lost. The Senate is appointed and is not
+    // modelled, which is the right simplification for a chamber that has never
+    // rejected a government bill.
+    // https://en.wikipedia.org/wiki/1989_Belizean_general_election
+    Polity {
+        nation: NationId::Belize,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 9),
+        parties: &[
+            p("bz_pup", "People's United Party", "", Family::SocialDemocratic, 0.5087),
+            p("bz_udp", "United Democratic Party", "", Family::Conservative, 0.4902),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+
+    // -----------------------------------------------------------------------
+    // The western Indian Ocean (branch feat/r2-indianocean).
+    //
+    // Five states, and only two of them are electoral by this file's own test.
+    // That is the point of the group rather than an accident of it: this is
+    // where the roster stops being able to lean on "who won the last election"
+    // and has to say what a government rests on when nobody voted, or when the
+    // vote was a formality, or when the last head of state was shot by his own
+    // guard five weeks before the game opens.
+    // -----------------------------------------------------------------------
+
+    // Madagascar — presidential election of 12 March 1989, and it is a
+    // PRESIDENTIAL result in a table that is mostly parliamentary, which is a
+    // stated substitution rather than an oversight. The Second Republic's
+    // National People's Assembly was elected in May 1989 on a single Front
+    // National pour la Defense de la Revolution list whose internal
+    // distribution this session could not source; the presidential vote is the
+    // one contest of the period that published comparable shares and it is the
+    // vote that decided who governed. Ratsiraka 62.7%, Manandafy Rakotonirina
+    // of the MFM 19.4%, Jerome Razanabahiny of Vonjy 14.7%, Tovonanahary
+    // Rabetsitonta 3.2%. The opposition rejected the count and Antananarivo
+    // rioted.
+    //
+    // All four candidates stood for parties INSIDE the FNDR, which is what
+    // makes this a dominant-party contest rather than a free one and why
+    // madagascar.json carries authoritarianism 0.65 — above this file's 0.60
+    // electoral ceiling, so the pillars below are what the regime actually
+    // rests on and the party table waits for the day the front dissolves. It
+    // dissolved in March 1990, ten weeks after the game opens, when the
+    // constitutional revision dropped the requirement to belong to it. Nothing
+    // here schedules that. `next` is (1996, 3) because the presidential term
+    // was seven years; the model will not reach it, and that is the correct
+    // shape for a regime whose actual removal came in 1993 by a route no
+    // calendar predicted.
+    // https://en.wikipedia.org/wiki/1989_Malagasy_presidential_election
+    Polity {
+        nation: NationId::Madagascar,
+        // Two rounds by the constitution. Ratsiraka cleared 50% in the first,
+        // so the runoff was never held — the mechanism is still the one the
+        // republic used and TwoRound's (2.0, 0.05) is the right shape for it.
+        system: Electoral::TwoRound,
+        term_months: 84,
+        next: (1996, 3),
+        parties: &[
+            p("mg_arema", "Vanguard of the Malagasy Revolution", "Antokin'ny Revolisiona Malagasy", Family::Communist, 0.627),
+            p("mg_mfm", "Militant Party for Malagasy Development", "Mpitolona ho amin'ny Fandrosoan'i Madagasikara", Family::SocialDemocratic, 0.194),
+            p("mg_vonjy", "Vonjy Iray Tsy Mivaky", "National Union Party", Family::Conservative, 0.147),
+            p("mg_vsm", "Socialist Monima Group", "Vondrona Sosialista Monima", Family::Agrarian, 0.032),
+        ],
+        ruling: "the Vanguard of the Malagasy Revolution",
+        pillars: &[
+            // The unit that fired on the marchers at Iavoloha on 10 August
+            // 1991 and the reason Ratsiraka lasted another two years after
+            // the general strike began. Entered as the regime's first pillar
+            // because in Madagascar the presidency's guard and the army are
+            // not the same institution and did not behave the same way.
+            pl(Pillar::Army, "the Regiment de la Securite Presidentielle"),
+            pl(Pillar::Party, "the AREMA Political Bureau"),
+            pl(Pillar::Security, "the Direction Generale de l'Information et de la Documentation"),
+        ],
+    },
+
+    // Mauritius — general election of 30 August 1987, and the shares are SEAT
+    // shares of the 62 directly elected seats rather than votes. That is the
+    // Thailand decision made again and for the same reason: Mauritius elects
+    // three members per constituency on a block vote and then adds up to eight
+    // "best loser" seats appointed by the Electoral Supervisory Commission to
+    // correct the communal balance, so a national popular share compiled out
+    // of it would be an artefact of a system nobody else uses. Alliance 39,
+    // MMM-led opposition 21, Organisation du Peuple Rodriguais 2.
+    //
+    // The Alliance is entered as ONE party and it was three — Jugnauth's MSM,
+    // the Labour Party and the PMSD. This session could not source the seat
+    // split between them to the precision this table demands, so rather than
+    // invent one it is entered as a BigTent, which is also what it functionally
+    // was and what it proved by coming apart: Labour walked out in August 1988
+    // and the PMSD followed, eleven months before the game opens, so by January
+    // 1990 Jugnauth is governing with a reconstructed majority that this row
+    // does not attempt to describe. That is the gap, stated.
+    // https://en.wikipedia.org/wiki/1987_Mauritian_general_election
+    Polity {
+        nation: NationId::Mauritius,
+        // Block vote in three-member constituencies. FirstPastThePost's
+        // (3.0, 0.0) is the closest available and if anything understates it:
+        // the block vote is MORE majoritarian than single-member plurality,
+        // because a party that wins a constituency usually takes all three of
+        // its seats. The 1982 election went 60-0.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 9),
+        parties: &[
+            // bloc -> Western: Governing alliance of a Commonwealth democracy. https://en.wikipedia.org/wiki/1987_Mauritian_general_election
+            p("mu_all", "the Alliance", "MSM - Labour - PMSD", Family::BigTent, 0.629).aligned(Bloc::Western),
+            p("mu_mmm", "Mauritian Militant Movement", "Mouvement Militant Mauricien", Family::SocialDemocratic, 0.339),
+            p("mu_opr", "Rodrigues People's Organisation", "Organisation du Peuple Rodriguais", Family::Regionalist, 0.032),
+        ],
+        ruling: "the National Assembly",
+        // EMPTY, AND IT IS THE STRONGEST STATEMENT IN THIS BLOCK. Mauritius
+        // has no army. There is no institution on the island that could
+        // remove an elected government, which is why it has never had a coup
+        // and why mauritius.json carries the lowest military burden in the
+        // roster. A `pillars` list is what a government rests on when nobody
+        // votes; here, everybody votes.
+        pillars: &[],
+    },
+
+    // Seychelles — presidential election of 17 June 1989, in which France-
+    // Albert Rene stood unopposed and took 96.1%. The Seychelles People's
+    // Progressive Front was the only legal party under the constitution of
+    // 1979 and there is no second entry in this table because there was no
+    // second party in the country.
+    //
+    // THIS DELIBERATELY DOES NOT FOLLOW THE MONGOLIA PRECEDENT and the reason
+    // is worth stating, because the Mongolia block a few hundred lines up does
+    // the opposite. Mongolia's row seeds the party table with the result of
+    // the first multiparty election — held seven months after the game opens,
+    // well documented, and cited — so that the table goes live if the regime
+    // opens. The equivalent for Seychelles is the constitutional commission
+    // election of July 1992, THIRTY months out, and this session could not
+    // source its shares to the precision this file demands. Entering a
+    // remembered figure would be exactly the confident fiction the roster's
+    // rules forbid. So the table holds one party at 96.1% and admits the gap:
+    // if this regime liberalises in the model, it liberalises into a country
+    // whose opposition this file cannot name. A later author with the 1992
+    // numbers should add them here.
+    // https://en.wikipedia.org/wiki/1989_Seychellois_general_election
+    Polity {
+        nation: NationId::Seychelles,
+        // Inert, as Mongolia's is: a threshold and a majority bonus do
+        // nothing to a ballot with one name on it. Proportional is entered
+        // for the same reason the Mongolian row enters it — it is the least
+        // distorting default for the day the second name appears.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("sc_sppf", "Seychelles People's Progressive Front", "Front Progressiste du Peuple Seychellois", Family::Communist, 0.961),
+        ],
+        ruling: "the Seychelles People's Progressive Front",
+        pillars: &[
+            // The army that Tanzania trained and that put down the mutiny of
+            // August 1982 — after Tanzanian troops had put down the mutineers
+            // the army itself could not.
+            pl(Pillar::Army, "the Seychelles People's Defence Forces"),
+            pl(Pillar::Party, "the SPPF Central Committee"),
+        ],
+    },
+
+    // Comoros — the presidential election of 4 and 11 March 1990, which had
+    // NOT HAPPENED when the game opens and is entered anyway. Said Mohamed
+    // Djohar took the runoff with 55.1% against Mohamed Taki Abdoulkarim's
+    // 44.9%. That is a future result on a January 1990 board, which this table
+    // has a precedent for (Mongolia, Cameroon) and which is more defensible
+    // here than in either, because unlike theirs this election was already
+    // called: Ahmed Abdallah had been shot dead in his office by his own
+    // Presidential Guard on 26 November 1989, Bob Denard had run the islands
+    // for three weeks and been flown out to South Africa on 15 December,
+    // Djohar was interim president as president of the Supreme Court, and the
+    // ballot was ten weeks away with French troops on the ground to see it
+    // held. `next` is (1990, 3) and it is a real date, not a reconstruction.
+    //
+    // comoros.json sets authoritarianism at 0.58, fractionally under this
+    // file's 0.60 ceiling, so this counts as an electoral polity and the date
+    // is live. That call is argued in the data file and a QA reader who
+    // reverses it should set `next` to (0, 0) in the same commit.
+    // https://en.wikipedia.org/wiki/1990_Comorian_presidential_election
+    Polity {
+        nation: NationId::Comoros,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (1990, 3),
+        parties: &[
+            p("km_udzima", "Comorian Union for Progress", "Udzima wa ya Masiwa", Family::BigTent, 0.551),
+            p("km_undc", "National Union for Comorian Democracy", "Union Nationale pour la Democratie aux Comores", Family::Conservative, 0.449),
+        ],
+        ruling: "the President of the Republic",
+        pillars: &[
+            // THE ONLY PILLAR IN THIS ENTIRE TABLE THAT KILLED THE HEAD OF
+            // STATE IT WAS SUPPOSED TO PROTECT, and it did so five weeks
+            // before the game opens. Roughly five to seven hundred men under
+            // a French mercenary, partly paid by South African intelligence,
+            // which had put one president in in 1978 and took him out in
+            // 1989. No party pillar is entered beside it: Abdallah's Union
+            // Comorienne pour le Progres was a vehicle for one man and it
+            // went when he did.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+        ],
+    },
+
+    // Cape Verde — the Mongolia treatment, and here it fits exactly. On 1
+    // January 1990 this is a one-party state: the PAICV's monopoly is Article
+    // 4 of the constitution, Aristides Pereira has been president since
+    // independence on 5 July 1975, and the last vote was the single-list
+    // National People's Assembly election of December 1985 which published
+    // nothing comparable. `next` is therefore (0, 0). The party table is the
+    // result of the legislative election of 13 January 1991 — the Movimento
+    // para a Democracia 68.0%, the PAICV 30.6% — which goes live if and when
+    // the regime opens.
+    //
+    // It opened, twelve months in and without a shot: the central committee
+    // accepted multipartyism in February 1990, the Assembly amended Article 4
+    // in September, the PAICV lost by better than two to one in January 1991
+    // and handed over. It was the first of the African single parties of that
+    // wave to lose an election and go. NOTHING HERE SCHEDULES THAT, which is
+    // the whole point of putting the shares in a table that is not yet live —
+    // a model with a stable one-party state, a 0.62 authoritarianism and a
+    // waiting liberal opposition ought to be able to produce it, or not.
+    // https://en.wikipedia.org/wiki/1991_Cape_Verdean_parliamentary_election
+    Polity {
+        nation: NationId::CapeVerde,
+        // Closed-list proportional representation by island constituency,
+        // which is what Cape Verde actually uses and which needs no
+        // substitution.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cv_mpd", "Movement for Democracy", "Movimento para a Democracia", Family::Liberal, 0.680),
+            p("cv_paicv", "African Party for the Independence of Cape Verde", "Partido Africano da Independencia de Cabo Verde", Family::SocialDemocratic, 0.306),
+        ],
+        ruling: "the African Party for the Independence of Cape Verde",
+        pillars: &[
+            // One pillar and no army. The Forcas Armadas Revolucionarias do
+            // Povo existed but have never taken a political position and were
+            // not what held the state up; the party was. Cape Verde is the
+            // rare single-party regime whose pillar list is short because
+            // there was genuinely nothing to suppress.
+            pl(Pillar::Party, "the PAICV National Council"),
+        ],
+    },
+    // Fiji — and this is the entry in the batch that had to choose. Fiji in
+    // January 1990 had had no parliament for thirty-one months. The general
+    // election of 4-11 April 1987 gave the FLP-NFP coalition 28 of 52 seats on
+    // 47.07% of the vote against the Alliance Party's 24 seats on 49.46%, and
+    // Timoci Bavadra's government was deposed by the army on 14 May, one month
+    // in. Since 5 December 1987 the country had been run by an appointed
+    // interim administration; its term expired in January 1990 and President
+    // Ganilau named a second, of seventeen, with no serving officers.
+    //
+    // The 1987 vote shares are transcribed below anyway, because that is what
+    // this table is for: `next: (0, 0)` means the regime does not hold
+    // elections, and the party table is what becomes live if it liberalises.
+    // Fiji did liberalise — the 1990 constitution was promulgated on 25 July
+    // and the first election under it held in May 1992 — and the model is
+    // meant to be able to reach that through `authoritarianism` falling rather
+    // than through a date. What is NOT done is seat the 1987 winners in
+    // office in January 1990, which would be exactly backwards: they were the
+    // government the coups removed.
+    // https://en.wikipedia.org/wiki/1987_Fijian_general_election
+    Polity {
+        nation: NationId::Fiji,
+        // Fiji's 1970 constitution elected the House on communal and national
+        // rolls in single-member seats — majoritarian, and it manufactured a
+        // majority out of 47% in 1987, which is the FirstPastThePost shape.
+        // Worth knowing before anyone "fixes" it: run the cube law over the
+        // shares below and it seats the Alliance ahead of the Coalition,
+        // inverting 1987, because the Alliance's votes were banked in safe
+        // Fijian communal seats and the Coalition's were efficiently spread.
+        // It is left uncorrected because the table is dormant — Fiji is not an
+        // electoral regime here — and because the chamber it would produce on
+        // liberalisation is closer to what the 1990 constitution was written
+        // to produce and what the 1992 election did produce than a replay of
+        // 1987 would be. A model that reached 1992 by accident is not a model
+        // that got 1987 right, and the distinction is recorded rather than
+        // quietly enjoyed.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("fj_alliance", "Alliance Party", "", Family::Conservative, 0.4946),
+            // Entered as one row because it contested 1987 as one list: the
+            // Fiji Labour Party and the National Federation Party ran a single
+            // coalition ticket and formed one government. Splitting them into
+            // a social-democratic and an Indo-Fijian communal party would be
+            // more informative and less true to the ballot.
+            p("fj_coalition", "FLP-NFP Coalition", "", Family::SocialDemocratic, 0.4707),
+            p("fj_nationalist", "Fijian Nationalist Party", "", Family::Nationalist, 0.0148),
+            // Western Viti Levu's cane districts against the eastern chiefly
+            // confederacies — the oldest fault line in Fijian politics that is
+            // not the communal one, and a Regionalist party in the exact sense
+            // this enum means.
+            p("fj_wuf", "Western United Front", "", Family::Regionalist, 0.0085),
+        ],
+        ruling: "the interim administration",
+        pillars: &[
+            pl(Pillar::Army, "the Republic of Fiji Military Forces"),
+            pl(Pillar::Party, "the Great Council of Chiefs"),
+            pl(Pillar::Clergy, "the Methodist Church in Fiji"),
+        ],
+    },
+    // Solomon Islands — general election of 22 February 1989 for 38 seats.
+    // The striking figure is the last row: independents took 43.56% of the
+    // vote and 13 seats, more seats than any party, and they are entered as a
+    // party because in this parliament they function as the largest bloc in
+    // it. Family::Regionalist is not a compromise here but the definition —
+    // "organised around a place rather than a programme" is precisely what a
+    // Solomon Islands member is, elected by a constituency and a wantok on a
+    // promise of a road and a clinic. The People's Alliance Party won 11 seats
+    // on 22.93% and Solomon Mamaloni formed a government in March 1989; he
+    // took his own party out of it in October 1990 and governed with
+    // defectors, which is the kind of thing this table's instability is for.
+    // https://en.wikipedia.org/wiki/1989_Solomon_Islands_general_election
+    Polity {
+        nation: NationId::SolomonIslands,
+        // A substitution, and the reasoning is Australia's in reverse. Solomon
+        // Islands elects 38 single-member seats by plurality, so the name on
+        // the tin is FirstPastThePost — but this enum controls a majority
+        // bonus, and the cube law's exponent of 3.0 assumes the votes belong
+        // to national parties that pile up uniformly. They do not here. Run
+        // FirstPastThePost over the row below and the independents' 43.56%
+        // becomes about 85% of the chamber; they actually won 13 of 38, which
+        // is 34% — *less* than their vote share, because "independents" is not
+        // one party winning everywhere but a hundred and forty different
+        // people each winning one island. The seat distribution of 1989 is
+        // close to proportional and Electoral::Proportional reproduces it to
+        // within a few points across every row, so that is what is entered.
+        // Choosing the mechanism that reproduces the outcome over the one that
+        // shares the name.
+        system: Electoral::Proportional,
+        term_months: 48,
+        // The next general election was held on 26 May 1993, the actual date
+        // rather than the constitutional due date.
+        next: (1993, 5),
+        parties: &[
+            p("sb_independents", "Independent members", "", Family::Regionalist, 0.4356),
+            p("sb_pap", "People's Alliance Party", "", Family::BigTent, 0.2293),
+            p("sb_lib", "Solomon Islands Liberal Party", "", Family::Liberal, 0.0953),
+            p("sb_nfp", "National Front for Progress", "", Family::Nationalist, 0.0895),
+            p("sb_lab", "Solomon Islands Labour Party", "", Family::SocialDemocratic, 0.0844),
+            p("sb_siup", "Solomon Islands United Party", "", Family::Conservative, 0.0659),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // Vanuatu — general election of 30 November 1987 for an enlarged 46-seat
+    // parliament: Vanua'aku Pati 47.28% and 26 seats, Union of Moderate
+    // Parties 39.87% and 19. The split is the condominium's: the VP is the
+    // anglophone independence party, the UMP the francophone federation that
+    // opposed independence and then made its peace with it, and the language
+    // of a voter's school is still the best predictor of the ballot seven
+    // years on. Walter Lini had been prime minister since 1980 and survived
+    // the constitutional crisis of December 1988 in office.
+    // https://en.wikipedia.org/wiki/1987_Vanuatuan_general_election
+    Polity {
+        nation: NationId::Vanuatu,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        // Held 2 December 1991, three months after Lini's own party removed
+        // him. The date is the one that happened.
+        next: (1991, 12),
+        parties: &[
+            p("vu_vp", "Vanua'aku Pati", "", Family::SocialDemocratic, 0.4728),
+            p("vu_ump", "Union of Moderate Parties", "", Family::Conservative, 0.3987),
+            p("vu_npp", "New People's Party", "", Family::Liberal, 0.0252),
+            p("vu_fren", "Fren Melanesia Party", "", Family::BigTent, 0.0199),
+            p("vu_ndp", "National Democratic Party", "", Family::Liberal, 0.0156),
+            // Jimmy Stevens' movement, which declared Espiritu Santo
+            // independent as Vemarana in May 1980 and was put down by Papua
+            // New Guinean troops. Still standing candidates in 1987, still
+            // winning nothing, and the reason `separatism` in vanuatu.json is
+            // the highest of the five.
+            p("vu_nagriamel", "Nagriamel", "", Family::Regionalist, 0.0136),
+        ],
+        ruling: "the Parliament of Vanuatu",
+        pillars: &[],
+    },
+    // Western Samoa — general election of 26 February 1988 for 47 seats, on a
+    // franchise restricted to matai: 45 members elected by holders of a
+    // chiefly title, about 16,000 of them, and two by citizens of European
+    // descent on a separate roll. The Human Rights Protection Party polled
+    // 35.87% and took 23 seats; the opposition Coalition polled 16.45% and
+    // took 24, and Tofilau Eti Alesana stayed prime minister because one
+    // Coalition member crossed the floor on the day parliament chose him.
+    //
+    // TRANSCRIPTION PROBLEM, stated rather than hidden, and it is why the two
+    // numbers below are SEAT shares and not vote shares — the only row in this
+    // table that departs from the convention stated at the top of it. The
+    // published result also records independents at 47.68% of 13,985 votes and
+    // zero of 47 seats, which cannot be reconciled with the seat distribution
+    // printed beside it; a matai franchise where most candidacies are personal
+    // makes the party-vote column close to meaningless. Enter 35.87 and 16.45
+    // and the two parties normalise to 69/31, which would hand the HRPP a
+    // landslide in a chamber it actually held by one. What is entered instead
+    // is the chamber as it stood in January 1990, twenty-two months after the
+    // ballot and after the floor-crossing that made Tofilau Eti Alesana prime
+    // minister: HRPP 24 of 47, Coalition 23. That reproduces both facts that
+    // matter — who governs, and by how little. The vote shares are recorded in
+    // samoa.json and flagged unverified there.
+    // https://en.wikipedia.org/wiki/1988_Western_Samoan_general_election
+    Polity {
+        nation: NationId::Samoa,
+        // Proportional because the figures above are already seat shares, so
+        // the model must not apply a majority bonus to them a second time.
+        system: Electoral::Proportional,
+        term_months: 36,
+        // Held 5 April 1991 — and on universal suffrage, because the
+        // referendum of 29 October 1990 carried. That referendum is not
+        // scripted anywhere; the model reaches it through Samoa's
+        // authoritarianism figure or it does not.
+        next: (1991, 4),
+        parties: &[
+            // bloc -> Western: Governing party of a Commonwealth democracy. https://en.wikipedia.org/wiki/Human_Rights_Protection_Party
+            p("ws_hrpp", "Human Rights Protection Party", "", Family::BigTent, 0.5106).aligned(Bloc::Western),
+            p("ws_coalition", "Samoan National Development Party", "Coalition", Family::Conservative, 0.4894),
+        ],
+        ruling: "the Fono",
+        pillars: &[],
+    },
+    // Tonga — a kingdom that governs, and the only one in this roster. The
+    // constitution King George Tupou I granted in 1875 was still in force
+    // unbroken. The Legislative Assembly seated the cabinet the King had
+    // appointed, nine representatives elected by the thirty-three hereditary
+    // nobles, and nine elected by everybody else; the last group was nine
+    // votes out of about thirty and could not remove a minister. Elections
+    // were held — on 14-15 February 1990, four weeks after the game opens, on
+    // a 65.4% turnout, returning seven pro-democracy members of the nine —
+    // but no election in Tonga in 1990 could change who governed, which is
+    // why `next` is (0, 0) and Tonga is not an electoral regime here.
+    //
+    // `parties` is empty and that is the transcription, not a gap: there were
+    // no political parties in Tonga in 1990. Candidates stood as individuals.
+    // The Pro-Democracy Movement was a network around 'Akilisi Pohiva and a
+    // newspaper, and the first registered party, the Tonga Democratic Party,
+    // was not founded until 1994. Saudi Arabia is entered the same way and for
+    // the same reason.
+    // https://en.wikipedia.org/wiki/1990_Tongan_general_election
+    Polity {
+        nation: NationId::Tonga,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Tupou",
+        pillars: &[
+            // Thirty-three men who elect nine of the thirty seats among
+            // themselves and hold most of the land. Pillar::Party is the
+            // model's slot for a court or an apparatus, and this is a court.
+            pl(Pillar::Party, "the thirty-three hereditary nobles"),
+            // The King was its head, most Tongans belonged to it, and its
+            // annual conference was the closest thing the country had to a
+            // second chamber.
+            pl(Pillar::Clergy, "the Free Wesleyan Church of Tonga"),
+            pl(Pillar::Army, "the Tonga Defence Services"),
+        ],
+    },
+    // Brunei — THE EMPTY PARTY LIST AND THE (0, 0) ARE THE TRANSCRIPTION. The
+    // last election held in Brunei was in 1962; the Parti Rakyat Brunei won it,
+    // was refused the government, revolted on 8 December, and was crushed by
+    // British troops flown up from Singapore. The state of emergency declared
+    // that month has been renewed every two years ever since, the Legislative
+    // Council was dissolved in 1984 and did not sit again until 2004, and in
+    // January 1990 Sultan Hassanal Bolkiah was head of state, Prime Minister,
+    // Minister of Defence and Minister of Finance at once. Saudi Arabia sets
+    // the precedent in this table for a state whose assembly has no parties;
+    // Brunei is the case where there is no assembly either.
+    //
+    // The fourth pillar is the one that makes this entry not a copy of Saudi
+    // Arabia's. Brunei did not hold itself in 1962 and has never been asked to
+    // since: the British Gurkha battalion at Seria was still there in 1990
+    // under the agreement of 1983, stationed on top of the oil, and paid for by
+    // the Sultan. A regime pillar that belongs to a foreign army is a
+    // dependency the model should be able to find the consequence of.
+    // https://en.wikipedia.org/wiki/Brunei_revolt
+    Polity {
+        nation: NationId::Brunei,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan in Council",
+        pillars: &[
+            pl(Pillar::Party, "the royal household and the Melayu Islam Beraja doctrine"),
+            pl(Pillar::Business, "Brunei Shell Petroleum"),
+            pl(Pillar::Army, "the Royal Brunei Armed Forces and the Gurkha Reserve Unit"),
+            pl(Pillar::Clergy, "the state religious establishment"),
+        ],
+    },
+    // Papua New Guinea — general election of June 1987, the third since
+    // independence: Pangu Pati 14.9% and 26 seats, People's Democratic Movement
+    // 10.9% and 17, National Party 5.0% and 12, Melanesian Alliance 5.6% and 7,
+    // People's Progress Party 6.2% and 5.
+    //
+    // INDEPENDENTS TOOK 40.9% OF THE VOTE AND 22 OF 109 SEATS, and that number
+    // is the whole of Papua New Guinean politics rather than a curiosity. Under
+    // first-past-the-post in constituencies organised around clan and language
+    // rather than programme, a candidate wins on 15% of a fragmented field and
+    // then decides in Port Moresby which party he belongs to. Parties are
+    // therefore post-electoral coalitions of individuals, which is why no
+    // government since 1975 had survived a full term: Paias Wingti lost a
+    // no-confidence motion in July 1988 and Rabbie Namaliu of Pangu Pati holds
+    // the office when the game opens. The independent bloc is entered as a
+    // BigTent party — "a coalition in itself, cheap to govern with and
+    // impossible to hold together", which is the doc comment on that family and
+    // is exactly what it was.
+    //
+    // The election due in June 1992 is entered at (1992, 6).
+    // https://en.wikipedia.org/wiki/1987_Papua_New_Guinean_general_election
+    Polity {
+        nation: NationId::PapuaNewGuinea,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1992, 6),
+        parties: &[
+            p("pg_ind", "Independents", "", Family::BigTent, 0.409),
+            p("pg_pangu", "Pangu Pati", "Papua na Niugini Yunion Pati", Family::SocialDemocratic, 0.149),
+            p("pg_pdm", "People's Democratic Movement", "", Family::Conservative, 0.109),
+            p("pg_ppp", "People's Progress Party", "", Family::Conservative, 0.062),
+            p("pg_ma", "Melanesian Alliance", "", Family::Regionalist, 0.056),
+            p("pg_nat", "National Party", "", Family::Nationalist, 0.050),
+            p("pg_lna", "League for National Advancement", "", Family::BigTent, 0.048),
+            p("pg_pap", "People's Action Party", "", Family::Conservative, 0.032),
+            p("pg_up", "United Party", "", Family::Agrarian, 0.032),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // East Timor — THE ONLY ELECTION THIS NATION HAS EVER HAD AT THE TIME OF
+    // WRITING THAT IS RELEVANT TO ITS FOUNDING IS ELEVEN YEARS PAST THE START
+    // DATE, and the entry uses it anyway on the Croatia precedent above: a
+    // successor's party table is the first free vote it held. That was the
+    // Constituent Assembly election of 30 August 2001 under UNTAET, at 86%
+    // turnout — Fretilin 57.4%, the Democratic Party 8.7%, the Social Democrats
+    // 8.2%, ASDT 7.8%, and eleven more under 2.5% each.
+    //
+    // On 1 January 1990 none of this exists. Indonesia had held East Timor as
+    // its twenty-seventh province since July 1976, Fretilin was a guerrilla
+    // army of a few hundred in the mountains under Xanana Gusmao, and the Santa
+    // Cruz massacre — the event that turned international opinion — was still
+    // twenty-two months away. The table below is what the territory turned out
+    // to contain when it was finally asked, not what anyone could have read off
+    // it in 1990, and it is entered because a successor with no polity at all
+    // would be worse: a nation that cannot form a government if it ever exists.
+    // https://en.wikipedia.org/wiki/2001_East_Timorese_parliamentary_election
+    Polity {
+        nation: NationId::EastTimor,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tl_fretilin", "Fretilin", "Frente Revolucionaria de Timor-Leste Independente", Family::SocialDemocratic, 0.574),
+            p("tl_pd", "Democratic Party", "Partido Democratico", Family::Liberal, 0.087),
+            p("tl_psd", "Social Democratic Party", "Partido Social Democrata", Family::SocialDemocratic, 0.082),
+            p("tl_asdt", "Timorese Social Democratic Association", "Associacao Social-Democrata Timorense", Family::SocialDemocratic, 0.078),
+            p("tl_udt", "Timorese Democratic Union", "Uniao Democratica Timorense", Family::Conservative, 0.024),
+            p("tl_pnt", "Timorese Nationalist Party", "Partido Nacionalista Timorense", Family::Nationalist, 0.022),
+            p("tl_kota", "Association of Timorese Heroes", "Klibur Oan Timor Asuwain", Family::Nationalist, 0.021),
+            p("tl_ppt", "People's Party of Timor", "Partido do Povo de Timor", Family::Conservative, 0.020),
+            p("tl_pdc", "Christian Democratic Party", "Partido Democrata-Cristao", Family::ChristianDemocratic, 0.020),
+            p("tl_pst", "Socialist Party of Timor", "Partido Socialista de Timor", Family::Communist, 0.018),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // Bhutan — no parties, and unlike Nepal's Panchayat next door this is not
+    // even a non-party electoral system with a real assembly behind it. The
+    // Tshogdu had elected members but also blocs of monastic and government
+    // appointees, parties were prohibited outright, and King Jigme Singye
+    // Wangchuck had ruled since 1972. Saudi Arabia and Nepal both set the
+    // precedent for the empty list.
+    //
+    // The three pillars are the three institutions the country is actually made
+    // of, and the second one is not Bhutanese. India guided Bhutan's external
+    // relations under Article 2 of the treaty of 8 August 1949, trained and
+    // largely equipped the Royal Bhutan Army through the resident Indian
+    // Military Training Team at Haa, and paid for most of the development
+    // budget on top of the Chukha power purchase. The clergy pillar is the Zhung
+    // Dratshang, the state monastic body, whose Je Khenpo ranks with the King
+    // and whose endorsement of the driglam namzha decree of 1989 is what turned
+    // a dress code into a national policy.
+    Polity {
+        nation: NationId::Bhutan,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Tshogdu",
+        pillars: &[
+            pl(Pillar::Party, "the Wangchuck monarchy and the Lhengye Zhungtshog"),
+            pl(Pillar::Army, "the Royal Bhutan Army and the Indian training mission"),
+            pl(Pillar::Clergy, "the Zhung Dratshang under the Je Khenpo"),
+        ],
+    },
+    // Maldives — no parties, and the mechanism is worth stating precisely
+    // because it is not quite any of the others in this table. The Majlis was
+    // elected, on a non-party basis, from candidates who ran as individuals;
+    // the Majlis then nominated ONE candidate for President, who was put to the
+    // country in a yes-or-no referendum. Maumoon Abdul Gayoom took 96.4% in
+    // 1988 and had been in office since 1978. Parties were not formally
+    // outlawed so much as never permitted to form, which is why the list is
+    // empty rather than containing a single ruling party at 1.00 on the Iraq
+    // pattern: there was nothing to name.
+    //
+    // The security pillar is listed and the army pillar is not, and that is the
+    // transcription rather than an oversight. There was no army. The National
+    // Security Service was one body doing defence, coast guard, police and fire
+    // — about 1,800 men — and in November 1988 eighty PLOTE fighters took its
+    // headquarters in a morning. The pillar that actually held the government
+    // up that day was Indian, and it is named as such.
+    Polity {
+        nation: NationId::Maldives,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Majlis",
+        pillars: &[
+            pl(Pillar::Party, "the President's Office and the Gayoom family network"),
+            pl(Pillar::Security, "the National Security Service"),
+            pl(Pillar::Business, "the resort lessees and the import traders"),
+        ],
+    },
+
+    // -----------------------------------------------------------------------
+    // Small and island Europe (branch feat/r2-smalleurope). Four starters and
+    // two Yugoslav successors. The successors carry `next: (0, 0)` for the
+    // reason the Soviet block above gives at length: a date pinned here would
+    // already be in the past by the time the federation actually comes apart,
+    // which is somewhere in the nineties and different in every seed.
+    // -----------------------------------------------------------------------
+
+    // Iceland — Althing, 25 April 1987: Independence 27.2%, Progressive 18.9%,
+    // Social Democrats 15.2%, People's Alliance 13.4%, Citizens' 10.9%,
+    // Women's List 10.1%. Two new parties above 10% in one election, which
+    // ended the four-party system Iceland had run since 1930 and produced the
+    // arithmetic that governs the country in January 1990: Thorsteinn
+    // Palsson's government fell in September 1988 and Steingrimur Hermannsson
+    // built a FOUR-party coalition out of the wreckage — Progressives, Social
+    // Democrats, People's Alliance and, from 10 September 1989, the remnant of
+    // the Citizens' Party. The only four-party cabinet in Icelandic history,
+    // and it held to the election of 20 April 1991.
+    // https://en.wikipedia.org/wiki/1987_Icelandic_parliamentary_election
+    Polity {
+        nation: NationId::Iceland,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 4),
+        parties: &[
+            p("is_sjalf", "Independence Party", "Sjalfstaedisflokkurinn", Family::Conservative, 0.272),
+            p("is_fram", "Progressive Party", "Framsoknarflokkurinn", Family::Agrarian, 0.189),
+            p("is_althyduf", "Social Democratic Party", "Althyduflokkurinn", Family::SocialDemocratic, 0.152),
+            // Filed Communist rather than SocialDemocratic, which is the one
+            // judgement in this block. The People's Alliance by 1987 was a
+            // Eurocommunist left-green party and not a Moscow one, but it is
+            // the direct successor of the Socialist Unity Party and it is the
+            // pole to the LEFT of Althyduflokkurinn, which already holds the
+            // social-democratic slot. Filing both as SocialDemocratic would
+            // collapse the two halves of the Icelandic left into one point on
+            // the axis and make a coalition between them free, when the whole
+            // difficulty of Icelandic government in this period is that it was
+            // not.
+            p("is_althydub", "People's Alliance", "Althydubandalagid", Family::Communist, 0.134),
+            p("is_borg", "Citizens' Party", "Borgaraflokkurinn", Family::Conservative, 0.109),
+            // The Women's Alliance ran only women, refused to name a leader,
+            // rotated its members of parliament, and declined to enter any
+            // government offered to it. Green is the closest family on the
+            // axis — left-libertarian, strongly cosmopolitan — and it is a
+            // better fit than any of the alternatives for a party whose
+            // entire programme was the plane the axis measures.
+            p("is_kvenna", "Women's List", "Kvennalistinn", Family::Green, 0.101),
+        ],
+        ruling: "the Althing",
+        pillars: &[],
+    },
+
+    // Luxembourg — Chamber of Deputies, 18 June 1989: CSV 31.7%, LSAP 27.2%,
+    // DP 16.2%, ADR 7.3%, KPL 5.1%, GLEI 4.2%, GAP 4.2%. Jacques Santer's
+    // CSV-LSAP coalition continued unchanged. Five-year terms; the next
+    // election was due by June 1994 and was held on 12 June.
+    // https://en.wikipedia.org/wiki/1989_Luxembourg_general_election
+    Polity {
+        nation: NationId::Luxembourg,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 6),
+        parties: &[
+            p("lu_csv", "Christian Social People's Party", "Chreschtlech Sozial Vollekspartei", Family::ChristianDemocratic, 0.317),
+            p("lu_lsap", "Socialist Workers' Party", "Letzebuerger Sozialistesch Aarbechterpartei", Family::SocialDemocratic, 0.272),
+            p("lu_dp", "Democratic Party", "Demokratesch Partei", Family::Liberal, 0.162),
+            // A single-issue party demanding that private-sector pensions be
+            // raised to the public-sector five-sixths formula, which is what
+            // its name says and all it was in 1989. It became a right-populist
+            // party later; entered as what it was, which is why Conservative
+            // and not Nationalist.
+            p("lu_adr", "Action Committee 5/6 Pensions for Everyone", "Aktiounskomitee 5/6 Pensioun fir Jiddereen", Family::Conservative, 0.073),
+            p("lu_kpl", "Communist Party of Luxembourg", "Kommunistesch Partei Letzebuerg", Family::Communist, 0.051),
+            // Two green parties, split since 1983 over whether to work inside
+            // the institutions, and reunited into Dei Greng in 1994. Entered
+            // separately because in 1989 they were separately on the ballot
+            // and separately seated.
+            p("lu_glei", "Green List Ecological Initiative", "Greng Lescht Ekologesch Initiativ", Family::Green, 0.042),
+            p("lu_gap", "Green Alternative Party", "Greng Alternativ Partei", Family::Green, 0.042),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+
+    // Malta — House of Representatives, 9 May 1987: Nationalist Party 50.91%,
+    // Malta Labour Party 48.87%, and 0.21% for everybody else put together.
+    // The two figures are the whole of Maltese politics and they are why this
+    // block lists only two parties: no third party has won a Maltese seat
+    // since 1962.
+    //
+    // Proportional rather than FirstPastThePost, and the reason is the
+    // constitutional amendment of January 1987 rather than the ballot paper.
+    // Malta votes by single transferable vote in multi-member districts, which
+    // is not in this enum — but STV had twice produced a "perverse result",
+    // most notoriously in 1981 when Labour took 34 of 65 seats on 49.1% of
+    // first preferences against the Nationalists' 50.9%. The 1987 amendment
+    // tops the party with a majority of first preferences up to a
+    // parliamentary majority, and in 1987 that produced 35 seats of 69 on
+    // 50.91% of the vote — 50.7% of the seats. A mechanism whose entire
+    // purpose is to make seats track votes is proportional whatever it is
+    // called, and Proportional's exponent of 1.0 reproduces that outcome where
+    // FirstPastThePost's 3.0 would manufacture a landslide that did not exist.
+    // Choosing the mechanism that reproduces the result over the one that
+    // shares the name, which is the Australia row's rule applied the other way.
+    // https://en.wikipedia.org/wiki/1987_Maltese_general_election
+    Polity {
+        nation: NationId::Malta,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1992, 2),
+        parties: &[
+            p("mt_pn", "Nationalist Party", "Partit Nazzjonalista", Family::ChristianDemocratic, 0.509),
+            p("mt_mlp", "Malta Labour Party", "Partit Laburista", Family::SocialDemocratic, 0.489),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+
+    // Cyprus — House of Representatives, 8 December 1985: DISY 33.6%,
+    // DIKO 27.7%, AKEL 27.4%, EDEK 11.1%, on a turnout of 94.6%. Cyprus is a
+    // PRESIDENTIAL republic, so the House does not make the government: George
+    // Vassiliou, an independent businessman backed by AKEL, won the run-off of
+    // 21 February 1988 and held the presidency from 28 February 1988 to 28
+    // February 1993. The seat shares are entered because they are the
+    // measured distribution of Cypriot opinion, and the next House election —
+    // 19 May 1991 — is what `next` points at.
+    //
+    // AKEL at 27.4% is the largest communist vote in this roster outside the
+    // Warsaw Pact, and it is not a curiosity: AKEL ran the trade unions,
+    // backed Makarios, and in 1988 elected a president. A model that expects
+    // communist strength to correlate with Soviet alignment should be made to
+    // look at Cyprus, which was in the Non-Aligned Movement.
+    // https://en.wikipedia.org/wiki/1985_Cypriot_legislative_election
+    Polity {
+        nation: NationId::Cyprus,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1991, 5),
+        parties: &[
+            p("cy_disy", "Democratic Rally", "Dimokratikos Synagermos", Family::Conservative, 0.336),
+            // DIKO is centrist on economics and files here as Nationalist for
+            // the axis that actually orders Cypriot politics: it is the party
+            // of conceding nothing on the national question, founded by
+            // Makarios's circle and led in 1985 by Spyros Kyprianou, who had
+            // just walked out of the UN proximity talks.
+            p("cy_diko", "Democratic Party", "Dimokratiko Komma", Family::Nationalist, 0.277),
+            p("cy_akel", "Progressive Party of Working People", "Anorthotiko Komma Ergazomenou Laou", Family::Communist, 0.274),
+            p("cy_edek", "Movement for Social Democracy", "Kinima Sosialdimokraton", Family::SocialDemocratic, 0.111),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+
+    // Macedonia — 11 and 25 November 1990, the first competitive election ever
+    // held on this ground: SKM-PDP 24.75%, VMRO-DPMNE 21.35%, Union of Reform
+    // Forces 14.74%, Party for Democratic Prosperity 12.16%, Socialist Party
+    // 6.31%. The seat count inverts the vote — VMRO-DPMNE took 38 of the 120
+    // seats on the smaller share and the reformed communists 31 on the larger
+    // — because the 120 members were elected in single-member constituencies
+    // with a run-off, which is why TwoRound and not Proportional. No pillars:
+    // Macedonia is the one Yugoslav successor whose founding election produced
+    // a parliament and not an apparatus, and Kiro Gligorov took the republic
+    // out of the federation in September 1991 without a shot being fired.
+    // https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+    Polity {
+        nation: NationId::Macedonia,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: League of Communists of Macedonia (SKM) - 'founded on 20 April 1991 at the 11th Congress of the League of Communists of Macedonia, when it was transformed into the SDSM'; 1991-04-20. https://en.wikipedia.org/wiki/Social_Democratic_Union_of_Macedonia
+            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.248).successor(),
+            p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.214),
+            p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.147),
+            // The Albanian minority party, filed the way Bosnia's three
+            // national parties are filed: a party organised on nationality is
+            // Nationalist on this axis whether it speaks for a majority or for
+            // a fifth. Roughly 21% of Macedonia's people were Albanian at the
+            // 1991 census, concentrated in the north-west, and that minority
+            // produced an insurgency in 2001 — a decade past this table and
+            // reachable by the model rather than written into it.
+            p("mk_pdp", "Party for Democratic Prosperity", "Partija za demokratski prosperitet", Family::Nationalist, 0.122),
+            p("mk_spm", "Socialist Party of Macedonia", "Socijalisticka partija na Makedonija", Family::SocialDemocratic, 0.063),
+        ],
+        ruling: "the Assembly",
+        pillars: &[],
+    },
+
+    // Montenegro — 9 December 1990, with the presidential run-off on the 23rd:
+    // the League of Communists of Montenegro 58.3% and 83 of 125 seats, the
+    // Union of Reform Forces 14.1%, the People's Party 13.3%, the Democratic
+    // Coalition of Muslim and Albanian parties 10.5%. Momir Bulatovic took the
+    // presidency with 78.1% in the run-off. This is the one Yugoslav republic
+    // where the League of Communists won a free election outright and did not
+    // need to rename itself first, and the reason is the anti-bureaucratic
+    // revolution of January 1989, which replaced the Montenegrin leadership
+    // with Milosevic's people a year and a half before anybody voted.
+    // Montenegro therefore carries pillars as well as parties — the same
+    // construction as Serbia and for the same reason — but not the Army one:
+    // the JNA's Podgorica corps and the naval base in the Boka Kotorska
+    // answered to Belgrade, which is exactly why Montenegro stayed in the
+    // federal republic until 2006.
+    // https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+    Polity {
+        nation: NationId::Montenegro,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: League of Communists of Montenegro (SKCG), the row's own party - 'changed its name to the Democratic Party of Socialists of Montenegro on 22 June 1991'; 1991-06-22. https://en.wikipedia.org/wiki/Democratic_Party_of_Socialists_of_Montenegro
+            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.583).successor(),
+            p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.141),
+            p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.133),
+            p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.105),
+        ],
+        ruling: "the League of Communists of Montenegro",
+        pillars: &[
+            pl(Pillar::Party, "the League of Communists"),
+            pl(Pillar::Security, "the Republican Security Service"),
+        ],
+    },
+
+    // -----------------------------------------------------------------------
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2).
+    //
+    // Six of these seven are above the 0.60 electoral ceiling and therefore
+    // rest on pillars rather than on a scheduled poll, which is the single most
+    // important thing this block records: in January 1990 the only nation in
+    // southern Africa that held free multi-party elections on schedule was
+    // Botswana. Not South Africa, not Zimbabwe on any honest reading, and none
+    // of the six added here. Five of the six changed that within five years
+    // without any of them being invaded, and the party shares below are the
+    // first real elections each of them held — the same treatment Angola's
+    // block above gets, and for the same reason: a party table has to contain
+    // parties, and the only honest source for what the parties were worth is
+    // the first time anybody counted.
+
+    // Mozambique — FRELIMO, sole legal party since independence on 25 June
+    // 1975 and Marxist-Leninist until it dropped the label at its fifth
+    // congress in July 1989. No election had ever been held, so the shares are
+    // the Assembly of the Republic poll of 27-29 October 1994, the first one
+    // ever: FRELIMO 44.33%, RENAMO 37.78%, Democratic Union 5.15%. That the
+    // insurgency took better than a third of the vote at the first free count
+    // is the fact the sources block's low separatism figure has to be read
+    // beside — RENAMO was a real constituency in the centre and north, not a
+    // secession and not only a South African instrument.
+    // https://en.wikipedia.org/wiki/1994_Mozambican_general_election
+    Polity {
+        nation: NationId::Mozambique,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mz_frelimo", "FRELIMO", "Frente de Libertacao de Mocambique", Family::SocialDemocratic, 0.4433),
+            // Not marked pariah, on exactly the reasoning the Angola block
+            // sets out for UNITA: a party that fought a civil war is a civil
+            // war, which this model has other machinery for, and not a cordon
+            // sanitaire inside a parliament.
+            p("mz_renamo", "RENAMO", "Resistencia Nacional Mocambicana", Family::Nationalist, 0.3778),
+            p("mz_ud", "Democratic Union", "Uniao Democratica", Family::Liberal, 0.0515),
+            p("mz_pap", "Patriotic Alliance", "Alianca Patriotica", Family::Nationalist, 0.0195),
+            p("mz_pals", "Social Liberal Party", "Partido Aliancal Liberal de Mocambique", Family::Liberal, 0.0167),
+        ],
+        ruling: "the FRELIMO Political Bureau",
+        pillars: &[
+            pl(Pillar::Party, "the FRELIMO Political Bureau"),
+            pl(Pillar::Army, "the Forcas Populares de Libertacao de Mocambique"),
+            // Renamed the Servico de Informacao e Seguranca do Estado in 1991,
+            // which is the reform this pillar is waiting for: SNASP had
+            // detention powers of its own and answered to the party.
+            pl(Pillar::Security, "the Servico Nacional de Seguranca Popular"),
+        ],
+    },
+
+    // Zambia — UNIP, sole legal party under the constitution of 13 December
+    // 1972, with Kaunda returned unopposed in yes/no votes since. The shares
+    // are the National Assembly election of 31 October 1991, the first
+    // multi-party poll in nineteen years: MMD 74.02%, UNIP 24.98%. That is a
+    // governing party of twenty-seven years losing three-quarters of the vote
+    // at the first opportunity, and it is why zambia.json sets
+    // authoritarianism BELOW Tanzania's and Kenya's despite the one-party law:
+    // Kaunda conceded the referendum in September 1990, conceded multi-party
+    // politics in December, held the election, lost it and left State House.
+    // https://en.wikipedia.org/wiki/1991_Zambian_general_election
+    Polity {
+        nation: NationId::Zambia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("zm_mmd", "Movement for Multi-Party Democracy", "", Family::Liberal, 0.7402),
+            p("zm_unip", "United National Independence Party", "", Family::BigTent, 0.2498),
+        ],
+        ruling: "the UNIP Central Committee",
+        pillars: &[
+            // The party outranked the state here in the Tanzanian manner: the
+            // UNIP Central Committee formally stood above the cabinet under the
+            // 1973 constitution.
+            pl(Pillar::Party, "the UNIP Central Committee"),
+            pl(Pillar::Army, "the Zambian Army"),
+            pl(Pillar::Security, "the Special Branch"),
+            // Not decoration. ZIMCO held most of the formal economy and ZCCM
+            // held the copper inside it, and the mineworkers' union that came
+            // out of ZCCM produced Frederick Chiluba, who was its chairman
+            // before he was president.
+            pl(Pillar::Business, "the Zambia Industrial and Mining Corporation"),
+        ],
+    },
+
+    // Malawi — the Malawi Congress Party, sole legal party since 1966, under a
+    // Life President. The shares are the National Assembly election of 17 May
+    // 1994, the first free one: UDF 46.38%, MCP 33.69%, AFORD 18.97%. The
+    // three-way split is regional almost exactly — UDF in the southern
+    // Region, MCP in the centre, AFORD in the north — which is the shape of
+    // the country Banda's language policy of 1968 produced and which
+    // malawi.json's separatism of 0.02 says never turned into secession.
+    // https://en.wikipedia.org/wiki/1994_Malawian_general_election
+    Polity {
+        nation: NationId::Malawi,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mw_udf", "United Democratic Front", "", Family::Liberal, 0.4638),
+            p("mw_mcp", "Malawi Congress Party", "", Family::Conservative, 0.3369),
+            p("mw_aford", "Alliance for Democracy", "", Family::Regionalist, 0.1897),
+        ],
+        ruling: "the Malawi Congress Party",
+        pillars: &[
+            pl(Pillar::Party, "the Malawi Congress Party National Executive"),
+            // The Young Pioneers are entered as the security pillar rather than
+            // the Special Branch, and that is the transcription rather than a
+            // flourish. They were a party militia with their own armouries and
+            // their own detention practice, they outgunned the Malawi Rifles,
+            // and the army finally destroyed them in Operation Bwezani in
+            // December 1993 — which is the event that ended the regime rather
+            // than the referendum that preceded it.
+            pl(Pillar::Security, "the Malawi Young Pioneers"),
+            pl(Pillar::Army, "the Malawi Rifles"),
+            // Press Holdings was Banda's personal company and it owned a
+            // reported third of the formal economy. Business and state were the
+            // same person here in a way that is unusual even in this block.
+            pl(Pillar::Business, "Press Corporation"),
+        ],
+    },
+
+    // Botswana — THE ONLY UNQUALIFIED DEMOCRACY IN SOUTHERN AFRICA IN 1990,
+    // and the shares are a real, contested, pre-1990 election rather than a
+    // future one: the National Assembly poll of 7 October 1989, BDP 64.78%
+    // (31 of 34 elected seats), BNF 26.95% (3), BPP 4.35%, BIP 2.48%. Five-year
+    // terms held on time since 1965, so the next is October 1994 — and it duly
+    // fell on 15 October 1994.
+    //
+    // No pillars, which is the same statement the Australian and New Zealand
+    // blocks make and is worth making about an African state in 1990 for once:
+    // no army in politics, no party militia, no security service with a veto.
+    // The Botswana Defence Force has never attempted a coup.
+    // https://en.wikipedia.org/wiki/1989_Botswana_general_election
+    Polity {
+        nation: NationId::Botswana,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 10),
+        parties: &[
+            p("bw_bdp", "Botswana Democratic Party", "", Family::Liberal, 0.6478),
+            // Koma's BNF was avowedly socialist and the only opposition with a
+            // programme rather than a grievance, which is why it is the one
+            // party in this block filed as SocialDemocratic rather than as a
+            // regional or personal vehicle.
+            p("bw_bnf", "Botswana National Front", "", Family::SocialDemocratic, 0.2695),
+            p("bw_bpp", "Botswana People's Party", "", Family::Nationalist, 0.0435),
+            p("bw_bip", "Botswana Independence Party", "", Family::SocialDemocratic, 0.0248),
+            p("bw_bpu", "Botswana Progressive Union", "", Family::Liberal, 0.0087),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Namibia — a successor, so this block is what SWAPO inherits on 21 March
+    // 1990 rather than a government sitting on the board in January. The
+    // shares are the Constituent Assembly election of 7-11 November 1989, run
+    // by the United Nations under UNSCR 435 on a single national list with no
+    // threshold, certified free and fair, and turned out at 97%: SWAPO 57.33%
+    // (41 of 72 seats), DTA 28.55% (21), UDF 5.65% (4), ACN 3.54% (3), NPF
+    // 1.59%, FCN 1.56%, NNF 0.80%.
+    //
+    // The number that matters is the one SWAPO did NOT get: two-thirds. The
+    // assembly needed 48 votes to write a constitution and SWAPO had 41, so it
+    // had to negotiate with the party South Africa had funded — which is how
+    // Namibia ended up with a constitution containing an entrenched bill of
+    // rights, a two-term presidential limit and a prohibition on the death
+    // penalty, adopted unanimously on 9 February 1990. Five-year terms; the
+    // first National Assembly election followed in December 1994.
+    // https://en.wikipedia.org/wiki/1989_Namibian_parliamentary_election
+    Polity {
+        nation: NationId::Namibia,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (1994, 12),
+        parties: &[
+            p("na_swapo", "SWAPO", "South West Africa People's Organisation", Family::SocialDemocratic, 0.5733),
+            p("na_dta", "Democratic Turnhalle Alliance", "", Family::Conservative, 0.2855),
+            p("na_udf", "United Democratic Front", "", Family::Liberal, 0.0565),
+            // The white right, and the only party in this block that is
+            // straightforwardly what Nationalist means: ACN was the National
+            // Party of South West Africa, standing for continued white
+            // minority rule, and it took three seats.
+            p("na_acn", "Action Christian National", "", Family::Nationalist, 0.0354),
+            p("na_npf", "National Patriotic Front", "", Family::Nationalist, 0.0159),
+            p("na_fcn", "Federal Convention of Namibia", "", Family::Regionalist, 0.0156),
+            p("na_nnf", "Namibia National Front", "", Family::Liberal, 0.0080),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Lesotho — a Military Council, and the only naked junta in this block.
+    // Major General Justin Metsing Lekhanya took power on 20 January 1986,
+    // twenty days into a South African border blockade that had closed the
+    // country, suspended what was left of constitutional government and ruled
+    // by Order in Council with the King as a signature. No parliament, no legal
+    // parties, no election since 1970 — and 1970 is the whole of Lesotho's
+    // problem, because that was the election the Basotho National Party
+    // annulled on losing it.
+    //
+    // The shares are therefore the poll of 27 March 1993, the first free
+    // election in twenty-three years: BCP 74.78%, BNP 22.66%, MFP 1.44%. The
+    // BCP won all sixty-five seats on three-quarters of the vote, which is
+    // first-past-the-post doing what first-past-the-post does and is the reason
+    // the system field is what it is.
+    // https://en.wikipedia.org/wiki/1993_Lesotho_general_election
+    Polity {
+        nation: NationId::Lesotho,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ls_bcp", "Basutoland Congress Party", "", Family::SocialDemocratic, 0.7478),
+            p("ls_bnp", "Basotho National Party", "", Family::Conservative, 0.2266),
+            p("ls_mfp", "Marematlou Freedom Party", "", Family::Nationalist, 0.0144),
+        ],
+        ruling: "the Military Council",
+        pillars: &[
+            pl(Pillar::Army, "the Royal Lesotho Defence Force"),
+            pl(Pillar::Party, "the Military Council"),
+            pl(Pillar::Security, "the Lesotho Mounted Police Special Branch"),
+            // A clergy pillar on a military government, and it is transcribed
+            // rather than assumed. Lesotho's party system was built on a
+            // religious division — the BNP was the Catholic party and the BCP
+            // the Protestant one — the Catholic Church ran a large share of
+            // the schools, and Roma was where the political class was educated.
+            pl(Pillar::Clergy, "the Roman Catholic hierarchy"),
+        ],
+    },
+
+    // Swaziland — an absolute monarchy with no parties at all, which puts it
+    // in this table with Saudi Arabia and almost nothing else. King Sobhuza II
+    // repealed the independence constitution by decree on 12 April 1973,
+    // dissolved parliament, banned political parties and assumed all
+    // legislative, executive and judicial power; Mswati III inherited those
+    // powers on 25 April 1986 and held them in 1990. The tinkhundla system
+    // returned an advisory assembly indirectly through chiefs, with candidates
+    // standing as individuals — so there is no vote share to transcribe and
+    // `parties` is empty rather than invented.
+    //
+    // `next` is (0, 0) for the same reason: the tinkhundla polls of 1987 and
+    // 1993 were not elections in the sense the model means, and dating one here
+    // would tell the sim a government could change hands at it. PUDEMO,
+    // founded underground in 1983, is the thing that would test the regime, and
+    // it does not appear here because it was illegal, not because it did not
+    // exist.
+    // https://en.wikipedia.org/wiki/Tinkhundla
+    Polity {
+        nation: NationId::Swaziland,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the King in Council",
+        pillars: &[
+            // The Libandla and the Ligogo are the traditional council and the
+            // inner advisory body; the four-year succession crisis of 1982-86
+            // was fought between them and the throne, which is exactly what a
+            // pillar is for.
+            pl(Pillar::Party, "the Swazi National Council"),
+            pl(Pillar::Army, "the Umbutfo Swaziland Defence Force"),
+            // Tibiyo Taka Ngwane holds Swaziland's mineral royalties and large
+            // industrial stakes "in trust for the nation", answers to the king
+            // alone, is outside the budget and pays no tax. A business pillar
+            // that is also the monarch's private treasury.
+            pl(Pillar::Business, "Tibiyo Taka Ngwane"),
+        ],
+    },
+
+    // ============ The rest of South America (feat/r2-southam2) ============
+
+    // Paraguay — general election of 1 May 1989, three months after Andres
+    // Rodriguez removed Alfredo Stroessner. Chamber of Deputies: the Colorado
+    // Party 74.47% and 48 seats, the Authentic Radical Liberals 20.19% and 21,
+    // the Febreristas 2.10%, the Radical Liberals 1.33%. Rodriguez took the
+    // presidency with 76.6% and the election was fought, not staged: Domingo
+    // Laino, deported eight times under Stroessner, was on the ballot and on
+    // television.
+    //
+    // Entered as Proportional even though it was not quite. The 1967
+    // constitution handed the largest party two thirds of the chamber
+    // automatically, which is why the Colorados hold exactly 48 of 72 seats
+    // rather than the 53 their vote would have earned - but they cleared two
+    // thirds of the vote anyway, so the premium binds on nothing in this start
+    // state, and modelling it would only misstate what happens when their share
+    // falls. Term 60 months: Rodriguez was elected to serve out the remainder of
+    // Stroessner's constitutional period, which ran to 1993, and the next
+    // general election is 9 May 1993.
+    // https://en.wikipedia.org/wiki/1989_Paraguayan_general_election
+    Polity {
+        nation: NationId::Paraguay,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 5),
+        parties: &[
+            p("py_anr", "Colorado Party", "Asociacion Nacional Republicana", Family::BigTent, 0.745),
+            p("py_plra", "Authentic Radical Liberal Party", "Partido Liberal Radical Autentico", Family::Liberal, 0.202),
+            p("py_prf", "Revolutionary Febrerista Party", "Partido Revolucionario Febrerista", Family::SocialDemocratic, 0.021),
+            p("py_plr", "Radical Liberal Party", "Partido Liberal Radical", Family::Liberal, 0.013),
+        ],
+        ruling: "the National Congress",
+        // The tripod: party, army and state as one object, which is what the
+        // Colorados and the armed forces had been since 1947 and what survived
+        // Stroessner intact. Rodriguez was the commander of the First Army Corps
+        // when he took power and the Colorado candidate when he legitimised it,
+        // and army officers were required to hold Colorado membership until the
+        // 1992 constitution ended it. A pillar list beside a real election is the
+        // correct shape for that, and it is why this block does not look like
+        // Uruguay's.
+        pillars: &[
+            pl(Pillar::Army, "the armed forces"),
+            pl(Pillar::Party, "the Colorado Party"),
+        ],
+    },
+
+    // Guyana — the National Assembly sitting in January 1990 was elected on 9
+    // December 1985: the People's National Congress 78.54% and 42 elected seats,
+    // the People's Progressive Party 15.77%, the United Force 3.37%, the Working
+    // People's Alliance 1.43%. The shares are transcribed because they are what
+    // was declared, and they are close to fiction — the PPP and the WPA withdrew
+    // on polling day and every observer group called the count rigged. Entering
+    // the declared numbers rather than a guess at the true ones is the same
+    // discipline the Syria and Iraq blocks follow: the model is told what the
+    // regime says its mandate is, and `authoritarianism` at 0.55 in guyana.json
+    // is what tells it how much that is worth.
+    //
+    // The five-year term expires in December 1990, so an election is due inside
+    // the first game year. Desmond Hoyte in fact postponed it repeatedly and it
+    // was held on 5 October 1992, when Cheddi Jagan's PPP won and ended
+    // twenty-eight years of PNC rule. The constitutional date is entered, not
+    // the historical one — whether Georgetown holds the vote or defers it is a
+    // thing this sim is supposed to decide.
+    // https://en.wikipedia.org/wiki/1985_Guyanese_general_election
+    Polity {
+        nation: NationId::Guyana,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 12),
+        parties: &[
+            p("gy_pnc", "People's National Congress", "", Family::BigTent, 0.785),
+            p("gy_ppp", "People's Progressive Party", "", Family::Communist, 0.158),
+            p("gy_uf", "United Force", "", Family::Conservative, 0.034),
+            p("gy_wpa", "Working People's Alliance", "", Family::SocialDemocratic, 0.014),
+        ],
+        ruling: "the National Assembly",
+        // Party paramountcy was a written doctrine in Guyana, not an inference:
+        // the PNC congress of 1974 declared the party supreme over the state and
+        // the constitution of 1980 built the presidency around it. The GDF and
+        // the police were both party instruments, and the 1980 assassination of
+        // Walter Rodney is why the Security pillar is here.
+        pillars: &[
+            pl(Pillar::Party, "the People's National Congress"),
+            pl(Pillar::Security, "the police and the Guyana Defence Force"),
+        ],
+    },
+
+    // Suriname — general election of 25 November 1987, the vote that ended
+    // seven years of direct military rule. The Front for Democracy and
+    // Development, an alliance of the Creole NPS, the Indian VHP and the
+    // Javanese KTPI, took 85.5% and 40 of 51 seats; Bouterse's National
+    // Democratic Party took 9.3% and 3; Pertjajah Luhur and PALU took 4 seats
+    // each on under 2% apiece, which is what a district-based apportionment
+    // does in a country of 400,000. Ramsewak Shankar was elected president by
+    // the Assembly in January 1988.
+    //
+    // The Front is entered as one BigTent party because it contested as one
+    // list, and because the thing worth modelling about Surinamese politics is
+    // that its three ethnic parties can hold together against the army and
+    // cannot hold together for anything else. The shares are entered as the
+    // seats were won rather than smoothed: 85.5% is a real and fragile number.
+    //
+    // Term 60 months from November 1987, so the next election is due November
+    // 1992. It was actually held on 25 May 1991, because Bouterse removed the
+    // Shankar government by telephone on 24 December 1990 — eleven months into
+    // the game and not written into this table. The army pillar below is how the
+    // model is told that the option exists.
+    // https://en.wikipedia.org/wiki/1987_Surinamese_general_election
+    Polity {
+        nation: NationId::Suriname,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            // bloc -> Western: Democratic umbrella against Bouterse's military. https://en.wikipedia.org/wiki/Front_for_Democracy_and_Development
+            p("sr_fdo", "Front for Democracy and Development", "Front voor Democratie en Ontwikkeling", Family::BigTent, 0.855).aligned(Bloc::Western),
+            p("sr_ndp", "National Democratic Party", "Nationale Democratische Partij", Family::Nationalist, 0.093),
+            p("sr_palu", "Progressive Workers' and Farmers' Union", "Progressieve Arbeiders en Landbouwers Unie", Family::Communist, 0.017),
+            p("sr_pl", "Pendawa Lima", "", Family::Regionalist, 0.016),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Nationaal Leger"),
+        ],
+    },
+];
+
+pub fn polity(id: NationId) -> Option<&'static Polity> {
+    POLITIES.iter().find(|x| x.nation == id)
+}
+
+/// The polity lookup UNDER THE SWITCH (design D4, wired 2026-09-06): the
+/// `D4_POLITIES` block where one exists and `rules.ideology_blocs` is on,
+/// else the `POLITIES` block. The OFF world therefore never sees the Nepal
+/// and Haiti party tables — its `GovState.support` for the two and the 1990
+/// start hash do not move — while the lens world seats them like any other
+/// dormant table. Every reader with the world in hand asks this. The readers
+/// without one (`regime_is_communist` and `pillar_bloc` through it)
+/// read `POLITIES`, and are
+/// table-invariant for the two D4 nations: the pillars, the ruling
+/// institution and the system are identical in both blocks and neither
+/// table's largest party is Communist — asserted, not assumed, by
+/// `d4_tables_are_read_under_the_switch_and_invisible_off`. Named pillar readers
+/// also use this accessor for the explicit sourced Army-presence overlay.
+/// Party-id-keyed
+/// readers (`spec`, `base_share`) resolve the id in whichever table carries
+/// it (`table_of`), because a D4 id can only be in a state the switch seated.
+pub fn polity_in(w: &WorldState, id: NationId) -> Option<&'static Polity> {
+    if w.rules.ideology_blocs {
+        if let Some(pol) = D4_POLITIES.iter().find(|x| x.nation == id) {
+            return Some(pol);
+        }
+        if let Some(pol) = crate::army_institutions::polity_overlay(id) {
+            return Some(pol);
+        }
+    }
+    polity(id)
+}
+
+/// The table that carries a party id: `POLITIES` first, then `D4_POLITIES`
+/// (ids are unique across the two, asserted by the D4 shape test). A live
+/// id resolves exactly as it did before D4 was wired.
+fn table_of(id: NationId, party: &str) -> Option<&'static Polity> {
+    if let Some(pol) = polity(id) {
+        if pol.parties.iter().any(|p| p.id == party) {
+            return Some(pol);
+        }
+    }
+    D4_POLITIES.iter().find(|x| x.nation == id && x.parties.iter().any(|p| p.id == party))
+}
+
+/// Design D4, TRANSCRIBED 2026-09-06 and WIRED UNDER THE SWITCH the same day
+/// (`polity_in` serves these blocks only while `rules.ideology_blocs` is on;
+/// BUGS P-8 / S4-10 / R-6 closed). The May 1991 Nepal and
+/// December 1990 Haiti party tables, row for row from
+/// docs/political-arm/nepal-haiti-d4-pending.txt with their sources, kept
+/// beside `POLITIES` rather than in it. Landing them in `POLITIES` was
+/// tried this session and MEASURED: `ensure` seats `support` and `seats`
+/// from any table on the first day, so the serialized 1990 start moved from
+/// 0xe26e4bf8d6c60066 to 0x63a37522993aa5a4 with the switch OFF — the
+/// golden actual the S3 stages are bound not to move (BUGS.md P-8's premise
+/// that a dormant table is inert to the goldens was wrong; a dormant table
+/// is inert to the TICK). With the two blocks wired, and the arm on, the
+/// seeded movements read: Nepal (the court ruling Non-Aligned) Non-Aligned
+/// 0.5988, Western / Communist / Nationalist 0.1327 each, Islamist 0.002;
+/// Haiti (the army ruling Nationalist) Nationalist 0.5988, Western /
+/// Communist / Non-Aligned 0.1327 each, Islamist 0.002; the 1990 census
+/// stayed 67/17/7/3/43. The second of P-8's two options is the one built: a
+/// table the OFF world cannot see, through `polity_in`, so the start golden
+/// keeps its actual and the lens world reads nine Nepal rows and six Haiti
+/// rows from the first seating (asserted by
+/// `d4_tables_are_read_under_the_switch_and_invisible_off`).
+pub const D4_POLITIES: &[Polity] = &[
+    // Nepal — House of Representatives, 12 May 1991, the first multi-party
+    // election since 1959, under the constitution promulgated 9 November 1990:
+    // 205 single-member first-past-the-post seats, five-year term, turnout
+    // 65.15%. Nepali Congress 39.50% (110 seats), CPN (UML) 29.27% (69),
+    // RPP (Chand) 6.87% (3), RPP (Thapa) 5.63% (1), United People's Front
+    // 5.05% (9), Nepal Sadbhawana 4.28% (6), CPN (Democratic) 2.54% (2), Nepal
+    // Workers Peasants 1.31% (2), independents 4.36% (3). Girija Prasad
+    // Koirala formed the government. The table is dormant on 1 January 1990 —
+    // parties were still banned and the Jana Andolan was seven weeks away —
+    // and the UML (January 1991 merger), the two RPPs (1990) and the UPF
+    // (1991) did not yet exist; they are entered at their first contested
+    // result, which is the rule this table already uses for parties founded
+    // after the last pre-1990 vote.
+    // https://en.wikipedia.org/wiki/1991_Nepalese_general_election
+    // https://en.wikipedia.org/wiki/House_of_Representatives_(Nepal)
+    // https://en.wikipedia.org/wiki/Nepali_Congress
+    // https://en.wikipedia.org/wiki/Communist_Party_of_Nepal_(Unified_Marxist%E2%80%93Leninist)
+    // https://en.wikipedia.org/wiki/Rastriya_Prajatantra_Party
+    // https://en.wikipedia.org/wiki/Rastriya_Prajatantra_Party_(Chand)
+    // https://en.wikipedia.org/wiki/Samyukta_Janamorcha_Nepal
+    // https://en.wikipedia.org/wiki/Nepal_Sadbhawana_Party
+    // https://en.wikipedia.org/wiki/Communist_Party_of_Nepal_(Democratic)
+    // https://en.wikipedia.org/wiki/Nepal_Workers_Peasants_Party
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("np_nc", "Nepali Congress", "Nepali Kangres", Family::SocialDemocratic, 0.3950),
+            p("np_uml", "Communist Party of Nepal (Unified Marxist-Leninist)", "Nepal Kamyunist Parti (Ekikrit Marksbadi-Leninbadi)", Family::Communist, 0.2927),
+            // Panchayat-era elite, constitutional monarchist, Hindu nationalist
+            // by the party page; contested 1991 as two factions, merged
+            // 8 February 1992. Conservative rather than Nationalist because
+            // the programme was the throne, not the nation.
+            p("np_rpp_chand", "Rastriya Prajatantra Party (Chand)", "Rastriya Prajatantra Parti (Chand)", Family::Conservative, 0.0687),
+            p("np_rpp_thapa", "Rastriya Prajatantra Party (Thapa)", "Rastriya Prajatantra Parti (Thapa)", Family::Conservative, 0.0563),
+            // Front of the CPN (Unity Centre), Baburam Bhattarai chairman —
+            // the future Maoists.
+            p("np_upf", "United People's Front of Nepal", "Samyukta Janamorcha Nepal", Family::Communist, 0.0505),
+            // Madhesi rights party of the Tarai.
+            p("np_nsp", "Nepal Sadbhawana Party", "Nepal Sadbhawana Parti", Family::Regionalist, 0.0428),
+            p("np_cpnd", "Communist Party of Nepal (Democratic)", "Nepal Kamyunist Parti (Prajatantrik)", Family::Communist, 0.0254),
+            p("np_nwpp", "Nepal Workers Peasants Party", "Nepal Majdur Kisan Parti", Family::Communist, 0.0131),
+            // The 4.36% cast for independents, entered as the table enters
+            // Jordan's (jo_tribal) — a bloc of the result, not a party.
+            p("np_ind", "independents", "", Family::BigTent, 0.0436),
+        ],
+        ruling: "the Panchayat",
+        pillars: &[
+            pl(Pillar::Party, "the palace secretariat"),
+            pl(Pillar::Army, "the Royal Nepal Army"),
+            pl(Pillar::Business, "the Rana and Chhetri landholding families"),
+        ],
+    },
+    // Haiti — general election of 16 December 1990 (presidential first round
+    // and legislative first round) with a legislative second round on
+    // 20 January 1991; the 1987 constitution gives the president five years
+    // (no consecutive term, runoff if no majority), deputies four, senators six
+    // (a third every two years), all by two-round vote. Turnout 50.16%.
+    // THE SHARES BELOW ARE THE PRESIDENTIAL FIRST ROUND, because no fetched
+    // source publishes a national vote share for the Chamber; the Chamber
+    // seats (81) were FNCD 27, ANDP 17, PDCH 7, PAIN 6, RDNP 6, MDN 5, MKN 5,
+    // PNT 3, independents 5, and the Senate (27) FNCD 13, ANDP 6, MRN 2,
+    // PAIN 2, PDCH 1, PNT 1, RDNP 1, independent 1. Aristide (FNCD) 67.48%,
+    // Bazin (ANDP) 14.22%, Dejoie (PAIN) 4.88%, de Ronceray (MDN) 3.34%,
+    // Claude (PDCH) 3.00%, Theodore (PUCH) 1.83%, others 5.25%. Aristide was
+    // sworn in on 7 February 1991 and deposed eight months later.
+    // The table is dormant on 1 January 1990 (Avril governs; the previous vote
+    // was annulled by the army).
+    // https://en.wikipedia.org/wiki/1990%E2%80%9391_Haitian_general_election
+    // https://en.wikipedia.org/wiki/Haitian_general_election,_1990%E2%80%931991
+    // https://en.wikipedia.org/wiki/45th_Legislature_of_the_Haitian_Parliament
+    // https://en.wikipedia.org/wiki/President_of_Haiti
+    // https://en.wikipedia.org/wiki/Chamber_of_Deputies_(Haiti)
+    // https://en.wikipedia.org/wiki/Senate_(Haiti)
+    // https://en.wikipedia.org/wiki/Jean-Bertrand_Aristide
+    // https://en.wikipedia.org/wiki/List_of_political_parties_in_Haiti
+    // https://en.wikipedia.org/wiki/Rally_of_Progressive_National_Democrats
+    // https://en.wikipedia.org/wiki/Unified_Party_of_Haitian_Communists
+    // https://en.wikisource.org/wiki/The_World_Factbook_(1990)/Haiti
+    // https://pdba.georgetown.edu/Parties/Haiti/desc.html
+    // https://www.refworld.org/docid/3ae6acc958.html (MIDH + PANPRA + MNP-28 = ANDP)
+    // https://www.irb-cisr.gc.ca/en/country-information/rir/Pages/index.aspx?doc=458131 (MDN, founded 4 August 1986, described as far-right)
+    Polity {
+        nation: NationId::Haiti,
+        system: Electoral::TwoRound,
+        // Four years is the Chamber's term under the 1987 constitution; the
+        // pillar-only block in POLITIES carries 72, which is the Senate's.
+        // The party table is the Chamber's, so the Chamber's term is entered.
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // "A populist coalition of the impoverished majority and
+            // progressive parties opposed to the Duvalier dictatorship"
+            // (Aristide page); KONAKOM and the Group of 57 inside it, the
+            // Lavalas movement behind it. BigTent is the description: it was a
+            // front, and it broke with Aristide within two years.
+            p("ht_fncd", "National Front for Change and Democracy", "Front National pour le Changement et la Democratie", Family::BigTent, 0.6748),
+            // Bazin's MIDH with PANPRA and MNP-28. Bazin: World Bank economist,
+            // the US-favoured candidate, centrist and pro-market; entered
+            // Liberal on that, with the caveat that PANPRA (Serge Gilles) was
+            // social democratic.
+            p("ht_andp", "National Alliance for Democracy and Progress", "Alliance Nationale pour la Democratie et le Progres", Family::Liberal, 0.1422),
+            // The Dejoie family's party of 1957 revived by the son; planter
+            // and industrialist money. Conservative on the family's class
+            // basis; no fetched source states a programme.
+            p("ht_pain", "National Agricultural and Industrial Party", "Parti Agricole et Industriel National", Family::Conservative, 0.0488),
+            // Hubert de Ronceray; founded 4 August 1986, the first party the
+            // Ministry of Justice recognised; described as far-right and later
+            // a member of the Duvalierist-leaning MPSN grouping.
+            p("ht_mdn", "Mobilization for National Development", "Mobilisation pour le Developpement National", Family::Nationalist, 0.0334),
+            p("ht_pdch", "Christian Democratic Party of Haiti", "Parti Democrate Chretien d'Haiti", Family::ChristianDemocratic, 0.0300),
+            p("ht_puch", "Unified Party of Haitian Communists", "Parti Unifie des Communistes Haitiens", Family::Communist, 0.0183),
+            // REFUSED, not estimated: the RDNP (Leslie Manigat, centre-right
+            // Christian-democratic nationalist; 6 deputies, 1 senator), the
+            // National Cobite Movement (5 deputies) and the National Labour
+            // Party (3 deputies, 1 senator) fielded no presidential candidate
+            // and no fetched source gives them a national vote share. They
+            // wait for a legislative share to be transcribed.
+        ],
+        ruling: "the Armed Forces of Haiti",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees d'Haiti"),
+            pl(Pillar::Security, "the Service d'Information National"),
+            pl(Pillar::Business, "the Port-au-Prince import houses"),
+        ],
+    },
+];
+
+fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
+    table_of(id, party)?.parties.iter().find(|p| p.id == party)
+}
+
+/// The transcribed row for one party of one polity, for a surface that names
+/// parties. `None` for an id the table does not carry.
+pub fn party_spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
+    spec(id, party)
+}
+
+// The political arm's readouts live in `crate::blocs` and are reachable under
+// the name the design gives them.
+pub use crate::blocs::{
+    bloc_shares, discontent, government_of_the_day, influence, ruling_bloc, takeover_readout,
+};
+
+/// The bloc a party is counted on: its transcribed override if it carries one,
+/// else its family's default. A party id that is not in the table reads as
+/// Non-Aligned rather than panicking, because a save may name a party a later
+/// build renamed and the readout must not take the game down.
+pub fn bloc_of(id: NationId, party: &str) -> Bloc {
+    match spec(id, party) {
+        Some(s) => s.bloc.unwrap_or_else(|| s.family.bloc()),
+        None => Bloc::NonAligned,
+    }
+}
+
+/// Whether a party is the transcribed successor of a Marxist-Leninist ruling
+/// party (`PartySpec::successor_of_ruling_party`, R3(d)); false for a party
+/// id not in the table. Read by the census's A5 bar — "a successor party led
+/// back into government by ballot" — and by nothing in the tick.
+pub fn successor_of_ruling_party(id: NationId, party: &str) -> bool {
+    spec(id, party).is_some_and(|s| s.successor_of_ruling_party)
+}
+
+/// A regime is Communist when the largest party in its transcribed table is
+/// one — the CPSU at 0.40 of the post-Article-6 table, the CPC at 1.00 — which
+/// is what decides whether its Party pillar installs the Communist bloc or the
+/// Non-Aligned one. Read off the table rather than off `Nation.system`, because
+/// `Command` in the 1990 data also covers Iran, Iraq, Syria, Libya, Algeria and
+/// Myanmar, none of which a party apparatus would hand to the Comintern's heirs.
+///
+/// Reads `POLITIES` with no world in hand (`pillar_bloc` needs it without
+/// one). For the two D4 nations both tables answer false — Nepal's largest
+/// row is the Nepali Congress, Haiti's the FNCD — which the wiring test
+/// asserts, so the answer is the same under either switch.
+pub fn regime_is_communist(id: NationId) -> bool {
+    let pol = match polity(id) {
+        Some(p) => p,
+        None => return false,
+    };
+    let mut best: Option<&PartySpec> = None;
+    for s in pol.parties {
+        if best.map_or(true, |b| s.start > b.start) {
+            best = Some(s);
+        }
+    }
+    best.is_some_and(|s| s.bloc.unwrap_or_else(|| s.family.bloc()) == Bloc::Communist)
+}
+
+/// Whether the Clergy pillar of this polity is an Islamic institution — the
+/// ulema, al-Azhar, the seminaries of Qom — rather than a church or a Buddhist
+/// establishment. Transcribed from the pillar rows above, one nation each:
+/// twelve polities carry a Clergy pillar and every one is named here.
+pub fn clergy_is_muslim(id: NationId) -> bool {
+    match id {
+        // "the ulema"; "the seminaries of Qom"; "al-Azhar"; "Hezbollah and the
+        // Revolutionary Guard contingent at Baalbek"; "the Ibadi ulema and the
+        // office of the Grand Mufti"; "the tribal confederations of Hashid and
+        // Bakil" (Zaydi and Shafi'i tribes whose political vehicle was Islah);
+        // "the Commandership of the Faithful"; "the state religious
+        // establishment" (Brunei's Melayu Islam Beraja).
+        NationId::SaudiArabia
+        | NationId::Iran
+        | NationId::Egypt
+        | NationId::Lebanon
+        | NationId::Oman
+        | NationId::Yemen
+        | NationId::Morocco
+        | NationId::Brunei => true,
+        // "the Methodist Church in Fiji"; "the Free Wesleyan Church of Tonga";
+        // "the Zhung Dratshang under the Je Khenpo"; "the Roman Catholic
+        // hierarchy" (Lesotho).
+        _ => false,
+    }
+}
+
+/// The bloc an institution installs when it takes power, or is counted on
+/// while it merely props one up (design D3 pillar map): the army is
+/// Nationalist, the security services are Non-Aligned, business is Western,
+/// the party apparatus is Communist in a Communist regime and Non-Aligned
+/// otherwise, the clergy Islamist where it is Muslim and Western where it is a
+/// church.
+pub fn pillar_bloc(id: NationId, pillar: Pillar) -> Bloc {
+    match pillar {
+        Pillar::Army => Bloc::Nationalist,
+        Pillar::Security => Bloc::NonAligned,
+        Pillar::Business => Bloc::Western,
+        Pillar::Party => {
+            if regime_is_communist(id) {
+                Bloc::Communist
+            } else {
+                Bloc::NonAligned
+            }
+        }
+        Pillar::Clergy => {
+            if clergy_is_muslim(id) {
+                Bloc::Islamist
+            } else {
+                Bloc::Western
+            }
+        }
+    }
+}
+
+/// A party's structural constituency: the transcribed share, normalised. This
+/// is the anchor support reverts toward, and without it the model has no
+/// equilibrium at all — an incumbent with a good record gains a little every
+/// month forever and ends up with the entire electorate. Parties have floors
+/// and ceilings set by who their voters actually are; an economy moves the
+/// margin, not the whole country.
+fn base_share(id: NationId, party: &str) -> f64 {
+    let pol = match table_of(id, party) {
+        Some(p) => p,
+        None => return 0.0,
+    };
+    let total: f64 = pol.parties.iter().map(|s| s.start.max(0.001)).sum();
+    if total <= 0.0 {
+        return 0.0;
+    }
+    pol.parties
+        .iter()
+        .find(|s| s.id == party)
+        .map(|s| s.start.max(0.001) / total)
+        .unwrap_or(0.0)
+}
+
+// ---------------------------------------------------------------------------
+// State
+// ---------------------------------------------------------------------------
+
+/// Every government in the world. A `Vec`, iterated in insertion order, because
+/// determinism is sacred and a map's iteration order is not.
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct Governments {
+    pub states: Vec<GovState>,
+}
+
+/// What voters remember about the current governing party or regime. This is
+/// model time, not a scheduled historical event. Re-election and cabinet
+/// reshuffles do not give the same governing party a clean performance record.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct PoliticalRecord {
+    pub government: String,
+    pub months: f64,
+    pub performance: f64,
+}
+
+/// First model observation for an unsourced successor absent from the opening
+/// roster. This is a population reference for an estimate, not historical
+/// personnel data. Retaining its date prevents growth from recruiting a force.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct ArmyPopulationReference {
+    pub population_m: f64,
+    pub observed_on: (i32, u32, u32),
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct GovState {
+    pub nation: NationId,
+    /// (party id, support 0..1), in table order and always summing to 1.
+    pub support: Vec<(String, f64)>,
+    /// Constituency shares observed at the latest completed, fully legal ballot.
+    /// Older saves retain the opening estimate until they actually hold one.
+    /// This is vote support, never the electoral system's amplified seat shares.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vote_anchor: Option<Vec<(String, f64)>>,
+    /// (party id, seat share 0..1) as of the last election.
+    pub seats: Vec<(String, f64)>,
+    /// Who is in office. The first entry leads it.
+    pub coalition: Vec<String>,
+    /// The election this parliament is running toward, (year, month).
+    pub next_election: (i32, u32),
+    /// Whether anyone has voted yet under this module.
+    pub elected: bool,
+    /// The current mandate began with an unrestricted completed ballot and
+    /// has not subsequently banned a party. Old saves assert no such history.
+    #[serde(default, skip_serializing_if = "election_not_pending")]
+    pub unrestricted_mandate: bool,
+    /// Sourced pre-campaign parliamentary authority; never a completed model
+    /// ballot or a claim of unrestricted civilian rule. Old saves remain unknown.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub opening_mandate: Option<crate::opening_mandates::OpeningMandate>,
+    /// A newly opened regime has an interim cabinet but has not completed its
+    /// first free ballot. Absent older saves retain their recorded status.
+    #[serde(default, skip_serializing_if = "election_not_pending")]
+    pub awaiting_first_election: bool,
+    /// (pillar, loyalty 0..1) for a regime that is not elected.
+    pub pillars: Vec<(Pillar, f64)>,
+    /// How close the pillars are to acting. Accumulates while they are unpaid.
+    pub coup_pressure: f64,
+    /// Months this government has been in office. A honeymoon is real and short.
+    pub months_in_office: u32,
+    /// The unfinished month of a daily government. Omitted from legacy saves;
+    /// a government formed mid-month must not age a whole month at midnight.
+    #[serde(default, skip_serializing_if = "office_fraction_is_zero")]
+    pub office_month_fraction: f64,
+    /// A rolling record, learned from current conditions when an older save
+    /// first advances. Its absence does not invent any pre-save history.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub political_record: Option<PoliticalRecord>,
+    /// A sourced active armed contest's material dependency, separate from
+    /// voter support. Missing older saves do not acquire a fictional conflict.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub armed_security: Option<crate::armed_security::SecurityContest>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub army_population_reference: Option<ArmyPopulationReference>,
+    /// Lagged historical executive-removal assessment and separate campaign
+    /// leverage. Missing saves remain unknown and use the existing proxy.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub army_authority: Option<crate::army_authority::ArmyAuthority>,
+    /// The political arm (`rules.ideology_blocs`). For a regime that holds no
+    /// elections, the standing of each bloc in the country — the thing a vote
+    /// would measure if one were held — as (bloc, share) over all five blocs in
+    /// enum order, summing to one. Seeded from institutions and the dormant
+    /// competitive party table on the first switched-on `ensure`, then moved by
+    /// `drift_movements` (S3), the regime's sibling of `drift_support`. Retained
+    /// after liberalisation for constituents with no party on the ballot;
+    /// represented blocs then divide their remaining mass using `support`.
+    /// Empty in an initially electoral nation and an untouched flag-off save.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub movements: Vec<(Bloc, f64)>,
+    /// Organizations sourced at campaign opening or created by qualifying
+    /// foreign backing outside the formal party/pillar table. Their existence survives the withdrawal of funding;
+    /// their support and foreign influence still move through the usual rules.
+    /// Empty for old saves and omitted until an organization is established.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub established_movements: Vec<Bloc>,
+    /// The surge latch (S3): the non-ruling blocs whose movement has crossed
+    /// 0.30 upward and not yet fallen back under 0.25, so the headline "passes
+    /// a third of the country" fires once per crossing and not every month
+    /// above the line. Empty, and absent from the save, for an electoral
+    /// nation and whenever the arm is off.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub surging: Vec<Bloc>,
+    /// The parties this government has proscribed, by stable id (S3,
+    /// `BanParty`). A banned party keeps its support — the voters are still
+    /// there, and its bloc still counts them in influence — and holds no
+    /// seats: `seats_from_legal` reads this list on every election. Empty,
+    /// and absent from the save, until something is banned.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub banned: Vec<String>,
+    /// The bloc that holds power in a regime, seeded from the leader row and
+    /// kept when the arm is on. Retained through the unelected interim after
+    /// opening; a completed electoral government's live ruling bloc is read
+    /// from its coalition/head instead, without using this dormant record.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub regime_bloc: Option<Bloc>,
+}
+
+fn election_not_pending(value: &bool) -> bool { !*value }
+
+fn office_fraction_is_zero(value: &f64) -> bool {
+    *value == 0.0
+}
+
+impl GovState {
+    pub fn seat_share(&self, party: &str) -> f64 {
+        self.seats.iter().find(|(p, _)| p == party).map(|(_, v)| *v).unwrap_or(0.0)
+    }
+    pub fn support_of(&self, party: &str) -> f64 {
+        self.support.iter().find(|(p, _)| p == party).map(|(_, v)| *v).unwrap_or(0.0)
+    }
+    /// What share of the chamber the government commands.
+    pub fn government_seats(&self) -> f64 {
+        self.coalition.iter().map(|p| self.seat_share(p)).sum()
+    }
+    pub fn leader(&self) -> Option<&str> {
+        self.coalition.first().map(|s| s.as_str())
+    }
+    pub fn in_government(&self, party: &str) -> bool {
+        self.coalition.iter().any(|p| p == party)
+    }
+    pub fn loyalty(&self, pillar: Pillar) -> f64 {
+        self.pillars.iter().find(|(p, _)| *p == pillar).map(|(_, v)| *v).unwrap_or(1.0)
+    }
+    /// The least contented institution of any kind — what a briefing shows.
+    pub fn weakest_pillar(&self) -> Option<(Pillar, f64)> {
+        self.pillars
+            .iter()
+            .copied()
+            .min_by(|a, b| a.1.partial_cmp(&b.1).unwrap_or(std::cmp::Ordering::Equal))
+    }
+    /// The least contented institution that could actually remove a government.
+    /// Merchants and clergy can withdraw their blessing; they cannot arrest a
+    /// cabinet, and a model in which they can produces a coup every other year.
+    pub fn weakest_armed(&self) -> Option<(Pillar, f64)> {
+        self.pillars
+            .iter()
+            .copied()
+            .filter(|(p, _)| {
+                matches!(p, Pillar::Army | Pillar::Security | Pillar::Party)
+            })
+            .min_by(|a, b| a.1.partial_cmp(&b.1).unwrap_or(std::cmp::Ordering::Equal))
+    }
+    pub fn mean_loyalty(&self) -> f64 {
+        if self.pillars.is_empty() {
+            return 1.0;
+        }
+        self.pillars.iter().map(|(_, v)| *v).sum::<f64>() / self.pillars.len() as f64
+    }
+}
+
+pub fn state(w: &WorldState, id: NationId) -> Option<&GovState> {
+    w.governments.states.iter().find(|g| g.nation == id)
+}
+fn state_mut(w: &mut WorldState, id: NationId) -> Option<&mut GovState> {
+    w.governments.states.iter_mut().find(|g| g.nation == id)
+}
+
+fn normalise(v: &mut [(String, f64)]) {
+    let total: f64 = v.iter().map(|(_, s)| *s).sum();
+    if total <= 0.0 {
+        return;
+    }
+    for e in v.iter_mut() {
+        e.1 /= total;
+    }
+}
+
+/// Last elected national chamber, distinct from the modeled electorate. This
+/// override is only for a missing government on the exact campaign start date;
+/// it never rewrites an existing save or invents a chamber for a later date.
+fn opening_seats(w: &WorldState, pol: &Polity, support: &[(String, f64)]) -> Vec<(String, f64)> {
+    if pol.nation == NationId::Algeria && (w.year, w.month, w.day) == (1990, 1, 1) {
+        // IPU, 26 February 1987: FLN 295 of 295 national Assembly seats.
+        // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+        // The 1989/1990 State Department reports confirm FLN-only national
+        // representation despite legal opposition and the June local election.
+        return support.iter().map(|(id, _)| (id.clone(), if id == "dz_fln" { 1.0 } else { 0.0 })).collect();
+    }
+    seats_from(support, pol.system)
+}
+
+/// Seat a government from the transcribed table. Called lazily so that a save
+/// written before this module existed still loads and simply grows one.
+pub fn ensure(w: &mut WorldState, id: NationId) {
+    if state(w, id).is_some() {
+        // Existing pillars, including an explicitly empty vector, are saved
+        // campaign state. Ordinary ensures/load cannot import new institutions.
+        // Fresh worlds receive their institutions during initial construction.
+        // Seated already. The only thing left to do is the political arm's
+        // seed, which returns at once unless the arm is on and this nation is
+        // an unseeded regime — a save switched on after it was written.
+        seed_blocs(w, id);
+        remember_established_movements(w, id);
+        remember_army_population_reference(w, id);
+        return;
+    }
+    let pol = match polity_in(w, id) {
+        Some(p) => p,
+        None => return,
+    };
+    let mut support: Vec<(String, f64)> =
+        pol.parties.iter().map(|s| (s.id.to_string(), s.start.max(0.001))).collect();
+    normalise(&mut support);
+    let pillars: Vec<(Pillar, f64)> =
+        pol.pillars.iter().map(|s| (s.pillar, 0.65)).collect();
+    let established_movements = if w.rules.ideology_blocs && (w.year, w.month, w.day) == (1990, 1, 1) {
+        let mut blocs: Vec<Bloc> = crate::data::opening_movements_1990().iter()
+            .filter(|r| r.nation == id).map(|r| r.bloc).collect();
+        blocs.sort();
+        blocs
+    } else { vec![] };
+    let mut g = GovState {
+        nation: id,
+        seats: support.clone(),
+        support,
+        vote_anchor: None,
+        coalition: vec![],
+        next_election: pol.next,
+        elected: false,
+        unrestricted_mandate: false,
+        opening_mandate: None,
+        awaiting_first_election: false,
+        pillars,
+        coup_pressure: 0.0,
+        months_in_office: 0,
+        office_month_fraction: 0.0,
+        political_record: None,
+        armed_security: None,
+        army_population_reference: None,
+        army_authority: None,
+        movements: vec![],
+        established_movements,
+        surging: vec![],
+        banned: vec![],
+        regime_bloc: None,
+    };
+    g.seats = opening_seats(w, pol, &g.support);
+    w.governments.states.push(g);
+    if is_electoral(w, id) {
+        form_government(w, id, false);
+    }
+    seed_blocs(w, id);
+    remember_established_movements(w, id);
+    remember_army_population_reference(w, id);
+}
+
+fn remember_army_population_reference(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || crate::data::army_personnel_1990(id).is_some()
+        || army_opening_population_m(id).is_some()
+        || state(w, id).is_none_or(|g| g.army_population_reference.is_some())
+    { return; }
+    let Some(n) = w.nation_opt(id).filter(|n| n.alive && n.population.is_finite() && n.population > 0.0) else { return; };
+    let reference = ArmyPopulationReference {
+        population_m: n.population,
+        // The legacy day wrapper settles a monthly model at month end; that
+        // is not an observation on the last civil day. Match office dates.
+        observed_on: (w.year, w.month, if crate::clock::is_daily(w) { w.day.max(1) } else { 1 }),
+    };
+    state_mut(w, id).unwrap().army_population_reference = Some(reference);
+}
+
+/// Funding above the existing organization threshold establishes a faction,
+/// rather than renting its existence until the next decay tick. This also
+/// recognizes qualifying backing in older saves without inventing a history
+/// for funding that had already disappeared before the save was written.
+/// Existing votes, money and RNG are unchanged. Table-backed organizations
+/// need no mark; older saves missing a government use the normal lazy setup.
+pub(crate) fn remember_established_movements(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
+        return;
+    }
+    // Aid gravity alone is influence, not an operation paying organizers.
+    let stock = crate::blocs::backing_stock(w, id);
+    let newly_present: Vec<Bloc> = stock.into_iter().filter_map(|(bloc, weight)| {
+        (weight >= crate::blocs::PRESENCE_BACKING && !crate::blocs::bloc_in_table(w, id, bloc))
+            .then_some(bloc)
+    }).collect();
+    if newly_present.is_empty() {
+        return;
+    }
+    if state(w, id).is_none() {
+        // ensure calls back after inserting the government. A polity without
+        // a government table simply returns without inventing an organization.
+        ensure(w, id);
+        return;
+    }
+    if let Some(g) = state_mut(w, id) {
+        for bloc in newly_present {
+            if !g.established_movements.contains(&bloc) {
+                g.established_movements.push(bloc);
+            }
+        }
+        g.established_movements.sort();
+    }
+}
+
+/// The political arm's opening state for one nation, written once and only
+/// while `rules.ideology_blocs` is on. Everything above this line runs exactly
+/// as it did before the arm existed; this returns on the switch BEFORE it reads
+/// or writes anything, draws no RNG, and is idempotent, so `ensure_all` can
+/// call it every tick and a save written before the arm — or with it off —
+/// grows its blocs the first time it is loaded with the arm on.
+///
+/// Institutions provide the original 0.60/0.40 estimate. Where a dormant table
+/// carries a competing party bloc, `movement_constituencies` also reads those
+/// organizations instead of flattening their transcribed support. Every bloc
+/// is floored and normalized. Dormant party `support` itself is untouched.
+pub fn seed_blocs(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    if w.leadership.is_none() {
+        // A save written before the arm, or with it off, carries no table.
+        // The embedded one is refused on the same terms it is at world_1990.
+        let rows = crate::data::parse_leaders(&crate::data::EMBEDDED_LEADERS)
+            .unwrap_or_else(|e| panic!("{}", crate::data::render_errors(&e)));
+        w.leadership = Some(rows);
+    }
+    // An electoral nation stores nothing: its shares are its party support and
+    // its ruling bloc is its coalition leader, both read live.
+    if is_electoral(w, id) {
+        return;
+    }
+    let unseeded = match state(w, id) {
+        Some(g) => g.regime_bloc.is_none() && g.movements.is_empty(),
+        None => return,
+    };
+    if !unseeded {
+        return;
+    }
+    let ruling = match crate::blocs::described_ruling_bloc(w, id) {
+        Some(b) => b,
+        None => return,
+    };
+    let movements = movement_constituencies(w, id, ruling);
+    // A bloc seeded at or over the surge line has not CROSSED it: the latch
+    // is seeded closed for it, so the first tick does not announce the
+    // seed as news (measured 2026-09-05: Iraq's and Syria's lone Non-Aligned
+    // 0.40 printed "passes a third" in January 1990 before this line).
+    let surging: Vec<Bloc> =
+        movements.iter().filter(|(b, s)| *b != ruling && *s >= 0.30).map(|(b, _)| *b).collect();
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(ruling);
+        g.movements = movements.to_vec();
+        g.surging = surging;
+    }
+}
+
+pub fn ensure_all(w: &mut WorldState) {
+    let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+    for id in ids {
+        ensure(w, id);
+    }
+    crate::party_leadership::ensure_all(w);
+}
+
+// ---------------------------------------------------------------------------
+// Seats and formation
+// ---------------------------------------------------------------------------
+
+fn seats_from(support: &[(String, f64)], sys: Electoral) -> Vec<(String, f64)> {
+    let (exp, threshold) = sys.shape();
+    let mut out: Vec<(String, f64)> = support
+        .iter()
+        .map(|(id, s)| {
+            // exact::powf, not f64::powf: the cube law runs on every election
+            // in every nation, so a platform that rounds pow differently would
+            // hand out different seats and fork the timeline. See exact.rs.
+            let v = if *s < threshold { 0.0 } else { crate::exact::powf(*s, exp) };
+            (id.clone(), v)
+        })
+        .collect();
+    let total: f64 = out.iter().map(|(_, v)| *v).sum();
+    if total <= 0.0 {
+        // Everyone below the bar: the largest party takes the chamber, which is
+        // what a high threshold does when the vote fragments under it.
+        let mut best = 0usize;
+        for (i, (_, s)) in support.iter().enumerate() {
+            if *s > support[best].1 {
+                best = i;
+            }
+        }
+        out = support.iter().map(|(id, _)| (id.clone(), 0.0)).collect();
+        if let Some(e) = out.get_mut(best) {
+            e.1 = 1.0;
+        }
+        return out;
+    }
+    for e in out.iter_mut() {
+        e.1 /= total;
+    }
+    out
+}
+
+/// `seats_from` behind the political arm's switch (S3): with the arm on and a
+/// ban in force, the chamber is read from the LEGAL parties alone — their
+/// support run through the same formula, unrenormalised, so the threshold
+/// still reads vote shares — and every banned party is listed at zero in
+/// table order. With the arm off, or nothing banned, this IS `seats_from`,
+/// which is untouched. Every party banned leaves an empty chamber of zeros.
+fn seats_from_legal(
+    on: bool,
+    support: &[(String, f64)],
+    sys: Electoral,
+    banned: &[String],
+) -> Vec<(String, f64)> {
+    if !on || banned.is_empty() {
+        return seats_from(support, sys);
+    }
+    let legal: Vec<(String, f64)> =
+        support.iter().filter(|(p, _)| !banned.contains(p)).cloned().collect();
+    if legal.is_empty() {
+        return support.iter().map(|(p, _)| (p.clone(), 0.0)).collect();
+    }
+    let seated = seats_from(&legal, sys);
+    support
+        .iter()
+        .map(|(p, _)| {
+            (p.clone(), seated.iter().find(|(q, _)| q == p).map_or(0.0, |(_, v)| *v))
+        })
+        .collect()
+}
+
+fn distance(id: NationId, a: &str, b: &str) -> f64 {
+    match (spec(id, a), spec(id, b)) {
+        (Some(x), Some(y)) => family_distance(x.family, y.family),
+        _ => 1.0,
+    }
+}
+
+/// Assemble a government out of a chamber. The largest party gets the first go,
+/// then adds the nearest partner it is allowed to sit with until it has half the
+/// seats. If it cannot get there, it governs as a minority — which is a real
+/// outcome and an expensive one, not a failure state.
+fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
+    let sys = match polity_in(w, id) {
+        Some(p) => p.system,
+        None => return,
+    };
+    let (mut ranked, pariahs): (Vec<(String, f64)>, Vec<String>) = {
+        let g = match state(w, id) {
+            Some(g) => g,
+            None => return,
+        };
+        let mut r = g.seats.clone();
+        r.retain(|(_, v)| *v > 0.0);
+        r.sort_by(|a, b| {
+            b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal).then(a.0.cmp(&b.0))
+        });
+        let ps = polity_in(w, id)
+            .map(|p| p.parties.iter().filter(|s| s.pariah).map(|s| s.id.to_string()).collect())
+            .unwrap_or_default();
+        (r, ps)
+    };
+    if ranked.is_empty() {
+        return;
+    }
+    // A pariah party that wins outright still governs. A plurality may govern
+    // alone as a minority, but changing who leads cannot evade the cordon:
+    // parties that refuse it as a junior also refuse its cabinet invitation.
+    let leader = ranked.remove(0).0;
+    let mut coalition = vec![leader.clone()];
+    let mut held = {
+        let g = state(w, id).unwrap();
+        g.seat_share(&leader)
+    };
+    if held < 0.5 && !pariahs.contains(&leader) {
+        // Nearest ideological neighbour first, and never a pariah as a partner.
+        let mut candidates: Vec<(String, f64, f64)> = ranked
+            .iter()
+            .filter(|(p, _)| !pariahs.contains(p) && *p != leader)
+            .map(|(p, v)| (p.clone(), *v, distance(id, &leader, p)))
+            .collect();
+        candidates.sort_by(|a, b| {
+            a.2.partial_cmp(&b.2).unwrap_or(std::cmp::Ordering::Equal).then(b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal)).then(a.0.cmp(&b.0))
+        });
+        for (party, seats, dist) in candidates {
+            if held >= 0.5 {
+                break;
+            }
+            // Nobody joins a cabinet with a party at the other end of the plane
+            // just to make up the numbers. Beyond this, the government does not
+            // form and the country gets a minority administration.
+            if dist > 1.5 {
+                continue;
+            }
+            coalition.push(party);
+            held += seats;
+        }
+    }
+    let minority = held < 0.5;
+    let leader_name = spec(id, &leader).map(|s| s.name).unwrap_or("the largest party");
+    let partners = coalition.len();
+    if let Some(g) = state_mut(w, id) {
+        g.coalition = coalition;
+        g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
+    }
+    crate::opening_mandates::discard_incompatible(w, id);
+    let _ = sys;
+    if announce {
+        // Note what is *not* here: a stability bonus. The code this module
+        // replaced handed every democracy three points of stability every four
+        // years, or eight if times were bad, and that free legitimacy for having
+        // held a vote is precisely the popularity slider BIBLE section 4 says to
+        // get rid of. A new government's honeymoon is real, but it is standing,
+        // not order, and it is paid in `standing_modifier` where it decays over
+        // six months instead of ratcheting a number upward forever.
+        let msg = if minority {
+            format!(
+                "{} votes: {} leads a minority government commanding {:.0}% of the chamber.",
+                id.name(), leader_name, held * 100.0
+            )
+        } else if partners == 1 {
+            format!(
+                "{} votes: {} takes office with {:.0}% of the seats and no partners.",
+                id.name(), leader_name, held * 100.0
+            )
+        } else {
+            format!(
+                "{} votes: {} forms a {}-party coalition holding {:.0}% of the seats.",
+                id.name(), leader_name, partners, held * 100.0
+            )
+        };
+        w.headline(msg);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Support movement
+// ---------------------------------------------------------------------------
+
+/// The four things a government is judged on, each 0 (fine) to 1 (unbearable).
+/// `order` alone may exceed 1: it carries separatism on top of the stability
+/// gap, which is why `blocs::discontent` clamps it before weighing it.
+pub(crate) struct Pains {
+    pub(crate) prices: f64,
+    pub(crate) growth: f64,
+    pub(crate) war: f64,
+    pub(crate) order: f64,
+}
+
+pub(crate) fn pains(w: &WorldState, id: NationId) -> Pains {
+    let n = w.nation(id);
+    Pains {
+        // Anything above 3% starts to be felt; 18% is where a government is
+        // being judged on nothing else.
+        prices: ((n.inflation - 0.03) / 0.15).clamp(0.0, 1.0),
+        // A percent of growth is neutral; a 4% contraction is a catastrophe.
+        growth: (((0.01 - n.growth_last) / 0.05).clamp(0.0, 1.0)
+            + crate::population::hardship(w, id)).clamp(0.0, 1.0),
+        war: n.war_exhaustion.clamp(0.0, 1.0),
+        order: ((60.0 - n.stability) / 60.0).clamp(0.0, 1.0) + n.separatism * 0.4,
+    }
+}
+
+/// How attractive an opposition family is, given what is currently hurting. This
+/// is the whole claim of the module in one function: support does not move
+/// because a player nudged it, it moves because prices are up and that is worth
+/// something specific to specific people.
+fn appeal(family: Family, pn: &Pains, development: f64) -> f64 {
+    let base = 0.15;
+    base + match family {
+        // A recession is the left's argument, and the harder the recession the
+        // further left it goes.
+        Family::Communist => pn.growth * 1.30 + pn.prices * 0.10,
+        Family::SocialDemocratic => pn.growth * 0.95 + pn.order * 0.10,
+        // Sound money is the right's, and it is the only pain they gain from.
+        Family::Conservative => pn.prices * 1.00 + pn.order * 0.35,
+        Family::Liberal => pn.prices * 0.80 + (1.0 - pn.order) * 0.20,
+        Family::ChristianDemocratic => pn.prices * 0.70 + pn.order * 0.25,
+        // Disorder, a war going badly, and a state coming apart are the
+        // nationalist and religious families' whole market.
+        Family::Nationalist => pn.order * 1.20 + pn.war * 0.80,
+        Family::Religious => pn.order * 0.90 + pn.growth * 0.40,
+        Family::Regionalist => pn.order * 1.00,
+        Family::Agrarian => pn.prices * 0.40 + pn.growth * 0.40,
+        // A postmaterial vote needs a country that is not frightened about money.
+        Family::Green => (1.0 - pn.growth) * (1.0 - pn.prices) * development * 0.90,
+        Family::BigTent => 0.25,
+    }
+}
+
+/// The incumbent is accountable for the same four pains that give opposition
+/// parties and movements their appeal. Disorder used to enter the opposition's
+/// allocation weights without costing the government any support: a state
+/// losing control of its streets could still gain support each month.
+/// Order uses the same modeled weight as prices and growth; its separatism
+/// component is capped as it is in the discontent gauge.
+fn governing_record(pn: &Pains) -> f64 {
+    0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war + 0.90 * pn.order.min(1.0))
+}
+
+/// Accountability follows the actual incumbent through an institutional
+/// opening. An interim table has not yet replaced that authority. Attribute
+/// a regime's record to a party only when its live office explicitly names
+/// that party and its programme agrees; a military/court movement stays a
+/// regime record rather than acquiring a fictional partisan history.
+fn record_identity(w: &WorldState, id: NationId) -> Option<(String, Option<String>)> {
+    let g = state(w, id)?;
+    let electoral = is_electoral(w, id);
+    if w.rules.ideology_blocs && (!electoral || g.awaiting_first_election) {
+        let bloc = g.regime_bloc?;
+        let regime = format!("regime:{bloc:?}");
+        if let Some(crate::data::Tie::Party(party)) = crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) {
+            if bloc_of(id, &party) == bloc
+                && polity_in(w, id).is_some_and(|p| p.parties.iter().any(|s| s.id == party.as_str()))
+            {
+                // Older saves named this same current authority by its bloc.
+                // Rekey its observed record; do not reset or invent a past.
+                return Some((format!("party:{party}"), Some(regime)));
+            }
+        }
+        return Some((regime, None));
+    }
+    if electoral {
+        g.leader().map(|party| (format!("party:{party}"), None))
+    } else {
+        g.regime_bloc.map(|bloc| (format!("regime:{bloc:?}"), None))
+    }
+}
+
+/// Voters judge a governing term, not only conditions near the next ballot.
+/// The country's ordinary term supplies the rolling memory's time constant;
+/// current conditions carry one quarter of the judgement and the record three
+/// quarters. These are design choices, not empirical electoral estimates.
+/// Existing saved performance remains a prior estimate, never reinterpreted as
+/// an exact historical sum. Sustained recovery eventually replaces it. No RNG.
+fn remembered_record(w: &mut WorldState, id: NationId, pn: &Pains) -> f64 {
+    let current = governing_record(pn);
+    let dt = crate::clock::month_fraction(w);
+    let term = polity_in(w, id).map_or(48, |p| p.term_months).max(1) as f64;
+    let learning = crate::clock::blend(w, 1.0 / term);
+    let Some((government, legacy_identity)) = record_identity(w, id) else { return current; };
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return current,
+    };
+    if let Some(memory) = &mut g.political_record {
+        if legacy_identity.as_deref() == Some(memory.government.as_str()) {
+            memory.government = government.clone();
+        }
+    }
+    if g.political_record.as_ref().is_none_or(|r| r.government != government) {
+        g.political_record = Some(PoliticalRecord { government, months: 0.0, performance: current });
+    }
+    let memory = g.political_record.as_mut().unwrap();
+    memory.months += dt;
+    memory.performance += (current - memory.performance) * learning;
+    0.25 * current + 0.75 * memory.performance
+}
+
+/// Bad government can lose a mandate within a term; good government earns it
+/// more slowly from an opposition that has its own loyal voters. Design rates
+/// are 2.4% of the incumbent pool per unit of adverse record per month, versus
+/// 1% of the opposition pool times its remaining contestable share for gains.
+/// Neither direction can transfer more than 1.5 percentage points a month.
+const ADVERSE_RECORD_RESPONSE: f64 = 0.024;
+fn performance_transfer(record: f64, held: f64, dt: f64) -> f64 {
+    if record < 0.0 {
+        -(-record * ADVERSE_RECORD_RESPONSE * held).min(0.015).min(held) * dt
+    } else {
+        let available = (1.0 - held).max(0.0);
+        (record * 0.010 * available * available).min(0.015).min(available) * dt
+    }
+}
+
+/// Bound the complete change after constituency reversion, floors and
+/// normalisation, not just its performance component. Half the L1 distance
+/// counts each transferred voter once. A convex blend of the old and candidate
+/// distributions preserves their sum and nonnegative shares.
+fn bound_vote_change<T>(before: &[f64], after: &mut [(T, f64)], limit: f64) {
+    debug_assert_eq!(before.len(), after.len());
+    let transferred: f64 = before.iter().zip(after.iter())
+        .map(|(old, (_, new))| (new - old).abs()).sum::<f64>() * 0.5;
+    if transferred > limit {
+        let fraction = limit.max(0.0) / transferred;
+        for (old, (_, new)) in before.iter().zip(after.iter_mut()) {
+            *new = old + (*new - old) * fraction;
+        }
+    }
+}
+
+/// One month of the electorate changing its mind. Monthly, so the coefficients
+/// are small; a bad year moves five to ten points, which is about what a bad
+/// year does.
+pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
+    let dt = crate::clock::month_fraction(w);
+    // A last election is a constituency estimate, not a permanent vote quota.
+    // A 0.5% monthly pull preserves an anchor without undoing a bad term in
+    // about three years, as the old 2% snapback did.
+    let reversion = crate::clock::blend(w, 0.005);
+    let pn = pains(w, id);
+    let development = {
+        let n = w.nation(id);
+        (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
+    };
+    // The government's record. Note where the zero sits: a government with
+    // nothing going wrong gains only a little, and it takes rather less than
+    // half of one pain to put it under water. The first draft put the neutral
+    // point at the *midpoint* of the pain scale, which meant a government
+    // fighting a war it was visibly losing still gained support every month as
+    // long as the economy was fine — and it was why an incumbent's support crept
+    // upward for forty years with nothing ever pushing back.
+    let record = remembered_record(w, id, &pn);
+    let incumbents: Vec<String> = match state(w, id) {
+        Some(g) if w.rules.ideology_blocs && g.awaiting_first_election => {
+            // The leading list in a provisional table has not taken power.
+            // Charge the actual continuing party, when one is known. A
+            // military/court interim keeps its programme record but cannot
+            // debit that history from an unvoted civilian opposition list.
+            record_identity(w, id).and_then(|(key, _)| {
+                key.strip_prefix("party:")
+                    .filter(|party| g.support.iter().any(|(id, _)| id.as_str() == *party))
+                    .map(|party| vec![party.to_string()])
+            }).unwrap_or_default()
+        }
+        Some(g) => g.coalition.clone(),
+        None => return,
+    };
+    if incumbents.is_empty() {
+        return;
+    }
+    let families: Vec<(String, Family)> = match polity_in(w, id) {
+        Some(pol) => pol.parties.iter().map(|s| (s.id.to_string(), s.family)).collect(),
+        None => return,
+    };
+    // What flows out of (or into) the parties of government this month. Small,
+    // because it is a month: a bad year moves five or six points, which is about
+    // what a bad year does.
+    let appeals: Vec<(String, f64)> = families
+        .iter()
+        .filter(|(pid, _)| !incumbents.contains(pid))
+        .map(|(pid, f)| {
+            let reach = state(w, id).map_or(0.002, |g| g.support_of(pid).max(0.002));
+            (pid.clone(), appeal(*f, &pn, development).max(0.01) * reach)
+        })
+        .collect();
+    let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
+    let held: f64 = incumbents.iter().map(|p| g.support_of(p)).sum();
+    let before: Vec<f64> = g.support.iter().map(|(_, s)| *s).collect();
+    // A party with nothing left cannot lose more, and one with everything
+    // cannot gain: the transfer is bounded by what exists on each side.
+    let moved = performance_transfer(record, held, dt);
+    let leading = incumbents.first().map(String::as_str);
+    let responsibility: f64 = incumbents.iter().map(|p| {
+        g.support_of(p) * if moved < 0.0 && Some(p.as_str()) == leading { 2.0 } else { 1.0 }
+    }).sum();
+    for e in g.support.iter_mut() {
+        if incumbents.contains(&e.0) {
+            // The leading party is more accountable than a junior partner.
+            // Purely proportional losses locked their ranking forever, making
+            // a coalition leader immune to replacement by its own electorate.
+            let weight = if moved < 0.0 && Some(e.0.as_str()) == leading { 2.0 } else { 1.0 };
+            let share = if responsibility > 0.0 { e.1 * weight / responsibility } else { 0.0 };
+            e.1 += moved * share;
+        } else if appeal_total > 0.0 {
+            let a = appeals.iter().find(|(p, _)| *p == e.0).map(|(_, a)| *a).unwrap_or(0.0);
+            // A government gaining votes draws from actual opposition voters;
+            // appeal chooses where a loss goes, not how to overdraw a small
+            // party and create votes when its floor is applied.
+            let share = if moved >= 0.0 { e.1 / (1.0 - held).max(1e-12) } else { a / appeal_total };
+            e.1 -= moved * share;
+        }
+        e.1 = e.1.max(0.002);
+    }
+    // Constituency reversion uses the latest real, fully legal ballot. A new
+    // election supplies newer evidence than the opening 1990 estimate; a
+    // reshuffle or an annulled vote does not. The anchor stays fixed between
+    // elections, and diminishing gains plus the complete transfer bound still
+    // prevent a month's good performance from manufacturing a monopoly.
+    for e in g.support.iter_mut() {
+        let base = g.vote_anchor.as_ref()
+            .and_then(|anchor| anchor.iter().find(|(party, _)| *party == e.0))
+            .map_or_else(|| base_share(id, &e.0), |(_, share)| *share);
+        e.1 += (base - e.1) * reversion;
+        e.1 = e.1.max(0.002);
+    }
+    normalise(&mut g.support);
+    bound_vote_change(&before, &mut g.support, 0.015 * dt);
+}
+
+// ---------------------------------------------------------------------------
+// Movement drift (the political arm, S3)
+// ---------------------------------------------------------------------------
+
+/// The families that stand for a bloc in a polity whose dormant table carries
+/// no party of that bloc — a bloc present only through its installing pillar.
+/// Western is the MEAN of the three families that made up the Western
+/// mainstream of 1990 and Non-Aligned is the state big tent (design S3); the
+/// other three blocs map to one family each, so their representative is that
+/// family.
+fn representative_families(bloc: Bloc) -> &'static [Family] {
+    match bloc {
+        Bloc::Western => &[Family::Liberal, Family::SocialDemocratic, Family::Conservative],
+        Bloc::Communist => &[Family::Communist],
+        Bloc::Nationalist => &[Family::Nationalist],
+        Bloc::Islamist => &[Family::Religious],
+        Bloc::NonAligned => &[Family::BigTent],
+    }
+}
+
+/// appeal_B: the MEAN of `appeal` over the bloc's member families in the
+/// dormant table — never the max, so a bloc with one extreme party does not
+/// collect every grievance — and over `representative_families` where the
+/// table carries none. Floored at 0.01 as `drift_support` floors a party's.
+fn bloc_appeal(w: &WorldState, id: NationId, bloc: Bloc, pn: &Pains, development: f64) -> f64 {
+    let members: Vec<Family> = polity_in(w, id)
+        .map(|pol| {
+            pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.family).collect()
+        })
+        .unwrap_or_default();
+    let families: &[Family] =
+        if members.is_empty() { representative_families(bloc) } else { &members };
+    let sum: f64 = families.iter().map(|f| appeal(*f, pn, development)).sum();
+    (sum / families.len() as f64).max(0.01)
+}
+
+fn normalise_blocs(v: &mut [(Bloc, f64)]) {
+    let total: f64 = v.iter().map(|(_, s)| *s).sum();
+    if total <= 0.0 {
+        return;
+    }
+    for e in v.iter_mut() {
+        e.1 /= total;
+    }
+}
+
+/// Competitive dormant party tables contain information about organization
+/// that an equal split among pillars discards. Blend that constituency with
+/// the institutional seed at equal weight. A table carrying only the ruling
+/// bloc is not evidence that everyone supports it, so it keeps the existing
+/// institutional estimate. Shares remain proxies, not invented opinion polls.
+fn movement_constituencies(w: &WorldState, id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
+    let mut seed = crate::blocs::flat_seed(w, id, ruling);
+    let Some(pol) = polity_in(w, id) else { return seed; };
+    if !pol.parties.iter().any(|p| bloc_of(id, p.id) != ruling && p.family != Family::Regionalist) {
+        return seed;
+    }
+    let total: f64 = pol.parties.iter().map(|p| p.start.max(0.001)).sum();
+    if total <= 0.0 { return seed; }
+    for (bloc, share) in &mut seed {
+        let constituency: f64 = pol.parties.iter().filter(|p| bloc_of(id, p.id) == *bloc)
+            .map(|p| p.start.max(0.001) / total).sum();
+        *share = (0.5 * *share + 0.5 * constituency).max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut seed);
+    seed
+}
+
+/// Organised civilian constituencies excluded from choosing a government can
+/// ask for representation without an economic collapse. Dormant party shares
+/// are model proxies (some are transcribed from later elections), not current
+/// polls. The actual leader's party is represented; other parties count even
+/// when they share its bloc. A pillar-led regime represents no civilian party.
+/// Single-party, partyless, unidentifiable and already electoral governments
+/// do not acquire an invented opposition through this read-only helper.
+pub fn franchise_demand(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || is_electoral(w, id) || state(w, id).is_none() {
+        return 0.0;
+    }
+    let Some(pol) = polity_in(w, id) else { return 0.0; };
+    let civilian: Vec<&PartySpec> = pol.parties.iter()
+        .filter(|p| p.family != Family::Regionalist).collect();
+    if civilian.len() < 2 { return 0.0; }
+    let represented = match crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) {
+        Some(crate::data::Tie::Party(party)) => {
+            if !civilian.iter().any(|p| p.id == party) { return 0.0; }
+            Some(party)
+        }
+        Some(crate::data::Tie::Pillar(_)) => None,
+        None => return 0.0,
+    };
+    let total: f64 = civilian.iter().map(|p| p.start.max(0.0)).sum();
+    if total <= 0.0 { return 0.0; }
+    let excluded: f64 = civilian.iter()
+        .filter(|p| represented.as_deref() != Some(p.id))
+        .map(|p| p.start.max(0.0)).sum();
+    (excluded / total * w.nation(id).authoritarianism.clamp(0.0, 1.0)).clamp(0.0, 1.0)
+}
+
+/// One month of a regime's country changing its mind — the sibling of
+/// `drift_support` for a state that holds no elections, built to the same
+/// shape so the two cannot disagree in kind. The ruling bloc wears the
+/// government's record (the same `record` line, off the same `pains`); what
+/// it loses flows to the non-ruling blocs PRESENT in the polity in proportion
+/// to `bloc_appeal`; then everything reverts toward its constituency estimate
+/// at the same 0.005 monthly rate as the electorate. Every bloc is floored at
+/// `SHARE_FLOOR`, and the five are normalised. Draws no RNG.
+///
+/// INERT WITH THE SWITCH OFF: returns on `rules.ideology_blocs` before it
+/// reads anything, and with the switch on it touches movements and their
+/// remembered governing record, never the RNG.
+pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    let (ruling, mut shares) = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => match g.regime_bloc {
+            Some(r) => (r, g.movements.clone()),
+            None => return,
+        },
+        _ => return,
+    };
+    let dt = crate::clock::month_fraction(w);
+    let reversion = crate::clock::blend(w, 0.005);
+    let before: Vec<f64> = shares.iter().map(|(_, s)| *s).collect();
+    let pn = pains(w, id);
+    let development = {
+        let n = w.nation(id);
+        (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
+    };
+    let record = remembered_record(w, id, &pn);
+    let appeals: Vec<(Bloc, f64)> = Bloc::ALL
+        .iter()
+        .copied()
+        .filter(|b| *b != ruling && crate::blocs::bloc_present(w, id, *b))
+        .map(|b| (b, bloc_appeal(w, id, b, &pn, development)))
+        .collect();
+    let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
+    let held = shares[ruling as usize].1;
+    // Bounded by what exists on each side, exactly as a party's transfer is.
+    let moved = performance_transfer(record, held, dt);
+    if appeal_total > 0.0 {
+        let available: f64 = appeals.iter().map(|(b, _)| shares[*b as usize].1).sum();
+        shares[ruling as usize].1 += moved;
+        for (b, a) in &appeals {
+            let weight = if moved >= 0.0 { shares[*b as usize].1 / available.max(1e-12) } else { a / appeal_total };
+            shares[*b as usize].1 -= moved * weight;
+        }
+        for e in shares.iter_mut() {
+            e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+        }
+    }
+    let seed = movement_constituencies(w, id, ruling);
+    for (i, e) in shares.iter_mut().enumerate() {
+        e.1 += (seed[i].1 - e.1) * reversion;
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut shares);
+    bound_vote_change(&before, &mut shares, 0.015 * dt);
+    if let Some(g) = state_mut(w, id) {
+        g.movements = shares;
+    }
+}
+
+/// The taint of an exposed foreign hand (S3): `points` of support taken off
+/// one bloc and the rest renormalised — in an electoral nation off the
+/// bloc's parties in proportion to their size, in a regime off
+/// `movements[bloc]`. Bounded by what the bloc holds and floored at
+/// `SHARE_FLOOR`, so a bloc with nothing cannot go negative. Writes nothing
+/// where the nation has no government, and nothing to a regime that carries
+/// no movements (the switch off). Draws no RNG.
+pub fn taint_bloc(w: &mut WorldState, id: NationId, bloc: Bloc, points: f64) {
+    let electoral = is_electoral(w, id);
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
+    if electoral {
+        let held: f64 = g
+            .support
+            .iter()
+            .filter(|(p, _)| bloc_of(id, p) == bloc)
+            .map(|(_, s)| *s)
+            .sum();
+        if held <= 0.0 {
+            return;
+        }
+        let taken = points.min(held);
+        for e in g.support.iter_mut() {
+            if bloc_of(id, &e.0) == bloc {
+                e.1 = (e.1 - taken * (e.1 / held)).max(0.002);
+            }
+        }
+        normalise(&mut g.support);
+    } else if g.movements.len() == 5 {
+        let e = &mut g.movements[bloc as usize];
+        e.1 = (e.1 - points).max(crate::blocs::SHARE_FLOOR);
+        normalise_blocs(&mut g.movements);
+    }
+}
+
+/// A non-ruling movement crossing 0.30 upward is news once; the latch clears
+/// under 0.25 so a movement oscillating on the line does not print every
+/// month. Both lines INVENTED (design S3, "passes a third"). Reads nothing
+/// when the regime carries no movements, which is every regime with the
+/// switch off.
+fn note_surges(w: &mut WorldState, id: NationId) {
+    let (ruling, shares, latched) = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => match g.regime_bloc {
+            Some(r) => (r, g.movements.clone(), g.surging.clone()),
+            None => return,
+        },
+        _ => return,
+    };
+    let mut fired: Vec<Bloc> = vec![];
+    let mut cleared: Vec<Bloc> = vec![];
+    for (b, s) in &shares {
+        if *b == ruling {
+            continue;
+        }
+        if *s >= 0.30 && !latched.contains(b) {
+            fired.push(*b);
+        } else if *s < 0.25 && latched.contains(b) {
+            cleared.push(*b);
+        }
+    }
+    if fired.is_empty() && cleared.is_empty() {
+        return;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.surging.retain(|b| !cleared.contains(b));
+        g.surging.extend(fired.iter().copied());
+    }
+    for b in fired {
+        w.headline(format!(
+            "The {} movement in {} passes a third of the country.",
+            b.label(),
+            id.name()
+        ));
+    }
+}
+
+/// The liberalisation seam (S3): when a regime's first free elections are
+/// scheduled, the dormant party table is seated from the MOVEMENTS rather than
+/// from the last pre-1990 result — each party receives its bloc's share times
+/// its table weight within the bloc. A bloc that has a movement but no party
+/// to carry it (present through a pillar alone: an army with no nationalist
+/// party) is absent from that ballot, the represented votes renormalised,
+/// and the exclusion returned as a clause for the headline. Keep the stored
+/// movements so the national view retains those unrepresented constituents,
+/// and the incumbent programme until an actual handover. Returns `None`, and writes nothing, with the
+/// switch off or where there are no movements to read.
+fn reseed_support_from_movements(w: &mut WorldState, id: NationId) -> Option<String> {
+    let (support, lost) = reseeded_support(w, id)?;
+    if let Some(g) = state_mut(w, id) {
+        g.support = support;
+        g.surging.clear();
+    }
+    lost
+}
+
+/// The seam's arithmetic as a pure read: the support it would seat and the
+/// clause for what is lost, or `None` where it would write nothing (the
+/// switch off, no movements, no parties). `reseed_support_from_movements`
+/// writes exactly this, and the round table's card quotes it.
+fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>, Option<String>)> {
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let movements = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g.movements.clone(),
+        _ => return None,
+    };
+    let pol = polity_in(w, id)?;
+    if pol.parties.is_empty() {
+        return None;
+    }
+    let share_of = |b: Bloc| movements.iter().find(|(x, _)| *x == b).map_or(0.0, |(_, s)| *s);
+    let mut support: Vec<(String, f64)> = vec![];
+    for s in pol.parties {
+        let bloc = bloc_of(id, s.id);
+        let within: f64 = pol
+            .parties
+            .iter()
+            .filter(|p| bloc_of(id, p.id) == bloc)
+            .map(|p| p.start.max(0.001))
+            .sum();
+        support.push((s.id.to_string(), share_of(bloc) * s.start.max(0.001) / within));
+    }
+    let mut lost: Vec<String> = vec![];
+    for b in Bloc::ALL {
+        let carried = pol.parties.iter().any(|p| bloc_of(id, p.id) == b);
+        if !carried && crate::blocs::bloc_present(w, id, b) {
+            lost.push(format!(
+                "the {} movement, {:.0}% of the country, has no party to carry it",
+                b.label(),
+                share_of(b) * 100.0
+            ));
+        }
+    }
+    normalise(&mut support);
+    let lost = if lost.is_empty() { None } else { Some(lost.join(" and ")) };
+    Some((support, lost))
+}
+
+/// A regime that has just opened up owes the country a vote: date it
+/// `months` out, seat the dormant table from the movements (the
+/// liberalisation seam, a no-op with the arm off), clear the pillars and the
+/// pressure, and form the interim government. Returns the seam's clause for
+/// the bloc no party carries. Called by the tick when authoritarianism has
+/// fallen under the ceiling by any route (18 months), and by the round table
+/// (6). Draws no RNG.
+fn schedule_first_elections(w: &mut WorldState, id: NationId, months: u32) -> Option<String> {
+    let when = add_months(w.year, w.month, months);
+    let lost = reseed_support_from_movements(w, id);
+    let takeover = w.rules.ideology_takeover;
+    let lens = w.rules.ideology_blocs;
+    if let Some(g) = state_mut(w, id) {
+        g.next_election = when;
+        if lens {
+            g.awaiting_first_election = true;
+            g.elected = false;
+            g.unrestricted_mandate = false;
+            g.opening_mandate = None;
+        }
+        // An electoral state keeps no pillars — except, under the roads (S4,
+        // route 2), the two that can remove an elected government: the Army
+        // and the Security service stay, at the loyalty they had, and the
+        // electoral branch keeps walking them.
+        if takeover {
+            g.pillars.retain(|(p, _)| matches!(p, Pillar::Army | Pillar::Security));
+        } else {
+            g.pillars.clear();
+        }
+        g.coup_pressure = 0.0;
+    }
+    form_government(w, id, false);
+    lost
+}
+
+// ---------------------------------------------------------------------------
+// Elections
+// ---------------------------------------------------------------------------
+
+fn add_months(y: i32, m: u32, months: u32) -> (i32, u32) {
+    let total = (m - 1) + months;
+    (y + (total / 12) as i32, total % 12 + 1)
+}
+
+fn due(w: &WorldState, g: &GovState) -> bool {
+    let (y, m) = g.next_election;
+    y > 0 && (w.year > y || (w.year == y && w.month >= m))
+}
+
+/// An opening chamber can already name the eventual winning party while the
+/// sourced prime minister still belongs to the outgoing government. Only an
+/// explicitly parliamentary office is reconciled with that first ballot;
+/// a presidency, crown or unknown role is not inferred from a country list.
+fn parliamentary_office_party_mismatch(w: &WorldState, id: NationId, winner: &str) -> bool {
+    if !w.rules.ideology_blocs { return false; }
+    let Some(row) = crate::blocs::leader_row(w, id) else { return false; };
+    let office = row.emergent.as_ref().map_or(row.office.as_str(), |e| e.office.as_str());
+    let parliamentary = office == "Prime Minister" || office.starts_with("Prime Minister ")
+        || matches!(office, "Federal Chancellor" | "Chairman of the Council of Ministers"
+            | "President of the Council of Ministers" | "President of the Government" | "head of government");
+    parliamentary && matches!(row.tie_now(), Some(crate::data::Tie::Party(ref party))
+        if party != winner && spec(id, party).is_some() && spec(id, winner).is_some())
+}
+
+/// Run one.
+///
+/// **This module draws no random numbers, on purpose.** Everything here is a
+/// function of what the economy did to people, and the world's single RNG is
+/// left untouched. That is not fastidiousness: the first draft rolled a
+/// campaign swing, a coup die and an AI patronage die, and every one of those
+/// draws shifted the shared stream, which reshuffled the histories that
+/// `china_growth_miracle`, `arms_transfers_build_a_client_army` and
+/// `a_pact_drags_a_great_power_into_a_war_it_did_not_start` are calibrated
+/// against. Three of them went red, then a different three, then a different
+/// three again, with the failures moving around between runs of a tuning pass —
+/// the signature of stream noise rather than a defect. Elections still differ
+/// wildly between seeds, because the inflation and the growth and the wars they
+/// are fought on differ between seeds.
+///
+/// An election is therefore a straight readout of where opinion has drifted to,
+/// run through the seat formula. The first draft also amplified the leader's
+/// share on the way in — the wasted-vote psychology Duverger named — but
+/// applying that to the stored support rather than to the result made it
+/// compound election after election: Solidarity went 60%, 75%, 92%, 100% of the
+/// Sejm and Poland became a one-party state by 1999. Manufacturing majorities is
+/// the seat formula's job, and it does it once per election instead of
+/// permanently rewriting the electorate.
+pub fn hold_election(w: &mut WorldState, id: NationId) {
+    let sys = match polity_in(w, id) {
+        Some(p) => p.system,
+        None => return,
+    };
+    let term = polity_in(w, id).map(|p| p.term_months).unwrap_or(48);
+    let count = state(w, id).map(|g| g.support.len()).unwrap_or(0);
+    if count == 0 {
+        return;
+    }
+    let (y, m) = (w.year, w.month);
+    crate::opening_mandates::clear(w, id);
+    let on = w.rules.ideology_blocs;
+    let led_before: Option<String> = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
+    let first_free = on && state(w, id).is_some_and(|g| g.awaiting_first_election);
+    let first_modeled_ballot = on && is_electoral(w, id) && state(w, id).is_some_and(|g| !g.elected);
+    let prior_elected_months = state(w, id)
+        .filter(|g| g.elected && g.unrestricted_mandate && !g.awaiting_first_election && g.banned.is_empty())
+        .map_or(0, |g| g.months_in_office);
+    if let Some(g) = state_mut(w, id) {
+        normalise(&mut g.support);
+        // `seats_from` itself, with the arm off or nothing banned.
+        let banned = g.banned.clone();
+        g.seats = seats_from_legal(on, &g.support, sys, &banned);
+        g.next_election = add_months(y, m, term);
+        // Under the lens an annulled result is not a completed election.
+        // The off path keeps the historical statement in its original order.
+        if !on { g.elected = true; }
+    }
+    // The annulment (S4): after the seats and before the formation, the
+    // army may refuse the result. Nothing while the takeover switch is off.
+    if annul_election(w, id) {
+        return;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.elected = true;
+        if on { g.unrestricted_mandate = g.banned.is_empty(); }
+    }
+    form_government(w, id, true);
+    if let Some(g) = state_mut(w, id) {
+        // Do not turn a ban's missing voters, an empty chamber, or the earlier
+        // annulment branch into a new estimate of the whole constituency.
+        if (!on || g.banned.is_empty()) && g.seats.iter().any(|(_, share)| *share > 0.0) {
+            g.vote_anchor = Some(g.support.clone());
+        }
+    }
+    // Succession (D2): a NEW leading party seats "the {party} government";
+    // the same leading party as before the vote keeps whoever held the
+    // office (the Congress the table seats for the United States is led by
+    // the Democrats before and after 1992, and Bush stays until his
+    // ceiling). At the first completed ballot, a sourced parliamentary office
+    // must also agree with the actual winner, even if the opening chamber was
+    // already seeded with that party (Hungary in 1990). Nothing with the lens off.
+    let leads_now = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
+    let regime_handover = first_free && crate::blocs::leader_row(w, id).is_some_and(|row| {
+        matches!(row.tie_now(), Some(crate::data::Tie::Pillar(Pillar::Army | Pillar::Security)))
+            // `by_pillar` creates this exact role for a model-generated regime
+            // office, including a Party takeover. An inherited crown keeps its
+            // sourced office (e.g. King), so a chamber cannot claim it here.
+            || row.emergent.as_ref().is_some_and(|e| e.office == "head of state" && e.pillar.is_some())
+    });
+    let mut actual_handover = false;
+    if let Some(leader) = leads_now.clone().filter(|l| Some(l) != led_before.as_ref() || regime_handover
+        || (first_modeled_ballot && parliamentary_office_party_mismatch(w, id, l))) {
+        // Keep the transition marker through succession: an original military
+        // ruler, like an emergent junta, yields to this first genuine ballot.
+        let succession = Succession::Election { leader };
+        actual_handover = on && succession_seat(w, id, &succession).is_some();
+        seat_office(w, id, &succession);
+    }
+    // A constitutional handover is evidence that civilians can actually
+    // transfer authority. Coups already increase authoritarianism; completed
+    // peaceful transfers must be able to consolidate civilian control too.
+    // Five points per full elected term is a game-design quantity, not a
+    // historical estimate. Prorating by the outgoing mandate's duration keeps
+    // repeated snap elections from manufacturing extra institutional gains.
+    if actual_handover && prior_elected_months > 0 && led_before.is_some() && leads_now != led_before
+        && state(w, id).is_some_and(|g| g.banned.is_empty())
+    {
+        let consolidation = 0.05 * (prior_elected_months as f64 / term.max(1) as f64).min(1.0);
+        let n = w.nation_mut(id);
+        n.authoritarianism = (n.authoritarianism - consolidation).max(0.05).min(n.authoritarianism);
+        crate::army_authority::consolidate_transfer(w, id, consolidation);
+    }
+    if first_free {
+        state_mut(w, id).unwrap().awaiting_first_election = false;
+    }
+}
+
+/// The party `form_government` would seat first from the seats as they
+/// stand: the most seats, ties by id.
+fn would_be_leader(g: &GovState) -> Option<String> {
+    let mut r: Vec<(String, f64)> = g.seats.iter().filter(|(_, v)| *v > 0.0).cloned().collect();
+    r.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal).then(a.0.cmp(&b.0)));
+    r.into_iter().next().map(|(p, _)| p)
+}
+
+/// The annulment's conditions, read without touching the world: the winner
+/// the army would refuse, or `None`. A live Army pillar in the state, and
+/// — R2, below — a HOSTILE one; the would-be coalition leader's bloc
+/// Communist or Islamist; authoritarianism at or over `ANNULMENT_AUTH`;
+/// discontent at or over `ANNULMENT_DISCONTENT`; and the monarchy exception
+/// NOT holding (a court that appoints the government has no election to
+/// annul — it dismisses). Lines INVENTED (design S4, the Algerian shape).
+/// `None` before any read with the takeover switch off.
+///
+/// R2, Ridge's ruling of 2026-09-06, quoted: "an election is annulled only
+/// by a HOSTILE army - effective_army_loyalty below ELECTORAL_COUP_ARMY
+/// (0.35), no new constant - because that is what history shows: Algeria's
+/// ANP in January 1992 was an army at war with the FIS; Jordan's 1989
+/// chamber was never annulled because the throne, not the army, held the
+/// state; Turkey's 1997 memorandum came from a hostile general staff." The
+/// census had read the merely-present army the other way (BUGS S5-8:
+/// Belarus and Ukraine annulled in 200/200 with an army seeded at 0.65 and
+/// never asked), so the road now reads the same effective loyalty route 2
+/// reads, against the same line.
+pub fn annulment_check(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_takeover {
+        return None;
+    }
+    let g = state(w, id)?;
+    if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
+        return None;
+    }
+    let winner = would_be_leader(g)?;
+    if !matches!(bloc_of(id, &winner), Bloc::Communist | Bloc::Islamist) {
+        return None;
+    }
+    let effective = crate::blocs::effective_army_loyalty(w, id);
+    let prospective = army_programme_veto_loyalty(w, id, &winner);
+    if prospective >= ELECTORAL_COUP_ARMY {
+        return None;
+    }
+    if w.nation(id).authoritarianism < ANNULMENT_AUTH {
+        return None;
+    }
+    // Material disloyalty still needs the existing popular-crisis condition.
+    // A separately established institutional veto of the incoming programme
+    // is a political crisis even when prices and output have recovered.
+    if crate::blocs::discontent(w, id) < ANNULMENT_DISCONTENT && prospective >= effective {
+        return None;
+    }
+    if crate::blocs::court_pillar(w, id).is_some() {
+        return None;
+    }
+    Some(winner)
+}
+
+pub const ANNULMENT_AUTH: f64 = 0.35;
+pub const ANNULMENT_DISCONTENT: f64 = 0.25;
+
+/// The annulment's break: every party of the winner's bloc banned, then the
+/// electoral break (`break_electoral`) with the headline "the army annuls
+/// the election {party} won". Returns whether it fired.
+fn annul_election(w: &mut WorldState, id: NationId) -> bool {
+    let winner = match annulment_check(w, id) {
+        Some(p) => p,
+        None => return false,
+    };
+    let bloc = bloc_of(id, &winner);
+    let members: Vec<String> = polity_in(w, id)
+        .map(|pol| pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.id.to_string()).collect())
+        .unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        for p in members {
+            if !g.banned.contains(&p) {
+                g.banned.push(p);
+            }
+        }
+    }
+    let name = spec(id, &winner).map(|s| s.name).unwrap_or("the largest party");
+    break_electoral(
+        w,
+        id,
+        format!("COUP IN {}: the army annuls the election {} won.", id.name().to_uppercase(), name),
+    );
+    true
+}
+
+// ---------------------------------------------------------------------------
+// What holding a government together costs
+// ---------------------------------------------------------------------------
+
+/// The strain of the government a nation is currently running. Zero for a
+/// single-party majority; it climbs with the number of partners, with how far
+/// apart they are, and hardest of all when the government does not have the
+/// votes at all.
+pub fn strain(w: &WorldState, id: NationId) -> f64 {
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return 0.0,
+    };
+    if !is_electoral(w, id) || g.coalition.is_empty() {
+        return 0.0;
+    }
+    let leader = g.coalition[0].clone();
+    let mut s = 0.0;
+    for partner in g.coalition.iter().skip(1) {
+        s += 1.0 + distance(id, &leader, partner) * 1.6;
+    }
+    if g.government_seats() < 0.5 {
+        // Governing without a majority means buying every vote separately.
+        s += 2.5;
+    }
+    // Capped, because past a certain point a chamber is simply ungovernable and
+    // the model should say "ungovernable" rather than keep multiplying. Israel's
+    // 1988 Knesset reaches this ceiling; so does Bosnia's 1990 assembly.
+    s.min(8.0)
+}
+
+/// What the government's own composition does to the standing it can hold.
+/// Read by `politics::political_capital`, which is where the two currencies
+/// meet: a coalition is not a modifier on a slider, it is a claim on the same
+/// budget everything else in the game is priced in.
+pub fn standing_modifier(w: &WorldState, id: NationId) -> f64 {
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return 0.0,
+    };
+    // This is deliberately a tax and not a bonus. A single-party majority is the
+    // neutral case, worth nothing extra; everything else is a deduction. The
+    // first draft paid +5 for a majority and it quietly cancelled a third of
+    // what a war costs a government at home — `a_war_costs_a_government_at_home`
+    // went from a nine-point gap to a three-point one, because the flat credit
+    // lifted the war-torn government's target above its own stock and it started
+    // climbing instead of falling. A modifier that pays everyone is not a
+    // constraint, it is a rescaling.
+    if is_electoral(w, id) {
+        let mut m = -strain(w, id) * 1.8;
+        // A new government gets a few months of grace and no more. Note the
+        // shape: it decays to nothing inside half a year, so it cannot become a
+        // standing credit the way the flat majority bonus in the first draft
+        // did — that one cancelled a third of what a war costs at home.
+        if g.months_in_office < 6 && g.elected {
+            m += 6.0 - g.months_in_office as f64 - g.office_month_fraction;
+        }
+        m
+    } else {
+        // The other half: legitimacy bought rather than voted for. A regime that
+        // is paying all of its institutions is merely solvent — that is the zero
+        // — and one that has stopped paying bleeds standing that nothing it
+        // delivers can replace.
+        ((g.mean_loyalty() - 0.75) * 24.0).min(2.0)
+    }
+}
+
+/// Political capital a month, burned simply to keep the government standing.
+pub fn upkeep(w: &WorldState, id: NationId) -> f64 {
+    strain(w, id) * 0.20
+}
+
+/// What it costs to bring one more party into the cabinet: a flat price for the
+/// negotiation and a steep one for the distance.
+pub fn invite_price(w: &WorldState, id: NationId, party: &str) -> f64 {
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return 0.0,
+    };
+    let leader = match g.leader() {
+        Some(l) => l.to_string(),
+        None => return 12.0,
+    };
+    10.0 + distance(id, &leader, party) * 14.0
+}
+
+// ---------------------------------------------------------------------------
+// Commands
+// ---------------------------------------------------------------------------
+
+/// Why an invitation would be refused, read without touching the world. The
+/// ONE place the prose lives: `invite` asks this first and the government
+/// screen serves it beside the price, so the button and the refusal cannot
+/// disagree (iron rule 8, applied to a sentence).
+pub fn invite_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    if !is_electoral(w, id) {
+        return Some(format!("{} does not form governments by negotiation.", id.name()));
+    }
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    if g.in_government(party) {
+        return Some(format!("{} is already in the government.", s.name));
+    }
+    if s.pariah {
+        return Some(format!("No party in {} will sit in cabinet with {}.", id.name(), s.name));
+    }
+    if let Some(leader) = g.leader().and_then(|p| spec(id, p)).filter(|s| s.pariah) {
+        return Some(format!("No party in {} will sit in cabinet with {}.", id.name(), leader.name));
+    }
+    if g.seat_share(party) <= 0.0 {
+        return Some(format!("{} holds no seats.", s.name));
+    }
+    None
+}
+
+/// Why an expulsion would be refused. See `invite_refusal`.
+pub fn expel_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    if !g.in_government(party) {
+        return Some(format!("{} is not in the government.", s.name));
+    }
+    if g.leader() == Some(party) {
+        return Some("A government cannot expel the party that leads it.".into());
+    }
+    None
+}
+
+/// Why an early election would be refused. See `invite_refusal`.
+pub fn call_election_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !is_electoral(w, id) {
+        return Some(format!("{} does not hold elections.", id.name()));
+    }
+    if state(w, id).is_none_or(|g| g.months_in_office < 6) {
+        return Some("A government six months old cannot go back to the country yet.".into());
+    }
+    None
+}
+
+/// Why paying an institution would be refused. See `invite_refusal`.
+pub fn secure_pillar_refusal(w: &WorldState, id: NationId, pillar: Pillar) -> Option<String> {
+    if is_electoral(w, id) {
+        return Some(format!("{} answers to an electorate, not to its institutions.", id.name()));
+    }
+    if polity_in(w, id).and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar)).is_none() {
+        return Some(format!("{} has no such institution.", id.name()));
+    }
+    match state(w, id) {
+        None => Some("no regime".into()),
+        Some(g) if !g.pillars.iter().any(|(p, _)| *p == pillar) => Some("no such pillar".into()),
+        Some(_) => None,
+    }
+}
+
+pub fn invite(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    if let Some(why) = invite_refusal(w, id, party) {
+        return Err(why);
+    }
+    let name = spec(id, party).map(|s| s.name).unwrap_or(party);
+    if let Some(g) = state_mut(w, id) {
+        g.coalition.push(party.to_string());
+    }
+    w.headline(format!("{} brings {} into the government.", id.name(), name));
+    Ok(())
+}
+
+pub fn expel(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    if let Some(why) = expel_refusal(w, id, party) {
+        return Err(why);
+    }
+    let name = spec(id, party).map(|s| s.name).unwrap_or(party);
+    if let Some(g) = state_mut(w, id) {
+        g.coalition.retain(|p| p != party);
+    }
+    // The party that was thrown out takes its grievance to the country.
+    if let Some(g) = state_mut(w, id) {
+        if let Some(e) = g.support.iter_mut().find(|(p, _)| p == party) {
+            e.1 = (e.1 * 1.06).min(0.95);
+        }
+        normalise(&mut g.support);
+    }
+    let lost_majority = state(w, id).is_some_and(|g| g.government_seats() < 0.5);
+    if lost_majority {
+        w.nation_mut(id).stability = (w.nation(id).stability - 4.0).max(0.0);
+    }
+    w.headline(format!(
+        "{} expels {} from the government{}.",
+        id.name(),
+        name,
+        if lost_majority { ", and loses its majority" } else { "" }
+    ));
+    Ok(())
+}
+
+pub fn call_election(w: &mut WorldState, id: NationId) -> Result<(), String> {
+    if let Some(why) = call_election_refusal(w, id) {
+        return Err(why);
+    }
+    w.headline(format!("{} goes to the country early.", id.name()));
+    hold_election(w, id);
+    Ok(())
+}
+
+/// Pay an institution to stay loyal. Patronage is fiscal before it is political:
+/// the army's loyalty is bought with the defence budget, the party's and the
+/// merchants' with the state's, and all of it goes on the debt.
+pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result<(), String> {
+    if let Some(why) = secure_pillar_refusal(w, id, pillar) {
+        return Err(why);
+    }
+    let name = polity_in(w, id)
+        .and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar))
+        .map(|s| s.name)
+        .unwrap_or("its institution");
+    {
+        let g = state_mut(w, id).ok_or("no regime")?;
+        let entry = g
+            .pillars
+            .iter_mut()
+            .find(|(p, _)| *p == pillar)
+            .ok_or("no such pillar")?;
+        entry.1 = (entry.1 + 0.20).min(1.0);
+        g.coup_pressure = (g.coup_pressure - 0.15).max(0.0);
+    }
+    // A one-off payment, borrowed: the bonus, the new headquarters, the fleet of
+    // cars. It is deliberately NOT a permanent addition to the defence budget.
+    // The first draft added 0.4pp of GDP to military spending every time a
+    // regime bought its army, and since the AI buys whenever loyalty sags, that
+    // ratcheted defence budgets upward for a century — Kuwait's peacetime army
+    // grew 40% on its own and `arms_transfers_build_a_client_army` failed
+    // because the baseline it measures against had been inflated. Standing
+    // budgets are what `SetMilSpend` is for, and the army's loyalty already
+    // reads that budget; this command is the envelope on top of it.
+    // 0.008 of output is the pre-treasury line unchanged; the dollars beside
+    // it are the same money, for a nation that keeps a treasury.
+    let envelope_bn = w.nation(id).gdp * 0.008;
+    crate::economy::charge_for(w, id, envelope_bn, 0.008, crate::fiscal_journal::CashCause::Patronage);
+    w.headline(format!("{} buys the loyalty of {}.", id.name(), name));
+    Ok(())
+}
+
+// ---------------------------------------------------------------------------
+// The five levers (the political arm, S3 part two)
+// ---------------------------------------------------------------------------
+//
+// Each lever is four functions off ONE plan. `*_refusal` is the prose, read
+// without touching the world — `lib::world_refusal` asks it before any state
+// is read, and the arm asks it again before it writes, so the button and the
+// refusal cannot disagree. `*_plan` computes every number the lever will
+// write, once, from the world as it stands, clamped where the world clamps.
+// The arm writes the plan's numbers and nothing else, and `*_effects` renders
+// the same plan for the card — so the sentence the player reads and the number
+// the world takes are the same number (iron rule 8), and a test can compare
+// them bit for bit. Nothing here draws the RNG; the government module never
+// does.
+
+/// The five prices, in political capital. INVENTED (design S3, approved
+/// 2026-09-05): read by `lib::command_price` and served by `lib::price_of`.
+pub const SUSPEND_PC: f64 = 40.0;
+pub const BAN_PC: f64 = 18.0;
+pub const LEGALIZE_PC: f64 = 12.0;
+pub const PROGRAMME_PC: f64 = 35.0;
+pub const ROUND_TABLE_PC: f64 = 30.0;
+
+/// The one sentence every lever answers with while `rules.ideology_blocs` is
+/// off — the same sentence `statecraft::back_bloc_refusal` gives.
+pub const NO_MOVEMENTS: &str = "This world does not model ideological movements.";
+
+/// A democracy, as the diplomatic arms of this tree read one: the line
+/// `stratagems` (`security_crackdown`, `liberalisation`) reads.
+pub const DEMOCRACY_BELOW: f64 = 0.30;
+
+/// Everyone alive under the democracy line but the actor, in roster order.
+pub(crate) fn democracies(w: &WorldState, except: NationId) -> Vec<NationId> {
+    w.nations
+        .iter()
+        .filter(|x| x.alive && x.authoritarianism < DEMOCRACY_BELOW && x.id != except)
+        .map(|x| x.id)
+        .collect()
+}
+
+fn fmt_shares(shares: &[(Bloc, f64)]) -> String {
+    shares.iter().map(|(b, s)| format!("{} {:.3}", b.label(), s)).collect::<Vec<_>>().join(", ")
+}
+
+/// The surge latch as a seed writes it: CLOSED for every non-ruling bloc
+/// already at or over the line, because a bloc handed 0.30 has not crossed
+/// it (`seed_blocs` seeds the same way).
+fn latched_at_seed(movements: &[(Bloc, f64)], ruling: Bloc) -> Vec<Bloc> {
+    movements.iter().filter(|(b, s)| *b != ruling && *s >= 0.30).map(|(b, _)| *b).collect()
+}
+
+/// The pillar with the highest loyalty, ties to the first in the regime's
+/// list, and the bloc it would install.
+fn strongest_pillar_bloc(id: NationId, g: &GovState) -> Option<(Pillar, Bloc)> {
+    let mut best: Option<(Pillar, f64)> = None;
+    for (p, v) in &g.pillars {
+        if best.map_or(true, |(_, bv)| *v > bv) {
+            best = Some((*p, *v));
+        }
+    }
+    best.map(|(p, _)| (p, pillar_bloc(id, p)))
+}
+
+/// The largest movement other than the ruling one, ties in enum order.
+fn largest_non_ruling(movements: &[(Bloc, f64)], ruling: Bloc) -> Option<(Bloc, f64)> {
+    let mut best: Option<(Bloc, f64)> = None;
+    for (b, s) in movements {
+        if *b == ruling {
+            continue;
+        }
+        if best.map_or(true, |(_, bs)| *s > bs) {
+            best = Some((*b, *s));
+        }
+    }
+    best
+}
+
+// ---- (1) Suspend the constitution -----------------------------------------
+
+/// Everything `suspend_constitution` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct SuspendPlan {
+    /// The incumbent's colour, which the regime keeps.
+    pub ruling: Bloc,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The movements seeded from the parties' bloc sums, the ruling bloc
+    /// +0.10, floored and normalised.
+    pub movements: [(Bloc, f64); 5],
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a suspension would be refused, read without touching the world.
+pub fn suspend_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if !is_electoral(w, id) {
+        return Some(format!("{} holds no elections; there is no constitution to suspend.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    let n = w.nation(id);
+    let seats = g.government_seats();
+    if !(n.stability < 45.0 || seats < 0.5) {
+        return Some(format!(
+            "{} is not in the crisis a suspension needs: stability {:.0} (under 45) or a government short of a majority ({:.0}% held).",
+            id.name(), n.stability, seats * 100.0
+        ));
+    }
+    if n.authoritarianism < 0.20 {
+        return Some(format!(
+            "{} is too open to rule by decree: authoritarianism {:.2}, 0.20 needed.",
+            id.name(), n.authoritarianism
+        ));
+    }
+    if crate::blocs::ruling_bloc(w, id).is_none() {
+        return Some(format!("{} has no governing colour to keep.", id.name()));
+    }
+    None
+}
+
+pub fn suspend_plan(w: &WorldState, id: NationId) -> Result<SuspendPlan, String> {
+    if let Some(why) = suspend_refusal(w, id) {
+        return Err(why);
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id).ok_or("no ruling bloc")?;
+    let n = w.nation(id);
+    let movements = movements_from_parties(w, id, ruling, 0.10);
+    Ok(SuspendPlan {
+        ruling,
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism + 0.30).max(0.65).min(0.98),
+        stability_before: n.stability,
+        stability_after: (n.stability - 6.0).max(0.0),
+        movements,
+        democracies: democracies(w, id),
+    })
+}
+
+/// The card's arms, from the same plan the arm writes. Empty where the lever
+/// is refused.
+pub fn suspend_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    let p = match suspend_plan(w, id) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    vec![
+        format!(
+            "Authoritarianism {:.2} → {:.2}: {} rules by decree and holds no elections.",
+            p.auth_before, p.auth_after, id.name()
+        ),
+        format!(
+            "The {} bloc keeps power as the regime's colour; the cabinet is kept as a dormant record.",
+            p.ruling.label()
+        ),
+        format!("Movements seeded from the parties, the ruling bloc +0.10: {}.", fmt_shares(&p.movements)),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+        format!("Relations −10 with {} democracies.", p.democracies.len()),
+    ]
+}
+
+pub fn suspend_constitution(w: &mut WorldState, id: NationId) -> Result<(), String> {
+    let p = suspend_plan(w, id)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(p.ruling);
+        g.elected = false;
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
+        g.awaiting_first_election = false;
+        g.next_election = (0, 0);
+        g.movements = p.movements.to_vec();
+        g.surging = latched_at_seed(&p.movements, p.ruling);
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, -10.0);
+    }
+    w.headline(format!("{} suspends its constitution and rules by decree.", id.name()));
+    Ok(())
+}
+
+// ---- (2) Ban a party, (3) legalise one ------------------------------------
+
+/// Everything `ban_party` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct BanPlan {
+    pub party: String,
+    pub name: &'static str,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The party's support, which it KEEPS: a ban takes seats, not voters.
+    pub support: f64,
+    pub seats_before: f64,
+    /// The chamber re-read through `seats_from_legal` with the ban in force
+    /// (an electoral nation), or unchanged (a regime's dormant chamber).
+    pub seats_after: Vec<(String, f64)>,
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a ban would be refused, read without touching the world.
+pub fn ban_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    if g.banned.iter().any(|p| p == party) {
+        return Some(format!("{} is already banned.", s.name));
+    }
+    if g.leader() == Some(party) {
+        return Some("A government cannot ban the party that leads it.".into());
+    }
+    let auth = w.nation(id).authoritarianism;
+    if auth < 0.30 && !s.pariah {
+        return Some(format!(
+            "{} is too open to ban a party (authoritarianism {:.2}, 0.30 needed), and {} is no pariah.",
+            id.name(), auth, s.name
+        ));
+    }
+    None
+}
+
+pub fn ban_plan(w: &WorldState, id: NationId, party: &str) -> Result<BanPlan, String> {
+    if let Some(why) = ban_refusal(w, id, party) {
+        return Err(why);
+    }
+    let s = spec(id, party).ok_or("no such party")?;
+    let g = state(w, id).ok_or("no government")?;
+    let n = w.nation(id);
+    let support = g.support_of(party);
+    let seats_after = if is_electoral(w, id) {
+        let sys = polity_in(w, id).map(|p| p.system).ok_or("no polity")?;
+        let mut banned = g.banned.clone();
+        banned.push(party.to_string());
+        seats_from_legal(true, &g.support, sys, &banned)
+    } else {
+        g.seats.clone()
+    };
+    Ok(BanPlan {
+        party: party.to_string(),
+        name: s.name,
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism + 0.04).min(0.98),
+        stability_before: n.stability,
+        stability_after: if support >= 0.15 { (n.stability - 3.0).max(0.0) } else { n.stability },
+        support,
+        seats_before: g.seat_share(party),
+        seats_after,
+        democracies: democracies(w, id),
+    })
+}
+
+pub fn ban_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
+    let p = match ban_plan(w, id, party) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let seats_now = p.seats_after.iter().find(|(q, _)| *q == p.party).map_or(0.0, |(_, v)| *v);
+    let out = vec![
+        format!(
+            "{} holds no seats: {:.1}% → {:.1}% of the chamber; its {:.1}% of support is kept and still counts in influence.",
+            p.name, p.seats_before * 100.0, seats_now * 100.0, p.support * 100.0
+        ),
+        format!("Authoritarianism {:.2} → {:.2}.", p.auth_before, p.auth_after),
+        format!("Stability {:.0} → {:.0} (−3 when the party holds 15% or more).", p.stability_before, p.stability_after),
+        format!("Relations −4 with {} democracies.", p.democracies.len()),
+    ];
+    out
+}
+
+pub fn ban_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    let p = ban_plan(w, id, party)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        // The design's ban takes seats, not the cabinet: a banned partner
+        // stays on the coalition record with no seats, and what that does
+        // to the government's majority is the chamber's arithmetic, not an
+        // arm of this lever.
+        g.banned.push(p.party.clone());
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
+        g.seats = p.seats_after.clone();
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, -4.0);
+    }
+    w.headline(format!("{} bans {}.", id.name(), p.name));
+    Ok(())
+}
+
+/// Everything `legalize_party` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct LegalizePlan {
+    pub party: String,
+    pub name: &'static str,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub seats_after: Vec<(String, f64)>,
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a legalisation would be refused, read without touching the world.
+pub fn legalize_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    match state(w, id) {
+        None => Some("no government".into()),
+        Some(g) if !g.banned.iter().any(|p| p == party) => Some(format!("{} is not banned.", s.name)),
+        Some(_) => None,
+    }
+}
+
+pub fn legalize_plan(w: &WorldState, id: NationId, party: &str) -> Result<LegalizePlan, String> {
+    if let Some(why) = legalize_refusal(w, id, party) {
+        return Err(why);
+    }
+    let s = spec(id, party).ok_or("no such party")?;
+    let g = state(w, id).ok_or("no government")?;
+    let seats_after = if is_electoral(w, id) {
+        let sys = polity_in(w, id).map(|p| p.system).ok_or("no polity")?;
+        let banned: Vec<String> = g.banned.iter().filter(|p| *p != party).cloned().collect();
+        seats_from_legal(true, &g.support, sys, &banned)
+    } else {
+        g.seats.clone()
+    };
+    let auth = w.nation(id).authoritarianism;
+    Ok(LegalizePlan {
+        party: party.to_string(),
+        name: s.name,
+        auth_before: auth,
+        auth_after: (auth - 0.02).max(0.05),
+        seats_after,
+        democracies: democracies(w, id),
+    })
+}
+
+pub fn legalize_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
+    let p = match legalize_plan(w, id, party) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let seats = p.seats_after.iter().find(|(q, _)| *q == p.party).map_or(0.0, |(_, v)| *v);
+    vec![
+        format!("{} may hold seats again: {:.1}% of the chamber on today's support.", p.name, seats * 100.0),
+        format!("Authoritarianism {:.2} → {:.2}.", p.auth_before, p.auth_after),
+        format!("Relations +3 with {} democracies.", p.democracies.len()),
+    ]
+}
+
+pub fn legalize_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    let p = legalize_plan(w, id, party)?;
+    w.nation_mut(id).authoritarianism = p.auth_after;
+    if let Some(g) = state_mut(w, id) {
+        g.banned.retain(|q| *q != p.party);
+        g.seats = p.seats_after.clone();
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, 3.0);
+    }
+    w.headline(format!("{} legalises {}.", id.name(), p.name));
+    Ok(())
+}
+
+// ---- (4) Declare a programme ----------------------------------------------
+
+/// Everything `declare_programme` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ProgrammePlan {
+    pub old: Bloc,
+    pub new: Bloc,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// (pillar, loyalty before, loyalty after) for every pillar the programme
+    /// moves: the Clergy +0.15 under an Islamist programme and −0.10 under
+    /// any other, the Army +0.10 under a Nationalist one, the Party −0.15 on
+    /// leaving the Communist colour — each where the pillar is present.
+    pub pillars: Vec<(Pillar, f64, f64)>,
+    /// (patron, shift): −15 for every great-power patron ruling in the old
+    /// colour, +10 for every one ruling in the new.
+    pub patrons: Vec<(NationId, f64)>,
+    /// The movements with the new colour +0.10, floored and normalised.
+    pub movements: [(Bloc, f64); 5],
+}
+
+/// Why a programme would be refused, read without touching the world.
+pub fn programme_refusal(w: &WorldState, id: NationId, bloc: Bloc) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if is_electoral(w, id) {
+        return Some(format!("{} answers to an electorate; a programme is declared by decree.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g,
+        _ => return Some("no regime".into()),
+    };
+    let old = match g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)) {
+        Some(b) => b,
+        None => return Some("no regime".into()),
+    };
+    if old == bloc {
+        return Some(format!("{} already rules in the {} colour.", id.name(), bloc.label()));
+    }
+    let share = g.movements[bloc as usize].1;
+    let strongest = strongest_pillar_bloc(id, g);
+    if share < 0.25 && strongest.map(|(_, b)| b) != Some(bloc) {
+        return Some(format!(
+            "The {} movement in {} is {:.0}% of the country (25% needed), and it is not the colour of the regime's strongest institution.",
+            bloc.label(), id.name(), share * 100.0
+        ));
+    }
+    None
+}
+
+pub fn programme_plan(w: &WorldState, id: NationId, bloc: Bloc) -> Result<ProgrammePlan, String> {
+    if let Some(why) = programme_refusal(w, id, bloc) {
+        return Err(why);
+    }
+    let g = state(w, id).ok_or("no regime")?;
+    let old = g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)).ok_or("no regime")?;
+    let n = w.nation(id);
+    let mut pillars: Vec<(Pillar, f64, f64)> = vec![];
+    for (p, v) in &g.pillars {
+        let shift = match p {
+            Pillar::Clergy => {
+                if bloc == Bloc::Islamist {
+                    0.15
+                } else {
+                    -0.10
+                }
+            }
+            Pillar::Army if bloc == Bloc::Nationalist => 0.10,
+            Pillar::Party if old == Bloc::Communist => -0.15,
+            _ => 0.0,
+        };
+        if shift != 0.0 {
+            pillars.push((*p, *v, (*v + shift).clamp(0.0, 1.0)));
+        }
+    }
+    let mut patrons: Vec<(NationId, f64)> = vec![];
+    for p in crate::nations::patrons().iter().copied() {
+        if p == id || !w.nation_opt(p).is_some_and(|x| x.alive) {
+            continue;
+        }
+        match crate::blocs::ruling_bloc(w, p) {
+            Some(b) if b == old => patrons.push((p, -15.0)),
+            Some(b) if b == bloc => patrons.push((p, 10.0)),
+            _ => {}
+        }
+    }
+    let mut movements = [(Bloc::Western, 0.0); 5];
+    for (i, e) in g.movements.iter().enumerate() {
+        movements[i] = *e;
+    }
+    movements[bloc as usize].1 += 0.10;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    Ok(ProgrammePlan {
+        old,
+        new: bloc,
+        stability_before: n.stability,
+        stability_after: (n.stability - 5.0).max(0.0),
+        pillars,
+        patrons,
+        movements,
+    })
+}
+
+pub fn programme_effects(w: &WorldState, id: NationId, bloc: Bloc) -> Vec<String> {
+    let p = match programme_plan(w, id, bloc) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let mut out = vec![
+        format!("{} rules in the {} colour instead of the {}.", id.name(), p.new.label(), p.old.label()),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+    ];
+    for (pillar, before, after) in &p.pillars {
+        let name = polity_in(w, id)
+            .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == *pillar))
+            .map(|s| s.name)
+            .unwrap_or(pillar.key());
+        out.push(format!("Loyalty of {} {:.2} → {:.2}.", name, before, after));
+    }
+    for (patron, shift) in &p.patrons {
+        out.push(format!("Relations {:+.0} with {}.", shift, patron.name()));
+    }
+    out.push(format!("The {} movement +0.10, then normalised: {}.", p.new.label(), fmt_shares(&p.movements)));
+    out
+}
+
+pub fn declare_programme(w: &mut WorldState, id: NationId, bloc: Bloc) -> Result<(), String> {
+    let p = programme_plan(w, id, bloc)?;
+    w.nation_mut(id).stability = p.stability_after;
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(p.new);
+        for (pillar, _, after) in &p.pillars {
+            if let Some(e) = g.pillars.iter_mut().find(|(q, _)| q == pillar) {
+                e.1 = *after;
+            }
+        }
+        g.movements = p.movements.to_vec();
+        // The old colour is a non-ruling movement now, at whatever share it
+        // held: latched closed, as a seed is, so the next tick does not
+        // announce the incumbent's own following as a surge.
+        let latched = latched_at_seed(&p.movements, p.new);
+        g.surging.retain(|b| *b != p.new);
+        for b in latched {
+            if !g.surging.contains(&b) {
+                g.surging.push(b);
+            }
+        }
+    }
+    for (patron, shift) in &p.patrons {
+        w.shift_relation(*patron, id, *shift);
+    }
+    w.headline(format!("{} declares a {} programme.", id.name(), p.new.label()));
+    seat_office(w, id, &Succession::Programme);
+    Ok(())
+}
+
+// ---- (5) Convene a round table --------------------------------------------
+
+/// Everything `convene_round_table` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct RoundTablePlan {
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The names of the parties whose bans are lifted.
+    pub lifted: Vec<&'static str>,
+    /// The date of the first free elections, six months out.
+    pub election: (i32, u32),
+    /// The party support the seam seats from the movements.
+    pub support: Vec<(String, f64)>,
+    /// The seam's clause for the bloc no party carries, if any.
+    pub lost: Option<String>,
+}
+
+/// Invented negotiation quorum: organised civilian constituencies excluded
+/// from representation amount to at least a quarter of the country. This is
+/// a peaceful bargaining condition, not a historical turnout or uprising bar.
+pub const ROUND_TABLE_FRANCHISE_QUORUM: f64 = 0.25;
+
+/// Why a round table would be refused, read without touching the world.
+pub fn round_table_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if is_electoral(w, id) {
+        return Some(format!("{} already answers to an electorate.", id.name()));
+    }
+    if polity_in(w, id).is_none_or(|p| p.parties.is_empty()) {
+        return Some(format!("{} has no parties to seat at a round table.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g,
+        _ => return Some("no regime".into()),
+    };
+    let ruling = match g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)) {
+        Some(b) => b,
+        None => return Some("no regime".into()),
+    };
+    // A government can negotiate representation with organised civilian
+    // parties while the economy and armed services are healthy. The demand
+    // helper requires real alternative party organisations and distinguishes
+    // their dormant constituency proxy from current election support.
+    if franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM {
+        return None;
+    }
+    let d = crate::blocs::discontent(w, id);
+    if d < 0.40 {
+        return Some(format!(
+            "{} is not restive enough for a round table: discontent {:.2}, 0.40 needed.",
+            id.name(), d
+        ));
+    }
+    let largest = largest_non_ruling(&g.movements, ruling).map_or(0.0, |(_, s)| s);
+    if largest < 0.25 {
+        return Some(format!(
+            "No movement in {} is large enough to sit across the table: the largest is {:.0}% of the country, 25% needed.",
+            id.name(), largest * 100.0
+        ));
+    }
+    None
+}
+
+pub fn round_table_plan(w: &WorldState, id: NationId) -> Result<RoundTablePlan, String> {
+    if let Some(why) = round_table_refusal(w, id) {
+        return Err(why);
+    }
+    let g = state(w, id).ok_or("no regime")?;
+    let n = w.nation(id);
+    let lifted: Vec<&'static str> =
+        g.banned.iter().filter_map(|p| spec(id, p).map(|s| s.name)).collect();
+    let (support, lost) = reseeded_support(w, id).ok_or("no movements to seat from")?;
+    Ok(RoundTablePlan {
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism - 0.25).min(0.59).max(0.05),
+        stability_before: n.stability,
+        stability_after: (n.stability + 8.0).min(100.0),
+        lifted,
+        election: add_months(w.year, w.month, 6),
+        support,
+        lost,
+    })
+}
+
+pub fn round_table_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    let p = match round_table_plan(w, id) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let mut out = vec![
+        format!(
+            "Authoritarianism {:.2} → {:.2}: {} answers to an electorate from today.",
+            p.auth_before, p.auth_after, id.name()
+        ),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+        format!("First free elections in six months, {}-{:02}.", p.election.0, p.election.1),
+        format!(
+            "The parties are seated from the movements: {}.",
+            p.support.iter().map(|(q, s)| format!("{} {:.3}", q, s)).collect::<Vec<_>>().join(", ")
+        ),
+    ];
+    let franchise = franchise_demand(w, id);
+    if franchise >= ROUND_TABLE_FRANCHISE_QUORUM {
+        out.push(format!(
+            "Organised civilian constituencies excluded from representation: {:.0}% (party-table estimate). Negotiation quorum: 25%.",
+            franchise * 100.0
+        ));
+    }
+    if let Some(clause) = &p.lost {
+        out.push(format!("Lost in the seating: {}.", clause));
+    }
+    if !p.lifted.is_empty() {
+        out.push(format!("Every ban lifted: {}.", p.lifted.join(", ")));
+    } else {
+        out.push("No bans to lift.".to_string());
+    }
+    out
+}
+
+pub fn convene_round_table(w: &mut WorldState, id: NationId) -> Result<(), String> {
+    let p = round_table_plan(w, id)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.banned.clear();
+    }
+    let lost = schedule_first_elections(w, id, 6);
+    w.headline(match lost {
+        None => format!("{} convenes a round table; first free elections in six months.", id.name()),
+        Some(clause) => format!(
+            "{} convenes a round table; first free elections in six months, though {}.",
+            id.name(),
+            clause
+        ),
+    });
+    Ok(())
+}
+
+// ---- The list, and the AI -------------------------------------------------
+
+/// The one-sentence arms of a lever, from the same plan the arm writes, for
+/// the card. `None` for a command that is not one of the five.
+pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> {
+    use crate::Command;
+    Some(match c {
+        Command::SuspendConstitution { nation } => suspend_effects(w, *nation),
+        Command::BanParty { nation, party } => ban_effects(w, *nation, party),
+        Command::LegalizeParty { nation, party } => legalize_effects(w, *nation, party),
+        Command::DeclareProgramme { nation, bloc } => programme_effects(w, *nation, *bloc),
+        Command::ConveneRoundTable { nation } => round_table_effects(w, *nation),
+        _ => return None,
+    })
+}
+
+/// Public demand does not give a pillar-led executive a party to contest an
+/// opening. This pure AI preference reads the actual office, not its dormant
+/// cabinet or a pillar's generic ideological affinity. Player legality is
+/// separate, and the existing weak-armed AI route does not require this tie.
+/// Eligibility is for the promised ballot: the opening itself lifts bans.
+fn ai_party_can_contest_opening(w: &WorldState, id: NationId) -> bool {
+    if !w.rules.ideology_blocs || state(w, id).is_none() { return false; }
+    let Some(crate::data::Tie::Party(party)) =
+        crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) else { return false; };
+    polity_in(w, id).is_some_and(|pol| pol.parties.iter().any(|p| p.id == party))
+}
+
+/// The lever an AI government would reach for this month, or `None` — pure,
+/// and `None` before reading anything while `rules.ideology_blocs` is off.
+/// The four rules and their lines are the design's (S3, INVENTED): a
+/// suspension when electoral, stability under 30, authoritarianism at or
+/// over 0.25 and 55 political capital held; a ban on the largest party of
+/// the strongest non-ruling non-Western bloc at or over 0.35 of influence,
+/// authoritarianism at or over 0.40 and 60 held; a programme toward the
+/// strongest pillar's colour when the ruling movement is under 0.30 and 70
+/// held; an affordable, legally available round table when the armed pillars'
+/// mean loyalty is under 0.50, or an actual party-led executive can contest
+/// the promised ballot and excluded civilian demand reaches its quorum.
+/// The action's own discontent and movement
+/// requirements apply, and its actual standing bill is used. Each is asked
+/// its own refusal, so the AI never asks for what the
+/// world would refuse. The draw that decides whether the government acts on
+/// the choice lives in `stratagems::ai_stratagems`, the module that already
+/// draws for the deck; this module draws nothing.
+pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
+    use crate::Command;
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    let g = state(w, id)?;
+    let pc = n.political_capital;
+    let electoral = is_electoral(w, id);
+    if electoral && n.stability < 30.0 && n.authoritarianism >= 0.25 && pc >= 55.0 {
+        if suspend_refusal(w, id).is_none() {
+            return Some(Command::SuspendConstitution { nation: id });
+        }
+    }
+    if n.authoritarianism >= 0.40 && pc >= 60.0 {
+        if let Some(ruling) = crate::blocs::ruling_bloc(w, id) {
+            let infl = crate::blocs::influence(w, id);
+            let mut target: Option<(Bloc, f64)> = None;
+            for (b, v) in infl {
+                if b == ruling || b == Bloc::Western || v < 0.35 {
+                    continue;
+                }
+                if target.map_or(true, |(_, tv)| v > tv) {
+                    target = Some((b, v));
+                }
+            }
+            if let Some((b, _)) = target {
+                let mut largest: Option<(&str, f64)> = None;
+                for (party, s) in &g.support {
+                    if bloc_of(id, party) != b
+                        || g.banned.iter().any(|q| q == party)
+                        || g.leader() == Some(party.as_str())
+                    {
+                        continue;
+                    }
+                    if largest.map_or(true, |(_, ls)| *s > ls) {
+                        largest = Some((party.as_str(), *s));
+                    }
+                }
+                if let Some((party, _)) = largest {
+                    if ban_refusal(w, id, party).is_none() {
+                        return Some(Command::BanParty { nation: id, party: party.to_string() });
+                    }
+                }
+            }
+        }
+    }
+    if electoral {
+        return None;
+    }
+    let ruling = g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id))?;
+    if g.movements.len() != 5 {
+        return None;
+    }
+    if pc >= 70.0 && g.movements[ruling as usize].1 < 0.30 {
+        if let Some((_, bloc)) = strongest_pillar_bloc(id, g) {
+            if bloc != ruling && programme_refusal(w, id, bloc).is_none() {
+                return Some(Command::DeclareProgramme { nation: id, bloc });
+            }
+        }
+    }
+    let round_table = Command::ConveneRoundTable { nation: id };
+    if crate::affordable(w, &round_table) {
+        let armed: Vec<f64> = g
+            .pillars
+            .iter()
+            .filter(|(p, _)| matches!(p, Pillar::Army | Pillar::Security | Pillar::Party))
+            .map(|(_, v)| *v)
+            .collect();
+        let armed_mean =
+            if armed.is_empty() { 1.0 } else { armed.iter().sum::<f64>() / armed.len() as f64 };
+        let voluntary_party_opening = ai_party_can_contest_opening(w, id)
+            && franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM;
+        if (armed_mean < 0.50 || voluntary_party_opening)
+            && round_table_refusal(w, id).is_none()
+        {
+            return Some(round_table);
+        }
+    }
+    None
+}
+
+// ---------------------------------------------------------------------------
+// The tick
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// The Army pillar's target: legacy share arm off; annual resources per
+// active member under the lens. M2's old relative-income form is retained
+// below as a diagnostic, not the live funding interpretation.
+// ---------------------------------------------------------------------------
+
+/// The historical M2 diagnostic ratio: military
+/// expenditure PER RECORDED FORCE MEMBER over GDP PER HEAD — `(mil_spend_gdp · gdp /
+/// personnel) / (gdp / population)`, which the output cancels out of, so it
+/// is the live defence share times the population over the transcribed
+/// 1990 personnel (`data::army_personnel_1990`; `Nation.population` is in
+/// millions). This is the total armed-services series, including qualifying
+/// paramilitaries, not land-Army headcount or salary. `None` where personnel
+/// was not sourced; this historical diagnostic never estimates a count. Pure.
+pub fn army_pay_ratio(w: &WorldState, id: NationId) -> Option<f64> {
+    let personnel = crate::data::army_personnel_1990(id)?;
+    if !(personnel > 0.0) {
+        return None;
+    }
+    let n = w.nation_opt(id)?;
+    Some(n.mil_spend_gdp * n.population * 1_000_000.0 / personnel)
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ArmyPersonnelBasis {
+    Sourced1990,
+    /// Explicit model estimate, never a transcribed historical headcount.
+    ModelEstimate,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct ArmyPersonnelAssessment {
+    pub members: f64,
+    pub basis: ArmyPersonnelBasis,
+}
+
+/// Robust cross-roster fallback for an UNSOURCED force, not a historical fact
+/// about that country. The median is derived once from every finite, positive
+/// sourced personnel/population pair in the embedded roster. Apply it to the
+/// unsourced nation's opening population, matching the sourced series' date.
+/// Source records and saves are never filled with this estimate; callers
+/// expose its basis.
+pub fn estimated_army_population_share() -> Option<f64> {
+    static SHARE: std::sync::OnceLock<Option<f64>> = std::sync::OnceLock::new();
+    *SHARE.get_or_init(|| {
+        let mut ratios: Vec<f64> = crate::data::EMBEDDED_NATIONS.iter()
+            .filter_map(|src| serde_json::from_str::<crate::data::NationRecord>(src.json).ok())
+            .filter_map(|r| {
+                let members = r.military.personnel_1990?;
+                let population = r.economy.population_m * 1_000_000.0;
+                if !members.is_finite() || !population.is_finite() || members <= 0.0
+                    || population <= 0.0 || members > population { return None; }
+                Some(members / population)
+            }).collect();
+        ratios.sort_by(f64::total_cmp);
+        let mid = ratios.len() / 2;
+        if ratios.is_empty() { None }
+        else if ratios.len() % 2 == 0 { Some((ratios[mid - 1] + ratios[mid]) * 0.5) }
+        else { Some(ratios[mid]) }
+    })
+}
+
+fn assess_army_personnel(sourced: Option<f64>, population_m: f64, estimated_share: Option<f64>) -> Option<ArmyPersonnelAssessment> {
+    if let Some(members) = sourced {
+        // A supplied zero/invalid count is not silently replaced by an army.
+        return (members.is_finite() && members > 0.0)
+            .then_some(ArmyPersonnelAssessment { members, basis: ArmyPersonnelBasis::Sourced1990 });
+    }
+    let share = estimated_share?;
+    if !population_m.is_finite() || population_m <= 0.0 || !share.is_finite()
+        || share <= 0.0 || share > 1.0 { return None; }
+    let members = population_m * 1_000_000.0 * share;
+    (members.is_finite() && members > 0.0)
+        .then_some(ArmyPersonnelAssessment { members, basis: ArmyPersonnelBasis::ModelEstimate })
+}
+
+/// A fallback has the same reference date as the sourced personnel series.
+/// Changing today's population must not automatically recruit soldiers only
+/// in countries whose historical force size is unknown. Any future force-size
+/// dynamics must apply to both bases, separately from this opening assessment.
+fn army_opening_population_m(id: NationId) -> Option<f64> {
+    static TABLE: std::sync::OnceLock<Vec<Option<f64>>> = std::sync::OnceLock::new();
+    let table = TABLE.get_or_init(|| {
+        let mut populations = vec![None; crate::nations::nation_count()];
+        for src in crate::data::EMBEDDED_NATIONS {
+            if let Ok(record) = serde_json::from_str::<crate::data::NationRecord>(src.json) {
+                let population = record.economy.population_m;
+                if population.is_finite() && population > 0.0 {
+                    populations[record.id.index()] = Some(population);
+                }
+            }
+        }
+        populations
+    });
+    table.get(id.index()).copied().flatten()
+}
+
+pub fn army_personnel_assessment(w: &WorldState, id: NationId) -> Option<ArmyPersonnelAssessment> {
+    let n = w.nation_opt(id)?;
+    let sourced = crate::data::army_personnel_1990(id);
+    let population = if sourced.is_none() {
+        // Retain the missing-data path's existing invalid live-state guard.
+        if !n.population.is_finite() || n.population <= 0.0 { return None; }
+        army_opening_population_m(id).or_else(|| state(w, id)
+            .and_then(|g| g.army_population_reference.as_ref())
+            .map(|reference| reference.population_m))?
+    } else { n.population };
+    assess_army_personnel(sourced, population,
+        if w.rules.ideology_blocs { estimated_army_population_share() } else { None })
+}
+
+/// Annual defence resources per recorded force member, in model dollars.
+/// GDP is billions of dollars; personnel is people. This is resources for
+/// pay, equipment and operations together, NOT an estimate of a soldier's
+/// salary (World Bank MS.MIL.XPND.GD.ZS metadata includes all three).
+/// The personnel series includes all armed services and qualifying
+/// paramilitaries; it is not a land-Army count (MS.MIL.TOTL.P1 metadata).
+/// Unsourced personnel uses the explicitly labelled model assessment above.
+pub fn army_resources_per_member(w: &WorldState, id: NationId) -> Option<f64> {
+    let personnel = army_personnel_assessment(w, id)?.members;
+    let n = w.nation_opt(id)?;
+    if !personnel.is_finite() || personnel <= 0.0 || !n.gdp.is_finite()
+        || !n.mil_spend_gdp.is_finite() || n.gdp < 0.0 || n.mil_spend_gdp < 0.0
+        || !n.population.is_finite() || n.population <= 0.0
+    {
+        return None;
+    }
+    Some(n.mil_spend_gdp * n.gdp * 1_000_000_000.0 / personnel)
+}
+
+/// Modeled annual operating basket, in 1990 dollars per active member:
+/// imported maintenance/equipment plus personnel and locally bought support.
+/// GDP/head is only a local-cost proxy, not a claimed soldier salary. The
+/// $2,500 imported component and 1.5 local-income multiplier are explicit
+/// game-design assumptions. A universal dollar salary threshold incorrectly
+/// treated inexpensive conscript armies as chronically unpaid. Conversely,
+/// an income ratio alone made imported equipment free in a poor country.
+/// Full provision includes a second basket for reserve stocks/modernisation.
+/// The spending direction is supported by Powell (2012), pp. 1026-1029:
+/// expenditure per soldier proxies organisational resources and predicts
+/// fewer coup attempts; neither these coefficients nor causal loyalty
+/// endpoints are empirical estimates from that paper.
+/// https://jonathanmpowell.com/wp-content/uploads/2025/10/powell-2012jcr-determinants-of-the-attempting-and-outcome-of-coups-detat.pdf
+pub const ARMY_IMPORTED_OPERATING_ALLOWANCE: f64 = 2_500.0;
+pub const ARMY_LOCAL_OPERATING_MULTIPLE: f64 = 1.5;
+
+pub fn army_operating_allowance(income_per_head: f64) -> f64 {
+    ARMY_IMPORTED_OPERATING_ALLOWANCE + ARMY_LOCAL_OPERATING_MULTIPLE * income_per_head.max(0.0)
+}
+
+pub fn army_resource_loyalty_target(resources: f64, income_per_head: f64, exhaustion: f64) -> f64 {
+    let funded = (resources / (2.0 * army_operating_allowance(income_per_head))).clamp(0.0, 1.0);
+    0.20 + funded * 0.65 - exhaustion * 0.45
+}
+
+/// Military resources and obedience to civilian office are distinct. These
+/// design coefficients model an institution with executive-removal leverage
+/// losing confidence in sustained civilian crisis; they are not coup estimates.
+/// Known historical leverage replaces the old authoritarianism proxy only in
+/// this political channel. Unknown assessments retain the original proxy.
+pub const ARMY_CRISIS_CONFIDENCE_WEIGHT: f64 = 0.65;
+pub const ARMY_PROGRAMME_VETO_WEIGHT: f64 = 0.45;
+
+fn civilian_army_executive_leverage(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || !is_electoral(w, id)
+        || state(w, id).is_none_or(|g| !g.pillars.iter().any(|(p, _)| *p == Pillar::Army))
+    { return 0.0; }
+    crate::army_authority::current_leverage(w, id).unwrap_or_else(||
+        ((w.nation(id).authoritarianism - 0.20) / 0.40).clamp(0.0, 1.0))
+}
+
+fn established_civilian_record(w: &WorldState, id: NationId) -> Option<&PoliticalRecord> {
+    let g = state(w, id)?;
+    let record = g.political_record.as_ref()?;
+    if record.months < 6.0 || !record.performance.is_finite()
+        || record.government != format!("party:{}", g.leader()?) { return None; }
+    Some(record)
+}
+
+/// Current national constituency carried by a completed, unrestricted elected
+/// coalition, or only the attested parties of a separately sourced opening
+/// parliamentary mandate. The latter does not certify unrestricted democracy.
+/// Party support after an opening is conditional on the parties on offer; distribute each actual national bloc mass among those parties before
+/// counting legal, represented coalition members. Missing-party movements,
+/// opposition voters and seats awarded by the electoral formula add no consent.
+/// These shares are a model proxy for public consent, not approval polling.
+fn civilian_public_mandate(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || !is_electoral(w, id) { return 0.0; }
+    let Some(g) = state(w, id) else { return 0.0; };
+    let modeled_ballot = g.elected && g.unrestricted_mandate;
+    let opening_parties = if modeled_ballot { None } else { crate::opening_mandates::attested_parties(w, id) };
+    if g.awaiting_first_election || !g.banned.is_empty() || (!modeled_ballot && opening_parties.is_none()) {
+        return 0.0;
+    }
+    let Some(pol) = polity_in(w, id) else { return 0.0; };
+    let mut mandate = 0.0;
+    for (bloc, national) in crate::blocs::bloc_shares(w, id) {
+        if !national.is_finite() { return 0.0; }
+        let mut represented = 0.0;
+        let mut governing = 0.0;
+        for (party, share) in &g.support {
+            if !share.is_finite() || *share < 0.0 { return 0.0; }
+            if bloc_of(id, party) != bloc { continue; }
+            represented += share;
+            if g.in_government(party) && g.seat_share(party) > 0.0
+                && (modeled_ballot || opening_parties.is_some_and(|parties| parties.contains(party)))
+                && pol.parties.iter().any(|p| p.id == party)
+            {
+                governing += share;
+            }
+        }
+        if represented > 0.0 {
+            mandate += national.clamp(0.0, 1.0) * (governing / represented).clamp(0.0, 1.0);
+        }
+    }
+    mandate.clamp(0.0, 1.0)
+}
+
+/// A paid force can still lose confidence in a persistently failing civilian
+/// government. This lowers its gradual loyalty target, never its equipment or
+/// strength. A fresh administration, a quiet country, an absent army, and
+/// strong civilian control have no such penalty. Existing loyalty smoothing
+/// and coup pressure retain their time requirements.
+/// Popular consent limits this particular political grievance; it does not
+/// erase underfunding, war exhaustion or an army's prospective programme veto.
+/// Powell (2012), pp. 1020-1021, distinguishes public legitimacy from military
+/// corporate grievances. The linear outside-constituency multiplier here is an
+/// explicit game assumption, not a coefficient estimated by that study.
+pub fn army_civilian_confidence_penalty(w: &WorldState, id: NationId) -> f64 {
+    let leverage = civilian_army_executive_leverage(w, id);
+    if leverage <= 0.0 { return 0.0; }
+    let Some(record) = established_civilian_record(w, id) else { return 0.0; };
+    let discontent = crate::blocs::discontent(w, id);
+    if discontent < ELECTORAL_COUP_DISCONTENT { return 0.0; }
+    let sustained_crisis = 0.5 * discontent + 0.5 * (-record.performance).clamp(0.0, 1.0);
+    ARMY_CRISIS_CONFIDENCE_WEIGHT * leverage * sustained_crisis * (1.0 - civilian_public_mandate(w, id))
+}
+
+/// Read prospective acceptance of a new radical programme at a completed
+/// election. An institution with removal leverage can resist a mandate that
+/// threatens its existing programme even when its material bills were paid.
+/// This is separate from the gradual crisis confidence already in the pillar.
+/// The existing monarchy and authoritarianism guards still apply. The economic
+/// discontent guard belongs to the separate material-grievance route: an
+/// institutional conflict does not require invented bad inflation or output.
+/// No extra voters or foreign backing are invented here.
+pub fn army_programme_veto_loyalty(w: &WorldState, id: NationId, winner: &str) -> f64 {
+    let loyalty = crate::blocs::effective_army_loyalty(w, id);
+    let leverage = civilian_army_executive_leverage(w, id);
+    if leverage <= 0.0 || established_civilian_record(w, id).is_none()
+        || !matches!(bloc_of(id, winner), Bloc::Communist | Bloc::Islamist)
+        || crate::blocs::ruling_bloc(w, id) == Some(bloc_of(id, winner))
+    { return loyalty; }
+    let mandate = state(w, id).and_then(|g| g.seats.iter().find(|(p, _)| p == winner))
+        .map_or(0.0, |(_, share)| share.clamp(0.0, 1.0));
+    loyalty - ARMY_PROGRAMME_VETO_WEIGHT * leverage * mandate
+}
+
+/// The pay ratio at and under which a soldier reads UNPAID on the pay arm:
+/// the national average income, the ruling's own line — "an army whose
+/// soldiers are paid below the national average income reads as unpaid
+/// whatever the defence share". The one constant here whose basis is the
+/// ruling's sentence rather than a fetched figure.
+pub const ARMY_PAY_UNPAID_AT: f64 = 1.0;
+/// The ratio at and over which a soldier reads fully PAID: "one paid well
+/// above it reads as paid even on a small share" — "well above" read as
+/// twice the average income. INVENTED (the FORM is invented and labelled,
+/// as the ruling requires); filed in BUGS H-3.
+pub const ARMY_PAY_FULL_AT: f64 = 2.0;
+/// The weight the ruling's two sentences REQUIRE of the pay arm, DERIVED
+/// from the pillar model's own line: for an unpaid army to read under 0.35
+/// "whatever the defence share" the share arm's whole 0.65 must be held
+/// under 0.15, so `0.20 + 0.65 · (1 − w) < 0.35` gives `w > 0.769`; 0.80
+/// is the round number above it, and it also clears the second sentence
+/// (`0.20 + 0.65 · 0.80 = 0.72` for a fully paid army with no budget).
+pub const ARMY_PAY_WEIGHT_RULED: f64 = 0.80;
+/// The weight the historical M2 comparison used, sized by measurement
+/// ("the census decides"), was ZERO. The live lens now uses annual resources
+/// per member; this old form remains available for regression comparison.
+/// Transcribed from the World Bank
+/// series the ruling names (MS.MIL.TOTL.P1, MS.MIL.XPND.CD, 1990; the
+/// data pass's `stage1.json`, read against the roster's own `mil_spend_gdp`
+/// and `population_m`), the ruled ratio reads the 1990 roster's named
+/// coup-prone armies as the BEST-PAID in it — Sudan 19.8 average incomes a
+/// soldier, Pakistan 12.2, Haiti 9.4, Nigeria 8.3, Thailand 5.0 — against
+/// the stable set's Switzerland 4.9, Botswana 9.5, India 22.1, because
+/// dividing by a poor country's income per head inverts the poverty
+/// gradient Londregan and Poole (1990) describe: the same $4,500 a soldier
+/// that is 12 average incomes in Pakistan is 0.11 of one in Switzerland.
+/// Only Sao Tome (0.95) pays under the national average, so the first
+/// sentence never fires on this roster, and the second reads Nigeria's
+/// 0.8%-of-GDP army — which removed a government in 1993 — as paid, and
+/// Algeria's ANP (3.0) as paid, which is the annulment R2 measured at
+/// 53% of seeds gone to 0. No positive weight moves any named army toward
+/// the line; every one moves away. So that arm shipped at 0.0, the form
+/// stands above it exactly as ruled and is exercised by its test at
+/// `ARMY_PAY_WEIGHT_RULED`. The 2026-09-22 resource model now uses the
+/// annual-dollar alternative instead of this relative-income denominator
+/// (H-3 tables the alternative Powell's own variable would give: pay per
+/// soldier in absolute 1990 dollars — Nigeria $4,596, Haiti $4,262,
+/// Pakistan $4,509, Thailand $7,837, Algeria $7,381 against Switzerland
+/// $196,218 and Botswana $27,867, with Sudan $24,812 and India $8,127 the
+/// two the transcribed pillars, not the pay, keep apart).
+pub const ARMY_PAY_WEIGHT: f64 = 0.0;
+
+/// The Army pillar's loyalty target (M2). `pay_ratio` `None` — the lens
+/// off, or no personnel transcribed — is the share arm EXACTLY as it has
+/// always been, `0.20 + min(1, mil/0.08) · 0.65 − exhaustion · 0.45`, the
+/// same operations in the same order, so the default path is
+/// byte-identical. With a ratio the two arms blend at `weight`:
+/// `0.20 + 0.65 · ((1 − w) · share + w · pay) − exhaustion · 0.45`, where
+/// `pay` is the ratio's position between `ARMY_PAY_UNPAID_AT` and
+/// `ARMY_PAY_FULL_AT`, clamped to 0..1. The FORM is INVENTED and labelled
+/// so (the ruling's words). Historical basis of the arm, as the ruling
+/// names it: Powell (2012, Journal of Conflict Resolution 56(6) 1017-1040,
+/// "Determinants of the Attempting and Outcome of Coups d'etat", doi
+/// 10.1177/0022002712445732). What the fetched abstract itself says
+/// (OpenAlex, 2026-09-06): the model is tested on "a global sample from
+/// 1961 to 2000" and "characteristics of military appear to be far more
+/// important than economic influences on coups" — military expenditure
+/// per soldier is the ruling's reading of that finding, not a sentence of
+/// the abstract (the body was not fetched); an earlier draft of this
+/// comment wrote "the strongest deterrent ... in the 1950-2000 record",
+/// which the abstract does not support, corrected in BUGS H-7.
+/// Londregan and Poole (1990, World Politics 42(2), "Poverty, the Coup
+/// Trap, and the Seizure of Executive Power") the poverty gradient. The
+/// share arm's own history is in `pillar_targets`' comment.
+pub fn army_loyalty_target(mil: f64, exhaustion: f64, pay_ratio: Option<f64>, weight: f64) -> f64 {
+    let share = (mil / 0.08).min(1.0);
+    match pay_ratio {
+        None => 0.20 + share * 0.65 - exhaustion * 0.45,
+        Some(r) => {
+            let pay = ((r - ARMY_PAY_UNPAID_AT) / (ARMY_PAY_FULL_AT - ARMY_PAY_UNPAID_AT)).clamp(0.0, 1.0);
+            0.20 + (share * (1.0 - weight) + pay * weight) * 0.65 - exhaustion * 0.45
+        }
+    }
+}
+
+/// What each named institution currently wants of the regime, 0..1 — the
+/// targets loyalty walks toward. Factored out of `regime_tick` so the arm's
+/// electoral army tick (S4, route 2) reads the Army and Security lines from
+/// the same formulas; every input is read at the same point and the
+/// Army line retains the share arm verbatim with the lens off. The lens
+/// reads resources per active member when personnel data exists, and the
+/// old share line otherwise; missing data is not evidence of zero funding.
+fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pillar, f64)> {
+    // A party apparatus can be loyal to a programme and still lose its
+    // organization as that programme loses domestic support. Authoritarianism
+    // alone cannot keep its political base intact. No foreign backing enters.
+    let party_mandate = if w.rules.ideology_blocs {
+        state(w, id).and_then(|g| g.regime_bloc.and_then(|ruling|
+            g.movements.iter().find(|(b, _)| *b == ruling).map(|(_, share)| *share)))
+    } else { None };
+    let (mil, _invest, growth, infl, stab, auth, exhaustion, sanctioned) = {
+        let n = w.nation(id);
+        (
+            n.mil_spend_gdp, n.state_invest_gdp, n.growth_last, n.inflation,
+            n.stability, n.authoritarianism, n.war_exhaustion,
+            // CONVERTED FROM COUNTING FLAGS: was `w.sanctioned_by_count(id) as
+            // f64`. The fourth and last of the count-based sanction channels;
+            // see `economy::SANCTION_BITE`. Read at the same point in the tick,
+            // so nothing about the ordering changes.
+            w.sanction_weight(id),
+        )
+    };
+    let income_per_head = w.nation(id).gdp * 1000.0 / w.nation(id).population;
+    let mut targets: Vec<(Pillar, f64)> = vec![];
+    for pillar in pillars.iter().copied() {
+        let t = match pillar {
+            // Generals are bought with budgets and lost in wars that go badly.
+            // The floor is deliberately low: the first draft started the army at
+            // 0.35 and added the budget on top, which put an entirely unpaid army
+            // at 0.357 — a hair above the 0.35 line at which pressure starts to
+            // build. Twenty years of a defence budget cut to a tenth of a percent
+            // of GDP produced no coup at all, because the model could not express
+            // an army that had been abandoned.
+            Pillar::Army => match w.rules.ideology_blocs.then(|| army_resources_per_member(w, id)).flatten() {
+                Some(resources) => army_resource_loyalty_target(resources, income_per_head, exhaustion)
+                    - army_civilian_confidence_penalty(w, id),
+                None => army_loyalty_target(mil, exhaustion, None, ARMY_PAY_WEIGHT)
+                    - army_civilian_confidence_penalty(w, id),
+            },
+            // The apparatus is loyal because it *is* the regime — it has nowhere
+            // else to go — so its floor rises with how authoritarian the state
+            // is. What moves it is the programme visibly failing and the country
+            // visibly slipping, which is what the last two terms read.
+            Pillar::Party => {
+                let institutional = 0.35 + auth * 0.40
+                    + (growth * 10.0).clamp(-0.25, 0.25)
+                    + (stab / 100.0 - 0.5) * 0.35;
+                // Modeled .20 organizational core plus .80 represented
+                // constituency: a majority-supported party remains robust,
+                // while one abandoned by its supporters must negotiate or
+                // govern through institutions other than party discipline.
+                party_mandate.map_or(institutional,
+                    |share| institutional.min(0.20 + 0.80 * share.clamp(0.0, 1.0)))
+            }
+            // The services want a free hand and a quiet street.
+            Pillar::Security => 0.30 + auth * 0.45 + (stab / 100.0) * 0.30,
+            // Money wants prices under control and the door to the world open.
+            //
+            // `sanctioned` is now the sanctioners' SHARE OF WORLD OUTPUT, not a
+            // count of them, and the coefficient is the old one carried across
+            // on `c / 0.30`: `0.05 / 0.30 = 0.1667`. What businessmen care about
+            // is how much of the world market has closed, which is the quantity
+            // a share measures and the quantity a count does not — five small
+            // neighbours signing a communiqué is not the same event as the
+            // United States and the EU shutting their doors, and the old rule
+            // could not tell them apart.
+            //
+            // The `.min(0.25)` is gone for the same reason the `.max(0.4)` in
+            // `tech::research_output` is gone: a share is bounded by 1, so this
+            // term cannot exceed 0.1667 and the cap is provably unreachable. It
+            // was there to stop an unbounded count.
+            Pillar::Business => {
+                0.55 + (growth * 10.0).clamp(-0.25, 0.25) - (infl / 0.25).min(1.0) * 0.40
+                    - sanctioned * 0.1667
+            }
+            // The clergy want order and piety, and notice when neither is being
+            // supplied.
+            Pillar::Clergy => 0.40 + (stab / 100.0) * 0.35 + auth * 0.25,
+        };
+        targets.push((pillar, t.clamp(0.0, 1.0)));
+    }
+    targets
+}
+
+/// Loyalty walks toward its target: slow to buy and quick to lose, like
+/// everything else in this game that is worth having.
+fn walk_pillars(w: &mut WorldState, id: NationId, targets: Vec<(Pillar, f64)>) {
+    let loss_rate = crate::clock::blend(w, 0.10);
+    let gain_rate = crate::clock::blend(w, 0.045);
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
+    for (pillar, target) in targets {
+        if let Some(e) = g.pillars.iter_mut().find(|(p, _)| *p == pillar) {
+            let rate = if target < e.1 { loss_rate } else { gain_rate };
+            e.1 += (target - e.1) * rate;
+            e.1 = e.1.clamp(0.0, 1.0);
+        }
+    }
+}
+
+/// Loyalty walks toward what the regime is currently giving each institution.
+fn regime_tick(w: &mut WorldState, id: NationId) {
+    let dt = crate::clock::month_fraction(w);
+    let pillars: Vec<Pillar> = match state(w, id) {
+        Some(g) => g.pillars.iter().map(|(p, _)| *p).collect(),
+        None => return,
+    };
+    let targets = pillar_targets(w, id, &pillars);
+    walk_pillars(w, id, targets);
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
+    // Pressure builds while one of the *armed* institutions is going unpaid.
+    // Merchants and clergy withdraw legitimacy, which is what
+    // `standing_modifier` reads; they do not put soldiers on the street. The
+    // first draft let any pillar move, and Iran's bazaar overthrew the Islamic
+    // Republic seven times in twenty years.
+    let weakest = g.weakest_armed().map(|(_, v)| v).unwrap_or(1.0);
+    if weakest < 0.35 {
+        g.coup_pressure = (g.coup_pressure + (0.35 - weakest) * 0.15 * dt).min(1.5);
+    } else {
+        g.coup_pressure = (g.coup_pressure - 0.015 * dt).max(0.0);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// The roads (S4), route 2: a military coup against an elected government.
+// Everything here returns before reading anything while
+// `rules.ideology_takeover` is off, and draws no RNG in any state.
+// ---------------------------------------------------------------------------
+
+/// The Army's loyalty at or under which an elected government's own
+/// soldiers start to count the months, and the discontent at or over which
+/// they do. INVENTED (design S4, route 2).
+pub const ELECTORAL_COUP_ARMY: f64 = 0.35;
+pub const ELECTORAL_COUP_DISCONTENT: f64 = 0.25;
+/// The months an elected government must have sat before its army moves
+/// (the regime's own coup waits 36 after a break; the elected government's
+/// honeymoon is the shorter one). INVENTED (design S4, route 2).
+pub const ELECTORAL_COUP_SETTLED: u32 = 12;
+
+/// Completed months under the same accountable governing party. Renewing a
+/// ballot or replacing its officeholder does not erase that party's observed
+/// history. Election/term clocks remain separate and still restart normally.
+/// A new party does not match the outgoing record; old saves without valid
+/// matching history retain their observed office age. Interim governments
+/// await a real ballot and cannot spend old history to end that protection.
+/// Pure and inert to the legacy clock when the ideology lens is off.
+pub fn electoral_coup_settled_months(w: &WorldState, id: NationId) -> u32 {
+    let Some(g) = state(w, id) else { return 0; };
+    if !w.rules.ideology_blocs { return g.months_in_office; }
+    if g.awaiting_first_election { return 0; }
+    let observed = g.leader().and_then(|party| {
+        g.political_record.as_ref().filter(|record|
+            record.government == format!("party:{party}")
+                && record.months.is_finite() && record.months >= 0.0)
+    });
+    observed.map_or(g.months_in_office, |record| {
+        // Match the existing office clock's calendar rounding tolerance.
+        g.months_in_office.max((record.months + 1e-12).floor() as u32)
+    })
+}
+
+/// Route 2's slow half: in an electoral polity whose state carries an Army
+/// pillar, the Army and Security lines of `pillar_targets` are walked as a
+/// regime's are, and pressure accrues at the ELECTORAL rate — while the
+/// effective army loyalty (the pillar less the Nationalist bloc's foreign
+/// backing) is under `ELECTORAL_COUP_ARMY` and discontent at or over
+/// `ELECTORAL_COUP_DISCONTENT`, `0.30 * (2*(0.35 - eff) + (D - 0.25)) * dt`
+/// to a cap of 1.5; otherwise it cools 0.03*dt. The rate and the cap are
+/// INVENTED (design S4). Nothing here while the takeover switch is off, or
+/// where the state holds no Army.
+fn electoral_army_tick(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_takeover {
+        return;
+    }
+    let armed: Vec<Pillar> = match state(w, id) {
+        Some(g) if g.pillars.iter().any(|(p, _)| *p == Pillar::Army) => g
+            .pillars
+            .iter()
+            .map(|(p, _)| *p)
+            .filter(|p| matches!(p, Pillar::Army | Pillar::Security))
+            .collect(),
+        _ => return,
+    };
+    let targets = pillar_targets(w, id, &armed);
+    #[cfg(test)]
+    a1_observer::record(w, id, "army_before_walk");
+    walk_pillars(w, id, targets);
+    let dt = crate::clock::month_fraction(w);
+    let eff = crate::blocs::effective_army_loyalty(w, id);
+    let d = crate::blocs::discontent(w, id);
+    if let Some(g) = state_mut(w, id) {
+        if eff < ELECTORAL_COUP_ARMY && d >= ELECTORAL_COUP_DISCONTENT {
+            let rate = 0.30 * (2.0 * (ELECTORAL_COUP_ARMY - eff) + (d - ELECTORAL_COUP_DISCONTENT));
+            g.coup_pressure = (g.coup_pressure + rate * dt).min(1.5);
+        } else {
+            g.coup_pressure = (g.coup_pressure - 0.03 * dt).max(0.0);
+        }
+    }
+    #[cfg(test)]
+    a1_observer::record(w, id, "army_after_walk");
+}
+
+/// The movements a polity that has just stopped voting carries: its parties'
+/// bloc sums, `bonus` added to `ruling`, floored and normalised. What
+/// `SuspendConstitution` seeds (its +0.10), and what a coup or an uprising in
+/// an electoral state seeds first, so the regime branch has movements to
+/// move.
+fn movements_from_parties(w: &WorldState, id: NationId, ruling: Bloc, bonus: f64) -> [(Bloc, f64); 5] {
+    let mut movements = crate::blocs::bloc_shares(w, id);
+    movements[ruling as usize].1 += bonus;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    movements
+}
+
+/// Every pillar of the polity's spec seated in the state, so a regime that
+/// has just replaced an elected government has all of its institutions to
+/// keep paying and not only the two that removed it. Pillars already present
+/// keep their loyalty; the caller writes over them.
+fn seat_spec_pillars(w: &mut WorldState, id: NationId) {
+    let spec: Vec<Pillar> = polity_in(w, id).map(|p| p.pillars.iter().map(|s| s.pillar).collect()).unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        for p in spec {
+            if !g.pillars.iter().any(|(q, _)| *q == p) {
+                g.pillars.push((p, 0.72));
+            }
+        }
+    }
+}
+
+/// Route 2's trigger and break: pressure at or past `1 / crisis_intensity`
+/// and the same accountable government observed for `ELECTORAL_COUP_SETTLED` months ->
+/// `regime_break` with the Army as the mover, authoritarianism
+/// `max(auth + 0.25, 0.65)`, the regime in the NATIONALIST colour, the
+/// coalition kept as a dormant record, the movements seeded from the
+/// parties' bloc sums (the deposed government's colour the largest), the
+/// spec's pillars seated at 0.90 / 0.72. Returns whether it fired. Nothing
+/// while the takeover switch is off.
+fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
+    if !w.rules.ideology_takeover {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_takeover_disabled");
+        return false;
+    }
+    let (pressure, has_army) = match state(w, id) {
+        Some(g) => (g.coup_pressure, g.pillars.iter().any(|(p, _)| *p == Pillar::Army)),
+        None => {
+            #[cfg(test)]
+            a1_observer::record(w, id, "trigger_no_government");
+            return false;
+        },
+    };
+    let settled = electoral_coup_settled_months(w, id);
+    if !has_army || settled < ELECTORAL_COUP_SETTLED
+        || (w.rules.ideology_blocs && state(w, id).is_some_and(|g| g.awaiting_first_election))
+    {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_unsettled_interim_or_no_army");
+        return false;
+    }
+    // Pressure records past grievances; it cannot substitute for the trigger
+    // still being live. A paid army or a resolved crisis gets a chance to cool
+    // the gauge instead of staging a coup after its reason to move has gone.
+    if crate::blocs::effective_army_loyalty(w, id) >= ELECTORAL_COUP_ARMY
+        || crate::blocs::discontent(w, id) < ELECTORAL_COUP_DISCONTENT
+    {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_live_conditions_inactive");
+        return false;
+    }
+    if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_pressure_not_ready");
+        return false;
+    }
+    #[cfg(test)]
+    a1_observer::record(w, id, "trigger_firing");
+    let name = pillar_name(w, id, Pillar::Army);
+    break_electoral(
+        w,
+        id,
+        format!("COUP IN {}: {} removes the elected government.", id.name().to_uppercase(), name),
+    );
+    true
+}
+
+/// The break an elected government suffers at the army's hands, shared by
+/// route 2 and the annulment: the movements seeded from the parties' bloc
+/// sums (the deposed government's colour the largest, the latch closed on
+/// whatever is already over the line), the spec's pillars seated, then
+/// `regime_break` with the Army as the mover, authoritarianism
+/// `max(auth + 0.25, 0.65)` and the NATIONALIST colour; the cabinet stays as
+/// a dormant record.
+fn break_electoral(w: &mut WorldState, id: NationId, headline: String) {
+    let ruling = crate::blocs::ruling_bloc(w, id).unwrap_or(Bloc::Nationalist);
+    let movements = movements_from_parties(w, id, ruling, 0.0);
+    let auth = w.nation(id).authoritarianism;
+    seat_spec_pillars(w, id);
+    if let Some(g) = state_mut(w, id) {
+        g.movements = movements.to_vec();
+        g.surging = latched_at_seed(&movements, Bloc::Nationalist);
+    }
+    regime_break(
+        w,
+        id,
+        Break {
+            pillar: Pillar::Army,
+            auth_after: (auth + 0.25).max(0.65).min(0.98),
+            regime_bloc: Some(Bloc::Nationalist),
+            headline,
+        },
+    );
+}
+
+// ---------------------------------------------------------------------------
+// The roads (S4), route 3: the uprising's effects. The draw lives in
+// `politics::tick`; this writes what the winner does with the capital.
+// ---------------------------------------------------------------------------
+
+/// The authoritarianism a winner opens at (design S4): Western
+/// `min(auth, 0.40)`, Communist `max(auth, 0.80)`, Nationalist `max(auth,
+/// 0.72)`, Islamist `max(auth, 0.80)`, Non-Aligned `max(auth, 0.65)`, all
+/// clamped to 0.05..0.95. INVENTED.
+pub fn winner_authoritarianism(auth: f64, winner: Bloc) -> f64 {
+    let a = match winner {
+        Bloc::Western => auth.min(0.40),
+        Bloc::Communist | Bloc::Islamist => auth.max(0.80),
+        Bloc::Nationalist => auth.max(0.72),
+        Bloc::NonAligned => auth.max(0.65),
+    };
+    a.clamp(0.05, 0.95)
+}
+
+/// The spec pillar a bloc governs through, where the polity has one: the
+/// first pillar in the list whose installing bloc is the winner's.
+fn home_pillar(w: &WorldState, id: NationId, bloc: Bloc) -> Option<Pillar> {
+    polity_in(w, id)?.pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(id, *p) == bloc)
+}
+
+/// The uprising (S4, route 3), fired by `politics::tick` on its draw. The
+/// pre-arm collapse's two effects first — stability 45, output ×0.93 — then
+/// the winner W (`blocs::challenger`): authoritarianism by
+/// `winner_authoritarianism`, the coalition cleared, the office clock and
+/// the pressure to zero, the regime in W's colour, the movements (seeded from
+/// the parties' bloc sums first in an electoral state) with W +0.15 and
+/// normalised, the spec's pillars reseeded with W's home pillar at 0.80 and
+/// the rest at 0.55. A Western winner reopens the state, and the next tick
+/// schedules its first free elections through the seam. Where nothing could
+/// win (`challenger` is `None`: a party-less polity whose only challenger is
+/// Western, or no present non-ruling bloc at all) the old regime falls as it
+/// did before the arm, without the random shift and without a new colour.
+/// Draws no RNG.
+pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
+    let winner = crate::blocs::challenger(w, id).map(|(b, _)| b);
+    settle_uprising(w, id, winner, 0.15);
+}
+
+/// An existing armed organization can win through a material collapse without
+/// being granted a popular mandate. Use the same office/institution settlement
+/// as an uprising but add no rally bonus to the electorate or movement shares.
+pub(crate) fn armed_opposition_victory(w: &mut WorldState, id: NationId, winner: Bloc) {
+    settle_uprising(w, id, Some(winner), 0.0);
+}
+
+fn settle_uprising(w: &mut WorldState, id: NationId, winner: Option<Bloc>, rally: f64) {
+    let old = crate::blocs::ruling_bloc(w, id);
+    let electoral = is_electoral(w, id);
+    {
+        let n = w.nation_mut(id);
+        n.stability = 45.0;
+        n.gdp *= 0.93;
+        crate::economy::refresh_debt_ratio(n);
+    }
+    let winner = match winner {
+        Some(b) => b,
+        None => {
+            w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
+            return;
+        }
+    };
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = winner_authoritarianism(n.authoritarianism, winner);
+    }
+    let mut movements = if electoral {
+        movements_from_parties(w, id, old.unwrap_or(winner), 0.0)
+    } else {
+        let mut m = [(Bloc::Western, 0.0); 5];
+        let stored = state(w, id).map(|g| g.movements.clone()).unwrap_or_default();
+        if stored.len() == 5 {
+            for (i, e) in stored.iter().enumerate() {
+                m[i] = *e;
+            }
+        } else {
+            m = crate::blocs::bloc_shares(w, id);
+        }
+        m
+    };
+    if rally != 0.0 {
+        movements[winner as usize].1 += rally;
+        for e in movements.iter_mut() {
+            e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+        }
+        normalise_blocs(&mut movements);
+    }
+    let home = home_pillar(w, id, winner);
+    let pillars: Vec<(Pillar, f64)> = polity_in(w, id)
+        .map(|p| p.pillars.iter().map(|s| (s.pillar, if Some(s.pillar) == home { 0.80 } else { 0.55 })).collect())
+        .unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        g.coalition.clear();
+        g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
+        g.coup_pressure = 0.0;
+        g.elected = false;
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
+        g.awaiting_first_election = false;
+        g.regime_bloc = Some(winner);
+        g.surging = latched_at_seed(&movements, winner);
+        g.movements = movements.to_vec();
+        g.pillars = pillars;
+        // A state that will vote again owes the country its first free
+        // elections, which the electoral branch schedules on (0, 0).
+        g.next_election = (0, 0);
+    }
+    w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
+    seat_office(w, id, &Succession::Takeover { bloc: winner });
+    crate::statecraft::takeover_payoff(w, id, winner, old);
+}
+
+/// An uncrowned stability collapse changes order, output and institutions,
+/// but has no actor that installs a new political programme. Preserve the
+/// actual bloc and constituency across either institutional boundary; an
+/// opening owes a future ballot, rather than installing the dormant party row.
+/// The old numerical effects are identical when the political lens is off.
+pub(crate) fn generic_regime_collapse(w: &mut WorldState, id: NationId, auth_shift: f64) {
+    let was_electoral = is_electoral(w, id);
+    let actual_programme = if w.rules.ideology_blocs {
+        crate::blocs::ruling_bloc(w, id).map(|bloc| (bloc, crate::blocs::bloc_shares(w, id)))
+    } else { None };
+    {
+        let n = w.nation_mut(id);
+        n.stability = 45.0;
+        n.gdp *= 0.93;
+        crate::economy::refresh_debt_ratio(n);
+        n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+    }
+    if let Some((ruling, mut movements)) = actual_programme {
+        let electoral = is_electoral(w, id);
+        if was_electoral != electoral {
+            for (_, share) in &mut movements { *share = share.max(crate::blocs::SHARE_FLOOR); }
+            normalise_blocs(&mut movements);
+            if let Some(g) = state_mut(w, id) {
+                g.regime_bloc = Some(ruling);
+                g.surging = latched_at_seed(&movements, ruling);
+                g.movements = movements.to_vec();
+                g.next_election = (0, 0);
+                g.elected = false;
+                g.unrestricted_mandate = false;
+                g.opening_mandate = None;
+                g.awaiting_first_election = electoral;
+            }
+        }
+    }
+}
+
+/// Route 4 (S4), the round table as a DRIFT rather than an event: while
+/// `blocs::round_table_armed` (a regime; Western influence at or over 0.40;
+/// stability inside 30..70; the Party pillar — the weakest armed
+/// institution where there is none — under 0.55), authoritarianism walks
+/// down `ROUND_TABLE_STEP` a month to `blocs::ROUND_TABLE_FLOOR`. A polity
+/// with a party table crosses the electoral ceiling on the way, and the
+/// electoral branch schedules its first free elections through the seam;
+/// a party-less one stops at the floor as a regime. Deterministic; nothing
+/// while the takeover switch is off. INVENTED step (design S4).
+pub const ROUND_TABLE_STEP: f64 = 0.01;
+fn round_table_drift(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_takeover {
+        return;
+    }
+    if !crate::blocs::round_table_armed(w, id) {
+        return;
+    }
+    let dt = crate::clock::month_fraction(w);
+    let n = w.nation_mut(id);
+    if n.authoritarianism > crate::blocs::ROUND_TABLE_FLOOR {
+        n.authoritarianism = (n.authoritarianism - ROUND_TABLE_STEP * dt).max(crate::blocs::ROUND_TABLE_FLOOR);
+    }
+}
+
+fn maybe_coup(w: &mut WorldState, id: NationId) {
+    let (pressure, weakest, settled) = match state(w, id) {
+        Some(g) => (g.coup_pressure, g.weakest_armed(), g.months_in_office),
+        None => return,
+    };
+    // A regime that has just been through one is not going through another next
+    // year. Whoever took power has purged, and the purge buys them time.
+    if settled < 36 {
+        return;
+    }
+    let (pillar, loyalty) = match weakest {
+        Some(x) => x,
+        None => return,
+    };
+    // The gauge can remain above the firing line while it cools after a
+    // payment. An institution that has recovered its loyalty must not move
+    // solely because pressure was accumulated before the recovery.
+    if loyalty >= 0.35 {
+        return;
+    }
+    // The pressure gauge *is* the risk: it climbs only while an institution is
+    // going unpaid, and a coup happens when it tops out. A regime that keeps its
+    // pillars fed never reaches this line, and one that neglects them reaches it
+    // in about a year. No die is thrown — see `hold_election` for why.
+    if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
+        return;
+    }
+    let name = coup_pillar_name(w, id, pillar);
+    // The one number the regime's own coup and the arm's roads compute
+    // differently is the authoritarianism the new regime opens at: here the
+    // pre-arm rule, per pillar, read before anything is written.
+    let auth = w.nation(id).authoritarianism;
+    let auth_after = match pillar {
+        Pillar::Army | Pillar::Security => (auth + 0.08).min(0.98),
+        Pillar::Clergy => (auth + 0.05).min(0.98),
+        _ => (auth - 0.04).max(0.05),
+    };
+    // Under the ROADS an organized, stronger domestic alternative may
+    // replace the programme; otherwise only the officeholder changes.
+    // Under the lens alone
+    // this is `maybe_coup`'s pre-arm block verbatim and the regime keeps the
+    // colour it had, so a takeover effect is never live with
+    // `ideology_takeover` off. With everything off nothing is written,
+    // because `regime_bloc` is never stored there.
+    let regime_bloc = if w.rules.ideology_takeover { regime_coup_bloc(w, id, pillar) } else { None };
+    regime_break(
+        w,
+        id,
+        Break {
+            pillar,
+            auth_after,
+            regime_bloc,
+            headline: format!("COUP IN {}: {} removes the government.", id.name().to_uppercase(), name),
+        },
+    );
+}
+
+/// A palace coup changes who runs the existing regime. An institution's
+/// generic affinity does not, by itself, supply a new political programme.
+/// It can install that alternative when an organized domestic movement for
+/// it has overtaken the ruling programme. Foreign funding is influence, not
+/// domestic support, and cannot manufacture this mandate. Electoral coups
+/// still explicitly replace civilian government with military rule.
+fn regime_coup_bloc(w: &WorldState, id: NationId, pillar: Pillar) -> Option<Bloc> {
+    let ruling = crate::blocs::ruling_bloc(w, id)?;
+    // The state's Party apparatus belongs to the current governing movement.
+    // Reusing its 1990 affiliation after a revolution resurrected a defeated
+    // party when the successor government's own organisation lost discipline.
+    if pillar == Pillar::Party { return Some(ruling); }
+    let alternative = pillar_bloc(id, pillar);
+    let shares = crate::blocs::bloc_shares(w, id);
+    let independent_organisation = polity_in(w, id).is_some_and(|p|
+        p.parties.iter().any(|party| bloc_of(id, party.id) == alternative))
+        || state(w, id).is_some_and(|g| g.established_movements.contains(&alternative));
+    if alternative != ruling && crate::blocs::bloc_can_win(w, id, alternative)
+        && independent_organisation
+        && shares[alternative as usize].1 > shares[ruling as usize].1
+    {
+        Some(alternative)
+    } else {
+        Some(ruling)
+    }
+}
+
+fn coup_pillar_name(w: &WorldState, id: NationId, pillar: Pillar) -> String {
+    if w.rules.ideology_takeover && pillar == Pillar::Party
+        && state(w, id).is_some_and(|g| g.pillars.iter().any(|(p, _)| *p == Pillar::Party))
+    {
+        if let Some(ruling) = crate::blocs::ruling_bloc(w, id) {
+            if ruling != pillar_bloc(id, pillar) {
+                return format!("the {} governing organisation", ruling.label());
+            }
+        }
+    }
+    pillar_name(w, id, pillar).to_string()
+}
+
+/// The transcribed name of one of a regime's institutions, or the generic.
+fn pillar_name(w: &WorldState, id: NationId, pillar: Pillar) -> &'static str {
+    polity_in(w, id)
+        .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == pillar))
+        .map(|s| s.name)
+        .unwrap_or("the security apparatus")
+}
+
+/// What a coup leaves behind, computed by the caller and written by
+/// [`regime_break`]: the institution that moved, the authoritarianism the
+/// new regime opens at, the colour it rules in (written only under the arm),
+/// and the headline.
+pub(crate) struct Break {
+    pub pillar: Pillar,
+    pub auth_after: f64,
+    pub regime_bloc: Option<Bloc>,
+    pub headline: String,
+}
+
+/// A coup is not a revolution: the state survives, the government does not,
+/// and whoever moved is now in charge and more afraid than the last lot.
+///
+/// ONE function for the regime's own coup (`maybe_coup`, the pre-arm
+/// mechanic, whose block this is verbatim: stability −16 to a floor of 5,
+/// output ×0.97, political capital reseated, pressure cleared, the mover at
+/// 0.90 and every other institution at 0.72, the office clock to zero) and
+/// for the arm's roads (S4: the coup against an elected government, the
+/// annulment), so the two cannot come apart. The only things that differ
+/// between callers arrive in the [`Break`]: the authoritarianism rule and
+/// the colour. Draws no RNG.
+fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
+    // The colour that falls, read before anything is written and only
+    // under the roads, for the foreign payoff below.
+    let loser = if w.rules.ideology_takeover { crate::blocs::ruling_bloc(w, id) } else { None };
+    let lens = w.rules.ideology_blocs;
+    {
+        let n = w.nation_mut(id);
+        n.stability = (n.stability - 16.0).max(5.0);
+        n.gdp *= 0.97;
+        crate::economy::refresh_debt_ratio(n);
+        n.authoritarianism = b.auth_after;
+        n.political_capital = crate::politics::seated_political_capital(
+            n.stability, n.inflation, n.authoritarianism,
+        );
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.coup_pressure = 0.0;
+        if lens {
+            g.awaiting_first_election = false;
+            g.elected = false;
+            g.unrestricted_mandate = false;
+            g.opening_mandate = None;
+            g.next_election = (0, 0);
+        }
+        for e in g.pillars.iter_mut() {
+            // The institution that moved is loyal to itself; the rest fall in
+            // behind it, because the alternative has just been demonstrated.
+            e.1 = if e.0 == b.pillar { 0.90 } else { 0.72 };
+        }
+        g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
+        if let Some(bloc) = b.regime_bloc {
+            g.regime_bloc = Some(bloc);
+            // The deposed colour is now a non-ruling movement, usually the
+            // largest: latch it closed on whatever is already over the
+            // surge line, the way `seed_blocs`, the programme and the
+            // uprising do, or `note_surges` prints "passes a third" for a
+            // movement that did not move.
+            g.surging = latched_at_seed(&g.movements, bloc);
+        }
+    }
+    if b.pillar == Pillar::Army { crate::army_authority::army_seizure(w, id); }
+    w.headline(b.headline);
+    // Succession (D2): the institution that moved seats its own name.
+    seat_office(w, id, &Succession::Coup { pillar: b.pillar });
+    // The foreign payoff (S4): nothing while the takeover switch is off.
+    if let Some(winner) = b.regime_bloc {
+        if Some(winner) != loser {
+            crate::statecraft::takeover_payoff(w, id, winner, loser);
+        }
+    }
+}
+
+/// A legacy AI's affordable operating allocation for its actual Army pillar.
+/// This is a budget priority, not free loyalty: resources still have to be
+/// paid through SetMilSpend and the normal fiscal settlement. The same floor
+/// is read by fiscal consolidation so the two AIs cannot buy and cut the
+/// identical appropriation every month. Explicit/player budgets have their
+/// own authority and never use this fallback policy.
+pub fn ai_army_funding_floor(w: &WorldState, id: NationId) -> Option<f64> {
+    if !w.rules.ideology_blocs || Some(id) == w.player { return None; }
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    if n.on_the_books() || n.annual_budget.is_some() || crate::programs::enrolled(w, id)
+        || crate::fiscal_recovery::enabled(w) || !n.gdp.is_finite() || n.gdp <= 0.0
+        || !n.population.is_finite() || n.population <= 0.0
+    { return None; }
+    let g = state(w, id)?;
+    if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) { return None; }
+    let personnel = army_personnel_assessment(w, id)?.members;
+    if !personnel.is_finite() || personnel <= 0.0 { return None; }
+    // Invert the CURRENT Army pillar target, including its existing war and
+    // civilian-confidence losses. Funding the raw .40 resource term while
+    // ignoring those losses could declare the budget adequate at .22 actual
+    // loyalty. The .40 target retains the modest margin above the .35 line;
+    // it does not buy away a prospective programme veto or change loyalty
+    // directly. Beyond a full resource basket, further spending cannot help.
+    let funded = ((0.40 - 0.20 + n.war_exhaustion * 0.45
+        + army_civilian_confidence_penalty(w, id)) / 0.65).clamp(0.0, 1.0);
+    let resources = funded * 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+    let needed = resources * personnel / (n.gdp * 1_000_000_000.0);
+    let conditions = crate::economy::Conditions::of(w, id);
+    let terms = crate::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate, &conditions);
+    let fiscal = crate::economy::Fiscal::of(n, &terms);
+    // Retain all existing civilian expenditure and debt service. No new
+    // borrowing or invented treasury is authorized by this response.
+    let affordable = (fiscal.balance_gdp + n.mil_spend_gdp).max(0.0);
+    Some(needed.min(affordable).min(0.35).max(0.0))
+}
+
+/// AI regimes pay their bills. A government that will not spend on the people
+/// who could remove it is a government that gets removed, and the AI reaching
+/// for the same command the player has is the only way that stays fair.
+fn ai_government(w: &mut WorldState) {
+    let ids: Vec<NationId> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive && Some(n.id) != w.player)
+        .map(|n| n.id)
+        .collect();
+    for id in ids {
+        #[cfg(test)]
+        a1_observer::record(w, id, "ai_before_funding");
+        // Retain the annual review, with a month-end emergency review when
+        // actual loyalty has fallen below the existing .40 funded margin.
+        // A confidence loss emerging midyear must not wait until next January
+        // when an affordable, useful appropriation is already available.
+        // Hysteresis avoids buying tiny changes; the same paid command and
+        // fiscal floor still protect civilian spending and debt service.
+        if crate::clock::month_end(w)
+            && state(w, id).is_some_and(|g|
+                g.loyalty(Pillar::Army) < if w.month == 1 { 0.50 } else { 0.40 })
+        {
+            if let Some(share) = ai_army_funding_floor(w, id) {
+                if share >= w.nation(id).mil_spend_gdp + 0.001 {
+                    let command = crate::Command::SetMilSpend { nation: id, share };
+                    if crate::affordable(w, &command) { let _ = crate::apply_command(w, &command); }
+                }
+            }
+        }
+        #[cfg(test)]
+        a1_observer::record(w, id, "ai_after_funding");
+        if is_electoral(w, id) {
+            continue;
+        }
+        let (weak, held) = {
+            let g = match state(w, id) {
+                Some(g) => g,
+                None => continue,
+            };
+            (g.weakest_armed(), w.nation(id).political_capital)
+        };
+        if let Some((pillar, loyalty)) = weak {
+            // Deliberately reluctant, for the same reason `ai_stratagems` keeps a
+            // reserve: a regime that spends its whole standing on the palace
+            // guard has nothing left to spend on the sphere. The first draft
+            // bought at 22% a month whenever an institution dipped below 0.45,
+            // and it quietly bankrupted the Soviet Union's foreign policy —
+            // `a_pact_drags_a_great_power_into_a_war_it_did_not_start` fell from
+            // 5/12 runs to 2/12, because Moscow was buying its own apparatus
+            // instead of guaranteeing anybody. Patronage now waits until an
+            // institution is genuinely close to moving.
+            if loyalty < 0.35 && held > 55.0 {
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::SecurePillar { nation: id, pillar },
+                );
+            }
+        }
+    }
+}
+
+pub fn tick(w: &mut WorldState) {
+    let daily = crate::clock::is_daily(w);
+    let dt = crate::clock::month_fraction(w);
+    ensure_all(w);
+    let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+
+    for id in ids.clone() {
+        crate::opening_mandates::discard_incompatible(w, id);
+        if state(w, id).is_none() {
+            continue;
+        }
+        if let Some(g) = state_mut(w, id) {
+            if daily {
+                g.office_month_fraction += dt;
+                if g.office_month_fraction >= 1.0 - 1e-12 {
+                    g.months_in_office = g.months_in_office.saturating_add(1);
+                    g.office_month_fraction = (g.office_month_fraction - 1.0).max(0.0);
+                }
+            } else {
+                g.months_in_office = g.months_in_office.saturating_add(1);
+            }
+        }
+
+        if is_electoral(w, id) {
+            // A missing calendar is not necessarily a regime opening. A new
+            // electoral successor already has an accountable modeled cabinet;
+            // scheduling its vote must not invent an interim authority that
+            // freezes its support and record. An explicit nonparty authority,
+            // stored regime or saved pending opening retains that seam, as does the
+            // legacy path with the political lens off.
+            let unscheduled = state(w, id).is_some_and(|g| g.next_election.0 == 0);
+            if unscheduled {
+                let party_authority = crate::blocs::leader_row(w, id).map_or(true, |row|
+                    matches!(row.tie_now(), Some(crate::data::Tie::Party(_))));
+                let ordinary_cabinet = w.rules.ideology_blocs && party_authority && state(w, id)
+                    .is_some_and(|g| g.regime_bloc.is_none() && !g.awaiting_first_election);
+                if ordinary_cabinet {
+                    let when = add_months(w.year, w.month, 18);
+                    state_mut(w, id).unwrap().next_election = when;
+                    w.headline(format!("{} sets a date for national elections.", id.name()));
+                } else {
+                    // The dormant table is seated from the movements while the
+                    // real regime retains authority until its first free vote.
+                    let lost = schedule_first_elections(w, id, 18);
+                    w.headline(match lost {
+                        None => format!("{} sets a date for its first free elections.", id.name()),
+                        Some(clause) => format!(
+                            "{} sets a date for its first free elections; {}.",
+                            id.name(),
+                            clause
+                        ),
+                    });
+                }
+            }
+
+            drift_support(w, id);
+
+            // The roads (S4, route 2): the army of an elected government has a
+            // loyalty and a pressure of its own, and moves BEFORE the fragile
+            // branch below, which would otherwise reset the office clock the
+            // trigger reads. Both return at once with the takeover switch off.
+            electoral_army_tick(w, id);
+            if maybe_electoral_coup(w, id) {
+                // The government this branch was judging no longer exists;
+                // the regime branch takes over next tick.
+                continue;
+            }
+
+            // A government that has lost the country does not always last the
+            // term. Israel's fell on a confidence motion in March 1990 and
+            // Pakistan's was dismissed that August; both are this branch.
+            let (fragile, months) = match state(w, id) {
+                Some(g) => (
+                    w.nation(id).stability < 32.0 || g.government_seats() < 0.40,
+                    g.months_in_office,
+                ),
+                None => (false, 0),
+            };
+            if fragile && months >= 12
+                && !(w.rules.ideology_blocs && state(w, id).is_some_and(|g| g.awaiting_first_election))
+            {
+                w.headline(format!(
+                    "The government of {} falls; the country goes to the polls.",
+                    id.name()
+                ));
+                hold_election(w, id);
+                continue;
+            }
+
+            let is_due = state(w, id).is_some_and(|g| due(w, g));
+            if is_due {
+                hold_election(w, id);
+            }
+        } else {
+            // An authoritarian regime does not hold elections, and if it once
+            // did, the parliament it had stops mattering.
+            let lens = w.rules.ideology_blocs;
+            if let Some(g) = state_mut(w, id) {
+                g.next_election = (0, 0);
+                if lens {
+                    g.awaiting_first_election = false;
+                    g.elected = false;
+                    g.unrestricted_mandate = false;
+                    g.opening_mandate = None;
+                }
+                if g.pillars.is_empty() {
+                    g.pillars = vec![];
+                }
+            }
+            let needs_pillars = state(w, id).is_some_and(|g| g.pillars.is_empty());
+            if needs_pillars {
+                let seeded: Vec<(Pillar, f64)> = polity_in(w, id)
+                    .map(|p| p.pillars.iter().map(|s| (s.pillar, 0.60)).collect())
+                    .unwrap_or_default();
+                if let Some(g) = state_mut(w, id) {
+                    g.pillars = seeded;
+                }
+            }
+            regime_tick(w, id);
+            // The political arm (S3): the country's movements move with the
+            // same pains the pillars just read. Both return at once with the
+            // switch off.
+            drift_movements(w, id);
+            note_surges(w, id);
+            maybe_coup(w, id);
+            // The roads (S4, route 4): the only drift of authoritarianism in
+            // the model. Returns at once with the takeover switch off.
+            round_table_drift(w, id);
+        }
+
+        // The bill for the government you are running, paid every month out of
+        // the same stock everything else is priced in.
+        let cost = upkeep(w, id) * dt;
+        if cost > 0.0 {
+            let n = w.nation_mut(id);
+            n.political_capital = (n.political_capital - cost).max(0.0);
+        }
+    }
+
+    term_limits(w);
+    ai_government(w);
+    crate::armed_security::tick(w);
+}
+
+/// A constitutional term limit already binding on 1 January 1990 (the
+/// table's `must_leave_by`, Bush's second-term ceiling) reached: the office
+/// seats "a new {party} president" (D2). The one dated fact the arm acts
+/// on, and it is a transcribed one. Nothing with the lens off; reads
+/// nothing while no row carries a date.
+fn term_limits(w: &mut WorldState) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    // By the MONTH, not the day: a month-stepped world settles the whole
+    // month on the 1st and a legacy day-stepped one on the last day, and
+    // the two must agree (`the_daily_clock_preserves_the_political_arm_on_
+    // world`); a ceiling falling inside a month is reached in that month.
+    let this_month = (w.year, w.month);
+    let due: Vec<NationId> = match &w.leadership {
+        Some(rows) => rows
+            .iter()
+            .filter(|o| o.holds())
+            .filter(|o| {
+                o.must_leave_by.as_deref().and_then(crate::data::parse_date).is_some_and(|(y, m, _)| (y, m) <= this_month)
+            })
+            .map(|o| o.nation)
+            .collect(),
+        None => return,
+    };
+    let mut due = due;
+    due.sort();
+    for id in due {
+        if w.nation_opt(id).is_some_and(|n| n.alive) {
+            seat_office(w, id, &Succession::TermLimit);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Succession (design D2, S4): who holds the office after a change of
+// government. NO NAME IS EVER WRITTEN FOR A DATE AFTER 1 JANUARY 1990 except
+// the transcribed heir, seated once.
+// ---------------------------------------------------------------------------
+
+/// How the office changed hands.
+#[derive(Clone, Debug, PartialEq)]
+pub enum Succession {
+    /// A vote seated `leader` at the head of the coalition.
+    Election { leader: String },
+    /// An institution removed the government (the regime's own coup, route 2,
+    /// the annulment).
+    Coup { pillar: Pillar },
+    /// A movement took power (route 3).
+    Takeover { bloc: Bloc },
+    /// The table's `must_leave_by` was reached.
+    TermLimit,
+    /// The transcribed leader died in office (D1).
+    Death,
+    /// The regime changed its colour by decree.
+    Programme,
+}
+
+/// The largest party of a bloc in the polity's table by its transcribed
+/// share, if the table carries one.
+fn largest_party_of(w: &WorldState, id: NationId, bloc: Bloc) -> Option<&'static PartySpec> {
+    let mut best: Option<&PartySpec> = None;
+    for s in polity_in(w, id)?.parties {
+        if bloc_of(id, s.id) != bloc {
+            continue;
+        }
+        if best.map_or(true, |b| s.start > b.start) {
+            best = Some(s);
+        }
+    }
+    best
+}
+
+fn government_of(id: NationId, party: &str) -> String {
+    format!("the {} government", spec(id, party).map(|s| s.name).unwrap_or(party))
+}
+
+/// The seat the rules give, or `None` where the incumbent stays: a pure
+/// read of the row and the table. `heir` says whether the transcribed heir
+/// is the one seated (the caller then consumes it).
+pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option<(crate::data::Emergent, bool)> {
+    use crate::data::{Emergent, Tie};
+    let row = crate::blocs::leader_row(w, id)?;
+    // The model's date: the day under the daily clock, the first of the
+    // month under the legacy one, whose settlement day is not a date.
+    let day = if crate::clock::is_daily(w) { w.day.max(1) } else { 1 };
+    let today = format!("{:04}-{:02}-{:02}", w.year, w.month, day);
+    let holder = row.tie_now();
+    let holder_party: Option<String> = match &holder {
+        Some(Tie::Party(p)) => Some(p.clone()),
+        _ => None,
+    };
+    let holder_pillar: Option<Pillar> = match &holder {
+        Some(Tie::Pillar(p)) => Some(*p),
+        _ => None,
+    };
+    // A takeover creates a new generic regime office. Its later succession
+    // must not inherit the historical office's crown/heir simply because a
+    // Party organisation now holds it. Sourced and inherited offices retain
+    // their existing separate succession rules.
+    let generated_regime_office = row.emergent.as_ref()
+        .is_some_and(|e| e.office == "head of state");
+    let seat = |described: String, office: String, party: Option<String>, pillar: Option<Pillar>| Emergent {
+        described,
+        office,
+        party,
+        pillar,
+        since: today.clone(),
+    };
+    // A monarch or a party-state leader removed: the transcribed heir once,
+    // then "the ruling house".
+    let house = |row: &crate::data::Office| -> (Emergent, bool) {
+        match &row.heir {
+            Some(h) => (seat(h.name.clone(), row.office.clone(), None, Some(Pillar::Party)), true),
+            None => (seat("the ruling house".into(), row.office.clone(), None, Some(Pillar::Party)), false),
+        }
+    };
+    let by_pillar = |pillar: Pillar| -> (Emergent, bool) {
+        (seat(coup_pillar_name(w, id, pillar), "head of state".into(), None, Some(pillar)), false)
+    };
+    Some(match how {
+        Succession::Election { leader } => {
+            // A transcribed holder tied to a PILLAR — a crown, a court, a
+            // party-state chief, a general presiding over the vote — is not
+            // an office a ballot fills: D2 removes a monarch only by a Party
+            // coup or a programme, and the chamber's winner is the government
+            // of the day, served beside the row. Read on the transcribed row
+            // alone; an emergent pillar holder (the junta after a coup) does
+            // give way to the party the first free elections seat.
+            let military_transition = matches!(holder_pillar, Some(Pillar::Army | Pillar::Security))
+                && state(w, id).is_some_and(|g| g.awaiting_first_election);
+            // Inherited crowns and other sourced pillar offices remain distinct
+            // from the elected chamber after succession too. Only the generic
+            // regime role generated by `by_pillar` yields as an emergent office.
+            let inherited_pillar_office = holder_pillar.is_some()
+                && row.emergent.as_ref().map_or(true, |e| e.office != "head of state");
+            if inherited_pillar_office && !military_transition {
+                return None;
+            }
+            // The transcribed person whose own party leads keeps the office;
+            // an emergent holder is a description and gives way to the next.
+            if row.emergent.is_none() && holder_party.as_deref() == Some(leader.as_str()) {
+                return None;
+            }
+            (seat(government_of(id, leader), "head of government".into(), Some(leader.clone()), None), false)
+        }
+        Succession::Coup { pillar } => {
+            if *pillar == Pillar::Party && holder_pillar == Some(Pillar::Party) && !generated_regime_office {
+                house(row)
+            } else {
+                by_pillar(*pillar)
+            }
+        }
+        Succession::Takeover { bloc } => match bloc {
+            Bloc::Nationalist | Bloc::NonAligned => {
+                let pillar = home_pillar(w, id, *bloc)
+                    .or_else(|| polity_in(w, id).and_then(|p| p.pillars.iter().map(|s| s.pillar).find(|p| *p == Pillar::Army)))
+                    .or_else(|| polity_in(w, id).and_then(|p| p.pillars.first().map(|s| s.pillar)));
+                match pillar {
+                    Some(p) => by_pillar(p),
+                    None => (seat(polity_in(w, id).map(|p| p.ruling).unwrap_or("the state").to_string(), "head of state".into(), None, None), false),
+                }
+            }
+            Bloc::Islamist | Bloc::Communist | Bloc::Western => match largest_party_of(w, id, *bloc) {
+                Some(p) => (seat(government_of(id, p.id), "head of government".into(), Some(p.id.to_string()), None), false),
+                None => {
+                    let fallback = if *bloc == Bloc::Islamist { Pillar::Clergy } else { Pillar::Party };
+                    let pillar = home_pillar(w, id, *bloc).unwrap_or(fallback);
+                    by_pillar(pillar)
+                }
+            },
+        },
+        Succession::TermLimit => match &holder_party {
+            Some(p) => (
+                seat(
+                    format!("a new {} president", spec(id, p).map(|s| s.name).unwrap_or(p)),
+                    row.office.clone(),
+                    Some(p.clone()),
+                    None,
+                ),
+                false,
+            ),
+            None => return None,
+        },
+        Succession::Death => match (&holder_party, holder_pillar) {
+            (Some(p), _) => (seat(government_of(id, p), row.office.clone(), Some(p.clone()), None), false),
+            (None, Some(Pillar::Party)) if !generated_regime_office => house(row),
+            (None, Some(pl)) => by_pillar(pl),
+            (None, None) => return None,
+        },
+        Succession::Programme => {
+            if !generated_regime_office && (row.heir.is_some() || holder_pillar == Some(Pillar::Party)) {
+                house(row)
+            } else if let Some(p) = &holder_party {
+                (seat(government_of(id, p), "head of government".into(), Some(p.clone()), None), false)
+            } else if let Some(pl) = holder_pillar {
+                by_pillar(pl)
+            } else {
+                return None;
+            }
+        }
+    })
+}
+
+/// Seat the office after a change of government (D2): the row's transcribed
+/// person is gone for good — name, native form, tie, override, term limit
+/// and the `also` list cleared; the heir consumed if seated — and the
+/// emergent holder written. Nothing with the lens off (no table), and
+/// nothing where the rules keep the incumbent. Draws no RNG.
+pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    let (seat, heir_used) = match succession_seat(w, id, how) {
+        Some(x) => x,
+        None => return,
+    };
+    // The source attests an Assembly-backed party government, not the lifetime
+    // of one person. Same-party death/term succession leaves that authority
+    // intact; a ballot, programme or seizure cannot inherit it.
+    if !matches!(how, Succession::Death | Succession::TermLimit) {
+        crate::opening_mandates::clear(w, id);
+    }
+    let described = seat.described.clone();
+    crate::party_leadership::on_succession(w, id, how, seat.party.as_deref());
+    if let Some(rows) = w.leadership.as_mut() {
+        if let Some(row) = rows.iter_mut().find(|o| o.nation == id && o.holds()) {
+            row.name = None;
+            row.native = None;
+            row.tie = None;
+            row.bloc_override = None;
+            row.must_leave_by = None;
+            row.also.clear();
+            if heir_used {
+                row.heir = None;
+            }
+            row.emergent = Some(seat);
+        }
+    }
+    crate::opening_mandates::discard_incompatible(w, id);
+    if matches!(how, Succession::TermLimit | Succession::Death) {
+        w.headline(format!("{} is led by {}.", id.name(), described));
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::init::world_1990;
+
+    fn w1990() -> WorldState {
+        world_1990(GameRules::default())
+    }
+
+    #[test]
+    fn algeria_opens_with_its_national_chamber_and_separate_opposition_support() {
+        for daily in [false, true] {
+            let w = world_1990(GameRules {
+                daily_simulation: daily,
+                historical_party_leadership: daily,
+                ..GameRules::default()
+            });
+            let g = state(&w, NationId::Algeria).unwrap();
+            let pol = polity_in(&w, NationId::Algeria).unwrap();
+            let mut expected: Vec<_> = pol.parties.iter()
+                .map(|p| (p.id.to_string(), p.start.max(0.001))).collect();
+            normalise(&mut expected);
+            assert_eq!(g.support, expected, "seats must not overwrite popularity proxies");
+            assert_eq!(g.seats.len(), pol.parties.len());
+            for (id, seats) in &g.seats {
+                assert_eq!(*seats, if id == "dz_fln" { 1.0 } else { 0.0 });
+            }
+            assert_eq!(g.leader(), Some("dz_fln"));
+            assert_eq!(g.government_seats(), 1.0);
+            assert!(!g.elected);
+            assert!(g.banned.is_empty());
+            assert_eq!(g.next_election, (1991, 12));
+            assert!(w.headlines.is_empty(), "initialization is not an election or succession");
+            for other in &w.governments.states {
+                if other.nation != NationId::Algeria {
+                    let pol = polity_in(&w, other.nation).unwrap();
+                    assert_eq!(other.seats, seats_from(&other.support, pol.system));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn algerian_opening_seats_preserve_saved_governments_and_later_date_fallbacks() {
+        let id = NationId::Algeria;
+        for date in [(1990, 1, 1), (1990, 1, 2), (1990, 2, 1), (1994, 1, 1)] {
+            let mut w = w1990();
+            (w.year, w.month, w.day) = date;
+            // A populated save may contain a player's divergent January result.
+            // Preserve that result as well as ordinary later campaign state.
+            let pol = polity_in(&w, id).unwrap();
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats = seats_from(&g.support, pol.system);
+            g.coalition = vec!["dz_fis".to_string()];
+            g.elected = true;
+            g.months_in_office = 3;
+            let before = serde_json::to_string(state(&w, id).unwrap()).unwrap();
+            let mut resumed = crate::load(&crate::save(&w)).unwrap();
+            ensure_all(&mut resumed);
+            ensure_all(&mut resumed);
+            assert_eq!(serde_json::to_string(state(&resumed, id).unwrap()).unwrap(), before);
+
+            if date != (1990, 1, 1) {
+                resumed.governments.states.retain(|g| g.nation != id);
+                ensure(&mut resumed, id);
+                let g = state(&resumed, id).unwrap();
+                assert_eq!(g.seats, seats_from(&g.support, pol.system), "date {date:?}");
+                assert_eq!(g.leader(), Some("dz_fis"), "later fallback remains unchanged");
+            }
+        }
+        let mut w = w1990();
+        let before = crate::state_hash(&w);
+        ensure_all(&mut w);
+        assert_eq!(crate::state_hash(&w), before);
+        let resumed = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(crate::state_hash(&resumed), before);
+    }
+
+    #[test]
+    fn an_actual_algerian_election_replaces_the_opening_chamber() {
+        let id = NationId::Algeria;
+        let mut w = w1990();
+        assert_eq!(state(&w, id).unwrap().leader(), Some("dz_fln"));
+        let support = state(&w, id).unwrap().support.clone();
+        let expected = seats_from(&support, polity_in(&w, id).unwrap().system);
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.support, support);
+        assert_eq!(g.seats, expected);
+        assert_eq!(g.leader(), Some("dz_fis"));
+        assert!(g.elected);
+    }
+
+    #[test]
+    fn daily_government_age_and_support_do_not_jump_a_month_per_day() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let id = NationId::USA;
+        let support = state(&w, id).unwrap().support.clone();
+        tick(&mut w);
+        let first_day = state(&w, id).unwrap();
+        assert_eq!(first_day.months_in_office, 0);
+        assert!((first_day.office_month_fraction - 1.0 / 31.0).abs() < 1e-12);
+        assert_ne!(first_day.support, support, "the electorate changes before month end");
+        for day in 2..=31 {
+            w.day = day;
+            tick(&mut w);
+        }
+        let month = state(&w, id).unwrap();
+        assert_eq!(month.months_in_office, 1);
+        assert!(month.office_month_fraction.abs() < 1e-12);
+        let resumed = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(state(&resumed, id).unwrap().months_in_office, 1);
+    }
+
+    #[test]
+    fn every_government_is_reachable_in_january_1990() {
+        // The lesson that governs this whole branch: a mechanic the player
+        // cannot reach from their seat is not a mechanic. Every nation on the
+        // board must be able to answer "who governs here" on the first turn,
+        // before a single month has ticked.
+        let w = w1990();
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let g = state(&w, n.id)
+                .unwrap_or_else(|| panic!("{:?} has no government in Jan 1990", n.id));
+            if is_electoral(&w, n.id) {
+                assert!(
+                    !g.coalition.is_empty(),
+                    "{:?} is a democracy with nobody in office",
+                    n.id
+                );
+                assert!(
+                    g.government_seats() > 0.0,
+                    "{:?}'s government holds no seats",
+                    n.id
+                );
+                assert!(g.next_election.0 >= 1990, "{:?} has no election scheduled", n.id);
+            } else {
+                assert!(
+                    !g.pillars.is_empty(),
+                    "{:?} is a regime resting on nothing at all",
+                    n.id
+                );
+            }
+            // Saudi Arabia has no parties at all, which is the correct
+            // transcription and not a gap: there was no assembly of any kind
+            // until the Consultative Council of 1992.
+            if !g.support.is_empty() {
+                let total: f64 = g.support.iter().map(|(_, v)| *v).sum();
+                assert!((total - 1.0).abs() < 1e-9, "{:?} support sums to {}", n.id, total);
+            }
+        }
+    }
+
+    #[test]
+    fn the_party_table_is_data_and_not_guesswork() {
+        // A guard on the transcription itself. Ids are what saves and commands
+        // carry, so a duplicate would silently merge two parties.
+        let mut seen: Vec<&str> = vec![];
+        for pol in POLITIES {
+            for s in pol.parties {
+                assert!(!s.id.is_empty() && !s.name.is_empty(), "{:?} has a nameless party", pol.nation);
+                assert!(
+                    s.start > 0.0 && s.start <= 1.0,
+                    "{:?}/{} has an impossible vote share {}",
+                    pol.nation, s.id, s.start
+                );
+                assert!(!seen.contains(&s.id), "duplicate party id {}", s.id);
+                seen.push(s.id);
+            }
+            // A couple of points of slack, because the published results these
+            // are copied from are themselves rounded to a decimal place and a
+            // table that had to sum exactly would be a table somebody had
+            // adjusted.
+            let total: f64 = pol.parties.iter().map(|s| s.start).sum();
+            assert!(
+                pol.parties.is_empty() || total <= 1.02,
+                "{:?}'s parties won {:.1}% of the vote between them",
+                pol.nation, total * 100.0
+            );
+        }
+    }
+
+    #[test]
+    fn the_seat_formula_decides_whether_a_plurality_is_a_government() {
+        // The single most consequential line in the module. Thatcher's 42% and
+        // De Mita's 34% are both pluralities; one of them is a majority
+        // government and the other is four weeks of negotiation, and the only
+        // difference is how votes become seats.
+        let w = w1990();
+        let uk = state(&w, NationId::UK).unwrap();
+        assert_eq!(uk.coalition.len(), 1, "first past the post produced a coalition");
+        assert!(
+            uk.government_seats() > 0.55,
+            "42% of the vote did not manufacture a majority: {:.2}",
+            uk.government_seats()
+        );
+
+        let it = state(&w, NationId::Italy).unwrap();
+        assert!(
+            it.coalition.len() >= 3,
+            "Italy governed with {} parties; the pentapartito needed five",
+            it.coalition.len()
+        );
+        assert!(
+            !it.in_government("it_pci") && !it.in_government("it_msi"),
+            "the conventio ad excludendum did not hold"
+        );
+
+        // Israel's 1% bar and no party near half: a government is arithmetic.
+        let il = state(&w, NationId::Israel).unwrap();
+        assert!(
+            il.coalition.len() >= 4,
+            "the 1988 Knesset produced a {}-party government",
+            il.coalition.len()
+        );
+    }
+
+    #[test]
+    fn party_support_moves_with_prices_rather_than_with_a_slider() {
+        // The claim the module exists to make. Nobody sets a popularity number:
+        // the same government, in the same month, with prices running, loses
+        // support — and it loses it to the family whose whole argument is sound
+        // money rather than to whoever happens to be second.
+        //
+        // France, not Germany: the point only means something where the
+        // opposition contains both a hard-money party and a left one, so that
+        // there is a choice for the discontent to go to. Germany's 1990
+        // opposition was the SPD and the Greens, and testing there would have
+        // asserted nothing.
+        let mut calm = w1990();
+        let mut burning = w1990();
+        for w in [&mut calm, &mut burning] {
+            w.rules.ai_aggression = 0.0;
+        }
+        // Compare the same incumbent before the first scheduled ballot. Once
+        // the right actually governs, it must answer for continuing inflation
+        // too; a four-year comparison otherwise mixes those two mechanisms.
+        for _ in 0..36 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+            crate::tick_month(&mut calm, &[]);
+        }
+        let c = state(&calm, NationId::France).unwrap();
+        let b = state(&burning, NationId::France).unwrap();
+        assert_eq!(c.leader(), Some("fr_ps"));
+        assert_eq!(b.leader(), Some("fr_ps"));
+        assert!(
+            b.support_of("fr_ps") < c.support_of("fr_ps") - 0.005,
+            "three years of 22% inflation cost the governing party nothing: {:.3} vs {:.3}",
+            b.support_of("fr_ps"),
+            c.support_of("fr_ps")
+        );
+        let right = b.support_of("fr_rpr") - c.support_of("fr_rpr");
+        let left = b.support_of("fr_pcf") - c.support_of("fr_pcf");
+        assert!(right > 0.0, "an inflation crisis was worth nothing to the RPR");
+        assert!(
+            right > left,
+            "runaway prices went to the communists rather than to the hard-money right: \
+             RPR {:+.4} against PCF {:+.4}",
+            right, left
+        );
+        for _ in 36..39 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+            crate::tick_month(&mut calm, &[]);
+        }
+        assert_eq!(state(&calm, NationId::France).unwrap().leader(), Some("fr_ps"));
+        assert_eq!(state(&burning, NationId::France).unwrap().leader(), Some("fr_rpr"));
+        let taking_office = state(&burning, NationId::France).unwrap().support_of("fr_rpr");
+        for _ in 39..48 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+        }
+        let b = state(&burning, NationId::France).unwrap();
+        assert_eq!(b.leader(), Some("fr_rpr"));
+        assert!(b.support_of("fr_rpr") < taking_office - 0.005,
+            "the new government escaped accountability for continuing inflation");
+    }
+
+    #[test]
+    fn disorder_alone_costs_the_elected_incumbent_support() {
+        let id = NationId::UK;
+        let mut quiet = w1990();
+        {
+            let n = quiet.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        }
+        let mut disorder = quiet.clone();
+        disorder.nation_mut(id).stability = 0.0;
+        let leader = state(&quiet, id).unwrap().leader().unwrap().to_string();
+        let before = state(&quiet, id).unwrap().support_of(&leader);
+        for _ in 0..12 {
+            drift_support(&mut quiet, id);
+            drift_support(&mut disorder, id);
+        }
+        assert!(state(&quiet, id).unwrap().support_of(&leader) > before);
+        assert!(state(&disorder, id).unwrap().support_of(&leader) < before,
+            "a government losing control gained support despite every other pain being neutral");
+        for w in [&quiet, &disorder] {
+            let g = state(w, id).unwrap();
+            assert!((g.support.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.support.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
+    }
+
+    #[test]
+    fn political_record_remembers_a_bad_term_but_resets_when_another_party_governs() {
+        let id = NationId::UK;
+        let mut w = w1990();
+        assert!(!crate::save(&w).contains("political_record"));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        for _ in 0..24 { remembered_record(&mut w, id, &bad); }
+        let first_recovery = remembered_record(&mut w, id, &good);
+        assert!(first_recovery < governing_record(&good));
+        assert!(first_recovery > governing_record(&bad), "recovery must help immediately");
+        let old_party = state(&w, id).unwrap().leader().unwrap().to_string();
+        form_government(&mut w, id, false);
+        assert_eq!(state(&w, id).unwrap().leader(), Some(old_party.as_str()));
+        remembered_record(&mut w, id, &good);
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 26.0,
+            "a reshuffle cannot erase continuous tenure");
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        let opposition = polity_in(&w, id).unwrap().parties.iter().find(|p| p.id != old_party).unwrap().id;
+        state_mut(&mut w, id).unwrap().coalition = vec![opposition.into()];
+        assert_eq!(remembered_record(&mut w, id, &good), governing_record(&good));
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 1.0);
+        for _ in 0..120 { remembered_record(&mut w, id, &good); }
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().performance, governing_record(&good));
+    }
+
+    #[test]
+    fn a_continuing_incumbent_keeps_its_record_through_opening_and_its_first_ballot() {
+        let id = NationId::USSR;
+        let mut w = world_1990(on_rules(7));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        for _ in 0..24 { remembered_record(&mut w, id, &bad); }
+        let before = state(&w, id).unwrap().political_record.clone().unwrap();
+        assert_eq!(before.government, "party:su_cpsu");
+        let rng = w.rng.clone();
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("su_cpsu"));
+        assert_eq!(record_identity(&w, id).unwrap().0, before.government);
+        let mut daily = w.clone();
+        daily.rules.daily_simulation = true;
+        remembered_record(&mut w, id, &good);
+        for _ in 0..31 { remembered_record(&mut daily, id, &good); }
+        let interim = state(&w, id).unwrap().political_record.clone().unwrap();
+        let d = state(&daily, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(interim.months, 25.0);
+        assert!((interim.performance - d.performance).abs() < 1e-12);
+        assert!((interim.months - d.months).abs() < 1e-12);
+        assert!(interim.performance < 0.0, "announcing elections cannot erase the same government's bad term");
+        w = crate::load(&crate::save(&w)).unwrap();
+        hold_election(&mut w, id);
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(record_identity(&w, id).unwrap().0, "party:su_cpsu");
+        remembered_record(&mut w, id, &good);
+        let elected = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(elected.months, 26.0);
+        assert!(elected.performance < 0.0);
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_real_party_or_military_handover_resets_accountability_without_inventing_party_history() {
+        let id = NationId::USSR;
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        let mut base = world_1990(on_rules(7));
+        for _ in 0..24 { remembered_record(&mut base, id, &bad); }
+        let mut opposition = base.clone();
+        opposition.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut opposition, id, 6);
+        for (party, share) in &mut state_mut(&mut opposition, id).unwrap().support {
+            *share = if party == "su_dr" { 1.0 } else { 0.0 };
+        }
+        hold_election(&mut opposition, id);
+        assert_eq!(state(&opposition, id).unwrap().leader(), Some("su_dr"));
+        assert_eq!(remembered_record(&mut opposition, id, &good), governing_record(&good));
+        let r = state(&opposition, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "party:su_dr");
+        assert_eq!(r.months, 1.0);
+
+        let mut military = base;
+        state_mut(&mut military, id).unwrap().regime_bloc = Some(Bloc::Nationalist);
+        seat_office(&mut military, id, &Succession::Coup { pillar: Pillar::Army });
+        for _ in 0..24 { remembered_record(&mut military, id, &bad); }
+        assert_eq!(state(&military, id).unwrap().political_record.as_ref().unwrap().government, "regime:Nationalist");
+        military.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut military, id, 6);
+        remembered_record(&mut military, id, &bad);
+        assert_eq!(state(&military, id).unwrap().political_record.as_ref().unwrap().months, 25.0,
+            "the interim does not fabricate a new accountable party");
+        hold_election(&mut military, id);
+        assert_eq!(remembered_record(&mut military, id, &good), governing_record(&good));
+        let r = state(&military, id).unwrap().political_record.as_ref().unwrap();
+        assert!(r.government.starts_with("party:"));
+        assert_eq!(r.months, 1.0, "the actual civilian handover starts a new record");
+    }
+
+    #[test]
+    fn a_legacy_regime_record_is_rekeyed_only_for_its_observed_live_party() {
+        let id = NationId::USSR;
+        let mut w = world_1990(on_rules(7));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        state_mut(&mut w, id).unwrap().political_record = Some(PoliticalRecord {
+            government: "regime:Communist".into(), months: 24.0, performance: governing_record(&bad),
+        });
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        remembered_record(&mut off, id, &good);
+        assert_eq!(state(&off, id).unwrap().political_record.as_ref().unwrap().government, "regime:Communist");
+        w = crate::load(&crate::save(&w)).unwrap();
+        remembered_record(&mut w, id, &good);
+        let r = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "party:su_cpsu");
+        assert_eq!(r.months, 25.0);
+        assert!(r.performance < 0.0, "the existing estimate survives the representation upgrade");
+        state_mut(&mut w, id).unwrap().regime_bloc = Some(Bloc::Islamist);
+        seat_office(&mut w, id, &Succession::Takeover { bloc: Bloc::Islamist });
+        assert_eq!(remembered_record(&mut w, id, &good), governing_record(&good));
+        let r = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "regime:Islamist");
+        assert_eq!(r.months, 1.0);
+    }
+
+    #[test]
+    fn an_unvoted_opposition_list_does_not_inherit_the_incumbents_bad_record() {
+        let id = NationId::USSR;
+        let mut base = world_1990(on_rules(7));
+        state_mut(&mut base, id).unwrap().movements = vec![
+            (Bloc::Western, 0.65), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.146), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.002),
+        ];
+        base.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut base, id, 6);
+        // The scheduling seam retains the last chamber until a ballot. Stage
+        // a provisional opposition-led cabinet explicitly: this test isolates
+        // who bears responsibility, not whether that interim can win seats.
+        let support = state(&base, id).unwrap().support.clone();
+        let system = polity_in(&base, id).unwrap().system;
+        state_mut(&mut base, id).unwrap().seats = seats_from(&support, system);
+        form_government(&mut base, id, false);
+        assert_eq!(state(&base, id).unwrap().leader(), Some("su_dr"), "opposition leads only the provisional table");
+        assert_eq!(record_identity(&base, id).unwrap().0, "party:su_cpsu");
+        let mut quiet = base.clone();
+        let mut crisis = base.clone();
+        for w in [&mut quiet, &mut crisis] {
+            let n = w.nation_mut(id);
+            n.stability = 85.0; n.inflation = 0.02; n.growth_last = 0.03;
+            n.war_exhaustion = 0.0; n.separatism = 0.0;
+        }
+        crisis.nation_mut(id).inflation = 0.30;
+        crisis.nation_mut(id).stability = 10.0;
+        drift_support(&mut quiet, id);
+        drift_support(&mut crisis, id);
+        let q = state(&quiet, id).unwrap();
+        let c = state(&crisis, id).unwrap();
+        assert!(c.support_of("su_cpsu") < q.support_of("su_cpsu"), "the actual incumbent remains accountable");
+        assert!(c.support_of("su_dr") > q.support_of("su_dr"), "an unvoted opposition is not charged the incumbent's crisis");
+
+        state_mut(&mut base, id).unwrap().regime_bloc = Some(Bloc::Nationalist);
+        seat_office(&mut base, id, &Succession::Coup { pillar: Pillar::Army });
+        let support = state(&base, id).unwrap().support.clone();
+        drift_support(&mut base, id);
+        assert_eq!(state(&base, id).unwrap().support, support,
+            "an unidentified partisan history is retained as a regime record, not assigned to a civilian list");
+        assert_eq!(state(&base, id).unwrap().political_record.as_ref().unwrap().government, "regime:Nationalist");
+    }
+
+    #[test]
+    fn political_record_learns_one_calendar_month_in_both_clock_modes() {
+        let id = NationId::UK;
+        let mut monthly = w1990();
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        remembered_record(&mut monthly, id, &bad);
+        let mut daily = monthly.clone();
+        daily.rules.daily_simulation = true;
+        let rng = serde_json::to_string(&daily.rng).unwrap();
+        remembered_record(&mut monthly, id, &good);
+        for _ in 0..31 { remembered_record(&mut daily, id, &good); }
+        let m = state(&monthly, id).unwrap().political_record.as_ref().unwrap();
+        let d = state(&daily, id).unwrap().political_record.as_ref().unwrap();
+        assert!((m.performance - d.performance).abs() < 1e-12);
+        assert!((m.months - d.months).abs() < 1e-12);
+        assert_eq!(serde_json::to_string(&daily.rng).unwrap(), rng);
+    }
+
+    #[test]
+    fn a_full_term_remembers_early_hardship_but_sustained_recovery_is_forgiven() {
+        for (id, expected_term) in [(NationId::UK, 60), (NationId::USA, 48)] {
+            let mut w = w1990();
+            let term = polity_in(&w, id).unwrap().term_months;
+            assert_eq!(term, expected_term, "exercise both five- and four-year terms");
+            let bad_months = term / 2;
+            let recovery_months = term - bad_months;
+            let bad = Pains { prices: 1.0, growth: 0.0, war: 0.0, order: 0.0 };
+            let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+            for _ in 0..bad_months { remembered_record(&mut w, id, &bad); }
+            let mut judgement = 0.0;
+            for _ in 0..recovery_months { judgement = remembered_record(&mut w, id, &good); }
+            assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, term as f64);
+            assert!(judgement < 0.0,
+                "{id:?}: recovery erased the first half of the same {term}-month difficult term: {judgement}");
+            assert!(judgement > governing_record(&bad), "recovery has no effect");
+            // A saved rolling estimate remains a prior; neither load nor a new
+            // filter invents an exact series of past economic observations.
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            assert_eq!(crate::save(&w), saved);
+            for _ in 0..240 { judgement = remembered_record(&mut w, id, &good); }
+            assert!(judgement > 0.30, "old hardship became permanent electoral fatigue");
+            assert!(judgement <= governing_record(&good));
+        }
+    }
+
+    #[test]
+    fn lawful_transfers_consolidate_civilian_control_without_snap_election_farming() {
+        let id = NationId::UK;
+        let mut original = world_1990(on_rules(7));
+        assert!(!crate::save(&original).contains("unrestricted_mandate"));
+        original.nation_mut(id).authoritarianism = 0.55;
+        let term = polity_in(&original, id).unwrap().term_months;
+        {
+            let g = state_mut(&mut original, id).unwrap();
+            g.elected = true;
+            g.unrestricted_mandate = true;
+            g.months_in_office = term;
+            g.support = vec![("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+                ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        }
+        let rng = original.rng.state;
+        let mut full = original.clone();
+        hold_election(&mut full, id);
+        assert_eq!(state(&full, id).unwrap().leader(), Some("uk_lab"));
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12);
+        assert_eq!(full.rng.state, rng);
+        let saved = crate::save(&full);
+        full = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&full), saved);
+        state_mut(&mut full, id).unwrap().months_in_office = term;
+        hold_election(&mut full, id);
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "retaining the incumbent is not a transfer of power");
+
+        let mut short = original.clone();
+        for index in 0..5 {
+            let g = state_mut(&mut short, id).unwrap();
+            g.months_in_office = term / 5;
+            let winner = if index % 2 == 0 { "uk_lab" } else { "uk_con" };
+            for (party, share) in &mut g.support { *share = if party == winner { 0.85 } else { 0.05 }; }
+            hold_election(&mut short, id);
+        }
+        assert!((short.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "five one-fifth-term transfers cannot earn more than one full term");
+        for control in 0..4 {
+            let mut w = original.clone();
+            match control {
+                0 => { let g = state_mut(&mut w, id).unwrap(); g.elected = false; g.awaiting_first_election = true; }
+                1 => state_mut(&mut w, id).unwrap().banned.push("uk_lib".into()),
+                2 => w.rules.ideology_blocs = false,
+                _ => state_mut(&mut w, id).unwrap().months_in_office = 0,
+            }
+            hold_election(&mut w, id);
+            assert_eq!(w.nation(id).authoritarianism, 0.55, "control {control}");
+        }
+        let mut already_open = original.clone();
+        already_open.nation_mut(id).authoritarianism = 0.02;
+        hold_election(&mut already_open, id);
+        assert_eq!(already_open.nation(id).authoritarianism, 0.02,
+            "consolidation must never raise authoritarianism below its reward floor");
+
+        for held_restricted_ballot in [false, true] {
+            let mut restricted = original.clone();
+            ban_party(&mut restricted, id, "uk_lib").unwrap();
+            assert!(!state(&restricted, id).unwrap().unrestricted_mandate);
+            if held_restricted_ballot { hold_election(&mut restricted, id); }
+            restricted = crate::load(&crate::save(&restricted)).unwrap();
+            assert!(!state(&restricted, id).unwrap().unrestricted_mandate);
+            legalize_party(&mut restricted, id, "uk_lib").unwrap();
+            let auth_before = restricted.nation(id).authoritarianism;
+            let g = state_mut(&mut restricted, id).unwrap();
+            g.months_in_office = term;
+            let winner = if g.leader() == Some("uk_con") { "uk_lab" } else { "uk_con" };
+            for (party, share) in &mut g.support { *share = if party == winner { 0.85 } else { 0.05 }; }
+            hold_election(&mut restricted, id);
+            assert_eq!(restricted.nation(id).authoritarianism, auth_before,
+                "legalization cannot retroactively certify the outgoing restricted mandate");
+            assert!(state(&restricted, id).unwrap().unrestricted_mandate,
+                "a newly completed unrestricted ballot can begin its own eligible term");
+        }
+
+        // The initial US table seats Congress: its Democratic majority can
+        // become Republican while Republican President Bush keeps his office.
+        let mut divided = world_1990(on_rules(7));
+        let usa = NationId::USA;
+        let authority = divided.nation(usa).authoritarianism;
+        let office = serde_json::to_string(crate::blocs::leader_row(&divided, usa).unwrap()).unwrap();
+        let term = polity_in(&divided, usa).unwrap().term_months;
+        let g = state_mut(&mut divided, usa).unwrap();
+        assert_eq!(g.leader(), Some("us_dem"));
+        g.elected = true;
+        g.unrestricted_mandate = true;
+        g.months_in_office = term;
+        for (party, share) in &mut g.support { *share = if party == "us_rep" { 0.9 } else { 0.05 }; }
+        hold_election(&mut divided, usa);
+        assert_eq!(state(&divided, usa).unwrap().leader(), Some("us_rep"));
+        assert_eq!(serde_json::to_string(crate::blocs::leader_row(&divided, usa).unwrap()).unwrap(), office);
+        assert_eq!(divided.nation(usa).authoritarianism, authority, "a chamber flip is not an executive handover");
+    }
+
+    #[test]
+    fn completed_ballots_refresh_constituencies_without_reinterpreting_seats_or_old_saves() {
+        let id = NationId::UK;
+        let mut w = w1990();
+        assert!(!crate::save(&w).contains("vote_anchor"));
+        let old = crate::load(&crate::save(&w)).unwrap();
+        assert!(state(&old, id).unwrap().vote_anchor.is_none());
+        let votes = vec![("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+            ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        state_mut(&mut w, id).unwrap().support = votes.clone();
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.vote_anchor.as_ref(), Some(&votes));
+        assert_ne!(g.vote_anchor.as_ref(), Some(&g.seats), "a seat bonus is not extra voters");
+        assert_eq!(g.leader(), Some("uk_lab"));
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        // Renewing the same governing party still supplies a new observation.
+        let mut next_votes = votes;
+        next_votes[0].1 += 0.04;
+        next_votes[1].1 -= 0.04;
+        state_mut(&mut w, id).unwrap().support = next_votes.clone();
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().vote_anchor.as_ref(), Some(&next_votes));
+        assert_eq!(state(&w, id).unwrap().leader(), Some("uk_lab"));
+    }
+
+    #[test]
+    fn voter_reversion_uses_the_last_observed_ballot_and_never_rewrites_it_during_drift() {
+        let id = NationId::UK;
+        let mut observed = w1990();
+        state_mut(&mut observed, id).unwrap().support = vec![
+            ("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+            ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        hold_election(&mut observed, id);
+        let anchor = state(&observed, id).unwrap().vote_anchor.clone();
+        let mut obsolete = observed.clone();
+        state_mut(&mut obsolete, id).unwrap().vote_anchor = None;
+        for w in [&mut observed, &mut obsolete] {
+            let n = w.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.02;
+            n.stability = 70.0;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            drift_support(w, id);
+        }
+        assert!(state(&observed, id).unwrap().support_of("uk_lab")
+            > state(&obsolete, id).unwrap().support_of("uk_lab"),
+            "reversion still undoes the observed electorate in favour of 1990");
+        assert_eq!(state(&observed, id).unwrap().vote_anchor, anchor);
+        let before = state(&observed, id).unwrap().support.clone();
+        observed.nation_mut(id).inflation = 0.80;
+        for _ in 0..24 { drift_support(&mut observed, id); }
+        let g = state(&observed, id).unwrap();
+        assert!(g.support_of("uk_lab") < before.iter().find(|(p, _)| p == "uk_lab").unwrap().1,
+            "a completed vote cannot freeze support against later poor performance");
+        assert_eq!(g.vote_anchor, anchor);
+        assert!((g.support.iter().map(|(_, share)| *share).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn reshuffles_and_restricted_ballots_do_not_fabricate_a_new_constituency() {
+        let id = NationId::UK;
+        let mut w = world_1990(roads_rules(7));
+        hold_election(&mut w, id);
+        let anchor = state(&w, id).unwrap().vote_anchor.clone();
+        assert!(anchor.is_some());
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            for (_, share) in &mut g.support { *share = 0.25; }
+        }
+        form_government(&mut w, id, false);
+        assert_eq!(state(&w, id).unwrap().vote_anchor, anchor);
+        state_mut(&mut w, id).unwrap().banned.push("uk_lab".into());
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.seat_share("uk_lab"), 0.0);
+        assert_eq!(g.vote_anchor, anchor, "excluded voters are not a new national electorate");
+    }
+
+    #[test]
+    fn coalition_exclusion_is_symmetric_without_erasing_pluralities_or_majorities() {
+        let id = NationId::Italy;
+        let mut w = w1990();
+        let original_votes = state(&w, id).unwrap().support.clone();
+        let seats = vec![("it_pci".into(), 0.35), ("it_psi".into(), 0.30),
+            ("it_dc".into(), 0.20), ("it_msi".into(), 0.05),
+            ("it_pri".into(), 0.05), ("it_psdi".into(), 0.03), ("it_pli".into(), 0.02)];
+        state_mut(&mut w, id).unwrap().seats = seats.clone();
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.coalition, vec!["it_pci".to_string()],
+            "a pariah plurality cannot bypass coalition exclusion by leading");
+        assert_eq!(g.government_seats(), 0.35);
+        assert_eq!(g.support, original_votes);
+        assert_eq!(g.seats, seats);
+        // Swap the two largest parties: the ordinary leader must still refuse
+        // the pariah as a junior and find an eligible partner instead.
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats[0].1 = 0.30;
+            g.seats[1].1 = 0.35;
+        }
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some("it_psi"));
+        assert!(!g.in_government("it_pci"));
+        assert!(!g.in_government("it_msi"));
+        assert!(g.government_seats() >= 0.5);
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats[0].1 = 0.55;
+            g.seats[1].1 = 0.10;
+        }
+        let majority_seats = state(&w, id).unwrap().seats.clone();
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.coalition, vec!["it_pci".to_string()]);
+        assert_eq!(g.government_seats(), 0.55, "the cordon cannot cancel an outright majority");
+        assert_eq!(g.support, original_votes);
+        assert_eq!(g.seats, majority_seats);
+        assert!((g.seats.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn coalition_invitation_preview_and_command_enforce_both_sides_of_the_cordon() {
+        let id = NationId::Italy;
+        for (leader, invitee) in [("it_pci", "it_psi"), ("it_psi", "it_pci")] {
+            let mut w = w1990();
+            w.nation_mut(id).political_capital = 100.0;
+            state_mut(&mut w, id).unwrap().coalition = vec![leader.into()];
+            let command = crate::Command::InviteToGovernment { nation: id, party: invitee.into() };
+            let before = crate::save(&w);
+            let reason = invite_refusal(&w, id, invitee).expect("cordon must apply in both directions");
+            assert!(reason.contains("Italian Communist Party"));
+            assert_eq!(crate::refusal_of(&w, &command), Some(reason.clone()));
+            assert_eq!(crate::apply_command(&mut w, &command), Err(reason));
+            assert!(crate::save(&w) == before, "a refused invitation charged or mutated the world");
+        }
+        let mut allowed = w1990();
+        allowed.nation_mut(id).political_capital = 100.0;
+        state_mut(&mut allowed, id).unwrap().coalition = vec!["it_dc".into()];
+        let command = crate::Command::InviteToGovernment { nation: id, party: "it_psi".into() };
+        assert!(crate::refusal_of(&allowed, &command).is_none());
+        crate::apply_command(&mut allowed, &command).expect("eligible parties may still form a coalition");
+        assert!(state(&allowed, id).unwrap().in_government("it_psi"));
+    }
+
+    #[test]
+    fn a_coalition_leader_is_accountable_without_erasing_junior_or_opposition_voters() {
+        let id = NationId::Bulgaria;
+        let mut w = w1990();
+        let g = state(&w, id).unwrap();
+        let lead = g.coalition[0].clone();
+        let junior = g.coalition[1].clone();
+        let ratio_before = g.support_of(&lead) / g.support_of(&junior);
+        {
+            let n = w.nation_mut(id);
+            n.inflation = 0.30;
+            n.growth_last = -0.06;
+            n.stability = 30.0;
+        }
+        for _ in 0..24 { drift_support(&mut w, id); }
+        let g = state(&w, id).unwrap();
+        assert!(g.support_of(&lead) / g.support_of(&junior) < ratio_before - 0.05,
+            "the prime minister's party cannot be permanently locked above a junior partner");
+        assert_eq!(g.coalition[0], lead, "voter drift does not itself change a government");
+        assert!(g.support.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        assert!((g.support.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn performance_transfers_are_bounded_and_good_government_has_diminishing_returns() {
+        for dt in [1.0, 1.0 / 28.0, 1.0 / 31.0] {
+            for held in [0.0, 0.002, 0.2, 0.5, 0.9, 0.998, 1.0] {
+                for record in [-3.45, -0.5, 0.0, 0.35] {
+                    let moved = performance_transfer(record, held, dt);
+                    assert!(moved.is_finite() && moved.abs() <= 0.015 * dt + 1e-12);
+                    assert!(held + moved >= 0.0 && held + moved <= 1.0);
+                    assert!(moved * record >= 0.0, "a good record cannot cost votes or a bad one earn them");
+                }
+            }
+        }
+        assert!(performance_transfer(0.35, 0.8, 1.0) < performance_transfer(0.35, 0.4, 1.0));
+        assert!(performance_transfer(0.35, 0.8, 1.0) > 0.0, "success can still earn votes");
+    }
+
+    #[test]
+    fn the_complete_vote_change_preserves_totals_and_its_calendar_bound() {
+        let before = [0.70, 0.20, 0.098, 0.002];
+        for dt in [1.0, 1.0 / 28.0, 1.0 / 31.0] {
+            let mut candidate = [(0, 0.65), (1, 0.24), (2, 0.108), (3, 0.002)];
+            bound_vote_change(&before, &mut candidate, 0.015 * dt);
+            let moved = before.iter().zip(&candidate)
+                .map(|(old, (_, new))| (old - new).abs()).sum::<f64>() * 0.5;
+            assert!((moved - 0.015 * dt).abs() < 1e-12);
+            assert!((candidate.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(candidate.iter().all(|(_, s)| *s >= 0.002));
+            let bounded = candidate;
+            bound_vote_change(&before, &mut candidate, 0.015 * dt);
+            for (a, b) in bounded.iter().zip(&candidate) { assert!((a.1 - b.1).abs() < 1e-12); }
+        }
+    }
+
+    #[test]
+    fn franchise_demand_reads_excluded_parties_including_same_bloc_alternatives() {
+        let w = world_1990(on_rules(7));
+        let saved = crate::save(&w);
+        for id in [NationId::Albania, NationId::CapeVerde, NationId::Malawi] {
+            let leader = crate::blocs::leader_row(&w, id).unwrap().tie_now().unwrap();
+            let crate::data::Tie::Party(ruling) = leader else { panic!("expected party leader"); };
+            let pol = polity_in(&w, id).unwrap();
+            let total: f64 = pol.parties.iter().filter(|p| p.family != Family::Regionalist)
+                .map(|p| p.start).sum();
+            let incumbent = pol.parties.iter().find(|p| p.id == ruling).unwrap().start;
+            let expected = (1.0 - incumbent / total) * w.nation(id).authoritarianism;
+            assert!((franchise_demand(&w, id) - expected).abs() < 1e-12);
+            assert!(franchise_demand(&w, id) > 0.25, "{id:?} has an excluded civilian constituency");
+            if id != NationId::Albania {
+                assert!(pol.parties.iter().any(|p| p.id != ruling
+                    && bloc_of(id, p.id) == bloc_of(id, &ruling)),
+                    "fixture must include opposition in the incumbent's own bloc");
+            }
+        }
+        for id in [NationId::China, NationId::SaudiArabia, NationId::France] {
+            assert_eq!(franchise_demand(&w, id), 0.0, "{id:?} invented excluded alternatives");
+        }
+        for n in &w.nations { assert!((0.0..=1.0).contains(&franchise_demand(&w, n.id))); }
+        assert_eq!(crate::save(&w), saved, "reading demand changed the campaign");
+        let mut off = w;
+        off.rules.ideology_blocs = false;
+        assert_eq!(franchise_demand(&off, NationId::Albania), 0.0);
+    }
+
+    #[test]
+    fn movement_constituencies_keep_organized_opposition_and_single_party_uncertainty() {
+        let w = world_1990(on_rules(7));
+        let id = NationId::Zambia;
+        let flat = crate::blocs::flat_seed(&w, id, Bloc::NonAligned);
+        let seeded = state(&w, id).unwrap();
+        assert!(seeded.movements[Bloc::Western as usize].1 > flat[Bloc::Western as usize].1,
+            "a large organized opposition cannot become equal to a pillar-only faction");
+        assert!(seeded.movements[Bloc::Western as usize].1 > seeded.movements[Bloc::Nationalist as usize].1);
+        assert_eq!(state(&w, NationId::China).unwrap().movements,
+            crate::blocs::flat_seed(&w, NationId::China, Bloc::Communist).to_vec(),
+            "a single-party table is not a reliable 100% popularity reading");
+        for g in &w.governments.states {
+            if g.movements.is_empty() { continue; }
+            assert!((g.movements.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.movements.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
+    }
+
+    #[test]
+    fn disorder_alone_costs_a_regime_support_without_changing_the_quiet_record() {
+        let id = NationId::China;
+        let mut quiet = world_1990(on_rules(7));
+        {
+            let n = quiet.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        }
+        let mut disorder = quiet.clone();
+        disorder.nation_mut(id).stability = 0.0;
+        let before = share(&quiet, id, Bloc::Communist);
+        for _ in 0..12 {
+            drift_movements(&mut quiet, id);
+            drift_movements(&mut disorder, id);
+        }
+        assert!(share(&quiet, id, Bloc::Communist) > before);
+        assert!(share(&disorder, id, Bloc::Communist) < before);
+        for w in [&quiet, &disorder] {
+            let g = state(w, id).unwrap();
+            assert!((g.movements.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.movements.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
+    }
+
+    #[test]
+    fn a_war_going_badly_is_worth_votes_to_the_nationalists() {
+        // The other side of the same mechanism, and the one that makes the
+        // Yugoslav successors legible: what a war does to a government at home
+        // does not go to whoever happens to be second.
+        let mut quiet = w1990();
+        let mut bleeding = w1990();
+        for w in [&mut quiet, &mut bleeding] {
+            w.rules.ai_aggression = 0.0;
+        }
+        for _ in 0..36 {
+            bleeding.nation_mut(NationId::France).war_exhaustion = 0.6;
+            crate::tick_month(&mut bleeding, &[]);
+            crate::tick_month(&mut quiet, &[]);
+        }
+        let q = state(&quiet, NationId::France).unwrap();
+        let b = state(&bleeding, NationId::France).unwrap();
+        assert!(
+            b.support_of("fr_fn") > q.support_of("fr_fn"),
+            "three years of a war going badly moved nothing to the Front National"
+        );
+        assert!(
+            b.support_of("fr_ps") < q.support_of("fr_ps"),
+            "the governing party was not charged for the war"
+        );
+    }
+
+    #[test]
+    fn a_coalition_costs_what_a_majority_does_not() {
+        // The bite, stated as an ordering rather than a magic number: the
+        // stretched multi-party governments cost real political capital every
+        // month and the single-party majorities cost nothing, and it is the same
+        // budget every command in the game is priced against.
+        let w = w1990();
+        for lonely in [NationId::UK, NationId::USA, NationId::Japan] {
+            assert_eq!(strain(&w, lonely), 0.0, "{:?} paid for a majority", lonely);
+            assert_eq!(upkeep(&w, lonely), 0.0);
+            assert_eq!(standing_modifier(&w, lonely), 0.0);
+        }
+        for stretched in [NationId::Italy, NationId::Israel] {
+            assert!(
+                strain(&w, stretched) > 2.0,
+                "{:?}'s coalition is free to hold: strain {:.2}",
+                stretched,
+                strain(&w, stretched)
+            );
+            assert!(upkeep(&w, stretched) > 0.4);
+            assert!(standing_modifier(&w, stretched) < -4.0);
+        }
+        // And it is genuinely felt: Italy's standing after two years of holding
+        // the pentapartito together is below what its own conditions would give
+        // a government that did not have to.
+        let mut a = w1990();
+        a.rules.ai_aggression = 0.0;
+        for _ in 0..24 {
+            crate::tick_month(&mut a, &[]);
+        }
+        let n = a.nation(NationId::Italy);
+        let unencumbered =
+            crate::politics::seated_political_capital(n.stability, n.inflation, n.authoritarianism);
+        assert!(
+            n.political_capital < unencumbered,
+            "the coalition cost Italy nothing: {:.1} held against {:.1} seated",
+            n.political_capital,
+            unencumbered
+        );
+    }
+
+    #[test]
+    fn a_player_can_widen_their_own_coalition_and_pay_for_it() {
+        // The verb, and the price. Bringing another party in is bought out of
+        // the same stock, and it makes the government both broader and dearer.
+        let mut w = w1990();
+        w.player = Some(NationId::Italy);
+        let before_pc = w.nation(NationId::Italy).political_capital;
+        let before_strain = strain(&w, NationId::Italy);
+        let target = {
+            let g = state(&w, NationId::Italy).unwrap();
+            pol_parties(NationId::Italy)
+                .iter()
+                .find(|s| !g.in_government(s.id) && !s.pariah && g.seat_share(s.id) > 0.0)
+                .map(|s| s.id)
+                .expect("somebody is available")
+        };
+        crate::apply_command(
+            &mut w,
+            &crate::Command::InviteToGovernment {
+                nation: NationId::Italy,
+                party: target.to_string(),
+            },
+        )
+        .expect("the invitation is affordable in 1990");
+        assert!(state(&w, NationId::Italy).unwrap().in_government(target));
+        assert!(
+            w.nation(NationId::Italy).political_capital < before_pc,
+            "a coalition partner joined for free"
+        );
+        assert!(strain(&w, NationId::Italy) > before_strain, "a wider cabinet cost no more to hold");
+
+        // And a government cannot expel the party that leads it.
+        let leader = state(&w, NationId::Italy).unwrap().leader().unwrap().to_string();
+        assert!(expel(&mut w, NationId::Italy, &leader).is_err());
+    }
+
+    fn pol_parties(id: NationId) -> &'static [PartySpec] {
+        polity(id).map(|p| p.parties).unwrap_or(&[])
+    }
+
+    #[test]
+    fn a_regime_that_stops_paying_its_army_is_removed_by_it() {
+        // The authoritarian half. Nothing schedules this and nothing names a
+        // country: a regime whose armed institutions are going unpaid
+        // accumulates pressure, and when it tops out somebody acts.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq); // freeze Baghdad's own AI so it cannot pay
+        let mut coup = None;
+        for _ in 0..240 {
+            // A defence budget cut to nothing, month after month.
+            w.nation_mut(NationId::Iraq).mil_spend_gdp = 0.001;
+            for h in crate::tick_month(&mut w, &[]) {
+                if h.contains("COUP IN IRAQ") {
+                    coup = Some(w.date_str());
+                }
+            }
+            if coup.is_some() {
+                break;
+            }
+        }
+        assert!(coup.is_some(), "twenty years of an unpaid Republican Guard and nobody moved");
+
+        // ...and a regime that keeps paying is not removed. Same nation, same
+        // seed, the one difference being the budget.
+        let mut safe = w1990();
+        safe.rules.ai_aggression = 0.0;
+        safe.player = Some(NationId::Iraq);
+        for _ in 0..240 {
+            safe.nation_mut(NationId::Iraq).mil_spend_gdp = 0.20;
+            for h in crate::tick_month(&mut safe, &[]) {
+                assert!(!h.contains("COUP IN IRAQ"), "a well-paid Republican Guard staged a coup");
+            }
+        }
+    }
+
+    #[test]
+    fn buying_an_institution_is_a_real_price_and_not_a_button() {
+        let mut w = w1990();
+        let before_pc = w.nation(NationId::Iraq).political_capital;
+        let before_debt = w.nation(NationId::Iraq).debt_gdp;
+        let before = state(&w, NationId::Iraq).unwrap().loyalty(Pillar::Army);
+        crate::apply_command(
+            &mut w,
+            &crate::Command::SecurePillar { nation: NationId::Iraq, pillar: Pillar::Army },
+        )
+        .expect("Baghdad can afford one payment in 1990");
+        assert!(state(&w, NationId::Iraq).unwrap().loyalty(Pillar::Army) > before);
+        assert!(w.nation(NationId::Iraq).political_capital < before_pc, "loyalty was free");
+        assert!(w.nation(NationId::Iraq).debt_gdp > before_debt, "patronage cost no money");
+
+        // A democracy has no such lever, and an unelected regime cannot hold an
+        // election. Neither half can reach into the other.
+        assert!(secure_pillar(&mut w, NationId::UK, Pillar::Army).is_err());
+        assert!(call_election(&mut w, NationId::Iraq).is_err());
+    }
+
+    #[test]
+    fn support_finds_an_equilibrium_rather_than_running_away() {
+        // The bug this test exists for: an incumbent with a good record gained a
+        // little support every month with nothing pulling back, so a party at
+        // 60% went to 75%, then 92%, then the whole chamber, and Poland became a
+        // one-party state by 1999 with no mechanism ever saying so.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        for _ in 0..12 * 40 {
+            crate::tick_month(&mut w, &[]);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                if !is_electoral(&w, n.id) {
+                    continue;
+                }
+                // A one-party state that has opened up still has one party in
+                // its table until somebody founds another; 100% there is the
+                // correct reading, not a runaway.
+                if polity(n.id).is_none_or(|p| p.parties.len() < 2) {
+                    continue;
+                }
+                if let Some(g) = state(&w, n.id) {
+                    for (pid, sup) in &g.support {
+                        assert!(
+                            *sup < 0.92,
+                            "{:?}: {} holds {:.0}% of the electorate in {}",
+                            n.id, pid, sup * 100.0, w.year
+                        );
+                        assert!(sup.is_finite() && *sup >= 0.0);
+                    }
+                }
+            }
+        }
+    }
+
+    fn on_rules(seed: u64) -> GameRules {
+        GameRules { seed, ideology_blocs: true, ai_aggression: 0.0, ..GameRules::default() }
+    }
+
+    fn share(w: &WorldState, id: NationId, b: Bloc) -> f64 {
+        state(w, id).unwrap().movements.iter().find(|(x, _)| *x == b).map(|(_, s)| *s).unwrap()
+    }
+
+    // A deliberately counterfactual absence fixture for the general funding
+    // mechanic. The historical 1990 board now includes the sourced resistance.
+    fn afghan_fixture_without_an_opening_organization() -> WorldState {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Afghanistan;
+        state_mut(&mut w, id).unwrap().established_movements.clear();
+        let shares = crate::blocs::flat_seed(&w, id, Bloc::Communist);
+        state_mut(&mut w, id).unwrap().movements = shares.to_vec();
+        w
+    }
+
+    #[test]
+    fn sourced_opening_organizations_exist_without_buying_them_and_preserve_saved_histories() {
+        let id = NationId::Afghanistan;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.established_movements, [Bloc::Islamist]);
+        assert_eq!(g.support, vec![("af_pdpa".to_string(), 1.0)], "organization presence is not a new parliamentary vote share");
+        assert!(w.statecraft.backing.is_empty());
+        assert!(crate::blocs::bloc_can_win(&w, id, Bloc::Islamist));
+        assert!(!crate::blocs::bloc_in_table(&w, id, Bloc::Islamist));
+        let saved = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        state_mut(&mut w, id).unwrap().established_movements.clear();
+        ensure_all(&mut w);
+        assert!(state(&w, id).unwrap().established_movements.is_empty(), "an existing campaign is not reseeded from history");
+        w.year = 1991;
+        w.governments.states.retain(|g| g.nation != id);
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().established_movements.is_empty(), "a later missing-record load cannot infer a 1990 history");
+        let off = w1990();
+        assert!(state(&off, id).unwrap().established_movements.is_empty());
+    }
+
+    #[test]
+    fn an_established_movement_survives_funding_decay_and_save_load_without_free_support() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut w = afghan_fixture_without_an_opening_organization();
+        assert!(!crate::blocs::bloc_present(&w, id, bloc));
+        let support = state(&w, id).unwrap().support.clone();
+        let movements = state(&w, id).unwrap().movements.clone();
+        let rng = serde_json::to_string(&w.rng).unwrap();
+        assert_eq!(crate::statecraft::add_backing(&mut w, sponsor, id, bloc), crate::statecraft::BACKING_STEP);
+        assert_eq!(state(&w, id).unwrap().established_movements, [bloc]);
+        assert_eq!(state(&w, id).unwrap().support, support);
+        assert_eq!(state(&w, id).unwrap().movements, movements);
+        assert_eq!(serde_json::to_string(&w.rng).unwrap(), rng);
+        // Saving immediately after funding must keep the organization too.
+        let saved = crate::save(&w);
+        assert!(saved.contains("established_movements"));
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        for _ in 0..12 { crate::statecraft::tick(&mut w); }
+        assert!(w.statecraft.backing.is_empty());
+        assert!(!crate::blocs::bloc_backed(&w, id, bloc));
+        assert!(crate::blocs::bloc_present(&w, id, bloc));
+        assert!(crate::blocs::bloc_can_win(&w, id, bloc));
+        assert_eq!(state(&w, id).unwrap().movements, movements, "recognition must not purchase votes");
+        assert_eq!(crate::blocs::backing(&w, id)[bloc as usize].1, 0.0);
+        assert!((crate::blocs::influence(&w, id)[bloc as usize].1 - share(&w, id, bloc)).abs() < 1e-12);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure_all(&mut w);
+        ensure_all(&mut w);
+        assert_eq!(crate::save(&w), saved);
+        assert_eq!(state(&w, id).unwrap().established_movements, [bloc]);
+    }
+
+    #[test]
+    fn old_saves_recognize_qualifying_movement_backing_without_inventing_past_organizations() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut w = afghan_fixture_without_an_opening_organization();
+        assert!(!crate::save(&w).contains("established_movements"));
+        // This is the old save shape: a backing stock with no new field.
+        w.statecraft.backing.push(crate::world::Backing {
+            sponsor, target: id, bloc, weight: crate::blocs::PRESENCE_BACKING, exposed: false,
+        });
+        let old_save = crate::save(&w);
+        assert!(!old_save.contains("established_movements"));
+        let mut resumed = crate::load(&old_save).unwrap();
+        assert!(state(&resumed, id).unwrap().established_movements.is_empty());
+        // Statecraft runs before government on a tick, and commands can reduce
+        // backing even sooner. Recognition must precede every reduction.
+        for reduction in 0..3 {
+            let mut first_action = crate::load(&old_save).unwrap();
+            match reduction {
+                0 => crate::statecraft::tick(&mut first_action),
+                1 => crate::statecraft::halve_foreign_backing(&mut first_action, id),
+                _ => crate::statecraft::expose_backing(&mut first_action, sponsor, id, bloc),
+            }
+            assert!(crate::blocs::backing_stock(&first_action, id)[bloc as usize].1 < crate::blocs::PRESENCE_BACKING);
+            assert_eq!(state(&first_action, id).unwrap().established_movements, [bloc]);
+            assert!(crate::blocs::bloc_can_win(&first_action, id, bloc));
+        }
+        let mut pre_government_save = crate::load(&old_save).unwrap();
+        pre_government_save.governments.states.retain(|g| g.nation != id);
+        crate::statecraft::halve_foreign_backing(&mut pre_government_save, id);
+        assert_eq!(state(&pre_government_save, id).unwrap().established_movements, [bloc]);
+        ensure_all(&mut resumed);
+        assert_eq!(state(&resumed, id).unwrap().established_movements, [bloc]);
+        // Repeat funding/ensuring cannot duplicate a record.
+        crate::statecraft::add_backing(&mut resumed, sponsor, id, bloc);
+        ensure_all(&mut resumed);
+        assert_eq!(state(&resumed, id).unwrap().established_movements, [bloc]);
+
+        w.statecraft.backing[0].weight = crate::blocs::PRESENCE_BACKING / 2.0;
+        ensure_all(&mut w);
+        assert!(state(&w, id).unwrap().established_movements.is_empty());
+        w.statecraft.backing.clear();
+        ensure_all(&mut w);
+        assert!(!crate::blocs::bloc_present(&w, id, bloc), "a faded pre-upgrade history cannot be inferred");
+    }
+
+    #[test]
+    fn movement_establishment_is_inert_when_off_and_does_not_duplicate_table_presence() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut off = w1990();
+        crate::statecraft::add_backing(&mut off, sponsor, id, bloc);
+        ensure_all(&mut off);
+        assert!(state(&off, id).unwrap().established_movements.is_empty());
+        assert!(!crate::save(&off).contains("established_movements"));
+
+        let mut on = afghan_fixture_without_an_opening_organization();
+        crate::statecraft::add_backing(&mut on, NationId::USSR, id, Bloc::Communist);
+        assert!(state(&on, id).unwrap().established_movements.is_empty(), "the party table already records this presence");
+        crate::statecraft::add_backing(&mut on, sponsor, id, bloc);
+        on.statecraft.backing.clear();
+        on.rules.ideology_blocs = false;
+        let before = crate::save(&on);
+        remember_established_movements(&mut on, id);
+        assert_eq!(crate::save(&on), before);
+        assert!(!crate::blocs::bloc_present(&on, id, bloc), "stored organizations must not turn on an inactive layer");
+    }
+
+    /// The equilibrium sibling of `support_finds_an_equilibrium_rather_than_
+    /// running_away`, for a regime's movements. `drift_movements` is called
+    /// directly with China's pains pinned, so the numbers are the function's
+    /// and not the economy's. Quiet (record +0.35): the ruling share climbs
+    /// from the 0.60 seed and SETTLES. With diminishing returns, the approximate
+    /// fixed point is 0.0035(1-h)^2 = 0.005(h-0.6), h about 0.674. A catastrophe
+    /// (prices 1, growth 1, war 0.8, order 0.5: record -2.78): the share falls
+    /// toward RESPONSE*2.78*0.995h = 0.005(0.6-h), evaluated below. The 0.995
+    /// factor accounts for reversion occurring after the performance transfer.
+    /// It settles above the floor, and no month exceeds the 0.015 bound. Under a
+    /// war the Nationalist bloc (the PLA's) gains more than the Western
+    /// (the coastal provinces'), because `bloc_appeal` reads the war. These
+    /// conservation, transfer and equilibrium bounds predate the new response
+    /// model and still apply; no historical outcome is scheduled by them.
+    #[test]
+    fn a_regime_s_movements_move_with_the_pains_and_revert() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::China;
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Communist));
+        let quiet = |n: &mut Nation| {
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        };
+        quiet(w.nation_mut(id));
+        let seed = share(&w, id, Bloc::Communist);
+        assert!((seed - 0.5988).abs() < 1e-3, "the flat seed: {seed}");
+        let mut last = seed;
+        for _ in 0..480 {
+            drift_movements(&mut w, id);
+            let h = share(&w, id, Bloc::Communist);
+            assert!(h >= last - 1e-12, "a quiet regime lost ground: {last} -> {h}");
+            last = h;
+        }
+        let settled = share(&w, id, Bloc::Communist);
+        assert!(settled > 0.65 && settled < 0.80, "the quiet equilibrium reads {settled}");
+        drift_movements(&mut w, id);
+        let step = (share(&w, id, Bloc::Communist) - settled).abs();
+        println!("quiet: settled {settled:.6} step {step:.3e}");
+        assert!(step < 1e-4, "not settled: moved {step:.3e} in one month at {settled}");
+        let sum: f64 = state(&w, id).unwrap().movements.iter().map(|(_, s)| *s).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+
+        // A catastrophe, and the bound on any one month's transfer.
+        let ruin = |n: &mut Nation| {
+            n.inflation = 0.30;
+            n.growth_last = -0.06;
+            n.war_exhaustion = 0.8;
+            n.stability = 30.0;
+        };
+        ruin(w.nation_mut(id));
+        let west0 = share(&w, id, Bloc::Western);
+        let nat0 = share(&w, id, Bloc::Nationalist);
+        let mut last = share(&w, id, Bloc::Communist);
+        for _ in 0..480 {
+            drift_movements(&mut w, id);
+            let h = share(&w, id, Bloc::Communist);
+            assert!(h <= last + 1e-12, "a ruined regime gained ground: {last} -> {h}");
+            assert!(last - h <= 0.015 + 1e-9, "one month moved {}", last - h);
+            last = h;
+        }
+        let fallen = share(&w, id, Bloc::Communist);
+        println!("ruin: fallen {fallen:.6} movements {:?}", state(&w, id).unwrap().movements);
+        // This coefficient-dependent equilibrium is a design calculation,
+        // not a historical popularity floor. The original >5% assertion
+        // belonged to the former 0.018 response, whose fixed point was .055.
+        // Floor normalisation and finite memory explain the small tolerance.
+        let expected_ruined = 0.005 * 0.6 / (0.005 + 0.995 * ADVERSE_RECORD_RESPONSE * 2.78);
+        assert!((fallen - expected_ruined).abs() < 0.0015,
+            "ruined equilibrium {fallen}, expected approximately {expected_ruined}");
+        assert!(fallen > crate::blocs::SHARE_FLOOR, "the incumbent must retain a constituency above the floor");
+        drift_movements(&mut w, id);
+        let ruined_step = (share(&w, id, Bloc::Communist) - fallen).abs();
+        assert!(ruined_step < 1e-4, "the ruined electorate has not settled: {ruined_step}");
+        let ruined_sum: f64 = state(&w, id).unwrap().movements.iter().map(|(_, s)| *s).sum();
+        assert!((ruined_sum - 1.0).abs() < 1e-9);
+        for (b, s) in &state(&w, id).unwrap().movements {
+            // Floored BEFORE the normalisation, as the seed is, so an absent
+            // bloc reads a hair under 0.002 after it.
+            assert!(*s >= crate::blocs::SHARE_FLOOR * 0.99, "{b:?} fell through the floor: {s}");
+        }
+        assert!(
+            share(&w, id, Bloc::Nationalist) - nat0 > share(&w, id, Bloc::Western) - west0,
+            "a war did not favour the army's bloc"
+        );
+        // And with the switch off, nothing moves at all.
+        let mut off = world_1990(GameRules::default());
+        ruin(off.nation_mut(id));
+        drift_movements(&mut off, id);
+        assert!(state(&off, id).unwrap().movements.is_empty());
+    }
+
+    /// The liberalisation seam. Indonesia's dormant table carries Golkar
+    /// (Non-Aligned), the PPP (Islamist) and the PDI (Western); its army is
+    /// the Nationalist bloc's only presence. Movements written by hand, the
+    /// regime opened to 0.30, one tick: the parties are seated at their bloc's
+    /// share times their weight within it (a one-party bloc takes the whole
+    /// share), the Nationalist 0.30 is excluded from the ballot and named in
+    /// the headline. Both it and the Communist floor remain in the national
+    /// constituency, independently of normalized party votes. Watched red with the
+    /// `lost` clause never composed: the headline read the plain sentence.
+    #[test]
+    fn the_liberalisation_seam_reseeds_parties_from_movements() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Indonesia;
+        assert!(!is_electoral(&w, id));
+        assert!(crate::blocs::bloc_present(&w, id, Bloc::Nationalist), "ABRI stands for it");
+        let hand = vec![
+            (Bloc::Western, 0.10),
+            (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.30),
+            (Bloc::Islamist, 0.20),
+            (Bloc::NonAligned, 0.398),
+        ];
+        state_mut(&mut w, id).unwrap().movements = hand.clone();
+        // The pure seam first, so the numbers are exact.
+        let mut probe = w.clone();
+        let clause = reseed_support_from_movements(&mut probe, id);
+        assert_eq!(
+            clause.as_deref(),
+            Some("the Nationalist movement, 30% of the country, has no party to carry it")
+        );
+        let g = state(&probe, id).unwrap();
+        let kept = 0.10 + 0.20 + 0.398;
+        assert!((g.support_of("id_golkar") - 0.398 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert!((g.support_of("id_ppp") - 0.20 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert!((g.support_of("id_pdi") - 0.10 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert_eq!(g.movements, hand);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!(g.surging.is_empty());
+        // Then through the tick, where the scheduling branch calls it.
+        w.nation_mut(id).authoritarianism = 0.30;
+        let news = crate::tick_month(&mut w, &[]);
+        let line = news
+            .iter()
+            .find(|h| h.starts_with("Indonesia sets a date"))
+            .expect("the first free elections were scheduled");
+        assert_eq!(
+            line,
+            "Indonesia sets a date for its first free elections; the Nationalist movement, 30% of the country, has no party to carry it."
+        );
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.movements, hand);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!((crate::blocs::bloc_shares(&w, id)[Bloc::Nationalist as usize].1 - 0.30).abs() < 1e-12);
+        assert!(g.support_of("id_golkar") > g.support_of("id_ppp"));
+        // With the switch off the same opening prints the sentence it always
+        // printed and seats the table as transcribed.
+        let mut off = world_1990(GameRules { ai_aggression: 0.0, ..GameRules::default() });
+        off.nation_mut(id).authoritarianism = 0.30;
+        let news = crate::tick_month(&mut off, &[]);
+        assert!(news.iter().any(|h| h == "Indonesia sets a date for its first free elections."));
+    }
+
+    /// The surge latch: a movement crossing 0.30 upward is a headline once,
+    /// not every month above the line, and the latch clears under 0.25 so a
+    /// second crossing is news again. Written by hand into China's movements
+    /// and read through `note_surges`. Watched red with the latch never
+    /// written: the second call fired the same headline again.
+    #[test]
+    fn a_surge_is_news_once_per_crossing() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::China;
+        let set = |w: &mut WorldState, nat: f64| {
+            let g = state_mut(w, id).unwrap();
+            for e in g.movements.iter_mut() {
+                e.1 = match e.0 {
+                    Bloc::Communist => 1.0 - nat - 0.006,
+                    Bloc::Nationalist => nat,
+                    _ => 0.002,
+                };
+            }
+        };
+        let fire = |w: &mut WorldState| -> Vec<String> {
+            w.headlines.clear();
+            note_surges(w, id);
+            w.headlines.clone()
+        };
+        set(&mut w, 0.29);
+        assert!(fire(&mut w).is_empty());
+        set(&mut w, 0.31);
+        assert_eq!(fire(&mut w), vec!["The Nationalist movement in China passes a third of the country.".to_string()]);
+        assert_eq!(state(&w, id).unwrap().surging, vec![Bloc::Nationalist]);
+        set(&mut w, 0.35);
+        assert!(fire(&mut w).is_empty(), "fired again above the line");
+        set(&mut w, 0.27);
+        assert!(fire(&mut w).is_empty(), "cleared inside the band");
+        assert_eq!(state(&w, id).unwrap().surging, vec![Bloc::Nationalist]);
+        set(&mut w, 0.24);
+        assert!(fire(&mut w).is_empty());
+        assert!(state(&w, id).unwrap().surging.is_empty(), "the latch did not clear under 0.25");
+        set(&mut w, 0.31);
+        assert_eq!(fire(&mut w).len(), 1, "a second crossing is news again");
+        // The ruling bloc never surges against itself.
+        set(&mut w, 0.24);
+        fire(&mut w);
+        assert!(fire(&mut w).is_empty());
+        // And the SEED is not a crossing: Iraq's and Syria's lone non-ruling
+        // bloc is seeded at 0.40, latched closed, and January 1990 prints no
+        // surge for anyone. Watched red with the latch unseeded: two
+        // headlines in the first month.
+        let mut w = world_1990(on_rules(1990));
+        assert_eq!(state(&w, NationId::Iraq).unwrap().surging, vec![Bloc::NonAligned]);
+        let news = crate::tick_month(&mut w, &[]);
+        let surges: Vec<&String> = news.iter().filter(|h| h.contains("passes a third")).collect();
+        assert!(surges.is_empty(), "the seed was announced as news: {surges:?}");
+    }
+
+    /// Design D4, transcribed beside the live table and wired under the
+    /// switch by `polity_in` (see `D4_POLITIES`): the two
+    /// blocks are shaped as the table is shaped — ids unique against
+    /// `POLITIES`, shares in (0, 1] summing to at most 1.02, nine Nepal rows
+    /// and six Haiti rows, the Chamber's 48-month term, the same pillars as
+    /// the live blocks — and `POLITIES` still carries the two nations as the
+    /// pillar-only regimes the goldens pin (empty tables, so neither can be
+    /// electoral and the seam cannot fire for them). Watched red with the
+    /// Nepal block's `np_nc` renamed `id_golkar`: a duplicate id against
+    /// Indonesia's.
+    #[test]
+    fn d4_tables_are_transcribed_beside_the_live_table_and_not_in_it() {
+        let live_ids: Vec<&str> = POLITIES.iter().flat_map(|p| p.parties.iter().map(|s| s.id)).collect();
+        let mut seen: Vec<&str> = vec![];
+        for pol in D4_POLITIES {
+            let live = polity(pol.nation).expect("the live block exists");
+            assert!(live.parties.is_empty(), "{:?}: the live table is no longer pillar-only", pol.nation);
+            assert_eq!(live.ruling, pol.ruling);
+            assert_eq!(live.pillars.len(), pol.pillars.len());
+            for (a, b) in live.pillars.iter().zip(pol.pillars) {
+                assert!(a.pillar == b.pillar && a.name == b.name, "{:?}: pillars differ", pol.nation);
+            }
+            assert_eq!(pol.next, (0, 0));
+            for s in pol.parties {
+                assert!(!s.id.is_empty() && !s.name.is_empty());
+                assert!(s.start > 0.0 && s.start <= 1.0, "{}", s.id);
+                assert!(!live_ids.contains(&s.id), "duplicate party id {} against POLITIES", s.id);
+                assert!(!seen.contains(&s.id), "duplicate party id {}", s.id);
+                seen.push(s.id);
+            }
+            let total: f64 = pol.parties.iter().map(|s| s.start).sum();
+            assert!(total <= 1.02, "{:?}: {total}", pol.nation);
+        }
+        assert_eq!(D4_POLITIES.len(), 2);
+        assert_eq!(D4_POLITIES[0].nation, NationId::Nepal);
+        assert_eq!(D4_POLITIES[0].parties.len(), 9);
+        assert_eq!(D4_POLITIES[1].nation, NationId::Haiti);
+        assert_eq!(D4_POLITIES[1].parties.len(), 6);
+        assert_eq!(D4_POLITIES[1].term_months, 48);
+        let w = w1990();
+        assert!(!is_electoral(&w, NationId::Nepal) && !is_electoral(&w, NationId::Haiti));
+    }
+
+    /// D4 WIRED UNDER THE SWITCH (2026-09-06). Off: `polity_in` is `polity`
+    /// for every nation of the roster and the two states carry no party. On:
+    /// `polity_in` serves the D4 block for Nepal and Haiti, `ensure` seats
+    /// its table (nine and six rows, normalised, the Nepali Congress and the
+    /// FNCD leading), Haiti's term is the Chamber's 48, both stay regimes
+    /// (authoritarianism 0.70 / 0.78 over the 0.60 ceiling), the flat seed
+    /// reads what P-8 measured (Nepal Non-Aligned 0.5988, Haiti Nationalist
+    /// 0.5988, Islamist 0.002 in both), and the id-only readers that stay on
+    /// `POLITIES` answer the same for either table. Watched red with the
+    /// switch test removed from `polity_in`: the OFF world seated `np_nc`.
+    #[test]
+    fn d4_tables_are_read_under_the_switch_and_invisible_off() {
+        let off = w1990();
+        for n in &off.nations {
+            let a = polity_in(&off, n.id).map(|p| p as *const Polity);
+            let b = polity(n.id).map(|p| p as *const Polity);
+            assert_eq!(a, b, "{:?}: the OFF lookup is the live table", n.id);
+        }
+        for id in [NationId::Nepal, NationId::Haiti] {
+            let g = state(&off, id).expect("seated");
+            assert!(g.support.is_empty() && g.seats.is_empty(), "{id:?}: the OFF world saw a D4 row");
+        }
+        let on = world_1990(on_rules(7));
+        let np = polity_in(&on, NationId::Nepal).unwrap();
+        let ht = polity_in(&on, NationId::Haiti).unwrap();
+        assert_eq!(np.parties.len(), 9);
+        assert_eq!(ht.parties.len(), 6);
+        assert_eq!(ht.term_months, 48);
+        // These separately sourced Army overlays retain the original party
+        // tables and electoral contract; neither is a D4 replacement.
+        for id in [NationId::Poland, NationId::France] {
+            let base = polity(id).unwrap();
+            let live = polity_in(&on, id).unwrap();
+            assert!(std::ptr::eq(live.parties, base.parties));
+            assert_eq!((live.system, live.term_months, live.next, live.ruling),
+                (base.system, base.term_months, base.next, base.ruling));
+            assert!(!base.pillars.iter().any(|p| p.pillar == Pillar::Army));
+            assert_eq!(live.pillars.iter().filter(|p| p.pillar == Pillar::Army).count(), 1);
+        }
+        for (id, lead, rows) in [(NationId::Nepal, "np_nc", 9usize), (NationId::Haiti, "ht_fncd", 6)] {
+            let g = state(&on, id).expect("seated");
+            assert_eq!(g.support.len(), rows, "{id:?}");
+            let total: f64 = g.support.iter().map(|(_, v)| *v).sum();
+            assert!((total - 1.0).abs() < 1e-9, "{id:?}: {total}");
+            let top = g.support.iter().max_by(|a, b| a.1.partial_cmp(&b.1).unwrap()).unwrap();
+            assert_eq!(top.0, lead, "{id:?}");
+            assert!(!is_electoral(&on, id), "{id:?} stays a regime");
+            assert!(g.regime_bloc.is_some() && g.movements.len() == 5, "{id:?}: the arm seeded it");
+            assert!((g.movements[Bloc::Islamist as usize].1 - 0.002).abs() < 1e-3, "{id:?}: {:?}", g.movements);
+        }
+        // These competitive tables now inform organization instead of being
+        // flattened away. Their leading civilian bloc must gain representation
+        // relative to the institution-only seed, without switching the regime.
+        for (id, ruling) in [(NationId::Nepal, Bloc::NonAligned), (NationId::Haiti, Bloc::Nationalist)] {
+            let g = state(&on, id).unwrap();
+            let flat = crate::blocs::flat_seed(&on, id, ruling);
+            let lead = g.support.iter().max_by(|a, b| a.1.partial_cmp(&b.1).unwrap()).unwrap();
+            let civilian = bloc_of(id, &lead.0);
+            assert!(g.movements[civilian as usize].1 > flat[civilian as usize].1, "{id:?}: {:?}", g.movements);
+            assert_eq!(g.regime_bloc, Some(ruling));
+        }
+        // The id-only readers stay on POLITIES and are table-invariant here.
+        for pol in D4_POLITIES {
+            let largest = pol.parties.iter().max_by(|a, b| a.start.partial_cmp(&b.start).unwrap()).unwrap();
+            assert_ne!(bloc_of(pol.nation, largest.id), Bloc::Communist, "{:?}", pol.nation);
+            assert!(!regime_is_communist(pol.nation));
+            assert_eq!(pillar_bloc(pol.nation, Pillar::Party), Bloc::NonAligned);
+            for s in pol.parties {
+                assert!(spec(pol.nation, s.id).is_some(), "{} resolves through table_of", s.id);
+                assert!(base_share(pol.nation, s.id) > 0.0, "{}", s.id);
+            }
+        }
+    }
+
+    #[test]
+    fn opening_up_a_regime_produces_an_election_without_anything_scheduling_one() {
+        // Emergence rather than script: a state that liberalises far enough owes
+        // the country a vote, and the party table that was dormant becomes live.
+        // No date, no country name — only the authoritarianism falling.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        w.nation_mut(NationId::Indonesia).authoritarianism = 0.30;
+        let mut announced = false;
+        let mut voted = false;
+        for _ in 0..48 {
+            for h in crate::tick_month(&mut w, &[]) {
+                if h.contains("Indonesia sets a date") {
+                    announced = true;
+                }
+                if h.starts_with("Indonesia votes") {
+                    voted = true;
+                }
+            }
+        }
+        assert!(announced, "a liberalised regime never called an election");
+        assert!(voted, "the election was announced and never held");
+        let g = state(&w, NationId::Indonesia).unwrap();
+        assert!(g.pillars.is_empty(), "an elected government is still resting on pillars");
+        assert!(!g.coalition.is_empty(), "nobody took office after the vote");
+    }
+
+    #[test]
+    fn a_state_with_no_parties_never_loops_through_the_polls() {
+        // The loop this test exists for: a revolution dropped Saudi Arabia's
+        // authoritarianism under ELECTORAL_CEILING in 2009, the electoral
+        // branch scheduled "first free elections" for a country whose party
+        // table is empty — the correct transcription, see the POLITIES block —
+        // and `hold_election` returned without seating anyone or resetting
+        // `months_in_office`. "The government of Saudi Arabia falls; the
+        // country goes to the polls." then printed for 125 consecutive months,
+        // and the same for every other no-party state that opened up. A fall
+        // resets the clock when it is real, so the headline repeating in
+        // consecutive months for ANY nation is the signature of the loop.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        let no_party: Vec<NationId> = w
+            .nations
+            .iter()
+            .filter(|n| n.alive)
+            .filter(|n| polity(n.id).is_some_and(|p| p.parties.is_empty()))
+            .map(|n| n.id)
+            .collect();
+        assert!(
+            no_party.contains(&NationId::SaudiArabia),
+            "the transcription changed under this test: Saudi Arabia has parties now"
+        );
+        for id in &no_party {
+            w.nation_mut(*id).authoritarianism = 0.30;
+        }
+        let mut last_fell: Vec<(String, u32)> = vec![];
+        for month in 0..12 * 4u32 {
+            for h in crate::tick_month(&mut w, &[]) {
+                let name = h
+                    .strip_prefix("The government of ")
+                    .and_then(|r| r.strip_suffix(" falls; the country goes to the polls."));
+                if let Some(name) = name {
+                    match last_fell.iter_mut().find(|(n, _)| n == name) {
+                        Some((_, m)) => {
+                            assert!(
+                                month != *m + 1,
+                                "the government of {} fell in consecutive months ({} and {})",
+                                name, *m, month
+                            );
+                            *m = month;
+                        }
+                        None => last_fell.push((name.to_string(), month)),
+                    }
+                }
+            }
+        }
+        // And the regimes came out the other side still resting on something:
+        // nobody scheduled a vote for a country with nobody to elect, and
+        // nobody cleared the pillars on the way.
+        for id in &no_party {
+            let g = state(&w, *id).expect("a no-party state lost its government entirely");
+            assert!(!g.pillars.is_empty(), "{:?} is resting on nothing", id);
+            assert!(
+                g.coalition.is_empty(),
+                "{:?} seated a coalition out of an empty party table",
+                id
+            );
+        }
+    }
+
+    /// Every bloc override in POLITIES is a transcribed decision with its
+    /// source on the row: the line above each `.aligned(Bloc::X)` is a comment
+    /// that names the same bloc after `bloc ->` and carries a URL, the override
+    /// differs from the family default (or it is not an override), and the
+    /// number of `Some` blocs in the table equals the number of such lines, so
+    /// none is written any other way. Read off this file's own text because the
+    /// source is a comment and a comment is all a const table can carry.
+    /// Integrated 2026-09-05 at 34 rows from blocs-data/overrides.json (the
+    /// 50 rows there whose bloc equals the family default are not overrides and
+    /// are not written). Watched red by deleting the comment above `ru_apr`
+    /// and by writing the comment's bloc as Western on `in_bjp`.
+    #[test]
+    fn every_bloc_override_has_a_source() {
+        let text = include_str!("government.rs");
+        let lines: Vec<&str> = text.lines().collect();
+        let mut sourced = 0usize;
+        for (i, line) in lines.iter().enumerate() {
+            let Some(at) = line.find(".aligned(Bloc::") else { continue };
+            let row = line.trim_start();
+            if !row.starts_with("p(") && !row.starts_with("pariah(") {
+                continue; // the builder's own definition, and this test
+            }
+            let id = line.split('"').nth(1).unwrap_or("?");
+            let bloc = &line[at + ".aligned(Bloc::".len()..];
+            let bloc = &bloc[..bloc.find(')').unwrap()];
+            let above = lines[i - 1].trim_start();
+            assert!(
+                above.starts_with("// bloc -> "),
+                "{id}: the line above the override is not a `bloc ->` comment: {above:?}"
+            );
+            assert!(
+                above.starts_with(&format!("// bloc -> {bloc}:")),
+                "{id}: the comment names a different bloc than the override: {above:?}"
+            );
+            assert!(above.contains("http"), "{id}: the override comment carries no URL: {above:?}");
+            sourced += 1;
+        }
+        let mut overridden = 0usize;
+        for pol in POLITIES {
+            for s in pol.parties {
+                if let Some(b) = s.bloc {
+                    overridden += 1;
+                    assert_ne!(b, s.family.bloc(), "{}: an override equal to the family default", s.id);
+                }
+            }
+        }
+        assert_eq!(overridden, sourced, "every override is written with a sourced comment above it");
+        assert_eq!(overridden, 34, "the override count as integrated on 2026-09-05");
+    }
+
+    /// R3(d): every `.successor()` row carries a `// successor_of_ruling_party:`
+    /// comment naming the ruling party it succeeded, the date, and a URL,
+    /// and the count of flagged rows is the transcription's — 24 rows from
+    /// blocs4-data/successor-flag.json, fetched 2026-09-06 (nine candidates
+    /// refused there for want of a sourced succession or a table row: the
+    /// PDS, Romania's FSN, Kazakhstan's SNEK, Latvia's Equal Rights,
+    /// Moldova's Socialist bloc, Georgia's CP, and three more). Read off this
+    /// file's own text, the way the override test above is. Watched red by
+    /// deleting the comment above `pl_sld` and by forcing the count to 25.
+    #[test]
+    fn every_successor_flag_has_a_source() {
+        let text = include_str!("government.rs");
+        let lines: Vec<&str> = text.lines().collect();
+        let mut sourced = 0usize;
+        for (i, line) in lines.iter().enumerate() {
+            if !line.contains(".successor()") {
+                continue;
+            }
+            let row = line.trim_start();
+            if !row.starts_with("p(") && !row.starts_with("pariah(") {
+                continue; // the builder's own definition, and this test
+            }
+            let id = line.split('"').nth(1).unwrap_or("?");
+            let above = lines[i - 1].trim_start();
+            assert!(
+                above.starts_with("// successor_of_ruling_party: "),
+                "{id}: the line above the flag is not a `successor_of_ruling_party:` comment: {above:?}"
+            );
+            assert!(above.contains("http"), "{id}: the flag's comment carries no URL: {above:?}");
+            sourced += 1;
+        }
+        let mut flagged = 0usize;
+        for pol in POLITIES.iter().chain(D4_POLITIES) {
+            for s in pol.parties {
+                if s.successor_of_ruling_party {
+                    flagged += 1;
+                    assert!(successor_of_ruling_party(pol.nation, s.id), "{}: the reader disagrees with the row", s.id);
+                }
+            }
+        }
+        assert_eq!(flagged, sourced, "a flag without a sourced comment, or the reverse");
+        assert_eq!(flagged, 24, "the successor count as transcribed on 2026-09-06");
+        assert!(successor_of_ruling_party(NationId::Poland, "pl_sld"));
+        assert!(successor_of_ruling_party(NationId::Hungary, "hu_mszp"));
+        assert!(!successor_of_ruling_party(NationId::USSR, "su_cpsu"), "a ruling party that kept its name is not a successor");
+        assert!(!successor_of_ruling_party(NationId::Romania, "ro_fsn"), "the FSN split from the PCR; refused");
+        assert!(!successor_of_ruling_party(NationId::Poland, "not_a_party"));
+    }
+
+    // -----------------------------------------------------------------------
+    // The five levers (S3 part two)
+    // -----------------------------------------------------------------------
+
+    fn democracies_but(w: &WorldState, id: NationId) -> Vec<NationId> {
+        w.nations
+            .iter()
+            .filter(|x| x.alive && x.authoritarianism < DEMOCRACY_BELOW && x.id != id)
+            .map(|x| x.id)
+            .collect()
+    }
+
+    /// Off: refused with the arm's sentence before any state is read (hash
+    /// and RNG untouched), and priced 40. On: refused out of crisis, refused
+    /// too open, refused by the treasury, in that order of prose; then the
+    /// act, and every number the card quoted is the number the world took —
+    /// authoritarianism 0.25 → 0.65 (the floor, not the +0.30), stability
+    /// 40 → 34, −10 with every democracy, the movements seeded from the
+    /// party sums with the ruling bloc +0.10 — and Poland is a Western
+    /// regime with its Solidarity cabinet kept as a dormant record. Watched
+    /// red with `regime_bloc` written Nationalist instead of the incumbent's
+    /// colour: Poland read Some(Nationalist) against the Some(Western) it
+    /// governed in.
+    #[test]
+    fn suspending_the_constitution_keeps_the_incumbent_s_colour() {
+        use crate::{apply_command, price_of, refusal_of, state_hash, tick_month, Command};
+        let pl = NationId::Poland;
+        let c = Command::SuspendConstitution { nation: pl };
+        let off = w1990();
+        let before = (state_hash(&off), off.rng.state);
+        assert_eq!(refusal_of(&off, &c).as_deref(), Some(NO_MOVEMENTS));
+        let mut trial = off.clone();
+        assert_eq!(apply_command(&mut trial, &c).err().as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!((state_hash(&trial), trial.rng.state), before, "a refused lever touched the world");
+        assert_eq!(price_of(&off, &c), Some(SUSPEND_PC));
+        assert_eq!(SUSPEND_PC, 40.0);
+        assert!(suspend_effects(&off, pl).is_empty());
+
+        let mut w = world_1990(on_rules(7));
+        assert!(is_electoral(&w, pl));
+        let ruling = crate::blocs::ruling_bloc(&w, pl).unwrap();
+        assert_eq!(ruling, Bloc::Western);
+        w.nation_mut(pl).stability = 60.0;
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 50.0;
+        assert!(state(&w, pl).unwrap().government_seats() >= 0.5);
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("is not in the crisis a suspension needs"), "{why}");
+        assert!(suspend_effects(&w, pl).is_empty(), "no card for a refused lever");
+        w.nation_mut(pl).stability = 40.0;
+        w.nation_mut(pl).authoritarianism = 0.10;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("too open to rule by decree: authoritarianism 0.10"), "{why}");
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 10.0;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("has not the standing"), "{why}");
+        w.nation_mut(pl).political_capital = 50.0;
+        assert_eq!(refusal_of(&w, &c), None);
+
+        let plan = suspend_plan(&w, pl).unwrap();
+        let effects = suspend_effects(&w, pl);
+        let shares = crate::blocs::bloc_shares(&w, pl);
+        let coalition = state(&w, pl).unwrap().coalition.clone();
+        let seats = state(&w, pl).unwrap().seats.clone();
+        let democracies = democracies_but(&w, pl);
+        assert_eq!(plan.democracies, democracies);
+        assert!(democracies.len() > 20, "{}", democracies.len());
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c).expect("goes through");
+        let n = w.nation(pl);
+        assert_eq!(n.authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert_eq!(plan.auth_after, 0.65, "0.25 + 0.30 is under the 0.65 floor");
+        assert_eq!(n.stability.to_bits(), plan.stability_after.to_bits());
+        assert_eq!(plan.stability_after, 34.0);
+        assert!((n.political_capital - 10.0).abs() < 1e-9, "{}", n.political_capital);
+        assert!(!is_electoral(&w, pl));
+        assert_eq!(crate::blocs::ruling_bloc(&w, pl), Some(ruling), "the incumbent keeps the colour");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.regime_bloc, Some(ruling));
+        assert_eq!(g.coalition, coalition, "the cabinet is a dormant record");
+        assert_eq!(g.seats, seats);
+        assert_eq!(g.movements, plan.movements.to_vec());
+        let total: f64 = g.movements.iter().map(|(_, s)| *s).sum();
+        assert!((total - 1.0).abs() < 1e-12);
+        let expected_ruling = {
+            let mut exp = shares;
+            exp[ruling as usize].1 += 0.10;
+            for e in exp.iter_mut() {
+                e.1 = e.1.max(SHARE_FLOOR_T);
+            }
+            let total: f64 = exp.iter().map(|(_, s)| *s).sum();
+            exp[ruling as usize].1 / total
+        };
+        assert!((g.movements[ruling as usize].1 - expected_ruling).abs() < 1e-12, "{} vs {expected_ruling}", g.movements[ruling as usize].1);
+        assert!(expected_ruling > 0.60, "{expected_ruling}");
+        assert!(g.surging.is_empty(), "no non-ruling bloc reached the surge line: {:?}", g.movements);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 - 10.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland suspends its constitution and rules by decree."), "{:?}", w.headlines);
+        // The card said what the world did.
+        assert!(effects.iter().any(|e| e.starts_with("Authoritarianism 0.25 → 0.65")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Stability 40 → 34."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations −10 with {} democracies.", democracies.len())), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("The Western bloc keeps power")), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("Western {:.3}", g.movements[0].1))), "{effects:?}");
+        // The next tick takes the regime path: no election is scheduled, the
+        // colour holds, and a second suspension has nothing to suspend.
+        tick_month(&mut w, &[]);
+        assert_eq!(crate::blocs::ruling_bloc(&w, pl), Some(Bloc::Western));
+        assert_eq!(state(&w, pl).unwrap().next_election, (0, 0));
+        assert!(refusal_of(&w, &c).unwrap().contains("holds no elections"));
+    }
+
+    const SHARE_FLOOR_T: f64 = crate::blocs::SHARE_FLOOR;
+
+    /// Poland with the Democratic Left holding 55% of the chamber against a
+    /// Solidarity minority cabinet. The ban is refused too open (0.10), for
+    /// the leader, and for a party that does not exist; priced 18. Then the
+    /// act: support bit-identical before and after, the SLD's seats 0.55 → 0,
+    /// the chamber re-read over the three legal parties (Solidarity
+    /// 0.30/0.45), the Communist bloc's share still 0.55 in influence and the
+    /// bloc read as banned; authoritarianism 0.35 → 0.39, stability 50 → 47,
+    /// −4 with every democracy. Legalising reverses it: seats back to the
+    /// old chamber bit for bit, 0.39 → 0.37, +3. And with the arm OFF a
+    /// hand-written ban is ignored by `hold_election`: the wrapper IS
+    /// `seats_from`. Watched red with the `on` gate dropped from
+    /// `seats_from_legal`: the off world's chamber read Solidarity 0.769,
+    /// SLD 0 against the 0.60 / 0.22 the old formula seats.
+    #[test]
+    fn banning_a_majority_party_keeps_its_support_and_zeroes_its_seats() {
+        use crate::{apply_command, price_of, refusal_of, Command};
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        {
+            let g = state_mut(&mut w, pl).unwrap();
+            for e in g.support.iter_mut() {
+                e.1 = match e.0.as_str() {
+                    "pl_sld" => 0.55,
+                    "pl_solidarity" => 0.30,
+                    "pl_psl" => 0.10,
+                    _ => 0.05,
+                };
+            }
+            g.seats = seats_from(&g.support, Electoral::Proportional);
+            assert!(g.seat_share("pl_sld") > 0.5);
+            assert_eq!(g.leader(), Some("pl_solidarity"));
+        }
+        let c = Command::BanParty { nation: pl, party: "pl_sld".into() };
+        assert_eq!(price_of(&w, &c), Some(BAN_PC));
+        assert_eq!(BAN_PC, 18.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        w.nation_mut(pl).authoritarianism = 0.10;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("too open to ban a party (authoritarianism 0.10"), "{why}");
+        w.nation_mut(pl).authoritarianism = 0.35;
+        assert_eq!(
+            refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_solidarity".into() }).as_deref(),
+            Some("A government cannot ban the party that leads it.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_nobody".into() }).as_deref(),
+            Some("No such party: pl_nobody")
+        );
+        w.nation_mut(pl).political_capital = 100.0;
+        w.nation_mut(pl).stability = 50.0;
+        assert_eq!(refusal_of(&w, &c), None);
+        let support_before = state(&w, pl).unwrap().support.clone();
+        let seats_before = state(&w, pl).unwrap().seats.clone();
+        let plan = ban_plan(&w, pl, "pl_sld").unwrap();
+        let effects = ban_effects(&w, pl, "pl_sld");
+        let democracies = democracies_but(&w, pl);
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.support, support_before, "a ban takes seats, not voters");
+        assert_eq!(g.seat_share("pl_sld"), 0.0);
+        assert_eq!(g.seats, plan.seats_after);
+        assert!((g.seats.iter().map(|(_, v)| *v).sum::<f64>() - 1.0).abs() < 1e-12);
+        assert!((g.seat_share("pl_solidarity") - 0.30 / 0.45).abs() < 1e-12, "{}", g.seat_share("pl_solidarity"));
+        assert_eq!(g.banned, vec!["pl_sld".to_string()]);
+        assert_eq!(g.leader(), Some("pl_solidarity"));
+        assert!(!effects.iter().any(|e| e.contains("cabinet")), "{effects:?}");
+        assert_eq!(w.nation(pl).authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert!((plan.auth_after - 0.39).abs() < 1e-12);
+        assert_eq!(w.nation(pl).stability, 47.0);
+        assert!((w.nation(pl).political_capital - 82.0).abs() < 1e-9);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 - 4.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland bans Democratic Left Alliance."), "{:?}", w.headlines);
+        assert!((crate::blocs::bloc_shares(&w, pl)[Bloc::Communist as usize].1 - 0.55).abs() < 1e-12, "still counted in influence");
+        assert!(crate::blocs::bloc_banned(&w, pl, Bloc::Communist));
+        assert!(!crate::blocs::bloc_banned(&w, pl, Bloc::Western));
+        assert!(crate::blocs::bloc_rows(&w, pl)[Bloc::Communist as usize].banned);
+        assert!(effects[0].contains("55.0% of support is kept"), "{}", effects[0]);
+        assert!(effects[0].contains(&format!("{:.1}% → 0.0%", plan.seats_before * 100.0)), "{}", effects[0]);
+        assert!(effects.iter().any(|e| e == "Authoritarianism 0.35 → 0.39."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("Stability 50 → 47")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations −4 with {} democracies.", democracies.len())), "{effects:?}");
+        assert!(refusal_of(&w, &c).unwrap().contains("is already banned"));
+
+        // Legalise: the reverse, and the chamber is the old one bit for bit.
+        let c2 = Command::LegalizeParty { nation: pl, party: "pl_sld".into() };
+        assert_eq!(price_of(&w, &c2), Some(LEGALIZE_PC));
+        assert_eq!(LEGALIZE_PC, 12.0);
+        assert_eq!(
+            refusal_of(&w, &Command::LegalizeParty { nation: pl, party: "pl_psl".into() }).as_deref(),
+            Some("Polish People's Party is not banned.")
+        );
+        assert_eq!(refusal_of(&w1990(), &c2).as_deref(), Some(NO_MOVEMENTS));
+        let plan2 = legalize_plan(&w, pl, "pl_sld").unwrap();
+        let effects2 = legalize_effects(&w, pl, "pl_sld");
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c2).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.seats, seats_before);
+        assert_eq!(g.seats, plan2.seats_after);
+        assert!(g.banned.is_empty());
+        assert_eq!(g.support, support_before);
+        assert_eq!(w.nation(pl).authoritarianism.to_bits(), plan2.auth_after.to_bits());
+        assert!((plan2.auth_after - 0.37).abs() < 1e-12);
+        assert!((w.nation(pl).political_capital - 70.0).abs() < 1e-9);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 + 3.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland legalises Democratic Left Alliance."));
+        assert!(effects2[0].contains(&format!("{:.1}% of the chamber", seats_before.iter().find(|(p, _)| p == "pl_sld").unwrap().1 * 100.0)), "{}", effects2[0]);
+        assert!(effects2.iter().any(|e| e == "Authoritarianism 0.39 → 0.37."), "{effects2:?}");
+
+        // Off: the wrapper is `seats_from`, whatever is written in `banned`.
+        let mut off = w1990();
+        state_mut(&mut off, pl).unwrap().banned = vec!["pl_sld".to_string()];
+        hold_election(&mut off, pl);
+        let g = state(&off, pl).unwrap();
+        assert_eq!(g.seats, seats_from(&g.support, Electoral::Proportional));
+        assert!(g.seat_share("pl_sld") > 0.0, "the off world does not read bans");
+    }
+
+    /// China declares a Western programme. Refused in its own colour, refused
+    /// for an electorate (Poland), refused while the Western movement is
+    /// 13% and the strongest pillar is the PLA's; priced 35. With the
+    /// movement raised to 0.30: the plan names the Central Committee −0.15
+    /// (leaving the Communist colour) and no other pillar, −15 with every
+    /// great power ruling Communist (the USSR) and +10 with every one ruling
+    /// Western (the USA among them), the Western movement 0.30 → 0.40/1.10;
+    /// the world takes exactly those numbers, and the old colour at 0.45 is
+    /// latched so the next tick prints no surge for it. Then Egypt toward its
+    /// strongest institution: al-Azhar at 0.90 makes an Islamist programme
+    /// legal with the movement at 13%, and the Clergy's +0.15 is quoted at
+    /// its CLAMPED 1.00. Watched red with the clamp dropped from the plan:
+    /// the plan read [(Clergy, 0.9, 1.05)] against [(Clergy, 0.9, 1.0)].
+    #[test]
+    fn declaring_a_programme_moves_the_named_pillars_and_the_patrons_relations() {
+        use crate::nations::patrons;
+        use crate::{apply_command, price_of, refusal_of, tick_month, Command};
+        let cn = NationId::China;
+        let mut w = world_1990(on_rules(7));
+        assert!(!is_electoral(&w, cn));
+        assert_eq!(state(&w, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        let c = Command::DeclareProgramme { nation: cn, bloc: Bloc::Western };
+        assert_eq!(price_of(&w, &c), Some(PROGRAMME_PC));
+        assert_eq!(PROGRAMME_PC, 35.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(
+            refusal_of(&w, &Command::DeclareProgramme { nation: cn, bloc: Bloc::Communist }).as_deref(),
+            Some("China already rules in the Communist colour.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::DeclareProgramme { nation: NationId::Poland, bloc: Bloc::Communist }).as_deref(),
+            Some("Poland answers to an electorate; a programme is declared by decree.")
+        );
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("13% of the country (25% needed)"), "{why}");
+        assert!(programme_effects(&w, cn, Bloc::Western).is_empty());
+        {
+            let g = state_mut(&mut w, cn).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.30),
+                (Bloc::Communist, 0.50),
+                (Bloc::Nationalist, 0.10),
+                (Bloc::Islamist, 0.002),
+                (Bloc::NonAligned, 0.098),
+            ];
+        }
+        w.nation_mut(cn).political_capital = 100.0;
+        w.nation_mut(cn).stability = 60.0;
+        assert_eq!(refusal_of(&w, &c), None);
+        let plan = programme_plan(&w, cn, Bloc::Western).unwrap();
+        let effects = programme_effects(&w, cn, Bloc::Western);
+        assert_eq!(plan.pillars.len(), 1, "{:?}", plan.pillars);
+        assert_eq!(plan.pillars[0].0, Pillar::Party);
+        assert!((plan.pillars[0].2 - (plan.pillars[0].1 - 0.15)).abs() < 1e-12);
+        let expected: Vec<(NationId, f64)> = patrons()
+            .iter()
+            .copied()
+            .filter(|p| *p != cn && w.nation_opt(*p).is_some_and(|n| n.alive))
+            .filter_map(|p| match crate::blocs::ruling_bloc(&w, p) {
+                Some(Bloc::Communist) => Some((p, -15.0)),
+                Some(Bloc::Western) => Some((p, 10.0)),
+                _ => None,
+            })
+            .collect();
+        assert_eq!(plan.patrons, expected);
+        assert!(plan.patrons.contains(&(NationId::USSR, -15.0)), "{:?}", plan.patrons);
+        assert!(plan.patrons.contains(&(NationId::USA, 10.0)), "{:?}", plan.patrons);
+        assert!(plan.patrons.len() >= 3);
+        let rel_before: Vec<f64> = plan.patrons.iter().map(|(p, _)| w.relation(*p, cn)).collect();
+        let army_before = state(&w, cn).unwrap().loyalty(Pillar::Army);
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Western));
+        assert_eq!(crate::blocs::ruling_bloc(&w, cn), Some(Bloc::Western));
+        assert_eq!(g.loyalty(Pillar::Party).to_bits(), plan.pillars[0].2.to_bits());
+        assert_eq!(g.loyalty(Pillar::Army).to_bits(), army_before.to_bits(), "the PLA is not named by a Western programme");
+        for ((p, s), r0) in plan.patrons.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*p, cn), (r0 + s).clamp(-100.0, 100.0), "{}", p.code());
+        }
+        assert_eq!(g.movements, plan.movements.to_vec());
+        assert!((g.movements[Bloc::Western as usize].1 - 0.40 / 1.10).abs() < 1e-12);
+        assert_eq!(w.nation(cn).stability, 55.0);
+        assert!((w.nation(cn).political_capital - 65.0).abs() < 1e-9);
+        assert!(w.headlines.iter().any(|h| h == "China declares a Western programme."), "{:?}", w.headlines);
+        assert!(g.surging.contains(&Bloc::Communist), "{:?}", g.surging);
+        assert!(effects.iter().any(|e| e == &format!("Relations -15 with {}.", NationId::USSR.name())), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations +10 with {}.", NationId::USA.name())), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("Loyalty of the Central Committee")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Stability 60 → 55."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("Western {:.3}", 0.40 / 1.10))), "{effects:?}");
+        let news = tick_month(&mut w, &[]);
+        assert!(!news.iter().any(|h| h.contains("movement in China passes")), "{news:?}");
+
+        // Egypt toward its strongest institution, the Clergy's arm at its clamp.
+        let eg = NationId::Egypt;
+        assert_eq!(state(&w, eg).unwrap().regime_bloc, Some(Bloc::NonAligned));
+        let c = Command::DeclareProgramme { nation: eg, bloc: Bloc::Islamist };
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("25% needed"), "{why}");
+        if let Some(e) = state_mut(&mut w, eg).unwrap().pillars.iter_mut().find(|(p, _)| *p == Pillar::Clergy) {
+            e.1 = 0.90;
+        }
+        w.nation_mut(eg).political_capital = 100.0;
+        assert_eq!(refusal_of(&w, &c), None, "the strongest pillar's colour needs no movement");
+        let plan = programme_plan(&w, eg, Bloc::Islamist).unwrap();
+        let effects = programme_effects(&w, eg, Bloc::Islamist);
+        assert_eq!(plan.pillars, vec![(Pillar::Clergy, 0.90, 1.0)], "{:?}", plan.pillars);
+        assert!(effects.iter().any(|e| e == "Loyalty of al-Azhar 0.90 → 1.00."), "{effects:?}");
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, eg).unwrap();
+        assert_eq!(g.loyalty(Pillar::Clergy), 1.0);
+        assert_eq!(g.regime_bloc, Some(Bloc::Islamist));
+        // And a Nationalist programme next names the army up and the clergy down.
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.30),
+                (Bloc::Islamist, 0.50),
+                (Bloc::NonAligned, 0.098),
+            ];
+        }
+        let plan = programme_plan(&w, eg, Bloc::Nationalist).unwrap();
+        let army = state(&w, eg).unwrap().loyalty(Pillar::Army);
+        assert_eq!(plan.pillars, vec![(Pillar::Army, army, (army + 0.10).min(1.0)), (Pillar::Clergy, 1.0, 0.90)], "{:?}", plan.pillars);
+    }
+
+    #[test]
+    fn organised_civilian_franchise_demand_can_buy_a_peaceful_opening_with_loyal_armed_services() {
+        use crate::{apply_command, Command};
+        let id = NationId::Albania;
+        let mut w = world_1990(on_rules(7));
+        {
+            let n = w.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.political_capital = ROUND_TABLE_PC;
+        }
+        for (_, loyalty) in &mut state_mut(&mut w, id).unwrap().pillars { *loyalty = 0.85; }
+        assert!(crate::blocs::discontent(&w, id) < 0.40);
+        assert!(franchise_demand(&w, id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        let command = Command::ConveneRoundTable { nation: id };
+        assert_eq!(round_table_refusal(&w, id), None);
+        assert_eq!(ai_lever(&w, id), Some(command.clone()), "lawful bargaining needs no mutinous army");
+        let before = serde_json::to_string(&w).unwrap();
+        assert!(round_table_effects(&w, id).iter().any(|line| line.contains("party-table estimate")));
+        assert_eq!(serde_json::to_string(&w).unwrap(), before, "the plan and explanation are read-only");
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+        assert_eq!(ai_lever(&w, id), None);
+        assert!(!crate::affordable(&w, &command));
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC;
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(round_table_refusal(&off, id).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(ai_lever(&off, id), None);
+        // A one-party table or insufficient excluded constituency does not
+        // acquire a negotiation mandate merely from healthy finances.
+        assert!(franchise_demand(&w, NationId::China) < ROUND_TABLE_FRANCHISE_QUORUM);
+        assert!(round_table_refusal(&w, NationId::China).is_some());
+        assert!(franchise_demand(&w, NationId::Indonesia) < ROUND_TABLE_FRANCHISE_QUORUM);
+        assert!(round_table_refusal(&w, NationId::Indonesia).is_some());
+        apply_command(&mut w, &command).expect("the funded civilian negotiation is legal");
+        assert_eq!(w.nation(id).political_capital, 0.0, "the existing 30-PC price is paid");
+        assert!(is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().next_election, add_months(1990, 1, 6));
+        assert!(state(&w, id).unwrap().banned.is_empty());
+        assert!(state(&w, id).unwrap().pillars.iter().all(|(_, loyalty)| *loyalty == 0.85));
+    }
+
+    /// Indonesia. Refused for an electorate (Poland), for a state with no
+    /// parties (Saudi Arabia), while quiet (discontent under 0.40), and while
+    /// no movement reaches 25%; priced 30. With stability 20 and prices at
+    /// 18% (discontent 0.533) and the Islamist movement at 0.30, after a ban
+    /// on the PPP: authoritarianism → min(auth − 0.25, 0.59), stability
+    /// 20 → 28, the ban lifted, the parties seated from the movements by the
+    /// seam (Golkar 0.50/0.90, PPP 0.30/0.90, PDI 0.10/0.90) with the
+    /// Nationalist 9.8% named as lost, elections dated six months out — and
+    /// the country votes on that date. Watched red with the seam's call
+    /// dropped from `schedule_first_elections`: the support stayed at the
+    /// 1987 result (Golkar 0.731, PPP 0.160) against the seam's 0.556 / 0.333.
+    #[test]
+    fn convening_a_round_table_opens_the_country_in_six_months() {
+        use crate::{apply_command, price_of, refusal_of, tick_month, Command};
+        let id = NationId::Indonesia;
+        let mut w = world_1990(on_rules(7));
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::NonAligned));
+        let c = Command::ConveneRoundTable { nation: id };
+        assert_eq!(price_of(&w, &c), Some(ROUND_TABLE_PC));
+        assert_eq!(ROUND_TABLE_PC, 30.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(
+            refusal_of(&w, &Command::ConveneRoundTable { nation: NationId::Poland }).as_deref(),
+            Some("Poland already answers to an electorate.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::ConveneRoundTable { nation: NationId::SaudiArabia }).as_deref(),
+            Some("Saudi Arabia has no parties to seat at a round table.")
+        );
+        w.nation_mut(id).political_capital = 200.0;
+        // A ban to lift, made BEFORE the country is set restive: the ban's
+        // own -3 of stability would otherwise land on the 20 below.
+        apply_command(&mut w, &Command::BanParty { nation: id, party: "id_ppp".into() }).expect("banned");
+        assert_eq!(state(&w, id).unwrap().banned, vec!["id_ppp".to_string()]);
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("is not restive enough for a round table: discontent"), "{why}");
+        {
+            let n = w.nation_mut(id);
+            n.stability = 20.0;
+            n.inflation = 0.18;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let d = crate::blocs::discontent(&w, id);
+        assert!((d - (0.5 * (40.0 / 60.0) + 0.20)).abs() < 1e-12, "{d}");
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("No movement in Indonesia is large enough"), "{why}");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.30),
+                (Bloc::NonAligned, 0.50),
+            ];
+        }
+        assert_eq!(refusal_of(&w, &c), None);
+        let plan = round_table_plan(&w, id).unwrap();
+        let effects = round_table_effects(&w, id);
+        assert_eq!(plan.lifted, vec!["United Development Party"]);
+        assert_eq!(plan.election, add_months(w.year, w.month, 6));
+        assert_eq!(plan.election, (1990, 7));
+        assert_eq!(plan.lost.as_deref(), Some("the Nationalist movement, 10% of the country, has no party to carry it"));
+        let auth_before = w.nation(id).authoritarianism;
+        apply_command(&mut w, &c).expect("goes through");
+        let n = w.nation(id);
+        assert_eq!(n.authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert_eq!(plan.auth_after, (auth_before - 0.25).min(0.59).max(0.05));
+        assert!(n.authoritarianism < ELECTORAL_CEILING);
+        assert_eq!(n.stability, 28.0);
+        assert!((n.political_capital - (200.0 - BAN_PC - ROUND_TABLE_PC)).abs() < 1e-9);
+        assert!(is_electoral(&w, id));
+        let g = state(&w, id).unwrap();
+        assert!(g.banned.is_empty(), "every ban lifted");
+        assert_eq!(g.next_election, (1990, 7));
+        assert_eq!(g.support, plan.support);
+        assert!((g.support_of("id_golkar") - 0.50 / 0.90).abs() < 1e-12, "{}", g.support_of("id_golkar"));
+        assert!((g.support_of("id_ppp") - 0.30 / 0.90).abs() < 1e-12);
+        assert!((g.support_of("id_pdi") - 0.10 / 0.90).abs() < 1e-12);
+        assert_eq!(g.movements.len(), 5);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!(g.pillars.is_empty());
+        assert_eq!(g.leader(), Some("id_golkar"), "the interim government");
+        assert!(
+            w.headlines.iter().any(|h| h == "Indonesia convenes a round table; first free elections in six months, though the Nationalist movement, 10% of the country, has no party to carry it."),
+            "{:?}", w.headlines
+        );
+        assert!(effects.iter().any(|e| e == "Stability 20 → 28."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "First free elections in six months, 1990-07."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Every ban lifted: United Development Party."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("id_golkar {:.3}", 0.50 / 0.90))), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with(&format!("Authoritarianism {:.2} → {:.2}", auth_before, plan.auth_after))), "{effects:?}");
+        // Six months on, the country votes.
+        let mut voted = false;
+        for _ in 0..7 {
+            let news = tick_month(&mut w, &[]);
+            if news.iter().any(|h| h.starts_with("Indonesia votes")) {
+                voted = true;
+            }
+        }
+        assert!(voted, "no election by 1990-07");
+        assert!(state(&w, id).unwrap().elected);
+        assert!(refusal_of(&w, &c).unwrap().contains("already answers to an electorate"));
+    }
+
+    /// `refusal_of` says exactly what `apply_command` would for every one of
+    /// the five levers over Poland and Iraq — off (the arm's one sentence,
+    /// and nothing touched), at the 1990 start, with Poland in crisis and
+    /// Iraq restive, and with a ban in force — and `lever_effects` answers
+    /// for the five and for nothing else. The lever's condition outranks the
+    /// treasury's: a penniless Poland out of crisis is told about the crisis.
+    /// Watched red with the five arms dropped from `world_refusal`: the off
+    /// world's suspension read the treasury's sentence ("Poland has not the
+    /// standing: 28.5 political capital held, 40.0 needed.") against the
+    /// arm's, because nothing was refusing it before the price.
+    #[test]
+    fn refusal_of_agrees_with_apply_command_for_every_lever_over_poland_and_iraq() {
+        use crate::{apply_command, price_of, refusal_of, state_hash, Command};
+        let (pl, iq) = (NationId::Poland, NationId::Iraq);
+        let cases: Vec<Command> = vec![
+            Command::SuspendConstitution { nation: pl },
+            Command::SuspendConstitution { nation: iq },
+            Command::BanParty { nation: pl, party: "pl_sld".into() },
+            Command::BanParty { nation: pl, party: "pl_solidarity".into() },
+            Command::BanParty { nation: iq, party: "iq_baath".into() },
+            Command::BanParty { nation: iq, party: "iq_nobody".into() },
+            Command::LegalizeParty { nation: pl, party: "pl_sld".into() },
+            Command::LegalizeParty { nation: iq, party: "iq_baath".into() },
+            Command::DeclareProgramme { nation: pl, bloc: Bloc::Western },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::Nationalist },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::NonAligned },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::Islamist },
+            Command::ConveneRoundTable { nation: pl },
+            Command::ConveneRoundTable { nation: iq },
+        ];
+        let prices = [40.0, 40.0, 18.0, 18.0, 18.0, 18.0, 12.0, 12.0, 35.0, 35.0, 35.0, 35.0, 30.0, 30.0];
+        let off = w1990();
+        let before = (state_hash(&off), off.rng.state);
+        for (c, price) in cases.iter().zip(prices) {
+            assert_eq!(refusal_of(&off, c).as_deref(), Some(NO_MOVEMENTS), "{c:?}");
+            let mut trial = off.clone();
+            assert_eq!(apply_command(&mut trial, c).err().as_deref(), Some(NO_MOVEMENTS), "{c:?}");
+            assert_eq!((state_hash(&trial), trial.rng.state), before, "{c:?} touched the off world");
+            assert_eq!(price_of(&off, c), Some(price), "{c:?}");
+            assert_eq!(lever_effects(&off, c), Some(vec![]), "{c:?}");
+        }
+        assert_eq!(lever_effects(&off, &Command::CallElection { nation: pl }), None);
+        let agree = |w: &WorldState, label: &str| -> usize {
+            let before = state_hash(w);
+            let mut through = 0;
+            for c in &cases {
+                let read = refusal_of(w, c);
+                let mut trial = w.clone();
+                let did = apply_command(&mut trial, c);
+                assert_eq!(read, did.clone().err(), "{label}: {c:?}");
+                if read.is_none() {
+                    through += 1;
+                    assert!(!lever_effects(w, c).unwrap().is_empty(), "{label}: {c:?} went through with no card");
+                } else {
+                    assert!(lever_effects(w, c).unwrap().is_empty(), "{label}: {c:?} refused with a card");
+                }
+            }
+            assert_eq!(state_hash(w), before, "{label}: refusal_of wrote something");
+            through
+        };
+        let mut w = world_1990(on_rules(7));
+        let at_start = agree(&w, "1990");
+        // Poland in crisis, Iraq restive, both solvent.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 30.0;
+            n.authoritarianism = 0.30;
+            n.political_capital = 200.0;
+        }
+        {
+            let n = w.nation_mut(iq);
+            n.stability = 15.0;
+            n.inflation = 0.20;
+            n.political_capital = 200.0;
+        }
+        assert!(crate::blocs::discontent(&w, iq) >= 0.40);
+        let in_crisis = agree(&w, "crisis");
+        assert!(in_crisis > at_start, "{in_crisis} vs {at_start}");
+        for c in [
+            &Command::SuspendConstitution { nation: pl },
+            &Command::BanParty { nation: pl, party: "pl_sld".into() },
+            &Command::DeclareProgramme { nation: iq, bloc: Bloc::NonAligned },
+            &Command::ConveneRoundTable { nation: iq },
+        ] {
+            assert_eq!(refusal_of(&w, c), None, "{c:?}");
+        }
+        // The condition outranks the treasury.
+        w.nation_mut(pl).political_capital = 0.0;
+        w.nation_mut(pl).stability = 60.0;
+        let why = refusal_of(&w, &Command::SuspendConstitution { nation: pl }).unwrap();
+        assert!(why.contains("is not in the crisis"), "{why}");
+        assert_eq!(why, apply_command(&mut w.clone(), &Command::SuspendConstitution { nation: pl }).err().unwrap());
+        // With a ban in force, legalising goes through and banning again does not.
+        w.nation_mut(pl).political_capital = 200.0;
+        apply_command(&mut w, &Command::BanParty { nation: pl, party: "pl_sld".into() }).expect("banned");
+        let with_ban = agree(&w, "ban");
+        assert_eq!(refusal_of(&w, &Command::LegalizeParty { nation: pl, party: "pl_sld".into() }), None);
+        assert!(refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_sld".into() }).unwrap().contains("already banned"));
+        println!("levers through: 1990 {at_start}, crisis {in_crisis}, with a ban {with_ban}");
+    }
+
+    /// The AI reaches for each lever only under its thresholds, read off
+    /// the pure `ai_lever`: `None` with the arm off whatever the state, and
+    /// each rule flips at its own line — a suspension at stability 29 / 30,
+    /// authoritarianism 0.25 / 0.24, capital 55 / 54; a ban when the
+    /// Communist bloc's influence reaches 0.35 (Poland's 0.22 of support
+    /// and 0.18 of backing, none at 0.12), never Western (Egypt's Wafd at
+    /// 0.40 is passed over, its Islamic Alliance at 0.40 is not), at 0.40 /
+    /// 0.39 and 60 / 59; a programme toward the PLA's colour when China's
+    /// Communist movement reads 0.29 and not 0.30, at 70 / 69; a round
+    /// table for Indonesia at discontent 0.575, a Western movement of 0.35
+    /// / 0.34, an armed mean of 0.40 / 0.50, at 60 / 59. Then twenty AI
+    /// years on seed 7 with the arm on, the lever headlines counted for the
+    /// record, and none on the off world. Watched red with the 0.35 line
+    /// dropped from the ban rule: Poland with the Communists at 0.22 read
+    /// Some(BanParty { pl_sld }) against None.
+    #[test]
+    fn the_ai_takes_each_lever_only_under_its_thresholds() {
+        use crate::statecraft::add_backing;
+        use crate::{tick_month, Command};
+        let (pl, eg, cn, id) = (NationId::Poland, NationId::Egypt, NationId::China, NationId::Indonesia);
+        // Off: nothing, whatever the state.
+        let mut off = w1990();
+        {
+            let n = off.nation_mut(pl);
+            n.stability = 10.0;
+            n.authoritarianism = 0.50;
+            n.political_capital = 500.0;
+        }
+        assert_eq!(ai_lever(&off, pl), None);
+        assert_eq!(ai_lever(&off, cn), None);
+
+        let mut w = world_1990(on_rules(7));
+        // (1) The suspension.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 55.0;
+        }
+        assert_eq!(ai_lever(&w, pl), Some(Command::SuspendConstitution { nation: pl }));
+        w.nation_mut(pl).stability = 30.0;
+        assert_eq!(ai_lever(&w, pl), None, "stability 30");
+        w.nation_mut(pl).stability = 29.0;
+        w.nation_mut(pl).authoritarianism = 0.24;
+        assert_eq!(ai_lever(&w, pl), None, "authoritarianism 0.24");
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 54.0;
+        assert_eq!(ai_lever(&w, pl), None, "54 held");
+        // (2) The ban: the largest party of the strongest non-ruling,
+        // non-Western bloc at or over 0.35 of influence.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 50.0;
+            n.authoritarianism = 0.40;
+            n.political_capital = 60.0;
+        }
+        assert_eq!(ai_lever(&w, pl), None, "the Communists at 0.22");
+        add_backing(&mut w, NationId::USSR, pl, Bloc::Communist);
+        add_backing(&mut w, NationId::USSR, pl, Bloc::Communist);
+        let infl = crate::blocs::influence(&w, pl)[Bloc::Communist as usize].1;
+        assert!((infl - 0.34).abs() < 1e-9, "{infl}");
+        assert_eq!(ai_lever(&w, pl), None, "the Communists at 0.34");
+        add_backing(&mut w, NationId::China, pl, Bloc::Communist);
+        let infl = crate::blocs::influence(&w, pl)[Bloc::Communist as usize].1;
+        assert!((infl - 0.40).abs() < 1e-9, "{infl}");
+        assert_eq!(ai_lever(&w, pl), Some(Command::BanParty { nation: pl, party: "pl_sld".into() }));
+        w.nation_mut(pl).authoritarianism = 0.39;
+        assert_eq!(ai_lever(&w, pl), None, "authoritarianism 0.39");
+        w.nation_mut(pl).authoritarianism = 0.40;
+        w.nation_mut(pl).political_capital = 59.0;
+        assert_eq!(ai_lever(&w, pl), None, "59 held");
+        // Never a Western party: Egypt with the Wafd's bloc at 0.40 passes,
+        // the Islamic Alliance's at 0.40 does not.
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.40),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.10),
+                (Bloc::NonAligned, 0.40),
+            ];
+        }
+        {
+            let n = w.nation_mut(eg);
+            n.authoritarianism = 0.60;
+            n.political_capital = 65.0;
+        }
+        assert!(!is_electoral(&w, eg));
+        assert_eq!(ai_lever(&w, eg), None, "a Western bloc is never banned");
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.40),
+                (Bloc::NonAligned, 0.40),
+            ];
+        }
+        assert_eq!(ai_lever(&w, eg), Some(Command::BanParty { nation: eg, party: "eg_alliance".into() }));
+        // (3) The programme toward the strongest pillar's colour.
+        {
+            let g = state_mut(&mut w, cn).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.25),
+                (Bloc::Communist, 0.29),
+                (Bloc::Nationalist, 0.20),
+                (Bloc::Islamist, 0.002),
+                (Bloc::NonAligned, 0.258),
+            ];
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Army { 0.80 } else { 0.60 };
+            }
+        }
+        w.nation_mut(cn).political_capital = 70.0;
+        assert_eq!(ai_lever(&w, cn), Some(Command::DeclareProgramme { nation: cn, bloc: Bloc::Nationalist }));
+        state_mut(&mut w, cn).unwrap().movements[Bloc::Communist as usize].1 = 0.30;
+        assert_eq!(ai_lever(&w, cn), None, "the ruling movement at 0.30");
+        state_mut(&mut w, cn).unwrap().movements[Bloc::Communist as usize].1 = 0.29;
+        w.nation_mut(cn).political_capital = 69.0;
+        assert_eq!(ai_lever(&w, cn), None, "69 held");
+        // (4) The round table.
+        {
+            let n = w.nation_mut(id);
+            n.stability = 15.0;
+            n.inflation = 0.18;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.political_capital = 60.0;
+        }
+        let d = crate::blocs::discontent(&w, id);
+        assert!((d - 0.575).abs() < 1e-12, "{d}");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.35),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.10),
+                (Bloc::NonAligned, 0.45),
+            ];
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Business { 0.90 } else { 0.40 };
+            }
+        }
+        assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
+        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.249;
+        assert_eq!(ai_lever(&w, id), None, "the largest movement is below the action's 0.25 requirement");
+        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.35;
+        for e in state_mut(&mut w, id).unwrap().pillars.iter_mut() {
+            if e.0 != Pillar::Business {
+                e.1 = 0.50;
+            }
+        }
+        assert_eq!(ai_lever(&w, id), None, "an armed mean of 0.50");
+        for e in state_mut(&mut w, id).unwrap().pillars.iter_mut() {
+            if e.0 != Pillar::Business {
+                e.1 = 0.40;
+            }
+        }
+        w.nation_mut(id).stability = 40.0;
+        assert!(crate::blocs::discontent(&w, id) < 0.40);
+        assert_eq!(ai_lever(&w, id), None, "discontent below the action's 0.40 requirement");
+        w.nation_mut(id).stability = 15.0;
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+        assert_eq!(ai_lever(&w, id), None, "the actual action cannot be afforded");
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC;
+        assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
+
+        // The record: twenty AI years on seed 7, the arm on, default
+        // aggression; and none of the stems on the off world.
+        const STEMS: [&str; 5] = [" suspends its constitution", " bans ", " legalises ", " declares a ", " convenes a round table"];
+        let mut on_w = world_1990(GameRules { seed: 7, ideology_blocs: true, ..GameRules::default() });
+        let mut counts = [0usize; 5];
+        let mut candidate_months = 0usize;
+        for _ in 0..240 {
+            // Nation-months in which some AI government had a lever to pull
+            // (each of which is one 0.02 draw), for the record.
+            let ids: Vec<NationId> = on_w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+            candidate_months += ids.iter().filter(|id| ai_lever(&on_w, **id).is_some()).count();
+            let news = tick_month(&mut on_w, &[]);
+            for h in &news {
+                for (i, s) in STEMS.iter().enumerate() {
+                    if h.contains(s) {
+                        counts[i] += 1;
+                    }
+                }
+            }
+        }
+        println!(
+            "AI levers in twenty years on seed 7: {candidate_months} nation-months with a lever to pull; suspensions {}, bans {}, legalisations {}, programmes {}, round tables {}",
+            counts[0], counts[1], counts[2], counts[3], counts[4]
+        );
+        let mut off_w = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        for _ in 0..240 {
+            let news = tick_month(&mut off_w, &[]);
+            for h in &news {
+                assert!(!STEMS.iter().any(|s| h.contains(s)), "the off world pulled a lever: {h}");
+            }
+        }
+    }
+    fn roads_rules(seed: u64) -> GameRules {
+        GameRules { seed, ideology_blocs: true, ideology_takeover: true, ai_aggression: 0.0, ..GameRules::default() }
+    }
+
+    #[test]
+    fn recovered_armed_loyalty_prevents_a_regime_coup_from_old_pressure() {
+        for roads in [false, true] {
+            let id = NationId::China;
+            let mut w = world_1990(GameRules { ideology_takeover: roads, ..on_rules(7) });
+            {
+                let g = state_mut(&mut w, id).unwrap();
+                g.months_in_office = 48;
+                g.coup_pressure = 1.5;
+                for (_, loyalty) in &mut g.pillars { *loyalty = 0.80; }
+            }
+            let before = crate::save(&w);
+            // Recovery can be in a resumed save; no extra marker or migration
+            // is needed to prevent the accumulated gauge firing by itself.
+            w = crate::load(&before).unwrap();
+            maybe_coup(&mut w, id);
+            assert_eq!(crate::save(&w), before, "paid pillars staged a coup from old pressure");
+            let g = state_mut(&mut w, id).unwrap();
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+            maybe_coup(&mut w, id);
+            assert!(w.headlines.iter().any(|h| h.starts_with("COUP IN CHINA:")));
+            assert_eq!(state(&w, id).unwrap().coup_pressure, 0.0);
+        }
+    }
+
+    // Advance the real government system under calm conditions, paying for
+    // two legal same-party snap ballots. The rest of the simulation is not
+    // required to test the election/Army integration seam.
+    fn twice_reelected_snap_government() -> WorldState {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(id);
+        {
+            let n = w.nation_mut(id);
+            n.political_capital = 200.0;
+            n.stability = 70.0;
+            n.inflation = 0.03;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.mil_spend_gdp = 0.10;
+            let g = state_mut(&mut w, id).unwrap();
+            for (party, share) in &mut g.support {
+                *share = if party == "pk_ppp" { 0.90 } else { 0.05 };
+            }
+        }
+        for month in 1..=12 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+            if month % 6 == 0 {
+                assert_eq!(state(&w, id).unwrap().months_in_office, 6);
+                let held = w.nation(id).political_capital;
+                let rng = w.rng.clone();
+                crate::apply_command(&mut w, &crate::Command::CallElection { nation: id }).unwrap();
+                assert_eq!(w.nation(id).political_capital, held - 25.0);
+                assert_eq!(w.rng, rng);
+                let g = state(&w, id).unwrap();
+                assert_eq!(g.leader(), Some("pk_ppp"));
+                assert_eq!(g.months_in_office, 0);
+                assert_eq!(g.next_election, add_months(w.year, w.month, 60));
+            }
+        }
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 12.0);
+        w
+    }
+
+    fn set_live_snap_army_crisis(w: &mut WorldState) {
+        let id = NationId::Pakistan;
+        let n = w.nation_mut(id);
+        n.stability = 25.0;
+        n.inflation = 0.03;
+        n.growth_last = 0.01;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.mil_spend_gdp = 0.001;
+        let g = state_mut(w, id).unwrap();
+        g.coup_pressure = 1.5;
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+    }
+
+    #[test]
+    fn paid_snap_ballots_do_not_renew_a_continuing_governments_coup_grace() {
+        let id = NationId::Pakistan;
+        let mut w = twice_reelected_snap_government();
+        assert_eq!(electoral_coup_settled_months(&w, id), 12);
+        set_live_snap_army_crisis(&mut w);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        let watch = crate::blocs::takeover_readout(&w, id).coup;
+        assert!(watch.open && watch.armed, "continued accountable government is past its grace");
+        assert_eq!(crate::save(&w), saved, "reading the grace must not mutate the save");
+        let rng = w.rng.clone();
+        tick(&mut w);
+        assert!(!is_electoral(&w, id), "a second snap ballot shielded the same government from a live coup");
+        assert!(w.headlines.iter().any(|h| h.contains("COUP IN PAKISTAN: the Pakistan Army removes the elected government.")));
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_new_accountable_party_gets_coup_grace_without_rewriting_the_election_clock() {
+        let id = NationId::Pakistan;
+        let mut w = twice_reelected_snap_government();
+        for month in 13..=18 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+        }
+        for (party, share) in &mut state_mut(&mut w, id).unwrap().support {
+            *share = if party == "pk_iji" { 0.90 } else { 0.05 };
+        }
+        let held = w.nation(id).political_capital;
+        crate::apply_command(&mut w, &crate::Command::CallElection { nation: id }).unwrap();
+        assert_eq!(w.nation(id).political_capital, held - 25.0);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("pk_iji"));
+        assert_eq!(electoral_coup_settled_months(&w, id), 0, "outgoing party history cannot settle its successor");
+        let election_date = state(&w, id).unwrap().next_election;
+        set_live_snap_army_crisis(&mut w);
+        w = crate::load(&crate::save(&w)).unwrap();
+        for month in 1..=12 {
+            let watch = crate::blocs::takeover_readout(&w, id).coup;
+            assert!(!watch.open, "new authority lost its genuine first-year grace at month {month}");
+            assert!(watch.armed, "the risk gauges remain visibly live during grace");
+            assert!(watch.reason.contains("first year"));
+            (w.year, w.month) = add_months(1991, 7, month);
+            tick(&mut w);
+            if month < 12 {
+                assert!(is_electoral(&w, id));
+                assert_eq!(state(&w, id).unwrap().next_election, election_date);
+                assert_eq!(electoral_coup_settled_months(&w, id), month);
+            }
+        }
+        assert!(!is_electoral(&w, id), "the same live crisis remains actionable when the genuine grace expires");
+    }
+
+    #[test]
+    fn electoral_coup_grace_uses_only_matching_observed_history_and_old_save_fallback() {
+        let id = NationId::Pakistan;
+        let original = twice_reelected_snap_government();
+        for how in [Succession::Death, Succession::TermLimit] {
+            let mut w = original.clone();
+            let before = serde_json::to_string(state(&w, id).unwrap()).unwrap();
+            let rng = w.rng.clone();
+            seat_office(&mut w, id, &how);
+            assert_eq!(serde_json::to_string(state(&w, id).unwrap()).unwrap(), before,
+                "same-party person succession must not mint a new governing mandate");
+            assert_eq!(electoral_coup_settled_months(&w, id), 12);
+            assert_eq!(w.rng, rng);
+        }
+        for key in [None, Some("party:pk_iji"), Some("regime:Nationalist")] {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 9;
+            g.political_record = key.map(|key| PoliticalRecord {
+                government: key.into(), months: 100.0, performance: -0.8,
+            });
+            w = crate::load(&crate::save(&w)).unwrap();
+            assert_eq!(electoral_coup_settled_months(&w, id), 9);
+        }
+        for months in [-1.0, f64::NAN, f64::INFINITY] {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 9;
+            g.political_record.as_mut().unwrap().months = months;
+            assert_eq!(electoral_coup_settled_months(&w, id), 9);
+        }
+        let mut daily_boundary = original.clone();
+        state_mut(&mut daily_boundary, id).unwrap().political_record.as_mut().unwrap().months = 12.0 - 1e-13;
+        assert_eq!(electoral_coup_settled_months(&daily_boundary, id), 12);
+        state_mut(&mut daily_boundary, id).unwrap().political_record.as_mut().unwrap().months = 12.0 - 1e-6;
+        assert_eq!(electoral_coup_settled_months(&daily_boundary, id), 11);
+        let mut interim = original.clone();
+        set_live_snap_army_crisis(&mut interim);
+        state_mut(&mut interim, id).unwrap().awaiting_first_election = true;
+        assert_eq!(electoral_coup_settled_months(&interim, id), 0);
+        assert!(!crate::blocs::takeover_readout(&interim, id).coup.open);
+        assert!(!maybe_electoral_coup(&mut interim, id));
+        let mut off = original;
+        off.rules.ideology_blocs = false;
+        off.rules.ideology_takeover = false;
+        set_live_snap_army_crisis(&mut off);
+        assert_eq!(electoral_coup_settled_months(&off, id), 0);
+        let before = crate::save(&off);
+        assert!(!maybe_electoral_coup(&mut off, id));
+        assert_eq!(crate::save(&off), before);
+        assert_eq!(crate::blocs::takeover_readout(&off, id).coup.gauges.len(), 3);
+    }
+
+    #[test]
+    fn electoral_coup_requires_a_current_hostile_army_and_crisis() {
+        let id = NationId::Pakistan;
+        let mut staged = world_1990(roads_rules(7));
+        {
+            let n = staged.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.stability = 25.0;
+            let g = state_mut(&mut staged, id).unwrap();
+            g.months_in_office = 24;
+            g.coup_pressure = 1.5;
+            for (p, loyalty) in &mut g.pillars {
+                *loyalty = if *p == Pillar::Army { 0.20 } else { 0.80 };
+            }
+        }
+        for (army, stability) in [(0.80, 25.0), (ELECTORAL_COUP_ARMY, 25.0), (0.20, 60.0)] {
+            let mut recovered = staged.clone();
+            recovered.nation_mut(id).stability = stability;
+            state_mut(&mut recovered, id).unwrap().pillars.iter_mut()
+                .find(|(p, _)| *p == Pillar::Army).unwrap().1 = army;
+            let before = crate::save(&recovered);
+            recovered = crate::load(&before).unwrap();
+            assert!(!maybe_electoral_coup(&mut recovered, id));
+            assert_eq!(crate::save(&recovered), before);
+        }
+        assert!(maybe_electoral_coup(&mut staged, id), "the still-live trigger must remain reachable");
+        assert!(!is_electoral(&staged, id));
+        assert_eq!(state(&staged, id).unwrap().coup_pressure, 0.0);
+    }
+
+    /// Route 2 (S4). Pakistan, an electoral polity with an Army pillar, its
+    /// defence budget cut to a tenth of a percent every month and its
+    /// stability held at 35 (Pakistan's own 52 reads discontent 0.147, under
+    /// the 0.25 line; the rest are Pakistan's transcribed numbers): the army
+    /// removes the elected government in about eighteen months — the Army
+    /// line falls to 0.35 in about eleven, the pressure then climbs at
+    /// 0.30·(2·(0.35 − eff) + (D − 0.25)) a month. The same country paying
+    /// its army at its own 6.2% with stability 70 never sees one in twenty
+    /// years. With the takeover switch OFF (lens on) the unpaid army is not
+    /// even walked: pillars stay at their seating and pressure at zero.
+    /// Watched red with `electoral_army_tick` not called from the tick:
+    /// "twenty years of an unpaid Pakistan Army and nobody moved".
+    #[test]
+    fn an_unpaid_army_removes_an_elected_government_and_a_paid_one_never_does() {
+        let pk = NationId::Pakistan;
+        let starve = |w: &mut WorldState| {
+            let n = w.nation_mut(pk);
+            n.mil_spend_gdp = 0.001;
+            n.stability = 35.0;
+        };
+        // OFF: nothing is walked and nothing accrues.
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(pk);
+        assert!(is_electoral(&off, pk));
+        let pillars_at_seat = state(&off, pk).unwrap().pillars.clone();
+        assert!(pillars_at_seat.iter().any(|(p, _)| *p == Pillar::Army));
+        for _ in 0..36 {
+            starve(&mut off);
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.contains("COUP IN PAKISTAN"), "{h}");
+            }
+        }
+        let g = state(&off, pk).unwrap();
+        assert_eq!(g.pillars, pillars_at_seat, "the takeover switch off walked an electoral army");
+        assert_eq!(g.coup_pressure, 0.0);
+
+        // ON: the unpaid army moves.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(pk);
+        let auth_before = w.nation(pk).authoritarianism;
+        let coalition_before = state(&w, pk).unwrap().coalition.clone();
+        assert!(!coalition_before.is_empty());
+        let mut coup_month: Option<usize> = None;
+        let mut crossed_at: Option<usize> = None;
+        for m in 0..240 {
+            starve(&mut w);
+            let news = crate::tick_month(&mut w, &[]);
+            if crossed_at.is_none() && crate::blocs::effective_army_loyalty(&w, pk) < ELECTORAL_COUP_ARMY {
+                crossed_at = Some(m + 1);
+            }
+            if news.iter().any(|h| h.contains("COUP IN PAKISTAN: the Pakistan Army removes the elected government.")) {
+                coup_month = Some(m + 1);
+                break;
+            }
+            assert!(is_electoral(&w, pk), "month {m}: Pakistan stopped voting without a coup");
+        }
+        let month = coup_month.expect("twenty years of an unpaid Pakistan Army and nobody moved");
+        let crossed = crossed_at.unwrap();
+        println!("route 2: the Pakistan Army crossed 0.35 in month {crossed} and moved in month {month}");
+        assert!((12..=36).contains(&month), "the coup came in month {month}, not about eighteen (measured 30 at these constants)");
+        assert!(month >= ELECTORAL_COUP_SETTLED as usize);
+        let n = w.nation(pk);
+        assert!(!is_electoral(&w, pk));
+        assert!(n.authoritarianism >= 0.65 && n.authoritarianism >= auth_before + 0.25 - 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, pk).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.coalition, coalition_before, "the cabinet is kept as a dormant record");
+        assert_eq!(g.coup_pressure, 0.0);
+        assert_eq!(g.months_in_office, 0);
+        let spec: Vec<Pillar> = polity(pk).unwrap().pillars.iter().map(|s| s.pillar).collect();
+        for p in &spec {
+            let v = g.loyalty(*p);
+            assert_eq!(v, if *p == Pillar::Army { 0.90 } else { 0.72 }, "{p:?}");
+        }
+        assert_eq!(g.pillars.len(), spec.len());
+        assert_eq!(g.movements.len(), 5);
+        let sum: f64 = g.movements.iter().map(|(_, s)| *s).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+        // The regime branch takes over: no election is ever due again.
+        crate::tick_month(&mut w, &[]);
+        assert_eq!(state(&w, pk).unwrap().next_election, (0, 0));
+
+        // A paid army in a calm country never moves.
+        let mut safe = world_1990(roads_rules(7));
+        safe.player = Some(pk);
+        for _ in 0..240 {
+            {
+                let n = safe.nation_mut(pk);
+                n.mil_spend_gdp = 0.062;
+                n.stability = 70.0;
+            }
+            for h in crate::tick_month(&mut safe, &[]) {
+                assert!(!h.contains("COUP IN PAKISTAN"), "a paid Pakistan Army staged a coup: {h}");
+            }
+        }
+        assert!(state(&safe, pk).unwrap().coup_pressure == 0.0);
+    }
+    /// The annulment (S4). Algeria on the roads: the FIS leads the table at
+    /// 0.542, the ANP is a live pillar, authoritarianism 0.55, discontent at
+    /// Algeria's numbers (stability 40 and inflation 16.7% held at their
+    /// transcribed values, 0.405 at the start) over 0.25 — at the December
+    /// 1991 election the army annuls the
+    /// result the FIS won: every Islamist party banned, the regime
+    /// Nationalist at authoritarianism max(0.55 + 0.25, 0.65) = 0.80, the
+    /// FLN cabinet kept as a dormant record. With the takeover switch off the
+    /// same December seats the FIS. Jordan is the monarchy exception: the
+    /// Ikhwan lead its chamber under a court at 0.55, and with discontent
+    /// forced over the line the court still DISMISSES rather than annuls —
+    /// the election forms a government; the same Jordan at 0.38, under the
+    /// court's line and over the annulment's, annuls. Watched red with the
+    /// court check dropped from `annulment_check`: Jordan at 0.55 annulled.
+    ///
+    /// RE-EXPRESSED 2026-09-06 (R2, the one clause of this test the ruling
+    /// touches). The Jordan-at-0.38 assertion pinned the PRESENT-army
+    /// reading — an army merely in the state annuls — which the census
+    /// proved wrong (BUGS S5-8, S6-5: Belarus and Ukraine 200/200). Ridge's
+    /// ruling, quoted: "The Jordan assertion of
+    /// the_algeria_shaped_annulment_fires_under_its_conditions_and_not_
+    /// under_the_court pins the present-army reading the census proved
+    /// wrong, and is re-expressed to the hostile-army reading, recorded
+    /// with this ruling quoted." So: Jordan at 0.38 with its army PAID (the
+    /// seated 0.65) does NOT annul — the Ikhwan sit, as the 1989 chamber
+    /// did, because the throne and not the army held the state — and the
+    /// same Jordan with the army HOSTILE (loyalty 0.30, under
+    /// `ELECTORAL_COUP_ARMY`) annuls. The Algeria half is untouched: over
+    /// the twenty-three months to the vote the ANP walks from 0.65 toward
+    /// the share arm's 0.322 (a 1.5% defence budget) and crosses the line
+    /// before December 1991 — the army at war with the FIS reads hostile
+    /// from the transcribed budget alone.
+    #[test]
+    fn the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court() {
+        let dz = NationId::Algeria;
+        let run = |takeover: bool| -> (WorldState, Vec<String>, Vec<String>) {
+            let mut rules = roads_rules(7);
+            rules.ideology_takeover = takeover;
+            let mut w = world_1990(rules);
+            w.player = Some(dz);
+            let mut news = vec![];
+            let mut before_the_vote = vec![];
+            for m in 0..24 {
+                if m == 23 {
+                    before_the_vote = state(&w, dz).unwrap().coalition.clone();
+                    // This is the annulment's hostile-army scenario. Annual
+                    // resource funding now responds to GDP, so a nominal
+                    // 1990 spending share cannot stand in for hostility at
+                    // the vote after two years of economic changes. Stage
+                    // the actual condition in both switch worlds.
+                    let g = state_mut(&mut w, dz).unwrap();
+                    g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+                }
+                // Algeria's transcribed numbers, held: left to the model with
+                // Algiers in the player's seat, inflation falls from 16.7% to
+                // 0.1% by December 1991 (measured 2026-09-06) and discontent
+                // from 0.405 to 0.219, under the line, in October 1990.
+                let n = w.nation_mut(dz);
+                n.stability = 40.0;
+                n.inflation = 0.167;
+                news.extend(crate::tick_month(&mut w, &[]));
+            }
+            (w, news, before_the_vote)
+        };
+        let (off, off_news, _) = run(false);
+        assert!(off_news.iter().any(|h| h.starts_with("Algeria votes: Islamic Salvation Front")), "{off_news:?}");
+        assert!(!off_news.iter().any(|h| h.contains("COUP IN ALGERIA")));
+        assert!(is_electoral(&off, dz));
+        assert_eq!(state(&off, dz).unwrap().leader(), Some("dz_fis"));
+
+        let (w, news, dormant) = run(true);
+        let stem = "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won.";
+        assert!(news.iter().any(|h| h == stem), "{news:?}");
+        assert!(!news.iter().any(|h| h.starts_with("Algeria votes")), "the annulled vote seated a government: {news:?}");
+        let n = w.nation(dz);
+        assert!(!is_electoral(&w, dz));
+        assert!((n.authoritarianism - 0.80).abs() < 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, dz).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.banned, vec!["dz_fis".to_string()], "every party of the winner's bloc is banned");
+        // The dormant record retains the cabinet that sat before the
+        // annulled vote, rather than installing the rejected winner.
+        assert!(!dormant.is_empty());
+        assert_eq!(g.coalition, dormant, "the cabinet that sat before the vote is the dormant record");
+        assert_eq!(g.loyalty(Pillar::Army), 0.90);
+        assert_eq!(g.loyalty(Pillar::Party), 0.72);
+        assert_eq!(g.months_in_office, 0);
+        assert!(crate::blocs::bloc_banned(&w, dz, Bloc::Islamist));
+        println!("annulment: Algeria discontent at the vote read {:.3}", crate::blocs::discontent(&w, dz));
+
+        // The court.
+        let jo = NationId::Jordan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(jo).stability = 40.0;
+        assert!(crate::blocs::discontent(&w, jo) >= ANNULMENT_DISCONTENT);
+        assert_eq!(w.nation(jo).authoritarianism, 0.55);
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_some(), "the court rules Jordan");
+        assert_eq!(annulment_check(&w, jo), None);
+        hold_election(&mut w, jo);
+        assert!(is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().leader(), Some("jo_ikhwan"));
+        assert!(state(&w, jo).unwrap().banned.is_empty());
+        w.nation_mut(jo).authoritarianism = 0.38;
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_none());
+        // R2: under the court's line and over the annulment's, but the army
+        // is PAID — the seated 0.65 reads over `ELECTORAL_COUP_ARMY` — so
+        // the throne's chamber sits.
+        let paid = crate::blocs::effective_army_loyalty(&w, jo);
+        assert!(paid >= ELECTORAL_COUP_ARMY, "{paid}");
+        assert_eq!(annulment_check(&w, jo), None, "a present-but-paid army does not annul");
+        hold_election(&mut w, jo);
+        assert!(is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().leader(), Some("jo_ikhwan"));
+        assert!(state(&w, jo).unwrap().banned.is_empty());
+        // The same Jordan with a HOSTILE army annuls.
+        if let Some(g) = state_mut(&mut w, jo) {
+            for e in g.pillars.iter_mut() {
+                if e.0 == Pillar::Army {
+                    e.1 = 0.30;
+                }
+            }
+        }
+        assert!(crate::blocs::effective_army_loyalty(&w, jo) < ELECTORAL_COUP_ARMY);
+        assert_eq!(annulment_check(&w, jo).as_deref(), Some("jo_ikhwan"));
+        hold_election(&mut w, jo);
+        assert!(!is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().banned, vec!["jo_ikhwan".to_string()]);
+        assert!(w.headlines.iter().any(|h| h == "COUP IN JORDAN: the army annuls the election Muslim Brotherhood and allied Islamists won."), "{:?}", w.headlines);
+    }
+    /// M2 (Ridge's ruling, 2026-09-06). (1) The default path is
+    /// byte-identical: for every living nation of 1990, with the lens off,
+    /// the Army target `pillar_targets` serves is bit-for-bit the share
+    /// arm's literal `0.20 + min(1, mil/0.08) · 0.65 − exhaustion · 0.45`,
+    /// while the lens now reads annual resources per member, retaining that
+    /// exact fallback where personnel is unsourced. (2) The historical FORM, at the weight
+    /// the ruling's sentences require (`ARMY_PAY_WEIGHT_RULED` 0.80): an
+    /// army paid half the national average income on an 8% budget reads
+    /// 0.33, under `ELECTORAL_COUP_ARMY`; one paid three times the average
+    /// on a 0.5% budget reads 0.72; a ratio of exactly the average reads as
+    /// the unpaid end of the ramp, twice it as the paid end. (3) The
+    /// refusal is counted: every nation without a transcribed personnel
+    /// figure reads `None` from `army_pay_ratio` and the share arm; the
+    /// count on this tree is printed. Watched red with the lens gate
+    /// dropped from `pillar_targets` and the weight forced to 0.80: the
+    /// off-world's Algeria read 0.322 against 0.74.
+    #[test]
+    fn the_army_target_is_the_share_arm_off_and_the_pay_arm_is_the_ruled_form() {
+        let off = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        let on = world_1990(on_rules(7));
+        let mut with_data = 0usize;
+        let mut refused: Vec<&str> = vec![];
+        for n in off.nations.iter().filter(|n| n.alive) {
+            let id = n.id;
+            let literal = 0.20 + (n.mil_spend_gdp / 0.08).min(1.0) * 0.65 - n.war_exhaustion * 0.45;
+            let t_off = pillar_targets(&off, id, &[Pillar::Army])[0].1;
+            assert_eq!(t_off.to_bits(), literal.clamp(0.0, 1.0).to_bits(), "{} off", id.code());
+            let t_on = pillar_targets(&on, id, &[Pillar::Army])[0].1;
+            let expected_on = army_resources_per_member(&on, id)
+                .map(|resources| army_resource_loyalty_target(resources, n.gdp * 1000.0 / n.population, n.war_exhaustion).clamp(0.0, 1.0))
+                .unwrap_or(t_off);
+            assert_eq!(t_on.to_bits(), expected_on.to_bits(), "{} on resource target", id.code());
+            match army_pay_ratio(&on, id) {
+                Some(r) => {
+                    assert!(r.is_finite() && r > 0.0, "{} {r}", id.code());
+                    with_data += 1;
+                }
+                None => refused.push(id.code()),
+            }
+            assert_eq!(army_pay_ratio(&off, id).is_some(), army_pay_ratio(&on, id).is_some(), "the ratio reads the data, not the switch");
+        }
+        println!(
+            "M2 personnel transcribed for {with_data} of {} living nations; refused (share-only): {}",
+            with_data + refused.len(),
+            refused.len()
+        );
+        // The form at the ruled weight.
+        let w = ARMY_PAY_WEIGHT_RULED;
+        let unpaid = army_loyalty_target(0.08, 0.0, Some(0.5), w);
+        assert!(unpaid < ELECTORAL_COUP_ARMY, "{unpaid}");
+        assert!((unpaid - 0.33).abs() < 1e-12, "{unpaid}");
+        let paid_small = army_loyalty_target(0.005, 0.0, Some(3.0), w);
+        assert!(paid_small > ELECTORAL_COUP_ARMY, "{paid_small}");
+        assert!((paid_small - (0.20 + (0.0625 * 0.2 + 0.8) * 0.65)).abs() < 1e-12, "{paid_small}");
+        assert_eq!(army_loyalty_target(0.08, 0.0, Some(ARMY_PAY_UNPAID_AT), w), army_loyalty_target(0.08, 0.0, Some(0.0), w));
+        assert_eq!(army_loyalty_target(0.0, 0.0, Some(ARMY_PAY_FULL_AT), w), army_loyalty_target(0.0, 0.0, Some(9.0), w));
+        // The share arm and the pay arm at zero weight agree bit for bit.
+        for mil in [0.0, 0.008, 0.015, 0.026, 0.062, 0.15] {
+            let a = army_loyalty_target(mil, 0.1, None, 0.0);
+            let b = army_loyalty_target(mil, 0.1, Some(0.95), 0.0);
+            assert_eq!(a.to_bits(), b.to_bits(), "{mil}");
+        }
+        // The ratio's arithmetic, on the fetched 1990 figures for Algeria
+        // (World Bank MS.MIL.TOTL.P1 1990 = 126,000; the roster's 1.5% of
+        // $62.0bn over 25.4m people): 3.02 average incomes a soldier.
+        let (share, pop, personnel): (f64, f64, f64) = (0.015, 25.4, 126_000.0);
+        let dz = share * pop * 1_000_000.0 / personnel;
+        assert!((dz - 3.0238).abs() < 1e-3, "{dz}");
+    }
+    #[test]
+    fn military_resources_have_real_units_and_change_loyalty_without_penalizing_small_budget_shares() {
+        let id = NationId::Pakistan;
+        let mut low = world_1990(roads_rules(7));
+        let personnel = crate::data::army_personnel_1990(id).unwrap();
+        {
+            let n = low.nation_mut(id);
+            n.mil_spend_gdp = 0.02;
+            n.gdp = 1_000.0 * personnel / (0.02 * 1_000_000_000.0);
+            n.stability = 25.0;
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let mut adequate = low.clone();
+        adequate.nation_mut(id).gdp *= 24.0;
+        assert!((army_resources_per_member(&low, id).unwrap() - 1_000.0).abs() < 1e-8);
+        assert!((army_resources_per_member(&adequate, id).unwrap() - 24_000.0).abs() < 1e-8);
+        // Saving adds no new army state or synthetic personnel history.
+        let saved = crate::save(&adequate);
+        adequate = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&adequate), saved);
+        for _ in 0..48 {
+            electoral_army_tick(&mut low, id);
+            electoral_army_tick(&mut adequate, id);
+        }
+        assert!(state(&low, id).unwrap().loyalty(Pillar::Army) < ELECTORAL_COUP_ARMY);
+        assert!(state(&low, id).unwrap().coup_pressure > 0.0);
+        assert!(state(&adequate, id).unwrap().loyalty(Pillar::Army) > 0.65);
+        assert_eq!(state(&adequate, id).unwrap().coup_pressure, 0.0);
+        adequate.nation_mut(id).mil_spend_gdp = 0.001;
+        assert!(pillar_targets(&adequate, id, &[Pillar::Army])[0].1 < ELECTORAL_COUP_ARMY,
+            "real funding cuts must still affect a formerly adequate army");
+        for resources in [0.0, 4_000.0, 5_000.0, 10_000.0, 20_000.0, 40_000.0] {
+            assert!(army_resource_loyalty_target(resources, 1_000.0, 0.0)
+                >= army_resource_loyalty_target(resources, 1_000.0, 0.5));
+        }
+    }
+
+    #[test]
+    fn army_operating_costs_include_local_support_and_imported_equipment() {
+        for income in [0.0, 250.0, 1_000.0, 5_000.0, 30_000.0] {
+            let basket = army_operating_allowance(income);
+            assert!(basket >= ARMY_IMPORTED_OPERATING_ALLOWANCE);
+            assert_eq!(army_resource_loyalty_target(0.0, income, 0.0), 0.20);
+            assert!((army_resource_loyalty_target(basket, income, 0.0) - 0.525).abs() < 1e-12);
+            assert!((army_resource_loyalty_target(2.0 * basket, income, 0.0) - 0.85).abs() < 1e-12);
+            assert!(army_resource_loyalty_target(basket, income, 0.0)
+                > army_resource_loyalty_target(basket, income + 1_000.0, 0.0),
+                "the same resources buy less support where local costs are higher");
+            let floor_resources = (0.40 - 0.20) / 0.65 * 2.0 * basket;
+            assert!((army_resource_loyalty_target(floor_resources, income, 0.0) - 0.40).abs() < 1e-12,
+                "the fiscal allocation inverts the actual loyalty model");
+            let mut previous = 0.20;
+            for fraction in [0.0, 0.1, 0.25, 0.5, 1.0, 1.5, 2.0, 4.0] {
+                let loyalty = army_resource_loyalty_target(basket * fraction, income, 0.0);
+                assert!(loyalty >= previous && loyalty <= 0.85 + 1e-12);
+                previous = loyalty;
+            }
+        }
+    }
+
+    #[test]
+    fn unsourced_army_size_is_an_explicit_model_estimate_without_rewriting_history() {
+        let id = NationId::Comoros;
+        let mut w = world_1990(roads_rules(7));
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        let estimate = army_personnel_assessment(&w, id).unwrap();
+        assert_eq!(estimate.basis, ArmyPersonnelBasis::ModelEstimate);
+        assert!(estimate.members.is_finite() && estimate.members > 0.0);
+        assert!(estimate.members < w.nation(id).population * 1_000_000.0);
+        let sourced = army_personnel_assessment(&w, NationId::Pakistan).unwrap();
+        assert_eq!(sourced.basis, ArmyPersonnelBasis::Sourced1990);
+        let estimated_resources = army_resources_per_member(&w, id).unwrap();
+        let sourced_resources = army_resources_per_member(&w, NationId::Pakistan).unwrap();
+        assert!(army_resources_per_member(&w, id).unwrap().is_finite());
+        assert!(ai_army_funding_floor(&w, id).is_some(), "an unsourced army can still receive a real budget");
+        w.nation_mut(id).population *= 2.0;
+        w.nation_mut(NationId::Pakistan).population *= 2.0;
+        assert_eq!(army_personnel_assessment(&w, id), Some(estimate),
+            "population growth must not silently recruit an unsourced force");
+        assert_eq!(army_personnel_assessment(&w, NationId::Pakistan), Some(sourced),
+            "both personnel bases use the same opening reference convention");
+        assert_eq!(army_resources_per_member(&w, id), Some(estimated_resources));
+        assert_eq!(army_resources_per_member(&w, NationId::Pakistan), Some(sourced_resources));
+        let saved = crate::save(&w);
+        let loaded = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&loaded), saved);
+        assert_eq!(army_personnel_assessment(&loaded, id), Some(estimate));
+        assert_eq!(army_personnel_assessment(&loaded, NationId::Pakistan), Some(sourced));
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        w.rules.ideology_blocs = false;
+        assert_eq!(army_personnel_assessment(&w, id), None, "legacy mode does not infer headcounts");
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+        for bad in [0.0, -1.0, f64::NAN, f64::INFINITY] {
+            assert_eq!(assess_army_personnel(Some(bad), 1.0, Some(0.005)), None);
+            assert_eq!(assess_army_personnel(None, bad, Some(0.005)), None);
+            assert_eq!(assess_army_personnel(None, 1.0, Some(bad)), None);
+            w.rules.ideology_blocs = true;
+            w.nation_mut(id).population = bad;
+            assert_eq!(army_personnel_assessment(&w, id), None,
+                "an opening estimate does not excuse invalid current population");
+        }
+        assert_eq!(assess_army_personnel(None, 1.0, None), None);
+        assert_eq!(assess_army_personnel(None, 1.0, Some(1.1)), None);
+        w.nation_mut(id).population = 0.0;
+        w.rules.ideology_blocs = true;
+        assert_eq!(army_resources_per_member(&w, id), None);
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+    }
+
+    #[test]
+    fn a_sourced_opening_mandate_is_not_a_completed_or_unrestricted_model_ballot() {
+        let id = NationId::Suriname;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w,id).unwrap();
+        let marker = g.opening_mandate.clone().expect("verified prior Assembly mandate");
+        assert_eq!(marker.ballot_on,"1987-11-25");
+        assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+        assert_eq!(g.months_in_office,0);
+        assert!(g.vote_anchor.is_none());
+        let supported = g.support.iter().find(|(p,_)|p=="sr_fdo").unwrap().1;
+        assert!((civilian_public_mandate(&w,id)-supported).abs()<1e-12,
+            "use the existing live support proxy, not a newly claimed historical vote percentage");
+        let rng = w.rng.clone();
+        let saved=crate::save(&w);
+        w=crate::load(&saved).unwrap();
+        ensure_all(&mut w);
+        assert_eq!(crate::save(&w),saved);
+        assert_eq!(w.rng,rng);
+        // A modeled ballot consumes historical authority, even if the same
+        // party and person stay. It is not a completed historical term reward.
+        let auth=w.nation(id).authoritarianism;
+        hold_election(&mut w,id);
+        let g=state(&w,id).unwrap();
+        assert!(g.opening_mandate.is_none() && g.elected && g.unrestricted_mandate);
+        assert!(g.vote_anchor.is_some());
+        assert_eq!(w.nation(id).authoritarianism,auth);
+        assert_eq!(w.rng,rng);
+        let off=w1990();
+        assert!(off.governments.states.iter().all(|g|g.opening_mandate.is_none()));
+        assert!(!crate::save(&off).contains("opening_mandate"));
+    }
+
+    #[test]
+    fn opening_consent_counts_only_attested_live_national_constituencies() {
+        let id=NationId::Suriname;
+        let mut w=world_1990(on_rules(7));
+        let baseline=civilian_public_mandate(&w,id);
+        state_mut(&mut w,id).unwrap().coalition.push("sr_ndp".into());
+        assert_eq!(civilian_public_mandate(&w,id),baseline,"joining the cabinet grants no historical authority");
+        {
+            let g=state_mut(&mut w,id).unwrap();
+            g.movements.clear();
+            for (p,s) in &mut g.support { *s=if p=="sr_fdo" {0.4} else if p=="sr_ndp" {0.6} else {0.0}; }
+            for (p,s) in &mut g.seats { *s=if p=="sr_fdo" {0.99} else {0.01/3.0}; }
+        }
+        assert!((civilian_public_mandate(&w,id)-0.4).abs()<1e-12,"seats and the new partner add no voters");
+        let resources=army_resources_per_member(&w,id);
+        {
+            let n=w.nation_mut(id); n.authoritarianism=0.55; n.stability=5.0;
+            n.inflation=0.30; n.growth_last=-0.10; n.war_exhaustion=0.20;
+        }
+        state_mut(&mut w,id).unwrap().political_record=Some(PoliticalRecord {
+            government:"party:sr_fdo".into(),months:24.0,performance:-0.80,
+        });
+        let penalty=army_civilian_confidence_penalty(&w,id);
+        let material=army_resources_per_member(&w,id).map(|r|army_resource_loyalty_target(r,
+            w.nation(id).gdp*1000.0/w.nation(id).population,w.nation(id).war_exhaustion));
+        let mut unknown=w.clone();
+        state_mut(&mut unknown,id).unwrap().opening_mandate=None;
+        let unbuffered=army_civilian_confidence_penalty(&unknown,id);
+        assert!(unbuffered>0.0 && penalty>0.0);
+        assert!((penalty-unbuffered*0.6).abs()<1e-12);
+        assert_eq!(army_resources_per_member(&unknown,id),resources);
+        assert_eq!(material,army_resources_per_member(&unknown,id).map(|r|army_resource_loyalty_target(r,
+            unknown.nation(id).gdp*1000.0/unknown.nation(id).population,unknown.nation(id).war_exhaustion)),
+            "the marker changes neither material funding nor war costs");
+        for (p,seats) in &mut state_mut(&mut w,id).unwrap().seats { if p=="sr_fdo" {*seats=0.0;} }
+        assert_eq!(civilian_public_mandate(&w,id),0.0,"no representation, no carried constituency");
+    }
+
+    #[test]
+    fn old_missing_restricted_and_future_opening_mandates_are_not_reconstructed() {
+        let id=NationId::Suriname;
+        let mut w=world_1990(on_rules(7));
+        state_mut(&mut w,id).unwrap().opening_mandate=None;
+        let legacy=crate::save(&w);
+        w=crate::load(&legacy).unwrap();
+        ensure_all(&mut w);
+        assert_eq!(civilian_public_mandate(&w,id),0.0);
+        assert!(state(&w,id).unwrap().opening_mandate.is_none());
+        assert_eq!(crate::save(&w),legacy,"January old saves do not replay fresh-world setup");
+        for other in [NationId::Guatemala,NationId::Guyana,NationId::Comoros,NationId::SaoTome,NationId::Myanmar,NationId::Hungary] {
+            assert!(state(&w,other).unwrap().opening_mandate.is_none(),"{other:?}");
+            assert_eq!(civilian_public_mandate(&w,other),0.0,"not imported is not a mandate: {other:?}");
+        }
+        let mut edited=world_1990(on_rules(7));
+        edited.leadership.as_mut().unwrap().iter_mut().find(|r|r.nation==id).unwrap().tie=
+            Some(crate::data::Tie::Party("sr_ndp".into()));
+        assert_eq!(civilian_public_mandate(&edited,id),0.0,"an incompatible actual office cannot borrow the Front's authority");
+        crate::opening_mandates::discard_incompatible(&mut edited,id);
+        assert!(state(&edited,id).unwrap().opening_mandate.is_none());
+    }
+
+    #[test]
+    fn opening_mandates_end_on_restriction_or_broken_authority_and_do_not_return() {
+        let id=NationId::Suriname;
+        let mut banned=world_1990(on_rules(7));
+        ban_party(&mut banned,id,"sr_ndp").unwrap();
+        assert!(state(&banned,id).unwrap().opening_mandate.is_none());
+        legalize_party(&mut banned,id,"sr_ndp").unwrap();
+        banned=crate::load(&crate::save(&banned)).unwrap();
+        ensure_all(&mut banned);
+        assert_eq!(civilian_public_mandate(&banned,id),0.0,"legalization does not invent a fresh mandate");
+        for how in [Succession::Coup{pillar:Pillar::Army},Succession::Takeover{bloc:Bloc::Nationalist},Succession::Programme,
+            Succession::Election{leader:"sr_ndp".into()}] {
+            let mut w=world_1990(on_rules(7));
+            let original=crate::blocs::leader_row(&w,id).unwrap().clone();
+            seat_office(&mut w,id,&how);
+            assert!(state(&w,id).unwrap().opening_mandate.is_none(),"{how:?}");
+            // Restoring a familiar office/person in a later save cannot restore
+            // the historical eligibility that the interruption consumed.
+            *w.leadership.as_mut().unwrap().iter_mut().find(|r|r.nation==id).unwrap()=original;
+            w=crate::load(&crate::save(&w)).unwrap(); ensure_all(&mut w);
+            assert_eq!(civilian_public_mandate(&w,id),0.0,"{how:?}");
+        }
+        let mut suspended=world_1990(on_rules(7));
+        suspended.nation_mut(id).stability=20.0;
+        suspend_constitution(&mut suspended,id).unwrap();
+        assert!(state(&suspended,id).unwrap().opening_mandate.is_none());
+        suspended.nation_mut(id).authoritarianism=0.50;
+        schedule_first_elections(&mut suspended,id,6);
+        assert_eq!(civilian_public_mandate(&suspended,id),0.0,"a reopening still owes a ballot");
+        assert!(!state(&suspended,id).unwrap().elected);
+    }
+
+    #[test]
+    fn lawful_same_party_succession_retains_only_the_existing_assembly_authority() {
+        let id=NationId::Suriname;
+        for how in [Succession::Death,Succession::TermLimit] {
+            let mut w=world_1990(on_rules(7));
+            let before=state(&w,id).unwrap().opening_mandate.clone();
+            let consent=civilian_public_mandate(&w,id);
+            let rng=w.rng.clone();
+            seat_office(&mut w,id,&how);
+            assert_eq!(state(&w,id).unwrap().opening_mandate,before);
+            assert_eq!(civilian_public_mandate(&w,id),consent);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(state(&w,id).unwrap().months_in_office,0);
+            assert_eq!(w.rng,rng);
+            let saved=crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()),saved);
+        }
+    }
+
+    #[test]
+    fn successor_personnel_observation_uses_the_model_clock_not_legacy_settlement_day() {
+        let id=NationId::Georgia;
+        let mut base=world_1990(roads_rules(7));
+        let mut successor=base.nation(NationId::Poland).clone();
+        successor.id=id; successor.population=5.5; successor.alive=true;
+        base.nations.push(successor); base.reindex();
+        let mut observations=Vec::new();
+        for (daily,day,expected) in [(false,1,1),(false,31,1),(true,12,12),(true,31,31)] {
+            let mut w=base.clone(); w.rules.daily_simulation=daily;
+            (w.year,w.month,w.day)=(1991,12,day);
+            let rng=w.rng.clone(); ensure(&mut w,id);
+            let observed=state(&w,id).unwrap().army_population_reference.clone().unwrap();
+            assert_eq!(observed.observed_on,(1991,12,expected));
+            assert_eq!(w.rng,rng);
+            let saved=crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()),saved);
+            observations.push(observed);
+        }
+        assert_eq!(observations[0],observations[1],"monthly integration and its legacy day wrapper observe the same model date");
+        assert_ne!(observations[2].observed_on,observations[3].observed_on,"actual daily observation retains its civil day");
+    }
+
+    #[test]
+    fn unsourced_successors_retain_a_dated_force_reference_without_inventing_1990_history() {
+        let id = NationId::Georgia;
+        let mut w = world_1990(GameRules { daily_simulation: true, ..roads_rules(7) });
+        assert!(w.nation_opt(id).is_none());
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        assert_eq!(army_opening_population_m(id), None);
+        let mut successor = w.nation(NationId::Poland).clone();
+        successor.id = id;
+        successor.population = 5.5;
+        successor.alive = true;
+        w.nations.push(successor);
+        w.reindex();
+        (w.year, w.month, w.day) = (1993, 7, 12);
+        let rng = w.rng.clone();
+        ensure(&mut w, id);
+        let reference = state(&w, id).unwrap().army_population_reference.clone().unwrap();
+        assert_eq!(reference.observed_on, (1993, 7, 12));
+        assert_eq!(reference.population_m, 5.5);
+        let first = army_personnel_assessment(&w, id).unwrap();
+        assert_eq!(first.basis, ArmyPersonnelBasis::ModelEstimate);
+        assert!((first.members - 5_500_000.0 * estimated_army_population_share().unwrap()).abs() < 1e-9);
+        let resources = army_resources_per_member(&w, id).unwrap();
+        assert!(ai_army_funding_floor(&w, id).is_some(), "a successor still has a fundable institution");
+        w.nation_mut(id).population *= 2.0;
+        (w.year, w.month, w.day) = (1999, 1, 1);
+        ensure(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().army_population_reference.as_ref(), Some(&reference));
+        assert_eq!(army_personnel_assessment(&w, id).unwrap().members, first.members);
+        assert_eq!(army_resources_per_member(&w, id), Some(resources));
+        assert_eq!(w.rng, rng);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure(&mut w, id);
+        assert!(crate::save(&w) == saved, "load/ensure preserves the observed reference exactly");
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+
+        // An older successor save has no observation of its birth population.
+        // Record today's model observation once, explicitly dated today.
+        state_mut(&mut w, id).unwrap().army_population_reference = None;
+        let old = crate::save(&w);
+        assert!(!serde_json::to_value(state(&w, id).unwrap()).unwrap().as_object().unwrap()
+            .contains_key("army_population_reference"));
+        let mut disabled = crate::load(&old).unwrap();
+        disabled.rules.ideology_blocs = false;
+        ensure(&mut disabled, id);
+        assert!(state(&disabled, id).unwrap().army_population_reference.is_none());
+        assert!(army_personnel_assessment(&disabled, id).is_none());
+        w = crate::load(&old).unwrap();
+        w.nation_mut(id).population = 0.0;
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().army_population_reference.is_none());
+        w.nation_mut(id).population = 11.0;
+        w.nation_mut(id).alive = false;
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().army_population_reference.is_none());
+        w.nation_mut(id).alive = true;
+        ensure(&mut w, id);
+        let upgraded = state(&w, id).unwrap().army_population_reference.as_ref().unwrap();
+        assert_eq!(upgraded.observed_on, (1999, 1, 1));
+        assert_eq!(upgraded.population_m, 11.0);
+        for original in [NationId::Comoros, NationId::Pakistan] {
+            ensure(&mut w, original);
+            assert!(state(&w, original).unwrap().army_population_reference.is_none());
+        }
+    }
+
+    #[test]
+    fn an_uncrowned_collapse_preserves_the_actual_elected_programme_across_save_and_seeding() {
+        let id = NationId::Algeria;
+        for party in ["dz_fln", "dz_fis"] {
+            let mut w = world_1990(roads_rules(7));
+            w.nation_mut(id).authoritarianism = 0.55;
+            let g = state_mut(&mut w, id).unwrap();
+            g.coalition = vec![party.into()];
+            g.elected = true;
+            let ruling = crate::blocs::ruling_bloc(&w, id).unwrap();
+            let support = state(&w, id).unwrap().support.clone();
+            let leadership = serde_json::to_string(&w.leadership).unwrap();
+            generic_regime_collapse(&mut w, id, 0.15);
+            assert!(!is_electoral(&w, id));
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(ruling));
+            assert_eq!(state(&w, id).unwrap().leader(), Some(party));
+            assert_eq!(state(&w, id).unwrap().support, support);
+            assert_eq!(serde_json::to_string(&w.leadership).unwrap(), leadership,
+                "an uncoloured collapse names no replacement leader");
+            let movements = state(&w, id).unwrap().movements.clone();
+            w = crate::load(&crate::save(&w)).unwrap();
+            ensure(&mut w, id);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(ruling));
+            assert_eq!(state(&w, id).unwrap().movements, movements);
+            // A real movement takeover can still install another programme.
+            state_mut(&mut w, id).unwrap().movements = vec![
+                (Bloc::Western, 0.60), (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.10), (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.098),
+            ];
+            uprising(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Western));
+            assert!(w.headlines.iter().any(|h| h == "Revolution in Algeria: the Western movement takes power."));
+        }
+        let mut legacy = w1990();
+        let mut expected = legacy.clone();
+        {
+            let n = expected.nation_mut(id);
+            n.stability = 45.0;
+            n.gdp *= 0.93;
+            crate::economy::refresh_debt_ratio(n);
+            n.authoritarianism = (n.authoritarianism + 0.15).clamp(0.05, 0.95);
+        }
+        generic_regime_collapse(&mut legacy, id, 0.15);
+        assert_eq!(crate::save(&legacy), crate::save(&expected), "the flag-off collapse stays identical");
+    }
+
+    #[test]
+    fn a_partial_party_table_does_not_erase_unrepresented_national_constituencies() {
+        let id = NationId::Cambodia;
+        let mut w = world_1990(on_rules(7));
+        let hand = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.49), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.306),
+        ];
+        state_mut(&mut w, id).unwrap().movements = hand.clone();
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        let shares = crate::blocs::bloc_shares(&w, id);
+        assert_eq!(state(&w, id).unwrap().support, vec![("kh_kprp".into(), 1.0)],
+            "votes among the only carried party remain conditional, not national popularity");
+        for ((b, national), (_, expected)) in shares.iter().zip(&hand) {
+            assert!((national - expected).abs() < 1e-12, "{b:?}: {national} != {expected}");
+        }
+        let saved = crate::save(&w);
+        let rng = w.rng.state;
+        for _ in 0..3 { assert_eq!(crate::blocs::bloc_shares(&w, id), shares); }
+        assert!(crate::save(&w) == saved, "constituency reads are pure");
+        assert_eq!(w.rng.state, rng);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::blocs::bloc_shares(&w, id), shares);
+        hold_election(&mut w, id);
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(crate::blocs::bloc_shares(&w, id), shares, "a ballot cannot count the unrepresented as votes");
+        generic_regime_collapse(&mut w, id, 0.20);
+        for ((_, national), (_, expected)) in crate::blocs::bloc_shares(&w, id).iter().zip(&hand) {
+            assert!((national - expected).abs() < 1e-12, "closing the chamber preserves the national constituency");
+        }
+        // A pre-feature electoral save contains no observation of missing
+        // constituencies. Neither loading nor a read may fabricate one.
+        let mut old = crate::load(&saved).unwrap();
+        state_mut(&mut old, id).unwrap().movements.clear();
+        assert_eq!(crate::blocs::bloc_shares(&old, id)[Bloc::Communist as usize].1, 1.0);
+        let mut off = crate::load(&saved).unwrap();
+        off.rules.ideology_blocs = false;
+        assert_eq!(crate::blocs::bloc_shares(&off, id)[Bloc::Communist as usize].1, 1.0);
+    }
+
+    #[test]
+    fn represented_parties_compete_without_spending_unrepresented_voters() {
+        let id = NationId::Indonesia;
+        let mut w = world_1990(on_rules(7));
+        state_mut(&mut w, id).unwrap().movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.298), (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.40),
+        ];
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        state_mut(&mut w, id).unwrap().support = vec![
+            ("id_golkar".into(), 0.20), ("id_ppp".into(), 0.30), ("id_pdi".into(), 0.50),
+        ];
+        let shares = crate::blocs::bloc_shares(&w, id);
+        for (bloc, expected) in [(Bloc::Western, 0.35), (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.298), (Bloc::Islamist, 0.21), (Bloc::NonAligned, 0.14)]
+        {
+            assert!((shares[bloc as usize].1 - expected).abs() < 1e-12, "{bloc:?}: {shares:?}");
+        }
+        assert!((shares.iter().map(|(_, s)| s).sum::<f64>() - 1.0).abs() < 1e-12);
+        let before = shares;
+        drift_support(&mut w, id);
+        let after = crate::blocs::bloc_shares(&w, id);
+        for bloc in [Bloc::Communist, Bloc::Nationalist] {
+            assert!((after[bloc as usize].1 - before[bloc as usize].1).abs() < 1e-12);
+        }
+        assert!(after.iter().zip(before).map(|((_, a), (_, b))| (a - b).abs()).sum::<f64>() <= 0.030 + 1e-12);
+    }
+
+    #[test]
+    fn opening_a_regime_preserves_its_programme_until_a_real_ballot() {
+        let id = NationId::Afghanistan;
+        for collapse in [false, true] {
+            let mut w = world_1990(on_rules(7));
+            state_mut(&mut w, id).unwrap().regime_bloc = Some(Bloc::Islamist);
+            state_mut(&mut w, id).unwrap().movements = vec![
+                (Bloc::Western, 0.10), (Bloc::Communist, 0.20),
+                (Bloc::Nationalist, 0.15), (Bloc::Islamist, 0.40), (Bloc::NonAligned, 0.15),
+            ];
+            seat_office(&mut w, id, &Succession::Takeover { bloc: Bloc::Islamist });
+            if collapse {
+                generic_regime_collapse(&mut w, id, -0.40);
+                assert!(state(&w, id).unwrap().awaiting_first_election);
+                assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist),
+                    "an uncoloured collapse is not a Communist restoration");
+            } else {
+                w.nation_mut(id).authoritarianism = 0.59;
+            }
+            schedule_first_elections(&mut w, id, 6);
+            assert_eq!(state(&w, id).unwrap().leader(), Some("af_pdpa"));
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist),
+                "the conditional interim party table has not won an election");
+            assert!((crate::blocs::bloc_shares(&w, id)[Bloc::Communist as usize].1 - 0.20).abs() < 1e-12);
+            w = crate::load(&crate::save(&w)).unwrap();
+            ensure(&mut w, id);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist));
+            hold_election(&mut w, id);
+            assert!(!state(&w, id).unwrap().awaiting_first_election);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Communist), "the actual ballot still transfers power");
+        }
+    }
+
+    #[test]
+    fn sourced_executive_removal_leverage_is_distinct_from_auth_resources_and_coup_risk() {
+        let id = NationId::Algeria;
+        let mut one = world_1990(roads_rules(7));
+        {
+            let n = one.nation_mut(id);
+            n.authoritarianism = 0.58; n.stability = 5.0;
+            n.inflation = 0.30; n.growth_last = -0.10; n.war_exhaustion = 0.0;
+            let g = state_mut(&mut one, id).unwrap();
+            g.coalition = vec!["dz_fln".into()];
+            for (party, share) in &mut g.support {
+                *share = if party == "dz_fis" { 0.80 } else if party == "dz_fln" { 0.20 } else { 0.0 };
+            }
+            g.seats = g.support.clone();
+            g.political_record = Some(PoliticalRecord {
+                government: "party:dz_fln".into(), months: 24.0, performance: -0.80,
+            });
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.60;
+            g.army_authority.as_mut().unwrap().current_leverage = 1.0;
+        }
+        let mut zero = one.clone();
+        state_mut(&mut zero, id).unwrap().army_authority.as_mut().unwrap().current_leverage = 0.0;
+        assert_eq!(army_resources_per_member(&one, id), army_resources_per_member(&zero, id));
+        assert_eq!(one.nation(id).mil_strength, zero.nation(id).mil_strength);
+        assert!(army_civilian_confidence_penalty(&one, id) > 0.0);
+        assert_eq!(army_civilian_confidence_penalty(&zero, id), 0.0);
+        assert!(army_programme_veto_loyalty(&one, id, "dz_fis") < ELECTORAL_COUP_ARMY);
+        assert_eq!(army_programme_veto_loyalty(&zero, id, "dz_fis"), 0.60);
+        let known = state(&one, id).unwrap().army_authority.clone();
+        let penalty = army_civilian_confidence_penalty(&one, id);
+        one.nation_mut(id).authoritarianism = 0.05;
+        assert_eq!(army_civilian_confidence_penalty(&one, id), penalty,
+            "a nominal authoritarianism edit is not evidence of new military authority");
+        assert_eq!(state(&one, id).unwrap().army_authority, known);
+        // A known zero blocks this political-leverage channel, not material
+        // neglect, casualties, grievances, or the existing Army coup route.
+        zero.nation_mut(id).mil_spend_gdp = 0.0;
+        assert!((pillar_targets(&zero, id, &[Pillar::Army])[0].1 - 0.20).abs() < 1e-12);
+        zero.nation_mut(id).war_exhaustion = 0.20;
+        assert!((pillar_targets(&zero, id, &[Pillar::Army])[0].1 - 0.11).abs() < 1e-12);
+        {
+            let g = state_mut(&mut zero, id).unwrap();
+            g.months_in_office = 24; g.coup_pressure = 1.5;
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        }
+        assert!(maybe_electoral_coup(&mut zero, id), "zero removal leverage is not immunity to an unpaid hostile force");
+        assert_eq!(crate::army_authority::current_leverage(&zero, id), Some(1.0));
+        assert_eq!(state(&zero, id).unwrap().army_authority.as_ref().unwrap().source,
+            known.as_ref().unwrap().source, "an actual seizure changes campaign leverage, never its historical input");
+        let mut no_army = one.clone();
+        state_mut(&mut no_army, id).unwrap().pillars.retain(|(p, _)| *p != Pillar::Army);
+        assert_eq!(army_civilian_confidence_penalty(&no_army, id), 0.0);
+        assert_eq!(crate::army_authority::current_leverage(&no_army, id), None);
+        let mut unknown = one;
+        state_mut(&mut unknown, id).unwrap().army_authority = None;
+        unknown.nation_mut(id).authoritarianism = 0.40;
+        assert!((civilian_army_executive_leverage(&unknown, id) - 0.5).abs() < 1e-12);
+        let rng = unknown.rng.clone(); let saved = crate::save(&unknown);
+        assert_eq!(civilian_army_executive_leverage(&crate::load(&saved).unwrap(), id),
+            civilian_army_executive_leverage(&unknown, id));
+        assert_eq!(crate::save(&unknown), saved); assert_eq!(unknown.rng, rng);
+        break_electoral(&mut unknown, id, "test real unsourced Army takeover".into());
+        assert!(state(&unknown, id).unwrap().army_authority.is_none(), "a coup cannot invent historical source coverage");
+    }
+
+    #[test]
+    fn assessed_army_authority_changes_only_at_real_seizures_and_qualified_transfers() {
+        let id = NationId::UK;
+        let mut original = world_1990(roads_rules(7));
+        original.nation_mut(id).authoritarianism = 0.55;
+        let term = polity_in(&original, id).unwrap().term_months;
+        {
+            let g = state_mut(&mut original, id).unwrap();
+            g.elected = true; g.unrestricted_mandate = true; g.months_in_office = term;
+            g.army_authority.as_mut().unwrap().current_leverage = 0.80;
+            for (party, share) in &mut g.support {
+                *share = if party == "uk_lab" { 0.85 } else { 0.05 };
+            }
+        }
+        let before = state(&original, id).unwrap().army_authority.clone().unwrap();
+        let rng = original.rng.clone();
+        let mut full = original.clone();
+        hold_election(&mut full, id);
+        assert_eq!(state(&full, id).unwrap().leader(), Some("uk_lab"));
+        let after = state(&full, id).unwrap().army_authority.clone().unwrap();
+        assert!((after.current_leverage - 0.675).abs() < 1e-12);
+        assert_eq!(after.source, before.source);
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "authority uses the existing consolidation exactly once; the general reform remains intact");
+        assert_eq!(full.rng, rng);
+        let saved = crate::save(&full);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        for control in 0..6 {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            match control {
+                0 => for (party, share) in &mut g.support { *share = if party == "uk_con" { 0.85 } else { 0.05 }; },
+                1 => g.elected = false,
+                2 => g.unrestricted_mandate = false,
+                3 => g.banned.push("uk_lib".into()),
+                4 => g.awaiting_first_election = true,
+                _ => g.months_in_office = 0,
+            }
+            hold_election(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().army_authority.as_ref().unwrap(), &before,
+                "nonqualifying ballot cannot rewrite authority: {control}");
+        }
+        for how in [Succession::Death, Succession::TermLimit, Succession::Coup { pillar: Pillar::Army }] {
+            let mut w = original.clone();
+            seat_office(&mut w, id, &how);
+            assert_eq!(state(&w, id).unwrap().army_authority.as_ref().unwrap(), &before,
+                "changing a person/description alone is not an institutional event");
+        }
+        let mut seized = original.clone();
+        break_electoral(&mut seized, id, "test actual Army takeover".into());
+        let current = state(&seized, id).unwrap().army_authority.as_ref().unwrap();
+        assert_eq!(current.current_leverage, 1.0); assert_eq!(current.source, before.source);
+        let mut off = original;
+        off.rules.ideology_blocs = false; off.rules.ideology_takeover = false;
+        hold_election(&mut off, id);
+        assert_eq!(state(&off, id).unwrap().army_authority.as_ref().unwrap(), &before);
+    }
+
+    #[test]
+    fn army_confidence_responds_to_sustained_civilian_failure_without_changing_resources() {
+        let id = NationId::Pakistan;
+        let mut crisis = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut crisis, id).unwrap().army_authority = None;
+        {
+            let n = crisis.nation_mut(id);
+            n.gdp = 100.0;
+            n.mil_spend_gdp = 0.03;
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let party = state(&crisis, id).unwrap().leader().unwrap().to_string();
+        state_mut(&mut crisis, id).unwrap().political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.80,
+        });
+        let resources = army_resources_per_member(&crisis, id).unwrap();
+        let penalty = army_civilian_confidence_penalty(&crisis, id);
+        assert!(penalty > 0.30, "sustained failure can cost an autonomous army's confidence");
+        let mut quiet = crisis.clone();
+        {
+            let n = quiet.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+        }
+        assert_eq!(army_civilian_confidence_penalty(&quiet, id), 0.0);
+        assert_eq!(army_resources_per_member(&quiet, id), Some(resources));
+        let mut fresh = crisis.clone();
+        state_mut(&mut fresh, id).unwrap().political_record.as_mut().unwrap().months = 5.0;
+        assert_eq!(army_civilian_confidence_penalty(&fresh, id), 0.0, "no instant crisis penalty");
+        let mut open = crisis.clone();
+        open.nation_mut(id).authoritarianism = 0.20;
+        assert_eq!(army_civilian_confidence_penalty(&open, id), 0.0);
+        let mut off = crisis.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(army_civilian_confidence_penalty(&off, id), 0.0);
+        let loaded = crate::load(&crate::save(&crisis)).unwrap();
+        assert_eq!(army_civilian_confidence_penalty(&loaded, id), penalty);
+        for _ in 0..48 {
+            electoral_army_tick(&mut crisis, id);
+            electoral_army_tick(&mut quiet, id);
+        }
+        assert!(state(&crisis, id).unwrap().loyalty(Pillar::Army) < ELECTORAL_COUP_ARMY);
+        assert!(state(&crisis, id).unwrap().coup_pressure > 0.0);
+        assert!(state(&quiet, id).unwrap().loyalty(Pillar::Army) > 0.60);
+        assert_eq!(state(&quiet, id).unwrap().coup_pressure, 0.0);
+        assert_eq!(army_resources_per_member(&crisis, id), Some(resources), "confidence does not consume equipment");
+    }
+
+    #[test]
+    fn civilian_confidence_counts_national_consent_without_manufacturing_a_mandate() {
+        let id = NationId::Pakistan;
+        let mut strong = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut strong, id).unwrap().army_authority = None;
+        {
+            let n = strong.nation_mut(id);
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let leader = state(&strong, id).unwrap().leader().unwrap().to_string();
+        let opponent = state(&strong, id).unwrap().support.iter()
+            .find(|(party, _)| party != &leader).unwrap().0.clone();
+        {
+            let g = state_mut(&mut strong, id).unwrap();
+            g.elected = true;
+            g.unrestricted_mandate = true;
+            g.awaiting_first_election = false;
+            g.banned.clear();
+            g.movements.clear();
+            g.coalition = vec![leader.clone()];
+            for (party, share) in &mut g.support {
+                *share = if *party == leader { 0.8 } else if *party == opponent { 0.2 } else { 0.0 };
+            }
+            g.seats = g.support.clone();
+            g.political_record = Some(PoliticalRecord {
+                government: format!("party:{leader}"), months: 24.0, performance: -0.80,
+            });
+        }
+        let mut minority = strong.clone();
+        for (party, share) in &mut state_mut(&mut minority, id).unwrap().support {
+            *share = if *party == leader { 0.3 } else if *party == opponent { 0.7 } else { 0.0 };
+        }
+        let mut no_mandate = strong.clone();
+        state_mut(&mut no_mandate, id).unwrap().unrestricted_mandate = false;
+        let unbuffered = army_civilian_confidence_penalty(&no_mandate, id);
+        assert!(unbuffered > 0.30);
+        assert!((civilian_public_mandate(&strong, id) - 0.8).abs() < 1e-12);
+        assert!((civilian_public_mandate(&minority, id) - 0.3).abs() < 1e-12);
+        assert!((army_civilian_confidence_penalty(&strong, id) - unbuffered * 0.2).abs() < 1e-12);
+        assert!((army_civilian_confidence_penalty(&minority, id) - unbuffered * 0.7).abs() < 1e-12);
+        assert_eq!(army_resources_per_member(&strong, id), army_resources_per_member(&minority, id),
+            "public consent changes neither equipment resources nor force size");
+
+        // A manufactured chamber majority contributes no additional voters.
+        let mut amplified = strong.clone();
+        for (party, share) in &mut state_mut(&mut amplified, id).unwrap().seats {
+            *share = if *party == leader { 0.99 } else if *party == opponent { 0.01 } else { 0.0 };
+        }
+        assert_eq!(civilian_public_mandate(&amplified, id), civilian_public_mandate(&strong, id));
+        assert_eq!(army_civilian_confidence_penalty(&amplified, id), army_civilian_confidence_penalty(&strong, id));
+        for control in 0..4 {
+            let mut invalid = strong.clone();
+            let g = state_mut(&mut invalid, id).unwrap();
+            match control {
+                0 => g.elected = false,
+                1 => g.awaiting_first_election = true,
+                2 => g.unrestricted_mandate = false,
+                _ => g.banned.push(opponent.clone()),
+            }
+            assert_eq!(civilian_public_mandate(&invalid, id), 0.0, "control {control}");
+            assert_eq!(army_civilian_confidence_penalty(&invalid, id), unbuffered,
+                "an interim or restricted mandate supplies no consent buffer");
+        }
+        let mut unrepresented = strong.clone();
+        for (party, seats) in &mut state_mut(&mut unrepresented, id).unwrap().seats {
+            if *party == leader { *seats = 0.0; }
+        }
+        assert_eq!(civilian_public_mandate(&unrepresented, id), 0.0);
+        let mut unknown = strong.clone();
+        let g = state_mut(&mut unknown, id).unwrap();
+        g.coalition = vec!["unknown_party".into()];
+        g.support = vec![("unknown_party".into(), 1.0)];
+        g.seats = g.support.clone();
+        assert_eq!(civilian_public_mandate(&unknown, id), 0.0,
+            "an unknown saved party is not proof of legal representation");
+
+        // A party carrying one fifth of the country does not acquire the
+        // unrepresented four fifths when its one-party ballot reads 100%.
+        let kh = NationId::Cambodia;
+        let mut partial = world_1990(on_rules(7));
+        partial.nation_mut(kh).authoritarianism = 0.59;
+        state_mut(&mut partial, kh).unwrap().movements = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.49), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.306),
+        ];
+        schedule_first_elections(&mut partial, kh, 6);
+        assert_eq!(civilian_public_mandate(&partial, kh), 0.0, "the first ballot is still owed");
+        hold_election(&mut partial, kh);
+        assert_eq!(state(&partial, kh).unwrap().support, vec![("kh_kprp".into(), 1.0)]);
+        assert!((civilian_public_mandate(&partial, kh) - 0.20).abs() < 1e-12);
+
+        let mandate = civilian_public_mandate(&strong, id);
+        let penalty = army_civilian_confidence_penalty(&strong, id);
+        assert!(crate::statecraft::add_backing(&mut strong, NationId::USA, id, bloc_of(id, &leader)) > 0.0);
+        assert_eq!(civilian_public_mandate(&strong, id), mandate, "foreign money is not public support");
+        assert_eq!(army_civilian_confidence_penalty(&strong, id), penalty);
+        let rng = strong.rng.state;
+        let saved = crate::save(&strong);
+        for _ in 0..3 {
+            assert_eq!(civilian_public_mandate(&strong, id), mandate);
+            assert_eq!(army_civilian_confidence_penalty(&strong, id), penalty);
+        }
+        assert_eq!(strong.rng.state, rng);
+        assert_eq!(crate::save(&strong), saved, "reading a mandate is pure");
+        let loaded = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&loaded), saved);
+        assert_eq!(civilian_public_mandate(&loaded, id), mandate);
+        assert_eq!(army_civilian_confidence_penalty(&loaded, id), penalty);
+    }
+
+    #[test]
+    fn an_autonomous_army_can_veto_a_new_programme_but_civilian_control_and_loyalty_resist() {
+        let id = NationId::Algeria;
+        let mut w = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut w, id).unwrap().army_authority = None;
+        {
+            let n = w.nation_mut(id);
+            n.authoritarianism = 0.58;
+            n.stability = 10.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.05;
+        }
+        let g = state_mut(&mut w, id).unwrap();
+        g.coalition = vec!["dz_fln".into()];
+        for (party, share) in &mut g.support {
+            *share = if party == "dz_fis" { 0.80 } else if party == "dz_fln" { 0.20 } else { 0.0 };
+        }
+        g.seats = g.support.clone();
+        for (p, loyalty) in &mut g.pillars { if *p == Pillar::Army { *loyalty = 0.60; } }
+        g.political_record = Some(PoliticalRecord { government: "party:dz_fln".into(), months: 24.0, performance: -0.80 });
+        assert!(crate::blocs::effective_army_loyalty(&w, id) > ELECTORAL_COUP_ARMY,
+            "material obedience alone is not the prospective political veto");
+        assert!(army_programme_veto_loyalty(&w, id, "dz_fis") < ELECTORAL_COUP_ARMY);
+        assert_eq!(annulment_check(&w, id).as_deref(), Some("dz_fis"));
+        assert_eq!(army_programme_veto_loyalty(&w, id, "dz_fln"), 0.60, "retaining the programme adds no threat");
+        let mut recovered = w.clone();
+        {
+            let n = recovered.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        assert!(crate::blocs::discontent(&recovered, id) < ANNULMENT_DISCONTENT);
+        assert_eq!(annulment_check(&recovered, id).as_deref(), Some("dz_fis"),
+            "a prospective institutional veto does not require an economic collapse");
+        state_mut(&mut recovered, id).unwrap().political_record = None;
+        for (p, loyalty) in &mut state_mut(&mut recovered, id).unwrap().pillars {
+            if *p == Pillar::Army { *loyalty = 0.20; }
+        }
+        assert_eq!(annulment_check(&recovered, id), None,
+            "material disloyalty alone retains the original discontent requirement");
+        let mut loyal = w.clone();
+        for (p, loyalty) in &mut state_mut(&mut loyal, id).unwrap().pillars { if *p == Pillar::Army { *loyalty = 0.95; } }
+        assert_eq!(annulment_check(&loyal, id), None);
+        let mut open = w.clone();
+        open.nation_mut(id).authoritarianism = 0.20;
+        assert_eq!(army_programme_veto_loyalty(&open, id, "dz_fis"), 0.60);
+        assert_eq!(annulment_check(&open, id), None);
+        let mut fresh = w.clone();
+        state_mut(&mut fresh, id).unwrap().political_record = None;
+        assert_eq!(army_programme_veto_loyalty(&fresh, id, "dz_fis"), 0.60);
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(army_programme_veto_loyalty(&off, id, "dz_fis"), 0.60);
+        hold_election(&mut w, id);
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Nationalist));
+        assert!(state(&w, id).unwrap().banned.iter().any(|p| p == "dz_fis"));
+    }
+
+
+    // A synthetic newborn tests the generic lifecycle, not a historical date or
+    // a predicted winner. It uses the real successor table and government tick.
+    fn unscheduled_electoral_successor_fixture() -> WorldState {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Lithuania;
+        let mut n = w.nation(NationId::Poland).clone();
+        n.id = id;
+        n.authoritarianism = 0.20;
+        n.stability = 65.0;
+        n.inflation = 0.80;
+        n.growth_last = -0.10;
+        w.nations.push(n);
+        w.reindex();
+        w.player = Some(id);
+        ensure(&mut w, id);
+        w
+    }
+
+    #[test]
+    fn scheduling_a_new_electoral_successor_preserves_its_real_governing_record() {
+        let id = NationId::Lithuania;
+        let mut w = unscheduled_electoral_successor_fixture();
+        let incumbent = state(&w, id).unwrap().leader().unwrap().to_string();
+        assert!(crate::blocs::leader_row(&w, id).is_none());
+        assert_eq!(crate::blocs::leader(&w, id).unwrap().office, "head of government");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            assert_eq!(g.next_election, (0, 0));
+            assert!(g.regime_bloc.is_none());
+            g.months_in_office = 7;
+            g.coup_pressure = 0.40;
+            g.political_record = Some(PoliticalRecord {
+                government: format!("party:{incumbent}"), months: 7.0, performance: -0.75,
+            });
+        }
+        // The one missing calendar field must be the only difference from an
+        // otherwise identical ordinary cabinet taking the same real tick.
+        let mut calendar = w.clone();
+        state_mut(&mut calendar, id).unwrap().next_election = (1991, 7);
+        let support = state(&w, id).unwrap().support_of(&incumbent);
+        let rng = w.rng.clone();
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        tick(&mut w);
+        tick(&mut calendar);
+        let g = state(&w, id).unwrap();
+        assert_eq!(serde_json::to_string(g).unwrap(), serde_json::to_string(state(&calendar, id).unwrap()).unwrap());
+        assert_eq!(g.next_election, (1991, 7));
+        assert_eq!(g.months_in_office, 8);
+        assert_eq!(g.coup_pressure, 0.40);
+        assert_eq!(g.political_record.as_ref().unwrap().months, 8.0);
+        assert_eq!(g.political_record.as_ref().unwrap().government, format!("party:{incumbent}"));
+        assert!(g.support_of(&incumbent) < support);
+        assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+        assert!(g.vote_anchor.is_none() && g.opening_mandate.is_none());
+        assert!(crate::blocs::leader_row(&w, id).is_none(), "a calendar cannot invent a named office");
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_successor_calendar_keeps_the_eighteen_month_deadline_without_claiming_a_ballot() {
+        let id = NationId::Lithuania;
+        let mut w = unscheduled_electoral_successor_fixture();
+        let rng = w.rng.clone();
+        for month in 0..18 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+            let g = state(&w, id).unwrap();
+            assert_eq!(g.next_election, (1991, 7));
+            assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+            assert!(g.vote_anchor.is_none());
+            assert_eq!(g.political_record.as_ref().unwrap().months, (month + 1) as f64);
+            if month == 8 {
+                let saved = crate::save(&w);
+                w = crate::load(&saved).unwrap();
+                assert_eq!(crate::save(&w), saved);
+            }
+        }
+        assert_eq!(state(&w, id).unwrap().months_in_office, 18);
+        (w.year, w.month) = (1991, 7);
+        tick(&mut w);
+        let g = state(&w, id).unwrap();
+        assert!(g.elected && g.unrestricted_mandate && !g.awaiting_first_election);
+        assert_eq!(g.next_election, (1995, 7));
+        assert!(g.vote_anchor.is_some());
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn successor_calendar_dates_and_accountability_survive_daily_and_legacy_saves() {
+        let id = NationId::Lithuania;
+        let base = unscheduled_electoral_successor_fixture();
+        let rng = base.rng.clone();
+        let mut monthly = base.clone();
+        let mut legacy_end = base.clone();
+        legacy_end.day = 31;
+        tick(&mut monthly);
+        tick(&mut legacy_end);
+        assert_eq!(serde_json::to_string(state(&monthly,id).unwrap()).unwrap(),
+            serde_json::to_string(state(&legacy_end,id).unwrap()).unwrap());
+        let mut daily = base;
+        daily.rules.daily_simulation = true;
+        let starting_support = state(&daily,id).unwrap().support_of("lt_sajudis");
+        for day in 1..=31 {
+            daily.day = day;
+            tick(&mut daily);
+            let g = state(&daily,id).unwrap();
+            assert_eq!(g.next_election, (1991,7));
+            assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+            assert_eq!(g.months_in_office, u32::from(day == 31));
+            assert!((g.political_record.as_ref().unwrap().months - day as f64 / 31.0).abs() < 1e-12);
+            if day == 15 {
+                let saved = crate::save(&daily);
+                daily = crate::load(&saved).unwrap();
+                assert_eq!(crate::save(&daily), saved);
+            }
+        }
+        assert!(state(&daily,id).unwrap().support_of("lt_sajudis") < starting_support);
+        assert_eq!(daily.rng, rng);
+        // An old save's absent marker is unknown history, not a completed vote.
+        let mut json: serde_json::Value = serde_json::from_str(&crate::save(&monthly)).unwrap();
+        for g in json["governments"]["states"].as_array_mut().unwrap() {
+            g.as_object_mut().unwrap().remove("awaiting_first_election");
+            g.as_object_mut().unwrap().remove("political_record");
+        }
+        let mut old = crate::load(&json.to_string()).unwrap();
+        assert!(!state(&old,id).unwrap().awaiting_first_election);
+        assert!(state(&old,id).unwrap().political_record.is_none());
+        tick(&mut old);
+        assert_eq!(state(&old,id).unwrap().political_record.as_ref().unwrap().months, 1.0);
+        assert!(!state(&old,id).unwrap().elected);
+    }
+
+    #[test]
+    fn missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path() {
+        for id in [NationId::Suriname, NationId::Jordan, NationId::Indonesia] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if id == NationId::Suriname { break_electoral(&mut w,id,"test military takeover".into()); }
+            if id == NationId::Jordan {
+                // Jordan opens below the regime ceiling; explicitly stage a
+                // court regime before testing its subsequent liberalisation.
+                w.nation_mut(id).authoritarianism = 0.75;
+                seed_blocs(&mut w,id);
+            }
+            let authority = serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap();
+            let regime = state(&w,id).unwrap().regime_bloc;
+            assert!(regime.is_some(), "fixture must carry an actual regime authority");
+            w.nation_mut(id).authoritarianism = 0.59;
+            w.nation_mut(id).stability = 20.0;
+            state_mut(&mut w,id).unwrap().next_election = (0,0);
+            tick(&mut w);
+            assert_eq!(state(&w,id).unwrap().next_election, (1991,7));
+            assert!(state(&w,id).unwrap().awaiting_first_election);
+            assert_eq!(state(&w,id).unwrap().regime_bloc, regime);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap(),authority);
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            state_mut(&mut w,id).unwrap().months_in_office = 12;
+            tick(&mut w);
+            assert!(state(&w,id).unwrap().awaiting_first_election,
+                "an existing military/court/party interim keeps its first-ballot protection");
+            assert_eq!(state(&w,id).unwrap().next_election,(1991,7));
+        }
+        // A live court can outrank its electoral chamber without a stored
+        // regime bloc (the actual opening Jordan state). Missing old metadata
+        // cannot reinterpret an explicit Army authority as a party executive.
+        for id in [NationId::Jordan, NationId::Suriname] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if id == NationId::Suriname {
+                break_electoral(&mut w,id,"test military takeover".into());
+                w.nation_mut(id).authoritarianism = 0.55;
+                state_mut(&mut w,id).unwrap().regime_bloc = None;
+            }
+            assert!(is_electoral(&w,id));
+            assert!(state(&w,id).unwrap().regime_bloc.is_none());
+            assert!(matches!(crate::blocs::leader_row(&w,id).unwrap().tie_now(), Some(crate::data::Tie::Pillar(_))));
+            if id == NationId::Jordan { assert!(crate::blocs::court_pillar(&w,id).is_some()); }
+            let authority = serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap();
+            state_mut(&mut w,id).unwrap().next_election = (0,0);
+            tick(&mut w);
+            assert!(state(&w,id).unwrap().awaiting_first_election);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(state(&w,id).unwrap().next_election,(1991,7));
+            assert_eq!(serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap(),authority);
+        }
+        let id = NationId::Lithuania;
+        let mut saved_pending = unscheduled_electoral_successor_fixture();
+        state_mut(&mut saved_pending,id).unwrap().awaiting_first_election = true;
+        saved_pending = crate::load(&crate::save(&saved_pending)).unwrap();
+        tick(&mut saved_pending);
+        assert!(state(&saved_pending,id).unwrap().awaiting_first_election,
+            "do not reinterpret an explicitly saved pending status with missing older metadata");
+        let mut off = unscheduled_electoral_successor_fixture();
+        off.rules.ideology_blocs = false;
+        state_mut(&mut off,id).unwrap().months_in_office = 7;
+        state_mut(&mut off,id).unwrap().coup_pressure = 0.40;
+        tick(&mut off);
+        let g = state(&off,id).unwrap();
+        assert_eq!(g.next_election,(1991,7));
+        assert_eq!(g.months_in_office,0, "legacy formation still resets its original office clock");
+        assert_eq!(g.coup_pressure,0.0);
+        assert!(!g.awaiting_first_election && !g.elected);
+        assert!(off.headlines.iter().any(|h|h == "Lithuania sets a date for its first free elections."));
+    }
+
+    #[test]
+    fn the_first_free_ballot_seats_the_same_interim_party_and_keeps_its_deadline() {
+        use crate::data::Tie;
+        let id = NationId::Suriname;
+        let mut w = world_1990(roads_rules(7));
+        break_electoral(&mut w, id, "test military takeover".into());
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 18);
+        let deadline = state(&w, id).unwrap().next_election;
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        assert!(!state(&w, id).unwrap().elected);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure(&mut w, id);
+        ensure(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 12;
+            g.coup_pressure = 1.5;
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.10);
+        }
+        w.nation_mut(id).stability = 20.0;
+        assert!(!maybe_electoral_coup(&mut w, id), "an interim cabinet was never an elected one");
+        assert!(!crate::blocs::takeover_readout(&w, id).coup.open);
+        tick(&mut w);
+        assert!(state(&w, id).unwrap().awaiting_first_election,
+            "the ordinary fragile-cabinet clock must not preempt the first ballot");
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.85);
+        }
+        w.nation_mut(id).stability = 65.0;
+        (w.year, w.month) = deadline;
+        tick(&mut w);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some(interim.as_str()));
+        assert!(g.elected && !g.awaiting_first_election);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim.clone())));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(bloc_of(id, &interim)));
+        let after = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&after).unwrap()), after);
+    }
+
+    #[test]
+    fn the_first_parliamentary_ballot_reconciles_the_actual_office_with_the_seeded_chamber() {
+        use crate::data::Tie;
+        let id = NationId::Hungary;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some("hu_mdf"));
+        assert!(!g.elected && !g.awaiting_first_election);
+        let opening = crate::blocs::leader_row(&w, id).unwrap().clone();
+        assert_eq!(opening.name.as_deref(), Some("Miklos Nemeth"));
+        assert_eq!(opening.tie_now(), Some(Tie::Party("hu_mszp".into())));
+        assert!(parliamentary_office_party_mismatch(&w, id, "hu_mdf"));
+        // Loading before the first modeled ballot must not consume that ballot.
+        w = crate::load(&crate::save(&w)).unwrap();
+        (w.year, w.month) = state(&w, id).unwrap().next_election;
+        let rng = w.rng.clone();
+        let authoritarianism = w.nation(id).authoritarianism;
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("hu_mdf"), "the chamber need not change its leading party");
+        let elected = crate::blocs::leader_row(&w, id).unwrap().clone();
+        assert_eq!(elected.tie_now(), Some(Tie::Party("hu_mdf".into())));
+        assert!(elected.name.is_none());
+        assert_eq!(elected.emergent.as_ref().unwrap().office, "head of government");
+        assert_eq!(elected.emergent.as_ref().unwrap().since, "1990-03-01");
+        assert_eq!(w.rng, rng, "a lawful seating draws no random number");
+        assert_eq!(w.nation(id).authoritarianism, authoritarianism, "correcting the opening office grants no term-completion reward");
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        w.month = 4;
+        hold_election(&mut w, id);
+        assert_eq!(crate::blocs::leader_row(&w, id), Some(&elected), "a repeated same-party ballot does not reseat the office");
+
+        // An existing completed campaign is not an opening-history repair.
+        let mut existing = world_1990(on_rules(7));
+        state_mut(&mut existing, id).unwrap().elected = true;
+        hold_election(&mut existing, id);
+        assert_eq!(crate::blocs::leader_row(&existing, id), Some(&opening));
+    }
+
+    #[test]
+    fn opening_ballots_keep_same_party_people_separate_heads_and_the_off_path() {
+        for id in [NationId::UK, NationId::USA, NationId::Jordan] {
+            let mut w = world_1990(on_rules(7));
+            let opening = crate::blocs::leader_row(&w, id).unwrap().clone();
+            let winner = state(&w, id).unwrap().leader().unwrap().to_string();
+            assert!(!parliamentary_office_party_mismatch(&w, id, &winner), "{id:?}");
+            hold_election(&mut w, id);
+            assert_eq!(crate::blocs::leader_row(&w, id), Some(&opening), "{id:?}: a parliamentary vote cannot claim another office or remove its same-party incumbent");
+        }
+        let mut off = w1990();
+        let before = off.leadership.clone();
+        let rng = off.rng.clone();
+        assert!(!parliamentary_office_party_mismatch(&off, NationId::Hungary, "hu_mdf"));
+        hold_election(&mut off, NationId::Hungary);
+        assert_eq!(off.leadership, before);
+        assert_eq!(off.rng, rng);
+    }
+
+    #[test]
+    fn an_annulled_opening_ballot_does_not_seat_the_parliamentary_winner() {
+        use crate::data::Tie;
+        let id = NationId::Hungary;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).authoritarianism = 0.60;
+        w.nation_mut(id).stability = 0.0;
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support {
+                *share = if party == "hu_mszmp" { 0.80 } else { 0.20 / others as f64 };
+            }
+            g.coalition = vec!["hu_mszmp".into()];
+            if !g.pillars.iter().any(|(pillar, _)| *pillar == Pillar::Army) { g.pillars.push((Pillar::Army, 0.10)); }
+            for (pillar, loyalty) in &mut g.pillars { if *pillar == Pillar::Army { *loyalty = 0.10; } }
+        }
+        assert!(parliamentary_office_party_mismatch(&w, id, "hu_mszmp"));
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert!(!g.elected, "annulment is not a completed first mandate");
+        assert!(g.banned.iter().any(|party| party == "hu_mszmp"));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)),
+            "the refused ballot cannot overwrite the actual military takeover with its winner");
+    }
+
+    #[test]
+    fn first_free_elections_replace_original_military_rulers_but_preserve_constitutional_heads() {
+        use crate::data::Tie;
+        let mut w = world_1990(roads_rules(7));
+        let id = NationId::Myanmar;
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        assert!(crate::blocs::leader_row(&w, id).unwrap().emergent.is_none());
+        w.nation_mut(id).authoritarianism = 0.50;
+        schedule_first_elections(&mut w, id, 6);
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.85);
+        }
+        hold_election(&mut w, id);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim)));
+        // The US chamber is not the presidency, and the Jordanian chamber is
+        // not the crown. An ordinary or opening ballot preserves those offices.
+        for id in [NationId::USA, NationId::Jordan] {
+            let before = crate::blocs::leader(&w, id).unwrap();
+            if id == NationId::Jordan { state_mut(&mut w, id).unwrap().awaiting_first_election = true; }
+            hold_election(&mut w, id);
+            let after = crate::blocs::leader(&w, id).unwrap();
+            assert_eq!(after.name, before.name);
+            assert_eq!(after.pillar, before.pillar);
+            assert_eq!(after.office, before.office);
+        }
+    }
+
+    #[test]
+    fn the_first_free_ballot_replaces_a_generic_party_regime_but_not_an_inherited_crown() {
+        use crate::data::Tie;
+        let id = NationId::SaoTome;
+        let mut w = world_1990(roads_rules(7));
+        seat_office(&mut w, id, &Succession::Coup { pillar: Pillar::Party });
+        let row = crate::blocs::leader_row(&w, id).unwrap();
+        assert_eq!(row.tie_now(), Some(Tie::Pillar(Pillar::Party)));
+        assert_eq!(row.emergent.as_ref().unwrap().office, "head of state");
+        w.nation_mut(id).authoritarianism = 0.50;
+        schedule_first_elections(&mut w, id, 6);
+        let deadline = state(&w, id).unwrap().next_election;
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        let g = state_mut(&mut w, id).unwrap();
+        let others = g.support.len() - 1;
+        for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+        for (_, loyalty) in &mut g.pillars { *loyalty = 0.85; }
+        w = crate::load(&crate::save(&w)).unwrap();
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Party)));
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        (w.year, w.month) = deadline;
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().leader(), Some(interim.as_str()));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim.clone())));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(bloc_of(id, &interim)));
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        let saved = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+
+        // The generated heir inherits the sourced King office. Even a new
+        // parliamentary leader does not acquire that independent office.
+        let jo = NationId::Jordan;
+        seat_office(&mut w, jo, &Succession::Death);
+        let king = crate::blocs::leader(&w, jo).unwrap();
+        assert_eq!(king.office, "King");
+        state_mut(&mut w, jo).unwrap().awaiting_first_election = true;
+        let other = polity_in(&w, jo).unwrap().parties.iter()
+            .find(|p| Some(p.id) != state(&w, jo).unwrap().leader()).unwrap().id.to_string();
+        seat_office(&mut w, jo, &Succession::Election { leader: other });
+        let after = crate::blocs::leader(&w, jo).unwrap();
+        assert_eq!((after.described, after.office, after.pillar), (king.described, king.office, king.pillar));
+    }
+
+    #[test]
+    fn generated_party_regimes_keep_their_role_through_succession_and_then_yield_to_a_ballot() {
+        use crate::data::Tie;
+        for how in [Succession::Coup { pillar: Pillar::Party }, Succession::Death, Succession::Programme] {
+            let id = NationId::SaoTome;
+            let mut w = world_1990(roads_rules(7));
+            seat_office(&mut w, id, &Succession::Coup { pillar: Pillar::Party });
+            seat_office(&mut w, id, &how);
+            let ruler = crate::blocs::leader(&w, id).unwrap();
+            assert_eq!(ruler.office, "head of state", "generic regime after {:?}", how);
+            assert_eq!(ruler.pillar, Some(Pillar::Party));
+            assert_ne!(ruler.described.as_deref(), Some("the ruling house"));
+            w = crate::load(&crate::save(&w)).unwrap();
+            w.nation_mut(id).authoritarianism = 0.50;
+            schedule_first_elections(&mut w, id, 6);
+            let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+            let deadline = state(&w, id).unwrap().next_election;
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            for (_, loyalty) in &mut g.pillars { *loyalty = 0.85; }
+            (w.year, w.month) = deadline;
+            hold_election(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().leader(), Some(interim.as_str()));
+            assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim)), "handover after {:?}", how);
+            let saved = crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+
+            // The same events in the actual sourced monarchy still seat its
+            // named heir once, then the ruling house, retaining the King role.
+            let jo = NationId::Jordan;
+            let mut crown = world_1990(roads_rules(7));
+            seat_office(&mut crown, jo, &how);
+            let heir = crate::blocs::leader(&crown, jo).unwrap();
+            assert_eq!(heir.office, "King");
+            assert_eq!(heir.described.as_deref(), Some("Hassan bin Talal"));
+            assert!(heir.heir.is_none());
+            seat_office(&mut crown, jo, &how);
+            assert_eq!(crate::blocs::leader(&crown, jo).unwrap().described.as_deref(), Some("the ruling house"));
+
+            // A historical heir retained as provenance after an actual coup
+            // cannot silently restore the deposed crown by changing programme.
+            let mut junta = world_1990(roads_rules(7));
+            seat_office(&mut junta, jo, &Succession::Coup { pillar: Pillar::Army });
+            seat_office(&mut junta, jo, &Succession::Coup { pillar: Pillar::Party });
+            assert!(crate::blocs::leader_row(&junta, jo).unwrap().heir.is_some());
+            seat_office(&mut junta, jo, &how);
+            let replacement = crate::blocs::leader(&junta, jo).unwrap();
+            assert_eq!(replacement.office, "head of state");
+            assert_ne!(replacement.described.as_deref(), Some("Hassan bin Talal"));
+        }
+        let mut off = w1990();
+        let saved = crate::save(&off);
+        seat_office(&mut off, NationId::SaoTome, &Succession::Coup { pillar: Pillar::Party });
+        seat_office(&mut off, NationId::SaoTome, &Succession::Programme);
+        assert_eq!(crate::save(&off), saved);
+    }
+
+    #[test]
+    fn sourced_army_presence_keeps_funded_and_civilian_control_guards() {
+        for id in crate::army_institutions::opening_institutions().iter().map(|r| r.nation) {
+            let mut w = world_1990(roads_rules(7));
+            let n = w.nation_mut(id);
+            n.mil_spend_gdp = 0.20;
+            n.growth_last = 0.04;
+            n.inflation = 0.02;
+            n.stability = 85.0;
+            n.war_exhaustion = 0.0;
+            assert_eq!(army_civilian_confidence_penalty(&w, id), 0.0);
+            assert!(pillar_targets(&w, id, &[Pillar::Army])[0].1 >= 0.80);
+            for _ in 0..48 {
+                state_mut(&mut w, id).unwrap().months_in_office += 1;
+                electoral_army_tick(&mut w, id);
+                assert!(!maybe_electoral_coup(&mut w, id), "funded and quiet {:?}", id);
+            }
+            assert!(state(&w, id).unwrap().loyalty(Pillar::Army) > 0.80);
+            // Presence permits the ordinary route under real hostile conditions,
+            // but robust civilian control and a currently loyal service still
+            // close it. No nation-specific trigger or special loyalty is added.
+            w.nation_mut(id).stability = 0.0;
+            w.nation_mut(id).inflation = 1.0;
+            let g = state_mut(&mut w, id).unwrap();
+            g.coup_pressure = 1.5;
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.85;
+            assert!(!maybe_electoral_coup(&mut w, id), "loyal Army resists the crisis trigger");
+            state_mut(&mut w, id).unwrap().pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.10;
+            w.nation_mut(id).authoritarianism = 0.20;
+            assert_eq!(army_civilian_confidence_penalty(&w, id), 0.0, "strong civilian control adds no political disloyalty");
+            assert!(pillar_targets(&w, id, &[Pillar::Army])[0].1 >= 0.80);
+            w.nation_mut(id).authoritarianism = 0.45;
+            assert!(maybe_electoral_coup(&mut w, id), "sourced institution participates in the ordinary hostile-Army route");
+            assert!(w.headlines.iter().any(|h| h.contains(&crate::army_institutions::institution(id).unwrap().name)));
+        }
+    }
+
+    #[test]
+    fn an_annulled_first_ballot_has_no_elected_mandate_or_pending_deadline() {
+        let id = NationId::Algeria;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).stability = 10.0;
+        w.nation_mut(id).authoritarianism = 0.55;
+        let g = state_mut(&mut w, id).unwrap();
+        g.awaiting_first_election = true;
+        g.elected = false;
+        let others = g.support.len() - 1;
+        for (party, share) in &mut g.support { *share = if party == "dz_fis" { 0.75 } else { 0.25 / others as f64 }; }
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert!(!g.elected && !g.awaiting_first_election);
+        assert!(g.vote_anchor.is_none(), "an annulled ballot cannot replace constituency evidence");
+        assert_eq!(g.next_election, (0, 0));
+        assert!(g.banned.iter().any(|p| p == "dz_fis"));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(crate::data::Tie::Pillar(Pillar::Army)));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Nationalist));
+    }
+
+    #[test]
+    fn pending_ballot_metadata_is_absent_for_old_saves_and_inert_with_the_lens_off() {
+        let mut off = w1990();
+        let saved = crate::save(&off);
+        assert!(!saved.contains("awaiting_first_election"));
+        let loaded = crate::load(&saved).unwrap();
+        assert!(loaded.governments.states.iter().all(|g| !g.awaiting_first_election));
+        assert_eq!(crate::save(&loaded), saved);
+        let id = NationId::Indonesia;
+        state_mut(&mut off, id).unwrap().elected = true;
+        off.nation_mut(id).authoritarianism = 0.30;
+        schedule_first_elections(&mut off, id, 18);
+        assert!(state(&off, id).unwrap().elected, "retain the off-path legacy field semantics");
+        assert!(!state(&off, id).unwrap().awaiting_first_election);
+        assert!(off.leadership.is_none());
+    }
+
+    #[test]
+    fn the_current_party_apparatus_cannot_resurrect_a_defeated_historical_programme() {
+        let id = NationId::Afghanistan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).authoritarianism = 0.85;
+        let g = state_mut(&mut w, id).unwrap();
+        g.regime_bloc = Some(Bloc::Islamist);
+        g.movements = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.60), (Bloc::Nationalist, 0.10),
+            (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.098),
+        ];
+        g.months_in_office = 48;
+        g.coup_pressure = 1.2;
+        for (p, loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Party { 0.10 } else { 0.80 }; }
+        assert!(crate::blocs::bloc_can_win(&w, id, Bloc::Communist),
+            "the deposed party remains an actual political organisation");
+        assert_eq!(regime_coup_bloc(&w, id, Pillar::Party), Some(Bloc::Islamist));
+        maybe_coup(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Islamist));
+        assert_eq!(g.months_in_office, 0);
+        assert_eq!(g.coup_pressure, 0.0);
+        assert_eq!(g.loyalty(Pillar::Party), 0.90);
+        assert!(w.headlines.iter().any(|h| h.contains("COUP IN AFGHANISTAN: the Islamist governing organisation")),
+            "the coup and its actual current organisation remain visible");
+    }
+
+    #[test]
+    fn foreign_backing_alone_cannot_change_an_internal_coups_programme() {
+        let id = NationId::China;
+        let mut w = world_1990(roads_rules(7));
+        let g = state_mut(&mut w, id).unwrap();
+        g.movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.40),
+            (Bloc::Nationalist, 0.30), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.198),
+        ];
+        for _ in 0..4 { crate::statecraft::add_backing(&mut w, NationId::USA, id, Bloc::Nationalist); }
+        assert!(crate::blocs::influence(&w, id)[Bloc::Nationalist as usize].1 > 0.40);
+        assert_eq!(regime_coup_bloc(&w, id, Pillar::Army), Some(Bloc::Communist));
+    }
+
+    #[test]
+    fn ai_army_funding_is_priced_affordable_and_does_not_override_owned_budgets() {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        {
+            let n = w.nation_mut(id);
+            n.gdp = 100.0;
+            n.mil_spend_gdp = 0.001;
+            n.tax_rate = 0.50;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+        }
+        state_mut(&mut w, id).unwrap().pillars.iter_mut()
+            .find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        let floor = ai_army_funding_floor(&w, id).unwrap();
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&w, &command).unwrap();
+        assert!(floor > 0.001 && price > 0.0);
+        let mut insolvent = w.clone();
+        insolvent.nation_mut(id).tax_rate = 0.001;
+        insolvent.nation_mut(id).oil_mbd = 0.0;
+        assert_eq!(ai_army_funding_floor(&insolvent, id), Some(0.0),
+            "a deficit is not authorization for additional military spending");
+        ai_government(&mut w);
+        assert_eq!(w.nation(id).mil_spend_gdp, floor);
+        assert!((w.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        let terms = crate::economy::growth_terms(w.nation(id), w.nation(id).state_invest_gdp,
+            w.nation(id).interest_rate, &crate::economy::Conditions::of(&w, id));
+        assert!(crate::economy::Fiscal::of(w.nation(id), &terms).balance_gdp >= -1e-12);
+        let after = w.nation(id).political_capital;
+        ai_government(&mut w);
+        assert_eq!(w.nation(id).political_capital, after, "no repeated appropriation charge");
+        w.player = Some(id);
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+        w.player = None;
+        // Opening the fiscal books transfers budget authority to the fiscal
+        // plan/program subsystem even while the nation remains AI-controlled.
+        let allocation = w.nation(id).budget_for(w.year).allocations;
+        crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+            nation: id, fiscal_year: 1990, allocations: allocation,
+        }).unwrap();
+        assert!(w.nation(id).on_the_books());
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+    }
+
+    #[test]
+    fn ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources() {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut w, id).unwrap().army_authority = None;
+        {
+            let n = w.nation_mut(id);
+            n.gdp = 100.0;
+            n.tax_rate = 0.50;
+            n.oil_mbd = 0.0;
+            n.mil_spend_gdp = 0.001;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+            // A moderate-autonomy crisis can be funded to the desired margin
+            // throughout the declared confidence sensitivity range. The old
+            // .55 fixture becomes politically unreachable at weight .90;
+            // separate controls below require the AI to respect that limit.
+            n.authoritarianism = 0.35;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.10;
+        }
+        let party = state(&w, id).unwrap().leader().unwrap().to_string();
+        state_mut(&mut w, id).unwrap().political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.50,
+        });
+        let fiscal = |world: &WorldState| {
+            let n = world.nation(id);
+            let terms = crate::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate,
+                &crate::economy::Conditions::of(world, id));
+            crate::economy::Fiscal::of(n, &terms)
+        };
+        let penalty = army_civilian_confidence_penalty(&w, id);
+        assert!(penalty > 0.15, "fixture needs a real established civilian crisis");
+        assert!(0.85 - w.nation(id).war_exhaustion * 0.45 - penalty > 0.40,
+            "positive inversion fixture must be reachable within useful resources");
+        let before_target = pillar_targets(&w, id, &[Pillar::Army])[0].1;
+        let floor = ai_army_funding_floor(&w, id).unwrap();
+        let available = fiscal(&w).balance_gdp + w.nation(id).mil_spend_gdp;
+        assert!(floor > w.nation(id).mil_spend_gdp && floor < available);
+        let saved = crate::save(&w);
+        let rng = w.rng.state;
+        assert_eq!(ai_army_funding_floor(&w, id), Some(floor));
+        assert_eq!(crate::save(&w), saved, "reading a funding need is pure");
+        assert_eq!(w.rng.state, rng);
+        assert_eq!(ai_army_funding_floor(&crate::load(&saved).unwrap(), id), Some(floor));
+
+        let mut tight = w.clone();
+        tight.nation_mut(id).tax_rate -= available - floor * 0.5;
+        let tight_cap = fiscal(&tight).balance_gdp + tight.nation(id).mil_spend_gdp;
+        assert!(tight_cap > 0.001 && tight_cap < floor);
+        let tight_floor = ai_army_funding_floor(&tight, id).unwrap();
+        assert!((tight_floor - tight_cap).abs() < 1e-12);
+        let civilian = tight.nation(id).state_invest_gdp;
+        crate::apply_command(&mut tight, &crate::Command::SetMilSpend { nation: id, share: tight_floor }).unwrap();
+        assert!(fiscal(&tight).balance_gdp >= -1e-12, "no new borrowing buys the target");
+        assert_eq!(tight.nation(id).state_invest_gdp, civilian);
+        assert!(pillar_targets(&tight, id, &[Pillar::Army])[0].1 < 0.40,
+            "an unaffordable political target remains below the desired margin");
+
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&w, &command).unwrap();
+        let loyalty = state(&w, id).unwrap().loyalty(Pillar::Army);
+        crate::apply_command(&mut w, &command).unwrap();
+        assert!((w.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        assert_eq!(state(&w, id).unwrap().loyalty(Pillar::Army), loyalty,
+            "appropriation does not grant immediate loyalty");
+        assert!(fiscal(&w).balance_gdp >= -1e-12);
+        let actual = pillar_targets(&w, id, &[Pillar::Army])[0].1;
+        assert!(actual > before_target && (actual - 0.40).abs() < 1e-12,
+            "the paid appropriation must invert the real target, got {actual}");
+
+        // Political opposition alone can exceed what provisioning can repair.
+        // No war loss is needed, and throwing extra money beyond a fully
+        // equipped force cannot buy away its independent political grievance.
+        let mut political = w.clone();
+        political.nation_mut(id).authoritarianism = 0.59;
+        political.nation_mut(id).war_exhaustion = 0.0;
+        state_mut(&mut political, id).unwrap().political_record.as_mut().unwrap().performance = -1.0;
+        assert!(is_electoral(&political, id));
+        assert!(army_civilian_confidence_penalty(&political, id) > 0.50,
+            "even the full material target must remain below the coup line");
+        let n = political.nation(id);
+        let full_resources = 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+        let useful_share = full_resources * army_personnel_assessment(&political, id).unwrap().members
+            / (n.gdp * 1_000_000_000.0);
+        let political_floor = ai_army_funding_floor(&political, id).unwrap();
+        assert!((political_floor - useful_share).abs() < 1e-12);
+        assert!(political_floor < fiscal(&political).balance_gdp + n.mil_spend_gdp,
+            "this control is politically limited, not cash limited");
+        crate::apply_command(&mut political, &crate::Command::SetMilSpend { nation: id, share: political_floor }).unwrap();
+        assert!(pillar_targets(&political, id, &[Pillar::Army])[0].1 < 0.35);
+        assert!((army_resources_per_member(&political, id).unwrap() - full_resources).abs() < 1e-9);
+        assert_eq!(ai_army_funding_floor(&political, id), Some(political_floor));
+
+        let mut exhausted = w.clone();
+        exhausted.nation_mut(id).war_exhaustion = 1.0;
+        let n = exhausted.nation(id);
+        let full_basket = 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+        let full_share = full_basket * army_personnel_assessment(&exhausted, id).unwrap().members
+            / (n.gdp * 1_000_000_000.0);
+        assert!(full_share < fiscal(&exhausted).balance_gdp + n.mil_spend_gdp);
+        let capped = ai_army_funding_floor(&exhausted, id).unwrap();
+        assert!((capped - full_share).abs() < 1e-12);
+        crate::apply_command(&mut exhausted, &crate::Command::SetMilSpend { nation: id, share: capped }).unwrap();
+        let capped_target = pillar_targets(&exhausted, id, &[Pillar::Army])[0].1;
+        assert!(capped_target < 0.35, "money cannot erase overwhelming war and political losses");
+        assert!((army_resources_per_member(&exhausted, id).unwrap() - full_basket).abs() < 1e-9);
+        assert_eq!(ai_army_funding_floor(&exhausted, id), Some(capped),
+            "the AI does not chase an unreachable margin past the full basket");
+        exhausted.rules.ideology_blocs = false;
+        assert_eq!(ai_army_funding_floor(&exhausted, id), None);
+    }
+
+    #[test]
+    fn ai_can_fund_a_midyear_army_crisis_once_without_free_loyalty_or_tiny_churn() {
+        let id = NationId::Pakistan;
+        let mut base = world_1990(roads_rules(7));
+        base.month = 7;
+        {
+            let n = base.nation_mut(id);
+            n.gdp = 100.0;
+            n.tax_rate = 0.50;
+            n.oil_mbd = 0.0;
+            n.mil_spend_gdp = 0.001;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+        }
+        let party = state(&base, id).unwrap().leader().unwrap().to_string();
+        let g = state_mut(&mut base, id).unwrap();
+        g.political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.50,
+        });
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.32;
+        g.coup_pressure = 0.80;
+        let floor = ai_army_funding_floor(&base, id).unwrap();
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&base, &command).unwrap();
+        assert!(price > 0.0 && floor >= base.nation(id).mil_spend_gdp + 0.001);
+        let mut monthly = base.clone();
+        let rng = monthly.rng.clone();
+        ai_government(&mut monthly);
+        assert_eq!(monthly.nation(id).mil_spend_gdp, floor, "real July crisis need not wait for January");
+        assert!((monthly.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        assert_eq!(state(&monthly, id).unwrap().loyalty(Pillar::Army), 0.32);
+        assert_eq!(state(&monthly, id).unwrap().coup_pressure, 0.80, "no pressure reset buys safety");
+        assert_eq!(monthly.rng, rng);
+        let paid_capital = monthly.nation(id).political_capital;
+        for month in [7, 8, 9] {
+            monthly.month = month;
+            ai_government(&mut monthly);
+            assert_eq!(monthly.nation(id).political_capital, paid_capital, "same adequate allocation is not rebought");
+        }
+        let saved = crate::save(&monthly);
+        let mut loaded = crate::load(&saved).unwrap();
+        ai_government(&mut loaded);
+        assert_eq!(loaded.nation(id).mil_spend_gdp, floor);
+        assert_eq!(loaded.nation(id).political_capital, paid_capital);
+
+        let mut daily = base.clone();
+        daily.rules.daily_simulation = true;
+        let days = crate::world::days_in_month(daily.year, daily.month);
+        for day in 1..days {
+            daily.day = day;
+            ai_government(&mut daily);
+            assert_eq!(daily.nation(id).mil_spend_gdp, 0.001, "daily play waits for the same month-end review");
+            assert_eq!(daily.nation(id).political_capital, 100.0);
+        }
+        daily.day = days;
+        ai_government(&mut daily);
+        assert_eq!(daily.nation(id).mil_spend_gdp, floor);
+        assert_eq!(daily.nation(id).political_capital, paid_capital);
+        ai_government(&mut daily);
+        assert_eq!(daily.nation(id).political_capital, paid_capital, "one paid adjustment, not thirty-one");
+
+        let mut tiny = base.clone();
+        tiny.nation_mut(id).mil_spend_gdp = floor - 0.0005;
+        ai_government(&mut tiny);
+        assert_eq!(tiny.nation(id).mil_spend_gdp, floor - 0.0005);
+        assert_eq!(tiny.nation(id).political_capital, 100.0, "existing spending hysteresis remains");
+        let mut quiet = base.clone();
+        state_mut(&mut quiet, id).unwrap().pillars.iter_mut()
+            .find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.45;
+        ai_government(&mut quiet);
+        assert_eq!(quiet.nation(id).mil_spend_gdp, 0.001, "no extra midyear review above the margin");
+        quiet.month = 1;
+        ai_government(&mut quiet);
+        assert_eq!(quiet.nation(id).mil_spend_gdp, floor, "the ordinary annual review remains available");
+        for control in 0..4 {
+            let mut blocked = base.clone();
+            match control {
+                0 => blocked.nation_mut(id).political_capital = 0.0,
+                1 => blocked.nation_mut(id).tax_rate = 0.001,
+                2 => blocked.player = Some(id),
+                _ => blocked.rules.ideology_blocs = false,
+            }
+            let capital = blocked.nation(id).political_capital;
+            ai_government(&mut blocked);
+            assert_eq!(blocked.nation(id).mil_spend_gdp, 0.001, "blocked control {control} cannot receive free funding");
+            assert_eq!(blocked.nation(id).political_capital, capital);
+        }
+    }
+
+    #[test]
+    fn party_discipline_needs_a_domestic_constituency_and_stays_legacy_when_off() {
+        let id = NationId::China;
+        let mut w = world_1990(roads_rules(7));
+        let strong = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        state_mut(&mut w, id).unwrap().movements[Bloc::Communist as usize].1 = 0.20;
+        let weak = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        assert!(strong > crate::blocs::ROUND_TABLE_LOYALTY);
+        assert!(weak < crate::blocs::ROUND_TABLE_LOYALTY);
+        crate::statecraft::add_backing(&mut w, NationId::USSR, id, Bloc::Communist);
+        assert_eq!(pillar_targets(&w, id, &[Pillar::Party])[0].1, weak);
+        w.rules.ideology_blocs = false;
+        let off_weak = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        state_mut(&mut w, id).unwrap().movements[Bloc::Communist as usize].1 = 0.80;
+        assert_eq!(pillar_targets(&w, id, &[Pillar::Party])[0].1, off_weak);
+    }
+
+    /// R2 (Ridge's ruling, 2026-09-06), the Algerian shape: Algeria on the
+    /// roads in January 1990 — the FIS leading the table at 0.542, the ANP
+    /// a live pillar, authoritarianism 0.55, discontent 0.405 at the
+    /// transcribed stability 40 — with the ANP PAID (the seated 0.65, over
+    /// `ELECTORAL_COUP_ARMY`) holds its vote and seats the FIS; the same
+    /// Algeria with the ANP HOSTILE (0.30) annuls it, every Islamist party
+    /// banned, the regime Nationalist at max(0.55 + 0.25, 0.65) = 0.80.
+    /// Nationalist foreign backing behind the army counts the same way:
+    /// the ANP at 0.40 with 0.06 of Libyan money behind the Nationalist
+    /// movement reads 0.34 effective and annuls. Watched red with the
+    /// hostile-army line removed from `annulment_check`: "a paid army
+    /// annulled the election".
+    #[test]
+    fn a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way() {
+        let dz = NationId::Algeria;
+        let fresh = || {
+            let mut w = world_1990(roads_rules(7));
+            w.nation_mut(dz).stability = 40.0;
+            w.nation_mut(dz).inflation = 0.167;
+            // This test inspects annulment of a completed FIS-winning vote,
+            // not the FLN-only chamber inherited at the campaign start.
+            let system = polity_in(&w, dz).unwrap().system;
+            let g = state_mut(&mut w, dz).unwrap();
+            g.seats = seats_from(&g.support, system);
+            w
+        };
+        let army = |w: &mut WorldState, v: f64| {
+            if let Some(g) = state_mut(w, dz) {
+                for e in g.pillars.iter_mut() {
+                    if e.0 == Pillar::Army {
+                        e.1 = v;
+                    }
+                }
+            }
+        };
+        // Paid.
+        let mut w = fresh();
+        assert!(crate::blocs::discontent(&w, dz) >= ANNULMENT_DISCONTENT);
+        assert!(w.nation(dz).authoritarianism >= ANNULMENT_AUTH);
+        assert_eq!(would_be_leader(state(&w, dz).unwrap()).as_deref(), Some("dz_fis"));
+        let paid = crate::blocs::effective_army_loyalty(&w, dz);
+        assert!(paid >= ELECTORAL_COUP_ARMY, "{paid}");
+        assert_eq!(annulment_check(&w, dz), None, "a paid army annulled the election");
+        hold_election(&mut w, dz);
+        assert!(is_electoral(&w, dz));
+        assert_eq!(state(&w, dz).unwrap().leader(), Some("dz_fis"));
+        assert!(!w.headlines.iter().any(|h| h.contains("COUP IN ALGERIA")), "{:?}", w.headlines);
+        // Hostile.
+        let mut w = fresh();
+        army(&mut w, 0.30);
+        assert!(crate::blocs::effective_army_loyalty(&w, dz) < ELECTORAL_COUP_ARMY);
+        assert_eq!(annulment_check(&w, dz).as_deref(), Some("dz_fis"));
+        hold_election(&mut w, dz);
+        assert!(!is_electoral(&w, dz));
+        let g = state(&w, dz).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.banned, vec!["dz_fis".to_string()]);
+        assert!((w.nation(dz).authoritarianism - 0.80).abs() < 1e-12);
+        assert!(w.headlines.iter().any(|h| h == "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won."), "{:?}", w.headlines);
+        // Hostile through foreign money behind the army's colour.
+        let mut w = fresh();
+        army(&mut w, 0.40);
+        assert_eq!(annulment_check(&w, dz), None);
+        crate::statecraft::add_backing(&mut w, NationId::Libya, dz, Bloc::Nationalist);
+        let eff = crate::blocs::effective_army_loyalty(&w, dz);
+        assert!((eff - 0.34).abs() < 1e-9, "{eff}");
+        assert_eq!(annulment_check(&w, dz).as_deref(), Some("dz_fis"));
+        // Off: nothing, whatever the army reads.
+        let mut off = world_1990(GameRules { seed: 7, ideology_blocs: true, ..GameRules::default() });
+        off.nation_mut(dz).stability = 40.0;
+        army(&mut off, 0.30);
+        assert_eq!(annulment_check(&off, dz), None);
+    }
+    /// Route 3 (S4). Sudan — Bashir's army ruling as Islamist, the SCP a
+    /// Communist party in its dormant table — with the Communist movement
+    /// held at 0.46 (the line is 0.45), discontent at 0.70 (stability 0, inflation 18%) and the
+    /// army unpaid at 0.30: `uprising_armed` reads true, the road reads OPEN
+    /// and armed, and on the politics tick's own 0.10-a-month draw the
+    /// Communist movement takes power — authoritarianism max(auth, 0.80),
+    /// the regime Communist, the pillars reseeded with the home pillar at
+    /// 0.80 and the rest at 0.55, stability 45, output ×0.93. The same Sudan
+    /// with the takeover switch off never sees the line. Watched red with
+    /// `uprising_armed` returning false: "the Communist movement never took
+    /// power in 120 months".
+    #[test]
+    fn a_communist_movement_at_discontent_0_70_with_an_unpaid_army_takes_power() {
+        let sd = NationId::Sudan;
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sd);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sd) {
+                if g.movements.len() == 5 && g.regime_bloc != Some(Bloc::Communist) {
+                    // 0.46 rather than the 0.45 line itself: the shares are
+                    // renormalised on the read, and a movement written AT
+                    // the line can round a unit under it.
+                    let mut m = g.movements.clone();
+                    m[Bloc::Communist as usize].1 = 0.46;
+                    let rest: f64 = m.iter().filter(|(b, _)| *b != Bloc::Communist).map(|(_, v)| *v).sum();
+                    for e in m.iter_mut() {
+                        if e.0 != Bloc::Communist {
+                            e.1 = e.1 / rest * 0.54;
+                        }
+                    }
+                    g.movements = m;
+                    for e in g.pillars.iter_mut() {
+                        e.1 = if e.0 == Pillar::Army { 0.30 } else { 0.60 };
+                    }
+                }
+            }
+        };
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sd);
+        assert!(!is_electoral(&w, sd));
+        assert_eq!(crate::blocs::ruling_bloc(&w, sd), Some(Bloc::Islamist));
+        arm(&mut w);
+        assert!((crate::blocs::discontent(&w, sd) - 0.70).abs() < 1e-9, "{}", crate::blocs::discontent(&w, sd));
+        assert_eq!(crate::blocs::challenger(&w, sd).map(|(b, _)| b), Some(Bloc::Communist));
+        assert!(crate::blocs::uprising_armed(&w, sd));
+        let road = crate::blocs::takeover_readout(&w, sd).uprising;
+        assert!(road.open && road.armed, "{road:?}");
+        let auth_before = w.nation(sd).authoritarianism;
+        let mut month = None;
+        for m in 0..120 {
+            arm(&mut w);
+            let news = crate::tick_month(&mut w, &[]);
+            if news.iter().any(|h| h == "Revolution in Sudan: the Communist movement takes power.") {
+                month = Some(m + 1);
+                break;
+            }
+        }
+        let month = month.expect("the Communist movement never took power in 120 months");
+        println!("route 3: Sudan's Communist movement took power in month {month}");
+        let n = w.nation(sd);
+        assert!((n.authoritarianism - auth_before.max(0.80).min(0.95)).abs() < 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, sd).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Communist));
+        assert!(g.coalition.is_empty());
+        assert_eq!(g.months_in_office, 0);
+        assert_eq!(g.movements.len(), 5);
+        let home = polity(sd).unwrap().pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(sd, *p) == Bloc::Communist);
+        for (p, v) in &g.pillars {
+            let expected = if Some(*p) == home { 0.80 } else { 0.55 };
+            // The regime tick has walked them once since; the seed is the
+            // value before that walk, so read the direction, not the digit.
+            assert!((v - expected).abs() < 0.10, "{p:?} {v} against a seed of {expected}");
+        }
+        assert_eq!(g.pillars.len(), polity(sd).unwrap().pillars.len());
+
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(sd);
+        for _ in 0..120 {
+            arm(&mut off);
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.contains("takes power"), "the switch off: {h}");
+            }
+        }
+    }
+
+    /// A Western winner is refused in a party-less polity (S4, route 3).
+    /// Saudi Arabia has no party table; with the Western movement (present
+    /// through the merchant houses) held at 0.60 of the country, discontent
+    /// at 0.70 and the Guard unpaid, `challenger` names the next bloc that
+    /// could win instead, the road's reason names the missing table only
+    /// where nothing else could, and no "Western movement takes power" line
+    /// is ever printed in 120 months. Watched red with the Western arm of
+    /// `bloc_can_win` reading `by_party || by_pillar`: Saudi Arabia's
+    /// challenger read Western.
+    #[test]
+    fn a_western_winner_is_refused_in_a_party_less_polity() {
+        let sa = NationId::SaudiArabia;
+        assert!(polity(sa).unwrap().parties.is_empty());
+        let table = w1990();
+        assert!(crate::blocs::bloc_present(&table, sa, Bloc::Western), "the merchant houses carry the Western bloc");
+        assert!(!crate::blocs::bloc_can_win(&table, sa, Bloc::Western));
+        assert!(crate::blocs::bloc_can_win(&table, sa, Bloc::Islamist));
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sa);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sa) {
+                if g.movements.len() == 5 {
+                    let r = g.regime_bloc.unwrap();
+                    for e in g.movements.iter_mut() {
+                        e.1 = if e.0 == Bloc::Western { 0.60 } else if e.0 == r { 0.30 } else { 0.002 };
+                    }
+                    normalise_blocs(&mut g.movements);
+                    for e in g.pillars.iter_mut() {
+                        e.1 = 0.30;
+                    }
+                }
+            }
+        };
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sa);
+        arm(&mut w);
+        let ch = crate::blocs::challenger(&w, sa);
+        assert_ne!(ch.map(|(b, _)| b), Some(Bloc::Western), "{ch:?}");
+        let strongest = crate::blocs::strongest_challenger(&w, sa).map(|(b, _)| b);
+        assert_eq!(strongest, Some(Bloc::Western));
+        for _ in 0..120 {
+            arm(&mut w);
+            for h in crate::tick_month(&mut w, &[]) {
+                assert!(!h.starts_with("Revolution in Saudi Arabia: the Western movement"), "{h}");
+            }
+        }
+        // The reason, where nothing else could win: a polity whose only
+        // present non-ruling bloc is Western through a pillar.
+        let mut lone = world_1990(roads_rules(7));
+        if let Some(g) = state_mut(&mut lone, sa) {
+            for e in g.movements.iter_mut() {
+                e.1 = if e.0 == Bloc::Western { 0.60 } else if e.0 == Bloc::NonAligned { 0.40 } else { 0.0 };
+            }
+        }
+        // Islamist and Nationalist can still win through the ulema and the
+        // Guard, so the road is open on one of them; the reason is served
+        // only where `challenger` is empty, which needs a polity with no
+        // winnable non-ruling bloc at all — asserted on the readout's word.
+        assert_eq!(crate::blocs::uprising_closed(&lone, sa), None);
+        assert_eq!(crate::blocs::NO_TABLE_FOR_WESTERN, "no party table to seat a Western winner");
+    }
+
+    /// The invariant (S4): a stable democracy never sees routes 2-4 over
+    /// thirty-five years with the roads on. Six democracies, seeds 0..3 —
+    /// an invariant, so the sample is a budget and not a bar (iron rule 7).
+    #[test]
+    fn a_stable_democracy_never_sees_the_roads_over_thirty_five_years() {
+        let calm = [NationId::USA, NationId::UK, NationId::Sweden, NationId::Switzerland, NationId::Japan, NationId::Canada];
+        for seed in 0..4u64 {
+            let mut w = world_1990(GameRules { seed, ideology_blocs: true, ideology_takeover: true, ..GameRules::default() });
+            for _ in 0..420 {
+                for h in crate::tick_month(&mut w, &[]) {
+                    for id in calm {
+                        let name = id.name();
+                        let hit = h.starts_with(&format!("COUP IN {}", name.to_uppercase()))
+                            || h.starts_with(&format!("Revolution in {name}"))
+                            || h.starts_with(&format!("{name} convenes a round table"))
+                            || h.starts_with(&format!("{name} suspends its constitution"))
+                            || h.contains(&format!("in {name} sits down"));
+                        assert!(!hit, "seed {seed}: {h}");
+                    }
+                }
+            }
+            for id in calm {
+                assert!(is_electoral(&w, id), "seed {seed}: {} stopped voting", id.name());
+            }
+        }
+    }
+    /// Route 4 (S4). Indonesia — Golkar's regime with a live table and a
+    /// Party pillar — with the Western movement held at 0.45, stability at
+    /// 50 and Golkar's loyalty at 0.40: authoritarianism walks down 0.01 a
+    /// month from its transcribed value, crosses the 0.60 ceiling, and the
+    /// state opens — the next tick sets a date for its first free elections
+    /// through the seam and the country votes eighteen months later. Saudi
+    /// Arabia, party-less, under the same pressure (the merchant houses
+    /// carry the Western bloc) walks to the 0.55 floor exactly and stays a
+    /// regime. With the takeover switch off neither moves. Watched red with
+    /// `round_table_drift` not called from the tick: "Indonesia never opened
+    /// in 60 months".
+    #[test]
+    fn the_round_table_walks_authoritarianism_to_the_floor_and_opens_the_state() {
+        let press = |w: &mut WorldState, id: NationId| {
+            w.nation_mut(id).stability = 50.0;
+            if let Some(g) = state_mut(w, id) {
+                if g.movements.len() == 5 {
+                    let r = g.regime_bloc.unwrap();
+                    for e in g.movements.iter_mut() {
+                        e.1 = if e.0 == Bloc::Western { 0.45 } else if e.0 == r { 0.50 } else { 0.05 / 3.0 };
+                    }
+                    normalise_blocs(&mut g.movements);
+                    for e in g.pillars.iter_mut() {
+                        e.1 = 0.40;
+                    }
+                }
+            }
+        };
+        let (id_, sa) = (NationId::Indonesia, NationId::SaudiArabia);
+        // OFF.
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(id_);
+        let auth0 = off.nation(id_).authoritarianism;
+        for _ in 0..60 {
+            press(&mut off, id_);
+            press(&mut off, sa);
+            crate::tick_month(&mut off, &[]);
+        }
+        assert_eq!(off.nation(id_).authoritarianism, auth0, "the switch off drifted Indonesia");
+        assert!(!is_electoral(&off, id_));
+
+        // ON: Indonesia opens.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(id_);
+        let auth0 = w.nation(id_).authoritarianism;
+        assert!(auth0 >= ELECTORAL_CEILING, "{auth0}");
+        press(&mut w, id_);
+        assert!(crate::blocs::round_table_armed(&w, id_));
+        let road = crate::blocs::takeover_readout(&w, id_).round_table;
+        assert!(road.open && road.armed, "{road:?}");
+        let mut opened: Option<usize> = None;
+        let mut voted: Option<usize> = None;
+        let mut last_auth = auth0;
+        for m in 0..60 {
+            press(&mut w, id_);
+            press(&mut w, sa);
+            let news = crate::tick_month(&mut w, &[]);
+            let a = w.nation(id_).authoritarianism;
+            if opened.is_none() {
+                assert!((last_auth - a - 0.01).abs() < 1e-9 || is_electoral(&w, id_), "month {m}: {last_auth} -> {a}");
+            }
+            last_auth = a;
+            if news.iter().any(|h| h.starts_with("Indonesia sets a date for its first free elections")) {
+                opened = Some(m + 1);
+            }
+            if news.iter().any(|h| h.starts_with("Indonesia votes:")) {
+                voted = Some(m + 1);
+                break;
+            }
+        }
+        let opened = opened.expect("Indonesia never opened in 60 months");
+        let voted = voted.expect("Indonesia never voted in 60 months");
+        println!("route 4: Indonesia from {auth0:.2} opened in month {opened} and voted in month {voted}");
+        assert!(is_electoral(&w, id_));
+        assert_eq!(voted, opened + 18);
+        // Twenty steps of 0.01 from 0.80 land on the ceiling to within a
+        // rounding unit, so the crossing is the twentieth or the
+        // twenty-first step, and the date is set the tick after.
+        let steps = ((auth0 - ELECTORAL_CEILING) / 0.01).floor() as usize;
+        assert!((steps + 1..=steps + 2).contains(&opened), "the step is 0.01 a month: opened in month {opened}, {steps} steps to the ceiling");
+        // Saudi Arabia walks to the floor and stays a regime.
+        let a = w.nation(sa).authoritarianism;
+        assert!((a - crate::blocs::ROUND_TABLE_FLOOR).abs() < 1e-12, "{a}");
+        assert!(!is_electoral(&w, sa));
+        assert_eq!(crate::blocs::takeover_readout(&w, id_).round_table.reason, crate::blocs::ALREADY_ELECTORAL);
+    }
+    /// The foreign payoff (S4). Sudan, backed by the Soviet Union behind its
+    /// Communist movement at 0.12 with a half-blown channel (heat 0.60), the
+    /// United States its top aid patron and the United Kingdom a smaller
+    /// one: on the Communist takeover the Soviet Union gains 40 with
+    /// Khartoum and loses 25 with Washington, and is exposed on the spot —
+    /// the usual costs (−35 with the target, so +5 net; reputation −12;
+    /// heat +0.25; the backing halved to 0.06 and marked) and the exposure
+    /// headline; every democracy other than Sudan loses 8 with it. The
+    /// Nationalist-over-Communist shape pays the Communist patrons −10
+    /// (Moscow, Beijing). Through the tick, the same Sudan's revolution
+    /// month carries the exposure line. With the switch off the plan is
+    /// `None` and nothing is written. Watched red with the payoff call
+    /// dropped from `uprising`: the relation with Khartoum did not move.
+    #[test]
+    fn the_sponsor_payoff_and_exposure_fire_on_takeover() {
+        use crate::statecraft::{self, add_backing, takeover_payoff, takeover_payoff_plan, PAYOFF_DEMOCRACY};
+        let (sd, su, us, uk, cn) = (NationId::Sudan, NationId::USSR, NationId::USA, NationId::UK, NationId::China);
+        let stage = |w: &mut WorldState| {
+            add_backing(w, su, sd, Bloc::Communist);
+            add_backing(w, su, sd, Bloc::Communist);
+            w.add_covert_heat(su, sd, 0.60);
+            w.statecraft.aid.push(AidFlow { patron: us, client: sd, kind: AidKind::Economic, share_gdp: 0.002, since_year: 1990 });
+            w.statecraft.aid.push(AidFlow { patron: uk, client: sd, kind: AidKind::Economic, share_gdp: 0.001, since_year: 1990 });
+        };
+        let mut off = world_1990(on_rules(7));
+        stage(&mut off);
+        assert_eq!(takeover_payoff_plan(&off, sd, Bloc::Communist, Some(Bloc::Islamist)), None);
+        let before = (crate::state_hash(&off), off.rng.state);
+        takeover_payoff(&mut off, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert_eq!((crate::state_hash(&off), off.rng.state), before, "the switch off wrote a payoff");
+
+        let mut w = world_1990(roads_rules(7));
+        stage(&mut w);
+        assert!((w.backing_of(su, sd, Bloc::Communist) - 0.12).abs() < 1e-12);
+        let plan = takeover_payoff_plan(&w, sd, Bloc::Communist, Some(Bloc::Islamist)).unwrap();
+        assert_eq!(plan.sponsors, vec![(su, 0.12, true)]);
+        assert_eq!(plan.top_patron, Some(us));
+        assert!(plan.loser_patrons.is_empty(), "no great power rules in the Islamist colour");
+        let dems = democracies(&w, sd);
+        assert!(dems.contains(&uk) && dems.contains(&us) && !dems.contains(&su));
+        assert_eq!(plan.democracies.len(), dems.len());
+        let (r_sd, r_us, r_uk, rep, stab) =
+            (w.relation(su, sd), w.relation(su, us), w.relation(uk, sd), w.reputation(su), w.nation(sd).stability);
+        let friend_us = w.relation(sd, us) >= 40.0;
+        let effects = statecraft::takeover_payoff_effects(&w, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert!(effects[0].contains("Soviet Union holds 0.120") && effects[0].contains("+40") && effects[0].contains("-25 with United States") && effects[0].contains("exposed on the spot"), "{effects:?}");
+        assert!(effects[1].contains(&format!("-8 with {} democracies", dems.len())), "{effects:?}");
+        takeover_payoff(&mut w, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert!((w.relation(su, sd) - (r_sd + 40.0 - 35.0)).abs() < 1e-9, "{} -> {}", r_sd, w.relation(su, sd));
+        let expected_us = r_us - 25.0 - if friend_us { 5.0 } else { 0.0 };
+        assert!((w.relation(su, us) - expected_us).abs() < 1e-9, "{} -> {} (friend {friend_us})", r_us, w.relation(su, us));
+        assert!((w.relation(uk, sd) - (r_uk - PAYOFF_DEMOCRACY)).abs() < 1e-9);
+        assert!((w.reputation(su) - (rep - 12.0)).abs() < 1e-9);
+        assert!((w.covert_heat(su, sd) - 0.85).abs() < 1e-9);
+        assert!((w.nation(sd).stability - (stab + 6.0).min(100.0)).abs() < 1e-9);
+        assert!((w.backing_of(su, sd, Bloc::Communist) - 0.06).abs() < 1e-12, "halved on exposure");
+        assert!(w.statecraft.backing.iter().any(|b| b.sponsor == su && b.target == sd && b.exposed));
+        assert!(w.headlines.iter().any(|h| h == "Sudan exposes Soviet Union backing the Communist movement in Sudan — the scandal rallies the country behind its government."), "{:?}", w.headlines);
+
+        // The loser's patrons: a Nationalist regime over a Communist one.
+        let mut w = world_1990(roads_rules(7));
+        let plan = takeover_payoff_plan(&w, sd, Bloc::Nationalist, Some(Bloc::Communist)).unwrap();
+        assert!(plan.loser_patrons.contains(&su) && plan.loser_patrons.contains(&cn), "{:?}", plan.loser_patrons);
+        let (r_su, r_cn) = (w.relation(su, sd), w.relation(cn, sd));
+        takeover_payoff(&mut w, sd, Bloc::Nationalist, Some(Bloc::Communist));
+        assert!((w.relation(su, sd) - (r_su - 10.0)).abs() < 1e-9);
+        assert!((w.relation(cn, sd) - (r_cn - 10.0)).abs() < 1e-9);
+
+        // Through the tick: the revolution month carries the exposure.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sd);
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sd);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sd) {
+                if g.movements.len() == 5 && g.regime_bloc != Some(Bloc::Communist) {
+                    let mut m = g.movements.clone();
+                    m[Bloc::Communist as usize].1 = 0.46;
+                    let rest: f64 = m.iter().filter(|(b, _)| *b != Bloc::Communist).map(|(_, v)| *v).sum();
+                    for e in m.iter_mut() {
+                        if e.0 != Bloc::Communist {
+                            e.1 = e.1 / rest * 0.54;
+                        }
+                    }
+                    g.movements = m;
+                    for e in g.pillars.iter_mut() {
+                        e.1 = if e.0 == Pillar::Army { 0.30 } else { 0.60 };
+                    }
+                }
+            }
+            // The stock cools 0.006 a month; kept at the sponsor cap.
+            for b in w.statecraft.backing.iter_mut() {
+                if b.sponsor == su && b.target == sd {
+                    b.weight = 0.12;
+                }
+            }
+            if w.backing_of(su, sd, Bloc::Communist) == 0.0 {
+                add_backing(w, su, sd, Bloc::Communist);
+                add_backing(w, su, sd, Bloc::Communist);
+            }
+            if w.covert_heat(su, sd) < 0.60 {
+                w.add_covert_heat(su, sd, 0.60 - w.covert_heat(su, sd));
+            }
+        };
+        let mut fired = None;
+        for m in 0..120 {
+            arm(&mut w);
+            let r_before = w.relation(su, sd);
+            let news = crate::tick_month(&mut w, &[]);
+            if news.iter().any(|h| h == "Revolution in Sudan: the Communist movement takes power.") {
+                assert!(news.iter().any(|h| h.starts_with("Sudan exposes Soviet Union backing the Communist movement")), "{news:?}");
+                assert!(w.relation(su, sd) > r_before, "Moscow was not paid: {r_before} -> {}", w.relation(su, sd));
+                fired = Some(m + 1);
+                break;
+            }
+        }
+        let fired = fired.expect("no revolution in 120 months");
+        println!("payoff: Sudan's revolution fired in month {fired} with the Soviet channel exposed");
+    }
+    /// Succession (D2): every rule seats the right description and never a
+    /// name. Poland re-electing Solidarity keeps Mazowiecki; the PSL winning
+    /// seats "the Polish People's Party government"; a Republican Guard coup
+    /// in Iraq seats "the Republican Guard"; a Communist takeover of Sudan
+    /// seats "the Sudanese Communist Party government" and a Nationalist one
+    /// "the Sudanese Armed Forces"; Bush's ceiling seats "a new Republican
+    /// Party president" in the month of 1997-01-20 (by the month, so the
+    /// legacy day-stepped clock agrees with the month-stepped one); Hussein's
+    /// death seats Hassan bin Talal — the transcribed heir, once — as King,
+    /// and a second death "the ruling house"; a Party coup against Fahd
+    /// seats Abdullah once and a programme after it "the ruling house". Over
+    /// forty years on the roads (seed 7) no emergent description is any
+    /// transcribed leader's name except that row's own heir, and no row's
+    /// `name` is ever anything but its transcribed one or null. With the
+    /// lens off nothing is written. Watched red with the heir kept on the
+    /// row after it was seated: Jordan's second death seated Hassan again.
+    #[test]
+    fn every_succession_rule_seats_the_right_description_and_never_a_name() {
+        use crate::blocs::{leader, leader_row};
+        let (pl, iq, sd, us, jo, sa) = (NationId::Poland, NationId::Iraq, NationId::Sudan, NationId::USA, NationId::Jordan, NationId::SaudiArabia);
+        let mut off = w1990();
+        seat_office(&mut off, pl, &Succession::Coup { pillar: Pillar::Army });
+        assert!(off.leadership.is_none());
+
+        let mut w = world_1990(on_rules(7));
+        let names: Vec<String> = w.leadership.as_ref().unwrap().iter().filter_map(|o| o.name.clone()).collect();
+        assert_eq!(names.len(), 132);
+        // Elections.
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_solidarity".into() });
+        assert_eq!(leader(&w, pl).unwrap().name.as_deref(), Some("Tadeusz Mazowiecki"), "the same leading party keeps the person");
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_psl".into() });
+        let l = leader(&w, pl).unwrap();
+        assert_eq!(l.name, None);
+        assert_eq!(l.described.as_deref(), Some("the Polish People's Party government"));
+        assert_eq!(l.party.as_deref(), Some("pl_psl"));
+        assert_eq!(l.since.as_deref(), Some("1990-01-01"));
+        assert_eq!(crate::blocs::leader_bloc(&w, pl), Some(bloc_of(pl, "pl_psl")));
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_solidarity".into() });
+        let l = leader(&w, pl).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Solidarity Citizens' Committee government"), "a removed incumbent never returns by name");
+        assert_eq!(l.name, None);
+        // Coups and takeovers.
+        seat_office(&mut w, iq, &Succession::Coup { pillar: Pillar::Army });
+        let l = leader(&w, iq).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Republican Guard"));
+        assert_eq!(l.pillar, Some(Pillar::Army));
+        assert_eq!(l.name, None);
+        seat_office(&mut w, sd, &Succession::Takeover { bloc: Bloc::Communist });
+        let l = leader(&w, sd).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Sudanese Communist Party government"));
+        assert_eq!(l.party.as_deref(), Some("sd_scp"));
+        let mut w2 = world_1990(on_rules(7));
+        seat_office(&mut w2, sd, &Succession::Takeover { bloc: Bloc::Nationalist });
+        assert_eq!(leader(&w2, sd).unwrap().described.as_deref(), Some("the Sudanese Armed Forces"));
+        // The term limit.
+        seat_office(&mut w, us, &Succession::TermLimit);
+        let l = leader(&w, us).unwrap();
+        assert_eq!(l.described.as_deref(), Some("a new Republican Party president"));
+        assert_eq!(l.office, "President of the United States");
+        assert_eq!(l.party.as_deref(), Some("us_rep"));
+        assert_eq!(l.must_leave_by, None);
+        // Death, and the heir once.
+        assert_eq!(leader(&w, jo).unwrap().name.as_deref(), Some("Hussein"));
+        seat_office(&mut w, jo, &Succession::Death);
+        let l = leader(&w, jo).unwrap();
+        assert_eq!(l.described.as_deref(), Some("Hassan bin Talal"));
+        assert_eq!(l.office, "King");
+        assert_eq!(l.pillar, Some(Pillar::Party));
+        assert!(l.heir.is_none(), "the heir is consumed");
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_some(), "the court still rules under the heir");
+        seat_office(&mut w, jo, &Succession::Death);
+        assert_eq!(leader(&w, jo).unwrap().described.as_deref(), Some("the ruling house"));
+        // A Party coup against a monarch, then a programme.
+        seat_office(&mut w, sa, &Succession::Coup { pillar: Pillar::Party });
+        assert_eq!(leader(&w, sa).unwrap().described.as_deref(), Some("Abdullah bin Abdulaziz Al Saud"));
+        seat_office(&mut w, sa, &Succession::Programme);
+        assert_eq!(leader(&w, sa).unwrap().described.as_deref(), Some("the ruling house"));
+        assert!(leader_row(&w, sa).unwrap().heir.is_none());
+        let sa_row = leader_row(&w, sa).unwrap();
+        assert!(sa_row.name.is_none() && sa_row.tie.is_none() && sa_row.also.is_empty());
+
+        // Through the real government tick: the transcribed 1997-01-20
+        // ceiling expires in its month, once. Do not require an incumbent to
+        // survive seven years of elections and mortality before testing the
+        // clock; an earlier lawful succession has already cleared its ceiling.
+        let mut w = world_1990(on_rules(7));
+        let incumbent = leader(&w, us).unwrap();
+        assert_eq!(incumbent.must_leave_by.as_deref(), Some("1997-01-20"));
+        let incumbent_name = incumbent.name.clone();
+        let current_party = incumbent.party.clone().unwrap();
+        let current_office = incumbent.office.clone();
+        let description = format!("a new {} president", spec(us, &current_party).unwrap().name);
+        let event = format!("United States is led by {description}.");
+        state_mut(&mut w, us).unwrap().next_election = (1998, 1);
+        w.year = 1996;
+        w.month = 12;
+        w.headlines.clear();
+        tick(&mut w);
+        assert_eq!(leader(&w, us).unwrap().name, incumbent_name, "no early term expiry");
+        assert_eq!(leader(&w, us).unwrap().must_leave_by.as_deref(), Some("1997-01-20"));
+        assert!(!w.headlines.iter().any(|h| h.starts_with("United States is led by")));
+
+        w.year = 1997;
+        w.month = 1;
+        w.headlines.clear();
+        tick(&mut w);
+        let events: Vec<_> = w.headlines.iter().filter(|h| h.starts_with("United States is led by")).collect();
+        assert_eq!(events, vec![&event], "one seating at the deadline month");
+        let successor = leader(&w, us).unwrap();
+        assert_eq!(successor.described.as_deref(), Some(description.as_str()));
+        assert_eq!(successor.party.as_deref(), Some(current_party.as_str()));
+        assert_eq!(successor.office, current_office);
+        assert_eq!(successor.since.as_deref(), Some("1997-01-01"));
+        assert!(successor.name.is_none() && successor.must_leave_by.is_none());
+        for month in [1, 2] {
+            w.month = month;
+            w.headlines.clear();
+            tick(&mut w);
+            assert!(!w.headlines.iter().any(|h| h.starts_with("United States is led by")),
+                "an expired term cannot seat another successor");
+            assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-01-01"));
+        }
+
+        // Forty years on the roads: never a name.
+        let mut w = world_1990(roads_rules(7));
+        let heirs: Vec<(NationId, String)> = w
+            .leadership
+            .as_ref()
+            .unwrap()
+            .iter()
+            .filter_map(|o| o.heir.as_ref().map(|h| (o.nation, h.name.clone())))
+            .collect();
+        let transcribed: Vec<(NationId, Option<String>)> =
+            w.leadership.as_ref().unwrap().iter().map(|o| (o.nation, o.name.clone())).collect();
+        for _ in 0..480 {
+            crate::tick_month(&mut w, &[]);
+        }
+        let mut emergent = 0usize;
+        for o in w.leadership.as_ref().unwrap() {
+            let was = transcribed.iter().find(|(n, _)| *n == o.nation).map(|(_, n)| n.clone()).unwrap();
+            assert!(o.name.is_none() || o.name == was, "{:?}: {:?}", o.nation, o.name);
+            if let Some(e) = &o.emergent {
+                emergent += 1;
+                assert!(o.name.is_none() && o.tie.is_none() && o.must_leave_by.is_none() && o.also.is_empty(), "{:?}", o.nation);
+                let own_heir = heirs.iter().any(|(n, h)| *n == o.nation && *h == e.described);
+                assert!(own_heir || !names.contains(&e.described), "{:?} seats a name: {}", o.nation, e.described);
+                assert!(!e.described.is_empty());
+            }
+        }
+        println!("succession: {emergent} offices changed hands in forty years on the roads (seed 7)");
+        assert!(emergent > 0, "forty years and nobody left office");
+    }
+    /// Repair (2026-09-06, the design skeptic's first departure): a vote does
+    /// not unseat a transcribed holder tied to a PILLAR. Jordan's row is
+    /// King Hussein, tie Party, an heir; the chamber is elected. With the
+    /// lens on, an election the tribal independents win over the Brotherhood
+    /// changes the government of the day and NOT the row: Hussein keeps the
+    /// office, the heir is untouched, `court_pillar` still reads the court
+    /// at authoritarianism 0.40 and up. Morocco's Hassan II (tie Party, no
+    /// heir, the chamber dissolved in the table) likewise when a vote seats
+    /// the Constitutional Union. A holder tied to a PARTY still gives way
+    /// to a new leading party (the existing D2 test). Watched red with the
+    /// pillar guard removed from `succession_seat`: Jordan read "the Tribal
+    /// and pro-government independents government" and the row's name None.
+    #[test]
+    fn an_election_changes_the_government_of_the_day_and_never_unseats_a_crown() {
+        for (id, winner, name) in [
+            (NationId::Jordan, "jo_tribal", "Hussein"),
+            (NationId::Morocco, "ma_uc", "Hassan II"),
+        ] {
+            let mut w = world_1990(on_rules(7));
+            let row = crate::blocs::leader_row(&w, id).expect("a transcribed row");
+            assert_eq!(row.name.as_deref(), Some(name));
+            let heir = row.heir.clone();
+            let parties: Vec<String> = pol_parties(id).iter().map(|p| p.id.to_string()).collect();
+            assert!(parties.iter().any(|p| p == winner), "{id:?}: {parties:?}");
+            let led_before = state(&w, id).unwrap().leader().map(|s| s.to_string());
+            assert_ne!(led_before.as_deref(), Some(winner));
+            {
+                let g = state_mut(&mut w, id).unwrap();
+                for e in g.support.iter_mut() {
+                    e.1 = if e.0 == winner { 0.70 } else { 0.30 / (parties.len() as f64 - 1.0) };
+                }
+            }
+            hold_election(&mut w, id);
+            let g = state(&w, id).unwrap();
+            assert_eq!(g.leader(), Some(winner), "{id:?}: the vote seated a new government of the day");
+            let row = crate::blocs::leader_row(&w, id).expect("the row still holds");
+            assert_eq!(row.name.as_deref(), Some(name), "{id:?}: the vote unseated the crown");
+            assert!(row.emergent.is_none(), "{id:?}: {:?}", row.emergent);
+            assert_eq!(row.heir, heir, "{id:?}: the heir was consumed");
+            w.nation_mut(id).authoritarianism = crate::blocs::COURT_RULES_ABOVE;
+            assert_eq!(crate::blocs::court_pillar(&w, id), Some(Pillar::Party), "{id:?}: the monarchy exception dissolved");
+        }
+    }
+
+    /// Repair (2026-09-06, the design skeptic's second departure): the
+    /// regime's own coup is `maybe_coup`'s block verbatim under the lens
+    /// alone — China's PLA removing the Central Committee leaves the regime
+    /// Communist, the colour it had. The 2026-09-22 repair keeps that programme
+    /// on the roads too unless a stronger organized domestic alternative
+    /// backs the mover. A deposed movement already at 0.35 is latched closed
+    /// the month it becomes a non-ruling movement,
+    /// so the next month prints no "passes a third". Watched red twice: with
+    /// the colour written under `ideology_blocs`, the lens-only regime read
+    /// Nationalist; with the latch line removed from `regime_break`, the
+    /// roads world printed "The Communist movement in China passes a third
+    /// of the country." the month after the coup.
+    #[test]
+    fn the_regime_s_own_coup_keeps_its_colour_under_the_lens_and_latches_the_deposed_movement_on_the_roads() {
+        let cn = NationId::China;
+        let stage = |w: &mut WorldState| {
+            let g = state_mut(w, cn).unwrap();
+            g.coup_pressure = 5.0;
+            g.months_in_office = 48;
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Army { 0.20 } else { 0.80 };
+            }
+        };
+        // The lens alone: the block verbatim, the colour kept.
+        let mut lens = world_1990(on_rules(7));
+        assert_eq!(state(&lens, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        stage(&mut lens);
+        maybe_coup(&mut lens, cn);
+        assert!(lens.headlines.iter().any(|h| h.starts_with("COUP IN CHINA")), "{:?}", lens.headlines);
+        let g = state(&lens, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Communist), "a takeover effect ran with the roads off");
+        assert_eq!(crate::blocs::ruling_bloc(&lens, cn), Some(Bloc::Communist));
+        assert_eq!(g.months_in_office, 0);
+        assert!(g.pillars.iter().any(|(p, v)| *p == Pillar::Army && *v == 0.90));
+        // An internal Army coup keeps the prevailing programme even on the
+        // roads. Changing the officeholder is a real coup, not a free change
+        // of the country's political organization or public support.
+        let mut roads = world_1990(roads_rules(7));
+        stage(&mut roads);
+        let before = state(&roads, cn).unwrap().movements.clone();
+        maybe_coup(&mut roads, cn);
+        assert_eq!(state(&roads, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        assert_eq!(state(&roads, cn).unwrap().movements, before);
+        assert!(roads.headlines.iter().any(|h| h.starts_with("COUP IN CHINA")));
+        assert_eq!(state(&roads, cn).unwrap().months_in_office, 0);
+
+        // A genuinely stronger organized alternative can change the regime's
+        // programme. Keep the deposed 35% movement latched at the transition.
+        let mut roads = world_1990(roads_rules(7));
+        stage(&mut roads);
+        state_mut(&mut roads, cn).unwrap().movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.35),
+            (Bloc::Nationalist, 0.45), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.098),
+        ];
+        assert_eq!(regime_coup_bloc(&roads, cn, Pillar::Army), Some(Bloc::Communist),
+            "the army's generic affinity alone did not create an independent political organisation");
+        state_mut(&mut roads, cn).unwrap().established_movements.push(Bloc::Nationalist);
+        maybe_coup(&mut roads, cn);
+        let g = state(&roads, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        let communist = g.movements.iter().find(|(b, _)| *b == Bloc::Communist).map(|(_, s)| *s).unwrap();
+        assert!(communist >= 0.30, "{communist}");
+        assert!(g.surging.contains(&Bloc::Communist), "{:?}", g.surging);
+        let news = crate::tick_month(&mut roads, &[]);
+        assert!(
+            !news.iter().any(|h| h.contains("movement in China passes a third")),
+            "a movement that did not move made the news: {news:?}"
+        );
+    }
+
+    /// Repair (2026-09-06, the design skeptic's fourth departure): the AI's
+    /// levers ride the deck's ONE 0.02 monthly draw, they do not take a
+    /// second. Every capital in the world is set to nothing but Warsaw's,
+    /// which holds 80 with stability 29 and authoritarianism 0.25 — a
+    /// suspension the AI would ask for AND a stratagem it can afford — and
+    /// `ai_stratagems` is run once: the RNG steps exactly once. Watched red
+    /// with the lever loop restored under the deck's loop: two steps.
+    #[test]
+    fn the_ai_s_levers_ride_the_deck_s_one_draw() {
+        use crate::Command;
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        for n in w.nations.iter_mut() {
+            n.political_capital = 0.0;
+        }
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 80.0;
+        }
+        assert_eq!(ai_lever(&w, pl), Some(Command::SuspendConstitution { nation: pl }));
+        let options = crate::stratagems::available(&w, pl);
+        assert!(options.iter().any(|s| s.cost <= 60.0), "Poland can afford no stratagem: {:?}", options.iter().map(|s| (s.id, s.cost)).collect::<Vec<_>>());
+        let before = w.rng.clone();
+        crate::stratagems::ai_stratagems(&mut w);
+        let mut probe = before.clone();
+        let mut steps = 0;
+        while probe != w.rng && steps < 8 {
+            probe.next_u64();
+            steps += 1;
+        }
+        assert_eq!(probe, w.rng, "the RNG moved more than eight steps");
+        assert_eq!(steps, 1, "one government with a lever and a card drew {steps} times");
+        // And with the lens off the same month draws exactly as it always
+        // did: once, for the card.
+        let mut off = w1990();
+        for n in off.nations.iter_mut() {
+            n.political_capital = 0.0;
+        }
+        {
+            let n = off.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 80.0;
+        }
+        assert_eq!(ai_lever(&off, pl), None);
+        let before = off.rng.clone();
+        crate::stratagems::ai_stratagems(&mut off);
+        let mut probe = before.clone();
+        let mut steps = 0;
+        while probe != off.rng && steps < 8 {
+            probe.next_u64();
+            steps += 1;
+        }
+        assert_eq!(steps, 1);
+    }
+
+    /// Repair (2026-09-06, the design skeptic's fifth departure): a ban has
+    /// the design's four arms and no cabinet arm. A coalition partner banned
+    /// (Poland's People's Party at authoritarianism 0.50) keeps its place on
+    /// the coalition record with no seats; the majority the chamber then
+    /// reads is arithmetic, not an effect of the lever. Watched red with
+    /// `g.coalition.retain(|q| *q != p.party)` restored in `ban_party`.
+    #[test]
+    fn a_ban_takes_seats_and_not_the_cabinet() {
+        use crate::{apply_command, Command};
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        w.nation_mut(pl).authoritarianism = 0.50;
+        w.nation_mut(pl).political_capital = 100.0;
+        {
+            let g = state_mut(&mut w, pl).unwrap();
+            g.coalition = vec!["pl_solidarity".to_string(), "pl_psl".to_string()];
+            assert!(g.in_government("pl_psl"));
+        }
+        let coalition_before = state(&w, pl).unwrap().coalition.clone();
+        let seats_before = state(&w, pl).unwrap().government_seats();
+        apply_command(&mut w, &Command::BanParty { nation: pl, party: "pl_psl".into() }).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.coalition, coalition_before, "the ban reached into the cabinet");
+        assert!(g.in_government("pl_psl"));
+        assert_eq!(g.seat_share("pl_psl"), 0.0);
+        assert!(g.government_seats() < seats_before);
+        assert_eq!(g.banned, vec!["pl_psl".to_string()]);
+        assert!(!ban_effects(&w, pl, "pl_sd").iter().any(|e| e.contains("cabinet")));
+    }
+
+    /// A change of government changes output, not the state's dollar debt or
+    /// treasury. Every actual caller shares the same settlement invariant.
+    #[test]
+    fn coups_refresh_open_book_debt_ratios_without_rewriting_legacy_debt() {
+        for route in 0..4 {
+            for books in [false, true] {
+                let id = match route {
+                    0 => NationId::Pakistan,
+                    2 => NationId::Jordan,
+                    _ => NationId::China,
+                };
+                let rules = if route == 3 {
+                    GameRules { seed: 7, ..GameRules::default() }
+                } else { roads_rules(7) };
+                let mut w = world_1990(rules);
+                w.player = Some(id);
+                if books {
+                    let allocations = w.nation(id).budget_for(w.year).allocations;
+                    crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+                        nation: id, fiscal_year: 1990, allocations,
+                    }).unwrap();
+                }
+                {
+                    let n = w.nation_mut(id);
+                    n.stability = 25.0;
+                    n.inflation = 0.03;
+                    n.growth_last = 0.01;
+                    n.war_exhaustion = 0.0;
+                    n.separatism = 0.0;
+                    n.debt_gdp = 0.65;
+                    if books {
+                        n.debt_bn = Some(n.gdp * 0.65);
+                        n.treasury_bn = Some(4.0);
+                        crate::economy::refresh_debt_ratio(n);
+                    }
+                    if route == 2 { n.authoritarianism = 0.38; }
+                }
+                {
+                    let g = state_mut(&mut w, id).unwrap();
+                    g.months_in_office = 48;
+                    g.coup_pressure = 5.0;
+                    for (pillar, loyalty) in &mut g.pillars {
+                        *loyalty = if *pillar == Pillar::Army { 0.20 } else { 0.80 };
+                    }
+                }
+                assert_eq!(w.nation(id).on_the_books(), books);
+                let before = w.nation(id);
+                let output = before.gdp;
+                let debt = before.debt_bn;
+                let cash = before.treasury_bn;
+                let legacy_ratio = before.debt_gdp;
+                let rng = w.rng.clone();
+                match route {
+                    0 => {
+                        assert!(maybe_electoral_coup(&mut w, id));
+                        assert!(w.headlines.iter().any(|h| h.contains("removes the elected government")));
+                    }
+                    2 => {
+                        assert_eq!(annulment_check(&w, id).as_deref(), Some("jo_ikhwan"));
+                        hold_election(&mut w, id);
+                        assert!(w.headlines.iter().any(|h| h.contains("the army annuls the election")));
+                        assert!(state(&w, id).unwrap().banned.contains(&"jo_ikhwan".to_string()));
+                    }
+                    _ => {
+                        maybe_coup(&mut w, id);
+                        assert!(w.headlines.iter().any(|h| h.contains("removes the government")));
+                    }
+                }
+                let after = w.nation(id);
+                assert_eq!(after.gdp.to_bits(), (output * 0.97).to_bits(), "route {route}");
+                assert_eq!(after.debt_bn, debt, "a coup does not discharge dollar debt");
+                assert_eq!(after.treasury_bn, cash, "a coup does not change cash");
+                let expected = if books { debt.unwrap() / after.gdp } else { legacy_ratio };
+                assert_eq!(after.debt_gdp.to_bits(), expected.to_bits(), "route {route}, books {books}");
+                assert_eq!(w.rng, rng, "account synchronization never consumes a draw");
+                let saved = crate::save(&w);
+                let resumed = crate::load(&saved).unwrap();
+                assert!(crate::save(&resumed) == saved,
+                    "loading must not silently repair debt after route {route}, books {books}");
+            }
+        }
+    }
+
+    #[test]
+    fn a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary() {
+        let id = NationId::Pakistan;
+        for books in [false, true] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if books {
+                let allocations = w.nation(id).budget_for(w.year).allocations;
+                crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+                    nation: id, fiscal_year: 1990, allocations,
+                }).unwrap();
+            }
+            {
+                let n = w.nation_mut(id);
+                n.stability = 25.0;
+                n.inflation = 0.03;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+                let g = state_mut(&mut w, id).unwrap();
+                g.months_in_office = 48;
+                g.coup_pressure = 5.0;
+                for (pillar, loyalty) in &mut g.pillars {
+                    *loyalty = if *pillar == Pillar::Army { 0.20 } else { 0.80 };
+                }
+            }
+            let debt = w.nation(id).debt_bn;
+            let cash = w.nation(id).treasury_bn;
+            let output = w.nation(id).gdp;
+            let legacy_ratio = w.nation(id).debt_gdp;
+            tick(&mut w);
+            assert!(w.headlines.iter().any(|h| h.starts_with("COUP IN PAKISTAN:")
+                && h.contains("removes the elected government")));
+            assert_eq!(w.nation(id).gdp.to_bits(), (output * 0.97).to_bits());
+            assert_eq!(w.nation(id).debt_bn, debt);
+            assert_eq!(w.nation(id).treasury_bn, cash);
+            let expected = if books { debt.unwrap() / w.nation(id).gdp } else { legacy_ratio };
+            assert_eq!(w.nation(id).debt_gdp.to_bits(), expected.to_bits());
+            let saved = crate::save(&w);
+            let mut resumed = crate::load(&saved).unwrap();
+            assert!(crate::save(&resumed) == saved, "books {books}");
+            for _ in 0..2 {
+                let uninterrupted_news = crate::tick_month(&mut w, &[]);
+                let resumed_news = crate::tick_month(&mut resumed, &[]);
+                assert_eq!(uninterrupted_news, resumed_news);
+                assert_eq!(crate::state_hash(&w), crate::state_hash(&resumed),
+                    "the load boundary changed the campaign, books {books}");
+            }
+        }
+    }
+
+    #[test]
+    fn ai_voluntary_opening_requires_a_live_eligible_party() {
+        use crate::{Command, data::Tie};
+        let id = NationId::Albania;
+        let mut w = world_1990(on_rules(7));
+        let n = w.nation_mut(id);
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.political_capital = ROUND_TABLE_PC;
+        for (_, loyalty) in &mut state_mut(&mut w, id).unwrap().pillars { *loyalty = 0.85; }
+        let command = Command::ConveneRoundTable { nation: id };
+        assert!(ai_party_can_contest_opening(&w, id));
+        assert!(franchise_demand(&w, id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        let before = crate::save(&w);
+        let rng = w.rng.clone();
+        assert_eq!(ai_lever(&w, id), Some(command.clone()));
+        assert!(crate::save(&w) == before);
+        assert_eq!(w.rng, rng);
+        let loaded = crate::load(&before).unwrap();
+        assert_eq!(ai_lever(&loaded, id), Some(command.clone()));
+        // A live successor through the same party remains eligible too.
+        let mut successor = w.clone();
+        seat_office(&mut successor, id, &Succession::Death);
+        assert!(crate::blocs::leader_row(&successor,id).unwrap().emergent.is_some());
+        assert_eq!(crate::blocs::leader_row(&successor,id).unwrap().tie_now(), Some(Tie::Party("al_ppsh".into())));
+        assert_eq!(ai_lever(&successor, id), Some(command.clone()));
+        let mut banned = w.clone();
+        state_mut(&mut banned,id).unwrap().banned.push("al_ppsh".into());
+        assert!(ai_party_can_contest_opening(&banned,id));
+        assert_eq!(round_table_refusal(&banned,id),None);
+        assert_eq!(ai_lever(&banned,id),Some(command.clone()),
+            "the promised opening lifts bans and lets the actual governing party compete");
+        crate::apply_command(&mut banned,&command).unwrap();
+        assert!(state(&banned,id).unwrap().banned.is_empty());
+        assert_eq!(banned.nation(id).political_capital,0.0);
+        for case in 0..6 {
+            let mut trial = w.clone();
+            match case {
+                0 => trial.leadership = None,
+                1 => trial.leadership.as_mut().unwrap().retain(|row| row.nation != id),
+                2 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = None,
+                3 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = Some(Tie::Party("unknown_party".into())),
+                4 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = Some(Tie::Pillar(Pillar::Party)),
+                _ => trial.rules.ideology_blocs = false,
+            }
+            let frozen = crate::save(&trial);
+            assert!(!ai_party_can_contest_opening(&trial,id), "case {case}");
+            assert_eq!(ai_lever(&trial,id), None, "case {case}");
+            assert!(crate::save(&trial) == frozen, "case {case} wrote state");
+            assert_eq!(trial.rng,rng);
+        }
+    }
+
+    #[test]
+    fn a_fresh_military_government_keeps_its_choice_without_blocking_paid_openings() {
+        use crate::{Command, data::Tie};
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).stability = 25.0;
+        let dormant = state(&w,id).unwrap().coalition.clone();
+        assert!(!dormant.is_empty());
+        let g = state_mut(&mut w,id).unwrap();
+        g.months_in_office = 48;
+        g.coup_pressure = 5.0;
+        for (p,loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Army {0.20} else {0.80}; }
+        assert!(maybe_electoral_coup(&mut w,id), "stage an actual takeover");
+        assert_eq!(state(&w,id).unwrap().coalition,dormant);
+        assert_eq!(crate::blocs::leader_row(&w,id).unwrap().tie_now(),Some(Tie::Pillar(Pillar::Army)));
+        let n = w.nation_mut(id);
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.political_capital = ROUND_TABLE_PC;
+        assert!(state(&w,id).unwrap().pillars.iter().all(|(_,loyalty)| *loyalty >= 0.72));
+        let command = Command::ConveneRoundTable { nation:id };
+        assert!(franchise_demand(&w,id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        assert_eq!(round_table_refusal(&w,id),None);
+        let frozen = crate::save(&w);
+        assert_eq!(ai_lever(&w,id),None,"dormant civilian cabinet does not represent the new military executive");
+        assert!(crate::save(&w) == frozen);
+        let restored = crate::load(&frozen).unwrap();
+        assert_eq!(ai_lever(&restored,id),None);
+        assert!(crate::save(&restored) == frozen);
+        for loyalty in [0.50,0.40] {
+            let mut weak = w.clone();
+            for (_,v) in &mut state_mut(&mut weak,id).unwrap().pillars { *v = loyalty; }
+            assert_eq!(ai_lever(&weak,id),if loyalty < 0.50 {Some(command.clone())} else {None});
+            weak.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+            assert_eq!(ai_lever(&weak,id),None,"the weak-armed route still needs real funding");
+        }
+        // Player choice retains exactly the same legal action and bill.
+        w.player = Some(id);
+        let rng = w.rng.clone();
+        crate::apply_command(&mut w,&command).unwrap();
+        assert_eq!(w.nation(id).political_capital,0.0);
+        assert!(is_electoral(&w,id));
+        assert_eq!(state(&w,id).unwrap().next_election,add_months(w.year,w.month,6));
+        assert_eq!(w.rng,rng);
+    }
+
+    #[test]
+    fn an_explicit_legacy_plan_does_not_let_the_army_ai_erase_its_owner() {
+        let id = NationId::Pakistan;
+        let mut legacy = world_1990(roads_rules(7));
+        legacy.player = None;
+        let n = legacy.nation_mut(id);
+        n.mil_spend_gdp = 0.001;
+        n.state_invest_gdp = 0.02;
+        n.social_spend_gdp = Some(0.08);
+        n.tax_rate = 0.55;
+        n.political_capital = 100.0;
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.annual_budget = None;
+        n.treasury_bn = None;
+        n.debt_bn = None;
+        let g = state_mut(&mut legacy,id).unwrap();
+        for (p,loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Army {0.20} else {0.80}; }
+        let floor = ai_army_funding_floor(&legacy,id).unwrap();
+        assert!(floor >= legacy.nation(id).mil_spend_gdp + 0.001);
+        assert!(crate::affordable(&legacy,&crate::Command::SetMilSpend {nation:id,share:floor}));
+        let plan = legacy.nation(id).budget_for(legacy.year);
+        let mut planned = legacy.clone();
+        planned.nation_mut(id).annual_budget = Some(plan.clone());
+        assert!(!planned.nation(id).on_the_books(), "valid legacy plan, before dollar stocks existed");
+        let saved = crate::save(&planned);
+        let loaded = crate::load(&saved).unwrap();
+        for mut w in [planned,loaded] {
+            let before_floor = ai_army_funding_floor(&w,id);
+            tick(&mut w);
+            assert_eq!(w.nation(id).annual_budget,Some(plan.clone()),
+                "the public government tick must not erase another fiscal owner's plan");
+            assert_eq!(w.nation(id).mil_spend_gdp,0.001);
+            assert_eq!(w.nation(id).treasury_bn,None);
+            assert_eq!(w.nation(id).debt_bn,None);
+            assert_eq!(before_floor,None,"no legacy appropriation policy for an explicit plan");
+        }
+        // The same actual resource problem still buys an affordable increase
+        // when there is no explicit fiscal owner. This is not a disabled AI.
+        let standing = legacy.nation(id).political_capital;
+        tick(&mut legacy);
+        assert!(legacy.nation(id).mil_spend_gdp > 0.001);
+        assert!(legacy.nation(id).political_capital < standing);
+        assert!(legacy.nation(id).annual_budget.is_none());
+    }
+}
+
+// Test-only opt-in fixed-development-seed observation; never part of release state/API.
+#[cfg(test)]
+#[path = "government_a1_observer.rs"]
+mod a1_observer;

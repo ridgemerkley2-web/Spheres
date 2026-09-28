@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_tlr_2007",
+  "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1559:2007_tlr",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 1556139,
+  "source_response_sha256": "e3f6737aeaa3aa043877af675dfb1d094b92f7cc3d533ccaa5ce2a0f7afe847c",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (an Attorney General's Office Phoca Download link that serves the stored PDF as an attachment) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received. A 403 HTML page from ago.gov.to is a user-agent rejection, not a changed file.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:02:48Z and again at 2026-09-28T00:53:39Z (UTC), 50 minutes later, from the same URL: both responses were 1556139 bytes with SHA-256 e3f6737aeaa3aa043877af675dfb1d094b92f7cc3d533ccaa5ce2a0f7afe847c. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AGO's 2007 Tonga Law Reports volume (238-page PDF). Used for Veikune v Kingdom of Tonga (Land Court, 13 December 2007, printed pages 207-208); the title and estate issues are not imported. Read on 2026-09-27, after the 7 September 2026 historical cutoff; the volume is a dated historical report and no later content is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      230
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_veikune_removal_recited_20071213",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "HON VEIKUNE",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2007-12-13",
+      "text": "In Veikune v Kingdom of Tonga (Land Court, Andrew J, LA 9/2007 and CV 301/2007; heard 30 October, decided 13 December 2007) the court records that the plaintiff, 'the HON VEIKUNE of KOLOMOTU'A', was found guilty by a jury on 25 January 2006 and, in its summary of his case, that 'He has however been deemed, under clause 23 of the Constitution to no longer be an elected representative of the Legislative Assembly of Tonga and has been removed as the Speaker'.",
+      "locator": "[2007] Tonga LR 207-208 (PDF pages 229-230): headnote; judgment paragraphs [1]-[3]",
+      "uncertainty": "A past fact stated without a day, within the court's account of the plaintiff's case; attested_on is the decision date on which the statement is observed, not a removal date. The day his office ended is taken from the PMO release (to_speaker_veikune_end_20060125), not from this judgment or from the conviction date. The title and estate issues are not imported."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

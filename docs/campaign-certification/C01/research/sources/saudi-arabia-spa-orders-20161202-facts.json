@@ -1,0 +1,73 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_orders_20161202",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/4641b3e86c",
+  "original_url": "https://www.spa.gov.sa/4641b3e86c",
+  "portal_metadata": {
+    "uuid": "4641b3e86c",
+    "locale": "ar",
+    "published_at_utc": "2016-12-02T19:00:19Z",
+    "date_hijri_field": "1438-03-03"
+  },
+  "title_as_published": "عام / صدور أوامر ملكية كريمة",
+  "source_title": "عام / صدور أوامر ملكية كريمة: royal orders of 2 December 2016, with twelve additions including Royal Order A/54",
+  "accessed_date": "2026-09-27",
+  "published_date": "2016-12-02",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/4641b3e86c",
+  "source_response_bytes": 30893,
+  "source_response_sha256": "359e15d7b4117f0c437dacc547f69dbada4053dd8f48b09c10e674c04137bebb",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "4991f62740b7571d89d2e675054d98607c8fdccbffa035404f2dcfb60de4f95c",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:15Z and again at 2026-09-28T00:33:14Z, 42 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (30893 bytes, SHA-256 359e15d7b4117f0c437dacc547f69dbada4053dd8f48b09c10e674c04137bebb).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/4641b3e86c loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The release's additions are served inside the lead item's JSON (related_news), which the public page renders in full. Legacy ID 1565835 redirects to the A/52 addition (4641b3e86c#0b73af0043), not to A/54.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_royal_orders_issued_20161202",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "issuance_report",
+      "attested_on": "2016-12-02",
+      "text": "An SPA release datelined Riyadh 3 Rabi al-Awwal 1438 / 2 December 2016 says royal orders were issued that day.",
+      "locator": "data.content: dateline and opening sentence; trailer 22:00 Makkah time"
+    },
+    {
+      "claim_id": "sa_alsheikh_named_a54_20161202",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "council_formation_naming_chair",
+      "attested_on": "2016-12-02",
+      "text": "Royal Order A/54 dated 3/3/1438 AH, issued by King Salman bin Abdulaziz, constitutes the Shura Council of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ ـ رئيساً ـ' and named members for four Hijri years beginning 3/3/1438 AH; it recites A/45 of 29/2/1434.",
+      "locator": "data.related_news entry f5158ca753 (seventh addition): order number, date, recitals and item First; the list ends with item Second in entry 90a9d63bcf"
+    },
+    {
+      "claim_id": "sa_shura_term_start_20161202",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_start",
+      "attested_on": "2016-12-02",
+      "text": "Under A/54 the new four-year term begins on 3/3/1438 AH, the Hijri day of the order, which the release's dateline equates with 2 December 2016.",
+      "locator": "Item First of A/54 with the release dateline"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

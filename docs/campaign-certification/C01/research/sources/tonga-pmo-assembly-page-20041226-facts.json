@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_legislative_assembly_page_20041226",
+  "source_url": "https://web.archive.org/web/20041226045411id_/http://pmo.gov.to:80/legislative_assembly.htm",
+  "original_url": "http://pmo.gov.to/legislative_assembly.htm",
+  "archive_capture_utc": "2004-12-26T04:54:11Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12802,
+  "source_response_sha256": "c230a53068b0a7a85cff7bc9318be50a709cb1e73cc5244d62c62b6bbc5b98f5",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "undeclared; bytes 0x91 and 0x92 are glottal stops",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:17:36Z and again at 2026-09-28T01:10:58Z (UTC), 53 minutes later, from the same URL: both responses were 12802 bytes with SHA-256 c230a53068b0a7a85cff7bc9318be50a709cb1e73cc5244d62c62b6bbc5b98f5. The raw id_ form replays the stored capture rather than generating a page per request. Located by the independent check, which downloaded it twice on 2026-09-26 (UTC), at least 30 minutes apart, with the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2004-12-26T04:54:11Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same government page in the revision whose archived server Last-Modified is 19 September 2004, captured on 26 December 2004 (the capture of 12 October 2004 has the same digest). Its Cabinet list reflects the September 2004 Cabinet. Only the Speaker marker and the statement that the King appoints the Speaker are used; the rest of the roster is not imported. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_tuivakano_listed_20041226",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Tu'ivakano",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2004-12-26",
+      "text": "The government page, in its revision of 19 September 2004, lists 'Hon. Tu'ivakano (Speaker of the House)' among the Tongatapu nobles' representatives under the heading '1999-2003 Legislative Assembly Membership'.",
+      "locator": "Section 2, Nobles' Representatives table (Tongatapu column)",
+      "uncertainty": "attested_on is the capture date; the revision itself is of 19 September 2004. A later attestation than the Assembly's home page of 6 September 2004 (to_speaker_tuivakano_listed_20040906). It gives no end date; the Assembly dates his successor's appointment to 22 March 2005, and no end is inferred from that."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

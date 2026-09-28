@@ -1,0 +1,221 @@
+{
+  "scope": "Exact retained passing bundle; compact failed-attempt summaries. Originalfailed20archives remainlocal; no retroactive pass.",
+  "local_failed_bundle": "D:\\spheres-offload\\codex-next-20260928\\succession-full-01",
+  "files": [
+    {
+      "path": "evidence/failed-01-summary/archive-manifest.json",
+      "bytes": 20136,
+      "sha256": "81192bb05860b1975066ad9af4728eac72587a75f36be137117b6c3ea668ad9e"
+    },
+    {
+      "path": "evidence/failed-01-summary/execution.json",
+      "bytes": 1166,
+      "sha256": "ad5dbded78b9e87e2c5dee67f21405f0fe1d878c46c2f542bf7f50005957a165"
+    },
+    {
+      "path": "evidence/failed-01-summary/freeze.json",
+      "bytes": 1208,
+      "sha256": "c60ad0dbbfb20dff1c8f1a389c0a6805cc99b657f0e02c0445db78070596a758"
+    },
+    {
+      "path": "evidence/failed-01-summary/native-result.json",
+      "bytes": 25862,
+      "sha256": "9ad5fdd65e2547e2d2eaf9528045e4bcc2fbe5bb9bcde6c60b33280c48a13ed3"
+    },
+    {
+      "path": "evidence/failed-01-summary/receipt.json",
+      "bytes": 9421,
+      "sha256": "5bec1cbb486527c53fa2a2aa514d90634f0342a0034541ab0c56c647e97dbbf7"
+    },
+    {
+      "path": "evidence/failed-01-summary/request.json",
+      "bytes": 172,
+      "sha256": "7451930e56a99d4dbd44701101aa5cb290549d0176b6dd01bf44bb84d0103939"
+    },
+    {
+      "path": "evidence/failed-01-summary/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/failed-01-summary/stdout.log",
+      "bytes": 186,
+      "sha256": "6d619a2e86bd7d3ca8e8adf92474067255a4f29a4ed42b3178929f6ccf5e28b1"
+    },
+    {
+      "path": "evidence/independent-verification.json",
+      "bytes": 11350,
+      "sha256": "789c7d15675287c7c6912dfce6b3eb3e0708c37bd507e5ba82883c5b2d3a8679"
+    },
+    {
+      "path": "evidence/passing-02/archive-manifest.json",
+      "bytes": 20136,
+      "sha256": "ed025b8636816ed3d017ee4388271fe2354d5e0c8f43e491508dde995702742a"
+    },
+    {
+      "path": "evidence/passing-02/controlled_succession.py",
+      "bytes": 26152,
+      "sha256": "82a21ab3f40b44c8538bb08d51de354a1f9766b581842cc99e73dafd84bb3d3c"
+    },
+    {
+      "path": "evidence/passing-02/execution.json",
+      "bytes": 1165,
+      "sha256": "1eee44282510a13bfb5aaa2ed9763ccab61bcb86f334d76d15c8e345b2a7160e"
+    },
+    {
+      "path": "evidence/passing-02/freeze.json",
+      "bytes": 1208,
+      "sha256": "88295b30b39c5151fda1f9b521f72e49320c73517a0357d1d25e7330a3d4ad6d"
+    },
+    {
+      "path": "evidence/passing-02/journal.jsonl",
+      "bytes": 26156,
+      "sha256": "9b9e851bfb87a9fd29fcce5ae9b4274485b3852ab1f969c617110a373f8d6005"
+    },
+    {
+      "path": "evidence/passing-02/native/progress.jsonl",
+      "bytes": 1152,
+      "sha256": "67a533347d4a19d6c6821c8f00535733a0676274f1cba8f20bff95586cf7a635"
+    },
+    {
+      "path": "evidence/passing-02/native/result.json",
+      "bytes": 25862,
+      "sha256": "70537085fc830354a986f43549baf42e3d1636d432b623c8a89a2b4fdacb8b5f"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/after_russia_choice.json.gz",
+      "bytes": 2155954,
+      "sha256": "398f288491e3dd4d8b3bc99b1d91fc14350cc14067b8f94e2b7ee2528b067fd7"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/before_collapse.json.gz",
+      "bytes": 2062650,
+      "sha256": "bc2fe59fea4a8aefafdb267fb8b99222556597b459e51de713356df14fe47fb7"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/paused_succession.json.gz",
+      "bytes": 2155744,
+      "sha256": "262c473e4d983019e67669b446494bbf8135f3a2f122bc96b6704135f99b08b3"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_1.json.gz",
+      "bytes": 2891592,
+      "sha256": "2716f30dedbee1ebb0eb056b0d490629c71e82c205554d3af8b9aa6ed0b8d7f2"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_2.json.gz",
+      "bytes": 2925569,
+      "sha256": "976b10020b154a1ef85f8296da7ace8f60f7c0a557bc8d79fc4bf26e7efbaf9d"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_3.json.gz",
+      "bytes": 2950247,
+      "sha256": "ae970f6b01b2f259d1fb13d882b8d101e361c69c5a3a410f0807c87bb8a7ca64"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_4.json.gz",
+      "bytes": 2972068,
+      "sha256": "17efe1f39db90b0c9b4c697be90a09e052b3df34f0069fc306f56b911fe2e655"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_5.json.gz",
+      "bytes": 2993910,
+      "sha256": "68cca1e4a1d9db9be4587f89ca76cfd44aba10e637a26ad914580ded4c088146"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_6.json.gz",
+      "bytes": 3014708,
+      "sha256": "98ca85c2223ae97b0a32f18f3ae61b6e776a59ab2e537f738545446ab770cf42"
+    },
+    {
+      "path": "evidence/passing-02/native/resumed/saves/successor_day_7.json.gz",
+      "bytes": 3034747,
+      "sha256": "321f08b6de6d9154b745d63dc49f200a357b5867e4c02a2cc7203c7d0b6561c6"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/after_russia_choice.json.gz",
+      "bytes": 2155954,
+      "sha256": "398f288491e3dd4d8b3bc99b1d91fc14350cc14067b8f94e2b7ee2528b067fd7"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/before_collapse.json.gz",
+      "bytes": 2062650,
+      "sha256": "bc2fe59fea4a8aefafdb267fb8b99222556597b459e51de713356df14fe47fb7"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/paused_succession.json.gz",
+      "bytes": 2155744,
+      "sha256": "262c473e4d983019e67669b446494bbf8135f3a2f122bc96b6704135f99b08b3"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_1.json.gz",
+      "bytes": 2891592,
+      "sha256": "2716f30dedbee1ebb0eb056b0d490629c71e82c205554d3af8b9aa6ed0b8d7f2"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_2.json.gz",
+      "bytes": 2925569,
+      "sha256": "94a27686d10248655ee3d52c2cd4c50cb0f2c5808e6b2c406e953575ee83b7ac"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_3.json.gz",
+      "bytes": 2950247,
+      "sha256": "ae970f6b01b2f259d1fb13d882b8d101e361c69c5a3a410f0807c87bb8a7ca64"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_4.json.gz",
+      "bytes": 2972068,
+      "sha256": "db6a9761a67518c7d8e3404329c690b83b833dbfefa0df9b098d1c75b2bc45bb"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_5.json.gz",
+      "bytes": 2993911,
+      "sha256": "891e98107e5267f335d9668d4349170365fa0329ac47b721a3aa9a251c092029"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_6.json.gz",
+      "bytes": 3014708,
+      "sha256": "2305766eacfb81e2730d50a8261f3eae0c301e5c047ccbba16a68212f0334fce"
+    },
+    {
+      "path": "evidence/passing-02/native/uninterrupted/saves/successor_day_7.json.gz",
+      "bytes": 3034747,
+      "sha256": "857063d7e77e1f52c5830b69fef489dbb21062848b39e859c000d5278dd2e951"
+    },
+    {
+      "path": "evidence/passing-02/receipt.json",
+      "bytes": 9355,
+      "sha256": "7b33edc158686cd4f7428861f1ec1da9e8f08752149d05bf644ff9d1097c6f7a"
+    },
+    {
+      "path": "evidence/passing-02/request.json",
+      "bytes": 172,
+      "sha256": "7451930e56a99d4dbd44701101aa5cb290549d0176b6dd01bf44bb84d0103939"
+    },
+    {
+      "path": "evidence/passing-02/stability_matrix.py",
+      "bytes": 61747,
+      "sha256": "113ae9496b3b2610b05a494ef9f33f45a80e348d463527d9034e2af4c84c9a5b"
+    },
+    {
+      "path": "evidence/passing-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/passing-02/stdout.log",
+      "bytes": 186,
+      "sha256": "0954c79fdc50cafc16c50955ace98cc4e65c1ffa7ab5a9a216affb39f74a7d86"
+    },
+    {
+      "path": "evidence/succession-focused-7220619c.log",
+      "bytes": 595,
+      "sha256": "06846af44f8a2032f0470a8f38270099370e57735c31cec9350dbac9ce3f3a14"
+    },
+    {
+      "path": "evidence/succession-focused-ae8084e8.log",
+      "bytes": 2365,
+      "sha256": "c2db598f985d4982ddd2d038bc41821699ef35bbd045420dfdd402ac853d0db6"
+    }
+  ]
+}

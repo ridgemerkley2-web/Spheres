@@ -1,0 +1,91 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_decision_2017_171_pdr",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-10",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 46596,
+  "source_response_sha256": "0b5f7d99109fd75453e603d7f05d3cd42aacb68528d35cfc70054b996f0a1a79",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:48Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591332c4-b604\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's HTML page for the same decision (2017171PDR.htm) is not recorded: one rendering per decision.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "method": "All seven pages read from the text layer; pages 1 and 7 rendered and read by the part B researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2017_cites_hollande_proclamation_20120510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François HOLLANDE",
+      "role_title": "Président de la République",
+      "event_kind": "proclamation_reference",
+      "attested_on": "2012-05-10",
+      "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2012 proclamant M. François HOLLANDE Président de la République et de la date à laquelle celui-ci a pris ses fonctions'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "visa 'Au vu de la décision du Conseil constitutionnel du 10 mai 2012'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2017_second_round_20170506_20170507",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "election_round",
+      "attested_on": null,
+      "period": {
+        "from": "2017-05-06",
+        "through": "2017-05-07"
+      },
+      "text": "The decision states that the second round was held 'les 6 et 7 mai 2017' and records 47 568 693 registered electors, 3 021 499 blank ballots, 31 381 603 votes cast, 20 743 128 for M. Emmanuel Macron and 10 638 475 for Mme Marine Le Pen.",
+      "locator": {
+        "pdf_page": 6,
+        "item": "paragraph 17",
+        "also": "pdf_page 7 candidate rows"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2017_proclamation_macron_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "result_proclamation",
+      "attested_on": "2017-05-10",
+      "text": "Deliberating at its sittings of 8, 9 and 10 May 2017 and 'Rendu public le 10 mai 2017', the decision states 'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME M. Emmanuel MACRON élu Président de la République française'.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME', deliberation line and 'Rendu public le 10 mai 2017'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2017_hollande_cessation_bound_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "M. François HOLLANDE",
+      "role_title": "Président de la République française",
+      "event_kind": "cessation_latest_bound_stated",
+      "attested_on": "2017-05-10",
+      "text": "It states: 'Il prendra ses fonctions à compter de la cessation de celles de M. François HOLLANDE, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 14 mai 2017 à 24 heures.'",
+      "locator": {
+        "pdf_page": 7,
+        "item": "sentence 'Il prendra ses fonctions'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

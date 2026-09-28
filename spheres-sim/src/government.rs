@@ -8867,6 +8867,8 @@ fn electoral_army_tick(w: &mut WorldState, id: NationId) {
         _ => return,
     };
     let targets = pillar_targets(w, id, &armed);
+    #[cfg(test)]
+    a1_observer::record(w, id, "army_before_walk");
     walk_pillars(w, id, targets);
     let dt = crate::clock::month_fraction(w);
     let eff = crate::blocs::effective_army_loyalty(w, id);
@@ -8879,6 +8881,8 @@ fn electoral_army_tick(w: &mut WorldState, id: NationId) {
             g.coup_pressure = (g.coup_pressure - 0.03 * dt).max(0.0);
         }
     }
+    #[cfg(test)]
+    a1_observer::record(w, id, "army_after_walk");
 }
 
 /// The movements a polity that has just stopped voting carries: its parties'
@@ -8921,16 +8925,24 @@ fn seat_spec_pillars(w: &mut WorldState, id: NationId) {
 /// while the takeover switch is off.
 fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if !w.rules.ideology_takeover {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_takeover_disabled");
         return false;
     }
     let (pressure, has_army) = match state(w, id) {
         Some(g) => (g.coup_pressure, g.pillars.iter().any(|(p, _)| *p == Pillar::Army)),
-        None => return false,
+        None => {
+            #[cfg(test)]
+            a1_observer::record(w, id, "trigger_no_government");
+            return false;
+        },
     };
     let settled = electoral_coup_settled_months(w, id);
     if !has_army || settled < ELECTORAL_COUP_SETTLED
         || (w.rules.ideology_blocs && state(w, id).is_some_and(|g| g.awaiting_first_election))
     {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_unsettled_interim_or_no_army");
         return false;
     }
     // Pressure records past grievances; it cannot substitute for the trigger
@@ -8939,11 +8951,17 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if crate::blocs::effective_army_loyalty(w, id) >= ELECTORAL_COUP_ARMY
         || crate::blocs::discontent(w, id) < ELECTORAL_COUP_DISCONTENT
     {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_live_conditions_inactive");
         return false;
     }
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
+        #[cfg(test)]
+        a1_observer::record(w, id, "trigger_pressure_not_ready");
         return false;
     }
+    #[cfg(test)]
+    a1_observer::record(w, id, "trigger_firing");
     let name = pillar_name(w, id, Pillar::Army);
     break_electoral(
         w,
@@ -9385,6 +9403,8 @@ fn ai_government(w: &mut WorldState) {
         .map(|n| n.id)
         .collect();
     for id in ids {
+        #[cfg(test)]
+        a1_observer::record(w, id, "ai_before_funding");
         // Retain the annual review, with a month-end emergency review when
         // actual loyalty has fallen below the existing .40 funded margin.
         // A confidence loss emerging midyear must not wait until next January
@@ -9402,6 +9422,8 @@ fn ai_government(w: &mut WorldState) {
                 }
             }
         }
+        #[cfg(test)]
+        a1_observer::record(w, id, "ai_after_funding");
         if is_electoral(w, id) {
             continue;
         }
@@ -15763,3 +15785,8 @@ mod tests {
         assert!(legacy.nation(id).annual_budget.is_none());
     }
 }
+
+// Test-only opt-in fixed-development-seed observation; never part of release state/API.
+#[cfg(test)]
+#[path = "government_a1_observer.rs"]
+mod a1_observer;

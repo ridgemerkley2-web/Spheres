@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_chirac_investiture_declaration_20020516",
+  "source_url": "https://www.elysee.fr/front/pdf/elysee-module-9989-fr.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+  "source_response_bytes": 215488,
+  "source_response_sha256": "0bb0cc984eac7edad7f74bd44febc37074bb58522316c45412cd84cad4e53f6a",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '16 mai 2002 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 1 rendered and read by the part A researcher; page 2 (the closing passage) read from the text layer for this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_chirac_investiture_ceremony_20020516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2002-05-16",
+      "text": "The Élysée archive publishes M. Jacques Chirac's declaration 'à l'occasion de son investiture comme Président de la République', Palais de l'Élysée, 16 May 2002; it opens by addressing the President of the Constitutional Council and the Prime Minister, speaks of 'les cinq années du mandat' the French have given him, and closes 'Et c'est le mandat que les Françaises et les Français ... viennent de me confier. Je l'assumerai.'",
+      "locator": {
+        "page": "1 (date line, heading, first paragraph) and 2 (closing paragraph)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

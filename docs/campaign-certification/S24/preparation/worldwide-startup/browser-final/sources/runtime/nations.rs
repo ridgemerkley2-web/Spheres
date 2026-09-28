@@ -1,0 +1,3536 @@
+//! Nation identity as a runtime value, and the roster it is interned from.
+//!
+//! `NationId` used to be a closed Rust enum with a hand-written `name()` and
+//! `parse()` arm per country and fixed-size roster arrays beside it. At the
+//! ~190 nations BIBLE.md commits to that is some 380 match arms nobody can
+//! keep in agreement, and — far worse — it forces every *dyadic* fact about
+//! the world to be written as a `match (a, b)`, which is ~36,000 ordered pairs.
+//! A dyad table cannot be a match statement at that size.
+//!
+//! So identity is now an interned index: `NationId` is a `u16` handle into the
+//! roster below, `Copy`, cheap to compare, and usable directly as the index
+//! into the relations matrix. Adding a country is adding a row, not editing
+//! code. The roster is a static table today because that is what is
+//! transcribed; when it becomes a JSON file it replaces `ROSTER` and nothing
+//! above this module changes, because nothing above this module knows how many
+//! nations there are.
+//!
+//! Three things this module has to get right:
+//!
+//! * **Order is the relations matrix.** A nation's index is its row in the
+//!   dense triangle in `world.rs`, so the registry order is load-bearing and
+//!   the order here is deliberately the order the old enum declared.
+//! * **Saves carry codes, never indices.** `NationId` serializes as its stable
+//!   code string — exactly the discipline `tech::known_serde` follows, and for
+//!   exactly the reason: the technology tree was already bitten once by a save
+//!   that stored registry indices and silently reinterpreted them on the next
+//!   build.
+//! * **Dyadic facts are data.** `neighbours` and `claims` are what the derived
+//!   war-appetite model in `dyads.rs` reads instead of a per-pair match arm.
+
+use std::sync::OnceLock;
+
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+/// A territorial or irredentist claim one state holds on another.
+///
+/// `share` is the fraction of the *target* a claim would take if pressed to its
+/// full extent — the whole country for Iraq on Kuwait, a third for Belgrade on
+/// Bosnia, a rounding error for a reef. That single number is what separates a
+/// border dispute from a war of conquest, and it is the reason the appetite
+/// model does not need to know either country's name.
+#[derive(Clone, Copy, Debug)]
+pub struct Claim {
+    pub on: &'static str,
+    pub share: f64,
+}
+const fn claim(on: &'static str, share: f64) -> Claim {
+    Claim { on, share }
+}
+
+/// One transcribed row of the roster.
+#[derive(Clone, Copy, Debug)]
+pub struct NationRow {
+    /// Stable identifier. This is what a save file writes and what a data file
+    /// would key on; it must never be renamed once written.
+    pub code: &'static str,
+    pub name: &'static str,
+    /// Everything a human might type at the CLI for this nation.
+    pub aliases: &'static [&'static str],
+    pub region: &'static str,
+    /// Land borders (and the two straits narrow enough to march across) with
+    /// other nations *in this roster*. Neighbours outside the roster are simply
+    /// absent, which is correct: a border with an unsimulated state is not a
+    /// dyad this model can have an opinion about.
+    pub neighbours: &'static [&'static str],
+    pub claims: &'static [Claim],
+    /// On the board in January 1990. The rest are successor states that exist
+    /// only if a federation comes apart.
+    pub start_1990: bool,
+    /// Keeps clients: has a bloc to hold together and something to lose if it
+    /// goes over to the other side.
+    pub patron: bool,
+    /// Sanctions an aggressor and may intervene for its victim.
+    pub major: bool,
+}
+
+// Nine, because a roster row is nine things. Splitting them into a struct is a
+// refactor across 160 literal rows, and this session does not do those.
+#[allow(clippy::too_many_arguments)]
+const fn row(
+    code: &'static str,
+    name: &'static str,
+    aliases: &'static [&'static str],
+    region: &'static str,
+    neighbours: &'static [&'static str],
+    claims: &'static [Claim],
+    start_1990: bool,
+    patron: bool,
+    major: bool,
+) -> NationRow {
+    NationRow { code, name, aliases, region, neighbours, claims, start_1990, patron, major }
+}
+
+// Region codes. Coarse on purpose: a region is "close enough that force can be
+// projected without anybody's permission", not a UN statistical division.
+// Sub-Saharan Africa needed three regions this list did not have, and shoehorning
+// eleven countries into "WestAfrica" would have been a lie the contacts set then
+// acts on: region membership auto-populates `contacts`, so putting Addis Ababa and
+// Dakar in one region tells the dyad model that Ethiopia and Senegal can reach each
+// other with force, which is 6,000km wrong. The three added here are the coarse
+// blocs the doc comment above asks for — "close enough that force can be projected
+// without anybody's permission" — and each is a real one: EastAfrica is the
+// Ethiopia/Kenya/Uganda/Tanzania quadrilateral that fought the Ogaden and the
+// Uganda-Tanzania war and traded insurgent sanctuary in every direction;
+// SouthernAfrica is the Frontline States and the republic they were the front line
+// against; CentralAfrica is the Congo basin, where Kinshasa and Yaounde sit on
+// opposite sides of a forest neither could march an army through. INTEGRATOR: this
+// is the eleventh shared edit the conflict-surface note warned about. An agent
+// doing Australia or the Pacific will need "Oceania" appended here too.
+pub const REGIONS: &[&str] = &[
+    "NorthAmerica", "LatinAmerica", "WesternEurope", "EasternEurope", "Balkans",
+    "Eurasia", "MiddleEast", "NorthAfrica", "WestAfrica", "SouthAsia",
+    "EastAsia", "SoutheastAsia", "EastAfrica", "CentralAfrica", "SouthernAfrica",
+    // Added with Australia and New Zealand. Region membership auto-populates
+    // `contacts`, so the choice is not cosmetic: it decides who the dyad model
+    // thinks these two could plausibly use force against. Filing them under
+    // EastAsia or SoutheastAsia would have handed Australia a standing contact
+    // with China, Japan, Korea, Vietnam and Indonesia on no better ground than
+    // that the map is crowded down there — and "close enough that force can be
+    // projected without anybody's permission", which is what this list means,
+    // is exactly what the sea-air gap the 1987 Australian white paper was
+    // written around is not. Oceania holds the two of them and their contact
+    // set is each other, which is the fact.
+    "Oceania",
+    // Added with the western Indian Ocean archipelagos. Madagascar, Mauritius,
+    // Seychelles and the Comoros have no land border with anybody, so region
+    // membership is the ONLY thing that gives any of them a contact at all —
+    // an island state filed under a region it cannot reach is a nation the
+    // dyad model can never see, and an island state filed under a mainland
+    // region is handed contacts across a thousand kilometres of ocean it has
+    // no hull to cross.
+    //
+    // This region is a real one by the list's own test. The 1981 mercenary
+    // landing at Mahe was mounted out of Durban and flew out through Mombasa;
+    // Bob Denard's men took the Comoros in 1978 and again in 1989 off boats;
+    // Tanzanian troops garrisoned Victoria until 1984. Force in this quarter
+    // of the world moves by small boat and chartered aircraft between the
+    // islands, and the islands are the states it moves between. Cape Verde is
+    // NOT here — it is an Atlantic archipelago 570km off Dakar and is filed
+    // under WestAfrica, which is argued on its row.
+    "IndianOcean",
+];
+
+/// The roster. **Order is the relations-matrix order and must not be shuffled.**
+///
+/// Borders are geographic fact. Claims are historical fact and each carries its
+/// source; the number is the share of the target the claim covers, so that a
+/// claim on a coral reef and a claim on a whole emirate are not the same object.
+#[rustfmt::skip]
+pub const ROSTER: &[NationRow] = &[
+    // The southern border is declared from this end too, because the roster's
+    // symmetry check reads the raw rows and not the closure. Canada is not in
+    // the roster, so the northern one is correctly absent.
+    row("USA", "United States", &["usa", "us", "america"], "NorthAmerica",
+        &["Mexico", "Canada"], &[], true, true, true),
+
+    // The union borders China, Poland, Turkey and Iran; the successor Russia
+    // borders only the first two of those, which is a real change the model
+    // gets for free from the data rather than from a special case.
+    row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
+        &["China", "Poland", "Turkey", "Iran", "Norway", "Finland", "Czechoslovakia", "Hungary", "Romania", "Afghanistan", "NorthKorea", "Mongolia"], &[], true, true, false),
+
+    // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
+    // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
+    // the Donbas, and Crimea plus the Black Sea Fleet were in open dispute from
+    // 1992. https://en.wikipedia.org/wiki/1989_Soviet_census
+    // Nothing here schedules 2014; it states the inherited arithmetic and lets
+    // the model do what it does with it.
+    row("Russia", "Russia", &["rus", "russian federation"], "Eurasia",
+        &["China", "Poland", "Ukraine", "Norway", "Finland", "Belarus", "Kazakhstan", "Georgia", "Azerbaijan", "Lithuania", "Latvia", "Estonia", "NorthKorea", "Mongolia"], &[claim("Ukraine", 0.22)], false, true, false),
+
+    row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
+        &["Russia", "Poland", "Czechoslovakia", "Hungary", "Romania", "Belarus", "Moldova"], &[], false, false, false),
+
+    // Beijing's border with Moscow was fought over at Damansky/Zhenbao in 1969
+    // and not finally settled until the agreements of 1991 and 2004. The claim
+    // on India is Aksai Chin, held since 1962, plus Arunachal Pradesh — a large
+    // area and almost no people, hence a share near zero. On Vietnam it is the
+    // Paracels (taken 1974), the Spratlys (Johnson Reef, March 1988) and the
+    // land border strips disputed until 1999.
+    // BEIJING'S CLAIM ON TAIWAN IS MISSING FROM THIS ROW ON PURPOSE, AND IT IS
+    // THE LARGEST KNOWN GAP THIS REGION SHIPS. See the Taiwan row below for the
+    // measurement and the argument; it is recorded there so both halves of the
+    // dyad sit in one place.
+    row("China", "China", &["prc", "cn"], "EastAsia",
+        // Unioned across two branches: Central Asia brought Kyrgyzstan and
+        // Tajikistan, maritime Asia brought Bhutan. China borders fourteen
+        // states and the roster now carries thirteen of them.
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Kyrgyzstan", "Tajikistan", "Bhutan"],
+        // Bhutan appended with the Bhutan row below. 764 km2 of a Bhutan of
+        // 38,394 — 495 in the Pasamlung and Jakarlung valleys, 269 at Doklam
+        // and its neighbours in the west — under direct negotiation since 1984
+        // and unresolved at the start date. Measured on area because that is
+        // what is disputed: the ground is above 4,000 m and nearly nobody lives
+        // on it, so a population basis would return zero for a claim that has
+        // since produced a 73-day standoff between two nuclear powers.
+        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004), claim("Bhutan", 0.020)],
+        true, true, false),
+
+    row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
+
+    row("Germany", "Germany", &["ger", "frg", "brd"], "WesternEurope",
+        &["Poland", "France", "Netherlands", "Belgium", "Denmark", "Switzerland", "Austria", "Czechoslovakia", "Luxembourg"], &[], true, true, true),
+
+    row("UK", "United Kingdom", &["uk", "britain", "gb"], "WesternEurope",
+        &["France", "Ireland"], &[], true, true, true),
+
+    row("France", "France", &["fra"], "WesternEurope",
+        &["Germany", "Italy", "UK", "Spain", "Belgium", "Switzerland", "Luxembourg"], &[], true, true, true),
+
+    row("Italy", "Italy", &["ita"], "WesternEurope",
+        &["France", "Yugoslavia", "Slovenia", "Switzerland", "Austria"], &[], true, false, false),
+
+    // Kashmir, from both ends. India claims the whole of the former princely
+    // state, which means Azad Kashmir and Gilgit-Baltistan — about 5.5m of
+    // Pakistan's 108m in 1990. Pakistan claims Indian-administered Jammu and
+    // Kashmir, about 8m of India's 870m.
+    row("India", "India", &["ind", "bharat"], "SouthAsia",
+        &["Pakistan", "China", "Bangladesh", "Nepal", "Myanmar", "Bhutan"],
+        &[claim("Pakistan", 0.06), claim("China", 0.005)], true, false, false),
+
+    row("Pakistan", "Pakistan", &["pak"], "SouthAsia",
+        &["India", "China", "Iran", "Afghanistan"], &[claim("India", 0.01)], true, false, false),
+
+    // Baghdad never accepted the Anglo-Ottoman line of 1913, claimed Kuwait as
+    // part of the Basra vilayet on Kuwaiti independence in 1961, and annexed it
+    // as the nineteenth province in August 1990: a claim on the entire state.
+    // On Iran it is Khuzestan — "Arabistan" — and the Shatt al-Arab, the stated
+    // casus belli of September 1980.
+    row("Iraq", "Iraq", &["irq"], "MiddleEast",
+        &["Kuwait", "SaudiArabia", "Iran", "Turkey", "Syria", "Jordan"],
+        &[claim("Kuwait", 0.95), claim("Iran", 0.05)], true, false, false),
+
+    row("Kuwait", "Kuwait", &["kwt"], "MiddleEast",
+        &["Iraq", "SaudiArabia"], &[], true, false, false),
+
+    row("SaudiArabia", "Saudi Arabia", &["saudi arabia", "saudi", "ksa"], "MiddleEast",
+        &["Iraq", "Kuwait", "Jordan", "UAE", "Oman", "Yemen", "Qatar", "Bahrain"],
+        &[], true, false, false),
+
+    // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
+    // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
+    row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
+        &["Iraq", "Turkey", "Pakistan", "USSR", "Armenia", "Azerbaijan", "Afghanistan", "Turkmenistan"], &[claim("Iraq", 0.03)], true, false, false),
+
+    // The Republic of Korea's constitution defines its territory as the whole
+    // peninsula, so in strict transcription Seoul holds the mirror image of
+    // Pyongyang's claim. It is deliberately not entered. Article 3 was a
+    // statement about legitimacy that no ROK government of the period attached
+    // an operational intention to, and the model reads a claim as an appetite
+    // for territory; entering it would give the South a war aim it did not
+    // have. The North's claim below is the one that was pressed, in June 1950.
+    row("SouthKorea", "South Korea", &["south korea", "korea", "rok"], "EastAsia",
+        &["NorthKorea"], &[], true, false, false),
+
+    row("Poland", "Poland", &["pol"], "EasternEurope",
+        &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia", "Belarus", "Lithuania"], &[], true, false, false),
+
+    // Brazil touches every South American state except Chile and Ecuador. Nine of
+    // those ten neighbours are now in the roster and are declared here; only
+    // French Guiana is missing, and that is deliberate rather than pending (see
+    // the Latin America section header below). Brazil holds no claim on any of
+    // them and never has - the Baron of Rio Branco settled all of it by
+    // arbitration and purchase between 1895 and 1909, which is why the largest
+    // state in the region is also the one with nothing outstanding.
+    row("Brazil", "Brazil", &["bra"], "LatinAmerica",
+        &["Argentina", "Uruguay", "Bolivia", "Peru", "Colombia", "Venezuela",
+          "Paraguay", "Guyana", "Suriname"],
+        &[], true, false, false),
+
+    // PapuaNewGuinea and EastTimor appended with their own rows at the end of
+    // this table. Both are Indonesian land borders on Timor and New Guinea and
+    // both are declared from this end because the symmetry check reads the raw
+    // rows. East Timor is a border Jakarta did not have in January 1990 — it
+    // was governing the far side of it as its own twenty-seventh province — and
+    // the entry is nonetheless correct, on the Italy/Slovenia precedent above:
+    // adjacency is geography, and it applies whenever the neighbour exists.
+    row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia",
+        &["Malaysia", "PapuaNewGuinea", "EastTimor"], &[], true, false, false),
+
+    // Egypt's claim is the Hala'ib triangle, and it is the cleanest example in
+    // this table of a border that two states draw from two different treaties.
+    // The Anglo-Egyptian condominium agreement of 19 January 1899 put the line
+    // on the 22nd parallel, which makes Hala'ib Egyptian; the administrative
+    // boundary of 4 November 1902 handed the tribes north of it to Khartoum,
+    // which is why Sudan administered the triangle in 1990 and Egypt took it by
+    // force in 1995. Cairo asserts 1899, Khartoum asserts 1902, and neither
+    // claims Bir Tawil — the mirror-image scrap each line awards to the other —
+    // which is the reason that patch of desert is the only unclaimed land on
+    // earth. 20,580 km2 and on the order of 20,000 people against a Sudan of
+    // 26.8m: 0.0008, a grievance stated as the number that keeps it a grievance.
+    // https://en.wikipedia.org/wiki/Hala%27ib_Triangle
+    row("Egypt", "Egypt", &["egy", "uar"], "NorthAfrica",
+        &["Israel", "Libya", "Sudan"], &[claim("Sudan", 0.0008)], true, false, false),
+
+    row("Israel", "Israel", &["isr"], "MiddleEast",
+        &["Egypt", "Syria", "Jordan", "Lebanon"], &[], true, false, false),
+
+    // Ankara's claim is the Mosul vilayet, awarded to Iraq by the League of
+    // Nations in 1926 over Turkey's objection and pressed again by Ozal during
+    // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
+    row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
+        &["Iraq", "Iran", "USSR", "Greece", "Bulgaria", "Georgia", "Armenia", "Azerbaijan", "Syria"], &[claim("Iraq", 0.12)], true, false, false),
+
+    // NEIGHBOUR EDIT (branch feat/r-ssafrica): "Cameroon" appended. Nigeria and
+    // Cameroon share 1,700km of frontier from Lake Chad to the Bight of Bonny, and
+    // the far end of it is the Bakassi peninsula. Resolve any conflict here by
+    // union — take every branch's addition.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" appended. The
+    // Nigeria-Chad frontier is about 85 km and it is entirely water — the
+    // south-western shore of Lake Chad — but the lake had lost some nine tenths
+    // of its 1963 area by 1990 and what the two armies actually met on was dry
+    // sand. They met on it: Nigerian and Chadian troops fought over the islands
+    // of Kinasara and Katti Kime in April-May 1983 and something like eighty
+    // men died. This is a border an army walked across inside the decade, so it
+    // is declared. Resolve any conflict here by union.
+    // Unioned across two branches, which each rewrote the whole row rather than
+    // appending to it and so produced a duplicate the roster guard caught. All
+    // four frontiers are real: Cameroon and Chad across Lake Chad from the
+    // Central African fill-in, Niger's 1,600km northern border and Benin's
+    // 800km western one from West Africa.
+    row("Nigeria", "Nigeria", &["nga"], "WestAfrica",
+        &["Cameroon", "Chad"], &[], true, false, false),
+
+    // The Paracels and Spratlys from the other end, plus the border strips.
+    row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
+        &["China", "Cambodia", "Laos"], &[claim("China", 0.002)], true, false, false),
+
+    row("Yugoslavia", "Yugoslavia", &["sfry", "yugo"], "Balkans",
+        &["Italy", "Austria", "Greece", "Hungary", "Romania", "Bulgaria", "Albania"], &[], true, false, false),
+
+    // The 1991 census is the whole of the Yugoslav tragedy in three numbers.
+    // Serbs were 31.2% of Bosnia and 12.2% of Croatia — concentrated in the
+    // Krajina — and about 2% of Slovenia, which is why Belgrade's claim on
+    // Slovenia is not in this table at all. Croats were 17.4% of Bosnia and
+    // declared Herceg-Bosna in November 1991.
+    // https://en.wikipedia.org/wiki/Demographic_history_of_Bosnia_and_Herzegovina
+    row("Serbia", "Serbia", &["serbia and montenegro", "fry", "srb"], "Balkans",
+        &["Croatia", "Bosnia", "Hungary", "Romania", "Bulgaria", "Albania", "Macedonia", "Montenegro"],
+        &[claim("Bosnia", 0.31), claim("Croatia", 0.12)], false, false, false),
+
+    row("Croatia", "Croatia", &["hrv"], "Balkans",
+        &["Serbia", "Bosnia", "Slovenia", "Hungary", "Montenegro"], &[claim("Bosnia", 0.17)], false, false, false),
+
+    row("Slovenia", "Slovenia", &["svn"], "Balkans",
+        &["Croatia", "Italy", "Austria", "Hungary"], &[], false, false, false),
+
+    row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
+        &["Serbia", "Croatia", "Montenegro"], &[], false, false, false),
+
+    // Spain's only land border with a nation in this roster is the Pyrenean
+    // frontier with France, and — since the North African rows below were added
+    // — the fenced perimeters of Ceuta and Melilla, which are land borders with
+    // Morocco whatever Rabat calls them. Portugal and Andorra are not
+    // simulated, so those borders are correctly absent rather than wrong. The
+    // claim is Gibraltar, ceded at Utrecht in
+    // 1713, never accepted, raised at the UN Committee of 24 every year and
+    // under the negotiating process the Brussels Declaration of 27 November
+    // 1984 opened. It is the textbook rounding-error claim this table's
+    // doc comment describes: Gibraltar's population at the 1991 census was
+    // 28,074 against a United Kingdom of 57.4m, or 0.0005 of the target.
+    // A grievance that will never be worth a war, stated as the number that
+    // makes it never worth a war.
+    // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
+    row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
+        &["France", "Portugal", "Morocco"], &[claim("UK", 0.0005)], true, false, false),
+
+    // ---- Western Europe, the rest of it. -----------------------------------
+    // A general note that applies to all eleven rows below, because the shape
+    // of the data is the finding: this is the least irredentist neighbourhood
+    // on the board. Eleven countries, thirty-odd land borders, and exactly TWO
+    // claims between them — and both are rounding errors by design. Western
+    // Europe in 1990 is what a region looks like after it has finished
+    // arguing about lines on maps, and the war model should read it that way
+    // rather than be handed conflicts that were not there.
+
+    // Two land borders, Germany and Belgium, both of them among the oldest
+    // uncontested frontiers in Europe. No claims: the Dutch annexation demands
+    // of 1945-49 were abandoned and the Elten and Selfkant territories were
+    // handed back to West Germany in 1963 under the treaty of 1960.
+    row("Netherlands", "Netherlands", &["nld", "holland", "the netherlands"], "WesternEurope",
+        &["Germany", "Belgium"], &[], true, false, false),
+
+    // Four land borders in the roster now that Luxembourg is one of them. No
+    // claims: the Eupen-Malmedy cantons taken from Germany in 1920 are settled
+    // and German-speaking Belgium became one of the three constitutionally
+    // recognised communities in the reforms of 1970-89 — the answer to that
+    // question was federalism, not a border.
+    row("Belgium", "Belgium", &["bel", "belgique", "belgie"], "WesternEurope",
+        &["France", "Germany", "Netherlands", "Luxembourg"], &[], true, false, false),
+
+    // Sweden borders Norway and Finland by land. It does NOT border Denmark:
+    // the Oresund is four kilometres at its narrowest and the bridge did not
+    // open until July 2000, so the strait is not one an army marches over and
+    // the border is correctly absent. No claims — Sweden has not fought a war
+    // since 1814 and has no outstanding territorial question with anyone.
+    row("Sweden", "Sweden", &["swe", "sverige"], "WesternEurope",
+        &["Norway", "Finland"], &[], true, false, false),
+
+    // Four land borders in the roster; Liechtenstein is not simulated. No
+    // claims, which for a state that has been neutral since 1815 is the whole
+    // point of it.
+    row("Switzerland", "Switzerland", &["che", "swiss", "suisse", "schweiz"], "WesternEurope",
+        &["France", "Germany", "Italy", "Austria"], &[], true, false, false),
+
+    // Five borders in the roster; Czechoslovakia, Hungary and Liechtenstein
+    // are not simulated. Austria borders Yugoslavia through Slovenia, so both
+    // the federation and the successor are listed — the same construction the
+    // Italy row uses, and it is what lets the model keep the border when
+    // Yugoslavia comes apart.
+    //
+    // NO CLAIM, and this is the deliberate call in this batch. South Tyrol is
+    // the obvious candidate: 200,000 German speakers annexed by Italy in 1919,
+    // a bombing campaign by the Befreiungsausschuss Sudtirol into the 1960s,
+    // and a dispute Austria took to the United Nations General Assembly in
+    // 1960 and 1961. But Austria's legal position after the Gruber-De Gasperi
+    // Agreement of 5 September 1946 was that of a PROTECTING POWER for an
+    // autonomy statute, not a claimant to the territory, and Vienna delivered
+    // its formal declaration that the dispute was settled to Rome and the UN
+    // on 11 June 1992. Entering a territorial claim here would turn a
+    // minority-protection guarantee into a war aim, which is exactly the
+    // failure mode this table's doc comment warns about.
+    // https://en.wikipedia.org/wiki/Gruber%E2%80%93De_Gasperi_Agreement
+    row("Austria", "Austria", &["aut", "osterreich"], "WesternEurope",
+        &["Germany", "Italy", "Switzerland", "Yugoslavia", "Slovenia"], &[], true, false, false),
+
+    // One land border, and one of the two claims in this whole region. Olivenca
+    // — Olivenza — is a town of some twelve thousand people that Spain took in
+    // the War of the Oranges in 1801 and that Article 105 of the Final Act of
+    // the Congress of Vienna, 9 June 1815, required be returned. Spain signed
+    // and never returned it. Portugal has never recognised Spanish sovereignty
+    // de jure, keeps the territory off its own official maps as Spanish, and
+    // as recently as the 1980s the Comite Olivenca kept the file open; equally,
+    // no Portuguese government has ever pressed it, and the two states joined
+    // the European Community together on 1 January 1986. Twelve thousand people
+    // against a Spain of 38.9m is 0.0003 of the target: the same species of
+    // never-worth-a-war grievance as Spain's own claim on Gibraltar directly
+    // above, and stated as the number that keeps it that way.
+    // https://en.wikipedia.org/wiki/Olivenza
+    row("Portugal", "Portugal", &["prt", "portucale"], "WesternEurope",
+        &["Spain"], &[claim("Spain", 0.0003)], true, false, false),
+
+    // Greece's land borders inside this roster are Yugoslavia, Turkey and —
+    // once the federation goes — the Macedonian successor, 246 km of it.
+    // INTEGRATOR, A KNOWN GAP LEFT DELIBERATELY UNFIXED: Bulgaria and Albania
+    // are both in the roster now and Greece borders both of them (494 km and
+    // 212 km), but neither border is declared here and neither is declared
+    // from their end either. The comment this replaces still said they were
+    // "not simulated", which stopped being true when the Eastern European and
+    // Balkan rows landed. Adding them is two tokens and it is deliberately not
+    // done on this branch: Greece sits in WesternEurope and they sit in
+    // Balkans, so `dyads::reach` is currently 0.0 for both pairs and declaring
+    // the borders would open two war dyads on rows this branch does not own.
+    // It wants doing, once, by whoever owns the Balkans — not by six agents at
+    // the same time. Region: WesternEurope rather than
+    // Balkans, and it is a judgement rather than a geography lesson. Greece
+    // joined NATO in 1952 and the European Community on 1 January 1981, and its
+    // diplomatic community in 1990 was Brussels and Washington, which is what
+    // the region field feeds (it auto-populates contacts). The two borders that
+    // actually mattered militarily — the Yugoslav one and the Turkish one — are
+    // stated explicitly above and do not depend on the region at all.
+    //
+    // NO CLAIM on Turkey, which is the call worth defending. The Greek-Turkish
+    // quarrel is real and was very nearly a war in March 1987, but every part
+    // of it — the continental shelf, the ten-mile airspace claim, the status of
+    // the Aegean islands' militarisation — is a MARITIME and airspace dispute,
+    // not a demand for a share of Turkish territory. Cyprus, the other half of
+    // it, is a third state and is not in this roster. A claim entered here
+    // would tell the war model that Athens wanted land in Anatolia, which no
+    // Greek government has said since 1922.
+    row("Greece", "Greece", &["grc", "hellas", "ellada"], "WesternEurope",
+        &["Yugoslavia", "Turkey", "Macedonia"], &[], true, false, false),
+
+    // One land border. The Schleswig question, which produced three wars
+    // between 1848 and 1920, was closed by the plebiscites of February and
+    // March 1920 and by the Bonn-Copenhagen Declarations of 29 March 1955, in
+    // which each state guaranteed the other's minority rights and neither
+    // asked for the line to move. No claim.
+    row("Denmark", "Denmark", &["dnk", "danmark"], "WesternEurope",
+        &["Germany"], &[], true, false, false),
+
+    // Norway holds NATO's only land border with the Soviet Union outside
+    // Turkey: 196 km at Kirkenes, settled in 1826, uncontested, and two hours'
+    // drive from the Northern Fleet's bases on Kola. Both the union and the
+    // successor are listed, because Russia inherits this border where it does
+    // not inherit the Turkish or Iranian ones. Svalbard is Norwegian under the
+    // Spitsbergen Treaty of 1920 with a Soviet mining settlement on it at
+    // Barentsburg; that is a treaty regime, not a claim, and is not entered.
+    row("Norway", "Norway", &["nor", "norge"], "WesternEurope",
+        &["Sweden", "Finland", "USSR", "Russia"], &[], true, false, false),
+
+    // 1,340 km with the Soviet Union — the longest such border any Western
+    // European state has, and the reason the Finnish army in this roster is
+    // sized the way it is. No claim, and the absence is the point: Karelia,
+    // ceded at Moscow in March 1940 and again at Paris in 1947, is about
+    // 11% of pre-war Finnish territory and 400,000 people were evacuated from
+    // it, but no Finnish government has ever tabled a demand for its return.
+    // The Treaty of Friendship, Cooperation and Mutual Assistance of 1948 was
+    // still in force on 1 January 1990. Finlandisation is a foreign policy, and
+    // a foreign policy of not asking is correctly a claim table with nothing
+    // in it. https://en.wikipedia.org/wiki/Moscow_Peace_Treaty
+    row("Finland", "Finland", &["fin", "suomi"], "WesternEurope",
+        &["Sweden", "Norway", "USSR", "Russia"], &[], true, false, false),
+
+    // The other of the region's two claims, and much the larger. Articles 2
+    // and 3 of Bunreacht na hEireann, adopted by referendum on 1 July 1937,
+    // declared that "the national territory consists of the whole island of
+    // Ireland, its islands and the territorial seas" — a standing
+    // constitutional claim on six counties of the United Kingdom, live and
+    // unamended on 1 January 1990, and held by the Supreme Court in
+    // McGimpsey v Ireland (1 March 1990, decided inside the game's first
+    // quarter) to be a "claim of legal right". It was removed only by the
+    // referendum of 22 May 1998 that ratified the Good Friday Agreement.
+    // Northern Ireland's population at the 1991 census was 1,577,836 against
+    // a United Kingdom of 57.4m: 0.0275 of the target. Fifty-five times
+    // Spain's Gibraltar claim and still small — which is the honest shape of
+    // it, because for all the deaths this dispute caused between 1969 and
+    // 1998, no Irish government at any point contemplated taking the territory
+    // by force. https://en.wikipedia.org/wiki/Articles_2_and_3_of_the_Constitution_of_Ireland
+    row("Ireland", "Ireland", &["irl", "eire", "republic of ireland"], "WesternEurope",
+        &["UK"], &[claim("UK", 0.0275)], true, false, false),
+
+    // ---- Eastern Europe, January 1990 ----------------------------------
+    // Five states, and the region field splits them where the map does: the
+    // three north of the Danube watershed sit in EasternEurope with Poland,
+    // and Bulgaria and Albania sit in Balkans with Yugoslavia, because that
+    // is where their contacts actually are. Region membership auto-populates
+    // dyads, so this choice decides who is close enough to have an opinion
+    // about whom, and putting Albania anywhere but Balkans would leave the
+    // one state with a live irredentist claim on Yugoslavia outside its
+    // neighbourhood.
+
+    // Czechoslovakia is ONE state here, which is the transcription for 1 January
+    // 1990 and stays true for the whole three years the federation had left.
+    // Its borders are the four this roster simulates: Germany (the Bohemian
+    // frontier with the FRG, ~356km), Poland, Hungary, and the USSR through
+    // Transcarpathia — which is why Ukraine, not Russia, inherits that border.
+    // Austria and the GDR are not simulated, so those two frontiers are
+    // correctly absent rather than wrong.
+    // No claims. Czechoslovakia held none in 1990: the Sudeten question ran the
+    // other way, and the Benes decrees are a property dispute with Bonn and
+    // Vienna rather than a claim on anyone's territory.
+    row("Czechoslovakia", "Czechoslovakia", &["csfr", "cssr", "czechoslovak", "cs"], "EasternEurope",
+        &["Germany", "Poland", "Hungary", "USSR", "Ukraine"], &[], true, false, false),
+
+    // Hungary borders every state in this region except Albania and Bulgaria,
+    // and it is the only nation in the roster that borders all four Yugoslav
+    // entities the model carries: the federation, then Serbia through
+    // Vojvodina, Croatia along the Drava, and Slovenia's 102km in the Prekmurje.
+    // NO CLAIMS, and that is a transcription rather than an omission. Three
+    // million Hungarians lived outside Hungary in 1990 — 1.6m in Romania,
+    // 0.57m in Slovakia, 0.34m in Vojvodina, 0.16m in Ukraine — and Antall's
+    // remark about being "in spirit the prime minister of fifteen million"
+    // was read across the region as revisionism. But no Hungarian government
+    // after 1947 ever asserted a territorial claim, and Budapest signed basic
+    // treaties with Ukraine (1991), Slovakia (1995) and Romania (1996)
+    // explicitly renouncing one. The grievance is real and it belongs in the
+    // relations matrix, where it is; it is not a border demand and this table
+    // will not turn it into one.
+    row("Hungary", "Hungary", &["hun", "magyarorszag"], "EasternEurope",
+        &["Czechoslovakia", "USSR", "Ukraine", "Romania", "Yugoslavia", "Serbia", "Croatia", "Slovenia"],
+        &[], true, false, false),
+
+    // Romania's claim is Bessarabia and northern Bukovina, taken by the Soviet
+    // ultimatum of 26 June 1940 under the secret protocol of the
+    // Molotov-Ribbentrop pact. The Romanian Parliament's declaration of
+    // 24 June 1991 pronounced the pact null and void ab initio and demanded
+    // that its consequences be removed — the nearest thing to a formal claim
+    // any government in this region made in this period. Stated at what it
+    // covers and no more: the Moldavian SSR's 4.34m plus roughly 0.9m in the
+    // Chernivtsi and Budjak districts of the Ukrainian SSR, about 5.2m of a
+    // Soviet Union of 288.6m, or 0.018. When the union goes, the residue is
+    // the Ukrainian portion alone — northern Bukovina, southern Bessarabia and
+    // Snake Island, ~0.9m of Ukraine's 51.7m — which stayed genuinely disputed
+    // until the 1997 treaty and the ICJ delimitation of 2009.
+    // What is NOT here: Moldova is not in this roster, so union with Moldova
+    // cannot be modelled and is not smuggled in as a claim on someone else.
+    // https://en.wikipedia.org/wiki/Molotov%E2%80%93Ribbentrop_Pact
+    row("Romania", "Romania", &["rou", "rom", "romania"], "EasternEurope",
+        &["Hungary", "USSR", "Ukraine", "Yugoslavia", "Serbia", "Bulgaria"],
+        &[claim("USSR", 0.018), claim("Ukraine", 0.017)], true, false, false),
+
+    // Bulgaria borders Romania along the Danube, Yugoslavia (and after 1992 its
+    // Serbian rump) in the west, and Turkey at the Kapitan Andreevo crossing
+    // over which 340,000 Bulgarian Turks were driven in the summer of 1989,
+    // and — once the federation goes — the Macedonian successor, 148 km of it.
+    // Greece is in the roster and Bulgaria borders it; see the note on the
+    // Greece row for why that border is still not declared.
+    // No claims, which for the state that entered both world wars to get the
+    // Macedonian and Aegean territories back is worth stating rather than
+    // leaving to inference: Bulgaria renounced them at the Paris peace treaty
+    // of 1947 and never reasserted them. Sofia's quarrel with Skopje after
+    // 1991 was over whether Macedonians are a nation, not over where the
+    // border runs — Bulgaria was the first state to recognise Macedonia's
+    // independence, in January 1992. A dispute about identity is not a claim
+    // on territory and this table does not have a field for it.
+    row("Bulgaria", "Bulgaria", &["bgr", "bul", "balgariya"], "Balkans",
+        &["Romania", "Yugoslavia", "Serbia", "Turkey", "Macedonia"], &[], true, false, false),
+
+    // Albania's land borders here are with Yugoslavia and, after the federation
+    // goes, with three of its successors: the Serbian rump through Kosovo
+    // (115 km), Montenegro (172 km) and Macedonia (181 km). Greece is in the
+    // roster and Albania borders it; see the note on the Greece row for why
+    // that border is still not declared.
+    // The claim is Kosovo, and it is the one entry in this region that requires
+    // a judgement rather than a transcription, so here is exactly what is and
+    // is not being asserted. Kosovo's autonomy was stripped by Belgrade in
+    // March 1989, its assembly dissolved in July 1990, and Yugoslav police
+    // killed protesters there in January and February 1990 — weeks into this
+    // start state. Ramiz Alia's stated position in January 1990 was
+    // self-determination for Kosovars WITHIN Yugoslavia, not annexation; Tirana
+    // asserted no border change. But in October 1991 Albania became the only
+    // state on earth to recognise the self-declared Republic of Kosova, and
+    // Albanian irredentism is a continuous fact of the period rather than an
+    // invention of this table. Entered at what Kosovo was: about 1.9m of a
+    // Yugoslavia of 23.5m, 0.08 of the target. That share against a strength
+    // index of 3.0 is a grievance the appetite model will price as unaffordable
+    // forever, which is the correct answer — Albania never fired a shot for
+    // Kosovo, and somebody else's air force settled it in 1999.
+    // https://en.wikipedia.org/wiki/Republic_of_Kosova
+    row("Albania", "Albania", &["alb", "shqiperia"], "Balkans",
+        &["Yugoslavia", "Serbia", "Macedonia", "Montenegro"], &[claim("Yugoslavia", 0.08)], true, false, false),
+
+    // -----------------------------------------------------------------------
+    // The other ten Soviet successors. None of these is on the board in
+    // January 1990: every one of them is a union republic whose sovereignty is
+    // a consequence of the dissolution `politics::dissolve_ussr` runs, in the
+    // same way Serbia and Croatia are consequences of Yugoslavia's. Their
+    // borders are the union's internal administrative lines, which is exactly
+    // what the borders of 1991 turned out to be — the Alma-Ata Protocol of 21
+    // December 1991 recognised the republican boundaries as the international
+    // ones, and every war fought here since has been about the places where
+    // that principle collided with where the people actually lived.
+    //
+    // Borders below are with roster members only. Romania, Finland, Norway and
+    // Mongolia are not simulated, so those frontiers are correctly absent
+    // rather than wrong. Turkmenistan, Tajikistan and Kyrgyzstan were on that
+    // list until feat/r2-gulf2 added them at the end of the roster; all fifteen
+    // republics are now here.
+    // -----------------------------------------------------------------------
+
+    // Belarus - 77.9% Belarusian in the 1989 census with no territorial
+    // minority anywhere and no border anybody disputes: the one republic that
+    // came out of the union with neither a claim on a neighbour nor a claim
+    // against it. That absence is the datum. It is also the most militarised
+    // ground in Europe per head, three combined-arms armies of the Belorussian
+    // Military District and 81 SS-25s at Lida and Mozyr, all of it handed back
+    // under the Lisbon Protocol of 23 May 1992.
+    // https://en.wikipedia.org/wiki/1989_Soviet_census
+    row("Belarus", "Belarus", &["blr", "byelorussia", "belorussia"], "Eurasia",
+        &["Russia", "Ukraine", "Poland", "Lithuania", "Latvia"], &[], false, false, false),
+
+    // Kazakhstan - and the claim this row deliberately does NOT carry. The 1989
+    // census gives 39.7% Kazakhs against 37.8% Russians, the Russians
+    // concentrated in the northern oblasts along the frontier, which is the
+    // same arithmetic that put Russia's 0.22 on Ukraine above. Boris Yeltsin's
+    // press secretary Pavel Voshchanov raised exactly that on 26 August 1991,
+    // warning that the RSFSR reserved the right to revise borders with any
+    // republic that left the union. Nazarbayev protested, a delegation was sent
+    // to Alma-Ata, and the statement was withdrawn inside the week and never
+    // restated by any Russian government. A claim asserted for four days and
+    // repudiated is not a claim; entering 0.378 here would manufacture the
+    // largest war in the model out of a press conference.
+    // https://en.wikipedia.org/wiki/Alma-Ata_Protocol
+    row("Kazakhstan", "Kazakhstan", &["kaz", "kazakstan"], "Eurasia",
+        &["Russia", "China", "Uzbekistan", "Kyrgyzstan", "Turkmenistan"], &[], false, false, false),
+
+    // Uzbekistan - the most populous republic in the region, 20.5m in 1990, and
+    // the one whose borders were drawn to be awkward: the Fergana valley was
+    // partitioned between three republics in the delimitation of 1924-36 and
+    // left enclaves inside each. Kyrgyzstan and Tajikistan are simulated as of
+    // feat/r2-gulf2 and this row now borders both, but it still has no claims,
+    // and the argument for that is set out on the Kyrgyzstan row at the end of
+    // the roster: Sokh and Shakhimardan are Uzbek territory already, and an
+    // undelimited segment is not a demand for a share of a neighbour.
+    row("Uzbekistan", "Uzbekistan", &["uzb"], "Eurasia",
+        &["Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan"], &[], false, false, false),
+
+    // Georgia - Abkhazia and South Ossetia were autonomous units inside the
+    // Georgian SSR and both fought secession wars between 1991 and 1993. That
+    // is separatism, not a claim: they are Georgian territory in this model's
+    // terms, and the strain belongs in `separatism`, which `dissolve_ussr` sets
+    // to 0.75, the highest of any successor. Tbilisi claims nothing across a
+    // border and nobody claims it.
+    row("Georgia", "Georgia", &["geo", "sakartvelo"], "Eurasia",
+        &["Russia", "Turkey", "Armenia", "Azerbaijan"], &[], false, false, false),
+
+    // Armenia - the one live irredentist claim in the former union, and the
+    // only one that became a war between two of its successors. The Nagorno-
+    // Karabakh Autonomous Oblast was inside the Azerbaijan SSR and 76.9%
+    // Armenian at the 1989 census; its soviet voted on 20 February 1988 to
+    // transfer to Armenia, and the Armenian Supreme Soviet voted on 1 December
+    // 1989 to unify with it. The share is the oblast against its host: 189,000
+    // people of the Azerbaijan SSR's 7,021,000, or 0.027.
+    //
+    // Not entered: any claim on Turkey. The Armenian declaration of
+    // independence of 23 August 1990 names the genocide and Armenia has never
+    // ratified the Treaty of Kars, but Ter-Petrosyan's government explicitly
+    // declined to make a territorial claim and sought normalisation instead.
+    // The claim belongs to the diaspora and to the Dashnaks, not to the state
+    // this row describes.
+    // https://en.wikipedia.org/wiki/Nagorno-Karabakh_Autonomous_Oblast
+    row("Armenia", "Armenia", &["arm", "hayastan"], "Eurasia",
+        &["Georgia", "Azerbaijan", "Turkey", "Iran"],
+        &[claim("Azerbaijan", 0.027)], false, false, false),
+
+    // Azerbaijan - and the reason the Karabakh claim is one-directional. The
+    // ground both armies fought over is Azerbaijani territory under the border
+    // Alma-Ata recognised, so Baku is defending rather than claiming, and a
+    // reciprocal claim entered here would double-count the same war. The
+    // Azerbaijanis expelled from Armenia in 1988-89 - 84,860 of Armenia's
+    // 3,304,776 people at the 1989 census - are a real grievance, but the
+    // "Western Azerbaijan" doctrine that turns them into a territorial claim is
+    // a thing of the 2020s and was not the policy of any government in this
+    // period. Nakhchivan's short frontier with Turkey is the border in this row
+    // that surprises people; it is 17 kilometres and it is real.
+    row("Azerbaijan", "Azerbaijan", &["aze", "azerbaydzhan"], "Eurasia",
+        &["Georgia", "Armenia", "Russia", "Turkey", "Iran"], &[], false, false, false),
+
+    // Lithuania - the border with Russia is Kaliningrad, and Vilnius never
+    // claimed it: the Lithuanian position from 1990 was that the oblast was a
+    // problem for Moscow and Bonn to solve and that raising it would have cost
+    // the recognition it was fighting for. The absence of a claim on a Russian
+    // exclave wedged between Lithuania and Poland is a decision, not an
+    // oversight. 79.6% Lithuanian in 1989, the most homogeneous Baltic, and the
+    // only one that gave citizenship to every resident.
+    row("Lithuania", "Lithuania", &["ltu", "lietuva"], "EasternEurope",
+        &["Latvia", "Belarus", "Poland", "Russia"], &[], false, false, false),
+
+    // Latvia - the Abrene claim. The peace treaty of 11 August 1920 put the
+    // Abrene district on the Latvian side; the Soviet Union transferred it to
+    // the RSFSR in 1944 and it is Pytalovo today. Latvia held the transfer void
+    // along with the annexation itself, and did not drop the claim until the
+    // border treaty of 27 March 2007. About 12,000 people against a Russian
+    // Federation of 148m: 0.0001, the same order as Spain on Gibraltar, and
+    // stated as the number that keeps it a grievance rather than a war.
+    // https://en.wikipedia.org/wiki/Latvian-Soviet_Peace_Treaty
+    row("Latvia", "Latvia", &["lva", "latvija"], "EasternEurope",
+        &["Lithuania", "Estonia", "Belarus", "Russia"],
+        &[claim("Russia", 0.0001)], false, false, false),
+
+    // Estonia - the same claim in the same shape and from the same year. The
+    // Treaty of Tartu of 2 February 1920 put Petserimaa and the land east of
+    // the Narva river inside Estonia; both went to the RSFSR in 1945. The
+    // Riigikogu resolved in 1994 that Tartu remained in force, and Estonia
+    // conceded the line only with the treaty of 2005. Roughly 27,000 people of
+    // a Russia of 148m: 0.0002.
+    // https://en.wikipedia.org/wiki/Treaty_of_Tartu_(Russian-Estonian)
+    row("Estonia", "Estonia", &["est", "eesti"], "EasternEurope",
+        &["Latvia", "Russia"], &[claim("Russia", 0.0002)], false, false, false),
+
+    // Moldova - Transnistria declared on 2 September 1990 and Gagauzia on 19
+    // August 1990, and the war of 1992 was decided by the Soviet 14th Army,
+    // which was already on the left bank and did not leave. Both are internal,
+    // so both are separatism rather than a claim, and `dissolve_ussr` carries
+    // them at 0.45. The union with Romania that the Popular Front wanted is not
+    // a claim either, and Romania is not simulated in any case.
+    row("Moldova", "Moldova", &["mda", "moldavia"], "EasternEurope",
+        &["Ukraine"], &[], false, false, false),
+
+    // ---- Latin America ----------------------------------------------------
+    //
+    // Thirteen states. The borders below are the ones that exist between nations
+    // *in this roster*: Panama, Guatemala and Belize are not simulated, so those
+    // frontiers are correctly absent rather than wrong. Paraguay, Guyana and
+    // Suriname were in that list until branch feat/r2-southam2 added them at the
+    // end of the roster; the three rows are at the bottom of this file, because
+    // roster order is relations-matrix order and inserting them here would have
+    // moved every index after Uruguay.
+    //
+    // Brazil's land border with France by way of French Guiana is deliberately
+    // not declared. It is a real 730 km frontier, but it is a border with an
+    // overseas department 7,000 km from Paris, and a Franco-Brazilian
+    // war-appetite dyad would be an artefact of how the map is drawn rather than
+    // a fact about either state. The same reasoning that leaves Spain's border
+    // with Morocco out leaves this one out.
+    //
+    // Three claims exist in this region and no more. What is striking about
+    // South America in 1990 is how few there are: the continent had settled
+    // almost all of its frontiers by arbitration between 1900 and 1942, and the
+    // three that were left over are the three that produced shooting.
+
+    // Buenos Aires holds one claim and it is the Falklands - taken by Britain on
+    // 3 January 1833, invaded on 2 April 1982, pressed at the UN Committee of 24
+    // every year since 1965. Relations were restored on 19 February 1990 under
+    // the Madrid formula, in which both sides agreed to set sovereignty aside
+    // rather than settle it, so the game opens with the claim live and the
+    // relation merely cold.
+    //
+    // The share is the arithmetic this table's doc comment demands, and it is
+    // brutal. The 1991 Falklands census counted 2,121 people against a United
+    // Kingdom of 57.4m: 0.00004 of the target, an order of magnitude smaller
+    // than Spain's Gibraltar claim. The appetite model will therefore never find
+    // an invasion worth its cost, and that is the correct reading rather than a
+    // failure. The 1982 war was not a calculation about what the islands were
+    // worth. It was a junta three days after the largest general strike of the
+    // dictatorship looking for something else for the country to think about -
+    // domestic collapse, which this sim models, and not territorial appetite,
+    // which it also models and which was not the mechanism.
+    // https://en.wikipedia.org/wiki/1991_Falkland_Islands_census
+    row("Argentina", "Argentina", &["arg"], "LatinAmerica",
+        &["Chile", "Bolivia", "Brazil", "Uruguay", "Paraguay"],
+        &[claim("UK", 0.00004)], true, false, false),
+
+    // The 3,145 km with the United States is Mexico's only border inside this
+    // roster. No claim, and the absence is the transcription: the territorial
+    // question was closed by the Treaty of Guadalupe Hidalgo in 1848 and the
+    // Gadsden Purchase in 1853, the last live fragment of it - the Chamizal -
+    // was settled in 1963, and no Mexican government since has raised any of it.
+    //
+    // Guatemala and Belize appended with the Central American branch
+    // (feat/r2-centam), and the second of them is the one worth a sentence.
+    // Mexico held a claim to the northern half of Belize until the
+    // Mariscal-St. John treaty of 1893, renounced it there, and recognised
+    // Belize on the day it became independent in September 1981 - which is
+    // exactly what Guatemala did not do. Two neighbours of the same small
+    // country, the same colonial-era grievance, and only one of them still
+    // pressing it in 1990. `claims` stays empty for Mexico and that emptiness
+    // is the fact.
+    row("Mexico", "Mexico", &["mex"], "LatinAmerica",
+        &["USA", "Guatemala", "Belize"], &[], true, false, false),
+
+    row("Chile", "Chile", &["chl"], "LatinAmerica",
+        &["Argentina", "Bolivia", "Peru"], &[], true, false, false),
+
+    // Bogota's disputes with Caracas and with Managua are maritime - the Gulf of
+    // Venezuela and the Los Monjes cays, San Andres and Providencia - and this
+    // table has no way to state them, because `share` is a fraction of a target
+    // state and a delimitation over water is not a fraction of anybody. They are
+    // in relations_1990.json instead, where a cold dyad with no claim behind it
+    // is exactly the right shape for a quarrel that brings frigates out and
+    // never brings armies.
+    //
+    // Panama appended with feat/r2-centam. It is a land border only in the
+    // legal sense: the 225km line runs through the Darien Gap, the one break
+    // in the Pan-American Highway, and no road has ever crossed it. Colombia
+    // holds no claim on it. Panama was a Colombian department until November
+    // 1903, seceded with a United States warship offshore, and Bogota
+    // recognised the separation in the Thomson-Urrutia treaty of 1921 in
+    // exchange for $25m from Washington. The boundary itself was fixed by the
+    // Victoria-Velez treaty of 1924 and has not been argued about since.
+    row("Colombia", "Colombia", &["col"], "LatinAmerica",
+        &["Venezuela", "Ecuador", "Peru", "Brazil", "Panama"], &[], true, false, false),
+
+    // Venezuela's real claim is the Essequibo, and the note that used to stand
+    // here asked whoever added Guyana to enter it at the same time. Done: the
+    // Guayana Esequiba is 159,500 km2 of Guyana's 214,970, and Caracas has
+    // asserted it since the Geneva Agreement of 17 February 1966 reopened the
+    // Paris arbitral award of 3 October 1899 that Venezuela had accepted for
+    // sixty-seven years. Every Venezuelan map prints it as `zona en reclamacion`.
+    //
+    // 0.62 is the area share and it is the right denominator here, unusually.
+    // Bolivia's Litoral and Ecuador's Cordillera del Condor are scored on
+    // population because they are empty land whose value is symbolic; the
+    // Essequibo is scored on area because it is not a strip of frontier but two
+    // thirds of the target state, including the Cuyuni goldfields, the Mazaruni
+    // diamond workings and the whole Atlantic coast west of the Essequibo river.
+    // Taking it does not adjust a border, it deletes Guyana. That is what a
+    // share above a half is supposed to mean in this table, and it makes this
+    // the largest claim in the Western Hemisphere by some distance.
+    //
+    // What stops it in 1990 is not appetite but capacity and cost: the Protocol
+    // of Port of Spain froze the question from 1970 to 1982, Venezuela declined
+    // to renew it, and by January 1990 the two governments had agreed to put the
+    // matter to the UN Secretary-General's good offices - Perez de Cuellar
+    // accepted the role in 1990 and the process was still running decades later.
+    // Caracas in 1990 is also an OPEC state deep in Perez's Gran Viraje
+    // adjustment, three months from the Caracazo's anniversary. The appetite
+    // model should read all of that out of the economy and the relations, not
+    // out of a smaller number here.
+    // https://en.wikipedia.org/wiki/Guayana_Esequiba
+    row("Venezuela", "Venezuela", &["ven"], "LatinAmerica",
+        &["Colombia", "Brazil", "Guyana"], &[claim("Guyana", 0.62)], true, false, false),
+
+    row("Peru", "Peru", &["per"], "LatinAmerica",
+        &["Ecuador", "Colombia", "Brazil", "Bolivia", "Chile"], &[], true, false, false),
+
+    // An island, and therefore no land borders at all. The one thing Havana
+    // wants back - the Guantanamo Bay naval station, held under a 1903 lease
+    // Cuba has declared void since 1959 and whose rent cheques it has refused to
+    // cash - cannot be written as a claim in this table, because Guantanamo is
+    // Cuban territory under foreign occupation rather than a fraction of the
+    // United States. The grievance is in the relations file, at -75.
+    row("Cuba", "Cuba", &["cub"], "LatinAmerica", &[], &[], true, false, false),
+
+    // The Litoral: 120,000 km2 of Atacama coast and the port of Antofagasta,
+    // lost to Chile in the War of the Pacific and ceded by the treaty of 1904.
+    // Bolivia has demanded sovereign access to the sea every year since, has had
+    // no ambassador in Santiago since 1978, still maintains a navy on Lake
+    // Titicaca, and still parades it on the Dia del Mar. It took the case to the
+    // ICJ in 2013 and lost in 2018.
+    //
+    // The share is 0.03 and the choice of denominator is the argument. By area
+    // the Litoral is 0.16 of Chile; by people it is far less, because the
+    // Antofagasta Region held 410,724 at the 1992 census against a Chile of
+    // 13.35m. This table's doc comment settles it - China's claim on India is
+    // 0.02 for Aksai Chin precisely because it is "a large area and almost no
+    // people" - so the population denominator is the one in use and 0.031 is the
+    // figure. A grievance that is permanent, total in Bolivian politics, and
+    // still not worth a war against an army three times the size of yours.
+    // https://en.wikipedia.org/wiki/Bolivian_littoral_dispute
+    row("Bolivia", "Bolivia", &["bol"], "LatinAmerica",
+        &["Peru", "Chile", "Argentina", "Brazil", "Paraguay"],
+        &[claim("Chile", 0.03)], true, false, false),
+
+    // The one claim in this region that did produce a war inside the sim's
+    // window. Ecuador signed the Rio Protocol under Peruvian occupation in
+    // January 1942, losing roughly 200,000 km2 of Amazon headwater, and
+    // President Velasco Ibarra declared the protocol null in 1960 - a position
+    // every Ecuadorian government held until 1998. They shot at each other at
+    // Paquisha in January 1981 and fought the Cenepa war in January-February
+    // 1995, five years after this file opens.
+    //
+    // 0.05 rather than the 0.16 the disputed area is of Peru, for the same
+    // population reason as Bolivia's row above: the Cordillera del Condor is
+    // some of the emptiest land in South America. It is set an order of
+    // magnitude above the Falklands and the Litoral because unlike those two it
+    // is a live, undemarcated, patrolled frontier that both armies were standing
+    // on. The Cenepa war should be reachable from this number and the border,
+    // and it should be reachable without being certain.
+    // https://en.wikipedia.org/wiki/Cenepa_War
+    row("Ecuador", "Ecuador", &["ecu"], "LatinAmerica",
+        &["Colombia", "Peru"], &[claim("Peru", 0.05)], true, false, false),
+
+    row("Uruguay", "Uruguay", &["ury", "uru"], "LatinAmerica",
+        &["Brazil", "Argentina"], &[], true, false, false),
+
+    // ===== Middle East =====
+
+    // Syria borders Iraq, Turkey, Israel, Jordan and Lebanon in this roster.
+    // Two claims, both of them lines drawn by departing empires and never
+    // accepted.
+    //
+    // The Golan Heights: taken in June 1967, and on 14 December 1981 the Knesset
+    // extended Israeli "law, jurisdiction and administration" over them, which
+    // Security Council Resolution 497 declared null and void three days later,
+    // on 17 December. About 1,200 km2 against the roughly 22,000 km2 Israel
+    // administers
+    // inside the Green Line plus the Golan, so 0.05 of the target.
+    // https://en.wikipedia.org/wiki/Golan_Heights_Law
+    //
+    // Hatay: the Sanjak of Alexandretta, which France detached from its Syrian
+    // mandate and handed to Turkey in June 1939 to keep Ankara out of the coming
+    // war. Syria has never recognised the transfer and still prints the province
+    // inside its own borders. Hatay held about 1.1m of Turkey's 56m people in
+    // 1990, so 0.02 - scored on population exactly as the Turkey-on-Iraq Mosul
+    // claim four rows above is, so the two are the same kind of object.
+    // https://en.wikipedia.org/wiki/Hatay_State
+    //
+    // NOT entered, and the omission is the argued half of this row: Syria's
+    // relationship to Lebanon. Damascus refused to exchange ambassadors with
+    // Beirut until 2008 precisely because Greater Syria doctrine never conceded
+    // that Lebanon was a separate country, and after the Taif Accord of 22
+    // October 1989 and the assault on Aoun of 13 October 1990 Syria was the
+    // effective government of the place. But `claim.share` in this table is the
+    // fraction of a target a war would annex, and Syria never sought to annex
+    // Lebanon - it sought to control it, which is occupation and veto, not
+    // irredentism. The border and the relations value carry that; a fabricated
+    // annexation share would not.
+    row("Syria", "Syria", &["syr"], "MiddleEast",
+        &["Iraq", "Turkey", "Israel", "Jordan", "Lebanon"],
+        &[claim("Israel", 0.05), claim("Turkey", 0.02)], true, false, false),
+
+    // Jordan borders Iraq, Saudi Arabia, Israel, Syria - and the claims list is
+    // empty for a reason worth stating, because it is the rarest thing in this
+    // table: a claim that was formally given up. On 31 July 1988 King Hussein
+    // announced the severance of Jordan's legal and administrative ties to the
+    // West Bank, dissolving the Chamber's Palestinian seats and ending the
+    // annexation Jordan had held since 1950. The 1989 election was the first
+    // fought on the East Bank alone. Jordan wants nothing from anybody here.
+    // https://en.wikipedia.org/wiki/Jordanian_disengagement_from_the_West_Bank
+    row("Jordan", "Jordan", &["jor"], "MiddleEast",
+        &["Iraq", "SaudiArabia", "Israel", "Syria"], &[], true, false, false),
+
+    // Lebanon borders Syria and Israel, and in January 1990 both of them had
+    // armies inside it: roughly 40,000 Syrian troops under the Arab Deterrent
+    // Force mandate, and the Israeli "security zone" north of the 1978 line.
+    // No claims, and again the absence is the fact. The Shebaa Farms claim -
+    // the one thing Lebanon does assert against Israel - was not made until
+    // 2000, when Hezbollah needed a reason for the resistance to continue after
+    // the withdrawal; in 1990 those farms were understood to be Syrian.
+    row("Lebanon", "Lebanon", &["lbn"], "MiddleEast",
+        &["Syria", "Israel"], &[], true, false, false),
+
+    // The Emirates border Saudi Arabia and Oman. They do NOT border Qatar: the
+    // Khawr al Udayd corridor of Saudi territory runs between them, which is
+    // why Qatar's only land neighbour below is Riyadh.
+    //
+    // The claim is Abu Musa and the Greater and Lesser Tunbs, which Iranian
+    // troops occupied on 30 November 1971 - the day before the federation was
+    // proclaimed and two days before Britain's treaties lapsed. The UAE has
+    // raised it at every Arab League and UN session since. It is a
+    // rounding-error claim by any measure: about 30 km2 against Iran's
+    // 1,648,000 (0.00002) and roughly 800 inhabitants against 56m (0.00001).
+    // Entered at 0.00002, which is the number that says a grievance is
+    // permanent and is never going to be worth a war.
+    // https://en.wikipedia.org/wiki/Greater_and_Lesser_Tunbs
+    row("UAE", "United Arab Emirates", &["uae", "emirates", "are"], "MiddleEast",
+        &["SaudiArabia", "Oman"], &[claim("Iran", 0.00002)], true, false, false),
+
+    // Qatar's one land border is with Saudi Arabia. Its claim is the Hawar
+    // Islands, and this is not a paper dispute: on 26 April 1986 Qatari special
+    // forces helicoptered onto Fasht al-Dibal, an artificial island Bahrain was
+    // building, and took twenty-nine workers prisoner. Saudi mediation stopped
+    // it. Qatar filed the whole question at the International Court of Justice
+    // on 8 July 1991, eighteen months into this game, and lost Hawar there on
+    // 16 March 2001. Hawar is about 52 km2 against Bahrain's 765 km2 including
+    // it, so 0.07 of the target - a real slice of a very small country, which
+    // is why two allies came close to shooting over it.
+    // https://en.wikipedia.org/wiki/Hawar_Islands
+    row("Qatar", "Qatar", &["qat"], "MiddleEast",
+        &["SaudiArabia"], &[claim("Bahrain", 0.07)], true, false, false),
+
+    // Oman borders Saudi Arabia across the Rub' al Khali, the UAE, and Yemen.
+    // No claims, and 1990 is the year that became true: the Saudi-Omani border
+    // was finally settled by treaty on 21 March 1990, eleven weeks into this
+    // game, and the Omani-Yemeni border on 1 October 1992. Muscat is the state
+    // in this region that finished drawing its lines by agreement.
+    // https://en.wikipedia.org/wiki/Oman%E2%80%93Saudi_Arabia_border
+    row("Oman", "Oman", &["omn", "muscat"], "MiddleEast",
+        &["SaudiArabia", "UAE", "Yemen"], &[], true, false, false),
+
+    // Yemen. See yemen.json for the unification problem in full; the short of it
+    // is that on 1 January 1990 there were two Yemens and on 22 May 1990 there
+    // was one, and this roster carries the unified Republic from the start
+    // because SPHERES creates successor states when a federation comes apart and
+    // has no machinery for the reverse, and BIBLE section 5 refuses the scripted
+    // event that would be the alternative.
+    //
+    // The claim is Asir, Jizan and Najran, which the Imam ceded to Ibn Saud in
+    // the Treaty of Taif of 20 May 1934 after losing the war - on twenty-year
+    // renewable terms that Yemen spent the next sixty-six years declining to
+    // treat as permanent. The frontier east of Najran was never demarcated at
+    // all until the Jeddah Treaty of 12 June 2000, and Saudi and Yemeni forces
+    // shot at each other over it in 1994, 1995 and 1998. Those three provinces
+    // held roughly 2.2m of Saudi Arabia's 16m people, so 0.13 - scored on
+    // population, the same method as Turkey-on-Iraq and Syria-on-Turkey above.
+    // https://en.wikipedia.org/wiki/Treaty_of_Taif
+    row("Yemen", "Yemen", &["yem", "north yemen", "south yemen"], "MiddleEast",
+        &["SaudiArabia", "Oman"], &[claim("SaudiArabia", 0.13)], true, false, false),
+
+    // Bahrain's neighbour list has exactly one entry and it is a bridge. The
+    // King Fahd Causeway opened on 25 November 1986: twenty-five kilometres of
+    // road and embankment from Al Khobar to Bahrain, built by Saudi money and
+    // wide enough to drive an armoured column across, which is precisely what
+    // Saudi Arabia did on 14 March 2011. This table's doc comment admits "the
+    // two straits narrow enough to march across"; a causeway is not a strait,
+    // it is better than one, and leaving it out would make Bahrain an island
+    // nobody can reach in a model whose whole war logic reads adjacency.
+    //
+    // The claim is Zubarah, on the Qatari mainland, from which the Al Khalifa
+    // ruled before they took Bahrain in 1783 and which Bahrain pressed against
+    // Doha until the ICJ awarded it to Qatar on 16 March 2001. Roughly 1% of
+    // Qatar. The reciprocal Qatari claim on Hawar is four rows up: the two
+    // smallest states in this roster hold claims on each other and nearly went
+    // to war over them in 1986, which is the sort of thing a derived appetite
+    // table gets right and an enumerated one would never have bothered to list.
+    // https://en.wikipedia.org/wiki/Zubarah
+    row("Bahrain", "Bahrain", &["bhr"], "MiddleEast",
+        &["SaudiArabia"], &[claim("Qatar", 0.01)], true, false, false),
+
+    // ---- North Africa ----------------------------------------------------
+    // Five states along one coast, and the thing to notice is how few claims
+    // there are between them. The Maghreb's quarrels in 1990 were over a
+    // territory that is not in this roster at all — the Western Sahara, which
+    // Morocco holds and the Polisario Front contests from Algerian soil — so
+    // the Algiers-Rabat dyad is a proxy war carried on a border neither side
+    // was seriously trying to move. The Arab Maghreb Union treaty of 17
+    // February 1989 is the other half of that: these five had just signed one.
+    // Modelling the region as a set of irredentist appetites would invent a
+    // decade of wars that did not happen.
+
+    // Algeria borders every other Maghreb state in this roster and claims none
+    // of them. Its 1963 war with Morocco was fought on Moroccan initiative and
+    // over Algerian ground, its 1990 quarrel with Rabat was over the Western
+    // Sahara, and Tindouf — the Polisario's base since 1976 — was the thing
+    // Algeria was defending, not seeking.
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" and
+    // "Mauritania" appended. The sentence that used to end this comment said
+    // those three southern frontiers were borders with states the roster did
+    // not carry; they are now rows, so the borders are declared. Only the
+    // Western Sahara remains absent, and it is absent because it is not a
+    // nation in this table. Union, not replacement.
+    row("Algeria", "Algeria", &["dza", "alg", "algerie"], "NorthAfrica",
+        &["Morocco", "Tunisia", "Libya"], &[], true, false, false),
+
+    // Morocco is the one North African state in 1990 with live claims on two
+    // neighbours it can walk to, and both are rounding errors by design.
+    //
+    // On Spain: Ceuta and Melilla, held since 1668 and 1497, claimed by every
+    // Moroccan government since independence in 1956 and raised at the UN
+    // Committee of 24 in the same breath Spain raises Gibraltar. Their 1991
+    // census populations were 67,615 and 56,600 — 124,215 against a Spain of
+    // 38.87m, or 0.0032.
+    //
+    // On Algeria: the Tindouf frontier zone, the object of the Sand War of
+    // October 1963 and of the Amgala clashes of January 1976. Rabat signed the
+    // border convention of 15 June 1972 and then did not ratify it until 22 May
+    // 1992, which is precisely why the claim is live in January 1990 and dead
+    // two years later. Tindouf wilaya held 16,339 people at the 1987 Algerian
+    // census against 23.04m, or 0.0007, entered at 0.001. Stated conservatively:
+    // the maximal Moroccan claim reached Bechar as well, which would put it near
+    // 0.009, but Tindouf is what Rabat was actually still asserting by 1990.
+    //
+    // The Western Sahara, which is the claim that mattered, is not in this
+    // roster, so it is correctly absent. Mauritania likewise.
+    // https://en.wikipedia.org/wiki/Sand_War
+    row("Morocco", "Morocco", &["mar", "maroc", "al-maghrib"], "NorthAfrica",
+        &["Algeria", "Spain"],
+        &[claim("Spain", 0.0032), claim("Algeria", 0.001)], true, false, false),
+
+    // Tunisia claims nothing from anybody, which is not an oversight: its one
+    // territorial dispute of the era, the continental shelf in the Gulf of
+    // Gabes, went to the International Court of Justice and was decided on 24
+    // February 1982 and again on 10 December 1985, and Tunis accepted both.
+    // A state that litigates its borders is a state with no claims to enter.
+    row("Tunisia", "Tunisia", &["tun", "tunisie"], "NorthAfrica",
+        &["Algeria", "Libya"], &[], true, false, false),
+
+    // Libya's irredentism was real and enormous: the Aouzou Strip, annexed from
+    // Chad in 1973, fought over until the rout of March 1987 and surrendered to
+    // the ICJ in 1994. What the borders carry besides is reach: Libya touches
+    // Egypt, with whom it fought a four-day war in July 1977, and Sudan, whose
+    // government it had spent a decade trying to choose.
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" appended, and the
+    // paragraph above rewritten because it used to end "Chad is not in this
+    // roster, so Libya opens with no claims". Chad is in the roster now, and
+    // Libya STILL opens with no claims — for a different and better reason,
+    // which is that on 1 January 1990 Libya was IN the Aouzou Strip. Chadian
+    // forces took Aouzou town on 8 August 1987 and Libya retook it on 28
+    // August; the ceasefire of 11 September 1987 froze the line there and
+    // Libya held the strip until it withdrew on 31 May 1994 under the ICJ
+    // judgment of 3 February 1994. This table's convention is Egypt-on-Sudan's:
+    // the claim belongs to the state that does NOT administer the ground, so
+    // the Aouzou claim is on Chad's row below and not on this one. What Libya
+    // wanted from Chad after 1987 was a government rather than an acre — it
+    // was arming Deby out of Darfur within the year — and that is covert
+    // action and patronage, which this model has other machinery for.
+    // Resolve any conflict on this row by union: take every branch's addition.
+    // https://en.wikipedia.org/wiki/Aouzou_Strip
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" appended. 350km of
+    // frontier in the Tummo desert, and it is reach of exactly the kind the
+    // comment above means: Qadhafi's Islamic Legion recruited Tuareg from Niger
+    // and Mali through the 1980s and sent them home again, and Niamey spent the
+    // decade accusing Tripoli of designs on the Air massif. Union, not
+    // replacement.
+    row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
+        // Unioned across two branches: Central Africa brought Chad, West Africa
+        // brought Niger. Both borders are real and neither side is dropped.
+        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad"], &[], true, false, false),
+
+    // Sudan claims nothing. Under the 1902 administrative line it prefers, the
+    // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
+    // so there is nothing left for Khartoum to ask for — the asymmetry is in
+    // Egypt's row above, not this one. Sudan's war in 1990 is entirely
+    // internal, which is what the separatism figure in sudan.json carries.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" and
+    // "CentralAfricanRepublic" appended, and the sentence that used to say the
+    // long southern and western frontiers were with states this roster does
+    // not have is now true only of Ethiopia, Uganda, Kenya and Zaire. The two
+    // added are real and they were used: Khartoum gave Idriss Deby sanctuary in
+    // Darfur after his failed coup of 1 April 1989 and he crossed back into
+    // Chad from there. That is a border with an insurgent's rear area, which is
+    // exactly the thing this column exists to let the model see. Sudan still
+    // claims nothing from either. Resolve any conflict here by union.
+    row("Sudan", "Sudan", &["sdn", "as-sudan"], "NorthAfrica",
+        &["Egypt", "Libya", "Chad", "CentralAfricanRepublic"], &[], true, false, false),
+
+    // ===== Sub-Saharan Africa (branch feat/r-ssafrica) =====
+    //
+    // A general note on what is ABSENT here, because absence is the commonest way
+    // to get this region wrong. Eleven countries are simulated and about forty are
+    // not, so most of these borders run to states this model has no opinion about:
+    // Kenya's longest frontier is with Somalia and it is not in this table, Zaire
+    // touches nine neighbours and only two of them are here, Ghana and Senegal have
+    // no roster neighbour at all. That is correct rather than missing. What would
+    // be wrong is inventing a border to give a country somebody to fight.
+    //
+    // A second note on claims. Africa in 1990 had astonishingly few interstate
+    // territorial claims, and that is the single most important fact this table
+    // records about the continent. The OAU's Cairo resolution of 21 July 1964
+    // bound its members to respect the frontiers they inherited at independence,
+    // and it held: the wars of this decade are civil wars, secessions and
+    // interventions, not conquests. So there is exactly ONE claim in eleven rows —
+    // Cameroon on Bakassi — and the derived war model should read this region as
+    // one full of collapsing states and almost empty of irredentism, because that
+    // is what it was. https://en.wikipedia.org/wiki/Organisation_of_African_Unity
+
+    // AMENDED when Southern Africa was filled in (branch feat/r2-southafrica2).
+    // The comment this replaces said South Africa's only land border in the
+    // roster was the Limpopo, and it said so because Botswana, Lesotho,
+    // Swaziland, Mozambique and Namibia were not simulated. All five now are,
+    // and South Africa turns out to be the most-bordered state on the board
+    // after the Soviet Union: six roster neighbours, two of which it entirely
+    // surrounds. That is the correct shape of the regional problem and it is
+    // what the Frontline States meant — every one of them was reachable from
+    // Pretoria by road, which is why the SADF raided Gaborone (14 June 1985),
+    // Maseru (9 December 1982 and 20 December 1985) and Maputo (30 January
+    // 1981 and 12 October 1983) rather than fighting a war.
+    //
+    // No claims, and that is still the finding. Apartheid South Africa wanted a
+    // buffer, not territory: the cross-border raids were on ANC and SWAPO camps
+    // rather than on ground, and the two pieces of ground Pretoria did hold and
+    // was asked for — Walvis Bay and the Ingwavuma corridor — it held as
+    // leverage over neighbours rather than as irredenta. Both of those claims
+    // run the OTHER way, from Windhoek and Mbabane, and are entered on those
+    // rows.
+    row("SouthAfrica", "South Africa", &["south africa", "rsa", "zaf"], "SouthernAfrica",
+        &["Zimbabwe", "Mozambique", "Botswana", "Namibia", "Lesotho", "Swaziland"],
+        &[], true, false, false),
+
+    // Ethiopia's wars in 1990 are all inside its own borders — Eritrea, Tigray,
+    // the Oromo — which is why a state about to lose a third of its coastline
+    // carries no claim on anybody. The Ogaden claim runs the other way, from
+    // Mogadishu, and Somalia is not simulated. Kenya is the only roster neighbour;
+    // Sudan, Somalia and Djibouti are not.
+    row("Ethiopia", "Ethiopia", &["eth", "abyssinia"], "EastAfrica",
+        &["Kenya"], &[], true, false, false),
+
+    row("Kenya", "Kenya", &["ken"], "EastAfrica",
+        &["Ethiopia", "Uganda", "Tanzania"], &[], true, false, false),
+
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "BurkinaFaso" and "Togo"
+    // appended, and the comment that used to stand here — "no roster neighbour"
+    // — is now false and has been replaced rather than left to mislead. Ghana
+    // borders Cote d'Ivoire, Burkina Faso and Togo; two of the three are now
+    // simulated and Cote d'Ivoire still is not. Ghana stops being an island in
+    // this table. Union, not replacement.
+    row("Ghana", "Ghana", &["gha"], "WestAfrica",
+        &[], &[], true, false, false),
+
+    // Zaire has nine neighbours and two of them are in this roster. The omission
+    // worth stating is Tanzania: the Zaire-Tanzania boundary is drawn entirely
+    // down the middle of Lake Tanganyika and has no land segment at all, and this
+    // column means "force can cross without a fleet". Fifty kilometres of open
+    // water is not a border in that sense, so it is left out on purpose.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "CentralAfricanRepublic" and
+    // "Congo" appended. Two of the nine are now four. The Congolese frontier is
+    // the river itself — Kinshasa and Brazzaville face each other across 4 km of
+    // it and are the closest pair of capitals on earth after Rome and the
+    // Vatican — and a river a ferry crosses in twenty minutes is a border in
+    // every sense this column means. The Central African one is the Ubangi and
+    // then dry ground east of Zongo.
+    //
+    // "Congo" is another nation's canonical code. Do not use it as a Zaire
+    // alias: the country selector and read routes send canonical codes through
+    // the same parser as human input. "zar" and "drc" remain unambiguous.
+    // Zambia appended with the Southern Africa fill-in: the Zaire-Zambia border
+    // is 2,332km of land, the Copperbelt runs across it, and the pedicle of
+    // Zaire's Katanga cuts into Zambia far enough that the Zambian road from
+    // Lusaka to Luapula crossed Zairean territory. Three roster neighbours now,
+    // not two.
+    // Two branches extended this row from opposite sides — Central Africa added
+    // the Congo and CAR borders, Southern Africa added Zambia. Unioned, which is
+    // what the integration rule means: never choose a side of a neighbour list.
+    row("Zaire", "Zaire", &["zar", "drc"], "CentralAfrica",
+        &["Angola", "Uganda", "CentralAfricanRepublic", "Congo", "Zambia"], &[], true, false, false),
+
+    // Cabinda is Angola's own exclave, cut off from the rest of the country by the
+    // Zaire river mouth, and the separatism figure in angola.json is where FLEC
+    // lives. It is not a claim: nobody else claims Cabinda, Angola simply cannot
+    // walk to it. Kinshasa backed the FNLA and then UNITA for fifteen years without
+    // ever asking for an acre of Angolan ground.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Congo" appended, and it is
+    // Cabinda's border rather than Angola proper's. The exclave the comment
+    // above says Angola cannot walk to is bounded by Zaire on two sides and by
+    // Congo-Brazzaville on the third, and Brazzaville is where FLEC kept its
+    // offices. A border the government in Luanda cannot use and its secessionist
+    // problem can is the honest shape of it, and the row above already says the
+    // separatism lives in angola.json. Resolve any conflict here by union.
+    // Zambia and Namibia appended with the Southern Africa fill-in. Zambia is
+    // 1,110km of border and the reason UNITA's supply problem was solved by
+    // Zaire rather than by Lusaka: Kaunda hosted the MPLA's rivals early and
+    // then recognised Luanda. Namibia is the Kunene and the Caprivi, and it is
+    // the border the SADF crossed to fight FAPLA at Cuito Cuanavale.
+    row("Angola", "Angola", &["ago", "ang"], "SouthernAfrica",
+        // Unioned across two branches, same rule: Central Africa brought the
+        // Congo border, Southern Africa brought Zambia and Namibia.
+        &["Zaire", "Congo", "Zambia", "Namibia"], &[], true, false, false),
+
+    // Mozambique, Zambia and Botswana appended with the Southern Africa
+    // fill-in. Mozambique is the one that matters: 1,231km of border, the Beira
+    // corridor through it, and roughly 10,000 Zimbabwean troops standing on it
+    // in 1990 — the deployment that puts zimbabwe.json's military spending
+    // above South Africa's.
+    row("Zimbabwe", "Zimbabwe", &["zwe", "zim", "rhodesia"], "SouthernAfrica",
+        &["SouthAfrica", "Mozambique", "Zambia", "Botswana"], &[], true, false, false),
+
+    // Tanzania marched on Kampala in 1978-79 and removed a government, which is the
+    // one clear case in this region of a state crossing a border in force and the
+    // reason that border is declared. It took nothing: Nyerere restored the Kagera
+    // salient's line and went home, and the annexation on the books was Amin's.
+    // Mozambique, Zambia and Malawi appended with the Southern Africa fill-in.
+    // All three are land borders Tanzania used as sanctuary lines rather than
+    // fronts: FRELIMO's rear base was at Nachingwea in southern Tanzania until
+    // 1975, and the TAZARA railway from Dar es Salaam to Kapiri Mposhi, opened
+    // in 1976, was built to give Zambia a route to the sea that did not run
+    // through Rhodesia or South Africa. The Malawi border is the one that has
+    // been argued over — see the Malawi row below — but it is a border.
+    row("Tanzania", "Tanzania", &["tza", "tan"], "EastAfrica",
+        &["Kenya", "Uganda", "Mozambique", "Zambia", "Malawi"], &[], true, false, false),
+
+    row("Uganda", "Uganda", &["uga"], "EastAfrica",
+        &["Zaire", "Kenya", "Tanzania"], &[], true, false, false),
+
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): all five of Senegal's
+    // frontiers appended, and the comment that used to stand here — that
+    // Mauritania, Mali, Guinea, Guinea-Bissau and the Gambia were all
+    // unsimulated — has been replaced because every one of them is now a row.
+    // The Gambia is still "not a border but a hole": Senegal surrounds it on
+    // three sides, which is why Casamance is cut off from Dakar by another
+    // country, and the Senegambia Confederation was dissolved on 30 September
+    // 1989. The Mauritanian line is the one that mattered in 1990 — the river
+    // valley the two states had expelled 70,000 people across each way in April
+    // 1989. Union, not replacement.
+    row("Senegal", "Senegal", &["sen"], "WestAfrica",
+        &[], &[], true, false, false),
+
+    // The one claim in the region, and it is a small one measured properly. Bakassi
+    // is 665 square kilometres of mangrove at the mouth of the Cross river, held and
+    // policed by Nigeria in 1990 and claimed by Cameroon under the Anglo-German
+    // agreements of 11 March and 12 April 1913. Cameroon took it to the
+    // International Court of Justice on 29 March 1994 and won in 2002; Nigeria
+    // handed it over on 14 August 2008. The share is what a claim on Bakassi
+    // actually costs Nigeria: the peninsula's population is usually put at up to
+    // 300,000, overwhelmingly Nigerian fishermen, against a Nigeria of 95.6m in the
+    // 1991 census — 0.003 of the target, and it drops to a rounding error against
+    // the oil under the adjacent water, which is what the case was really about.
+    // https://en.wikipedia.org/wiki/Bakassi
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad",
+    // "CentralAfricanRepublic", "Congo", "Gabon" and "EquatorialGuinea"
+    // appended. Cameroon had exactly one roster neighbour and now has six,
+    // which is what happens when the Congo basin arrives: Yaounde touches
+    // every state in this region except Sao Tome, and the last three of those
+    // frontiers meet within a hundred kilometres of each other in the
+    // rainforest behind Ambam. No new claims in either direction — the Bakassi
+    // one above is still the only claim Cameroon holds and still the only one
+    // held against Nigeria. Resolve any conflict here by union.
+    row("Cameroon", "Cameroon", &["cmr", "cameroun"], "CentralAfrica",
+        &["Nigeria", "Chad", "CentralAfricanRepublic", "Congo", "Gabon", "EquatorialGuinea"],
+        &[claim("Nigeria", 0.003)], true, false, false),
+
+    // Bangladesh is surrounded by India on three sides — 4,100 km of border,
+    // the fifth longest in the world — and touches Myanmar for 270 km in the
+    // south-east. There is no third neighbour. The claim is the one this
+    // table's doc comment calls a rounding error, and it is worth stating
+    // precisely because it is a real dispute that was never going to be a war:
+    // the 51 Bangladeshi enclaves inside India, and South Talpatti/New Moore,
+    // an uninhabited estuarine sandbar the Indian Navy landed on in 1981. The
+    // enclaves held about 14,000 people when they were finally counted, against
+    // an India of 870m — 0.00002 of the target. The Land Boundary Agreement
+    // that resolved them was signed in 1974, ratified by Dhaka at once and by
+    // Delhi in 2015, which is the shape of the grievance: forty-one years of
+    // paperwork, not a casus belli.
+    // https://en.wikipedia.org/wiki/India%E2%80%93Bangladesh_enclaves
+    row("Bangladesh", "Bangladesh", &["bgd", "bd"], "SouthAsia",
+        &["India", "Myanmar"], &[claim("India", 0.00002)], true, false, false),
+
+    // Sri Lanka has no land border with anything. The Palk Strait is not
+    // treated as one of the two straits this table's doc comment admits as
+    // marchable, and the January 1990 situation is the reason to be careful
+    // rather than the reason to relax it: the Indian Peace Keeping Force was
+    // still on the island and did not finish withdrawing until 24 March 1990.
+    // That was an invited deployment under the Indo-Lanka Accord of 29 July
+    // 1987, moved by ship and aircraft, not an army that walked. Region
+    // membership already gives Colombo a dyad with Delhi; a fictitious land
+    // border would give it one it cannot have.
+    row("SriLanka", "Sri Lanka", &["sri lanka", "lka", "ceylon"], "SouthAsia",
+        &[], &[], true, false, false),
+
+    // Nepal borders exactly two states and is entirely enclosed by them. Both
+    // borders are real and both are crossable: the Indian frontier is open by
+    // treaty, and the Chinese one carries the Araniko Highway over the Kodari
+    // pass, built in 1967 and the reason Kathmandu had any alternative to Delhi
+    // at all. No claims. The Kalapani and Susta disputes with India existed but
+    // Nepal had not pressed them at this date, and writing in a grievance that
+    // became loud in 1997 and 2019 would be scripting the future rather than
+    // transcribing 1990.
+    row("Nepal", "Nepal", &["npl"], "SouthAsia",
+        &["India", "China"], &[], true, false, false),
+
+    // Afghanistan borders Pakistan along the Durand Line, Iran along the Helmand
+    // basin, and the Soviet Union along the Amu Darya — the river the 40th Army
+    // crossed back over on 15 February 1989, eleven months before this game
+    // starts. CHINA IS DELIBERATELY ABSENT and the omission is a judgement, not
+    // an oversight: the 76 km Afghan-Chinese border exists, at the far end of
+    // the Wakhan Corridor, and it sits at nearly 5,000 m over the Wakhjir Pass
+    // with no road on either side in 1990 or since. This column is land borders
+    // an army could use, and that is not one.
+    //
+    // The claim is Pashtunistan, and it is the oldest live irredenta in South
+    // Asia. Afghanistan was the only state to vote against Pakistan's admission
+    // to the United Nations in 1947, has never recognised the Durand Line drawn
+    // in 1893, and claimed the Pashtun districts on the far side of it — the
+    // North-West Frontier Province, the tribal agencies, and in its maximal
+    // form the Pashtun north of Baluchistan. NWFP alone held 11.06m of
+    // Pakistan's 84.25m at the 1981 census, 13.1%; with the Baluchistan
+    // districts the claim covers roughly 0.15 of the target.
+    // https://en.wikipedia.org/wiki/Durand_Line
+    row("Afghanistan", "Afghanistan", &["afg", "afghan"], "SouthAsia",
+        &["Pakistan", "Iran", "USSR", "Tajikistan", "Turkmenistan"], &[claim("Pakistan", 0.15)], true, false, false),
+
+    // Myanmar is filed in SoutheastAsia rather than SouthAsia despite being
+    // assigned with its western neighbours, because region here means "close
+    // enough that force can be projected without anybody's permission" and
+    // Burma's military neighbourhood ran east as much as west. Its roster
+    // borders are India, Bangladesh and China; Thailand and Laos are real
+    // borders that are simply not simulated yet, and the region assignment is
+    // what keeps the eventual Thai dyad from being a surprise.
+    //
+    // No claims, and that is the correct entry rather than a gap. Burma's wars
+    // were entirely internal — a dozen ethnic insurgencies inside its own 1948
+    // borders — and it sought no territory from anyone. The Rohingya expulsions
+    // of 1978 and 1991-92 drove people INTO Bangladesh, which is a refugee
+    // crisis and a border incident but is the opposite of a territorial claim.
+    row("Myanmar", "Myanmar", &["burma", "mmr", "bur"], "SoutheastAsia",
+        &["India", "Bangladesh", "China"], &[], true, false, false),
+
+    // ---- East and Southeast Asia -------------------------------------------
+
+    // Korea from the northern end. Three land borders: the Yalu and Tumen with
+    // China, seventeen kilometres of the Tumen with the Soviet Union — the only
+    // ground Moscow shares with the peninsula, and the reason Russia inherits
+    // it — and the demilitarised zone, which is a border in every sense the
+    // model cares about.
+    //
+    // The claim is the whole of the South. That is not a reading of the DPRK's
+    // intentions, it is what its founding documents say: the 1972 constitution
+    // makes Seoul the capital, the Democratic Confederal Republic of Koryo
+    // proposal of October 1980 is a formula for governing one Korea, and the
+    // claim was pressed with three field armies in June 1950. Stated at 1.0
+    // because the war aim was never a share of it.
+    // https://en.wikipedia.org/wiki/Democratic_Federal_Republic_of_Koryo
+    row("NorthKorea", "North Korea", &["north korea", "dprk", "prk"], "EastAsia",
+        &["China", "USSR", "Russia", "SouthKorea"],
+        &[claim("SouthKorea", 1.0)], true, false, false),
+
+    // THE CROSS-STRAIT CLAIMS ARE ABSENT FROM BOTH ROWS, AND THIS IS THE ONE
+    // PLACE IN THIS REGION WHERE THE TABLE IS KNOWINGLY INCOMPLETE. The facts
+    // are not in doubt. In January 1990 both claims are formally live: the
+    // People's Republic has claimed the island entire since 1949, and the
+    // Republic of China was still governing under the Temporary Provisions
+    // Effective During the Period of National Mobilization for the Suppression
+    // of the Communist Rebellion, which Lee Teng-hui did not terminate until
+    // 1 May 1991. Two whole-country claims, 1.0 each way, is the transcription.
+    //
+    // Entering them measurably breaks the model, and here is the measurement.
+    // With `claim("Taiwan", 1.0)` on China's row, `china_growth_miracle` goes
+    // red: median 30-year multiple 10.86x against a floor of 11.0, on seeds
+    //   [6.16, 6.32, 7.76, 8.81, 9.66, 12.06, 12.38, 15.41, 16.52, 17.49]
+    // — half the runs down near the per-seed floor, which is the signature that
+    // test's own comment identifies as China fighting a war and then eating
+    // coalition sanctions for a decade. Softening the relation to -35 to damp
+    // the grudge term did not fix it; it moved the failure to the per-seed
+    // floor (seed 1, 5.93x). So a Chinese invasion of Taiwan in roughly half of
+    // all thirty-year runs is what the claim produces.
+    //
+    // That is not history and it was not available in 1990. `dyads` has exactly
+    // two reach terms — a shared border, and a shared region at 0.15 — and no
+    // term at all for amphibious lift. The PLA of 1990 had no capacity to put
+    // an army across 130km of water against an island with 370,000 men on it,
+    // and the model has no way to say so. Entering the claim would therefore
+    // not be transcribing a fact into the model; it would be feeding a true
+    // number to a function that lacks the term which makes it false in
+    // practice, and taking half a decade of Chinese growth off the board as the
+    // price.
+    //
+    // What ships instead: no claim either way, and both states in EastAsia, so
+    // `contacts` still pairs them and the appetite runs on WANT_FLOOR and the
+    // -45 relation below — cross-strait tension without an automatic 1990s
+    // invasion. INTEGRATOR: this belongs on the list of things a sealift or
+    // power-projection term in `dyads.rs` would unlock. It is the single dyad
+    // in East Asia that the derived model cannot currently carry.
+    //
+    // ONE MORE THING THE INTEGRATOR NEEDS, found while measuring the above and
+    // not caused by it. `china_growth_miracle` takes the median of ten seeds of
+    // a distribution that is bimodal, not spread: China either fights Vietnam
+    // or India and eats a decade of coalition sanctions, finishing at 6x to
+    // 10x, or it stays at peace and finishes at 13x to 18x. There is almost
+    // nothing in between, so the median is decided by whether five or six of
+    // ten seeds fell on the war side, and any change that reshuffles the RNG
+    // stream can flip it. Measured on master (a477687) over 24 seeds, China
+    // goes to war in 7 of them — but in seeds 0..=9, the ten the test actually
+    // uses, it is 4, and the median therefore lands at 14.57x inside the band.
+    // On this branch the same ten seeds came out at 7 wars with an earlier
+    // draft of the relations block and 4 with the one that shipped, on data
+    // changes with no causal connection to China at all.
+    //
+    // The same fragility is in `arms_transfers_build_a_client_army` (fails at
+    // 11.4 vs 7.6 against a bar of 1.5x — a ratio of 1.4993) and in
+    // `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it` (255 vs
+    // 215 against a bar of 1.20). Both are single-seed assertions sitting
+    // within a percent of their thresholds, and every one of the ten roster
+    // branches will move them. This is not a licence to widen any of the three:
+    // it is a note that the post-merge calibration sweep should re-measure the
+    // China band over 24 seeds rather than 10, and that a seed sweep is the
+    // honest fix for the other two.
+    //
+    // Taipei's side would in fact have been free to enter, because
+    // `dyads::war_appetite` returns zero outright when the target holds nuclear
+    // weapons and the aggressor does not, and China is nuclear. It is left out
+    // anyway rather than shipping a table in which Taiwan claims all of China
+    // and China claims nothing of Taiwan, which would read as a typo.
+    //
+    // The ROC also claimed Outer Mongolia until 2002, and that omission is a
+    // judgement rather than a compromise: the mainland claim had a mobilisation
+    // statute, a Legislative Yuan seated for mainland constituencies and an
+    // army trained for it, while the Mongolian one had a map.
+    // https://en.wikipedia.org/wiki/Temporary_Provisions_against_the_Communist_Rebellion
+    row("Taiwan", "Taiwan", &["twn", "roc", "republic of china", "formosa"], "EastAsia",
+        &[], &[], true, false, false),
+
+    // Between the two powers that have taken turns owning it, and claimed by
+    // neither: the People's Republic recognised Mongolian independence in 1949
+    // and settled the boundary by treaty in 1962. The Soviet 39th Army was
+    // still garrisoned here when the game opens; its withdrawal was agreed in
+    // 1989 and finished in 1992.
+    row("Mongolia", "Mongolia", &["mng", "outer mongolia"], "EastAsia",
+        &["China", "USSR", "Russia"], &[], true, false, false),
+
+    // Thailand borders Malaysia, Laos and Cambodia in this roster. The long
+    // frontier with Burma is absent because Burma is not simulated, which is
+    // the correct absence rather than a wrong border.
+    //
+    // The claim is Ban Romklao. Thailand and Laos fought a three-month war over
+    // three villages on the Sainyabuli border from December 1987 to February
+    // 1988 — something over a thousand dead between them — because the two
+    // sides read a French survey of 1907 differently. The disputed ground was
+    // about 77 square kilometres of a country of 236,800, so it is entered at
+    // 0.0003. A real shooting war two years before the game opens whose stake
+    // was three ten-thousandths of the target, which is exactly the object the
+    // `share` field exists to distinguish from a war of conquest.
+    // https://en.wikipedia.org/wiki/Thai%E2%80%93Laotian_border_war
+    row("Thailand", "Thailand", &["tha", "siam"], "SoutheastAsia",
+        &["Malaysia", "Laos", "Cambodia"],
+        &[claim("Laos", 0.0003)], true, false, false),
+
+    // The Johor causeway is a mile of road and rail and it is the reason
+    // Singapore is a neighbour rather than an island: the Japanese Twenty-Fifth
+    // Army crossed it in February 1942. Malaysia's other borders are Thailand
+    // across the Kra isthmus and Indonesia across Borneo.
+    row("Malaysia", "Malaysia", &["mys", "malaya"], "SoutheastAsia",
+        &["Thailand", "Singapore", "Indonesia", "Brunei"], &[], true, false, false),
+
+    row("Singapore", "Singapore", &["sgp"], "SoutheastAsia",
+        &["Malaysia"], &[], true, false, false),
+
+    // No land border with anyone. The claim is Sabah, and in January 1990 it is
+    // live rather than historical: the Philippines took assignment of the
+    // Sultanate of Sulu's title to North Borneo in 1962, wrote the claim into
+    // Republic Act 5446 in 1968, broke off relations with Kuala Lumpur over it
+    // after the Jabidah affair, and has never withdrawn it — the two capitals
+    // agreed to stop discussing it, which is not the same thing. Sabah's
+    // population in 1990 was about 1.7m of Malaysia's 17.8m, hence 0.096.
+    // https://en.wikipedia.org/wiki/North_Borneo_dispute
+    row("Philippines", "Philippines", &["phl", "pinas"], "SoutheastAsia",
+        &[], &[claim("Malaysia", 0.096)], true, false, false),
+
+    // The State of Cambodia claims nothing, and the omission is the transcribed
+    // fact rather than a gap. Khmer Krom irredentism — the Mekong delta — was
+    // the property of the Khmer Rouge and the non-communist resistance, and the
+    // government in Phnom Penh existed because the Vietnamese army had put it
+    // there in 1979 and had left only in September 1989. Preah Vihear was
+    // awarded to Cambodia by the International Court of Justice in 1962 and lay
+    // dormant until 2008.
+    row("Cambodia", "Cambodia", &["khm", "kampuchea"], "SoutheastAsia",
+        &["Thailand", "Laos", "Vietnam"], &[], true, false, false),
+
+    // Landlocked against four of the five states around it — the fifth, Burma,
+    // is not simulated. Laos holds no claim: Ban Romklao was Thailand's
+    // reading of the 1907 map pressed against Lao-administered ground, and
+    // Vientiane's position in the war was that the villages were already its
+    // own.
+    row("Laos", "Laos", &["lao", "lao pdr"], "SoutheastAsia",
+        &["Thailand", "Cambodia", "Vietnam", "China"], &[], true, false, false),
+
+    // Canada's only land border on this board is the 8,891km line with the
+    // United States, demilitarised by the Rush-Bagot Agreement of 1817 and
+    // still the longest undefended frontier in the world in 1990. Greenland,
+    // the other side of the Nares Strait, is Danish and not simulated.
+    //
+    // `claims` is empty, and that is a finding rather than an omission. The two
+    // live territorial disagreements Ottawa had with Washington in January 1990
+    // were the legal status of the Northwest Passage — Canada says internal
+    // waters, the United States says an international strait, which is an
+    // argument about a right of navigation and not about whose land it is —
+    // and Machias Seal Island, twenty hectares of rock and puffins in the Bay
+    // of Fundy. Neither is a share of a country. Entering either as a claim
+    // would tell the derived appetite model that Canada wants something from
+    // the United States, and Canada does not.
+    // https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_border
+    row("Canada", "Canada", &["can"], "NorthAmerica",
+        &["USA"], &[], true, false, false),
+
+    // Australia borders nobody. The nearest land is Papua New Guinea, four
+    // kilometres from Saibai across the Torres Strait and not in this roster;
+    // Indonesia is across the Arafura Sea. An empty neighbour list is the fact
+    // and it is most of what the 1987 Defence of Australia white paper was
+    // about — a continent whose entire strategic problem is the sea-air gap to
+    // its north, and which therefore buys frigates and F/A-18s rather than
+    // armoured divisions.
+    //
+    // The Australian Antarctic Territory is 5.9m square kilometres, about 42%
+    // of Antarctica, and the largest claim any state makes anywhere. It is not
+    // in `claims` because `claims` is a share of another nation in this roster
+    // and Antarctica is not one; the Antarctic Treaty of 1961 froze the whole
+    // question in any case, which is the rare territorial argument that really
+    // did stop.
+    row("Australia", "Australia", &["aus", "oz"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Two thousand kilometres of Tasman Sea to its nearest neighbour. The Ross
+    // Dependency and Tokelau are New Zealand administrations rather than claims
+    // on anybody, and the live constitutional argument of 1990 — the Treaty of
+    // Waitangi, whose sesquicentenary fell on 6 February that year and was
+    // protested at Waitangi itself — is internal, so it belongs in `separatism`
+    // in the data file and not here. A nation with no border and no claim is
+    // one the war model can only reach through an alliance, which is precisely
+    // how New Zealand has ever gone to war.
+    row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
+        &[], &[], true, false, false),
+
+    // ---------------------------------------------------------------------
+    // The Caribbean (branch feat/r2-caribbean). Cuba is already above.
+    //
+    // REGION, and it is the one real judgement call in this block. All five
+    // are filed under "LatinAmerica" rather than under a new "Caribbean"
+    // region, and the reason is Cuba. Region membership auto-populates
+    // `contacts`, so a Caribbean region that Cuba was not in would tell the
+    // dyad model that Havana cannot reach Kingston or Port-au-Prince — and
+    // Cuba is the only state in the Caribbean with an expeditionary army, the
+    // one that put 50,000 men in Angola and a garrison in Grenada. Cutting it
+    // out of its own sea is a far larger error than the one LatinAmerica
+    // makes, which is a standing contact between Nassau and Buenos Aires that
+    // carries no border and no claim and therefore almost no appetite.
+    // Moving Cuba's existing row into a new region was the alternative and it
+    // was rejected as a change to a row this branch does not own.
+    // INTEGRATOR: if a "Caribbean" region is ever added, Cuba must move into
+    // it in the same commit, or this trade goes the wrong way.
+    //
+    // The Hispaniola border is 376km from Manzanillo Bay to the Pedernales
+    // river, fixed by the treaty of 21 January 1929 and the revision of 9
+    // March 1936, and it is the only land border anywhere in this block. It is
+    // declared from both ends below.
+    //
+    // No claims anywhere in the block, and that is transcribed rather than
+    // missing. Neither side of Hispaniola claims the other: what runs across
+    // that border is labour and migration - the braceros cut Dominican cane
+    // under conditions the ILO was investigating in 1990 - and the memory of
+    // the Parsley Massacre of October 1937, none of which is a share of a
+    // country. Haiti's one genuine territorial claim is Navassa Island, five
+    // square kilometres of guano rock between Haiti and Jamaica that the
+    // United States has held under the Guano Islands Act since 1857 and that
+    // Haiti's 1987 constitution names as Haitian. It is handled exactly as
+    // Cuba's Guantanamo grievance is handled twelve hundred lines above: not
+    // as a claim, because a claim is a share of the target and Navassa is
+    // 0.00006% of the United States, but as a number in the relations file.
+    row("DominicanRepublic", "Dominican Republic",
+        &["dom", "dominican republic", "santo domingo"], "LatinAmerica",
+        &["Haiti"], &[], true, false, false),
+
+    row("Haiti", "Haiti", &["hti", "hai", "ayiti"], "LatinAmerica",
+        &["DominicanRepublic"], &[], true, false, false),
+
+    row("Jamaica", "Jamaica", &["jam"], "LatinAmerica",
+        &[], &[], true, false, false),
+
+    // Eleven kilometres of the Serpent's Mouth separate Icacos Point from the
+    // Paria peninsula, and the neighbour list is still empty. The bar this
+    // table sets for a strait is the Johor causeway - a mile of road and rail
+    // the Japanese Twenty-Fifth Army marched over - and Denmark does not list
+    // Sweden across four kilometres of Oresund, which in 1990 had no bridge
+    // either. Eleven kilometres of open water is a landing, not a border.
+    //
+    // Nothing in `claims` because the argument was settled inside the game's
+    // own opening months: Venezuela and Trinidad had contested the seabed of
+    // the Gulf of Paria for decades and signed the delimitation treaty on 18
+    // April 1990. A seabed boundary is not a share of a country in any case.
+    row("TrinidadTobago", "Trinidad and Tobago",
+        &["tto", "trinidad", "trinidad and tobago", "t&t"], "LatinAmerica",
+        &[], &[], true, false, false),
+
+    row("Bahamas", "Bahamas", &["bhs", "the bahamas", "bahama"], "LatinAmerica",
+        &[], &[], true, false, false),
+
+    // ===== Central Africa (branch feat/r2-centafrica) ======================
+    //
+    // Six states, and the reason they belong on the board is the reason they
+    // are hard: they are the bottom of the table. Equatorial Guinea's whole
+    // 1990 economy is $112m and Sao Tome's is $120m — the two smallest numbers
+    // in this roster by an order of magnitude, smaller than a single Spanish
+    // provincial budget — and Chad had just won a war against a country twenty
+    // times its output. A model that only behaves for the top forty is a model
+    // that has not been tested.
+    //
+    // Region: all six are CentralAfrica, which puts them in one contact set
+    // with Cameroon and Zaire. That is not a UN statistical division, it is the
+    // BEAC — five of the six share one central bank, one currency and one
+    // discount rate, and the sixth (Sao Tome) is 250 km off the coast of the
+    // other five. Chad in particular sits here rather than in NorthAfrica or
+    // WestAfrica despite being Sahelian, because CEMAC and the Banque des Etats
+    // de l'Afrique Centrale are where N'Djamena's institutions actually were;
+    // the two frontiers that mattered militarily, Libya's and Sudan's, are
+    // declared explicitly above and do not depend on the region field at all.
+    //
+    // ONE CLAIM IN SIX ROWS, and it is Chad's on Libya. The Cairo resolution of
+    // 1964 held here as it held everywhere else on this continent, and the two
+    // near-misses this region offers are both deliberately absent — see the
+    // Equatorial Guinea and Chad rows for what they are and why they are not
+    // entered. What the region is full of instead is regimes that were about to
+    // be taken apart from inside: five of the six had a national conference, a
+    // constitutional referendum or a rebellion inside three years of this start
+    // date, and not one of them lost territory to a neighbour.
+
+    // Chad — and the claim is the Aouzou Strip, the only irredenta in this
+    // region and one of the largest by area anywhere in the roster. Libya
+    // annexed the 114,000 km2 north of the 1935 Laval-Mussolini line in 1973 on
+    // the strength of a treaty France never ratified, held it through the war
+    // Habre's Toyota columns won in 1987, and was still holding it on 1 January
+    // 1990. Chad is therefore the claimant, on this table's Egypt-on-Sudan
+    // convention that the claim belongs to whoever does not administer the
+    // ground.
+    //
+    // The share is 0.004 and the arithmetic is the argument. By area the strip
+    // is 114,000 of Libya's 1,760,000 km2, or 0.065. By people it is a few
+    // thousand Toubou against a Libya of 4.36m, or roughly 0.001 — and the
+    // population denominator is the one this table settled on in the Bolivia
+    // row. 0.004 sits between them for the same reason China's 0.02 on India
+    // does: this is a large empty place claimed for what is under it rather
+    // than who lives on it, and the uranium at Aouzou was the standing rumour
+    // in every account of why Tripoli wanted it. What that number does in the
+    // appetite model is refuse Chad a march on Libya forever, which is exactly
+    // what happened — N'Djamena did not attack again after September 1987. It
+    // filed at the International Court of Justice, won on 3 February 1994, and
+    // took the strip back by treaty on 31 May 1994.
+    //
+    // NOT ENTERED: the Lake Chad islands. Nigeria and Chad shot at each other
+    // over Kinasara and Katti Kime in April 1983, and the border is declared on
+    // Nigeria's row above for that reason. But the Lake Chad Basin Commission's
+    // survey of 1983-91 was already demarcating the line when this game opens,
+    // Chad accepted it, and the object in dispute is sandbars in a lake that had
+    // lost nine tenths of its water — no population, no share, and a quarrel
+    // that ended in a survey rather than a war.
+    // https://en.wikipedia.org/wiki/Aouzou_Strip
+    row("Chad", "Chad", &["tcd", "tchad", "td"], "CentralAfrica",
+        &["Libya", "Sudan", "CentralAfricanRepublic", "Cameroon", "Nigeria"],
+        &[claim("Libya", 0.004)], true, false, false),
+
+    // The Central African Republic borders five roster members and claims
+    // nothing from any of them, which for a state at the exact geographic
+    // centre of the continent is worth stating rather than leaving to
+    // inference. Bangui's problem in 1990 was that it had no revenue, no road
+    // to a port, and a garrison of French marines at Bouar keeping the peace it
+    // could not keep itself; it had no problem at all with where its lines ran.
+    // The frontier with Sudan is the one that would matter later — the roads
+    // through Birao are how the region's fighters have moved between Darfur and
+    // the Ubangi ever since — and it is declared for that reason and not
+    // because anyone claimed anything across it.
+    row("CentralAfricanRepublic", "Central African Republic",
+        &["car", "caf", "centrafrique", "central african republic", "rca"], "CentralAfrica",
+        &["Chad", "Sudan", "Cameroon", "Congo", "Zaire"], &[], true, false, false),
+
+    // Congo-Brazzaville. The code is "Congo" and the display name is
+    // "Congo-Brazzaville", because in January 1990 the state whose plain name
+    // was Congo is this one — the other had been Zaire since 27 October 1971 —
+    // and a player who types "congo" should select this canonical country.
+    //
+    // Four borders, and the striking one is Angola: not Angola proper, which is
+    // 400 km further south past the Zaire river mouth, but Cabinda, whose
+    // northern boundary this is. No claims. The Congo-Zaire line is the
+    // sharpest example on the continent of the OAU rule doing its work — it is
+    // the boundary two colonial powers drew down a river at the Berlin
+    // conference, it puts two capitals four kilometres apart and cuts the same
+    // Kongo people in half, and neither state has ever asked for it to move.
+    row("Congo", "Congo-Brazzaville",
+        &["cog", "congo-brazzaville", "congo brazzaville", "republic of the congo", "brazzaville", "congo republic"],
+        "CentralAfrica",
+        &["Gabon", "Cameroon", "CentralAfricanRepublic", "Zaire", "Angola"],
+        &[], true, false, false),
+
+    // Gabon: three borders, no claims, and the richest country per head in
+    // sub-Saharan Africa outside the islands — $6,269 a head in 1990, six times
+    // Cameroon's and thirty times Chad's, on 950,000 people and 270,000 barrels
+    // a day. It is the state in this region with the most to lose and the least
+    // to want, which is the correct reading of a claims list with nothing in
+    // it: Bongo's foreign policy was French, mediatory and status-quo, and the
+    // only foreign soldiers that ever mattered in Libreville were the 6th
+    // Marine Infantry Battalion of the French army, garrisoned there by treaty
+    // and used in 1964 to put a president back and in 1990 to protect French
+    // nationals in Port-Gentil.
+    row("Gabon", "Gabon", &["gab", "ga"], "CentralAfrica",
+        &["Cameroon", "EquatorialGuinea", "Congo"], &[], true, false, false),
+
+    // Equatorial Guinea — the smallest economy in the roster, $112m of output
+    // for 419,000 people, and the one Spanish-speaking state in Africa. Two
+    // borders, both on the Rio Muni mainland; the capital is on an island 250
+    // km away, which is a fact about the country's politics more than its
+    // geography and is in the separatism figure.
+    //
+    // NOT ENTERED, and this is the argued omission of the six: Mbanie. Gabon
+    // put troops on the 30-hectare island in Corisco Bay in August 1972 and
+    // never left, Equatorial Guinea has never recognised the seizure, and the
+    // two sides eventually went to UN mediation in 2003 and the International
+    // Court of Justice in 2016. So a claim exists in law. It does not exist in
+    // 1990: after the Bata Convention of 1974 no Equatoguinean government
+    // pressed the question for twenty-nine years, and what reopened it was the
+    // oil under Corisco Bay — Zafiro came in in 1996 and the file came out of
+    // the drawer in 2003. Entering it here would be the failure the Nepal row
+    // above names precisely: writing in a grievance that became loud later and
+    // calling it a transcription of 1990. Recorded rather than entered, so
+    // that an integrator who thinks the call is wrong can see what the object
+    // was — 30 hectares and no inhabitants, which even entered would be
+    // 0.00003 of Gabon and the smallest claim on this table.
+    // https://en.wikipedia.org/wiki/Mbanie
+    row("EquatorialGuinea", "Equatorial Guinea",
+        &["gnq", "equatorial guinea", "guinea ecuatorial", "eq guinea", "gq"], "CentralAfrica",
+        &["Cameroon", "Gabon"], &[], true, false, false),
+
+    // Sao Tome and Principe: two volcanic islands 250 km off Gabon, 119,000
+    // people, and no land border with anything. The empty neighbour list is the
+    // whole strategic fact about the place — it has never fought a war, its
+    // army was about six hundred men, and the only foreign force ever stationed
+    // on it was a thousand Angolan troops Luanda sent in 1978 after a coup
+    // scare and withdrew in 1991. It is in this roster because BIBLE 3.3 says
+    // the world is the world, and because a model that can only price states
+    // with armies cannot price the fifty that have not got one.
+    row("SaoTome", "Sao Tome and Principe",
+        &["stp", "sao tome", "sao tome and principe", "são tomé and príncipe", "st"], "CentralAfrica",
+        &[], &[], true, false, false),
+
+    // ===== Central America (branch feat/r2-centam) =====
+    //
+    // Seven states filed under LatinAmerica rather than a region of their own,
+    // and the choice is deliberate rather than lazy. Region membership
+    // auto-populates `contacts`, and the isthmus in 1990 is the one part of the
+    // world where that is straightforwardly true: five of these seven had
+    // fought, funded or hosted a war in one of the others inside the previous
+    // decade, and the Contadora Group and the Esquipulas process that ended it
+    // were run out of Mexico City, Bogota, Caracas and Panama City. A separate
+    // "CentralAmerica" region would have told the dyad model that Managua and
+    // Bogota cannot reach each other, and Bogota's cocaine and Managua's
+    // Cubans were both moving through Panama the whole time.
+
+    // Guatemala holds the only claim of consequence in this region, and it is
+    // the whole of a neighbouring country.
+    //
+    // Guatemala has asserted title to Belize since inheriting Spain's claim at
+    // independence in 1821, on the argument that Britain forfeited the 1859
+    // Wyke-Aycinena treaty by never building the Guatemala City-to-the-Atlantic
+    // road that Article 7 promised. It refused to recognise Belizean
+    // independence on 21 September 1981, printed Belize inside its own borders,
+    // and did not recognise the state until 5 September 1991 - twenty months
+    // after this file opens. So in January 1990 the claim is live, it is
+    // constitutional, and it is total: `claim("Belize", 1.0)`.
+    //
+    // That makes it the largest share in this table, above Iraq's 0.95 on
+    // Kuwait, and it must not be read as the largest appetite. The appetite
+    // model is supposed to divide those two, and here is the material it needs
+    // to: Britain kept a garrison of some 1,500 troops, a Harrier flight and a
+    // Rapier battery in Belize for the sole purpose of making this claim
+    // unenforceable, and had flown Harriers in to stop a Guatemalan build-up
+    // once already, in 1977. Guatemala's own army was thirty years into a
+    // counterinsurgency it was fighting in its own highlands. And a claim
+    // pressed at the OAS for a hundred and seventy years without a shot is a
+    // different object from one pressed for seven months and then invaded. If
+    // this row produces a Guatemalan invasion of Belize in most runs, the fault
+    // is in the appetite model and not in the 1.0 - the number is what Guatemala
+    // said, and what Guatemala said is the transcription.
+    // https://en.wikipedia.org/wiki/Belizean%E2%80%93Guatemalan_territorial_dispute
+    row("Guatemala", "Guatemala", &["gtm", "gua"], "LatinAmerica",
+        &["Mexico", "Belize", "Honduras", "ElSalvador"],
+        &[claim("Belize", 1.0)], true, false, false),
+
+    // Honduras borders three of this roster and is the reason two of them could
+    // fight the wars they fought: the Contras operated out of the Nueva
+    // Segovia-facing camps in El Paraiso and Olancho, and Palmerola was a US
+    // air base in all but name. None of that is a claim, and the row says so.
+    //
+    // The one territorial argument Honduras had in January 1990 it was
+    // litigating rather than fighting. Honduras and El Salvador submitted the
+    // land, island and maritime frontier to a chamber of the International
+    // Court of Justice by special agreement on 24 May 1986; judgment came on 11
+    // September 1992. Six "bolsones" of undemarcated highland, roughly 440 km2
+    // in total and holding some thousands of people, were in dispute in both
+    // directions - Nahuaterique and Dolores are the large ones. Scored on
+    // population against a Honduras of 4.98m, as this table scores Aksai Chin
+    // and the Litoral, that is 0.003: a rounding error, which is the correct
+    // magnitude for a border two states have jointly asked a court to draw.
+    // The islands in the Gulf of Fonseca - Meanguera, Meanguerita, El Tigre -
+    // were in the same case and cannot be written here at all, for the reason
+    // Colombia's maritime rows give: a share is a fraction of a state.
+    // https://en.wikipedia.org/wiki/Land,_Island_and_Maritime_Frontier_Dispute
+    row("Honduras", "Honduras", &["hnd", "hon"], "LatinAmerica",
+        &["Guatemala", "ElSalvador", "Nicaragua"],
+        &[claim("ElSalvador", 0.003)], true, false, false),
+
+    // El Salvador: the smallest country on the American mainland, the densest,
+    // and in January 1990 nine weeks past the FMLN offensive that put a guerrilla
+    // army inside San Salvador for the first time. Its side of the bolsones case
+    // above is entered at the same 0.003 and for the same reason.
+    //
+    // What is deliberately NOT here is any claim arising from the war of July
+    // 1969. That war is remembered as the Football War and was in fact about
+    // three hundred thousand Salvadoran squatters farming Honduran land and the
+    // agrarian reform that expelled them; it lasted a hundred hours, El Salvador
+    // won it on the ground, withdrew under OAS pressure, and gained nothing. The
+    // General Peace Treaty of Lima of 30 October 1980 settled two thirds of the
+    // frontier and referred the rest to the Court. A war that produced no
+    // territorial transfer and a treaty is not a standing claim, and entering
+    // one would invent a second Football War out of the first.
+    row("ElSalvador", "El Salvador", &["slv", "salvador"], "LatinAmerica",
+        &["Guatemala", "Honduras"],
+        &[claim("Honduras", 0.003)], true, false, false),
+
+    // Nicaragua has no territorial claim on anybody in January 1990, and after
+    // a decade in which it was invaded from two directions that is worth
+    // stating rather than leaving blank.
+    //
+    // The two quarrels it did have are both outside what `claims` can hold. The
+    // San Juan river is Nicaraguan under the Canas-Jerez treaty of 1858 and
+    // Costa Rica has perpetual navigation rights on it - an argument about a
+    // right of passage, not about whose land it is, in exactly the sense the
+    // Canada row uses about the Northwest Passage. And the Caribbean maritime
+    // boundary with Honduras is water. What actually made Managua's borders
+    // dangerous was neither: it was that Honduras hosted the Contras and Costa
+    // Rica had hosted ARDE, which is a proxy war and belongs in the relations
+    // file, where it is.
+    row("Nicaragua", "Nicaragua", &["nic", "nca"], "LatinAmerica",
+        &["Honduras", "CostaRica"], &[], true, false, false),
+
+    // Costa Rica abolished its army by Article 12 of the constitution of 7
+    // November 1949 and has not had one since. It is the only state in this
+    // roster that cannot attack anybody, and the row carries that as an empty
+    // `claims` and a `military.strength` of zero in the data file rather than
+    // as a special case in the engine - which is the whole argument for facts
+    // being data. Two neighbours, no claim on either, and a president who had
+    // taken the Nobel Peace Prize in December 1987 for writing the plan that
+    // was in the process of ending everyone else's wars.
+    row("CostaRica", "Costa Rica", &["cri", "crc"], "LatinAmerica",
+        &["Nicaragua", "Panama"], &[], true, false, false),
+
+    // Panama in January 1990 is six weeks past a foreign invasion, and `claims`
+    // is empty in both directions, which needs saying because the obvious
+    // candidate looks like a claim and is not.
+    //
+    // The Canal Zone was a strip of sovereign United States territory across
+    // the middle of the country from 1903 until the Torrijos-Carter treaties
+    // returned it on 1 October 1979; the canal itself was to follow on 31
+    // December 1999, and did. So the thing Panama wanted from the United States
+    // it had already been promised, by a ratified treaty, with a date on it -
+    // and what the United States still held in January 1990 was a lease and
+    // fourteen bases, not a piece of Panama anyone disputed the title to. That
+    // is the Guantanamo shape and it gets the Guantanamo treatment: not a share
+    // of another state, so not a claim, and the temperature is in the relations
+    // file instead. Colombia, the state Panama seceded from in 1903, holds
+    // nothing either - see the Colombia row above.
+    row("Panama", "Panama", &["pan"], "LatinAmerica",
+        &["CostaRica", "Colombia"], &[], true, false, false),
+
+    // Belize is in this roster to be claimed. It is the smallest population on
+    // the board - 189,000, a third of Bahrain's - it has two land neighbours,
+    // and one of them did not concede that it existed.
+    //
+    // It holds no claim of its own, which is the ordinary condition of the
+    // claimed. Its security in January 1990 was a British garrison and the
+    // knowledge that the garrison would not leave while Guatemala's position
+    // stood; British Forces Belize did not draw down until 1994, three years
+    // after Guatemala recognised Belize in September 1991. A nation whose entire
+    // strategic situation is one neighbour's claim and one distant patron's
+    // troops is a good test of whether this model can hold a small state at all,
+    // which is most of why the roster is going to 190 and not stopping at 108.
+    row("Belize", "Belize", &["blz", "bze"], "LatinAmerica",
+        &["Guatemala", "Mexico"], &[], true, false, false),
+
+    // -----------------------------------------------------------------------
+    // The last three Soviet republics (branch feat/r2-gulf2). Successors, not
+    // starters: on 1 January 1990 these were the Kirghiz, Tajik and Turkmen
+    // SSRs, and the comment on the Belarus block above — "Turkmenistan,
+    // Tajikistan, Kyrgyzstan ... are not simulated, so those frontiers are
+    // correctly absent" — is what these three rows retire. With them the union
+    // comes apart into all fifteen of its republics and nothing is abstracted
+    // away.
+    //
+    // NO CLAIMS ON ANY OF THE THREE ROWS, AND THAT IS THE ARGUED PART. The
+    // Fergana valley is the most tangled border in the former union: the
+    // delimitation of 1924-36 left Sokh and Shakhimardan as Uzbek enclaves
+    // inside Kyrgyzstan, Barak as a Kyrgyz enclave inside Uzbekistan and
+    // Vorukh as a Tajik enclave inside Kyrgyzstan, and something under a
+    // thousand kilometres of the Kyrgyz-Tajik line was still undelimited in
+    // 2020. But an enclave is territory a state already holds, and an
+    // undelimited segment is an argument about where a line runs, not a
+    // demand for a share of a neighbour. No government here ever asserted one.
+    // `claim.share` in this table is the fraction of a target a war would
+    // annex, and entering the enclaves as claims would turn a surveying
+    // dispute into an appetite.
+    //
+    // Also not entered, and the omission worth naming: Tajik irredentism on
+    // Samarkand and Bukhara. Both cities were Persian-speaking and both went
+    // to the Uzbek SSR in the delimitation of 1929, and Rastokhez said so
+    // loudly from 1989. It is a real grievance and it belongs to a movement
+    // rather than to a state — the same test that kept Armenia's claim on
+    // Turkey off the Armenian row above. Nabiyev's government made no such
+    // claim and neither has any government since.
+    // https://en.wikipedia.org/wiki/Fergana_Valley
+
+    // Kyrgyzstan - 4.37m people on 1 January 1990 and 0.8% of the union's net
+    // material product, the second-poorest republic after Tajikistan. The 1989
+    // census gives 52.4% Kyrgyz, 21.5% Russians and 12.9% Uzbeks, the Uzbeks
+    // concentrated in Osh and Jalal-Abad in the south; the Osh riots of June
+    // 1990 killed several hundred there and are the strain the successor block
+    // carries as separatism. Borders Kazakhstan, Uzbekistan, Tajikistan and
+    // 858km of China. https://en.wikipedia.org/wiki/1989_Soviet_census
+    row("Kyrgyzstan", "Kyrgyzstan", &["kgz", "kirghizia", "kyrgyz republic"], "Eurasia",
+        &["Kazakhstan", "Uzbekistan", "Tajikistan", "China"], &[], false, false, false),
+
+    // Tajikistan - 5.25m people and 0.8% of output, the poorest republic in the
+    // union by any measure that survives the rouble. The 1989 census gives
+    // 62.3% Tajiks, 23.5% Uzbeks and 7.6% Russians, but the fracture that
+    // mattered was regional rather than ethnic: Leninabad and Kulob against
+    // Gharm and Badakhshan, with Gorno-Badakhshan an autonomous oblast holding
+    // 45% of the territory and 3% of the people. The Dushanbe riots of February
+    // 1990 killed 25 and put the republic under a state of emergency two years
+    // before the war. Borders Uzbekistan, Kyrgyzstan, 1,344km of Afghanistan
+    // across the Panj, and 414km of China in the Pamirs.
+    //
+    // Nothing on the China row claims this one, and that is a deliberate
+    // repeat rather than an oversight. Beijing carried a legacy Qing-era claim
+    // to roughly 28,000 sq km of Gorno-Badakhshan — about a fifth of the
+    // country — out of the Sino-Soviet border talks, and settled it in 2002
+    // for 1,158 sq km, under 1%. It is the same object as the 34,000 sq km
+    // left in dispute with Kazakhstan, which the Kazakhstan row above also
+    // declined to write as a claim, and for the same reason: a claim in this
+    // table is what a war would annex, and both of these were negotiated down
+    // by the states that held them within a decade of the union ending. What
+    // China did in the Pamirs was survey them; entering 0.196 here would
+    // invent the largest war in Central Asia out of a boundary commission.
+    // https://en.wikipedia.org/wiki/China%E2%80%93Tajikistan_border
+    row("Tajikistan", "Tajikistan", &["tjk", "tadzhikistan"], "Eurasia",
+        &["Uzbekistan", "Kyrgyzstan", "Afghanistan", "China"], &[], false, false, false),
+
+    // Turkmenistan - 3.62m people and 0.8% of output, and the one republic here
+    // with something the world wanted: 87.8 billion cubic metres of gas in
+    // 1990, second in the union after Russia, plus about 5.7 million tonnes of
+    // crude. The most homogeneous of the Central Asians at 72.0% Turkmen in the
+    // 1989 census, and the most closed state to come out of the union. Borders
+    // Kazakhstan, Uzbekistan, 992km of Iran and 744km of Afghanistan; the
+    // Caspian shore opposite Azerbaijan is water, not a land border, and is
+    // therefore correctly absent even though the Kyapaz/Serdar field under it
+    // was disputed with Baku from 1997.
+    row("Turkmenistan", "Turkmenistan", &["tkm", "turkmenia"], "Eurasia",
+        &["Kazakhstan", "Uzbekistan", "Iran", "Afghanistan"], &[], false, false, false),
+
+    // ---- The western Indian Ocean (branch feat/r2-indianocean) --------------
+    //
+    // Five archipelagos, and NOT ONE OF THEM HAS A LAND BORDER. Every
+    // `neighbours` list below is empty and every one of those empties is a
+    // fact rather than an omission, which also means this branch appends five
+    // rows and edits no existing row's neighbour list at all — the symmetry
+    // assertion has nothing to check because there is nothing to make
+    // symmetric.
+    //
+    // What these five DO have is claims, and all of them are on the two
+    // colonial powers that never left the ocean. Each is a rounding error as a
+    // share of its target and each is entered anyway, because `share` exists
+    // precisely so that a claim on a coral atoll and a claim on a whole
+    // emirate are not the same object — and because the claim is what puts
+    // Paris and London into these nations' contact sets, which is the single
+    // most important fact about their foreign policy in 1990.
+
+    // Ratsiraka's Madagascar: the Second Republic, "socialisme malgache" in
+    // the constitution and an IMF structural adjustment programme in the
+    // ministries since 1982.
+    //
+    // The claim is the Iles Eparses — Europa, Bassas da India, Juan de Nova
+    // and the Glorieuses, four scraps of the Mozambique Channel totalling
+    // about 44 square kilometres, detached from Madagascar by decree on 1
+    // April 1960 three weeks before independence and held by France since.
+    // UN General Assembly resolution 34/91 of 12 December 1979 invited France
+    // to negotiate their return and Antananarivo has re-tabled it ever since,
+    // so this is live in January 1990 rather than historical. 44km2 against
+    // France's 551,695 is 0.00008, and that is the honest number: a real
+    // grievance about almost no ground, which is a different object from a war
+    // of conquest and the model should be able to tell them apart.
+    // https://en.wikipedia.org/wiki/Scattered_Islands_in_the_Indian_Ocean
+    row("Madagascar", "Madagascar", &["mdg", "malagasy", "malagasy republic"], "EastAfrica",
+        &[], &[claim("France", 0.00008)], true, false, false),
+
+    // The claim is the Chagos Archipelago. Britain detached it from the colony
+    // of Mauritius on 8 November 1965 to make the British Indian Ocean
+    // Territory, three years before Mauritian independence and in exchange for
+    // a GBP3m grant, then removed the entire Chagossian population between
+    // 1968 and 1973 so that Diego Garcia could be leased to the United States.
+    // Mauritius has never accepted the detachment as lawful. In 1990 that is
+    // an argument between a Commonwealth realm and its former metropole over
+    // 60km2 of atoll, which against the United Kingdom's 243,610km2 is
+    // 0.00025 — and it is the reason Port Louis has a standing contact with
+    // London that is not simply warmth.
+    //
+    // Tromelin, which Mauritius also claims from France, is NOT entered. It is
+    // one square kilometre with an unmanned weather station on it, its share
+    // of France would be 0.000002, and unlike Chagos there is no population,
+    // no base and no dispute either capital was pressing in 1990. Entering it
+    // would tell the appetite model that Port Louis wants something from Paris
+    // when what Port Louis wants from Paris is Reunion's tourists.
+    // https://en.wikipedia.org/wiki/Chagos_Archipelago_sovereignty_dispute
+    row("Mauritius", "Mauritius", &["mus", "maurice"], "EastAfrica",
+        &[], &[claim("UK", 0.00025)], true, false, false),
+
+    // No claim, and that is the transcribed fact. The islands Britain had
+    // excised into the British Indian Ocean Territory in 1965 — Aldabra,
+    // Desroches and Farquhar — were returned to Seychelles on independence in
+    // 1976, which is exactly the settlement Mauritius never got, and it is why
+    // the two neighbouring archipelagos hold opposite positions on the same
+    // British territory. Seychelles' quarrel in 1990 is with South Africa and
+    // it is about an attempted invasion, not about ground: that belongs in
+    // relations, and it is there.
+    row("Seychelles", "Seychelles", &["syc", "sey"], "EastAfrica",
+        &[], &[], true, false, false),
+
+    // Mayotte. The Comoros voted for independence in the referendum of 22
+    // December 1974 by 94.6% across the four islands, and Mayotte alone voted
+    // 63.8% to stay French; Paris then counted the islands separately, which
+    // no other decolonisation of the period did. UN General Assembly
+    // resolution 3385 of 12 November 1975 admitted the Comoros with Mayotte
+    // inside its borders and the Assembly has voted the same way almost every
+    // year since, France vetoing the corresponding Security Council text in
+    // 1976. So the claim is not merely alive in January 1990, it is the
+    // position of the international organisation.
+    //
+    // The share is a share of FRANCE, because France is the state holding the
+    // ground. Mayotte is 374km2 of France's 551,695 and its 1991 census
+    // counted 94,410 people against 56.6m; area gives 0.00068 and population
+    // 0.0017, and 0.001 is entered as the round figure between them. The
+    // asymmetry this creates is the correct one and it is the whole tragedy of
+    // Comorian foreign policy: Moroni claims territory from the same state
+    // whose Foreign Legion detachment is the only thing standing between the
+    // government and the next mercenary landing.
+    // https://en.wikipedia.org/wiki/1974_Comorian_independence_referendum
+    row("Comoros", "Comoros", &["com", "comores", "comoro islands"], "EastAfrica",
+        &[], &[claim("France", 0.001)], true, false, false),
+
+    // Cape Verde is filed under WestAfrica and not under IndianOcean, which is
+    // the obvious thing but is worth stating because it is the one row on this
+    // branch that is not in the ocean the branch is named for. It is ten
+    // islands in the Atlantic 570km west of Dakar. WestAfrica in this list
+    // already holds Senegal, Ghana, Nigeria and Cameroon, and putting Praia
+    // among them is a stretch against the region test — 570km of open ocean is
+    // not "force can be projected without anybody's permission" — but it is a
+    // far smaller lie than the alternatives, which were to invent a region of
+    // one member (a nation with no contacts at all, invisible to the dyad
+    // model forever) or to file an Atlantic archipelago under IndianOcean.
+    // Cape Verde and Guinea-Bissau were also one party and very nearly one
+    // country until the coup of 14 November 1980, and Dakar is where a
+    // Cape Verdean argument actually goes, so the region is not arbitrary.
+    //
+    // No claim. The PAIGC's unity project died in 1980 and the PAICV that
+    // replaced it dropped the mainland from its name; there is no Cape Verdean
+    // claim on anybody and never has been.
+    row("CapeVerde", "Cape Verde", &["cpv", "cabo verde", "cape verde islands"], "WestAfrica",
+        &[], &[], true, false, false),
+
+    // ---- The island Pacific. Five archipelagic states, and not one of them
+    // has a land border with anything, here or anywhere. That is the single
+    // most important structural fact about this block and it is entered as an
+    // empty `neighbours` list five times over, which means this batch required
+    // no edit to any existing roster row and therefore cannot collide with
+    // another agent's. It also means the derived war model in `dyads.rs` can
+    // reach these five only through their region and through alliance — which
+    // is exactly right, and is why the coups, secessions and constitutional
+    // crises that are the actual political history of the 1990 Pacific belong
+    // in `stability` and `separatism` in the data files rather than here.
+    //
+    // Claims are empty for the same reason they are empty for Canada. The live
+    // territorial arguments in this ocean in 1990 were maritime: Tonga and
+    // Fiji both claim the Minerva Reefs, two drying coral platforms 260km
+    // south-west of Tongatapu that Tonga annexed by proclamation on 15 June
+    // 1972 after an American libertarian syndicate declared the "Republic of
+    // Minerva" on them. A `Claim` is a share of the *target nation*, and a
+    // reef that no census has ever counted a person on is not a share of Fiji.
+    // Entering it would tell the appetite model that Nuku'alofa wants
+    // something from Suva that it is willing to fight for, and the two have
+    // instead argued about it politely for fifty years.
+    //
+    // Papua New Guinea is deliberately absent from every list below. It is
+    // another agent's nation in this round and is not in the roster at the
+    // commit this branch was cut from; a one-sided reference would fail the
+    // symmetry assertion and break the build for everyone. INTEGRATOR: when
+    // PNG lands, the Solomon Islands row is the one to revisit — see its
+    // comment.
+
+    // Fiji is the hinge of the region: the largest economy, the university,
+    // the airline hub, the regional secretariats. In January 1990 it is also
+    // the region's crisis. Two coups in 1987 — 14 May and 25 September, both
+    // led by Lieutenant Colonel Sitiveni Rabuka — deposed the month-old
+    // Bavadra government, made Fiji a republic on 10 October and cost it its
+    // Commonwealth membership. There has been no parliament since. On 5
+    // December 1987 an interim administration took office under President
+    // Ratu Sir Penaia Ganilau with Ratu Sir Kamisese Mara as prime minister;
+    // its term expired in January 1990, the month the game opens, and the
+    // President appointed a second interim cabinet of seventeen with no
+    // serving officers in it. The 1990 constitution entrenching ethnic Fijian
+    // control was promulgated on 25 July that year and the first election
+    // under it was held in May 1992. None of that is scripted here: it is a
+    // regime with no legislature, resting on the army and the chiefs, which is
+    // what `government.rs` says about it.
+    row("Fiji", "Fiji", &["fji", "fj"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Solomon Islands. Independent from Britain on 7 July 1978, a Westminster
+    // parliament of 38 seats in which independents outpoll every party, and
+    // the poorest of the five by output per head after Vanuatu.
+    //
+    // INTEGRATOR, when Papua New Guinea joins the roster: the Bougainville
+    // Strait between the Shortland Islands and Bougainville is about ten
+    // kilometres wide, and the Bougainville crisis that began in 1988 crossed
+    // it constantly — BRA fighters took sanctuary in Western Province and the
+    // PNGDF raided across after them, which by 1992 had produced dead Solomon
+    // Islanders on Solomon Islands soil. Whether that counts as one of "the
+    // two straits narrow enough to march across" in the neighbour doc comment
+    // above is a real judgement and not a clerical one. It is left out here
+    // because PNG is not in this branch's roster at all, not because the
+    // question has been answered.
+    row("SolomonIslands", "Solomon Islands", &["solomon islands", "solomons", "slb"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Vanuatu — the New Hebrides until independence on 30 July 1980, and
+    // before that the only Anglo-French condominium anywhere: two colonial
+    // administrations, two police forces, three legal systems and no shared
+    // language, which is the origin of the anglophone/francophone split that
+    // is still the axis of its politics. Walter Lini's Vanua'aku Pati has
+    // governed since independence. Alone in Oceania it joined the Non-Aligned
+    // Movement, in 1983, recognised Cuba the same year and the Soviet Union in
+    // June 1986; the one-year fishing agreement it signed with Moscow in
+    // January 1987 gave the USSR its first shore access in the South Pacific
+    // and had lapsed unrenewed by 1990. Foreign policy is relations data, not
+    // roster data, so it is in `relations_1990.json`.
+    row("Vanuatu", "Vanuatu", &["vut", "vu", "new hebrides"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Western Samoa — the name it carried in January 1990 and until 4 July
+    // 1997, entered here the way Zaire and Czechoslovakia are, because the
+    // roster is a photograph of 1990 and not a present-day atlas. The code is
+    // "Samoa" so that a save written now still resolves after a rename, and
+    // both names parse. The first Pacific island territory to become
+    // independent, on 1 January 1962, and the only state in the roster whose
+    // parliament in 1990 was elected on a franchise restricted to matai —
+    // holders of a chiefly title, some 16,000 of them in a country of 163,000.
+    // The referendum that ended that ran in October 1990 and is not written
+    // in; the model reaches it, or does not, through `authoritarianism`.
+    row("Samoa", "Western Samoa", &["samoa", "western samoa", "wsm"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Tonga — never colonised, a British protected state from 1900 to 4 June
+    // 1970 and a kingdom throughout, which makes it the only nation in this
+    // roster whose government in 1990 is a hereditary monarchy that actually
+    // governs. King Taufa'ahau Tupou IV appoints the cabinet and it sits in
+    // the Legislative Assembly alongside nine representatives elected by the
+    // thirty-three hereditary nobles and nine elected by everybody else. The
+    // election of 14-15 February 1990 returned seven pro-democracy members out
+    // of those nine, which is the beginning of a thirty-year argument and is
+    // deliberately not encoded as an outcome.
+    row("Tonga", "Tonga", &["ton", "to"], "Oceania",
+        &[], &[], true, false, false),
+
+    // ---- Maritime Southeast Asia, the Himalayan kingdoms, the atolls -------
+
+    // Brunei touches exactly one country and it surrounds it. The only land
+    // border is Sarawak, and the Limbang corridor cuts Brunei into two halves
+    // that cannot reach each other overland without crossing Malaysia — the
+    // only nation on this board whose own territory is not contiguous by land.
+    //
+    // The claim is Limbang, and in January 1990 it is live rather than
+    // historical. Rajah Charles Brooke annexed the district on 17 March 1890
+    // against Sultan Hashim's refusal to cede it, Brunei has never recognised
+    // the annexation, and it restated the claim formally in 1967 — which is why
+    // the two states still had no agreed land boundary at this date, a century
+    // after the fact. Limbang District is 3,978 km2 of a Malaysia of 330,803
+    // km2, and 0.012 is that ratio.
+    //
+    // THE BASIS IS AREA AND THE PHILIPPINE ROW ABOVE USES POPULATION, so the
+    // discrepancy is stated rather than buried: on population Limbang would be
+    // roughly 0.002, some tens of thousands against a Malaysia of 17.8m. The
+    // objects are different. Sabah is a state with a population Manila claims
+    // to represent; Limbang is a strip of forest whose entire significance is
+    // that it severs Brunei, and measuring it by the people in it would say the
+    // claim is a tenth of what Brunei has behaved as though it is. Both numbers
+    // are here so an integrator can overrule the choice knowingly.
+    // https://en.wikipedia.org/wiki/Limbang_District
+    row("Brunei", "Brunei", &["brn", "brunei darussalam"], "SoutheastAsia",
+        &["Malaysia"], &[claim("Malaysia", 0.012)], true, false, false),
+
+    // One land border: the 141st meridian, drawn by the Anglo-Dutch convention
+    // of 1895 and inherited unchanged by Port Moresby and Jakarta. It is a line
+    // of longitude rather than a feature, it runs some 760 km through forest,
+    // and in 1990 the OPM insurgency in Irian Jaya was crossing it in both
+    // directions along with the refugees it produced. AUSTRALIA IS FOUR
+    // KILOMETRES AWAY AT SAIBAI AND IS NOT A NEIGHBOUR: the Torres Strait is
+    // water, and the Torres Strait Treaty of 18 December 1978 settled the
+    // seabed, the fisheries and the traditional-inhabitant crossings rather
+    // than leaving a frontier anyone could march over.
+    //
+    // Filed in Oceania rather than SoutheastAsia. Region here means "close
+    // enough that force can be projected without anybody's permission", and the
+    // state that could do that to Papua New Guinea in 1990 was Australia, which
+    // administered the territory until 16 September 1975, kept a defence
+    // relationship with it afterwards, and supplied the four Iroquois the PNGDF
+    // was flying on Bougainville at the start date. The Indonesian border is
+    // declared explicitly above and does not depend on the region field at all.
+    //
+    // No claims, and that is the correct entry rather than a gap. Bougainville
+    // is a secession, not an irredenta — nobody is claiming it from anybody —
+    // and it belongs in `separatism` in the data file, which is where it is.
+    row("PapuaNewGuinea", "Papua New Guinea", &["png", "papua new guinea", "papua"], "Oceania",
+        &["Indonesia"], &[], true, false, false),
+
+    // START_1990 IS FALSE AND THAT IS THE WHOLE ROW. Indonesia invaded on 7
+    // December 1975 and annexed the territory as its twenty-seventh province in
+    // July 1976; on 1 January 1990 East Timor is not a state, it is a
+    // counter-insurgency. The referendum was 30 August 1999 and independence
+    // was restored on 20 May 2002, so this is a successor in exactly the sense
+    // the field means: a state that exists only if something comes apart.
+    //
+    // A GAP THE INTEGRATOR SHOULD SEE, and it is a mechanism gap rather than a
+    // data one. Nothing in the sim currently spawns this nation. The Yugoslav
+    // and Soviet breakups are coded in `politics.rs`; Indonesia's is not, so
+    // East Timor sits dormant holding a roster row, a polity and a relations
+    // column with no path onto the board. The row is the half that has to exist
+    // before the mechanism can be written, and inventing an Indonesian breakup
+    // trigger to justify it would be scripting the future rather than
+    // transcribing 1990.
+    //
+    // The border is the one Portugal and the Netherlands settled at The Hague
+    // on 1 October 1904 and arbitrated in 1914, and it includes the Oecusse
+    // enclave on the north coast of West Timor. Oecusse is East Timorese
+    // territory rather than a claim on Indonesia, so `claims` is empty and
+    // correct — an enclave you already hold is not an irredenta.
+    row("EastTimor", "East Timor", &["tls", "timor-leste", "east timor", "timor leste"], "SoutheastAsia",
+        &["Indonesia"], &[], false, false, false),
+
+    // Two land borders and both are real ones. India along the whole southern
+    // foot of the country, open by the treaty of 8 August 1949 under which
+    // Delhi guided Bhutan's external relations and trained and equipped its
+    // army; China along the Himalayan crest, over the passes into the Chumbi
+    // valley. The Chinese border is INCLUDED where Afghanistan's Wakhan border
+    // is deliberately EXCLUDED, and the difference is the test that row set:
+    // the Wakhjir pass had no road on either side in 1990 or since, while the
+    // Chumbi passes have carried trade and armies for three centuries and
+    // Younghusband's column walked one of them in 1904.
+    //
+    // Bhutan claims nothing from anybody. The claim in this dyad runs the other
+    // way and is entered on China's row above rather than here: Beijing claims
+    // 764 km2 of Bhutan — 495 in the Pasamlung and Jakarlung valleys in the
+    // north, 269 at Doklam, Sinchulung, Dramana and Shakhatoe in the west — out
+    // of a Bhutan of 38,394 km2, which is the 0.020 entered there. Direct
+    // boundary talks opened in 1984 and had run several rounds by 1990, so this
+    // is a live negotiation at the start date and not a map footnote. It is
+    // also the only border China negotiates with a state it does not recognise
+    // and has no diplomatic relations with, then or now.
+    // https://en.wikipedia.org/wiki/Bhutan%E2%80%93China_border
+    row("Bhutan", "Bhutan", &["btn", "druk yul"], "SouthAsia",
+        &["India", "China"], &[], true, false, false),
+
+    // Twelve hundred islands and no land border, because the nearest other
+    // country is six hundred kilometres of Indian Ocean away. That is not a gap
+    // in the transcription: the Maldives has never had a land frontier in its
+    // history and has never claimed anything from anyone.
+    //
+    // It is also not the same thing as being out of reach, and November 1988 is
+    // the proof. Some eighty PLOTE fighters landed at Male off two freighters
+    // and had the capital in hours; Gayoom was saved by Indian paratroopers who
+    // flew 2,000 km from Agra overnight and landed at Hulhule — Operation
+    // Cactus. Region membership is what gives Male its dyad with Delhi, and
+    // that dyad is the mechanism which actually decided the only fight this
+    // country has had. A fictitious land border would have been the wrong way
+    // to buy the same contact.
+    // https://en.wikipedia.org/wiki/1988_Maldives_coup_attempt
+    row("Maldives", "Maldives", &["mdv", "maldive islands"], "SouthAsia",
+        &[], &[], true, false, false),
+
+    // ---- Small and island Europe (branch feat/r2-smalleurope) --------------
+    // Four starters and two Yugoslav successors. Three of the four starters
+    // have no land border with anybody, which is not a gap in the data — it is
+    // the fact that decides how the war model may treat them, and it is why
+    // all three could be as small as they are and stay sovereign.
+
+    // No land border with anything, and no armed forces at all: the 1990 CIA
+    // World Factbook lists Iceland's defence branches as "Police, Coast Guard"
+    // and its defence expenditures as "none". A founder member of NATO in 1949
+    // that has never had an army, because the United States kept 3,000 airmen
+    // at Keflavik under the defence agreement of 5 May 1951 and the GIUK gap
+    // did the rest. No claims: the three Cod Wars with Britain (1958, 1972-73,
+    // 1975-76) were fought by coast guard vessels cutting trawl warps over a
+    // FISHERIES limit, and the 200-mile exclusive economic zone Reykjavik won
+    // in 1976 is a maritime jurisdiction, not a demand for anyone's land. The
+    // Rockall-Hatton continental shelf question with the UK, Ireland and
+    // Denmark is a seabed claim under UNCLOS Article 76 and is the same
+    // species. https://en.wikipedia.org/wiki/Cod_Wars
+    row("Iceland", "Iceland", &["isl", "island", "lydveldid island"], "WesternEurope",
+        &[], &[], true, false, false),
+
+    // Three land borders, all of them declared from the other end as well, and
+    // all three older than the state: the frontiers of 1839 that left the Grand
+    // Duchy with the half of Luxembourg that spoke Luxembourgish. No claims —
+    // this is the country the region's doc comment is about. Luxembourg is a
+    // founder member of the United Nations, NATO, the ECSC, the EEC and
+    // Benelux, and it has spent a century being the place where the states
+    // that used to fight over it sign things instead.
+    row("Luxembourg", "Luxembourg", &["lux", "letzebuerg", "grand duchy of luxembourg"], "WesternEurope",
+        &["Belgium", "France", "Germany"], &[], true, false, false),
+
+    // No land border with anything. No claims either, and the absence is worth
+    // a sentence because Malta in 1990 is the one Western European state that
+    // is formally non-aligned: neutrality was written into Article 1 of the
+    // constitution by the amendment of 1987, the Royal Navy left Grand Harbour
+    // on 31 March 1979 for the first time since 1800, and Malta sat in the
+    // Non-Aligned Movement while applying to join the European Community on
+    // 16 July 1990. A state with no border, no claim and no bloc.
+    row("Malta", "Malta", &["mlt", "repubblika ta malta"], "WesternEurope",
+        &[], &[], true, false, false),
+
+    // The one entry in this batch with a live territorial claim, and it is the
+    // whole of the country's politics. Turkey invaded on 20 July 1974, held
+    // roughly 36% of the island, and 30,000-35,000 Turkish troops were still
+    // there in January 1990 behind a UN buffer zone; the Turkish Republic of
+    // Northern Cyprus declared itself in 1983 and was recognised by Turkey and
+    // by nobody else. The Republic of Cyprus claims the occupied north, and
+    // this table records claims as a share of the TARGET — so the number is
+    // not 0.36 of Cyprus, it is northern Cyprus as a fraction of Turkey:
+    // 3,355 km2 of 783,562 km2, or 0.0043. That is the same shape as Spain on
+    // Gibraltar and Ireland on the North, and it says the right thing about
+    // this dyad: a grievance that will define Cypriot foreign policy for
+    // fifty years and that Cyprus can never press by force, because the target
+    // is 90 times its population and 40 times its output.
+    //
+    // NO LAND NEIGHBOURS, deliberately. Cyprus's only land frontiers are the
+    // Green Line with a state this roster does not contain and the fenced
+    // perimeters of Akrotiri and Dhekelia, which are 254 km2 of sovereign
+    // United Kingdom territory retained under the Treaty of Establishment of
+    // 16 August 1960. Declaring the SBA as a Cyprus-UK land border would hand
+    // the war model a marching route between two states that have never had
+    // one; the reach Turkey actually has comes from the claim above.
+    //
+    // Region: WesternEurope, with Greece, and it is a judgement. Cyprus joined
+    // the Council of Europe in 1961 and lodged its application for European
+    // Community membership on 4 July 1990, six months into this start state.
+    // Filing it in MiddleEast would give it standing contacts with a dozen
+    // Gulf states it has no force relationship with of any kind, to buy the
+    // one contact — Turkey — the claim already provides.
+    // https://en.wikipedia.org/wiki/Cyprus_dispute
+    row("Cyprus", "Cyprus", &["cyp", "kypros", "republic of cyprus"], "WesternEurope",
+        &[], &[claim("Turkey", 0.0043)], true, false, false),
+
+    // ---- The last two Yugoslav successors ---------------------------------
+    // Neither is on the board in January 1990 and both are SUCCESSORS for the
+    // same reason Serbia and Croatia are: they are republics of a federation
+    // that has not come apart yet. Macedonia declared independence on 8
+    // September 1991 and Montenegro not until 3 June 2006, fifteen years
+    // later — but the model has one dissolution event, not two, and a
+    // Montenegro that only exists inside a Serbia that also exists is not
+    // something this roster can express. Both therefore arrive when
+    // `politics::dissolve_yugoslavia` fires, and Montenegro's fifteen years
+    // inside the Federal Republic are carried instead by the relation the
+    // dissolution opens between them (+60, the highest in the set).
+    //
+    // Macedonia's borders: Serbia 221 km through Kosovo, Bulgaria 148 km,
+    // Greece 246 km, Albania 181 km. All four declared from both ends.
+    // NO CLAIM, and this is the deliberate one. The obvious candidate is the
+    // reverse — Greece's, Bulgaria's, Serbia's — and none of the three is a
+    // territorial claim either. Athens blocked recognition and imposed an
+    // embargo in February 1994 over the NAME; Sofia recognised Macedonian
+    // statehood first, in January 1992, while denying that Macedonians are a
+    // nation; Belgrade let the JNA walk out on 26 March 1992 without firing.
+    // Three of the ugliest quarrels in the Balkans, and not one of them was
+    // about where the border runs. This table has no field for an argument
+    // about identity and it should not grow one by pretending it is land.
+    // https://en.wikipedia.org/wiki/Macedonia_naming_dispute
+    row("Macedonia", "Macedonia", &["mkd", "north macedonia", "fyrom", "makedonija"], "Balkans",
+        &["Serbia", "Bulgaria", "Greece", "Albania"], &[], false, false, false),
+
+    // Montenegro's borders: Serbia 124 km, Bosnia 225 km, Croatia 25 km at
+    // Prevlaka, Albania 172 km. No claim. Prevlaka is the near miss and it is
+    // not one: the Yugoslav Navy held the peninsula from 1992 to 2002 and
+    // Croatia protested, but it is 93 hectares of CROATIAN territory under a
+    // demilitarisation dispute settled by the UN observer mission UNMOP and
+    // the protocol of December 2002 — an argument about who may put soldiers
+    // on it, not about whose it is. Note also what is NOT changed above:
+    // Serbia keeps "serbia and montenegro" and "fry" among its aliases,
+    // because the Federal Republic of Yugoslavia was governed from Belgrade
+    // and a player typing "fry" means Belgrade. The two rows are the two
+    // republics; the alias is the federation they shared.
+    // https://en.wikipedia.org/wiki/Prevlaka
+    row("Montenegro", "Montenegro", &["mne", "crna gora"], "Balkans",
+        &["Serbia", "Bosnia", "Croatia", "Albania"], &[], false, false, false),
+
+    // -----------------------------------------------------------------------
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2).
+    //
+    // Seven rows that finish the region the eleven-row Africa block above could
+    // only gesture at, and they change the shape of it. Before this the SADF
+    // sat on the board with one land border; it now has six, and the two states
+    // it entirely encloses are on it. The regional note above says Africa in
+    // 1990 held almost no interstate territorial claims and that exactly one
+    // appeared in eleven rows. That generalisation survives, but it is not
+    // quite as clean as it looked: these seven rows add two more claims and
+    // both of them are on South Africa, which is the correct exception. The
+    // OAU's Cairo resolution of 21 July 1964 bound its members to the frontiers
+    // they inherited at independence, and a frontier drawn by a settler state
+    // that was not decolonising was the one kind the resolution did not settle.
+    // Everything else here is still civil war, insurgency and sanctuary, not
+    // conquest.
+
+    // Mozambique is in the fourteenth year of a civil war it is losing on
+    // territory and holding on cities. Six roster neighbours, which is the most
+    // of anything in this block, and no claim on any of them: RENAMO wanted
+    // Maputo, not a partition, and FRELIMO's quarrel with Pretoria was that
+    // Pretoria was arming RENAMO, which is a grievance and not a border. The
+    // Nkomati Accord of 16 March 1984 was supposed to end that and did not.
+    //
+    // The border to look at is Zimbabwe's, because it is the one with an army
+    // standing on it: the Beira corridor carried Zimbabwe's rail, road and
+    // fuel pipeline to the sea and was the only route that avoided South
+    // African ports, so Harare garrisoned it. That is a foreign deployment
+    // across a declared border in this table, which is what the dyad model
+    // needs to be able to see.
+    row("Mozambique", "Mozambique", &["moz", "mocambique", "mozambique"], "SouthernAfrica",
+        &["SouthAfrica", "Zimbabwe", "Zambia", "Malawi", "Tanzania", "Swaziland"],
+        &[], true, false, false),
+
+    // Zambia has eight land neighbours, seven of them now in this roster, and
+    // that is the whole of Kaunda's foreign policy: a landlocked copper economy
+    // that chose to be the rear area for every liberation movement in the
+    // region and paid for the choice in closed borders and unshipped ore. ZAPU
+    // was in Lusaka, the ANC's headquarters in exile was in Lusaka, SWAPO ran
+    // through Lusaka, and the Rhodesian and South African forces raided all
+    // three there.
+    //
+    // The eighth neighbour is the interesting omission. Zambia and Botswana
+    // meet at Kazungula, where the Zambezi and the Chobe join and four states
+    // come within a few hundred metres of a common point; whether the two share
+    // a boundary at all, and how long it is, has never been settled — the
+    // usual figure is about 150 metres of riverbank. In January 1990 the
+    // crossing was a pontoon ferry and nothing else; the Kazungula bridge did
+    // not open until 10 May 2021. This column means "force can cross without a
+    // fleet", and a ferry is a fleet. It is therefore left out on purpose, on
+    // the same reasoning that leaves Zaire-Tanzania out of the Zaire row above.
+    // https://en.wikipedia.org/wiki/Kazungula
+    row("Zambia", "Zambia", &["zmb", "zam", "northern rhodesia"], "SouthernAfrica",
+        &["Zaire", "Angola", "Tanzania", "Malawi", "Mozambique", "Zimbabwe", "Namibia"],
+        &[], true, false, false),
+
+    // Malawi's three neighbours are all in this roster and it has a live
+    // boundary dispute with one of them, which is entered as no claim at all.
+    // The argument is over Lake Malawi/Lake Nyasa: the Anglo-German Heligoland
+    // agreement of 1 July 1890 drew the boundary along the eastern (Tanganyikan)
+    // shore rather than down the middle, so Malawi holds that the whole lake is
+    // Malawian and Tanzania holds that the median line is the border. Boats
+    // have been shot at over it — there was an exchange in 1967 — and it is
+    // still unsettled in 2026.
+    //
+    // It is not a `claim` because `claim` is a share of another nation, and
+    // what Malawi wants is 5,600 square kilometres of fresh water that is not
+    // part of Tanzania's territory in any sense the model holds. Entering it
+    // would tell the derived war model that Lilongwe wants Tanzanian ground,
+    // and the thing that makes this dispute survivable is precisely that it
+    // never has. Banda's "Greater Malawi" rhetoric of the 1960s did claim
+    // ground — parts of Tanzania, Zambia and Mozambique — and it was dead as
+    // policy long before 1990.
+    // https://en.wikipedia.org/wiki/Lake_Malawi
+    row("Malawi", "Malawi", &["mwi", "nyasaland"], "SouthernAfrica",
+        &["Zambia", "Tanzania", "Mozambique"], &[], true, false, false),
+
+    // Botswana: three roster neighbours, no claim on any of them, and the
+    // fourth border deliberately absent for the reason set out in the Zambia
+    // row. The one thing Botswana would later dispute is Sedudu/Kasikili, an
+    // uninhabited 3.5 square kilometre island in the Chobe that the
+    // International Court of Justice awarded to Botswana on 13 December 1999.
+    // It is not entered, and the date is why: the dispute crystallised when
+    // Botswana Defence Force troops occupied the island in 1992, against a
+    // Namibia that on 1 January 1990 did not yet exist.
+    row("Botswana", "Botswana", &["bwa", "bechuanaland"], "SouthernAfrica",
+        &["SouthAfrica", "Zimbabwe", "Namibia"], &[], true, false, false),
+
+    // NAMIBIA IS A SUCCESSOR, NOT A STARTER, and the date is the whole of it.
+    // Independence came at midnight on 21 March 1990 — eleven weeks into the
+    // game. On 1 January 1990 the territory was South West Africa, administered
+    // by a South African Administrator-General alongside the United Nations
+    // Transition Assistance Group under UNSCR 435, with the Constituent
+    // Assembly elected on 7-11 November 1989 already sitting and the
+    // constitution not adopted until 9 February 1990. A sovereign Namibia did
+    // not exist on the start date, so `start_1990` is false and there is no
+    // data file: the loader rejects a file for a nation that is not a starter.
+    //
+    // The claim is real and is the only irredentist claim in this block that
+    // was ever pressed. Walvis Bay — 1,124 square kilometres, the territory's
+    // only deep-water port, and the Penguin Islands with it — was annexed to
+    // the Cape Colony in 1878, kept by South Africa when the League mandate
+    // began, and formally retained by Pretoria on Namibian independence. It was
+    // transferred on 28 February 1994. The share is the enclave measured
+    // against South Africa: 1,124 sq km against 1,221,037, and roughly 25,000
+    // people against 35 million. 0.001 either way, and it is entered small
+    // because that is what it was — a port held as leverage, handed over by
+    // negotiation four years later without a shot.
+    // https://en.wikipedia.org/wiki/Walvis_Bay
+    row("Namibia", "Namibia", &["nam", "south west africa", "swa"], "SouthernAfrica",
+        &["Angola", "Zambia", "Botswana", "SouthAfrica"],
+        &[claim("SouthAfrica", 0.001)], false, false, false),
+
+    // Lesotho is the extreme case this whole column exists to be able to state:
+    // one neighbour, and that neighbour surrounds it completely. There are
+    // three enclaved states in the world and this is the largest. Every road
+    // out of Maseru ends in South Africa, the loti was pegged one-for-one to
+    // the rand, and about half of Lesotho's adult men worked in South African
+    // gold mines. Pretoria demonstrated what that meant on 1 January 1986: a
+    // border blockade over ANC sanctuary that closed the country in twenty days
+    // and produced the coup of 20 January.
+    //
+    // NO CLAIM, and this is the closest call in the block, so it is argued
+    // rather than left silent. Lesotho has a genuine irredentist grievance —
+    // the "conquered territories" west of the Caledon, taken by the Orange Free
+    // State in the wars of 1858-68 and confirmed against Moshoeshoe I by the
+    // Treaty of Aliwal North of 12 February 1869, which is roughly as much land
+    // again as Lesotho kept. Leabua Jonathan's government raised it at the OAU
+    // and the United Nations through the 1970s and early 1980s and it has never
+    // been renounced. It is not entered because of who was governing in January
+    // 1990: Jonathan had been deposed on 20 January 1986, and Major General
+    // Lekhanya's Military Council came to power in a coup Pretoria's blockade
+    // produced and spent its four years in office signing the Lesotho Highlands
+    // Water Project treaty with South Africa (24 October 1986) and expelling the
+    // ANC. A dormant grievance held by a government that owed its existence to
+    // the state it would be claiming from is not an appetite, and entering it
+    // would manufacture a war that the model would then have to explain.
+    // https://en.wikipedia.org/wiki/Treaty_of_Aliwal_North
+    row("Lesotho", "Lesotho", &["lso", "basutoland"], "SouthernAfrica",
+        &["SouthAfrica"], &[], true, false, false),
+
+    // Swaziland gets the claim Lesotho does not, and the difference is that
+    // Swaziland's was the subject of an actual agreement between two
+    // governments to move a border. Sobhuza II claimed the "lost lands" — the
+    // Swazi-populated ground ceded to the Transvaal and to Natal in the 1880s
+    // and 1890s — and in June 1982 P.W. Botha's government secretly agreed to
+    // transfer the KaNgwane bantustan and the Ingwavuma district of KwaZulu to
+    // Swaziland, which would also have given a landlocked kingdom a coastline.
+    // The Appellate Division in Bloemfontein struck the Ingwavuma proclamation
+    // down in September 1982, Zulu opposition finished it, and South Africa
+    // announced on 19 June 1984 that neither territory would be transferred.
+    // Mbabane has never dropped the claim and was still pressing it in the
+    // 2010s.
+    //
+    // The share is 0.01 and the two ways of measuring it bracket that: KaNgwane
+    // at about 3,800 square kilometres plus the Ingwavuma corridor is roughly
+    // 0.006 of South Africa's land area, while the population of the two —
+    // usually put at around half a million — is about 0.015 of a South Africa
+    // of 35 million. Measured either way it is a corridor and a bantustan, not
+    // a war of conquest, which is what a hundredth of a target means here.
+    // https://en.wikipedia.org/wiki/KaNgwane
+    row("Swaziland", "Swaziland", &["swz", "eswatini", "ngwane"], "SouthernAfrica",
+        &["SouthAfrica", "Mozambique"], &[claim("SouthAfrica", 0.01)], true, false, false),
+
+    // ---- The rest of South America (branch feat/r2-southam2) ---------------
+    //
+    // Appended rather than filed with the other ten Latin American rows above,
+    // because roster order is relations-matrix order is serialization order and
+    // inserting at Uruguay would have moved eighty-odd indices for no gain.
+
+    // Paraguay: landlocked between the three largest states of the Southern
+    // Cone and bordering all of them. No claims in either direction, and the
+    // emptiness is the whole point of the row. Paraguay is the one country in
+    // South America that settled its borders by winning and losing wars rather
+    // than by arbitration - it lost the Triple Alliance war of 1864-70 to
+    // Brazil, Argentina and Uruguay together and lost something between a
+    // quarter and two thirds of its population doing it, then won the Chaco war
+    // of 1932-35 against Bolivia and took 20,000 km2 more than it started with.
+    // Both were closed by treaty: Asuncion's frontier with Bolivia by the Buenos
+    // Aires treaty of 21 July 1938, with Brazil by the 1872 treaty and the 1927
+    // Salto del Guaira exchange, with Argentina by the Pilcomayo and Parana
+    // thalwegs. Nothing is outstanding on any of the three.
+    //
+    // What binds Paraguay to Brazil in 1990 is not a border argument but Itaipu:
+    // the 1973 treaty, the dam finished in 1984, and a Paraguayan half of the
+    // output that Paraguay cannot use and must sell to Brazil at a price the
+    // treaty fixed. That is a trade dependency, which `statecraft.rs` models,
+    // and not a claim, which this table would have had to invent to express it.
+    row("Paraguay", "Paraguay", &["pry", "par", "paraguai"], "LatinAmerica",
+        &["Brazil", "Argentina", "Bolivia"], &[], true, false, false),
+
+    // Guyana: a state that claims nothing and is claimed by two of its three
+    // neighbours - Venezuela on 62% of it and Suriname on the New River
+    // Triangle. That asymmetry is the entire strategic position of the country
+    // and it is why the Guyana Defence Force exists at all. Brazil is the quiet
+    // border; the Takutu was settled in 1904 and nobody has raised it since.
+    //
+    // No claim of its own is the transcription and not an omission. Georgetown's
+    // position on both disputes has been unbroken since independence on 26 May
+    // 1966: the 1899 award and the 1936 mixed-commission line are final, there is
+    // nothing to negotiate, and the answer to both neighbours is the same word.
+    row("Guyana", "Guyana", &["guy", "british guiana"], "LatinAmerica",
+        &["Venezuela", "Brazil", "Suriname"], &[], true, false, false),
+
+    // Suriname claims the New River Triangle - the 15,600 km2 between the Coeroeni
+    // and the New River that a 1936 mixed commission awarded to British Guiana
+    // and that Paramaribo has never accepted, holding that the Corentyne's true
+    // upper course is the New River and therefore that the boundary runs east of
+    // it. Guyanese troops cleared a Surinamese survey camp out of Tigri on 19
+    // August 1969 and have held the ground since.
+    //
+    // 0.03 of Guyana, and the denominator is population exactly as it is for
+    // Bolivia's Litoral and Ecuador's Cordillera del Condor two hundred lines
+    // above. By area the Triangle is 0.073 of Guyana; by people it is nearly
+    // nothing, because nobody lives there but Trio and Wayana villages and the
+    // Guyanese garrison. Set at Bolivia's level rather than Ecuador's because
+    // unlike the Cenepa this was not a patrolled confrontation in 1990 - one
+    // side had physically held it for twenty-one years and the other had no army
+    // capable of taking it, being at the time unable to hold its own interior.
+    //
+    // The border with French Guiana - itself disputed, over the Lawa and Litani
+    // headwaters - is not declared, for the reason the Latin America section
+    // header gives about Brazil: it is a frontier with an overseas department
+    // 7,000 km from Paris, and a Franco-Surinamese war dyad would be an artefact
+    // of how the map is drawn.
+    // https://en.wikipedia.org/wiki/Guyana%E2%80%93Suriname_relations
+    row("Suriname", "Suriname", &["sur", "surinam", "dutch guiana"], "LatinAmerica",
+        &["Guyana", "Brazil"], &[claim("Guyana", 0.03)], true, false, false),
+
+    // ---- West Africa (branch feat/r2-westafrica2) -------------------------
+    // Eleven states along the Niger bend and the Upper Guinea coast, and the
+    // first thing this block does is turn Ghana and Senegal from islands into
+    // a connected map: before it, the only declared border in West Africa was
+    // Nigeria-Cameroon. What follows is the ECOWAS interior, and the thing to
+    // notice is how few claims there are in it. The Organisation of African
+    // Unity resolution of Cairo, 21 July 1964, bound its members to the
+    // frontiers they inherited at independence, and in this region it largely
+    // held: the two real border wars of the era, Mali-Burkina in 1974 and 1985
+    // and Thailand-Laos's African analogue in the Beninese river islands, both
+    // ended at the International Court of Justice rather than on the ground.
+    // A model that read poverty and coups as appetite for a neighbour's
+    // territory would invent a decade of conquests that did not happen. What
+    // these eleven actually did to each other was sponsor each other's rebels
+    // and each other's coups, which is covert action and relations, not claims.
+
+    // Mali holds no claim on anybody, and the Agacher Strip is why the entry is
+    // worth a comment rather than a blank. Mali and Burkina Faso fought twice
+    // over a 160km band of scrub in the north-east — a week in December 1974
+    // and five days over Christmas 1985, the "Agacher Strip war", with air
+    // strikes on Ouahigouya and something over a hundred dead. They then took
+    // it to the International Court of Justice, which divided the strip almost
+    // exactly in half on 22 December 1986, and BOTH GOVERNMENTS ACCEPTED THE
+    // JUDGMENT and exchanged the territory in 1987. Three years before the game
+    // opens the quarrel was not dormant, it was settled, and the Tunisia row
+    // above states the principle: a state that litigates its border and takes
+    // the answer is a state with no claim to enter.
+    // https://en.wikipedia.org/wiki/Agacher_Strip_War
+
+    // Burkina Faso, Upper Volta until Sankara renamed it on 4 August 1984. Six
+    // neighbours, five of them in this roster; Cote d'Ivoire is not simulated.
+    // No claim, for the reason given on Mali's row.
+
+    // Niger touches seven states and five are here. Chad is not simulated, and
+    // neither is the Libyan-claimed Aouzou Strip east of it. Niger claims
+    // nothing: the one live territorial argument on its frontiers ran the other
+    // way, from Cotonou, and is entered on Benin's row below.
+
+    // Guinea borders six states and five are in this roster; Cote d'Ivoire is
+    // not. No claim. Conakry's quarrels with Monrovia and Freetown in 1990 were
+    // about who was hosting whose dissidents — Guinea took a quarter of a
+    // million Liberian refugees into the forest region from mid-1990 and sent
+    // a battalion to ECOMOG — and hosting a rebel is not a claim on a
+    // neighbour's ground.
+
+    // The one claim in West Africa, and it is a river island. Lete is about 40
+    // square kilometres of alluvial ground in the middle of the Niger river,
+    // farmed by Beninese and administered by Niger, and the two states have
+    // disputed it since a French colonial decree of 1900 that neither reads the
+    // same way. There was shooting over it in 1963 and again in the 1990s, and
+    // Benin and Niger finally put it to a chamber of the International Court of
+    // Justice, which awarded Lete and fifteen other islands to Niger on 12 July
+    // 2005 — which is fifteen years after the game opens, so in January 1990 the
+    // claim is live. The share is what the claim would take from the target:
+    // Lete's population is usually put in the low thousands against a Niger of
+    // 8.29m, and 40 km2 against 1,267,000 km2 is 0.00003. Entered at 0.0003,
+    // the higher of the two readings, which is still three ten-thousandths — the
+    // same order as Thailand's Ban Romklao above and for the same reason. It is
+    // a grievance stated as the number that keeps it a grievance.
+    // https://en.wikipedia.org/wiki/Lete_Island
+
+    // Togo carries no claim, and this is the judgement in this block most worth
+    // stating, because there is a real irredentism in the file and it is not
+    // entered. Sylvanus Olympio's government pressed the reunification of the
+    // Ewe and of the former German Togoland — the western half of which the
+    // 1956 plebiscite gave to the Gold Coast and which is now Ghana's Volta
+    // region — and Lome and Accra spent the early 1960s in open hostility over
+    // it. By January 1990 the claim was twenty-five years dormant: Eyadema had
+    // dropped it as state policy, and what remained between Lome and Accra was
+    // mutual accusation over coups — Togo blamed Ghana and Burkina Faso for the
+    // commando raid on Lome of 23 September 1986, Ghana blamed Togo for the
+    // dissidents it hosted, and the border kept closing. Volta region held
+    // something over 1.2m of Ghana's 15.4m, so entering it as a claim would
+    // hand the appetite model an eight-percent bite at a neighbour on the
+    // strength of a slogan nobody in the Togolese cabinet was still shouting.
+    // The hostility is real and is entered in relations_1990.json, which is
+    // where a quarrel with no territorial demand behind it belongs.
+    // https://en.wikipedia.org/wiki/British_Togoland
+
+    // Sierra Leone touches Guinea and Liberia and nothing else. No claim, and
+    // in January 1990 no war either: the Revolutionary United Front crossed
+    // from Liberia into Kailahun on 23 March 1991, fifteen months after the
+    // game opens, and nothing in this row schedules that. What the row does
+    // carry is the adjacency that makes it possible.
+
+    // Liberia is the state in this block that is already at war on 1 January
+    // 1990 and holds no claim on anyone. Charles Taylor's National Patriotic
+    // Front crossed from Cote d'Ivoire into Nimba County on 24 December 1989,
+    // eight days before the game opens, and by January the Armed Forces of
+    // Liberia were burning Gio and Mano villages in reprisal. It is a civil war
+    // over who governs Monrovia, not a war about a border, which is why
+    // `claims` is empty and the fact lives in liberia.json's stability and
+    // separatism instead. Cote d'Ivoire — whose president was the adoptive
+    // father-in-law of the man Doe had executed in 1985, and whose territory
+    // the invasion staged from — is not in this roster, so the one border that
+    // mattered most in December 1989 is absent rather than wrong.
+    // https://en.wikipedia.org/wiki/First_Liberian_Civil_War
+
+    // Mauritania is filed under WestAfrica rather than NorthAfrica and the
+    // choice is load-bearing, because region membership auto-populates
+    // `contacts`. Nouakchott had signed the Arab Maghreb Union treaty at
+    // Marrakesh on 17 February 1989 and calls itself Arab, but the force it
+    // actually used and had used against it in the eighteen months before the
+    // game opens ran down the Senegal river, not across the Sahara: the events
+    // of April 1989 began with a herders' quarrel at Diawara, produced pogroms
+    // in Nouakchott and Dakar, and ended with something like 70,000 people
+    // expelled in each direction and diplomatic relations broken off. That is
+    // the dyad this nation needs to be able to reach.
+    //
+    // No claim. Mauritania renounced its share of the Western Sahara — the
+    // Tiris al-Gharbiyya, which it had taken under the Madrid Accords of
+    // November 1975 and could not hold — in the Algiers agreement with the
+    // Polisario Front of 5 August 1979, and has claimed nothing since. Morocco
+    // is not listed as a neighbour for the same reason Algeria's row omits the
+    // Western Sahara: what lies between Morocco proper and Mauritania is a
+    // territory this roster does not carry, and Morocco's presence on that
+    // frontier in 1990 was an occupation behind a sand berm rather than a
+    // border between two rows of this table.
+    // https://en.wikipedia.org/wiki/Mauritania%E2%80%93Senegal_Border_War
+
+    // The Gambia is not a country with a neighbour, it is a country inside one:
+    // 320km of river valley with Senegal on both banks and the Atlantic at the
+    // end. One border, and it is the whole of the frontier. The Senegambia
+    // Confederation — agreed after Senegalese paratroopers reversed the coup
+    // attempt of 30 July 1981 and in force from 1 February 1982 — was dissolved
+    // by Dakar on 30 September 1989, three months before the game opens, and
+    // that is the state of the dyad rather than any claim: Senegal wanted a
+    // union, Banjul would not be absorbed into one, and the answer was to walk
+    // away. Neither side claims an acre of the other.
+    // https://en.wikipedia.org/wiki/Senegambia_Confederation
+
+    // Guinea-Bissau claims nothing from Senegal, and the reason is worth the
+    // line because the dispute was live in January 1990 and is still not a
+    // claim. Bissau and Dakar disagreed about the maritime boundary drawn by a
+    // Franco-Portuguese exchange of letters of 26 April 1960; an arbitral
+    // tribunal upheld the 1960 line on 31 July 1989 and Guinea-Bissau filed
+    // against the award at the International Court of Justice on 23 August
+    // 1989, five months before the game opens. It is an argument about a
+    // seabed, and `share` is a fraction of a nation's territory and people —
+    // there is no share of Senegal in it. The land border was never contested.
+    // https://en.wikipedia.org/wiki/Arbitral_Award_of_31_July_1989
+];
+
+// ---------------------------------------------------------------------------
+// The handle
+// ---------------------------------------------------------------------------
+
+/// A nation, as a handle. The inner index is the roster row and the relations
+/// matrix row; it is deliberately private so nothing outside this module can
+/// invent one out of an integer read off a disk.
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub struct NationId(u16);
+
+impl NationId {
+    /// Index into the roster and into the relations matrix.
+    pub fn index(self) -> usize {
+        self.0 as usize
+    }
+    pub fn from_index(i: usize) -> Option<NationId> {
+        if i < ROSTER.len() {
+            Some(NationId(i as u16))
+        } else {
+            None
+        }
+    }
+    pub fn def(self) -> &'static NationDef {
+        &registry()[self.0 as usize]
+    }
+    /// The stable identifier. This is what goes to disk.
+    pub fn code(self) -> &'static str {
+        ROSTER[self.0 as usize].code
+    }
+    pub fn name(self) -> &'static str {
+        ROSTER[self.0 as usize].name
+    }
+    pub fn region(self) -> &'static str {
+        ROSTER[self.0 as usize].region
+    }
+    /// Resolve a code exactly, as a save file does. Case-sensitive on purpose:
+    /// this is an identifier, not user input.
+    pub fn from_code(code: &str) -> Option<NationId> {
+        ROSTER
+            .iter()
+            .position(|r| r.code == code)
+            .map(|i| NationId(i as u16))
+    }
+    /// What a human typed. Codes, display names and aliases, case-insensitive.
+    pub fn parse(s: &str) -> Option<NationId> {
+        let t = s.trim().to_lowercase();
+        if t.is_empty() {
+            return None;
+        }
+        ROSTER
+            .iter()
+            .position(|r| {
+                r.code.to_lowercase() == t
+                    || r.name.to_lowercase() == t
+                    || r.aliases.iter().any(|a| *a == t)
+            })
+            .map(|i| NationId(i as u16))
+    }
+}
+
+/// Debug prints the code, so that anything built out of `{:?}` — the
+/// `burned_*` flags in `war.rs`, the ids the browser UI keys on — stays a
+/// stable string rather than a number that moves when the roster grows.
+impl std::fmt::Debug for NationId {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.code())
+    }
+}
+impl std::fmt::Display for NationId {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.name())
+    }
+}
+
+impl Serialize for NationId {
+    fn serialize<S: Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        s.serialize_str(self.code())
+    }
+}
+impl<'de> Deserialize<'de> for NationId {
+    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        let s = String::deserialize(d)?;
+        NationId::from_code(&s).ok_or_else(|| {
+            serde::de::Error::custom(format!("save names a nation this build does not have: {}", s))
+        })
+    }
+}
+
+// ---------------------------------------------------------------------------
+// The thin compatibility layer
+// ---------------------------------------------------------------------------
+
+/// A const per well-known nation, so call sites stay readable and the ~500
+/// existing `NationId::Iraq` spellings keep working. These are resolved at
+/// compile time from the roster, so a code that is renamed or removed is a
+/// build error rather than a silently wrong index.
+///
+/// This is a convenience, not the mechanism. Nothing in the sim *needs* a
+/// nation to have a const, and nothing may pattern-match on one.
+macro_rules! well_known {
+    ($($konst:ident => $code:literal),* $(,)?) => {
+        /// The same handles as free constants, so a data table can say `USA`
+        /// rather than `NationId::USA` thirty times a row.
+        pub mod ids {
+            use super::{of, NationId};
+            $(
+                #[allow(non_upper_case_globals)]
+                pub const $konst: NationId = of($code);
+            )*
+        }
+        #[allow(non_upper_case_globals)]
+        impl NationId {
+            $( pub const $konst: NationId = ids::$konst; )*
+        }
+    };
+}
+
+well_known! {
+    USA => "USA",
+    USSR => "USSR",
+    Russia => "Russia",
+    Ukraine => "Ukraine",
+    China => "China",
+    Japan => "Japan",
+    Germany => "Germany",
+    UK => "UK",
+    France => "France",
+    Italy => "Italy",
+    India => "India",
+    Pakistan => "Pakistan",
+    Iraq => "Iraq",
+    Kuwait => "Kuwait",
+    SaudiArabia => "SaudiArabia",
+    Iran => "Iran",
+    SouthKorea => "SouthKorea",
+    Poland => "Poland",
+    Brazil => "Brazil",
+    Indonesia => "Indonesia",
+    Egypt => "Egypt",
+    Israel => "Israel",
+    Turkey => "Turkey",
+    Nigeria => "Nigeria",
+    Vietnam => "Vietnam",
+    Yugoslavia => "Yugoslavia",
+    Serbia => "Serbia",
+    Croatia => "Croatia",
+    Slovenia => "Slovenia",
+    Bosnia => "Bosnia",
+    Spain => "Spain",
+    Netherlands => "Netherlands",
+    Belgium => "Belgium",
+    Sweden => "Sweden",
+    Switzerland => "Switzerland",
+    Austria => "Austria",
+    Portugal => "Portugal",
+    Greece => "Greece",
+    Denmark => "Denmark",
+    Norway => "Norway",
+    Finland => "Finland",
+    Ireland => "Ireland",
+    Czechoslovakia => "Czechoslovakia",
+    Hungary => "Hungary",
+    Romania => "Romania",
+    Bulgaria => "Bulgaria",
+    Albania => "Albania",
+    Belarus => "Belarus",
+    Kazakhstan => "Kazakhstan",
+    Uzbekistan => "Uzbekistan",
+    Georgia => "Georgia",
+    Armenia => "Armenia",
+    Azerbaijan => "Azerbaijan",
+    Lithuania => "Lithuania",
+    Latvia => "Latvia",
+    Estonia => "Estonia",
+    Moldova => "Moldova",
+    Argentina => "Argentina",
+    Mexico => "Mexico",
+    Chile => "Chile",
+    Colombia => "Colombia",
+    Venezuela => "Venezuela",
+    Peru => "Peru",
+    Cuba => "Cuba",
+    Bolivia => "Bolivia",
+    Ecuador => "Ecuador",
+    Uruguay => "Uruguay",
+    Syria => "Syria",
+    Jordan => "Jordan",
+    Lebanon => "Lebanon",
+    UAE => "UAE",
+    Qatar => "Qatar",
+    Oman => "Oman",
+    Yemen => "Yemen",
+    Bahrain => "Bahrain",
+    Algeria => "Algeria",
+    Morocco => "Morocco",
+    Tunisia => "Tunisia",
+    Libya => "Libya",
+    Sudan => "Sudan",
+    // Sub-Saharan Africa (branch feat/r-ssafrica).
+    SouthAfrica => "SouthAfrica",
+    Ethiopia => "Ethiopia",
+    Kenya => "Kenya",
+    Ghana => "Ghana",
+    Zaire => "Zaire",
+    Angola => "Angola",
+    Zimbabwe => "Zimbabwe",
+    Tanzania => "Tanzania",
+    Uganda => "Uganda",
+    Senegal => "Senegal",
+    Cameroon => "Cameroon",
+    Bangladesh => "Bangladesh",
+    SriLanka => "SriLanka",
+    Nepal => "Nepal",
+    Afghanistan => "Afghanistan",
+    Myanmar => "Myanmar",
+    NorthKorea => "NorthKorea",
+    Taiwan => "Taiwan",
+    Mongolia => "Mongolia",
+    Thailand => "Thailand",
+    Malaysia => "Malaysia",
+    Singapore => "Singapore",
+    Philippines => "Philippines",
+    Cambodia => "Cambodia",
+    Laos => "Laos",
+    Canada => "Canada",
+    Australia => "Australia",
+    NewZealand => "NewZealand",
+    // The Caribbean (branch feat/r2-caribbean).
+    DominicanRepublic => "DominicanRepublic",
+    Haiti => "Haiti",
+    Jamaica => "Jamaica",
+    TrinidadTobago => "TrinidadTobago",
+    Bahamas => "Bahamas",
+    // Central Africa (branch feat/r2-centafrica).
+    Chad => "Chad",
+    CentralAfricanRepublic => "CentralAfricanRepublic",
+    Congo => "Congo",
+    Gabon => "Gabon",
+    EquatorialGuinea => "EquatorialGuinea",
+    SaoTome => "SaoTome",
+    // Central America (branch feat/r2-centam).
+    Guatemala => "Guatemala",
+    Honduras => "Honduras",
+    ElSalvador => "ElSalvador",
+    Nicaragua => "Nicaragua",
+    CostaRica => "CostaRica",
+    Panama => "Panama",
+    Belize => "Belize",
+    // The last three Soviet republics (branch feat/r2-gulf2).
+    Kyrgyzstan => "Kyrgyzstan",
+    Tajikistan => "Tajikistan",
+    Turkmenistan => "Turkmenistan",
+    // The western Indian Ocean (branch feat/r2-indianocean).
+    Madagascar => "Madagascar",
+    Mauritius => "Mauritius",
+    Seychelles => "Seychelles",
+    Comoros => "Comoros",
+    CapeVerde => "CapeVerde",
+    Fiji => "Fiji",
+    SolomonIslands => "SolomonIslands",
+    Vanuatu => "Vanuatu",
+    Samoa => "Samoa",
+    Tonga => "Tonga",
+    Brunei => "Brunei",
+    PapuaNewGuinea => "PapuaNewGuinea",
+    EastTimor => "EastTimor",
+    Bhutan => "Bhutan",
+    Maldives => "Maldives",
+    // Small and island Europe (branch feat/r2-smalleurope).
+    Iceland => "Iceland",
+    Luxembourg => "Luxembourg",
+    Malta => "Malta",
+    Cyprus => "Cyprus",
+    Macedonia => "Macedonia",
+    Montenegro => "Montenegro",
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2). Namibia is
+    // here despite being a successor rather than a starter, for the same reason
+    // Croatia and Estonia are: a nation that only exists once something comes
+    // apart still needs a handle the data tables can name.
+    Mozambique => "Mozambique",
+    Zambia => "Zambia",
+    Malawi => "Malawi",
+    Botswana => "Botswana",
+    Namibia => "Namibia",
+    Lesotho => "Lesotho",
+    Swaziland => "Swaziland",
+    // The rest of South America (branch feat/r2-southam2).
+    Paraguay => "Paraguay",
+    Guyana => "Guyana",
+    Suriname => "Suriname",
+    // West Africa (branch feat/r2-westafrica2).
+}
+
+const fn bytes_eq(a: &str, b: &str) -> bool {
+    let (a, b) = (a.as_bytes(), b.as_bytes());
+    if a.len() != b.len() {
+        return false;
+    }
+    let mut i = 0;
+    while i < a.len() {
+        if a[i] != b[i] {
+            return false;
+        }
+        i += 1;
+    }
+    true
+}
+
+/// Compile-time roster lookup. Panics at build time on an unknown code.
+pub const fn of(code: &str) -> NationId {
+    let mut i = 0;
+    while i < ROSTER.len() {
+        if bytes_eq(ROSTER[i].code, code) {
+            return NationId(i as u16);
+        }
+        i += 1;
+    }
+    panic!("no nation with that code in the roster")
+}
+
+// ---------------------------------------------------------------------------
+// The resolved registry
+// ---------------------------------------------------------------------------
+
+/// A roster row with its string references resolved to handles, plus the
+/// derived sets the dyad model walks. Built once; never mutated.
+#[derive(Clone, Debug)]
+pub struct NationDef {
+    pub id: NationId,
+    pub code: &'static str,
+    pub name: &'static str,
+    pub region: &'static str,
+    /// Symmetric closure of the declared borders, sorted. Symmetric because a
+    /// border is, and closed here so a one-sided row in the data cannot make
+    /// two nations disagree about whether they touch.
+    pub neighbours: Vec<NationId>,
+    /// Sorted by target.
+    pub claims: Vec<(NationId, f64)>,
+    /// Everyone this nation could plausibly use force against: neighbours, the
+    /// states it claims something from, and the rest of its region. The dyad
+    /// model walks this instead of the whole roster, which is what keeps the
+    /// appetite pass O(n·k) rather than O(n²) at 190 nations.
+    pub contacts: Vec<NationId>,
+    pub start_1990: bool,
+    pub patron: bool,
+    pub major: bool,
+    /// The political arm's regional ideological sponsor flag (design D3,
+    /// S3): `Some(bloc)` on the five states that bankrolled a movement abroad
+    /// without keeping clients — the bloc is the one they sponsor. Read ONLY
+    /// by the gated AI covert arm (`politics::ai_statecraft`), never by
+    /// `patrons()` or `PATRON_ORDER`, so an off-world walks exactly the list
+    /// it always did. `None` (the flag off) everywhere else.
+    pub ideological_sponsor: Option<crate::government::Bloc>,
+}
+
+/// The five regional ideological sponsors of 1990 and the bloc each backed
+/// (design D3, approved 2026-09-05): the Saudi, Iranian and Pakistani
+/// services behind Islamist movements from Afghanistan to Algeria, Libya
+/// behind Arab-nationalist and revolutionary movements, Cuba behind the
+/// Communist ones of the Americas and Africa. A transcription of who paid
+/// whom, not a coefficient.
+/// https://en.wikipedia.org/wiki/Operation_Cyclone
+/// https://en.wikipedia.org/wiki/Foreign_relations_of_Libya_under_Muammar_Gaddafi
+/// https://en.wikipedia.org/wiki/Cuban_intervention_in_Angola
+const IDEOLOGICAL_SPONSORS: &[(&str, crate::government::Bloc)] = &[
+    ("SaudiArabia", crate::government::Bloc::Islamist),
+    ("Iran", crate::government::Bloc::Islamist),
+    ("Pakistan", crate::government::Bloc::Islamist),
+    ("Libya", crate::government::Bloc::Nationalist),
+    ("Cuba", crate::government::Bloc::Communist),
+];
+
+/// The ideological sponsors in registry order, for the gated AI arm.
+pub fn ideological_sponsors() -> &'static [NationId] {
+    static S: OnceLock<Vec<NationId>> = OnceLock::new();
+    S.get_or_init(|| {
+        all_nations().iter().copied().filter(|n| n.def().ideological_sponsor.is_some()).collect()
+    })
+}
+
+static REGISTRY: OnceLock<Vec<NationDef>> = OnceLock::new();
+
+pub fn registry() -> &'static [NationDef] {
+    REGISTRY.get_or_init(build_registry)
+}
+
+fn build_registry() -> Vec<NationDef> {
+    let resolve = |code: &str| -> NationId {
+        NationId::from_code(code)
+            .unwrap_or_else(|| panic!("roster names a nation that is not in it: {}", code))
+    };
+
+    // Borders first, unioned in both directions.
+    let mut adj: Vec<Vec<NationId>> = vec![vec![]; ROSTER.len()];
+    for (i, r) in ROSTER.iter().enumerate() {
+        for nb in r.neighbours {
+            let b = resolve(nb);
+            assert!(b.index() != i, "{} borders itself", r.code);
+            if !adj[i].contains(&b) {
+                adj[i].push(b);
+            }
+            if !adj[b.index()].contains(&NationId(i as u16)) {
+                adj[b.index()].push(NationId(i as u16));
+            }
+        }
+    }
+
+    ROSTER
+        .iter()
+        .enumerate()
+        .map(|(i, r)| {
+            let id = NationId(i as u16);
+            assert!(REGIONS.contains(&r.region), "{} is in no known region", r.code);
+            let mut neighbours = adj[i].clone();
+            neighbours.sort();
+
+            let mut claims: Vec<(NationId, f64)> =
+                r.claims.iter().map(|c| (resolve(c.on), c.share)).collect();
+            claims.sort_by_key(|(t, _)| *t);
+
+            let mut contacts: Vec<NationId> = neighbours.clone();
+            for (t, _) in &claims {
+                if !contacts.contains(t) {
+                    contacts.push(*t);
+                }
+            }
+            for (j, o) in ROSTER.iter().enumerate() {
+                if j != i && o.region == r.region {
+                    let o = NationId(j as u16);
+                    if !contacts.contains(&o) {
+                        contacts.push(o);
+                    }
+                }
+            }
+            contacts.sort();
+
+            NationDef {
+                id,
+                code: r.code,
+                name: r.name,
+                region: r.region,
+                neighbours,
+                claims,
+                contacts,
+                start_1990: r.start_1990,
+                patron: r.patron,
+                major: r.major,
+                ideological_sponsor: IDEOLOGICAL_SPONSORS
+                    .iter()
+                    .find(|(code, _)| *code == r.code)
+                    .map(|(_, b)| *b),
+            }
+        })
+        .collect()
+}
+
+/// How many nations this build knows about, ever — the width of the relations
+/// matrix, not the number currently alive.
+pub fn nation_count() -> usize {
+    ROSTER.len()
+}
+
+/// Every id, in registry order. The index into this is the index into the
+/// relations matrix, so the two can never drift apart: they are the same thing.
+pub fn all_nations() -> &'static [NationId] {
+    static ALL: OnceLock<Vec<NationId>> = OnceLock::new();
+    ALL.get_or_init(|| (0..ROSTER.len()).map(|i| NationId(i as u16)).collect())
+}
+
+/// On the board in January 1990.
+pub fn start_nations() -> &'static [NationId] {
+    static START: OnceLock<Vec<NationId>> = OnceLock::new();
+    START.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().start_1990).collect())
+}
+
+/// States that only exist if a federation comes apart.
+pub fn successor_nations() -> &'static [NationId] {
+    static SUCC: OnceLock<Vec<NationId>> = OnceLock::new();
+    SUCC.get_or_init(|| all_nations().iter().copied().filter(|n| !n.def().start_1990).collect())
+}
+
+/// The powers that keep clients. Not simply the strongest — the ones with a
+/// bloc to hold together and something to lose if it goes over to the other
+/// side. Japan belongs here despite its two-decimal army: it passed the United
+/// States in 1989 to become the largest aid donor in the world and stayed there
+/// until 2000. https://ies.princeton.edu/pdf/E196.pdf
+pub fn patrons() -> &'static [NationId] {
+    static P: OnceLock<Vec<NationId>> = OnceLock::new();
+    P.get_or_init(|| ordered_by(PATRON_ORDER, |d| d.patron))
+}
+
+/// Precedence, not membership. Which nations are patrons and majors is data on
+/// the roster row; the ORDER they are walked in is behaviour, because the first
+/// power to reach a client claims it and the first to answer a call joins the
+/// war. Deriving that order from registry position made it an accident of where
+/// a nation sits in a file, which silently moved 2025 China by 38%. It is
+/// therefore stated, and stated in the order the hand-written arrays used to
+/// hold before the roster became data.
+const PATRON_ORDER: &[&str] = &["USA", "USSR", "Russia", "China", "UK", "France", "Germany", "Japan"];
+const MAJOR_ORDER: &[&str] = &["USA", "UK", "France", "Germany", "Japan"];
+
+/// Everything matching `flag`, in the precedence order given, with anything the
+/// order forgot appended in registry order so a new patron cannot vanish.
+fn ordered_by(order: &[&str], flag: fn(&NationDef) -> bool) -> Vec<NationId> {
+    let mut out: Vec<NationId> = vec![];
+    for code in order {
+        if let Some(id) = NationId::from_code(code) {
+            if flag(id.def()) && !out.contains(&id) {
+                out.push(id);
+            }
+        }
+    }
+    for id in all_nations() {
+        if flag(id.def()) && !out.contains(id) {
+            out.push(*id);
+        }
+    }
+    out
+}
+
+/// The powers that sanction an aggressor and may intervene for its victim.
+/// The AI's expectations in `politics::ai_wars` read this same list — if they
+/// diverge, aggressors invade into coalitions they never saw coming and never
+/// learn better.
+pub fn majors() -> &'static [NationId] {
+    static M: OnceLock<Vec<NationId>> = OnceLock::new();
+    M.get_or_init(|| ordered_by(MAJOR_ORDER, |d| d.major))
+}
+
+/// Do these two share a border?
+pub fn adjacent(a: NationId, b: NationId) -> bool {
+    a.def().neighbours.binary_search(&b).is_ok()
+}
+
+/// What `a` claims of `b`, as a share of `b`. Zero when there is no claim.
+pub fn claim_share(a: NationId, b: NationId) -> f64 {
+    a.def()
+        .claims
+        .binary_search_by_key(&b, |(t, _)| *t)
+        .map(|i| a.def().claims[i].1)
+        .unwrap_or(0.0)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn the_roster_is_internally_consistent() {
+        let reg = registry();
+        assert_eq!(reg.len(), ROSTER.len());
+        for (i, d) in reg.iter().enumerate() {
+            assert_eq!(d.id.index(), i);
+            assert_eq!(NationId::from_code(d.code), Some(d.id), "{} does not resolve", d.code);
+            // A code is an identifier: unique, and never a display name.
+            assert_eq!(
+                reg.iter().filter(|o| o.code == d.code).count(),
+                1,
+                "duplicate code {}",
+                d.code
+            );
+        }
+        // Borders are symmetric, in the raw data and not only after the union.
+        for r in ROSTER {
+            for nb in r.neighbours {
+                let other = ROSTER.iter().find(|o| o.code == *nb).expect("neighbour exists");
+                assert!(
+                    other.neighbours.contains(&r.code),
+                    "{} lists {} as a neighbour but not the other way round",
+                    r.code,
+                    nb
+                );
+            }
+        }
+        // Every claim names a real target and is a share, not a magnitude.
+        for r in ROSTER {
+            for c in r.claims {
+                assert!(NationId::from_code(c.on).is_some(), "{} claims a ghost", r.code);
+                assert!((0.0..=1.0).contains(&c.share), "{}'s claim is not a share", r.code);
+                assert_ne!(c.on, r.code, "{} claims itself", r.code);
+            }
+        }
+    }
+
+    #[test]
+    fn every_name_the_old_parser_took_still_parses_to_the_same_nation() {
+        // The enum's hand-written parse arms, moved to data. If one of these
+        // ever resolves somewhere else, a saved game or a player's muscle
+        // memory has been quietly broken.
+        let cases: &[(&str, NationId)] = &[
+            ("usa", NationId::USA), ("us", NationId::USA),
+            ("united states", NationId::USA), ("america", NationId::USA),
+            ("ussr", NationId::USSR), ("soviet union", NationId::USSR),
+            ("soviets", NationId::USSR), ("russia", NationId::Russia),
+            ("ukraine", NationId::Ukraine), ("ukr", NationId::Ukraine),
+            ("china", NationId::China), ("prc", NationId::China),
+            ("japan", NationId::Japan), ("germany", NationId::Germany),
+            ("uk", NationId::UK), ("britain", NationId::UK),
+            ("united kingdom", NationId::UK), ("france", NationId::France),
+            ("italy", NationId::Italy), ("india", NationId::India),
+            ("pakistan", NationId::Pakistan), ("iraq", NationId::Iraq),
+            ("kuwait", NationId::Kuwait), ("saudi arabia", NationId::SaudiArabia),
+            ("saudi", NationId::SaudiArabia), ("ksa", NationId::SaudiArabia),
+            ("iran", NationId::Iran), ("south korea", NationId::SouthKorea),
+            ("korea", NationId::SouthKorea), ("rok", NationId::SouthKorea),
+            ("poland", NationId::Poland), ("brazil", NationId::Brazil),
+            ("bra", NationId::Brazil), ("indonesia", NationId::Indonesia),
+            ("idn", NationId::Indonesia), ("egypt", NationId::Egypt),
+            ("egy", NationId::Egypt), ("uar", NationId::Egypt),
+            ("israel", NationId::Israel), ("isr", NationId::Israel),
+            ("turkey", NationId::Turkey), ("turkiye", NationId::Turkey),
+            ("tur", NationId::Turkey), ("nigeria", NationId::Nigeria),
+            ("nga", NationId::Nigeria), ("vietnam", NationId::Vietnam),
+            ("viet nam", NationId::Vietnam), ("vnm", NationId::Vietnam),
+            ("yugoslavia", NationId::Yugoslavia), ("sfry", NationId::Yugoslavia),
+            ("yugo", NationId::Yugoslavia), ("serbia", NationId::Serbia),
+            ("serbia and montenegro", NationId::Serbia), ("fry", NationId::Serbia),
+            ("croatia", NationId::Croatia), ("slovenia", NationId::Slovenia),
+            ("bosnia", NationId::Bosnia),
+            ("bosnia and herzegovina", NationId::Bosnia), ("bih", NationId::Bosnia),
+        ];
+        for (text, id) in cases {
+            assert_eq!(NationId::parse(text), Some(*id), "{} no longer parses", text);
+        }
+        assert_eq!(NationId::parse("atlantis"), None);
+        assert_eq!(NationId::parse(""), None);
+    }
+
+    #[test]
+    fn identity_is_a_code_on_disk_and_an_index_in_memory() {
+        // The lesson the technology tree paid for: an index is a runtime
+        // detail and must never reach a file.
+        let json = serde_json::to_string(&NationId::Iraq).unwrap();
+        assert_eq!(json, "\"Iraq\"");
+        let back: NationId = serde_json::from_str(&json).unwrap();
+        assert_eq!(back, NationId::Iraq);
+        assert!(serde_json::from_str::<NationId>("\"Atlantis\"").is_err());
+        // ...and an index is never a code.
+        assert!(serde_json::from_str::<NationId>("12").is_err());
+    }
+
+    #[test]
+    fn every_canonical_country_code_survives_the_user_input_parser() {
+        for &id in all_nations() {
+            assert_eq!(NationId::parse(id.code()), Some(id), "selector code {} chose another country", id.code());
+            assert_eq!(NationId::parse(&id.code().to_lowercase()), Some(id), "lowercase code {} chose another country", id.code());
+        }
+        assert_eq!(NationId::parse("Congo"), Some(NationId::Congo));
+        assert_eq!(NationId::parse("Congo-Brazzaville"), Some(NationId::Congo));
+        for alias in ["Zaire", "zar", "drc"] {
+            assert_eq!(NationId::parse(alias), Some(NationId::Zaire));
+        }
+    }
+
+    #[test]
+    fn the_roster_knows_who_touches_whom() {
+        assert!(adjacent(NationId::Iraq, NationId::Kuwait));
+        assert!(adjacent(NationId::Kuwait, NationId::Iraq));
+        // The whole of the Slovene escape in one assertion: Belgrade cannot
+        // walk to Ljubljana, and has nothing there it wants.
+        assert!(!adjacent(NationId::Serbia, NationId::Slovenia));
+        assert_eq!(claim_share(NationId::Serbia, NationId::Slovenia), 0.0);
+        assert!(claim_share(NationId::Serbia, NationId::Bosnia) > claim_share(NationId::Serbia, NationId::Croatia));
+        assert_eq!(claim_share(NationId::Iraq, NationId::Kuwait), 0.95);
+    }
+}

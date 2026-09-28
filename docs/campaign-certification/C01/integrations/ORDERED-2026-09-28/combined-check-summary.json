@@ -1,0 +1,21 @@
+{
+  "tested_revision": "d8ac8b9d4e0d95e3a64f11cc675f9417e77f1099",
+  "checked_post_evidence_revision": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+  "test_executions_by_suite": {
+    "france": 10,
+    "tonga": 79,
+    "saudi": 17,
+    "india": 46,
+    "research": 79,
+    "importer": 10,
+    "campaign": 16,
+    "atlas": 11
+  },
+  "total_test_executions_not_deduplicated": 268,
+  "all_functional_commands_exit_zero": true,
+  "initial_diff_check_failed": true,
+  "initial_diff_reason": "Sparse checkout did not materialize the existing Tonga evidence packet local .gitattributes, so archived CRLF/whitespace was checked under root rules. No file content was changed. Materializing that exact directory restored the committed attributes and the same baseline-to-HEAD diff check passed.",
+  "initial_diff_log_retained": "diff.log",
+  "materialized_diff_log": "diff-materialized.log",
+  "native_cargo_or_browser_game_run": false
+}

@@ -1,0 +1,19 @@
+✔ all country identities remain selectable and unknown coverage is not zero (1.3846ms)
+✔ every indexed country packet can be reviewed without changing source observations (55.0434ms)
+✔ wrong country, stale counts and false completed coverage cannot be presented (0.5232ms)
+✔ holder claims resolve only through a source cited by their separate office (2.5074ms)
+✔ search includes sourced people and preserves organization versus institution filters (0.5323ms)
+✔ date wording retains unknown, month precision and observation versus interval (0.2027ms)
+✔ society testimony dates are displayed as observations without inventing officer terms (0.1882ms)
+✔ source navigation rejects script URLs, credentials and filesystem traversal (0.0963ms)
+✔ packet loader verifies exact bytes and fails closed on changed source (7.2707ms)
+✔ late country success cannot replace the latest selected country (0.2734ms)
+✔ late country error cannot erase the latest data but current errors surface (0.1337ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.6629

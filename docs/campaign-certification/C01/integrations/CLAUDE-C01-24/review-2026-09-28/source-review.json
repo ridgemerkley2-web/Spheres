@@ -1,0 +1,926 @@
+{
+  "format": "spheres-primary-source-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "submission": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+  "review_date": "2026-09-28",
+  "status": "held_original_sources_unavailable",
+  "sources_total": 49,
+  "sources_exact": 44,
+  "claims_total": 82,
+  "claims_reviewed_against_originals": 77,
+  "qualification": false,
+  "rows": [
+    {
+      "source_id": "to_tlr_1997",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+      "claim_ids": [
+        "to_acting_speaker_lasike_19950802",
+        "to_speaker_fusitua_interview_19961114",
+        "to_speaker_fusitua_material_times_19961114"
+      ],
+      "original_bytes": 4010541,
+      "original_sha256": "7a4726f077c92de73d6cd1e53cf1f868b31011d82bd5c510026fb1a00842e71c",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_tlr_1997.bin",
+      "pdf_pages_visually_read": [
+        27,
+        30,
+        135,
+        136
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_tlr_2003",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1563:2003_tlr",
+      "claim_ids": [
+        "to_speaker_warrant_fusitua_19960920"
+      ],
+      "original_bytes": 1804479,
+      "original_sha256": "02cbec45843b0d7f69c9562db4e914dd98cd4be3290031aa5903ea7fb60c8e3e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_tlr_2003.bin",
+      "pdf_pages_visually_read": [
+        235
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_pmo_legislative_assembly_page_2001",
+      "url": "https://web.archive.org/web/20010430084337id_/http://pmo.gov.to:80/legislative_assembly.htm",
+      "claim_ids": [
+        "to_speaker_veikune_listed_20010430"
+      ],
+      "original_bytes": 12527,
+      "original_sha256": "83f4ab7dbcece397f8c72984d62bf8379d511ee97a643c48acb37b27947ae84e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_legislative_assembly_page_2001.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Mon, 19 Feb 2001 22:30:07 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_legislative_assembly_page_20011214",
+      "url": "https://web.archive.org/web/20011214102436id_/http://pmo.gov.to:80/legislative_assembly.htm",
+      "claim_ids": [
+        "to_speaker_veikune_listed_20011214"
+      ],
+      "original_bytes": 12470,
+      "original_sha256": "76eb2f55978c2cf0af3ccdae91020e7101d8cd224b98de1825902b5d542455a4",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_legislative_assembly_page_20011214.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Fri, 14 Dec 2001 02:59:26 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_ministers_page_2005",
+      "url": "https://web.archive.org/web/20070326123611id_/http://parliament.gov.to:80/ministers1.htm",
+      "claim_ids": [
+        "to_la_ministers_page_tuivakano_appointed_20020701",
+        "to_la_ministers_page_malupo_acting_2000"
+      ],
+      "original_bytes": 22559,
+      "original_sha256": "ffae98874c9c1bc51621637d1a876ec0341342f480f9abff47cdae1c97692f5f",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_ministers_page_2005.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=ISO-8859-1",
+        "x-archive-orig-last-modified": "Thu, 14 Jul 2005 20:41:44 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_20020523_tuivakano_speaker",
+      "url": "https://web.archive.org/web/20020603034323id_/http://pmo.gov.to:80/gpr23May02.htm",
+      "claim_ids": [
+        "to_speaker_tuivakano_appointment_reported_20020523"
+      ],
+      "original_bytes": 6996,
+      "original_sha256": "d37af6cc0bbd87d1b65f1d5e098cab62b6493633a51c30e90a37b8ac9cd2e796",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_20020523_tuivakano_speaker.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Fri, 31 May 2002 09:19:12 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_legislative_assembly_page_20030408",
+      "url": "https://web.archive.org/web/20030408005903id_/http://pmo.gov.to:80/legislative_assembly.htm",
+      "claim_ids": [
+        "to_speaker_tuivakano_listed_20030408"
+      ],
+      "original_bytes": 13397,
+      "original_sha256": "a941aa7c956002ded2985db6e0646282a357cfd216f0240d6079a400eb1cd610",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_legislative_assembly_page_20030408.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Tue, 08 Apr 2003 08:58:24 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_home_2004",
+      "url": "https://web.archive.org/web/20040906221508id_/http://www.parliament.gov.to:80/",
+      "claim_ids": [
+        "to_speaker_tuivakano_listed_20040906"
+      ],
+      "original_bytes": 17824,
+      "original_sha256": "1256f7efb4c4e9b2a6ae3e706e5407f201c0669bc87bcaad082408fff8cde43e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_home_2004.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=ISO-8859-1",
+        "x-archive-orig-last-modified": "Wed, 23 Jun 2004 13:04:19 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_legislative_assembly_page_20041226",
+      "url": "https://web.archive.org/web/20041226045411id_/http://pmo.gov.to:80/legislative_assembly.htm",
+      "claim_ids": [
+        "to_speaker_tuivakano_listed_20041226"
+      ],
+      "original_bytes": 12802,
+      "original_sha256": "c230a53068b0a7a85cff7bc9318be50a709cb1e73cc5244d62c62b6bbc5b98f5",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_legislative_assembly_page_20041226.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=ISO-8859-1",
+        "x-archive-orig-last-modified": "Sun, 19 Sep 2004 21:10:08 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_speaker_page_2005",
+      "url": "https://web.archive.org/web/20070625041819id_/http://parliament.gov.to:80/speaker1.htm",
+      "claim_ids": [
+        "to_speaker_veikune_royal_appointment_20050322",
+        "to_speaker_veikune_prior_term_retro_20070625"
+      ],
+      "original_bytes": 4845,
+      "original_sha256": "99afe647480b9e51fa6cce9006b2c05b86459f8987d7859b822ac2e5d77beb5f",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_speaker_page_2005.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Wed, 13 Jun 2007 13:32:05 GMT"
+      }
+    },
+    {
+      "source_id": "to_ipu_2005",
+      "url": "https://web.archive.org/web/20241107233206id_/https://data.ipu.org/election-summary/HTML/2317_05.htm",
+      "claim_ids": [
+        "to_ipu_2005_speaker_veikune_order_20050323",
+        "to_ipu_2005_tuihaangana_appointment_effective_20060210"
+      ],
+      "original_bytes": 18665,
+      "original_sha256": "4c8d5ad55488323d1c1a4d873b774db7ffd77987ff11480660c90513b7f5bb62",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_ipu_2005.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html",
+        "x-archive-orig-last-modified": "Mon, 22 Apr 2024 11:55:24 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_20060209_veikune_directives",
+      "url": "https://web.archive.org/web/20070930153712id_/http://www.pmo.gov.to/artman/publish/article_85.shtml",
+      "claim_ids": [
+        "to_speaker_veikune_end_20060125",
+        "to_palace_confirms_veikune_speaker_end_20060203",
+        "to_speaker_successor_expected_20060209"
+      ],
+      "original_bytes": 12195,
+      "original_sha256": "9a70ba0ec00da615801f74b54b8d266b4dfca119c874dcee6ccff21354ef40e4",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_20060209_veikune_directives.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=ISO-8859-1"
+      }
+    },
+    {
+      "source_id": "to_la_archives_2006",
+      "url": "https://web.archive.org/web/20060327202443id_/http://parliament.gov.to:80/archives.htm",
+      "claim_ids": [
+        "to_la_archives_fusitua_1995_1998_20060327",
+        "to_la_archives_veikune_1998_2001_2005_20060327",
+        "to_la_archives_tuivakano_2001_2004_20060327"
+      ],
+      "original_bytes": 17818,
+      "original_sha256": "d97ed973eada8fa332ca800cb9edf8c250b69c2a030de438b7159a85ab1edc02",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_archives_2006.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=ISO-8859-1",
+        "x-archive-orig-last-modified": "Thu, 14 Jul 2005 20:41:44 GMT"
+      }
+    },
+    {
+      "source_id": "to_tlr_2007",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1559:2007_tlr",
+      "claim_ids": [
+        "to_speaker_veikune_removal_recited_20071213"
+      ],
+      "original_bytes": 1556139,
+      "original_sha256": "e3f6737aeaa3aa043877af675dfb1d094b92f7cc3d533ccaa5ce2a0f7afe847c",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_tlr_2007.bin",
+      "pdf_pages_visually_read": [
+        230
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_pmo_20080602_speaker_reply",
+      "url": "https://web.archive.org/web/20090326123327id_/http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/tongan-mainmenu-96/170-ko-e-tali-a-e-sea-o-e-falealea-ki-to-folofola-mei-he-taloni-a-e-pilinisesi-pule.html",
+      "claim_ids": [
+        "to_speaker_tuilakepa_reply_signed_20080602"
+      ],
+      "original_bytes": 27356,
+      "original_sha256": "3808da91d6403621603d5f3150f7621e5d0c4911ed0bddbbda9509a09c5197c4",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_20080602_speaker_reply.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 26 Mar 2009 12:33:25 GMT"
+      }
+    },
+    {
+      "source_id": "to_pmo_20100629_assembly_transcript",
+      "url": "https://web.archive.org/web/20111130052033id_/http://pmo.gov.to/index.php?option=com_content&view=article&id=1570:femeaaki-e-fale-alea-o-tonga-i-he-vouti-a-e-ofisi-o-e-palasi&catid=227:debates&Itemid=728",
+      "claim_ids": [
+        "to_speaker_tuilakepa_presides_20100629"
+      ],
+      "original_bytes": 137572,
+      "original_sha256": "410e1c6695ed41e67b0dfba28c3fe0d7676019468c88b11181b3a5cee34c6ad5",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_pmo_20100629_assembly_transcript.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Wed, 30 Nov 2011 05:20:33 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_profile_tuilakepa_2011",
+      "url": "https://web.archive.org/web/20110203113618id_/http://www.parliament.gov.to:80/about-parliament/members/nobles/149-lord-tuilakepa.html",
+      "claim_ids": [
+        "to_la_profile_tuilakepa_appointed_2008_20100915"
+      ],
+      "original_bytes": 20258,
+      "original_sha256": "51ee9f614dbae8e555defc0caf3babd0d8099832fbe376bec8be3e4ba839327c",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_profile_tuilakepa_2011.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 03 Feb 2011 11:36:18 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_profile_tuivakano_2011",
+      "url": "https://web.archive.org/web/20110203111152id_/http://www.parliament.gov.to:80/about-parliament/members/nobles/154-lord-tuivakano.html",
+      "claim_ids": [
+        "to_la_profile_tuivakano_appointed_20020701"
+      ],
+      "original_bytes": 19855,
+      "original_sha256": "011cb5583372eab3006c4df182984fd1644dbaa90fb2dd3b0d558253a8977eab",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_profile_tuivakano_2011.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 03 Feb 2011 11:11:47 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_speakers_list_20110203",
+      "url": "https://web.archive.org/web/20110203112202id_/http://www.parliament.gov.to:80/about-parliament/speakers-of-the-house.html",
+      "claim_ids": [
+        "to_la_list_tuihaangana_2006_2007_20110203"
+      ],
+      "original_bytes": 38500,
+      "original_sha256": "c75402b51750b1bfa68b31c6807c00c4d59734450f1d1b9e400f085002c45d11",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_speakers_list_20110203.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 03 Feb 2011 11:22:01 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_speakers_list_20111130",
+      "url": "https://web.archive.org/web/20111130035919id_/http://www.parliament.gov.to/index.php/about-parliament/lorem-ipsum-ii/speakers-of-the-house",
+      "claim_ids": [
+        "to_la_list_malupo_1987_1989_20111130",
+        "to_la_list_fusitua_1990_1998_20111130",
+        "to_la_list_veikune_1999_2001_2005_2006_20111130",
+        "to_la_list_tuivakano_2002_2004_20111130",
+        "to_la_list_tuihaangana_2006_2008_20111130",
+        "to_la_list_tuilakepa_2008_2010_20111130",
+        "to_la_list_lasike_2010_20111130",
+        "to_la_list_tupou_2010_20111130"
+      ],
+      "original_bytes": 59808,
+      "original_sha256": "c205e15e9878fda76c56228058cfc96d7f18250012ec4e2d4e94b8525ce3b22c",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_speakers_list_20111130.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_obituary_fusitua_20140505",
+      "url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+      "claim_ids": [
+        "to_la_obituary_fusitua_appointed_1991_20140505"
+      ],
+      "original_bytes": 44098,
+      "original_sha256": "fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_obituary_fusitua_20140505.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Fri, 14 Jan 2022 20:38:59 GMT"
+      }
+    },
+    {
+      "source_id": "to_act20_2010_amending_copy",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2010/2010-0020/ActofConstitutionofTongaAmendmentNo.2Act2010.pdf",
+      "claim_ids": [
+        "to_act20_2010_clause61_speaker_appointment_procedure",
+        "to_act20_2010_clause61_speaker_tenure_and_vacancy",
+        "to_act20_2010_schedule_interim_speaker_procedure",
+        "to_act20_2010_royal_assent_printed"
+      ],
+      "original_bytes": 90497,
+      "original_sha256": "e4e9001f74bf6c87f9713132f054fe9f638b02e14014794e74383cc03cf7db5b",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_act20_2010_amending_copy.bin",
+      "pdf_pages_visually_read": [
+        5,
+        12,
+        17
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_la_amendment_no2_act21_2010",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2010/2010-0021/LegislativeAssemblyAmendmentNo.2Act2010.pdf",
+      "claim_ids": [
+        "to_la_act21_2010_section15_speaker_procedure",
+        "to_la_act21_2010_section16_deputy_presides_procedure",
+        "to_la_act21_2010_royal_assent_printed"
+      ],
+      "original_bytes": 43541,
+      "original_sha256": "ddd1ce7878a5af23926f577fd89d8d1dca06ee582de8cac9859e1a57450b849e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_amendment_no2_act21_2010.bin",
+      "pdf_pages_visually_read": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_la_20101206_interim_note_archived",
+      "url": "https://web.archive.org/web/20111130041654id_/http://www.parliament.gov.to/index.php/events-schedule/category-list/57-interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "claim_ids": [
+        "to_interim_speaker_tupou_styled_20101203",
+        "to_interim_speaker_office_ceases_rule_2010"
+      ],
+      "original_bytes": 50753,
+      "original_sha256": "ab47cbb71915929c87f4d3e47d0cb4bec7cc892cf9cebd4f6b236bdd07b888f9",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20101206_interim_note_archived.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20101221_lasike_elected",
+      "url": "https://web.archive.org/web/20110518092758id_/http://www.parliament.gov.to:80/the-news/250-lord-lasike-newly-elected-speaker-of-the-house.html",
+      "claim_ids": [
+        "to_lasike_assembly_selection_unopposed_20101221",
+        "to_lasike_royal_appointment_announced_20101221"
+      ],
+      "original_bytes": 19549,
+      "original_sha256": "96a30037da923cf8ece0e760f1f27187fb9917769ffa7c81f1abca32bd870653",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20101221_lasike_elected.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Wed, 18 May 2011 09:27:58 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_2011_sitting_announced",
+      "url": "https://web.archive.org/web/20111130041631id_/http://www.parliament.gov.to/index.php/events-schedule/category-list/68-legislative-assembly-to-sit-on-the-13th-of-january",
+      "claim_ids": [
+        "to_lasike_announces_first_sitting_2011"
+      ],
+      "original_bytes": 45940,
+      "original_sha256": "7de3abfe22ba9f44af141654aa8ead8c6d6e47de848b4b43f8ee6f03161a7670",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_2011_sitting_announced.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20110114_oaths",
+      "url": "https://web.archive.org/web/20110518092811id_/http://www.parliament.gov.to:80/the-news/269-prime-minister-and-members-takes-their-oath.html",
+      "claim_ids": [
+        "to_lasike_speaker_administers_oaths_20110114"
+      ],
+      "original_bytes": 19349,
+      "original_sha256": "feca9a69fc29a75ad6ab2c7a443264425fc7ebd78ee96eaac0d6a172eab5b3c9",
+      "exact_original_reproduced": false,
+      "content_review": "held_original_unavailable",
+      "original_local_path": null,
+      "pdf_pages_visually_read": []
+    },
+    {
+      "source_id": "to_la_20110404_knesset_visit",
+      "url": "https://web.archive.org/web/20110518043655id_/http://www.parliament.gov.to:80/the-news/274-speaker-of-the-israel-knesset-to-visit-tonga-on-the-7-of-april-2011.html",
+      "claim_ids": [
+        "to_lasike_speaker_styled_20110404"
+      ],
+      "original_bytes": 20625,
+      "original_sha256": "5bb4d01936cae4b74738efb2a27563c81024db6e5a2e55a6cf18a67047b0205b",
+      "exact_original_reproduced": false,
+      "content_review": "held_original_unavailable",
+      "original_local_path": null,
+      "pdf_pages_visually_read": []
+    },
+    {
+      "source_id": "to_sc_r_v_lasike_cr285_2011",
+      "url": "https://ago.gov.to/cms/judgements/supreme-court-criminal/category/69-cr-2012.html?download=820:r-v-lasike-unreported-supreme-court-of-tonga-cr-285-11-9-july-2012-cj",
+      "claim_ids": [
+        "to_lasike_testimony_speaker_cr285",
+        "to_lasike_supreme_court_conviction_20120709"
+      ],
+      "original_bytes": 3738281,
+      "original_sha256": "dc116598fedc78f286d6ee6403dbba94901324f641e97942f2141917c37a1746",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_sc_r_v_lasike_cr285_2011.bin",
+      "pdf_pages_visually_read": [
+        7,
+        16
+      ],
+      "matched_attempt": 1,
+      "reviewed_header_metadata": {
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "source_id": "to_la_20120717_speaker_revoked",
+      "url": "https://web.archive.org/web/20130411091047id_/http://www.mic.gov.to:80/legislative-assembly/3924-king-revokes-speakers-parliamentary-appointment",
+      "claim_ids": [
+        "to_lasike_speaker_appointment_revoked_20120717",
+        "to_lasike_ceased_elected_representative_20120709"
+      ],
+      "original_bytes": 31363,
+      "original_sha256": "86e849be93a43fc3b5351694a72c2a3cc4d3f5e35773c0e27e8cccca019c1638",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20120717_speaker_revoked.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 11 Apr 2013 09:10:46 GMT"
+      }
+    },
+    {
+      "source_id": "to_mic_20120719_fakafanua_elected",
+      "url": "https://web.archive.org/web/20130422014223id_/http://www.mic.gov.to:80/news-today/press-releases/3922-lord-fakafanua-elected-as-new-speaker-of-tongan-parliament",
+      "claim_ids": [
+        "to_fakafanua_assembly_election_20120719",
+        "to_tuihaateiho_acting_speaker_20120719"
+      ],
+      "original_bytes": 33685,
+      "original_sha256": "25a28ad763fbb68c1b4703fa2893a60431b1f91457d2df7902882cd565ba0e60",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_mic_20120719_fakafanua_elected.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Mon, 22 Apr 2013 01:42:20 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_20120719_fili_sea",
+      "url": "https://web.archive.org/web/20121030211303id_/http://www.parliament.gov.to/index.php/news/154-fili-sea",
+      "claim_ids": [
+        "to_fakafanua_assembly_recommendation_20120719",
+        "to_fakafanua_royal_appointment_pending_20120719"
+      ],
+      "original_bytes": 14274,
+      "original_sha256": "31da815fb10ef0ddbad9af4d4c8c7402cb3d618f6f0276b7e177ce6b26d4794e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20120719_fili_sea.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20120720_fakafanua_appointed",
+      "url": "https://web.archive.org/web/20121030211302id_/http://www.parliament.gov.to/index.php/news/153-lord-fakafanua-appoints-as-new-speaker",
+      "claim_ids": [
+        "to_fakafanua_royal_appointment_reported_20120720",
+        "to_fakafanua_adjourned_to_inform_king_2012"
+      ],
+      "original_bytes": 15678,
+      "original_sha256": "7b4fecd84175d925ac67521567f682de6f3ef27e3a74eff03dd1abae7ff79e98",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20120720_fakafanua_appointed.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20120723_new_speaker_starts",
+      "url": "https://web.archive.org/web/20121030211259id_/http://www.parliament.gov.to/index.php/news/152-new-speaker-starts-his-new-role",
+      "claim_ids": [
+        "to_fakafanua_royal_appointment_20120719",
+        "to_fakafanua_starts_as_speaker_20120723"
+      ],
+      "original_bytes": 14950,
+      "original_sha256": "cb7ac33429d3bf181754741cce82c6b65cf8a573c3883ae0912a804d24b943d6",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20120723_new_speaker_starts.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20130828_acting_speaker",
+      "url": "https://web.archive.org/web/20130830220536id_/http://www.parliament.gov.to/index.php/news/282-deputy-speaker-remains-acting-speaker-of-parliament",
+      "claim_ids": [
+        "to_tuihaateiho_acting_speaker_20130828",
+        "to_tuihaateiho_resignation_announced_20130827",
+        "to_tuihaateiho_resumed_acting_speaker_20130828",
+        "to_fakafanua_speaker_abroad_20130828"
+      ],
+      "original_bytes": 18359,
+      "original_sha256": "2fd5e32153efdf65f2b5b261cf0946aef6bea2208f547353a9a0e6b762fff9a9",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20130828_acting_speaker.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "source_id": "to_la_20130905_acting_speaker_quorum",
+      "url": "https://web.archive.org/web/20141008214220id_/http://www.parliament.gov.to/news-room/latest-news/latest-news-in-english/284-acting-speaker-call-on-mps-to-attend-parliament-s-sitting",
+      "claim_ids": [
+        "to_tuihaateiho_acting_speaker_20130904"
+      ],
+      "original_bytes": 35848,
+      "original_sha256": "533663b52220b88f7952312c92a04b76c8da66100246f4dd9203831faf0dd2ff",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20130905_acting_speaker_quorum.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Wed, 08 Oct 2014 21:42:21 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_20140815_speaker_judiciary",
+      "url": "https://web.archive.org/web/20141008211705id_/http://www.parliament.gov.to/news-room/latest-news/latest-news-in-english/499-speaker-called-for-independence-of-judiciary",
+      "claim_ids": [
+        "to_fakafanua_speaker_20140814"
+      ],
+      "original_bytes": 37839,
+      "original_sha256": "85dd999b679e26be4360335c6fd32394ca54780b716c650c04577d197b9b9ec4",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_20140815_speaker_judiciary.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Wed, 08 Oct 2014 21:17:06 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_speaker_china_20150224",
+      "url": "https://web.archive.org/web/20150702052047id_/http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/338-speaker-continues-to-pursue-vision-to-boost-tourism-fisheries-and-education-in-tonga",
+      "claim_ids": [
+        "to_speaker_tuivakano_styled_20150224"
+      ],
+      "original_bytes": 43468,
+      "original_sha256": "73c01ed5fdda819262b92a00e4b689d52c389db3ef34709060bdecfb72c7f82f",
+      "exact_original_reproduced": false,
+      "content_review": "held_original_unavailable",
+      "original_local_path": null,
+      "pdf_pages_visually_read": []
+    },
+    {
+      "source_id": "to_la_news_mps_sworn_20180118",
+      "url": "https://web.archive.org/web/20180302230312id_/http://parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/607-mps-take-oaths-of-office-today",
+      "claim_ids": [
+        "to_speaker_fakafanua_sworn_news_20180118"
+      ],
+      "original_bytes": 36585,
+      "original_sha256": "64fc85aa31068343783d860e07579bbd000536f3210189aca88e0a0ea80cc0b5",
+      "exact_original_reproduced": false,
+      "content_review": "held_original_unavailable",
+      "original_local_path": null,
+      "pdf_pages_visually_read": []
+    },
+    {
+      "source_id": "to_la_news_speaker_gita_20180305",
+      "url": "https://web.archive.org/web/20180322080929id_/http://www.parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/611-speaker-acknowledges-continuous-support-post-cyclone-gita",
+      "claim_ids": [
+        "to_speaker_fakafanua_styled_20180305"
+      ],
+      "original_bytes": 37874,
+      "original_sha256": "0cd4e36b223392a50dae1601e5786045cbcc01ce22b6d2a76940400554d10198",
+      "exact_original_reproduced": false,
+      "content_review": "held_original_unavailable",
+      "original_local_path": null,
+      "pdf_pages_visually_read": []
+    },
+    {
+      "source_id": "to_la_news_pm_designate_20211215",
+      "url": "https://web.archive.org/web/20211216000713id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/879-parliament-elects-siaosi-sovaleni-as-tonga-s-new-pm",
+      "claim_ids": [
+        "to_speaker_fakafanua_assembly_election_20211215"
+      ],
+      "original_bytes": 41088,
+      "original_sha256": "74074abe0159e63169bd94de51c5cdbfae8a0ff570ec27f512396d042210adef",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_pm_designate_20211215.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 3,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Wed, 15 Dec 2021 23:53:29 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_opening_20220111",
+      "url": "https://web.archive.org/web/20220111080954id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/882-king-tupou-vi-officially-opens-the-2022-parliamentary-session",
+      "claim_ids": [
+        "to_acting_speaker_tuihaangana_20220111"
+      ],
+      "original_bytes": 39214,
+      "original_sha256": "0d5fa34e461426e5c01c76a70d2e68c1563cbaa59c2b5cff271673e6f3c7de74",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_opening_20220111.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Tue, 11 Jan 2022 08:09:58 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_speaker_summit_20220217",
+      "url": "https://web.archive.org/web/20220217040741id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/885-lord-fakafanua-calls-on-the-international-community-to-continue-to-work-together-to-build-peace-trust-and-reconciliation",
+      "claim_ids": [
+        "to_speaker_fakafanua_styled_20220217"
+      ],
+      "original_bytes": 40352,
+      "original_sha256": "70dcd37b3d1ea0bfde73080558932c5c518bbbdaa0db2a76d8c790109d3d2835",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_speaker_summit_20220217.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 17 Feb 2022 04:02:11 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_notice_pm_meeting_20251212",
+      "url": "https://web.archive.org/web/20251212191842id_/https://parliament.gov.to/en/media-centre/latest-news/meeting-on-monday-15-december-2025-to-elect-the-prime-minister-designate",
+      "claim_ids": [
+        "to_speaker_election_meeting_notice_20251212"
+      ],
+      "original_bytes": 57442,
+      "original_sha256": "74b015598df5b8f43cfcd74ab5f40ceb2237ce79f80a1411462c8df8355258dc",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_notice_pm_meeting_20251212.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Fri, 12 Dec 2025 19:18:42 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_pm_designate_20251216",
+      "url": "https://web.archive.org/web/20251216013725id_/https://parliament.gov.to/en/media-centre/latest-news/former-speaker-lord-fakafanua-elected-as-tongas-prime-minister-designate",
+      "claim_ids": [
+        "to_speaker_vaea_assembly_election_20251216",
+        "to_interim_speaker_tangi_presided_20251216"
+      ],
+      "original_bytes": 56646,
+      "original_sha256": "5172843be994ee9ce0b1bb8e05022a07f4ab56534ef1c08ce2da43a179579105",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_pm_designate_20251216.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Tue, 16 Dec 2025 01:32:23 GMT",
+        "content-encoding": "gzip"
+      },
+      "gzip_transfer_verified": {
+        "bytes": 15626,
+        "sha256": "b293d5eb12dbf308b2509cd2da1dbef749e2668f711ba5d9889f1e1b9aa4c8b9"
+      }
+    },
+    {
+      "source_id": "to_la_release_speaker_appointment_to_20251219",
+      "url": "https://web.archive.org/web/20251219093117id_/https://parliament.gov.to/en/media-centre/latest-news/fakanofo-a-e-eiki-sea-o-e-fale-alea-o-tonga-mo-hono-tokoni",
+      "claim_ids": [
+        "to_speaker_vaea_royal_appointment_to_20251218"
+      ],
+      "original_bytes": 57823,
+      "original_sha256": "a1898f95b6c34ab01b63defabcb2457353d451ef758eade81998c230be43f57c",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_release_speaker_appointment_to_20251219.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Fri, 19 Dec 2025 09:31:18 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_speaker_sworn_20260122",
+      "url": "https://web.archive.org/web/20260122035351id_/https://parliament.gov.to/en/media-centre/latest-news/lord-speaker-and-mps-sworn-in",
+      "claim_ids": [
+        "to_speaker_vaea_oath_news_20260122"
+      ],
+      "original_bytes": 54760,
+      "original_sha256": "fe079867cec9c37f93a66b24b34bd59aa1842cff418da56c21a2315e015c9b4e",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_speaker_sworn_20260122.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Thu, 22 Jan 2026 03:47:04 GMT",
+        "content-encoding": "gzip"
+      },
+      "gzip_transfer_verified": {
+        "bytes": 15148,
+        "sha256": "e2cb8e69bab4ed42a2b87a8da0a196aa8d63c278d63e863547ed02a597923479"
+      }
+    },
+    {
+      "source_id": "to_la_news_china_visit_20260519",
+      "url": "https://web.archive.org/web/20260519102917id_/https://parliament.gov.to/en/media-centre/latest-news/tonga-parliamentary-delegation-concludes-official-visit-to-the-peoples-republic-of-china",
+      "claim_ids": [
+        "to_speaker_vaea_led_delegation_20260519"
+      ],
+      "original_bytes": 60118,
+      "original_sha256": "2bade793d09cf667e62b52552ccfca74c1aafab87c95afa7282b4607784c0776",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_china_visit_20260519.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "x-archive-orig-last-modified": "Tue, 19 May 2026 10:29:17 GMT"
+      }
+    },
+    {
+      "source_id": "to_la_news_ministers_oath_20260818",
+      "url": "https://web.archive.org/web/20260818052147id_/https://parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+      "claim_ids": [
+        "to_acting_speaker_tuihaangana_20260818"
+      ],
+      "original_bytes": 58734,
+      "original_sha256": "c584714726d6f59cc766cbc2156e7cd91ccb8b2f4fc25cc24856e55ac4a566f4",
+      "exact_original_reproduced": true,
+      "content_review": "supports_bounded_claims",
+      "original_local_path": "D:\\spheres-offload\\codex-next-20260928\\evidence\\to24-review\\bodies\\to_la_news_ministers_oath_20260818.bin",
+      "pdf_pages_visually_read": [],
+      "matched_attempt": 2,
+      "reviewed_header_metadata": {
+        "Content-Type": "text/html; charset=utf-8",
+        "content-encoding": "gzip",
+        "x-archive-orig-last-modified": "Tue, 18 Aug 2026 05:11:05 GMT"
+      },
+      "gzip_transfer_verified": {
+        "bytes": 16119,
+        "sha256": "1c4ed70883d9432d79d83978c5e5cbe7d2b4546014b1b2390a001a118e7349d9"
+      }
+    }
+  ]
+}

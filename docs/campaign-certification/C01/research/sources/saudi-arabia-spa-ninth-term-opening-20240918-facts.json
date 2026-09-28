@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_ninth_term_opening_20240918",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/N2173497",
+  "original_url": "https://www.spa.gov.sa/N2173497",
+  "portal_metadata": {
+    "uuid": "N2173497",
+    "locale": "ar",
+    "published_at_utc": "2024-09-18T15:11:45Z",
+    "date_hijri_field": "1446-03-15"
+  },
+  "title_as_published": "سياسي / نيابة عن خادم الحرمين الشريفين.. سمو ولي العهد يفتتح أعمال السنة الأولى من الدورة التاسعة لمجلس الشورى",
+  "source_title": "On behalf of the King, the Crown Prince opens the first year of the Shura Council's ninth term (18 September 2024)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2024-09-18",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/N2173497",
+  "source_response_bytes": 31715,
+  "source_response_sha256": "aaaa65af49e60069ccef0f8140105d6b8d4e998dec20b744badd74cf20d18120",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "cbefc5db655fac4e5694c82b2dba9d59b7eb45809aa05c610c5316c041dcd321",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:51:00Z and again at 2026-09-28T00:34:13Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (31715 bytes, SHA-256 aaaa65af49e60069ccef0f8140105d6b8d4e998dec20b744badd74cf20d18120).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/N2173497 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version; the list did not change between 26 and 28 September 2026. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The portal lists Persian (N2173751), Chinese (N2173860) and Russian (N2174438) versions, not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_ninth_term_opened_20240918",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_opening",
+      "attested_on": "2024-09-18",
+      "text": "SPA, Riyadh 15 Rabi al-Awwal 1446 / 18 September 2024: on behalf of King Salman, the Crown Prince and Prime Minister, Prince Mohammed bin Salman, opened the first year of the Council's ninth term that day, Wednesday, and later delivered the annual royal address on the King's behalf.",
+      "locator": "Dateline; paragraph 1; closing paragraph before the royal address; trailer 18:11 Makkah time"
+    },
+    {
+      "claim_id": "sa_alsheikh_oath_20240918",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبد الله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "2024-09-18",
+      "text": "The same report says 'معالي رئيس مجلس الشورى الشيخ الدكتور عبد الله بن محمد بن إبراهيم آل الشيخ' received the Crown Prince and then recited the oath before him in the session hall, the members repeating it, before giving the opening speech.",
+      "locator": "Paragraphs 2 and 5; heading of the Chairman's speech"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_news_20020401",
+  "source_url": "https://web.archive.org/web/20020401212232id_/http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+  "original_url": "http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+  "archive_capture_utc": "2002-04-01T21:22:32Z",
+  "source_title": "أخبار المجلس (Council news), Shura Council website carrying Saudi Press Agency copy of 30-31 March 2002 (Internet Archive capture 20020401212232)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-03-31",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020401212232id_/http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+  "source_response_bytes": 18782,
+  "source_response_sha256": "9484876fb1de3805cb3313a3428050aff6a71f853f683e82e030b0ebd7055675",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:48:04Z and again at 2026-09-28T00:30:48Z, 42 minutes later; both identical (18782 bytes, SHA-256 9484876fb1de3805cb3313a3428050aff6a71f853f683e82e030b0ebd7055675).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020401212232 of http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's news page, keeping SPA datelines.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_humaid_chairs_65th_session_20020331",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "صالح بن عبدالله بن حميد",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "2002-03-31",
+      "text": "SPA, Riyadh 17 Muharram 1423 / 31 March 2002: the Council's 65th ordinary session, held that day, was chaired by 'معالى رئيس المجلس الدكتور صالح بن عبدالله بن حميد'; on 16 Muharram 1423 / 30 March 2002 Jamil al-Hujailan had congratulated him on the royal trust in appointing him Chairman.",
+      "locator": "Datelines الرياض 17 محرم 1423ه الموافق 31 مارس 2002 and الرياض 16 محرم 1423ه الموافق 30 مارس 2002"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

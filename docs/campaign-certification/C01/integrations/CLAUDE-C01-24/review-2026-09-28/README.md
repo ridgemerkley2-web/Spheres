@@ -1,0 +1,23 @@
+# Tonga Speaker research: independent review held
+
+Reviewed submission `a32d44536b4ea290e57c8b51be2e5bf469c344d0` on `claude/c01-to-24`. Reviewer: Codex `/root/review_gap_submission`, 28 September 2026. This is preparation for the integrator, **not acceptance**, an installed historical roster, avatar approval, or completion of C01 or any parent gate.
+
+**44 of 49 original response bodies reproduced exactly; 77 of 82 claims inspected against those originals.** The first request pass matched 25, the sequential second pass recovered eight, and the final remaining-only pass recovered eleven. All errors remain in `retrieval-attempts.json`. Five sources still returned Windows connection-refused errors: the 14 January 2011 oath report, 4 April 2011 Knesset visit, 24 February 2015 China report, 18 January 2018 oath report, and 5 March 2018 Gita report. These include holder attestations, so full acceptance is held. No claim is treated as false merely because retrieval failed.
+
+Original bodies, full response headers, extracted working text and PDF renders remain locally under `D:/spheres-offload/codex-next-20260928/evidence/to24-review`. They are not republished here. `source-review.json` records every source/claim, URL, exact original hash/size, available-content review status and PDF page inspection. All three archive-gzip transfers and their decoded identities matched the separate submission pins. No photographs, seals, signatures or portrait rights are accepted.
+
+## Content findings
+
+No material officeholder or date defect was found in the 44 available originals. The retrospective 1990/1991 and 2001/2002 lists conflict and remain claims rather than manufactured term boundaries. The court records attest Fusitu'a in 1996; the government rosters identify Veikune and Tu'ivakano at their captured observations; the 2005 appointment and explicit 25 January 2006 end are kept separate. The 2008 signed reply and 2010 transcript identify Tu'ilakepa without inventing a start or end. All 15 cited PDF pages across six official PDFs were rendered and visually read; scanned Lasike pages were inspected directly.
+
+The 2012 conviction, seat loss and 17 July immediate revocation remain distinct. The Assembly's 19 July recommendation, its pending-appointment wording, 20 July report and 23 July retrospective appointment statement are all preserved, including the stated uncertainty; first presiding is not promoted to a tenure start. Acting/deputy/interim service does not become a substantive holder. The 2021 date inconsistency remains explicit. The 2025 election report, royal effective appointment and 2026 oath remain separate, and the earlier string observation is unchanged. The 2026 China report and acting service do not imply a tenure end. The five unavailable originals must still receive original-content review.
+
+## Technical review
+
+After adding the missing sparse-only C01-08 review README, Tonga **79 tests pass** (ten new Speaker tests). Research **79**, campaign **16**, and atlas **11** tests pass; suites overlap and are not summed. Research index, census, workboard and diff checks pass on this exact authored submission. `technical-tonga.log` retains the first 78-pass/one-failure result caused solely by the absent sparse C01-08 README; `technical-tonga-02.log` is the successful rerun. No tracked source or test was changed to resolve that setup omission. The initial command ledger records the first run; the second command was `python -B -X utf8 -m unittest discover -s tools/avatars -p test_tonga*.py`, exit 0.
+
+The focused guard pins all eleven appended holders and their exact claim/source/date lists, separate event categories, explicit endpoints, the preserved string holder and deputy role, original response identities, extract bytes, cutoff, and negative mutations. Earlier Tonga tests retain exact expected sets/counts with the new observations added; they are not silently loosened. These are structural tests, not substitutes for source retrieval.
+
+`scope-review.json` compares with `f1230bbb398eae47a369bd3abad8ffdfb513a36c`: all prior source objects and organizations are unchanged, and the only packet changes are the declared Assembly/Speaker additions and coverage notes. No runtime, gameplay, save schema or art asset changed. The index is exact for the submission; the integrator must regenerate/check it against the combined branch rather than transplant stale global counts.
+
+No repair was made and no branch was pushed or merged. Recommendation: retain the submission for review and finish those five source checks before bounded acceptance. All wider gates remain open.

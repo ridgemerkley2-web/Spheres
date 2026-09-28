@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a13_20090214",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/2bf3150546",
+  "original_url": "https://www.spa.gov.sa/2bf3150546",
+  "portal_metadata": {
+    "uuid": "2bf3150546",
+    "locale": "ar",
+    "published_at_utc": "2009-02-14T09:25:45Z",
+    "date_hijri_field": "1430-02-19"
+  },
+  "title_as_published": "عام / أوامر ملكية / صدور إضافة سادسة",
+  "source_title": "Royal Order A/13 of 19/2/1430 AH (عام / أوامر ملكية / صدور، إضافة سادسة)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2009-02-14",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/2bf3150546",
+  "source_response_bytes": 2752,
+  "source_response_sha256": "7757999da3e8daff0506ae55ca786c78884e421b82f20c2fe1dac868d01fb8f2",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "6a39d55074971894b2fb2c1e2837352ef86cb6a99c3fe76263a4d307cc846439",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:49:44Z and again at 2026-09-28T00:32:33Z, 42 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (2752 bytes, SHA-256 7757999da3e8daff0506ae55ca786c78884e421b82f20c2fe1dac868d01fb8f2).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/2bf3150546 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Sixth addition of the 14 February 2009 release; no dateline of its own.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_appointed_a13_20090214",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-04",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "appointment_by_royal_order",
+      "attested_on": "2009-02-14",
+      "text": "Royal Order A/13 dated 19/2/1430 AH, issued by King Abdullah bin Abdulaziz: item First relieves 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' of his post as Minister of Justice and appoints him Chairman of the Shura Council with the rank of minister.",
+      "locator": "Order number and date; item First; trailer 1225 (12:25 Makkah time)"
+    },
+    {
+      "claim_id": "sa_alsheikh_effective_a13_20090228",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-04",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "stated_effective_date",
+      "attested_on": "2009-02-28",
+      "text": "Item First of the same order closes 'اعتباراً من 3/3/1430هـ' (with effect from 3/3/1430 AH), an effective day that covers the whole sentence: the relief from the Justice portfolio and the appointment as Chairman.",
+      "locator": "Item First, closing phrase"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

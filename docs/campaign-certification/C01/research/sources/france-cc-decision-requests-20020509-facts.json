@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_decision_requests_20020509",
+  "source_url": "https://web.archive.org/web/20020602063827id_/http://www.conseil-constitutionnel.fr:80/decision/2002/20020509.htm",
+  "original_url": "http://www.conseil-constitutionnel.fr/decision/2002/20020509.htm",
+  "archive_capture_utc": "2002-06-02T06:38:27Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-05-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7865,
+  "source_response_sha256": "bc10c20cd357cd990ab87d4a44f993017c6150766a97efa851f5edb994a36917",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2002-06-02T06:38:27Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 2 June 2002 of the Council's former site (original Last-Modified 9 May 2002). Recorded only to explain the 9 May 2002 lead date; the requesters are private parties and are not named here.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full after entity decoding; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_20020509_cites_proclamation_20020508",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "proclamation_reference",
+      "attested_on": "2002-05-08",
+      "text": "A separate decision of 9 May 2002, rejecting requests and a complaint directed at preparatory acts of the election, cites among its visas 'la décision du 8 mai 2002 portant proclamation des résultats de l'élection du Président de la République'.",
+      "locator": {
+        "section": "visas"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

@@ -1,0 +1,70 @@
+{
+  "scope": "One sequential retry of the five unavailable responses after normal backoff; original failure receipt preserved",
+  "sources": [
+    {
+      "id": "fr_cc_2022_195_pdr_first_round_declaration",
+      "url": "https://web.archive.org/web/20250210041806id_/https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+      "expected_bytes": 80571,
+      "expected_sha256": "2a71fddfb61ec37262619dc0c577318246a73a5a615726516ef6e3a85f05f71d",
+      "accessed_utc": "2026-09-28T18:32:20.191193+00:00",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20250210041806id_/https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+      "bytes": 80571,
+      "sha256": "2a71fddfb61ec37262619dc0c577318246a73a5a615726516ef6e3a85f05f71d",
+      "exact": true,
+      "body": "bodies/fr_cc_2022_195_pdr_first_round_declaration.retry.bin"
+    },
+    {
+      "id": "fr_cc_2022_197_pdr_proclamation_pdf",
+      "url": "https://web.archive.org/web/20230127073042id_/https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+      "expected_bytes": 161083,
+      "expected_sha256": "70ea188084dadcd92fcd28b0a6c7d35f3f0c623f8345e34cc1aed82bf1759643",
+      "accessed_utc": "2026-09-28T18:32:21.350969+00:00",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20230127073042id_/https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+      "bytes": 161083,
+      "sha256": "70ea188084dadcd92fcd28b0a6c7d35f3f0c623f8345e34cc1aed82bf1759643",
+      "exact": true,
+      "body": "bodies/fr_cc_2022_197_pdr_proclamation_pdf.retry.bin"
+    },
+    {
+      "id": "fr_jorf_proclamation_20220428",
+      "url": "https://web.archive.org/web/20220428153847id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045682724",
+      "expected_bytes": 111042,
+      "expected_sha256": "b468ddf92e3b0ef545ad7d143c6cb79fd2a3bbec4a873d1f89df51d589f347df",
+      "accessed_utc": "2026-09-28T18:32:21.902131+00:00",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20220428153847id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045682724",
+      "bytes": 111042,
+      "sha256": "b468ddf92e3b0ef545ad7d143c6cb79fd2a3bbec4a873d1f89df51d589f347df",
+      "exact": true,
+      "body": "bodies/fr_jorf_proclamation_20220428.retry.bin"
+    },
+    {
+      "id": "fr_elysee_investiture_20220507",
+      "url": "https://web.archive.org/web/20260618065523id_/https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+      "expected_bytes": 220883,
+      "expected_sha256": "92512babbe078fda318cace93b49fba10199f4de44251c0bf6bd44b529978e6b",
+      "accessed_utc": "2026-09-28T18:32:22.578674+00:00",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20260618065523id_/https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+      "bytes": 220883,
+      "sha256": "92512babbe078fda318cace93b49fba10199f4de44251c0bf6bd44b529978e6b",
+      "exact": true,
+      "body": "bodies/fr_elysee_investiture_20220507.retry.bin"
+    },
+    {
+      "id": "fr_cc_fabius_investiture_address_20220507",
+      "url": "https://web.archive.org/web/20220507090054id_/https://www.conseil-constitutionnel.fr/actualites/allocution-de-m-laurent-fabius-pour-la-ceremonie-d-investiture-de-m-emmanuel-macron-president-de-la",
+      "expected_bytes": 45900,
+      "expected_sha256": "f67529f5cef749b8f9330f3566df2ef91a1a6a3843fe34e48f79341cbe32b6d0",
+      "accessed_utc": "2026-09-28T18:32:23.275035+00:00",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20220507090054id_/https://www.conseil-constitutionnel.fr/actualites/allocution-de-m-laurent-fabius-pour-la-ceremonie-d-investiture-de-m-emmanuel-macron-president-de-la",
+      "bytes": 45900,
+      "sha256": "f67529f5cef749b8f9330f3566df2ef91a1a6a3843fe34e48f79341cbe32b6d0",
+      "exact": true,
+      "body": "bodies/fr_cc_fabius_investiture_address_20220507.retry.bin"
+    }
+  ]
+}

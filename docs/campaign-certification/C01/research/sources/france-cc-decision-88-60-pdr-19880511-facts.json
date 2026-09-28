@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_decision_88_60_pdr_19880511",
+  "source_url": "https://web.archive.org/web/20210227223450id_/https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+  "original_url": "https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+  "archive_capture_utc": "2021-02-27T22:34:50Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "1988-05-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 49425,
+  "source_response_sha256": "342c6945a560f27b9f06ae8aea6630e4f991ac86874693d3f330b1a51f41fa7d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-02-27T22:34:50Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's web transcription of decision 88-60 PDR (raw Internet Archive capture of 27 February 2021; the live page is a Drupal render with per-request form tokens). The page cites 'Journal officiel du 12 mai 1988, page 7036', which was not retrieved (Légifrance refuses automated access and no capture was found). Its visa list misdates the 1981 proclamation as 15 May 1988; that visa is not used. The decision precedes the packet period and is recorded because it states the day the second septennat took effect.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (visas, grounds, second-round results, operative part, deliberation, Journal officiel reference); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_proclaims_mitterrand_19880511",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur François MITTERRAND",
+      "role_title": "Président de la République française",
+      "event_kind": "result_proclamation",
+      "attested_on": "1988-05-11",
+      "text": "Decision no. 88-60 PDR of 11 May 1988, deliberated at the sittings of 10 and 11 May 1988, records the second-round results (30 923 249 votes cast; Monsieur François MITTERRAND 16 704 279, Monsieur Jacques CHIRAC 14 218 970) and 'Proclame Monsieur François MITTERRAND Président de la République française'.",
+      "locator": {
+        "section": "ground 7 (second-round results) and the operative part ('Proclame ...'); deliberation line",
+        "journal_officiel": "Journal officiel du 12 mai 1988, page 7036 (cited on the page, not retrieved)"
+      }
+    },
+    {
+      "claim_id": "fr_cc_88_60_states_mandate_effect_19880511",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur François MITTERRAND",
+      "role_title": "Président de la République française",
+      "event_kind": "stated_start_of_term",
+      "attested_on": "1988-05-11",
+      "text": "The same decision states: 'Conformément à l'article 6 de la Constitution, le mandat de Monsieur François MITTERRAND prendra effet le 21 mai 1988 à 0 heure.'",
+      "locator": {
+        "section": "operative part, sentence after 'Proclame'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

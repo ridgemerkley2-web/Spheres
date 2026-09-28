@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_english_news_20020212",
+  "source_url": "https://web.archive.org/web/20020212181231id_/http://www.spa.gov.sa:80/html/archive_e.asp?srcfile=l10&NDay=12/02/2002",
+  "original_url": "http://www.spa.gov.sa:80/html/archive_e.asp?srcfile=l10&NDay=12/02/2002",
+  "archive_capture_utc": "2002-02-12T18:12:31Z",
+  "source_title": "SPA English archive, Last News of 12 February 2002 (spa.gov.sa archive_e.asp, Internet Archive capture 20020212181231)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-02-12",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020212181231id_/http://www.spa.gov.sa:80/html/archive_e.asp?srcfile=l10&NDay=12/02/2002",
+  "source_response_bytes": 11589,
+  "source_response_sha256": "68d9f877ee59e4f0bf6983bb7cbc4aba55460760b3c3faaeade44a9acd0682f0",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:49:27Z and again at 2026-09-28T00:32:14Z, 42 minutes later; both identical (11589 bytes, SHA-256 68d9f877ee59e4f0bf6983bb7cbc4aba55460760b3c3faaeade44a9acd0682f0).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020212181231 of http://www.spa.gov.sa:80/html/archive_e.asp?srcfile=l10&NDay=12/02/2002, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "SPA's own English listing for 12 February 2002, captured the same day at 18:12 UTC; the capture is fixed. Messages 40-42 are used. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_spa_en_humaid_first_session_20020212",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "SALEH BIN ABDULLAH BIN HUMAID",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "2002-02-12",
+      "text": "Message 40, 'ALHUMAID CHAIRS SHOURA COUNCIL', Riyadh Feb. 12: 'DR. SALEH BIN ABDULLAH BIN HUMAID, CHAIRMAN OF THE SHOURA COUNCIL, WHO REPLACED LATE SHEIKH MOHAMMED BIN IBRAHIM BIN JUBAIR, TODAY SAID AT THE COUNCIL'S FIRST SESSION UNDER HIS CHAIRMANSHIP' that he felt the pressure of responsibility; message 41 says the regular 56th meeting followed his speech.",
+      "locator": "Messages 40 (filed 2037 local, 1737 GMT) and 41"
+    },
+    {
+      "claim_id": "sa_calendar_14221128_20020211",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "calendar_equivalence",
+      "attested_on": "2002-02-11",
+      "text": "Message 42 of the same page, on pilgrim numbers, prints '28/11/1422 H. CORRESPONDING TO FEBRUARY 11, 2002'.",
+      "locator": "Message 42"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

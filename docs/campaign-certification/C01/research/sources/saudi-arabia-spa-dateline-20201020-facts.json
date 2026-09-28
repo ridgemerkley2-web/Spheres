@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_dateline_20201020",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/e6e70e26f0",
+  "original_url": "https://www.spa.gov.sa/e6e70e26f0",
+  "portal_metadata": {
+    "uuid": "e6e70e26f0",
+    "locale": "ar",
+    "published_at_utc": "2020-10-20T17:59:07Z",
+    "date_hijri_field": "1442-03-03"
+  },
+  "title_as_published": "عام / رئيس هيئة الرقابة ومكافحة الفساد يرأس الاجتماع الوزاري لمجموعة عمل مكافحة الفساد بدول مجموعة العشرين",
+  "source_title": "SPA item of 20 October 2020 (anti-corruption authority G20 meeting): calendar equivalence only",
+  "accessed_date": "2026-09-27",
+  "published_date": "2020-10-20",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/e6e70e26f0",
+  "source_response_bytes": 3244,
+  "source_response_sha256": "dc2c662f9ebe442065a2503dfb8405990aae97f05e49bf2720fdc509ee0a2ed3",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "776f5ded4865fc1361706cb5279572e31ed00ef325ca897643bb4a7322f8a2de",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:36Z and again at 2026-09-28T00:33:40Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3244 bytes, SHA-256 dc2c662f9ebe442065a2503dfb8405990aae97f05e49bf2720fdc509ee0a2ed3).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/e6e70e26f0 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An unrelated SPA item used only for its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_calendar_14420303_20201020",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "calendar_equivalence",
+      "attested_on": "2020-10-20",
+      "text": "An unrelated SPA report datelined Riyadh prints 03 Rabi al-Awwal 1442 as 20 October 2020.",
+      "locator": "Dateline"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

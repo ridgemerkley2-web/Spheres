@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_speeches_term1_20090415",
+  "source_url": "https://web.archive.org/web/20090415050234id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+  "original_url": "http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+  "archive_capture_utc": "2009-04-15T05:02:34Z",
+  "source_title": "الخطب الملكية: الدورة الأولى السنة الأولى 1414هـ-1415هـ (royal speeches, first term, first year), Shura Council portal (Internet Archive capture 20090415050234)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20090415050234id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+  "source_response_bytes": 33817,
+  "source_response_sha256": "9ef48ff223c2d307d9311597c6075647339b78a6df658bb492c643e237f3a811",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:55:43Z and again at 2026-09-28T00:29:43Z, 34 minutes later; both identical (33817 bytes, SHA-256 9ef48ff223c2d307d9311597c6075647339b78a6df658bb492c643e237f3a811).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20090415050234 of http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A 2009 publication by the Council of speeches from its first term, first year. It prints no day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_speech_first_term_opening",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-02",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "محمد بن ابراهيم بن جبير",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "period": {
+        "from": "1993-06-21",
+        "through": "1995-05-30"
+      },
+      "text": "The Council's archive of royal speeches for the first year of the first term (1414-1415 AH) prints King Fahd's words after the oath was taken, then the speech of 'the Chairman of the Shura Council, Sheikh محمد بن ابراهيم بن جبير', which ends by inviting the King to deliver his address opening the Council's work in its new form; the King's address that follows says 'we open today the Shura Council in its new framework'.",
+      "locator": "Headings كلمة خادم الحرمين الشريفين بعد الانتهاء من أداء القسم; كلمة معالي رئيس مجلس الشورى الشيخ/ محمد بن ابراهيم بن جبير; الخطاب السامي لخادم الحرمين الشريفين"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

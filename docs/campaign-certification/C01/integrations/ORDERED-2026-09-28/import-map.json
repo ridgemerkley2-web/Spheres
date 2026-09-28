@@ -1,0 +1,132 @@
+{
+  "format": "spheres-ordered-research-import/v1",
+  "baseline": "8d338dd217af0e4c83725f999812eef37e55bbb7",
+  "branch": "codex/c01-ordered-integration",
+  "reviewed_integration_revision": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+  "imports_in_order": [
+    {
+      "source_commit": "16e17c1813d6a99905e550c16cb72e984b7f59fd",
+      "import_commit": "b6257704208918971adbdf8b178ad3fae264de04",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-25T18:42:04-07:00",
+      "authorship_preserved": true,
+      "subject": "Claim CLAUDE-C01-23: French presidents, 1990-2026"
+    },
+    {
+      "source_commit": "febf26e362673cc3d9e4d0ffe9c5d3e3cfd2135b",
+      "import_commit": "09b27c49fe736e90a4ec5a6ca7fd3cdb56d434ac",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T17:33:09-07:00",
+      "authorship_preserved": true,
+      "subject": "Add CLAUDE-C01-23: French presidents, 1990-2026"
+    },
+    {
+      "source_commit": "37e886dcd0a15ee5956582c3baad0b13d02fff72",
+      "import_commit": "8506f19bec2ab2fd0e8169bda3f4e3c13a921961",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T18:32:37-07:00",
+      "authorship_preserved": true,
+      "subject": "Apply verifier fixes to CLAUDE-C01-23"
+    },
+    {
+      "source_commit": "addf493459819e4bac8d777356e7cde887119df9",
+      "import_commit": "54cca8383ccb62a61e9c0eeeef73db397f9744fe",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-28T11:39:59-07:00",
+      "authorship_preserved": true,
+      "subject": "Clarify French term-hour evidence and reject absent supplement snapshots"
+    },
+    {
+      "source_commit": "a91a8249e545db3a442344f4b7d2b1010e75c64e",
+      "import_commit": "8954b00268013e29164aeccc153e98878c1b93f7",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-25T18:42:08-07:00",
+      "authorship_preserved": true,
+      "subject": "Claim CLAUDE-C01-24: Tongan Speakers of the Legislative Assembly, 1990-2026"
+    },
+    {
+      "source_commit": "8b96d0330bdeeb210d8c1eab20a580a8738d6701",
+      "import_commit": "6af1e942f1444e3b7426c62581502cca5b2cd222",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T18:27:44-07:00",
+      "authorship_preserved": true,
+      "subject": "Add CLAUDE-C01-24: Tongan Speakers of the Legislative Assembly, 1990-2026"
+    },
+    {
+      "source_commit": "3c69d253ecd47f636b0163e7569643fe011a9193",
+      "import_commit": "8fb43ef77b3a1f042f9820a1c501f7dee4dcb980",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T19:21:36-07:00",
+      "authorship_preserved": true,
+      "subject": "Apply verifier fixes to CLAUDE-C01-24"
+    },
+    {
+      "source_commit": "5b80d442d5ad637d9201fae29a6bf807d78a2372",
+      "import_commit": "4a7768e7ae461713cad8cfd5de266b0749ba60df",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-25T18:42:10-07:00",
+      "authorship_preserved": true,
+      "subject": "Claim CLAUDE-C01-25: Saudi Shura Council and Allegiance Commission chairs, 1990-2026"
+    },
+    {
+      "source_commit": "e15ffa131dea1cd82fc3af0eb45a843cc3b21592",
+      "import_commit": "61a3402d11586a1b8e5527e048fb86fae4124f6c",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T17:41:26-07:00",
+      "authorship_preserved": true,
+      "subject": "Add CLAUDE-C01-25: Saudi Shura Council and Allegiance Commission chairs, 1990-2026"
+    },
+    {
+      "source_commit": "da79aa5139ae7c22214bba2e102718cc04be47ca",
+      "import_commit": "d92f52aa586f7efe01f40fcc5f41610600dbf65f",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T18:47:13-07:00",
+      "authorship_preserved": true,
+      "subject": "Apply verifier fixes to CLAUDE-C01-25"
+    },
+    {
+      "source_commit": "27c52dc4cbeb6e1290b663279cf4c2a214458d39",
+      "import_commit": "3596dde5b7faa8d8300bc50cb764132d99aedc90",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-25T18:42:15-07:00",
+      "authorship_preserved": true,
+      "subject": "Claim CLAUDE-C01-27: Bharatiya Janata Party presidents, 1990-2026"
+    },
+    {
+      "source_commit": "84e056b9727e4be44c8dab2a014cf606b7576f38",
+      "import_commit": "644ce0035420c3ff38e2cb87acbd907e87b9269d",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T20:09:33-07:00",
+      "authorship_preserved": true,
+      "subject": "Add CLAUDE-C01-27: Bharatiya Janata Party presidents, 1990-2026"
+    },
+    {
+      "source_commit": "1fade69698441d5878d7f57446de21557a38a82f",
+      "import_commit": "db2d5e7d34e6decf84f7317dc6915cf120cb1396",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-27T21:14:32-07:00",
+      "authorship_preserved": true,
+      "subject": "Apply verifier fixes to CLAUDE-C01-27"
+    },
+    {
+      "source_commit": "c042f39ce0e5b371f0dd7ad2b14089ed8503d0cb",
+      "import_commit": "ba1aca36938d2e2ce5a2a449ccf7a9fa9622e183",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-28T11:54:48-07:00",
+      "authorship_preserved": true,
+      "subject": "Record held independent Tonga Speaker source review"
+    },
+    {
+      "source_commit": "1a13bb2e9031297b96ef835d5c88cd2db99c17dc",
+      "import_commit": "22ae513735f38475578ae91e43b2b1adfb4dae07",
+      "author_and_author_date": "ridgemerkley2-web <ridgemerkley2@gmail.com>|2026-09-28T12:05:43-07:00",
+      "authorship_preserved": true,
+      "subject": "Record independent access resolution for five Tonga Speaker sources"
+    }
+  ],
+  "new_commits": [
+    {
+      "commit": "d8ac8b9d4e0d95e3a64f11cc675f9417e77f1099",
+      "subject": "Regenerate combined research index for four reviewed country packets"
+    },
+    {
+      "commit": "304c0ab4a2b4f797a288d2d03ce8e4d184df6cfd",
+      "subject": "Retain independent French presidential source review and repairs"
+    },
+    {
+      "commit": "c13acb93fe61455fd28940cc98d9768261973025",
+      "subject": "Retain Saudi chair source review and resolved access failures"
+    },
+    {
+      "commit": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+      "subject": "Retain independent BJP source review and technical evidence"
+    }
+  ],
+  "omitted": "All stale generated-index submission commits; combined index regenerated once from the four integrated packets. No global board/queue or runtime changes."
+}

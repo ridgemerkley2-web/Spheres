@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_hollande_interview_20170510",
+  "source_url": "https://web.archive.org/web/20201024091759id_/https://www.elysee.fr/francois-hollande/2017/05/10/interview-de-m-francois-hollande-president-de-la-republique-sur-la-memoire-de-lesclavage-et-sur-la-fin-de-son-quinquennat-a-paris-le-10-mai-2017",
+  "original_url": "https://www.elysee.fr/francois-hollande/2017/05/10/interview-de-m-francois-hollande-president-de-la-republique-sur-la-memoire-de-lesclavage-et-sur-la-fin-de-son-quinquennat-a-paris-le-10-mai-2017",
+  "archive_capture_utc": "2020-10-24T09:17:59Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-10",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 562249,
+  "source_response_sha256": "b8477b9ba22b85e7870c10c5d5a56f58b21228ef5692de1ed96f931098b00fb3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2020-10-24T09:17:59Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part C check, which downloaded it on 26 September 2026 (UTC) and again 31 to 34 minutes later with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 24 October 2020 of the Élysée archive page (served without Content-Encoding; the x-archive-orig-x-crawler-content-encoding header only records the original crawl). The transcript is marked 'Seul le prononcé fait foi'; the speaker is 'LE PRESIDENT', and the name comes from the archive heading, a later catalogue label. Located by the part C check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML transcript read in full; no images or video relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_hollande_handover_announced_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "François Hollande",
+      "role_title": "Président de la République",
+      "event_kind": "handover_announced_by_holder",
+      "attested_on": "2017-05-10",
+      "text": "In the transcript dated 10 May 2017 'LE PRESIDENT' speaks of 'Le Président qui va maintenant quitter ses fonctions et celui qui va entrer dans ses responsabilités' and of 'l'approche de la transmission effective qui viendra le 14, enfin qui viendra dimanche et qui scellera à ce moment-là sa prise de fonctions'.",
+      "locator": {
+        "item": "first and second answers of LE PRESIDENT"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

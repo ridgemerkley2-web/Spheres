@@ -1,0 +1,19 @@
+{"parent": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-stability-alias-wt79ovk4", "alias": "C:\\Users\\ridge\\AppData\\Local\\Temp\\SPHERE~4", "resolved_equal": true, "production_changed": false}
+test_relocated_bundle_keeps_original_provenance_and_validates_locally (test_stability_matrix.RetainedVerificationTests.test_relocated_bundle_keeps_original_provenance_and_validates_locally) ... FAIL
+
+======================================================================
+FAIL: test_relocated_bundle_keeps_original_provenance_and_validates_locally (test_stability_matrix.RetainedVerificationTests.test_relocated_bundle_keeps_original_provenance_and_validates_locally)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\campaign\test_stability_matrix.py", line 499, in test_relocated_bundle_keeps_original_provenance_and_validates_locally
+    self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'C:/U[16 chars]ta/Local/Temp/spheres-stability-alias-wt79ovk4/tmpfy_itt18/run' != 'C:/U[16 chars]ta/Local/Temp/SPHERE~4/tmpfy_itt18/run'
+- C:/Users/ridge/AppData/Local/Temp/spheres-stability-alias-wt79ovk4/tmpfy_itt18/run
++ C:/Users/ridge/AppData/Local/Temp/SPHERE~4/tmpfy_itt18/run
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.269s
+
+FAILED (failures=1)

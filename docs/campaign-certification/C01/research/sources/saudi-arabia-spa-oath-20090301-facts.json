@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_oath_20090301",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/ac56a5648d",
+  "original_url": "https://www.spa.gov.sa/ac56a5648d",
+  "portal_metadata": {
+    "uuid": "ac56a5648d",
+    "locale": "ar",
+    "published_at_utc": "2009-03-01T14:04:14Z",
+    "date_hijri_field": "1430-03-04"
+  },
+  "title_as_published": "عام / رئيس مجلس الشورى وأعضاء المجلس يؤدون القسم بين يدي خادم الحرمين الشريفين .",
+  "source_title": "عام / رئيس مجلس الشورى وأعضاء المجلس يؤدون القسم بين يدي خادم الحرمين الشريفين (1 March 2009)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2009-03-01",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/ac56a5648d",
+  "source_response_bytes": 3744,
+  "source_response_sha256": "bcc605cc1306fd026f5affc34f520858449d18bf51693a332defdc430a8f5d05",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "fab9c54a239d72605a54dc6529a9fdcc666484000fafb0c8c9842942737f34c9",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part B, which downloaded it three or four times on 2026-09-26 UTC (plain and cache-busting requests), the last at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:51:04Z and again at 2026-09-28T00:34:20Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3744 bytes, SHA-256 bcc605cc1306fd026f5affc34f520858449d18bf51693a332defdc430a8f5d05).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/ac56a5648d loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Located by the independent check of part B.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_oath_20090301",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-04",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "2009-03-01",
+      "text": "SPA, Riyadh 4 Rabi al-Awwal 1430 / 1 March 2009: at the Royal Court in Al-Yamamah Palace 'معالي رئيس مجلس الشورى الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' and the Council's members took the oath 'today' before King Abdullah bin Abdulaziz, who then addressed them.",
+      "locator": "Dateline and paragraphs 1-3; trailer 1704 (17:04 Makkah time)"
+    },
+    {
+      "claim_id": "sa_humaid_styled_sjc_chair_20090301",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-04",
+      "role_id": null,
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "صالح بن حميد",
+      "role_title": "رئيس المجلس الأعلى للقضاء — Chairman of the Supreme Judicial Council",
+      "event_kind": "other_office_attestation",
+      "attested_on": "2009-03-01",
+      "text": "Among those attending the same ceremony the report lists 'معالي رئيس المجلس الأعلى للقضاء الدكتور صالح بن حميد' (Chairman of the Supreme Judicial Council).",
+      "locator": "Final paragraph (attendance)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

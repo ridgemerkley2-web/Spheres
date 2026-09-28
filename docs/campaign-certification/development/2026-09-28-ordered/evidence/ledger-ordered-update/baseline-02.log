@@ -1,0 +1,21 @@
+E......................
+======================================================================
+ERROR: setUpClass (test_certified_gap_ledger.CheckedInLedger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_gap_ledger.py", line 428, in setUpClass
+    cls.files = ledger.outputs()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 984, in outputs
+    ledger = build(root, attribution)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 506, in build
+    completed_repairs = [completed_source_repair(completed[tid], classes, root) for tid in sorted(completed)]
+                         ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\certified_gap_ledger.py", line 341, in completed_source_repair
+    raise ValueError(f'Completion of {tid} needs an explicit ledger review rule')
+ValueError: Completion of CLAUDE-C01-23 needs an explicit ledger review rule
+
+----------------------------------------------------------------------
+Ran 22 tests in 2.306s
+
+FAILED (errors=1)
