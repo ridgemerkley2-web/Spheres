@@ -34,6 +34,14 @@ fn original_power_generators(w:&WorldState,nation:NationId)->Vec<(String,f64,f64
 }
 fn fixture(experience:f64)->(WorldState,u32) {
     let (mut w,energy)=super::tests::s08_line_energy_world(experience);
+    // The isolated-line helper installs only its department ledger. Complete
+    // native days also require the annual plan owned by a real enacted budget.
+    let fiscal_year=w.year;
+    let allocations=w.nation(NationId::USA).budget_for(fiscal_year).allocations;
+    crate::apply_command(&mut w,&crate::Command::SetProgramBudget {
+        nation:NationId::USA,fiscal_year,allocations,departments:programs::default_departments(),
+    }).expect("fixture enacts the complete annual and department budget");
+    programs::begin_day(&mut w);
     // Synthetic fixture combines existing funded-line setup with canonical
     // new-world inherited assets. Actual-input tests perform no such setup.
     let mut opening=crate::init::world_1990(crate::world::GameRules {
