@@ -1186,16 +1186,18 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert.deepEqual(guided,[],'Guidance itself issued no request');
     for(const r of evidence.requests)assert(r.control,'Every order request follows a logged action: '+JSON.stringify(r));
     const commands=evidence.requests.filter(r=>r.route==='/api/command');
-    const expectedCommands=['construction_budget','start_industry_module','equipment_save','air_base',...(evidence.later_procurement?[...(evidence.manufacturer_plant?['start_project']:[]),'company_establish','company_develop','company_purchase']:[])];
+    const expectedCommands=['construction_budget','start_industry_module','equipment_save','air_base',...(evidence.later_procurement?[...(evidence.manufacturer_plant?['start_project']:[]),'company_establish','company_develop','company_capitalize','company_purchase']:[])];
     assert.deepEqual(commands.flatMap(r=>r.kinds),expectedCommands,'Only the explicit reviewed confirmations sent commands');
     const commandControl={construction_budget:s=>s==='#constructionBudgetForm button[type="submit"]',start_industry_module:s=>s==='[data-construction-confirm]',
       equipment_save:s=>s==='[data-equipment-confirm]',air_base:s=>s.startsWith('[data-equipment-intent='),
       start_project:s=>s==='[data-construction-confirm]',
+      company_capitalize:s=>s.startsWith('[data-equipment-intent='),
       company_establish:s=>s.startsWith('[data-equipment-intent='),company_develop:s=>s.startsWith('[data-equipment-intent='),company_purchase:s=>s.startsWith('[data-equipment-intent=')};
     for(const r of commands)assert(r.control.how==='click'&&commandControl[r.kinds[0]](r.control.selector),'Unexpected control for '+r.kinds[0]+': '+JSON.stringify(r.control));
     const advances=evidence.requests.filter(r=>r.route==='/api/advance');
     for(const r of advances){assert.equal(r.payload.days,1);assert(r.control.how==='click'&&['#cabinetEnact','#stepBtn'].includes(r.control.selector),'Unexpected advance control: '+JSON.stringify(r.control));}
-    assert.equal(advances.filter(r=>r.control.selector==='#cabinetEnact').length,1);
+    const annualEnacts=1+(evidence.later_annual_budgets?.length||0);
+    assert.equal(advances.filter(r=>r.control.selector==='#cabinetEnact').length,annualEnacts);
     assert.equal(advances.filter(r=>r.page==='second').length,1,'One advance from the second page');
     const saves=evidence.requests.filter(r=>r.route==='/api/save'),loads=evidence.requests.filter(r=>r.route==='/api/load'),news=evidence.requests.filter(r=>r.route==='/api/new');
     assert.deepEqual(saves.map(r=>r.control.selector),['#saveNamedBtn'],'One visible named save');
@@ -1203,7 +1205,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert.deepEqual(news.map(r=>r.control.selector),['#startBtn','#campaignConfirmAccept'],'Two visible new campaigns');
     assert.equal(evidence.archive_saves.length,4,'Four archive snapshots');
     check(`Stage 12: no page errors; the only commands were ${expectedCommands.join(', ')}, each sent right after its logged review-confirm click; `
-      +`${advances.length} one-day advances, each right after a logged #cabinetEnact (1) or #stepBtn click (${advances.filter(r=>r.page==='second').length} on the second page); `
+      +`${advances.length} one-day advances, each right after a logged #cabinetEnact (${annualEnacts}) or #stepBtn click (${advances.filter(r=>r.page==='second').length} on the second page); `
       +`POST /api/save ${saves.length+evidence.archive_saves.length} in total (1 visible #saveNamedBtn + ${evidence.archive_saves.length} page.request archive snapshots); guidance issued no request`);
     const controlCount=rows=>rows.reduce((m,r)=>{const k=`${r.page}:${r.control.how}:${r.control.selector}`;m[k]=(m[k]||0)+1;return m;},{});
     evidence.request_summary={
