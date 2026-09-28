@@ -441,8 +441,8 @@ class CheckedInLedger(unittest.TestCase):
         for target in ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']:
             self.assertNotIn(target.removeprefix('party:'), entities)
         claims = {row['task']: row for row in self.data['in_flight']}
-        for tid in ('CLAUDE-C01-28', 'CLAUDE-C01-29'):
-            self.assertEqual(claims[tid]['state'], 'claimed')
+        for tid, state in (('CLAUDE-C01-28', 'claimed'), ('CLAUDE-C01-29', 'ready_for_review')):
+            self.assertEqual(claims[tid]['state'], state)
             self.assertFalse(claims[tid]['accepted'])
         self.assertIn('institution:fr_prime_minister', entities)
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))

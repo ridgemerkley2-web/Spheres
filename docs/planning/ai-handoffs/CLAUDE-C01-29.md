@@ -1,10 +1,10 @@
 # CLAUDE-C01-29: Social Democratic Party (Japan Socialist Party) chairs, 1990–2026
 
-Owner: Claude. State: **claimed** (2026-09-27; in progress, not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **ready_for_review** (28 September 2026; not merged or accepted). Parent: C01 (incomplete).
 
 Origin: part of the back-to-back C01 research pipeline the user asked for on 28 September 2026, taken from the
 certified-country gap ledger (`docs/campaign-certification/C01/gap-ledger/ledger.md`) items `Japan/jp_jsp`, `Japan/jp_jsp/jp_jsp_1945`, `Japan/jp_jsp/jp_sdp_1996`. Pending Codex
-acceptance; not registered in the task queue.
+acceptance; registered in the central task queue by Codex.
 
 Branch: `claude/c01-jp-29`. Base: `f3514fc6` (current `codex/campaign-certification`); not stacked on a pending packet. Claim commit: this record's first commit on the branch.
 
@@ -41,5 +41,19 @@ Mark the packet `ready_for_review` when done. C01 and all parent gates stay open
 ## Integration claim registration — 28 September 2026
 
 Codex mirrored this existing claim into the central queue after S22. The original
-claim above remains in progress; no research content or historical acceptance
+claim above was in progress at registration; no research content or historical acceptance
 was imported. Inspected remote head: `2d65b680`. Do not duplicate this work.
+
+## Independent review checkpoint — 28 September 2026
+
+Claude submitted `e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7`, followed by
+documentation-only corrections in `3b30478562ec78c2392d0472061e773e23cb25dd`.
+Codex independently passed 150 passing test executions and the index/census/workboard
+checks. All existing Japan records remain intact. Of 54 source responses, 35
+reproduced exactly and 19 archived party responses refused connections.
+
+The [review checkpoint](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md)
+retains results, a bounded election-count wording finding and remaining work.
+The submitted research remains on its branch; it has not been merged into the
+active playset. Resume source review from this evidence, preserving the existing
+research and frozen cutoff.

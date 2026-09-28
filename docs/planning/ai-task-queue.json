@@ -247,14 +247,15 @@
       "id": "CLAUDE-C01-29",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 16,
       "title": "Research Japanese Socialist / Social Democratic Party chairs",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
       "depends_on": [],
       "branch": "claude/c01-jp-29",
       "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
-      "next": "Existing remote claim inspected at 2d65b680a24eef1fcbc2425bb92c02b9b8217587. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
+      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 remains separately claimed.",
+      "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
     },
     {
       "id": "CODEX-S24-BUDGET-01",

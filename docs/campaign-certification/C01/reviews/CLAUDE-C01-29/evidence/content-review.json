@@ -1,0 +1,203 @@
+{
+  "format": "spheres-bounded-content-review/v1",
+  "task": "CLAUDE-C01-29",
+  "reviewed_commit": "e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7",
+  "reviewer": "Codex /root/review_source05",
+  "review_date": "2026-09-28",
+  "status": "held_with_bounded_wording_finding_and_unreproduced_sources",
+  "scope": "Representative high-risk claim semantics only; not all 54 sources or 111 claims; no source/data/runtime edits, no tests executed by this reviewer.",
+  "local_content_reviews": [
+    {
+      "source_id": "jp_sdp_diet_hr_budget_19900406",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111805261X00519900406&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hr_budget_19900406.bin",
+      "bytes": 430425,
+      "sha256": "a1b1bb0b139fb2452a2d31f54309ede4eafbd9836e1c83768b170993abc644e4",
+      "claim_ids_content_checked": [
+        "jp_sdp_doi_named_chair_by_secretary_general_19900406"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hr_budget_19910820",
+      "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112105261X00119910820&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hr_budget_19910820.bin",
+      "bytes": 560358,
+      "sha256": "0028ee34fb897d7030d9684d4ba05d08f200bafff051a5eb22c335fdd7538220",
+      "claim_ids_content_checked": [
+        "jp_sdp_tanabe_named_chair_by_secretary_general_19910820"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hr_plenary_19930125",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112605254X00219930125&speechNumber=3&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hr_plenary_19930125.bin",
+      "bytes": 32223,
+      "sha256": "6e0b09252a9a3248b0fe0f428ec2e34b4b1db2ac12a15d19a7f1dface6dafbf4",
+      "claim_ids_content_checked": [
+        "jp_sdp_yamahana_self_stated_chair_19930125"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hc_plenary_19930924",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=112815254X00319930924&speechNumber=32&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hc_plenary_19930924.bin",
+      "bytes": 7544,
+      "sha256": "6422e3c97512ca08f0cd24fe7d85051ba852b0c83924b9fbd0c6e996a5b5a041",
+      "claim_ids_content_checked": [
+        "jp_sdp_yamahana_still_chair_19930924"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hr_budget_19941013",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=113105261X00319941013&speechNumber=76&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hr_budget_19941013.bin",
+      "bytes": 1934,
+      "sha256": "b0daae1c88e23cc28769d20f4ec33dd578416e054e8946900e950f8015a3f00a",
+      "claim_ids_content_checked": [
+        "jp_sdp_murayama_self_stated_chair_19941013"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hc_budget_20031126",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=115815261X00120031126&speechNumber=222&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hc_budget_20031126.bin",
+      "bytes": 1815,
+      "sha256": "09ba8677cba5a257cf7c436dade777deb389eaf4129018dfbe07c723ffdc8df3",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_assumption_stated_20031115",
+        "jp_sdp_fukushima_in_office_diet_20031126"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_diet_hc_budget_20131024",
+      "url": "https://kokkai.ndl.go.jp/api/speech?issueID=118515261X00220131024&speechNumber=315&recordPacking=json",
+      "body_path": "bodies/jp_sdp_diet_hc_budget_20131024.bin",
+      "bytes": 3091,
+      "sha256": "0b4c1fa818c748e81bfed01b907d8551be96156b343944e642abc0ac688f9a8a",
+      "claim_ids_content_checked": [
+        "jp_sdp_yoshida_election_recalled_diet_2013",
+        "jp_sdp_yoshida_in_office_diet_20131024"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_fukushima_resignation_kaiken_20130725",
+      "url": "https://web.archive.org/web/20130820115925id_/http://www5.sdp.or.jp/topics/2013/07/25/%e7%a6%8f%e5%b3%b6%e3%81%bf%e3%81%9a%e3%81%bb%e5%85%9a%e9%a6%96%e8%be%9e%e4%bb%bb%e8%a8%98%e8%80%85%e4%bc%9a%e8%a6%8b/",
+      "body_path": "bodies/jp_sdp_fukushima_resignation_kaiken_20130725.bin",
+      "bytes": 11741,
+      "sha256": "55e6a2b845d476fc09fdf8527d952b0b76ef1536a21a17246941c931a685b98e",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_end_stated_20130725",
+        "jp_sdp_fukushima_tenure_record_2003_2013"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_fukushima_fourth_election_shakaishinpo_20091216",
+      "url": "https://web.archive.org/web/20110531215640id_/http://www5.sdp.or.jp/news/newslist091216.htm",
+      "body_path": "bodies/jp_sdp_fukushima_fourth_election_shakaishinpo_20091216.bin",
+      "bytes": 7177,
+      "sha256": "52d75adb7a420fd96b47dc20056b4aa18104f6d7fbb3099fcbe51d19f9f94955",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_fourth_election_decided_20091204"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_fukushima_fifth_election_shakaishinpo_20120201",
+      "url": "https://web.archive.org/web/20120614095542id_/http://www5.sdp.or.jp/news/newslist120201.htm",
+      "body_path": "bodies/jp_sdp_fukushima_fifth_election_shakaishinpo_20120201.bin",
+      "bytes": 8935,
+      "sha256": "5c64d4430a06b596ba14c28543d1549129b3af470e5580d041027c4c70f22f6a",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_fifth_election_decided_20120120",
+        "jp_sdp_fukushima_in_office_20120124"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    },
+    {
+      "source_id": "jp_sdp_statement_20th_anniversary_20160119",
+      "url": "https://web.archive.org/web/20160125221536id_/http://www5.sdp.or.jp:80/comment/2016/01/19/%E7%A4%BE%E4%BC%9A%E6%B0%91%E4%B8%BB%E5%85%9A%EF%BC%92%EF%BC%90%E5%B9%B4%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%EF%BC%88%E5%A3%B0%E6%98%8E%EF%BC%89/",
+      "body_path": "bodies/jp_sdp_statement_20th_anniversary_20160119.bin",
+      "bytes": 14253,
+      "sha256": "3bbdac1415fef49ec20bdd04d2290a7df6ec15ed33e29badc6b6f67ff2646da7",
+      "claim_ids_content_checked": [
+        "jp_sdp_renaming_retrospective_anniversary_statement"
+      ],
+      "method": "independent content reading of parent-retrieved original response; provenance retrieval owned by parent"
+    }
+  ],
+  "live_corroborations": [
+    {
+      "source_id": "jp_sdp_fukushima_reelection_20231201",
+      "url": "https://sdp.or.jp/sdp-paper/toushusen-2/",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_reelection_declared_20231201",
+        "jp_sdp_fukushima_in_office_20231201"
+      ],
+      "method": "independent web.open of live primary party page",
+      "archive_reproduction": false
+    },
+    {
+      "source_id": "jp_sdp_leader_election_2026_first_count_20260323",
+      "url": "https://sdp.or.jp/information/saikokujitoushusen/",
+      "claim_ids_content_checked": [
+        "jp_sdp_leader_election_2026_first_round_count_20260323",
+        "jp_sdp_leader_election_2026_renotice_20260323"
+      ],
+      "method": "independent web.open of live primary party page",
+      "archive_reproduction": false
+    },
+    {
+      "source_id": "jp_sdp_leader_election_2026_rerun_result_20260406",
+      "url": "https://sdp.or.jp/information/260406result/",
+      "claim_ids_content_checked": [
+        "jp_sdp_leader_election_2026_rerun_count_20260406",
+        "jp_sdp_fukushima_elected_2026_20260406"
+      ],
+      "method": "independent web.open of live primary party page",
+      "archive_reproduction": false
+    },
+    {
+      "source_id": "jp_sdp_fukushima_kaiken_20260408",
+      "url": "https://sdp.or.jp/sdp-paper/toushusen-6/",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_in_office_kaiken_20260408"
+      ],
+      "method": "independent web.open of live primary party page",
+      "archive_reproduction": false
+    },
+    {
+      "source_id": "jp_sdp_fukushima_21st_convention_20260429",
+      "url": "https://sdp.or.jp/sdp-paper/taikai-5/",
+      "claim_ids_content_checked": [
+        "jp_sdp_fukushima_in_office_21st_convention_20260429"
+      ],
+      "method": "independent web.open of live primary party page",
+      "archive_reproduction": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "JP29-CONTENT-01",
+      "claim_id": "jp_sdp_fukushima_tenure_record_2003_2013",
+      "severity": "bounded_content_wording",
+      "finding": "The English claim and uncertainty call the five elections five subsequent re-elections. The Japanese resignation report says five consecutive unopposed election wins, while the contemporaneous 2012 report explicitly calls that her fifth election. The stronger English wording implies six total wins and should be corrected or the ambiguity recorded.",
+      "requested_change": "Use neutral five consecutive uncontested leader-election wins, remove the unsupported five additional re-elections wording in both claim/extract mirrors, and preserve absence of new holder boundaries.",
+      "qualification": "This is a paraphrase/count-ambiguity finding, not proof that the 2013 primary source itself is factually false or that an independently established complete election total differs."
+    }
+  ],
+  "limitations": [
+    "The parent reproduced 35/54 returned bodies at review time; later 19 archive retrievals remained unavailable. This reviewer did not independently reproduce every hash.",
+    "The five live pages corroborate identified content only. They are not proof of the exact pinned archive bodies and do not resolve all 19 retrieval gaps.",
+    "2020 convention, November split-decision original bodies, 2022 election original body, July 2026 continuation and other unlisted claims remain outside this independent content review.",
+    "Diet web.open API and text-page attempts failed; their content was instead checked from the parent-retrieved original JSON bodies pinned above.",
+    "No legal party-identity continuity, complete historical tenure, portrait rights, runtime mapping, C01 completion or integration acceptance is asserted."
+  ]
+}
