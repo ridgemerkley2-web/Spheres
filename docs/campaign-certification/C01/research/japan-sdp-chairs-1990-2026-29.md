@@ -16,7 +16,7 @@ November 2020 convention decision are recorded as claims about the organization;
 lifecycle and its empty game mapping are unchanged. The parent scope (C01, C06, S23, WC1 and CP1) remains open.
 
 The research was done in two parts (A: 1990 to August 1996, SDP-CHAIR-01 to 05; B: September 1996 to the cutoff, SDP-CHAIR-06 to
-11), each by its own researcher with its own downloads, and integrated here; the integrator re-read every quotation against the
+11), each by its own researcher with its own downloads, and integrated here by this packet's author, who re-read every quotation against the
 downloaded source, re-downloaded every response twice, and changed the dossiers where the packet's rules required it (see
 [Integration decisions](#integration-decisions)). The pipeline's independent verifier reviews the packet after submission.
 
@@ -437,8 +437,8 @@ hash the bytes as received. No capture was served gzip-encoded; every recorded i
 
 - **Researchers.** Part A downloaded its Diet responses plain, again with a cache-busting query and again at least 31 minutes
   later (14:13Z-14:53Z on 28 September 2026), and its archive captures three times; part B downloaded every response at least
-  twice, 30 minutes or more apart (13:57Z-15:20Z), its Diet responses also with a cache-busting query. The integrator's two added
-  Diet records were downloaded at 15:01Z (plain and cache-busting) and 15:31Z.
+  twice, 30 minutes or more apart (13:57Z-15:20Z), its Diet responses also with a cache-busting query. The two Diet records added
+  at integration were downloaded at 15:01Z (plain and cache-busting) and 15:31Z.
 - **This packet.** All 54 identities were downloaded again at 15:34:42Z-15:37:44Z and at 16:09:30Z-16:13:17Z on 28 September 2026, and the
   15 Diet responses also with a cache-busting query at 16:13:24Z-16:14:18Z; every byte count and SHA-256 matched. Each
   extract's provenance note gives that source's own times.
@@ -564,7 +564,7 @@ hash the bytes as received. No capture was served gzip-encoded; every recorded i
 
 | # | Change to the dossiers | Reason |
 |---|---|---|
-| I1 | The five Prime Minister's replies addressing the chair (1990-1994) moved to leads; 土井たか子 re-dated to 6 April 1990 and 田邊誠 to 20 August 1991 on two Diet records the integrator found (the secretary-general's own statements), 村山富市 to his own statement of 13 October 1994 | The spec admits Diet minutes only where a party officer's statement records the party office; a Prime Minister's reply is not one |
+| I1 | The five Prime Minister's replies addressing the chair (1990-1994) moved to leads; 土井たか子 re-dated to 6 April 1990 and 田邊誠 to 20 August 1991 on two Diet records found at integration (the secretary-general's own statements), 村山富市 to his own statement of 13 October 1994 | The spec admits Diet minutes only where a party officer's statement records the party office; a Prime Minister's reply is not one |
 | I2 | 山花貞夫's two statements of 7 October 1993 moved to leads | Made as a minister holding no party office (CLAUDE-C01-18's rule for 河野洋平's statements as former president) |
 | I3 | The 1990 recollection of a 22 August meeting stored without a structured date | The statement prints no year |
 | I4 | 福島瑞穂's 2020 holder dated 28 February 2020 by the party's news items, not 22 February; the report's source corrected to 社会新報 of 4 March 2020 | Her address was given at the end of the two-day convention (党大会が終わり); the news items print 2020.2.28 |
