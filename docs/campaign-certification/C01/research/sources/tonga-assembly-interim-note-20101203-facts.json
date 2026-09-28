@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_20101206_interim_note_archived",
+  "source_url": "https://web.archive.org/web/20111130041654id_/http://www.parliament.gov.to/index.php/events-schedule/category-list/57-interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+  "original_url": "http://www.parliament.gov.to/index.php/events-schedule/category-list/57-interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+  "archive_capture_utc": "2011-11-30T04:16:54Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 50753,
+  "source_response_sha256": "ab47cbb71915929c87f4d3e47d0cb4bec7cc892cf9cebd4f6b236bdd07b888f9",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:04:36Z and again at 2026-09-28T01:01:52Z (UTC), 57 minutes later, from the same URL: both responses were 50753 bytes with SHA-256 ab47cbb71915929c87f4d3e47d0cb4bec7cc892cf9cebd4f6b236bdd07b888f9. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2011-11-30T04:16:54Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Assembly's explanatory note of December 2010 on the old site (raw Internet Archive capture of 30 November 2011; the capture shows 'Published Date' with no value and a frozen hit counter). The same note is already in the packet as the live-page source to_reform_procedure_2010, whose hit counter makes live hashes non-reproducible and which is not edited; this capture is used for its reproducible identity and for claims not imported there.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_interim_speaker_tupou_styled_20101203",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tevita Tupou",
+      "role_title": "Speaker",
+      "event_kind": "interim_service",
+      "attested_on": null,
+      "text": "The Assembly's explanatory note reports that 'THE Interim Speaker of the Legislative Assembly, Lord Tevita Tupou' briefed elected members and the press at a press conference held on the 3rd of December 2010, and states that 'His Majesty has appointed Lord Tupou as Interim Speaker of the Legislative Assembly pursuant to His powers under paragraph (8) of the Schedule' of the Act assented to on 24 November 2010.",
+      "locator": "Introductory paragraphs and point 1",
+      "uncertainty": "Interim Speaker service is a claim on the role, never a Speaker holder. The day of his interim appointment is not stated; 3 December 2010 is the press conference at which he is styled Interim Speaker."
+    },
+    {
+      "claim_id": "to_interim_speaker_office_ceases_rule_2010",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Point 13 of the note states that 'The office of the Interim Speaker shall cease when a Speaker is appointed from the nobles representatives within 5 days of the appointment of the Prime Minister under Clause 61'.",
+      "locator": "Point 13",
+      "uncertainty": "The Assembly's own summary of the procedure, not an event; it dates no Speaker appointment."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

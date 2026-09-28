@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_ministers_oath_20260818",
+  "source_url": "https://web.archive.org/web/20260818052147id_/https://parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+  "original_url": "https://parliament.gov.to/en/media-centre/latest-news/three-cabinet-ministers-take-oath-in-parliament-today",
+  "archive_capture_utc": "2026-08-18T05:21:47Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2026-08-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 58734,
+  "source_response_sha256": "c584714726d6f59cc766cbc2156e7cd91ccb8b2f4fc25cc24856e55ac4a566f4",
+  "source_response_content_encoding": "gzip as stored by the archive; the recorded identity is the decoded body",
+  "source_response_transfer_bytes": 16119,
+  "source_response_transfer_sha256": "1c4ed70883d9432d79d83978c5e5cbe7d2b4546014b1b2390a001a118e7349d9",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. For this capture the archive returns its stored gzip body with 'Content-Encoding: gzip' even when identity is requested: decompress it (gunzip, or fetch with curl --compressed) and hash the decoded bytes. The compressed transfer identity is recorded separately.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:20:08Z and again at 2026-09-28T01:18:34Z (UTC), 58 minutes later, from the same URL: both responses were 58734 bytes with SHA-256 c584714726d6f59cc766cbc2156e7cd91ccb8b2f4fc25cc24856e55ac4a566f4. Both times the archive returned the stored gzip body with Content-Encoding: gzip (16119 bytes, SHA-256 1c4ed70883d9432d79d83978c5e5cbe7d2b4546014b1b2390a001a118e7349d9); the identity recorded is the decoded body. The raw id_ form replays the stored capture rather than generating a page per request. Located for this packet; a first download at 2026-09-27T23:56:12Z gave the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-08-18T05:21:47Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 18 August 2026' (14:17 +13:00; raw Internet Archive capture of 18 August 2026, before the cutoff). The archive stores and returns this capture gzip-encoded; the recorded identity is the decoded body. Located for this packet in place of the minutes of 18 August 2026, which are served only through a download form (see the report). The ministers' oaths are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_speaker_tuihaangana_20260818",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-10",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'angana",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": "2026-08-18",
+      "text": "The Assembly's news item created on 18 August 2026 reports that three Cabinet Ministers took their oaths in Parliament 'today' and that 'The Acting Speaker of Parliament, Lord Tu'iha'angana, warmly welcomed the Ministers to the House'.",
+      "locator": "Article header ('Created: 18 August 2026'); paragraphs 1-2 and 4",
+      "uncertainty": "Acting service on the day: a claim only, never a holder. The item does not name the Speaker or say why he was not presiding."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

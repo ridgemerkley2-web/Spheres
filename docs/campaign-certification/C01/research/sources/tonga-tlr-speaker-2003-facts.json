@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_tlr_2003",
+  "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1563:2003_tlr",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 1804479,
+  "source_response_sha256": "02cbec45843b0d7f69c9562db4e914dd98cd4be3290031aa5903ea7fb60c8e3e",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (an Attorney General's Office Phoca Download link that serves the stored PDF as an attachment) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received. A 403 HTML page from ago.gov.to is a user-agent rejection, not a changed file.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:02:40Z and again at 2026-09-28T00:53:25Z (UTC), 50 minutes later, from the same URL: both responses were 1804479 bytes with SHA-256 02cbec45843b0d7f69c9562db4e914dd98cd4be3290031aa5903ea7fb60c8e3e. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AGO's 2003 Tonga Law Reports volume (364-page PDF; PDF page numbers equal the printed page numbers). Used for Edwards v Pohiva (Court of Appeal, 25 July 2003), which quotes the Speaker's committal warrant of 20 September 1996; the damages litigation is not imported. Read on 2026-09-27, after the 7 September 2026 historical cutoff; the volume is a dated historical report and no later content is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      235
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_warrant_fusitua_19960920",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "Fusitu'a",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "1996-09-20",
+      "text": "In Edwards v Pohiva (Court of Appeal, Burchett and Tompkins JJ and Ward CJ, Appeal 1/2003, C 559/1998, judgment 25 July 2003) the court states that after Parliament's contempt hearing of Thursday 19 September 1996 'The Speaker of the Legislative Assembly issued a warrant', dated 20 September 1996 and addressed to the Minister of Police, which it quotes as signed 'Fusitu'a / Chairman of the Legislative Assembly'; the warrant was executed on 20 September 1996, the day it was issued.",
+      "locator": "[2003] Tonga LR 231 (case header, PDF page 231); 234-235, paragraphs [5]-[8] (PDF pages 234-235)",
+      "uncertainty": "The signature block reads 'Chairman of the Legislative Assembly' (the Tongan 'Sea'); the court calls the issuer the Speaker. The source names him only by his noble title. An 11 September 1996 summons by 'the Chairman of the Legislative Assembly' is recited without a name. No appointment date. The damages litigation is not imported."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

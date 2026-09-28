@@ -1,0 +1,79 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_20130828_acting_speaker",
+  "source_url": "https://web.archive.org/web/20130830220536id_/http://www.parliament.gov.to/index.php/news/282-deputy-speaker-remains-acting-speaker-of-parliament",
+  "original_url": "http://www.parliament.gov.to/index.php/news/282-deputy-speaker-remains-acting-speaker-of-parliament",
+  "archive_capture_utc": "2013-08-30T22:05:36Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2013-08-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 18359,
+  "source_response_sha256": "2fd5e32153efdf65f2b5b261cf0946aef6bea2208f547353a9a0e6b762fff9a9",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:05:44Z and again at 2026-09-28T01:08:50Z (UTC), 63 minutes later, from the same URL: both responses were 18359 bytes with SHA-256 2fd5e32153efdf65f2b5b261cf0946aef6bea2208f547353a9a0e6b762fff9a9. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2013-08-30T22:05:36Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created on Wednesday, 28 August 2013 11:59' (raw Internet Archive capture of 30 August 2013). The pending court case it mentions is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_tuihaateiho_acting_speaker_20130828",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'ateiho",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": "2013-08-28",
+      "text": "The Assembly's item of 28 August 2013 calls Lord Tu'iha'ateiho 'THE Acting Speaker of the Legislative Assembly' at a time when 'Speaker Lord Fakafanua was leaving the country' for a Commonwealth Parliamentary Association meeting in the Cayman Islands; members urged him to continue as Acting Speaker until the Speaker resumed duty.",
+      "locator": "Article body, paragraphs 1, 8-9 and 11-12",
+      "uncertainty": "Acting service during the Speaker's absence: a claim only, never a holder. Its start and end are not stated."
+    },
+    {
+      "claim_id": "to_tuihaateiho_resignation_announced_20130827",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'ateiho",
+      "role_title": "Speaker",
+      "event_kind": "resignation_announced",
+      "attested_on": "2013-08-27",
+      "text": "The same item reports that Lord Tu'iha'ateiho 'announced his resignation from the post yesterday morning' (27 August 2013), apologised for any wrongdoing 'while performing his duty as Deputy Speaker' and said he felt he could not handle taking the leadership role, and that members asked him to defer it.",
+      "locator": "Article body, paragraphs 2, 4-5, 8 and 12",
+      "uncertainty": "An announcement, not a stated acceptance. The item never names the post he resigned from: its headline and the members' appeals point to the acting leadership role, while his apology mentions his duty as Deputy Speaker. The same item says he resumed duty as Acting Speaker after the tea break (to_tuihaateiho_resumed_acting_speaker_20130828)."
+    },
+    {
+      "claim_id": "to_tuihaateiho_resumed_acting_speaker_20130828",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'ateiho",
+      "role_title": "Speaker",
+      "event_kind": "acting_service_resumed",
+      "attested_on": "2013-08-28",
+      "text": "The same item, headed 'Deputy Speaker remains Acting Speaker of Parliament', states that 'After the tea break, Lord Tu'iha'ateiho resumed duty as the Acting Speaker after resignation.'",
+      "locator": "Headline; article body, paragraph 22",
+      "uncertainty": "Continuation of acting service: a claim only, never a holder. attested_on is the item's date; the item implies but does not state that the tea break fell on the same sitting day as the announcement of 27 August."
+    },
+    {
+      "claim_id": "to_fakafanua_speaker_abroad_20130828",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Fakafanua",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2013-08-28",
+      "text": "The same item styles 'Speaker Lord Fakafanua', who was leaving the country to attend a Commonwealth Parliamentary Association meeting in the Cayman Islands.",
+      "locator": "Article body, paragraph 9",
+      "uncertainty": "A mid-term attestation only; his absence is not a vacancy."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

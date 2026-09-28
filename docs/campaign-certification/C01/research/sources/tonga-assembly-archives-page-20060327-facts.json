@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_archives_2006",
+  "source_url": "https://web.archive.org/web/20060327202443id_/http://parliament.gov.to:80/archives.htm",
+  "original_url": "http://parliament.gov.to/archives.htm",
+  "archive_capture_utc": "2006-03-27T20:24:43Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 17818,
+  "source_response_sha256": "d97ed973eada8fa332ca800cb9edf8c250b69c2a030de438b7159a85ab1edc02",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "ISO-8859-1",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:03:45Z and again at 2026-09-28T00:55:23Z (UTC), 51 minutes later, from the same URL: both responses were 17818 bytes with SHA-256 d97ed973eada8fa332ca800cb9edf8c250b69c2a030de438b7159a85ab1edc02. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2006-03-27T20:24:43Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly 'Archives' page (raw Internet Archive capture of 27 March 2006; footer 'Last modified: 01/06/2005'; archived server Last-Modified 14 July 2005), listing 'Speakers of the House (from 1875 onwards)'. A retrospective list with an evident gap; every entry is a claim, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_archives_fusitua_1995_1998_20060327",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-01",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Fusitu'a",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_list",
+      "attested_on": "2006-03-27",
+      "text": "The Assembly's 'Archives' page lists 'Speakers of the House (from 1875 onwards)'; after 'Hon. Ma'atu Tukui'aulahi 1959-1978' its next entry is 'Hon. Fusitu'a 1995-1998', so it names no Speaker for 1979-1994.",
+      "locator": "'Speakers of the House (from 1875 onwards)' list",
+      "uncertainty": "Retrospective list with an evident gap; attested_on is the capture date. It conflicts with the 2011 lists (Fusitu'a 1990-1998) and the 2014 obituary (appointed 1991). Not a boundary."
+    },
+    {
+      "claim_id": "to_la_archives_veikune_1998_2001_2005_20060327",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Veikune",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_list",
+      "attested_on": "2006-03-27",
+      "text": "The same list gives 'Hon. Veikune 1998-2001; 2005-' (open-ended).",
+      "locator": "'Speakers of the House (from 1875 onwards)' list",
+      "uncertainty": "The page was last modified on 14 July 2005 and captured two months after his office ended on 25 January 2006 (to_speaker_veikune_end_20060125), so the open span was stale when captured. The 1998 start conflicts with other Assembly statements (1999). Not a boundary."
+    },
+    {
+      "claim_id": "to_la_archives_tuivakano_2001_2004_20060327",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Tu'ivakano",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_list",
+      "attested_on": "2006-03-27",
+      "text": "The same list gives 'Hon. Tu'ivakano 2001-2004'.",
+      "locator": "'Speakers of the House (from 1875 onwards)' list",
+      "uncertainty": "It conflicts with the May 2002 government statement and with the 2011 list (2002-2004). Not a boundary."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

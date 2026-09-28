@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_china_visit_20260519",
+  "source_url": "https://web.archive.org/web/20260519102917id_/https://parliament.gov.to/en/media-centre/latest-news/tonga-parliamentary-delegation-concludes-official-visit-to-the-peoples-republic-of-china",
+  "original_url": "https://parliament.gov.to/en/media-centre/latest-news/tonga-parliamentary-delegation-concludes-official-visit-to-the-peoples-republic-of-china",
+  "archive_capture_utc": "2026-05-19T10:29:17Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2026-05-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 60118,
+  "source_response_sha256": "2bade793d09cf667e62b52552ccfca74c1aafab87c95afa7282b4607784c0776",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:19:55Z and again at 2026-09-28T01:18:21Z (UTC), 58 minutes later, from the same URL: both responses were 60118 bytes with SHA-256 2bade793d09cf667e62b52552ccfca74c1aafab87c95afa7282b4607784c0776. The raw id_ form replays the stored capture rather than generating a page per request. Located for this packet; a first download at 2026-09-27T23:56:17Z gave the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-05-19T10:29:17Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release issued by the Chief Clerk and dated 19 May 2026, posted as an Assembly news item 'Created: 19 May 2026' (raw Internet Archive capture of 19 May 2026, before the cutoff; the hit counter is frozen in the capture). Located for this packet as the latest official styling of the Speaker found before the cutoff; the visit's content is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_vaea_led_delegation_20260519",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-10",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Vaea",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2026-05-19",
+      "text": "The Assembly's press release dated 19 May 2026 reports that the parliamentary delegation's official visit to China from 6 to 15 May 2026 'was led by the Speaker of the Legislative Assembly of Tonga, Lord Vaea', following an invitation extended to the Speaker, and that the delegation returned to Tonga 'last Saturday'.",
+      "locator": "Release body, paragraphs 1-3 and 14 ('returned to Tonga last Saturday'); issuing line and date",
+      "uncertainty": "The latest official attestation of the holder found before the 7 September 2026 cutoff; no term is stated and it is not an end."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

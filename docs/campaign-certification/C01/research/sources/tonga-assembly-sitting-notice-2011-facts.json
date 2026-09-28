@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_2011_sitting_announced",
+  "source_url": "https://web.archive.org/web/20111130041631id_/http://www.parliament.gov.to/index.php/events-schedule/category-list/68-legislative-assembly-to-sit-on-the-13th-of-january",
+  "original_url": "http://www.parliament.gov.to/index.php/events-schedule/category-list/68-legislative-assembly-to-sit-on-the-13th-of-january",
+  "archive_capture_utc": "2011-11-30T04:16:31Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 45940,
+  "source_response_sha256": "7de3abfe22ba9f44af141654aa8ead8c6d6e47de848b4b43f8ee6f03161a7670",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:18:39Z and again at 2026-09-28T01:17:05Z (UTC), 58 minutes later, from the same URL: both responses were 45940 bytes with SHA-256 7de3abfe22ba9f44af141654aa8ead8c6d6e47de848b4b43f8ee6f03161a7670. The raw id_ form replays the stored capture rather than generating a page per request. Located by the independent check, which downloaded it twice on 2026-09-26 (UTC), at least 30 minutes apart, with the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2011-11-30T04:16:31Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item on the old site (raw Internet Archive capture of 30 November 2011). The capture shows 'Published Date' with no value; the site's navigation places it between the item of 21 December 2010 on the Speaker's selection and 'Prime Minister Names New Cabinet'. No structured date is taken from that placement. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_lasike_announces_first_sitting_2011",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-05",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "meeting_notice",
+      "attested_on": null,
+      "text": "The Assembly reports that 'TONGA'S Legislative Assembly will hold its first session on the 13th of January 2011. This was announced by the Speaker of the House, Lord Lasike', and that during the first sitting members 'will take their oaths of office starting with the Speakers to be followed by the Prime Ministers, Ministers, Nobles and People's Representatives'.",
+      "locator": "Article body, paragraph 1",
+      "uncertainty": "A prospective styling of Lasike as Speaker before the first sitting, and the only record found of a planned Speaker's oath. The item is undated, so no structured date is stored; it does not date his royal appointment, and no record of the oath being taken was found."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}
