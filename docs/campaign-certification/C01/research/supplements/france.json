@@ -35,7 +35,7 @@
           "locator": {
             "section": "operative part, sentence after 'Proclame'"
           },
-          "uncertainty": "A prospective statement dated by the day it was made (11 May 1988); the day it fixes, 21 May 1988 at 0 heure, is the stated start of the second septennat and the holder's `from`. The Constitution is cited by the Council as its ground; the date is the Council's, not taken from the Constitution's text."
+          "uncertainty": "A prospective statement dated by the day it was made (11 May 1988); the day it fixes, 21 May 1988 at 0 heure, is the stated start of the second septennat; it lies before the packet period and is a claim only, not the holder's `from`. The Constitution is cited by the Council as its ground; the date is the Council's, not taken from the Constitution's text."
         }
       ]
     },
@@ -867,11 +867,11 @@
       "access_method": "downloaded_archived_raw_capture_and_page_text_read",
       "source_type": "primary_presidency_page_archived",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of an undated biography page with a retrospective timeline. It replaces the part C capture of 4 August 2026, which the archive serves gzip-compressed even to requests for identity encoding; the timeline text is the same in both. Only the 16 May 2007 row is imported.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a biography page with a retrospective timeline; the page prints 'Mis à jour le : 14 décembre 2022' and no publication date. It replaces the part C capture of 4 August 2026, which the archive serves gzip-compressed even to requests for identity encoding; the timeline text is the same in both. Only the 16 May 2007 row is imported.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-biography-20260618-facts.json",
-        "bytes": 3447,
-        "sha256": "cc2050cd4a0bc1d405af45c94f114f3407ac3508fadef3f0bafa54cc56923207"
+        "bytes": 3516,
+        "sha256": "29813f06d70c898e93dce7c9b9993121d0f723fca14df6c803f2e7df2355edc5"
       },
       "claims": [
         {
@@ -880,7 +880,7 @@
           "locator": {
             "item": "biography timeline entry '16 mai 2007'"
           },
-          "uncertainty": "A row of a retrospective timeline on an undated page: no structured date is stored and it is never a boundary. Leaving the Élysée after the successor's investiture is not stated as the end of the term."
+          "uncertainty": "A row of a retrospective timeline on a page last updated 14 December 2022: no structured date is stored and it is never a boundary. Leaving the Élysée after the successor's investiture is not stated as the end of the term."
         }
       ]
     },
@@ -1511,7 +1511,7 @@
             "printed_page": 12,
             "item": "'2017 résumé en 5 dates clés', entry '7 mai'"
           },
-          "uncertainty": "A retrospective timeline entry of September 2018: a claim only, never a start or an end. The transfer sentence names neither President; Emmanuel Macron is named in the preceding sentence."
+          "uncertainty": "A retrospective timeline entry in the Council's 2017 activity report (embedded CreationDate 27 September 2017): a claim only, never a start or an end. The transfer sentence names neither President; Emmanuel Macron is named in the preceding sentence."
         }
       ]
     },
@@ -1805,8 +1805,8 @@
       "scope_note": "Raw Internet Archive capture made the same morning (7 May 2022; original Last-Modified 7 May 2022 08:51:22 GMT) of the Council's news item, served without Content-Encoding. The text is marked 'Seul le prononcé fait foi'. Located by the part C check.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-investiture-address-20220507-facts.json",
-        "bytes": 4254,
-        "sha256": "3a08ea3506448b4c6eb868558bd20d1e9a17ef1b1063b287a6410f6abc6facf7"
+        "bytes": 4263,
+        "sha256": "70fc9a626720cb8c0f90aef8d55820ccb8e02427feeb970ab30a8411e2b761bb"
       },
       "claims": [
         {
@@ -1820,7 +1820,7 @@
         },
         {
           "id": "fr_cc_fabius_2022_second_mandate_begins_20220507",
-          "text": "The address says the Council 'vous a déclaré élu Président de la République pour un second mandat qui débutera le 14 mai à 0 heure', and it speaks of 'le quinquennat qui s'achève'.",
+          "text": "The address says the Council 'vous a déclaré élu Président de la République pour un second mandat qui débutera le 14 mai à 0 heure', and it speaks of 'le temps du quinquennat qui s'achève'.",
           "attested_on": "2022-05-07",
           "locator": {
             "item": "first and second paragraphs"
@@ -2057,24 +2057,20 @@
           "holder_claims": [
             {
               "name": "François Mitterrand",
-              "attested_on": null,
-              "from": "1988-05-21",
+              "attested_on": "1990-01-04",
+              "from": null,
               "until": null,
               "sources": [
-                "fr_cc_decision_88_60_pdr_19880511",
-                "fr_elysee_mitterrand_investiture_address_19880521",
                 "fr_elysee_mitterrand_kohl_press_conference_19900104",
                 "fr_an_jo_debats_19900827"
               ],
               "claim_ids": [
-                "fr_cc_88_60_states_mandate_effect_19880511",
-                "fr_mitterrand_assumes_second_septennat_statement_19880521",
                 "fr_mitterrand_kohl_press_conference_attestation_19900104",
                 "fr_mitterrand_signs_convocation_decree_as_president_19900822",
                 "fr_mitterrand_message_to_parliament_read_19900827"
               ],
-              "note": "From 21 May 1988: decision 88-60 PDR of 11 May 1988 states that his mandate 'prendra effet le 21 mai 1988 à 0 heure', and in his address of that day (the Élysée archive's date line) he speaks of assuming the supreme magistracy 'aujourd'hui'. He is in office when the period opens: Chancellor Kohl names him and 'le Président de la République' at their joint press conference of 4 January 1990 (Élysée archive transcript), and the Assemblée nationale's record of 27 August 1990 reads his decree of 22 August 1990 and his message of 27 August 1990, both signed FRANÇOIS MITTERRAND.",
-              "uncertainty": "The start is the effective day fixed in advance by the proclaiming authority, before the packet period. No end: no source reviewed states, as a record, the day his functions ended. His letter of 16 May 1995 announces the handover for 'Demain matin à onze heures' (prospective), decision 95-81 PDR gives only the outer limit of 21 May 1995 at 0 heure, his successor's address of 17 May 1995 speaks of the fourteen years 'qui viennent de s'écouler' without a day, and the Council's undated 2012 note dating the 1995 handover to 17 May is retrospective; all are claims, and Jacques Chirac's observation of 17 May 1995 is not used as this end."
+              "note": "Observed on 4 January 1990, the first in-text attestation in the period: at their joint press conference at Latché (Élysée archive transcript) Chancellor Kohl says 'Je suis d'accord avec M. Mitterrand' and speaks of working in 1990 with 'le Président de la République'. The Assemblée nationale's record of 27 August 1990 reads his decree of 22 August 1990 and his message of 27 August 1990, both signed FRANÇOIS MITTERRAND.",
+              "uncertainty": "No start: his second septennat began before the packet period; decision 88-60 PDR of 11 May 1988 ('prendra effet le 21 mai 1988 à 0 heure') and his investiture address of 21 May 1988 are claims on the role, not a holder date, as the Brazil, India and South Africa packets date the holder in office when the period opens by an in-period attestation. No end: no source reviewed states, as a record, the day his functions ended. His letter of 16 May 1995 announces the handover for 'Demain matin à onze heures' (prospective), decision 95-81 PDR gives only the outer limit of 21 May 1995 at 0 heure, his successor's address of 17 May 1995 speaks of the fourteen years 'qui viennent de s'écouler' without a day, and the Council's undated 2012 note dating the 1995 handover to 17 May is retrospective; all are claims, and Jacques Chirac's observation of 17 May 1995 is not used as this end."
             },
             {
               "name": "Jacques Chirac",
@@ -2156,7 +2152,7 @@
                 "fr_macron_says_ending_term_began_20170514"
               ],
               "note": "From 14 May 2017: at the investiture ceremony at the Élysée on Sunday 14 May 2017 Laurent Fabius, President of the Constitutional Council, told the President of the Republic, identified by his 20 743 128 second-round votes (the total decision 2017-171 PDR and Fabius's statement of 10 May 2017 give for M. Emmanuel Macron), 'aujourd'hui, en ce dimanche 14 mai, en cet instant précis où vous prenez vos hautes fonctions'. In his investiture address of 7 May 2022 he says the ending mandate began on 14 May 2017.",
-              "uncertainty": "The Council's address names nobody; identity rests on the vote total. The 2022 statement is retrospective corroboration, not the basis. No hour: the Élysée says his predecessor received him at 10:00 before the ceremony. The proclamation (10 May 2017), its publication (11 May 2017), the outer limit, the Élysée's same-day live-stream notice and the Council's 2018 activity report (retrospective) are separate claims. No end: the 2022 decision fixes only the second term's start (14 May 2022 at 0 heure), and 13 May 2022 is not inferred."
+              "uncertainty": "The Council's address names nobody; identity rests on the vote total. The 2022 statement is retrospective corroboration, not the basis. No hour: the Élysée says his predecessor received him at 10:00 before the ceremony. The proclamation (10 May 2017), its publication (11 May 2017), the outer limit, the Élysée's same-day live-stream notice and the Council's 2017 activity report (retrospective) are separate claims. No end: the 2022 decision fixes only the second term's start (14 May 2022 at 0 heure), and 13 May 2022 is not inferred."
             },
             {
               "name": "Emmanuel Macron",
@@ -2179,7 +2175,7 @@
               "uncertainty": "The start is fixed in advance by the proclaiming authority; no record made on 14 May 2022 was reviewed. The first round (9-10 April 2022), the first-round declaration (13 April), the second round (23-24 April), the proclamation (27 April), its publication (28 April) and the investiture (7 May 2022) are separate claims. No end before the 7 September 2026 cutoff."
             }
           ],
-          "scope_note": "Président de la République under the Constitution of 4 October 1958, recorded as head of state. CLAUDE-C01-23 keeps each election round, the Constitutional Council's declaration of first-round results, its proclamation of the result and the President of the Council's oral announcement of it, the proclamation's publication in the Journal officiel, the handover meeting, the investiture ceremony, a stated start of term, the outer limit the Council states for the predecessor's cessation, the holder's own statements and announcements and his in-office acts as separate dated claims. A holder has a start only where the Constitutional Council, in its decision or in its President's address at the investiture, states the day the mandate takes effect or office is taken up, and an end only where a source states the day the office ended; otherwise it is dated by attested_on. The holder's own statement that he assumes office that day supports but never makes a start; a prospective announcement of a handover, an outer limit ('au plus tard'), a successor's statement, a computed expiry and a successor's start are never ends. Retrospective notes, reports, tables and timelines are claims only, and table rows and timeline entries carry no structured date. Élysée archive headings are later catalogue labels. Constitution texts establish procedure only, never a date. No interim presidency (Article 7) is stated for 1990-2026, so none is recorded; acting or interim service would be a claim only, never a holder. Prime ministers, ministers and party offices are outside this role."
+          "scope_note": "Président de la République under the Constitution of 4 October 1958, recorded as head of state. CLAUDE-C01-23 keeps each election round, the Constitutional Council's declaration of first-round results, its proclamation of the result and the President of the Council's oral announcement of it, the proclamation's publication in the Journal officiel, the handover meeting, the investiture ceremony, a stated start of term, the outer limit the Council states for the predecessor's cessation, the holder's own statements and announcements and his in-office acts as separate dated claims. A holder has a start only where the Constitutional Council, in its decision or in its President's address at the investiture, states the day the mandate takes effect or office is taken up, and an end only where a source states the day the office ended; otherwise it is dated by attested_on. A start before the packet period (1 January 1990) is not structured: the holder in office when the period opens is dated by attested_on. The holder's own statement that he assumes office that day supports but never makes a start; a prospective announcement of a handover, an outer limit ('au plus tard'), a successor's statement, a computed expiry and a successor's start are never ends. Retrospective notes, reports, tables and timelines are claims only, and table rows and timeline entries carry no structured date. Élysée archive headings are later catalogue labels. Constitution texts establish procedure only, never a date. No interim presidency (Article 7) is stated for 1990-2026, so none is recorded; acting or interim service would be a claim only, never a holder. Prime ministers, ministers and party offices are outside this role."
         }
       ],
       "sources": [
@@ -2337,7 +2333,7 @@
           "through": "2026-09-07"
         },
         "unresolved": [
-          "Presidents 1990-2026 (CLAUDE-C01-23, FR-PRES-01..10) are dated holder observations from the Constitutional Council's decisions, communications and investiture addresses, the Journal officiel (archived Légifrance text pages and DILA open-data exports), the Assemblée nationale's debates and the Élysée's archive. Stated starts: 21 May 1988 (François Mitterrand, before the period), 17 May 2002 (Jacques Chirac), 16 May 2007 (Nicolas Sarkozy), 15 May 2012 (François Hollande), and 14 May 2017 and 14 May 2022 (Emmanuel Macron). Jacques Chirac's 1995 term is dated only by attested_on (17 May 1995): no decision or address of the President of the Council fixes its first day.",
+          "Presidents 1990-2026 (CLAUDE-C01-23, FR-PRES-01..10) are dated holder observations from the Constitutional Council's decisions, communications and investiture addresses, the Journal officiel (archived Légifrance text pages and DILA open-data exports), the Assemblée nationale's debates and the Élysée's archive. François Mitterrand is dated by attested_on (4 January 1990); the effect day of 21 May 1988 that decision 88-60 PDR states lies before the period and is a claim only. Stated starts: 17 May 2002 (Jacques Chirac), 16 May 2007 (Nicolas Sarkozy), 15 May 2012 (François Hollande), and 14 May 2017 and 14 May 2022 (Emmanuel Macron). Jacques Chirac's 1995 term is dated only by attested_on (17 May 1995): no decision or address of the President of the Council fixes its first day.",
           "No source reviewed states, as a record of the event, the day any President's functions ended, so no holder has an until. The Council states only outer limits ('au plus tard') for 1995, 2007, 2012 and 2017; François Mitterrand (16 May 1995), Jacques Chirac (15 May 2007) and François Hollande (10 May 2017) announced their handovers in advance; the Council's undated 2012 note, its 2017 dossier and activity report and the Élysée's biography timeline are retrospective.",
           "Hours: no source fixes the hour at which any term began. The Council's 2007 page puts the investiture ceremony at 11:00, while the Élysée puts the outgoing President's reception of his successor at 11:00 before it; only days are recorded.",
           "Not retrieved: the Journal officiel publications of the 1988, 1995 and 2002 proclamations (Légifrance refuses automated access and no capture was found), and the published correction (rectificatif) of the 2007 proclamation, JORFTEXT000000465545, whose content could not be read; the Council's 2017 dossier reprints the 2007 dispositif with the same dates.",
