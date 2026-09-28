@@ -33,11 +33,11 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     else await locator.tap();
   }
   async function escape(label){evidence.actions.push({key:'Escape',label});await page.keyboard.press('Escape');}
-  async function closeRooms(){
+  async function closeRooms(keepMapDetails=false){
     for(const [panel,button] of [['#guidanceDialog','#guidanceDialog [data-guidance-close]'],
       ['#equipmentRoom','[data-equipment-close]'],['#productionPanel','#productionClose'],
-      ['#cabinetDrawer','#cabinetDrawer [data-close-drawers]'],['#provinceDossier','#provinceDossier .province-close'],
-      ['#mapCityCard','#mapCityCard [data-map-detail-focus="city-close"]']])
+      ['#cabinetDrawer','#cabinetDrawer [data-close-drawers]'],...(keepMapDetails?[]:[['#provinceDossier','#provinceDossier .province-close'],
+      ['#mapCityCard','#mapCityCard [data-map-detail-focus="city-close"]']])])
       if(await page.locator(panel).isVisible())await tap(button);
   }
   function record(name,data){
@@ -45,8 +45,8 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     fs.writeFileSync(path.join(evidence.out,file),bytes);
     proof.observations.push({file,bytes:bytes.length,sha256:hash(bytes)});return data;
   }
-  async function openSaveScreen(){
-    await closeRooms();
+  async function openSaveScreen(keepMapDetails=false){
+    await closeRooms(keepMapDetails);
     if(await page.locator('.arc-time-menu').getAttribute('open')===null)await tap('.arc-time-menu > summary');
     await tap('#campaignsBtn');await tap('#openSavesBtn');
     await page.locator('#saveName').waitFor({state:'visible'});
@@ -68,7 +68,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     await resume();return data;
   }
   async function load(slot){
-    const previous=(await state()).session_id;await openSaveScreen();
+    const previous=(await state()).session_id;await openSaveScreen(true);
     await page.locator('#saveSlots').selectOption(slot);evidence.actions.push({select:'#saveSlots',value:slot});
     const response=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname==='/api/load');
     await tap('#loadBtn');await tap('#campaignConfirmAccept');const loaded=await response;assert(loaded.ok(),await loaded.text());
@@ -101,7 +101,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
       !PROVINCE_POPULATION.loading&&!PROVINCE_POPULATION.error, id);
     assert.equal(await page.locator('#provinceDossier').getAttribute('aria-busy'),'false');
     const native=record(label+'-native',await read('district-population/'+encodeURIComponent(id)));
-    const adopted=await page.evaluate(()=>JSON.parse(JSON.stringify(PROVINCE_POPULATION)));
+    const adopted=await adoptedProvince();
     assert.deepEqual(adopted,native,'Province must display the exact native response');
     assert.equal(await page.locator('#provinceTitle').innerText(),native.name);
     const owner=await page.locator('#provinceDossier .province-owner').innerText();
@@ -114,6 +114,14 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
       rows.filter(p=>['blocked','paused','slowed','stalled','inactive'].includes(p.status)).length];
     assert.deepEqual(await page.locator('#provinceDossier .pe-activity-counts dd').allTextContents(),counts.map(String));
     proof.checks.push({label,district:id,owner:native.owner,activity:counts});return native;
+  }
+  async function adoptedProvince(){
+    const {reading,date}=await page.evaluate(()=>({reading:JSON.parse(JSON.stringify(PROVINCE_POPULATION)),date:S.date}));
+    assert.equal(reading.read_date,date,'Province labels the actual campaign reading date');
+    assert((await page.locator('#provinceDossier [role="status"]').allTextContents()).includes('Reading for '+date));
+    // The sole UI annotation is validated separately; all native fields must
+    // still match the independent endpoint response without normalization.
+    delete reading.read_date;return reading;
   }
   async function narrowShot(name){
     assert(await page.locator('#provinceDossier').evaluate(el=>el.scrollWidth<=el.clientWidth+1),'Province horizontal overflow');
@@ -218,7 +226,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
   await parisCity('touch');const cross=await holdPopulation(paris,'cross-province');await cityProvince('touch');await cross.seen();
   await closeProvince('Leave delayed province');await finder(otherName,'province',other,'touch');
   const otherNative=await readyProvince(other,'different-province');await cross.release();
-  assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(PROVINCE_POPULATION))),otherNative,'Late Paris reading cannot overwrite another province');
+  assert.deepEqual(await adoptedProvince(),otherNative,'Late Paris reading cannot overwrite another province');
   assert.equal(await page.locator('#provinceDossier').getAttribute('data-province'),other);await narrowShot('s20-cross-province-390');
   await closeProvince('Close second province');
 
@@ -227,6 +235,13 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
   assert(await page.locator('#provinceDossier').isHidden());
   assert.deepEqual(await page.evaluate(()=>({district:selectedDistrict,reading:PROVINCE_POPULATION})),{district:null,reading:null});
   proof.checks.push('A delayed prior-session reading cannot repopulate the replaced campaign');await shot('s20-campaign-replaced');
+
+  await parisCity('touch');
+  assert.equal(await page.evaluate(()=>ui.selectedCity?.name),'Paris');
+  proof.selected_city_replacement=await load('s20-navigation-before');
+  assert.equal(await page.evaluate(()=>ui.selectedCity),null,'Campaign replacement clears the selected city');
+  assert(await page.locator('#mapCityCard').isHidden(),'Campaign replacement removes the old city card');
+  proof.checks.push('Loading through ordinary campaign controls clears an open selected city');await shot('s20-city-campaign-replaced');
 
   await page.setViewportSize({width:1440,height:1000});await finder(otherName,'province',other,'keyboard');
   await readyProvince(other,'completed-facility-province');await shot('s20-operating-province');
