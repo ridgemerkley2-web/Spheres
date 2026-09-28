@@ -180,15 +180,19 @@ fn stage_at(
     temp: PathBuf,
     write: impl FnOnce(&mut File) -> std::io::Result<()>,
 ) -> std::io::Result<PathBuf> {
+    // Until exclusive creation succeeds this path belongs to somebody else
+    // (for example an interrupted process whose PID has since been reused).
+    // Never clean up a candidate that this operation did not create.
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temp)?;
     let result = (|| {
-        let mut file = OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&temp)?;
         write(&mut file)?;
         file.sync_all()?;
         Ok(())
     })();
+    drop(file);
     match result {
         Ok(()) => Ok(temp),
         Err(e) => {
@@ -231,14 +235,41 @@ fn atomic_write(
     }
     result
 }
+// Only our compact archive's terminal wall-clock field is excluded. Compare
+// the entire remaining envelope byte-for-byte: world, history, log, journey and
+// metadata all participate. This is called only after the old archive decodes;
+// legacy, pretty, reordered and other noncanonical saves keep normal rotation.
+fn compact_archive_content(text: &str) -> Option<&str> {
+    if !text.starts_with("{\"format\":\"spheres-campaign\",\"version\":1,\"world\":") {
+        return None;
+    }
+    let (content, tail) = text.rsplit_once(",\"saved_unix\":")?;
+    let timestamp = tail.strip_suffix('}')?;
+    if timestamp.is_empty() || !timestamp.bytes().all(|b| b.is_ascii_digit())
+        || (timestamp.len() > 1 && timestamp.starts_with('0'))
+        || timestamp.parse::<u64>().is_err()
+    {
+        return None;
+    }
+    Some(content)
+}
+
 pub(crate) fn write(root: &Path, slot: &str, g: &Game) -> Result<Value, String> {
     let path = slot_path(root, slot)?;
     let bytes = encode(g)?;
     // A damaged current file must never overwrite the last known-good backup.
-    let valid_previous = fs::read_to_string(&path)
+    // Nor may retrying an already completed save erase the earlier recovery
+    // point just because this encode has a newer wall-clock timestamp. If no
+    // backup exists yet, an identical second save still establishes that copy.
+    let backup_exists = path.with_extension("json.bak").is_file();
+    let backup_previous = fs::read_to_string(&path)
         .ok()
-        .is_some_and(|text| decode(&text).is_ok());
-    atomic_write(&path, valid_previous, |f| f.write_all(bytes.as_bytes()))
+        .is_some_and(|text| decode(&text).is_ok() && (!backup_exists || match
+            (compact_archive_content(&text), compact_archive_content(&bytes)) {
+                (Some(previous), Some(next)) => previous != next,
+                _ => true,
+            }));
+    atomic_write(&path, backup_previous, |f| f.write_all(bytes.as_bytes()))
         .map_err(|e| format!("Could not save campaign: {e}"))?;
     Ok(
         json!({"ok":true,"slot":slot,"path":path.to_string_lossy(),"date":g.world.date_str(),
@@ -256,30 +287,48 @@ pub(crate) fn read(root: &Path, slot: &str, backup: bool) -> Result<Game, String
     decode(&text)
 }
 pub(crate) fn list(root: &Path) -> Value {
-    let mut slots = vec![("default".to_string(), root.join("save.json"))];
+    let mut slots = std::collections::BTreeMap::from([
+        ("default".to_string(), root.join("save.json")),
+    ]);
     if let Ok(files) = fs::read_dir(root.join("saves")) {
         for entry in files.flatten() {
             let path = entry.path();
-            if path.extension().is_some_and(|s| s == "json") {
-                if let Some(name) = path.file_stem().and_then(|s| s.to_str()) {
-                    slots.push((name.to_string(), path));
-                }
+            if !path.is_file() { continue; }
+            let Some(file) = path.file_name().and_then(|s| s.to_str()) else { continue; };
+            let Some(name) = file.strip_suffix(".json.bak").or_else(|| file.strip_suffix(".json")) else { continue; };
+            // `default` is the root save.json alias, never saves/default.json.
+            // Enumerate only names that the ordinary load endpoint can address.
+            if name.is_empty() || name == "default" { continue; }
+            if let Ok(primary) = slot_path(root, name) {
+                slots.insert(name.to_string(), primary);
             }
         }
     }
-    slots.sort_by(|a, b| a.0.cmp(&b.0));
     let records = slots
         .into_iter()
-        .filter(|(_, p)| p.is_file())
+        .filter(|(_, p)| p.is_file() || p.with_extension("json.bak").is_file())
         .map(|(slot, path)| {
+            let current_exists = path.is_file();
+            let backup_path = path.with_extension("json.bak");
+            let backup = backup_path.is_file();
             let data = fs::read_to_string(&path)
                 .ok()
                 .and_then(|s| serde_json::from_str::<Value>(&s).ok());
-            let envelope = data.as_ref().is_some_and(|v| v.get("format").is_some());
-            json!({"slot":slot,"date":data.as_ref().and_then(|v|v.get("saved_date")),
-            "player":data.as_ref().and_then(|v|v.get("player")),"legacy":!envelope,
-            "readable":data.is_some(),"backup":path.with_extension("json.bak").is_file(),
-            "autosave":slot.starts_with("auto-"),"bytes":fs::metadata(&path).ok().map(|m|m.len())})
+            // Listing describes JSON metadata without decoding every potentially
+            // large campaign. A backup's presence is not a validity promise;
+            // explicit Load previous backup still performs the full decoder.
+            let backup_data = if data.is_none() && backup {
+                fs::read_to_string(&backup_path).ok()
+                    .and_then(|s| serde_json::from_str::<Value>(&s).ok())
+            } else { None };
+            let metadata_from_backup = backup_data.is_some();
+            let metadata = data.as_ref().or(backup_data.as_ref());
+            let envelope = metadata.is_some_and(|v| v.get("format").is_some());
+            json!({"slot":slot,"date":metadata.and_then(|v|v.get("saved_date")),
+            "player":metadata.and_then(|v|v.get("player")),"legacy":!envelope,
+            "readable":data.is_some(),"backup":backup,"current_exists":current_exists,
+            "metadata_from_backup":metadata_from_backup,
+            "autosave":slot.starts_with("auto-"),"bytes":fs::metadata(&path).ok().filter(|m|m.is_file()).map(|m|m.len())})
         })
         .collect::<Vec<_>>();
     let directory = fs::canonicalize(root).unwrap_or_else(|_| root.to_path_buf());
@@ -833,6 +882,31 @@ mod tests {
         assert_eq!(fs::read(&sentinel).unwrap(), b"Directory blocks backup rename");
         assert!(!fs::read_dir(&root).unwrap().any(|e| e.unwrap().file_name().to_string_lossy().contains("tmp-")));
         assert!(read(&root, "default", false).is_ok());
+        fs::remove_dir_all(root).unwrap();
+    }
+
+
+    #[test]
+    fn recovery_first_repeated_save_establishes_backup_then_keeps_it() {
+        let root = root();
+        let game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let backup = path.with_extension("json.bak");
+        assert!(!backup.exists());
+        let initial = fs::read_to_string(&path).unwrap();
+        let (prefix, _) = initial.rsplit_once(",\"saved_unix\":").unwrap();
+        let first = format!("{prefix},\"saved_unix\":0}}");
+        fs::write(&path, &first).unwrap();
+        write(&root, "default", &game).unwrap();
+        assert_eq!(fs::read(&backup).unwrap(), first.as_bytes(),
+            "The first retry can establish a backup when none exists");
+        let second = format!("{prefix},\"saved_unix\":1}}");
+        fs::write(&path, second).unwrap();
+        write(&root, "default", &game).unwrap();
+        assert_eq!(fs::read(&backup).unwrap(), first.as_bytes(),
+            "Further identical saves keep the established recovery copy");
+        assert_eq!(crate::save(&read(&root, "default", true).unwrap().world), crate::save(&game.world));
         fs::remove_dir_all(root).unwrap();
     }
 
