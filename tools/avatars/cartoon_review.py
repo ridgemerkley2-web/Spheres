@@ -327,7 +327,11 @@ class Builder:
                     raise SystemExit(f'Required input is missing: {rel}')
                 continue
             raw = path.read_bytes()
-            self.inputs.append({'role': role, 'path': rel, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+            # JSON text can be checked out with CRLF without changing its content.
+            # Keep the scope explicit; image identities remain exact raw bytes.
+            canonical_bytes = raw.replace(b'\r\n', b'\n')
+            self.inputs.append({'role': role, 'path': rel, 'hash_scope': 'utf8-lf',
+                                'bytes': len(canonical_bytes), 'sha256': hashlib.sha256(canonical_bytes).hexdigest()})
             self.data[role] = json.loads(raw.decode('utf-8-sig'))
         self.file_cache: dict[str, dict] = {}
         self.bindings: dict[str, list[dict]] = defaultdict(list)
@@ -920,8 +924,10 @@ class Builder:
             'historical_period': {'from': HISTORICAL[0], 'to': HISTORICAL[1]},
             'fictional_period': {'from': FICTIONAL[0], 'to': FICTIONAL[1]},
             'file_inventory': self.inventory_mode,
-            'hash_note': ('JSON inputs and images are hashed as raw bytes. Prompt records (text) are hashed after CRLF-to-LF '
-                          'normalization (sha256_lf) because checkouts differ by core.autocrlf.'),
+            'hash_note': ('JSON input bytes and SHA-256 use explicit utf8-lf scope: only CRLF is replaced with LF; '
+                          'all other bytes are retained. The browser verifies the same scope and separately records '
+                          'received raw byte counts and hashes. Images remain hashed as exact raw bytes. Prompt '
+                          'records use CRLF-to-LF normalization (sha256_lf). Original evidence files are never rewritten.'),
             'binding_fields': ['role', 'identity', 'item'],
             'collections': COLLECTION_SOURCES,
             'nations': {n: self.nation_names.get(n, n) for n in used},

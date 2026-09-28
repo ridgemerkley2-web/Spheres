@@ -124,6 +124,25 @@ test('input verification compares exact bytes and fails closed', async () => {
   assert.equal(second(), true);
 });
 
+test('explicit LF text scope survives CRLF, preserves other bytes and rejects content changes', async () => {
+  const lf = Buffer.from('\ufeff{\n"name":"Sālote", "note":"escaped\\r\\n"\n}\n');
+  const crlf = Buffer.from(lf.toString('utf8').replace(/\n/g, '\r\n'));
+  const input = {role: 'x', path: 'spheres-web/data/x.json', hash_scope: 'utf8-lf', bytes: lf.length, sha256: sha(lf)};
+  const fetcher = bytes => async () => ({ok: true, arrayBuffer: async () => bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.length)});
+  for (const bytes of [lf, crlf]) {
+    const [result] = await review.verifyInputs([input], fetcher(bytes), crypto.webcrypto, 'http://127.0.0.1/');
+    assert.equal(result.matches, true);
+    assert.equal(result.raw_bytes, bytes.length);
+    assert.equal(result.raw_sha256, sha(bytes));
+  }
+  const [rawMismatch] = await review.verifyInputs([{...input, hash_scope: 'raw'}], fetcher(crlf), crypto.webcrypto, 'http://127.0.0.1/');
+  assert.equal(rawMismatch.matches, false);
+  for (const changed of [Buffer.from(lf.toString('utf8').replace('Sālote', 'Other')), Buffer.concat([lf, Buffer.from('\r')])]) {
+    assert.equal((await review.verifyInputs([input], fetcher(changed), crypto.webcrypto, 'http://127.0.0.1/'))[0].matches, false);
+  }
+  await assert.rejects(review.verifyInputs([{...input, hash_scope: 'unknown'}], fetcher(lf), crypto.webcrypto, 'http://127.0.0.1/'), /Unsupported input hash scope/);
+});
+
 test('the committed export keeps automated findings apart from approval and labels every collection', () => {
   const data = readExport();
   assert.equal(data.format, 'spheres-c03-cartoon-review/v1');
@@ -261,7 +280,7 @@ after(async () => {
   const exportBytes = fs.readFileSync(path.join(root, review.EXPORT_PATH));
   const sources = {};
   for (const p of ['tools/ui/cartoon-review/index.html', 'tools/ui/cartoon-review/cartoon-review.css', 'tools/ui/cartoon-review/cartoon-review.js',
-    'tools/ui/check_cartoon_review.cjs', 'tools/avatars/cartoon_review.py']) sources[p] = sha(fs.readFileSync(path.join(root, p)).toString('binary').replace(/\r\n/g, '\n'));
+    'tools/ui/check_cartoon_review.cjs', 'tools/avatars/cartoon_review.py']) sources[p] = sha(fs.readFileSync(path.join(root, p), 'utf8').replace(/\r\n/g, '\n'));
   const origins = [...new Set(env.requests.map((r) => new URL(r.url).origin))];
   Object.assign(env.proof, {
     finished_utc: new Date().toISOString(), revision: git('rev-parse', 'HEAD'),
@@ -285,7 +304,7 @@ test('real reviewer in a headless browser', {skip: skipBrowser}, async (t) => {
   await t.test('verifies every pinned input by SHA-256 before showing the sheet', async () => {
     await page.goto(env.origin + '/tools/ui/cartoon-review/');
     await ready(page);
-    const verification = await page.evaluate(() => window.CartoonReviewState.verification.map(({path, bytes, sha256, matches}) => ({path, bytes, sha256, matches})));
+    const verification = await page.evaluate(() => window.CartoonReviewState.verification.map(({path, hash_scope, bytes, sha256, raw_bytes, raw_sha256, matches}) => ({path, hash_scope, bytes, sha256, raw_bytes, raw_sha256, matches})));
     assert.deepEqual(verification.map((v) => [v.path, v.bytes, v.sha256]), data.inputs.map((i) => [i.path, i.bytes, i.sha256]));
     assert.ok(verification.every((v) => v.matches));
     assert.match(await page.locator('#status').textContent(), new RegExp(`Export verified: ${data.inputs.length} pinned inputs match`));

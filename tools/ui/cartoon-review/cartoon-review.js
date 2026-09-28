@@ -205,8 +205,22 @@
       const response = await fetcher(base + path, { cache: 'no-store' });
       if (!response.ok) throw new Error(`Input unavailable (${response.status}): ${path}`);
       const buffer = await response.arrayBuffer();
-      const sha256 = await sha256Hex(buffer, cryptoImpl);
-      results.push({ role: input.role, path, bytes: buffer.byteLength, sha256, matches: sha256 === input.sha256 && buffer.byteLength === input.bytes, buffer });
+      const hashScope = input.hash_scope || 'raw';
+      if (!['raw', 'utf8-lf'].includes(hashScope)) throw new Error('Unsupported input hash scope: ' + hashScope);
+      let scoped = buffer;
+      if (hashScope === 'utf8-lf') {
+        const raw = new Uint8Array(buffer), lf = new Uint8Array(raw.length);
+        let length = 0;
+        for (let i = 0; i < raw.length; i++) {
+          if (raw[i] === 13 && raw[i + 1] === 10) continue;
+          lf[length++] = raw[i];
+        }
+        scoped = lf.subarray(0, length);
+      }
+      const sha256 = await sha256Hex(scoped, cryptoImpl);
+      results.push({ role: input.role, path, hash_scope: hashScope, bytes: scoped.byteLength, sha256,
+        raw_bytes: buffer.byteLength, raw_sha256: await sha256Hex(buffer, cryptoImpl),
+        matches: sha256 === input.sha256 && scoped.byteLength === input.bytes, buffer });
     }
     return results;
   }

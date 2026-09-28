@@ -409,6 +409,21 @@ class VisualReviewGuard(FixtureCase):
 
 
 class Regeneration(FixtureCase):
+    def test_json_input_hashes_are_portable_without_changing_art_or_source_bytes(self):
+        self.fx.write(self.tmp)
+        expected = cr.outputs(self.tmp)
+        for _role, rel, _required in cr.INPUTS:
+            path = self.tmp / rel
+            if path.is_file():
+                path.write_bytes(path.read_bytes().replace(b'\n', b'\r\n'))
+        before = {p: p.read_bytes() for p in self.tmp.rglob('*') if p.is_file()}
+        self.assertEqual(cr.outputs(self.tmp), expected)
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+        # A real content change must still invalidate the export.
+        registry = self.tmp / cr.REGISTRY
+        registry.write_bytes(registry.read_bytes().replace(b'Alice Example', b'Alice Changed'))
+        self.assertNotEqual(cr.outputs(self.tmp), expected)
+
     def test_regeneration_is_deterministic_and_check_detects_staleness(self):
         self.fx.write(self.tmp)
         first = cr.outputs(self.tmp)
@@ -457,7 +472,8 @@ class Repository(unittest.TestCase):
             self.assertTrue(entry['fixes'])
         recorded = {i['path']: i['sha256'] for i in export['inputs']}
         for rel in inputs:
-            self.assertEqual(recorded[rel], before[rel])
+            self.assertEqual(recorded[rel], sha((cr.ROOT / rel).read_bytes().replace(b'\r\n', b'\n')))
+        self.assertTrue(all(i['hash_scope'] == 'utf8-lf' for i in export['inputs']))
 
     @unittest.skipUnless(__import__('importlib').util.find_spec('PIL'), 'Pillow not installed')
     def test_header_dimensions_match_pillow_on_repository_images(self):
