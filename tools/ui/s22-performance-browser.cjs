@@ -135,7 +135,7 @@ async function run(){
         drawCityLayer=function(...args){const probe=s22Probes.find(p=>p.gl===GLR?.gl),before=probe?.metrics.snapshot().draw_calls||0;
           try{return original.apply(this,args);}finally{s22CityDraws+=(probe?.metrics.snapshot().draw_calls||0)-before;}};
       });
-      const views=[{name:'world',zoom:1.25,amplitude:.3},{name:'national',zoom:8,amplitude:.07},{name:'regional',zoom:40,amplitude:.015},{name:'paris-city',zoom:181,amplitude:.003}];
+      const views=[{name:'world',zoom:1.25,amplitude:.3},{name:'national',zoom:8,amplitude:.07},{name:'regional',zoom:40,amplitude:.015},{name:'paris-city',zoom:1500,amplitude:.00036}];
       for(const detail of ['standard','low']){
         await page.locator('[data-map-mode="terrain"]').click();
         if(await page.locator('.map-detail-menu').getAttribute('open')===null)await tap('.map-detail-menu > summary');
@@ -146,7 +146,7 @@ async function run(){
           const loadView=performance.now();
           await page.evaluate(v=>{GLOBE.lookAt(2.3522,48.8566,v.zoom);GLOBE.render();},view);
           if(detail==='standard'&&view.zoom>=12)await page.waitForFunction(()=>GLR?.surface?.ready&&!GLR.surface.loading,null,{timeout:120000});
-          if(detail==='standard'&&view.name==='paris-city')await page.waitForFunction(()=>s22CityDraws>0&&[...GLR.cityCache].some(([i])=>CITIES[i]?.name==='Paris'),null,{timeout:120000});
+          if(detail==='standard'&&view.name==='paris-city')await page.waitForFunction(()=>s22CityDraws>0&&[...GLR.cityCache].some(([i,e])=>CITIES[i]?.name==='Paris'&&e.tris>=100000),null,{timeout:120000});
           const viewReadyMs=performance.now()-loadView;
           const metrics=await page.evaluate(async v=>{
             const gl=GL.gl,probe=s22Probes.find(p=>p.gl===gl);if(!probe)throw Error('Missing actual map context');
