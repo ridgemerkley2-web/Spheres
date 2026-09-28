@@ -1,0 +1,830 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "fr_knds_france",
+  "display_name": "KNDS France",
+  "native_name": "KNDS France S.A. (formerly Nexter Systems S.A.); predecessor operator GIAT Industries",
+  "nation": "France",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "ground"
+  ],
+  "selection": {
+    "reason": "The French land-systems manufacturer behind the Leclerc tank, CAESAR artillery, VBCI and Griffon. It is the closest real counterpart to the existing French armoured-vehicle supplier programme, so researching it prevents a duplicate French armour exporter.",
+    "existing_game_references": [
+      {
+        "kind": "supplier_programme",
+        "path": "spheres-sim/src/supplier_catalogue.rs",
+        "id": "France:ground_apc",
+        "note": "Modeled export programme named \"France Export Works\" at runtime; explicitly not a historical firm."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "France:defense",
+        "note": "Procedurally named fictional defense contractors; no real identity today."
+      }
+    ]
+  },
+  "summary": "GIAT Industries became a state-owned societe anonyme on 1 July 1990. On 1 December 2006 the group took the Nexter names, and its operations were carried by the Nexter subsidiaries, led by Nexter Systems. GIAT Industries remained a separate state holding company. Nexter and KMW combined under the KNDS holding in 2015. Nexter Systems S.A. became KNDS France S.A. on 8 April 2024.",
+  "entities": [
+    {
+      "id": "fr_knds_france_sa",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "RCS",
+        "number": "379 706 344",
+        "claims": [
+          "fr_knds_france_c07",
+          "fr_knds_france_c08"
+        ]
+      },
+      "names": [
+        {
+          "name": "Nexter Systems",
+          "from": "2006-12-01",
+          "until": "2024-04-08",
+          "claims": [
+            "fr_knds_france_c03",
+            "fr_knds_france_c05"
+          ]
+        },
+        {
+          "name": "KNDS France",
+          "from": "2024-04-08",
+          "until": null,
+          "claims": [
+            "fr_knds_france_c05",
+            "fr_knds_france_c26"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "operating land-systems manufacturer (lead Nexter operating subsidiary)",
+          "from": "2006-12-01",
+          "until": null,
+          "claims": [
+            "fr_knds_france_c03",
+            "fr_knds_france_c26"
+          ]
+        }
+      ],
+      "note": "The register records activity from 28 September 1990 for this legal person; its name before December 2006 was not found and is left as a gap rather than assumed to be GIAT Industries."
+    },
+    {
+      "id": "fr_giat_industries_sa",
+      "kind": "state_holding",
+      "subject": false,
+      "registration": {
+        "register": "RCS",
+        "number": "352 751 143",
+        "claims": [
+          "fr_knds_france_c09",
+          "fr_knds_france_c10",
+          "fr_knds_france_c27"
+        ]
+      },
+      "names": [
+        {
+          "name": "GIAT Industries",
+          "from": "1990-07-01",
+          "until": "2025-07-29",
+          "until_basis": "last_observed",
+          "claims": [
+            "fr_knds_france_c01",
+            "fr_knds_france_c02",
+            "fr_knds_france_c11",
+            "fr_knds_france_c27"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "operating land-armaments company created from the state GIAT arsenals",
+          "from": "1990-07-01",
+          "until": "2006-12-01",
+          "claims": [
+            "fr_knds_france_c01",
+            "fr_knds_france_c03"
+          ]
+        },
+        {
+          "role": "state holding company co-owning KNDS",
+          "from": "2020-12-15",
+          "from_basis": "first_observed",
+          "until": "2020-12-15",
+          "until_basis": "last_observed",
+          "claims": [
+            "fr_knds_france_c22"
+          ]
+        }
+      ],
+      "note": "Not renamed Nexter. The register still lists GIAT INDUSTRIES (now an SAS) in 2025, and in 2009 Nexter Systems bought a business from it."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "fr_knds_france_l01",
+      "kind": "business_transfer",
+      "entity": "fr_knds_france_sa",
+      "date": "2006-12-01",
+      "counterparties": [
+        {
+          "name": "GIAT Industries",
+          "entity": "fr_giat_industries_sa",
+          "relation": "group reorganised; Nexter subsidiaries named and operating from this date"
+        }
+      ],
+      "claims": [
+        "fr_knds_france_c03"
+      ],
+      "note": "A reorganisation between legal persons, not a rename of GIAT Industries."
+    },
+    {
+      "id": "fr_knds_france_l02",
+      "kind": "holding_formation",
+      "entity": "fr_knds_france_sa",
+      "date": "2015",
+      "counterparties": [
+        {
+          "name": "Krauss-Maffei Wegmann (KMW)",
+          "relation": "German partner combined with Nexter under KNDS"
+        },
+        {
+          "name": "KNDS",
+          "relation": "new joint holding"
+        }
+      ],
+      "claims": [
+        "fr_knds_france_c16"
+      ]
+    },
+    {
+      "id": "fr_knds_france_l03",
+      "kind": "rename",
+      "entity": "fr_knds_france_sa",
+      "date": "2024-04-08",
+      "from_name": "Nexter Systems",
+      "to_name": "KNDS France",
+      "claims": [
+        "fr_knds_france_c05",
+        "fr_knds_france_c07",
+        "fr_knds_france_c06"
+      ],
+      "note": "The KNDS brand preceded the legal renaming (June 2023)."
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "French State (100% of the Nexter companies)",
+      "share": "100%",
+      "date": "2007-02-06",
+      "claims": [
+        "fr_knds_france_c04"
+      ]
+    },
+    {
+      "holder": "KNDS holding owned by GIAT Industries (French state holding) and Wegmann & Co GmbH",
+      "share": "not stated",
+      "date": "2020-12-15",
+      "claims": [
+        "fr_knds_france_c22"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "France",
+      "kind": "headquarters",
+      "date": "2024-04-10",
+      "claims": [
+        "fr_knds_france_c07"
+      ],
+      "note": "Registered at Versailles."
+    },
+    {
+      "country": "Germany",
+      "kind": "joint_holding_partner",
+      "date": "2015",
+      "claims": [
+        "fr_knds_france_c16"
+      ]
+    },
+    {
+      "country": "Netherlands",
+      "kind": "parent_holding_seat",
+      "date": "2024-04-09",
+      "claims": [
+        "fr_knds_france_c05"
+      ]
+    },
+    {
+      "country": "Belgium",
+      "kind": "export_customer",
+      "date": "2019-06-24",
+      "claims": [
+        "fr_knds_france_c24"
+      ]
+    },
+    {
+      "country": "Czech Republic",
+      "kind": "export_customer",
+      "date": "2021-09-30",
+      "claims": [
+        "fr_knds_france_c20"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "fr_knds_leclerc",
+      "name": "Leclerc main battle tank",
+      "reality": "historical",
+      "category": "main battle tank",
+      "milestones": [
+        {
+          "event": "entry_into_service",
+          "date": "1992",
+          "maker_entity": "fr_giat_industries_sa",
+          "maker_name": "GIAT Industries",
+          "claims": [
+            "fr_knds_france_c12"
+          ]
+        },
+        {
+          "event": "contract",
+          "date": "2021-04-01",
+          "maker_entity": "fr_knds_france_sa",
+          "maker_name": "Nexter Systems",
+          "claims": [
+            "fr_knds_france_c21"
+          ],
+          "note": "Support contract extended to renovation of the first 50 tanks."
+        }
+      ]
+    },
+    {
+      "id": "fr_knds_bonus",
+      "name": "BONUS target-detecting anti-tank shell",
+      "reality": "historical",
+      "category": "artillery munition",
+      "milestones": [
+        {
+          "event": "development_start",
+          "date": "1993",
+          "maker_entity": "fr_giat_industries_sa",
+          "maker_name": "GIAT Industries",
+          "claims": [
+            "fr_knds_france_c13"
+          ],
+          "note": "The source lists 1993 as the creation of the shell; calibre is not stated there."
+        }
+      ]
+    },
+    {
+      "id": "fr_knds_caesar",
+      "name": "CAESAR self-propelled artillery system",
+      "reality": "historical",
+      "category": "wheeled self-propelled artillery",
+      "milestones": [
+        {
+          "event": "order",
+          "date": "2004",
+          "maker_entity": "fr_giat_industries_sa",
+          "maker_name": "GIAT Industries",
+          "claims": [
+            "fr_knds_france_c14"
+          ],
+          "note": "First sale to the French Army."
+        },
+        {
+          "event": "export_order",
+          "date": "2021-09-30",
+          "maker_entity": "fr_knds_france_sa",
+          "maker_name": "Nexter Systems",
+          "claims": [
+            "fr_knds_france_c20"
+          ],
+          "note": "52 CAESAR 8x8 for the Czech Republic."
+        }
+      ]
+    },
+    {
+      "id": "fr_knds_vbci",
+      "name": "VBCI armoured infantry fighting vehicle",
+      "reality": "historical",
+      "category": "wheeled infantry fighting vehicle",
+      "milestones": [
+        {
+          "event": "roll_out",
+          "date": "2006",
+          "maker_entity": "fr_giat_industries_sa",
+          "maker_name": "GIAT Industries",
+          "claims": [
+            "fr_knds_france_c15"
+          ],
+          "note": "The source says the vehicle was released in 2006, the year the Nexter names took effect."
+        }
+      ]
+    },
+    {
+      "id": "fr_knds_griffon",
+      "name": "Griffon multi-role armoured vehicle (SCORPION)",
+      "reality": "historical",
+      "category": "wheeled multi-role armoured vehicle",
+      "milestones": [
+        {
+          "event": "first_delivery",
+          "date": "2019-07-04",
+          "maker_entity": "fr_knds_france_sa",
+          "maker_name": "Nexter Systems",
+          "claims": [
+            "fr_knds_france_c19",
+            "fr_knds_france_c17"
+          ],
+          "note": "Designed and produced by a Nexter-Arquus-Thales joint venture mandated by the DGA; not a KNDS-only product."
+        }
+      ]
+    },
+    {
+      "id": "fr_knds_mgcs",
+      "name": "MGCS Main Ground Combat System (Franco-German)",
+      "reality": "announced",
+      "category": "future main ground combat system",
+      "outcome": "unknown_after_cutoff",
+      "milestones": [
+        {
+          "event": "contract",
+          "date": "2019-12-13",
+          "maker_entity": "fr_knds_france_sa",
+          "maker_name": "Nexter Systems",
+          "claims": [
+            "fr_knds_france_c23"
+          ],
+          "note": "KMW, Rheinmetall and Nexter agreed a first-phase working arrangement. The official 2045 horizon is a target, not history."
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "designer_platform",
+        "target_id": "tank_standard",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "fr_knds_leclerc"
+        ],
+        "uncertainty": "Leclerc is a main battle tank; the designer platform is a generic main-battle-tank envelope, not a Leclerc replica. Component and performance choices remain the player's design."
+      },
+      {
+        "target_kind": "designer_platform",
+        "target_id": "ground_artillery",
+        "flow": "supplier_equipment_flow",
+        "confidence": "low",
+        "basis_products": [
+          "fr_knds_caesar"
+        ],
+        "uncertainty": "CAESAR is wheeled and truck-mounted; the game platform is described as a tracked howitzer."
+      },
+      {
+        "target_kind": "designer_platform",
+        "target_id": "ground_ifv",
+        "flow": "supplier_equipment_flow",
+        "confidence": "low",
+        "basis_products": [
+          "fr_knds_vbci"
+        ],
+        "uncertainty": "VBCI is wheeled; the game IFV is described as tracked."
+      },
+      {
+        "target_kind": "ammunition_family",
+        "target_id": "howitzer_155_guided",
+        "flow": "supplier_ammunition_flow",
+        "confidence": "low",
+        "basis_products": [
+          "fr_knds_bonus"
+        ],
+        "uncertainty": "The retrieved source does not state BONUS calibre or guidance class. The group has a separately registered ammunition company (KNDS Ammo France), so ammunition supply may belong to that legal entity rather than KNDS France S.A.",
+        "claims": [
+          "fr_knds_france_c28"
+        ]
+      },
+      {
+        "target_kind": "supplier_catalogue_roster",
+        "target_id": "France:ground_apc",
+        "flow": "supplier_programme_slot",
+        "confidence": "low",
+        "basis_products": [
+          "fr_knds_griffon"
+        ],
+        "uncertainty": "The roster slot is a modeled programme (\"France Export Works\"), not a historical firm. Griffon is a joint-venture product, and the older VAB wheeled carrier line belongs to a different company lineage not researched here. Attaching a real identity needs a ruling so that France does not gain two armour exporters."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "France:defense",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Sector contractors are generated fictional firms. A real identity should replace one generated defense contractor, not add a parallel one."
+      }
+    ],
+    "duplicates_avoided": [
+      "GIAT Industries and Nexter/KNDS France are kept as two legal persons in one dossier; neither becomes a second French armour company.",
+      "France Export Works (supplier programme) is proposed as the single slot a real French armour identity could occupy, subject to ruling."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. Foreign sales such as the Czech CAESAR order would use the existing ImportPurchase route from company stock, not a scripted contract.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Leclerc renovation work would use the existing manufacturer refit route only for a certified compatible revision."
+    ]
+  },
+  "gaps": [
+    "The name of legal person 379 706 344 between 1990 and December 2006 was not found.",
+    "The exact first entry-into-service day of the Leclerc and the first CAESAR contract date are year-precision only.",
+    "Legifrance texts (law 89-924, decree 90-582) were not retrieved directly; the Senate text cites them."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "fr_knds_france_c01",
+      "source": "fr_bnf_giat_rdf",
+      "attests": [
+        "1990-07-01"
+      ],
+      "text": "On 1 July 1990 the Groupement industriel des armements terrestres changed status and became, under the name GIAT industries, a societe anonyme with public capital, separate from the land-armaments directorate.",
+      "locator": {
+        "record": "ark:/12148/cb12215621t",
+        "field": "rdagroup2elements:corporateHistory"
+      },
+      "anchor": "Le 1er juillet 1990, le Groupement industriel des armements terrestres"
+    },
+    {
+      "id": "fr_knds_france_c02",
+      "source": "fr_senat_ppl02_284",
+      "attests": [
+        "1990-07-09",
+        "2003-05-07"
+      ],
+      "text": "A text transmitted to the Senate on 7 May 2003 refers to the workers of the societe nationale GIAT Industries governed by decree 90-582 of 9 July 1990, made under law 89-924 of 23 December 1989 authorising the transfer of GIAT establishments to a national company.",
+      "locator": {
+        "section": "Article 2 (nouveau)",
+        "document": "Texte n 284 (2002-2003)"
+      },
+      "anchor": "décret n° 90-582 du 9 juillet 1990"
+    },
+    {
+      "id": "fr_knds_france_c03",
+      "source": "fr_an_q12_117468",
+      "attests": [
+        "2006-12-01"
+      ],
+      "text": "The Ministry of Defence answer states that the Nexter name and the subsidiary names Nexter Systems, Nexter Electronics, Nexter Mechanics and Nexter Munitions, chosen by the management of the group then called Giat Industries, took effect on 1 December 2006 with the reorganisation of the land-armaments group.",
+      "locator": {
+        "section": "Texte de la REPONSE",
+        "published": "JO 08/05/2007 p. 4279"
+      },
+      "anchor": "Ce choix est devenu effectif le 1er décembre 2006"
+    },
+    {
+      "id": "fr_knds_france_c04",
+      "source": "fr_an_q12_117468",
+      "attests": [
+        "2007-02-06"
+      ],
+      "text": "The written question (published 6 February 2007) notes that the State held 100% of these companies.",
+      "locator": {
+        "section": "Texte de la QUESTION",
+        "published": "JO 06/02/2007 p. 1169"
+      },
+      "anchor": "l'État est actionnaire à 100 % de ces sociétés"
+    },
+    {
+      "id": "fr_knds_france_c05",
+      "source": "fr_knds_pr_renaming_2024",
+      "attests": [
+        "2024-04-08",
+        "2024-04-09"
+      ],
+      "text": "KNDS, based in Amsterdam, formally renamed Nexter Systems S.A. as KNDS France S.A. with effect from 8 April 2024 (press release dated 9 April 2024).",
+      "locator": {
+        "section": "press release, first paragraph",
+        "dateline": "Amsterdam, 9th April 2024"
+      },
+      "anchor": "Nexter Systems S. A. as KNDS France S. A."
+    },
+    {
+      "id": "fr_knds_france_c06",
+      "source": "fr_knds_pr_renaming_2024",
+      "attests": [
+        "2023-06"
+      ],
+      "text": "The previous brand names had been replaced by the KNDS brand in June 2023, before the legal renaming.",
+      "locator": {
+        "section": "press release, second paragraph"
+      },
+      "anchor": "brand in June 2023"
+    },
+    {
+      "id": "fr_knds_france_c07",
+      "source": "fr_bodacc_knds_france_name_2024",
+      "attests": [
+        "2024-04-10"
+      ],
+      "text": "BODACC notice 1716 of 10 April 2024 records a change of name and administration for KNDS France, societe anonyme, RCS Versailles 379 706 344, seated at Versailles.",
+      "locator": {
+        "record": "B202400711716",
+        "field": "modificationsgenerales.descriptif"
+      },
+      "anchor": "Modification survenue sur l'administration, la dénomination."
+    },
+    {
+      "id": "fr_knds_france_c08",
+      "source": "fr_bodacc_nexter_systems_2008",
+      "attests": [
+        "2008-07-18",
+        "1990-09-28"
+      ],
+      "text": "BODACC notice of 18 July 2008 lists NEXTER SYSTEMS, societe anonyme, number 379 706 344, with an activity start date of 28 September 1990.",
+      "locator": {
+        "record": "B200801261141",
+        "field": "modificationsgenerales.dateCommencementActivite"
+      },
+      "anchor": "1990-09-28"
+    },
+    {
+      "id": "fr_knds_france_c09",
+      "source": "fr_bodacc_giat_industries_2008",
+      "attests": [
+        "2008-01-16"
+      ],
+      "text": "BODACC notice of 16 January 2008 lists GIAT INDUSTRIES, societe anonyme, RCS Versailles 352 751 143, as a registered company.",
+      "locator": {
+        "record": "B200800101070",
+        "field": "listepersonnes.denomination"
+      },
+      "anchor": "352 751 143"
+    },
+    {
+      "id": "fr_knds_france_c10",
+      "source": "fr_bodacc_nexter_giat_sale_2009",
+      "attests": [
+        "2009-02-05"
+      ],
+      "text": "A BODACC sale notice published 5 February 2009 records NEXTER SYSTEMS (379 706 344) buying a business from GIAT INDUSTRIES (352 751 143), showing two distinct legal persons.",
+      "locator": {
+        "record": "A200900251242",
+        "field": "acte.vente / listeprecedentproprietaire"
+      },
+      "anchor": "Achat d'un fonds par une personne morale"
+    },
+    {
+      "id": "fr_knds_france_c11",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "1990"
+      ],
+      "text": "The KNDS France heritage timeline lists 1990 for the creation of GIAT Industries.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "GIAT Industries (year 1990)"
+      },
+      "anchor": "Création de GIAT Industries"
+    },
+    {
+      "id": "fr_knds_france_c12",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "1992"
+      ],
+      "text": "The timeline lists 1992 for the entry into service of the third-generation Leclerc main battle tank with the French cavalry.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "LECLERC (year 1992)"
+      },
+      "anchor": "Entré en service du Char de combat LECLERC"
+    },
+    {
+      "id": "fr_knds_france_c13",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "1993"
+      ],
+      "text": "The timeline lists 1993 for the creation of the BONUS target-detecting anti-tank shell.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "Obus BONUS (year 1993)"
+      },
+      "anchor": "anti-char Bonus à détection de cible"
+    },
+    {
+      "id": "fr_knds_france_c14",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "2004"
+      ],
+      "text": "The timeline lists 2004 for the sale of the first CAESAR systems to the French Army.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "Système d'artillerie CAESAR (year 2004)"
+      },
+      "anchor": "Vente des premiers CAESAR"
+    },
+    {
+      "id": "fr_knds_france_c15",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "2006"
+      ],
+      "text": "The timeline lists 2006 for the release of the VBCI infantry fighting vehicle.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "VBCI (year 2006)"
+      },
+      "anchor": "Sortie du Véhicule Blindé de Combat"
+    },
+    {
+      "id": "fr_knds_france_c16",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "2015"
+      ],
+      "text": "The timeline lists 2015 for Nexter and KMW creating KNDS.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "Création de KNDS (year 2015)"
+      },
+      "anchor": "Nexter et KMW créent KNDS"
+    },
+    {
+      "id": "fr_knds_france_c17",
+      "source": "fr_knds_france_page",
+      "attests": [
+        "2019"
+      ],
+      "text": "The timeline lists 2019 for the first Griffon deliveries of the SCORPION programme.",
+      "locator": {
+        "section": "heritage timeline",
+        "entry": "Programme SCORPION (year 2019)"
+      },
+      "anchor": "Premières livraisons de GRIFFON"
+    },
+    {
+      "id": "fr_knds_france_c19",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2019-07-04"
+      ],
+      "text": "On 4 July 2019 Nexter delivered the first GRIFFON to the French Army; a joint venture of Nexter, Arquus and Thales is mandated by the DGA to design and produce GRIFFON and JAGUAR.",
+      "locator": {
+        "section": "history entry dated July 4, 2019"
+      },
+      "anchor": "Nexter delivers the first GRIFFON to the French Army"
+    },
+    {
+      "id": "fr_knds_france_c20",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2021-09-30"
+      ],
+      "text": "On 30 September 2021 the Czech Republic signed for 52 CAESAR 8x8 self-propelled guns from Nexter.",
+      "locator": {
+        "section": "history entry dated September 30, 2021"
+      },
+      "anchor": "Czech Republic orders 52 CAESAR 8X8 from Nexter"
+    },
+    {
+      "id": "fr_knds_france_c21",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2021-04-01"
+      ],
+      "text": "On 1 April 2021 the French Ministry of Defence renewed the Leclerc support contract with Nexter, extended to major obsolescence treatment and renovation of the first 50 tanks.",
+      "locator": {
+        "section": "history entry dated April 1, 2021"
+      },
+      "anchor": "renew their confidence in Nexter with Leclerc MBT renovation"
+    },
+    {
+      "id": "fr_knds_france_c22",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2020-12-15"
+      ],
+      "text": "On 15 December 2020 the owners of KNDS were described as the French state holding company GIAT Industries and the German family-owned Wegmann & Co GmbH.",
+      "locator": {
+        "section": "history entry dated December 15, 2020"
+      },
+      "anchor": "the French state holding company GIAT Industries"
+    },
+    {
+      "id": "fr_knds_france_c23",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2019-12-13"
+      ],
+      "text": "On 13 December 2019 KMW, Rheinmetall and Nexter agreed a working arrangement for the first phase of the Franco-German MGCS tank programme.",
+      "locator": {
+        "section": "history entry dated December 13, 2019"
+      },
+      "anchor": "First MGCS Project Takes Shape"
+    },
+    {
+      "id": "fr_knds_france_c24",
+      "source": "fr_knds_group_history_en",
+      "attests": [
+        "2019-06-24"
+      ],
+      "text": "On 24 June 2019 the DGA notified Nexter of the CaMo contract to equip the Belgian Army with armoured vehicles, with Nexter as main contractor.",
+      "locator": {
+        "section": "history entry dated June 24, 2019"
+      },
+      "anchor": "Nexter becomes the prime contractor for the CaMo program"
+    },
+    {
+      "id": "fr_knds_france_c26",
+      "source": "fr_bodacc_knds_france_accounts_2026",
+      "attests": [
+        "2026-05-04"
+      ],
+      "text": "A BODACC accounts notice published 4 May 2026 lists KNDS France, societe anonyme, 379 706 344, filing annual accounts closed 31 December 2025.",
+      "locator": {
+        "record": "C2026008510733",
+        "field": "depot.dateCloture"
+      },
+      "anchor": "2025-12-31"
+    },
+    {
+      "id": "fr_knds_france_c28",
+      "source": "fr_bodacc_knds_ammo_2024",
+      "attests": [
+        "2024-04-10"
+      ],
+      "text": "BODACC notice of 10 April 2024 records KNDS Ammo France, a societe par actions simplifiee registered at Versailles as 339 946 469, a legal person separate from KNDS France.",
+      "locator": {
+        "record": "B202400711714",
+        "field": "listepersonnes.denomination"
+      },
+      "anchor": "KNDS Ammo France"
+    },
+    {
+      "id": "fr_knds_france_c27",
+      "source": "fr_bodacc_giat_industries_accounts_2025",
+      "attests": [
+        "2025-07-29"
+      ],
+      "text": "A BODACC accounts notice published 29 July 2025 lists GIAT INDUSTRIES, 352 751 143, now a societe par actions simplifiee with a sole shareholder, filing 2024 accounts.",
+      "locator": {
+        "record": "C2025014321463",
+        "field": "listepersonnes.formeJuridique"
+      },
+      "anchor": "Société par actions simplifiée (à associé unique)"
+    }
+  ]
+}

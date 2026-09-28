@@ -1,0 +1,805 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "jp_komatsu",
+  "display_name": "Komatsu",
+  "native_name": "株式会社小松製作所 (brand コマツ; Komatsu Ltd.)",
+  "nation": "Japan",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "ground",
+    "civilian_industrial"
+  ],
+  "selection": {
+    "reason": "Japan's maker of the JGSDF Type 96 wheeled APC, Light Armored Vehicle and Type 87 reconnaissance vehicle, and a leading civilian construction and mining machinery manufacturer. The game has no Japanese ground supplier, so this dossier gives a Japanese wheeled-vehicle identity without duplicating MHI's tanks.",
+    "existing_game_references": [
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "Japan:manufacturing",
+        "note": "Generated fictional contractors only; no Komatsu reference exists in game data."
+      }
+    ]
+  },
+  "summary": "Komatsu (registered name 株式会社小松製作所, founded 1921) kept its name through the window. It bought Partek Forest (Sweden) in 2004, sold control of Komatsu Electronic Metals in 2006, introduced autonomous haulage and a hybrid excavator in 2008, bought Joy Global (US) in 2017, absorbed Komatsu Tokki in 2018 and moved Smart Construction to EARTHBRAIN in 2021. Its defence line built the Type 96 APC and the Light Armored Vehicle; the Wheeled Armored Vehicle (Improved) prototype contract of 2015 was discontinued in 2018, and in 2022 the Ministry of Defense chose a foreign design as the Type 96 successor. Its FY2025 report still lists ammunition and armoured personnel carriers.",
+  "entities": [
+    {
+      "id": "jp_komatsu_company",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "Corporate Number (National Tax Agency, Japan)",
+        "number": "1010401010455",
+        "claims": [
+          "jp_komatsu_c01"
+        ]
+      },
+      "names": [
+        {
+          "name": "Komatsu Ltd.",
+          "native": "株式会社小松製作所 (brand コマツ)",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_komatsu_c03",
+            "jp_komatsu_c04",
+            "jp_komatsu_c05",
+            "jp_komatsu_c01",
+            "jp_komatsu_c02",
+            "jp_komatsu_c06"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "construction and mining machinery manufacturer",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_komatsu_c04",
+            "jp_komatsu_c05",
+            "jp_komatsu_c06"
+          ]
+        },
+        {
+          "role": "defence-systems maker (armoured vehicles and ammunition)",
+          "from": "2010",
+          "from_basis": "first_observed",
+          "until": null,
+          "claims": [
+            "jp_komatsu_c18",
+            "jp_komatsu_c22"
+          ]
+        }
+      ],
+      "note": "An unrelated company with the identical trade name is registered in Suwa, Nagano (claim c23)."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "jp_komatsu_l01",
+      "kind": "acquisition",
+      "entity": "jp_komatsu_company",
+      "date": "2004-01",
+      "counterparties": [
+        {
+          "name": "Partek Forest (Sweden)",
+          "relation": "acquired; forestry-machinery company Komatsu Forest AB set up"
+        }
+      ],
+      "claims": [
+        "jp_komatsu_c12"
+      ]
+    },
+    {
+      "id": "jp_komatsu_l02",
+      "kind": "divestiture",
+      "entity": "jp_komatsu_company",
+      "date": "2006-10",
+      "counterparties": [
+        {
+          "name": "Komatsu Electronic Metals Co., Ltd. (now SUMCO TECHXIV)",
+          "relation": "over 50% of shares sold"
+        },
+        {
+          "name": "SUMCO Corporation",
+          "relation": "buyer"
+        }
+      ],
+      "claims": [
+        "jp_komatsu_c08"
+      ]
+    },
+    {
+      "id": "jp_komatsu_l03",
+      "kind": "acquisition",
+      "entity": "jp_komatsu_company",
+      "date": "2017-04",
+      "counterparties": [
+        {
+          "name": "Joy Global",
+          "relation": "US mining-machinery maker acquired and renamed Komatsu Mining Corp."
+        }
+      ],
+      "claims": [
+        "jp_komatsu_c09"
+      ]
+    },
+    {
+      "id": "jp_komatsu_l04",
+      "kind": "merger",
+      "entity": "jp_komatsu_company",
+      "date": "2018-04-01",
+      "counterparties": [
+        {
+          "name": "Komatsu Tokki Co., Ltd. (コマツ特機株式会社)",
+          "relation": "absorbed by absorption-type merger"
+        }
+      ],
+      "claims": [
+        "jp_komatsu_c10"
+      ],
+      "note": "Komatsu Tokki's business scope was not verified; it is not assumed to have been the defence unit."
+    },
+    {
+      "id": "jp_komatsu_l05",
+      "kind": "business_transfer",
+      "entity": "jp_komatsu_company",
+      "date": "2021-07",
+      "counterparties": [
+        {
+          "name": "LANDLOG Ltd. (renamed EARTHBRAIN Ltd.)",
+          "relation": "received part of the Smart Construction business"
+        }
+      ],
+      "claims": [
+        "jp_komatsu_c11"
+      ]
+    }
+  ],
+  "ownership": [],
+  "country_links": [
+    {
+      "country": "Australia",
+      "kind": "subsidiary",
+      "date": "1991-10",
+      "claims": [
+        "jp_komatsu_c05"
+      ],
+      "note": "NS Komatsu set up (renamed Komatsu Australia in 2000)."
+    },
+    {
+      "country": "Sweden",
+      "kind": "acquisition",
+      "date": "2004-01",
+      "claims": [
+        "jp_komatsu_c12"
+      ]
+    },
+    {
+      "country": "Chile",
+      "kind": "first_commercial_deployment",
+      "date": "2008",
+      "claims": [
+        "jp_komatsu_c13"
+      ],
+      "note": "Autonomous haulage at CODELCO's Gabriela Mistral copper mine."
+    },
+    {
+      "country": "United States",
+      "kind": "acquisition",
+      "date": "2017-04",
+      "claims": [
+        "jp_komatsu_c09"
+      ]
+    },
+    {
+      "country": "Japan",
+      "kind": "headquarters",
+      "date": "2024-01-04",
+      "claims": [
+        "jp_komatsu_c07"
+      ],
+      "note": "Registered address moved within Minato-ku, Tokyo."
+    }
+  ],
+  "products": [
+    {
+      "id": "jp_komatsu_type96_apc",
+      "name": "Type 96 wheeled armored personnel carrier",
+      "reality": "historical",
+      "category": "wheeled armoured personnel carrier",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2011-12-17",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c16"
+          ],
+          "note": "In JGSDF service per an equipment page last modified on this date; the service-entry year was not sourced."
+        }
+      ]
+    },
+    {
+      "id": "jp_komatsu_lav",
+      "name": "Light Armored Vehicle (軽装甲機動車)",
+      "reality": "historical",
+      "category": "light armoured vehicle",
+      "milestones": [
+        {
+          "event": "delivery",
+          "date": "2010",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c18"
+          ],
+          "note": "The 2010 white-paper column says Komatsu delivers the LAV to the JGSDF and JASDF; the first-delivery year was not sourced."
+        },
+        {
+          "event": "operational",
+          "date": "2011-12-17",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c17"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jp_komatsu_type87_recon",
+      "name": "Type 87 reconnaissance and patrol vehicle",
+      "reality": "historical",
+      "category": "wheeled reconnaissance vehicle",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2024-05-28",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c24"
+          ],
+          "note": "Still listed as JGSDF equipment on a page last modified on this date; the type predates 1990 and no in-window production date was sourced."
+        }
+      ]
+    },
+    {
+      "id": "jp_komatsu_wapc_improved",
+      "name": "Wheeled Armored Vehicle (Improved) prototype",
+      "reality": "cancelled",
+      "category": "wheeled armoured personnel carrier",
+      "milestones": [
+        {
+          "event": "contract",
+          "date": "2015-02",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c19"
+          ],
+          "note": "Prototype research contract from ATLA, intended to succeed the Type 96."
+        },
+        {
+          "event": "development_discontinued",
+          "date": "2018-07-27",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c20"
+          ]
+        }
+      ],
+      "note": "The prototype was handed over in January 2017 before firing tests found armour-plate defects (claim c19); in December 2022 the Ministry of Defense chose Patria's AMV as the Type 96 successor (claim c21)."
+    },
+    {
+      "id": "jp_komatsu_ammunition",
+      "name": "Ammunition (defence-systems line; calibres not sourced)",
+      "reality": "historical",
+      "category": "ammunition",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2010",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c18"
+          ],
+          "note": "Described as having a record of making artillery ammunition."
+        },
+        {
+          "event": "production_milestone",
+          "date": "2026-03-31",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c22"
+          ],
+          "note": "Listed among current products; the Kanazawa Plant manufactures ammunition."
+        }
+      ]
+    },
+    {
+      "id": "jp_komatsu_ahs",
+      "name": "FrontRunner Autonomous Haulage System",
+      "reality": "historical",
+      "category": "autonomous mining haulage system",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2008-01",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c15"
+          ],
+          "note": "World-first market introduction for unmanned dump trucks."
+        },
+        {
+          "event": "operational",
+          "date": "2008",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c13"
+          ],
+          "note": "First commercial deployment, Chile."
+        }
+      ]
+    },
+    {
+      "id": "jp_komatsu_hybrid_excavator",
+      "name": "Hybrid hydraulic excavator",
+      "reality": "historical",
+      "category": "construction machinery",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2008-06",
+          "maker_entity": "jp_komatsu_company",
+          "maker_name": "Komatsu Ltd.",
+          "claims": [
+            "jp_komatsu_c14"
+          ]
+        }
+      ]
+    }
+  ],
+  "context_notes": [
+    {
+      "note": "On 9 December 2022 the Ministry of Defense chose Patria's AMV as the Type 96 successor after the 2018 cancellation; the other finalist was an MHI prototype. No Komatsu vehicle was selected.",
+      "claims": [
+        "jp_komatsu_c21"
+      ]
+    },
+    {
+      "note": "A different company with the same trade name (株式会社小松製作所) is registered in Suwa, Nagano, under corporate number 5100001018299.",
+      "claims": [
+        "jp_komatsu_c23"
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "designer_platform",
+        "target_id": "ground_apc",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_komatsu_type96_apc"
+        ],
+        "uncertainty": "The Type 96 is a wheeled APC matching the game's wheeled carrier envelope, which is generic. Komatsu's own successor was cancelled in 2018 and Japan chose a foreign design in 2022, so any later Komatsu APC line would be fictional."
+      },
+      {
+        "target_kind": "designer_platform",
+        "target_id": "ground_recon",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_komatsu_type87_recon",
+          "jp_komatsu_lav"
+        ],
+        "uncertainty": "The Type 87 equips reconnaissance units and the LAV infantry and reconnaissance units; neither is a replica of the game scout, and the Type 87 design predates 1990."
+      },
+      {
+        "target_kind": "ammunition_family",
+        "target_id": "howitzer_155_he",
+        "flow": "supplier_ammunition_flow",
+        "confidence": "low",
+        "basis_products": [
+          "jp_komatsu_ammunition"
+        ],
+        "uncertainty": "Komatsu ammunition calibres and types were not sourced; artillery ammunition is attested only in general terms."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:manufacturing",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Generated contractors are fictional; a real identity would replace one generated manufacturing contractor."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:construction",
+        "flow": "sector_contractor_service",
+        "confidence": "low",
+        "uncertainty": "Komatsu makes construction machinery rather than performing construction work; construction contractors speed funded projects."
+      }
+    ],
+    "duplicates_avoided": [
+      "The Suwa (Nagano) company with the identical trade name is a different legal person.",
+      "Patria's AMV (selected 2022) is not a Komatsu product; the other finalist was an MHI prototype, not recorded as an MHI product.",
+      "Komatsu is not proposed for the Japan:air_light_attack supplier programme.",
+      "Komatsu Electronic Metals (now SUMCO TECHXIV) and Komatsu Mining Corp. are separate legal persons."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. Ammunition would use the existing AmmoSupply, AmmoInventory and AmmoPurchase orders for a licensed family from the same company, not a new route.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Autonomous haulage, hybrid excavators, mining and forestry machinery: no machinery product consumer."
+    ]
+  },
+  "gaps": [
+    "The Type 96 and LAV service-entry years were not found in official sources; only as-of observations and a 2010 white-paper column are recorded.",
+    "Komatsu's reported 2019 withdrawal from developing new defence vehicles is news-only.",
+    "Komatsu Tokki (merged 2018) was not characterised."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "jp_komatsu_c01",
+      "source": "jp_komatsu_nta_houjin",
+      "attests": [
+        "2025-08-07"
+      ],
+      "text": "The corporate-number registry (no. 1010401010455) lists 株式会社小松製作所, English name Komatsu Ltd.; the record was last updated on 7 August 2025 and its change history lists mergers and an address change but no change of trade name.",
+      "locator": {
+        "section": "最新情報; 変更履歴情報",
+        "record": "corporate number 1010401010455"
+      },
+      "anchor": "令和7年8月7日"
+    },
+    {
+      "id": "jp_komatsu_c02",
+      "source": "jp_komatsu_profile_ja",
+      "attests": [
+        "2026-04-01"
+      ],
+      "text": "The company profile (as of 1 April 2026) gives the company name as the brand コマツ with registered name 株式会社小松製作所 and English name Komatsu Ltd.",
+      "locator": {
+        "section": "会社概要: 会社名, 英文社名"
+      },
+      "anchor": "コマツ （登記社名：株式会社 小松製作所）"
+    },
+    {
+      "id": "jp_komatsu_c03",
+      "source": "jp_komatsu_profile_ja",
+      "attests": [
+        "1921-05-13"
+      ],
+      "text": "The company was founded on 13 May 1921.",
+      "locator": {
+        "section": "会社概要: 創立"
+      },
+      "anchor": "1921年（大正10年）5月13日",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_komatsu_c04",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "1989-12"
+      ],
+      "text": "In December 1989 Komatsu set up a company in Belgium to run its European business.",
+      "locator": {
+        "section": "沿革: 1980年～, December 1989"
+      },
+      "anchor": "ベルギーに欧州事業を統括する",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_komatsu_c05",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "1991-10"
+      ],
+      "text": "In October 1991 Komatsu established NS Komatsu in Australia.",
+      "locator": {
+        "section": "沿革: 1990年～, October 1991"
+      },
+      "anchor": "オーストラリアに「エヌエスコマツ（株）」設立"
+    },
+    {
+      "id": "jp_komatsu_c06",
+      "source": "jp_komatsu_asr_157_en",
+      "attests": [
+        "2026-03-31",
+        "2026-06-18"
+      ],
+      "text": "Komatsu filed its Annual Securities Report for the year to 31 March 2026 on 18 June 2026; the group comprises 211 consolidated subsidiaries.",
+      "locator": {
+        "section": "Cover; 3. Description of Business",
+        "page": 11
+      },
+      "anchor": "Komatsu comprises 211 consolidated subsidiaries"
+    },
+    {
+      "id": "jp_komatsu_c07",
+      "source": "jp_komatsu_nta_houjin",
+      "attests": [
+        "2024-01-04"
+      ],
+      "text": "The registered head office is Kaigan 1-chome, Minato-ku, Tokyo, after an address change recorded on 4 January 2024 from Akasaka 2-chome, Minato-ku.",
+      "locator": {
+        "section": "最新情報 (所在地); 変更履歴情報 No.1"
+      },
+      "anchor": "令和6年1月4日"
+    },
+    {
+      "id": "jp_komatsu_c08",
+      "source": "jp_komatsu_asr_157_en",
+      "attests": [
+        "2006-10"
+      ],
+      "text": "In October 2006 Komatsu sold over 50% of Komatsu Electronic Metals Co., Ltd. (now SUMCO TECHXIV) to SUMCO Corporation.",
+      "locator": {
+        "section": "Item 1, 2. History: October 2006",
+        "page": 10
+      },
+      "anchor": "Sold over 50% of issued shares of Komatsu Electronic Metals"
+    },
+    {
+      "id": "jp_komatsu_c09",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "2017-04"
+      ],
+      "text": "In April 2017 Komatsu acquired the US mining-machinery maker Joy Global and renamed it Komatsu Mining Corp.",
+      "locator": {
+        "section": "沿革: 2010年～, April 2017"
+      },
+      "anchor": "ジョイ・グローバル社を買収"
+    },
+    {
+      "id": "jp_komatsu_c10",
+      "source": "jp_komatsu_nta_houjin",
+      "attests": [
+        "2018-04-01",
+        "2018-04-02"
+      ],
+      "text": "The registry records the absorption of Komatsu Tokki (コマツ特機株式会社, no. 5010401010476) by merger effective 1 April 2018 (event recorded 2 April 2018).",
+      "locator": {
+        "section": "変更履歴情報 No.4 (吸収合併)"
+      },
+      "anchor": "コマツ特機株式会社（5010401010476）を合併"
+    },
+    {
+      "id": "jp_komatsu_c11",
+      "source": "jp_komatsu_asr_157_en",
+      "attests": [
+        "2021-07"
+      ],
+      "text": "In July 2021 Komatsu transferred part of its Smart Construction business to LANDLOG Ltd., which changed its trade name to EARTHBRAIN Ltd.",
+      "locator": {
+        "section": "Item 1, 2. History: July 2021",
+        "page": 10
+      },
+      "anchor": "name to EARTHBRAIN Ltd."
+    },
+    {
+      "id": "jp_komatsu_c12",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "2004-01"
+      ],
+      "text": "In January 2004 Komatsu acquired Partek Forest of Sweden and set up the forestry-machinery company Komatsu Forest AB.",
+      "locator": {
+        "section": "沿革: 2000年～, January 2004"
+      },
+      "anchor": "スウェーデンのパルテック・フォレスト社を買収し"
+    },
+    {
+      "id": "jp_komatsu_c13",
+      "source": "jp_komatsu_nr_ahs_losbronces_2022_en",
+      "attests": [
+        "2008"
+      ],
+      "text": "Komatsu's FrontRunner Autonomous Haulage System had its first commercial deployment in 2008 at CODELCO's Gabriela Mistral copper mine in Chile.",
+      "locator": {
+        "section": "Paragraph beginning 'FrontRunner is a well-proven system'"
+      },
+      "anchor": "first commercial deployment in 2008 at CODELCO"
+    },
+    {
+      "id": "jp_komatsu_c14",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "2008-06"
+      ],
+      "text": "In June 2008 Komatsu introduced the world's first hybrid hydraulic excavator to the market.",
+      "locator": {
+        "section": "沿革: 2000年～, June 2008"
+      },
+      "anchor": "ハイブリッド油圧ショベルを世界で初めて市場導入"
+    },
+    {
+      "id": "jp_komatsu_c15",
+      "source": "jp_komatsu_history_ja",
+      "attests": [
+        "2008-01"
+      ],
+      "text": "In January 2008 Komatsu introduced the world's first autonomous haulage system for unmanned dump trucks to the market.",
+      "locator": {
+        "section": "沿革: 2000年～, January 2008"
+      },
+      "anchor": "無人ダンプトラック運行システム（AHS）を世界で初めて市場導入"
+    },
+    {
+      "id": "jp_komatsu_c16",
+      "source": "jp_komatsu_gsdf2d_type96",
+      "attests": [
+        "2011-12-17"
+      ],
+      "text": "A JGSDF 2nd Division equipment page (last modified 17 December 2011) names Komatsu (小松製作所) as maker of the Type 96 wheeled APC, which carries 10 and equips mainly infantry units.",
+      "locator": {
+        "section": "96式装輪装甲車: 製作 and 備考",
+        "field": "HTTP Last-Modified 2011-12-17 (response header)"
+      },
+      "anchor": "主として、普通科部隊などに装備し"
+    },
+    {
+      "id": "jp_komatsu_c17",
+      "source": "jp_komatsu_gsdf2d_lav",
+      "attests": [
+        "2011-12-17"
+      ],
+      "text": "The same division's page (last modified 17 December 2011) names Komatsu as maker of the Light Armored Vehicle, which equips infantry and reconnaissance units.",
+      "locator": {
+        "section": "軽装甲機動車: 製作 and 備考",
+        "field": "HTTP Last-Modified 2011-12-17 (response header)"
+      },
+      "anchor": "普通科部隊や偵察部隊に装備され"
+    },
+    {
+      "id": "jp_komatsu_c18",
+      "source": "jp_komatsu_mod_wp2010_voice",
+      "attests": [
+        "2010"
+      ],
+      "text": "In the Ministry of Defense's 2010 white paper, staff of Komatsu's special-machinery division say the company has a record of making artillery ammunition and armoured vehicles and develops armoured vehicles including the LAV delivered to the JGSDF and JASDF.",
+      "locator": {
+        "section": "Defense of Japan 2010, Part III: (VOICE) column"
+      },
+      "anchor": "火砲用弾薬、装甲車などの製造に実績のある企業です"
+    },
+    {
+      "id": "jp_komatsu_c19",
+      "source": "jp_komatsu_nr_wapc_kai_2017",
+      "attests": [
+        "2015-02",
+        "2017-01",
+        "2017-12-26"
+      ],
+      "text": "On 26 December 2017 Komatsu announced that the Wheeled Armored Vehicle (Improved), a prototype research contract received from ATLA in February 2015 and delivered in January 2017 as the intended Type 96 successor, had armour-plate defects found in firing tests, delaying completion by three years.",
+      "locator": {
+        "section": "Newsroom body; 1. 装輪装甲車(改)の概要"
+      },
+      "anchor": "防弾板に不具合が判明し"
+    },
+    {
+      "id": "jp_komatsu_c20",
+      "source": "jp_komatsu_nr_wapc_kai_cancel_2018",
+      "attests": [
+        "2018-07-27"
+      ],
+      "text": "On 27 July 2018 Komatsu announced it was discontinuing the Wheeled Armored Vehicle (Improved) prototype research project after concluding with the Ministry of Defense that development could not be completed.",
+      "locator": {
+        "section": "Newsroom body"
+      },
+      "anchor": "この度本事業を中止することと致しました"
+    },
+    {
+      "id": "jp_komatsu_c21",
+      "source": "jp_komatsu_atla_next_wapc_2022",
+      "attests": [
+        "2018-07",
+        "2022-12-09"
+      ],
+      "text": "On 9 December 2022 the Ministry of Defense chose Patria's AMV as the next wheeled APC succeeding the Type 96, after the July 2018 cancellation of the Wheeled Armored Vehicle (Improved); the other finalist was MHI's Mobile Armored Vehicle prototype.",
+      "locator": {
+        "section": "お知らせ p.1; 別紙 p.2; attachment p.5",
+        "page": 1
+      },
+      "anchor": "Ｐａｔｒｉａ社製ＡＭＶ"
+    },
+    {
+      "id": "jp_komatsu_c22",
+      "source": "jp_komatsu_asr_157_en",
+      "attests": [
+        "2026-03-31"
+      ],
+      "text": "The FY2025 Annual Securities Report lists 'Defense systems' (ammunition and armored personnel carriers) among Industrial Machinery and Others products, and the Kanazawa Plant's facilities include ammunition manufacturing.",
+      "locator": {
+        "section": "Item 1, 3. Description of Business (p.12); Item 3, 2. Major Facilities (p.59)",
+        "page": 12
+      },
+      "anchor": "Ammunition and armored personnel carriers"
+    },
+    {
+      "id": "jp_komatsu_c23",
+      "source": "jp_komatsu_nta_houjin_namesake",
+      "attests": [
+        "2018-11-19"
+      ],
+      "text": "A separate registry record (no. 5100001018299) lists another 株式会社小松製作所 at Suwa, Nagano, last updated on 19 November 2018.",
+      "locator": {
+        "section": "最新情報",
+        "record": "corporate number 5100001018299"
+      },
+      "anchor": "長野県諏訪市湖岸通り２丁目３番１４号"
+    },
+    {
+      "id": "jp_komatsu_c24",
+      "source": "jp_gsdf_6d_vehicles",
+      "attests": [
+        "2024-05-28"
+      ],
+      "text": "The JGSDF 6th Division vehicle page (last modified 28 May 2024) lists the Type 87 reconnaissance and patrol vehicle, made by Komatsu (小松製作所), as equipment of reconnaissance units.",
+      "locator": {
+        "section": "８７式偵察警戒車 entry: 製作 field",
+        "field": "HTTP Last-Modified 2024-05-28 (response header)"
+      },
+      "anchor": "偵察部隊に装備し、空地火力の脅威の中で"
+    }
+  ]
+}
