@@ -168,8 +168,9 @@ nor the native memory ceiling is applied to browser observations.
 Zoom checks preserve the exact finite Robinson map center. Its existing inverse
 uses 24 bisections over 172.8 degrees, so the first conversion can round the globe
 angle. A change up to 1e-7 radians is accepted only with that identical raw map
-center and zoom moving in the requested direction. Missing center observations,
-larger drift and unchanged zoom fail. This corrects the control-effect predicate;
+center and zoom moving in the requested direction. The rounded-angle fallback
+rejects missing center observations and larger drift; unchanged zoom always
+fails. This corrects the control-effect predicate;
 none of the frame-rate, latency, memory, workload or confirmation limits change.
 
 The unit suite uses explicitly synthetic tiny fixtures. It neither creates nor
