@@ -7,6 +7,16 @@ const source=fs.readFileSync(path.join(base,'spheres-web/ui/industry-ui.js'),'ut
 const css=fs.readFileSync(path.join(base,'spheres-web/ui/industry-ui.css'),'utf8');
 const economy=fs.readFileSync(path.join(base,'spheres-web/ui/province-economy-ui.js'),'utf8');
 const money=economy.slice(economy.indexOf('function economyMoney('),economy.indexOf('\n}',economy.indexOf('function economyMoney('))+2);
+test('completed arms facility navigation opens company procurement without changing production or issuing commands',()=>{
+  const page=fs.readFileSync(path.join(base,'spheres-web/ui/index.html'),'utf8');
+  const start=page.indexOf('function industryNavigate('),body=page.slice(start,page.indexOf('\n}',start)+2),calls=[];
+  const c=vm.createContext({S:{player:'France'},advancing:false,pendingAdvance:false,PROD:{mode:'build'},
+    openEquipment:options=>calls.push(JSON.parse(JSON.stringify(options))),
+    openProduction:()=>assert.fail('Legacy production must not open'),api:()=>assert.fail('Navigation cannot issue commands')});
+  vm.runInContext(body,c);assert.equal(c.industryNavigate({action:'manufacture'}),true);
+  assert.deepEqual(calls,[{tab:'companies'}]);assert.equal(c.PROD.mode,'build');
+  c.advancing=true;assert.equal(c.industryNavigate({action:'manufacture'}),false);assert.equal(calls.length,1);
+});
 const plain=value=>JSON.parse(JSON.stringify(value));
 const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 function control(extra={}) { return {disabled:false,listeners:[],addEventListener(type,callback){this.listeners.push(type);this['on'+type]=callback;},...extra}; }

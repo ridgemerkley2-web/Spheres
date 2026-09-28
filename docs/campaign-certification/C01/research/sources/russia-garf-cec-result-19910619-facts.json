@@ -43,7 +43,7 @@
     }
   ],
   "capture_note": "The dossier requested these images with the year wildcard '2023id_'. The Internet Archive redirects that request to the captures recorded here (20191208064007, 20191208064008 and 20191208064005 for images 1-3). This packet repeated the request on 21 September 2026, recorded the resolved captures and re-downloaded identical bytes.",
-  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page and image hashes matched on the dossier retrieval, the independent check and a re-download for this packet. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page and image hashes matched on the dossier retrieval, the independent check and a re-download for this packet. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet. The original page and image responses are not checked into this repository; CLAUDE-C01-SOURCE-05 re-downloaded them on 27 September 2026 and recorded the result in source_review.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "claims": [
     {
@@ -84,5 +84,296 @@
       3
     ],
     "method": "All three images viewed at full size in the dossier and again for this packet: the signed resolution, the communication's 12 June voting paragraph and figures, and the Article 15 result paragraphs."
+  },
+  "source_review": {
+    "review_id": "CLAUDE-C01-SOURCE-05",
+    "review_date": "2026-09-27",
+    "result": "recorded_response_reproduced_exactly",
+    "trigger": "Codex's premerge source-identity sample of 27 September 2026 requested the official page URL (source_url) and recorded '<urlopen error timed out>' (unavailable_not_verified). That URL is the packet URL, not the recorded response: the recorded response is the raw Internet Archive capture in source_response_url, which the sample did not request. The timeout says nothing about the claims.",
+    "method": "curl 8.16.0 (Windows, Schannel) with its default User-Agent, no proxy and the request header 'Accept-Encoding: identity'; each body hashed with SHA-256 and compared with the recorded bytes and SHA-256. The Internet Archive answered every request without Content-Encoding, so each identity below is the uncompressed body as replayed. Page and image captures were listed with the Wayback CDX API restricted to timestamps before the cutoff (to=20260906235959), and each CDX digest (SHA-1, base32) equals the SHA-1 of the downloaded body. Every archive response carried X-Page-Cache: MISS. Times are UTC.",
+    "official_host_attempts": [
+      {
+        "utc": "2026-09-27T23:40:28Z",
+        "url": "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 443; curl exit 28 after 21.1 s"
+      },
+      {
+        "utc": "2026-09-27T23:40:54Z",
+        "url": "http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 80; curl exit 28 after 21.0 s"
+      },
+      {
+        "utc": "2026-09-27T23:41:15Z",
+        "url": "https://projects.rusarchives.ru/",
+        "outcome": "no response: no TCP connection on port 443; curl exit 28 after 21.0 s"
+      },
+      {
+        "utc": "2026-09-27T23:41:37Z",
+        "url": "https://rusarchives.ru/",
+        "outcome": "no response: no TCP connection on port 443; curl exit 28 after 21.2 s"
+      },
+      {
+        "utc": "2026-09-28T00:13:05Z",
+        "url": "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 443; curl exit 28 after 21.0 s"
+      },
+      {
+        "utc": "2026-09-28T00:13:27Z",
+        "url": "http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 80; curl exit 28 after 21.0 s"
+      },
+      {
+        "utc": "2026-09-28T00:55:14Z",
+        "url": "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 443; curl exit 28 after 21.2 s"
+      },
+      {
+        "utc": "2026-09-28T00:55:36Z",
+        "url": "http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "no response: no TCP connection on port 80; curl exit 28 after 21.0 s"
+      }
+    ],
+    "official_host_result": "Unreachable from this environment at every attempt: projects.rusarchives.ru resolves to 92.50.233.124 but opened no TCP connection on port 443 or 80, and rusarchives.ru (92.50.233.117) none on port 443, as on 21 September 2026 (dossier, check and packet) and in Codex's sample. No live response exists, so no live identity is recorded. No proxy, alternate network or other workaround was used.",
+    "recorded_response_reproduction": {
+      "url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+      "downloads_utc": [
+        "2026-09-27T23:42:08Z",
+        "2026-09-28T00:16:28Z",
+        "2026-09-28T00:55:57Z"
+      ],
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": null,
+      "bytes": 15700,
+      "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+      "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+      "archive_headers": "memento-datetime Sun, 04 Jun 2023 07:01:06 GMT; x-archive-orig-date Sun, 04 Jun 2023 05:55:11 GMT; x-archive-orig-content-length 15700; x-archive-src CC-MAIN-2023-23 (Common Crawl); X-Page-Cache MISS on every download",
+      "result": "exact_identity_match",
+      "note": "Identical at 2026-09-27T23:42:08Z and 2026-09-28T00:55:57Z, more than 30 minutes apart, each served from the archive store rather than an edge cache. The body is the one the origin sent: its length equals the archived origin Content-Length."
+    },
+    "captures_before_cutoff": [
+      {
+        "timestamp": "20190823005913",
+        "url": "https://web.archive.org/web/20190823005913id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Common Crawl CC-MAIN-2019-35",
+        "downloads_utc": [
+          "2026-09-27T23:42:47Z"
+        ],
+        "http_status": 200,
+        "bytes": 16109,
+        "sha256": "aadfea65a688e27838a92da1f8d483eb5acb5bd52a02ad7c514c832a25493a24",
+        "cdx_digest_sha1_base32": "NHKRFRJ74UIL3TDRORPLII2TIGUJTXEL",
+        "matches_recorded_response": false,
+        "note": "Differs from the recorded response only in the Yandex.Metrika counter script (counter 7618435 and its enclosing div instead of counter 57042874); the visible text, the caption, the three image captions and the image links are identical."
+      },
+      {
+        "timestamp": "20191208064002",
+        "url": "https://web.archive.org/web/20191208064002id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Internet Archive WPO crawl893",
+        "downloads_utc": [
+          "2026-09-27T23:42:48Z"
+        ],
+        "http_status": 200,
+        "bytes": 16109,
+        "sha256": "aadfea65a688e27838a92da1f8d483eb5acb5bd52a02ad7c514c832a25493a24",
+        "cdx_digest_sha1_base32": "NHKRFRJ74UIL3TDRORPLII2TIGUJTXEL",
+        "matches_recorded_response": false,
+        "note": "Differs from the recorded response only in the Yandex.Metrika counter script (counter 7618435 and its enclosing div instead of counter 57042874); the visible text, the caption, the three image captions and the image links are identical."
+      },
+      {
+        "timestamp": "20210225052658",
+        "url": "https://web.archive.org/web/20210225052658id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Archive Team urls megawarc",
+        "downloads_utc": [
+          "2026-09-27T23:42:49Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true
+      },
+      {
+        "timestamp": "20210511100649",
+        "url": "https://web.archive.org/web/20210511100649id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Common Crawl CC-MAIN-2021-21",
+        "downloads_utc": [
+          "2026-09-27T23:42:50Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true
+      },
+      {
+        "timestamp": "20210612153223",
+        "url": "https://web.archive.org/web/20210612153223id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Internet Archive WPO crawl836",
+        "downloads_utc": [
+          "2026-09-27T23:42:51Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true
+      },
+      {
+        "timestamp": "20210924090951",
+        "url": "https://web.archive.org/web/20210924090951id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Common Crawl CC-MAIN-2021-39",
+        "downloads_utc": [
+          "2026-09-27T23:42:54Z",
+          "2026-09-28T00:19:33Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true
+      },
+      {
+        "timestamp": "20230604070106",
+        "url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "200",
+        "crawl_source": "Common Crawl CC-MAIN-2023-23",
+        "downloads_utc": [
+          "2026-09-27T23:42:08Z",
+          "2026-09-28T00:16:28Z",
+          "2026-09-28T00:55:57Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true,
+        "note": "The recorded response (source_response_url)."
+      },
+      {
+        "timestamp": "20230929012541",
+        "url": "https://web.archive.org/web/20230929012541id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "302",
+        "note": "Redirect record (http to https) with no page body; not a response identity."
+      },
+      {
+        "timestamp": "20230929012544",
+        "url": "https://web.archive.org/web/20230929012544id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "cdx_status": "warc/revisit",
+        "crawl_source": "Internet Archive WPO crawl905",
+        "downloads_utc": [
+          "2026-09-27T23:43:02Z"
+        ],
+        "http_status": 200,
+        "bytes": 15700,
+        "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "cdx_digest_sha1_base32": "BTO6B2XIRDWNWTGXERQQEC32M63MTRJ6",
+        "matches_recorded_response": true,
+        "note": "A revisit record: the crawler found the payload unchanged; replayed with the same bytes."
+      }
+    ],
+    "captures_note": "Six of the eight page captures with a body (20210225052658, 20210511100649, 20210612153223, 20210924090951, 20230604070106, 20230929012544) return the recorded bytes, from three crawl sources (Archive Team, Common Crawl and the Internet Archive's own WPO crawls) between February 2021 and September 2023. The two 2019 captures differ only in the analytics script. The CDX listing is bounded by the cutoff; later captures are not used.",
+    "facsimile_reproduction": [
+      {
+        "image": 1,
+        "url": "https://web.archive.org/web/20191208064007id_/https://projects.rusarchives.ru/statehood/images/09-37-1-postanovlenie-vybory-prezident.jpg",
+        "downloads_utc": [
+          "2026-09-27T23:43:29Z",
+          "2026-09-28T00:17:14Z"
+        ],
+        "http_status": 200,
+        "bytes": 98762,
+        "sha256": "9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2",
+        "cdx_digest_sha1_base32": "7LXTTMOIGP42RUUATPMWRERS7R6KAJGK",
+        "captures_before_cutoff": 1,
+        "origin_last_modified": "Mon, 18 May 2015 08:10:30 GMT",
+        "result": "exact_identity_match"
+      },
+      {
+        "image": 2,
+        "url": "https://web.archive.org/web/20191208064008id_/https://projects.rusarchives.ru/statehood/images/09-37-2-postanovlenie-vybory-prezident.jpg",
+        "downloads_utc": [
+          "2026-09-27T23:43:30Z",
+          "2026-09-28T00:18:01Z"
+        ],
+        "http_status": 200,
+        "bytes": 133816,
+        "sha256": "0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229",
+        "cdx_digest_sha1_base32": "FHUJOAL2V6OJEO7DJTSLDTOTXXVLYZQ3",
+        "captures_before_cutoff": 1,
+        "origin_last_modified": "Mon, 18 May 2015 08:10:34 GMT",
+        "result": "exact_identity_match"
+      },
+      {
+        "image": 3,
+        "url": "https://web.archive.org/web/20191208064005id_/https://projects.rusarchives.ru/statehood/images/09-37-3-postanovlenie-vybory-prezident.jpg",
+        "downloads_utc": [
+          "2026-09-27T23:43:40Z",
+          "2026-09-28T00:18:47Z"
+        ],
+        "http_status": 200,
+        "bytes": 114508,
+        "sha256": "188d308d5631fdb54d5873014d3f3a9b7a91b0f9c97cd337b21173c5a09e328e",
+        "cdx_digest_sha1_base32": "7TPVLSK3RZY4FMIKT3NKNHIJWPGWGXYY",
+        "captures_before_cutoff": 1,
+        "origin_last_modified": "Mon, 18 May 2015 08:10:26 GMT",
+        "result": "exact_identity_match"
+      }
+    ],
+    "transient_failures": [
+      {
+        "utc": "2026-09-27T23:43:33Z",
+        "url": "https://web.archive.org/web/20191208064005id_/https://projects.rusarchives.ru/statehood/images/09-37-3-postanovlenie-vybory-prezident.jpg",
+        "outcome": "curl exit 7: no connection to web.archive.org; retried"
+      },
+      {
+        "utc": "2026-09-28T00:13:03Z",
+        "url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "HTTP 429 Too Many Requests from web.archive.org (rate limit; a 117-byte notice, not a capture); retried later"
+      },
+      {
+        "utc": "2026-09-28T00:13:03Z",
+        "url": "https://web.archive.org/web/20210924090951id_/http://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "outcome": "HTTP 429 Too Many Requests from web.archive.org (rate limit; a 117-byte notice, not a capture); retried later"
+      },
+      {
+        "utc": "2026-09-28T00:13:04Z",
+        "url": "https://web.archive.org/web/20191208064007id_/https://projects.rusarchives.ru/statehood/images/09-37-1-postanovlenie-vybory-prezident.jpg",
+        "outcome": "HTTP 429 Too Many Requests from web.archive.org (rate limit; a 117-byte notice, not a capture); retried later"
+      },
+      {
+        "utc": "2026-09-28T00:13:04Z",
+        "url": "https://web.archive.org/web/20191208064008id_/https://projects.rusarchives.ru/statehood/images/09-37-2-postanovlenie-vybory-prezident.jpg",
+        "outcome": "HTTP 429 Too Many Requests from web.archive.org (rate limit; a 117-byte notice, not a capture); retried later"
+      },
+      {
+        "utc": "2026-09-28T00:13:05Z",
+        "url": "https://web.archive.org/web/20191208064005id_/https://projects.rusarchives.ru/statehood/images/09-37-3-postanovlenie-vybory-prezident.jpg",
+        "outcome": "HTTP 429 Too Many Requests from web.archive.org (rate limit; a 117-byte notice, not a capture); retried later"
+      }
+    ],
+    "content_comparison": {
+      "method": "Compared the visible text of the recorded page with the 2019 captures, and viewed the three reproduced facsimiles at full size (724 x 1100 pixels) with the handwritten folio corners and the signature block enlarged.",
+      "exhibit_caption": "Identical in every capture with a page body: resolution of the Central Electoral Commission for the Election of the President of the RSFSR 'Об итогах выборов Президента РСФСР', 19 June 1991, original, typescript, 29.6 x 21.0, GARF F. 10026, Op. 8, D. 204, L. 6-7; footer: Federal Archival Agency, 2012. Agrees with the source title, the publisher and the claim locator 'exhibit caption'.",
+      "image_captions": "Each image caption repeats the title and date and ends 'ГА РФ. Ф. 10026. Оп. 8. Д. 204.' with 'Л. 6.', 'Л. 6об.' and 'Л. 7.' for images 1-3, as recorded in exhibit_caption_leaf (L. 6, L. 6 ob., L. 7).",
+      "facsimile_1": "The resolution, typescript, headed with the Commission's name and 'On the results of the election of the President of the RSFSR'. Point 1 takes note of the report of the Commission's chairman, comrade V. I. Kazakov, on the results; point 2 approves the text of the Commission's communication on the results; point 3 orders the communication published through the Telegraph Agency of the Soviet Union in the republican and local press. Autograph signatures stand beside the typed names '(В.Казаков)' under 'Председатель' and '(В.Прозоров)' under 'Секретарь'. Dated '19 июня 1991 года' and numbered '№ 20-25'. Handwritten folio 5, top right.",
+      "facsimile_2": "The communication, undated, headed 'СООБЩЕНИЕ': the Commission examined the district commissions' protocols on the results of voting on 12 June 1991; 106,484,518 citizens on the lists in 88 electoral districts; 79,498,240 took part (74.66 per cent); six candidates on the ballot; votes for Bakatin 2,719,757 (3.42), Yeltsin 45,552,041 (57.30), Zhirinovsky 6,211,007 (7.81), Makashov 2,969,511 (3.74), Ryzhkov 13,395,335 (16.85) and Tuleev 5,417,464 (6.81), with votes against each. Handwritten folio 6, top right.",
+      "facsimile_3": "Page '2.' of the communication: 1,525,410 ballots (1.92 per cent) with every name struck out; 1,716,757 ballots (2.16 per cent) invalid; results annulled at polling station No. 389 (Leningrad regional district) and No. 1904 (Novosibirsk district); under Article 15 of the RSFSR law on the election of the President, Yeltsin Boris Nikolaevich, born 1931, Chairman of the RSFSR Supreme Soviet, elected President with more than half the votes of those who took part; Rutskoi Alexander Vladimirovich, chairman of the Supreme Soviet committee for invalids, war and labour veterans and the social protection of servicemen and their families, considered elected Vice-President. Handwritten folio 7, top right.",
+      "claims": {
+        "ru_cec_resolution_20_25_19910619": "Agrees in every element: number 20-25, date 19 June 1991, points 1-3 (chairman V. I. Kazakov's report taken note of, the communication text approved, publication through TASS in the republican and local press) and the two signatories with their functions. The resolution gives no publication date, as the uncertainty says.",
+        "ru_cec_election_voting_19910612": "Agrees: facsimile 2, opening paragraphs (voting on 12 June 1991, district protocols, 88 districts, six candidates).",
+        "ru_cec_communication_results_19910619": "Agrees: every figure in the claim matches facsimiles 2-3.",
+        "ru_cec_yeltsin_rutskoi_elected_19910619": "Agrees: facsimile 3, final paragraphs."
+      },
+      "page_transcription_variances": "The exhibition page's own excerpt, which no claim cites, differs from the facsimiles in wording only: it reads 'были внесены 6 кандидатов' where facsimile 2 reads 'были включены шесть кандидатов', and 'был избран' where facsimile 3 reads 'избран'; it lower-cases the Supreme Soviet title and elides Rutskoi's committee. The claims follow the facsimiles, and the English 'was elected' renders 'избран'.",
+      "leaf_numbers": "Unresolved, and preserved exactly as recorded: the exhibit caption gives GARF F. 10026, Op. 8, D. 204, L. 6-7 and captions the three images L. 6, L. 6 ob. and L. 7, while the handwritten folio numbers on the images read 5, 6 and 7 (re-read on the reproduced images, corners enlarged). The 2019 captures carry the same captions and each image has a single capture, so the discrepancy is in the published exhibit, not introduced by an archive capture. Neither numbering is adopted; resolving it needs GARF's own file or inventory."
+    },
+    "outcome": "Reproduced: the recorded response and the three facsimiles return their recorded bytes and SHA-256 exactly, and the recorded capture remains the reproducible identity. The official host still gives no response from this environment. No claim text, date, locator or uncertainty changed."
   }
 }

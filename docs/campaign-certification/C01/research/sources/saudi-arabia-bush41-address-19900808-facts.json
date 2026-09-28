@@ -7,7 +7,7 @@
   "source_response_bytes": 31889,
   "source_response_sha256": "539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3",
   "source_response_checked_in": false,
-  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker; both responses were 31,889 bytes with the same SHA-256, which is recorded as the original response identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker; both responses were 31,889 bytes with the same SHA-256, which is recorded as the original response identity. On 27 September 2026 source_url returned a different body (32,782 bytes) because the library's page template changed; the address text is byte-identical, and source_review records the comparison and a reproducible address-span identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Original response bodies and archive captures are not checked into this repository. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
   "claims": [
     {
@@ -23,5 +23,176 @@
     "pdf_pages_one_based": [],
     "facsimile_pages_one_based": [],
     "method": "Not visually rendered. HTML transcription (not a scan or PDF); the address and editorial note were read from the downloaded response."
+  },
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-06",
+    "reviewed_on": "2026-09-27",
+    "reason": "Codex's premerge identity sample of 27 September 2026 re-downloaded source_url and received 32,782 bytes with SHA-256 ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c instead of the recorded response (result changed_response_not_verified).",
+    "method": "Re-hashed the researcher's retained local copy of the 21 September response (not checked in). Downloaded source_url with curl -L and no Accept-Encoding header, so every body is identity-encoded: twice on 27 September 2026 (the second with a cache-busting query) and again more than 30 minutes after the first. Diffed the recorded and live bodies line by line, classified every changed hunk, compared the title, page-title heading and article elements byte for byte, and searched the Internet Archive CDX index and availability API for captures of source_url.",
+    "originally_recorded_response": {
+      "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+      "accessed_date": "2026-09-21",
+      "bytes": 31889,
+      "sha256": "539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3",
+      "note": "Identical in the researcher's and the checker's downloads of 21 September 2026; the researcher's retained copy still has this identity. source_url no longer returns these bytes, so this identity is kept as the originally recorded response and cannot be reproduced from the live URL."
+    },
+    "live_responses": [
+      {
+        "retrieved_utc": "2026-09-27T23:38:07Z",
+        "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+        "http_status": 200,
+        "bytes": 32782,
+        "sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c",
+        "cache_headers": "X-Cache: Miss from cloudfront; x-drupal-dynamic-cache: MISS; Last-Modified: Sun, 27 Sep 2026 19:01:27 GMT",
+        "note": "Same bytes and SHA-256 as Codex's fetch."
+      },
+      {
+        "retrieved_utc": "2026-09-27T23:43:24Z",
+        "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states?c01src06=20260927T2342",
+        "http_status": 200,
+        "bytes": 32782,
+        "sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c",
+        "cache_headers": "X-Cache: Miss from cloudfront; x-drupal-dynamic-cache: HIT; Last-Modified: Sun, 27 Sep 2026 23:43:12 GMT",
+        "note": "Cache-busting query; not part of the recorded URL."
+      },
+      {
+        "retrieved_utc": "2026-09-28T00:09:02Z",
+        "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+        "http_status": 200,
+        "bytes": 32782,
+        "sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c",
+        "cache_headers": "X-Cache: Miss from cloudfront; x-drupal-dynamic-cache: MISS; Last-Modified: Sun, 27 Sep 2026 22:16:19 GMT",
+        "note": "More than 30 minutes after the first download."
+      }
+    ],
+    "live_response_note": "The live bodies are byte-identical, although Last-Modified and ETag changed between requests. Neither the recorded nor the live body contains a session value, form token, nonce or timestamp. The live body is an observation, not a replacement identity: it changed between 21 and 27 September with a site update and will change again whenever the asset aggregate names or the asset query string (tm0po6) change.",
+    "differences": [
+      {
+        "recorded_lines": "12",
+        "live_lines": "12",
+        "byte_delta": 0,
+        "class": "dynamic_page_furniture",
+        "kind": "platform_metadata",
+        "change": "The Generator meta tag changed from Drupal 10 to Drupal 11."
+      },
+      {
+        "recorded_lines": "21-22",
+        "live_lines": "21-22",
+        "byte_delta": 0,
+        "class": "dynamic_page_furniture",
+        "kind": "cache_busting_asset_names",
+        "change": "The two aggregated stylesheet file names changed (css_N8tg... and css_8SzC... became css_ixR0... and css_2x3A...); their query strings are unchanged."
+      },
+      {
+        "recorded_lines": "24",
+        "live_lines": "24-27",
+        "byte_delta": 2559,
+        "class": "dynamic_page_furniture",
+        "kind": "script_placement_and_assets",
+        "change": "The head's script slot, a whitespace-only line in the recorded body, now holds the drupal-settings-json block moved unchanged from the footer (2,149 bytes without indentation, SHA-256 8411390dc4cf1be609e82b9e696faaf10c5964e15b7251ded2d4fff7db7190bc in both), a header script aggregate and menu-accordion-init.js?tm0po6, followed by an empty line."
+      },
+      {
+        "recorded_lines": "64",
+        "live_lines": "67",
+        "byte_delta": -80,
+        "class": "dynamic_page_furniture",
+        "kind": "site_search_navigation",
+        "change": "The site-search block wrapper lost its views-exposed-form class and data-drupal-selector attribute, and its id attribute moved first."
+      },
+      {
+        "recorded_lines": "69",
+        "live_lines": "72",
+        "byte_delta": 31,
+        "class": "dynamic_page_furniture",
+        "kind": "site_search_navigation",
+        "change": "The site-search form gained data-component-variant=\"small\"."
+      },
+      {
+        "recorded_lines": "426-427",
+        "live_lines": "429-432",
+        "byte_delta": -1617,
+        "class": "dynamic_page_furniture",
+        "kind": "script_assets",
+        "change": "Footer: the settings block left (see line 24), and the footer script aggregate was replaced by jQuery 4.0.0, two new aggregates and jQuery Migrate 3.5.2 from a public CDN."
+      }
+    ],
+    "net_byte_delta": 893,
+    "content_comparison": {
+      "result": "no_factual_content_changed",
+      "identical_elements": [
+        {
+          "element": "<title>",
+          "bytes": 159,
+          "sha256": "618e4f715621949af44d16c7467b5e51b90ca1e5a4b302a088ee8cc2bf2d9846"
+        },
+        {
+          "element": "<h1 class=\"page-title\">",
+          "bytes": 206,
+          "sha256": "ea19c5ba3408652fadd9598f8f7871d26f2d9bc3e23c1b41a46454cdfed33f9d"
+        },
+        {
+          "element": "<article>",
+          "bytes": 9701,
+          "sha256": "a24fc94cc2331063a6f76b46553227a6e3351a71e7b899301464ab332e283bbf"
+        }
+      ],
+      "claim_locators": [
+        {
+          "locator": "Address body, consultation paragraph (paragraph 13 of 21)",
+          "originally_recorded_response": {
+            "offset": 22408,
+            "bytes": 321,
+            "sha256": "683d98cf9875f9f3bac53d720249fb0f3fadcf5a9a1f008d30beeaa3506ea5e8"
+          },
+          "live_response": {
+            "offset": 24918,
+            "bytes": 321,
+            "sha256": "683d98cf9875f9f3bac53d720249fb0f3fadcf5a9a1f008d30beeaa3506ea5e8"
+          }
+        },
+        {
+          "locator": "Closing editorial Note (paragraph 21 of 21)",
+          "originally_recorded_response": {
+            "offset": 25605,
+            "bytes": 370,
+            "sha256": "5299dd10cd70f381a602a7cbd82da4195346a2c0ff83b23c7e41dd19ae9a8482"
+          },
+          "live_response": {
+            "offset": 28115,
+            "bytes": 370,
+            "sha256": "5299dd10cd70f381a602a7cbd82da4195346a2c0ff83b23c7e41dd19ae9a8482"
+          }
+        }
+      ],
+      "note": "The article element holds the Public Papers ID (2147), the date field (08/08/1990) and the whole address. It is byte-identical, so the consultation paragraph and the editorial Note naming King Fahd bin `Abd al-`Aziz Al Sa`ud of Saudi Arabia are unchanged, and the claim text, attested_on date and holder need no change."
+    },
+    "reproducible_identity": {
+      "kind": "address_span",
+      "rule": "In the raw response body, the bytes from '<p>In the life of a nation' through the '</p>' that closes the paragraph starting '<p>Note: '; each anchor occurs once.",
+      "bytes": 8979,
+      "sha256": "4bf739376d87f635a7687bf06f792ee84d504b921c9db9b82c85ffa7b055a4bf",
+      "offsets": {
+        "originally_recorded_response": 16996,
+        "live_response": 19506,
+        "former_url_capture": 4844
+      }
+    },
+    "archive_search": "No Internet Archive capture of source_url was found on 27 September 2026: CDX queries for it (http and https, with and without www, exact and prefix) returned no rows, the availability API returned no snapshot, and an id_ request for timestamp 20260906000000 returned 404.",
+    "former_url_capture": {
+      "url": "https://web.archive.org/web/20211205194503id_/https://bush41library.tamu.edu/archives/public-papers/2147",
+      "original_url": "https://bush41library.tamu.edu/archives/public-papers/2147",
+      "memento_datetime": "2021-12-05T19:45:03Z",
+      "bytes": 16655,
+      "sha256": "247a050e3c68b78a72c1ee68590d9526683508cee8b65bd2ca92cd6636caa325",
+      "cdx_digest_sha1_base32": "F3TP5KPFN4APJEHNK4F3XBBSUOEWWG76",
+      "content_encoding": "identity",
+      "retrieved_utc": [
+        "2026-09-27T23:47:05Z",
+        "2026-09-28T00:18:04Z"
+      ],
+      "note": "The Library's former page for the same Public Papers item: its URL ends in 2147, the ID shown on the current page, and it carries the same title and the date 1990-08-08. Requested with Accept-Encoding: identity; the identity is the uncompressed body, which matches the CDX digest. The 16 July 2019 capture (20190716005022id_) returned the same bytes, and every pre-cutoff 200 capture in the CDX index (2019-07-16 to 2021-12-05) has this digest. Its address span is byte-identical to the originally recorded response's. On 6 September 2026 (capture 20260906162813) the former URL redirected to the Library's home page, not to source_url, so the link rests on the shared title, date, item number and address bytes. Because it is a different URL, it corroborates the recorded text with a pre-cutoff, reproducible identity; it does not replace the originally recorded response."
+    },
+    "title_only_observation": "Unchanged. The address and its editorial Note attest that Fahd was styled King of Saudi Arabia on 8 August 1990. They give no accession date or term start and do not establish uninterrupted tenure before or after that day.",
+    "changed_by_this_review": "provenance_note and source_review only; claims, dates, holders and the originally recorded response identity are unchanged."
   }
 }

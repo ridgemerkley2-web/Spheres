@@ -1,5 +1,7 @@
 # S19 — submitted guidance integrated
 
+**Current status: S19 complete.** [Final ordinary-campaign closeout](CLOSEOUT.md) supersedes the historical remaining-work entries below.
+
 Implementation accepted and integrated, 21 September 2026. **S19 remains in
 progress pending later-campaign browser qualification. G4 and CP1 remain open.**
 Claude submission: `7de625393fe6dc214e39ebd084424d04b229614b` (implementation

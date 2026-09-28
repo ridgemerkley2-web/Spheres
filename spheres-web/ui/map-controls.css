@@ -41,6 +41,11 @@
 .map-city-card .map-city-note { color:#afc0c7; line-height:1.5; }
 .map-city-card > div { display:flex; gap:5px; margin-top:12px; }
 .map-city-card button { min-height:44px; border:1px solid #73918688; background:#2b413f; color:#eaf1e8; border-radius:7px; padding:6px 10px; cursor:pointer; }
+.map-city-card { max-height:calc(100% - 28px); overflow:auto; overscroll-behavior:contain; }
+.map-city-card > div:not(.map-city-view) { flex-wrap:wrap; }
+.map-city-card button:focus-visible,.map-city-card h2:focus-visible { outline:3px solid #ebcc91; outline-offset:2px; }
+.map-city-card button:disabled { opacity:.55; cursor:default; }
+.map-city-card .map-city-owner { line-height:1.5; overflow-wrap:anywhere; }
 .map-camera-controls button { padding: 6px; font-size: 23px; line-height: 1; }
 .map-camera-caption { display: block; font-size: 10px; margin-top: 3px; }
 .map-view-status { min-width: 97px; padding: 0 5px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }

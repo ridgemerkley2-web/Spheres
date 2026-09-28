@@ -1,0 +1,287 @@
+{
+  "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+  "scope": "S19 later outcomes closeout: actual aircraft development/manufacture/purchase/support/stores/flight, guidance persistence and fresh-campaign isolation. No contact damage or CP1 claim.",
+  "files": [
+    {
+      "path": "development-navigation-attempt/result.json.gz",
+      "sha256": "e4f1f55c078c866fc255078a98e7852bd8047017e07984a52cec50d84fef2df3",
+      "bytes": 1568606,
+      "uncompressed_sha256": "458cf357e91afd3c90f987bf8ca2747e279abf1aabc056d9122f025749d9656a",
+      "uncompressed_bytes": 21200413
+    },
+    {
+      "path": "development-navigation-attempt/driver.cjs",
+      "sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "bytes": 12875
+    },
+    {
+      "path": "development-navigation-attempt/flight-driver.cjs",
+      "sha256": "66862e448d480573f149d8040b6d581b4cc085c8c4216c848f66545e6218c6d3",
+      "bytes": 7325
+    },
+    {
+      "path": "development-navigation-attempt/server.log",
+      "sha256": "92279e1efb73fb6a8d1c9a02d6b4187642e20828949ee72d2358179d5ec2bb31",
+      "bytes": 78
+    },
+    {
+      "path": "development-navigation-attempt/failure.txt",
+      "sha256": "8601ff087c0a39f1995b6b0c394f0a7594376cc59c1f4de2697bc54ba59c3d48",
+      "bytes": 436
+    },
+    {
+      "path": "development-navigation-attempt/run.log.gz",
+      "sha256": "62e0d56ade9e88ecdcf84edd133c53decbf2eeb0573161403dfad1621539c91b",
+      "bytes": 342,
+      "uncompressed_sha256": "4f60915b59b2570bb2b8b2d3ca31da5b0d45ee16dca7db6ba9a60a04cb7e72ce",
+      "uncompressed_bytes": 957
+    },
+    {
+      "path": "development-navigation-attempt/failure.png",
+      "sha256": "29733220fc3a9b0d59011b9e0e6c6ea5a76eda13b2b4198b3ad0a71f2a722da9",
+      "bytes": 953728
+    },
+    {
+      "path": "aircraft-manufacture/result.json.gz",
+      "sha256": "46f23535768f2e76f8f2243e75d7bdd1bb1f793c50d9d252648a7ca7b389b178",
+      "bytes": 2666528,
+      "uncompressed_sha256": "e6e02748763578dfcd47bc028e496ada2e613420770f8a7d41ad2a2c9f5e0ea1",
+      "uncompressed_bytes": 38305730
+    },
+    {
+      "path": "aircraft-manufacture/driver.cjs",
+      "sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "bytes": 12875
+    },
+    {
+      "path": "aircraft-manufacture/flight-driver.cjs",
+      "sha256": "e51791365092238e2e5a1df53f37c8b77f8a2417230f641d27dbe31ca1575964",
+      "bytes": 7444
+    },
+    {
+      "path": "aircraft-manufacture/server.log",
+      "sha256": "664710a096baea3c6580e1ffeab274ec6ac960ee3e211353b1541e474ee258c2",
+      "bytes": 78
+    },
+    {
+      "path": "aircraft-manufacture/run.log.gz",
+      "sha256": "20d47d7c9aadec2212c7120ef3572bec0f96bc778f4787f59b44605e1658eee8",
+      "bytes": 5036,
+      "uncompressed_sha256": "25819a0dc2464c94cd3e2ae65609ca2aa143d9c025fca4e8af26d299cd4de9ff",
+      "uncompressed_bytes": 161228
+    },
+    {
+      "path": "maintenance-shortfall/result.json.gz",
+      "sha256": "ef635b5fb4e4cfcd4d923839841ef1075e8a0c435336d0ba2099d2abf605b48a",
+      "bytes": 3778820,
+      "uncompressed_sha256": "5281f196581bcbe3ac7af13cc61ef0ed760e3fc3f1ea4c44d0e85564da388d77",
+      "uncompressed_bytes": 54204711
+    },
+    {
+      "path": "maintenance-shortfall/driver.cjs",
+      "sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "bytes": 12875
+    },
+    {
+      "path": "maintenance-shortfall/flight-driver.cjs",
+      "sha256": "4802afb14573fab6b6f8ffb912afab6b4b3fd825e1af1fa5586a08393fa65d1a",
+      "bytes": 7988
+    },
+    {
+      "path": "maintenance-shortfall/flight-operations-driver.cjs",
+      "sha256": "d575d95c710911d23c740531c8f11b8a72f5c9b3f2fda71b2e0830f63143564c",
+      "bytes": 18810
+    },
+    {
+      "path": "maintenance-shortfall/server.log",
+      "sha256": "490b251039ed36592f60f055dcf7781423a9e86788a67717da59afff7991e88b",
+      "bytes": 78
+    },
+    {
+      "path": "maintenance-shortfall/failure.txt",
+      "sha256": "0168fa2f86783f7b6d7bf8be47c54ccc25607145b25d6ad765607a5c66768eef",
+      "bytes": 7287
+    },
+    {
+      "path": "maintenance-shortfall/run.log.gz",
+      "sha256": "fe40e43666c5f6874e994995dc00b5386904784c4c6cc396029cdbbdc6109e6d",
+      "bytes": 9999,
+      "uncompressed_sha256": "f254cdae4c1f3ad03556e7bc5b47a35176eaa905f03f5986c826c3d110bc0f0b",
+      "uncompressed_bytes": 449896
+    },
+    {
+      "path": "maintenance-shortfall/failure.png",
+      "sha256": "004f66c0ab3089067bf12e47358fa9d7c8c65da61e6021a40ee5a11419bd1749",
+      "bytes": 604314
+    },
+    {
+      "path": "funded-flight-proof/result.json.gz",
+      "sha256": "d565517bb1e56bda68df2d4e6f6995f0dc82009f8c0ccf64f0aec92107674317",
+      "bytes": 7469806,
+      "uncompressed_sha256": "1cb97e05c2e1d17189c66ba6476735dcc28a63f65e3b327407b9bb8808a31280",
+      "uncompressed_bytes": 106586785
+    },
+    {
+      "path": "funded-flight-proof/driver.cjs",
+      "sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "bytes": 12875
+    },
+    {
+      "path": "funded-flight-proof/flight-driver.cjs",
+      "sha256": "4802afb14573fab6b6f8ffb912afab6b4b3fd825e1af1fa5586a08393fa65d1a",
+      "bytes": 7988
+    },
+    {
+      "path": "funded-flight-proof/flight-operations-driver.cjs",
+      "sha256": "2da23e2d53e83a234326d6e10d49ed75b602ca08abf92b0701ed1372c9f51b67",
+      "bytes": 24294
+    },
+    {
+      "path": "funded-flight-proof/server.log",
+      "sha256": "2a0bb308a9e335633ba3d181504cae6e582f5c32430bd9442059585c23532f64",
+      "bytes": 78
+    },
+    {
+      "path": "funded-flight-proof/run.log.gz",
+      "sha256": "1314164f86be9898df5111022e56a1bf88715443c3af86a9d33e5bb9f3d34670",
+      "bytes": 5272,
+      "uncompressed_sha256": "6983c31a7be8c2a0bf3bebe04e1bd53a4e88971e4dbff545f095b98686f86712",
+      "uncompressed_bytes": 30293
+    },
+    {
+      "path": "funded-flight-proof/flight-guidance-after-continue.png",
+      "sha256": "2e951a945363ae879ef0e5be53690ae5688a8ebb0f2c918182ab6d44a5d9bb7a",
+      "bytes": 143991
+    },
+    {
+      "path": "funded-flight-proof/flight-guidance-after-load.png",
+      "sha256": "27566815c2355828d70128af72739d949c1b89fc40f833b81e971ae18c031919",
+      "bytes": 144098
+    },
+    {
+      "path": "funded-flight-proof/flight-guidance-before-save.png",
+      "sha256": "27712a3e664620964bb7f0fa28c824754d76b2bb6d6e35c5b52d2aae95bfdca4",
+      "bytes": 144421
+    },
+    {
+      "path": "funded-flight-proof/flight-guidance-narrow.png",
+      "sha256": "497303f4fc013d3845e84e4046671f8c14119012f2f8b62867269aa84119e420",
+      "bytes": 53174
+    },
+    {
+      "path": "funded-flight-proof/flight-maintenance-budget-review.png",
+      "sha256": "b4f8344d1d36f48f699a63579dc6afa66410966431f147733d70415869f68642",
+      "bytes": 927024
+    },
+    {
+      "path": "funded-flight-proof/flight-mission-review.png",
+      "sha256": "aa40a562de1c3dd1231fca6c2af2ff2fd7b9cc94745fa24efd85c8f508f8ac04",
+      "bytes": 936365
+    },
+    {
+      "path": "funded-flight-proof/flight-new-campaign-isolation.png",
+      "sha256": "ce83ae6b403a0bd10a254b7e35866ab6d9f4202359688628321296973ce409ca",
+      "bytes": 152762
+    },
+    {
+      "path": "funded-flight-proof/flight-qualified-restored.png",
+      "sha256": "a485dfa65e9d7c573e625e08c84b2ef69bac7aa456e40f1f9ad6ff660ad67ff7",
+      "bytes": 144105
+    },
+    {
+      "path": "funded-flight-proof/flight-real-mission-result.png",
+      "sha256": "ebce8a02c1bd32cf1bbd70b4b35903b41d97eae380a3c286e0b2f0164360ae71",
+      "bytes": 496376
+    },
+    {
+      "path": "recorded-development.json.gz",
+      "sha256": "ece8589f42b66e6efb1e0acd64c30439a14ada4d2a28f5293bd0b222fd461c1d",
+      "bytes": 14885798,
+      "uncompressed_sha256": "c8e67372c21c5dd5e6fd50a2cd752cd9854b82e74b33e451a20475536b772d34",
+      "uncompressed_bytes": 63040902
+    },
+    {
+      "path": "recorded-aircraft-delivered.json.gz",
+      "sha256": "808ba40531a0d90d371b4fa8f1edf8cb9efa3aa14ca87acd77f86e51166d0ec7",
+      "bytes": 14949214,
+      "uncompressed_sha256": "10b7ff879f7c81a92fcfb579cf868cd0708bb1af354d9ce3467f853f9666ebd2",
+      "uncompressed_bytes": 62864708
+    },
+    {
+      "path": "recorded-maintenance-shortfall.json.gz",
+      "sha256": "b1feb41359b118111b8c3698958a1902b1a31398959356ea07a695295195b8c8",
+      "bytes": 14876592,
+      "uncompressed_sha256": "63ca635bcaf43c08310cdbae4b755073e76730c6b3a19e486d9efd6e830db1d6",
+      "uncompressed_bytes": 62618705
+    },
+    {
+      "path": "recorded-flight-qualified.json.gz",
+      "sha256": "7f5b3594f41c213a1567ed82039778174dea9a89b2142f4907285038db40ce23",
+      "bytes": 14999549,
+      "uncompressed_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "uncompressed_bytes": 63066286
+    },
+    {
+      "path": "guidance-tests.log",
+      "sha256": "864e5f3850dc4c600f243cbbebc0bca04419a2c5b2ff8e098268e3cf66c25046",
+      "bytes": 7965
+    }
+  ],
+  "runs": [
+    {
+      "label": "development-navigation-attempt",
+      "passed": false,
+      "input_save_sha256": "85eb2afc68f948daa62fc0d10ab0b742512f46a2d415bc63eb5a39814dc62e22",
+      "driver_sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+      "head": "e41aa18d0851992301b8532ee281af4bf6f88881",
+      "errors": [],
+      "started_utc": "2026-09-28T03:34:42.762Z",
+      "finished_utc": "2026-09-28T03:35:31.098Z"
+    },
+    {
+      "label": "aircraft-manufacture",
+      "passed": true,
+      "input_save_sha256": "c8e67372c21c5dd5e6fd50a2cd752cd9854b82e74b33e451a20475536b772d34",
+      "driver_sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+      "head": "e41aa18d0851992301b8532ee281af4bf6f88881",
+      "errors": [],
+      "started_utc": "2026-09-28T03:36:00.398Z",
+      "finished_utc": "2026-09-28T03:42:56.242Z"
+    },
+    {
+      "label": "maintenance-shortfall",
+      "passed": false,
+      "input_save_sha256": "10b7ff879f7c81a92fcfb579cf868cd0708bb1af354d9ce3467f853f9666ebd2",
+      "driver_sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+      "head": "00860644b49a3b7043d451b839968715cae4d1c9",
+      "errors": [],
+      "started_utc": "2026-09-28T03:43:45.520Z",
+      "finished_utc": "2026-09-28T03:46:14.245Z"
+    },
+    {
+      "label": "funded-flight-proof",
+      "passed": true,
+      "input_save_sha256": "63ca635bcaf43c08310cdbae4b755073e76730c6b3a19e486d9efd6e830db1d6",
+      "driver_sha256": "197611239d8591415fdd70fe2486a9c3d41d3a986bfb02621ae655efb7ab551a",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+      "head": "ad498418f8f146398cd0056b71c12aebfa34467e",
+      "errors": [],
+      "started_utc": "2026-09-28T03:49:29.106Z",
+      "finished_utc": "2026-09-28T03:51:15.885Z"
+    }
+  ],
+  "notes": [
+    "The first attempt saved actual commissioned development, then failed because its test driver used a nonexistent back-button selector. The next run resumes that exact save with the corrected visible navigation; no campaign data changed.",
+    "The first operations run obtains real ready aircraft and company-owned compatible stores but fails the 160-day bound because national maintenance/supply authority is exhausted. The recovery loads that run's actual 1 May 1999 monthly autosave, adjusts the Defense programme share through native Cabinet preview/confirmation, and succeeds.",
+    "The successful mission on 10 May 1999 launches one aircraft, consumes actual compatible stores, and has no opposing formation contact; no damage or applied campaign power is claimed. Two funded service days restore readiness.",
+    "All captured helpers are the versions actually executed, with raw original hashes retained. Current tools may include subsequent mode/robustness changes. Gzip files are lossless; hashes include raw identities.",
+    "All mutation uses visible controls. Reads observe native state/model. No authored inventory, funding, work completion or mission outcomes are injected. Named originals and user preview servers remain unchanged."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "pinned_generated_from": "5324614593da8694e1fb9848ea79002830b2723e",
+  "checked_at": "b4d953964d7f1ab720c3fe72a62f74437bc81edf",
+  "sources": 1329,
+  "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS."
+}

@@ -1,0 +1,620 @@
+{
+  "as_of_day": 3419,
+  "daily": true,
+  "date": "13 May 1999",
+  "enabled": true,
+  "goods": [
+    {
+      "capacity": 250,
+      "good": "intermediates",
+      "name": "Intermediate packs",
+      "stock": 0
+    },
+    {
+      "capacity": 250,
+      "good": "capital_goods",
+      "name": "Capital-goods packs",
+      "stock": 0
+    },
+    {
+      "capacity": 250,
+      "good": "advanced_components",
+      "name": "Advanced components",
+      "stock": 159.223806779
+    }
+  ],
+  "name": "France",
+  "nation": "France",
+  "note": "Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget.",
+  "power": {
+    "capacity_daily": 5.084496129814623,
+    "note": "Sum of displayed facility power receipts on the stated date only. Excludes earlier receipts and activities without saved power use; this is not total national consumption.",
+    "receipt_day": 3418,
+    "receipt_label": "12 May 1999",
+    "recorded_facility_count": 2,
+    "used_daily": 0.30416399920000003
+  },
+  "queue": [],
+  "session_id": "18188-1790569034231090200-3",
+  "settlement": {
+    "day": 3418,
+    "label": "12 May 1999"
+  },
+  "sites": [
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Inspect province"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": false,
+      "capacity_micros": null,
+      "cash_spent_daily_bn": null,
+      "district": "FRA_auvergne-rh-ne-alpes",
+      "district_name": "Auvergne-Rhône-Alpes",
+      "effect": "Delivers 5 modeled power units/day per level to this province; requires national generation.",
+      "has_receipt": false,
+      "id": "site:FRA_auvergne-rh-ne-alpes:power_grid",
+      "kind": "power_grid",
+      "level": 1,
+      "lifecycle": {
+        "effects": [],
+        "id": "site:FRA_auvergne-rh-ne-alpes:power_grid",
+        "installed_capacity": 1,
+        "installed_label": "1.000000 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": null,
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "kind": "power_grid",
+          "label": "Inspect Power Grid outcome"
+        },
+        "readiness": {
+          "fraction": null,
+          "label": "Installed support capability",
+          "note": "Delivers 5 modeled power units/day per level to this province; requires national generation.",
+          "requirements": []
+        },
+        "staffing": {
+          "assigned": 0,
+          "available": 0,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1999-05-12",
+          "matched_day": 3418,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 0,
+          "used": null
+        }
+      },
+      "name": "Power Grid",
+      "output_daily": null,
+      "output_unit": null,
+      "power_used_daily": null,
+      "productive": false,
+      "reason": "Delivers 5 modeled power units/day per level to this province; requires national generation.",
+      "receipt_day": null,
+      "receipt_label": null,
+      "research": null,
+      "status": "ready"
+    },
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 3,
+          "label": "Review equipment funding",
+          "ministry": "defense"
+        },
+        {
+          "action": "manufacture",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Manage equipment production"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": false,
+      "capacity_micros": null,
+      "cash_spent_daily_bn": null,
+      "district": "FRA_auvergne-rh-ne-alpes",
+      "district_name": "Auvergne-Rhône-Alpes",
+      "effect": "Adds one arms-plant level for funded manufacturing lines; equipment still needs its recipe, procurement authority and production time.",
+      "has_receipt": false,
+      "id": "site:FRA_auvergne-rh-ne-alpes:arms_plant",
+      "kind": "arms_plant",
+      "level": 1,
+      "lifecycle": {
+        "effects": [],
+        "id": "site:FRA_auvergne-rh-ne-alpes:arms_plant",
+        "installed_capacity": 1,
+        "installed_label": "1.000000 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": null,
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "kind": "arms_plant",
+          "label": "Inspect Arms Plant outcome"
+        },
+        "readiness": {
+          "fraction": null,
+          "label": "Readiness depends on selected work",
+          "note": "This facility supports selected research or equipment work. Its owning screen checks the active project's goods, authority, capacity reservations and other prerequisites; installed staffing alone does not prove that work is ready.",
+          "requirements": [
+            {
+              "available": 1,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 6000,
+          "available": 6000,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1999-05-12",
+          "matched_day": 3418,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 6000,
+          "used": null
+        }
+      },
+      "name": "Arms Plant",
+      "output_daily": null,
+      "output_unit": null,
+      "power_used_daily": null,
+      "productive": false,
+      "reason": "Adds one arms-plant level for funded manufacturing lines; equipment still needs its recipe, procurement authority and production time.",
+      "receipt_day": null,
+      "receipt_label": null,
+      "research": null,
+      "status": "ready"
+    },
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 0,
+          "label": "Review facility operating funds",
+          "ministry": "industry"
+        },
+        {
+          "action": "budget",
+          "department": 1,
+          "label": "Review energy funding",
+          "ministry": "industry"
+        },
+        {
+          "action": "resources",
+          "label": "Inspect raw input supplies"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": true,
+      "capacity_micros": null,
+      "cash_spent_daily_bn": 0.0000029402519884000002,
+      "district": "FRA_auvergne-rh-ne-alpes",
+      "district_name": "Auvergne-Rhône-Alpes",
+      "effect": "Produces advanced component packs for storage and trade. Supplier component contracts are a later integration step; existing equipment orders are unchanged. Needs skilled workers, electricity, intermediate packs, copper, rare earths and operating funds.",
+      "has_receipt": true,
+      "id": "site:FRA_auvergne-rh-ne-alpes:advanced_industry",
+      "kind": "advanced_industry",
+      "level": 1,
+      "lifecycle": {
+        "effects": [
+          {
+            "label": "Recorded annualized incremental value added",
+            "note": "From the 1999-05-12 operating receipt at constant model prices. This is the same province/national GDP contribution, counted once; it is not profit, sales or a Treasury payment. Constant 1990 dollars; modeled project accounting, not sales or profit.",
+            "unit": "$bn/year",
+            "value": 0.004805305348867046
+          }
+        ],
+        "id": "site:FRA_auvergne-rh-ne-alpes:advanced_industry",
+        "installed_capacity": 1,
+        "installed_label": "1.000000 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": {
+          "actual_operating_capacity": 0.253469999,
+          "actual_utilization": 0.253469999,
+          "assigned_workers": null,
+          "cash_spent_bn": 0.0000029402519884000002,
+          "date": "1999-05-12",
+          "day": 3418,
+          "installed_capacity": 1,
+          "label": "Recorded facility operation",
+          "note": "Actual output, labor use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. These charges are included in the existing fiscal settlement, not a second bill.",
+          "output": 0.050693999,
+          "output_unit": "advanced components/day",
+          "owner_verified": true,
+          "power_used_daily": 0.2027759992,
+          "reason": "Operating inputs or storage limit output; replenish raw stocks and intermediate packs, or use finished inventory.",
+          "required_workers": 5000,
+          "status": "limited",
+          "used_workers": 1267.349995,
+          "value_added_bn": 0.000013165220133882316
+        },
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "kind": "advanced_industry",
+          "label": "Inspect Advanced Industry outcome"
+        },
+        "readiness": {
+          "fraction": 0,
+          "label": "Blocked for current work",
+          "note": "Operating inputs or storage limit output; replenish raw stocks and intermediate packs, or use finished inventory. This is current readiness; only a dated receipt proves operation.",
+          "requirements": [
+            {
+              "available": 1,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "power",
+              "label": "Power and local grid",
+              "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 0,
+              "id": "inputs",
+              "label": "Operating inputs and storage",
+              "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+              "ready": false,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "funding",
+              "label": "Operating department funds",
+              "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 119957.686866713,
+              "id": "raw_coal",
+              "label": "coal operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.016,
+              "unit": "kt"
+            },
+            {
+              "available": 3184.932300639,
+              "id": "raw_copper",
+              "label": "copper operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.02,
+              "unit": "t"
+            },
+            {
+              "available": 0.784708562,
+              "id": "raw_rare_earths",
+              "label": "rare earths operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.002,
+              "unit": "t"
+            },
+            {
+              "available": 0,
+              "id": "intermediate_packs",
+              "label": "Intermediate operating inputs",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": false,
+              "required": 0.4,
+              "unit": "packs"
+            },
+            {
+              "available": 5.084496129814623,
+              "id": "national_power",
+              "label": "National generating support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.8,
+              "unit": "power units/day"
+            },
+            {
+              "available": 5.457838606503898,
+              "id": "local_grid",
+              "label": "Local grid support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.8,
+              "unit": "power units/day"
+            },
+            {
+              "available": 1.1799344597216856,
+              "id": "operating_authority",
+              "label": "Facility operating authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 0.00001,
+              "unit": "$bn"
+            },
+            {
+              "available": 1.1801887408245753,
+              "id": "energy_authority",
+              "label": "Generating service authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 0.0000016,
+              "unit": "$bn"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 5000,
+          "available": 5000,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1999-05-12",
+          "matched_day": 3418,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 5000,
+          "used": 1267.349995
+        }
+      },
+      "name": "Advanced Industry",
+      "output_daily": 0.050693999,
+      "output_unit": "advanced components",
+      "power_used_daily": 0.2027759992,
+      "productive": true,
+      "reason": "Operating inputs or storage limit output; replenish raw stocks and intermediate packs, or use finished inventory.",
+      "receipt_day": 3418,
+      "receipt_label": "12 May 1999",
+      "research": null,
+      "status": "limited"
+    },
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_le-de-france",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 2,
+          "label": "Review facility operating funds",
+          "ministry": "industry"
+        },
+        {
+          "action": "budget",
+          "department": 1,
+          "label": "Review energy funding",
+          "ministry": "industry"
+        },
+        {
+          "action": "resources",
+          "label": "Inspect raw input supplies"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_le-de-france",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": false,
+      "capacity_micros": 101388,
+      "cash_spent_daily_bn": 0.0000012166560000000002,
+      "district": "FRA_le-de-france",
+      "district_name": "Île-de-France",
+      "effect": "Paid fractional processing capacity, with matching power and operating inputs. No stock is granted.",
+      "has_receipt": true,
+      "id": "site:FRA_le-de-france:starter_industry",
+      "kind": "starter_industry",
+      "level": 0,
+      "lifecycle": {
+        "effects": [
+          {
+            "label": "Recorded annualized incremental value added",
+            "note": "From the 1999-05-12 operating receipt at constant model prices. This is the same province/national GDP contribution, counted once; it is not profit, sales or a Treasury payment. Constant 1990 dollars; modeled project accounting, not sales or profit.",
+            "unit": "$bn/year",
+            "value": 0.0031074631438251614
+          }
+        ],
+        "id": "site:FRA_le-de-france:starter_industry",
+        "installed_capacity": 0.101388,
+        "installed_label": "0.101388 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": {
+          "actual_operating_capacity": null,
+          "actual_utilization": null,
+          "assigned_workers": 405.55199999999996,
+          "cash_spent_bn": 0.0000012166560000000002,
+          "date": "1999-05-12",
+          "day": 3418,
+          "installed_capacity": 0.101388,
+          "label": "Recorded province operation",
+          "note": "Actual output, worker use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. Charges belong to the existing fiscal settlement, not a second bill.",
+          "output": 0.101388,
+          "output_unit": "intermediate packs",
+          "owner_verified": true,
+          "power_used_daily": 0.101388,
+          "reason": null,
+          "required_workers": 405.552,
+          "status": "running",
+          "used_workers": 405.552,
+          "value_added_bn": 0.00000851359765431551
+        },
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_le-de-france",
+          "kind": "starter_industry",
+          "label": "Inspect Starter Industry outcome"
+        },
+        "readiness": {
+          "fraction": 1,
+          "label": "Ready for the next operation",
+          "note": "Ready for assigned work; operating inputs and funding are checked when used. This is current readiness; only a dated receipt proves operation.",
+          "requirements": [
+            {
+              "available": 1,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "power",
+              "label": "Power and local grid",
+              "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "inputs",
+              "label": "Operating inputs and storage",
+              "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "funding",
+              "label": "Operating department funds",
+              "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 4589074.211223872,
+              "id": "raw_bauxite",
+              "label": "bauxite operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.0202776,
+              "unit": "t"
+            },
+            {
+              "available": 119957.686866713,
+              "id": "raw_coal",
+              "label": "coal operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.02737476,
+              "unit": "kt"
+            },
+            {
+              "available": 81760985.37460382,
+              "id": "raw_iron",
+              "label": "iron operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "t"
+            },
+            {
+              "available": 5.084496129814623,
+              "id": "national_power",
+              "label": "National generating support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "power units/day"
+            },
+            {
+              "available": 1.4010061176144664,
+              "id": "local_grid",
+              "label": "Local grid support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "power units/day"
+            },
+            {
+              "available": 1.1801352079603673,
+              "id": "operating_authority",
+              "label": "Facility operating authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 0.0000010138800000000002,
+              "unit": "$bn"
+            },
+            {
+              "available": 1.1801887408245753,
+              "id": "energy_authority",
+              "label": "Generating service authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 2.0277600000000002e-7,
+              "unit": "$bn"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 405.55199999999996,
+          "available": 405.552,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1999-05-12",
+          "matched_day": 3418,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 405.552,
+          "used": 405.552
+        }
+      },
+      "name": "Starter Industry",
+      "output_daily": 0.101388,
+      "output_unit": "intermediate packs",
+      "power_used_daily": 0.101388,
+      "productive": true,
+      "reason": null,
+      "receipt_day": 3418,
+      "receipt_label": "12 May 1999",
+      "research": null,
+      "status": "running"
+    }
+  ],
+  "summary": {
+    "attention_count": 1,
+    "facility_count": 4,
+    "queued_count": 0
+  }
+}

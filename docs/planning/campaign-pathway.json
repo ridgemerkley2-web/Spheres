@@ -507,7 +507,7 @@
       "id": "S19",
       "phase": "experience",
       "title": "Build outcome-aware tutorial and advisor guidance",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S06",
         "S07",
@@ -529,19 +529,27 @@
         "ready_for_review": true,
         "submitted_commit": "7de625393fe6dc214e39ebd084424d04b229614b"
       },
-      "evidence": "../campaign-certification/S19/integration/README.md",
+      "evidence": "../campaign-certification/S19/integration/CLOSEOUT.md",
       "integration": {
         "commit": "2400800bee73ecbc39bedaebba10bbe573a42ade",
         "candidate": "bf47af2a9752cbd62710af1fcfda6dd3e8396dcc",
         "implementation_accepted": true,
-        "remaining": "Later-campaign browser qualification of purchase/delivery, completed project output and flown mission results; preserve the original acceptance criteria."
+        "remaining": "None within S19; see ordinary later-outcome closeout evidence."
+      },
+      "completed_date": "2026-09-28",
+      "closure": {
+        "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+        "evidence": "docs/campaign-certification/S19/integration/flight-closeout-evidence/manifest.json",
+        "reviewer": "Codex",
+        "qualified_campaign_date": "1999-05-13",
+        "cp1_earned": false
       }
     },
     {
       "id": "S20",
       "phase": "experience",
       "title": "Unify map, province and accessible room navigation",
-      "status": "planned",
+      "status": "complete",
       "depends": [
         "S07",
         "S10",
@@ -552,7 +560,21 @@
         "City/province inspection shows current ownership, construction, operating output and problems from actual records.",
         "Primary controls work by keyboard and touch; focus, return navigation, loading and error states remain usable at 390px.",
         "Retain honest geography/representative-city labels and consistent art framing, typography and information hierarchy."
-      ]
+      ],
+      "claim": {
+        "owner": "Codex",
+        "base": "ad498418",
+        "scope": "Complete existing province/city focus and read recovery, actual facility-to-company navigation and exact native desktop/narrow keyboard/touch proof."
+      },
+      "completed_date": "2026-09-28",
+      "evidence": "../campaign-certification/S20/README.md",
+      "closure": {
+        "candidate_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+        "evidence": "docs/campaign-certification/S20/manifest.json",
+        "completed_utc": "2026-09-28T04:19:38.233974+00:00",
+        "g4_earned": true,
+        "cp1_earned": false
+      }
     },
     {
       "id": "S21",
@@ -970,16 +992,20 @@
       }
     ]
   },
-  "last_completed_session": "S21",
-  "next_session": "S19",
+  "last_completed_session": "S20",
+  "next_session": "S22",
   "execution": {
-    "authorized_through": "S21",
-    "stop_boundary": "S21",
-    "status": "stopped",
-    "previous_stop": "S18",
-    "instruction": "Next: independently ready Codex-owned S21 while Claude works on S19; S20 remains waiting",
-    "instruction_date": "2026-09-21",
-    "next_session_requires_instruction": true
+    "status": "checkpoint_complete",
+    "instruction": "Close outstanding tasks: S19 and S20 completed, G4 earned, synchronized reviewed tasks published. Next canonical session: S22 performance qualification.",
+    "instruction_date": "2026-09-28",
+    "next_session_requires_instruction": false,
+    "historical_boundary": {
+      "authorized_through": "S21",
+      "stop_boundary": "S21",
+      "previous_stop": "S18",
+      "superseded": true
+    },
+    "authorization_scope": "User-directed open-task repairs and session closeout; retained prior numbered stop boundary is historical."
   },
   "gate_decisions": {
     "G1": {
@@ -1003,6 +1029,13 @@
       "candidate": "eacf90e3e083d951cbd942957f573b7135953cea",
       "evidence": "docs/campaign-certification/S16/manifest.json",
       "reason": "Ground and the three supported air missions use real campaign forces and results. G3 combines the exact inherited G2 and S11–S15 records with the pinned S16 fighter lifecycle, coordinated interception and depleted-defense regressions, plus the authored France browser comparison. Explicit opposing orders are authored; S17 AI, later content/campaign/performance qualification and CP1 remain open."
+    },
+    "G4": {
+      "status": "earned",
+      "date": "2026-09-28",
+      "candidate": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "evidence": "docs/campaign-certification/G4/manifest.json",
+      "reason": "Supported AI and player journey, inheriting the stated bounded session qualifications; no full-period, performance, historical-coverage or human-testing certificate."
     }
   }
 }
