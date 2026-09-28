@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_sc_r_v_lasike_cr285_2011",
+  "source_url": "https://ago.gov.to/cms/judgements/supreme-court-criminal/category/69-cr-2012.html?download=820:r-v-lasike-unreported-supreme-court-of-tonga-cr-285-11-9-july-2012-cj",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-07-09",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 3738281,
+  "source_response_sha256": "dc116598fedc78f286d6ee6403dbba94901324f641e97942f2141917c37a1746",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (an Attorney General's Office Phoca Download link that serves the stored PDF as an attachment) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received. A 403 HTML page from ago.gov.to is a user-agent rejection, not a changed file.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:05:07Z and again at 2026-09-28T01:02:42Z (UTC), 57 minutes later, from the same URL: both responses were 3738281 bytes with SHA-256 dc116598fedc78f286d6ee6403dbba94901324f641e97942f2141917c37a1746. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned judgment with an OCR text layer (16 pages), served as the attachment 'R v Noble Lasike CR 285 of 2011.pdf' by a Phoca Download link. The handler sets a session cookie and Cache-Control no-store, so its stability was checked by downloads at least 30 minutes apart. Read on 2026-09-27, after the 7 September 2026 historical cutoff; the judgment is a dated historical document and no later content is used. The seal and signature are not reproduced.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      7,
+      16
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_lasike_testimony_speaker_cr285",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-05",
+      "role_id": "to_speaker",
+      "holder_name": "Noble Lasike",
+      "role_title": "Speaker",
+      "event_kind": "self_description",
+      "attested_on": null,
+      "text": "The judgment records that 'The accused, Noble Lasike, told me that he is the Speaker of the Legislative Assembly'.",
+      "locator": "Paragraph [20], PDF page 7",
+      "uncertainty": "The accused's own evidence as reported in a judgment delivered on 9 July 2012; the day he gave evidence is not printed, so no structured date is stored."
+    },
+    {
+      "claim_id": "to_lasike_supreme_court_conviction_20120709",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Noble Lasike",
+      "role_title": "Speaker",
+      "event_kind": "court_conviction",
+      "attested_on": "2012-07-09",
+      "text": "The Supreme Court (Chief Justice) found that the accused, Noble Lasike, was in possession of two live .22 bullets without a licence, contrary to section 4(2)(b) of the Arms and Ammunition Act, and convicted him as charged; the judgment is dated 'NUKU'ALOFA: 9 July 2012'.",
+      "locator": "Paragraphs [1] and [38], PDF pages 1 and 15-16",
+      "uncertainty": "Context for the revocation of 17 July 2012; a conviction is not itself the end of the Speakership. The Court of Appeal later set the conviction aside (Lasike v R, AC 11 of 2012, 12 October 2012; a lead listed in the report, which never mentions the Speakership); no reinstatement is implied."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

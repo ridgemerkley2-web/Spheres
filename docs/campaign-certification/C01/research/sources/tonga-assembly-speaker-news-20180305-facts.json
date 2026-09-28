@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_speaker_gita_20180305",
+  "source_url": "https://web.archive.org/web/20180322080929id_/http://www.parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/611-speaker-acknowledges-continuous-support-post-cyclone-gita",
+  "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/611-speaker-acknowledges-continuous-support-post-cyclone-gita",
+  "archive_capture_utc": "2018-03-22T08:09:29Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2018-03-05",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 37874,
+  "source_response_sha256": "0cd4e36b223392a50dae1601e5786045cbcc01ce22b6d2a76940400554d10198",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:19:05Z and again at 2026-09-28T01:17:30Z (UTC), 58 minutes later, from the same URL: both responses were 37874 bytes with SHA-256 0cd4e36b223392a50dae1601e5786045cbcc01ce22b6d2a76940400554d10198. The raw id_ form replays the stored capture rather than generating a page per request. Located for this packet; a first download at 2026-09-27T23:59:39Z gave the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-03-22T08:09:29Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 05 March 2018' (raw Internet Archive capture of 22 March 2018, the earliest capture; later captures differ only in rotating page furniture). Located for this packet as a contemporaneous in-office attestation separate from the oath.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_fakafanua_styled_20180305",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-08",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Fakafanua",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2018-03-05",
+      "text": "The Assembly's news item created on 5 March 2018 reports that 'THE Speaker of the Legislative Assembly', Lord Fakafanua, acknowledged the support given after Tropical Cyclone Gita, including the work that made 'Parliament's sitting today' at the Tonga National Centre possible, when 'addressing the first session at the Tonga National Centre'.",
+      "locator": "Article header ('Created: 05 March 2018'); paragraphs 1-2, 8 and 9",
+      "uncertainty": "A contemporaneous attestation of him as Speaker, presiding at a sitting on the item's date; no appointment, start or end date. The oath of 18 January 2018 is a separate claim (to_speaker_fakafanua_sworn_news_20180118)."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

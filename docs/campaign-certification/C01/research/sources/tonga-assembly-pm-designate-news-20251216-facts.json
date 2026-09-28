@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_pm_designate_20251216",
+  "source_url": "https://web.archive.org/web/20251216013725id_/https://parliament.gov.to/en/media-centre/latest-news/former-speaker-lord-fakafanua-elected-as-tongas-prime-minister-designate",
+  "original_url": "https://parliament.gov.to/en/media-centre/latest-news/former-speaker-lord-fakafanua-elected-as-tongas-prime-minister-designate",
+  "archive_capture_utc": "2025-12-16T01:37:25Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2025-12-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 56646,
+  "source_response_sha256": "5172843be994ee9ce0b1bb8e05022a07f4ab56534ef1c08ce2da43a179579105",
+  "source_response_content_encoding": "gzip as stored by the archive; the recorded identity is the decoded body",
+  "source_response_transfer_bytes": 15626,
+  "source_response_transfer_sha256": "b293d5eb12dbf308b2509cd2da1dbef749e2668f711ba5d9889f1e1b9aa4c8b9",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. For this capture the archive returns its stored gzip body with 'Content-Encoding: gzip' even when identity is requested: decompress it (gunzip, or fetch with curl --compressed) and hash the decoded bytes. The compressed transfer identity is recorded separately.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:16:44Z and again at 2026-09-28T01:10:07Z (UTC), 53 minutes later, from the same URL: both responses were 56646 bytes with SHA-256 5172843be994ee9ce0b1bb8e05022a07f4ab56534ef1c08ce2da43a179579105. Both times the archive returned the stored gzip body with Content-Encoding: gzip (15626 bytes, SHA-256 b293d5eb12dbf308b2509cd2da1dbef749e2668f711ba5d9889f1e1b9aa4c8b9); the identity recorded is the decoded body. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-12-16T01:37:25Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 16 December 2025' (12:18 +13:00; raw Internet Archive capture of 16 December 2025). The archive stores and returns this capture gzip-encoded; the recorded identity is the decoded body. Used only for the Speaker's election and the Interim Speaker; the Prime Minister election is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_vaea_assembly_election_20251216",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-10",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Vaea",
+      "role_title": "Speaker",
+      "event_kind": "assembly_election",
+      "attested_on": "2025-12-16",
+      "text": "The Assembly's news item created on 16 December 2025 reports that 'During the same Special Sitting, presided over by Interim Speaker Lord Tangi, Parliament elected Tongatapu No. 2 Noble Representative Lord Vaea as Speaker of Parliament, and Ha'apai No. 2 Noble Representative Lord Tu'iha'angana as Deputy Speaker', and that Lord Vaea thanked Members after his election.",
+      "locator": "Article header ('Created: 16 December 2025'); paragraph 6",
+      "uncertainty": "The Assembly's election of its Speaker, recorded separately from the royal appointment effective 18 December 2025 (to_speakers_appointment; to_speaker_vaea_royal_appointment_to_20251218) and from the oath (to_speaker_vaea_oath_news_20260122). The item does not print the day of the Special Sitting; the Interim Speaker's notice of 12 December scheduled the meeting for Monday 15 December 2025 (to_speaker_election_meeting_notice_20251212). The claim is attested on the item's date and no sitting day is inferred."
+    },
+    {
+      "claim_id": "to_interim_speaker_tangi_presided_20251216",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-10",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tangi",
+      "role_title": "Speaker",
+      "event_kind": "interim_service",
+      "attested_on": "2025-12-16",
+      "text": "The same item states that the Special Sitting at which the Prime Minister-Designate, the Speaker and the Deputy Speaker were elected was 'presided over by Interim Speaker Lord Tangi', and it describes Lord Fakafanua as 'Former Speaker of the Legislative Assembly'.",
+      "locator": "Headline; paragraphs 1 and 6",
+      "uncertainty": "Interim service is a claim only, never a holder. 'Former Speaker' describes Lord Fakafanua on 16 December 2025; it is not used as an end date for his Speakership, which no retrieved source states."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

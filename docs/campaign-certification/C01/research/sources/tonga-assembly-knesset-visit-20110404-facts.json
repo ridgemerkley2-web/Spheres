@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_20110404_knesset_visit",
+  "source_url": "https://web.archive.org/web/20110518043655id_/http://www.parliament.gov.to:80/the-news/274-speaker-of-the-israel-knesset-to-visit-tonga-on-the-7-of-april-2011.html",
+  "original_url": "http://www.parliament.gov.to/the-news/274-speaker-of-the-israel-knesset-to-visit-tonga-on-the-7-of-april-2011.html",
+  "archive_capture_utc": "2011-05-18T04:36:55Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2011-04-04",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 20625,
+  "source_response_sha256": "5bb4d01936cae4b74738efb2a27563c81024db6e5a2e55a6cf18a67047b0205b",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:05:00Z and again at 2026-09-28T01:02:30Z (UTC), 57 minutes later, from the same URL: both responses were 20625 bytes with SHA-256 5bb4d01936cae4b74738efb2a27563c81024db6e5a2e55a6cf18a67047b0205b. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2011-05-18T04:36:55Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item dated 'Monday, 04 April 2011 12:35' (raw Internet Archive capture of 18 May 2011).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_lasike_speaker_styled_20110404",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-05",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2011-04-04",
+      "text": "The Assembly's item of 4 April 2011 announces that the Speaker of the Israeli Knesset 'will call on the Speaker of the Legislative Assembly, Lord Lasike at the Parliament Office' on Thursday 7 April 2011.",
+      "locator": "Article body, paragraph 2",
+      "uncertainty": "Styling in an announcement of a future visit; the visit itself is not recorded here. It attests the office only on the item's date."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

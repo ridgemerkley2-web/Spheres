@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20120719_fakafanua_elected",
+  "source_url": "https://web.archive.org/web/20130422014223id_/http://www.mic.gov.to:80/news-today/press-releases/3922-lord-fakafanua-elected-as-new-speaker-of-tongan-parliament",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/3922-lord-fakafanua-elected-as-new-speaker-of-tongan-parliament",
+  "archive_capture_utc": "2013-04-22T01:42:23Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-07-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 33685,
+  "source_response_sha256": "25a28ad763fbb68c1b4703fa2893a60431b1f91457d2df7902882cd565ba0e60",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:05:23Z and again at 2026-09-28T01:03:09Z (UTC), 57 minutes later, from the same URL: both responses were 33685 bytes with SHA-256 25a28ad763fbb68c1b4703fa2893a60431b1f91457d2df7902882cd565ba0e60. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2013-04-22T01:42:23Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "MIC release with the dateline '19 July 2012' (item date Thursday, 19 July 2012; 'Last Updated' Wednesday, 21 November 2012; raw Internet Archive capture of 22 April 2013). Because the page was updated in November 2012, only the dated election and the acting service during it are used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_fakafanua_assembly_election_20120719",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Fakafanua",
+      "role_title": "Speaker",
+      "event_kind": "assembly_election",
+      "attested_on": "2012-07-19",
+      "text": "MIC's release states: '19 July 2012. The Legislative Assembly of Tonga has elected Lord Fakafanua, Noble Representative Number 1 for the Ha'apai Group, as the new Speaker of the House.' Of two nominated nobles Fakafanua received 17 votes and Lord Tu'ilakepa, Noble Representative No. 2 for Vava'u and a former Speaker, 8; the proceedings were conducted in accordance with 'Clause 15 of the Legislative Assembly Act', under which the King appoints one of the nobles as Speaker.",
+      "locator": "Article body, paragraphs 1-2",
+      "uncertainty": "The Assembly's election (its recommendation), not the royal appointment. The page was last updated on 21 November 2012, so later sentences may have been edited after 19 July; only the dated election is used."
+    },
+    {
+      "claim_id": "to_tuihaateiho_acting_speaker_20120719",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-06",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'ateiho",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": "2012-07-19",
+      "text": "The same release states that 'Lord Tu'iha'ateiho was appointed as Acting Speaker during the proceedings however has now become Deputy Speaker of the House, a position which became vacant upon the appointment of Lord Tu'i'afitu as Minister of Health, earlier this month'.",
+      "locator": "Article body, paragraph 3",
+      "uncertainty": "Acting service during the election proceedings: a claim only, never a Speaker holder. Who appointed him acting, and when his acting service began, are not stated. The dates of his Deputy Speakership conflict: this release and the Assembly's Tongan item of the same day (to_fakafanua_assembly_recommendation_20120719) place his recommendation as Deputy Speaker on 19 July, while an Assembly item of 2 July 2012 (a lead, listed in the report) reports him appointed Deputy Speaker that day; if the latter is right, his presiding was the Deputy Speaker presiding under the new section 16(3). The Deputy Speakership is outside this packet's role."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

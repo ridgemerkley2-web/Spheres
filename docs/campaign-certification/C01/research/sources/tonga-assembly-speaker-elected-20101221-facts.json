@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_20101221_lasike_elected",
+  "source_url": "https://web.archive.org/web/20110518092758id_/http://www.parliament.gov.to:80/the-news/250-lord-lasike-newly-elected-speaker-of-the-house.html",
+  "original_url": "http://www.parliament.gov.to/the-news/250-lord-lasike-newly-elected-speaker-of-the-house.html",
+  "archive_capture_utc": "2011-05-18T09:27:58Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2010-12-21",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 19549,
+  "source_response_sha256": "96a30037da923cf8ece0e760f1f27187fb9917769ffa7c81f1abca32bd870653",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:04:43Z and again at 2026-09-28T01:02:05Z (UTC), 57 minutes later, from the same URL: both responses were 19549 bytes with SHA-256 96a30037da923cf8ece0e760f1f27187fb9917769ffa7c81f1abca32bd870653. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2011-05-18T09:27:58Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item dated 'Tuesday, 21 December 2010 15:05' (raw Internet Archive capture of 18 May 2011).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_lasike_assembly_selection_unopposed_20101221",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-05",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "assembly_election",
+      "attested_on": "2010-12-21",
+      "text": "The Assembly's news item of Tuesday 21 December 2010 (15:05) reports that 'Lord Lasike has become the 17 th Speaker of the Legislative Assembly of Tonga after he was nominated unopposed this afternoon', on the nomination of people's representative Sione Taione, that Lord Lasike is the Noble's representative for 'Eua, and that Lord Tu'iafitu was also nominated unopposed as the Deputy Speaker.",
+      "locator": "Article body, sentences 1-3",
+      "uncertainty": "The Assembly's selection (its recommendation), not the royal appointment: the same item says the appointment is still to come (to_lasike_royal_appointment_announced_20101221). Not a holder start."
+    },
+    {
+      "claim_id": "to_lasike_royal_appointment_announced_20101221",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-05",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Lasike",
+      "role_title": "Speaker",
+      "event_kind": "appointment_announced_future",
+      "attested_on": "2010-12-21",
+      "text": "The same item states that 'Lord Lasike will beformally appointed by the King' [sic].",
+      "locator": "Article body, last sentence",
+      "uncertainty": "Prospective. The appointment instrument and its day were not found (TO-SPK-05 is unresolved on that point)."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

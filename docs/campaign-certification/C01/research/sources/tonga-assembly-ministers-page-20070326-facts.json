@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_ministers_page_2005",
+  "source_url": "https://web.archive.org/web/20070326123611id_/http://parliament.gov.to:80/ministers1.htm",
+  "original_url": "http://parliament.gov.to/ministers1.htm",
+  "archive_capture_utc": "2007-03-26T12:36:11Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 22559,
+  "source_response_sha256": "ffae98874c9c1bc51621637d1a876ec0341342f480f9abff47cdae1c97692f5f",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "undeclared; bytes 0x91 and 0x92 are glottal stops",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:18:01Z and again at 2026-09-28T01:16:27Z (UTC), 58 minutes later, from the same URL: both responses were 22559 bytes with SHA-256 ffae98874c9c1bc51621637d1a876ec0341342f480f9abff47cdae1c97692f5f. The raw id_ form replays the stored capture rather than generating a page per request. Located by the independent check, which downloaded it twice on 2026-09-26 (UTC), at least 30 minutes apart, with the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2007-03-26T12:36:11Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Assembly's profiles of the ministers and governors who sat in the House (raw Internet Archive capture of 26 March 2007; archived server Last-Modified 14 July 2005, and every capture from March 2007 to November 2008 shares one digest). Retrospective. Only the profiles of Hon. Tu'ivakano and Hon. Malupo are used. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_ministers_page_tuivakano_appointed_20020701",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Tu'ivakano",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2002-07-01",
+      "text": "The Assembly's ministers page says that before his appointment as a Minister in March 2005 Hon. Tu'ivakano 'was the Speaker of the Legislative Assembly and Tongatapu's Nobles No.1 Representative', that 'He was appointed Speaker by His Majesty on 1st July 2002', and that he was Speaker 'from 2002-2004'.",
+      "locator": "Profile headed 'Hon. Tu'ivakano - Minister of Works & Disasters Relief Activities'",
+      "uncertainty": "The Assembly's earliest found statement of 1 July 2002, about three years after the event (the page was last modified on 14 July 2005); attested_on is the day it gives, not a holder date. It conflicts with the government statement of about 23 May 2002 (to_speaker_tuivakano_appointment_reported_20020523), and the conflict is retained. 'From 2002-2004' is not a boundary."
+    },
+    {
+      "claim_id": "to_la_ministers_page_malupo_acting_2000",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Malupo",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": null,
+      "text": "The same page says that Hon. Malupo, appointed Governor of Ha'apai in January 2001, 'began his political career in 1993 after being elected the Noble Representative for Ha'apai', and that 'He was also the Acting Speaker of the Legislative Assembly in 2000.'",
+      "locator": "Profile headed 'Hon. Malupo - Governor of Ha'apai'",
+      "uncertainty": "Year-only acting service: a claim only, never a holder, and no structured date is stored. It bears on the Assembly's retrospective 'Nopele Malupo 1987 - 1989' entry (to_la_list_malupo_1987_1989_20111130), which may name the title rather than this holder of it."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

@@ -1,0 +1,80 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_act20_2010_amending_copy",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2010/2010-0020/ActofConstitutionofTongaAmendmentNo.2Act2010.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 90497,
+  "source_response_sha256": "e4e9001f74bf6c87f9713132f054fe9f638b02e14014794e74383cc03cf7db5b",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (a static PDF stored on ago.gov.to) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received; a cache-busting query string returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:04:22Z and again at 2026-09-28T00:56:25Z (UTC), 52 minutes later, from the same URL: both responses were 90497 bytes with SHA-256 e4e9001f74bf6c87f9713132f054fe9f638b02e14014794e74383cc03cf7db5b. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AGO amending-legislation copy of Act No. 20 of 2010 (17-page PDF, a static stored file). It is a different file from the existing to_reform_act_2010 (a phocadownload copy whose assent block is blank), which is not edited. Statute text: procedure only, never a date for any Speaker. Read on 2026-09-27, after the 7 September 2026 historical cutoff; only the 2010 enactment is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5,
+      12,
+      17
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_act20_2010_clause61_speaker_appointment_procedure",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Section 19 replaces clause 61 of the Constitution: 'The King shall, within 5 days after the appointment of a Prime Minister in accordance with clause 50A following a general election, appoint one of the elected representatives of the nobles on the recommendation of the Legislative Assembly, to be the Speaker of the Legislative Assembly.'",
+      "locator": "Section 19, new clause 61(1), PDF page 12",
+      "uncertainty": "Procedure only. The Act dates no Speaker's selection, appointment or oath, and prints no commencement provision. It is not backdated before the 2010 reform and not read as the procedure in force at any later date without a consolidation check."
+    },
+    {
+      "claim_id": "to_act20_2010_clause61_speaker_tenure_and_vacancy",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "New clause 61(2)-(4): the Speaker remains in office until the King appoints an Interim Speaker following the next general election under sub-section (8) of the Schedule, until his appointment is revoked under sub-clause (3), or until he dies, resigns or his appointment is revoked after he ceases to be an elected representative of the nobles for any reason other than the dissolution of the Assembly; on the Prime Minister's recommendation with the approval of at least half of the members the King revokes the Speaker's appointment and appoints a new Speaker on the Assembly's recommendation; and the King appoints a Speaker within 7 days of a vacancy.",
+      "locator": "Section 19, new clause 61(2), (3) and (4), PDF page 12",
+      "uncertainty": "Procedure only. It is never used to date the end of any Speaker's tenure (for example from a later Interim Speaker's appointment) or to fill a vacancy date."
+    },
+    {
+      "claim_id": "to_act20_2010_schedule_interim_speaker_procedure",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "The inserted Schedule (clause 50A) requires the King, within 7 days of the declaration of the result of a general election, to appoint a person who was not a candidate as Interim Speaker, who holds office 'until a Speaker is next appointed under clause 61'; the Interim Speaker invites and receives the nominations for Prime Minister Designate and convenes the ballot, and in any other vacancy in the office of Prime Minister, except after a vote of no confidence, 'the Speaker shall perform the role of the Interim Speaker'.",
+      "locator": "Schedule paragraphs (1), (6), (7) and (8), PDF pages 16-17",
+      "uncertainty": "Procedure only. An Interim Speaker is not a Speaker holder, and no interim appointment is dated by this text."
+    },
+    {
+      "claim_id": "to_act20_2010_royal_assent_printed",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "enactment_printed",
+      "attested_on": null,
+      "text": "This copy of Act No. 20 of 2010 prints the assent 'I assent, GEORGE TUPOU V, 24th November 2010' and the line 'Passed in the Legislative Assembly this 20th day of July 2010'.",
+      "locator": "PDF page 5 (assent block); PDF page 15 (passage line)",
+      "uncertainty": "Enactment metadata of the procedure, not a Speaker event and not a commencement date, so no structured date is stored on this claim. The assent date agrees with the Assembly note already in the packet (to_reform_assent) and the passage date with to_reform_passage."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

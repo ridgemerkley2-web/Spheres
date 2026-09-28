@@ -224,7 +224,8 @@ class TongaPrimeMinisterTests(unittest.TestCase):
                          {'to_crown', 'to_prime_minister', 'to_cabinet', 'to_privy_council', 'to_legislative_assembly'})
         self.assertEqual([r['id'] for r in self.pm['roles']], ['to_pm'])
         self.assertEqual([c['id'] for c in self.sources['to_ipu_2017']['claims']], ['to_ipu_2017_dpfi_continuity'])
-        self.assertEqual([s['id'] for s in self.packet['sources'][-39:]], [s for s in self.sources if s in NEW_SOURCES])
+        # CLAUDE-C01-24's 49 sources follow these 39, so the block is pinned by its fixed position.
+        self.assertEqual([s['id'] for s in self.packet['sources'][80:119]], [s for s in self.sources if s in NEW_SOURCES])
         self.assertEqual(list(self.sources)[:64][-1], 'to_iha_2015_tonga_visit')
         observations = re.findall(r'^### (TO-PM90-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'TO-PM90-{n:02d}' for n in range(1, 9)])
