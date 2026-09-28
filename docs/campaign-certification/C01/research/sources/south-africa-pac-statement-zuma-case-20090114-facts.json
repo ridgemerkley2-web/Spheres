@@ -5,7 +5,7 @@
   "original_url": "http://www.pac.org.za/index.php?option=com_content&task=view&id=111&Itemid=186",
   "archive_capture_utc": "2010-08-21T04:30:51Z",
   "accessed_date": "2026-09-28",
-  "published_date": "2009-01-14",
+  "published_date": null,
   "access_method": "downloaded_archived_raw_capture_and_page_text_read",
   "source_response_bytes": 23447,
   "source_response_sha256": "f1fad097b260e275256d73060ace7a334e2c6536448d58fbc302e59f1acaaaa9",
@@ -16,7 +16,7 @@
   "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T22:01:51Z; downloaded again at 2026-09-28T22:38:46Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (23447 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
   "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2010-08-21T04:30:51Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-  "scope_note": "Raw Internet Archive capture made 21 August 2010 of a PAC press statement (the capture of 18 January 2009, with the same statement, was redirected to this one on 28 September 2026 and is not used). The statement has no dateline; the page's own date is its Joomla stamp \"Last Updated ( Wednesday, 14 January 2009 )\". Served without content encoding.",
+  "scope_note": "Raw Internet Archive capture made 21 August 2010 of an undated PAC press statement (the capture of 18 January 2009, with the same statement, was redirected to this one on 28 September 2026 and is not used). The statement has no dateline and the page carries no date of its own: its Joomla stamp \"Last Updated ( Wednesday, 14 January 2009 )\" is an edit stamp (the same site stamps statements of 2008 \"Last Updated ( Friday, 12 December 2008 )\"), so the statement is a continuation claim. Served without content encoding.",
   "visual_review": {
     "pdf_pages_one_based": [],
     "method": "Archived HTML text read; no images reviewed."
@@ -29,8 +29,9 @@
       "role_id": "za_pac_president",
       "holder_name": "Letlapa Mphahlele",
       "role_title": "President of the Pan Africanist Congress of Azania",
-      "event_kind": "in_office_attestation",
-      "attested_on": "2009-01-14",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": null,
+      "printed_range": "undated statement; page edit stamp \"Last Updated ( Wednesday, 14 January 2009 )\"",
       "text": "The \"PAC Presidential Response on Zuma Case\", on a PAC page stamped \"Last Updated ( Wednesday, 14 January 2009 )\", is signed \"Letlapa Mphahlele PAC President\".",
       "locator": {
         "section": "Heading, signature and the page's date stamp"

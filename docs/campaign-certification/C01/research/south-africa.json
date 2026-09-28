@@ -8467,26 +8467,25 @@
       "url": "https://web.archive.org/web/20100821043051id_/http://www.pac.org.za:80/index.php?option=com_content&task=view&id=111&Itemid=186",
       "original_url": "http://www.pac.org.za/index.php?option=com_content&task=view&id=111&Itemid=186",
       "publisher": "Pan Africanist Congress of Azania (archived www.pac.org.za page)",
-      "published_date": "2009-01-14",
+      "published_date": null,
       "accessed_date": "2026-09-28",
       "access_method": "downloaded_archived_raw_capture_and_page_text_read",
       "source_type": "primary_party_statement_archived",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "Raw Internet Archive capture made 21 August 2010 of a PAC press statement (the capture of 18 January 2009, with the same statement, was redirected to this one on 28 September 2026 and is not used). The statement has no dateline; the page's own date is its Joomla stamp \"Last Updated ( Wednesday, 14 January 2009 )\". Served without content encoding.",
+      "scope_note": "Raw Internet Archive capture made 21 August 2010 of an undated PAC press statement (the capture of 18 January 2009, with the same statement, was redirected to this one on 28 September 2026 and is not used). The statement has no dateline and the page carries no date of its own: its Joomla stamp \"Last Updated ( Wednesday, 14 January 2009 )\" is an edit stamp (the same site stamps statements of 2008 \"Last Updated ( Friday, 12 December 2008 )\"), so the statement is a continuation claim. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-zuma-case-20090114-facts.json",
-        "bytes": 4394,
-        "sha256": "e95f9414cf2f008019b48e3d30ddd0c0ba5b194f26716d4162e52e50410d8127"
+        "bytes": 4673,
+        "sha256": "8618f391060b48b8069ffd9370cc8706ff4fa104f51b7d075a6d1168bca0ec8e"
       },
       "claims": [
         {
           "id": "za_pac_statement_president_mphahlele_20090114",
           "text": "The \"PAC Presidential Response on Zuma Case\", on a PAC page stamped \"Last Updated ( Wednesday, 14 January 2009 )\", is signed \"Letlapa Mphahlele PAC President\".",
-          "attested_on": "2009-01-14",
           "locator": {
             "section": "Heading, signature and the page's date stamp"
           },
-          "uncertainty": "Dates the holder observation; it states no start and no end. The day is the page's printed date stamp, not a dateline. Mr Jacob Zuma, named as President of the Ruling Party, holds another party's office, which feeds nothing."
+          "uncertainty": "An undated statement (it has no dateline), so a continuation claim with no structured date; the page's Joomla edit stamp \"Last Updated ( Wednesday, 14 January 2009 )\" is not a date of the statement or of the office (the same site stamps statements of 2008 \"Last Updated ( Friday, 12 December 2008 )\"). Mr Jacob Zuma, named as President of the Ruling Party, holds another party's office, which feeds nothing. Never a holder date, start or end."
         }
       ]
     },
@@ -8802,11 +8801,11 @@
       "access_method": "downloaded_archived_raw_capture_and_page_text_read",
       "source_type": "primary_party_statement_archived",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "Raw Internet Archive capture made 8 October 2017 of a PAC post dated October 4, 2017 reproducing an interview. Served without content encoding.",
+      "scope_note": "Raw Internet Archive capture made 8 October 2017 of a PAC post dated October 4, 2017 reproducing a Political Analysis South Africa interview. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-pac-interview-moloto-20171004-facts.json",
-        "bytes": 4265,
-        "sha256": "f6573ad1df1d1a78bcf2e63190e0d2a22e462cb57a74e2b93c6a19a61a6357eb"
+        "bytes": 4296,
+        "sha256": "2a091648a98cac09498b0ff2f4d7998dfc5c61fb7089833053b063ac0ee0b3ef"
       },
       "claims": [
         {
@@ -8829,13 +8828,13 @@
       "published_date": "2018-01-19",
       "accessed_date": "2026-09-28",
       "access_method": "downloaded_archived_raw_capture_and_page_text_read",
-      "source_type": "primary_party_statement_archived",
+      "source_type": "party_republished_news_text",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "Raw Internet Archive capture made 22 March 2018 of a PAC post dated January 19, 2018, written as a news item citing the party's spokesperson. Served without content encoding.",
+      "scope_note": "Raw Internet Archive capture made 22 March 2018 of a PAC post dated January 19, 2018. Republished news text: the post repeats word for word, without credit, the Political Analysis South Africa article \"PAC case against Mbinda, for parliamentary seat to be heard in March 2018\" by Mzoxolo Mpolase, published 18 January 2018 (https://www.politicalanalysis.co.za/pac-case-against-mbinda-for-parliamentary-seat-to-be-heard-in-march-2018/, read in the Internet Archive capture 20230109165609). It is not a primary PAC record: its four claims are kept as claims only and never feed a holder. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-pac-post-case-against-mbinda-20180119-facts.json",
-        "bytes": 6123,
-        "sha256": "9fc1fe6c19065db73ef0310f65173a326ad70c1365e8bf5e588dd1f08a6a8db3"
+        "bytes": 6584,
+        "sha256": "d09f1aad60c5e477215202d0d60fc1e5c9984b1faacb9b2262622d901c1184e1"
       },
       "claims": [
         {
@@ -8845,7 +8844,7 @@
           "locator": {
             "section": "Second paragraph"
           },
-          "uncertainty": "Dates the holder observation; it states no start and no end. A news-style item posted on the PAC's own site. Disputed at the time: Luthando Mbinda, whose expulsion the PAC reports, kept claiming to be the legitimate PAC; the dispute is recorded, not resolved. The Speaker's Office is a state institution and feeds nothing."
+          "uncertainty": "Republished news text (see the source's scope note): the PAC's copy of a news article, not a primary PAC record of the office, so it dates no holder observation. Luthando Mbinda, whose expulsion the PAC reports, kept claiming to be the legitimate PAC; the dispute is recorded, not resolved. The Speaker's Office is a state institution and feeds nothing. Never a holder date, start or end."
         },
         {
           "id": "za_pac_post_former_president_mbinda_expelled_2017",
@@ -8853,7 +8852,7 @@
           "locator": {
             "section": "Third paragraph"
           },
-          "uncertainty": "A predecessor and expulsion reference with the year only, so no structured date is stored; \"former\" states no day his office ended. The parliamentary seat is a state office and feeds nothing. Never a holder date, start or end."
+          "uncertainty": "From republished news text (see the source's scope note). A predecessor and expulsion reference with the year only, so no structured date is stored; \"former\" states no day his office ended. The parliamentary seat is a state office and feeds nothing. Never a holder date, start or end."
         },
         {
           "id": "za_pac_post_then_president_mphethi_2014",
@@ -8861,7 +8860,7 @@
           "locator": {
             "section": "Last paragraph"
           },
-          "uncertainty": "A retrospective predecessor reference with the year only, so no structured date is stored; the parliamentary appointment is a state-office matter and feeds nothing. Never a holder date, start or end."
+          "uncertainty": "From republished news text (see the source's scope note). A retrospective predecessor reference with the year only, so no structured date is stored; the parliamentary appointment is a state-office matter and feeds nothing. Never a holder date, start or end."
         },
         {
           "id": "za_pac_post_case_against_mbinda_hearing_scheduled_20180119",
@@ -8870,7 +8869,7 @@
           "locator": {
             "section": "First paragraph"
           },
-          "uncertainty": "A prospective court hearing, dated by the day it was announced; its outcome was not found. Never a holder date, start or end."
+          "uncertainty": "From republished news text (see the source's scope note). A prospective court hearing, dated by the day it was announced; its outcome was not found. Never a holder date, start or end."
         }
       ]
     },
@@ -9012,8 +9011,8 @@
       "scope_note": "Raw Internet Archive capture made 16 May 2021 of a post dated January 3, 2020 whose body is \"Dated: 30 December 2019\" and signed by the PAC's Publicity Department, on the site of the leadership elected at Bloemfontein. Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-litigation-moloto-20191230-facts.json",
-        "bytes": 7140,
-        "sha256": "a329910d423aecb4e8415e3f1b4843f46da9ddb580081e9b32ac187e5c60afc9"
+        "bytes": 7139,
+        "sha256": "8b9ce091930bf5ecba8bb16494e5c243780f02d83b12c0f91c84994683bc8aaa"
       },
       "claims": [
         {
@@ -9034,7 +9033,7 @@
         },
         {
           "id": "za_pac_statement_moloto_suspended_20190720",
-          "text": "The same statement says \"Mr Narius Moloto was then suspended on 20 th July 2019, for bringing the organisation into disrepute among other reasons\".",
+          "text": "The same statement says \"Mr Narius Moloto was then suspended on 20th July 2019, for bringing the organisation into disrepute among other reasons\".",
           "attested_on": "2019-07-20",
           "locator": {
             "section": "Paragraph beginning \"Mr Narius Moloto was then suspended\""
@@ -9104,8 +9103,8 @@
       "scope_note": "Raw Internet Archive capture made 1 September 2021 of the judgment of Mahlangu AJ, heard 3 May 2021, dated 23 August 2021. The judgment prints the third applicant's name as \"MZWANDILE NYONTSHO\" and \"Nyntsho\". Served without content encoding.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-pac-v-moloto-20210823-facts.json",
-        "bytes": 6831,
-        "sha256": "64d0a977c930bb8e6d6aac4153cd170951baa1dd7de4ca53c3fed8318f010908"
+        "bytes": 6829,
+        "sha256": "784fdbecb1510a3087f4f212e030f04a0c054ed656167748dcf52cbdc44ed8ae"
       },
       "claims": [
         {
@@ -9119,7 +9118,7 @@
         },
         {
           "id": "za_pac_court_limpopo_congress_elects_moloto_2019",
-          "text": "The judgment's chronology reads \"24-25 August 2019 : PAC hold Conference in Limpopo-Mr Narious Moloto is elected President.\"",
+          "text": "The judgment's chronology reads \"24-25 August 2019: PAC hold Conference in Limpopo-Mr Narious Moloto is elected President.\"",
           "locator": {
             "section": "Paragraph [4], chronology"
           },
@@ -9127,7 +9126,7 @@
         },
         {
           "id": "za_pac_court_bloemfontein_congress_elects_nyhontso_2019",
-          "text": "The same chronology reads \"29-30 August 2019 : PAC hold Conference in Bloemfontein – Mr Mzwanele Nyontsho is elected President.\"",
+          "text": "The same chronology reads \"29-30 August 2019: PAC hold Conference in Bloemfontein – Mr Mzwanele Nyontsho is elected President.\"",
           "locator": {
             "section": "Paragraph [4], chronology"
           },
@@ -9236,7 +9235,7 @@
           "locator": {
             "section": "Heading of the message"
           },
-          "uncertainty": "Dates the holder observation; it states no start and no end. Disputed at the time: after the declarations of 23 August 2021, Narius Moloto's appeal in the related litigation was still pending before the Supreme Court of Appeal; the dispute is recorded, not resolved."
+          "uncertainty": "Dates the holder observation; it states no start and no end. Disputed at the time: Narius Moloto's appeal against the High Court's order of 12 July 2019 was still pending before the Supreme Court of Appeal, which records that the declarations of 23 August 2021 were not appealed; the dispute is recorded, not resolved."
         }
       ]
     },
@@ -12969,20 +12968,6 @@
                 "za_pac_notice_president_mphahlele_20081003"
               ],
               "note": "Observed on 3 October 2008: a PAC media notice of that day says \"President Letlapa Mphahlele will address the summit\".",
-              "uncertainty": "No start and no end: none is stated."
-            },
-            {
-              "name": "Letlapa Mphahlele",
-              "attested_on": "2009-01-14",
-              "from": null,
-              "until": null,
-              "sources": [
-                "za_pac_statement_zuma_case_2009"
-              ],
-              "claim_ids": [
-                "za_pac_statement_president_mphahlele_20090114"
-              ],
-              "note": "Observed on 14 January 2009: a PAC statement on a page with that date stamp is signed \"Letlapa Mphahlele PAC President\".",
               "uncertainty": "No start. No end: his expulsion in \"May 2013\" (court record, month only) is a claim and never an end; his successor's acting service and later titles are not used as his end."
             },
             {
@@ -12997,7 +12982,7 @@
                 "za_pac_report_president_mphethi_20140321"
               ],
               "note": "Observed on 21 March 2014: a PAC report says the commemorations that day \"were addressed by the President of the PAC Cde Alton Mphethi\".",
-              "uncertainty": "No start: no PAC record of his election was found; the home page's undated \"Acting President\" and \"President\" entries are claims. No end: the later \"then party president\" and \"expelled\" references state no day. Disputed: Letlapa Mphahlele, expelled in May 2013, continued to claim the presidency (court record of June 2016); the dispute is recorded, not resolved."
+              "uncertainty": "No start: no PAC record of his election was found; the home page's undated \"Acting President\" and \"President\" entries are claims. No end: the later \"expelled\" reference states no day. Disputed: Letlapa Mphahlele, expelled in May 2013, continued to claim the presidency (court record of June 2016); the dispute is recorded, not resolved."
             },
             {
               "name": "Luthando Mbinda",
@@ -13015,20 +13000,6 @@
             },
             {
               "name": "Narius Moloto",
-              "attested_on": "2018-01-19",
-              "from": null,
-              "until": null,
-              "sources": [
-                "za_pac_post_case_against_mbinda_20180119"
-              ],
-              "claim_ids": [
-                "za_pac_post_president_moloto_20180119"
-              ],
-              "note": "Observed on 19 January 2018: a PAC post of that day names \"PAC president Narius Moloto\".",
-              "uncertainty": "No start: no PAC record of his election was found (he was styled Secretary General on 4 October 2017). No end: none is stated. Disputed: Luthando Mbinda, whose expulsion the PAC reports, claimed to be the legitimate PAC (PAC release of 4 March 2018); the dispute is recorded, not resolved."
-            },
-            {
-              "name": "Narius Moloto",
               "attested_on": "2018-05-25",
               "from": null,
               "until": null,
@@ -13039,7 +13010,7 @@
                 "za_pac_statement_president_moloto_20180525"
               ],
               "note": "Observed on 25 May 2018: his statement of that day is headed as by the President of the Pan African Congress, on the PAC's letterhead.",
-              "uncertainty": "No start and no end: none is stated. Disputed: Luthando Mbinda claimed to be the legitimate PAC (PAC release of 4 March 2018); the dispute is recorded, not resolved."
+              "uncertainty": "No start: no PAC record of his election was found (he was styled Secretary General on 4 October 2017). No end: none is stated. Disputed: Luthando Mbinda claimed to be the legitimate PAC (PAC release of 4 March 2018); the dispute is recorded, not resolved."
             },
             {
               "name": "Narius Moloto",
@@ -13095,7 +13066,7 @@
                 "za_pac_new_year_message_president_nyhontso_20211231"
               ],
               "note": "Observed on 31 December 2021: his New Year message of that day is headed as by the President of the Pan Africanist Congress of Azania.",
-              "uncertainty": "No start and no end: none is stated. Disputed: Narius Moloto's appeal in the related litigation was pending until 27 October 2023; the declarations of 23 August 2021 are claims, and the dispute is recorded, not resolved."
+              "uncertainty": "No start and no end: none is stated. Disputed: Narius Moloto's appeal against the High Court's order of 12 July 2019 was pending until 27 October 2023, and the Supreme Court of Appeal records that the declarations of 23 August 2021 were not appealed; the declarations are claims, and the dispute is recorded, not resolved."
             },
             {
               "name": "Mzwanele Nyhontso",
@@ -13112,7 +13083,7 @@
               "uncertainty": "No start: no captured PAC record names the President elected at the National Elective Congress opened in Gqeberha on 11 December 2025. No end: none is stated. His ministerial office and seat in Parliament are state offices and are not used."
             }
           ],
-          "scope_note": "President of the Pan Africanist Congress of Azania, the party office elected by the PAC's national congress. CLAUDE-C01-32 records PAC in-office attestations, and one High Court judgment describing the respondent as the PAC's current President, as dated observations (attested_on); undated rosters, profiles, home pages and manifestos are continuation claims that never date a holder. No source reviewed states the day any President assumed or left the office, so no holder has a start or an end. Elections and election references, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions and the Secretary General's office are claims that never feed a holder. Where two people claimed the presidency at the same time (2013-2016, 2017-2018 and 2019-2023), each holder observation from those years is marked disputed and the dispute is recorded, never resolved by inference. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election, an expulsion or a court order. Constitution amendments are organization claims, never dates of the office. Party office and state office stay separate: parliamentary seats and ministerial office never feed this role, and no za_presidency claim or source feeds it."
+          "scope_note": "President of the Pan Africanist Congress of Azania, the party office elected by the PAC's national congress. CLAUDE-C01-32 records PAC in-office attestations, and one High Court judgment describing the respondent as the PAC's current President, as dated observations (attested_on); undated rosters, profiles, home pages, statements and manifestos are continuation claims that never date a holder, and a page's edit stamp is never a date. A PAC post that republishes a news article without credit is not a primary record: its claims are kept as claims only and never feed a holder. No source reviewed states the day any President assumed or left the office, so no holder has a start or an end. Elections and election references, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions and the Secretary General's office are claims that never feed a holder. Where two people claimed the presidency at the same time (2013-2016, 2017-2018 and 2019-2023), each holder observation from those years is marked disputed and the dispute is recorded, never resolved by inference. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election, an expulsion or a court order. Constitution amendments are organization claims, never dates of the office. Party office and state office stay separate: parliamentary seats and ministerial office never feed this role, and no za_presidency claim or source feeds it."
         }
       ],
       "electoral_observations": [
@@ -13264,7 +13235,7 @@
           "Reconcile legal registration, precise organization identity, renames, alliances, mergers and splits against original records.",
           "Research all independently dated party, parliamentary and executive leadership roles before character or succession eligibility.",
           "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation.",
-          "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): role za_pac_president holds sixteen dated observations of six people from PAC records and one High Court judgment, Stanley Mogoba (1998), Letlapa Mphahlele (2008-2009), Alton Mphethi (2014), Luthando Mbinda (2016), Narius Moloto (2018-2019) and Mzwanele Nyhontso (2020-2026), with no stated start or end; seven are marked disputed. Still open: any dated PAC record from 1990 to 1997 (Zephania Mothopeng and Clarence Makwetu appear only in retrospective lists) and from 1999 to 2007 (Motsoko Pheko only in an undated manifesto), the day each President assumed or left the office, the congresses of 1990, 2013, 2017 and December 2018, and the result of the December 2025 congress. The constitution amendment claims are recorded on this observation without changing its IEC reporting identity, unknown lifecycle or empty game mapping."
+          "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): role za_pac_president holds fourteen dated observations of six people from PAC records and one High Court judgment, Stanley Mogoba (1998), Letlapa Mphahlele (2008), Alton Mphethi (2014), Luthando Mbinda (2016), Narius Moloto (2018-2019) and Mzwanele Nyhontso (2020-2026), with no stated start or end; six are marked disputed. A PAC post of 19 January 2018 that republishes a news article and an undated 2009 statement are claims only. Still open: any dated PAC record from 1990 to 1997 (Zephania Mothopeng and Clarence Makwetu appear only in retrospective lists) and from 1999 to 2007 (Motsoko Pheko only in an undated manifesto), the day each President assumed or left the office, the congresses of 1990, 2013, 2017 and December 2018, and the result of the December 2025 congress. The constitution amendment claims are recorded on this observation without changing its IEC reporting identity, unknown lifecycle or empty game mapping."
         ]
       }
     },
@@ -15369,7 +15340,7 @@
       "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
       "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
       "ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30, ZA-ACDP-01..05, ZA-FF-01..09, ZA-IFP-01..08): three party-leader roles, za_acdp_president, za_ff_leader and za_ifp_president, on the AFRICAN CHRISTIAN DEMOCRATIC PARTY, VRYHEIDSFRONT PLUS and INKATHA FREEDOM PARTY observations, with 22 holder observations of seven people (Kenneth Meshoe; Constand Viljoen, Pieter Mulder, Pieter Groenewald and Corné Mulder; Mangosuthu Buthelezi and Velenkosini Hlabisa) dated by the parties' own in-office attestations and no start or end. This packet conservatively retains in-office attestations rather than promoting the reviewed election, acceptance and retirement statements into exact term boundaries; dated IFP retirement statements, including the 24 August 2019 address and retrospective timeline, remain claims only. Elections, selections, acceptances, result publications, retirement and valedictory statements, the President Emeritus title, deaths and the parliamentary leader office are claims only. The founding, renaming and merger claims (December 1993; March 1994 and 27 September 2003; 14 or 10 July 1990) are organization claims that set no lifecycle or identity. Ministerial, parliamentary and legislature offices never feed the party roles, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
-      "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): the party office is a separate role, za_pac_president, on the PAN AFRICANIST CONGRESS OF AZANIA observation, with sixteen holder observations of six people (Stanley Mogoba, Letlapa Mphahlele, Alton Mphethi, Luthando Mbinda, Narius Moloto and Mzwanele Nyhontso) dated by PAC in-office attestations and one High Court judgment, and no start or end; seven observations from the disputed years 2014-2021 are marked disputed and no dispute is resolved by inference. No record found states the day any President assumed or left the office; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings and congress sessions are claims only. Zephania Mothopeng, Clarence Makwetu and Motsoko Pheko appear only in retrospective lists, election references and an undated manifesto. Constitution amendments are organization claims that set no lifecycle or identity. Parliamentary seats and ministerial office never feed the role, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
+      "PAC Presidents 1990-2026 (CLAUDE-C01-32, ZA-PAC-01..11): the party office is a separate role, za_pac_president, on the PAN AFRICANIST CONGRESS OF AZANIA observation, with fourteen holder observations of six people (Stanley Mogoba, Letlapa Mphahlele, Alton Mphethi, Luthando Mbinda, Narius Moloto and Mzwanele Nyhontso) dated by PAC in-office attestations and one High Court judgment, and no start or end; six observations from the disputed years 2014-2021 are marked disputed and no dispute is resolved by inference. No record found states the day any President assumed or left the office; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings and congress sessions are claims only, and so are the claims of a PAC post that republishes a news article without credit and of an undated statement whose page carries only an edit stamp. Zephania Mothopeng, Clarence Makwetu and Motsoko Pheko appear only in retrospective lists, election references and an undated manifesto. Constitution amendments are organization claims that set no lifecycle or identity. Parliamentary seats and ministerial office never feed the role, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
       "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
       "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
     ]

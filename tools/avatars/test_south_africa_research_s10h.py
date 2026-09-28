@@ -295,10 +295,10 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 self.assertLessEqual(date.fromisoformat(claim['attested_on']), date.fromisoformat(research.CUTOFF))
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
                          hosts | c01_09_hosts | c01_16_hosts | c01_21_hosts | c01_30_hosts | c01_32_hosts)
-        # Seven C01-09 claims, 31 C01-16 claims, 13 C01-21 claims, 21 C01-30 claims and 29 C01-32 claims carry no
+        # Seven C01-09 claims, 31 C01-16 claims, 13 C01-21 claims, 21 C01-30 claims and 30 C01-32 claims carry no
         # structured date.
         self.assertEqual(sum('attested_on' not in c for s in self.packet['sources'] for c in s['claims']),
-                         7 + 31 + 13 + 21 + 29)
+                         7 + 31 + 13 + 21 + 30)
         self.assertEqual([s['published_date'] for s in self.packet['sources'][:2]], [None, None])
         self.assertEqual(self.extracts['za_iec_national_results_20240621']['report_as_at'], '2024-06-21T13:51:28')
         self.assertEqual(self.extracts['za_iec_national_seats_20240606']['report_as_at'], '2024-06-06T11:56:55')
