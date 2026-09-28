@@ -702,7 +702,7 @@ packet's report), all resting on the Senate's stored DCN nº 1/2023 issue at
   image pages were read at 2.2x to 5x.
 - **Recorded in the records.** Each source record in `brazil.json` has a compact `source_review` and each extract the
   full one (downloads, publication identity, capture, page table, gaps); the extract snapshots are re-recorded:
-  `br_cn_dcn1_20230102_p1_8` extract 10,023 bytes (`b03c6ef0…`) → 23,954 bytes (`f238eb68…66ff4f`);
+  `br_cn_dcn1_20230102_p1_8` extract 10,023 bytes (`b03c6ef0…`) → 23,995 bytes (`92d55224…46caf3`);
   `br_cn_dcn1_20230102_p20_26` extract 5,878 bytes (`b657689a…`) → 19,836 bytes (`08b9dee4…934ec5`). The recorded
   response identity, URL, access date and page pins are unchanged.
 
@@ -723,13 +723,13 @@ Page by page for this packet's claims (`br_vice_president` rows):
   Lula's oath 'Prometo manter, defender e cumprir a Constituição'; Alckmin invited as 'Vice-Presidente da República
   eleito' and his oath printed 'Prometo defender e cumprir' without 'manter', as the oath claim's uncertainty records;
   'declaro empossados ... respectivamente, para o período de 1o de janeiro de 2023 a 4 de janeiro de 2027'.
-- PDF page 7 (`br_alckmin_termo_read_20230101`): **agrees**. Deputy Luciano Bivar reads the termo headed '... Geraldo
-  José Alckmin Filho' (without 'Rodrigues', as the claim's uncertainty says): 'Às 15h do dia 1o de janeiro de 2023',
-  the joint session in the Chamber's plenary, art. 78, elected 'no dia 30 de outubro de 2022', diplomados by the TSE
-  'no dia 12 de dezembro do mesmo ano', for 1 January 2023 to 4 January 2027. Rodrigo Pacheco then names the
-  signatories one by one (the President, the Vice-President, the presiding officer, the Presidents of the Chamber and
-  of the Supreme Court, the Prosecutor-General and the First Secretary); the claim's 'the Mesa' summarises the last
-  five, whom the termo calls 'os membros da Mesa'.
+- PDF page 7 (`br_alckmin_elected_20221030`, `br_alckmin_termo_read_20230101`): **agrees**. Deputy Luciano Bivar reads
+  the termo headed '... Geraldo José Alckmin Filho' (without 'Rodrigues', as the claim's uncertainty says): 'Às 15h do
+  dia 1o de janeiro de 2023', the joint session in the Chamber's plenary, art. 78, elected 'no dia 30 de outubro de
+  2022', diplomados by the TSE 'no dia 12 de dezembro do mesmo ano', for 1 January 2023 to 4 January 2027. Rodrigo
+  Pacheco then names the signatories one by one (the President, the Vice-President, the presiding officer, the
+  Presidents of the Chamber and of the Supreme Court, the Prosecutor-General and the First Secretary); the claim's
+  'the Mesa' summarises the last five, whom the termo calls 'os membros da Mesa'.
 - PDF page 8 (`br_alckmin_saluted_vice_president_lula_address_20230101`): **agrees**. 'meu querido companheiro
   Vice-Presidente da República, Geraldo Alckmin', as quoted.
 - PDF page 17 (no claim): **agrees**. Section cover 'Diplomas do Sr. Luiz Inácio Lula da Silva e do Sr. Geraldo José

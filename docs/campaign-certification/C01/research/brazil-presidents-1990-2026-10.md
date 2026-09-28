@@ -671,7 +671,7 @@ issue at `https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=11171
   image pages were read at 2.2x to 5x.
 - **Recorded in the records.** Each source record in `brazil.json` has a compact `source_review` and each extract the
   full one (downloads, publication identity, capture, page table, gaps); the extract snapshots are re-recorded:
-  `br_cn_dcn1_20230102_p1_8` extract 10,023 bytes (`b03c6ef0…`) → 23,954 bytes (`f238eb68…66ff4f`);
+  `br_cn_dcn1_20230102_p1_8` extract 10,023 bytes (`b03c6ef0…`) → 23,995 bytes (`92d55224…46caf3`);
   `br_cn_dcn1_20230102_p18_19` extract 3,760 bytes (`09bdecde…`) → 14,943 bytes (`eb3981bb…67dd13`). The recorded
   response identity, URL, access date and page pins are unchanged.
 

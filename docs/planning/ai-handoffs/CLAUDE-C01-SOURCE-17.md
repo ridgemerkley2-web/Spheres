@@ -39,10 +39,16 @@ remaining gaps.
 
 Submitted `ready_for_review` on 27 September 2026 (the downloads ran from 2026-09-27T23:42:00Z to
 2026-09-28T00:45:09Z) on `claude/c01-source-17`, based on `a33a8987`. After the claim commit `803ad03d` come two
-commits: "Review source for CLAUDE-C01-SOURCE-17" (the records, extracts, reports and this record) and "Regenerate the
-C01 research index for CLAUDE-C01-SOURCE-17" (`research-index.json` only). `codex/campaign-certification` has since
-moved to `fbc2a041` with S19 commits that touch no C01 path, so no merge was needed. This repairs integrated research;
-historical acceptance stays with Codex.
+commits: "Review source for CLAUDE-C01-SOURCE-17" (`1de0bba6`; the records, extracts, reports and this record) and
+"Regenerate the C01 research index for CLAUDE-C01-SOURCE-17" (`35d1d438`; `research-index.json` only).
+`codex/campaign-certification` has since moved to `fbc2a041` with S19 commits that touch no C01 path, so no merge was
+needed. The verifier's fixes follow in two more commits: "Apply verifier fixes to CLAUDE-C01-SOURCE-17" (page 7 of the
+p1_8 review also lists `br_alckmin_elected_20221030`; the p1_8 extract becomes 23,995 bytes and `brazil.json` 784,614
+bytes, SHA-256 `3c11128ec3dac3b18dbb07bff1b3cae498d67e30c913716e3353ec2cce8ee8fd`) and "Regenerate the C01 research
+index after CLAUDE-C01-SOURCE-17 fixes" (`research-index.json` only). When the fixes were made,
+`codex/campaign-certification` was at `e41aa18d`; its commits since `a33a8987` touch no C01 research file and none of
+this repair's files, so again no merge was needed. This repairs integrated research; historical acceptance stays with
+Codex.
 
 ### Finding
 
@@ -108,7 +114,7 @@ access date or response identity changes.
 
 | Source record | PDF pages compared (claims) | Result |
 |---|---|---|
-| `br_cn_dcn1_20230102_p1_8` | 1 (0), 3 (0), 4 (0), 5 (2), 6 (6), 7 (4), 8 (1) | all agree |
+| `br_cn_dcn1_20230102_p1_8` | 1 (0), 3 (0), 4 (0), 5 (2), 6 (6), 7 (5), 8 (1) | all agree |
 | `br_cn_dcn1_20230102_p18_19` | 18 (1), 19 (0) | agrees |
 | `br_cn_dcn1_20230102_p20_26` | 17 (0), 20 (1), 21 (0), 22 (0), 23 (1), 24 (0), 26 (1) | agree; page 20 "PCdoB" corrected to the printed "PCDOB" |
 
@@ -125,9 +131,11 @@ page 7 says art. 75.
 
 - `docs/campaign-certification/C01/research/brazil.json`: a compact `source_review` on `br_cn_dcn1_20230102_p1_8`,
   `br_cn_dcn1_20230102_p18_19` and `br_cn_dcn1_20230102_p20_26`; their snapshot values; the text of
-  `br_alckmin_diplomado_tse_20221212` ("PCdoB" to "PCDOB").
+  `br_alckmin_diplomado_tse_20221212` ("PCdoB" to "PCDOB"). After the verifier fixes it is 784,614 bytes, SHA-256
+  `3c11128ec3dac3b18dbb07bff1b3cae498d67e30c913716e3353ec2cce8ee8fd` (784,569 bytes, `1477443b…b95164`, at
+  submission).
 - `sources/brazil-congress-dcn-lula-posse-20230102-facts.json`: the full `source_review`; 10,023 bytes (`b03c6ef0…`)
-  to 23,954 bytes, SHA-256 `f238eb68ed3e2b32d5dc035ce6c9fea9983e22ba7050c9622fbaeb1dc366ff4f`.
+  to 23,995 bytes, SHA-256 `92d55224586cd9d035b0a48be87c765605e7e66b868de7495709c427b546caf3`.
 - `sources/brazil-congress-dcn-lula-diploma-20230102-facts.json`: the full `source_review`; 3,760 bytes (`09bdecde…`)
   to 14,943 bytes, SHA-256 `eb3981bb77ea7effe603ab624ccc236b8b52c5a7d023d375c3337cf80b67dd13`.
 - `sources/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json`: the full `source_review` and the corrected
@@ -136,8 +144,13 @@ page 7 says art. 75.
 - `brazil-presidents-1990-2026-10.md` and `brazil-vice-presidents-1990-2026-17.md`: a dated "Source review
   (CLAUDE-C01-SOURCE-17)" section each (CRLF working-tree endings kept).
 - This record.
-- `docs/campaign-certification/C01/research-index.json`: regenerated in its own commit (totals unchanged; only
-  `brazil.json`'s bytes and SHA-256 change).
+- `docs/campaign-certification/C01/research-index.json`: regenerated in its own commit, and again in "Regenerate the
+  C01 research index after CLAUDE-C01-SOURCE-17 fixes" (totals unchanged; only `brazil.json`'s bytes and SHA-256
+  change).
+- Verifier fixes ("Apply verifier fixes to CLAUDE-C01-SOURCE-17"): `br_alckmin_elected_20221030`, whose locator cites
+  the termo on PDF page 7, is added to page 7's claims in the p1_8 `source_review.pages` of `brazil.json` and of the
+  extract and in the CLAUDE-C01-17 report's page list; page 7 agrees (the termo says both were elected "no dia 30 de
+  outubro de 2022"). The p1_8 extract identity is updated in `brazil.json`, both reports and this record.
 - Tests: none changed. No pinned value changed: the response identities, URLs, access dates and page pins are the
   same, the corrected claim text is not pinned, and extract snapshots are checked against the files.
 
@@ -160,6 +173,9 @@ page 7 says art. 75.
   error in `test_research_import_io` (each kept traceback shows `PermissionError: [WinError 5] Access is denied` from
   `os.replace` inside `%TEMP%`); that test touches no repository file and passed on rerun, and every other check
   passed on its first run.
+- Rerun after the verifier fixes: all nine checks above pass with the same results (9 packets, 1,329 sources, 3,731
+  claims and 93 discovery batches; 33, 79 and 16 tests, OK, none skipped; 11 node tests passed; 44 workboard markers;
+  `git diff --check` exit code 0 on this repair's paths).
 
 ### Remaining gaps
 
