@@ -172,7 +172,14 @@ fn stage(
     path: &Path,
     write: impl FnOnce(&mut File) -> std::io::Result<()>,
 ) -> std::io::Result<PathBuf> {
-    let temp = temporary(path);
+    stage_at(temporary(path), write)
+}
+// Separate the chosen path so collision/error ownership can be tested without
+// racing the process-wide unique-name counter. This extraction changes no IO.
+fn stage_at(
+    temp: PathBuf,
+    write: impl FnOnce(&mut File) -> std::io::Result<()>,
+) -> std::io::Result<PathBuf> {
     let result = (|| {
         let mut file = OpenOptions::new()
             .write(true)
@@ -622,4 +629,211 @@ mod tests {
         assert!(root.join("saves/auto-2.json.bak").is_file());
         fs::remove_dir_all(root).unwrap();
     }
+
+    #[test]
+    fn recovery_backup_only_default_and_named_slots_remain_discoverable() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        game.record("Earlier recoverable point.".into());
+        let old_world = crate::save(&game.world);
+        let old_log = game.log.clone();
+        for slot in ["default", "France-recovery"] { write(&root, slot, &game).unwrap(); }
+        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        game.record("Newest save whose primary file is now missing.".into());
+        for slot in ["default", "France-recovery"] {
+            write(&root, slot, &game).unwrap();
+            fs::remove_file(slot_path(&root, slot).unwrap()).unwrap();
+        }
+        let listing = list(&root);
+        let rows = listing["slots"].as_array().unwrap();
+        assert_eq!(rows.len(), 2, "Both backup-only slots must remain selectable");
+        for slot in ["default", "France-recovery"] {
+            let row = rows.iter().find(|row| row["slot"] == slot).unwrap();
+            assert_eq!(row["current_exists"], false);
+            assert_eq!(row["readable"], false, "No primary can be loaded");
+            assert_eq!(row["backup"], true);
+            assert_eq!(row["metadata_from_backup"], true);
+            assert_eq!(row["player"], "France");
+            assert_eq!(row["date"], game.world.date_str());
+            assert!(row["bytes"].is_null());
+            assert!(read(&root, slot, false).is_err());
+            let recovered = read(&root, slot, true).unwrap();
+            assert_eq!(crate::save(&recovered.world), old_world);
+            assert_eq!(recovered.log, old_log);
+            assert_ne!(recovered.session_id, game.session_id);
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_listing_uses_backup_metadata_without_claiming_backup_validity() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "France-recovery", &game).unwrap();
+        game.world.day = 2;
+        game.record("A later primary.".into());
+        write(&root, "France-recovery", &game).unwrap();
+        let primary = slot_path(&root, "France-recovery").unwrap();
+        fs::write(&primary, b"{interrupted").unwrap();
+        fs::write(root.join("saves/OnlyDamage.json.bak"), b"{broken backup").unwrap();
+        // These names cannot be selected by slot_path and must not appear as
+        // misleading options (including the reserved default alias in saves/).
+        for name in ["bad.name.json", "bad.name.json.bak", ".json", "default.json", "default.json.bak"] {
+            fs::write(root.join("saves").join(name), encode(&game).unwrap()).unwrap();
+        }
+        let listing = list(&root);
+        let rows = listing["slots"].as_array().unwrap();
+        assert_eq!(rows.len(), 2, "Union only valid, addressable current/backup slot names");
+        let row = rows.iter().find(|row| row["slot"] == "France-recovery").unwrap();
+        assert_eq!(row["current_exists"], true);
+        assert_eq!(row["readable"], false);
+        assert_eq!(row["metadata_from_backup"], true);
+        assert_eq!(row["date"], "1 Jan 1990");
+        assert_eq!(row["player"], "France");
+        let broken = rows.iter().find(|row| row["slot"] == "OnlyDamage").unwrap();
+        assert_eq!(broken["backup"], true, "Existence is not a full validity claim");
+        assert_eq!(broken["readable"], false);
+        assert_eq!(broken["metadata_from_backup"], false);
+        assert!(broken["date"].is_null());
+        assert!(read(&root, "OnlyDamage", true).is_err());
+        // A parseable primary keeps precedence; listing is not full decode.
+        fs::write(&primary, br#"{"format":"future-unknown","saved_date":"primary label","player":"primary label"}"#).unwrap();
+        let listing = list(&root);
+        let row = listing["slots"].as_array().unwrap().iter().find(|row| row["slot"] == "France-recovery").unwrap();
+        assert_eq!(row["readable"], true);
+        assert_eq!(row["metadata_from_backup"], false);
+        assert_eq!(row["date"], "primary label");
+        assert!(read(&root, "France-recovery", false).is_err());
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_timestamp_only_repeated_save_preserves_the_prior_point() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let previous = fs::read(&path).unwrap();
+        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        game.record("Current point with an interior saved_unix: 9 and a quoted \"saved_unix\" label.".into());
+        write(&root, "default", &game).unwrap();
+        assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous);
+        let text = fs::read_to_string(&path).unwrap();
+        let (prefix, _) = text.rsplit_once(",\"saved_unix\":").unwrap();
+        let timestamp_only = format!("{prefix},\"saved_unix\":0}}");
+        assert!(decode(&timestamp_only).is_ok());
+        fs::write(&path, timestamp_only).unwrap();
+        let world = crate::save(&game.world);
+        let history = game.history.clone();
+        let log = game.log.clone();
+        for _ in 0..2 { write(&root, "default", &game).unwrap(); }
+        assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous,
+            "A lost save response followed by retry cannot replace the earlier recovery point");
+        let restored = read(&root, "default", false).unwrap();
+        assert_eq!(crate::save(&restored.world), world);
+        assert_eq!(restored.history, history);
+        assert_eq!(restored.log, log);
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_same_day_world_history_log_and_journey_changes_still_rotate() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let date = game.world.date_str();
+        for change in 0..5 {
+            let previous = fs::read(&path).unwrap();
+            match change {
+                0 => game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25,
+                1 => game.record("A same-day dispatch containing \"saved_unix\":123.".into()),
+                2 => game.history[0].oil += 0.5,
+                3 => game.history_epoch += 1,
+                _ => game.journey.observing = true,
+            }
+            assert_eq!(game.world.date_str(), date);
+            write(&root, "default", &game).unwrap();
+            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous,
+                "Same-day change {change} must create a distinct recovery point");
+            let restored = read(&root, "default", false).unwrap();
+            assert_eq!(crate::save(&restored.world), crate::save(&game.world));
+            assert_eq!(restored.history, game.history);
+            assert_eq!(restored.log, game.log);
+            assert_eq!(restored.history_epoch, game.history_epoch);
+            assert_eq!(restored.journey, game.journey);
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_noncanonical_and_legacy_valid_saves_keep_normal_rotation() {
+        let root = root();
+        let game = Game::new(1990, Some(crate::NationId::France));
+        let path = slot_path(&root, "default").unwrap();
+        let compact = encode(&game).unwrap();
+        let value: Value = serde_json::from_str(&compact).unwrap();
+        for text in [format!("{compact}\n"), serde_json::to_string_pretty(&value).unwrap(),
+            serde_json::to_string(&value).unwrap(), crate::save(&game.world)] {
+            assert!(decode(&text).is_ok());
+            fs::write(&path, &text).unwrap();
+            write(&root, "default", &game).unwrap();
+            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), text.as_bytes(),
+                "Conservative duplicate detection must not canonicalize legacy or reordered input");
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_invalid_primary_never_replaces_the_retained_valid_backup() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let good = fs::read(&path).unwrap();
+        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        write(&root, "default", &game).unwrap();
+        for bad in ["{truncated".to_owned(), encode(&game).unwrap().replacen("\"version\":1", "\"version\":999", 1)] {
+            assert!(decode(&bad).is_err());
+            fs::write(&path, bad).unwrap();
+            write(&root, "default", &game).unwrap();
+            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), good);
+            assert_eq!(crate::save(&read(&root, "default", false).unwrap().world), crate::save(&game.world));
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_preexisting_temporary_candidate_is_not_ours_to_delete() {
+        let root = root();
+        let candidate = root.join("save.tmp-collision");
+        let original = b"Earlier interrupted operation's candidate";
+        fs::write(&candidate, original).unwrap();
+        let error = stage_at(candidate.clone(), |_| panic!("Writer must not run after create_new fails")).unwrap_err();
+        assert_eq!(error.kind(), std::io::ErrorKind::AlreadyExists);
+        assert_eq!(fs::read(&candidate).ok().as_deref(), Some(original.as_slice()),
+            "Failed exclusive creation cannot delete a pre-existing file");
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_backup_promotion_failure_keeps_primary_and_cleans_owned_temps() {
+        let root = root();
+        let mut game = Game::new(1990, Some(crate::NationId::France));
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let primary = fs::read(&path).unwrap();
+        let backup = path.with_extension("json.bak");
+        fs::create_dir(&backup).unwrap();
+        let sentinel = backup.join("keep.txt");
+        fs::write(&sentinel, b"Directory blocks backup rename").unwrap();
+        game.record("Would be a new save, but backup promotion fails.".into());
+        assert!(write(&root, "default", &game).is_err());
+        assert_eq!(fs::read(&path).unwrap(), primary);
+        assert_eq!(fs::read(&sentinel).unwrap(), b"Directory blocks backup rename");
+        assert!(!fs::read_dir(&root).unwrap().any(|e| e.unwrap().file_name().to_string_lossy().contains("tmp-")));
+        assert!(read(&root, "default", false).is_ok());
+        fs::remove_dir_all(root).unwrap();
+    }
+
 }
