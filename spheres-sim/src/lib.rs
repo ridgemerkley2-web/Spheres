@@ -929,6 +929,22 @@ fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: boo
             }
         }
     }
+    // Inventory ceilings have no partial refusal effects or financial hooks.
+    // Keep the original trial if the public command ever gains a standing bill
+    // or journal entry; purchases and all other corporate orders are excluded.
+    if retain_company_trial {
+        if let Command::Company { nation, order: order @ (companies::CompanyOrder::Inventory { .. }
+            | companies::CompanyOrder::AmmoInventory { .. }) } = c
+        {
+            if command_price(w, c).filter(|(_, price, _)| *price > 0.0).is_none()
+                && fiscal_journal::before_policy(w, c).is_none()
+            {
+                if let Some(result) = companies::try_apply_stock_target(w, *nation, order) {
+                    return result;
+                }
+            }
+        }
+    }
     // Company validation already executes the entire order on an isolated
     // world. Retain that exact result instead of cloning and executing it a
     // second time. No trial effects reach the live world before the unchanged

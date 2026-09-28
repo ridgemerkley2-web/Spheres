@@ -656,6 +656,19 @@ pub(crate) fn trial(w: &WorldState, n: NationId, order: &CompanyOrder) -> Result
     Ok(staged)
 }
 
+/// These two orders perform all actor, target and product checks before their
+/// sole stock-target write. They neither settle money nor create transactions.
+/// The dispatcher may use this path only with no standing bill or policy entry.
+/// Every other company order retains its existing rollback/quote boundary.
+pub(crate) fn try_apply_stock_target(
+    w: &mut WorldState, n: NationId, order: &CompanyOrder,
+) -> Option<Result<(), String>> {
+    if !matches!(order, CompanyOrder::Inventory { .. } | CompanyOrder::AmmoInventory { .. }) {
+        return None;
+    }
+    Some(apply_inner(w, n, order))
+}
+
 /// Capitalization needs no rollback copy when both global charge hooks are
 /// idle: native validation and department spending refuse before any write,
 /// then only the already-preflighted receipt append remains. Return None
@@ -1905,6 +1918,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
 mod tests {
     use super::*;
     const HOME: NationId = NationId::France;
+    include!("companies_stock_target_tests.rs");
     fn supplier_pre_establishment_fixture() -> (WorldState, String) {
         let mut w = crate::init::world_1990(crate::world::GameRules {
             daily_simulation: true,
