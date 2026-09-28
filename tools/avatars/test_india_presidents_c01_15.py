@@ -292,6 +292,13 @@ C01_20_COUNTS = (73, 113)
 C01_27_ORGANIZATION = 'in_eci_20240323_np_03'
 C01_27_ROLE = 'in_bjp_president'
 C01_27_COUNTS = (74, 167)
+# CLAUDE-C01-33 (stacked on CLAUDE-C01-27) adds one organization observation, the Janata Dal row of the Election
+# Commission's national-party table of 10 January 1998, with one party role, in_jd_president, and appends its sources
+# after the C01-27 sources, with this many sources and claims; its own test pins them. This packet's assertions are
+# unchanged for its own records.
+C01_33_ORGANIZATION = 'in_eci_19980110_np_06'
+C01_33_ROLE = 'in_jd_president'
+C01_33_COUNTS = (22, 41)
 INSTITUTION = 'in_presidency'
 PRES = 'in_president'
 T_PRES = 'President of India'
@@ -544,12 +551,17 @@ class IndiaPresidentsTests(unittest.TestCase):
         self.assertEqual((party['id'], len(party['sources']), len(party['claim_ids'])), (C01_20_ROLE,) + C01_20_COUNTS)
         bjp, = [r for o in self.packet['organizations'] if o['id'] == C01_27_ORGANIZATION for r in o['roles']]
         self.assertEqual((bjp['id'], len(bjp['sources']), len(bjp['claim_ids'])), (C01_27_ROLE,) + C01_27_COUNTS)
+        jd, = [o for o in self.packet['organizations'] if o['id'] == C01_33_ORGANIZATION]
+        self.assertEqual(([r['id'] for r in jd['roles']], len(jd['sources']), len(jd['claim_ids'])),
+                         ([C01_33_ROLE],) + C01_33_COUNTS)
         self.assertEqual([s['id'] for s in self.packet['sources']],
-                         list(ORIGINAL_SOURCES) + pm_sources + NEW_SOURCES + party['sources'] + bjp['sources'])
+                         list(ORIGINAL_SOURCES) + pm_sources + NEW_SOURCES + party['sources'] + bjp['sources']
+                         + jd['sources'])
         self.assertFalse(set(self.new_claims) & set(party['claim_ids']))
         self.assertFalse(set(self.new_claims) & set(bjp['claim_ids']))
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (84, 4))
-        self.assertEqual(len(self.packet['organizations']), 82)
+        self.assertFalse(set(self.new_claims) & set(jd['claim_ids']))
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (85, 5))
+        self.assertEqual(len(self.packet['organizations']), 83)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertEqual(len(NEVER_HOLDER), len(set(NEVER_HOLDER)))
@@ -688,8 +700,9 @@ class IndiaPresidentsTests(unittest.TestCase):
         self.assertEqual(sum('CLAUDE-C01-15' in u for u in coverage['unresolved']), 1)
         self.assertTrue(coverage['unresolved'][8].startswith('Presidents 1990-2026 (CLAUDE-C01-15)'))
         self.assertTrue(coverage['unresolved'][9].startswith('INC Presidents 1990-2026 (CLAUDE-C01-20'))
-        self.assertTrue(coverage['unresolved'][-1].startswith('BJP Presidents 1990-2026 (CLAUDE-C01-27'))
-        self.assertEqual(len(coverage['unresolved']), 11)
+        self.assertTrue(coverage['unresolved'][10].startswith('BJP Presidents 1990-2026 (CLAUDE-C01-27'))
+        self.assertTrue(coverage['unresolved'][-1].startswith('Janata Dal Presidents 1990-2026 (CLAUDE-C01-33'))
+        self.assertEqual(len(coverage['unresolved']), 12)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [6, 76])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -987,7 +1000,7 @@ class IndiaPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'India')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 4))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 5))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'India'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

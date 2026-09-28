@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_on11e_19960205_national_parties",
+  "source_url": "https://egazette.gov.in/WriteReadData/1996/E-0312-1996-0004-11878.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "1996-02-05",
+  "access_method": "official_egazette_pdf_download_text_layer_read",
+  "source_response_bytes": 2694875,
+  "source_response_sha256": "0189f4e8e71fde7fcd11bdc1f2a86818e79d7d804542405e511a4c27f83677c8",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static egazette.gov.in object (Last-Modified Tue, 12 Mar 2013 06:15:12 GMT, fixed ETag \"01849f4e81ece1:0\"; PDF CreationDate 12 March 2013, no per-request /ID or ModDate), so it is not generated per request. Its MD5 (2bb9b50e5e449a0fdbe4fe86e70c6534) equals the stored file of the Internet Archive item in.gazette.central.e.1996-02-05.11878. This packet downloaded it at 19:27:27Z, 19:58:52Z and 20:31:40Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013; PDF CreationDate 12 March 2013, no ModDate). Only the Janata Dal row of Table I is imported; the rest of the tables are outside this packet.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      34
+    ],
+    "method": "PDF page 34 (heading and Table I) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_19960205_np_row_05_janta_dal",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "recognition_row",
+      "attested_on": "1996-02-05",
+      "text": "The 5 February 1996 national-party table (O.N. 11(E), superseding notification No. 56/92 of 7 January 1993) lists at row 5 'Janta Dal' (so printed), symbol 'Chakra (Wheel)', at 7, Jantar Mantar Road, New Delhi-110 001.",
+      "locator": {
+        "pdf_page": 34,
+        "table": "TABLE-I National Parties",
+        "party_row_number": 5
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

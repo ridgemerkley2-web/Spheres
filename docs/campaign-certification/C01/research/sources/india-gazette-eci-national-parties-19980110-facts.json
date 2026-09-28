@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_on18e_19980110_national_parties",
+  "source_url": "https://archive.org/download/in.gazette.central.e.1998-01-15.7285/7285.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, Part II - Section 3 - Sub-section (iii), 15 January 1998, file 7285)",
+  "accessed_date": "2026-09-28",
+  "published_date": "1998-01-15",
+  "access_method": "downloaded_internet_archive_stored_gazette_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 4063921,
+  "source_response_sha256": "2e68126f22e1540315405b8b5ee978c35e6bcc4a7f2f23629c236b2d2e5b7744",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity (Last-Modified Sun, 05 Aug 2018 19:10:09 GMT, ETag \"5b674b91-3e02b1\"); its MD5 (0b61782199863c5149335dcf7976eb6f) equals the item's file listing (in.gazette.central.e.1998-01-15.7285). This packet downloaded it at 19:27:54Z, 19:59:23Z and 20:32:03Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.1998-01-15.7285, a Public.Resource.Org copy of the egazette.nic.in file, public since 5 August 2018, catalogued as Election Commission of India, Ref. 18 (E)); eGazette has no reachable file for this issue. PDF CreationDate 12 March 2013. Only the Janata Dal row of Table I is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      82,
+      83
+    ],
+    "method": "PDF pages 82 (notification heading) and 83 (Table I) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_19980110_np_row_06",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "recognition_row",
+      "attested_on": "1998-01-10",
+      "text": "The 10 January 1998 national-party table (O.N. 18(E), superseding notification No. 56/96/Jud.II of 5 February 1996) lists at row 6 'Janata Dal', symbol 'Chakra (Wheel)', at 7, Jantar Mantar Road, New Delhi-110001.",
+      "locator": {
+        "pdf_page": 83,
+        "table": "TABLE-I NATIONAL PARTIES",
+        "party_row_number": 6
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

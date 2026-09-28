@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debate_19960715_petroleum_prices",
+  "source_url": "https://archive.org/download/eparlib.nic.in.10951/11_II_15071996_p126_p145_t195.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/10951/1/11_II_15071996_p126_p145_t195.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 13860933,
+  "source_response_sha256": "ca995bb48dc8b52a998694c8454ea1850afbd4f80162f324203b23985fa8bf59",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity (Last-Modified Fri, 11 Jul 2025 18:55:03 GMT, ETag \"68715e07-d38045\"); its MD5 (95140a804fff0994b04d0297ceb742c7) equals the item's file listing (eparlib.nic.in.10951). This packet downloaded it at 19:28:49Z, 20:00:24Z and 20:33:14Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.10951, an upload of 11 July 2025 whose metadata names the Parliament Digital Library file for record 123456789/10951 as its source; its PDF was made with ReportLab on 29 January 2024 (CreationDate), so it may be a later rendering of the official file, whose bytes could not be compared. The eparlib hosts could not be reached, and no pre-cutoff capture of the official URL was found. A member's speech in English; Parliament records are used only where they record the party office. The date is printed in the page header ('JULY 15, 1996').",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      11
+    ],
+    "method": "PDF page 11 (cols 263-264) rendered and read; the text layer reads 'Janata Dai' where the page prints 'Janata Dal'."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ls_panigrahi_laloo_prasad_yadav_party_president_19960715",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-04",
+      "role_id": "in_jd_president",
+      "holder_name": "Laloo Prasad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-07-15",
+      "text": "In the Lok Sabha on 15 July 1996 Shri Sriballav Panigrahi (Deogarh), speaking in English, quoted 'the Janata Dal Supremo, the Bihar Chief Minister Shri Laloo Prasad Yadav' and said: 'The Janata Dal Party Supremo, the party President, the Bihar Chief Minister had taken the Prime Minister to task. Shri Laloo Prasad Yadav issued this statement before coming to attend the Chief Minister's Conference.'",
+      "locator": {
+        "pdf_page": 11,
+        "columns": "263-264",
+        "section": "speech of Shri Sriballav Panigrahi (Deogarh)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

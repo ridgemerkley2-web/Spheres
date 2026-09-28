@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debate_19970317_environment_appellate_authority",
+  "source_url": "https://archive.org/download/eparlib.nic.in.10363/11_IV_17031997_p129_p138_t282.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/10363/1/11_IV_17031997_p129_p138_t282.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read",
+  "source_response_bytes": 8195221,
+  "source_response_sha256": "f8ce7f3ea2f80086fc8bf4a7ff5a9a46e8fba0d7417b80331ffde6c0f09a664c",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity (Last-Modified Fri, 11 Jul 2025 13:54:20 GMT, ETag \"6871178c-7d0c95\"); its MD5 (3096394710d8be1f30e0c5a4f06d787f) equals the item's file listing (eparlib.nic.in.10363). This packet downloaded it at 19:28:51Z, 20:00:27Z and 20:33:18Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.10363, an upload of 11 July 2025 whose metadata names the Parliament Digital Library file for record 123456789/10363 as its source; its PDF was made with ReportLab on 29 January 2024 (CreationDate), so it may be a later rendering of the official file, whose bytes could not be compared. The eparlib hosts could not be reached. The speech is in Hindi and the report prints the official English translation; the page header prints 'PHALGUNA 26, 1918 (Saka)', the date of 17 March 1997.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5
+    ],
+    "method": "PDF page 5 (cols 257-258) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ls_ram_naik_sharad_yadav_working_president_19970317",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-05",
+      "role_id": "in_jd_president",
+      "holder_name": "Sharad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "working_presidency",
+      "attested_on": "1997-03-17",
+      "text": "In the Lok Sabha on 17 March 1997 Shri Ram Naik (Mumbai North) said, in the official translation, that the area had not 'been represented in that Committee Shri Sharad Yadav is the working President of Janta Dal and his worker Shri Vilas Vichare, being the member of N.G.O.K., has been included in that Committee'.",
+      "locator": {
+        "pdf_page": 5,
+        "columns": "257-258",
+        "section": "speech of Shri Ram Naik (Mumbai North)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

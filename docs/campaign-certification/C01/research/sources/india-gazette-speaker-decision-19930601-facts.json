@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ls_speaker_decision_19930601",
+  "source_url": "https://egazette.gov.in/WriteReadData/1993/E-0460-1993-0320-18126.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "1993-06-01",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 2879963,
+  "source_response_sha256": "d0ceaea1a826bd8e4f0808ca458be7eaf6d866c9941ad176a03d833e8698d59f",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static egazette.gov.in object (Last-Modified Tue, 12 Mar 2013 05:49:54 GMT, fixed ETag \"0ad7c6be51ece1:0\"; PDF CreationDate 12 March 2013, no per-request /ID or ModDate), so it is not generated per request. Its MD5 (40e6e12a3815e6177e1ec364740e14af) equals the stored file of the Internet Archive item in.gazette.central.e.1993-06-01.18126. This packet downloaded it at 19:28:16Z, 19:59:45Z and 20:32:25Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013; PDF CreationDate 12 March 2013, no ModDate). The Speaker's decision summarises the parties' pleadings; those summaries are claims of the parties, and the decision concerns membership of the Lok Sabha and of the Parliamentary Party, not the party office.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      21,
+      23,
+      33
+    ],
+    "method": "PDF page 33 (paragraphs 228-244) rendered and read; pages 21 (notification heading and paragraph 7) and 23 (paragraph 20) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ls_speaker_decision_ajit_singh_expelled_by_bommai_recalled_19911226",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "recalled_act_dated",
+      "attested_on": "1991-12-26",
+      "text": "The Speaker's decision of 1 June 1993 summarises the written statement filed on 11-8-1992: S/Shri Ajit Singh, Rashid Masood, Harpal Panwar and Satyapal Singh Yadav 'were expelled from the primary membership of Janata Dal By Shri S. R. Bommai, President of the Janata Dal. Shri Ajit Singh was expelled on 26-12-1991.'",
+      "locator": {
+        "pdf_page": 21,
+        "section": "paragraph 7(i)"
+      }
+    },
+    {
+      "claim_id": "in_ls_speaker_decision_four_members_expelled_by_bommai_recalled_19920719",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "recalled_act_dated",
+      "attested_on": "1992-07-19",
+      "text": "The same written statement says that S/Shri R. Sonker Shastri, Ramnihore Rai, Ram Awadh and Shivsharan Verma 'were expelled from the primary membership of the Party by Shri S. R. Bommai, President of the Janata Dal on 19-7-1992'.",
+      "locator": {
+        "pdf_page": 21,
+        "section": "paragraph 7(ii)"
+      }
+    },
+    {
+      "claim_id": "in_ls_speaker_decision_ajit_singh_endorsed_as_president_claimed_19920205",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": "in_jd_president",
+      "holder_name": "Ajit Singh",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "rival_presidency_claim",
+      "attested_on": "1992-02-05",
+      "text": "In the petition against S/Shri Ajit Singh and three others the decision records that 'the Respondents claimed that on 5-2-1992, the Janata Dal was split and Shri Ajit Singh was endorsed as the President of the Party' (paragraph 20; paragraph 242 has 'endorsed as the President of the original Janata Dal').",
+      "locator": {
+        "pdf_page": 23,
+        "section": "paragraph 20(i); repeated on PDF page 33, paragraph 242"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

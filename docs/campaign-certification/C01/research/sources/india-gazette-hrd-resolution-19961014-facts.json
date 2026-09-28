@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_hrd_resolution_19961014",
+  "source_url": "https://egazette.gov.in/WriteReadData/1996/E-0298-1996-0190-10568.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "1996-10-25",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 435535,
+  "source_response_sha256": "11eab2c61a70181f0120f195210c8e33c3d2c81f936018fc1de6764e16aeb07f",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static egazette.gov.in object (Last-Modified Tue, 12 Mar 2013 06:27:32 GMT, fixed ETag \"0225cadea1ece1:0\"; PDF CreationDate 12 March 2013, no per-request /ID or ModDate), so it is not generated per request. Its MD5 (5e9649564994d81c9750d7d929185e6f) equals the stored file of the Internet Archive item in.gazette.central.e.1996-10-25.10568. This packet downloaded it at 19:28:38Z, 20:00:11Z and 20:33:05Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013; PDF CreationDate 12 March 2013, no ModDate). A Government resolution listing a committee's members under category headings.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5,
+      7
+    ],
+    "method": "PDF page 7 (the heading 'Presidents of all Major National Political Parties' and items 102-170) rendered and read; page 5 (resolution heading) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gazette_hrd_resolution_laloo_under_presidents_of_major_parties_19961014",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-04",
+      "role_id": "in_jd_president",
+      "holder_name": "Laloo Prasad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1996-10-14",
+      "text": "The Ministry of Human Resource Development's resolution F. No. 38-1/95-C & M of 14 October 1996, notifying the composition of the National Committee for the commemoration of the 50th Anniversary of India's Independence, lists under the heading 'Presidents of all Major National Political Parties' '111. Shri Laloo Prasad Yadav, Janata Dal'.",
+      "locator": {
+        "pdf_page": 7,
+        "section": "heading 'Presidents of all Major National Political Parties', item 111"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

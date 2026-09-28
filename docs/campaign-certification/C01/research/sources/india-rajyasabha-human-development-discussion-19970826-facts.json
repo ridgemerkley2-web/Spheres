@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19970826_human_development_discussion",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/44/81/57/44815748876381101160630170373599063241?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_181_26081997_01_p72-220_1.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read",
+  "source_response_bytes": 753976,
+  "source_response_sha256": "8ff848856e1583368e978ab29200306c7a0ffc38dd6e8540a00d4b9fdb5e4fe2",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body (ETag \"adb8f30c8a9fc1aeeaaba612654f702e\", Last-Modified Wed, 29 Jul 2026 14:44:08 GMT); the query sets only the served content type and file name. This packet downloaded it at 19:29:22Z, 20:00:49Z and 20:33:42Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/135374). A member's speech; the sitting is dated by the Secretariat's file name and index record (26 August 1997).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      40,
+      41
+    ],
+    "method": "PDF pages 40 and 41 (cols 149-152) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_bommai_as_janata_dal_president_report_1989_recalled",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-02",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "In the Rajya Sabha on 26 August 1997 Shri S.R. Bommai (Orissa), speaking 'as a Member, not as a Minister', said: 'As Janata Dal President, I have given a report in 1989 recommending reservation for women in Parliament and Assemblies.'",
+      "locator": {
+        "pdf_page": 41,
+        "columns": "151-152",
+        "section": "speech of Shri S.R. Bommai (Orissa)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

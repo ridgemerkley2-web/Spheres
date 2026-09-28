@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_welfare_resolution_19910329",
+  "source_url": "https://egazette.gov.in/WriteReadData/1991/E-0528-1991-0076-21565.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "1991-03-29",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 663246,
+  "source_response_sha256": "db48f4f7c1d139680cb394cdd8cf0df75ac3c519bd97f171f9b65a4440783fd5",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static egazette.gov.in object (Last-Modified Tue, 12 Mar 2013 06:39:32 GMT, fixed ETag \"06a835aec1ece1:0\"; PDF CreationDate 12 March 2013, no per-request /ID or ModDate), so it is not generated per request. Its MD5 (3bf2eedd5aa909e8a5b1fd4a7f976aa6) equals the stored file of the Internet Archive item in.gazette.central.e.1991-03-29.21565. This packet downloaded it at 19:28:01Z, 19:59:30Z and 20:32:09Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013; PDF CreationDate 12 March 2013, no ModDate). A Government resolution constituting a national committee, printed with each member's designation. The pages before PDF page 9 hold the Hindi text and other notices.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      9,
+      10
+    ],
+    "method": "PDF pages 1 (masthead), 9 (resolution heading) and 10 (members 7-40) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gazette_welfare_resolution_bommai_president_janata_dal_19910329",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-02",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1991-03-29",
+      "text": "The Ministry of Welfare's resolution No. 1/3/91-CC.I of 29 March 1991, reconstituting the National Committee for the Centenary Celebrations of Baba Saheb Dr. Bhim Rao Ambedkar, lists as member 29 'Shri S. R. Bommai, President, Janata Dal, Sardar Patel Bhavan, 7, Jantar Mantar Road, New Delhi-110001'.",
+      "locator": {
+        "pdf_page": 10,
+        "section": "English resolution (heading on PDF page 9), member 29"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}
