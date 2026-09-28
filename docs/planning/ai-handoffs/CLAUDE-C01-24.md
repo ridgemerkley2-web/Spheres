@@ -8,8 +8,10 @@ batch of five packets in parallel. It does not repeat accepted C01-01/02/03/04/0
 the pending C01-05, C01-06 and C01-09 to C01-22. It is pending Codex acceptance and is not registered in `docs/planning/ai-workstreams.json`.
 
 Branch: `claude/c01-to-24`. Base: `ffe54b02` (then `codex/campaign-certification`); not stacked on another pending packet. Claim
-commit: `a91a8249` (this record only). Current integration `a33a8987` was merged into the branch at `f1230bbb` before the packet
-was completed; the fetch of 27 September 2026 found nothing newer, so no further merge was needed.
+commit: `a91a8249` (this record only). Integration `a33a8987` was merged into the branch at `f1230bbb` before the packet
+was completed; `codex/campaign-certification` advanced past it at 16:44 -0700 on 27 September and was `e41aa18d` by 19:18 -0700
+that day (eleven commits touching S19, planning, UI and simulation files, none of this packet's paths); merging it is left to
+the integrator.
 
 ## Bounded deliverable
 

@@ -2,8 +2,9 @@
 
 Packet: **CLAUDE-C01-24**. State: **ready_for_review** (not complete).
 Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-to-24`; claim commit `a91a8249` on base `ffe54b02`
-(then the head of `codex/campaign-certification`); current integration `a33a8987` was merged into the branch at
-`f1230bbb` before this packet was completed, and the fetch of 27 September 2026 found nothing newer. Research
+(then the head of `codex/campaign-certification`); integration `a33a8987` was merged into the branch at
+`f1230bbb` before this packet was completed (integration had advanced to `e41aa18d` by 19:18 -0700 on 27 September; see
+Integration notes). Research
 access: 25-26 September 2026 (research and independent checks) and 27 September 2026 (local; 28 September UTC), when
 every recorded response was downloaded again for this packet. The historical cutoff stays **7 September 2026**.
 
@@ -458,7 +459,7 @@ same identity. Each extract's `stability_check` gives its two download times.
   Deputy Speaker that day, which conflicts with the 19 July releases; it concerns the Deputy Speakership, outside this role
   (capture of 30 October 2012: 15,063 bytes, SHA-256 `6d492fb2…7f5f871a`, re-downloaded twice for this packet).
 - The government's Assembly page captured on 18 August 2002, still marking "Hon. Veikune (Speaker of the House)" after
-  Tu'ivakano's appointment had been reported: evidence that the roster lagged (12,654 bytes, SHA-256 `c007510c…f1cffca`,
+  Tu'ivakano's appointment had been reported: evidence that the roster lagged (12,654 bytes, SHA-256 `c007510c…f98cffca`,
   re-downloaded twice for this packet).
 - Tonga Law Reports 1996 ([download=1573:1996_tlr](https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1573:1996_tlr)):
   Moala v Minister of Police dates the 1995 book-throwing "in October 1995" with "the then Acting or Deputy Speaker";
@@ -589,8 +590,9 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 
 ## Integration notes (outside this packet's file boundary)
 
-- **Base and merge:** claim commit `a91a8249` on base `ffe54b02`; current integration `a33a8987` merged at `f1230bbb`; the fetch
-  of 27 September 2026 found no newer integration commit, so no further merge was needed.
+- **Base and merge:** claim commit `a91a8249` on base `ffe54b02`; integration `a33a8987` merged at `f1230bbb`. The integration
+  branch advanced past `a33a8987` at 16:44 -0700 on 27 September and was `e41aa18d` by 19:18 -0700 that day (eleven commits
+  touching S19, planning, UI and simulation files, none of this packet's paths); merging it is left to the integrator.
 - `research-index.json` is regenerated in a **separate commit**. New totals: 1,378 sources and 3,813 claims across 9 country packets (previously 1,329 and 3,731), 841 organization and 34 institution observations, 93 open discovery batches. Tonga keeps nine entries, 15
   role observations and one open batch, `C01-Tonga-DISC-B001`; organization, institution, packet and batch counts are unchanged.
 - `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator; this handoff

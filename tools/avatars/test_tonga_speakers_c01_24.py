@@ -375,6 +375,8 @@ def speaker_invariants(packet):
     assert claims['to_speaker_vaea_assembly_election_20251216']['attested_on'] == '2025-12-16'
     assert claims['to_speaker_vaea_royal_appointment_to_20251218']['attested_on'] == '2025-12-18'
     assert claims['to_speaker_vaea_oath_news_20260122']['attested_on'] == '2026-01-22'
+    # The Interim Speaker is styled at the press conference the note dates: a dated claim, never a holder.
+    assert claims['to_interim_speaker_tupou_styled_20101203']['attested_on'] == '2010-12-03'
     # Undated or year-only claims carry no structured date.
     for cid in ('to_la_ministers_page_malupo_acting_2000', 'to_lasike_testimony_speaker_cr285', 'to_lasike_announces_first_sitting_2011',
                 'to_fakafanua_adjourned_to_inform_king_2012',
@@ -471,6 +473,8 @@ class TongaSpeakerTests(unittest.TestCase):
                 self.assertFalse(set(ids) & set(ACTING), role_id)
         self.assertIn('never holders or boundaries', self.role['scope_note'])
         self.assertIn(STRING_HOLDER, self.role['scope_note'])
+        self.assertEqual(sum('are claims on to_speaker only, never holders' in u
+                             for u in self.assembly['coverage']['unresolved']), 1)
 
     def test_appointment_election_oath_revocation_and_acting_service_never_collapse(self):
         speaker_invariants(self.packet)

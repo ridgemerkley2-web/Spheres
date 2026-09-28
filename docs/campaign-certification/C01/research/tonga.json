@@ -3839,7 +3839,7 @@
           "text": "IPU's summary of the 2005 elections states: 'On 23 March, the Speaker of the Legislative Assembly, Hon. Veikune (see note below), issued an election order for by-elections for the four seats vacated by the newly appointed ministers'.",
           "attested_on": "2005-03-23",
           "locator": "Background paragraph",
-          "uncertainty": "IPU corroboration only: an interparliamentary summary citing the Electoral Supervisor and the Government of Tonga, not a Tongan record."
+          "uncertainty": "IPU corroboration only: an interparliamentary summary whose listed sources are the Electoral Supervisor of the Government of Tonga (20.07.2005), the Government of Tonga (www.pmo.gov.to) and a Tongan news website; not a Tongan record."
         },
         {
           "id": "to_ipu_2005_tuihaangana_appointment_effective_20060210",
@@ -3852,8 +3852,8 @@
       "scope_note": "IPU's legacy summary of the 2005 elections (raw Internet Archive capture of 7 November 2024; archived server Last-Modified 22 April 2024). Its bytes are identical to the static copy on archive.ipu.org. Interparliamentary corroboration, not a Tongan record; the live data.ipu.org page carries a per-request Cloudflare script and is not used.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2005-election-facts.json",
-        "bytes": 5157,
-        "sha256": "b4e96a475ff914305fb0c1773379c6067aa28585bb47a7247385714f768eb3ad",
+        "bytes": 5255,
+        "sha256": "a22f9da01be5a040038c470d5b0754f7a4442db08e2eb8616e764ce70d8a4865",
         "kind": "derived_factual_extract"
       }
     },
@@ -4288,8 +4288,9 @@
         {
           "id": "to_interim_speaker_tupou_styled_20101203",
           "text": "The Assembly's explanatory note reports that 'THE Interim Speaker of the Legislative Assembly, Lord Tevita Tupou' briefed elected members and the press at a press conference held on the 3rd of December 2010, and states that 'His Majesty has appointed Lord Tupou as Interim Speaker of the Legislative Assembly pursuant to His powers under paragraph (8) of the Schedule' of the Act assented to on 24 November 2010.",
+          "attested_on": "2010-12-03",
           "locator": "Introductory paragraphs and point 1",
-          "uncertainty": "Interim Speaker service is a claim on the role, never a Speaker holder. The day of his interim appointment is not stated; 3 December 2010 is the press conference at which he is styled Interim Speaker."
+          "uncertainty": "Interim Speaker service is a claim on the role, never a Speaker holder. attested_on is the day of the press conference at which he is styled Interim Speaker (3 December 2010); the day of his interim appointment is not stated."
         },
         {
           "id": "to_interim_speaker_office_ceases_rule_2010",
@@ -4298,11 +4299,11 @@
           "uncertainty": "The Assembly's own summary of the procedure, not an event; it dates no Speaker appointment."
         }
       ],
-      "scope_note": "The Assembly's explanatory note of December 2010 on the old site (raw Internet Archive capture of 30 November 2011; the capture shows 'Published Date' with no value and a frozen hit counter). The same note is already in the packet as the live-page source to_reform_procedure_2010, whose hit counter makes live hashes non-reproducible and which is not edited; this capture is used for its reproducible identity and for claims not imported there.",
+      "scope_note": "The Assembly's explanatory note of December 2010 on the old site (raw Internet Archive capture of 30 November 2011; the capture shows 'Published Date' with no value and a frozen hit counter). The same note is already in the packet as the live-page source to_reform_procedure_2010, whose hit counter makes live hashes non-reproducible and which is not edited; this capture is used for its reproducible identity and for claims not imported there. The date in this source's id, 6 December 2010, is the 'Created: 06 December 2010' printed on that live copy; this capture prints none.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-interim-note-20101203-facts.json",
-        "bytes": 5376,
-        "sha256": "50e85d01b9332fd2e07e7ea280f0eb34e439b3bdb5dc7561763da30c2744a5f9",
+        "bytes": 5544,
+        "sha256": "b0f4537f6f4be86bcf765ab948f326c3aa1d9a09beaed8d7f193d15f61d2e365",
         "kind": "derived_factual_extract"
       }
     },
@@ -4994,8 +4995,8 @@
       "scope_note": "Assembly news item 'Created: 22 January 2026' (15:57 +13:00; raw Internet Archive capture of 22 January 2026). The archive stores and returns this capture gzip-encoded; the recorded identity is the decoded body. Located for this packet in place of the minutes of 22 January 2026, which are served only through a download form (see the report).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-oath-news-20260122-facts.json",
-        "bytes": 4827,
-        "sha256": "c0fe0c39a1aadf1c9a9614782be1404b9cf7b3da4870e4afbee958a972d432ac",
+        "bytes": 4822,
+        "sha256": "0f4c250159a8b8d4681c898a0ffc80d912c2abab072ec03fe0096be98cd87510",
         "kind": "derived_factual_extract"
       }
     },

@@ -16,7 +16,7 @@
   "stability_check": "Downloaded for this packet at 2026-09-28T00:04:36Z and again at 2026-09-28T01:01:52Z (UTC), 57 minutes later, from the same URL: both responses were 50753 bytes with SHA-256 ab47cbb71915929c87f4d3e47d0cb4bec7cc892cf9cebd4f6b236bdd07b888f9. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
   "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2011-11-30T04:16:54Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
-  "scope_note": "The Assembly's explanatory note of December 2010 on the old site (raw Internet Archive capture of 30 November 2011; the capture shows 'Published Date' with no value and a frozen hit counter). The same note is already in the packet as the live-page source to_reform_procedure_2010, whose hit counter makes live hashes non-reproducible and which is not edited; this capture is used for its reproducible identity and for claims not imported there.",
+  "scope_note": "The Assembly's explanatory note of December 2010 on the old site (raw Internet Archive capture of 30 November 2011; the capture shows 'Published Date' with no value and a frozen hit counter). The same note is already in the packet as the live-page source to_reform_procedure_2010, whose hit counter makes live hashes non-reproducible and which is not edited; this capture is used for its reproducible identity and for claims not imported there. The date in this source's id, 6 December 2010, is the 'Created: 06 December 2010' printed on that live copy; this capture prints none.",
   "visual_review": {
     "pdf_pages_one_based": [],
     "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
@@ -30,10 +30,10 @@
       "holder_name": "Lord Tevita Tupou",
       "role_title": "Speaker",
       "event_kind": "interim_service",
-      "attested_on": null,
+      "attested_on": "2010-12-03",
       "text": "The Assembly's explanatory note reports that 'THE Interim Speaker of the Legislative Assembly, Lord Tevita Tupou' briefed elected members and the press at a press conference held on the 3rd of December 2010, and states that 'His Majesty has appointed Lord Tupou as Interim Speaker of the Legislative Assembly pursuant to His powers under paragraph (8) of the Schedule' of the Act assented to on 24 November 2010.",
       "locator": "Introductory paragraphs and point 1",
-      "uncertainty": "Interim Speaker service is a claim on the role, never a Speaker holder. The day of his interim appointment is not stated; 3 December 2010 is the press conference at which he is styled Interim Speaker."
+      "uncertainty": "Interim Speaker service is a claim on the role, never a Speaker holder. attested_on is the day of the press conference at which he is styled Interim Speaker (3 December 2010); the day of his interim appointment is not stated."
     },
     {
       "claim_id": "to_interim_speaker_office_ceases_rule_2010",
