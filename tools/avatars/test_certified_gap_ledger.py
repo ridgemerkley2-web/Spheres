@@ -377,7 +377,7 @@ class FixtureLedger(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'no acceptance class'):
             ledger.build(self.root, broken)
         queue = json.loads((self.root / ledger.TASK_QUEUE).read_text(encoding='utf-8'))
-        queue['tasks'].append({'id': 'CLAUDE-C01-30', 'owner': 'Claude', 'state': 'claimed'})
+        queue['tasks'].append({'id': 'CLAUDE-C01-99', 'owner': 'Claude', 'state': 'claimed'})
         (self.root / ledger.TASK_QUEUE).write_text(json.dumps(queue), encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'In-flight table differs'):
             ledger.build(self.root, self.attribution)
@@ -438,10 +438,12 @@ class CheckedInLedger(unittest.TestCase):
         for excluded in ('India/in_bjp', 'to_legislative_assembly#to_speaker', 'sa_shura#sa_shura_chair',
                          'sa_succession_commission#sa_succession_chair', 'institution:fr_presidency'):
             self.assertNotIn(excluded, entities)
-        for target in ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']:
+        for target in (ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']
+                       + ledger.IN_FLIGHT['CLAUDE-C01-30']['targets']):
             self.assertNotIn(target.removeprefix('party:'), entities)
         claims = {row['task']: row for row in self.data['in_flight']}
-        for tid, state in (('CLAUDE-C01-28', 'claimed'), ('CLAUDE-C01-29', 'ready_for_review')):
+        for tid, state in (('CLAUDE-C01-28', 'ready_for_review'), ('CLAUDE-C01-29', 'ready_for_review'),
+                           ('CLAUDE-C01-30', 'claimed')):
             self.assertEqual(claims[tid]['state'], state)
             self.assertFalse(claims[tid]['accepted'])
         self.assertIn('institution:fr_prime_minister', entities)
