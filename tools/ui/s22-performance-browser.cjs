@@ -11,13 +11,14 @@ const summary=values=>{const a=[...values].sort((a,b)=>a-b);return {count:a.leng
 
 async function install(page){
   await page.addInitScript({path:path.join(__dirname,'webgl-measurement.js')});
+  await page.addInitScript({path:path.join(__dirname,'webgl-texture-measurement.js')});
   await page.addInitScript(()=>{
     window.s22Probes=[];
     const original=HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext=function(...args){
       const gl=original.apply(this,args);
       if(gl&&['webgl','webgl2','experimental-webgl'].includes(args[0])&&!s22Probes.some(p=>p.gl===gl))
-        s22Probes.push({gl,metrics:WebGLMeasurement.attach(gl)});
+        s22Probes.push({gl,metrics:WebGLMeasurement.attach(gl),textures:WebGLTextureMeasurement.attach(gl)});
       return gl;
     };
     window.s22Inputs=[];window.s22CaptureInputs=false;
@@ -51,10 +52,12 @@ async function run(){
     driver_sha256:hash(fs.readFileSync(__filename)),actions:[],requests:[],errors:[],screenshots:[],cells:[],checks:[],assets:[],
     method:{map:'A continuous changing camera drives the released Globe3D render path. Each counted frame must issue actual WebGL draws; gl.finish completes GPU work before its timestamp. 3s settling is recorded separately, then a full 12s window includes blocking and final frame cost. This is completed render throughput under synthetic continuous navigation, not idle RAF cadence or display presentation FPS. Instrumentation and forced GPU synchronization add cost.',
       input:'31 trusted visible map-control clicks per detail preset; event timestamp to a second animation-frame opportunity plus GPU completion. Includes input dispatch and main-thread work. This is a conservative paint-opportunity proxy, not compositor presentation latency or network command latency.',
-      memory:'CDP JavaScript heap/DOM and measured WebGL buffer payload, separately labeled. Buffer payload excludes textures, renderbuffers, framebuffers, driver overhead and total VRAM. No headless native 1GiB ceiling is applied to browser counters.'}};
+      memory:'CDP JavaScript heap/DOM, queried WebGL buffer payload and separately declared texture texel payload. Texture requests are not verified physical allocations; unknown layouts remain null. Renderbuffers, framebuffer surfaces, driver overhead and total VRAM are excluded. No headless native 1GiB ceiling is applied to browser counters.'}};
   fs.copyFileSync(__filename,path.join(out,'driver.cjs'));console.log(out);
   const probeBytes=fs.readFileSync(path.join(__dirname,'webgl-measurement.js'));
   fs.writeFileSync(path.join(out,'webgl-measurement.js'),probeBytes);evidence.probe_sha256=hash(probeBytes);
+  const textureProbeBytes=fs.readFileSync(path.join(__dirname,'webgl-texture-measurement.js'));
+  fs.writeFileSync(path.join(out,'webgl-texture-measurement.js'),textureProbeBytes);evidence.texture_probe_sha256=hash(textureProbeBytes);
   const serverStart=performance.now(),server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:serverRoot,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const serverLog=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(serverLog);server.stderr.pipe(serverLog);
   let browser,page,launchError,traceSession,browserSession,traceActive=false;server.on('error',e=>{launchError=e;});
@@ -127,7 +130,7 @@ async function run(){
     }else{
       const cdp=traceSession;
       async function memory(){return {metrics:await cdp.send('Performance.getMetrics'),dom:await cdp.send('Memory.getDOMCounters'),
-        contexts:await page.evaluate(()=>s22Probes.map(p=>({connected:p.gl.canvas.isConnected,id:p.gl.canvas.id,buffer_payload:p.metrics.snapshot()})))};}
+        contexts:await page.evaluate(()=>s22Probes.map(p=>({connected:p.gl.canvas.isConnected,id:p.gl.canvas.id,buffer_payload:p.metrics.snapshot(),declared_texture_payload:p.textures.snapshot(),texture_diagnostics:p.textures.diagnostics()})))};}
       evidence.gpu=await page.evaluate(()=>{const gl=GL.gl,e=gl.getExtension('WEBGL_debug_renderer_info');return {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),unmasked:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null};});
       evidence.memory_before=await memory();
       await page.evaluate(()=>{
@@ -163,7 +166,7 @@ async function run(){
             });
             GLOBE.setView(yaw,pitch,v.zoom);GLOBE.render();gl.finish();
             const settle=await measure(3000),measured=await measure(12000);
-            return {view:v,settle,measured,map_mode:ui.mapMode,map_details:{...ui.mapDetails},buffers:probe.metrics.snapshot(),ready:GL.ok&&GL.ready&&!gl.isContextLost(),
+            return {view:v,settle,measured,map_mode:ui.mapMode,map_details:{...ui.mapDetails},buffers:probe.metrics.snapshot(),declared_texture_payload:probe.textures.snapshot(),ready:GL.ok&&GL.ready&&!gl.isContextLost(),
               terrain:GLR.surface.stats,city_cache:[...GLR.cityCache].map(([i,e])=>({name:CITIES[i]?.name,triangles:e.tris,span:e.span})),
               performance_guard:{dpr_cap:GL.dprCap,max_lod:GL.maxLod,reason:GL.reason},
               active_canvas:{width:GLCV.width,height:GLCV.height,css_width:GLCV.clientWidth,css_height:GLCV.clientHeight}};
@@ -205,8 +208,12 @@ async function run(){
     assert.equal((await state()).date,before.date);assert.deepEqual(evidence.errors,[]);
     assert(!evidence.requests.some(r=>['/api/advance','/api/command'].includes(r.path)),'Presentation measurement cannot settle or command the campaign');
     assert.equal(hash(fs.readFileSync(checkpoint)),hash(bytes));assert.equal(hash(fs.readFileSync(binary)),evidence.binary_sha256);
-    evidence.passed=process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
-      evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed);
+    const textureComplete=t=>t&&t.probe_errors===0&&t.unmeasured_allocation_events===0&&t.unmeasured_texture_allocations===0&&t.declared_texture_texel_payload_bytes!==null&&t.peak_declared_texture_texel_payload_bytes!==null;
+    evidence.memory_complete=process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.memory_complete===true:
+      [evidence.memory_before,evidence.memory_after,...evidence.cells.map(c=>c.memory)].every(m=>m?.contexts.length&&m.contexts.every(c=>textureComplete(c.declared_texture_payload)))&&
+      evidence.cells.every(c=>c.views.every(v=>textureComplete(v.declared_texture_payload)));
+    evidence.passed=evidence.memory_complete&&(process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
+      evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed));
     await finishTrace();
     if(evidence.qualification)assert(evidence.passed,'Frozen browser performance/layout limits failed; raw evidence retained');
   }catch(error){evidence.failure=error.stack;if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}

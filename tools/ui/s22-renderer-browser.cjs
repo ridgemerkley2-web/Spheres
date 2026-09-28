@@ -12,6 +12,7 @@ const files=['index.html','city-mesh.js','city-layer.js','arsenal3d.js','arsenal
 
 async function install(page) {
   await page.addInitScript({content:fs.readFileSync(path.join(__dirname,'webgl-measurement.js'),'utf8')});
+  await page.addInitScript({content:fs.readFileSync(path.join(__dirname,'webgl-texture-measurement.js'),'utf8')});
   await page.addInitScript(()=>{
     const contexts=[],original=HTMLCanvasElement.prototype.getContext;
     const counters={resident:0,peak:0,uploads:0,uploaded:0,deletions:0,draws:0,triangles:0,losses:0};
@@ -20,7 +21,7 @@ async function install(page) {
     HTMLCanvasElement.prototype.getContext=function(type,...args) {
       const gl=original.call(this,type,...args);
       if(!gl||!['webgl','webgl2'].includes(type)||contexts.some(row=>row.gl===gl))return gl;
-      const metrics=WebGLMeasurement.attach(gl),row={id:contexts.length,type,canvas:this,gl,metrics};contexts.push(row);
+      const metrics=WebGLMeasurement.attach(gl),textures=WebGLTextureMeasurement.attach(gl),row={id:contexts.length,type,canvas:this,gl,metrics,textures};contexts.push(row);
       const create=gl.createBuffer,upload=gl.bufferData,remove=gl.deleteBuffer,draw=gl.drawArrays;
       gl.createBuffer=function(...args){const buffer=create.apply(this,args);if(buffer&&__s22Renderer.buildingCity)cities.set(buffer,{gl,bytes:0});return buffer;};
       gl.bufferData=function(target,...args){
@@ -45,7 +46,7 @@ async function install(page) {
 
 async function run({page,tap,state,shot,evidence,expectedRevision}) {
   const out=evidence.out;assert(out);assert.match(expectedRevision||evidence.runtime_revision||'',/^[a-f0-9]{40}$/);
-  const proof=evidence.renderer={passed:false,method:'Actual native campaign rendering and queried WebGL buffer payload. City attribution wraps the released city functions without changing their logic. Payload excludes textures, renderbuffers, framebuffer storage, driver overhead and CPU/GPU process memory. Fighter orbit timing is separately labeled; it measures submitted/completed draw frames, not compositor presentation or map FPS. Lazy-card fixture is explicitly isolated DOM using released models, not a campaign catalogue usability claim.',
+  const proof=evidence.renderer={passed:false,memory_complete:false,method:'Actual native campaign rendering, queried WebGL buffer payload and separate declared texture texel payload. Texture requests are not verified physical allocations; unknown layouts remain null. City attribution wraps released functions without changing their logic. Renderbuffers, framebuffer surfaces, driver overhead and CPU/GPU process memory are excluded. Fighter orbit timing measures submitted/completed draw frames, not compositor presentation or map FPS. Lazy-card fixture is isolated DOM using released models, not campaign catalogue usability.',
     observations:[],sources:[],checks:[],errors:[],requests:[],started_utc:new Date().toISOString()};
   const onError=error=>proof.errors.push(error.message);
   const onRequest=request=>{if(request.method()==='POST')proof.requests.push({path:new URL(request.url()).pathname,payload:request.postDataJSON()});};
@@ -63,6 +64,7 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       city:{...probe.counters,entries:cityRows,cap_triangles:CITY_LAYER.cacheTriangles,cap_count:CITY_LAYER.cache},
       arsenal:Arsenal3D.cacheStats(),contexts:probe.contexts.map(row=>({id:row.id,type:row.type,canvas_id:row.canvas.id,
         connected:row.canvas.isConnected,metrics:row.metrics.snapshot(),diagnostics:row.metrics.diagnostics(),
+        declared_texture_payload:row.textures.snapshot(),texture_diagnostics:row.textures.diagnostics(),
         renderer:row.gl.getParameter(row.gl.RENDERER),vendor:row.gl.getParameter(row.gl.VENDOR)})),
       js_heap:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize,limit:performance.memory.jsHeapSizeLimit}:null};
   },label);
@@ -74,7 +76,11 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     assert(row.city.peak<=86400000,'city payload cap holds during upload');
     assert(row.arsenal.triangles<=row.arsenal.cap);assert.equal(row.arsenal.cap,1200000);
   }
-  async function observe(label){const row=record(label,await snapshot(label));assertCity(row);return row;}
+  function assertTextures(row){for(const context of row.contexts){const t=context.declared_texture_payload;
+    assert.equal(t.probe_errors,0,'texture measurement errors');assert.equal(t.unmeasured_allocation_events,0,'all texture allocations measured');
+    assert.equal(t.unmeasured_texture_allocations,0,'all live texture layouts known');assert.notEqual(t.declared_texture_texel_payload_bytes,null);
+    assert.notEqual(t.peak_declared_texture_texel_payload_bytes,null);}}
+  async function observe(label){const row=record(label,await snapshot(label));assertCity(row);assertTextures(row);return row;}
   async function closeRooms(){
     for(const [panel,close]of [['#guidanceDialog','#guidanceDialog [data-guidance-close]'],['#equipmentRoom','[data-equipment-close]'],
       ['#productionPanel','#productionClose'],['#cabinetDrawer','#cabinetDrawer [data-close-drawers]'],
@@ -106,14 +112,18 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
         rows.find(row=>row.type==='webgl2'&&row.canvas.id!=='glmap');
       if(!row)throw Error('Missing actual '+kind+' context');
       const extension=row.gl.getExtension('WEBGL_lose_context');if(!extension)throw Error('Context-loss injection unavailable');
-      __s22Renderer.loss={id:row.id,extension};const metrics=row.metrics.snapshot();extension.loseContext();return {id:row.id,metrics};
+      __s22Renderer.loss={id:row.id,extension};const metrics=row.metrics.snapshot(),textures=row.textures.snapshot();extension.loseContext();return {id:row.id,metrics,textures};
     },kind);
     await page.waitForFunction(({id,losses})=>__s22Renderer.contexts[id].metrics.snapshot().context_losses>losses,{id:before.id,losses:before.metrics.context_losses});
-    const lost=await page.evaluate(id=>__s22Renderer.contexts[id].metrics.snapshot(),before.id);assert.equal(lost.live_buffers,0);
+    const lost=await page.evaluate(id=>({buffers:__s22Renderer.contexts[id].metrics.snapshot(),textures:__s22Renderer.contexts[id].textures.snapshot()}),before.id);
+    assert.equal(lost.buffers.live_buffers,0);assert.equal(lost.textures.live_textures,0);assert.equal(lost.textures.allocated_texture_levels,0);
+    assert.equal(lost.textures.declared_texture_texel_payload_bytes,0);
     await page.evaluate(()=>__s22Renderer.loss.extension.restoreContext());
     if(kind==='globe')await page.waitForFunction(()=>GL.ready&&GL.ok&&GLCV.getClientRects().length&&!document.querySelector('#globeFail'),null,{timeout:120000});
     else await page.waitForFunction(id=>__s22Renderer.contexts[id].metrics.snapshot().live_buffers>0,before.id,{timeout:120000});
-    await settle();record('s22-'+kind+'-context-recovery',{before,lost,after:await snapshot(kind+' restored')});
+    if(before.textures.declared_texture_texel_payload_bytes>0)await page.waitForFunction(id=>__s22Renderer.contexts[id].textures.snapshot().declared_texture_texel_payload_bytes>0,before.id,{timeout:120000});
+    await settle();const after=await snapshot(kind+' restored');assertTextures(after);
+    record('s22-'+kind+'-context-recovery',{before,lost,after,texture_scope:'Loss clears every tracked texture allocation. Restoration recreates payload when the original context had textures; exact before/after sizes are observations, not asserted equal while asynchronous material uploads settle.'});
   }
   async function measureFighterOrbit(){
     const measured=await page.evaluate(async()=>{
@@ -188,7 +198,7 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     for(const name of files){const response=await page.request.get(new URL(name==='index.html'?'/':'/'+name,page.url()).href);
       assert(response.ok());const bytes=await response.body(),local=fs.readFileSync(path.join(root,'spheres-web/ui',name));
       assert(bytes.equals(local),'exact native served '+name);proof.sources.push({path:'spheres-web/ui/'+name,sha256:hash(bytes),bytes:bytes.length});}
-    for(const name of ['s22-renderer-browser.cjs','webgl-measurement.js']){const bytes=fs.readFileSync(path.join(__dirname,name));
+    for(const name of ['s22-renderer-browser.cjs','webgl-measurement.js','webgl-texture-measurement.js']){const bytes=fs.readFileSync(path.join(__dirname,name));
       fs.writeFileSync(path.join(out,name),bytes);proof.sources.push({path:'tools/ui/'+name,sha256:hash(bytes),bytes:bytes.length});}
     await idle();await closeRooms();proof.before_state=record('s22-renderer-state-before',await state());
     await page.waitForFunction(()=>window.__s22Renderer?.contexts.length&&GL.ready&&GL.ok,null,{timeout:120000});
@@ -249,9 +259,14 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await shot('s22-aircraft-390');await page.setViewportSize({width:1920,height:1080});}
       await tap('[data-equipment-close]');await settle();
       const closed=await observe('s22-aircraft-closed-'+visit);
-      for(const row of closed.contexts.filter(row=>row.type==='webgl'))assert.equal(row.metrics.live_buffers,0,'closed viewers dispose every buffer');
+      for(const row of closed.contexts.filter(row=>row.type==='webgl')){
+        assert.equal(row.metrics.live_buffers,0,'closed viewers dispose every buffer');
+        assert.equal(row.declared_texture_payload.live_textures,0,'closed viewers dispose every texture');
+        assert.equal(row.declared_texture_payload.allocated_texture_levels,0);
+        assert.equal(row.declared_texture_payload.declared_texture_texel_payload_bytes,0);
+      }
     }
-    proof.checks.push('Six native aircraft designer visits, one 100k+ model at a time, context recovery, 390px layout and complete buffer disposal');
+    proof.checks.push('Six native aircraft designer visits, one 100k+ model at a time, context recovery, 390px layout and complete buffer/texture disposal');
 
     // Explicit controlled lazy-card fixture on the real native page. This uses
     // the released deck and scanner; it is not evidence of a generated army or
@@ -272,7 +287,7 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     assert.deepEqual(proof.errors,[]);const final=await observe('s22-renderer-final');
     for(const row of final.contexts)assert.deepEqual(row.diagnostics,[],'shader compilation diagnostics');
     assert(proof.viewer_orbit.passed,'Released fighter orbit completed-draw FPS '+proof.viewer_orbit.sample.completed_draw_fps+' is below the unchanged 60 FPS target');
-    proof.passed=true;return proof;
+    proof.memory_complete=true;proof.passed=true;return proof;
   } catch(error) {proof.failure=String(error.stack||error);throw error;}
   finally {proof.finished_utc=new Date().toISOString();page.off('pageerror',onError);page.off('request',onRequest);
     fs.writeFileSync(path.join(out,'s22-renderer-result.json'),JSON.stringify(proof,null,2)+'\n');}
