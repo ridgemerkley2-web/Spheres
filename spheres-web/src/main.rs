@@ -74,6 +74,8 @@ mod performance;
 mod s08_route_pool_tests;
 #[cfg(test)]
 mod s22_ministry_curve_tests;
+#[cfg(test)]
+mod s25_stability_tests;
 use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
