@@ -1,0 +1,26 @@
+2026-09-28T19:54:04.7980216Z ....F........
+2026-09-28T19:54:04.7980634Z ======================================================================
+2026-09-28T19:54:04.7982240Z FAIL: test_relocated_bundle_keeps_original_provenance_and_validates_locally (test_stability_matrix.RetainedVerificationTests.test_relocated_bundle_keeps_original_provenance_and_validates_locally)
+2026-09-28T19:54:04.7983473Z ----------------------------------------------------------------------
+2026-09-28T19:54:04.7983925Z Traceback (most recent call last):
+2026-09-28T19:54:04.7984800Z   File "D:\a\Spheres\Spheres\tools\campaign\test_stability_matrix.py", line 499, in test_relocated_bundle_keeps_original_provenance_and_validates_locally
+2026-09-28T19:54:04.7985767Z     self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
+2026-09-28T19:54:04.7986344Z     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T19:54:04.7987212Z AssertionError: 'C:/Users/runneradmin/AppData/Local/Temp/tmphujoi_3d/run' != 'C:/Users/RUNNER~1/AppData/Local/Temp/tmphujoi_3d/run'
+2026-09-28T19:54:04.7987989Z - C:/Users/runneradmin/AppData/Local/Temp/tmphujoi_3d/run
+2026-09-28T19:54:04.7988347Z ?          ^^^^^^^^^^^
+2026-09-28T19:54:04.7988681Z + C:/Users/RUNNER~1/AppData/Local/Temp/tmphujoi_3d/run
+2026-09-28T19:54:04.7989017Z ?          ^^^^^^^^
+2026-09-28T19:54:04.7989423Z 
+2026-09-28T19:54:04.7989431Z 
+2026-09-28T19:54:04.7989680Z ----------------------------------------------------------------------
+2026-09-28T19:54:04.7990073Z Ran 60 tests in 21.170s
+2026-09-28T19:54:04.7990235Z 
+2026-09-28T19:54:04.7990328Z FAILED (failures=1)
+2026-09-28T19:54:04.7990586Z }
+2026-09-28T19:54:04.9042416Z ##[error]Process completed with exit code 1.
+2026-09-28T19:54:04.9917083Z Post job cleanup.
+2026-09-28T19:54:05.1733048Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-28T19:54:05.1960589Z git version 2.55.0.windows.5
+2026-09-28T19:54:05.2108076Z Temporarily overriding HOME='D:\a\_temp\151870d2-3125-4e29-984a-1babcc159f49' before making global git config changes
+2026-09-28T19:54:05.2108679Z Adding repository directory to the temporary git global config as a safe directory

@@ -59,6 +59,16 @@ recorded. No justified additional runtime correction was established, and no
 reserved seed was consumed. A1 stays blocked; independent startup work follows
 this attempted first task without claiming political or aggregate qualification.
 
+The later [exact firing observer](../../campaign-certification/S27/preparation/a1-firing-observer-20260928/README.md)
+closes the observation gap on the already-used seed 0, with 252 exact monthly
+world/RNG/headline comparisons, 146,525 retained snapshots and ten actual firings.
+All 151 eligible funding commands applied correctly. Nine firing cases lacked
+fiscal headroom; the remaining case had a recovered target while actual loyalty
+was still low. No further functional defect was established. Test-only hooks and
+the complete compressed diagnostic data are retained; coefficients, acceptance
+tests and reserved cohorts are unchanged. A1 remains blocked pending a justified
+causal policy/model correction rather than another ungrounded coefficient trial.
+
 ## 2. Startup: CODEX-S24-STARTUP-01
 
 Reuse `tools/campaign/worldwide_preflight.py`; do not rebuild the earlier work

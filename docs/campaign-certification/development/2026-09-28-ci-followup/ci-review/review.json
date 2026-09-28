@@ -1,0 +1,272 @@
+{
+  "format": "spheres-read-only-ci-review/v1",
+  "created_utc": "2026-09-28T20:03:48.076674+00:00",
+  "reviewer": "Codex /root/s20_preflight",
+  "qualification": false,
+  "overall_pass_claimed": false,
+  "local_tests_executed": false,
+  "repository_mutated": false,
+  "runs": [
+    {
+      "id": 36475526246,
+      "fetched_utc": "2026-09-28T20:03:09.288924+00:00",
+      "head_sha": "4a3d0572361f0fbaf16ffd296b106dece4f40dcf",
+      "jobs": [
+        {
+          "id": 109108144909,
+          "name": "political-calibration (windows-latest)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108144909"
+        },
+        {
+          "id": 109108145092,
+          "name": "political-calibration (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145092"
+        },
+        {
+          "id": 109108145093,
+          "name": "native (ubuntu-latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145093"
+        },
+        {
+          "id": 109108145168,
+          "name": "town-browser (windows-latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145168"
+        },
+        {
+          "id": 109108145209,
+          "name": "javascript (windows-latest)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145209"
+        },
+        {
+          "id": 109108145349,
+          "name": "package (ubuntu-latest, linux, target/release/spheres-web)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145349"
+        },
+        {
+          "id": 109108145362,
+          "name": "native (windows-latest)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145362"
+        },
+        {
+          "id": 109108145388,
+          "name": "town-browser (ubuntu-latest)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145388"
+        },
+        {
+          "id": 109108145419,
+          "name": "javascript (ubuntu-latest)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145419"
+        },
+        {
+          "id": 109108145431,
+          "name": "package (windows-latest, windows, target/release/spheres-web.exe)",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36475526246/job/109108145431"
+        }
+      ],
+      "not_final": true
+    },
+    {
+      "id": 36474010935,
+      "fetched_utc": "2026-09-28T20:03:09.289375+00:00",
+      "head_sha": "5d970f6d7370baf16760585c641d81253d1c2175",
+      "jobs": [
+        {
+          "id": 109103066103,
+          "name": "political-calibration (windows-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066103"
+        },
+        {
+          "id": 109103066211,
+          "name": "javascript (windows-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066211"
+        },
+        {
+          "id": 109103066303,
+          "name": "political-calibration (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066303"
+        },
+        {
+          "id": 109103066348,
+          "name": "town-browser (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066348"
+        },
+        {
+          "id": 109103066410,
+          "name": "native (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066410"
+        },
+        {
+          "id": 109103066476,
+          "name": "javascript (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066476"
+        },
+        {
+          "id": 109103066550,
+          "name": "native (windows-latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066550"
+        },
+        {
+          "id": 109103066555,
+          "name": "package (windows-latest, windows, target/release/spheres-web.exe)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066555"
+        },
+        {
+          "id": 109103066589,
+          "name": "town-browser (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066589"
+        },
+        {
+          "id": 109103066700,
+          "name": "package (ubuntu-latest, linux, target/release/spheres-web)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474010935/job/109103066700"
+        }
+      ],
+      "not_final": true
+    },
+    {
+      "id": 36474011627,
+      "fetched_utc": "2026-09-28T20:03:09.289644+00:00",
+      "head_sha": "5d970f6d7370baf16760585c641d81253d1c2175",
+      "jobs": [
+        {
+          "id": 109103067969,
+          "name": "town-browser (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103067969"
+        },
+        {
+          "id": 109103068178,
+          "name": "town-browser (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068178"
+        },
+        {
+          "id": 109103068186,
+          "name": "native (windows-latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068186"
+        },
+        {
+          "id": 109103068191,
+          "name": "javascript (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068191"
+        },
+        {
+          "id": 109103068211,
+          "name": "package (ubuntu-latest, linux, target/release/spheres-web)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068211"
+        },
+        {
+          "id": 109103068214,
+          "name": "package (windows-latest, windows, target/release/spheres-web.exe)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068214"
+        },
+        {
+          "id": 109103068270,
+          "name": "native (ubuntu-latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068270"
+        },
+        {
+          "id": 109103068320,
+          "name": "political-calibration (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068320"
+        },
+        {
+          "id": 109103068360,
+          "name": "political-calibration (windows-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068360"
+        },
+        {
+          "id": 109103068438,
+          "name": "javascript (windows-latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011627/job/109103068438"
+        }
+      ],
+      "not_final": true
+    }
+  ],
+  "findings": [
+    {
+      "kind": "existing_implementation_calibration",
+      "id": "A1",
+      "actual_median_coups": 7,
+      "actual_median_top_three_share": 0.59,
+      "required_share_less_than": 0.5,
+      "failed_job_ids": [
+        109103066103,
+        109103066303,
+        109103068320,
+        109103068360,
+        109108145092
+      ]
+    },
+    {
+      "kind": "test_harness_windows_path_alias_portability",
+      "test": "RetainedVerificationTests.test_relocated_bundle_keeps_original_provenance_and_validates_locally",
+      "file": "tools/campaign/test_stability_matrix.py",
+      "line": 499,
+      "recommendation": "Compare recorded_origin with logical_path(str(out.resolve())) or frozen original provenance; preserve all production integrity checks.",
+      "failed_job_ids": [
+        109103066211,
+        109103068438
+      ]
+    }
+  ]
+}

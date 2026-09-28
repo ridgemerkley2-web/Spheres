@@ -1,0 +1,27 @@
+2026-09-28T19:52:09.9930119Z ....F........
+2026-09-28T19:52:09.9931334Z ======================================================================
+2026-09-28T19:52:09.9932267Z FAIL: test_relocated_bundle_keeps_original_provenance_and_validates_locally (test_stability_matrix.RetainedVerificationTests.test_relocated_bundle_keeps_original_provenance_and_validates_locally)
+2026-09-28T19:52:09.9933019Z }
+2026-09-28T19:52:09.9933300Z ----------------------------------------------------------------------
+2026-09-28T19:52:09.9933590Z Traceback (most recent call last):
+2026-09-28T19:52:09.9934034Z   File "D:\a\Spheres\Spheres\tools\campaign\test_stability_matrix.py", line 499, in test_relocated_bundle_keeps_original_provenance_and_validates_locally
+2026-09-28T19:52:09.9934499Z     self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
+2026-09-28T19:52:09.9934764Z     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T19:52:09.9935173Z AssertionError: 'C:/Users/runneradmin/AppData/Local/Temp/tmp3z6bvbem/run' != 'C:/Users/RUNNER~1/AppData/Local/Temp/tmp3z6bvbem/run'
+2026-09-28T19:52:09.9935564Z - C:/Users/runneradmin/AppData/Local/Temp/tmp3z6bvbem/run
+2026-09-28T19:52:09.9935750Z ?          ^^^^^^^^^^^
+2026-09-28T19:52:09.9935922Z + C:/Users/RUNNER~1/AppData/Local/Temp/tmp3z6bvbem/run
+2026-09-28T19:52:09.9936090Z ?          ^^^^^^^^
+2026-09-28T19:52:09.9936159Z 
+2026-09-28T19:52:09.9936164Z 
+2026-09-28T19:52:09.9936279Z ----------------------------------------------------------------------
+2026-09-28T19:52:09.9936468Z Ran 60 tests in 22.534s
+2026-09-28T19:52:09.9936548Z 
+2026-09-28T19:52:09.9936599Z FAILED (failures=1)
+2026-09-28T19:52:10.0853498Z ##[error]Process completed with exit code 1.
+2026-09-28T19:52:10.1523422Z Post job cleanup.
+2026-09-28T19:52:10.3456688Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-28T19:52:10.3723903Z git version 2.55.0.windows.5
+2026-09-28T19:52:10.4118753Z Temporarily overriding HOME='D:\a\_temp\895e29b1-f0d4-4f14-ae38-f288fe8cf489' before making global git config changes
+2026-09-28T19:52:10.4119385Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-28T19:52:10.4169402Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Spheres\Spheres

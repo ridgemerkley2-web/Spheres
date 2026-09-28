@@ -1,0 +1,148 @@
+{
+  "format": "spheres-a1-readonly-review-manifest/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-28T20:01:38.177117+00:00",
+  "qualification": false,
+  "a1_pass_claimed": false,
+  "no_simulation_or_source_edits": true,
+  "input_files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\control-final.json",
+      "bytes": 2137811,
+      "sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observations.jsonl",
+      "bytes": 240585752,
+      "sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observed-final.json",
+      "bytes": 2137811,
+      "sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\plan.json",
+      "bytes": 500,
+      "sha256": "f72ba8f2d4521c48f48214d1034b6466b20077ff17c42f9006b8c1aff4dd9281"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\result.json",
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01.log",
+      "bytes": 13603,
+      "sha256": "25023bd3ad151834d7d03db855ff0b9485b8804465c106231a93b71374fa717f"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government.rs",
+      "repo_path": "spheres-sim/src/government.rs",
+      "raw_bytes": 865338,
+      "raw_sha256": "1022e0e65023408e59cecdcad423031bd766b003ee89aa0fde5d244edc84c824",
+      "git_blob_bytes": 849546,
+      "git_blob_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\government_a1_observer.rs",
+      "repo_path": "spheres-sim/src/government_a1_observer.rs",
+      "raw_bytes": 14822,
+      "raw_sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+      "git_blob_bytes": 14822,
+      "git_blob_sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\politics.rs",
+      "repo_path": "spheres-sim/src/politics.rs",
+      "raw_bytes": 119714,
+      "raw_sha256": "929b1a80eb0f97bb2d56de7485f1cf99c676eb802b4f7ddb3c517489958f4341",
+      "git_blob_bytes": 117500,
+      "git_blob_sha256": "3c817af7c78c9cca6518f0e193c375a2f7b102a254fb498afec2a4b9aeaa03fa",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\economy.rs",
+      "repo_path": "spheres-sim/src/economy.rs",
+      "raw_bytes": 118731,
+      "raw_sha256": "9c62d57dc2357caf77b370ecfe2666dc1adc34154046c255ee6a9acd095325bd",
+      "git_blob_bytes": 116606,
+      "git_blob_sha256": "88552a12a1d4ce6ea6055c6923d314ec4245533b5c3697c9ebc9d2d3aad5e1c5",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\clock.rs",
+      "repo_path": "spheres-sim/src/clock.rs",
+      "raw_bytes": 6175,
+      "raw_sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8",
+      "git_blob_bytes": 6036,
+      "git_blob_sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+      "raw_equals_git_after_crlf_to_lf": true
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer\\spheres-sim\\src\\lib.rs",
+      "repo_path": "spheres-sim/src/lib.rs",
+      "raw_bytes": 548282,
+      "raw_sha256": "c30354ba571448ce3c9dc4fb3f5dfd7cb1b4f13752074ebd003ed4da351a1b3c",
+      "git_blob_bytes": 537815,
+      "git_blob_sha256": "6e2957e649147f111d9579711ce42ee659bbe5828bee06664cb88bf9c7c34f8d",
+      "raw_equals_git_after_crlf_to_lf": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "analysis-run.log",
+      "bytes": 35255,
+      "sha256": "000e0f9335552056da542f87f206dc4088463729e4f490839e59db4febb6c976"
+    },
+    {
+      "path": "analyze.py",
+      "bytes": 5901,
+      "sha256": "9fe3f98295244f19e0fd37c4d7d9eda3547e7dd2f7c23cd8b38a93fc0968dd38"
+    },
+    {
+      "path": "check_trigger.py",
+      "bytes": 4891,
+      "sha256": "5004dd132655470bd35312ff4d62bc13a7c05688459023c5612d713c3febacb3"
+    },
+    {
+      "path": "finalize.py",
+      "bytes": 9146,
+      "sha256": "179ac29e61417756f1b2d28790d06c33706965f0c21ae5d9e905d1d5e29983fc"
+    },
+    {
+      "path": "firing-country-funding.json",
+      "bytes": 1028891,
+      "sha256": "183794b491b215af8572596a84fe0cfe14e2a980e49809686ab6fdc2df07c171"
+    },
+    {
+      "path": "firing-windows.json",
+      "bytes": 1241193,
+      "sha256": "514c55fdb280e432c26a464f8623d67e1674f0a73392e8d78a9be6c91a92dab3"
+    },
+    {
+      "path": "mechanical-check.json",
+      "bytes": 2089,
+      "sha256": "b94f77c534667dad9ed8efe08b85a4af0a3f55802ff87212f819d1bc037fd370"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7346,
+      "sha256": "b3da00625fef130f24c3ffa7160d5242ad9672fa8e2fa29670d17f846e4efa45"
+    },
+    {
+      "path": "trigger-check.log",
+      "bytes": 10267,
+      "sha256": "ab5b99b384f505f64a65db8d0cdbb071e8ad994496bf34f7b1fc0713bee8a109"
+    },
+    {
+      "path": "trigger-confidence-check.json",
+      "bytes": 12789,
+      "sha256": "534b694eda8d5fcc5fc602e2f40e8656780a7d8d038a9e4ff2b32c80b9e82cd5"
+    }
+  ]
+}

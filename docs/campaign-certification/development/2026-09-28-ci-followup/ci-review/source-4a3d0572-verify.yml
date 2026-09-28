@@ -46,7 +46,7 @@ jobs:
       - name: Verify task queries and dependency guards
         run: python -B -m unittest discover -s tools/planning -p "test_*.py"
       - name: Verify strict native stability evidence orchestration
-        run: python -B -m unittest discover -s tools/campaign -p "test_*stability*.py"
+        run: python -B -m unittest discover -s tools/campaign -p "test_stability_matrix.py"
       - name: Verify release packaging and extraction guards
         run: python -B -m unittest discover -s tools/release -p "test_*.py"
       - name: Verify extracted smoke boundary guards

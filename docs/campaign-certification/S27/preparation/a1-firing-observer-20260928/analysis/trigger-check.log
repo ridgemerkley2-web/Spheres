@@ -1,0 +1,342 @@
+{
+  "checks": {
+    "confidence_rows": 146525,
+    "resource_target_rows": 133647,
+    "trigger_branches": 25769
+  },
+  "issues": [],
+  "cases": [
+    {
+      "country": "Guyana",
+      "date": [
+        1991,
+        8,
+        1
+      ],
+      "trigger_line": 9755,
+      "before_line": 9753,
+      "after_line": 9754,
+      "post_coup_line": 10029,
+      "before_loyalty": 0.26563142268297096,
+      "after_loyalty": 0.2606242407157924,
+      "target": 0.21555960301118493,
+      "confidence_penalty": 0.10882327905894905,
+      "discontent": 0.4517853573426456,
+      "pressure_before": 0.8949794057799234,
+      "pressure_after": 1.0091404685532417,
+      "settled_months": 20,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.009,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.3499999999999999,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "no_army_or_no_low_loyalty": 1,
+        "below_hysteresis": 11
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Guatemala",
+      "date": [
+        1991,
+        9,
+        1
+      ],
+      "trigger_line": 10216,
+      "before_line": 10214,
+      "after_line": 10215,
+      "post_coup_line": 10475,
+      "before_loyalty": 0.2683212796547557,
+      "after_loyalty": 0.26266161595879123,
+      "target": 0.2117246426951108,
+      "confidence_penalty": 0.23782606658546016,
+      "discontent": 0.443511518823512,
+      "pressure_before": 0.9313748963221151,
+      "pressure_after": 1.041831382393894,
+      "settled_months": 21,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.017,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 2.5500000000000003,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "SaoTome",
+      "date": [
+        1993,
+        3,
+        1
+      ],
+      "trigger_line": 19654,
+      "before_line": 19652,
+      "after_line": 19653,
+      "post_coup_line": 19919,
+      "before_loyalty": 0.2599133521699856,
+      "after_loyalty": 0.2568080995847929,
+      "target": 0.22886082631805835,
+      "confidence_penalty": 0.04761987813576982,
+      "discontent": 0.26101034933299805,
+      "pressure_before": 1.2555551018934017,
+      "pressure_after": 1.3147733469424254,
+      "settled_months": 12,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.008,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.2,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Ecuador",
+      "date": [
+        1993,
+        4,
+        1
+      ],
+      "trigger_line": 20111,
+      "before_line": 20109,
+      "after_line": 20110,
+      "post_coup_line": 20349,
+      "before_loyalty": 0.2840168703113848,
+      "after_loyalty": 0.2841457957410593,
+      "target": 0.286881879859708,
+      "confidence_penalty": 0.2570997615996797,
+      "discontent": 0.2621310739325901,
+      "pressure_before": 0.9678390099409745,
+      "pressure_after": 1.010990854676116,
+      "settled_months": 40,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.017101661129591637,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 2.5652491694387454,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Guyana",
+      "date": [
+        1994,
+        7,
+        1
+      ],
+      "trigger_line": 28747,
+      "before_line": 28745,
+      "after_line": 28746,
+      "post_coup_line": 29047,
+      "before_loyalty": 0.18948911455415607,
+      "after_loyalty": 0.17054020309874046,
+      "target": 0.0,
+      "confidence_penalty": 0.29395093047160453,
+      "discontent": 0.46560303151855714,
+      "pressure_before": 0.9514025375060454,
+      "pressure_after": 1.1237593251023683,
+      "settled_months": 12,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.009,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.3499999999999999,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Comoros",
+      "date": [
+        1995,
+        10,
+        1
+      ],
+      "trigger_line": 37500,
+      "before_line": 37498,
+      "after_line": 37499,
+      "post_coup_line": 37787,
+      "before_loyalty": 0.32721571239823577,
+      "after_loyalty": 0.32635034032852306,
+      "target": 0.3185619917011089,
+      "confidence_penalty": 0.06838645996851525,
+      "discontent": 0.3592762625245952,
+      "pressure_before": 0.9798099859202307,
+      "pressure_after": 1.0267826604804955,
+      "settled_months": 55,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.010170514203628146,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.5255771305442218,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "SaoTome",
+      "date": [
+        1996,
+        1,
+        1
+      ],
+      "trigger_line": 39234,
+      "before_line": 39232,
+      "after_line": 39233,
+      "post_coup_line": 39517,
+      "before_loyalty": 0.20795631708297563,
+      "after_loyalty": 0.20014885468362134,
+      "target": 0.12988169308943268,
+      "confidence_penalty": 0.14672055684258342,
+      "discontent": 0.35025179810859486,
+      "pressure_before": 0.9219165651514684,
+      "pressure_after": 1.041902791773874,
+      "settled_months": 15,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.008,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.2,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Myanmar",
+      "date": [
+        1996,
+        7,
+        1
+      ],
+      "trigger_line": 42677,
+      "before_line": 42675,
+      "after_line": 42676,
+      "post_coup_line": 42957,
+      "before_loyalty": 0.2905483469070127,
+      "after_loyalty": 0.288738499174632,
+      "target": 0.2724498695832059,
+      "confidence_penalty": 0.07799899627077683,
+      "discontent": 0.3556270467750626,
+      "pressure_before": 0.9619272241855142,
+      "pressure_after": 1.030372238713254,
+      "settled_months": 26,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.025550212679709187,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 3.832531901956378,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Guatemala",
+      "date": [
+        1999,
+        3,
+        1
+      ],
+      "trigger_line": 61342,
+      "before_line": 61340,
+      "after_line": 61341,
+      "post_coup_line": 61627,
+      "before_loyalty": 0.30800431258258304,
+      "after_loyalty": 0.30597371602029316,
+      "target": 0.2876983469596842,
+      "confidence_penalty": 0.133728939533033,
+      "discontent": 0.4172076963603014,
+      "pressure_before": 0.9925460638387037,
+      "pressure_after": 1.0691241431346181,
+      "settled_months": 35,
+      "affordable_military_share": 0.0,
+      "current_military_share": 0.012396611996297841,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 1.8594917994446762,
+        "share": 0.0,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "below_hysteresis": 12
+      },
+      "preceding_12_funding_changes": 0,
+      "post_coup_reset_verified": true
+    },
+    {
+      "country": "Myanmar",
+      "date": [
+        2001,
+        12,
+        1
+      ],
+      "trigger_line": 80820,
+      "before_line": 80818,
+      "after_line": 80819,
+      "post_coup_line": 81112,
+      "before_loyalty": 0.3017406363908067,
+      "after_loyalty": 0.30620961390172247,
+      "target": 0.40105124774448986,
+      "confidence_penalty": 0.10069162642606466,
+      "discontent": 0.31361289370984735,
+      "pressure_before": 0.9861996805724245,
+      "pressure_after": 1.0315577803443452,
+      "settled_months": 27,
+      "affordable_military_share": 0.06259839021661792,
+      "current_military_share": 0.04903438721309509,
+      "funding_quote": {
+        "clears_existing_hysteresis": false,
+        "price_pc": 0.025624775283546522,
+        "share": 0.048863555377871445,
+        "standing_affordable": true
+      },
+      "preceding_12_funding_decisions": {
+        "command_expected": 7,
+        "below_hysteresis": 5
+      },
+      "preceding_12_funding_changes": 7,
+      "post_coup_reset_verified": true
+    }
+  ]
+}

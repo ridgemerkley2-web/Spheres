@@ -53,6 +53,15 @@ India were reviewed and integrated in that order after the recorded attempts.
 A1 and the matrix remain open until their actual acceptance requirements pass.
 [Task details](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md).
 
+The [complete A1 firing diagnostic](campaign-certification/S27/preparation/a1-firing-observer-20260928/README.md)
+retains all 146,525 observations and both final worlds in a portable packet.
+All 252 observed/control monthly states matched; independent analysis found no
+missed affordable funding command or trigger arithmetic defect. This is a
+diagnostic pass, not an A1 repair. The [CI follow-up](campaign-certification/development/2026-09-28-ci-followup/README.md)
+fixes a Windows short-path test expectation, retains the original failures, and
+records the independently verified full-matrix build/freeze. Its 71 tooling
+tests report 70 passes and one existing privilege-dependent skip.
+
 Russia C01-28 has a newer unreviewed follow-up at `03141c43`. South Africa C01-30
 is claimed at `68535825`; India C01-33 is separately claimed at `89decb6a`. These
 inventory entries are not new acceptance or additional tasks in the current order.

@@ -1,0 +1,27 @@
+2026-09-28T19:55:46.0284551Z 
+2026-09-28T19:55:46.0285013Z ---- a1_coups_against_elected_governments_are_spread_not_three_micro_polities stdout ----
+2026-09-28T19:55:46.0286120Z A1: median coups 7 top-3 share median 0.59
+2026-09-28T19:55:46.0286939Z s0 coupEl 10 annul 3 regCoup 10 take [0, 0, 13, 1, 0] upr [1, 0, 2, 1, 0, 8] open96 14 a6 0/1 big8 8 poor 23/23 a10 +0.333 top3 0.60
+2026-09-28T19:55:46.0287952Z s1 coupEl 5 annul 2 regCoup 7 take [0, 0, 8, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 13 a6 0/1 big8 8 poor 14/14 a10 +0.331 top3 0.60
+2026-09-28T19:55:46.0289055Z s2 coupEl 7 annul 2 regCoup 7 take [0, 0, 10, 1, 1] upr [0, 0, 2, 1, 1, 4] open96 17 a6 0/1 big8 8 poor 16/16 a10 +0.357 top3 0.71
+2026-09-28T19:55:46.0290201Z s3 coupEl 7 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 4] open96 14 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.43
+2026-09-28T19:55:46.0291313Z s4 coupEl 7 annul 3 regCoup 4 take [0, 0, 10, 0, 1] upr [2, 0, 1, 0, 1, 3] open96 15 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.57
+2026-09-28T19:55:46.0292328Z s5 coupEl 8 annul 3 regCoup 6 take [0, 0, 9, 1, 1] upr [2, 0, 0, 1, 1, 8] open96 16 a6 0/1 big8 8 poor 17/17 a10 +0.301 top3 0.62
+2026-09-28T19:55:46.0293052Z s6 coupEl 8 annul 3 regCoup 7 take [0, 0, 13, 1, 0] upr [0, 0, 3, 1, 0, 8] open96 14 a6 0/1 big8 8 poor 18/18 a10 +0.354 top3 0.62
+2026-09-28T19:55:46.0297507Z 
+2026-09-28T19:55:46.0298018Z thread 'a1_coups_against_elected_governments_are_spread_not_three_micro_polities' (7344) panicked at spheres-sim\tests\bloc_census.rs:992:5:
+2026-09-28T19:55:46.0298670Z three nations hold 0.59 of a seed's coups
+2026-09-28T19:55:46.0299173Z note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-09-28T19:55:46.0299535Z 
+2026-09-28T19:55:46.0299539Z 
+2026-09-28T19:55:46.0299646Z failures:
+2026-09-28T19:55:46.0300095Z     a1_coups_against_elected_governments_are_spread_not_three_micro_polities
+2026-09-28T19:55:46.0300400Z 
+2026-09-28T19:55:46.0300728Z test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 117.02s
+2026-09-28T19:55:46.0301089Z 
+2026-09-28T19:55:48.0546156Z [1m[91merror[0m: test failed, to rerun pass `-p spheres-sim --test bloc_census`
+2026-09-28T19:56:01.6772086Z ##[error]Process completed with exit code 1.
+2026-09-28T19:56:01.7592592Z Post job cleanup.
+2026-09-28T19:56:03.6021567Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-28T19:56:03.6354940Z git version 2.55.0.windows.5
+2026-09-28T19:56:03.6471280Z Temporarily overriding HOME='D:\a\_temp\8eb98dbb-f631-4fd3-9d6d-a108911ae0b8' before making global git config changes

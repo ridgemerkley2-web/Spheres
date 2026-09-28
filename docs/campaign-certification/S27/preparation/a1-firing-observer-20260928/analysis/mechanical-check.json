@@ -1,0 +1,56 @@
+{
+  "format": "spheres-a1-firing-readonly-analysis/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "scope": "Existing seed 0 /252 months diagnostic only, no native execution, acceptance change or holdout use",
+  "source_commit": "6818e4f0d94b01c86d7a9acc4252260947d13504",
+  "qualification": false,
+  "a1_pass_claimed": false,
+  "rows": 146525,
+  "stage_counts": {
+    "army_before_walk": 21797,
+    "army_after_walk": 21797,
+    "trigger_unsettled_interim_or_no_army": 6786,
+    "ai_before_funding": 38581,
+    "ai_after_funding": 38581,
+    "trigger_live_conditions_inactive": 18870,
+    "trigger_pressure_not_ready": 103,
+    "trigger_firing": 10
+  },
+  "monthly_comparisons": 252,
+  "raw_firings_match_result": true,
+  "final_files_byte_identical": true,
+  "walk_pairs_checked": 21797,
+  "funding_decisions": {
+    "no_army_or_no_low_loyalty": 36403,
+    "below_hysteresis": 2027,
+    "command_expected": 151
+  },
+  "mechanical_mismatches": [],
+  "input_files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\control-final.json",
+      "bytes": 2137811,
+      "sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observations.jsonl",
+      "bytes": 240585752,
+      "sha256": "13676236845d5c814e640520d322227769d4a7e16c685a237a6ce99a2ca46b49"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\observed-final.json",
+      "bytes": 2137811,
+      "sha256": "8ff7ce538fc47b0a22a13d25e6af73c04bb35cdc416e710fd82bfe1600150431"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\plan.json",
+      "bytes": 500,
+      "sha256": "f72ba8f2d4521c48f48214d1034b6466b20077ff17c42f9006b8c1aff4dd9281"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\a1-firing-observer-run-01\\result.json",
+      "bytes": 94466,
+      "sha256": "28b9e9177d800e78566c2bec8a878245515932e342c5304ea2f1bcaf6bfca6f6"
+    }
+  ]
+}

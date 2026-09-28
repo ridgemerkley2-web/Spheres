@@ -496,9 +496,7 @@ class RetainedVerificationTests(unittest.TestCase):
             moved = root / "relocated"
             shutil.copytree(out, moved)
             verified = matrix.verify_retained_run(moved)
-            # The runner records a resolved origin; Windows TEMP may use an
-            # 8.3 alias (RUNNER~1) for that same directory.
-            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out.resolve())))
+            self.assertEqual(verified["recorded_origin"], matrix.logical_path(str(out)))
             self.assertEqual(verified["source"], str(moved.resolve()))
             self.assertTrue(verified["passed"])
 
