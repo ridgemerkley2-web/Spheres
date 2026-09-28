@@ -103,15 +103,19 @@ last two entries.
 Integration: before committing, `codex/campaign-certification` was fetched; it had moved to `3ec6e155` and was merged
 (merge commit `b69e579a`, tree equal to `3ec6e155`). The only conflict was an add/add on this record: the integration
 copy is the claim record byte for byte plus the registration note above, so it was taken unchanged and this result was
-appended. The task queue entry (state `claimed`) is left for Codex. New South Africa totals: 207 sources, 406 claims, 10 role observations; `mapping_pending` stays 53 and the six
+appended. After the packet commits (`033f098d`, index `cd335f3b`), `codex/campaign-certification` had moved again, to
+`5d970f6d` (the integrated CLAUDE-C01-23, 24, 25 and 27 packets among others); it was merged in `a39f1ac8`, whose only
+conflict, `research-index.json`, was regenerated. The task queue entry (state `claimed`) is left for Codex. New South
+Africa totals: 207 sources, 406 claims, 10 role observations; `mapping_pending` stays 53 and the six
 discovery batches stay open.
 
 ## Checks
 
 Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` and `python -X utf8`:
 
-- `tools/avatars/campaign_research.py` (regenerated), then `--check`: passed (9 country packets, 1,367 sources, 3,792
-  claims, 93 discovery batches; South Africa 207 sources, 406 claims, 10 role observations).
+- `tools/avatars/campaign_research.py` (regenerated), then `--check`: passed. On the packet commits: 9 country packets,
+  1,367 sources, 3,792 claims, 93 discovery batches; after merging `5d970f6d`: 1,610 sources, 4,246 claims, 93 batches.
+  South Africa: 207 sources, 406 claims, 10 role observations throughout.
 - `tools/avatars/campaign_census.py --check`: exit 0 (`spheres-sim/data` is present in this sparse worktree).
 - `-m unittest discover -s tools/avatars -p "test_south_africa*.py"`: 42 tests OK (the new test's 8 included, with its
   7 validator and 35 invariant mutation cases all rejected).
@@ -119,3 +123,6 @@ Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` and `python -X utf8`:
 - `node --test tools/ui/check_leadership_research_review.cjs`: 11 passed.
 - `python tools/planning/workboard.py --check`: PASS.
 - `git diff --check` on the touched paths: clean. The gap ledger was not touched.
+
+All of these checks were run again on the merged tree `a39f1ac8` with the same results (42, 79 and 16 tests OK; atlas 11
+passed; census exit 0; workboard PASS).
