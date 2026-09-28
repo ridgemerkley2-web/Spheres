@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "integration_branch": "codex/campaign-certification",
   "status_source": "docs/planning/campaign-pathway.json",
   "workstreams": [
@@ -37,7 +37,7 @@
         "S20",
         "S21"
       ],
-      "next": "S18 and S21 complete. Independent narrow equipment and province navigation are integrated. S20 awaits final S19 later-outcome qualification; G4 remains open."
+      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned. Next canonical Codex session: S22 performance qualification. See docs/campaign-certification/S20/README.md and G4/README.md."
     },
     {
       "id": "guidance",
@@ -46,7 +46,7 @@
         "S19"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S19-01.md",
-      "next": "Claude implementation remains integrated. Codex verified construction payment/completion/output through save/resume at 24d05428. Actual company purchase/payment/delivery and squadron readiness/flown results remain before S19 closure; query --task CODEX-S19-LATER-01. Claude provides bounded repairs only. Evidence: docs/campaign-certification/S19/integration/PAYMENT_RETENTION.md."
+      "next": "Retain accepted S19 implementation and ordinary later-outcome qualification. Construction/output, paid purchases/delivery, supported flight, readiness and save/resume are closed in docs/campaign-certification/S19/integration/CLOSEOUT.md. Claude provides bounded repairs only for reproduced defects."
     },
     {
       "id": "characters",
@@ -62,7 +62,7 @@
         "S23"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
-      "next": "Six additional independent sections are assigned in CLAUDE-EXPANDED-NEXT.md. Character tasks: C01 gap ledger, C03 cartoon review workbench, C04 fictional successor pilot and S23 boundary audit. SOURCE-06/26 and C01-23/25 are submitted, not accepted; SOURCE-05/17 and C01-24/27 retain their claims. Query --tasks --owner Claude. Preserve historical acceptance and the frozen 2026-09-07 cutoff; preparation does not close parent sessions."
+      "next": "C01-GAPS-01 and SOURCE-05/06 are accepted bounded deliveries. SOURCE-17/26 and C01-23/24/25/27 await independent review; latest C01-27 submission 0765c590 was inspected after S20 closure. The remaining five expanded sections are claimed, including C03 cartoon review, C04 fictional successors and S23 boundary audit. Query --tasks --owner Claude; preserve those claims. Parent historical coverage remains open and the research cutoff stays 2026-09-07."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. Its historical 42-overrun reading is retained in docs/campaign-certification/S22/preparation/README.md. Current docs/art/P0_BUDGETS.md grades 245 configurations: 166 pass, 79 advisory density notes, zero ceiling or required-quality-floor failures. Adaptive town scenes preserve raw close meshes while enforcing the unchanged 150,000-triangle actual submission ceiling; raw full-block overages remain diagnostics. Exact local/hosted readings: docs/campaign-certification/verification/2026-09-22-completion.md. S22 remains planned after S20; full campaign performance and human qualification stay open. The six-session timing export and 137-country preflight do not close performance/worldwide gates. Claude owns the independent CLAUDE-S24-SUCCESSORS-01 preparation packet; Codex retains canonical S24 ownership, production integration and final qualification."
+      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. Its historical 42-overrun reading is retained in docs/campaign-certification/S22/preparation/README.md. Current docs/art/P0_BUDGETS.md grades 245 configurations: 166 pass, 79 advisory density notes, zero ceiling or required-quality-floor failures. Adaptive town scenes preserve raw close meshes while enforcing the unchanged 150,000-triangle actual submission ceiling; raw full-block overages remain diagnostics. Exact local/hosted readings: docs/campaign-certification/verification/2026-09-22-completion.md. S20 is complete; S22 is the next ready canonical session; full campaign performance and human qualification stay open. The six-session timing export and 137-country preflight do not close performance/worldwide gates. Claude owns the independent CLAUDE-S24-SUCCESSORS-01 preparation packet; Codex retains canonical S24 ownership, production integration and final qualification."
     },
     {
       "id": "human-playtests",
@@ -104,7 +104,7 @@
       "sessions": [
         "E05"
       ],
-      "next": "CLAUDE-E05-RESEARCH-01 is available now for eight sourced France/Japan company dossiers and proposed catalog mappings. Research only; runtime company expansion and E05 completion remain gated on S30/CP1.",
+      "next": "CLAUDE-E05-RESEARCH-01 is claimed on claude/e05-research-01 for eight sourced France/Japan company dossiers and proposed catalog mappings. Research only; runtime company expansion and E05 completion remain gated on S30/CP1.",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md"
     }
   ],
