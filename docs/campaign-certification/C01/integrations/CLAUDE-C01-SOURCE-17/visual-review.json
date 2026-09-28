@@ -1,0 +1,106 @@
+{
+  "method": "pypdfium2 renders read by Codex using view_image; no OCR-only conclusion for diploma image pages.",
+  "pdf_pages_one_based_read": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    18,
+    19,
+    20,
+    23,
+    26
+  ],
+  "observations": [
+    "59-page official DCN1/2023, issue date2January2023; metadata and printed page numbers agree.",
+    "Session cover records1January2023 and14:55–16:04; pages6–7 separate election, certification, oath and posse.",
+    "Page7 attests both candidates elected30October2022; page20 diploma prints uppercase PCDOB; page18 matches Lula diploma facts; page19 reverse adds no extra event.",
+    "Pages23/26 agree with Alckmin signed posse and commitment observations; the prospective4January2027 text is not imported as a historical end.",
+    "Printed verification code and document number visible; signature service/QR not verified."
+  ],
+  "external_renders_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\c01-source-followups-review-20260928\\renders",
+  "metadata": {
+    "file": "01.pdf",
+    "pages": 59,
+    "metadata": {
+      "Title": "Diário Eletrônico do Senado e do Diário do Congresso",
+      "Author": "Senado Federal",
+      "Subject": "Diário Eletrônico",
+      "Keywords": "",
+      "Creator": "pdfTeX + pdfx.sty with a-2b,mathxmp option",
+      "Producer": "pdfTeX; modified using iTextSharp 5.3.0 (c) 1T3XT BVBA",
+      "CreationDate": "D:20230102105150-03'00'",
+      "ModDate": "D:20230102105722-03'00'"
+    },
+    "renders": [
+      {
+        "page_one_based": 1,
+        "path": "renders\\dcn-p1.jpg",
+        "sha256": "4ef55d0e566a3a02ebe849068c1f9b0953914a0dc52b13f3dbc1cda3502581a2"
+      },
+      {
+        "page_one_based": 2,
+        "path": "renders\\dcn-p2.jpg",
+        "sha256": "d512fc2b738b848fb748e72fde73878c57e1f3f3527fef2d264e74faa68410a4"
+      },
+      {
+        "page_one_based": 3,
+        "path": "renders\\dcn-p3.jpg",
+        "sha256": "7c91adc35b25711491394078d83df5497ab364f65f4d2200d389acb5dbc880bc"
+      },
+      {
+        "page_one_based": 4,
+        "path": "renders\\dcn-p4.jpg",
+        "sha256": "381d40fedc04cec27ca50cad7ce677352083ed3ef71ef084d7e1178b09aa8212"
+      },
+      {
+        "page_one_based": 5,
+        "path": "renders\\dcn-p5.jpg",
+        "sha256": "f3d30343e7780c246d3f0ede98a550059d4ebfca7f5bf9403731475f35f89618"
+      },
+      {
+        "page_one_based": 6,
+        "path": "renders\\dcn-p6.jpg",
+        "sha256": "d655a463a425214db28aea21544fa47d59846d2bd999df805f53fd7718bbd193"
+      },
+      {
+        "page_one_based": 7,
+        "path": "renders\\dcn-p7.jpg",
+        "sha256": "7dd5e2ca0eb5f0f7dd475b4f148bfb30030e1b4a1c5c4627f5a8258436a774f6"
+      },
+      {
+        "page_one_based": 8,
+        "path": "renders\\dcn-p8.jpg",
+        "sha256": "087ab70807eb20971d2f05c82f8600fc85fd5ea1d39266ea22ede078fbc08f12"
+      },
+      {
+        "page_one_based": 18,
+        "path": "renders\\dcn-p18.jpg",
+        "sha256": "bdf470d423eea435106865ad4b5551c434811159ac8e73baffd00a415321c4d2"
+      },
+      {
+        "page_one_based": 19,
+        "path": "renders\\dcn-p19.jpg",
+        "sha256": "470d2e6194dc864b0348cb38d2c41b033f70609fdf6f51377ed4a31cf6f108a3"
+      },
+      {
+        "page_one_based": 20,
+        "path": "renders\\dcn-p20.jpg",
+        "sha256": "64e1264130f4d0bf682028f55c6b0906c5d940aeed6414b0c61abf1e92dbe5e3"
+      },
+      {
+        "page_one_based": 23,
+        "path": "renders\\dcn-p23.jpg",
+        "sha256": "8d24a9c493a2e4cfe51bb07381813674ab03c420bb5e088df7d8f5e772200ffb"
+      },
+      {
+        "page_one_based": 26,
+        "path": "renders\\dcn-p26.jpg",
+        "sha256": "8c47f8e927076079d5899f4a0afee9532039710bd631b155d019f04fd8563080"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+E.........
+======================================================================
+ERROR: setUpClass (test_campaign_census.CensusTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\avatars\test_campaign_census.py", line 12, in setUpClass
+    cls.outputs = census.build()
+                  ^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\avatars\campaign_census.py", line 89, in build
+    roster, live = production.nation_roster(root), production.simulation_parties(root)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c01-source-followups-review\tools\avatars\leadership_production.py", line 45, in nation_roster
+    source = (root / "spheres-sim/src/nations.rs").read_text(encoding="utf-8")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\c01-source-followups-review\\spheres-sim\\src\\nations.rs'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.804s
+
+FAILED (errors=1)

@@ -1,0 +1,172 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-SOURCE-17",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewer_agent": "/root/review_source05",
+  "reviewed_commit": "efeac5461022ed27f27973cbc215615339ee5c10",
+  "base_commit": "75626a137d5efd1ca1cca0d6f76c4d8502909bee",
+  "reviewed_utc": "2026-09-28T14:01:00.930742+00:00",
+  "decision": "Accept the bounded SOURCE-17 response-identity/content repair with Codex qualification de73e6c73a98a1240cc8860f6758528df7c84d6e. Both current official and specified archived bodies reproduce; affected page claims agree. The unavailable earlier body discrepancy remains unexplained. This does not accept broader Brazil/C01 historical coverage or any campaign gate.",
+  "repair_commit": "de73e6c73a98a1240cc8860f6758528df7c84d6e",
+  "response_count": 2,
+  "source_ids": [
+    "br_cn_dcn1_20230102_p20_26",
+    "br_cn_dcn1_20230102_p18_19",
+    "br_cn_dcn1_20230102_p1_8"
+  ],
+  "reviewed_extracts": [
+    "reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+    "reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+    "reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json"
+  ],
+  "scope_limits": [
+    "The prior24,950,158-byte d9808101...f6a619 body is not available, so differing bytes and cause cannot be established.",
+    "Reproduced observations do not prove every future endpoint request is immutable; Age0 does not establish direct origin contact.",
+    "Claude’s older saved renders, all nine downloads and allCDX enumeration were not independently replayed. Current/archived exact bodies and the listed citation pages were independently checked.",
+    "No signature-service, QR, portrait-rights or likeness acceptance; no broader census, C01 or C06 completion."
+  ],
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 1436,
+      "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+    },
+    {
+      "path": "extras.py",
+      "bytes": 1381,
+      "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+    },
+    {
+      "path": "inspect_sources.py",
+      "bytes": 1366,
+      "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+    },
+    {
+      "path": "logs/census-check.log",
+      "bytes": 1914,
+      "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+    },
+    {
+      "path": "logs/census-complete-sparse-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "logs/git-diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/research-check-qualified.log",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "logs/research-generate-qualified.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "logs/research-generate.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "logs/tests-atlas.log",
+      "bytes": 1141,
+      "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+    },
+    {
+      "path": "logs/tests-brazil-qualified.log",
+      "bytes": 137,
+      "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+    },
+    {
+      "path": "logs/tests-brazil.log",
+      "bytes": 137,
+      "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+    },
+    {
+      "path": "logs/tests-campaign-complete-sparse.log",
+      "bytes": 120,
+      "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+    },
+    {
+      "path": "logs/tests-campaign.log",
+      "bytes": 2070,
+      "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+    },
+    {
+      "path": "logs/tests-research.log",
+      "bytes": 183,
+      "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+    },
+    {
+      "path": "logs/tests-russia.log",
+      "bytes": 133,
+      "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+    },
+    {
+      "path": "logs/tests-ussr.log",
+      "bytes": 132,
+      "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2819,
+      "sha256": "84ce0ec9c05cdeaecaf070b46e1693e5b1b4ed4427a096565861bffa768f91c8"
+    },
+    {
+      "path": "repair-scope.json",
+      "bytes": 297,
+      "sha256": "411af013dfdf9dd19a23c388f49f63ed7a1010e965b9a48a78da7c5141a40bb4"
+    },
+    {
+      "path": "retrievals.json",
+      "bytes": 10053,
+      "sha256": "430220bb4ce89b3290d273ec9ea946624de4f40a12978aebe3154d20e3dcf064"
+    },
+    {
+      "path": "retrieve.py",
+      "bytes": 3434,
+      "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+    },
+    {
+      "path": "reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+      "bytes": 20657,
+      "sha256": "102e464ce7ad598a30a1a62407656a7640a09380638814e55fe4c94c76ec5334"
+    },
+    {
+      "path": "reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+      "bytes": 15764,
+      "sha256": "c6154fddb8d94deefbd77e30dc130e76103680175a0caa15239778b053d4a9c9"
+    },
+    {
+      "path": "reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json",
+      "bytes": 24816,
+      "sha256": "ef87316cc5d6b22ebd3220dfb1151d645c2e51eb412e63cc587c5396d8982e38"
+    },
+    {
+      "path": "scoped-import.json",
+      "bytes": 892,
+      "sha256": "a3b84b94438741103000ada045cf2f9f073f8acc844e1e82b15769f7f2a17367"
+    },
+    {
+      "path": "verify-review.py",
+      "bytes": 977,
+      "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 3821,
+      "sha256": "8900b05f748fbab5a6516f72e6c393f010c4371edc5be3ca62aeb489b6a0264a"
+    }
+  ],
+  "scoped_import_commit": "4db4514188afd40498c7a4bdad518869dc24ef73"
+}

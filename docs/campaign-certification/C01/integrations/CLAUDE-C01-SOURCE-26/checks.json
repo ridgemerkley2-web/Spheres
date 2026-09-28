@@ -1,0 +1,47 @@
+{
+  "tests": [
+    {
+      "name": "Brazil focused final",
+      "log": "logs/tests-brazil-qualified.log",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "name": "USSR focused",
+      "log": "logs/tests-ussr.log",
+      "passed": 28,
+      "failed": 0
+    },
+    {
+      "name": "Russia focused",
+      "log": "logs/tests-russia.log",
+      "passed": 29,
+      "failed": 0
+    },
+    {
+      "name": "Research focused",
+      "log": "logs/tests-research.log",
+      "passed": 79,
+      "failed": 0
+    },
+    {
+      "name": "Campaign focused complete sparse checkout",
+      "log": "logs/tests-campaign-complete-sparse.log",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "name": "Research atlas Node",
+      "log": "logs/tests-atlas.log",
+      "passed": 11,
+      "failed": 0
+    }
+  ],
+  "research_index": "Combined fixture index regenerated and --check passed; integrator must regenerate after final source integration.",
+  "census": "--check passed after adding spheres-sim/src to sparse checkout.",
+  "retained_environment_failures": [
+    "logs/tests-campaign.log: initial 9-test discovery hit missing sparse spheres-sim/src/nations.rs; final complete checkout discovers and passes16.",
+    "logs/census-check.log: same missing sparse source dependency; corrected checkout rerun passes."
+  ],
+  "scope": "Data/UI guards only; no simulation or broad historical acceptance. Sums include overlapping suites."
+}
