@@ -53,6 +53,8 @@ async function run(){
       input:'31 trusted visible map-control clicks per detail preset; event timestamp to a second animation-frame opportunity plus GPU completion. Includes input dispatch and main-thread work. This is a conservative paint-opportunity proxy, not compositor presentation latency or network command latency.',
       memory:'CDP JavaScript heap/DOM and measured WebGL buffer payload, separately labeled. Buffer payload excludes textures, renderbuffers, framebuffers, driver overhead and total VRAM. No headless native 1GiB ceiling is applied to browser counters.'}};
   fs.copyFileSync(__filename,path.join(out,'driver.cjs'));console.log(out);
+  const probeBytes=fs.readFileSync(path.join(__dirname,'webgl-measurement.js'));
+  fs.writeFileSync(path.join(out,'webgl-measurement.js'),probeBytes);evidence.probe_sha256=hash(probeBytes);
   const serverStart=performance.now(),server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:serverRoot,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const serverLog=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(serverLog);server.stderr.pipe(serverLog);
   let browser,page,launchError;server.on('error',e=>{launchError=e;});
@@ -74,7 +76,7 @@ async function run(){
     const shot=async name=>{const file=name+'.png';await page.screenshot({path:path.join(out,file)});evidence.screenshots.push(file);};
     const cold=performance.now();await page.goto(url);await page.locator('#openSavesBtn').waitFor();evidence.cold_menu_ms=performance.now()-cold;
     evidence.navigation=await page.evaluate(()=>performance.getEntriesByType('navigation').map(e=>e.toJSON()));
-    evidence.build=await(await page.request.get(url+'/api/build')).json();assert.equal(evidence.build.revision,expected);
+    evidence.build=await(await page.request.get(url+'/api/build')).json();assert.equal(evidence.build.revision,expected.slice(0,12));
     for(const name of ['index.html','map-controls.js','globe3d.js','arsenal3d.js','equipment-model.js']){
       const r=await page.request.get(url+(name==='index.html'?'/':'/'+name)),served=await r.body();
       assert(served.equals(fs.readFileSync(path.join(root,'spheres-web/ui',name))),'Served current '+name);
@@ -104,6 +106,11 @@ async function run(){
         contexts:await page.evaluate(()=>s22Probes.map(p=>({connected:p.gl.canvas.isConnected,id:p.gl.canvas.id,buffer_payload:p.metrics.snapshot()})))};}
       evidence.gpu=await page.evaluate(()=>{const gl=GL.gl,e=gl.getExtension('WEBGL_debug_renderer_info');return {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),unmasked:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null};});
       evidence.memory_before=await memory();
+      await page.evaluate(()=>{
+        const original=drawCityLayer;window.s22CityDraws=0;
+        drawCityLayer=function(...args){const probe=s22Probes.find(p=>p.gl===GLR?.gl),before=probe?.metrics.snapshot().draw_calls||0;
+          try{return original.apply(this,args);}finally{s22CityDraws+=(probe?.metrics.snapshot().draw_calls||0)-before;}};
+      });
       const views=[{name:'world',zoom:1.25,amplitude:.3},{name:'national',zoom:8,amplitude:.07},{name:'regional',zoom:40,amplitude:.015},{name:'paris-city',zoom:181,amplitude:.003}];
       for(const detail of ['standard','low']){
         await page.locator('[data-map-mode="terrain"]').click();
@@ -111,6 +118,11 @@ async function run(){
         await tap(`[data-map-preset="${detail}"]`);await page.keyboard.press('Escape');
         const cell={detail,viewport:page.viewportSize(),dpr:await page.evaluate(()=>devicePixelRatio),views:[]};evidence.cells.push(cell);
         for(const view of views){
+          const loadView=performance.now();
+          await page.evaluate(v=>{GLOBE.lookAt(2.3522,48.8566,v.zoom);GLOBE.render();},view);
+          if(detail==='standard'&&view.zoom>=12)await page.waitForFunction(()=>GLR?.surface?.ready&&!GLR.surface.loading,null,{timeout:120000});
+          if(detail==='standard'&&view.name==='paris-city')await page.waitForFunction(()=>s22CityDraws>0&&[...GLR.cityCache].some(([i])=>CITIES[i]?.name==='Paris'),null,{timeout:120000});
+          const viewReadyMs=performance.now()-loadView;
           const metrics=await page.evaluate(async v=>{
             const gl=GL.gl,probe=s22Probes.find(p=>p.gl===gl);if(!probe)throw Error('Missing actual map context');
             const yaw=-2.3522*Math.PI/180,pitch=48.8566*Math.PI/180;
@@ -119,19 +131,26 @@ async function run(){
               const frame=()=>{
                 const a=performance.now(),t=(a-start)/1000;
                 GLOBE.setView(yaw+Math.sin(t)*v.amplitude,pitch+Math.sin(t*.7)*v.amplitude*.35,v.zoom*(1+.04*Math.sin(t*.8)));
-                const before=probe.metrics.snapshot();GLOBE.render();gl.finish();const end=performance.now(),after=probe.metrics.snapshot();
-                frames.push({start_ms:a-start,complete_ms:end-start,interval_ms:end-previous,draw_ms:end-a,draw_calls:after.draw_calls-before.draw_calls,triangles:after.submitted_triangles-before.submitted_triangles});previous=end;
+                const before=probe.metrics.snapshot(),citiesBefore=s22CityDraws;GLOBE.render();gl.finish();const end=performance.now(),after=probe.metrics.snapshot();
+                frames.push({start_ms:a-start,complete_ms:end-start,interval_ms:end-previous,draw_ms:end-a,draw_calls:after.draw_calls-before.draw_calls,city_draw_calls:s22CityDraws-citiesBefore,triangles:after.submitted_triangles-before.submitted_triangles});previous=end;
                 if(end-start<duration)requestAnimationFrame(frame);else resolve({elapsed_ms:end-start,frames});
               };requestAnimationFrame(frame);
             });
             GLOBE.setView(yaw,pitch,v.zoom);GLOBE.render();gl.finish();
             const settle=await measure(3000),measured=await measure(12000);
-            return {view:v,settle,measured,map_details:{...ui.mapDetails},buffers:probe.metrics.snapshot(),ready:GL.ok&&GL.ready,
+            return {view:v,settle,measured,map_mode:ui.mapMode,map_details:{...ui.mapDetails},buffers:probe.metrics.snapshot(),ready:GL.ok&&GL.ready&&!gl.isContextLost(),
+              terrain:GLR.surface.stats,city_cache:[...GLR.cityCache].map(([i,e])=>({name:CITIES[i]?.name,triangles:e.tris,span:e.span})),
+              performance_guard:{dpr_cap:GL.dprCap,max_lod:GL.maxLod,reason:GL.reason},
               active_canvas:{width:GLCV.width,height:GLCV.height,css_width:GLCV.clientWidth,css_height:GLCV.clientHeight}};
           },view);
+          metrics.view_ready_ms=viewReadyMs;
           metrics.fps=metrics.measured.frames.length*1000/metrics.measured.elapsed_ms;
           metrics.draw_summary=summary(metrics.measured.frames.map(f=>f.draw_ms));metrics.frame_interval_summary=summary(metrics.measured.frames.map(f=>f.interval_ms));
-          metrics.passed=metrics.ready&&metrics.measured.frames.every(f=>f.draw_calls>0)&&metrics.fps>=30;
+          metrics.workload_valid=metrics.map_mode==='terrain'&&metrics.map_details.relief===(detail==='standard')&&metrics.map_details.cities===(detail==='standard')&&
+            (detail!=='standard'||view.zoom<12||metrics.terrain.ready)&&
+            (detail!=='standard'||view.name!=='paris-city'||metrics.measured.frames.some(f=>f.city_draw_calls>0))&&
+            (detail!=='low'||metrics.measured.frames.every(f=>f.city_draw_calls===0));
+          metrics.passed=metrics.ready&&metrics.workload_valid&&metrics.buffers.context_losses===0&&metrics.measured.frames.length>0&&metrics.measured.frames.every(f=>f.draw_calls>0)&&metrics.fps>=30;
           cell.views.push(metrics);console.log(`${detail} ${view.name}: ${metrics.fps.toFixed(2)} completed FPS`);await shot(`${detail}-${view.name}`);
         }
         // Local controls return to a nation-scale camera; no world command is sent.
@@ -160,7 +179,8 @@ async function run(){
     assert.equal((await state()).date,before.date);assert.deepEqual(evidence.errors,[]);
     assert(!evidence.requests.some(r=>['/api/advance','/api/command'].includes(r.path)),'Presentation measurement cannot settle or command the campaign');
     assert.equal(hash(fs.readFileSync(checkpoint)),hash(bytes));assert.equal(hash(fs.readFileSync(binary)),evidence.binary_sha256);
-    evidence.passed=evidence.cells.every(c=>c.input_passed&&c.views.every(v=>v.passed))&&(evidence.layout||[]).every(r=>r.passed);
+    evidence.passed=process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
+      evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed);
     if(evidence.qualification)assert(evidence.passed,'Frozen browser performance/layout limits failed; raw evidence retained');
   }catch(error){evidence.failure=error.stack;if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}
   finally{evidence.finished_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(evidence,null,2)+'\n');if(browser)await browser.close();if(server.exitCode===null)server.kill();serverLog.end();console.log(path.join(out,'result.json'));}
