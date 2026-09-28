@@ -5951,6 +5951,11 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
         })
         .collect();
     let books = spheres_sim::economy::Fiscal::of(n, &now);
+    let real_rate = n.interest_rate - n.inflation;
+    // Ask the same simulator rate function for the zero-spread base. The
+    // real-rate floor is not a sovereign premium caused by the debt ratio.
+    let real_rate_after_floor =
+        spheres_sim::economy::effective_interest_rate(n.interest_rate, n.inflation, 0.0);
     let (revenue_bn, spend_bn, balance_bn) = books.in_billions(n.gdp);
     let rate_terms: Vec<spheres_sim::economy::GrowthTerms> = (0..=POLICY_CURVE_STEPS)
         .map(|i| {
@@ -6033,8 +6038,10 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
             "balance_bn": round(balance_bn, 3),
             "effective_rate": round(books.effective_rate, 6),
             "policy_rate": round(n.interest_rate, 6),
-            "real_rate": round(n.interest_rate - n.inflation, 6),
-            "spread": round(books.effective_rate - (n.interest_rate - n.inflation), 6),
+            "real_rate": round(real_rate, 6),
+            "real_rate_after_floor": round(real_rate_after_floor, 6),
+            "real_rate_floor_adjustment": round(real_rate_after_floor - real_rate, 6),
+            "spread": round(books.effective_rate - real_rate_after_floor, 6),
             "treasury_bn": n.treasury_bn.map(|x| round(x, 3)),
             "debt_bn": n.debt_bn.map(|x| round(x, 3)),
             "net_position_bn": n.net_position_bn().map(|x| round(x, 3)),
@@ -10941,10 +10948,12 @@ mod tests {
             round(n.interest_rate - n.inflation, 6)
         );
         assert!(
-            (money["spread"].as_f64().unwrap() - (rate - money["real_rate"].as_f64().unwrap()))
+            (money["spread"].as_f64().unwrap()
+                + money["real_rate_floor_adjustment"].as_f64().unwrap()
+                + money["real_rate"].as_f64().unwrap() - rate)
                 .abs()
-                < 1e-6,
-            "the spread on the card is not the difference it is drawn as"
+                < 2e-6,
+            "the real rate, floor adjustment and sovereign spread must reconcile to the rate paid"
         );
         println!(
             "Brazil 1990 on the books: debt ${debt:.1}bn at {:.3}%/yr -> ${interest_bn:.2}bn/yr, \
@@ -10952,6 +10961,39 @@ mod tests {
             rate * 100.0,
             money["interest_gdp"].as_f64().unwrap() * 100.0
         );
+    }
+
+    #[test]
+    fn the_money_card_separates_the_rate_floor_from_sovereign_risk() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+        for (inflation, debt_ratio, expected_base, expected_adjustment, expected_spread) in [
+            (0.399, 0.28, -0.02, 0.329, 0.0),
+            (0.399, 0.90, -0.02, 0.329, 0.018),
+            (0.02, 0.28, 0.03, 0.0, 0.0),
+            (0.02, 1.80, 0.03, 0.0, 0.06),
+        ] {
+            let n = g.world.nation_mut(NationId::Brazil);
+            n.interest_rate = 0.05;
+            n.inflation = inflation;
+            n.debt_gdp = debt_ratio;
+            n.debt_bn = Some(n.gdp * debt_ratio);
+            n.treasury_bn = Some(0.0);
+            let expected_rate = spheres_sim::economy::effective_interest_rate(
+                n.interest_rate, inflation, debt_ratio,
+            );
+            let expected_interest = n.debt_bn.unwrap() * expected_rate;
+            let money = &policy_json(&g.world, NationId::Brazil)["money"];
+            for (key, expected) in [
+                ("real_rate_after_floor", expected_base),
+                ("real_rate_floor_adjustment", expected_adjustment),
+                ("spread", expected_spread),
+                ("effective_rate", expected_rate),
+            ] {
+                assert!((money[key].as_f64().unwrap() - expected).abs() < 1e-6,
+                    "{key}: {money}");
+            }
+            assert!((money["interest_bn"].as_f64().unwrap() - expected_interest).abs() < 0.001);
+        }
     }
 
     /// ONE BALANCE, ONE SIGN, and the interest row above the ten dials.

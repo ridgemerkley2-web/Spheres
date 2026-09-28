@@ -81,7 +81,7 @@ function fixture(names) {
     notes: 0,
     renders: 0,
   });
-  const helpers = [...new Set(['cabinetIsOpen', ...names])];
+  const helpers = [...new Set(['cabinetIsOpen', 'interestRateExplanation', ...names])];
   vm.runInContext(`${ministrySource()}
     const CAB = {tab:'overview', ministry:'health', lastFocus:null, busy:false, error:''};
     const ARCADE_ROOMS = {sheetFocus:null, worldFocus:null, helpFocus:null};
@@ -563,4 +563,31 @@ test('the treasury card distinguishes absent books from zero money and preserves
   assert.match(open, /Debt: \$150bn/);
   assert.match(open, /debtor \$50bn/);
   assert.doesNotMatch(open, /NaN|undefined/);
+});
+
+test('debt-rate floor and debt-ratio spread are distinct in both budget explanations', () => {
+  const c = fixture(['interestRow', 'moneyCard']);
+  evaluate(c, `S.policy = {money:{on_the_books:true, treasury_bn:0,
+    revenue_bn:25, spend_bn:20, interest_bn:-0.56, balance_bn:5.56,
+    interest_gdp:-0.0056, balance_gdp:0.0556, debt_bn:28, debt_gdp:0.28,
+    net_position_bn:-28, effective_rate:-0.02, real_rate:-0.349,
+    real_rate_after_floor:-0.02, real_rate_floor_adjustment:0.329, spread:0}};`);
+  for (const helper of ['interestRow', 'moneyCard']) {
+    const html = evaluate(c, helper + '(m)');
+    assert.match(html, /debt-rate floor/i);
+    assert.match(html, /-2\.00%/);
+    assert.match(html, /no sovereign spread/i);
+    assert.doesNotMatch(html, /32\.90.*sovereign spread|NaN|undefined/);
+  }
+  evaluate(c, 'S.policy.money.debt_gdp = 0.9; S.policy.money.spread = 0.018; S.policy.money.effective_rate = -0.002;');
+  for (const helper of ['interestRow', 'moneyCard']) {
+    const html = evaluate(c, helper + '(m)');
+    assert.match(html, /debt-rate floor/i);
+    assert.match(html, /sovereign spread/i);
+    assert.doesNotMatch(html, /no sovereign spread/);
+  }
+  evaluate(c, 'S.policy.money.real_rate = 0.03; S.policy.money.real_rate_after_floor = 0.03; S.policy.money.real_rate_floor_adjustment = 0;');
+  for (const helper of ['interestRow', 'moneyCard']) {
+    assert.doesNotMatch(evaluate(c, helper + '(m)'), /debt-rate floor/i);
+  }
 });
