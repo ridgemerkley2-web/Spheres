@@ -1,0 +1,17 @@
+{
+  "reviewer": "Codex /root/review_gap_submission",
+  "method": "Visual inspection with view_image; no additional browser execution",
+  "runtime_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "files": [
+    "evidence/independent-02/screenshots/russia-after_activation-government.jpg",
+    "evidence/independent-02/screenshots/serbia-after_activation-budget.jpg",
+    "evidence/independent-02/screenshots/kazakhstan-after_reload-guidance.jpg",
+    "evidence/independent-02/screenshots/croatia-after_activation-government.jpg"
+  ],
+  "observations": [
+    "Russia and Croatia government screenshots show the correct nation and readable overview controls; officeholders use role fallback descriptions, not historically verified names.",
+    "Kazakhstan post-reload 390px advisor screenshot has country/date and legible controls/card within the captured viewport.",
+    "Serbia budget screenshot retains the known baseline F1 real-rate-floor-as-spread label. Root owns the later fix; this image is not evidence of that fix."
+  ],
+  "scope": "Only four selected still images inspected; no claim that all 12 images or uncaptured screen areas were manually reviewed."
+}

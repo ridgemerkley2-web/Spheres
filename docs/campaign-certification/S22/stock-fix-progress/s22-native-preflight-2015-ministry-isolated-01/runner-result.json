@@ -1,0 +1,303 @@
+{
+  "format": "spheres-s22-runner/v1",
+  "mode": "measure",
+  "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+  "started_utc": "2026-09-28T06:05:19.6045335Z",
+  "finished_utc": "2026-09-28T06:06:36.9523423Z",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+  "test_binary_sha256": "e18b01657a0e5e67bbe580f7d4a86f0ade0fe0f1a940bba33c4153d7a624b4bc",
+  "wrapper_sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9",
+  "original_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+  "original_input_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "original_input_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "copied_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\input.json",
+  "copied_input_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "copied_input_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "source_unchanged": true,
+  "evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01",
+  "profile_json": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\profile.json",
+  "arguments": [
+    "performance::s22_measure_checkpoint",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_environment": {
+    "SPHERES_S22_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\input.json",
+    "SPHERES_S22_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\profile.json",
+    "SPHERES_S22_RENEW_BUDGET": "1",
+    "SPHERES_S22_REQUIRE_CERTIFIED": "1"
+  },
+  "runtime": "7.6.5",
+  "machine": {
+    "name": "RIDGE10258",
+    "logical_processors": 16,
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "exit_code": 0,
+  "wall_seconds": 76.3565326,
+  "memory": {
+    "nominal_interval_ms": 100,
+    "samples": 689,
+    "failed_samples": 1,
+    "max_sampled_private_bytes": 1004343296,
+    "max_sampled_working_set_bytes": 978919424,
+    "os_peak_working_set_bytes": 994193408,
+    "max_observed_sample_gap_ms": 129.84969999999885,
+    "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+  },
+  "frozen_limits": {
+    "simulation_history_p95_ms": 300,
+    "whole_turn_p95_ms": 400,
+    "whole_turn_max_ms": 750,
+    "sampled_private_bytes": 1073741824,
+    "observed_os_peak_working_set_bytes": 1073741824
+  },
+  "latency": {
+    "simulation_history": {
+      "samples": 31,
+      "median_ms": 310.6731,
+      "p95_ms": 433.455,
+      "max_ms": 966.6955
+    },
+    "whole_turn": {
+      "samples": 31,
+      "median_ms": 421.40729999999996,
+      "p95_ms": 545.8514,
+      "max_ms": 1084.5766999999998
+    },
+    "batch": {
+      "control_commands": [
+        [
+          {
+            "SetProgramBudget": {
+              "allocations": [
+                0.053500000000000006,
+                0.038520000000000006,
+                0.042800000000000005,
+                0.059920000000000015,
+                0.020900000000000002,
+                0.011399999999999999,
+                0.005699999999999999,
+                0.036,
+                0.014980000000000004,
+                0.004280000000000001
+              ],
+              "departments": [
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  1500,
+                  1500,
+                  4000,
+                  1500,
+                  1500
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ],
+                [
+                  2000,
+                  2000,
+                  2000,
+                  2000,
+                  2000
+                ]
+              ],
+              "fiscal_year": 2015,
+              "nation": "France"
+            }
+          }
+        ]
+      ],
+      "days_per_second": 2.7991229210180424,
+      "elapsed_ms": 11074.8977,
+      "final": {
+        "absolute_day": 9162,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Jan 2015",
+          "last_snapshot": "1 Feb 2015",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 31397,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 29310,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2015,
+          2,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Feb 2015",
+        "dispatches": 22083,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 28,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.559599616389626,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 876,
+          "world_assigned_aircraft": 40,
+          "world_military_strength": 1811.1641537142434,
+          "world_squadrons": 32
+        },
+        "history_epoch": 265,
+        "history_points": 1312,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 887.934226906,
+          "contractor_assignments": 829,
+          "contractor_roster": 1145,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 9161,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 751920,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 9161,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 9161,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.613221529105473,
+          "inherited_used_daily": 24.613221529105473,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "5c486d0c186f921e"
+      },
+      "ordinary_days": 31,
+      "same_final_facts": true
+    }
+  },
+  "numerical_acceptance": false,
+  "checkpoints": [],
+  "passed": false,
+  "failures": [
+    "Simulation/history p95 exceeds frozen 300 ms limit.",
+    "Whole-turn p95 exceeds frozen 400 ms limit.",
+    "Whole-turn maximum exceeds frozen 750 ms limit."
+  ]
+}

@@ -1,0 +1,17 @@
+
+running 12 tests
+test storage::tests::combined_company_save_import_retains_capability_and_archive_without_load_adoption ... ok
+test storage::tests::consuming_archive_world_matches_string_import_and_keeps_paid_timeline ... ok
+test storage::tests::envelope_load_preserves_sim_timeline_and_archive_legacy_still_loads ... ok
+test storage::tests::failed_write_keeps_previous_valid_campaign_and_archive ... ok
+test storage::tests::integrated_paid_work_survives_interrupted_write_and_valid_backup_recovery ... ok
+test storage::tests::integrated_warfare_archive_and_standalone_import_keep_every_capability ... ok
+test storage::tests::slots_cannot_escape_root_and_three_autosaves_rotate ... ok
+test storage::tests::typed_campaign_decode_cannot_skip_invalid_unknown_numbers_or_recursion_limits ... ok
+test storage::tests::typed_campaign_decode_keeps_complete_history_log_journey_and_numeric_bytes ... ok
+test storage::tests::typed_campaign_decode_matches_actual_checkpoint_value_oracle ... ignored, Read-only real archive parity; set SPHERES_S22_INPUT and coordinate with measured runs
+test storage::tests::typed_campaign_decode_preserves_duplicate_keys_legacy_migrations_and_exact_errors ... ok
+test storage::tests::typed_campaign_decode_preserves_rejection_of_positional_archive_arrays ... ok
+
+test result: ok. 11 passed; 0 failed; 1 ignored; 0 measured; 444 filtered out; finished in 8.93s
+

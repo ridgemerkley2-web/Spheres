@@ -1,0 +1,75 @@
+{
+  "id": null,
+  "state": "planned",
+  "participant": null,
+  "country_case": null,
+  "phase": null,
+  "started_utc": null,
+  "ended_utc": null,
+  "build_source_revision": null,
+  "environment": {
+    "os": null,
+    "browser": null,
+    "viewport_width": null,
+    "viewport_height": null,
+    "keyboard_only": null
+  },
+  "campaign": {
+    "nation": null,
+    "date": null,
+    "seed": null,
+    "origin": null,
+    "start_save": null,
+    "provenance": null
+  },
+  "evidence_refs": [],
+  "interaction_notes": null,
+  "abort_reason": null,
+  "tasks": {
+    "budget": {
+      "outcome": "not_attempted",
+      "assistance": "none",
+      "at_utc": null,
+      "notes": null,
+      "evidence_refs": []
+    },
+    "construction": {
+      "outcome": "not_attempted",
+      "assistance": "none",
+      "at_utc": null,
+      "notes": null,
+      "evidence_refs": []
+    },
+    "recorded_result": {
+      "outcome": "not_attempted",
+      "assistance": "none",
+      "at_utc": null,
+      "notes": null,
+      "evidence_refs": []
+    },
+    "save": {
+      "outcome": "not_attempted",
+      "assistance": "none",
+      "at_utc": null,
+      "notes": null,
+      "evidence_refs": []
+    }
+  },
+  "government": {
+    "outcome": "not_answered",
+    "answer": null,
+    "basis": null,
+    "assistance": "none",
+    "evidence_refs": []
+  },
+  "actionable_blocker": {
+    "outcome": "not_answered",
+    "answer": null,
+    "basis": null,
+    "next_action": null,
+    "assistance": "none",
+    "evidence_refs": []
+  },
+  "coaching_events": [],
+  "failures": []
+}

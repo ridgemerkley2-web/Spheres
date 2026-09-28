@@ -1,0 +1,132 @@
+{
+  "source_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "revision_before": "01c68fe17b03391edc18b244932c3b56080d1f26",
+  "revision_after": "01c68fe17b03391edc18b244932c3b56080d1f26",
+  "tool_overlay_only": [
+    "tools/avatars/certified_boundary_matrix.py"
+  ],
+  "method": "Read-only build from actual current integration inputs; reviewed tool bytes overlaid only for its self-hash. No integration files changed.",
+  "files": [
+    {
+      "path": "cases-france.json",
+      "raw": {
+        "bytes": 427259,
+        "sha256": "0a8c508ad96b9eecdd656d32f789fbeb115a6cfb37edafdbc98fa2bb696f3783"
+      },
+      "gzip": {
+        "bytes": 19213,
+        "sha256": "5ffe918f7d28d747c4f17aa98d66b019bd9ab04b9c9f0771d6682e2446966ae4"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-japan.json",
+      "raw": {
+        "bytes": 442987,
+        "sha256": "99a1219c7f05e3498caadd81b05bee3336ba883d9c63eeebe4fb0dc066348107"
+      },
+      "gzip": {
+        "bytes": 29702,
+        "sha256": "cb3483ae6e6308c8aa2ccbb000165442b7f97aeec58d6c4795149a2786322948"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-india.json",
+      "raw": {
+        "bytes": 280384,
+        "sha256": "e42d4b1c8acd3a476ce0aa93fadc1f08971b88f28df7fcec53b520cd9bea6ae5"
+      },
+      "gzip": {
+        "bytes": 22679,
+        "sha256": "d52cfa86cee0fba146c3634b747a43d66fca39c97458c5f8b7cb18fa91b72540"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-brazil.json",
+      "raw": {
+        "bytes": 313512,
+        "sha256": "42d0d059950a25e5c9543b28f3adc150bd467dbd5c999c3d034970e050113cf6"
+      },
+      "gzip": {
+        "bytes": 24934,
+        "sha256": "703751b12ab4df2587906760cb3786335fd910bb22b7874349de92541f889109"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-south-africa.json",
+      "raw": {
+        "bytes": 344128,
+        "sha256": "c26996e90fb461c09d097d5b64292f72ef4341da596be1dd05a6886ba5527123"
+      },
+      "gzip": {
+        "bytes": 21526,
+        "sha256": "231702e01cb7c9c06068dd5835beefccefb732baca9bb1bd5ff4b980b8fb1771"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-tonga.json",
+      "raw": {
+        "bytes": 240623,
+        "sha256": "6a5615465e80100d1b0ebad08ae967b603b26de561db2160cd52325dc11e080c"
+      },
+      "gzip": {
+        "bytes": 13557,
+        "sha256": "3416c3e74e97cc21934a661f7e5205144b13889ed8078712bbc5b013fd662f91"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-saudi-arabia.json",
+      "raw": {
+        "bytes": 163044,
+        "sha256": "933b33604f79a782fb018da7dc787dd29b309a56823f523f9d840be59d1db4cc"
+      },
+      "gzip": {
+        "bytes": 7888,
+        "sha256": "63bf3262b6aeb87517f3932f40ae42e1e1ea42a8d763513e3c791ee14ae5c87f"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "cases-ussr-russia.json",
+      "raw": {
+        "bytes": 423496,
+        "sha256": "abb0e496b9f91f549d4dc8bb0ebe72c0edb7b7b38350073d0af46c83061e6b92"
+      },
+      "gzip": {
+        "bytes": 21318,
+        "sha256": "fc716a87c867877593b56b064bb6e3041609b088fc8e1c61dc5af62b1b3c15de"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "summary.json",
+      "raw": {
+        "bytes": 72920,
+        "sha256": "2b15d96a67e14a25d867d348161177e6a0119717e27d3021ed30e97475623bcb"
+      },
+      "gzip": {
+        "bytes": 12533,
+        "sha256": "9446ddb44225f5bf34a569e820581f9b9dfa67b36b18905e1a3ccc3383abccd7"
+      },
+      "equals_review_checkout": true
+    },
+    {
+      "path": "README.md",
+      "raw": {
+        "bytes": 31850,
+        "sha256": "4e6bc8a52f9c409d500005f80b31375cf953e58f8fe36ae03ef64a5be5322555"
+      },
+      "gzip": {
+        "bytes": 7955,
+        "sha256": "ed2ec37789431bf645d0d39b8d19824f036deb11313ab3e8b6b7a271d8b8c0c8"
+      },
+      "equals_review_checkout": true
+    }
+  ],
+  "inputs_unchanged_after": true
+}

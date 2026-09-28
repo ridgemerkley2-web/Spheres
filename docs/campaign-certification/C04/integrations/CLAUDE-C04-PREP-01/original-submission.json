@@ -1,0 +1,35 @@
+{
+  "remote_revision": "62aae6b76b4789bbb9501bdd768fa25176a66b15",
+  "deliverable_revision": "63389675d435baf8cb2a1023c471a44c9afdbc1b",
+  "integration_base": "75626a137d5efd1ca1cca0d6f76c4d8502909bee",
+  "original_author": "Claude (preserved by cherry-pick)",
+  "reviewer": "Codex /root/s20_preflight",
+  "source_scope": "Original Git blob bytes, not normalized replacements for original response-body hashes. Handoff is copied exactly from submitted remote revision.",
+  "files": [
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/README.md",
+      "bytes": 16729,
+      "sha256": "3b7892c5a2c685f8fc3be1f38b1165d93ded5b2726a6e0af715ec5a65f136a9f"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/proposals.json",
+      "bytes": 86797,
+      "sha256": "cc2882ccda191ac69169bebca2193b99971903bd109dac51e23aedce73fa5d01"
+    },
+    {
+      "path": "docs/campaign-certification/C04/preparation/france-tonga/sources.json",
+      "bytes": 69600,
+      "sha256": "1260efe01c4688ac284d47e15c409158b22fd5057980d66798df1585ef77492a"
+    },
+    {
+      "path": "tools/avatars/check_successor_proposals.py",
+      "bytes": 42386,
+      "sha256": "cddae6f06fb08f7cb1b8cc0e5740f3d15171c9c5058a6bca3f813e2d3c1ff95e"
+    },
+    {
+      "path": "tools/avatars/test_successor_proposals.py",
+      "bytes": 22937,
+      "sha256": "4ba36e0e23086040578d41b6501926ee946c40c4bcbc72c93d5c78c474449f75"
+    }
+  ]
+}

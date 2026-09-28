@@ -1,0 +1,206 @@
+{
+  "format": "spheres-s22-runner/v1",
+  "mode": "measure",
+  "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "started_utc": "2026-09-28T11:53:39.3280426Z",
+  "finished_utc": "2026-09-28T11:54:06.9359337Z",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+  "test_binary_sha256": "a27da17d309391620c5df7f7d3c8306884c71ddedf4a5a598ea43e39e774e024",
+  "wrapper_sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9",
+  "original_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+  "original_input_sha256_before": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+  "original_input_sha256_after": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+  "copied_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02\\r2-early-france-1999-native\\input.json",
+  "copied_input_sha256_before": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+  "copied_input_sha256_after": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+  "source_unchanged": true,
+  "evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02\\r2-early-france-1999-native",
+  "profile_json": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02\\r2-early-france-1999-native\\profile.json",
+  "arguments": [
+    "performance::s22_measure_checkpoint",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_environment": {
+    "SPHERES_S22_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02\\r2-early-france-1999-native\\input.json",
+    "SPHERES_S22_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02\\r2-early-france-1999-native\\profile.json",
+    "SPHERES_S22_RENEW_BUDGET": "1",
+    "SPHERES_S22_REQUIRE_CERTIFIED": "1"
+  },
+  "runtime": "7.6.5",
+  "machine": {
+    "name": "RIDGE10258",
+    "logical_processors": 16,
+    "os": "Microsoft Windows NT 10.0.26200.0"
+  },
+  "exit_code": 0,
+  "wall_seconds": 26.9032743,
+  "memory": {
+    "nominal_interval_ms": 100,
+    "samples": 240,
+    "failed_samples": 1,
+    "max_sampled_private_bytes": 457187328,
+    "max_sampled_working_set_bytes": 393207808,
+    "os_peak_working_set_bytes": 402300928,
+    "max_observed_sample_gap_ms": 131.2588999999989,
+    "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+  },
+  "frozen_limits": {
+    "simulation_history_p95_ms": 300,
+    "whole_turn_p95_ms": 400,
+    "whole_turn_max_ms": 750,
+    "sampled_private_bytes": 1073741824,
+    "observed_os_peak_working_set_bytes": 1073741824
+  },
+  "latency": {
+    "simulation_history": {
+      "samples": 31,
+      "median_ms": 134.5881,
+      "p95_ms": 204.7656,
+      "max_ms": 218.6719
+    },
+    "whole_turn": {
+      "samples": 31,
+      "median_ms": 191.2437,
+      "p95_ms": 252.47809999999998,
+      "max_ms": 278.2701
+    },
+    "batch": {
+      "control_commands": [],
+      "days_per_second": 9.271831341918432,
+      "elapsed_ms": 3343.4602999999997,
+      "final": {
+        "absolute_day": 3450,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "12 Jun 1999",
+          "last_snapshot": "13 Jun 1999",
+          "lifespan_milestones": 3
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 141,
+          "economic_reviews": 282,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 141,
+          "military_reviews": 145,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          1999,
+          6,
+          13
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "13 Jun 1999",
+        "dispatches": 4787,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 1,
+          "executive_bindings": 1,
+          "government_performance_records": 143,
+          "government_records": 143,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 140,
+          "party_leadership_assignments": 582,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.20686693857093,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 794,
+          "world_assigned_aircraft": 1,
+          "world_military_strength": 1039.5447077762747,
+          "world_squadrons": 1
+        },
+        "history_epoch": 77,
+        "history_points": 1188,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 160.795320748,
+          "contractor_assignments": 238,
+          "contractor_roster": 794,
+          "operational_sectors": 9,
+          "operational_supply_buffers": 9,
+          "operational_supply_cargo": 43,
+          "operational_supply_receipt_day": 3449,
+          "operational_transfers": 102,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 12,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 2,
+          "supplier_equipment_wip": 0,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 3410,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 1,
+          "suppliers": 1
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 3449,
+          "capacity_daily": 5.084496129814623,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 45.29919021792768,
+          "inherited_used_daily": 44.99502621872768,
+          "required_daily": 0.9013880000000001
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 1,
+        "world_fnv64": "5e2885a23e03ba8e"
+      },
+      "ordinary_days": 31,
+      "same_final_facts": true
+    }
+  },
+  "numerical_acceptance": true,
+  "checkpoints": [],
+  "passed": true,
+  "failures": []
+}

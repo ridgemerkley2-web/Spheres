@@ -1,0 +1,34 @@
+✔ committed inventory identities and activation paths match the current sources (20.2407ms)
+✔ the inventory holds each of the 23 expected successor identities exactly once (1.0036ms)
+✔ mapping discrepancies are flagged without reducing the expectation (0.7152ms)
+✔ the inventory validator rejects missing, duplicate, misclassified and unflagged identities (0.9711ms)
+✔ committed results are complete, labelled and tied to this exact inventory and build (10.8831ms)
+✔ historical submitted results pin the exact historical harness blobs (106.7279ms)
+✔ at least three representative activations ran, including USSR -> Russia, with inspection after save/reload (2.3153ms)
+✔ passed, failed, blocked and unrun are reported independently for every layer (2.1711ms)
+✔ the result validator rejects mislabelled or inconsistent results (146.5198ms)
+✔ staging splices only the two parent values and preserves unrepresentable integers (0.836ms)
+✔ staging refuses missing, duplicated, dead or malformed parent records (0.4096ms)
+✔ Rust readers ignore comments, strings and lifetimes (0.4407ms)
+✔ historical exporter receipts report matching projections, without retained original bytes (3.164ms)
+✔ current acceptance rejects historical hash-only inputs (7.4509ms)
+✔ passing requires every named check exactly once and retained browser screenshots (34.8669ms)
+✔ runtime, clean-tree and served asset proof cannot be waived by a passed browser case (39.6091ms)
+✔ native exporter provenance must pin the exact consumed archive and runtime (34.0461ms)
+✔ failed staging cannot support a passed activation (7.2041ms)
+✔ blocked environment errors remain blocked even before the first check (5.9111ms)
+✔ failed or blocked cases yield nonzero command exit even when the record is valid (0.1215ms)
+✔ unrun no-hook claims cannot hide supported activation or selection cases (8.5419ms)
+✔ retained archive verification checks gzip and decoded bytes and confines references (1.0594ms)
+✔ screenshot references cannot leave the evidence directory (2.445ms)
+✔ staging rejects duplicate JSON keys instead of patching a shadowed value (0.1116ms)
+✔ command options reject unknown recipes and duplicate requested identities (0.7232ms)
+✔ frozen served asset identity permits only explicit CRLF transport differences (0.2902ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 526.8253

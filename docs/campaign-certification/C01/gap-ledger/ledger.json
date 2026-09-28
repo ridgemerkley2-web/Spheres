@@ -50,7 +50,7 @@
     {
       "path": "docs/campaign-certification/C01/research-index.json",
       "bytes": 114824,
-      "sha256": "05c5c17a7d5586982e50b2a6c7f8254f7c32c768c83633814314f14b87d4854e"
+      "sha256": "e9bc905869c63dd7319bf98b886df71afa9fad90d843cc197090171b5b13064e"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -65,13 +65,13 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 10719,
-      "sha256": "aaa3dc43590214a914be1405dcef71377cb9a5daf7be6f3eee1d17bf03f09d84"
+      "bytes": 13812,
+      "sha256": "c5a3fd44c6f4aee50c289abdfc543d9aa210d4c46ac92a62a1e343098d15e696"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 774754,
-      "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36"
+      "bytes": 786813,
+      "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
@@ -110,8 +110,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 191099,
-      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
+      "bytes": 199067,
+      "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8"
     },
     {
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
@@ -254,12 +254,439 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/scope-and-content.json",
       "bytes": 469,
       "sha256": "ff64f2204d73243b816683374d2dc63283b37e2f962bab43e8fc384bafbe849c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/manifest.json",
+      "bytes": 6430,
+      "sha256": "1e5b021ee3f95fff4e8de5b6888239648d443762ca679308d027e387f612a670"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/README.md",
+      "bytes": 2819,
+      "sha256": "84ce0ec9c05cdeaecaf070b46e1693e5b1b4ed4427a096565861bffa768f91c8",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+      "bytes": 20657,
+      "sha256": "102e464ce7ad598a30a1a62407656a7640a09380638814e55fe4c94c76ec5334"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+      "bytes": 15764,
+      "sha256": "c6154fddb8d94deefbd77e30dc130e76103680175a0caa15239778b053d4a9c9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json",
+      "bytes": 24816,
+      "sha256": "ef87316cc5d6b22ebd3220dfb1151d645c2e51eb412e63cc587c5396d8982e38"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/.gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/checks.json",
+      "bytes": 1436,
+      "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/extras.py",
+      "bytes": 1381,
+      "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/inspect_sources.py",
+      "bytes": 1366,
+      "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/census-check.log",
+      "bytes": 1914,
+      "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/census-complete-sparse-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/git-diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-check-qualified.log",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-generate-qualified.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-generate.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-atlas.log",
+      "bytes": 1141,
+      "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-brazil-qualified.log",
+      "bytes": 137,
+      "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-brazil.log",
+      "bytes": 137,
+      "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-campaign-complete-sparse.log",
+      "bytes": 120,
+      "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-campaign.log",
+      "bytes": 2070,
+      "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-research.log",
+      "bytes": 183,
+      "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-russia.log",
+      "bytes": 133,
+      "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-ussr.log",
+      "bytes": 132,
+      "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/repair-scope.json",
+      "bytes": 297,
+      "sha256": "411af013dfdf9dd19a23c388f49f63ed7a1010e965b9a48a78da7c5141a40bb4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/retrievals.json",
+      "bytes": 10053,
+      "sha256": "430220bb4ce89b3290d273ec9ea946624de4f40a12978aebe3154d20e3dcf064"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/retrieve.py",
+      "bytes": 3434,
+      "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/scoped-import.json",
+      "bytes": 892,
+      "sha256": "a3b84b94438741103000ada045cf2f9f073f8acc844e1e82b15769f7f2a17367"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/verify-review.py",
+      "bytes": 977,
+      "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/visual-review.json",
+      "bytes": 3821,
+      "sha256": "8900b05f748fbab5a6516f72e6c393f010c4371edc5be3ca62aeb489b6a0264a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/manifest.json",
+      "bytes": 14436,
+      "sha256": "8f2469ef7a4b4624741748f32b9b141c10e13686a1376a4d0cc16f369b24ee8d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/README.md",
+      "bytes": 2998,
+      "sha256": "7e2a9cbd8ef25fb7209c87086adb1ba6cced205f35cb322c4eca370ae3915f30",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-garf-law-2392i-19910905-facts.json",
+      "bytes": 8402,
+      "sha256": "3c62821246b15e2557590b40dfa0846e87a9e80067304791493ca0358cea8314"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-garf-res-1362i-19900315-facts.json",
+      "bytes": 8454,
+      "sha256": "c78cd16d6b4e63df980cc004b034675263dfa748888dbd08a64334e85af237e3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-1177-19901124-facts.json",
+      "bytes": 5556,
+      "sha256": "76afb0a18568a66e677024200725d7004a833c97800971507792da3f975a93bc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-27-19910110-facts.json",
+      "bytes": 5530,
+      "sha256": "bfcfda0dd349a75ad683dba6ff97e71b80cce755e1cf9435dbcb614b62c5fb3a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-525-19900526-facts.json",
+      "bytes": 6659,
+      "sha256": "58c5b7369f631ae073326f5c119998c7b46d34f0fb2d8b8237a856b1ee578ca2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-km-rasp-943r-19910819-facts.json",
+      "bytes": 6251,
+      "sha256": "6bb922f1af343163b7f037b645a5f07125e6ae73e8bd2f42acaa6ff919002af0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-post-53-19911123-facts.json",
+      "bytes": 6777,
+      "sha256": "5556de622f34c5c5c77be3953d997d6b876270c5bff146fcfda1a4037d82b5a2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-212r-19911219-facts.json",
+      "bytes": 5330,
+      "sha256": "89f54acc7eb2f038171c2b785eb1a82dc52eb38ae491835877576830d18b48aa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-23r-19910904-facts.json",
+      "bytes": 5495,
+      "sha256": "df1417547b989aaf374f19751035471331cb713150f95aa96f0fdc99a58c9e22"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-25r-19910906-facts.json",
+      "bytes": 5510,
+      "sha256": "a081b31cd1c9662667f2ad4290abdd1400d0e9a59f0067ff92b9e22f63c5ec4a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-62r-19911005-facts.json",
+      "bytes": 5472,
+      "sha256": "32c8ace93fa76a95ed567ffe1b9f259af05871c4811b594b68d3dc5388af3b0d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mek-rasp-2r-19911010-facts.json",
+      "bytes": 5178,
+      "sha256": "73730b4904c43516d8ef14250f7d6dc43f1d96f2581889d60786e28aa20fa865"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mek-rasp-6r-19911112-facts.json",
+      "bytes": 5204,
+      "sha256": "0284def71a5429069818b29e3d513889f78a49f71f9102423af35c7593e2b6fd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-post-7-19911128-facts.json",
+      "bytes": 5338,
+      "sha256": "8d72a73aea6ecf57bebcc894f69ef65bca7d65fd966a9043060d423d42e5bcdd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-rasp-23r-19911217-facts.json",
+      "bytes": 5108,
+      "sha256": "28ec2b32c4b2d000dfb26fa1bfe9d22f786064c4ffea3db67d5e00db0f3d7977"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-rasp-7r-19911115-facts.json",
+      "bytes": 5215,
+      "sha256": "d9f2da6ca8c8d979ee4eff8059e018de6a4f7ae3244b50bb4ed12512083a79e8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-rsfsr-res-2017i-19911212-facts.json",
+      "bytes": 5448,
+      "sha256": "ac1c8a70fcef7a5fa95f3ab21975209f46a99a5d07dac8a78f166f0b49a998ff"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-rsfsr-ukaz-299-19911219-facts.json",
+      "bytes": 5368,
+      "sha256": "29cafe71fda9b4feb7f74fae2b7e312f0fb860df21e59817a463be74d5eb35c1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-rada-law-1861i-19901226-facts.json",
+      "bytes": 7604,
+      "sha256": "f334cdd7aef921a458b43f128ca83e2b25ff669e7973013bc57f62493bfdc613"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-rada-res-1870i-19901227-facts.json",
+      "bytes": 5761,
+      "sha256": "06c732e2153b933043481ed7a25b7526fab5153a109f1aca2bf885a7115aa083"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-snd4-stenogram-vol3-19901226-facts.json",
+      "bytes": 17519,
+      "sha256": "d2b94976bec3babd92502e25a08f968e25012ffaacf25536ddc6272b66e8543a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-snd5-bulletin5-19910904-facts.json",
+      "bytes": 9917,
+      "sha256": "ea6a87f3d21277074e3326810d6615a1c2d79dbb2a83d0eeaf9f219dc9b668e7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sprsfsr-art59-19891224-facts.json",
+      "bytes": 9536,
+      "sha256": "b1851c354ddc2d68e77ec087d586b0c7c6a6fce0bf6428350ddac37a471f984f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sprsfsr-art60-19900112-facts.json",
+      "bytes": 9163,
+      "sha256": "55acdbce0142cd8f7a8f527f22228e53ccce812f0b0ac5b3d4fe5d72527956a4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sten-vs-bulletin1-19910826-facts.json",
+      "bytes": 10261,
+      "sha256": "c64a96f864dee22e507c61c23ba89bf563fd0ddf001d03401e7666155710c0c9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sten-vs-bulletin2-19910826-facts.json",
+      "bytes": 9270,
+      "sha256": "0e7558aa251e0eebf2bf8767c1a8d9255be07f7ca9b4e3c5bb93916b9ec5d7d9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-35-19910828-facts.json",
+      "bytes": 27651,
+      "sha256": "0fcaa0721ac623d0131eea0f55d1b8fd0dcf88da9506ddc2ca7749a4832af8fc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-36-19910904-facts.json",
+      "bytes": 19559,
+      "sha256": "acbdb003fc1cc99f244824614da524a17284a463640d8c391723df873838d0fb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-37-19910911-facts.json",
+      "bytes": 17089,
+      "sha256": "5ccd7955363c4afad6b644dba20510767cd1215541e56077fd180902959a4a1f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-41-19911009-facts.json",
+      "bytes": 8536,
+      "sha256": "de77d0008490ddfb87af4f490bf52642206feab3b43d922985037526d3d137b9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/.gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/checks.json",
+      "bytes": 1436,
+      "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/extras.py",
+      "bytes": 1381,
+      "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/inspect_sources.py",
+      "bytes": 1366,
+      "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/census-check.log",
+      "bytes": 1914,
+      "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/census-complete-sparse-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/git-diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-check-qualified.log",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-generate-qualified.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-generate.log",
+      "bytes": 252,
+      "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-atlas.log",
+      "bytes": 1141,
+      "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-brazil-qualified.log",
+      "bytes": 137,
+      "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-brazil.log",
+      "bytes": 137,
+      "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-campaign-complete-sparse.log",
+      "bytes": 120,
+      "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-campaign.log",
+      "bytes": 2070,
+      "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-research.log",
+      "bytes": 183,
+      "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-russia.log",
+      "bytes": 133,
+      "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-ussr.log",
+      "bytes": 132,
+      "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/retrievals.json",
+      "bytes": 94139,
+      "sha256": "5f2c1e6609875b43eab0f40f5f4bd54aceb9fa3257fd580f30428df956972766"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/retrieve.py",
+      "bytes": 3434,
+      "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/scoped-import.json",
+      "bytes": 3602,
+      "sha256": "a857880d346a4cdcfb1e3f2a0fb18981358769db7114f6306453e45ef98d1925"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/verify-review.py",
+      "bytes": 977,
+      "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/visual-review.json",
+      "bytes": 1776,
+      "sha256": "2ca27ab1fad32b25fef57d46b263b5ffd475f9e7b577672be49cce1471c17be3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/withdrawal-scope.json",
+      "bytes": 489,
+      "sha256": "26621499a7c6f6395724bcf24335d3f3a5e2850c473a5cf497f808bcd6d6919a"
     }
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 205610,
-    "sha256": "8d43878b385705945de428ffe72def32f334ba0571900df70010e4616c410d17"
+    "bytes": 205459,
+    "sha256": "f9edb686e7b6c7a43858e4b7b1d43d5d217d3574afb98dbfeb10e02508d89210"
   },
   "in_flight": [
     {
@@ -308,21 +735,31 @@
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-SOURCE-17",
-      "state": "ready_for_review",
-      "branch": "claude/c01-source-17",
-      "case": "Brazil",
-      "scope": "Source-review repair of the DCN No. 1/2023 records (no coverage change)",
-      "targets": [],
+      "task": "CLAUDE-C01-28",
+      "state": "claimed",
+      "branch": "claude/c01-ru-28",
+      "case": "USSR -> Russia",
+      "scope": "Five Russian party-leader chains; active research claim, no accepted mapping",
+      "targets": [
+        "party:Russia/ru_kprf",
+        "party:Russia/ru_ldpr",
+        "party:Russia/ru_yabloko",
+        "party:Russia/ru_apr",
+        "party:Russia/ru_vybor"
+      ],
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-SOURCE-26",
-      "state": "ready_for_review",
-      "branch": "claude/c01-source-26",
-      "case": "USSR -> Russia",
-      "scope": "Source-review repair of CLAUDE-C01-26 (facsimile provenance and defects)",
-      "targets": [],
+      "task": "CLAUDE-C01-29",
+      "state": "claimed",
+      "branch": "claude/c01-jp-29",
+      "case": "Japan",
+      "scope": "Japan Socialist Party / Social Democratic Party chairs; active research claim, no accepted mapping",
+      "targets": [
+        "party:Japan/jp_jsp",
+        "party:Japan/jp_jsp/jp_jsp_1945",
+        "party:Japan/jp_jsp/jp_sdp_1996"
+      ],
       "accepted": false
     }
   ],
@@ -332,6 +769,9 @@
       "state": "complete",
       "case": "USSR -> Russia",
       "source": "ru_garf_cec_result_19910619",
+      "source_ids": [
+        "ru_garf_cec_result_19910619"
+      ],
       "nation": "Russia",
       "scope": "Accept the bounded recorded-response reproduction and its unchanged four claims. This does not resolve the archival leaf discrepancy, a TASS publication date, any country census or any campaign/session gate. Integration is a separate root action.",
       "reviewed_commit": "66331d9d00704d5298f08c5d738631ee830350df",
@@ -408,6 +848,9 @@
       "state": "complete",
       "case": "SaudiArabia",
       "source": "sa_bush41_address_19900808",
+      "source_ids": [
+        "sa_bush41_address_19900808"
+      ],
       "nation": "SaudiArabia",
       "scope": "Accept the bounded source-identity repair: the exact current and former archived bodies and the identical address-span identity reproduce independently; the existing single title-only observation is supported. Root integration is separate. No accession, tenure continuity, other C01-06 observation, country census or campaign gate is accepted by this decision.",
       "reviewed_commit": "93467faaef254a71b4a776d00e56c16dda963eca",
@@ -466,6 +909,500 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/scope-and-content.json",
           "bytes": 469,
           "sha256": "ff64f2204d73243b816683374d2dc63283b37e2f962bab43e8fc384bafbe849c"
+        }
+      ]
+    },
+    {
+      "task": "CLAUDE-C01-SOURCE-17",
+      "state": "complete",
+      "case": "Brazil",
+      "source": "br_cn_dcn1_20230102_p20_26, br_cn_dcn1_20230102_p18_19, br_cn_dcn1_20230102_p1_8",
+      "source_ids": [
+        "br_cn_dcn1_20230102_p20_26",
+        "br_cn_dcn1_20230102_p18_19",
+        "br_cn_dcn1_20230102_p1_8"
+      ],
+      "nation": "Brazil",
+      "scope": "Accept the bounded SOURCE-17 response-identity/content repair with Codex qualification de73e6c73a98a1240cc8860f6758528df7c84d6e. Both current official and specified archived bodies reproduce; affected page claims agree. The unavailable earlier body discrepancy remains unexplained. This does not accept broader Brazil/C01 historical coverage or any campaign gate.",
+      "reviewed_commit": "efeac5461022ed27f27973cbc215615339ee5c10",
+      "parent_packet": "CLAUDE-C01-17",
+      "parent_evidence_class": "c01_integrated_pending",
+      "parent_acceptance_changed": false,
+      "historical_coverage_changed": false,
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/manifest.json",
+          "bytes": 6430,
+          "sha256": "1e5b021ee3f95fff4e8de5b6888239648d443762ca679308d027e387f612a670"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/README.md",
+          "bytes": 2819,
+          "sha256": "84ce0ec9c05cdeaecaf070b46e1693e5b1b4ed4427a096565861bffa768f91c8",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+          "bytes": 20657,
+          "sha256": "102e464ce7ad598a30a1a62407656a7640a09380638814e55fe4c94c76ec5334"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json",
+          "bytes": 15764,
+          "sha256": "c6154fddb8d94deefbd77e30dc130e76103680175a0caa15239778b053d4a9c9"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json",
+          "bytes": 24816,
+          "sha256": "ef87316cc5d6b22ebd3220dfb1151d645c2e51eb412e63cc587c5396d8982e38"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/.gitattributes",
+          "bytes": 20,
+          "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/checks.json",
+          "bytes": 1436,
+          "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/extras.py",
+          "bytes": 1381,
+          "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/inspect_sources.py",
+          "bytes": 1366,
+          "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/census-check.log",
+          "bytes": 1914,
+          "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/census-complete-sparse-check.log",
+          "bytes": 1462,
+          "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/git-diff-check.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-check-qualified.log",
+          "bytes": 251,
+          "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-generate-qualified.log",
+          "bytes": 252,
+          "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/research-generate.log",
+          "bytes": 252,
+          "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-atlas.log",
+          "bytes": 1141,
+          "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-brazil-qualified.log",
+          "bytes": 137,
+          "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-brazil.log",
+          "bytes": 137,
+          "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-campaign-complete-sparse.log",
+          "bytes": 120,
+          "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-campaign.log",
+          "bytes": 2070,
+          "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-research.log",
+          "bytes": 183,
+          "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-russia.log",
+          "bytes": 133,
+          "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/logs/tests-ussr.log",
+          "bytes": 132,
+          "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/repair-scope.json",
+          "bytes": 297,
+          "sha256": "411af013dfdf9dd19a23c388f49f63ed7a1010e965b9a48a78da7c5141a40bb4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/retrievals.json",
+          "bytes": 10053,
+          "sha256": "430220bb4ce89b3290d273ec9ea946624de4f40a12978aebe3154d20e3dcf064"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/retrieve.py",
+          "bytes": 3434,
+          "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/scoped-import.json",
+          "bytes": 892,
+          "sha256": "a3b84b94438741103000ada045cf2f9f073f8acc844e1e82b15769f7f2a17367"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/verify-review.py",
+          "bytes": 977,
+          "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/visual-review.json",
+          "bytes": 3821,
+          "sha256": "8900b05f748fbab5a6516f72e6c393f010c4371edc5be3ca62aeb489b6a0264a"
+        }
+      ]
+    },
+    {
+      "task": "CLAUDE-C01-SOURCE-26",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "source": "su_garf_exhibit_law_2392i, su_garf_exhibit_res_1362i_19900315, su_ips_cm_res_1177_19901124, su_ips_cm_res_27_19910110, su_ips_cm_res_525_19900526, su_km_rasp_943r_19910819, su_kou_post_53_19911123, su_kou_rasp_212r_19911219, su_kou_rasp_23r_19910904, su_kou_rasp_25r_19910906, su_kou_rasp_62r_19911005, su_mek_rasp_2r_19911010, su_mek_rasp_6r_19911112, su_mgek_post_7_19911128, su_mgek_rasp_23r_19911217, su_mgek_rasp_7r_19911115, su_rsfsr_res_2017i_19911212, su_rsfsr_ukaz_299_19911219, su_rada_law_1861i_19901226, su_rada_res_1870i_19901227, su_snd4_steno_vol3, su_snd5_bulletin5_19910904, su_sprsfsr_1990_8_art59_19891224, su_sprsfsr_1990_8_art60_19900112, su_sten_vs_bulletin1_19910826, su_sten_vs_bulletin2_19910826, su_ved_1991_35, su_ved_1991_36, su_ved_1991_37, su_ved_1991_41",
+      "source_ids": [
+        "su_garf_exhibit_law_2392i",
+        "su_garf_exhibit_res_1362i_19900315",
+        "su_ips_cm_res_1177_19901124",
+        "su_ips_cm_res_27_19910110",
+        "su_ips_cm_res_525_19900526",
+        "su_km_rasp_943r_19910819",
+        "su_kou_post_53_19911123",
+        "su_kou_rasp_212r_19911219",
+        "su_kou_rasp_23r_19910904",
+        "su_kou_rasp_25r_19910906",
+        "su_kou_rasp_62r_19911005",
+        "su_mek_rasp_2r_19911010",
+        "su_mek_rasp_6r_19911112",
+        "su_mgek_post_7_19911128",
+        "su_mgek_rasp_23r_19911217",
+        "su_mgek_rasp_7r_19911115",
+        "su_rsfsr_res_2017i_19911212",
+        "su_rsfsr_ukaz_299_19911219",
+        "su_rada_law_1861i_19901226",
+        "su_rada_res_1870i_19901227",
+        "su_snd4_steno_vol3",
+        "su_snd5_bulletin5_19910904",
+        "su_sprsfsr_1990_8_art59_19891224",
+        "su_sprsfsr_1990_8_art60_19900112",
+        "su_sten_vs_bulletin1_19910826",
+        "su_sten_vs_bulletin2_19910826",
+        "su_ved_1991_35",
+        "su_ved_1991_36",
+        "su_ved_1991_37",
+        "su_ved_1991_41"
+      ],
+      "nation": "USSR",
+      "scope": "Accept the bounded SOURCE-26 provenance/response-identity and transcription repair: all41 listed response bodies reproduce exactly by ordinary access, six correction-bearing passages agree with the scans, and withdrawal of the blocked Izvestia source is retained. This accepts no complete Soviet tenure chronology, broader C01-26/C12 historical determination, C01 coverage, or campaign gate.",
+      "reviewed_commit": "569f8d2374170365999f2b06445d6cbe656ffc29",
+      "parent_packet": "CLAUDE-C01-26",
+      "parent_evidence_class": "c01_integrated_pending",
+      "parent_acceptance_changed": false,
+      "historical_coverage_changed": false,
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/manifest.json",
+          "bytes": 14436,
+          "sha256": "8f2469ef7a4b4624741748f32b9b141c10e13686a1376a4d0cc16f369b24ee8d"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/README.md",
+          "bytes": 2998,
+          "sha256": "7e2a9cbd8ef25fb7209c87086adb1ba6cced205f35cb322c4eca370ae3915f30",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-garf-law-2392i-19910905-facts.json",
+          "bytes": 8402,
+          "sha256": "3c62821246b15e2557590b40dfa0846e87a9e80067304791493ca0358cea8314"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-garf-res-1362i-19900315-facts.json",
+          "bytes": 8454,
+          "sha256": "c78cd16d6b4e63df980cc004b034675263dfa748888dbd08a64334e85af237e3"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-1177-19901124-facts.json",
+          "bytes": 5556,
+          "sha256": "76afb0a18568a66e677024200725d7004a833c97800971507792da3f975a93bc"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-27-19910110-facts.json",
+          "bytes": 5530,
+          "sha256": "bfcfda0dd349a75ad683dba6ff97e71b80cce755e1cf9435dbcb614b62c5fb3a"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-cm-res-525-19900526-facts.json",
+          "bytes": 6659,
+          "sha256": "58c5b7369f631ae073326f5c119998c7b46d34f0fb2d8b8237a856b1ee578ca2"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-km-rasp-943r-19910819-facts.json",
+          "bytes": 6251,
+          "sha256": "6bb922f1af343163b7f037b645a5f07125e6ae73e8bd2f42acaa6ff919002af0"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-post-53-19911123-facts.json",
+          "bytes": 6777,
+          "sha256": "5556de622f34c5c5c77be3953d997d6b876270c5bff146fcfda1a4037d82b5a2"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-212r-19911219-facts.json",
+          "bytes": 5330,
+          "sha256": "89f54acc7eb2f038171c2b785eb1a82dc52eb38ae491835877576830d18b48aa"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-23r-19910904-facts.json",
+          "bytes": 5495,
+          "sha256": "df1417547b989aaf374f19751035471331cb713150f95aa96f0fdc99a58c9e22"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-25r-19910906-facts.json",
+          "bytes": 5510,
+          "sha256": "a081b31cd1c9662667f2ad4290abdd1400d0e9a59f0067ff92b9e22f63c5ec4a"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-kou-rasp-62r-19911005-facts.json",
+          "bytes": 5472,
+          "sha256": "32c8ace93fa76a95ed567ffe1b9f259af05871c4811b594b68d3dc5388af3b0d"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mek-rasp-2r-19911010-facts.json",
+          "bytes": 5178,
+          "sha256": "73730b4904c43516d8ef14250f7d6dc43f1d96f2581889d60786e28aa20fa865"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mek-rasp-6r-19911112-facts.json",
+          "bytes": 5204,
+          "sha256": "0284def71a5429069818b29e3d513889f78a49f71f9102423af35c7593e2b6fd"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-post-7-19911128-facts.json",
+          "bytes": 5338,
+          "sha256": "8d72a73aea6ecf57bebcc894f69ef65bca7d65fd966a9043060d423d42e5bcdd"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-rasp-23r-19911217-facts.json",
+          "bytes": 5108,
+          "sha256": "28ec2b32c4b2d000dfb26fa1bfe9d22f786064c4ffea3db67d5e00db0f3d7977"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-mgek-rasp-7r-19911115-facts.json",
+          "bytes": 5215,
+          "sha256": "d9f2da6ca8c8d979ee4eff8059e018de6a4f7ae3244b50bb4ed12512083a79e8"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-rsfsr-res-2017i-19911212-facts.json",
+          "bytes": 5448,
+          "sha256": "ac1c8a70fcef7a5fa95f3ab21975209f46a99a5d07dac8a78f166f0b49a998ff"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ips-rsfsr-ukaz-299-19911219-facts.json",
+          "bytes": 5368,
+          "sha256": "29cafe71fda9b4feb7f74fae2b7e312f0fb860df21e59817a463be74d5eb35c1"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-rada-law-1861i-19901226-facts.json",
+          "bytes": 7604,
+          "sha256": "f334cdd7aef921a458b43f128ca83e2b25ff669e7973013bc57f62493bfdc613"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-rada-res-1870i-19901227-facts.json",
+          "bytes": 5761,
+          "sha256": "06c732e2153b933043481ed7a25b7526fab5153a109f1aca2bf885a7115aa083"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-snd4-stenogram-vol3-19901226-facts.json",
+          "bytes": 17519,
+          "sha256": "d2b94976bec3babd92502e25a08f968e25012ffaacf25536ddc6272b66e8543a"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-snd5-bulletin5-19910904-facts.json",
+          "bytes": 9917,
+          "sha256": "ea6a87f3d21277074e3326810d6615a1c2d79dbb2a83d0eeaf9f219dc9b668e7"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sprsfsr-art59-19891224-facts.json",
+          "bytes": 9536,
+          "sha256": "b1851c354ddc2d68e77ec087d586b0c7c6a6fce0bf6428350ddac37a471f984f"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sprsfsr-art60-19900112-facts.json",
+          "bytes": 9163,
+          "sha256": "55acdbce0142cd8f7a8f527f22228e53ccce812f0b0ac5b3d4fe5d72527956a4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sten-vs-bulletin1-19910826-facts.json",
+          "bytes": 10261,
+          "sha256": "c64a96f864dee22e507c61c23ba89bf563fd0ddf001d03401e7666155710c0c9"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-sten-vs-bulletin2-19910826-facts.json",
+          "bytes": 9270,
+          "sha256": "0e7558aa251e0eebf2bf8767c1a8d9255be07f7ca9b4e3c5bb93916b9ec5d7d9"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-35-19910828-facts.json",
+          "bytes": 27651,
+          "sha256": "0fcaa0721ac623d0131eea0f55d1b8fd0dcf88da9506ddc2ca7749a4832af8fc"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-36-19910904-facts.json",
+          "bytes": 19559,
+          "sha256": "acbdb003fc1cc99f244824614da524a17284a463640d8c391723df873838d0fb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-37-19910911-facts.json",
+          "bytes": 17089,
+          "sha256": "5ccd7955363c4afad6b644dba20510767cd1215541e56077fd180902959a4a1f"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/reviewed-extracts/ussr-ved-1991-41-19911009-facts.json",
+          "bytes": 8536,
+          "sha256": "de77d0008490ddfb87af4f490bf52642206feab3b43d922985037526d3d137b9"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/.gitattributes",
+          "bytes": 20,
+          "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/checks.json",
+          "bytes": 1436,
+          "sha256": "602b21d69b5c013307434d738958a21780d74eb09e6eadcbef3188b93f5de218"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/extras.py",
+          "bytes": 1381,
+          "sha256": "0730f439d186b9372c58cd59948deaa87e2c3b01a3665c68b0855d98475ab506"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/inspect_sources.py",
+          "bytes": 1366,
+          "sha256": "69b9b0267a0a86bf3182a40884713e3bdd97069528b526fa62dcd599b2b494df"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/census-check.log",
+          "bytes": 1914,
+          "sha256": "aa913f22f80a55499f82c3208f11f44bec5286b29f74bc2d910296bc27d333c4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/census-complete-sparse-check.log",
+          "bytes": 1462,
+          "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/git-diff-check.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-check-qualified.log",
+          "bytes": 251,
+          "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-generate-qualified.log",
+          "bytes": 252,
+          "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/research-generate.log",
+          "bytes": 252,
+          "sha256": "d9b2550dfc2d124f0f18a01a023a3c400cac99682106c16b3fed2fbee22859eb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-atlas.log",
+          "bytes": 1141,
+          "sha256": "95650b92614a47a7b45530c80b39e30cd6e1bb84b008fb9cd6f78002c81990a0"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-brazil-qualified.log",
+          "bytes": 137,
+          "sha256": "6180b937a48e2ea45766f96eaecf148695a871567e26e982191018793544c64b"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-brazil.log",
+          "bytes": 137,
+          "sha256": "0c68086df68b41f308831cf4cfc09967c5202138361f36295ade0ee324ad5802"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-campaign-complete-sparse.log",
+          "bytes": 120,
+          "sha256": "a75a71f46ca9d19a6b6c4088218622fafd55f3e91489db525b541568a910f702"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-campaign.log",
+          "bytes": 2070,
+          "sha256": "a1e2acbf0cc23897bbc6f51c1131f83b4d15b1e55845746e0ae4358f3071d659"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-research.log",
+          "bytes": 183,
+          "sha256": "0d101a1f544ea39f0f17d84f5ea282fd88ee234d4327da051f08b24f01c14afb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-russia.log",
+          "bytes": 133,
+          "sha256": "0d25c250eab038da8e1adf388935bcb47d8944ceee2ec342bdf990382c86a68f"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/logs/tests-ussr.log",
+          "bytes": 132,
+          "sha256": "ee31126200cec5f4d542f3f9db008968b50d50fbd7ae927e98000325768a73ea"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/retrievals.json",
+          "bytes": 94139,
+          "sha256": "5f2c1e6609875b43eab0f40f5f4bd54aceb9fa3257fd580f30428df956972766"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/retrieve.py",
+          "bytes": 3434,
+          "sha256": "5b67a7da3b2026a0901df306b7daa7481308755374d60a319ba07ce0a2664da3"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/scoped-import.json",
+          "bytes": 3602,
+          "sha256": "a857880d346a4cdcfb1e3f2a0fb18981358769db7114f6306453e45ef98d1925"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/verify-review.py",
+          "bytes": 977,
+          "sha256": "c3c330fdc9d2f59ac3617a8c307e31ff7798c7b5e900ec146cdc124ede5a84d7"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/visual-review.json",
+          "bytes": 1776,
+          "sha256": "2ca27ab1fad32b25fef57d46b263b5ffd475f9e7b577672be49cce1471c17be3"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/withdrawal-scope.json",
+          "bytes": 489,
+          "sha256": "26621499a7c6f6395724bcf24335d3f3a5e2850c473a5cf497f808bcd6d6919a"
         }
       ]
     }
@@ -3820,7 +4757,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -3984,7 +4921,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -4248,7 +5185,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -17158,7 +18095,7 @@
         "research_roles": 15,
         "research_roles_unresolved": 14,
         "research_holders_by_evidence": {
-          "c01_integrated_pending": 31,
+          "c01_integrated_pending": 30,
           "s10_discovery_intake": 9
         },
         "seed_executive_observations": 1,
@@ -17230,7 +18167,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17298,7 +18235,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17364,7 +18301,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17430,7 +18367,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17496,7 +18433,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -18238,14 +19175,14 @@
               ]
             }
           ],
-          "source_count": 11,
+          "source_count": 10,
           "leads": [
             "https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231",
             "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
             "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
             "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
-            "https://yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/1",
-            "https://sten.vs.sssr.su/12/6/1.pdf"
+            "https://sten.vs.sssr.su/12/6/1.pdf",
+            "https://sten.vs.sssr.su/12/6/2.pdf"
           ],
           "in_flight": null
         },
@@ -18272,9 +19209,9 @@
           "coverage": {
             "window_days": 724,
             "days": {
-              "no_evidence": 720,
+              "no_evidence": 721,
               "attested_within_period": 0,
-              "attested_day": 4,
+              "attested_day": 3,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
@@ -18305,16 +19242,6 @@
               },
               {
                 "from": "1990-11-25",
-                "through": "1991-01-13",
-                "status": "no_evidence"
-              },
-              {
-                "from": "1991-01-14",
-                "through": "1991-01-14",
-                "status": "attested_day"
-              },
-              {
-                "from": "1991-01-15",
                 "through": "1991-08-18",
                 "status": "no_evidence"
               },
@@ -18352,18 +19279,13 @@
               },
               {
                 "from": "1990-11-25",
-                "through": "1991-01-13",
-                "status": "no_evidence"
-              },
-              {
-                "from": "1991-01-14",
-                "through": "1991-01-14",
-                "status": "attested_day"
-              },
-              {
-                "from": "1991-01-15",
                 "through": "1991-08-18",
                 "status": "no_evidence"
+              },
+              {
+                "from": "1991-08-19",
+                "through": "1991-08-19",
+                "status": "attested_day"
               },
               {
                 "from": "1991-08-20",
@@ -18412,24 +19334,6 @@
             {
               "position": 2,
               "name": "Валентин Сергеевич Павлов",
-              "attested_on": "1991-01-14",
-              "from": null,
-              "until": null,
-              "attested_period": null,
-              "evidence": [
-                "c01_integrated_pending"
-              ],
-              "packets": [
-                "CLAUDE-C01-26"
-              ],
-              "missing_fields": [
-                "from",
-                "until"
-              ]
-            },
-            {
-              "position": 3,
-              "name": "Валентин Сергеевич Павлов",
               "attested_on": "1991-08-19",
               "from": null,
               "until": null,
@@ -18446,7 +19350,7 @@
               ]
             }
           ],
-          "source_count": 10,
+          "source_count": 9,
           "leads": [
             "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
             "https://docs.historyrussia.org/system/pages/016/529/29/images/small/08390f990d8fd8b5127cefd8c1c749b501710421.jpg?1716491978",
@@ -21282,71 +22186,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_jsp",
-          "title": "Japan Socialist Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "month",
-                "value": "2013-07"
-              },
-              "until": {
-                "kind": "month",
-                "value": "2013-10"
-              },
-              "reason": "The caretaker interval after Fukushima's resignation needs primary verification of Seiji Mataichi's acting role and the effective transfer date.",
-              "sources": [
-                "https://www.sdp-ishikawa.jp/archives/date/2013/10"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Several transition months deliberately retain uncertainty. Unresolved days are not assertions of historical vacancies. Full membership windows remain unresearched.",
-              "sources": [
-                "https://sdp.or.jp/sdp-journal/kettou-3/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/",
-            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
-            "https://www.sdp-ishikawa.jp/archives/date/2013/10"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "components_with_terms": [
-            "Japan/jp_jsp/jp_jsp_1945 (4 terms)",
-            "Japan/jp_jsp/jp_sdp_1996 (6 terms)"
-          ],
-          "note": "Leadership recorded on components or name phases does not fill this parent chain; check whether the parent office is separate from the components listed."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_komeito",
           "title": "Komeito",
           "role": "party leader (census term records)",
@@ -21908,133 +22747,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_jsp/jp_sdp_1996",
-          "title": "Social Democratic Party (renamed Japan Socialist Party)",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 2643,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1996-01-01",
-              "through": "1996-01-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1996-09-02",
-              "through": "1996-09-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2003-11-02",
-              "through": "2003-11-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2013-07-02",
-              "through": "2013-07-31",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2013-08-01",
-              "through": "2013-09-30",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2013-10-01",
-              "through": "2013-10-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2020-02-02",
-              "through": "2020-02-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2020-03-01",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "mizuho_fukushima",
-              "record": "jp_jsp_mizuho_fukushima_200311",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "mizuho_fukushima",
-              "record": "jp_jsp_mizuho_fukushima_202002",
-              "missing": [
-                "from (known only to month)",
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "seiji_mataichi",
-              "record": "jp_jsp_seiji_mataichi_201802",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tadatomo_yoshida",
-              "record": "jp_jsp_tadatomo_yoshida_201310",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "takako_doi",
-              "record": "jp_jsp_takako_doi_199609",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tomiichi_murayama",
-              "record": "jp_jsp_tomiichi_murayama_199601",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1996-01-01",
-            "until": "2026-09-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_komeito/jp_komeito_1998",
           "title": "Komeito (reconstituted in 1998)",
           "role": "party leader (census term records)",
@@ -22067,83 +22779,6 @@
           "window": {
             "from": "1998-11-07",
             "until": "2026-09-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
-          "entity": "Japan/jp_jsp/jp_jsp_1945",
-          "title": "Japan Socialist Party",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 87,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1991-07-02",
-              "through": "1991-07-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1993-09-02",
-              "through": "1993-09-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1996-01-02",
-              "through": "1996-01-31",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "dates",
-              "holder": "makoto_tanabe",
-              "record": "jp_jsp_makoto_tanabe_199107",
-              "missing": [
-                "from (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "sadao_yamahana",
-              "record": "jp_jsp_sadao_yamahana_19930119",
-              "missing": [
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "takako_doi",
-              "record": "jp_jsp_takako_doi_198609",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tomiichi_murayama",
-              "record": "jp_jsp_tomiichi_murayama_199309",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "1996-01-31",
             "pinned": true
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
@@ -22201,15 +22836,7 @@
             "pinned": true
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -22368,7 +22995,15 @@
           },
           "first_evidence": "2026-09-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -26439,216 +27074,6 @@
       "items": [
         {
           "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_apr",
-          "title": "Agrarian Party of Russia",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_kprf",
-          "title": "Communist Party of the Russian Federation",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://en.wikipedia.org/wiki/Communist_Party_of_the_Russian_Federation"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_ldpr",
-          "title": "Liberal Democratic Party of Russia",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_vybor",
-          "title": "Russia's Choice",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_yabloko",
-          "title": "Yabloko",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
           "nation": "USSR",
           "entity": "USSR/su_cpsu",
           "title": "Communist Party of the Soviet Union",
@@ -27074,15 +27499,7 @@
             "pinned": true
           },
           "first_evidence": "1996-08-09"
-        }
-      ]
-    },
-    {
-      "id": "GAP-USSR-Russia-B002",
-      "case": "USSR -> Russia",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "USSR",
@@ -27119,20 +27536,14 @@
             {
               "field": "holder",
               "from": "1990-11-25",
-              "through": "1991-01-13",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "1991-01-14",
-              "through": "1991-01-14",
-              "current_status": "attested_day"
-            },
-            {
-              "field": "holder",
-              "from": "1991-01-15",
               "through": "1991-08-18",
               "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1991-08-19",
+              "through": "1991-08-19",
+              "current_status": "attested_day"
             },
             {
               "field": "holder",
@@ -27162,15 +27573,6 @@
               "field": "dates",
               "holder": "Валентин Сергеевич Павлов",
               "record": 2,
-              "missing": [
-                "from",
-                "until"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "Валентин Сергеевич Павлов",
-              "record": 3,
               "missing": [
                 "from",
                 "until"
@@ -27426,7 +27828,15 @@
           },
           "first_evidence": "2021-10-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-USSR-Russia-B002",
+      "case": "USSR -> Russia",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Russia",
@@ -27656,8 +28066,8 @@
             "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
             "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
             "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
-            "https://yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/1",
-            "https://sten.vs.sssr.su/12/6/1.pdf"
+            "https://sten.vs.sssr.su/12/6/1.pdf",
+            "https://sten.vs.sssr.su/12/6/2.pdf"
           ],
           "related_work_orders": [
             "C01-USSR-DISC-B001"
@@ -27729,6 +28139,6 @@
     "research_roles": 58,
     "research_roles_with_unresolved_days": 49,
     "next_batches": 12,
-    "next_items": 91
+    "next_items": 83
   }
 }

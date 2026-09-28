@@ -1,0 +1,2062 @@
+{
+ "format": "spheres-s23-boundary-matrix/v1",
+ "status": "preparation_only_not_s23_acceptance",
+ "s23_complete": false,
+ "c06_complete": false,
+ "interpretation": "Deterministic S23 preparation audit. It reports coverage gaps; it does not close C01, C06, S20 or S23, accept research, certify a country or change any runtime, research or art record. Passing its tests does not mean the coverage it reports passes.",
+ "periods": {
+  "historical_from": "1990-01-01",
+  "historical_through": "2026-09-07",
+  "fictional_from": "2026-09-08",
+  "fictional_until_exclusive": "2036-01-01",
+  "date_convention": "Production and portrait windows are half-open [from, to). Research boundary days report both the ending and the starting observation."
+ },
+ "case_dates": {
+  "yearly": [
+   "1990-01-01",
+   "1991-01-01",
+   "1992-01-01",
+   "1993-01-01",
+   "1994-01-01",
+   "1995-01-01",
+   "1996-01-01",
+   "1997-01-01",
+   "1998-01-01",
+   "1999-01-01",
+   "2000-01-01",
+   "2001-01-01",
+   "2002-01-01",
+   "2003-01-01",
+   "2004-01-01",
+   "2005-01-01",
+   "2006-01-01",
+   "2007-01-01",
+   "2008-01-01",
+   "2009-01-01",
+   "2010-01-01",
+   "2011-01-01",
+   "2012-01-01",
+   "2013-01-01",
+   "2014-01-01",
+   "2015-01-01",
+   "2016-01-01",
+   "2017-01-01",
+   "2018-01-01",
+   "2019-01-01",
+   "2020-01-01",
+   "2021-01-01",
+   "2022-01-01",
+   "2023-01-01",
+   "2024-01-01",
+   "2025-01-01",
+   "2026-01-01",
+   "2027-01-01",
+   "2028-01-01",
+   "2029-01-01",
+   "2030-01-01",
+   "2031-01-01",
+   "2032-01-01",
+   "2033-01-01",
+   "2034-01-01",
+   "2035-01-01"
+  ],
+  "fixed": {
+   "1989-12-31": "reference_start_day_before",
+   "1990-01-01": "reference_start",
+   "2026-09-06": "cutoff_day_before",
+   "2026-09-07": "cutoff_day",
+   "2026-09-08": "fictional_start_day",
+   "2030-01-01": "future_2030",
+   "2035-12-31": "fictional_last_day",
+   "2036-01-01": "fictional_end_exclusive"
+  },
+  "boundaries": "Day before, day of and day after every stated handover, death, dissolution, founding or creation day inside the reference period; research attestation days and the day after each."
+ },
+ "historical_status": {
+  "boundary_day": "A source states a start or end on this day; the listed observations begin or end here.",
+  "established": "Inside a closed interval whose start and end are both stated (research) or a production term active under party_leadership::historical_on.",
+  "attested": "A research observation is attested on exactly this day.",
+  "period_attested": "A holder was observed sometime in this period; not an exact-day incumbent or a continuous term. Listed as possible, never counted as identified.",
+  "bracketed": "Between two evidence points of one observation; interpolated, not a stated interval.",
+  "uncertain": "Only one-sided or imprecise bounds overlap the date; possible holders are pointers, not incumbents.",
+  "unknown": "The role has evidence, but none covers this date.",
+  "unresearched": "The role has no holder evidence at all.",
+  "inapplicable": "Outside the reference period or the organization/institution does not exist per a stated boundary."
+ },
+ "acceptance_classes": {
+  "accepted": "Evidence belongs to a C01 packet with an integration acceptance record (bounded research acceptance, not country certification).",
+  "pending": "Evidence belongs to a C01 packet integrated on 27 September 2026 whose historical acceptance remains pending.",
+  "unclassified_packet": "Evidence belongs to a C01 packet report with neither an acceptance record nor a pending-integration listing.",
+  "unattributed_intake": "Checked-in discovery evidence that no numbered C01 packet report claims; its intake batch and acceptance are not established by this audit.",
+  "mixed_intake": "Evidence mixes accepted packet sources with unattributed discovery sources; the whole observation is not labelled accepted.",
+  "production_registry": "spheres-sim/data/party_leaders.json: the partial production registry the game serves; not reviewed as C01 research.",
+  "fictional_catalog": "Authored future fiction (spheres-web/data/future_candidates_2035.json); never historical evidence."
+ },
+ "packets": [
+  {
+   "packet": "CLAUDE-C01-01",
+   "report": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
+   "reviewed_head": null,
+   "sources_listed": 3
+  },
+  {
+   "packet": "CLAUDE-C01-02",
+   "report": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md",
+   "reviewed_head": null,
+   "sources_listed": 7
+  },
+  {
+   "packet": "CLAUDE-C01-03",
+   "report": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md",
+   "reviewed_head": null,
+   "sources_listed": 17
+  },
+  {
+   "packet": "CLAUDE-C01-04",
+   "report": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+   "reviewed_head": null,
+   "sources_listed": 11
+  },
+  {
+   "packet": "CLAUDE-C01-05",
+   "report": "docs/campaign-certification/C01/research/ussr-russia-transition-1991-05.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "1c698ed00cd3989e6c7dfc2c676fc7185c7b4c84",
+   "sources_listed": 20
+  },
+  {
+   "packet": "CLAUDE-C01-06",
+   "report": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "7948ab987efeaadba2c9dca67d8ccec03db430ca",
+   "sources_listed": 22
+  },
+  {
+   "packet": "CLAUDE-C01-07",
+   "report": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+   "reviewed_head": null,
+   "sources_listed": 27
+  },
+  {
+   "packet": "CLAUDE-C01-08",
+   "report": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+   "status": "accepted",
+   "status_source": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+   "reviewed_head": null,
+   "sources_listed": 39
+  },
+  {
+   "packet": "CLAUDE-C01-09",
+   "report": "docs/campaign-certification/C01/research/south-africa-heads-of-state-1990-2024-09.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "82a23f9da8660839731c1aa02a1e9b9baf8614e2",
+   "sources_listed": 50
+  },
+  {
+   "packet": "CLAUDE-C01-10",
+   "report": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "73e5fd363769e589a09615e957b14c86f8756513",
+   "sources_listed": 48
+  },
+  {
+   "packet": "CLAUDE-C01-11",
+   "report": "docs/campaign-certification/C01/research/india-prime-ministers-1990-2026-11.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "538920f14c5784e16d910dc2df22766ccd72f59c",
+   "sources_listed": 70
+  },
+  {
+   "packet": "CLAUDE-C01-12",
+   "report": "docs/campaign-certification/C01/research/japan-prime-ministers-1990-2006-12.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "da358dbff9ae536a6b83a012d36f98f0dd639e49",
+   "sources_listed": 119
+  },
+  {
+   "packet": "CLAUDE-C01-13",
+   "report": "docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "42f98dc8b3d2aae748cabd7f234e0ef7d1575eee",
+   "sources_listed": 211
+  },
+  {
+   "packet": "CLAUDE-C01-14",
+   "report": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "1d749e1520e3ee6a8b971e36b5027c723249b918",
+   "sources_listed": 53
+  },
+  {
+   "packet": "CLAUDE-C01-15",
+   "report": "docs/campaign-certification/C01/research/india-presidents-1990-2026-15.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "dd58a610859f997a1ad2452012b464d305b7ba91",
+   "sources_listed": 56
+  },
+  {
+   "packet": "CLAUDE-C01-16",
+   "report": "docs/campaign-certification/C01/research/south-africa-anc-presidents-1990-2026-16.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "2df4a0a6854a14796515d846d0d504edd785a83e",
+   "sources_listed": 54
+  },
+  {
+   "packet": "CLAUDE-C01-17",
+   "report": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "7d71acef98e7a94781f48054b4574312bd9e7470",
+   "sources_listed": 24
+  },
+  {
+   "packet": "CLAUDE-C01-18",
+   "report": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "2120b697a1c51efc680d3747912115efede183af",
+   "sources_listed": 81
+  },
+  {
+   "packet": "CLAUDE-C01-19",
+   "report": "docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "6f4ef2c27c5c4293bb324ee4c8ad359fd155ad66",
+   "sources_listed": 102
+  },
+  {
+   "packet": "CLAUDE-C01-20",
+   "report": "docs/campaign-certification/C01/research/india-inc-presidents-1990-2026-20.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "2ee3b14689e445486554604b69ff82dc1f9db9df",
+   "sources_listed": 73
+  },
+  {
+   "packet": "CLAUDE-C01-21",
+   "report": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "32ea29336e204eafb52e68485e97c8844a96cd6b",
+   "sources_listed": 59
+  },
+  {
+   "packet": "CLAUDE-C01-22",
+   "report": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "39bb64395273ea3cb7eef0a3fd1b10068a787002",
+   "sources_listed": 108
+  },
+  {
+   "packet": "CLAUDE-C01-26",
+   "report": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
+   "status": "pending",
+   "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "reviewed_head": "09f41dd4bbe05cec693e619eedd1740aec897d54",
+   "sources_listed": 30
+  }
+ ],
+ "packets_without_report": [],
+ "integration_records_not_packet_acceptance": [
+  "CLAUDE-C01-GAPS-01",
+  "CLAUDE-C01-SOURCE-05",
+  "CLAUDE-C01-SOURCE-06",
+  "CLAUDE-C01-SOURCE-17",
+  "CLAUDE-C01-SOURCE-26"
+ ],
+ "executive_pairing": {
+  "France": [],
+  "Japan": [
+   "jp_pm"
+  ],
+  "India": [
+   "in_pm"
+  ],
+  "Brazil": [
+   "br_president"
+  ],
+  "SouthAfrica": [
+   "za_state_president",
+   "za_president_election"
+  ],
+  "Tonga": [
+   "to_king"
+  ],
+  "SaudiArabia": [
+   "sa_king",
+   "sa_pm"
+  ],
+  "USSR": [
+   "su_cpsu_general_secretary",
+   "su_supreme_soviet_chair"
+  ],
+  "Russia": [
+   "ru_rsfsr_president",
+   "ru_president"
+  ]
+ },
+ "executive_pairing_basis": "Audit pairing by the office named in the 1990 executive row (or, for the successor Russia, the researched presidency). Comparison aid only; it is not an identity reconciliation, office mapping or research acceptance.",
+ "census_outputs_consistent_with_registry": true,
+ "cases": [
+  {
+   "case": "France",
+   "file": "cases-france.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "France",
+     "statistics": {
+      "roles": {
+       "research": 0,
+       "production_party": 15,
+       "executive": 1
+      },
+      "cases": 924,
+      "case_kinds": {
+       "cutoff_day": 16,
+       "cutoff_day_before": 16,
+       "dissolution_day_after": 1,
+       "dissolution_day_before": 1,
+       "dissolution_day_of": 1,
+       "fictional_end_exclusive": 16,
+       "fictional_last_day": 16,
+       "fictional_start_day": 16,
+       "future_2030": 16,
+       "handover_day_after": 32,
+       "handover_day_before": 32,
+       "handover_day_of": 32,
+       "reference_start": 16,
+       "reference_start_day_before": 16,
+       "yearly": 736
+      },
+      "observations_by_acceptance": {
+       "production_registry": 54
+      },
+      "research_yearly_status": {},
+      "production_party_yearly_status": {
+       "established": 197,
+       "inapplicable": 24,
+       "uncertain": 4,
+       "unknown": 293,
+       "unresearched": 37
+      },
+      "production_party_yearly_image_bindings": {
+       "bound": 23,
+       "unbound": 175
+      },
+      "executive_yearly_status": {
+       "unresearched": 37
+      },
+      "people_without_bound_art_at_yearly_samples": 34,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 60,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "No C01 office or leadership research role exists for this identity; every historical identity shown comes from the production registry.",
+      "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
+      "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
+      "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "The national executive office has no paired research role, so its historical chain is unresearched.",
+      "Future: 60 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "Japan",
+   "file": "cases-japan.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "Japan",
+     "statistics": {
+      "roles": {
+       "research": 5,
+       "production_party": 8,
+       "executive": 1
+      },
+      "cases": 1013,
+      "case_kinds": {
+       "attestation_day": 34,
+       "attestation_day_after": 34,
+       "cutoff_day": 14,
+       "cutoff_day_before": 14,
+       "dissolution_day_after": 3,
+       "dissolution_day_before": 3,
+       "dissolution_day_of": 3,
+       "fictional_end_exclusive": 14,
+       "fictional_last_day": 14,
+       "fictional_start_day": 14,
+       "founding_day_after": 2,
+       "founding_day_before": 2,
+       "founding_day_of": 2,
+       "future_2030": 14,
+       "handover_day_after": 72,
+       "handover_day_before": 72,
+       "handover_day_of": 72,
+       "reference_start": 14,
+       "reference_start_day_before": 14,
+       "yearly": 644
+      },
+      "observations_by_acceptance": {
+       "pending": 44,
+       "production_registry": 42,
+       "unattributed_intake": 5
+      },
+      "research_yearly_status": {
+       "established": 9,
+       "uncertain": 47,
+       "unknown": 129
+      },
+      "production_party_yearly_status": {
+       "established": 151,
+       "inapplicable": 142,
+       "uncertain": 3
+      },
+      "production_party_yearly_image_bindings": {
+       "bound": 15,
+       "unbound": 136
+      },
+      "executive_yearly_status": {
+       "established": 9,
+       "uncertain": 21,
+       "unknown": 7
+      },
+      "people_without_bound_art_at_yearly_samples": 29,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 32,
+      "fictional_candidates_with_portrait": 4,
+      "fictional_executive_authorized": 32,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [
+       "eiichi_nagasue"
+      ],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 44, unattributed_intake 5.",
+      "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
+      "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
+      "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.",
+      "Portrait window extends past a recorded death: eiichi_nagasue."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "India",
+   "file": "cases-india.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "India",
+     "statistics": {
+      "roles": {
+       "research": 3,
+       "production_party": 4,
+       "executive": 1
+      },
+      "cases": 568,
+      "case_kinds": {
+       "attestation_day": 27,
+       "attestation_day_after": 27,
+       "cutoff_day": 8,
+       "cutoff_day_before": 8,
+       "death_day_after": 2,
+       "death_day_before": 2,
+       "death_day_of": 2,
+       "fictional_end_exclusive": 8,
+       "fictional_last_day": 8,
+       "fictional_start_day": 8,
+       "future_2030": 8,
+       "handover_day_after": 33,
+       "handover_day_before": 33,
+       "handover_day_of": 33,
+       "reference_start": 8,
+       "reference_start_day_before": 8,
+       "yearly": 368
+      },
+      "observations_by_acceptance": {
+       "pending": 31,
+       "production_registry": 30
+      },
+      "research_yearly_status": {
+       "bracketed": 2,
+       "established": 6,
+       "uncertain": 63,
+       "unknown": 40
+      },
+      "production_party_yearly_status": {
+       "established": 109,
+       "uncertain": 39
+      },
+      "production_party_yearly_image_bindings": {
+       "bound": 10,
+       "unbound": 99
+      },
+      "executive_yearly_status": {
+       "bracketed": 2,
+       "established": 6,
+       "uncertain": 29
+      },
+      "people_without_bound_art_at_yearly_samples": 19,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 16,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [
+       "rajiv_gandhi"
+      ],
+      "registry_terms_with_unknown_end": [
+       "in_jd_v_p_singh_198810"
+      ]
+     },
+     "headline": [
+      "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 31.",
+      "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
+      "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
+      "Campaign-start executive V. P. Singh: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:in_pm): 6 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 16 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+      "Portrait window extends past a recorded death: rajiv_gandhi.",
+      "Registry terms with an unknown end stay \"possible\" through the cutoff: in_jd_v_p_singh_198810."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "Brazil",
+   "file": "cases-brazil.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "Brazil",
+     "statistics": {
+      "roles": {
+       "research": 3,
+       "production_party": 6,
+       "executive": 1
+      },
+      "cases": 688,
+      "case_kinds": {
+       "attestation_day": 14,
+       "attestation_day_after": 14,
+       "cutoff_day": 10,
+       "cutoff_day_before": 10,
+       "death_day_after": 1,
+       "death_day_before": 1,
+       "death_day_of": 1,
+       "dissolution_day_after": 1,
+       "dissolution_day_before": 1,
+       "dissolution_day_of": 1,
+       "fictional_end_exclusive": 10,
+       "fictional_last_day": 10,
+       "fictional_start_day": 10,
+       "future_2030": 10,
+       "handover_day_after": 54,
+       "handover_day_before": 54,
+       "handover_day_of": 54,
+       "reference_start": 10,
+       "reference_start_day_before": 10,
+       "yearly": 460
+      },
+      "observations_by_acceptance": {
+       "pending": 39,
+       "production_registry": 28
+      },
+      "research_yearly_status": {
+       "boundary_day": 16,
+       "established": 4,
+       "uncertain": 88,
+       "unknown": 3
+      },
+      "production_party_yearly_status": {
+       "established": 99,
+       "inapplicable": 37,
+       "uncertain": 13,
+       "unknown": 69,
+       "unresearched": 4
+      },
+      "production_party_yearly_image_bindings": {
+       "bound": 7,
+       "unbound": 93
+      },
+      "executive_yearly_status": {
+       "boundary_day": 8,
+       "established": 3,
+       "uncertain": 25,
+       "unknown": 1
+      },
+      "people_without_bound_art_at_yearly_samples": 20,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 24,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 39.",
+      "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
+      "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
+      "Campaign-start executive Jose Sarney: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:br_president): 11 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 24 fictional candidates, 0 with a served portrait, 0 authorized for a national executive."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "SouthAfrica",
+   "file": "cases-south-africa.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "SouthAfrica",
+     "statistics": {
+      "roles": {
+       "research": 7,
+       "production_party": 7,
+       "executive": 1
+      },
+      "cases": 911,
+      "case_kinds": {
+       "attestation_day": 45,
+       "attestation_day_after": 45,
+       "cutoff_day": 15,
+       "cutoff_day_before": 15,
+       "death_day_after": 1,
+       "death_day_before": 1,
+       "death_day_of": 1,
+       "dissolution_day_after": 1,
+       "dissolution_day_before": 1,
+       "dissolution_day_of": 1,
+       "fictional_end_exclusive": 15,
+       "fictional_last_day": 15,
+       "fictional_start_day": 15,
+       "future_2030": 15,
+       "handover_day_after": 16,
+       "handover_day_before": 16,
+       "handover_day_of": 16,
+       "reference_start": 15,
+       "reference_start_day_before": 15,
+       "yearly": 690
+      },
+      "observations_by_acceptance": {
+       "pending": 32,
+       "production_registry": 18,
+       "unattributed_intake": 5
+      },
+      "research_yearly_status": {
+       "bracketed": 9,
+       "established": 4,
+       "uncertain": 37,
+       "unknown": 209
+      },
+      "production_party_yearly_status": {
+       "established": 151,
+       "inapplicable": 29,
+       "uncertain": 3,
+       "unknown": 76
+      },
+      "production_party_yearly_image_bindings": {
+       "bound": 13,
+       "unbound": 138
+      },
+      "executive_yearly_status": {
+       "bracketed": 9,
+       "established": 4,
+       "uncertain": 10,
+       "unknown": 14
+      },
+      "people_without_bound_art_at_yearly_samples": 13,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 28,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [
+       "oliver_tambo",
+       "zephania_mothopeng"
+      ],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 32, unattributed_intake 5.",
+      "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
+      "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
+      "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:za_state_president, research:za_president_election): 4 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 28 fictional candidates, 0 with a served portrait, 0 authorized for a national executive.",
+      "Portrait window extends past a recorded death: oliver_tambo, zephania_mothopeng."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "Tonga",
+   "file": "cases-tonga.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "Tonga",
+     "statistics": {
+      "roles": {
+       "research": 15,
+       "production_party": 0,
+       "executive": 1
+      },
+      "cases": 920,
+      "case_kinds": {
+       "attestation_day": 17,
+       "attestation_day_after": 17,
+       "attested_period_from_day_after": 5,
+       "attested_period_from_day_before": 5,
+       "attested_period_from_day_of": 5,
+       "attested_period_through_day_after": 5,
+       "attested_period_through_day_before": 5,
+       "attested_period_through_day_of": 5,
+       "cutoff_day": 16,
+       "cutoff_day_before": 16,
+       "fictional_end_exclusive": 16,
+       "fictional_last_day": 16,
+       "fictional_start_day": 16,
+       "future_2030": 16,
+       "handover_day_after": 11,
+       "handover_day_before": 11,
+       "handover_day_of": 11,
+       "reference_start": 16,
+       "reference_start_day_before": 16,
+       "yearly": 736
+      },
+      "observations_by_acceptance": {
+       "accepted": 19,
+       "unattributed_intake": 10
+      },
+      "research_yearly_status": {
+       "established": 15,
+       "period_attested": 8,
+       "uncertain": 41,
+       "unknown": 343,
+       "unresearched": 148
+      },
+      "production_party_yearly_status": {},
+      "production_party_yearly_image_bindings": {},
+      "executive_yearly_status": {
+       "established": 6,
+       "uncertain": 31
+      },
+      "people_without_bound_art_at_yearly_samples": 0,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 0,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [
+       "to_ministers",
+       "to_nobles_representatives",
+       "to_peoples_representatives",
+       "to_privy_councillors"
+      ],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
+      "Research holder observations by acceptance: accepted 19, unattributed_intake 10.",
+      "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
+      "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:to_king): 6 of 37 yearly samples 1990-2026 identify a holder."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "SaudiArabia",
+   "file": "cases-saudi-arabia.json",
+   "notes": [],
+   "identities": [
+    {
+     "identity": "SaudiArabia",
+     "statistics": {
+      "roles": {
+       "research": 10,
+       "production_party": 0,
+       "executive": 1
+      },
+      "cases": 623,
+      "case_kinds": {
+       "attestation_day": 20,
+       "attestation_day_after": 20,
+       "cutoff_day": 11,
+       "cutoff_day_before": 11,
+       "fictional_end_exclusive": 11,
+       "fictional_last_day": 11,
+       "fictional_start_day": 11,
+       "future_2030": 11,
+       "handover_day_after": 7,
+       "handover_day_before": 7,
+       "handover_day_of": 7,
+       "reference_start": 11,
+       "reference_start_day_before": 11,
+       "yearly": 506
+      },
+      "observations_by_acceptance": {
+       "pending": 13,
+       "unattributed_intake": 3
+      },
+      "research_yearly_status": {
+       "bracketed": 22,
+       "uncertain": 32,
+       "unknown": 57,
+       "unresearched": 259
+      },
+      "production_party_yearly_status": {},
+      "production_party_yearly_image_bindings": {},
+      "executive_yearly_status": {
+       "bracketed": 10,
+       "uncertain": 16,
+       "unknown": 11
+      },
+      "people_without_bound_art_at_yearly_samples": 0,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 0,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 0,
+      "research_roles_without_holder_observation": [
+       "sa_cabinet_ministers",
+       "sa_municipal_members",
+       "sa_shura_chair",
+       "sa_shura_members",
+       "sa_succession_chair",
+       "sa_succession_members",
+       "sa_succession_secretary"
+      ],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.",
+      "Research holder observations by acceptance: pending 13, unattributed_intake 3.",
+      "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
+      "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:sa_king, research:sa_pm): 0 of 37 yearly samples 1990-2026 identify a holder."
+     ]
+    }
+   ]
+  },
+  {
+   "case": "USSR -> Russia",
+   "file": "cases-ussr-russia.json",
+   "notes": [
+    "Transition USSR -> Russia: no structured dissolution, creation or retitling day links these identities in the research or the registry, so the transition itself has no day-level boundary case; only stated holder and institution boundaries are tested. The successor exists in play only after a campaign creates it."
+   ],
+   "identities": [
+    {
+     "identity": "USSR",
+     "statistics": {
+      "roles": {
+       "research": 6,
+       "production_party": 3,
+       "executive": 1
+      },
+      "cases": 561,
+      "case_kinds": {
+       "attestation_day": 11,
+       "attestation_day_after": 11,
+       "creation_day_after": 1,
+       "creation_day_before": 1,
+       "creation_day_of": 1,
+       "cutoff_day": 10,
+       "cutoff_day_before": 10,
+       "fictional_end_exclusive": 10,
+       "fictional_last_day": 10,
+       "fictional_start_day": 10,
+       "future_2030": 10,
+       "observation_window_from_day_after": 3,
+       "observation_window_from_day_before": 3,
+       "observation_window_from_day_of": 3,
+       "observation_window_through_day_after": 3,
+       "observation_window_through_day_before": 3,
+       "observation_window_through_day_of": 3,
+       "reference_start": 10,
+       "reference_start_day_before": 10,
+       "yearly": 460
+      },
+      "observations_by_acceptance": {
+       "pending": 6,
+       "unattributed_intake": 4
+      },
+      "research_yearly_status": {
+       "inapplicable": 1,
+       "unknown": 184,
+       "unresearched": 37
+      },
+      "production_party_yearly_status": {
+       "unresearched": 111
+      },
+      "production_party_yearly_image_bindings": {},
+      "executive_yearly_status": {
+       "unknown": 37
+      },
+      "people_without_bound_art_at_yearly_samples": 0,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 12,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 12,
+      "research_roles_without_holder_observation": [
+       "su_congress_deputies"
+      ],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
+      "Research holder observations by acceptance: pending 6, unattributed_intake 4.",
+      "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
+      "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
+      "Campaign-start comparison: historical_identity_not_established.",
+      "Paired executive research (research:su_cpsu_general_secretary, research:su_supreme_soviet_chair): 0 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 12 fictional candidates, 0 with a served portrait, 12 authorized for a national executive."
+     ]
+    },
+    {
+     "identity": "Russia",
+     "statistics": {
+      "roles": {
+       "research": 9,
+       "production_party": 5,
+       "executive": 1
+      },
+      "cases": 885,
+      "case_kinds": {
+       "attestation_day": 10,
+       "attestation_day_after": 10,
+       "cutoff_day": 15,
+       "cutoff_day_before": 15,
+       "fictional_end_exclusive": 15,
+       "fictional_last_day": 15,
+       "fictional_start_day": 15,
+       "future_2030": 15,
+       "handover_day_after": 29,
+       "handover_day_before": 29,
+       "handover_day_of": 29,
+       "reference_start": 15,
+       "reference_start_day_before": 15,
+       "yearly": 690
+      },
+      "observations_by_acceptance": {
+       "pending": 24,
+       "unattributed_intake": 5
+      },
+      "research_yearly_status": {
+       "established": 3,
+       "uncertain": 123,
+       "unknown": 207
+      },
+      "production_party_yearly_status": {
+       "unresearched": 185
+      },
+      "production_party_yearly_image_bindings": {},
+      "executive_yearly_status": {
+       "established": 3,
+       "uncertain": 32,
+       "unknown": 2
+      },
+      "people_without_bound_art_at_yearly_samples": 0,
+      "unbound_yearly_samples_without_art_job": [],
+      "fictional_candidates": 20,
+      "fictional_candidates_with_portrait": 0,
+      "fictional_executive_authorized": 20,
+      "research_roles_without_holder_observation": [],
+      "windows_extending_past_recorded_death": [],
+      "registry_terms_with_unknown_end": []
+     },
+     "headline": [
+      "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 24, unattributed_intake 5.",
+      "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
+      "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
+      "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
+      "Future: 20 fictional candidates, 0 with a served portrait, 20 authorized for a national executive."
+     ]
+    }
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "asset": "spheres-web/ui/person-portraits/e-m-s-namboodiripad-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1443844,
+   "sha256": "f60612579f0ac009e53217af3e4ce31d75cd1f611b498b72deb9d58aea06cd51",
+   "manifest_sha256": [
+    "f60612579f0ac009e53217af3e4ce31d75cd1f611b498b72deb9d58aea06cd51"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "e_m_s_namboodiripad"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/eiichi-nagasue-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1367264,
+   "sha256": "a76b669fc9de556c7c947ba5876ac4fd84765312efea8f9f72f016801b83a4b1",
+   "manifest_sha256": [
+    "a76b669fc9de556c7c947ba5876ac4fd84765312efea8f9f72f016801b83a4b1"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "eiichi_nagasue"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1469870,
+   "sha256": "83baf7337b0db19fb5ee166c79c8b954c54ddd5c9216475b3a5ddcafecb08284",
+   "manifest_sha256": [
+    "83baf7337b0db19fb5ee166c79c8b954c54ddd5c9216475b3a5ddcafecb08284"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "f_w_de_klerk"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
+   "exists": true,
+   "bytes": 1370935,
+   "sha256": "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b",
+   "manifest_sha256": [
+    "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_v1_japan_jp_ldp_main_01"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-02-cartoon-2030-v1.png",
+   "exists": true,
+   "bytes": 1463661,
+   "sha256": "ccdcb58e5c02d49b91b438e3dc384e15058efc3c57f8f5345d4670cc8ceef47e",
+   "manifest_sha256": [
+    "ccdcb58e5c02d49b91b438e3dc384e15058efc3c57f8f5345d4670cc8ceef47e"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_v1_japan_jp_ldp_main_02"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-03-cartoon-2030-v1.png",
+   "exists": true,
+   "bytes": 1386847,
+   "sha256": "8bfbe4042a0b0c9a94b534c8c373b4e538978d8e24138642b9e48de696f60b76",
+   "manifest_sha256": [
+    "8bfbe4042a0b0c9a94b534c8c373b4e538978d8e24138642b9e48de696f60b76"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_v1_japan_jp_ldp_main_03"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-04-cartoon-2030-v1.png",
+   "exists": true,
+   "bytes": 1412742,
+   "sha256": "70d461fab389822f25564a5fb0a647f5adab7171cd4365a185f14b9cc2f7e898",
+   "manifest_sha256": [
+    "70d461fab389822f25564a5fb0a647f5adab7171cd4365a185f14b9cc2f7e898"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "fictional_v1_japan_jp_ldp_main_04"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1474524,
+   "sha256": "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57",
+   "manifest_sha256": [
+    "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "georges_marchais"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/hugo-napoleao-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1482124,
+   "sha256": "0dd672e2a73182c96df9f3977049745c34b34285df4ed55914830abb55be2d07",
+   "manifest_sha256": [
+    "0dd672e2a73182c96df9f3977049745c34b34285df4ed55914830abb55be2d07"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "hugo_napoleao"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/jacques-chirac-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1693382,
+   "sha256": "7a67e59cd20d5e51e0d3895b6f6be035ca7599ecf5361c877c44c77630ed812a",
+   "manifest_sha256": [
+    "7a67e59cd20d5e51e0d3895b6f6be035ca7599ecf5361c877c44c77630ed812a"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "jacques_chirac"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/jean-marie-le-pen-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1428894,
+   "sha256": "98c0aba4191e8b00d645a125509b5d21acb9c08ce1dcb92cdf8e3d9e6030c089",
+   "manifest_sha256": [
+    "98c0aba4191e8b00d645a125509b5d21acb9c08ce1dcb92cdf8e3d9e6030c089"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "jean_marie_le_pen"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/koshiro-ishida-cartoon-1990-v2.png",
+   "exists": true,
+   "bytes": 1396917,
+   "sha256": "eea4b12a4802dc6ac7beb0386282fce875fb750770b031d48730dbe3f5281cca",
+   "manifest_sha256": [
+    "eea4b12a4802dc6ac7beb0386282fce875fb750770b031d48730dbe3f5281cca"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "koshiro_ishida"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1990-v2.png",
+   "exists": true,
+   "bytes": 1485122,
+   "sha256": "13ba50a0da0f72ce837ca90f5b30cec5c59c52cb52b85c73622e8541488b201a",
+   "manifest_sha256": [
+    "13ba50a0da0f72ce837ca90f5b30cec5c59c52cb52b85c73622e8541488b201a"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "lal_krishna_advani"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1414590,
+   "sha256": "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7",
+   "manifest_sha256": [
+    "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "leonel_brizola"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/luiz-gushiken-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1443030,
+   "sha256": "3ba15ba71a6c490658849f520f29d1f76a72116565f00404b9990ec0955968a1",
+   "manifest_sha256": [
+    "3ba15ba71a6c490658849f520f29d1f76a72116565f00404b9990ec0955968a1"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "luiz_gushiken"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1486793,
+   "sha256": "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de",
+   "manifest_sha256": [
+    "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "mangosuthu_buthelezi"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/oliver-tambo-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1691776,
+   "sha256": "da750d8c2900559e08e9e57481f63cab53aaf4febafc6bbf7afde88b3ed2ea00",
+   "manifest_sha256": [
+    "da750d8c2900559e08e9e57481f63cab53aaf4febafc6bbf7afde88b3ed2ea00"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "oliver_tambo"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/pierre-mauroy-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1590944,
+   "sha256": "620f25ca31027fceaf16bff159229fb6d8467235f0972dbca916cfe0ed2c5b76",
+   "manifest_sha256": [
+    "620f25ca31027fceaf16bff159229fb6d8467235f0972dbca916cfe0ed2c5b76"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "pierre_mauroy"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/rajiv-gandhi-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1367478,
+   "sha256": "30a750a85b8fe767041e9d5bc783a9cd5c6a1ab236c699b153268b253623a8e2",
+   "manifest_sha256": [
+    "30a750a85b8fe767041e9d5bc783a9cd5c6a1ab236c699b153268b253623a8e2"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "rajiv_gandhi"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/s-r-bommai-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1401817,
+   "sha256": "1ca40f0cce1955ed02ac3aaf1bb48c7dfe01e21791f49cd55189edfa867c297f",
+   "manifest_sha256": [
+    "1ca40f0cce1955ed02ac3aaf1bb48c7dfe01e21791f49cd55189edfa867c297f"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "s_r_bommai"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1328441,
+   "sha256": "bfa602f3ebad31e5e81f0e84f881f0827c9f486da8ad44ef0a62a4763e84f67b",
+   "manifest_sha256": [
+    "bfa602f3ebad31e5e81f0e84f881f0827c9f486da8ad44ef0a62a4763e84f67b"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "takako_doi"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1655402,
+   "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+   "manifest_sha256": [
+    "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "taufaahau_tupou_iv"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/tetsuzo-fuwa-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1335091,
+   "sha256": "68a1e180742458c7d6f2b815167cd23be3cce780c8a3d20499d866f91230bfdb",
+   "manifest_sha256": [
+    "68a1e180742458c7d6f2b815167cd23be3cce780c8a3d20499d866f91230bfdb"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "tetsuzo_fuwa"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1476438,
+   "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
+   "manifest_sha256": [
+    "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "toshiki_kaifu"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/valery-giscard-d-estaing-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1420999,
+   "sha256": "f240bdd9f3acb2832983e5891cf4df5da508ad32fcbc8e7471bc29f6ff85ab16",
+   "manifest_sha256": [
+    "f240bdd9f3acb2832983e5891cf4df5da508ad32fcbc8e7471bc29f6ff85ab16"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "valery_giscard_d_estaing"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  },
+  {
+   "asset": "spheres-web/ui/person-portraits/zephania-mothopeng-cartoon-1990-v1.png",
+   "exists": true,
+   "bytes": 1443545,
+   "sha256": "8e8a53ab1773ba17788ac2144bef871d75eb8e2e0cbb59e7282711d16e447625",
+   "manifest_sha256": [
+    "8e8a53ab1773ba17788ac2144bef871d75eb8e2e0cbb59e7282711d16e447625"
+   ],
+   "sha256_matches_manifest": true,
+   "on_served_allowlist": true,
+   "referenced_by": [
+    "zephania_mothopeng"
+   ],
+   "shared_across_people": false,
+   "filename_matches_person": true,
+   "status": "available"
+  }
+ ],
+ "wrong_or_unavailable_assets": [],
+ "assets_shared_across_people": [],
+ "campaign_comparison": "The fresh campaign start is derived from production data and a runtime mirror, not observed through native execution. Divergent saved campaigns are exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is an expected outcome, never an error, and history never overwrites it.",
+ "not_used": [
+  "CLAUDE-C01-GAPS-01 ledger (not a dependency)",
+  "docs/campaign-certification/S10/b saved campaigns (not read; no equivalence to start rows is asserted)"
+ ],
+ "inputs": [
+  {
+   "path": "docs/campaign-certification/C01/census.json",
+   "bytes": 6105,
+   "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/countries.json",
+   "bytes": 89406,
+   "sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
+   "bytes": 4478,
+   "sha256": "1466be2b6e79d1580bbf84f4970d6d04b0ba8d726d815f2ce5a8378be93e7d20",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md",
+   "bytes": 3404,
+   "sha256": "5f6c244627328cef1461597739cf6353766f44ca93de17ce9b0765c790a1e353",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md",
+   "bytes": 4607,
+   "sha256": "1cbe851ea9db1d77fb5d808013d7fbec7bbf3b11b5ad12b4050746a9e2e84a9b",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+   "bytes": 8025,
+   "sha256": "ae2a2ec522d7670fa06f4a14ca1ccf556863c96a7a02e00a5b4ae35217673e5a",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+   "bytes": 10834,
+   "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/represented-organizations.json",
+   "bytes": 793318,
+   "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
+   "bytes": 75010,
+   "sha256": "8726df2d0686246977681b4df04250c9c4b4386a9869a884ecdb082eb7c1ae09",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/brazil-pt-presidents-1990-2026-22.md",
+   "bytes": 113398,
+   "sha256": "41c82148d2601dab1abfc8c8221494176335d77471e995674757b0aa63ca38c4",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
+   "bytes": 77139,
+   "sha256": "ba4b7e94ea0d3590f22557f13cc9e41ee5790203bf648d115717d4a5d599ec5d",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/brazil.json",
+   "bytes": 786813,
+   "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/france.json",
+   "bytes": 1803439,
+   "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/india-inc-presidents-1990-2026-20.md",
+   "bytes": 96091,
+   "sha256": "b8172bbf02a9d890c1ee721e7d93412e97d5c221f3b29af57940c6fd14238875",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/india-presidents-1990-2026-15.md",
+   "bytes": 77948,
+   "sha256": "c82ef7d94eeee02beb3af5490569549bd06a8fb61a5f1c907676441ac4d92358",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/india-prime-ministers-1990-2026-11.md",
+   "bytes": 81506,
+   "sha256": "dff87f78665c377061ecd2dd7efa2a78e0ee573694fb4b8d852ac68fa13b6acd",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/india.json",
+   "bytes": 846631,
+   "sha256": "1bedf89e1d13d1f391b23030c6bb5e7b16fe23b347c7a64487a6c387c66e82bf",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md",
+   "bytes": 97494,
+   "sha256": "61c63b8e98969d62f18e9c04d536f8fed319237bad84784d5bd79bd4ea16663b",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/japan-prime-ministers-1990-2006-12.md",
+   "bytes": 110869,
+   "sha256": "64ee66ac781eaf0eb6b9cfe81859ac9232da14e8e03847168efe5b1759252a94",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md",
+   "bytes": 145816,
+   "sha256": "5411d0741948981af0402a438228966b92e2116e7bda0275d10ecfa9be1dd544",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/japan.json",
+   "bytes": 1393225,
+   "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md",
+   "bytes": 88713,
+   "sha256": "9fba91d4572d718865f55b8d04df1711a46a231cc648e14636f726f89d6ffac0",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/russia-presidents-1991-2026-14.md",
+   "bytes": 63150,
+   "sha256": "4fd67be8aab5856e70f078548c7efa1bd27f9c1ab8a2837a746a6effd3622c47",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/russia.json",
+   "bytes": 575140,
+   "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+   "bytes": 93763,
+   "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+   "bytes": 37877,
+   "sha256": "b54db2a5a22577d68f96569b6d178537a50134ef55d1a9028a1d2e4d1d4a7065",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/south-africa-anc-presidents-1990-2026-16.md",
+   "bytes": 71961,
+   "sha256": "0de5271ce08d0701aa122f24c64c2142d8adfcc5bea682fab432a1c0019570d2",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/south-africa-deputy-presidents-1994-2026-21.md",
+   "bytes": 76200,
+   "sha256": "bf7889dcb1fa4dc9d7fee2587262274e1c3870874d2b647444033d6a1360e054",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/south-africa-heads-of-state-1990-2024-09.md",
+   "bytes": 59692,
+   "sha256": "b5c918f74bf42f23cad40540c999d4c985d979b476b07c98557b8cd658d713e7",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/south-africa.json",
+   "bytes": 740024,
+   "sha256": "ba404b46f685442aa9d3798cf437de0f489d742912b1fb9a6084993dc9f6d16f",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-crown-07.md",
+   "bytes": 37983,
+   "sha256": "a11076bba20dea088fefe7882e47586a8454c3c67f4f001c048c4c92f296a703",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-dpfi-04.md",
+   "bytes": 34940,
+   "sha256": "755f9db2abfb5c26e7d916f845bcba279c5ffdc41c8d895489437f9996b46f7d",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md",
+   "bytes": 47832,
+   "sha256": "7d2c21a3aa595c929cd108bdd265dc97e488b4ac6a259b2e5cd7a528ccd5eec9",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+   "bytes": 12502,
+   "sha256": "fbe5cd350fed63d1811c26d303e11d39f47c586fe0addd50189d8f8f438c1149",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-transition-2021-02.md",
+   "bytes": 18258,
+   "sha256": "a3dbf99ceb61db7a284086ba1bb5accd7ee961146768f774879a8232d611c6a5",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+   "bytes": 33174,
+   "sha256": "abebeb4921d35213e0b2920a01ce96f7359d7910634d226115b9d5e39acbb0b5",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/tonga.json",
+   "bytes": 360940,
+   "sha256": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
+   "bytes": 93463,
+   "sha256": "23e9f262d6115e945d4010431cd4188ffc4b41764d6e2242f9ffc841bdd434fb",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/ussr-russia-transition-1991-05.md",
+   "bytes": 46385,
+   "sha256": "2a758b8add47dc7122ea4202d2c3477fd3bd43813d61b04b287b13515e517d63",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/research/ussr.json",
+   "bytes": 199067,
+   "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+   "bytes": 554063,
+   "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+   "bytes": 3256,
+   "sha256": "c886b419e2824543584c5284270be2546c1788e476bc6299c962b20bd00c8066",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/data/leaders_1990.json",
+   "bytes": 117104,
+   "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/data/party_executive_eligibility.json",
+   "bytes": 86656,
+   "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/data/party_leaders.json",
+   "bytes": 1262625,
+   "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/src/clock.rs",
+   "bytes": 6036,
+   "sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/src/party_executive_eligibility.rs",
+   "bytes": 11005,
+   "sha256": "3a60b808c4adca72b4397d35962b5bb09ac919934d4a58c174107f3c29846204",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/src/party_leadership.rs",
+   "bytes": 100912,
+   "sha256": "c55bdce3a7e16ce82d4bcab14a55ff6cc3eda4e29e29417108bb931260948605",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-sim/src/party_leadership_future.rs",
+   "bytes": 18526,
+   "sha256": "7e47558b42844dad3d422ed8acc084f09952e61722286e82cf4862af1612bc5e",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/data/fictional_portraits.json",
+   "bytes": 7666,
+   "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/data/future_candidates_2035.json",
+   "bytes": 3273947,
+   "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/data/leadership_production_2035.json",
+   "bytes": 5984743,
+   "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/data/nation_figures.json",
+   "bytes": 408800,
+   "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/data/person_portraits.json",
+   "bytes": 290378,
+   "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/src/person_avatar_assets.rs",
+   "bytes": 7945,
+   "sha256": "3204b4110758b208f0dc1561d81783e05af800e9b737ff6a0d970f25dab57a2f",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/src/person_portraits.rs",
+   "bytes": 20216,
+   "sha256": "85ad4f7b772043eeedfeb50633bfcb11dc2ddf52c671911e0d466dd082beed51",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/e-m-s-namboodiripad-cartoon-1990-v1.png",
+   "bytes": 1443844,
+   "sha256": "f60612579f0ac009e53217af3e4ce31d75cd1f611b498b72deb9d58aea06cd51",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/eiichi-nagasue-cartoon-1990-v1.png",
+   "bytes": 1367264,
+   "sha256": "a76b669fc9de556c7c947ba5876ac4fd84765312efea8f9f72f016801b83a4b1",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png",
+   "bytes": 1469870,
+   "sha256": "83baf7337b0db19fb5ee166c79c8b954c54ddd5c9216475b3a5ddcafecb08284",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
+   "bytes": 1370935,
+   "sha256": "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-02-cartoon-2030-v1.png",
+   "bytes": 1463661,
+   "sha256": "ccdcb58e5c02d49b91b438e3dc384e15058efc3c57f8f5345d4670cc8ceef47e",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-03-cartoon-2030-v1.png",
+   "bytes": 1386847,
+   "sha256": "8bfbe4042a0b0c9a94b534c8c373b4e538978d8e24138642b9e48de696f60b76",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/fictional-japan-ldp-04-cartoon-2030-v1.png",
+   "bytes": 1412742,
+   "sha256": "70d461fab389822f25564a5fb0a647f5adab7171cd4365a185f14b9cc2f7e898",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/georges-marchais-cartoon-1990-v1.png",
+   "bytes": 1474524,
+   "sha256": "84af0ef687c0af91e1a2028e7b33eef0abf7724d1a55b3399eb2795174922e57",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/hugo-napoleao-cartoon-1990-v1.png",
+   "bytes": 1482124,
+   "sha256": "0dd672e2a73182c96df9f3977049745c34b34285df4ed55914830abb55be2d07",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/jacques-chirac-cartoon-1990-v1.png",
+   "bytes": 1693382,
+   "sha256": "7a67e59cd20d5e51e0d3895b6f6be035ca7599ecf5361c877c44c77630ed812a",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/jean-marie-le-pen-cartoon-1990-v1.png",
+   "bytes": 1428894,
+   "sha256": "98c0aba4191e8b00d645a125509b5d21acb9c08ce1dcb92cdf8e3d9e6030c089",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/koshiro-ishida-cartoon-1990-v2.png",
+   "bytes": 1396917,
+   "sha256": "eea4b12a4802dc6ac7beb0386282fce875fb750770b031d48730dbe3f5281cca",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1990-v2.png",
+   "bytes": 1485122,
+   "sha256": "13ba50a0da0f72ce837ca90f5b30cec5c59c52cb52b85c73622e8541488b201a",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/leonel-brizola-cartoon-1990-v1.png",
+   "bytes": 1414590,
+   "sha256": "47408b24cee227ddbc134d0dcfe7d8db7a0459bfb8c5f6f1ae481e6fae77e3e7",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/luiz-gushiken-cartoon-1990-v1.png",
+   "bytes": 1443030,
+   "sha256": "3ba15ba71a6c490658849f520f29d1f76a72116565f00404b9990ec0955968a1",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/mangosuthu-buthelezi-cartoon-1990-v1.png",
+   "bytes": 1486793,
+   "sha256": "ac3a78b825e10e3b287281dcb9a02873cc2e98ac56a4640f5dafb81f7f1498de",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/oliver-tambo-cartoon-1990-v1.png",
+   "bytes": 1691776,
+   "sha256": "da750d8c2900559e08e9e57481f63cab53aaf4febafc6bbf7afde88b3ed2ea00",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/pierre-mauroy-cartoon-1990-v1.png",
+   "bytes": 1590944,
+   "sha256": "620f25ca31027fceaf16bff159229fb6d8467235f0972dbca916cfe0ed2c5b76",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/rajiv-gandhi-cartoon-1990-v1.png",
+   "bytes": 1367478,
+   "sha256": "30a750a85b8fe767041e9d5bc783a9cd5c6a1ab236c699b153268b253623a8e2",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/s-r-bommai-cartoon-1990-v1.png",
+   "bytes": 1401817,
+   "sha256": "1ca40f0cce1955ed02ac3aaf1bb48c7dfe01e21791f49cd55189edfa867c297f",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png",
+   "bytes": 1328441,
+   "sha256": "bfa602f3ebad31e5e81f0e84f881f0827c9f486da8ad44ef0a62a4763e84f67b",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+   "bytes": 1655402,
+   "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/tetsuzo-fuwa-cartoon-1990-v1.png",
+   "bytes": 1335091,
+   "sha256": "68a1e180742458c7d6f2b815167cd23be3cce780c8a3d20499d866f91230bfdb",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png",
+   "bytes": 1476438,
+   "sha256": "02bdd3cb7a40ec89562c568a727ad404a01f7d1da79ffc7515337a688cf2177d",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/valery-giscard-d-estaing-cartoon-1990-v1.png",
+   "bytes": 1420999,
+   "sha256": "f240bdd9f3acb2832983e5891cf4df5da508ad32fcbc8e7471bc29f6ff85ab16",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "spheres-web/ui/person-portraits/zephania-mothopeng-cartoon-1990-v1.png",
+   "bytes": 1443545,
+   "sha256": "8e8a53ab1773ba17788ac2144bef871d75eb8e2e0cbb59e7282711d16e447625",
+   "newline_normalized": false,
+   "exists": true
+  },
+  {
+   "path": "tools/avatars/certified_boundary_matrix.py",
+   "bytes": 97239,
+   "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4",
+   "newline_normalized": true,
+   "exists": true
+  }
+ ]
+}

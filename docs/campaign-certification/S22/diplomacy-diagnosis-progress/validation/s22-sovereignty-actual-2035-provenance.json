@@ -1,0 +1,14 @@
+{
+  "candidate_revision": "6de1d997",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-6de1d997\\sim-tests.exe",
+  "binary_sha256": "74611ed125e693a98d9a130806272e5b2b7dfe2f35425b3ea54c582c891baa9a",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+  "input_sha256_before": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+  "input_sha256_after": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+  "started_utc": "2026-09-28T07:36:54.8386822Z",
+  "finished_utc": "2026-09-28T07:37:58.3174933Z",
+  "test": "sovereignty::candidate_tests::compact_candidates_match_actual_checkpoint_for_31_complete_days --ignored --exact --nocapture --test-threads=1",
+  "exit_code": 0,
+  "qualification": false,
+  "scope": "Ordinary native 31-day full-world and headline equivalence versus original candidate search; no player annual renewal or timing acceptance"
+}

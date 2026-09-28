@@ -1,0 +1,16 @@
+{
+  "format": "s22-diagnostic-provenance/v1",
+  "started_utc": "2026-09-28T06:37:51.4636215Z",
+  "finished_utc": "2026-09-28T06:39:04.8644687Z",
+  "candidate_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+  "binary_sha256": "63e807bc76002b8504d5d5c8a85e126e8247bbe2947eda54d78c773e5edf7fe8",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+  "source_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "source_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "copied_input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "test": "performance::s22_daily_subsystem_diagnosis --exact --ignored --nocapture --test-threads=1",
+  "exit_code": 0,
+  "qualification": false,
+  "scope": "Instrumented equivalence and stage diagnosis; overlaps actual campaign preparation and functional web tests, not isolated performance"
+}

@@ -1,0 +1,24 @@
+✔ collection, country, label and search filters keep missing, fictional and unknown items distinct (185.2787ms)
+✔ era and date filters use half-open intervals; invalid and undated items are not dated (0.8254ms)
+✔ keyboard grid movement clamps inside the visible sheet (0.2138ms)
+✔ paths and links stay inside the repository and never become script or credential URLs (1.4156ms)
+✔ input verification compares exact bytes and fails closed (4.0699ms)
+✔ explicit LF text scope survives CRLF, preserves other bytes and rejects content changes (1.4831ms)
+✔ the committed export keeps automated findings apart from approval and labels every collection (6.1955ms)
+▶ real reviewer in a headless browser
+  ✔ verifies every pinned input by SHA-256 before showing the sheet (306.0634ms)
+  ✔ filters by country, collection, person, era, date and label (721.9935ms)
+  ✔ keyboard: roving focus, arrows, Home/End, Enter and [ ] (113.1072ms)
+  ✔ side-by-side card sizes and byte-verified full size, with visual notes kept apart from findings (572.2095ms)
+  ✔ a changed file is flagged and a changed input fails closed (522.1013ms)
+  ✔ narrow layouts at 390 and 320 px: no horizontal overflow, dialog detail, Escape returns focus (763.9782ms)
+  ✔ only this repository was contacted and nothing failed (6.2364ms)
+✔ real reviewer in a headless browser (3103.2502ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3976.5597

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "tools/ui/successor-fixtures/run.cjs",
+    "--binary",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\spheres-web.exe",
+    "--expected-revision",
+    "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+    "--out",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\independent-01",
+    "--native-s21",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-01",
+    "--native-provenance",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-export.json",
+    "--cross-check"
+  ],
+  "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+  "started_utc": "2026-09-28T14:32:42.421384+00:00",
+  "harness_revision": "abd6ecf2084b8ab0e4061e2e011c73672a8f9b00",
+  "environment": {
+    "NODE_PATH": "C:/Users/ridge/spheres-war-overhaul/tools/ui/node_modules",
+    "SPHERES_BROWSER_CHANNEL": "msedge"
+  },
+  "binary_before": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\spheres-web.exe",
+    "bytes": 358617837,
+    "sha256": "618046decce08bd80400f7a3fe4bb4c51d288e234ad60d5cfedecc8bc7b03c3e"
+  },
+  "exit_code": 1,
+  "finished_utc": "2026-09-28T14:33:32.002252+00:00",
+  "binary_after_sha256": "618046decce08bd80400f7a3fe4bb4c51d288e234ad60d5cfedecc8bc7b03c3e"
+}

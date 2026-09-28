@@ -1,0 +1,19 @@
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-map-roundtrip-preflight\browser-BaJ828
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-map-roundtrip-preflight\browser-BaJ828\result.json
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '9c7cf934308e-modified'
+- '9c7cf934308e'
+               ^
+
+    at run (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\s22-performance-browser.cjs:120:82)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '9c7cf934308e-modified',
+  expected: '9c7cf934308e',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

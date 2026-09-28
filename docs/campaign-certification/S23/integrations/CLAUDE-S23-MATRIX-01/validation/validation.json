@@ -1,0 +1,154 @@
+{
+  "format": "spheres-s23-preparation-review-validation/v1",
+  "qualification": false,
+  "reviewer": "Codex /root/review_gap_submission",
+  "started_utc": "2026-09-28T13:52:07.081900+00:00",
+  "source_commit": "e39dd476c758d049dd3e1cc581f9fdaf68caf88b",
+  "submission": "8c9f6ce1d533504143419af483e4435cde21835b",
+  "python": {
+    "executable": "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "version": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+  "checks": [
+    {
+      "name": "submitted-implementation-negative-control",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking\\docs\\campaign-certification\\S23\\integrations\\CLAUDE-S23-MATRIX-01\\review.py",
+        "--root",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+        "--original-regressions"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+      "started_utc": "2026-09-28T13:52:07.148813+00:00",
+      "finished_utc": "2026-09-28T13:52:07.933413+00:00",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "expected_outcome_observed": true,
+      "log": "submitted-implementation-negative-control.log",
+      "bytes": 32442,
+      "sha256": "dfa86276840148b3365edee6ca8bfac7495f1a3db32ded67db9ff42e739ea051"
+    },
+    {
+      "name": "reviewed-tests",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_certified_boundary_matrix.py",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+      "started_utc": "2026-09-28T13:52:07.933869+00:00",
+      "finished_utc": "2026-09-28T13:52:10.006138+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome_observed": true,
+      "log": "reviewed-tests.log",
+      "bytes": 6659,
+      "sha256": "425f05879e631904f4e2710996f3e4e9daeba07f5c394946cd6649d5a4b5a54f"
+    },
+    {
+      "name": "matrix-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-X",
+        "utf8",
+        "tools/avatars/certified_boundary_matrix.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+      "started_utc": "2026-09-28T13:52:10.006521+00:00",
+      "finished_utc": "2026-09-28T13:52:10.352581+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome_observed": true,
+      "log": "matrix-check.log",
+      "bytes": 235,
+      "sha256": "2112a443bc92e50ee91ee90924a8495328278243269895eee717a73c8a0e6a59"
+    },
+    {
+      "name": "census-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+      "started_utc": "2026-09-28T13:52:10.352999+00:00",
+      "finished_utc": "2026-09-28T13:52:10.663072+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome_observed": true,
+      "log": "census-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "research-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+      "started_utc": "2026-09-28T13:52:10.663457+00:00",
+      "finished_utc": "2026-09-28T13:52:11.338507+00:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "expected_outcome_observed": true,
+      "log": "research-check.log",
+      "bytes": 251,
+      "sha256": "06864a3a07b2806cf125cf2c82df9b4eda434b57ceac43ba284ec818aa7d26bb"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "tools/avatars/certified_boundary_matrix.py",
+      "bytes": 98818,
+      "sha256": "0f40f5cabf11f731797ca01d98ff1fbc518c85bb10cc2c72b1463e6bc1adc82a",
+      "git_blob": "9a3b8267097d1101b78265b55f56ef2ae20ada65"
+    },
+    {
+      "path": "tools/avatars/test_certified_boundary_matrix.py",
+      "bytes": 49373,
+      "sha256": "abe2a991b77122835177a96d7214b0a1f6d4347f7a71fa932289444032931dc1",
+      "git_blob": "21baf89315d1ed557dc070e051801a13e0a077ed"
+    }
+  ],
+  "actual_campaigns": [
+    {
+      "path": "..\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "unchanged_after": true,
+      "report": "actual-campaign-1.json",
+      "date": "1999-05-13",
+      "scope": "read-only identity observation; no native loading or replay"
+    },
+    {
+      "path": "..\\evidence\\s22-late-input-reviewed\\s22-2035-11-30.json.gz",
+      "bytes": 24310728,
+      "sha256": "42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b",
+      "unchanged_after": true,
+      "report": "actual-campaign-2.json",
+      "date": "2035-11-30",
+      "scope": "read-only identity observation; no native loading or replay"
+    }
+  ],
+  "finished_utc": "2026-09-28T13:52:16.381280+00:00",
+  "all_expected_outcomes_observed": true
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "source": "fr_bodacc_knds_france_name_2024",
+    "body_sha256": "7b4a92e12d745bc21479482f9e972547496244ef64fb493afe148e319be189d5",
+    "claim": "fr_knds_france_c07",
+    "anchor": "Modification survenue sur l'administration, la dénomination.",
+    "method": "Decode outer JSON and recursively decode nested JSON-valued strings; no network retry.",
+    "found": true
+  },
+  {
+    "source": "fr_bodacc_giat_industries_accounts_2025",
+    "body_sha256": "ffab827a7915059aa6ae8d0ba874cd3bd4da5190939d012e4bb8192582e0f913",
+    "claim": "fr_knds_france_c27",
+    "anchor": "Société par actions simplifiée (à associé unique)",
+    "method": "Decode outer JSON and recursively decode nested JSON-valued strings; no network retry.",
+    "found": true
+  },
+  {
+    "source": "fr_bodacc_naval_group_name_2017",
+    "body_sha256": "efa7797467a11f4364deaeb05e283c2f75d1617627566d9134e2c3b3268f5add",
+    "claim": "fr_naval_group_c12",
+    "anchor": "modification survenue sur la dénomination",
+    "method": "Decode outer JSON and recursively decode nested JSON-valued strings; no network retry.",
+    "found": true
+  },
+  {
+    "source": "jp_komatsu_mod_wp2010_voice",
+    "body_sha256": "713202efa1875f8a049b1d1388a95d0fb1287aca9ccc7973adbb7a15def198b8",
+    "claim": "jp_komatsu_c18",
+    "anchor": "火砲用弾薬、装甲車などの製造に実績のある企業です",
+    "method": "Decode original body using its declared Shift_JIS HTML meta charset, then strip tags/unescape entities; no network retry.",
+    "found": true
+  }
+]

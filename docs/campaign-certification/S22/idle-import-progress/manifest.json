@@ -1,0 +1,347 @@
+{
+  "format": "spheres-s22-idle-import-progress/v1",
+  "status": "regression_and_failed_native_preflights",
+  "qualification": false,
+  "packaged_utc": "2026-09-28T07:31:45.981Z",
+  "package_base_revision": "9823b070efea06a4f6e63e955d8ae23445108054",
+  "source_evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence",
+  "scope": "Append-only import repair regression, actual2015 equivalence, immutable runtime provenance and two completed isolated dated preflights. S22/G5/CP1 remain open; no qualification or timing improvement claim.",
+  "regression": {
+    "suites": 66,
+    "passed": 1922,
+    "failed": 0,
+    "ignored": 96,
+    "command": "cargo test --locked --release --workspace -- --test-threads=2",
+    "provenance": "validation/s22-idle-import-workspace-provenance.json",
+    "original_compile_failure_retained": "validation/s22-idle-import-workspace-build.log"
+  },
+  "actual_2015_import_oracle": {
+    "passed": 1,
+    "failed": 0,
+    "ordinary_days": 31,
+    "scope": "Complete simulation ticks without player annual renewal; exact old/new import world, headlines and financial-bit parity with successful guarded purchases required. Functional equivalence only; overlaps workspace regressions.",
+    "provenance": "validation/s22-idle-import-actual-tests-provenance.json",
+    "extraction_record": "../route-ui-progress/actual-transfer-parity/extraction.json"
+  },
+  "runtime_provenance": "runtime/provenance.json",
+  "preflights": [
+    {
+      "id": "s22-native-preflight-2015-idle-import-isolated-01",
+      "candidate_revision": "9823b070efea06a4f6e63e955d8ae23445108054",
+      "native_binary_sha256": "7b4039626cfe75fa151b7f46a28053bb9f90e2a2b648d8ae5ad0bcdefe0ada07",
+      "qualification": false,
+      "started_utc": "2026-09-28T07:24:28.5133580Z",
+      "finished_utc": "2026-09-28T07:25:40.0181446Z",
+      "actual_start": [
+        2015,
+        1,
+        1
+      ],
+      "actual_end": [
+        2015,
+        2,
+        1
+      ],
+      "ordinary_samples": 31,
+      "source_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_unchanged": true,
+      "profile_functional_passed": true,
+      "runner_passed": false,
+      "numerical_acceptance": false,
+      "exit_code": 0,
+      "failures": [
+        "Simulation/history p95 exceeds frozen 300 ms limit.",
+        "Whole-turn p95 exceeds frozen 400 ms limit."
+      ],
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 251.1695,
+        "p95_ms": 356.2455,
+        "max_ms": 577.6707
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 352.5605,
+        "p95_ms": 446.365,
+        "max_ms": 679.2651
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 626,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 862003200,
+        "max_sampled_working_set_bytes": 782168064,
+        "os_peak_working_set_bytes": 858652672,
+        "max_observed_sample_gap_ms": 130.13329999999405,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "observed_native_memory_limits_passed": true,
+      "batch": {
+        "ordinary_days": 31,
+        "same_final_facts": true,
+        "days_per_second": 3.181868555182977,
+        "elapsed_ms": 9742.7029,
+        "final_world_fnv64": "5c486d0c186f921e"
+      },
+      "scope": "Completed isolated native preflight; qualification was not frozen. Both latency failures are retained. Subsequent packaging overlaps a separate diagnostic, not these completed measured runs."
+    },
+    {
+      "id": "s22-native-preflight-2035-idle-import-isolated-01",
+      "candidate_revision": "9823b070efea06a4f6e63e955d8ae23445108054",
+      "native_binary_sha256": "7b4039626cfe75fa151b7f46a28053bb9f90e2a2b648d8ae5ad0bcdefe0ada07",
+      "qualification": false,
+      "started_utc": "2026-09-28T07:26:01.4482238Z",
+      "finished_utc": "2026-09-28T07:28:07.1324088Z",
+      "actual_start": [
+        2035,
+        11,
+        30
+      ],
+      "actual_end": [
+        2035,
+        12,
+        31
+      ],
+      "ordinary_samples": 31,
+      "source_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_unchanged": true,
+      "profile_functional_passed": true,
+      "runner_passed": false,
+      "numerical_acceptance": false,
+      "exit_code": 0,
+      "failures": [
+        "Simulation/history p95 exceeds frozen 300 ms limit.",
+        "Whole-turn p95 exceeds frozen 400 ms limit.",
+        "Whole-turn maximum exceeds frozen 750 ms limit."
+      ],
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 324.778,
+        "p95_ms": 452.90659999999997,
+        "max_ms": 13868.0602
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 416.4232,
+        "p95_ms": 554.1808,
+        "max_ms": 13964.756599999999
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 1111,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 904888320,
+        "max_sampled_working_set_bytes": 862052352,
+        "os_peak_working_set_bytes": 900075520,
+        "max_observed_sample_gap_ms": 139.73750000000018,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "observed_native_memory_limits_passed": true,
+      "batch": {
+        "ordinary_days": 31,
+        "same_final_facts": true,
+        "days_per_second": 1.183893854307326,
+        "elapsed_ms": 26184.779899999998,
+        "final_world_fnv64": "3c3f21d9d67bd7b8"
+      },
+      "scope": "Completed isolated native preflight; qualification was not frozen. Both latency failures are retained. Subsequent packaging overlaps a separate diagnostic, not these completed measured runs."
+    }
+  ],
+  "inputs": [
+    {
+      "year": 2015,
+      "path": "../stock-fix-progress/inputs/s22-2015-01-01.json.gz",
+      "bytes": 22515658,
+      "sha256": "fe84c513d5d678f14772a57092dfba88882ebfdc59eedc842bd5dad1ebf78dfe",
+      "uncompressed_bytes": 130222370,
+      "uncompressed_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "year": 2035,
+      "path": "../late-input-progress/inputs/s22-2035-11-30.json.gz",
+      "bytes": 24310728,
+      "sha256": "42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b",
+      "uncompressed_bytes": 145134799,
+      "uncompressed_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    }
+  ],
+  "prior_evidence": [
+    {
+      "path": "../stock-fix-progress/manifest.json",
+      "bytes": 32829,
+      "sha256": "be3adcdd8d519f247ee52d99ed3d4f249f71b989cb970fde502247f261da344e"
+    },
+    {
+      "path": "../late-input-progress/inputs/reviewed-late-input-manifest.json",
+      "bytes": 3169,
+      "sha256": "3e3f3173027116499265944db933d9d94244842b4d36b5fc4074236a19fb6145"
+    },
+    {
+      "path": "../route-ui-progress/actual-transfer-parity/extraction.json",
+      "bytes": 865,
+      "sha256": "0ce5a801a912f7c04329ac12aa2d1e8caca2f636e6b8ef8bf1822ac59c07ed1c"
+    }
+  ],
+  "excluded": [
+    "Immutable binaries; their retained provenance and hashes are included",
+    "Repeated raw campaign inputs; exact prior archived source manifests and compressed hashes referenced",
+    "Separate2035 subsystem diagnosis still running at capture cutoff",
+    "No authoritative qualification attempt, new browser run or canonical workboard change"
+  ],
+  "files": [
+    {
+      "path": "preflights/2015/console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01-console.log",
+      "bytes": 11078,
+      "sha256": "ce40546740d05025fe64c0d89bc7b34f6e0e5d44ebe03cd0331c232a6107c35d",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\invocation.json",
+      "bytes": 3589,
+      "sha256": "1a0cd68df989527b61d8b9ba7f3d8873117d77fbe436c4be2327efd517066776",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\memory-samples.csv",
+      "bytes": 25635,
+      "sha256": "52a6bd23f04d6957275a6a4f6bef2f7e1c99669d7f00c82780460e3942ad8b66",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\profile.json",
+      "bytes": 180753,
+      "sha256": "c85bfc6cfcb35249510cac2ddeccf67df3430cf1b8d3b87d78baf981b7777b8a",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\runner-result.json",
+      "bytes": 11000,
+      "sha256": "39f9e97ac42266f0631b6932c05f3e602816cc893fd6b7f3f89bb7650909be8a",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2015/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "9fb4d0aeba0d800488b7bbad4e4ff5fec789a45a468697921af59d6f02cc2cd6",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01-console.log",
+      "bytes": 8900,
+      "sha256": "62be3d5613e27d4aa4eac44f263840d7cd6598ec4e196d8393110b5d9aeb8912",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\invocation.json",
+      "bytes": 3589,
+      "sha256": "863f047dc4fa42256a32745a7ae3ce9ca18fa9c5fd6b3788a8d664915ad4486b",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\memory-samples.csv",
+      "bytes": 45736,
+      "sha256": "d53eaac47b73dfcdc6ed77a64e8cfb71e9699e7376dade27bb3bf6590b996c59",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\profile.json",
+      "bytes": 176977,
+      "sha256": "3a53f11904243aea7adf56b354674cef6cf82fd0c9cf56fd265c257568d60988",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\runner-result.json",
+      "bytes": 8822,
+      "sha256": "dfeb81a9f3c2509e928d3cbce506e5bfbffbae60eaaf29b637d70f7deff5ed5b",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "preflights/2035/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\stdout.log",
+      "bytes": 164,
+      "sha256": "8b161d4fdac3d6f64baed21adfc98409149b284b45fdf3989e05643b7ed47781",
+      "encoding": "identity"
+    },
+    {
+      "path": "runtime/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-9823b070\\provenance.json",
+      "bytes": 1388,
+      "sha256": "f14adbfe26046e7b15dc4dde7df5b5b6296fb8a7f5cdadcee05c331a1dfe14da",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-actual-2015-parity.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-actual-2015-parity.log",
+      "bytes": 242,
+      "sha256": "4e14a7077e34c46e9747e778b5aaa9f55efed9372f03b7cf3c18ed9d5ef631df",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-actual-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-actual-tests-provenance.json",
+      "bytes": 1080,
+      "sha256": "b5f086ccb97a87430f01883fb48a31d8c7baea98ade0f54a4b8f9e9ecbdf3241",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-server-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-server-build.log",
+      "bytes": 1069,
+      "sha256": "8ed35aef00ad3742a0d448f61dce2a413aa296085b4959d73d0a03d11040453e",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-workspace-build-02.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-workspace-build-02.log",
+      "bytes": 15227,
+      "sha256": "a180935584c01e8593d3defd6b59c12c4596828b30e1d51b23f285971c2073b3",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-workspace-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-workspace-build.log",
+      "bytes": 2915,
+      "sha256": "7e68a830e07fea558ddbddd082d862b3b407ea44256e532536a90f3a9e679650",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-workspace-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-workspace-provenance.json",
+      "bytes": 344,
+      "sha256": "e30e5875d4df0784f358aaac255e59b24a58cb19c21aa8db0e55382851607194",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-idle-import-workspace-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-idle-import-workspace-tests.log",
+      "bytes": 209385,
+      "sha256": "ceb391d4aa9cbda32669338420c0856a20548a7d21de65dde293e44277da5509",
+      "encoding": "identity"
+    }
+  ]
+}

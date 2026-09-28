@@ -1,0 +1,8 @@
+
+running 3 tests
+test population::course_merge_tests::indexed_course_merge_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit immutable actual-checkpoint 31-day original course-merge oracle; no timing assertions
+test population::course_merge_tests::course_merge_keeps_first_duplicate_append_order_and_exact_key_bits ... ok
+test population::course_merge_tests::indexed_migration_matches_full_world_and_native_day_outcomes ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1095 filtered out; finished in 0.45s
+

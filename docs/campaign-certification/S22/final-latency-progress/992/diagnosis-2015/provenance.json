@@ -1,0 +1,15 @@
+{
+  "format": "s22-diagnostic-provenance/v1",
+  "started_utc": "2026-09-28T08:11:36.8410578Z",
+  "finished_utc": "2026-09-28T08:12:47.3083702Z",
+  "candidate_revision": "992bc99ab5529332cb7ba860f53ff0801a3283b3",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-992bc99a\\native-tests.exe",
+  "binary_sha256": "3a1aad245296a88eba985a5aea2c36ba063dff569143e7cd34b2dac13f649e6f",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+  "source_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "source_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "copied_input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "test": "performance::s22_daily_subsystem_diagnosis --exact --ignored --nocapture --test-threads=1",
+  "exit_code": 0,
+  "qualification": false
+}

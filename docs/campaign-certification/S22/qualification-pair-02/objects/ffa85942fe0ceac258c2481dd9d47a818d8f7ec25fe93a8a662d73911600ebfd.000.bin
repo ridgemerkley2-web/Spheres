@@ -1,0 +1,1095 @@
+{
+  "schema": "spheres-s22-verdict/v1",
+  "attempt_id": "s22-qualification-pair-01",
+  "checked_utc": "2026-09-28T10:35:05.866Z",
+  "passed": false,
+  "status": "failed",
+  "identity": {
+    "files_rehashed": 70,
+    "runtime_tree_unchanged": true,
+    "lineage": {
+      "reviewed_by": "Codex /root/review_gap_submission",
+      "reviewed_utc": "2026-09-28T06:56:31.515Z",
+      "links": 4,
+      "scope": "Hashes and recorded checkpoint/date linkage independently checked against an explicit reviewed provenance record. This does not independently replay the intervening campaign years."
+    }
+  },
+  "cells": [
+    {
+      "id": "r1-early-france-1999-native",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-early-france-1999-native",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790589570085,
+        "end": 1790589596598,
+        "simulation": {
+          "samples": 31,
+          "median_ms": 116.26010000000001,
+          "p95_ms": 179.7859,
+          "max_ms": 185.2975
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 161.0968,
+          "p95_ms": 224.7219,
+          "max_ms": 246.6188
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 229,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 456105984,
+          "max_sampled_working_set_bytes": 370995200,
+          "os_peak_working_set_bytes": 415330304,
+          "max_observed_sample_gap_ms": 129.7433000000001,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "batch_elapsed_ms": 3693.4446,
+        "batch_days_per_second": 8.39324894706692,
+        "final_world_fnv64": "5e2885a23e03ba8e",
+        "evidence_files": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-native\\runner-result.json",
+            "bytes": 8637,
+            "sha256": "20c580868a90e1054ca90085e2abeb7f368d9c92803281cf40e2032beb848917"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-native\\profile.json",
+            "bytes": 176461,
+            "sha256": "62b911796c5b69dbdd7ea5bf98f4b9108105de1d63bd9977d4609465f37db512"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-native\\memory-samples.csv",
+            "bytes": 9354,
+            "sha256": "8f5d763467a023245b4a585010a462e252969d7ee9268b0a92fbe5a359ec3b1c"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-early-france-1999-map",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-early-france-1999-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790589602848,
+        "end": 1790589797258,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-map\\browser-aeCFqx",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-map\\browser-aeCFqx\\result.json",
+          "bytes": 4005752,
+          "sha256": "b06cd873f1e4b0d6ac0c0981c352e74755d4f7ab76ff7cf520abe20bf36891ad"
+        },
+        "trace_sha256": "1ae58fea5097bf968363b6599b69f93104ede673825b5baefdf3f0dc8dd79658",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.74259430543935,
+            "frames": 1185,
+            "elapsed_ms": 12000.89999999851
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.42046362908438,
+            "frames": 1194,
+            "elapsed_ms": 12009.60000000149
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 38.92571675719319,
+            "frames": 468,
+            "elapsed_ms": 12022.89999999851
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 99.99916667359864,
+            "frames": 1200,
+            "elapsed_ms": 12000.10000000149
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.49507524622545,
+            "frames": 1182,
+            "elapsed_ms": 12000.60000000149
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.49005099493758,
+            "frames": 1194,
+            "elapsed_ms": 12001.19999999553
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 89.64126830732405,
+            "frames": 1076,
+            "elapsed_ms": 12003.39999999851
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.99416700689976,
+            "frames": 1200,
+            "elapsed_ms": 12000.70000000298
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.19999999552965,
+            "p95_ms": 38.29999999701977,
+            "max_ms": 38.29999999701977
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.200000002980232,
+            "p95_ms": 41.100000001490116,
+            "max_ms": 41.19999999552965
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-early-france-1999-renderer",
+      "round": "initial_full_qualification",
+      "case": "early-france-1999",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-early-france-1999-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790589803703,
+        "end": 1790589863083,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-renderer\\browser-oH3IVl",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-early-france-1999-renderer\\browser-oH3IVl\\result.json",
+          "bytes": 14107786,
+          "sha256": "2a3fa5da4e9d658dbd4d6d0ff69fdcb9786dfbbeae25632766a83895c5276d3e"
+        },
+        "trace_sha256": "5655f8b19be39e5e1efea2e9999a03aa353e8b66ab2ad2786551c7cb20822b00",
+        "viewer_fps": 99.9983333611479,
+        "frames": 1200,
+        "elapsed_ms": 12000.19999999553,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    },
+    {
+      "id": "r1-mid-france-2015-native",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-mid-france-2015-native",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790589867774,
+        "end": 1790589931730,
+        "simulation": {
+          "samples": 31,
+          "median_ms": 218.80859999999998,
+          "p95_ms": 259.2079,
+          "max_ms": 431.9485
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 298.8476,
+          "p95_ms": 326.83610000000004,
+          "max_ms": 493.4156
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 564,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 858337280,
+          "max_sampled_working_set_bytes": 777850880,
+          "os_peak_working_set_bytes": 854269952,
+          "max_observed_sample_gap_ms": 129.47650000000067,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "batch_elapsed_ms": 5369.7827,
+        "batch_days_per_second": 5.773045527521998,
+        "final_world_fnv64": "5c486d0c186f921e",
+        "evidence_files": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-native\\runner-result.json",
+            "bytes": 10919,
+            "sha256": "590760522987878104556032a6b465d315aa03ffc762ec90209a85ba91ef6fc9"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-native\\profile.json",
+            "bytes": 180654,
+            "sha256": "b63585c1c9f6bd4cc0d3d1ac3500f62c2d5da2abd301c9374e581d6cf1ffb27d"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-native\\memory-samples.csv",
+            "bytes": 23086,
+            "sha256": "0fe31ea99ddeaf3600279545990e365aaae76b02d299245a569d8dbeaf3b1b4c"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-mid-france-2015-map",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-mid-france-2015-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790589934550,
+        "end": 1790590143574,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-map\\browser-C4vwnI",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-map\\browser-C4vwnI\\result.json",
+          "bytes": 3960094,
+          "sha256": "065e5aa0fb63796f22498b75da819d2247277b6cde1aca7a4856e05337f09b01"
+        },
+        "trace_sha256": "1ac278b25bdb3b30c3deabeb7b62590386f318e6882772564464596d6724663d",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.74588558810049,
+            "frames": 1185,
+            "elapsed_ms": 12000.5
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.32588389205377,
+            "frames": 1192,
+            "elapsed_ms": 12000.89999999851
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 35.220649458784344,
+            "frames": 423,
+            "elapsed_ms": 12010
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 100,
+            "frames": 1200,
+            "elapsed_ms": 12000
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.32513957170235,
+            "frames": 1180,
+            "elapsed_ms": 12001
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.41418131209683,
+            "frames": 1193,
+            "elapsed_ms": 12000.30000000447
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 84.69001124203689,
+            "frames": 1017,
+            "elapsed_ms": 12008.5
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.99416700696185,
+            "frames": 1200,
+            "elapsed_ms": 12000.69999999553
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.299999997019768,
+            "p95_ms": 42.100000001490116,
+            "max_ms": 50
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.200000002980232,
+            "p95_ms": 40.5,
+            "max_ms": 41.100000001490116
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-mid-france-2015-renderer",
+      "round": "initial_full_qualification",
+      "case": "mid-france-2015",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-mid-france-2015-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590151310,
+        "end": 1790590226251,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-renderer\\browser-D0jHuS",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-mid-france-2015-renderer\\browser-D0jHuS\\result.json",
+          "bytes": 15959720,
+          "sha256": "fa826c3a301e585cff1a35972b249bdeda304e2adf809f3e4e665f26e7962ea3"
+        },
+        "trace_sha256": "004d4f83fbe32d117734c326274a5c9011219cea5ffbccbb8286edbe46be261d",
+        "viewer_fps": 99.91333622213834,
+        "frames": 1199,
+        "elapsed_ms": 12000.39999999851,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    },
+    {
+      "id": "r1-late-france-2035-native",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-late-france-2035-native",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590233330,
+        "end": 1790590320142,
+        "simulation": {
+          "samples": 31,
+          "median_ms": 242.7854,
+          "p95_ms": 273.8758,
+          "max_ms": 376.1641
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 324.1418,
+          "p95_ms": 365.3191,
+          "max_ms": 435.4161
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 775,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 906424320,
+          "max_sampled_working_set_bytes": 861421568,
+          "os_peak_working_set_bytes": 901955584,
+          "max_observed_sample_gap_ms": 129.34610000000248,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "batch_elapsed_ms": 5387.6093,
+        "batch_days_per_second": 5.753943590527249,
+        "final_world_fnv64": "3c3f21d9d67bd7b8",
+        "evidence_files": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-native\\runner-result.json",
+            "bytes": 8637,
+            "sha256": "edcd96ecafb681bcd7813174710e39c34e300cf6d41a9005d8057a7ada226a0e"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-native\\profile.json",
+            "bytes": 176863,
+            "sha256": "2769f4be626f6e145202d0e4d5e16c1546c6e3ca7ef0b4021e49e1428dcee050"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-native\\memory-samples.csv",
+            "bytes": 31737,
+            "sha256": "7036f9e2df793d70a1a5d9e09fffc5b8e56a5c5ce4e454ec8ac5f3e5410c9928"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-late-france-2035-map",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-late-france-2035-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590322894,
+        "end": 1790590542899,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-map\\browser-oYcgBn",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-map\\browser-oYcgBn\\result.json",
+          "bytes": 3983624,
+          "sha256": "0f98a251695d83b7277db808740d35451291071319e99575b42834b219a2713a"
+        },
+        "trace_sha256": "58faac3c42ed19123b35b48e4fd182daa0a3d2d75feaa3d9bc3711acc2a10a0e",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.65680098654352,
+            "frames": 1184,
+            "elapsed_ms": 12001.20000000298
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.33250556250299,
+            "frames": 1192,
+            "elapsed_ms": 12000.09999999404
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 33.1293960960586,
+            "frames": 398,
+            "elapsed_ms": 12013.5
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 99.99166736105325,
+            "frames": 1200,
+            "elapsed_ms": 12001
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.8267448836376,
+            "frames": 1186,
+            "elapsed_ms": 12000.80000000447
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.32919461689096,
+            "frames": 1192,
+            "elapsed_ms": 12000.5
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 88.57742817147724,
+            "frames": 1063,
+            "elapsed_ms": 12000.79999999702
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.99083417352168,
+            "frames": 1200,
+            "elapsed_ms": 12001.10000000149
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.200000002980232,
+            "p95_ms": 39.70000000298023,
+            "max_ms": 41.400000005960464
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.30000000447035,
+            "p95_ms": 42.69999999552965,
+            "max_ms": 42.70000000298023
+          }
+        ]
+      }
+    },
+    {
+      "id": "r1-late-france-2035-renderer",
+      "round": "initial_full_qualification",
+      "case": "late-france-2035",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r1-late-france-2035-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590551128,
+        "end": 1790590634587,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-renderer\\browser-Xj23bW",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r1-late-france-2035-renderer\\browser-Xj23bW\\result.json",
+          "bytes": 16018456,
+          "sha256": "adcf0f4e07a6eded9207faed03f94b65c20ffffe051454bb87ad051e5104e452"
+        },
+        "trace_sha256": "6435560d2dd55cbc99ccaaa2c0fd94e81538746cee8feebcb40f47672ce415df",
+        "viewer_fps": 99.91333622213834,
+        "frames": 1199,
+        "elapsed_ms": 12000.39999999851,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    },
+    {
+      "id": "r2-early-france-1999-native",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-early-france-1999-native",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590640892,
+        "end": 1790590668514,
+        "simulation": {
+          "samples": 31,
+          "median_ms": 133.7423,
+          "p95_ms": 193.7636,
+          "max_ms": 199.5934
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 181.7556,
+          "p95_ms": 252.02039999999997,
+          "max_ms": 264.7847
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 241,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 455168000,
+          "max_sampled_working_set_bytes": 388608000,
+          "os_peak_working_set_bytes": 414130176,
+          "max_observed_sample_gap_ms": 130.59309999999823,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "batch_elapsed_ms": 3500.1524,
+        "batch_days_per_second": 8.856757208628974,
+        "final_world_fnv64": "5e2885a23e03ba8e",
+        "evidence_files": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-native\\runner-result.json",
+            "bytes": 8640,
+            "sha256": "03f296c7221482590acad97c9fcf236811606024a8b98579f986c0a12cc0a4fb"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-native\\profile.json",
+            "bytes": 176461,
+            "sha256": "0da28d8ee918a7ae46872967d15e59d29a0420c95ad740a52818ef10fe478f74"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-native\\memory-samples.csv",
+            "bytes": 9845,
+            "sha256": "27c69aac86c0f7ee70bb33194d0677e8082479f7fbd1fd0c7f8454cd4490099d"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-early-france-1999-map",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-early-france-1999-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590671131,
+        "end": 1790590864693,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-map\\browser-bPnqo0",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-map\\browser-bPnqo0\\result.json",
+          "bytes": 4000708,
+          "sha256": "8a10b5b20d9696f33a51a110fb0bc1a700f563c15b730807d693d2f6e4ef2750"
+        },
+        "trace_sha256": "f13bca150821d90dd8796f1ac36be0cf9d0f8d0c0a2fe86634bf2291267d385e",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.83003899865095,
+            "frames": 1186,
+            "elapsed_ms": 12000.40000000596
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.32836691497525,
+            "frames": 1192,
+            "elapsed_ms": 12000.60000000149
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 37.06966770284882,
+            "frames": 446,
+            "elapsed_ms": 12031.39999999851
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 99.99666677772441,
+            "frames": 1200,
+            "elapsed_ms": 12000.40000000596
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.90842429797517,
+            "frames": 1187,
+            "elapsed_ms": 12001
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.49502524872521,
+            "frames": 1194,
+            "elapsed_ms": 12000.60000000149
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 91.29377269847465,
+            "frames": 1096,
+            "elapsed_ms": 12005.20000000298
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.99333377777299,
+            "frames": 1200,
+            "elapsed_ms": 12000.79999999702
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.399999998509884,
+            "p95_ms": 42.899999998509884,
+            "max_ms": 49.79999999701977
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.299999997019768,
+            "p95_ms": 38.20000000298023,
+            "max_ms": 39.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-early-france-1999-renderer",
+      "round": "second_full_confirmation",
+      "case": "early-france-1999",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-early-france-1999-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590871002,
+        "end": 1790590928674,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-renderer\\browser-dbo6AC",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-early-france-1999-renderer\\browser-dbo6AC\\result.json",
+          "bytes": 14102614,
+          "sha256": "6230928badaf71b19024240572cdd2cf5c54b368f81ded41fa642c0b912ed41e"
+        },
+        "trace_sha256": "1fd1fe14ec6b993811fff32652d82313685b591a13e883867808fd10538e3768",
+        "viewer_fps": 99.99583350693722,
+        "frames": 1200,
+        "elapsed_ms": 12000.5,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    },
+    {
+      "id": "r2-mid-france-2015-native",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-mid-france-2015-native",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590934632,
+        "end": 1790590995870,
+        "simulation": {
+          "samples": 31,
+          "median_ms": 159.5035,
+          "p95_ms": 258.5614,
+          "max_ms": 395.84000000000003
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 222.2881,
+          "p95_ms": 314.67,
+          "max_ms": 457.42699999999996
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 537,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 854745088,
+          "max_sampled_working_set_bytes": 781262848,
+          "os_peak_working_set_bytes": 834170880,
+          "max_observed_sample_gap_ms": 130.07600000000093,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "batch_elapsed_ms": 5993.4373000000005,
+        "batch_days_per_second": 5.172324068527421,
+        "final_world_fnv64": "5c486d0c186f921e",
+        "evidence_files": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-native\\runner-result.json",
+            "bytes": 10926,
+            "sha256": "d3c426bf20945e506f7bca5d021e892182a0e2459d168f2149e8c2d094a2dbed"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-native\\profile.json",
+            "bytes": 180525,
+            "sha256": "352dee9661fe1e3a305925504ec23647f007b78e98a5462b1fe481ec631f4f0f"
+          },
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-native\\memory-samples.csv",
+            "bytes": 21981,
+            "sha256": "8af2a4f1ad3c706cafe2b30d428a85a474c7cae5f57ef8b98e0b8f2200a688ca"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-mid-france-2015-map",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-mid-france-2015-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790590998703,
+        "end": 1790591207752,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-map\\browser-FVdPJ4",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-map\\browser-FVdPJ4\\result.json",
+          "bytes": 3952591,
+          "sha256": "f5b97f75ba0e9cd7c57e4edde85a990f6bf53f552c5fce6ed42da4f0c7c4c3bb"
+        },
+        "trace_sha256": "69a24243d3801d485dc82c2ef316923afef2be1500b2233a71b450fa06d95762",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.57429735606345,
+            "frames": 1183,
+            "elapsed_ms": 12001.10000000149
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.40755430750947,
+            "frames": 1193,
+            "elapsed_ms": 12001.10000000149
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 34.03879923765562,
+            "frames": 409,
+            "elapsed_ms": 12015.70000000298
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 99.99083417358375,
+            "frames": 1200,
+            "elapsed_ms": 12001.09999999404
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.66255572684472,
+            "frames": 1184,
+            "elapsed_ms": 12000.5
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.24503774810027,
+            "frames": 1191,
+            "elapsed_ms": 12000.60000000149
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 81.67581113817559,
+            "frames": 981,
+            "elapsed_ms": 12010.90000000596
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.9933337777109,
+            "frames": 1200,
+            "elapsed_ms": 12000.80000000447
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.19999999552965,
+            "p95_ms": 45.100000001490116,
+            "max_ms": 49.100000001490116
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.200000002980232,
+            "p95_ms": 51.30000000447035,
+            "max_ms": 51.70000000298023
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-mid-france-2015-renderer",
+      "round": "second_full_confirmation",
+      "case": "mid-france-2015",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-mid-france-2015-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790591215810,
+        "end": 1790591291007,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-renderer\\browser-vyPOLD",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-mid-france-2015-renderer\\browser-vyPOLD\\result.json",
+          "bytes": 15958477,
+          "sha256": "117c2e16f753bbcf71daee96f74b77c23a709a5c4b1288161520625e34777bbd"
+        },
+        "trace_sha256": "002ca88962440c4d737acde31d99357686d19d53201810e8b8300603359ddfc3",
+        "viewer_fps": 99.91583403476601,
+        "frames": 1199,
+        "elapsed_ms": 12000.09999999404,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    },
+    {
+      "id": "r2-late-france-2035-native",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "native",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-late-france-2035-native",
+      "passed": false,
+      "status": "failed",
+      "reason": "Expected values to be strictly deep-equal:\n\nfalse !== true\n"
+    },
+    {
+      "id": "r2-late-france-2035-map",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "map",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-late-france-2035-map",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790591388922,
+        "end": 1790591609829,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-late-france-2035-map\\browser-1Kjyr8",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-late-france-2035-map\\browser-1Kjyr8\\result.json",
+          "bytes": 4008689,
+          "sha256": "69f1a6f36784af0d780d44e6e83bdec30d21dd7bbcbd7941af79a4774ae5c2c8"
+        },
+        "trace_sha256": "e374c9405bf831c007fed28014480027642c1429b9ae6aa227d766671a368700",
+        "views": [
+          {
+            "detail": "standard",
+            "view": "world",
+            "fps": 98.66091144686902,
+            "frames": 1184,
+            "elapsed_ms": 12000.69999999553
+          },
+          {
+            "detail": "standard",
+            "view": "national",
+            "fps": 99.49585433940253,
+            "frames": 1194,
+            "elapsed_ms": 12000.5
+          },
+          {
+            "detail": "standard",
+            "view": "regional",
+            "fps": 38.3288297651216,
+            "frames": 461,
+            "elapsed_ms": 12027.5
+          },
+          {
+            "detail": "standard",
+            "view": "paris-city",
+            "fps": 99.99666677778649,
+            "frames": 1200,
+            "elapsed_ms": 12000.39999999851
+          },
+          {
+            "detail": "low",
+            "view": "world",
+            "fps": 98.7450627469117,
+            "frames": 1185,
+            "elapsed_ms": 12000.59999999404
+          },
+          {
+            "detail": "low",
+            "view": "national",
+            "fps": 99.49502524872521,
+            "frames": 1194,
+            "elapsed_ms": 12000.60000000149
+          },
+          {
+            "detail": "low",
+            "view": "regional",
+            "fps": 91.79814404477143,
+            "frames": 1102,
+            "elapsed_ms": 12004.60000000149
+          },
+          {
+            "detail": "low",
+            "view": "paris-city",
+            "fps": 99.99500024997508,
+            "frames": 1200,
+            "elapsed_ms": 12000.60000000149
+          }
+        ],
+        "controls": [
+          {
+            "detail": "standard",
+            "samples": 31,
+            "median_ms": 18.299999997019768,
+            "p95_ms": 40.600000001490116,
+            "max_ms": 42.29999999701977
+          },
+          {
+            "detail": "low",
+            "samples": 31,
+            "median_ms": 18.200000002980232,
+            "p95_ms": 43.899999998509884,
+            "max_ms": 47.899999998509884
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-late-france-2035-renderer",
+      "round": "second_full_confirmation",
+      "case": "late-france-2035",
+      "role": "renderer",
+      "output_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-qualification-pair-01/r2-late-france-2035-renderer",
+      "passed": true,
+      "status": "passed",
+      "observed": {
+        "start": 1790591618503,
+        "end": 1790591700510,
+        "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-late-france-2035-renderer\\browser-bViK76",
+        "result_file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-01\\r2-late-france-2035-renderer\\browser-bViK76\\result.json",
+          "bytes": 16016986,
+          "sha256": "96dd2a63e8fbd7858b4020153d60b2dbdac2ece54ab9d811bdb935516781abae"
+        },
+        "trace_sha256": "2a5622ad9240ca249d5a33417e027a235a8688b395721e4f9107f23adbf44ca6",
+        "viewer_fps": 99.91416881240913,
+        "frames": 1199,
+        "elapsed_ms": 12000.30000000447,
+        "inspection_triangles": [
+          200446,
+          200446,
+          200446,
+          200446,
+          200446,
+          200446
+        ],
+        "observations": 47
+      }
+    }
+  ],
+  "rounds": [
+    {
+      "round": "initial_full_qualification",
+      "passed": true,
+      "complete": true,
+      "cells": [
+        "r1-early-france-1999-native",
+        "r1-early-france-1999-map",
+        "r1-early-france-1999-renderer",
+        "r1-mid-france-2015-native",
+        "r1-mid-france-2015-map",
+        "r1-mid-france-2015-renderer",
+        "r1-late-france-2035-native",
+        "r1-late-france-2035-map",
+        "r1-late-france-2035-renderer"
+      ]
+    },
+    {
+      "round": "second_full_confirmation",
+      "passed": false,
+      "complete": true,
+      "cells": [
+        "r2-early-france-1999-native",
+        "r2-early-france-1999-map",
+        "r2-early-france-1999-renderer",
+        "r2-mid-france-2015-native",
+        "r2-mid-france-2015-map",
+        "r2-mid-france-2015-renderer",
+        "r2-late-france-2035-native",
+        "r2-late-france-2035-map",
+        "r2-late-france-2035-renderer"
+      ]
+    }
+  ],
+  "failures": []
+}

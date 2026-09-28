@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S21 complete; G4 earned; S22 in progress; S23–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S22 complete; G4 earned; S23–S30 planned; G5 and CP1 unearned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S21 are complete; G4 is earned; S22 is in progress and S23–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S22 are complete; G4 is earned; S23–S30 remain planned. G5 and CP1 are unearned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -749,26 +749,42 @@ Claude's submission was integrated and independently qualified by Codex.
 
 #### S22 — Repair art measurement and qualify performance
 
-**Status:** In progress · **Requires:** S18, S20
+**Status:** Complete · **Requires:** S18, S20
 
-Codex claimed S22 from `846df479`. The [plan](campaign-certification/S22/PLAN.md)
-and [measurement protocol](campaign-certification/S22/measurement-protocol.json)
-freeze the existing S01 limits before timing and require two complete passing
-rounds on the same candidate. The [current offline art audit](campaign-certification/S22/README.md)
-passes; actual dated campaign timing, rendered workloads and runtime cache/lifecycle
-qualification remain open. No S22 completion is claimed.
+Codex completed S22 on candidate `5d11dd6dae436eeca105dbaf0d02732cd768b35b`.
+The [closure evidence](campaign-certification/S22/manifest.json) records two
+complete passing rounds under the unchanged [measurement protocol](campaign-certification/S22/measurement-protocol.json):
+**18/18 early/mid/end-2035 native, map and renderer cells**, with independent
+frozen-helper verification. End-2035 confirmation simulation/history p95 was
+**237.4 ms** and whole-turn p95 **323.1374 ms**. The agreed reference machine,
+low-detail profile, memory, cold-load, control, cache and lifecycle checks retain
+their measured scope.
+
+Final validation passed **1,963 release tests, 0 failed, 112 ignored**, nine
+focused tests and eight actual 31-day world/headline comparisons. The current
+offline art audit passed **35 Node entries, 245 configurations, 33 assets and
+13 canonical GLB exports**. The [failed first pair](campaign-certification/S22/qualification-pair-01/README.md)
+remains failed at 17/18; its late confirmation p95 values of 323.6552 / 406.1905 ms,
+all prior failed preflights and validation attempts, diagnostic art overages and
+source scopes remain retained. Passing preflights did not substitute for the
+[new complete qualification pair](campaign-certification/S22/qualification-pair-02/README.md).
+S23 is next, owned by Claude and still planned pending C06. S24 awaits S23;
+G5 and CP1 remain unearned.
 
 **Completion marker:** A current art/memory audit and measured performance on the agreed reference machine and low-detail profile.
 
-- [ ] Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.
-- [ ] Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.
-- [ ] Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces.
+- [x] Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.
+- [x] Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.
+- [x] Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces.
 
 <a id="s23"></a>
 
 #### S23 — Audit certified-country history and cartoon coverage
 
-**Status:** Planned · **Requires:** C06, S10, S20
+**Status:** Planned · **Owner:** Claude · **Requires:** C06, S10, S20
+
+Next canonical session. C06 remains incomplete; the existing bounded
+CLAUDE-S23-MATRIX-01 preparation claim does not close the content gate.
 
 **Completion marker:** Every certified-country party/component and served historical/future appearance is covered by the agreed content standard.
 
@@ -781,6 +797,9 @@ qualification remain open. No S22 completion is claimed.
 #### S24 — Run worldwide startup and adversarial recovery checks
 
 **Status:** Planned · **Requires:** S17, S19, S20, S21, S22, S23
+
+S22 is complete. S24 still awaits S23 and its required content qualification;
+independent successor-fixture preparation retains its existing bounded scope.
 
 **Completion marker:** All starting/successor identities and core recovery paths have an explicit pass/fail result.
 
@@ -1034,7 +1053,8 @@ separate from the still-required C06/S23 historical-content gates.
 ## Execution history and current checkpoint
 
 The dated stop boundaries below are historical. The latest open-task closeout instruction
-supersedes those pauses: S19 and S20 are complete, G4 is earned, and S22 is now in progress.
+supersedes those pauses: S01–S22 are complete, G4 is earned, and S23 is next.
+S23 remains planned with C06 open; S24 awaits S23. G5 and CP1 remain unearned.
 The canonical JSON owns the current state; older records retain their original scope.
 
 S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. The later instruction “Continue through S15” authorized S12–S15. They are complete on the recorded runtime and authored France flight journey. That instruction stopped execution after S15, with S16 awaiting a new instruction and G3 and CP1 still unearned at that point. No later campaign, content or release certificate is awarded.
@@ -1047,4 +1067,10 @@ The following “next” authorized S18. It is now complete on its [recorded run
 
 The subsequent “Next” authorized independently ready Codex-owned S21 while Claude continued its S19 claim. S21 is complete on its exact recorded runtime and evidence. S20 still waits for S19 integration; G4 and CP1 are not earned. Execution stops after this S21 work.
 
-On 28 September 2026 UTC, the instruction to fix and complete open tasks closed S19 and S20 with retained campaign evidence and earned G4. Codex has claimed S22 performance qualification under its frozen measurement protocol. C01, G5 and CP1 remain open.
+On 28 September 2026 UTC, the instruction to fix and complete open tasks closed S19 and S20 with retained campaign evidence and earned G4. Codex then claimed S22 performance qualification under its frozen measurement protocol. C01, G5 and CP1 remained open at that checkpoint.
+
+Later on 28 September 2026 UTC, Codex completed [S22](campaign-certification/S22/manifest.json)
+on `5d11dd6dae436eeca105dbaf0d02732cd768b35b` after both complete qualification
+rounds passed all 18 cells. The prior failed pair01 and all earlier failures
+remain retained. S23 is the next canonical session, owned by Claude and still
+planned pending C06. S24 awaits S23; G5 and CP1 remain unearned.

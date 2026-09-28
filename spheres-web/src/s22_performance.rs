@@ -228,8 +228,18 @@ fn s22_prepare_checkpoints() {
         let days = report["ordinary_days"].as_u64().unwrap()+1;report["ordinary_days"]=json!(days);
         if certified {if let Err(e)=s22_certified_capabilities(&g.world,days>=30){failure=Some(e);break;}}
         if g.world.day==1 || outcome.1.is_some() {
-            writeln!(journal,"{}",json!({"facts":s22_facts(&g),"event_pause":outcome.1,
-                "response":"Ordinary event acknowledged by subsequent one-day request; terminal campaign pauses stop preparation"})).unwrap();
+            // Full-world fingerprints and power diagnostics belong to the
+            // monthly observation. A recurring war notice still retains its
+            // exact date/reason without serializing the entire world again.
+            let monthly=g.world.day==1;
+            let mut row=json!({"kind":if monthly{"monthly_state"}else{"event_acknowledgment"},
+                "date":g.world.date_str(),"calendar":s22_date(&g),
+                "absolute_day":spheres_sim::clock::absolute_day(&g.world),
+                "alive":g.world.player.is_some_and(|p|g.world.nation_opt(p).is_some_and(|n|n.alive)),
+                "event_pause":outcome.1,
+                "response":"Ordinary event acknowledged by subsequent one-day request; terminal campaign pauses stop preparation"});
+            if monthly {row["facts"]=s22_facts(&g);}
+            writeln!(journal,"{row}").unwrap();
             journal.flush().unwrap();
         }
         if g.world.month==1 && g.world.day==1 || s22_date(&g)==target {

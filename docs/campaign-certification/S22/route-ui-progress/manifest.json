@@ -1,0 +1,2047 @@
+{
+  "format": "spheres-s22-route-ui-progress/v1",
+  "status": "diagnostics_and_functional_preflight_only",
+  "qualification": false,
+  "packaged_utc": "2026-09-28T06:44:17.358Z",
+  "package_base_revision": "568e5a0b2abff43d55e916016bf27549809f60d4",
+  "source_evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence",
+  "scope": "Append-only captured evidence through native candidate1a8. Contended diagnostic timings do not qualify S22 or establish a performance comparison. Later storage revisions/tests are outside this packet.",
+  "diagnostics": [
+    {
+      "id": "s22-subsystem-2015-ministry-01",
+      "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+      "passed": true,
+      "status": "complete",
+      "qualification": false,
+      "actual_start": [
+        2015,
+        1,
+        1
+      ],
+      "actual_end": [
+        2015,
+        2,
+        1
+      ],
+      "rows": 31,
+      "exact_world_and_headlines": true,
+      "source_unchanged": true,
+      "ending_world_fnv64": "5c486d0c186f921e",
+      "timings": {
+        "command_preflight_ms": {
+          "max_ms": 43.0413,
+          "median_ms": 0.0014,
+          "p95_ms": 0.0017000000000000001,
+          "samples": 31
+        },
+        "comparison_ms": {
+          "max_ms": 641.5055,
+          "median_ms": 610.5591999999999,
+          "p95_ms": 637.6347,
+          "samples": 31
+        },
+        "instrumented_tick_ms": {
+          "max_ms": 984.9582,
+          "median_ms": 320.9991,
+          "p95_ms": 375.47979999999995,
+          "samples": 31
+        },
+        "native_game_tick_log_history_ms": {
+          "max_ms": 984.3077999999999,
+          "median_ms": 322.54290000000003,
+          "p95_ms": 501.45019999999994,
+          "samples": 31
+        }
+      },
+      "concurrency": "Diagnostic observations; not controlled qualification timing."
+    },
+    {
+      "id": "s22-subsystem-2015-resource-war-01",
+      "candidate_revision": "a07d37b94a074253c910afa00b012aac38a44241",
+      "passed": true,
+      "status": "complete",
+      "qualification": false,
+      "actual_start": [
+        2015,
+        1,
+        1
+      ],
+      "actual_end": [
+        2015,
+        2,
+        1
+      ],
+      "rows": 31,
+      "exact_world_and_headlines": true,
+      "source_unchanged": true,
+      "ending_world_fnv64": "5c486d0c186f921e",
+      "timings": {
+        "command_preflight_ms": {
+          "max_ms": 46.8361,
+          "median_ms": 0.0013,
+          "p95_ms": 0.0027,
+          "samples": 31
+        },
+        "comparison_ms": {
+          "max_ms": 671.0948,
+          "median_ms": 647.8498000000001,
+          "p95_ms": 669.3098,
+          "samples": 31
+        },
+        "instrumented_tick_ms": {
+          "max_ms": 1061.3786,
+          "median_ms": 332.8388,
+          "p95_ms": 495.48940000000005,
+          "samples": 31
+        },
+        "native_game_tick_log_history_ms": {
+          "max_ms": 1057.5922,
+          "median_ms": 335.6149,
+          "p95_ms": 580.4946,
+          "samples": 31
+        }
+      },
+      "concurrency": "Disposable a4e campaign preparation active03 may run concurrently; diagnostic stage attribution and exact equivalence only"
+    },
+    {
+      "id": "s22-subsystem-2015-ranking-01",
+      "candidate_revision": "733f9dd0b224b0c7920fdbffe73be5db590a6522",
+      "passed": true,
+      "status": "complete",
+      "qualification": false,
+      "actual_start": [
+        2015,
+        1,
+        1
+      ],
+      "actual_end": [
+        2015,
+        2,
+        1
+      ],
+      "rows": 31,
+      "exact_world_and_headlines": true,
+      "source_unchanged": true,
+      "ending_world_fnv64": "5c486d0c186f921e",
+      "timings": {
+        "command_preflight_ms": {
+          "max_ms": 45.9911,
+          "median_ms": 0.0013,
+          "p95_ms": 0.0017000000000000001,
+          "samples": 31
+        },
+        "comparison_ms": {
+          "max_ms": 669.3465,
+          "median_ms": 635.7481,
+          "p95_ms": 666.3013,
+          "samples": 31
+        },
+        "instrumented_tick_ms": {
+          "max_ms": 832.1195,
+          "median_ms": 350.8678,
+          "p95_ms": 492.6104,
+          "samples": 31
+        },
+        "native_game_tick_log_history_ms": {
+          "max_ms": 781.198,
+          "median_ms": 345.6642,
+          "p95_ms": 565.0463,
+          "samples": 31
+        }
+      },
+      "concurrency": "Disposable a4e campaign preparation active03 may run concurrently; diagnostic attribution and exact equivalence only"
+    },
+    {
+      "id": "s22-subsystem-2015-routes-military-01",
+      "candidate_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+      "passed": true,
+      "status": "complete",
+      "qualification": false,
+      "actual_start": [
+        2015,
+        1,
+        1
+      ],
+      "actual_end": [
+        2015,
+        2,
+        1
+      ],
+      "rows": 31,
+      "exact_world_and_headlines": true,
+      "source_unchanged": true,
+      "ending_world_fnv64": "5c486d0c186f921e",
+      "timings": {
+        "command_preflight_ms": {
+          "max_ms": 46.725500000000004,
+          "median_ms": 0.0013,
+          "p95_ms": 0.0028,
+          "samples": 31
+        },
+        "comparison_ms": {
+          "max_ms": 696.4859,
+          "median_ms": 636.8995,
+          "p95_ms": 686.5935,
+          "samples": 31
+        },
+        "instrumented_tick_ms": {
+          "max_ms": 664.0272,
+          "median_ms": 338.272,
+          "p95_ms": 486.51689999999996,
+          "samples": 31
+        },
+        "native_game_tick_log_history_ms": {
+          "max_ms": 660.7273,
+          "median_ms": 336.0111,
+          "p95_ms": 556.6561,
+          "samples": 31
+        }
+      },
+      "concurrency": "Instrumented equivalence and stage diagnosis; overlaps actual campaign preparation and functional web tests, not isolated performance"
+    }
+  ],
+  "browser_attempts": [
+    {
+      "id": "browser-06mwgM",
+      "source_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM",
+      "candidate_revision": "733f9dd0b224b0c7920fdbffe73be5db590a6522",
+      "checkout_revision": "733f9dd0b224b0c7920fdbffe73be5db590a6522",
+      "binary_sha256": "4e8010e9ec8803c8ea2faef526fc0ed8d19a244d6b7d10d0a1d8d7d0d206339c",
+      "checkpoint_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "passed": false,
+      "qualification": false,
+      "started_utc": "2026-09-28T06:20:03.740Z",
+      "finished_utc": "2026-09-28T06:20:17.296Z",
+      "failure": "AssertionError [ERR_ASSERTION]: First released fighter entry must submit actual GL geometry\n    at run (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\s22-renderer-browser.cjs:249:9)\n    at async run (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\s22-performance-browser.cjs:151:7)",
+      "renderer_passed": false,
+      "memory_complete": null,
+      "renderer_memory_complete": false,
+      "viewer_fps": null,
+      "layout_passed": null,
+      "layout_profiles": [],
+      "before_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "after_save": null,
+      "map_cells": [],
+      "trace": {
+        "file": "chrome-trace.json.gz",
+        "raw_bytes": 24426901,
+        "compressed_bytes": 2471377,
+        "sha256": "5c835d9c8cc0556d512e80c172b05ca6d4263b1cf77551b3cd33076e5c06dd14",
+        "categories": "benchmark,cc,viz,gpu,blink.user_timing"
+      }
+    },
+    {
+      "id": "browser-3FEH58",
+      "source_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58",
+      "candidate_revision": "733f9dd0b224b0c7920fdbffe73be5db590a6522",
+      "checkout_revision": "4e6b897a6634a85029c07d16120a5cccf572b09b",
+      "binary_sha256": "4e8010e9ec8803c8ea2faef526fc0ed8d19a244d6b7d10d0a1d8d7d0d206339c",
+      "checkpoint_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "passed": false,
+      "qualification": false,
+      "started_utc": "2026-09-28T06:24:18.505Z",
+      "finished_utc": "2026-09-28T06:25:12.252Z",
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(returned.visible&&returned.tag!=='BODY'&&!returned.inert)\n\n    at layout (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\s22-layout-browser.cjs:78:5)\n    at async run (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\s22-performance-browser.cjs:227:5)",
+      "renderer_passed": true,
+      "memory_complete": null,
+      "renderer_memory_complete": true,
+      "viewer_fps": 99.99916667359864,
+      "layout_passed": false,
+      "layout_profiles": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "passed": false,
+          "focus_return": [
+            {
+              "route": "keyboard Find → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Paris province → Escape → Find",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "before_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "after_save": null,
+      "map_cells": [],
+      "trace": {
+        "file": "chrome-trace.json.gz",
+        "raw_bytes": 221665700,
+        "compressed_bytes": 22811626,
+        "sha256": "1ec0a7956dea3e29ddb975b5f7119bdafc7d468fa68a81ba2d0fb8f9b5e6d39b",
+        "categories": "benchmark,cc,viz,gpu,blink.user_timing"
+      }
+    },
+    {
+      "id": "browser-LP4hVW",
+      "source_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW",
+      "candidate_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+      "checkout_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+      "binary_sha256": "9cfb51936e647e4fc951a9cfc843e390a60303cbd2b9c7003e035440538a4317",
+      "checkpoint_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "passed": true,
+      "qualification": false,
+      "started_utc": "2026-09-28T06:38:14.137Z",
+      "finished_utc": "2026-09-28T06:39:19.202Z",
+      "failure": null,
+      "renderer_passed": true,
+      "memory_complete": true,
+      "renderer_memory_complete": true,
+      "viewer_fps": 99.99666677772441,
+      "layout_passed": true,
+      "layout_profiles": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "passed": true,
+          "focus_return": [
+            {
+              "route": "keyboard Find → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Paris province → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Equipment → Escape → visible launcher",
+              "id": "techBtn",
+              "tag": "BUTTON",
+              "visible": true,
+              "inert": false,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 3440,
+            "height": 1440
+          },
+          "passed": true,
+          "focus_return": [
+            {
+              "route": "keyboard Find → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Paris province → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Equipment → Escape → visible launcher",
+              "id": "techBtn",
+              "tag": "BUTTON",
+              "visible": true,
+              "inert": false,
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "before_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "after_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "map_cells": [],
+      "trace": {
+        "file": "chrome-trace.json.gz",
+        "raw_bytes": 251890274,
+        "compressed_bytes": 25733239,
+        "sha256": "4decb3cb9986ededccab14e29929e27c21967eef7c44abecd46e950cbd03556b",
+        "categories": "benchmark,cc,viz,gpu,blink.user_timing"
+      }
+    },
+    {
+      "id": "browser-Mm2QB7",
+      "source_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7",
+      "candidate_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+      "checkout_revision": "5719a4ee2afedc3b4966585986e36719c4ea60a9",
+      "binary_sha256": "9cfb51936e647e4fc951a9cfc843e390a60303cbd2b9c7003e035440538a4317",
+      "checkpoint_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "passed": false,
+      "qualification": false,
+      "started_utc": "2026-09-28T06:40:01.472Z",
+      "finished_utc": "2026-09-28T06:43:27.743Z",
+      "failure": null,
+      "renderer_passed": null,
+      "memory_complete": true,
+      "renderer_memory_complete": null,
+      "viewer_fps": null,
+      "layout_passed": true,
+      "layout_profiles": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "passed": true,
+          "focus_return": [
+            {
+              "route": "keyboard Find → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Paris province → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Equipment → Escape → visible launcher",
+              "id": "techBtn",
+              "tag": "BUTTON",
+              "visible": true,
+              "inert": false,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 3440,
+            "height": 1440
+          },
+          "passed": true,
+          "focus_return": [
+            {
+              "route": "keyboard Find → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Paris province → Escape → Find",
+              "passed": true
+            },
+            {
+              "route": "Equipment → Escape → visible launcher",
+              "id": "techBtn",
+              "tag": "BUTTON",
+              "visible": true,
+              "inert": false,
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "before_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "after_save": "0caef8f8da7e491098b65a3f59f10ac9b5164dfd9c57bf622ac9a93ff8e12633",
+      "map_cells": [
+        {
+          "detail": "standard",
+          "input_passed": false,
+          "input_workload_valid": false,
+          "input_summary": {
+            "count": 31,
+            "min": 16.700000002980232,
+            "median": 18.100000001490116,
+            "p95": 45.29999999701977,
+            "max": 48.899999998509884
+          },
+          "views": [
+            {
+              "name": "world",
+              "passed": true,
+              "fps": 98.49671677605853,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "national",
+              "passed": true,
+              "fps": 99.2483458609393,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "regional",
+              "passed": true,
+              "fps": 32.079783918553915,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "paris-city",
+              "passed": true,
+              "fps": 99.9933337777109,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            }
+          ]
+        },
+        {
+          "detail": "low",
+          "input_passed": false,
+          "input_workload_valid": false,
+          "input_summary": {
+            "count": 31,
+            "min": 17.299999997019768,
+            "median": 18.100000001490116,
+            "p95": 50.099999994039536,
+            "max": 54.5
+          },
+          "views": [
+            {
+              "name": "world",
+              "passed": true,
+              "fps": 98.58004733170664,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "national",
+              "passed": true,
+              "fps": 99.16584028465198,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "regional",
+              "passed": true,
+              "fps": 56.06155125805781,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            },
+            {
+              "name": "paris-city",
+              "passed": true,
+              "fps": 99.9983333611479,
+              "workload_valid": true,
+              "active_canvas": {
+                "width": 1920,
+                "height": 792,
+                "css_width": 1920,
+                "css_height": 792
+              }
+            }
+          ]
+        }
+      ],
+      "trace": {
+        "file": "chrome-trace.json.gz",
+        "raw_bytes": 978958041,
+        "compressed_bytes": 101612346,
+        "sha256": "4338963a2c7200aacc3e0c7299510eb75053745adff635eb188399bd9d3b39c6",
+        "categories": "benchmark,cc,viz,gpu,blink.user_timing"
+      }
+    }
+  ],
+  "map_attempt_included": true,
+  "inputs": {
+    "actual_2015": {
+      "path": "../stock-fix-progress/inputs/s22-2015-01-01.json.gz",
+      "uncompressed_bytes": 130222370,
+      "uncompressed_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    "browser_adopted_early": {
+      "path": "../runtime-preflight/inputs/s22-adopted-input.json.gz",
+      "uncompressed_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+    }
+  },
+  "exclusions": [
+    "All native executables and complete server directories",
+    "Repeated raw campaign inputs and extracted91MB world; immutable source and extraction hashes retained",
+    "Redundant browser before/after save copies; recorded purity hashes and exact read-only state observations retained",
+    "Any incomplete running output at package cutoff",
+    "Later568e storage build/tests and unfrozen authoritative qualification rounds"
+  ],
+  "files": [
+    {
+      "path": "actual-transfer-parity/extraction.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-transfer-actual-2015-01\\extraction.json",
+      "bytes": 865,
+      "sha256": "0ce5a801a912f7c04329ac12aa2d1e8caca2f636e6b8ef8bf1822ac59c07ed1c",
+      "encoding": "identity"
+    },
+    {
+      "path": "actual-transfer-parity/test.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-transfer-actual-2015-01\\test.log",
+      "bytes": 232,
+      "sha256": "f34e8491c3b676bdf49319cc471ee5019d701a25002b5a715e8af9f631702387",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/chrome-trace.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\chrome-trace.json.gz",
+      "bytes": 2471377,
+      "sha256": "5c835d9c8cc0556d512e80c172b05ca6d4263b1cf77551b3cd33076e5c06dd14",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/driver.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\driver.cjs",
+      "bytes": 26436,
+      "sha256": "d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/failure.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\failure.png",
+      "bytes": 1133686,
+      "sha256": "7ea357ddaecce9c94e12e929ec0610296154190d09d25d7c03bc5c3393b2b619",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/failure.txt",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\failure.txt",
+      "bytes": 8435,
+      "sha256": "01aaa5d4df68c9540a3b6af6589b3d48df91925ddec4922a2d299eb2d83dde79",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\result.json",
+      "bytes": 527142,
+      "sha256": "5f8097e85f83d491829f605214bce3cebafc45ac6d98c4015a6ed4fbe1683b0d",
+      "encoding": "gzip",
+      "uncompressed_bytes": 6629903,
+      "uncompressed_sha256": "556c7012552ca951f836261ca9d974a9479c08da8d2c2e0055db0aac2f89de75"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-aircraft-mesh-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-aircraft-mesh-0.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-aircraft-visit-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-aircraft-visit-0.json",
+      "bytes": 4005,
+      "sha256": "1133e6e93b89acdf7c856d83115db4bcb2c8c0a53699397269d9fd0895e379bc",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-browser-contract.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-browser-contract.cjs",
+      "bytes": 1602,
+      "sha256": "e6e92f662712940992bdf78d9b51157cd9eb31b20ea1530ec40bb719650db2dd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-browser-observation.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-browser-observation.js",
+      "bytes": 2040,
+      "sha256": "d5db9723ca0f2a0cb12bcf7218bf4270b4d8068bd8bad9955b266957f7cb3e84",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-layout-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-layout-browser.cjs",
+      "bytes": 8505,
+      "sha256": "d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-renderer-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-renderer-browser.cjs",
+      "bytes": 29232,
+      "sha256": "cab54ace5e355bb4fa4bd7835251df904de34fed6ea6473a29eff042647cb58a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-renderer-result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-renderer-result.json",
+      "bytes": 259940,
+      "sha256": "ecd82c44d84303b66d5b3aa3f1a70ff5f7aa9aacf0349e7e58081c99fed3a7f8",
+      "encoding": "gzip",
+      "uncompressed_bytes": 6004007,
+      "uncompressed_sha256": "cccd2bf5620c9b8b61c986197965d19b9f68a0cba288dd4505835cac57bf10ef"
+    },
+    {
+      "path": "browser/browser-06mwgM/s22-renderer-state-before.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-renderer-state-before.json",
+      "bytes": 254030,
+      "sha256": "5b8f7c546eae3e8ac518fb17af946773d950ebb70d801050b907036e8696c7b6",
+      "encoding": "gzip",
+      "uncompressed_bytes": 5549694,
+      "uncompressed_sha256": "5802df2ea2cdecb53d1d98bc7b92664148ff1b20f3daf39050404001f05ed747"
+    },
+    {
+      "path": "browser/browser-06mwgM/server.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\server.log",
+      "bytes": 78,
+      "sha256": "b686068dda9f6c71c16d661f19c0a85b18175236d43dfd93f05a13d7a278a93f",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/webgl-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\webgl-measurement.js",
+      "bytes": 3827,
+      "sha256": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-06mwgM/webgl-texture-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\webgl-texture-measurement.js",
+      "bytes": 11698,
+      "sha256": "eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/chrome-trace.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\chrome-trace.json.gz",
+      "bytes": 22811626,
+      "sha256": "1ec0a7956dea3e29ddb975b5f7119bdafc7d468fa68a81ba2d0fb8f9b5e6d39b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/driver.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\driver.cjs",
+      "bytes": 26436,
+      "sha256": "d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/failure.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\failure.png",
+      "bytes": 115593,
+      "sha256": "bb1ccc99635c943866c92fb0dc35955c7cfaaa7de43948991d857347f80b5b0a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/failure.txt",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\failure.txt",
+      "bytes": 529,
+      "sha256": "2735ea927c9b311af09d7143c845411cebf61a96ae7b8bf004750e9c517997c6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\result.json",
+      "bytes": 1074560,
+      "sha256": "568c6370c430964b6fadcc1dc4e943d64b3375c861a6e084db4e702859a108e8",
+      "encoding": "gzip",
+      "uncompressed_bytes": 13808058,
+      "uncompressed_sha256": "3cd10e75e5e58751a8b6df47207c22cc75620d9819c6556a2dc5d58f23a6396c"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-390.png",
+      "bytes": 221796,
+      "sha256": "244909d20a058de9c435c9f858178393f68e79bca50e605f23352f79d13d9b01",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-0.json",
+      "bytes": 3989,
+      "sha256": "80c5bff145f5ed2bdaa8aed9ccc64190c19882a20fccec918c13d4a2788810af",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-1.json",
+      "bytes": 5530,
+      "sha256": "0b98c0f3b068cf82a233a99e33d05542a871ae6b60db18aab7f58874ba5d472b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-2.json",
+      "bytes": 7068,
+      "sha256": "c77d479b1aa5bee18ed373addf12a056f2a6bb0f483496b230b87b17530448a4",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-3.json",
+      "bytes": 8606,
+      "sha256": "640f6d2955130d3c2a5bd7d07ab9305a26baaf3acf09a9becb1ad0b26127f581",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-4.json",
+      "bytes": 10144,
+      "sha256": "5f4589af37fe0d5d7e1019067e5f1c8bed9cd550cebb02dfefcbaa247312dabf",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-closed-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-closed-5.json",
+      "bytes": 11682,
+      "sha256": "5a85f5a1f883f763aa6b2b94f8c9de5fb7e3fa81b4e908b4f550537b8bf1932d",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-0.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-1.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-2.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-3.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-4.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-mesh-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-mesh-5.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-restored.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-restored.png",
+      "bytes": 1156079,
+      "sha256": "f600f2ae213eb2ea9e945750ef226213b251391c61bc4bc3ffc8706160e4ce6a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-0.json",
+      "bytes": 4004,
+      "sha256": "bc93bc3a0d3c380eeacc2b7f068ef498482ad611d66629a3b427115dcfca8965",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-1.json",
+      "bytes": 5550,
+      "sha256": "34ff623b0010309d50aec5c9ee282c6d4abc7e2add2b2a09e873f7f5f88ffb25",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-2.json",
+      "bytes": 7088,
+      "sha256": "b8f9c88ed4c44d4ea8b44cfecd53d266c6fd6a1082a03b9be697b073f018914b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-3.json",
+      "bytes": 8626,
+      "sha256": "16a580e7e60de3fceb9be555521be0bd3c532440f4354e56de018f129672196c",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-4.json",
+      "bytes": 10164,
+      "sha256": "b45ec943b1a93534e0429d06007549d1d0d5ac126e91830037ef99432e6a61a8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-aircraft-visit-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-aircraft-visit-5.json",
+      "bytes": 11702,
+      "sha256": "57430dd8303524b300dbe320110fa8462259c70e3a042a27ff8bd21f593f6656",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-arsenal-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-arsenal-context-recovery.json",
+      "bytes": 16927,
+      "sha256": "34466db82e237a2ebe1ab39dda2b720a906950be12076cd9afa1dc02ecc81132",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-browser-contract.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-browser-contract.cjs",
+      "bytes": 1602,
+      "sha256": "e6e92f662712940992bdf78d9b51157cd9eb31b20ea1530ec40bb719650db2dd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-browser-observation.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-browser-observation.js",
+      "bytes": 3145,
+      "sha256": "a14b25917fba4274c24bde282794c92afcf3dd975fa240b142bd9cd78bbe8237",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-cities-disabled.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-cities-disabled.json",
+      "bytes": 13611,
+      "sha256": "3bfae2aa91e1369246e7418de8561230c81129f796b9569971732ee9114fd904",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-card-restored.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-card-restored.json",
+      "bytes": 13443,
+      "sha256": "77ef6b3cecf8fc7772a4234fe4a7487b097c9560ba8f70b183a89e662ada4b7e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-card-restored.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-card-restored.png",
+      "bytes": 1705284,
+      "sha256": "70f841cdd97875ed870a4718dd5a8d6ba7a9d5f69f32118344ae4e8c446d17f7",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-delhi.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-delhi.json",
+      "bytes": 13605,
+      "sha256": "c0d656e605a4564a581c4bf5ac5cd8714f04d509e3cd0f58054b01d7f20c5d7b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-mexico-city.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-mexico-city.json",
+      "bytes": 13775,
+      "sha256": "7492ac6946af33f22e12e46e36fbcd9efcede0b53c17009957cbff70bcfa6799",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-mumbai.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-mumbai.json",
+      "bytes": 13773,
+      "sha256": "7b6713b88c848dd209b7a8b5673ba7aec26efca9c649bf8b602cb288a6a39480",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-new-york.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-new-york.json",
+      "bytes": 13602,
+      "sha256": "71938f436f7a095f8b065c4c6e5045c2a89225003bd0502d7a8418adeeaf38e7",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-revisit.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-revisit.json",
+      "bytes": 13607,
+      "sha256": "70df32212bf9cfc973cdff84cd3584768ee51be4f112cea252840af83de063e0",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-0.json",
+      "bytes": 13444,
+      "sha256": "1922515b0e932b232aeb445ad3c0950201dcaf01119ac57d1e77f4207e4efe90",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-1.json",
+      "bytes": 13611,
+      "sha256": "0d1aa3c606358d90499d81d274c601993fa3903af8f3413caf17137fc18c7399",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-2.json",
+      "bytes": 13612,
+      "sha256": "fedb104ddc551be6ad1755728f2055fa58fdd79b03bd5900ccceb86a1a60c7de",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-3.json",
+      "bytes": 13612,
+      "sha256": "22c8805c78b56180100f3e2a2ccc35a1205cef4d01ed4682dca3b19c59ef3d31",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-4.json",
+      "bytes": 13612,
+      "sha256": "b3cfdd14f012e6cafb9d7ecbbd79efa70a985506fc64eb4fcbdccd7557a5b32d",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-room-closed-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-room-closed-5.json",
+      "bytes": 13612,
+      "sha256": "2339a7808dad0669f0b50e6d4cf26fde0b7ace0f986a223bdb8c36c683175969",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-sao-paulo.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-sao-paulo.json",
+      "bytes": 13779,
+      "sha256": "1804b494dd50dfa1ff6aaaabd7aad4c18f0e2673f6b1944fe0524abe32c1f939",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-tokyo.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-tokyo.json",
+      "bytes": 13428,
+      "sha256": "932589b700c356ab23e9f01f0a000ee0f77ec1c08920b9ee58f5cc2c6c0bb3a6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-city-tour-complete.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-city-tour-complete.json",
+      "bytes": 13613,
+      "sha256": "dd8b30a938bc6cd2856523c2cf183099a51491b963b2bda61efc5a5c78460d24",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-fighter-orbit-performance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-fighter-orbit-performance.json",
+      "bytes": 501520,
+      "sha256": "b08d693b17421feacf6a7b7777f34b14ccc6518547c8f668fa374b42ecc8fddd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-first-inspection-draws.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-first-inspection-draws.json",
+      "bytes": 5719,
+      "sha256": "887aaf2e276ee15cd1651fde14cba1c934d13eb8dc77bfdadb2c33101d5637db",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-globe-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-globe-context-recovery.json",
+      "bytes": 16979,
+      "sha256": "1ba918ff46a994704172273e0cbf584cd80caff8b5705bdecc9e3306637629e5",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-globe-restored.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-globe-restored.json",
+      "bytes": 13443,
+      "sha256": "71f650100ccbe741e0bc1c290c33b5a91a3edc516cd09ca0d4546ba291a799e4",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-inspection-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-inspection-context-recovery.json",
+      "bytes": 7098,
+      "sha256": "563a065edac3a608394862d44f5aa491d1f1427f1712779785230c0a843e5dfe",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-layout-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-layout-browser.cjs",
+      "bytes": 8505,
+      "sha256": "d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-layout-equipment-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-layout-equipment-390.png",
+      "bytes": 133949,
+      "sha256": "7250b69a3d6a3742ecc3b983414d52ee2f1d33ade1461817cffca9c07ba4e087",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-layout-province-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-layout-province-390.png",
+      "bytes": 158553,
+      "sha256": "2c35c58bdb9ba360b9e17ec53e17392d312f87d9e251c3bd41cc102eea395117",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-lazy-card-pending.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-lazy-card-pending.json",
+      "bytes": 13611,
+      "sha256": "cefed13bd1ac5d856458ba8840156e1e19496395a909132a61c7c616d6576870",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-lazy-card-removed.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-lazy-card-removed.json",
+      "bytes": 13640,
+      "sha256": "4ee6b8bb20b463e861bbf3edab631fe6a74f7db14f3471759a544b36ef09a376",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-lazy-card-visible.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-lazy-card-visible.json",
+      "bytes": 13611,
+      "sha256": "c588329eda41e0b961df623717f2994a96a5d47b617e77453dff187aefb05b6e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-low-detail.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-low-detail.json",
+      "bytes": 13607,
+      "sha256": "ec30251ad7470f74237d59dcc3fa93dcd09f71d46c984fef7bb70aec87e23aab",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-low-detail.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-low-detail.png",
+      "bytes": 1082796,
+      "sha256": "4612f7b924b8c059c292f343338f519131121b8ecb6d137934b99e2865f6823a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-renderer-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-renderer-browser.cjs",
+      "bytes": 29368,
+      "sha256": "9e45c0b87b8efe1615339762932127aa86cb627ab139424cca839f94ebaf4403",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-renderer-final.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-renderer-final.json",
+      "bytes": 13637,
+      "sha256": "b5964af89e0e88e237835366b139a074371e25d94a1d50118678fae6d08e6eb7",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-renderer-result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-renderer-result.json",
+      "bytes": 543755,
+      "sha256": "a2cf9e4fd85eae57976b487b5ebec8a0dcd40364d570713e961f8ef3cb18f835",
+      "encoding": "gzip",
+      "uncompressed_bytes": 12558085,
+      "uncompressed_sha256": "0ef0ab4cfe6fa33c840df8d2a172924a5983c638125f3a1503d5e539cec8e865"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-renderer-state-after.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-renderer-state-after.json",
+      "bytes": 254030,
+      "sha256": "c11c19bcfa6549f3052b42ee5fc28d53fb582fb9daec059639311a0f1a4bf99f",
+      "encoding": "gzip",
+      "uncompressed_bytes": 5549694,
+      "uncompressed_sha256": "4a335265347e97586510fc5cc1a7f78826c696d4955426876808181dd9b19c2a"
+    },
+    {
+      "path": "browser/browser-3FEH58/s22-renderer-state-before.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-renderer-state-before.json",
+      "bytes": 254030,
+      "sha256": "c11c19bcfa6549f3052b42ee5fc28d53fb582fb9daec059639311a0f1a4bf99f",
+      "encoding": "gzip",
+      "uncompressed_bytes": 5549694,
+      "uncompressed_sha256": "4a335265347e97586510fc5cc1a7f78826c696d4955426876808181dd9b19c2a"
+    },
+    {
+      "path": "browser/browser-3FEH58/server.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\server.log",
+      "bytes": 78,
+      "sha256": "68fdf2b239be60bcde8bb328d686fbbc6eb260fcc34894dfe0a9e79e8a72153e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/webgl-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\webgl-measurement.js",
+      "bytes": 3827,
+      "sha256": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-3FEH58/webgl-texture-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\webgl-texture-measurement.js",
+      "bytes": 11698,
+      "sha256": "eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/chrome-trace.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\chrome-trace.json.gz",
+      "bytes": 25733239,
+      "sha256": "4decb3cb9986ededccab14e29929e27c21967eef7c44abecd46e950cbd03556b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/driver.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\driver.cjs",
+      "bytes": 26436,
+      "sha256": "d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\result.json",
+      "bytes": 1091322,
+      "sha256": "07b457d0a676847f7ba5ed729525396e316e58bc2f2fcb95a7e6e88fd7a18df5",
+      "encoding": "gzip",
+      "uncompressed_bytes": 14109362,
+      "uncompressed_sha256": "87a6c8ca990173fecd44279f5a72a0dfd94c34f48d1e976f5f405736e6314110"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-390.png",
+      "bytes": 221796,
+      "sha256": "244909d20a058de9c435c9f858178393f68e79bca50e605f23352f79d13d9b01",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-0.json",
+      "bytes": 3989,
+      "sha256": "7a9b725f2297661a92e317e6602dc0701eabeec6a0353e724a03c58386abb177",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-1.json",
+      "bytes": 5530,
+      "sha256": "4d02654f70873de6d4c79d729c71cdccc51c826689173b85c3f92c9d34e80b51",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-2.json",
+      "bytes": 7068,
+      "sha256": "973e2d147bf1fbef62966d1cbfff1b6e1e3ccbcc151adc9d91856c0c7a91781d",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-3.json",
+      "bytes": 8606,
+      "sha256": "a272b38121fed670ff9b063e3771a8b9a9eb9569709a755461b1b16b6d1e08c8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-4.json",
+      "bytes": 10144,
+      "sha256": "157eac9ffd2b747f52cdcff6a8799b4393fa035676988eaa8ea4e03a4b53fc74",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-closed-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-closed-5.json",
+      "bytes": 11682,
+      "sha256": "9add042f0bca4b3d359677c234dcad12f88579cfcfab656d4f686734655911f3",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-0.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-1.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-2.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-3.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-4.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-mesh-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-mesh-5.json",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-restored.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-restored.png",
+      "bytes": 1156079,
+      "sha256": "f600f2ae213eb2ea9e945750ef226213b251391c61bc4bc3ffc8706160e4ce6a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-0.json",
+      "bytes": 4004,
+      "sha256": "1102f15750f89eb17eed89facdefe68144607a6d795c3dabc48de26f6394525e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-1.json",
+      "bytes": 5550,
+      "sha256": "faa5c3ee8b69678382b8427b75abd2d957c6e4095a58312f8d45741e834fa699",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-2.json",
+      "bytes": 7088,
+      "sha256": "b3fa309a5d618b15f3aa388b23f38860a53771b902e3c08410ca673694cb1046",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-3.json",
+      "bytes": 8626,
+      "sha256": "51b63006f2ab63ae1535f5cf3d72803ce2850be1398653b6bec1c816994124a4",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-4.json",
+      "bytes": 10164,
+      "sha256": "fe2c675844e22d4871dd6f3f1ac6d5786097d7b2f78e227235af0159b81d067b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-aircraft-visit-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-aircraft-visit-5.json",
+      "bytes": 11702,
+      "sha256": "b8e287ea36cf60db45625d1de8239108ef1bd98424521fb7dda297ff8dcc8d3a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-arsenal-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-arsenal-context-recovery.json",
+      "bytes": 16928,
+      "sha256": "310a97e3f775a52cdbead92384c7308a72aac78a6f9045be4935b112a00d9852",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-browser-contract.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-browser-contract.cjs",
+      "bytes": 1602,
+      "sha256": "e6e92f662712940992bdf78d9b51157cd9eb31b20ea1530ec40bb719650db2dd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-browser-observation.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-browser-observation.js",
+      "bytes": 3145,
+      "sha256": "a14b25917fba4274c24bde282794c92afcf3dd975fa240b142bd9cd78bbe8237",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-cities-disabled.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-cities-disabled.json",
+      "bytes": 13611,
+      "sha256": "2131ca5e0b020885612bd22bdb8b859b33f257ec32a709dbb07409ca86716db8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-card-restored.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-card-restored.json",
+      "bytes": 13444,
+      "sha256": "e45a88213f4c9248b379f9f8554996e7e283c3027a79d327dbfd17a38e2852c8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-card-restored.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-card-restored.png",
+      "bytes": 1705285,
+      "sha256": "48f72b82094f0e1ec0f292706cccab336d3887beba62cee4a7ae5e53ce0f74a6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-delhi.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-delhi.json",
+      "bytes": 13605,
+      "sha256": "6f58c9aaf6d381be40f5c9f1f01c53a406084b2b5c58a941b68419e3f2ecbe1b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-mexico-city.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-mexico-city.json",
+      "bytes": 13775,
+      "sha256": "207e8cb67af2bce83505f1c699ee1949a70e20dc856d8c73224a5e1e51e90455",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-mumbai.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-mumbai.json",
+      "bytes": 13773,
+      "sha256": "c1ad432ade9e989e5a0eb2c2f530797a1447ca852742bd0be81862e569a202f8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-new-york.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-new-york.json",
+      "bytes": 13602,
+      "sha256": "35fd51eac665e74c5f920a565a232559cbbbe191e3ba6989075e841908725f0d",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-revisit.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-revisit.json",
+      "bytes": 13607,
+      "sha256": "76e7e68ffc8e4bb1f2b7dae68d18daefc09725b7eb649100824544992f9ac9ce",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-0.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-0.json",
+      "bytes": 13444,
+      "sha256": "ebc1f1ceee9455599ed71cdcd0e4077cc8d1f6992b5682f01675e9ef1f011a9b",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-1.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-1.json",
+      "bytes": 13611,
+      "sha256": "57f692e1b370ed22e57842cfb2fb1a83d10c5e1b293ea03c0616308c683264ca",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-2.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-2.json",
+      "bytes": 13612,
+      "sha256": "09ab553c08aec528ff873b23312d0f93dac01f7db5f5011cc554e5993ed5af43",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-3.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-3.json",
+      "bytes": 13612,
+      "sha256": "ce09ea1154deaed961f9f43f3e189338b580edc6716c6b240a024699e02e610c",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-4.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-4.json",
+      "bytes": 13612,
+      "sha256": "60d520ffe22ab0dbfceb5338219fc6808ae1acee2aac010705414a3a8c3bd431",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-room-closed-5.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-room-closed-5.json",
+      "bytes": 13612,
+      "sha256": "ca279a93c069988fa0c12bd4c11e9b9cb890eaa6f25370202974ad6f839143ee",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-sao-paulo.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-sao-paulo.json",
+      "bytes": 13779,
+      "sha256": "cba4fa54b6159c1c879dfd523d453fca64abf0fc0c2588b2f67f455187ada24e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-tokyo.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-tokyo.json",
+      "bytes": 13427,
+      "sha256": "7d9c30c44eadf984a974b0572363af4d35a59dfe4fc5f5628bd646a9f9bb3c7e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-city-tour-complete.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-city-tour-complete.json",
+      "bytes": 13613,
+      "sha256": "27400122519ed7d1a749a14453544550ecc60147d8d30225e7fca53140e1bcab",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-fighter-orbit-performance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-fighter-orbit-performance.json",
+      "bytes": 506495,
+      "sha256": "fd97d29f4c6e221d7e18e5d762fae55d47f907a6326ef7db0e85e7d0fdb0fc02",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-first-inspection-draws.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-first-inspection-draws.json",
+      "bytes": 5728,
+      "sha256": "0e45976880eac797540054051f923a383006e17af6929ad33966a25d95605c4a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-globe-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-globe-context-recovery.json",
+      "bytes": 16979,
+      "sha256": "199863082587bd37872fa9448d4a3b3fd107e3ba534687976d5b6165afeb1ea1",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-globe-restored.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-globe-restored.json",
+      "bytes": 13443,
+      "sha256": "d351fb6a54ea12404c4185310858b5139b65e052f4cd3c6e4b9e6086ed34388d",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-inspection-context-recovery.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-inspection-context-recovery.json",
+      "bytes": 7098,
+      "sha256": "1e06d3bbfb2b199bf16671aabfb198034c1f4aeea3225d7b350a2fe2afd2db44",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-layout-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-layout-browser.cjs",
+      "bytes": 8505,
+      "sha256": "d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-layout-equipment-3440.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-layout-equipment-3440.png",
+      "bytes": 2527948,
+      "sha256": "b8cac89367c53824208e66a3495b5df620a7990067158cf149bd72bf789a4972",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-layout-equipment-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-layout-equipment-390.png",
+      "bytes": 133949,
+      "sha256": "7250b69a3d6a3742ecc3b983414d52ee2f1d33ade1461817cffca9c07ba4e087",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-layout-province-3440.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-layout-province-3440.png",
+      "bytes": 1814133,
+      "sha256": "b8d40c0821ec15924d5de77363f4aaa7cc8bfdf42bb884a4d945fef23017a035",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-layout-province-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-layout-province-390.png",
+      "bytes": 158553,
+      "sha256": "2c35c58bdb9ba360b9e17ec53e17392d312f87d9e251c3bd41cc102eea395117",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-lazy-card-pending.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-lazy-card-pending.json",
+      "bytes": 13611,
+      "sha256": "76b0997765fd2f07dadeff8e2dd781ec66dfe1008f07aca2f2820edbbe8ba1b9",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-lazy-card-removed.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-lazy-card-removed.json",
+      "bytes": 13640,
+      "sha256": "f82fb3fc99d4764aaa32f1a433a09045be7ef471243c1164c72e4a923e13bab6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-lazy-card-visible.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-lazy-card-visible.json",
+      "bytes": 13611,
+      "sha256": "30d58689130fe0b05f21312db580fb0ab4cdb314147229e947b714472ce6d38e",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-low-detail.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-low-detail.json",
+      "bytes": 13607,
+      "sha256": "237db1e358c1440d54e33f6086ae07f76a47f2c9e23bd7d90e229e557acb2899",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-low-detail.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-low-detail.png",
+      "bytes": 1082759,
+      "sha256": "096fbd66bdeb6264e5aa869a1f3f3d14498b2bba49f1fe3f30d58d960c938a00",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-renderer-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-renderer-browser.cjs",
+      "bytes": 29368,
+      "sha256": "9e45c0b87b8efe1615339762932127aa86cb627ab139424cca839f94ebaf4403",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-renderer-final.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-renderer-final.json",
+      "bytes": 13637,
+      "sha256": "2d78d30b7465b0ddd357d3609bb0c05fc6adfd076177909b8e45c8723557f1a5",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-renderer-result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-renderer-result.json",
+      "bytes": 544137,
+      "sha256": "245f234520e275b334ddcc110a99f95dd905ea937c416014445250b2f320adba",
+      "encoding": "gzip",
+      "uncompressed_bytes": 12563048,
+      "uncompressed_sha256": "fb87ea55e289d61e7d6e0830d3fdeca30a821e9b7a542b48c95d62ccc140906a"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-renderer-state-after.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-renderer-state-after.json",
+      "bytes": 254027,
+      "sha256": "d461e00290f1e00c2efe2639e18e662bd6abab1d3526d3f67636e4ac9f6d1dfd",
+      "encoding": "gzip",
+      "uncompressed_bytes": 5549694,
+      "uncompressed_sha256": "bc5dc7753482075ed2a6c218dd1bba48e706f337090898f02ad2d95cb908c52c"
+    },
+    {
+      "path": "browser/browser-LP4hVW/s22-renderer-state-before.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-renderer-state-before.json",
+      "bytes": 254027,
+      "sha256": "d461e00290f1e00c2efe2639e18e662bd6abab1d3526d3f67636e4ac9f6d1dfd",
+      "encoding": "gzip",
+      "uncompressed_bytes": 5549694,
+      "uncompressed_sha256": "bc5dc7753482075ed2a6c218dd1bba48e706f337090898f02ad2d95cb908c52c"
+    },
+    {
+      "path": "browser/browser-LP4hVW/server.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\server.log",
+      "bytes": 78,
+      "sha256": "5072c58f59603faa4ace5acc79554614226caa463cfa0947455080705cb54ed1",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/webgl-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\webgl-measurement.js",
+      "bytes": 3827,
+      "sha256": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-LP4hVW/webgl-texture-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\webgl-texture-measurement.js",
+      "bytes": 11698,
+      "sha256": "eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/chrome-trace.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\chrome-trace.json.gz",
+      "bytes": 101612346,
+      "sha256": "4338963a2c7200aacc3e0c7299510eb75053745adff635eb188399bd9d3b39c6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/driver.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\driver.cjs",
+      "bytes": 26436,
+      "sha256": "d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/low-national.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\low-national.png",
+      "bytes": 1262227,
+      "sha256": "8d52301d450c2c53ac09939230a4b090ebe864f972163a24f3dadc33a7e8dc99",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/low-paris-city.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\low-paris-city.png",
+      "bytes": 1107445,
+      "sha256": "5fbc345e8f47a3006a8bd4191650a336dd5a957ca381c6627466561be0ec986f",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/low-regional.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\low-regional.png",
+      "bytes": 651617,
+      "sha256": "b6bc67813c0f44d634b1a3014fbe9611a0684a4df1380ac78dee66ed723fc7ec",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/low-world.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\low-world.png",
+      "bytes": 815360,
+      "sha256": "da088a34141ec104800c0e9a82fa370d9eace6f37b1f74bf31b2403004c0ba1a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/map-3440.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\map-3440.png",
+      "bytes": 2200644,
+      "sha256": "db13c10cfc17d67fc37b0cdaa35a42bbf4ff8c1d7b7d43ad96c55d4d486d9e60",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/map-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\map-390.png",
+      "bytes": 176336,
+      "sha256": "2c0c5fa80c4118339a7312cf39130cc99208b9cccdef637f8a7568364cff06f2",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/result.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\result.json",
+      "bytes": 168833,
+      "sha256": "f80f03b64027d256f5594d6d8e026feb18d7ae1e053d375a109b48713eddaf64",
+      "encoding": "gzip",
+      "uncompressed_bytes": 3802053,
+      "uncompressed_sha256": "453e51a0694a2e80ea8b755254f709816fce2f606ebfa63249607ece14118a7d"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-browser-contract.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-browser-contract.cjs",
+      "bytes": 1602,
+      "sha256": "e6e92f662712940992bdf78d9b51157cd9eb31b20ea1530ec40bb719650db2dd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-browser-observation.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-browser-observation.js",
+      "bytes": 3145,
+      "sha256": "a14b25917fba4274c24bde282794c92afcf3dd975fa240b142bd9cd78bbe8237",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-layout-browser.cjs",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-layout-browser.cjs",
+      "bytes": 8505,
+      "sha256": "d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-layout-equipment-3440.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-layout-equipment-3440.png",
+      "bytes": 2527948,
+      "sha256": "b8cac89367c53824208e66a3495b5df620a7990067158cf149bd72bf789a4972",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-layout-equipment-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-layout-equipment-390.png",
+      "bytes": 133949,
+      "sha256": "7250b69a3d6a3742ecc3b983414d52ee2f1d33ade1461817cffca9c07ba4e087",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-layout-province-3440.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-layout-province-3440.png",
+      "bytes": 1811747,
+      "sha256": "85b57d8b7b557c4b413a11994461bfbc64ee65ccceb4b7f1286bc62d64ceffcd",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/s22-layout-province-390.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-layout-province-390.png",
+      "bytes": 158990,
+      "sha256": "684f04ba9833f35e12b9083f679f3ba55bff0e837be60f924dbd0cadde08db5a",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/server.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\server.log",
+      "bytes": 78,
+      "sha256": "85e6b699969f76d92f57d8bac9cfb65a2c0d5fa42ce9b4788154ff15c6d81cc7",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/standard-national.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\standard-national.png",
+      "bytes": 1434453,
+      "sha256": "496f088efdafb560ee2d1fbf0fe8474d5ba16fedc31372fc4ba8dd8f9cb11495",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/standard-paris-city.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\standard-paris-city.png",
+      "bytes": 1761022,
+      "sha256": "5760d7cd3abc7ebbee793bf56fbdcd0588760e53f483f7c023dba8d995436144",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/standard-regional.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\standard-regional.png",
+      "bytes": 950890,
+      "sha256": "7a0727d942c5e8e691dbb7e87d40a4aa76ccabe0a7c2cca671a1abbf71a900ba",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/standard-world.png",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\standard-world.png",
+      "bytes": 833029,
+      "sha256": "c2d9c26d9f8373d5c6de33a77d6d20479d3a2f2c5a371de6ecd64781d42ef4eb",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/webgl-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\webgl-measurement.js",
+      "bytes": 3827,
+      "sha256": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/browser-Mm2QB7/webgl-texture-measurement.js",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\webgl-texture-measurement.js",
+      "bytes": 11698,
+      "sha256": "eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/console/s22-browser-guards-renderer-02-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-renderer-02-console.log",
+      "bytes": 933,
+      "sha256": "6d13b66fa0f584c081c6e50b74a02f1604de1ffbe2c143f2e9d32392a147f17c",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/console/s22-browser-guards-renderer-03-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-renderer-03-console.log",
+      "bytes": 316,
+      "sha256": "ba62c5e2bbd58559bcc1fd92ca7c62ed50f11ae4b7ca6ab80c27f5c6329af596",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/console/s22-browser-guards-renderer-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-renderer-console.log",
+      "bytes": 883,
+      "sha256": "2794640983b1d748be011cd137ceaca2f9143d6079fc3aadce97e7ee1757dfb8",
+      "encoding": "identity"
+    },
+    {
+      "path": "browser/console/s22-browser-map-guards-01-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-01-console.log",
+      "bytes": 623,
+      "sha256": "b8e8413880a170f6d8679b8145051eee19a3c7f2ec8896694f2aaf310ddb6bee",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostic-notes/s22-economic-monthend-readonly-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-economic-monthend-readonly-review.md",
+      "bytes": 3333,
+      "sha256": "7f44f746a155b2a784b1db1d528a0f01c23d44e9f2120cd89ce9ee323fefc3bc",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostic-notes/s22-military-jan12-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-military-jan12-review.md",
+      "bytes": 3454,
+      "sha256": "a438b8f1ed39e8a22b8fc31db9e1a39f0f71c03dddaadab19affa14a3a50ad25",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ministry-01/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ministry-01\\native.log",
+      "bytes": 3745,
+      "sha256": "b6d4a08470745d80657938dd3b58c809ddce6b6b7a4c9f8a68aab268f8de10e0",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ministry-01/profile.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ministry-01\\profile.json",
+      "bytes": 125724,
+      "sha256": "07343457b85c78a6777d68f027c267da864ff9987f464b353e8502423a63ee51",
+      "encoding": "gzip",
+      "uncompressed_bytes": 1970212,
+      "uncompressed_sha256": "398e2065a4d910575444f3124c2f608fc0e480dd32ff87462d1877e47cd44775"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ministry-01/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ministry-01\\provenance.json",
+      "bytes": 1130,
+      "sha256": "560d3910318768e830d2b3a9c3b40bbae5d34a49a54a7cb3e802cbd7b86bb23f",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ranking-01/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ranking-01\\native.log",
+      "bytes": 3745,
+      "sha256": "23ef1052568b6c659f0d61f78eedcae0a1ea615df75e57a8580a25192995c6c9",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ranking-01/profile.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ranking-01\\profile.json",
+      "bytes": 137962,
+      "sha256": "04a1005616d53c8b9a3f30cf20c428c0fb54942082204e86f164590871b52c82",
+      "encoding": "gzip",
+      "uncompressed_bytes": 2114592,
+      "uncompressed_sha256": "2d2480abf325b44d00c7effd7d09501b4ddbf32d464e306336fc810570f7063b"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-ranking-01/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-ranking-01\\provenance.json",
+      "bytes": 1268,
+      "sha256": "c949feb1384783c14c39ad533c6545d355a86fcedb8ce04ed2266b428b4ef258",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-resource-war-01/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-resource-war-01\\native.log",
+      "bytes": 3747,
+      "sha256": "64345c3a7ab2aabcf5be0b64641feb951a45abbd9a48d975da2aad4e94ea48c9",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-resource-war-01/profile.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-resource-war-01\\profile.json",
+      "bytes": 130024,
+      "sha256": "724e14acfb1240a638efa5489bf5b62c8bc9827cae7f4efe62a7bb0b4feaf228",
+      "encoding": "gzip",
+      "uncompressed_bytes": 2018617,
+      "uncompressed_sha256": "d4c44eee024413ad5f8e6a7810600ce212229aa961d5cfc4326499853828bf43"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-resource-war-01/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-resource-war-01\\provenance.json",
+      "bytes": 1274,
+      "sha256": "d86499e207988af2dab1cd32608b37ce543254ce3e143cb0fb22ea86ecfbd312",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-routes-military-01/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-routes-military-01\\native.log",
+      "bytes": 3745,
+      "sha256": "3c4aabd030fb7dcb5f2b606bb43df7b794cd5c57eb685601d73652ac6aca14f0",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-routes-military-01/profile.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-routes-military-01\\profile.json",
+      "bytes": 216060,
+      "sha256": "353ec63e17ec0d321b997dca45da4ae033931afe122dd2a0a354f399fac53642",
+      "encoding": "gzip",
+      "uncompressed_bytes": 2712618,
+      "uncompressed_sha256": "99cfdd6b400fb63b63997b3208504ce8ee2672703ebeb670d2a2e051da0158dc"
+    },
+    {
+      "path": "diagnostics/s22-subsystem-2015-routes-military-01/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2015-routes-military-01\\provenance.json",
+      "bytes": 1279,
+      "sha256": "9d64a858fb5c7b2459f8b39305b616a21207f2d202636d7f30b536945e2aaf70",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-lazy-ranking-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-lazy-ranking-build.log",
+      "bytes": 1627,
+      "sha256": "dc059d9c705425d28e168292f0e94cd04da0c06b86c797f6091224c26ed6b8be",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-lazy-ranking-server-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-lazy-ranking-server-build.log",
+      "bytes": 1069,
+      "sha256": "8f3c912dbbc9d6c676e9340617303efd2b72070fc560aec974e776116ded5046",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-lazy-ranking-sim-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-lazy-ranking-sim-tests.log",
+      "bytes": 1361,
+      "sha256": "2461af7c6652723cf5d2e8c3a845fc7149da7960044793e2bed149229b26348a",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-lazy-ranking-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-lazy-ranking-tests-provenance.json",
+      "bytes": 822,
+      "sha256": "92d005086bf5ab647340503b265ec5841e516fe0e804fd77289139d40ce855d7",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-lazy-ranking-web-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-lazy-ranking-web-tests.log",
+      "bytes": 43996,
+      "sha256": "6e7b2c9e6c251fc5666fa482b1d77c0050312bff360f058ce61b9240402642fd",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-resource-war-observer-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-resource-war-observer-build.log",
+      "bytes": 1637,
+      "sha256": "ba682462ecd501f989d9c21f7b38b2924b4f529bac9400716ef5e6eff3dd94af",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-resource-war-observer-test.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-resource-war-observer-test.log",
+      "bytes": 214,
+      "sha256": "92e097fcf8e87639314e31c1da88f3dccaea8ed9783149b89f37684fac4e489d",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-build.log",
+      "bytes": 1627,
+      "sha256": "f669d50c7c628fa119a766459b09fd62d76d120f708a6a08f5f0342d692c79ce",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-logistics-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-logistics-tests.log",
+      "bytes": 5038,
+      "sha256": "8e79a65d4457d209b14d99463b1940d398ac132fb31963ea45350ea0d048ba20",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-server-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-server-build.log",
+      "bytes": 1069,
+      "sha256": "9c84f316999755a5a29392a9c3bcda42ee0bb5ed76dc7b0fadd791ed5e63eead",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-tests-provenance.json",
+      "bytes": 1176,
+      "sha256": "5fbe2c53ddad80a60c223f3af3af17006d5c6fc66b7d597f8b5b9150f367bb0e",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-transfer-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-transfer-tests.log",
+      "bytes": 543,
+      "sha256": "3aa437fa4a71c4024c4c48020fb699dd58a4fcb28653c233c5d76daf32ec9e35",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-route-reuse-web-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-route-reuse-web-tests.log",
+      "bytes": 43996,
+      "sha256": "7500bb83ecdda0030898583833b1637422ada1f7eca3928b387dc64a282b1a7b",
+      "encoding": "identity"
+    }
+  ]
+}

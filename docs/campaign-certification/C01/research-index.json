@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 34,
-    "sources": 1329,
-    "source_claims": 3731,
+    "sources": 1328,
+    "source_claims": 3728,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -461,7 +461,7 @@
       "organization_observations": 1,
       "institution_observations": 4,
       "role_observations": 6,
-      "source_claims": 98,
+      "source_claims": 95,
       "mapping_pending": 5,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -2668,8 +2668,8 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 774754,
-      "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36"
+      "bytes": 786813,
+      "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
@@ -2708,8 +2708,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 191099,
-      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
+      "bytes": 199067,
+      "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8"
     },
     {
       "path": "tools/avatars/campaign_research.py",

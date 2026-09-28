@@ -1,0 +1,287 @@
+✔ committed inventory identities and activation paths match the current sources (24.9434ms)
+✔ the inventory holds each of the 23 expected successor identities exactly once (1.1401ms)
+✔ mapping discrepancies are flagged without reducing the expectation (0.828ms)
+✔ the inventory validator rejects missing, duplicate, misclassified and unflagged identities (0.95ms)
+✔ committed results are complete, labelled and tied to this exact inventory and build (10.0826ms)
+✔ historical submitted results pin the exact historical harness blobs (84.392ms)
+✔ at least three representative activations ran, including USSR -> Russia, with inspection after save/reload (2.1104ms)
+✔ passed, failed, blocked and unrun are reported independently for every layer (2.2017ms)
+✔ the result validator rejects mislabelled or inconsistent results (129.2126ms)
+✔ staging splices only the two parent values and preserves unrepresentable integers (0.8903ms)
+✔ staging refuses missing, duplicated, dead or malformed parent records (0.452ms)
+✔ Rust readers ignore comments, strings and lifetimes (2.8169ms)
+✔ historical exporter receipts report matching projections, without retained original bytes (3.8097ms)
+✖ current acceptance rejects historical hash-only inputs (8.3857ms)
+✖ passing requires every named check exactly once and retained browser screenshots (8.7025ms)
+✖ runtime, clean-tree and served asset proof cannot be waived by a passed browser case (14.2544ms)
+✖ native exporter provenance must pin the exact consumed archive and runtime (8.634ms)
+✖ failed staging cannot support a passed activation (7.9038ms)
+✖ blocked environment errors remain blocked even before the first check (7.0503ms)
+✖ failed or blocked cases yield nonzero command exit even when the record is valid (0.1744ms)
+✖ unrun no-hook claims cannot hide supported activation or selection cases (7.1903ms)
+✖ retained archive verification checks gzip and decoded bytes and confines references (0.5255ms)
+✖ screenshot references cannot leave the evidence directory (5.3192ms)
+✖ staging rejects duplicate JSON keys instead of patching a shadowed value (0.407ms)
+✖ command options reject unknown recipes and duplicate requested identities (0.3234ms)
+✖ frozen served asset identity permits only explicit CRLF transport differences (0.0996ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 13
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 396.1017
+
+✖ failing tests:
+
+test at tools\ui\check_successor_fixtures.cjs:212:1
+✖ current acceptance rejects historical hash-only inputs (8.3857ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /retained input verification failed/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:214:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /retained input verification failed/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:216:1
+✖ passing requires every named check exactly once and retained browser screenshots (8.7025ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /missing required check/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:221:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /missing required check/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:228:1
+✖ runtime, clean-tree and served asset proof cannot be waived by a passed browser case (14.2544ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(lib.validateResults(r, inventory(), options).length > 0)
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:231:5)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:234:1
+✖ native exporter provenance must pin the exact consumed archive and runtime (8.634ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /exporter provenance does not match/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:237:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /exporter provenance does not match/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:240:1
+✖ failed staging cannot support a passed activation (7.9038ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /staged fixture checks did not pass/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:243:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /staged fixture checks did not pass/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:245:1
+✖ blocked environment errors remain blocked even before the first check (7.0503ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'Case Croatia/browser_ui: an executed case needs checks'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:249:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'Case Croatia/browser_ui: an executed case needs checks' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:251:1
+✖ failed or blocked cases yield nonzero command exit even when the record is valid (0.1744ms)
+  TypeError: lib.resultExitCode is not a function
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:252:20)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at tools\ui\check_successor_fixtures.cjs:256:1
+✖ unrun no-hook claims cannot hide supported activation or selection cases (7.1903ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /contradicts the available native path/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:260:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /contradicts the available native path/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:262:1
+✖ retained archive verification checks gzip and decoded bytes and confines references (0.5255ms)
+  TypeError: lib.retainedArchive is not a function
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:265:14)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at tools\ui\check_successor_fixtures.cjs:271:1
+✖ screenshot references cannot leave the evidence directory (5.3192ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /screenshot without file/. Input:
+  
+  'Case Croatia/browser_ui: screenshot hash differs for screenshots/croatia-after_activation-budget.jpg\n' +
+    'Case Croatia/browser_ui: screenshot hash differs for screenshots/croatia-after_reload-guidance.jpg\n' +
+    'Case Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_activation-government.jpg\n' +
+    'Case Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_activation-budget.jpg\n' +
+    'Case Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_reload-guidance.jpg\n' +
+    'Case Russia/browser_ui: screenshot hash differs for screenshots/russia-after_activation-government.jpg\n' +
+    'Case Russia/browser_ui: screenshot hash differs for screenshots/russia-after_activation-budget.jpg\n' +
+    'Case Russia/browser_ui: screenshot hash differs for screenshots/russia-after_reload-guidance.jpg\n' +
+    'Case Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_activation-government.jpg\n' +
+    'Case Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_activation-budget.jpg\n' +
+    'Case Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_reload-guidance.jpg'
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:274:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Case Croatia/browser_ui: screenshot hash differs for screenshots/croatia-after_activation-budget.jpg\nCase Croatia/browser_ui: screenshot hash differs for screenshots/croatia-after_reload-guidance.jpg\nCase Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_activation-government.jpg\nCase Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_activation-budget.jpg\nCase Kazakhstan/browser_ui: screenshot hash differs for screenshots/kazakhstan-after_reload-guidance.jpg\nCase Russia/browser_ui: screenshot hash differs for screenshots/russia-after_activation-government.jpg\nCase Russia/browser_ui: screenshot hash differs for screenshots/russia-after_activation-budget.jpg\nCase Russia/browser_ui: screenshot hash differs for screenshots/russia-after_reload-guidance.jpg\nCase Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_activation-government.jpg\nCase Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_activation-budget.jpg\nCase Serbia/browser_ui: screenshot hash differs for screenshots/serbia-after_reload-guidance.jpg',
+    expected: /screenshot without file/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:276:1
+✖ staging rejects duplicate JSON keys instead of patching a shadowed value (0.407ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:278:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Duplicate JSON key/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:280:1
+✖ command options reject unknown recipes and duplicate requested identities (0.3234ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:282:168)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /recipe|duplicate/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_successor_fixtures.cjs:285:1
+✖ frozen served asset identity permits only explicit CRLF transport differences (0.0996ms)
+  TypeError: lib.verifyServedText is not a function
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\ui\check_successor_fixtures.cjs:287:21)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)

@@ -81,6 +81,12 @@ IN_FLIGHT = {
                       'scope': 'Saudi Shura Council and Allegiance Commission chairs, 1990-2026'},
     'CLAUDE-C01-27': {'case': 'India', 'targets': ['party:India/in_bjp'],
                       'scope': 'Bharatiya Janata Party presidents, 1990-2026'},
+    'CLAUDE-C01-28': {'case': 'USSR -> Russia',
+                      'targets': ['party:Russia/' + p for p in ('ru_kprf', 'ru_ldpr', 'ru_yabloko', 'ru_apr', 'ru_vybor')],
+                      'scope': 'Five Russian party-leader chains; active research claim, no accepted mapping'},
+    'CLAUDE-C01-29': {'case': 'Japan',
+                      'targets': ['party:Japan/jp_jsp', 'party:Japan/jp_jsp/jp_jsp_1945', 'party:Japan/jp_jsp/jp_sdp_1996'],
+                      'scope': 'Japan Socialist Party / Social Democratic Party chairs; active research claim, no accepted mapping'},
     'CLAUDE-C01-SOURCE-05': {'case': 'USSR -> Russia', 'targets': [],
                              'scope': 'Source-review repair of one CLAUDE-C01-05 source (no coverage change)'},
     'CLAUDE-C01-SOURCE-06': {'case': 'SaudiArabia', 'targets': [],
@@ -101,6 +107,45 @@ SOURCE_REPAIRS = {
     'CLAUDE-C01-SOURCE-06': {'parent': 'CLAUDE-C01-06', 'nation': 'SaudiArabia',
                             'source': 'sa_bush41_address_19900808',
                             'snapshot': RESEARCH / 'sources/saudi-arabia-bush41-address-19900808-facts.json'},
+    'CLAUDE-C01-SOURCE-17': {'parent': 'CLAUDE-C01-17', 'nation': 'Brazil',
+                            'source_snapshots': {
+                                'br_cn_dcn1_20230102_p20_26': 'reviewed-extracts/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json',
+                                'br_cn_dcn1_20230102_p18_19': 'reviewed-extracts/brazil-congress-dcn-lula-diploma-20230102-facts.json',
+                                'br_cn_dcn1_20230102_p1_8': 'reviewed-extracts/brazil-congress-dcn-lula-posse-20230102-facts.json',
+                            }},
+    'CLAUDE-C01-SOURCE-26': {'parent': 'CLAUDE-C01-26', 'nation': 'USSR',
+                            'source_snapshots': {
+                                'su_garf_exhibit_law_2392i': 'reviewed-extracts/ussr-garf-law-2392i-19910905-facts.json',
+                                'su_garf_exhibit_res_1362i_19900315': 'reviewed-extracts/ussr-garf-res-1362i-19900315-facts.json',
+                                'su_ips_cm_res_1177_19901124': 'reviewed-extracts/ussr-ips-cm-res-1177-19901124-facts.json',
+                                'su_ips_cm_res_27_19910110': 'reviewed-extracts/ussr-ips-cm-res-27-19910110-facts.json',
+                                'su_ips_cm_res_525_19900526': 'reviewed-extracts/ussr-ips-cm-res-525-19900526-facts.json',
+                                'su_km_rasp_943r_19910819': 'reviewed-extracts/ussr-ips-km-rasp-943r-19910819-facts.json',
+                                'su_kou_post_53_19911123': 'reviewed-extracts/ussr-ips-kou-post-53-19911123-facts.json',
+                                'su_kou_rasp_212r_19911219': 'reviewed-extracts/ussr-ips-kou-rasp-212r-19911219-facts.json',
+                                'su_kou_rasp_23r_19910904': 'reviewed-extracts/ussr-ips-kou-rasp-23r-19910904-facts.json',
+                                'su_kou_rasp_25r_19910906': 'reviewed-extracts/ussr-ips-kou-rasp-25r-19910906-facts.json',
+                                'su_kou_rasp_62r_19911005': 'reviewed-extracts/ussr-ips-kou-rasp-62r-19911005-facts.json',
+                                'su_mek_rasp_2r_19911010': 'reviewed-extracts/ussr-ips-mek-rasp-2r-19911010-facts.json',
+                                'su_mek_rasp_6r_19911112': 'reviewed-extracts/ussr-ips-mek-rasp-6r-19911112-facts.json',
+                                'su_mgek_post_7_19911128': 'reviewed-extracts/ussr-ips-mgek-post-7-19911128-facts.json',
+                                'su_mgek_rasp_23r_19911217': 'reviewed-extracts/ussr-ips-mgek-rasp-23r-19911217-facts.json',
+                                'su_mgek_rasp_7r_19911115': 'reviewed-extracts/ussr-ips-mgek-rasp-7r-19911115-facts.json',
+                                'su_rsfsr_res_2017i_19911212': 'reviewed-extracts/ussr-ips-rsfsr-res-2017i-19911212-facts.json',
+                                'su_rsfsr_ukaz_299_19911219': 'reviewed-extracts/ussr-ips-rsfsr-ukaz-299-19911219-facts.json',
+                                'su_rada_law_1861i_19901226': 'reviewed-extracts/ussr-rada-law-1861i-19901226-facts.json',
+                                'su_rada_res_1870i_19901227': 'reviewed-extracts/ussr-rada-res-1870i-19901227-facts.json',
+                                'su_snd4_steno_vol3': 'reviewed-extracts/ussr-snd4-stenogram-vol3-19901226-facts.json',
+                                'su_snd5_bulletin5_19910904': 'reviewed-extracts/ussr-snd5-bulletin5-19910904-facts.json',
+                                'su_sprsfsr_1990_8_art59_19891224': 'reviewed-extracts/ussr-sprsfsr-art59-19891224-facts.json',
+                                'su_sprsfsr_1990_8_art60_19900112': 'reviewed-extracts/ussr-sprsfsr-art60-19900112-facts.json',
+                                'su_sten_vs_bulletin1_19910826': 'reviewed-extracts/ussr-sten-vs-bulletin1-19910826-facts.json',
+                                'su_sten_vs_bulletin2_19910826': 'reviewed-extracts/ussr-sten-vs-bulletin2-19910826-facts.json',
+                                'su_ved_1991_35': 'reviewed-extracts/ussr-ved-1991-35-19910828-facts.json',
+                                'su_ved_1991_36': 'reviewed-extracts/ussr-ved-1991-36-19910904-facts.json',
+                                'su_ved_1991_37': 'reviewed-extracts/ussr-ved-1991-37-19910911-facts.json',
+                                'su_ved_1991_41': 'reviewed-extracts/ussr-ved-1991-41-19911009-facts.json',
+                            }},
 }
 
 # Applicability windows, pinned only where a checked-in claim anchors the boundary. Days outside a window are
@@ -311,9 +356,17 @@ def completed_source_repair(task, classes, root=ROOT):
         if len(data) != record['bytes'] or hashlib.sha256(data).hexdigest() != record['sha256']:
             raise ValueError(f'Source repair evidence changed for {tid}: {relative}')
         evidence_paths.append(path)
-    inputs = [review_path, summary_path, spec['snapshot'], *evidence_paths]
+    if 'source_snapshots' in spec:
+        sources = list(spec['source_snapshots'])
+        snapshots = [folder / path for path in spec['source_snapshots'].values()]
+        if any(path not in evidence_paths for path in snapshots):
+            raise ValueError(f'Source repair {tid} lacks reviewed extract evidence')
+    else:
+        sources, snapshots = [spec['source']], [spec['snapshot']]
+    inputs = list(dict.fromkeys([review_path, summary_path, *snapshots, *evidence_paths]))
     return {'task': tid, 'state': 'complete', 'case': IN_FLIGHT[tid]['case'],
-            'source': spec['source'], 'nation': spec['nation'], 'scope': review['decision'],
+            'source': ', '.join(sources), 'source_ids': sources,
+            'nation': spec['nation'], 'scope': review['decision'],
             'reviewed_commit': review['reviewed_commit'],
             'parent_packet': spec['parent'], 'parent_evidence_class': classes[spec['parent']],
             'parent_acceptance_changed': False, 'historical_coverage_changed': False,

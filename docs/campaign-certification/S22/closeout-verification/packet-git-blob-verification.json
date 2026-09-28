@@ -1,0 +1,3466 @@
+{
+  "schema": "spheres-evidence-git-blob-verification/v1",
+  "verified_utc": "2026-09-28T12:21:27.242Z",
+  "scope": "Every staged packet Git blob independently read and SHA-256 compared to the working file; archive.cjs separately verifies restored raw original bytes. No qualification rerun.",
+  "files": 576,
+  "bytes": 1505029605,
+  "passed": true,
+  "files_sha256": [
+    {
+      "oid": "eb0e56d0141a85ea4aa4511d46e9c43e770aeda3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/.gitattributes",
+      "bytes": 25,
+      "sha256": "0a1ecdb695eb171bc78cfc19d117ec57615cbb7686a472866c4c4c6640c8c261"
+    },
+    {
+      "oid": "3b61b13de849f0b1c04057e29c571f5812e332c0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/README.md",
+      "bytes": 9116,
+      "sha256": "9f5f622d5238c73a7c43d4767549aa917296b6ba69ea952b702c4cea0c1541da"
+    },
+    {
+      "oid": "8ff197c7a86e8df248f2dd45a9d2574147fbd16c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/archive.cjs",
+      "bytes": 6137,
+      "sha256": "9f103ce7119a82668eb4efc77d68ebbf67175f74a88dd1155518949d19e377fa"
+    },
+    {
+      "oid": "81bb3d6be1f6cd77363b438bd359848dbe298a24",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/manifest.json",
+      "bytes": 846252,
+      "sha256": "d6ac60be3325b9fbbe70389630dc27ed62aef69197f676e54eadfe1221102b4f"
+    },
+    {
+      "oid": "c0e4e9d23497277cd53ed025e108234224321821",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0000deff037f98dc3f353f39c28679684121624a357f4bdb462db0b138ece0bb.000.bin",
+      "bytes": 1156010,
+      "sha256": "0000deff037f98dc3f353f39c28679684121624a357f4bdb462db0b138ece0bb"
+    },
+    {
+      "oid": "1c9c07f5774fd3e54db36a89e57ce8c5a4e484e5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/005ef4fe79c63ea2b857cffbbe317dc6caa235dff806ac1a03dfba44cf477eca.000.bin",
+      "bytes": 23514069,
+      "sha256": "005ef4fe79c63ea2b857cffbbe317dc6caa235dff806ac1a03dfba44cf477eca"
+    },
+    {
+      "oid": "9fe0e6718409acaa49921e7962775f4c087658c7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/00e89dac5101eb65e0b7fe8f59cc8febd6b95e3da548a9bca9475737da2e9783.000.bin",
+      "bytes": 1082773,
+      "sha256": "00e89dac5101eb65e0b7fe8f59cc8febd6b95e3da548a9bca9475737da2e9783"
+    },
+    {
+      "oid": "d9466570f9da03055b32f4b0c1b2869be297b87b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/01a3ca531add8ab99a0caff6fe40fcd9c9cf7a6a7d84f8a24f1e5942ecdb6f53.000.bin",
+      "bytes": 22556,
+      "sha256": "01a3ca531add8ab99a0caff6fe40fcd9c9cf7a6a7d84f8a24f1e5942ecdb6f53"
+    },
+    {
+      "oid": "7cded2b832adf6837f880ee8debc658173b1866e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/02ba91efb2b95ca5b821a43903258a9176d854a750fecd8048ede3d558e3f5d5.000.bin",
+      "bytes": 644,
+      "sha256": "02ba91efb2b95ca5b821a43903258a9176d854a750fecd8048ede3d558e3f5d5"
+    },
+    {
+      "oid": "9ed5181f0e3a1d3ebd9414b41a36e9d1b03952be",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/03944cd6c2472cc98f60b0b1ea83f8cb87df7cca049d62b208fe4c73f7d353ba.000.bin",
+      "bytes": 8626,
+      "sha256": "03944cd6c2472cc98f60b0b1ea83f8cb87df7cca049d62b208fe4c73f7d353ba"
+    },
+    {
+      "oid": "41f941ca77b8b8db3ad66be4e043d7edb307e6d3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/039a6941d185d11461c36d6c308210716bd1fe95b27cb578b28348fa27076c76.000.bin",
+      "bytes": 13611,
+      "sha256": "039a6941d185d11461c36d6c308210716bd1fe95b27cb578b28348fa27076c76"
+    },
+    {
+      "oid": "b4e33d621553e86dfd75dedb1e6715faa8bf0028",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/03dfdf233b094032190b614f92071d88495e070b1eef353d876cb6ae6835c198.000.bin",
+      "bytes": 13428,
+      "sha256": "03dfdf233b094032190b614f92071d88495e070b1eef353d876cb6ae6835c198"
+    },
+    {
+      "oid": "23f81dad03bcf3756fda55cf837fc26b0bc95da5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0426364ecc896414d1728dfd360ac14d9597ca72365e6aac69d8b4dc628ed8c4.000.bin",
+      "bytes": 503048,
+      "sha256": "0426364ecc896414d1728dfd360ac14d9597ca72365e6aac69d8b4dc628ed8c4"
+    },
+    {
+      "oid": "e6996b6b8a5099dedecfbf49316d16a901bab088",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/04cc419cf725ca44ef941948d6c5e12e56ecad0c778fbacbf7724e268047bcd3.000.bin",
+      "bytes": 8718,
+      "sha256": "04cc419cf725ca44ef941948d6c5e12e56ecad0c778fbacbf7724e268047bcd3"
+    },
+    {
+      "oid": "637cd4782d5f892783298dbfe826532f7340447d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0500bc732fe3ee6cca5dae50b7f917184e283110227a02ee73e28e265b631ac7.000.bin",
+      "bytes": 13612,
+      "sha256": "0500bc732fe3ee6cca5dae50b7f917184e283110227a02ee73e28e265b631ac7"
+    },
+    {
+      "oid": "cd576b115d3c76d11f8543788d48471dfaff6798",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0519f76b616754154268a6ed0e0fe163a1ba3098ad071920b8a3ac1814dacf0d.000.bin",
+      "bytes": 13605,
+      "sha256": "0519f76b616754154268a6ed0e0fe163a1ba3098ad071920b8a3ac1814dacf0d"
+    },
+    {
+      "oid": "a1f1d8382b3c125d9b1b23df7837766cb09753fc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/06377a199201e0208a99c57fb361ae5f1e6519ef1602159f6bd53b9b1f0ee992.000.bin",
+      "bytes": 10144,
+      "sha256": "06377a199201e0208a99c57fb361ae5f1e6519ef1602159f6bd53b9b1f0ee992"
+    },
+    {
+      "oid": "125d5e07a31ee389b78d3945d8133c6729c2539f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0689417e6208c0479eed5f144cef7bed1a1b40c25ea097500e510dfa41e2dfef.000.bin",
+      "bytes": 1090844,
+      "sha256": "0689417e6208c0479eed5f144cef7bed1a1b40c25ea097500e510dfa41e2dfef"
+    },
+    {
+      "oid": "64d5c6b9c89f8168600da8aacac684da1ad9d436",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/07824db6c222e8a9096709a55876df8ce714cccb24da0514a431841afa7dc6c9.000.bin",
+      "bytes": 15193,
+      "sha256": "07824db6c222e8a9096709a55876df8ce714cccb24da0514a431841afa7dc6c9"
+    },
+    {
+      "oid": "fbbb3ec92f29b5d456494b1164faf590e4dd7007",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/07c6e029552ab13d1de1ed128a371622bf560be9f8660d268b9ef6ea8480062b.000.bin",
+      "bytes": 7086,
+      "sha256": "07c6e029552ab13d1de1ed128a371622bf560be9f8660d268b9ef6ea8480062b"
+    },
+    {
+      "oid": "eabc0005b5de9e0191cb81d417f9cbb8249094b4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/08280d7021590eee2bde56df43928582136fff29d5027dc259571f05a27e2404.000.bin",
+      "bytes": 649,
+      "sha256": "08280d7021590eee2bde56df43928582136fff29d5027dc259571f05a27e2404"
+    },
+    {
+      "oid": "d94c15e74755d5f9289260e053e090080005ca23",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/08328d368eec1d7515a0419e3152818e2ef52acb957d939be835bc18e397f250.000.bin",
+      "bytes": 13610,
+      "sha256": "08328d368eec1d7515a0419e3152818e2ef52acb957d939be835bc18e397f250"
+    },
+    {
+      "oid": "e9fcfc50f0b08bcbd7755d6b830d4d3b81c89269",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/085c537e4b8ad9007dcf08291c05571fedfdc896d06b9257f7bada3051bc5a7e.000.bin",
+      "bytes": 292852,
+      "sha256": "085c537e4b8ad9007dcf08291c05571fedfdc896d06b9257f7bada3051bc5a7e"
+    },
+    {
+      "oid": "9f4451e9edd9869e6b97b5291ba35c71b751a2af",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/089e07074a2a6e6486992cfbf74fa13dac981dc3322068f1b72f73eb7a73d7a9.000.bin",
+      "bytes": 3609,
+      "sha256": "089e07074a2a6e6486992cfbf74fa13dac981dc3322068f1b72f73eb7a73d7a9"
+    },
+    {
+      "oid": "6982d553eefb6221b2229fde48b51e7fbbe5ba37",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/095a90669b9a7e18bb595bbfab8caa69247abbab9e06c0b75a9efb9d9eae066a.000.bin",
+      "bytes": 4005,
+      "sha256": "095a90669b9a7e18bb595bbfab8caa69247abbab9e06c0b75a9efb9d9eae066a"
+    },
+    {
+      "oid": "21f48fb4249913a850ba71600e84e95172852334",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0b3e721e5b37ac2f55815f8a1ebe3c6c50c76a49537fffc8920ed57d09152edb.000.bin",
+      "bytes": 295242,
+      "sha256": "0b3e721e5b37ac2f55815f8a1ebe3c6c50c76a49537fffc8920ed57d09152edb"
+    },
+    {
+      "oid": "a2c32753dac9857244396aea722769e62e8639b6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0b51e22ed534d7c541753aaa19f97897592623d28d0732aaed7c1f60ccaa59ab.000.bin",
+      "bytes": 818027,
+      "sha256": "0b51e22ed534d7c541753aaa19f97897592623d28d0732aaed7c1f60ccaa59ab"
+    },
+    {
+      "oid": "6d4fcbb82d167bfc86b0fb297a1dffe239f2e9c9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f.000.bin",
+      "bytes": 19181,
+      "sha256": "0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f"
+    },
+    {
+      "oid": "c7b51502f63867837b56df236a82ca0fa474c972",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0cdebff67c67633a7036ac0d0392237ddb12a962fd735924becf11ee88acd871.000.bin",
+      "bytes": 13612,
+      "sha256": "0cdebff67c67633a7036ac0d0392237ddb12a962fd735924becf11ee88acd871"
+    },
+    {
+      "oid": "3e7cf71ed11eb9237ee258c14198047bc59ac85f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0d055190773af24296675b9921da601437157580813e06df7cfbe9feed461c6f.000.bin",
+      "bytes": 13605,
+      "sha256": "0d055190773af24296675b9921da601437157580813e06df7cfbe9feed461c6f"
+    },
+    {
+      "oid": "b3128242748f69f530b71358aee514135b48e4b5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0d4a3da9698318b3954c0d4ce952be98718498637f41d9c75a2359c33aa481d0.000.bin",
+      "bytes": 78,
+      "sha256": "0d4a3da9698318b3954c0d4ce952be98718498637f41d9c75a2359c33aa481d0"
+    },
+    {
+      "oid": "8ce9d4791173c743109313f295524adf2826d8df",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0dae42ae6f7db76c0dccde197e6fdcb051ef9eaad2704af837524354e77bfd8b.000.bin",
+      "bytes": 13612,
+      "sha256": "0dae42ae6f7db76c0dccde197e6fdcb051ef9eaad2704af837524354e77bfd8b"
+    },
+    {
+      "oid": "d800a545ce670bd963861daaae68d5b635d8cebe",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0df3329da0143e9aa596d2e8ad2f35f08148f867be8b8daed30e5fd731fadc50.000.bin",
+      "bytes": 13638,
+      "sha256": "0df3329da0143e9aa596d2e8ad2f35f08148f867be8b8daed30e5fd731fadc50"
+    },
+    {
+      "oid": "7987baae6be00db8a71c6f73ad48ee01068c9e2b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0df7c554d17ba95027af31d45fb1769339615727852dedf4256e73e1f37031af.000.bin",
+      "bytes": 5529,
+      "sha256": "0df7c554d17ba95027af31d45fb1769339615727852dedf4256e73e1f37031af"
+    },
+    {
+      "oid": "e8143ddf6e3fc21b9fedffa606a458d868b009f4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0e00a5ce8ba202e0e40430cc2dfbbf0c55ed12958c157803c4306e31aca47c18.000.bin",
+      "bytes": 13607,
+      "sha256": "0e00a5ce8ba202e0e40430cc2dfbbf0c55ed12958c157803c4306e31aca47c18"
+    },
+    {
+      "oid": "fc6aca816870d10bce9a63e13add7ede0541e4bd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0e81d665e4885e83dc89bf1a16b59586fb9779b2789a5a69a1a06802c6f0fd3f.000.bin",
+      "bytes": 13635,
+      "sha256": "0e81d665e4885e83dc89bf1a16b59586fb9779b2789a5a69a1a06802c6f0fd3f"
+    },
+    {
+      "oid": "c680b325e6a6ec205084cd8686424511448cb283",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0ef36a53c818b5ca63f2156d4dfb2dca2ab624d6b18f9cd1fb26c2d573793905.000.bin",
+      "bytes": 94371840,
+      "sha256": "03ae2aa1939d7b4894004e93fa8cbc4551968f8b29933ce4f0edd7c139ac7d57"
+    },
+    {
+      "oid": "2414fe87b9a1b7c6fe8aae257875e0225b2196a6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0ef36a53c818b5ca63f2156d4dfb2dca2ab624d6b18f9cd1fb26c2d573793905.001.bin",
+      "bytes": 9124289,
+      "sha256": "6f29cdd8cbab89a998b592665880c52adfc0523e44f722fd1f5ef4523a4a2bdc"
+    },
+    {
+      "oid": "7c7acf2c5e036a947e36852697c93abe9c18af5b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/0f6e7e9eab23e8a1de83621797b3e7511c269b80d86f1dec793f797efe728609.000.bin",
+      "bytes": 815318,
+      "sha256": "0f6e7e9eab23e8a1de83621797b3e7511c269b80d86f1dec793f797efe728609"
+    },
+    {
+      "oid": "526671b18d2b5bdf7b2ce796a114275bbe6ffc75",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/10c4504e7c11fac5d1ec4f3335bd2fe910ffa394ff27422f39a1b98edae97a75.000.bin",
+      "bytes": 1156528,
+      "sha256": "10c4504e7c11fac5d1ec4f3335bd2fe910ffa394ff27422f39a1b98edae97a75"
+    },
+    {
+      "oid": "e05e3ec7d0af07c43b3c0cea62adcc85e53d55fb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/11ccf43a8d9cc5cb96648ff89de0cf90a6cfc0c479027e07b23a7dd777cff474.000.bin",
+      "bytes": 5548,
+      "sha256": "11ccf43a8d9cc5cb96648ff89de0cf90a6cfc0c479027e07b23a7dd777cff474"
+    },
+    {
+      "oid": "14a035d1e232d61cab5e2c1b6e52ee67dc30d2a5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/11e20a03d29535d012dbfe73af784255fb3433780731db0dfc7a5fba22c3f9d3.000.bin",
+      "bytes": 817584,
+      "sha256": "11e20a03d29535d012dbfe73af784255fb3433780731db0dfc7a5fba22c3f9d3"
+    },
+    {
+      "oid": "5a12a73729b5e1b85ee4ad1bf9576f340cef3b38",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/120f075d86a2ab91cf1242847b3f426905d7c4426848fbcf267c3e469772c311.000.bin",
+      "bytes": 11700,
+      "sha256": "120f075d86a2ab91cf1242847b3f426905d7c4426848fbcf267c3e469772c311"
+    },
+    {
+      "oid": "a4228a4ae6ffe475d37c0e1d36961cdb17fd3897",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/12656d3424e0859601523fba89c0b8e9ae2b2da354ad6fc153fd73724ea621e4.000.bin",
+      "bytes": 13773,
+      "sha256": "12656d3424e0859601523fba89c0b8e9ae2b2da354ad6fc153fd73724ea621e4"
+    },
+    {
+      "oid": "73f098e5a56e5bef613b0e9364fc3fef909dad37",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/129e07b2001cde2a5ea18cb640414d701a71133ba8dd17a323e68946741d5e6a.000.bin",
+      "bytes": 13606,
+      "sha256": "129e07b2001cde2a5ea18cb640414d701a71133ba8dd17a323e68946741d5e6a"
+    },
+    {
+      "oid": "6f3be460ad5f82373249f455053b641cd7202d80",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/12bc446eb3f39c586735411e685cf6473833d317c4b494d85d97c9df484b3537.000.bin",
+      "bytes": 1084849,
+      "sha256": "12bc446eb3f39c586735411e685cf6473833d317c4b494d85d97c9df484b3537"
+    },
+    {
+      "oid": "f4c7820cd0efcf6e6af53fe71cf880574c9f23b9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/12ddc310dc696199aa0cb988d8a438a66c2b7b6c6d26d747e0d2ebadb645f310.000.bin",
+      "bytes": 10977,
+      "sha256": "12ddc310dc696199aa0cb988d8a438a66c2b7b6c6d26d747e0d2ebadb645f310"
+    },
+    {
+      "oid": "9867a2cd133ebaf7531f6bd9f21abb27aa693254",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/131a3290ba561c337e7e69d2fefe7946a0643dc0f40aa3385239e095c21797c0.000.bin",
+      "bytes": 13612,
+      "sha256": "131a3290ba561c337e7e69d2fefe7946a0643dc0f40aa3385239e095c21797c0"
+    },
+    {
+      "oid": "b68efaede2659446c89ad7bbba18502a9443f2be",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1399bb9ea4c636b573e2aba81ec49c559aa7e8776396008754494e33ec5aab13.000.bin",
+      "bytes": 25417747,
+      "sha256": "1399bb9ea4c636b573e2aba81ec49c559aa7e8776396008754494e33ec5aab13"
+    },
+    {
+      "oid": "ba3e009c06cd55d0f4b51b61187f294706ef2f85",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/14a9c7b09e4734af590e687ddef45714c315809228badc94323458bd4c95f7b8.000.bin",
+      "bytes": 3617,
+      "sha256": "14a9c7b09e4734af590e687ddef45714c315809228badc94323458bd4c95f7b8"
+    },
+    {
+      "oid": "c37c0cbfe198db42798029dfebd1bb9997417538",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/154b7e888af1963955be4942a88712a052962f53935abeaff04229796ee8fb69.000.bin",
+      "bytes": 1814191,
+      "sha256": "154b7e888af1963955be4942a88712a052962f53935abeaff04229796ee8fb69"
+    },
+    {
+      "oid": "362f48f4278149f88c03bcdaf21dd1eb5d8d0751",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/15d49d0d827b13098b91ba0794010415bbacd0e2fb5a659474dbc6e078c66582.000.bin",
+      "bytes": 15339016,
+      "sha256": "15d49d0d827b13098b91ba0794010415bbacd0e2fb5a659474dbc6e078c66582"
+    },
+    {
+      "oid": "6742b6fa06a0c0e10f5970195b9196faa1a4deec",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1617227e92aaf5b6d14b344ede011a549701df44d64fcb34c6d416b25cac1d9d.000.bin",
+      "bytes": 497638,
+      "sha256": "1617227e92aaf5b6d14b344ede011a549701df44d64fcb34c6d416b25cac1d9d"
+    },
+    {
+      "oid": "68f5006a9abd5d2eed724cc296c0940ed7aeba64",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/166d4d14f965b27061bd5c766777546a8372e4a02af9d3e632d4bc0b5bf3bf94.000.bin",
+      "bytes": 1814131,
+      "sha256": "166d4d14f965b27061bd5c766777546a8372e4a02af9d3e632d4bc0b5bf3bf94"
+    },
+    {
+      "oid": "ade636245df15d79da227910627ce6fb184d568f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/179f30e8c63ae5fb338c6a8dbdcf6694a2b487270a20806ae6cc860aaab902e8.000.bin",
+      "bytes": 7098,
+      "sha256": "179f30e8c63ae5fb338c6a8dbdcf6694a2b487270a20806ae6cc860aaab902e8"
+    },
+    {
+      "oid": "18b501d91aaa11b2d0bb08132517e767cfc3c328",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1995ffc483cd86b6894f2e99a42ac78b47fa3cb949248387a21a28e51d14a568.000.bin",
+      "bytes": 10164,
+      "sha256": "1995ffc483cd86b6894f2e99a42ac78b47fa3cb949248387a21a28e51d14a568"
+    },
+    {
+      "oid": "8ac773e6f9440b853afc2b6f69543c5ba34d4261",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1ac4b4bfeb45bff429c611d27d5fe8933100e1facec58003cc65236e7d3aa7f0.000.bin",
+      "bytes": 166,
+      "sha256": "1ac4b4bfeb45bff429c611d27d5fe8933100e1facec58003cc65236e7d3aa7f0"
+    },
+    {
+      "oid": "57b2eafb89d826617c6e2116e95342e483abcb41",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1adfbc9df61a0b12d890af19dc9b783515a3991600f6e905dae61411649df913.000.bin",
+      "bytes": 176794,
+      "sha256": "1adfbc9df61a0b12d890af19dc9b783515a3991600f6e905dae61411649df913"
+    },
+    {
+      "oid": "aee648642aaada228e95ced422c2e96686f8f099",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1b1eb8e9495aac836eb49246406ff8eb5ccd0ff5b4c06bb1c84a158cbcf41232.000.bin",
+      "bytes": 1707063,
+      "sha256": "1b1eb8e9495aac836eb49246406ff8eb5ccd0ff5b4c06bb1c84a158cbcf41232"
+    },
+    {
+      "oid": "b3629662110a321058ee0ab286f34b6098f15c42",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1bc35f8736f9df9cb68f9524036e6e0e3e756aa75b388aab707e00dc3468b073.000.bin",
+      "bytes": 13773,
+      "sha256": "1bc35f8736f9df9cb68f9524036e6e0e3e756aa75b388aab707e00dc3468b073"
+    },
+    {
+      "oid": "d82c61f06b63bc4a4f4ea656711e7468851f3287",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1c205ab384bea34af797482536813beee6951d08f0dc4cf70ccfd6217ea0354b.000.bin",
+      "bytes": 62,
+      "sha256": "1c205ab384bea34af797482536813beee6951d08f0dc4cf70ccfd6217ea0354b"
+    },
+    {
+      "oid": "dba11b14f303e3d0a07700abc65f3b45131ce82f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1d0014efea469f5f0ca8b80824b4a6e4b04be9d349fef49f71583cfce904c950.000.bin",
+      "bytes": 1812969,
+      "sha256": "1d0014efea469f5f0ca8b80824b4a6e4b04be9d349fef49f71583cfce904c950"
+    },
+    {
+      "oid": "25b361d4e7f4aede447bca4c14e7443de2650944",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1e13cbc1779a41421febd9a1ff25a9d0ad7fc69941c35c931ff3999c7cd40ab9.000.bin",
+      "bytes": 166,
+      "sha256": "1e13cbc1779a41421febd9a1ff25a9d0ad7fc69941c35c931ff3999c7cd40ab9"
+    },
+    {
+      "oid": "97f3d6b28d82ab3f974ac3a9c3159457113f4957",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1e46a00fab0a55da937c2e6244241281b82d5b8b938aab5f6b3d301f7a5c557c.000.bin",
+      "bytes": 508301,
+      "sha256": "1e46a00fab0a55da937c2e6244241281b82d5b8b938aab5f6b3d301f7a5c557c"
+    },
+    {
+      "oid": "16d25c425e6cc6bf66fc8a41b758883eae0d576e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1f553d0a9f263803df4b05d0683bb0ece135df162634c98b4f9b5b3f71bc652d.000.bin",
+      "bytes": 13611,
+      "sha256": "1f553d0a9f263803df4b05d0683bb0ece135df162634c98b4f9b5b3f71bc652d"
+    },
+    {
+      "oid": "b65ac63a774d2e01cdea57925079631be880be5f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/1f849c8258f66f0546b8367b411432f58081566329945af8ca99f7b0bf91aa0f.000.bin",
+      "bytes": 13611,
+      "sha256": "1f849c8258f66f0546b8367b411432f58081566329945af8ca99f7b0bf91aa0f"
+    },
+    {
+      "oid": "74e81aa5bbce20f181a20c1457f1ddaf12cf9f66",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/20df5b9aca6e458956a778dfc6b7be4daa496ca2c9fe0a0986cb8c8e19ead45f.000.bin",
+      "bytes": 11702,
+      "sha256": "20df5b9aca6e458956a778dfc6b7be4daa496ca2c9fe0a0986cb8c8e19ead45f"
+    },
+    {
+      "oid": "2bb0573b9b17824187ff0141fc241e7d714e623f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/20faa1091e569544a1461ada609c3c54310824ba60225fde64fe074a3ac45704.000.bin",
+      "bytes": 3807,
+      "sha256": "20faa1091e569544a1461ada609c3c54310824ba60225fde64fe074a3ac45704"
+    },
+    {
+      "oid": "aa1a41497dac1b1abef97d14d87bb5b71ff7eb13",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/21399fe23b8f521aac53734dc487b2a496721644b1ef8db7c9f07bd1b9159b88.000.bin",
+      "bytes": 13775,
+      "sha256": "21399fe23b8f521aac53734dc487b2a496721644b1ef8db7c9f07bd1b9159b88"
+    },
+    {
+      "oid": "bb61cafa087e7b5a6acaa7cbe8971fc0fe95cbbd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/21bdf4b7ecb30458d7786a90e5e1cb961112ee117b5aa1acf88c65708e888344.000.bin",
+      "bytes": 366,
+      "sha256": "21bdf4b7ecb30458d7786a90e5e1cb961112ee117b5aa1acf88c65708e888344"
+    },
+    {
+      "oid": "e9c0e8889d38610e9da34b539d72f2b03d1e19f8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/221565952fbc995346ef091b6e441dbcfb350990aa9efee23e719ad6017782ed.000.bin",
+      "bytes": 1368,
+      "sha256": "221565952fbc995346ef091b6e441dbcfb350990aa9efee23e719ad6017782ed"
+    },
+    {
+      "oid": "4ae8f50120196591153653bc84c55f7096a77419",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/22a2eb2c50b8a2e116ba5e32965fda749fcd4acac0da3f8ec278686740a3e911.000.bin",
+      "bytes": 13611,
+      "sha256": "22a2eb2c50b8a2e116ba5e32965fda749fcd4acac0da3f8ec278686740a3e911"
+    },
+    {
+      "oid": "bf61ad7324b48463f17c51fab19541305c07bda9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2336e22e2f9e893905182e773feab3fd9a7b603c60a9adcf6210e7729030347a.000.bin",
+      "bytes": 25417746,
+      "sha256": "2336e22e2f9e893905182e773feab3fd9a7b603c60a9adcf6210e7729030347a"
+    },
+    {
+      "oid": "a92265d93a83511288c589855e14b53f0e11f569",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/241d4044e0748232b43e4d4db8ea7940f8a4200f73a4c7e4bf3d5748d7ec2a46.000.bin",
+      "bytes": 13613,
+      "sha256": "241d4044e0748232b43e4d4db8ea7940f8a4200f73a4c7e4bf3d5748d7ec2a46"
+    },
+    {
+      "oid": "17c628fcf33eb47576aede5a832b83c7b0fafef9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/241df6f56e03827388b271f8bad52893003fe638739b759c162ff931c3ab1fe3.000.bin",
+      "bytes": 16928,
+      "sha256": "241df6f56e03827388b271f8bad52893003fe638739b759c162ff931c3ab1fe3"
+    },
+    {
+      "oid": "ed0c3fce62b9b83f584deb4ccd598838ca6b54ca",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/244909d20a058de9c435c9f858178393f68e79bca50e605f23352f79d13d9b01.000.bin",
+      "bytes": 221796,
+      "sha256": "244909d20a058de9c435c9f858178393f68e79bca50e605f23352f79d13d9b01"
+    },
+    {
+      "oid": "af76e35211ff83d5550f1331c01386a14478b52a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/24f8b1dbf499201d4e33eb8a5f43a2d7773336f17ac28b3d145ffbf6cb8c7503.000.bin",
+      "bytes": 5667,
+      "sha256": "24f8b1dbf499201d4e33eb8a5f43a2d7773336f17ac28b3d145ffbf6cb8c7503"
+    },
+    {
+      "oid": "0dbd8e385929386fc0d4a22c845077cd949012db",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2545193280b5be19042f425802fcf22154ef93a38c9ff7d19a0ee8580943713c.000.bin",
+      "bytes": 1431577,
+      "sha256": "2545193280b5be19042f425802fcf22154ef93a38c9ff7d19a0ee8580943713c"
+    },
+    {
+      "oid": "ebe892b9f38791297365a6c0b86a010e7c8fa3d8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2636fd905cebda0f1859797ff91acbb7bcfed3706faba26f32af2e6a1ced4414.000.bin",
+      "bytes": 13612,
+      "sha256": "2636fd905cebda0f1859797ff91acbb7bcfed3706faba26f32af2e6a1ced4414"
+    },
+    {
+      "oid": "ae656fd4f556d90a8affa7cfa52e7990e26cb2f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/275bdf0feea809e812c879649be1ef687eec64b40392325e8f4e31fba366fee9.000.bin",
+      "bytes": 8605,
+      "sha256": "275bdf0feea809e812c879649be1ef687eec64b40392325e8f4e31fba366fee9"
+    },
+    {
+      "oid": "55a181ae635405e4122d6e9c4a3261b016198c36",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/27890126680dfa5476e35742191b58ff5a022286d67c2613b058dfee0a3a4ece.000.bin",
+      "bytes": 815251,
+      "sha256": "27890126680dfa5476e35742191b58ff5a022286d67c2613b058dfee0a3a4ece"
+    },
+    {
+      "oid": "5bf21f3dd8d2c4b9634752c1be53c23bb0127977",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2791b37f6110bbd8169f528070e0869fd86963c1ab635ce26401d509d336099d.000.bin",
+      "bytes": 10163,
+      "sha256": "2791b37f6110bbd8169f528070e0869fd86963c1ab635ce26401d509d336099d"
+    },
+    {
+      "oid": "60e517bf79ff05cc7d8ffa225334725dff3d0cde",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/280612f3d6fe3ef23a5e493a7985708e0bfafac755bc36f214a823a8ec95751d.000.bin",
+      "bytes": 2208,
+      "sha256": "280612f3d6fe3ef23a5e493a7985708e0bfafac755bc36f214a823a8ec95751d"
+    },
+    {
+      "oid": "bc0b387a1401d0469a982720379c2372148c6cb2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/282a27e9c3ee7fcdbb2f36216ca6d8611d8bdf7be6553a2015b66a842da3a91b.000.bin",
+      "bytes": 94371840,
+      "sha256": "038d3898acf4aae6449da80650969e275fa0c0db459f272bf6daeccf7c52bbc5"
+    },
+    {
+      "oid": "a1b0dc42b4557a3f3a6a7a8e2ce62ede21fac3cb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/282a27e9c3ee7fcdbb2f36216ca6d8611d8bdf7be6553a2015b66a842da3a91b.001.bin",
+      "bytes": 9717404,
+      "sha256": "7a7615210b01ddc20024a1c3a25579473206f2533f8cad11f3a1659ff0388995"
+    },
+    {
+      "oid": "f5bd4084c3b7cc5ec3dce9fa2492b4abe9fe306f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/284aed40b310695e942b31eb86acf5ea7af8f82f6cafad7f13c7d0ef58a66a56.000.bin",
+      "bytes": 171311,
+      "sha256": "284aed40b310695e942b31eb86acf5ea7af8f82f6cafad7f13c7d0ef58a66a56"
+    },
+    {
+      "oid": "c4f8a6ee4826c4f82c478422ada4f0a6efb18ba5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/289292ad3095c760f9a15fe0239e690d645db85f7c0d28fdf5d143a1138f93a8.000.bin",
+      "bytes": 158545,
+      "sha256": "289292ad3095c760f9a15fe0239e690d645db85f7c0d28fdf5d143a1138f93a8"
+    },
+    {
+      "oid": "07c2ce2bb66f464ac6b143331409e702712e757a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/296c48b2187cfe8f639e124aa0422f72fd7d84e2ff3fd662d51de51346068032.000.bin",
+      "bytes": 1082748,
+      "sha256": "296c48b2187cfe8f639e124aa0422f72fd7d84e2ff3fd662d51de51346068032"
+    },
+    {
+      "oid": "71cad0c3e2175b8bd31b4d52d06afbaf67c9b156",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2a9cdf90b6eb6bf836596793dbb55d7e99c9008d44c1fd15342a17905d0356e9.000.bin",
+      "bytes": 833618,
+      "sha256": "2a9cdf90b6eb6bf836596793dbb55d7e99c9008d44c1fd15342a17905d0356e9"
+    },
+    {
+      "oid": "8e4075025e57368091886e6e569c8f0943a27a61",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2c2e6cb5535c517db2f5326f3406bdb86726b1fef6c924a98a4e4320b920c98d.000.bin",
+      "bytes": 13607,
+      "sha256": "2c2e6cb5535c517db2f5326f3406bdb86726b1fef6c924a98a4e4320b920c98d"
+    },
+    {
+      "oid": "c5570ec61c32e610a565118e00d400dce40f699b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2c35c58bdb9ba360b9e17ec53e17392d312f87d9e251c3bd41cc102eea395117.000.bin",
+      "bytes": 158553,
+      "sha256": "2c35c58bdb9ba360b9e17ec53e17392d312f87d9e251c3bd41cc102eea395117"
+    },
+    {
+      "oid": "0a27e4d36bf6e9f85f31e210589686fd34f33cc6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2c611a0c19f83a6a739f60666e9baed876e90533d1cb0730606872c5ee78a76c.000.bin",
+      "bytes": 31903,
+      "sha256": "2c611a0c19f83a6a739f60666e9baed876e90533d1cb0730606872c5ee78a76c"
+    },
+    {
+      "oid": "308fb8f3c586453a318693fe2ba2019b5f4346a6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2d3cd134394ad6d1db69f31d138a8966a0816445555641ceca8735c1b6cc4881.000.bin",
+      "bytes": 1028,
+      "sha256": "2d3cd134394ad6d1db69f31d138a8966a0816445555641ceca8735c1b6cc4881"
+    },
+    {
+      "oid": "457bf19ffc3a3867f7ccb23eac809d4bfc752d07",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2e4728734b9bbfefea26591412b12cab6ae8846528091e924d0cf9317dbccc10.000.bin",
+      "bytes": 8604,
+      "sha256": "2e4728734b9bbfefea26591412b12cab6ae8846528091e924d0cf9317dbccc10"
+    },
+    {
+      "oid": "4f72bb804da97587d8a3f8badd7d296bbbf7f3ba",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2e75737e70f6c5f073cc9505dc296a5da1dab643af345b5b1d572fb168ff0f95.000.bin",
+      "bytes": 4067,
+      "sha256": "2e75737e70f6c5f073cc9505dc296a5da1dab643af345b5b1d572fb168ff0f95"
+    },
+    {
+      "oid": "65958194c271992a3cdd4393d0ab1879e101630d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2ea4ca214173f52550a874291123038ae92c70476174a4caeee3edc9c168be75.000.bin",
+      "bytes": 11870,
+      "sha256": "2ea4ca214173f52550a874291123038ae92c70476174a4caeee3edc9c168be75"
+    },
+    {
+      "oid": "0705f50033f153208c9fd05abe14134d32659ce3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2ee60e0bd072a08833b4e4246b40149a2a998b2dbf155a3017ee44d9c254f88a.000.bin",
+      "bytes": 13602,
+      "sha256": "2ee60e0bd072a08833b4e4246b40149a2a998b2dbf155a3017ee44d9c254f88a"
+    },
+    {
+      "oid": "2c76729ab561427add295d0922f9b7718a7402a2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/2f20c98c2c275f189be278d1680e75bdc913d56a4ff07cf02f2568427992fc03.000.bin",
+      "bytes": 13611,
+      "sha256": "2f20c98c2c275f189be278d1680e75bdc913d56a4ff07cf02f2568427992fc03"
+    },
+    {
+      "oid": "3c3f7f46bf2a13f6971a78a84fc78ecd6f996a77",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3087f077d7450e00ece54c82d7eafe47d186852b4c265b02bec1d4d029bb3d79.000.bin",
+      "bytes": 13611,
+      "sha256": "3087f077d7450e00ece54c82d7eafe47d186852b4c265b02bec1d4d029bb3d79"
+    },
+    {
+      "oid": "7a4dc3e078a766c9fcd60e407e3b69bb6fcc1dbb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/31a40b1568193e6afda1c5638a7132e8795572d4851fdbab3a3e4da3bf975258.000.bin",
+      "bytes": 13607,
+      "sha256": "31a40b1568193e6afda1c5638a7132e8795572d4851fdbab3a3e4da3bf975258"
+    },
+    {
+      "oid": "9acc7a7c55e142d6175a902ac9a7bebaea176769",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/31e523ee13acd57a3d786788d37873370501bf91cd50a4d7193476d1f3157869.000.bin",
+      "bytes": 4955,
+      "sha256": "31e523ee13acd57a3d786788d37873370501bf91cd50a4d7193476d1f3157869"
+    },
+    {
+      "oid": "c0b8961701574b5d02a24007eb9799f788c67954",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3227ada04759c8ea6c93ae134462fc4c15bec3458aef53be6d414aa5d8e9cc83.000.bin",
+      "bytes": 25444,
+      "sha256": "3227ada04759c8ea6c93ae134462fc4c15bec3458aef53be6d414aa5d8e9cc83"
+    },
+    {
+      "oid": "a97b5e957f95e925a8cfd4cc3e0b51b1a02ae508",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/32c5dcd2fb14764fd296abe6fd8a76c44e0d93b0fabb3a02fa89cd77d52979d8.000.bin",
+      "bytes": 3510,
+      "sha256": "32c5dcd2fb14764fd296abe6fd8a76c44e0d93b0fabb3a02fa89cd77d52979d8"
+    },
+    {
+      "oid": "fd732fd29d05737096668cda7880c4b162c2e4de",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/336ebd6f7f8434b38d7cd8c5688c7d3286b2488fe5f7951a6b976aaf6affe2a7.000.bin",
+      "bytes": 439,
+      "sha256": "336ebd6f7f8434b38d7cd8c5688c7d3286b2488fe5f7951a6b976aaf6affe2a7"
+    },
+    {
+      "oid": "8e6888ca3f19e3125f6767f39c2a91a64b2c6a22",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/33b1a10bd415d02179f68757d0e16f9e5334c5214baea28b540ea9b3698dae8f.000.bin",
+      "bytes": 48817,
+      "sha256": "33b1a10bd415d02179f68757d0e16f9e5334c5214baea28b540ea9b3698dae8f"
+    },
+    {
+      "oid": "4dde16629ac8a212fff8fbc21436dbf3c62bdf63",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/34505b6ca20e94add1b6efb56b6d1428763fcb3c43d70ddc1e47ea0c969c0191.000.bin",
+      "bytes": 13609,
+      "sha256": "34505b6ca20e94add1b6efb56b6d1428763fcb3c43d70ddc1e47ea0c969c0191"
+    },
+    {
+      "oid": "347eddbdb450619193004398a5148bc8b6bdf4da",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/34722c7a4060b17323b62b419a0cf4ffb59f91571de8623f2d1a6918623d4084.000.bin",
+      "bytes": 158526,
+      "sha256": "34722c7a4060b17323b62b419a0cf4ffb59f91571de8623f2d1a6918623d4084"
+    },
+    {
+      "oid": "9eb30aac561ffe4c82c2c22728ab1ebcc42c14a7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/355dc1ebc80d99e31d7c275ab423ee79d330610528e4282f0e3c25390b013012.000.bin",
+      "bytes": 896466,
+      "sha256": "355dc1ebc80d99e31d7c275ab423ee79d330610528e4282f0e3c25390b013012"
+    },
+    {
+      "oid": "c0db059ee31e013b42ec4ec1e14eca5fd0e9261b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/35a13a6a2ae63150283ee90b5605e343b3712666e167556325a8de50725304f7.000.bin",
+      "bytes": 2148,
+      "sha256": "35a13a6a2ae63150283ee90b5605e343b3712666e167556325a8de50725304f7"
+    },
+    {
+      "oid": "2bd4fab98b9b2b559d7301f26f6cc4e0b46bc634",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/35f024fa6819d0fc1ca279f44eb801a40ce5eb5e20baebdc4bbf7626ccda7296.000.bin",
+      "bytes": 7067,
+      "sha256": "35f024fa6819d0fc1ca279f44eb801a40ce5eb5e20baebdc4bbf7626ccda7296"
+    },
+    {
+      "oid": "d2735345454b3f15f4006345d05870b5b2a1d07a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/366a5c90b09852f8e208b3de4810c457513ec2e847a05afbed845fc7f0b65a59.000.bin",
+      "bytes": 6148,
+      "sha256": "366a5c90b09852f8e208b3de4810c457513ec2e847a05afbed845fc7f0b65a59"
+    },
+    {
+      "oid": "cfa9099d771c8d519affd562caefd4ada8bed249",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/367c764c08c325d44c84c315df977876443e1d1d6f1cd9186a84f86a2cc33f30.000.bin",
+      "bytes": 158972,
+      "sha256": "367c764c08c325d44c84c315df977876443e1d1d6f1cd9186a84f86a2cc33f30"
+    },
+    {
+      "oid": "e5c701c22c97e6f49097bc2e712c42a3430589b4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/368214c23cb2d99347a2621246aaffcec14b818ea69a5a9bb69e0728138a016a.000.bin",
+      "bytes": 16978,
+      "sha256": "368214c23cb2d99347a2621246aaffcec14b818ea69a5a9bb69e0728138a016a"
+    },
+    {
+      "oid": "0241b0a18d3b382fa218c761959f4897ce9f43ed",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3692467673c90b0157703a3a8f6bd4f2bab5e8cba801166bac1fdfc1f84be23b.000.bin",
+      "bytes": 158375,
+      "sha256": "3692467673c90b0157703a3a8f6bd4f2bab5e8cba801166bac1fdfc1f84be23b"
+    },
+    {
+      "oid": "cb8af77fe46418ef596fc521c08b52e984b25721",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/36ad8292deb21b6701ff59674763e989b7bdf5752cdd08fb7dea705bddc5ab62.000.bin",
+      "bytes": 23514069,
+      "sha256": "36ad8292deb21b6701ff59674763e989b7bdf5752cdd08fb7dea705bddc5ab62"
+    },
+    {
+      "oid": "827816311e98b27a84ea0315cfa1e2c648ba2cd8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3727f122d10a76453901e4187840e06b247f6c66afcfaf930c1fd926c67c94f1.000.bin",
+      "bytes": 364,
+      "sha256": "3727f122d10a76453901e4187840e06b247f6c66afcfaf930c1fd926c67c94f1"
+    },
+    {
+      "oid": "7d05224945b4a53365be80b992a93fb246b62bf5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/373aca5c76fde89cb0cbee116c8694c2394e4b1c222db70e48bb8499a5a67fad.000.bin",
+      "bytes": 13612,
+      "sha256": "373aca5c76fde89cb0cbee116c8694c2394e4b1c222db70e48bb8499a5a67fad"
+    },
+    {
+      "oid": "f41ecea5adbc3140e4988997fe54e6f6e3a688c5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3868f06c04ff1bca88ad1e07da44651689ca28e5723a7ad2bf2630e6d6287cd3.000.bin",
+      "bytes": 2527554,
+      "sha256": "3868f06c04ff1bca88ad1e07da44651689ca28e5723a7ad2bf2630e6d6287cd3"
+    },
+    {
+      "oid": "5bd98b4399b593694858c89661edb466ac24f90c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/386d0b4e4884eab9540b061041889fcfffc1c5e6e963fabd8b832d26e6ac067d.000.bin",
+      "bytes": 1261578,
+      "sha256": "386d0b4e4884eab9540b061041889fcfffc1c5e6e963fabd8b832d26e6ac067d"
+    },
+    {
+      "oid": "b90c0b87074487d74b074527614743d70c7b3a92",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/38bde371e888303238707e1c97725e1c1bd48a5f118ad163a6cef4c849d7a8db.000.bin",
+      "bytes": 7068,
+      "sha256": "38bde371e888303238707e1c97725e1c1bd48a5f118ad163a6cef4c849d7a8db"
+    },
+    {
+      "oid": "a0e8f619873ba90786f52b58122b29abf20439f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3a38506232fec7d7926c95b71ed6dc78825100eb594a2e589cf7f3a6c3e6c99c.000.bin",
+      "bytes": 5530,
+      "sha256": "3a38506232fec7d7926c95b71ed6dc78825100eb594a2e589cf7f3a6c3e6c99c"
+    },
+    {
+      "oid": "a155601f7ef07e242d650c530893f6c498eda8cd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3a54d0537e9edc29c391d95cd16ca9d08ea71916d9d53e127035bc578a40e40d.000.bin",
+      "bytes": 7066,
+      "sha256": "3a54d0537e9edc29c391d95cd16ca9d08ea71916d9d53e127035bc578a40e40d"
+    },
+    {
+      "oid": "f1dc2947ecc04241126c3575a439dedd33fa484c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3b0afe128309d2a8a8fc1d99830a5faccbefd6823466e79522cd5ff37c7d1416.000.bin",
+      "bytes": 13640,
+      "sha256": "3b0afe128309d2a8a8fc1d99830a5faccbefd6823466e79522cd5ff37c7d1416"
+    },
+    {
+      "oid": "3e5e8ef36fdca61f6d3215adb7c88f834f7f2b95",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3cfcba9950c88cfa8dd74314ea2ee434246a27cad07f2188923192f6648421d8.000.bin",
+      "bytes": 1297627,
+      "sha256": "3cfcba9950c88cfa8dd74314ea2ee434246a27cad07f2188923192f6648421d8"
+    },
+    {
+      "oid": "c268a9d0eb401ba47f638be84649f883fbd36fbb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3d059a463cf3853b355f2d11e7002b4aa4223a0eca9a651da4e0159df1304c48.000.bin",
+      "bytes": 1109262,
+      "sha256": "3d059a463cf3853b355f2d11e7002b4aa4223a0eca9a651da4e0159df1304c48"
+    },
+    {
+      "oid": "41abbf4e4daa052be324c25e02731b5419efe86b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3d6effbc460226ecba75371c87d60f210b7c2ca367fa4126c6a85d032fe1fead.000.bin",
+      "bytes": 951904,
+      "sha256": "3d6effbc460226ecba75371c87d60f210b7c2ca367fa4126c6a85d032fe1fead"
+    },
+    {
+      "oid": "e1ea8136ff31b615a62a9db93c8a515bff1bc2e8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3d8b651ebacc6ba71ebe655a8f84d5199a036b55af2e5122c18e458d63b1043c.000.bin",
+      "bytes": 22187,
+      "sha256": "3d8b651ebacc6ba71ebe655a8f84d5199a036b55af2e5122c18e458d63b1043c"
+    },
+    {
+      "oid": "945976dc130f377031800b4fc6507f9ac30ff6dc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3dfa0c81cebf15ed82294b70fbdd1ab8ce2c6685cbc2c51e72a72de59e97708e.000.bin",
+      "bytes": 163,
+      "sha256": "3dfa0c81cebf15ed82294b70fbdd1ab8ce2c6685cbc2c51e72a72de59e97708e"
+    },
+    {
+      "oid": "ba7589894e8b9af9d0065710411825776a55945f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3e23a28b1a26b8f2b01d5bda344313fbd1f648b72aca8c937b956ccb70380273.000.bin",
+      "bytes": 13428,
+      "sha256": "3e23a28b1a26b8f2b01d5bda344313fbd1f648b72aca8c937b956ccb70380273"
+    },
+    {
+      "oid": "1ca172f5715b483c061b61ab85b87fa672514081",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3e3f3173027116499265944db933d9d94244842b4d36b5fc4074236a19fb6145.000.bin",
+      "bytes": 3169,
+      "sha256": "3e3f3173027116499265944db933d9d94244842b4d36b5fc4074236a19fb6145"
+    },
+    {
+      "oid": "710df9e2b5633c19d7a0867db6af674cb10f6994",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/3f9474fa6796f6d387de44eb181968ad50d8521915d0c08984fc6520f1437d6e.000.bin",
+      "bytes": 13443,
+      "sha256": "3f9474fa6796f6d387de44eb181968ad50d8521915d0c08984fc6520f1437d6e"
+    },
+    {
+      "oid": "8017d50d56984f87e9f0a0ff57cb116b7aec5240",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812.000.bin",
+      "bytes": 3827,
+      "sha256": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812"
+    },
+    {
+      "oid": "6f9d76c06867f1fe3bd067966812c810f3f19212",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/40e0a2d4989d562c526c820931e255804f3546c6b4d393586b5960045778cf2d.000.bin",
+      "bytes": 16977,
+      "sha256": "40e0a2d4989d562c526c820931e255804f3546c6b4d393586b5960045778cf2d"
+    },
+    {
+      "oid": "ba34ecfb60514fb1ae96b9c7fe0bd6ba1c8d4dfd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/41378dcca41043fa5124226ee4b184464930a78a1f082d10a2d19832d327c923.000.bin",
+      "bytes": 20394,
+      "sha256": "41378dcca41043fa5124226ee4b184464930a78a1f082d10a2d19832d327c923"
+    },
+    {
+      "oid": "f3824e5420a21301a6185fd139e20969969dbe3a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/418d83e684e3f4c915fcb574616bae9b9e08851a7ef1ae3be44d0dccb991abe3.000.bin",
+      "bytes": 15339016,
+      "sha256": "418d83e684e3f4c915fcb574616bae9b9e08851a7ef1ae3be44d0dccb991abe3"
+    },
+    {
+      "oid": "bff108ec5ba103e10d3f74922240f6b941eb9e3b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/41cf26c8c8c26dd5df6e3a0ffdde133a454fff650f7908946826d2e4c1955ba3.000.bin",
+      "bytes": 10142,
+      "sha256": "41cf26c8c8c26dd5df6e3a0ffdde133a454fff650f7908946826d2e4c1955ba3"
+    },
+    {
+      "oid": "cfed84a487438c6f88ba712cde8d187f190f7760",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b.000.bin",
+      "bytes": 24310728,
+      "sha256": "42064dc3a9e3f0404a967979bcea1fee809afbfeb122fa241a0ddffe50a00c8b"
+    },
+    {
+      "oid": "4b9783e0703b3b69ae63f2ffb7a600ce5dbdf2ed",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/42ce62b295c17c838ec828c707622613f6ae23fad095d72b72d0a1dfe2b0136c.000.bin",
+      "bytes": 106398,
+      "sha256": "42ce62b295c17c838ec828c707622613f6ae23fad095d72b72d0a1dfe2b0136c"
+    },
+    {
+      "oid": "172a905f2a7f32f08ec1d1b7d18aba059072127b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/431ff695aa6cdcf203e8e8f1ce4315bd7acc2d044726e8ba63170b4a893fae27.000.bin",
+      "bytes": 8626,
+      "sha256": "431ff695aa6cdcf203e8e8f1ce4315bd7acc2d044726e8ba63170b4a893fae27"
+    },
+    {
+      "oid": "09c582b738606098e45438c5ae6a7ff120224fc0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/437dabd937586bffc9bc05c7ef0109694431d551dca814cda7ede5770253a0e3.000.bin",
+      "bytes": 1179716,
+      "sha256": "437dabd937586bffc9bc05c7ef0109694431d551dca814cda7ede5770253a0e3"
+    },
+    {
+      "oid": "817d4eb982c204752b0e8b0c1c75c7446058f98e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/43a978c68b3638d80d68d54f9b35af411e42e2b489d8cdc1f6652947483762df.000.bin",
+      "bytes": 183676,
+      "sha256": "43a978c68b3638d80d68d54f9b35af411e42e2b489d8cdc1f6652947483762df"
+    },
+    {
+      "oid": "c26b17b5d4a28e294cfcb676fdb9b0bd6e51fe0b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/43ccba14c8b0215b62727183f1a413cff92c2dd8faaba668875fd446a179f96b.000.bin",
+      "bytes": 833271,
+      "sha256": "43ccba14c8b0215b62727183f1a413cff92c2dd8faaba668875fd446a179f96b"
+    },
+    {
+      "oid": "1067ed3119ec7b0ff2b403ec4095e0be9cdac375",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/43df7aea4582168c07acd4dfe146702f78b4fdf30da5f1205de82c87c4fab3be.000.bin",
+      "bytes": 81676,
+      "sha256": "43df7aea4582168c07acd4dfe146702f78b4fdf30da5f1205de82c87c4fab3be"
+    },
+    {
+      "oid": "458cd6b257e61a04b20f4d09a2e442071559e9f4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/44913bcbb2ed8a956153978b71dfaa4954023f15b1aa3806df13082a9d7802cf.000.bin",
+      "bytes": 173455,
+      "sha256": "44913bcbb2ed8a956153978b71dfaa4954023f15b1aa3806df13082a9d7802cf"
+    },
+    {
+      "oid": "72448f36d208ab1f15d99c3fa9cd5c8254c3b8af",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/44a88f6f40f3caaa8e924eda6691f0ac40a06cd8985f12ec5fa19be690343b5f.000.bin",
+      "bytes": 8646,
+      "sha256": "44a88f6f40f3caaa8e924eda6691f0ac40a06cd8985f12ec5fa19be690343b5f"
+    },
+    {
+      "oid": "6e69df38607edb27db403cb00934fe9f2dc8f274",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/44dbce37a68fe54ab0ed0b533081ff654454ed0d81feb1372124637de63cdca6.000.bin",
+      "bytes": 5549,
+      "sha256": "44dbce37a68fe54ab0ed0b533081ff654454ed0d81feb1372124637de63cdca6"
+    },
+    {
+      "oid": "96bf59327a4d58c05be60bbdf4b0da3e635dcf8a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/46ba00dd7297395507fd8e8a9f4333d69a00fb4d284d4d6f1bcddf3c16deb5c5.000.bin",
+      "bytes": 13282,
+      "sha256": "46ba00dd7297395507fd8e8a9f4333d69a00fb4d284d4d6f1bcddf3c16deb5c5"
+    },
+    {
+      "oid": "52869627f9c005fd71b589303e8f82649adce166",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/47fabdc80eeed07727af6c6b6d1d1087ccddbd85b95be26b17c68d89a1677011.000.bin",
+      "bytes": 2176664,
+      "sha256": "47fabdc80eeed07727af6c6b6d1d1087ccddbd85b95be26b17c68d89a1677011"
+    },
+    {
+      "oid": "47a9c3e2b01c74437b04ddfcc4c4558ce57a5365",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/48ae29baf5bfda7671677f6144a14eb974a22936a691a4181225ea8e2f3c64a1.000.bin",
+      "bytes": 13443,
+      "sha256": "48ae29baf5bfda7671677f6144a14eb974a22936a691a4181225ea8e2f3c64a1"
+    },
+    {
+      "oid": "f7b77f0d640045ff53708603c94e17cb6a25d30e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/48b38535791749d689142b8c2890bb3a1f90f1c9a5b2a67842c296826731efb2.000.bin",
+      "bytes": 134415,
+      "sha256": "48b38535791749d689142b8c2890bb3a1f90f1c9a5b2a67842c296826731efb2"
+    },
+    {
+      "oid": "4cba360ef43243a0267f02d92ce2a9e040cbbf98",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/48da22fc679d024f4a50fd049b01f87b70bf7d24d72706ffca879eebc0edf0c3.000.bin",
+      "bytes": 13604,
+      "sha256": "48da22fc679d024f4a50fd049b01f87b70bf7d24d72706ffca879eebc0edf0c3"
+    },
+    {
+      "oid": "0daf6259cbf5b37990736e7aff949b636b0b598a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/48f3969b81784e12b49480228fd469b427515509c0dc1bfccddcab890f6de347.000.bin",
+      "bytes": 23514069,
+      "sha256": "48f3969b81784e12b49480228fd469b427515509c0dc1bfccddcab890f6de347"
+    },
+    {
+      "oid": "4d252c52310e2b8e5003be2c6ec0af92c00b9571",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4a1439f1749ba0e8434bfc8cca230460df47b158e661d7546a2703f4e0db1c02.000.bin",
+      "bytes": 13444,
+      "sha256": "4a1439f1749ba0e8434bfc8cca230460df47b158e661d7546a2703f4e0db1c02"
+    },
+    {
+      "oid": "b8bc8325705aea339414e6324302e03b239cd8b7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4a70ff865614b4760945e22eda7cce1d5f84701f211ba45d59bbd717c261dff8.000.bin",
+      "bytes": 3989,
+      "sha256": "4a70ff865614b4760945e22eda7cce1d5f84701f211ba45d59bbd717c261dff8"
+    },
+    {
+      "oid": "cc3530ddabf7196043f194124ee09dca4decde91",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4ad4ab3a9ba611de15b24f72f98fdaf8e57451636434bc43ad1c41d5425f6dca.000.bin",
+      "bytes": 7095,
+      "sha256": "4ad4ab3a9ba611de15b24f72f98fdaf8e57451636434bc43ad1c41d5425f6dca"
+    },
+    {
+      "oid": "ccaa89baab43bb70e36ecce9b4411b10d8172976",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4b4056b946c7fbbae1d94a884e0f108334d785b74f5b83c5bf06276efa5f1ba2.000.bin",
+      "bytes": 163,
+      "sha256": "4b4056b946c7fbbae1d94a884e0f108334d785b74f5b83c5bf06276efa5f1ba2"
+    },
+    {
+      "oid": "c81d80919e10c82f732f7d6f022e128f0e5ab55e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4c4c726512d5e26f8b3ecd9299fc68fbbb4d5fde60e9f3c878fc7ac19760f01d.000.bin",
+      "bytes": 503879,
+      "sha256": "4c4c726512d5e26f8b3ecd9299fc68fbbb4d5fde60e9f3c878fc7ac19760f01d"
+    },
+    {
+      "oid": "3ffc50934c33976bb4edfc6e51aa9d0f10043b10",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4c5516b04fa8889e9f03428107b611fe6262d94d52fb592b38d26e7a9846e549.000.bin",
+      "bytes": 13606,
+      "sha256": "4c5516b04fa8889e9f03428107b611fe6262d94d52fb592b38d26e7a9846e549"
+    },
+    {
+      "oid": "26dbbbc48dd4b55ede588ab90517177213e67c03",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4ce2d3d86528920fd582858d86ae58eea38d2bdf785c3f3909917ae9caf543e9.000.bin",
+      "bytes": 1109612,
+      "sha256": "4ce2d3d86528920fd582858d86ae58eea38d2bdf785c3f3909917ae9caf543e9"
+    },
+    {
+      "oid": "446f40adde8f567877d9b421c7c06d13dcc95297",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4d0cf4e054a7f96f60762898c1406e51d4eead9027c3838091da5f5c1ccee5ac.000.bin",
+      "bytes": 7097,
+      "sha256": "4d0cf4e054a7f96f60762898c1406e51d4eead9027c3838091da5f5c1ccee5ac"
+    },
+    {
+      "oid": "a8ec7835baf258d4b1557479a1f4438757dadb2a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4d96aabad1187c6c5522fcf93224feb4e7bf4b32c4b7d4cc0a61952bfc9b36e1.000.bin",
+      "bytes": 13612,
+      "sha256": "4d96aabad1187c6c5522fcf93224feb4e7bf4b32c4b7d4cc0a61952bfc9b36e1"
+    },
+    {
+      "oid": "e4b194f57836c4362d5c5b5996469ae36b8b5d17",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4dafc8fb47d3acea67a573e98e2ac86ad6911d1fd75d3cdebd00a72ae9a08d0d.000.bin",
+      "bytes": 653524,
+      "sha256": "4dafc8fb47d3acea67a573e98e2ac86ad6911d1fd75d3cdebd00a72ae9a08d0d"
+    },
+    {
+      "oid": "18479a6d45737d2f729910785948fec68b367e8b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4dc267fe9396dbd1f6988df1b0fe1451eeb66425bfce23743c7dee7634a05759.000.bin",
+      "bytes": 13605,
+      "sha256": "4dc267fe9396dbd1f6988df1b0fe1451eeb66425bfce23743c7dee7634a05759"
+    },
+    {
+      "oid": "15dffab2fb4754a2e5d11a7449a6261fdccbf7bf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4e1a10539eaf33999b33183937ad478ef3746ea03608b3c283a97f916e789023.000.bin",
+      "bytes": 3617,
+      "sha256": "4e1a10539eaf33999b33183937ad478ef3746ea03608b3c283a97f916e789023"
+    },
+    {
+      "oid": "82de514d07ad491bad2744123778dfb108bb41d7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4e9696a9cdf54505e9550a5385eaed2c64c1f8230b9d21cead3d845da9281ab3.000.bin",
+      "bytes": 2177480,
+      "sha256": "4e9696a9cdf54505e9550a5385eaed2c64c1f8230b9d21cead3d845da9281ab3"
+    },
+    {
+      "oid": "d23cfa6a0bed3ced63eb6a0d6b3ee6b6b7a9a88b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4f037ee959ac454142107c5fd6d6577db354e07f161661fd4ac57c4c17948699.000.bin",
+      "bytes": 5720,
+      "sha256": "4f037ee959ac454142107c5fd6d6577db354e07f161661fd4ac57c4c17948699"
+    },
+    {
+      "oid": "802755251e4b60571df3065ee32f1bf1c50c7a41",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4f6efd1b082a3c70cab319e621fa7e5b162f84e285229871d1ce7c04c75a07af.000.bin",
+      "bytes": 13611,
+      "sha256": "4f6efd1b082a3c70cab319e621fa7e5b162f84e285229871d1ce7c04c75a07af"
+    },
+    {
+      "oid": "34c19fcc1a0c1d85f8557b55e10e1ca52ed03676",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921.000.bin",
+      "bytes": 180994,
+      "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921"
+    },
+    {
+      "oid": "a4a522a62f3a2f14a70de02e46eec6ac429f9982",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4fc4a7e2a3b086d20ec6a95b681b24cae94d44b372a1516c7614c7ddff2729cf.000.bin",
+      "bytes": 1815874,
+      "sha256": "4fc4a7e2a3b086d20ec6a95b681b24cae94d44b372a1516c7614c7ddff2729cf"
+    },
+    {
+      "oid": "503d3cb08b666bd2d4c7725f767f636e7d0ff8a7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4fe436e19dfce1a34c3034193a80fa523290452ab8cb320af7fd13b988cbc4fc.000.bin",
+      "bytes": 25241159,
+      "sha256": "4fe436e19dfce1a34c3034193a80fa523290452ab8cb320af7fd13b988cbc4fc"
+    },
+    {
+      "oid": "2ee89ab8ac50f4278e3deb14ea6f70afdfb12f82",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/4feaad1974378554ecccc1cb5f9e3dcb24b190a7178f1de487543d1b8474575b.000.bin",
+      "bytes": 340,
+      "sha256": "4feaad1974378554ecccc1cb5f9e3dcb24b190a7178f1de487543d1b8474575b"
+    },
+    {
+      "oid": "0a3ea2d0f7e069e16e643ca25bbe1e3b6d77539c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/504a0bd9b5721dc9821a355ef8fc3195518953e65f0b8edb19d15d9e69b3ed41.000.bin",
+      "bytes": 10919,
+      "sha256": "504a0bd9b5721dc9821a355ef8fc3195518953e65f0b8edb19d15d9e69b3ed41"
+    },
+    {
+      "oid": "7fcc0a570bd744a51c700fab4196e9099c31cf35",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5052e354914983b40f14133ad419c91689379e5581dd473d20b8e42698715959.000.bin",
+      "bytes": 70438,
+      "sha256": "5052e354914983b40f14133ad419c91689379e5581dd473d20b8e42698715959"
+    },
+    {
+      "oid": "1d5d3a97868c0c090511e4a7d74ecdcfe31dffb4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/50ad8453befaa4088e81c67475be2832193628ee8f8b0a3178118cacef13472a.000.bin",
+      "bytes": 1155772,
+      "sha256": "50ad8453befaa4088e81c67475be2832193628ee8f8b0a3178118cacef13472a"
+    },
+    {
+      "oid": "9e475eddd30eb456d4e7715122eabf15dd9a69cb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/512fcc8bcd55cdbb03751b0ee8c9811ed399571b643966fdaff7570fbd1b81b6.000.bin",
+      "bytes": 13605,
+      "sha256": "512fcc8bcd55cdbb03751b0ee8c9811ed399571b643966fdaff7570fbd1b81b6"
+    },
+    {
+      "oid": "018aa723e0a873d400f49c0de899f9c0a71dcfe4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5206370b135a6570f6626e039f281ab241719da0e1319da809e7ce0b5d498616.000.bin",
+      "bytes": 953661,
+      "sha256": "5206370b135a6570f6626e039f281ab241719da0e1319da809e7ce0b5d498616"
+    },
+    {
+      "oid": "dccd794841dcb9b077a1d8bbaa66425e44a9af52",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/527430d90e42a6b63be1297e077f7e003597d126c7551c33c800602490b04d9f.000.bin",
+      "bytes": 1432168,
+      "sha256": "527430d90e42a6b63be1297e077f7e003597d126c7551c33c800602490b04d9f"
+    },
+    {
+      "oid": "a30486f773cccc06a10deaf6620cfebdfb3fdd5a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/52e0d6d5c2d0d8ba5850d3874d74a3d5e7f34c516827f50610358dece7b7ed2c.000.bin",
+      "bytes": 1811753,
+      "sha256": "52e0d6d5c2d0d8ba5850d3874d74a3d5e7f34c516827f50610358dece7b7ed2c"
+    },
+    {
+      "oid": "667d19d1aef7d14cfeb922491c5b221df3bf914a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e.000.bin",
+      "bytes": 35236,
+      "sha256": "536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e"
+    },
+    {
+      "oid": "dd1d890589e11992608e8e2bbff3daa33c8d60c4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/538449a96a09cedbc1e33911e6e4a88e7d3280f218288308e8fe1b508a67cc12.000.bin",
+      "bytes": 1170266,
+      "sha256": "538449a96a09cedbc1e33911e6e4a88e7d3280f218288308e8fe1b508a67cc12"
+    },
+    {
+      "oid": "ac19ab8368e040baed43c2e4816dd5d6b41b2445",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5451a97a0cb18d6aa4d80471c67babed1463ccbaa06004e8654f633fce0e14b5.000.bin",
+      "bytes": 5550,
+      "sha256": "5451a97a0cb18d6aa4d80471c67babed1463ccbaa06004e8654f633fce0e14b5"
+    },
+    {
+      "oid": "a3855f339d0ab66155b4682e47d63547f959fd50",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/545c84175b29b7b81a5d222ac39a60816eb48595de903029cdc949cb46a23b4e.000.bin",
+      "bytes": 1084740,
+      "sha256": "545c84175b29b7b81a5d222ac39a60816eb48595de903029cdc949cb46a23b4e"
+    },
+    {
+      "oid": "0f7a2197524fcb02b3d76ebbca741af53cf5b537",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/54ae4e22791f254c42d885f486fd2c65dfff45e45f559f0d931df313b5de902b.000.bin",
+      "bytes": 11682,
+      "sha256": "54ae4e22791f254c42d885f486fd2c65dfff45e45f559f0d931df313b5de902b"
+    },
+    {
+      "oid": "51f1ebbe78160ebf4266766fb23e8bc9c488532e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/54fadd7a70a3cfa798f9fc670b14a1f6d8cbc52d595a644980bee658d6aab1dc.000.bin",
+      "bytes": 652804,
+      "sha256": "54fadd7a70a3cfa798f9fc670b14a1f6d8cbc52d595a644980bee658d6aab1dc"
+    },
+    {
+      "oid": "8411a6cc21cfc8f84068de54c3ba1083cb9c0846",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5509cf1a682303c838d6b80c364f85956d98a4fc7ee3af21c00c1dccdb2f1859.000.bin",
+      "bytes": 833061,
+      "sha256": "5509cf1a682303c838d6b80c364f85956d98a4fc7ee3af21c00c1dccdb2f1859"
+    },
+    {
+      "oid": "839715039b9fb17f1710849f365f496b2d97032d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/553cb0f5ed291322f85d8a6941e6cb5c1203f97f21650f9119cf43b4082f0150.000.bin",
+      "bytes": 13443,
+      "sha256": "553cb0f5ed291322f85d8a6941e6cb5c1203f97f21650f9119cf43b4082f0150"
+    },
+    {
+      "oid": "e0046a2ee8a9b9cc1bd53b3555334bb364132f2d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/559a49189f8431ac9fd4bcbc36e7440d67ccecff93d404f5b9321677a4c19f91.000.bin",
+      "bytes": 13612,
+      "sha256": "559a49189f8431ac9fd4bcbc36e7440d67ccecff93d404f5b9321677a4c19f91"
+    },
+    {
+      "oid": "ccf8a712ecb2912e353abb0f0cd1b43ac6f90ccb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/55b653a2543b4a49e9824bce9d0ce8804707410251bcaf6a54f1b47909f8f32f.000.bin",
+      "bytes": 13779,
+      "sha256": "55b653a2543b4a49e9824bce9d0ce8804707410251bcaf6a54f1b47909f8f32f"
+    },
+    {
+      "oid": "3e8f0588bd403524dcea31908fc827f460cda2e9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/56623dcaa9e2d2929a921ee2542f6b99297549dc75cb8cebb70ded92e22808e0.000.bin",
+      "bytes": 8626,
+      "sha256": "56623dcaa9e2d2929a921ee2542f6b99297549dc75cb8cebb70ded92e22808e0"
+    },
+    {
+      "oid": "27e4c9c85691097cdb16df4e41010d9215e16560",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/56d0d458bcbfed944300145e7b4b11c24c63c0f0c1716675587f84da0fc258bf.000.bin",
+      "bytes": 8606,
+      "sha256": "56d0d458bcbfed944300145e7b4b11c24c63c0f0c1716675587f84da0fc258bf"
+    },
+    {
+      "oid": "50fb5b913dcd33717a2de498fba8e7882d3cd7ef",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/56f01f7ad716f37815a0fb03bdf17337c574c5b2f6cf594a5789487b12849e22.000.bin",
+      "bytes": 13640,
+      "sha256": "56f01f7ad716f37815a0fb03bdf17337c574c5b2f6cf594a5789487b12849e22"
+    },
+    {
+      "oid": "01577f4f986265a0aa43d64186d3eded505e210f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/574ac9936e83407cd641407951a58d62554ec5808d02da5187145f72881185e0.000.bin",
+      "bytes": 16926,
+      "sha256": "574ac9936e83407cd641407951a58d62554ec5808d02da5187145f72881185e0"
+    },
+    {
+      "oid": "e5b31e38606d77abd0e32f4ce698f3ff8339bd5f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/57564e16c71fb48d57f3f70768b65c59bb547d05a3afa9b5256cf7f28590a43b.000.bin",
+      "bytes": 94371840,
+      "sha256": "0ae0d87def29505c3a41e30ac32bd34e98e54bfbe877a3459a7001ee97d7bf95"
+    },
+    {
+      "oid": "cb4236eb464b54dde4b575d97366c2144cb66e1a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/57564e16c71fb48d57f3f70768b65c59bb547d05a3afa9b5256cf7f28590a43b.001.bin",
+      "bytes": 8656311,
+      "sha256": "5f5f0e821ff4557a8756e21afe02cbe9cfa351d7947eaa2ef4a365ae5ddd3111"
+    },
+    {
+      "oid": "db9c96fc6db82e0ca1dca50769c4c8951afbe1ce",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5801633a4f01582eba13ead03406292b19bf75f9823bfe6832488f1db3b2e093.000.bin",
+      "bytes": 180462,
+      "sha256": "5801633a4f01582eba13ead03406292b19bf75f9823bfe6832488f1db3b2e093"
+    },
+    {
+      "oid": "9ae03b3b721d0f718f888ed985e4421d8ce1b5fb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/582b44da69040edf1dbe9ecf8ce44ecdd3a5a0415ec1ff5e1efe6775b9cfd796.000.bin",
+      "bytes": 29771,
+      "sha256": "582b44da69040edf1dbe9ecf8ce44ecdd3a5a0415ec1ff5e1efe6775b9cfd796"
+    },
+    {
+      "oid": "d3b81309eacf7914049664544f767eb957d179cc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/582c9ef5a19d6875532c3582bbf8930d4a1b65918e2c687243ab3e9e2b7acb67.000.bin",
+      "bytes": 175874,
+      "sha256": "582c9ef5a19d6875532c3582bbf8930d4a1b65918e2c687243ab3e9e2b7acb67"
+    },
+    {
+      "oid": "ca295ce0c2029e92a7fe0462a6b1f4091cab494c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/586c88017e844a773faced766a5802d69854391ab12be29cd173d4604456cc5e.000.bin",
+      "bytes": 4230,
+      "sha256": "586c88017e844a773faced766a5802d69854391ab12be29cd173d4604456cc5e"
+    },
+    {
+      "oid": "7402adc2b42995c9d5b89fff6af61d00ab4a49b9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/58a2c933d3d2d3b4e2153006e691a6ff437f89a93f16e20bdbe647f1908affc7.000.bin",
+      "bytes": 10164,
+      "sha256": "58a2c933d3d2d3b4e2153006e691a6ff437f89a93f16e20bdbe647f1908affc7"
+    },
+    {
+      "oid": "733030e3e6e221cd0a9c104f8adf09e3825af233",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/596a5782ae507f33a106bae962663feb14f7c39a680494854e89f2d106c222b3.000.bin",
+      "bytes": 13611,
+      "sha256": "596a5782ae507f33a106bae962663feb14f7c39a680494854e89f2d106c222b3"
+    },
+    {
+      "oid": "7367acaa943c762d9cfdc26f71ea81269adee449",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/596f65dbf4e7e580e6c18fdeabc64fb04b48bfc543eb95600fbd39d6b91efa98.000.bin",
+      "bytes": 7088,
+      "sha256": "596f65dbf4e7e580e6c18fdeabc64fb04b48bfc543eb95600fbd39d6b91efa98"
+    },
+    {
+      "oid": "7be62145abe1088cab41554f577ce447ac887864",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/599fa974ceb820babb4171d8fbbe72ad400b6421287eabfaec425c67b31f5f5d.000.bin",
+      "bytes": 4005,
+      "sha256": "599fa974ceb820babb4171d8fbbe72ad400b6421287eabfaec425c67b31f5f5d"
+    },
+    {
+      "oid": "64ea1265ea78781dee72db3ddab22b30817f8c57",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5a1139fa7fbb2292fde36908a5d4361e5da390fc6b738371bb5f8daf8d6f5d3c.000.bin",
+      "bytes": 172530,
+      "sha256": "5a1139fa7fbb2292fde36908a5d4361e5da390fc6b738371bb5f8daf8d6f5d3c"
+    },
+    {
+      "oid": "36f75f2208883f67e42cb3589ed44d3b6d73ea1f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5a3e78f589a3ad30d5423bbf4c54b3e938a90af0b152c709d86b153829bf18e4.000.bin",
+      "bytes": 13611,
+      "sha256": "5a3e78f589a3ad30d5423bbf4c54b3e938a90af0b152c709d86b153829bf18e4"
+    },
+    {
+      "oid": "0bd04b5e3e28a2c870a6c06434c0d124a6fb29de",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5af711ddac5389e592ecb799e4381189de2f8bacc2dcc24259470bf1af32bb6b.000.bin",
+      "bytes": 13607,
+      "sha256": "5af711ddac5389e592ecb799e4381189de2f8bacc2dcc24259470bf1af32bb6b"
+    },
+    {
+      "oid": "ccc19f24322277426ad56786db93d2c0917ff0c8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5b0dc344f261e85262e64aa0eb3b9372f5eaacb13f41b087a4574851d1922ae4.000.bin",
+      "bytes": 11682,
+      "sha256": "5b0dc344f261e85262e64aa0eb3b9372f5eaacb13f41b087a4574851d1922ae4"
+    },
+    {
+      "oid": "54c6ad3601ab28f7cfb39236e2fc1807702a984d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5b56d9f365328e76588d5b84b2169b2d2575911db0c32599b58dff8cbba4388f.000.bin",
+      "bytes": 13600,
+      "sha256": "5b56d9f365328e76588d5b84b2169b2d2575911db0c32599b58dff8cbba4388f"
+    },
+    {
+      "oid": "d41c6d6ebc84bc3868d141bdaab6a8ab790e5fcd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5b6ce0dc0e613ce19dbc9a749d83dabc50bbdfb211a701c7a98a39dc4f2ccdb3.000.bin",
+      "bytes": 3604,
+      "sha256": "5b6ce0dc0e613ce19dbc9a749d83dabc50bbdfb211a701c7a98a39dc4f2ccdb3"
+    },
+    {
+      "oid": "dbb45b8ae1afb645faa221a1371d14f8124f3309",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5bb78f087aa826148b9f1338af8a88ed6b1346a325ea796b074a8356b0a7e3c3.000.bin",
+      "bytes": 953216,
+      "sha256": "5bb78f087aa826148b9f1338af8a88ed6b1346a325ea796b074a8356b0a7e3c3"
+    },
+    {
+      "oid": "737b73f3f803b8a196c3fe9c95306d0dca4ac19a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5c18e59a99d9c837d2398c3d841d2f385e4d6bf55fe46c6eb7535efe09fd5cb6.000.bin",
+      "bytes": 13427,
+      "sha256": "5c18e59a99d9c837d2398c3d841d2f385e4d6bf55fe46c6eb7535efe09fd5cb6"
+    },
+    {
+      "oid": "6c075122f968c2cb2f781cd0b8d14b1e880179bc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5c2fee5564f7d0a877d650c8e3db6d2a84a4b5461f00d33def0fc45f3df1c8c4.000.bin",
+      "bytes": 13777,
+      "sha256": "5c2fee5564f7d0a877d650c8e3db6d2a84a4b5461f00d33def0fc45f3df1c8c4"
+    },
+    {
+      "oid": "b1f49a7cc23ce306bc6f48bceaeec5d962e2d54f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5c4687bf8a05097b3dee9f2f8d3506501d0bd3ef82a106a8396a91c14f1b7593.000.bin",
+      "bytes": 10899,
+      "sha256": "5c4687bf8a05097b3dee9f2f8d3506501d0bd3ef82a106a8396a91c14f1b7593"
+    },
+    {
+      "oid": "fd154799765f7ff148a4269bcbffcac8301c423a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5c6a4d0610d4a7c6678bbba1c6173ab5b06dc47fdb59eff127f5e40f0c04c7b4.000.bin",
+      "bytes": 10916,
+      "sha256": "5c6a4d0610d4a7c6678bbba1c6173ab5b06dc47fdb59eff127f5e40f0c04c7b4"
+    },
+    {
+      "oid": "70a6228cf177750bd09a9daae6ee86ba0b708498",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5cac77949ca16cd9b4b2b04b09c7242594bd61707e2d9b4a96bf0cf029e6146c.000.bin",
+      "bytes": 8625,
+      "sha256": "5cac77949ca16cd9b4b2b04b09c7242594bd61707e2d9b4a96bf0cf029e6146c"
+    },
+    {
+      "oid": "08b8fcb4b2b5382c0fe8c65c6abcf3002f3e89b7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5d481e5444cc887a39d21107ea283f15ef69b3eb933a2b495be82e378c56bf99.000.bin",
+      "bytes": 13425,
+      "sha256": "5d481e5444cc887a39d21107ea283f15ef69b3eb933a2b495be82e378c56bf99"
+    },
+    {
+      "oid": "d9556a14d19ef9651e6b076914bf5c5156dd2421",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5da6edc25180dce12dcccd50a5882f60cda3eac589a382eee796e02909962801.000.bin",
+      "bytes": 646,
+      "sha256": "5da6edc25180dce12dcccd50a5882f60cda3eac589a382eee796e02909962801"
+    },
+    {
+      "oid": "43b9ef15bc36b2259099aae4bfbf2011f7aa5a2f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5ddba2a49715ddcf8c0ea3d04e96393bc62d9610f69f8d948ac7782ef2a75e9d.000.bin",
+      "bytes": 2526476,
+      "sha256": "5ddba2a49715ddcf8c0ea3d04e96393bc62d9610f69f8d948ac7782ef2a75e9d"
+    },
+    {
+      "oid": "c4453821ffb838996957e5175da3d4f1d5b50223",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5e625b0df8b54727316e34bf8335ba7c39c588a20fbac9a7136e02f7e52c8d13.000.bin",
+      "bytes": 26094310,
+      "sha256": "5e625b0df8b54727316e34bf8335ba7c39c588a20fbac9a7136e02f7e52c8d13"
+    },
+    {
+      "oid": "5a3a54186651801840e95bc39422396053604574",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5eb2ee48b804b0a5627651acc48cb43d6cfb8284d96032b48b3700f8cd77f11e.000.bin",
+      "bytes": 13427,
+      "sha256": "5eb2ee48b804b0a5627651acc48cb43d6cfb8284d96032b48b3700f8cd77f11e"
+    },
+    {
+      "oid": "c5bf530122396912608afe224fb47cee19921966",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5f0437dd26f01c536855c7d26b7b5d41c9ae7a515232708f616d7eec8afdab13.000.bin",
+      "bytes": 9929,
+      "sha256": "5f0437dd26f01c536855c7d26b7b5d41c9ae7a515232708f616d7eec8afdab13"
+    },
+    {
+      "oid": "535331e29d2a9f970dd16a0d68b4660be06f3f64",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5f3decba34d1fd4dc10402da8299639566aa05effaf02c5019718556a08e184d.000.bin",
+      "bytes": 175833,
+      "sha256": "5f3decba34d1fd4dc10402da8299639566aa05effaf02c5019718556a08e184d"
+    },
+    {
+      "oid": "9c42611f5234572dbde0da77c0b80dbd5b278b07",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58.000.bin",
+      "bytes": 12449,
+      "sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58"
+    },
+    {
+      "oid": "3332229990a400b14ec2013794359f590d59a9f9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/5fd0dbde10058bee2f10473745ca151ea333e2a3437599ff846bbd9c23e6a49a.000.bin",
+      "bytes": 13611,
+      "sha256": "5fd0dbde10058bee2f10473745ca151ea333e2a3437599ff846bbd9c23e6a49a"
+    },
+    {
+      "oid": "5349301dab595da5662bdd3aa65d0f37eb99b05d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/613a502e091a30cd398bd3e60f67a195ab02255b99a7d5e76a08fd5485b2f11e.000.bin",
+      "bytes": 7088,
+      "sha256": "613a502e091a30cd398bd3e60f67a195ab02255b99a7d5e76a08fd5485b2f11e"
+    },
+    {
+      "oid": "2eb864dba4cf2eeb3d1bf3e33a5e9ee038214da5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/616427ef0b185af53af678d55b70fbc9e5289a6197904e0f87ad2f04b7f9fbb2.000.bin",
+      "bytes": 4003,
+      "sha256": "616427ef0b185af53af678d55b70fbc9e5289a6197904e0f87ad2f04b7f9fbb2"
+    },
+    {
+      "oid": "c1bd8c65bcefb673c398a5488381df41e357eaf0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/62016eb03a48c83ba2cd3af7d344923fa73be97db41526d9be7795df5a67caae.000.bin",
+      "bytes": 1297542,
+      "sha256": "62016eb03a48c83ba2cd3af7d344923fa73be97db41526d9be7795df5a67caae"
+    },
+    {
+      "oid": "bf9d51150e99d3d43c2d9a881c34b27c2ef72e7d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/621949a8c57ba39acfa71f8d783217d3ff1d899ea2237b8f1d4b2f6a6edba039.000.bin",
+      "bytes": 11702,
+      "sha256": "621949a8c57ba39acfa71f8d783217d3ff1d899ea2237b8f1d4b2f6a6edba039"
+    },
+    {
+      "oid": "e79bd7b49e596f04e8fefa5cd8668d8e579e0857",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/624bfbd11ae1667306fb1b931fee4aaf64974d3632d65bda34e57588e782ecd6.000.bin",
+      "bytes": 163,
+      "sha256": "624bfbd11ae1667306fb1b931fee4aaf64974d3632d65bda34e57588e782ecd6"
+    },
+    {
+      "oid": "c0e4eaa8f4f9c738bbcb6abf6ea8e990cf62b0f9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/631519e2d7f0927e378a287d2fa7700dab84ba258caeb62b925b540a6c4b551a.000.bin",
+      "bytes": 6963,
+      "sha256": "631519e2d7f0927e378a287d2fa7700dab84ba258caeb62b925b540a6c4b551a"
+    },
+    {
+      "oid": "acba93bb73598d855c76b63858ca1d52b7037e83",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/633ac716c20312bb94d3da0c4caae5bc30d3cc835b5f748adf45c3a035fba4c2.000.bin",
+      "bytes": 13611,
+      "sha256": "633ac716c20312bb94d3da0c4caae5bc30d3cc835b5f748adf45c3a035fba4c2"
+    },
+    {
+      "oid": "60c02ca2e62484da4127fb5d0eee57d7a9994ece",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6409aa50eca0c0156ad26c8fc10c2caa97f8e4d964d2083cde209e2f98035699.000.bin",
+      "bytes": 5728,
+      "sha256": "6409aa50eca0c0156ad26c8fc10c2caa97f8e4d964d2083cde209e2f98035699"
+    },
+    {
+      "oid": "e9cd15dcfeb0067cd223827ba4dccd8e77f4d04b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6416ace30d548571341d9630f2439537deeed60efe80b7747d47b1bea7acee54.000.bin",
+      "bytes": 11680,
+      "sha256": "6416ace30d548571341d9630f2439537deeed60efe80b7747d47b1bea7acee54"
+    },
+    {
+      "oid": "e49a39ff3015abbba42c84b611255efb2e8890ae",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/64b1964090ad4989bc9df23d1fab670296a03479c93a7e5d6b6df9ddd8436530.000.bin",
+      "bytes": 10164,
+      "sha256": "64b1964090ad4989bc9df23d1fab670296a03479c93a7e5d6b6df9ddd8436530"
+    },
+    {
+      "oid": "be9948d1fe35b8b1c205106185ff1e508e4c66f1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/64bea55a36d4bb0dad7735783c3f641ecc2e801be7817a3408aeaf5dd4bb90f5.000.bin",
+      "bytes": 1432014,
+      "sha256": "64bea55a36d4bb0dad7735783c3f641ecc2e801be7817a3408aeaf5dd4bb90f5"
+    },
+    {
+      "oid": "362f6357070fc08aee18983c14effb61fc7fb6c2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/64ffdb5a58c11fa2293f669de05bd2db313e732953fd2b022ac7cfbcc86ef99d.000.bin",
+      "bytes": 13442,
+      "sha256": "64ffdb5a58c11fa2293f669de05bd2db313e732953fd2b022ac7cfbcc86ef99d"
+    },
+    {
+      "oid": "c3df0b9cfb992308aeccf0f5f145217cb6503a51",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/66704150413d15c00526ab5f8730d680ddf82defc915cc9ae59ab10868efc713.000.bin",
+      "bytes": 10164,
+      "sha256": "66704150413d15c00526ab5f8730d680ddf82defc915cc9ae59ab10868efc713"
+    },
+    {
+      "oid": "f2d0be669dac67fff93ea65b65d1f90bf31c7836",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/66a986f5f3653bb7f53a30f0db1d8af4c6d98be0d334db5ef7eb817449337cf0.000.bin",
+      "bytes": 368,
+      "sha256": "66a986f5f3653bb7f53a30f0db1d8af4c6d98be0d334db5ef7eb817449337cf0"
+    },
+    {
+      "oid": "c6f0967adfadd5a8867112522df5bd189572405c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/66b10797b3cebccf7af6a84d0c1ce1388b6ac5b9f8e237c306a375d405ffe20d.000.bin",
+      "bytes": 15824,
+      "sha256": "66b10797b3cebccf7af6a84d0c1ce1388b6ac5b9f8e237c306a375d405ffe20d"
+    },
+    {
+      "oid": "10bc7dda5d6df04085552b76009c394eb08f79b4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/670fd9458b5b127981316559162ec8e7108fff1b1e6e8ff274742b2e09d9fda8.000.bin",
+      "bytes": 11701,
+      "sha256": "670fd9458b5b127981316559162ec8e7108fff1b1e6e8ff274742b2e09d9fda8"
+    },
+    {
+      "oid": "1a05aa083f9860e08aa0cf3abd3e51e58d79622f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6a23e569498a9447ba4436d5ec057303f78f4e3f16c7b6bc0e5b57c86a5a59a4.000.bin",
+      "bytes": 221915,
+      "sha256": "6a23e569498a9447ba4436d5ec057303f78f4e3f16c7b6bc0e5b57c86a5a59a4"
+    },
+    {
+      "oid": "18d51e3b15a5b36171b7f8d59ed1329896600a4a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6afb8a91b57cdc753a5e535e9b216e01d5f6dc49b48c8279943d0ccc3dbf7c69.000.bin",
+      "bytes": 13611,
+      "sha256": "6afb8a91b57cdc753a5e535e9b216e01d5f6dc49b48c8279943d0ccc3dbf7c69"
+    },
+    {
+      "oid": "f44c2ae27e9d626c163c9968eba318c7151173ba",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6c74a77e0e8adc7647aa368701600fb14691def7cf39a9b6160c3b11d83cceba.000.bin",
+      "bytes": 173222,
+      "sha256": "6c74a77e0e8adc7647aa368701600fb14691def7cf39a9b6160c3b11d83cceba"
+    },
+    {
+      "oid": "b8fe8e4f4fb111a175cee4a97e68587be2f121c8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6cf45c37c800b8f6d032d20a67c3e7a0467a5249d82a00ebc629c1e108f513c9.000.bin",
+      "bytes": 3987,
+      "sha256": "6cf45c37c800b8f6d032d20a67c3e7a0467a5249d82a00ebc629c1e108f513c9"
+    },
+    {
+      "oid": "93971c036dc164efd069729c582a737569403bda",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6e273ebd3269d6a2a694fc9223c467aa88e9ddfe6e1f7d9949f341dca463cc68.000.bin",
+      "bytes": 833166,
+      "sha256": "6e273ebd3269d6a2a694fc9223c467aa88e9ddfe6e1f7d9949f341dca463cc68"
+    },
+    {
+      "oid": "79223843c59b417b932fe61ed5bcf89cb4417bb0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6e71f0e849b2f2f1fa69a6b5e7b1a72db2a2d230aff40089842486719d22466f.000.bin",
+      "bytes": 295242,
+      "sha256": "6e71f0e849b2f2f1fa69a6b5e7b1a72db2a2d230aff40089842486719d22466f"
+    },
+    {
+      "oid": "3a5e7e0e1668e3d14ff90372ea42dc31b3127a09",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6e7419238d18b074965bfc58b1c17679ad2a8099c8a594c85ee16a7d0825efca.000.bin",
+      "bytes": 1813035,
+      "sha256": "6e7419238d18b074965bfc58b1c17679ad2a8099c8a594c85ee16a7d0825efca"
+    },
+    {
+      "oid": "026d14ae69afbc40042bda0366452441c940acd1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6ec451c0e3ed3851550f267523e28db3dacbc6f5acb8f54a2b2d755ffe525a95.000.bin",
+      "bytes": 366,
+      "sha256": "6ec451c0e3ed3851550f267523e28db3dacbc6f5acb8f54a2b2d755ffe525a95"
+    },
+    {
+      "oid": "7e4a406367c91fd1053dfe2cd1d15e17b125bb64",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6ee7c79666b549f6e8bcf9ddc2ed1720e63114d028777ac993f69d3a1bf04c94.000.bin",
+      "bytes": 23514069,
+      "sha256": "6ee7c79666b549f6e8bcf9ddc2ed1720e63114d028777ac993f69d3a1bf04c94"
+    },
+    {
+      "oid": "66486f8f9a96d3b3295c654e29ba315d9e6043fd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6f8670276147774c80074cf5466b7914f60fc00c11db23ad859e246ea79d5b9c.000.bin",
+      "bytes": 1109369,
+      "sha256": "6f8670276147774c80074cf5466b7914f60fc00c11db23ad859e246ea79d5b9c"
+    },
+    {
+      "oid": "4c5a04aba863af2fa4ac4aaea745db144ea46a36",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6fb2267324f707c923cbebb62811be142f2f564cf1ae82e21990998d8bf758dc.000.bin",
+      "bytes": 647,
+      "sha256": "6fb2267324f707c923cbebb62811be142f2f564cf1ae82e21990998d8bf758dc"
+    },
+    {
+      "oid": "b5a7a60ac6a40d53cc79f26ce68095f4686c6338",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/6fe1a72a5510db6adde4b5a7cfe711921aa1f610d95254a91a7ccfc9d1930a68.000.bin",
+      "bytes": 543982,
+      "sha256": "6fe1a72a5510db6adde4b5a7cfe711921aa1f610d95254a91a7ccfc9d1930a68"
+    },
+    {
+      "oid": "bc0afe8b541d3477bbe16442cede086fbef31ad9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7019149895b460fabaa0f65c769d1f4761e885c097531e40f0bcc1b57e7eb762.000.bin",
+      "bytes": 13612,
+      "sha256": "7019149895b460fabaa0f65c769d1f4761e885c097531e40f0bcc1b57e7eb762"
+    },
+    {
+      "oid": "f7bfb26502f38f601196cc7607243bf781d51358",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7103a68f784b388d43af0fed62eef2f7ad7dd68b0cd9558a8c86580e29561533.000.bin",
+      "bytes": 2174818,
+      "sha256": "7103a68f784b388d43af0fed62eef2f7ad7dd68b0cd9558a8c86580e29561533"
+    },
+    {
+      "oid": "eb85be0df493cd2a41c24c0d71e746d71d6f5e63",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/71174193341cefffe543b0a5d853c6e4af12953a08b4c133aad986b6806388ff.000.bin",
+      "bytes": 10162,
+      "sha256": "71174193341cefffe543b0a5d853c6e4af12953a08b4c133aad986b6806388ff"
+    },
+    {
+      "oid": "8f13eb79db12ab8aef2d5ae25eb79fd75788249f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/71473024f03dccc387748d806bea5e67d508281f3407a4ea72534e8eb86259ef.000.bin",
+      "bytes": 13773,
+      "sha256": "71473024f03dccc387748d806bea5e67d508281f3407a4ea72534e8eb86259ef"
+    },
+    {
+      "oid": "8cbe5f8e4e288ab1ca1c531ef76d3017d8d7f03f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/714dc35c674d52350be0164aa025f8cf30cfdbf2f65f7392c099e82fc3dc4611.000.bin",
+      "bytes": 13443,
+      "sha256": "714dc35c674d52350be0164aa025f8cf30cfdbf2f65f7392c099e82fc3dc4611"
+    },
+    {
+      "oid": "85bfe75801f93d9fe7c17d083c1dd32d2dae9bea",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7223e82366a4028644bd937f54e36274dad7e414cd853cd78be1b363cbf96b95.000.bin",
+      "bytes": 13610,
+      "sha256": "7223e82366a4028644bd937f54e36274dad7e414cd853cd78be1b363cbf96b95"
+    },
+    {
+      "oid": "a8af78608f48902a70d7a28ccbacc534f45e91d3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7234b321c082d79abe8ccd0a7288e35eee9768859a6b95efce036b4f213a763c.000.bin",
+      "bytes": 8624,
+      "sha256": "7234b321c082d79abe8ccd0a7288e35eee9768859a6b95efce036b4f213a763c"
+    },
+    {
+      "oid": "bba356f0f3ff131d555b3525b3fa7cc9412a62bc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/72372cc985805914efa2ccd09e002bb927c0589e96f7941e1e28765dfdab3aa4.000.bin",
+      "bytes": 1706778,
+      "sha256": "72372cc985805914efa2ccd09e002bb927c0589e96f7941e1e28765dfdab3aa4"
+    },
+    {
+      "oid": "598eb1b4ffa820e42746d205ad10933bbeebe4bf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7250b69a3d6a3742ecc3b983414d52ee2f1d33ade1461817cffca9c07ba4e087.000.bin",
+      "bytes": 133949,
+      "sha256": "7250b69a3d6a3742ecc3b983414d52ee2f1d33ade1461817cffca9c07ba4e087"
+    },
+    {
+      "oid": "351340ec2464fda41b45ffa9fa271d8569f799d0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/726c8d2f7feb3263bebff356f9ecf2222febf729be19d5684f17671402f54f0a.000.bin",
+      "bytes": 78,
+      "sha256": "726c8d2f7feb3263bebff356f9ecf2222febf729be19d5684f17671402f54f0a"
+    },
+    {
+      "oid": "9ef7d33d6fe0f482d7559b14136ed1a1d75e85f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7331915dde25bfef9f9e312b9d08eab3c6d97aef54a16c7dc06d5b3ed03ad314.000.bin",
+      "bytes": 363401,
+      "sha256": "7331915dde25bfef9f9e312b9d08eab3c6d97aef54a16c7dc06d5b3ed03ad314"
+    },
+    {
+      "oid": "5812fcf6b053e179204dd91fe2e37c8f26261f98",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec.000.bin",
+      "bytes": 542,
+      "sha256": "74228c629388f64d782610d94e1691b77ef40376b3feee37527687af2fe134ec"
+    },
+    {
+      "oid": "d76cc238d36e185ce7b41f5f869c71fbfca24589",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/744248f5e56bb87de0a6da61fbc4bcdb6b2040b3fdb9c9dc089074c96fd00554.000.bin",
+      "bytes": 8712,
+      "sha256": "744248f5e56bb87de0a6da61fbc4bcdb6b2040b3fdb9c9dc089074c96fd00554"
+    },
+    {
+      "oid": "0c1fe4c272439ecd64eeb793f5f51cf694c0874c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/744e4858aff80e21d7e2c6b3e771306689d45f41039b540a7cc81dc5a47d46e5.000.bin",
+      "bytes": 5550,
+      "sha256": "744e4858aff80e21d7e2c6b3e771306689d45f41039b540a7cc81dc5a47d46e5"
+    },
+    {
+      "oid": "37263d4028d18c9a1bd3e0fcf4450e5aafb20935",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7541ca23efd6c25fe164b0a336b081ad20784a6c96669aa9404605d0c83554e5.000.bin",
+      "bytes": 6653,
+      "sha256": "7541ca23efd6c25fe164b0a336b081ad20784a6c96669aa9404605d0c83554e5"
+    },
+    {
+      "oid": "00500f9549d3c7d67f358a15bb72732cbccdc8d3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/754712c3401b73a998e3edb2018de2320616db917a60770874aaf184142d5963.000.bin",
+      "bytes": 7068,
+      "sha256": "754712c3401b73a998e3edb2018de2320616db917a60770874aaf184142d5963"
+    },
+    {
+      "oid": "759cf686c806e0a82a1ee8c8d4f6d8ff61f8b5b7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/76f3beb6ea8feeb1d8d8e448a0dbf1fb90258e4521b4a4f63e12c5f0b0352025.000.bin",
+      "bytes": 833132,
+      "sha256": "76f3beb6ea8feeb1d8d8e448a0dbf1fb90258e4521b4a4f63e12c5f0b0352025"
+    },
+    {
+      "oid": "0d2b75cc82f1673a996372cb8dad8906a845450b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/772c795053681bb6529237bb26829060344ca0ef77c540bf54734a94ef407585.000.bin",
+      "bytes": 192659,
+      "sha256": "772c795053681bb6529237bb26829060344ca0ef77c540bf54734a94ef407585"
+    },
+    {
+      "oid": "fe14fef73bb405ed7750c3ccc18c2e3b9adcfa33",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/78123345af018afcf9d81b8399fefe64877617e0e78fe3c944cb93731604e037.000.bin",
+      "bytes": 13610,
+      "sha256": "78123345af018afcf9d81b8399fefe64877617e0e78fe3c944cb93731604e037"
+    },
+    {
+      "oid": "b221dbac9ae56eeb2b5e6097c1c7de9adf511d14",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7840aaa7ebfdefb6e61128d967336920b27f62ff8139dd00cdb5bf1fd4918911.000.bin",
+      "bytes": 57282,
+      "sha256": "7840aaa7ebfdefb6e61128d967336920b27f62ff8139dd00cdb5bf1fd4918911"
+    },
+    {
+      "oid": "2f6201022a6d56bfba96f3eab8b8b282747f7d12",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/78c748d1e1f19b38dc166cfa067ac67352b9b3c0914538789456fb6a58e78cd7.000.bin",
+      "bytes": 833303,
+      "sha256": "78c748d1e1f19b38dc166cfa067ac67352b9b3c0914538789456fb6a58e78cd7"
+    },
+    {
+      "oid": "b498475d715eae9ebffee6ec1ac6e5dd62eb1660",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/78f6c98076d8a53dccc5edd72cf0191c4b2982c3e19b68bba8298d8c4bc646bb.000.bin",
+      "bytes": 8724,
+      "sha256": "78f6c98076d8a53dccc5edd72cf0191c4b2982c3e19b68bba8298d8c4bc646bb"
+    },
+    {
+      "oid": "8b04a5658d480c46765d15629379703bfe0f3c60",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7a5c218e0c472a0d346c92161c49da82d0c599f4c5043d8cb6f1c63f9a2d9be5.000.bin",
+      "bytes": 3604,
+      "sha256": "7a5c218e0c472a0d346c92161c49da82d0c599f4c5043d8cb6f1c63f9a2d9be5"
+    },
+    {
+      "oid": "71c33ff4f50e161e9bd2af3cd88dfdaa44d813eb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7ab4411d8af5111f526c9aad03c6221b78af12c9d7d5afcd2626b0581c64cc99.000.bin",
+      "bytes": 25417746,
+      "sha256": "7ab4411d8af5111f526c9aad03c6221b78af12c9d7d5afcd2626b0581c64cc99"
+    },
+    {
+      "oid": "49271657143c6bbc3fe256cda2800f31021bf1e8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7b249b3ebc83539c596b75707a69a57e44952ef16357f6f2e8262690470c700e.000.bin",
+      "bytes": 13775,
+      "sha256": "7b249b3ebc83539c596b75707a69a57e44952ef16357f6f2e8262690470c700e"
+    },
+    {
+      "oid": "f0fc44d001f52ac8496573d2a7b1c07d93dfced9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7b33beeac7629bb0eaae40789520a6fa10993838ec2a1887a24a05da1dca0fd0.000.bin",
+      "bytes": 163,
+      "sha256": "7b33beeac7629bb0eaae40789520a6fa10993838ec2a1887a24a05da1dca0fd0"
+    },
+    {
+      "oid": "2183f3d9c5a2a9d5575e92fd9db969d02e5733fe",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7ba901796527dea0cf4434755480d04fd315f264c78af387da5f5d5947283c58.000.bin",
+      "bytes": 94371840,
+      "sha256": "e03429cd160e0f51fa87c49943e998972e3af67fa862265c40c9d6af47fd43e1"
+    },
+    {
+      "oid": "c4585881990e76534235ef43fdbe0b016d11722e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7ba901796527dea0cf4434755480d04fd315f264c78af387da5f5d5947283c58.001.bin",
+      "bytes": 9511049,
+      "sha256": "ba613783beca28b6391050ab86af67192bad013beb786263b167bac07860b5e5"
+    },
+    {
+      "oid": "35b532c365226ad12ed692bc3c51401fe225cfc7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7c8e35a5bcfceccee0c184ac357da344c197a508bb3fe7b6b0def5763d411e71.000.bin",
+      "bytes": 13611,
+      "sha256": "7c8e35a5bcfceccee0c184ac357da344c197a508bb3fe7b6b0def5763d411e71"
+    },
+    {
+      "oid": "c64f818346351848129c67794805cf29f4d07deb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7cdb387a2d6aa90cc53b7d3901684dc2b7d1920545e1944a1f98b0d5f441c8ea.000.bin",
+      "bytes": 163,
+      "sha256": "7cdb387a2d6aa90cc53b7d3901684dc2b7d1920545e1944a1f98b0d5f441c8ea"
+    },
+    {
+      "oid": "93b06a4398965cd3f9d3f58eb5204728397bc617",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7d3e388bb44d1d79b6a46b2528eeed65f4d4148868598cca26b6562b6fa6bb89.000.bin",
+      "bytes": 23514069,
+      "sha256": "7d3e388bb44d1d79b6a46b2528eeed65f4d4148868598cca26b6562b6fa6bb89"
+    },
+    {
+      "oid": "1a3bd938cb16b13e804a9a70ffe3dce2debd06ca",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7df895a96148d75135f54696525b25966fd0a7b075e5775a4f1b358d512160c1.000.bin",
+      "bytes": 26680550,
+      "sha256": "7df895a96148d75135f54696525b25966fd0a7b075e5775a4f1b358d512160c1"
+    },
+    {
+      "oid": "6c7b6eb15044a3c53d97a4d2e6704003eacbe9ee",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7e4fe55a5032f3bbbe39cbd3e8f0598311080d77432ff7395b2fcd71bfc68737.000.bin",
+      "bytes": 158815,
+      "sha256": "7e4fe55a5032f3bbbe39cbd3e8f0598311080d77432ff7395b2fcd71bfc68737"
+    },
+    {
+      "oid": "4c14049f048132f3112292b58707f6bd10f0188f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7eafcf83c9b50af909d6a61d02691977cc952fb16828ff6ad18a0171ca2ee4f2.000.bin",
+      "bytes": 1170096,
+      "sha256": "7eafcf83c9b50af909d6a61d02691977cc952fb16828ff6ad18a0171ca2ee4f2"
+    },
+    {
+      "oid": "8e1e0ea2a3f4e976ed9b6269a1474f4c5895583f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7f17953f560683f914dd3fa7ccb03e8f4296f8c1f6551f9b0d22e6b547862131.000.bin",
+      "bytes": 1261824,
+      "sha256": "7f17953f560683f914dd3fa7ccb03e8f4296f8c1f6551f9b0d22e6b547862131"
+    },
+    {
+      "oid": "e46510bad9da7c25ecc60c5c1631400cad671f85",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b.000.bin",
+      "bytes": 46176,
+      "sha256": "7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b"
+    },
+    {
+      "oid": "86dcd34fa2ec7dfad1dd9d6a6680c86e949b459f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/800cd8b1086366c052bd36ac05b9cafc01c080dab929c55fe277395b75f0797e.000.bin",
+      "bytes": 1107524,
+      "sha256": "800cd8b1086366c052bd36ac05b9cafc01c080dab929c55fe277395b75f0797e"
+    },
+    {
+      "oid": "bc7cd2dc9b6b13a549b24de9e9b66d33f6d822c8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/80d897b273652cce4e2dd292a9fcd66329cd08e24b71a6c631b0c418d795a165.000.bin",
+      "bytes": 13610,
+      "sha256": "80d897b273652cce4e2dd292a9fcd66329cd08e24b71a6c631b0c418d795a165"
+    },
+    {
+      "oid": "00a5c1c429bad19abe61b0d6244bfc06739ee901",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/81eaefe63a206f991230621db5b024d43e0efe40770b34bb60f9fe28920e63d7.000.bin",
+      "bytes": 5529,
+      "sha256": "81eaefe63a206f991230621db5b024d43e0efe40770b34bb60f9fe28920e63d7"
+    },
+    {
+      "oid": "a8dde9e58a229df9fdb4a20fcaacabdf82fd5fef",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/82444d2204e6d9ef717a0b59de1b3bae149e9ac4c7e2430248bd971c923a60ca.000.bin",
+      "bytes": 13607,
+      "sha256": "82444d2204e6d9ef717a0b59de1b3bae149e9ac4c7e2430248bd971c923a60ca"
+    },
+    {
+      "oid": "eda5817ee3c216d8b3322e462cfd10aa26f3b213",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/82b72169e73f79098e66ece25824716ef483b41cff00ea0afb02ec163b774e59.000.bin",
+      "bytes": 1151,
+      "sha256": "82b72169e73f79098e66ece25824716ef483b41cff00ea0afb02ec163b774e59"
+    },
+    {
+      "oid": "fa3657572cc8acaf908884c874ec1a59e365b45f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/82cf690013e49c57755556e07b95cd99cbdbf9bc69be0b182ce13ff9dddfea4b.000.bin",
+      "bytes": 35928,
+      "sha256": "82cf690013e49c57755556e07b95cd99cbdbf9bc69be0b182ce13ff9dddfea4b"
+    },
+    {
+      "oid": "f0548b05cdb272ad4357ec638fa236d1ac63c8c6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/82d4a917353c0945e88c9c240389c5b3fafd8b7b67ca96da249c372412c7f563.000.bin",
+      "bytes": 25417747,
+      "sha256": "82d4a917353c0945e88c9c240389c5b3fafd8b7b67ca96da249c372412c7f563"
+    },
+    {
+      "oid": "d8cf02656577d967e1f95dc54ed8f180f53d6071",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/82daf92c0ed7a6d864241ca8bc66af09fb7b1c0d9c90fa6245e92497f5e1d37c.000.bin",
+      "bytes": 134711,
+      "sha256": "82daf92c0ed7a6d864241ca8bc66af09fb7b1c0d9c90fa6245e92497f5e1d37c"
+    },
+    {
+      "oid": "46feba5d6a1614b387a05e4f4394a0b88ed3145c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/83de6d2f1afe34bc97d97521e317eaee02be35e0643cc751587beef600e6d6b0.000.bin",
+      "bytes": 15339016,
+      "sha256": "83de6d2f1afe34bc97d97521e317eaee02be35e0643cc751587beef600e6d6b0"
+    },
+    {
+      "oid": "061667d7629570e791b55628b7e14f6acabe466c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/842318524b7964844d7ffdd9b6d9359a05db80fd165a097877413cc92ba999c3.000.bin",
+      "bytes": 8606,
+      "sha256": "842318524b7964844d7ffdd9b6d9359a05db80fd165a097877413cc92ba999c3"
+    },
+    {
+      "oid": "989307c5c7c35910c2db8be2358c63c13734b5c8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/84de324877277bc1c97e46f7952b82498b3c6e7702cb296ea5b3e62eefe28a4c.000.bin",
+      "bytes": 13444,
+      "sha256": "84de324877277bc1c97e46f7952b82498b3c6e7702cb296ea5b3e62eefe28a4c"
+    },
+    {
+      "oid": "897f5e045495a3cd39d57b478ae6d34e20bafa31",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/850995f68539d3311d76a36d69321c2a5b6a1cbdf9aa2a23ae09a27d84c9d784.000.bin",
+      "bytes": 13611,
+      "sha256": "850995f68539d3311d76a36d69321c2a5b6a1cbdf9aa2a23ae09a27d84c9d784"
+    },
+    {
+      "oid": "f2b5678bbc81bb582b708d7622fba57a0798d891",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/854677559d10156d086c1adfb5f774313e0ccb69dbb312b3e645c4355398135a.000.bin",
+      "bytes": 7096,
+      "sha256": "854677559d10156d086c1adfb5f774313e0ccb69dbb312b3e645c4355398135a"
+    },
+    {
+      "oid": "e97a22cda06b06e8ec94e07dea67a5e545280e47",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8635b1abe00a0e2d6fe9bb9b3c903fc48af4da3bb53b380802cc6a2b8d36ba25.000.bin",
+      "bytes": 1433134,
+      "sha256": "8635b1abe00a0e2d6fe9bb9b3c903fc48af4da3bb53b380802cc6a2b8d36ba25"
+    },
+    {
+      "oid": "353db50bbf31a0ac696770b7f1d0104b715a4015",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/863d52d8d363f6d681ee1bd65cd26f486fd69e2cf08e8b32c5b3d50d5e327390.000.bin",
+      "bytes": 9895,
+      "sha256": "863d52d8d363f6d681ee1bd65cd26f486fd69e2cf08e8b32c5b3d50d5e327390"
+    },
+    {
+      "oid": "c51ba294938620859da4b0cb1acd1f4dfb58ee06",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/87697d812770a7c3939bcf6498a548c5a6d391b5091a8905e57977f039c2c5f2.000.bin",
+      "bytes": 22242,
+      "sha256": "87697d812770a7c3939bcf6498a548c5a6d391b5091a8905e57977f039c2c5f2"
+    },
+    {
+      "oid": "8146f557d933c4bbe379c7336e50dcb259efe61d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/87ac44db966ce432c46fd62c5549450166c76a8135806475de1993750fe3f9e5.000.bin",
+      "bytes": 1090923,
+      "sha256": "87ac44db966ce432c46fd62c5549450166c76a8135806475de1993750fe3f9e5"
+    },
+    {
+      "oid": "fb656cfeb1d0d0581d6291cafbbbade498eaf0dc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/88f6e35cc391d0f0569c4cc27ba4d56a7b4b3b3b692478ad4b8b191a0d0495e7.000.bin",
+      "bytes": 13613,
+      "sha256": "88f6e35cc391d0f0569c4cc27ba4d56a7b4b3b3b692478ad4b8b191a0d0495e7"
+    },
+    {
+      "oid": "1e92d08b3baa8a2251a6e0b7b8a0cd4f8e0c3a70",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/88f9063e2dd7cc0e797adeddebc93130eaa0f1c0ac5328d72fde36bcf7de6eb7.000.bin",
+      "bytes": 8605,
+      "sha256": "88f9063e2dd7cc0e797adeddebc93130eaa0f1c0ac5328d72fde36bcf7de6eb7"
+    },
+    {
+      "oid": "b65fe93bf039a0b95dc4dd45a60949e2c041ae0e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/896c584c5e783a216ed7bed129fc9b6772990fc315005a1dca720a352f7611a1.000.bin",
+      "bytes": 7068,
+      "sha256": "896c584c5e783a216ed7bed129fc9b6772990fc315005a1dca720a352f7611a1"
+    },
+    {
+      "oid": "52fef6899381178ab6f5a542dc0d0d3478b5454e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8982e77b456d2eca6ee432eae60e85757a7958af46cae0a8dec8f3d6a6556cb5.000.bin",
+      "bytes": 5550,
+      "sha256": "8982e77b456d2eca6ee432eae60e85757a7958af46cae0a8dec8f3d6a6556cb5"
+    },
+    {
+      "oid": "d8721535ecb43dcaf35a1a1b6d45fba286cc735e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8a2ad103e1de61745b452faebfac5f22e00cf1ff9e8ff95bccd87bd1f930b250.000.bin",
+      "bytes": 2126,
+      "sha256": "8a2ad103e1de61745b452faebfac5f22e00cf1ff9e8ff95bccd87bd1f930b250"
+    },
+    {
+      "oid": "7602414eefa14ca6eb3c759f816d52830364f704",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8a5ce615750f6ea1cca92c2e22de403bb07b8acc25dcda773973ed0b0bbd462c.000.bin",
+      "bytes": 1262233,
+      "sha256": "8a5ce615750f6ea1cca92c2e22de403bb07b8acc25dcda773973ed0b0bbd462c"
+    },
+    {
+      "oid": "4e8b114d090d4b9dc30d910d8cc4a545e94584a3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8a73ea766cd97c06065cf4dab0240a2088a7641f6ace20b149490f16e073ef51.000.bin",
+      "bytes": 289085,
+      "sha256": "8a73ea766cd97c06065cf4dab0240a2088a7641f6ace20b149490f16e073ef51"
+    },
+    {
+      "oid": "8e7e194c97fa2267146dacef6bcb167a64cc4ded",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8ab0b252c0c032ff086c3186ab55a801a59e196f8ab251e116edaf39a6ac48c1.000.bin",
+      "bytes": 13441,
+      "sha256": "8ab0b252c0c032ff086c3186ab55a801a59e196f8ab251e116edaf39a6ac48c1"
+    },
+    {
+      "oid": "29a9468a9c7e68d9fb6a6757c555dc13bc77206e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8ad9e4e1ea5c405a136b07e359cda316c3848858e43751fee258d3c9787c20a3.000.bin",
+      "bytes": 13612,
+      "sha256": "8ad9e4e1ea5c405a136b07e359cda316c3848858e43751fee258d3c9787c20a3"
+    },
+    {
+      "oid": "1fd6366f99a74257b818a9bc180faa8c243d88fb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8af925507da67959ae2b5428c9c906d61d59c13b4850e7e81b2b6fd8db58b402.000.bin",
+      "bytes": 1815334,
+      "sha256": "8af925507da67959ae2b5428c9c906d61d59c13b4850e7e81b2b6fd8db58b402"
+    },
+    {
+      "oid": "7a5d0ed030412cb42f5613dd4b6fbe2f42238938",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8b32f366615a2b813a88cab9ca6bc17c16a97228c2c2784d32e9d301c66e2ce0.000.bin",
+      "bytes": 3594,
+      "sha256": "8b32f366615a2b813a88cab9ca6bc17c16a97228c2c2784d32e9d301c66e2ce0"
+    },
+    {
+      "oid": "922b3bffa6b30ab6e7ca5410733e7061a5eacaa3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8b48b77a464e0000e48e9f18bd6394a54c7d449b0bcbe3d9c76aa7a38bf58a61.000.bin",
+      "bytes": 13610,
+      "sha256": "8b48b77a464e0000e48e9f18bd6394a54c7d449b0bcbe3d9c76aa7a38bf58a61"
+    },
+    {
+      "oid": "6cf51c480da46fa4e53e48b27c2a643dd3171e83",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8bbaecd1246465611c972e3a141988a0c6768d910e359dd6f835887fbd48dd03.000.bin",
+      "bytes": 78,
+      "sha256": "8bbaecd1246465611c972e3a141988a0c6768d910e359dd6f835887fbd48dd03"
+    },
+    {
+      "oid": "5d90c944efe45706c81ef830f1450853c9cbd7f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8c030c30734d0c1da1cab14258ac6fc3eaf1f961f204b442081a6c25ba1ad578.000.bin",
+      "bytes": 180691,
+      "sha256": "8c030c30734d0c1da1cab14258ac6fc3eaf1f961f204b442081a6c25ba1ad578"
+    },
+    {
+      "oid": "8adc39b39c651b64459605df370fa5b5b4155879",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8c0f90120b63d6531cddba61f68087857efae03b7c688bc8e97cf37c4a9e0d5c.000.bin",
+      "bytes": 651790,
+      "sha256": "8c0f90120b63d6531cddba61f68087857efae03b7c688bc8e97cf37c4a9e0d5c"
+    },
+    {
+      "oid": "597f0e339d05556a6181986f06c1a76e6850b297",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8cdb0aa49c27c086f93b1bb2f1cd169a68fa1f089745da078ea68af34219acc4.000.bin",
+      "bytes": 13602,
+      "sha256": "8cdb0aa49c27c086f93b1bb2f1cd169a68fa1f089745da078ea68af34219acc4"
+    },
+    {
+      "oid": "b8f785f3aefda15b0a0df1ea640ad0ec0f70e71a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8d0dae95e7e77d90d32b8444005477315d2ba27ff5c5e54cfba8375ad3ff9ce7.000.bin",
+      "bytes": 2155,
+      "sha256": "8d0dae95e7e77d90d32b8444005477315d2ba27ff5c5e54cfba8375ad3ff9ce7"
+    },
+    {
+      "oid": "85bddb9a323cd039ba3231349a19b0462656c12a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8d6ae35f9fd4dd83686f741d33a35d01c43bc4faba3dfed1990ee9da767524f3.000.bin",
+      "bytes": 5530,
+      "sha256": "8d6ae35f9fd4dd83686f741d33a35d01c43bc4faba3dfed1990ee9da767524f3"
+    },
+    {
+      "oid": "841610eeb15aa0e88b5d7ad496b06ff288fb273a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8f1a7d3e8b870783e725458fcd22a726c4e77f9396faa9972d45e0ae37640e60.000.bin",
+      "bytes": 13610,
+      "sha256": "8f1a7d3e8b870783e725458fcd22a726c4e77f9396faa9972d45e0ae37640e60"
+    },
+    {
+      "oid": "2f3bc70c416d9ad375b2aca7d80416249074ad63",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8f3857bc3601d959e4b516ca5c1a92dd67f20306310c63fd2cc42e8cb70b0715.000.bin",
+      "bytes": 16928,
+      "sha256": "8f3857bc3601d959e4b516ca5c1a92dd67f20306310c63fd2cc42e8cb70b0715"
+    },
+    {
+      "oid": "a137f3d91c02295782042435e95e6ae570c2df6c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8f4bfda1575ccfec42ddb606624e2a9b234b6a22ce8611fb37ab03658b06b0d3.000.bin",
+      "bytes": 11681,
+      "sha256": "8f4bfda1575ccfec42ddb606624e2a9b234b6a22ce8611fb37ab03658b06b0d3"
+    },
+    {
+      "oid": "9b31676d12e612d9f890d610a949ebc3f781fb30",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/8f7d493edfa35ae7d005c8885210443e1c0f4f308d2c1b487eb82dc1a5af1b8c.000.bin",
+      "bytes": 10144,
+      "sha256": "8f7d493edfa35ae7d005c8885210443e1c0f4f308d2c1b487eb82dc1a5af1b8c"
+    },
+    {
+      "oid": "66e8593e4a99dee6d01420ccd8a3058eba411e7e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/90a06f28b50f05e4eecb13bc0156dae4e7af2b8f8588e9374ac83b9786808749.000.bin",
+      "bytes": 13444,
+      "sha256": "90a06f28b50f05e4eecb13bc0156dae4e7af2b8f8588e9374ac83b9786808749"
+    },
+    {
+      "oid": "71018c3ce50170f70944799fde542644d873f5ae",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9148ca9dd9b06153edff31c6f3e750d34058629dfff599d2610110941ed64af6.000.bin",
+      "bytes": 13779,
+      "sha256": "9148ca9dd9b06153edff31c6f3e750d34058629dfff599d2610110941ed64af6"
+    },
+    {
+      "oid": "863ff6e823c8971daf8bb7252058ffa58673ae79",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/915ecc390bedf66d21c5f02db77e162be557b14a10cec148079fcd9cfe43757e.000.bin",
+      "bytes": 818148,
+      "sha256": "915ecc390bedf66d21c5f02db77e162be557b14a10cec148079fcd9cfe43757e"
+    },
+    {
+      "oid": "a97d88c98b561be8c417f93e1e6e2a61007ea8b3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/91a7a5ee3343c6085ccdfa971f043bf77db21790417355478209049924cd5327.000.bin",
+      "bytes": 3609,
+      "sha256": "91a7a5ee3343c6085ccdfa971f043bf77db21790417355478209049924cd5327"
+    },
+    {
+      "oid": "13121d22888eca3b3564da2f138dc5538064ab54",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9218c2464c62efdb67d76a7611153457372b563ab6de17d9f94d86d5ba0f1ddc.000.bin",
+      "bytes": 13612,
+      "sha256": "9218c2464c62efdb67d76a7611153457372b563ab6de17d9f94d86d5ba0f1ddc"
+    },
+    {
+      "oid": "62118fcb374c20f650d581d41d3a3850cea3439f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9292518dc94accd0b8001e32473f4344a94e2d23b7e5abe4528934cc3cff8d30.000.bin",
+      "bytes": 23514069,
+      "sha256": "9292518dc94accd0b8001e32473f4344a94e2d23b7e5abe4528934cc3cff8d30"
+    },
+    {
+      "oid": "f5128985c337344b664559003d2eee23242707fe",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/93c267fc2112c874e1aa8079c659cc48a75c295d85aea31f8c5f8da54d0a657c.000.bin",
+      "bytes": 653422,
+      "sha256": "93c267fc2112c874e1aa8079c659cc48a75c295d85aea31f8c5f8da54d0a657c"
+    },
+    {
+      "oid": "9e38e959813530a2fc1bee4e20cfa1e3bd662eb5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/94176606ea9bc262ec8ea9561b17a54558d187fda7ebc8a0fd3bed3caa80f08e.000.bin",
+      "bytes": 94371840,
+      "sha256": "7165808e701cdb2c5b45f6575ff3db9bdaa482e3f9c20169adbccd884e903577"
+    },
+    {
+      "oid": "565b1de51392f5bf1258b10c4c6dce5725ca36cf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/94176606ea9bc262ec8ea9561b17a54558d187fda7ebc8a0fd3bed3caa80f08e.001.bin",
+      "bytes": 9460699,
+      "sha256": "b9d3d9a5282d5661bfdb3f61d7d7088cb46717e6401ca681bda8c4fcf099c288"
+    },
+    {
+      "oid": "8be936042f869b7ae32327844de051bf90509f1b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/94237e8919fffde8c7adc1c18ced307b507366c72ef609119254ac79ee7b298b.000.bin",
+      "bytes": 14702326,
+      "sha256": "94237e8919fffde8c7adc1c18ced307b507366c72ef609119254ac79ee7b298b"
+    },
+    {
+      "oid": "b396347ef278e846e41f8a16ca9bf9ba12d3d65c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9590b86c4fecfa97386106d6a3f47b703925c681568fe0b8e8382d0be6e17c95.000.bin",
+      "bytes": 13637,
+      "sha256": "9590b86c4fecfa97386106d6a3f47b703925c681568fe0b8e8382d0be6e17c95"
+    },
+    {
+      "oid": "664850444785e6828d3e19a61e3562e6b5f20cf5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/95a66c65f93870b1d95c04101e5351193ca1f28baa5ae9397ddcc760144c02ec.000.bin",
+      "bytes": 8634,
+      "sha256": "95a66c65f93870b1d95c04101e5351193ca1f28baa5ae9397ddcc760144c02ec"
+    },
+    {
+      "oid": "777f9b5f4d4bcddabd62ab10e2abdc5316cfc44a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/95f407a36777f27dbf7e8faf2c55533f24b3dd77252e266821cb549a37ffb899.000.bin",
+      "bytes": 24750,
+      "sha256": "95f407a36777f27dbf7e8faf2c55533f24b3dd77252e266821cb549a37ffb899"
+    },
+    {
+      "oid": "303d8377aebbe5e124da07ba90e5d79d95d3d834",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9711d8d749b3bc9a05c61befd3884a2e37ebae951b4da7cc5eec8b98a9d28ac6.000.bin",
+      "bytes": 8147,
+      "sha256": "9711d8d749b3bc9a05c61befd3884a2e37ebae951b4da7cc5eec8b98a9d28ac6"
+    },
+    {
+      "oid": "97dfae3e224483a688af4572de8cd6ed61972968",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/97842dcd83de9704355dede1d6b7bb6576e8efbd426d423bc3a8cb89ff643458.000.bin",
+      "bytes": 78,
+      "sha256": "97842dcd83de9704355dede1d6b7bb6576e8efbd426d423bc3a8cb89ff643458"
+    },
+    {
+      "oid": "6127c8fc0e6f4f0e445482e71154d63b09a2c187",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/97903c6c7023144a912762c9af3f9de927cbc8d413bef37d4f8f2182e0836bfa.000.bin",
+      "bytes": 13609,
+      "sha256": "97903c6c7023144a912762c9af3f9de927cbc8d413bef37d4f8f2182e0836bfa"
+    },
+    {
+      "oid": "a158b71d71a3b8361f756e44536b7477a262cded",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9809b42a33e360874db4af035761831b22963c67ff155bb0b2fd6a684495e501.000.bin",
+      "bytes": 1433384,
+      "sha256": "9809b42a33e360874db4af035761831b22963c67ff155bb0b2fd6a684495e501"
+    },
+    {
+      "oid": "a3bf3c47cd79be9cfca6ffa510f45c67f54945fd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/98b497a227ac3dae69045aa60e1cee063fa263b0bb26ee7eed40df32b81ed7a2.000.bin",
+      "bytes": 16928,
+      "sha256": "98b497a227ac3dae69045aa60e1cee063fa263b0bb26ee7eed40df32b81ed7a2"
+    },
+    {
+      "oid": "2701164aec9825a2f3dfc5babc8bf415c1180638",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/98d22d509a41b18bb0ec802cb5172f1ccd1551ef9f49d32c2cc0838fab4d91fd.000.bin",
+      "bytes": 52356,
+      "sha256": "98d22d509a41b18bb0ec802cb5172f1ccd1551ef9f49d32c2cc0838fab4d91fd"
+    },
+    {
+      "oid": "d3d3afb622b69c75b5844beb17c0661af1bc30c1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/999bfb12e18783d1609edaee6d29cbdf4d4164302441e7c0f75e1479c16ae273.000.bin",
+      "bytes": 193643,
+      "sha256": "999bfb12e18783d1609edaee6d29cbdf4d4164302441e7c0f75e1479c16ae273"
+    },
+    {
+      "oid": "88a0dfbd73684380c72a4bf508b096e8cf8d4507",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7.000.bin",
+      "bytes": 87641,
+      "sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7"
+    },
+    {
+      "oid": "3a8d0152de6eb4e7d5151ece6735ac38d32e9a26",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9a9f4dd9d84f3c514170de4784ad97151857b1d8976f4275f51c3af1069899c0.000.bin",
+      "bytes": 8631,
+      "sha256": "9a9f4dd9d84f3c514170de4784ad97151857b1d8976f4275f51c3af1069899c0"
+    },
+    {
+      "oid": "91d5667cc2353cbc18657ca03712219d7a8cc9dd",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9af88844a7468a2eeabb415ce839c266ac7600dd645e632a3ffb8e38bcbc556c.000.bin",
+      "bytes": 10144,
+      "sha256": "9af88844a7468a2eeabb415ce839c266ac7600dd645e632a3ffb8e38bcbc556c"
+    },
+    {
+      "oid": "3505fb30a92438259c05aa5d4b9fcba59c78b556",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9b9e1f35b488bd934eec5408e79f32c56ff1d77d6f5c13c9ea07d6adc87e07a5.000.bin",
+      "bytes": 13612,
+      "sha256": "9b9e1f35b488bd934eec5408e79f32c56ff1d77d6f5c13c9ea07d6adc87e07a5"
+    },
+    {
+      "oid": "d380c889890c41ab8fe72b69e415f3f7c69e6b5c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9bb26a1fd803255fd8b660ad0369b391d6fd1a51861472974c454f7f2ca994a9.000.bin",
+      "bytes": 1764076,
+      "sha256": "9bb26a1fd803255fd8b660ad0369b391d6fd1a51861472974c454f7f2ca994a9"
+    },
+    {
+      "oid": "61831bb435e5c0665ffcd2577041e3880d26457b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9bc53af5c027d15119c0da2de318b8b7f9be91d447218f71d95f7511a25b0a54.000.bin",
+      "bytes": 13637,
+      "sha256": "9bc53af5c027d15119c0da2de318b8b7f9be91d447218f71d95f7511a25b0a54"
+    },
+    {
+      "oid": "7c8bbe56368a37193b47d8ec9c05421f4c09aafa",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9cb498380682e8675100c5c0a38c761d54c45299a4568c0976ecd22330675285.000.bin",
+      "bytes": 25417746,
+      "sha256": "9cb498380682e8675100c5c0a38c761d54c45299a4568c0976ecd22330675285"
+    },
+    {
+      "oid": "21d6f37cbf00bf076bfaa59792d2f027b1282d68",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9cb54b1c662a8d6ca0c5097d874c54e235bd4c031f90bd99f9ca836cecabe6ff.000.bin",
+      "bytes": 13637,
+      "sha256": "9cb54b1c662a8d6ca0c5097d874c54e235bd4c031f90bd99f9ca836cecabe6ff"
+    },
+    {
+      "oid": "a59516c4f89cd8c6ecaa4fd2f530c465f790175d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9d11e741034960a11b9941ff3ee5f47fe59363d058dd6ce4b3ab3a6934b04cb1.000.bin",
+      "bytes": 8640,
+      "sha256": "9d11e741034960a11b9941ff3ee5f47fe59363d058dd6ce4b3ab3a6934b04cb1"
+    },
+    {
+      "oid": "2d1de4d7e71feee9b31bbb617632219e6bea3627",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9da349a76b6f93a505b9ef301662370bd33dc44dd2cdd01e78cedcf5ba38116f.000.bin",
+      "bytes": 78,
+      "sha256": "9da349a76b6f93a505b9ef301662370bd33dc44dd2cdd01e78cedcf5ba38116f"
+    },
+    {
+      "oid": "d45b84d1172059c25540eca4a43054bf01d07c20",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9de4b06c4334b2165c25006238751ccf4c04de2ae371239670414172e6de2975.000.bin",
+      "bytes": 644,
+      "sha256": "9de4b06c4334b2165c25006238751ccf4c04de2ae371239670414172e6de2975"
+    },
+    {
+      "oid": "471576a3f04d4b961ed17f6e3de5448ae5721f64",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9e15f8c3ab77e65d9db811d9b221ebc2a0063945e5863aea055a10f5d21a1d28.000.bin",
+      "bytes": 15339016,
+      "sha256": "9e15f8c3ab77e65d9db811d9b221ebc2a0063945e5863aea055a10f5d21a1d28"
+    },
+    {
+      "oid": "ed06bf62962def259a2154405d2e2098f2a6d9c8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9e4447c5d3e1dabf444599338cc50b96d9dc5dc7982dea9f492fa477c00990cd.000.bin",
+      "bytes": 13444,
+      "sha256": "9e4447c5d3e1dabf444599338cc50b96d9dc5dc7982dea9f492fa477c00990cd"
+    },
+    {
+      "oid": "08c541ceba4a2012e76f20146d5949ecd52df5f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9e45c0b87b8efe1615339762932127aa86cb627ab139424cca839f94ebaf4403.000.bin",
+      "bytes": 29368,
+      "sha256": "9e45c0b87b8efe1615339762932127aa86cb627ab139424cca839f94ebaf4403"
+    },
+    {
+      "oid": "986746a0ffed2aa68067dca622a466e3ed2e4622",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9f0008ffcd226cc27d12548b3d5d8c666bbee5af13afe9584bc277513294e238.000.bin",
+      "bytes": 13602,
+      "sha256": "9f0008ffcd226cc27d12548b3d5d8c666bbee5af13afe9584bc277513294e238"
+    },
+    {
+      "oid": "ea38b49361d8e63fcf8d6514c79a276b04286f66",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9f3a1a963fe0e7769161d44930b149626bbfed07626f88252dffa173abd39e9b.000.bin",
+      "bytes": 13603,
+      "sha256": "9f3a1a963fe0e7769161d44930b149626bbfed07626f88252dffa173abd39e9b"
+    },
+    {
+      "oid": "dcdfa323367faee6a6647ccf43bbd7f0d13bf31f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9f87cb2e9ca60a4e4281ce5befc6c82edf3d81d1c406e5fb5772f39a3c78e584.000.bin",
+      "bytes": 13609,
+      "sha256": "9f87cb2e9ca60a4e4281ce5befc6c82edf3d81d1c406e5fb5772f39a3c78e584"
+    },
+    {
+      "oid": "1f841a1a7b5f5b5f4bc3e5cb788e7dca8d167e8c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/9fcc776fb261da609fe19908d5b28bf7cd19d424814df7ba0984d7b747e7a4cf.000.bin",
+      "bytes": 173502,
+      "sha256": "9fcc776fb261da609fe19908d5b28bf7cd19d424814df7ba0984d7b747e7a4cf"
+    },
+    {
+      "oid": "492be970d89789a0d328a5d045e9ac6a6909e25e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a09a9e289cb72fd05bcf8c363286f1a8fa00474f031e4b2330bbf44d9351a0b7.000.bin",
+      "bytes": 1084195,
+      "sha256": "a09a9e289cb72fd05bcf8c363286f1a8fa00474f031e4b2330bbf44d9351a0b7"
+    },
+    {
+      "oid": "5dc7f51d45b69f1db34fc74be63ffd0042e96c6c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a14b25917fba4274c24bde282794c92afcf3dd975fa240b142bd9cd78bbe8237.000.bin",
+      "bytes": 3145,
+      "sha256": "a14b25917fba4274c24bde282794c92afcf3dd975fa240b142bd9cd78bbe8237"
+    },
+    {
+      "oid": "56e6aa4660f5b636594f528f26a63f06a24a2f7c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a189d20b51b0039b43de89438c230ef4658dbd44d25f590a81e72d1f19a48c9c.000.bin",
+      "bytes": 245187,
+      "sha256": "a189d20b51b0039b43de89438c230ef4658dbd44d25f590a81e72d1f19a48c9c"
+    },
+    {
+      "oid": "799e18d3447c48c881877b8c385868de4dd3e1b6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a2bc5e0564025d125bf660532be37b7b3f8a30d581da4c3b13b81be24cf17ba8.000.bin",
+      "bytes": 1262005,
+      "sha256": "a2bc5e0564025d125bf660532be37b7b3f8a30d581da4c3b13b81be24cf17ba8"
+    },
+    {
+      "oid": "e6fee115c91bbfd7caa1d5d33a4847f6c72a3cab",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a31de975d03d0ea76f6df9dba712fbb9210f0ad76a0354b61dcd3160dc9e1493.000.bin",
+      "bytes": 10398,
+      "sha256": "a31de975d03d0ea76f6df9dba712fbb9210f0ad76a0354b61dcd3160dc9e1493"
+    },
+    {
+      "oid": "41553ebb4cb4828a47586aa19360b7eb6c05d46e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a32eafb34655a0af86bfdf96a5e1853ba46cfb2043b69fa49850ce9bc949908b.000.bin",
+      "bytes": 13612,
+      "sha256": "a32eafb34655a0af86bfdf96a5e1853ba46cfb2043b69fa49850ce9bc949908b"
+    },
+    {
+      "oid": "5491e92fc990936e99578a70a1fc3684d07d4baa",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a32f132a34fb89bf229bf2467d800ac05a9678d4175338849d83f1d9168d0929.000.bin",
+      "bytes": 1764450,
+      "sha256": "a32f132a34fb89bf229bf2467d800ac05a9678d4175338849d83f1d9168d0929"
+    },
+    {
+      "oid": "084aa00332324293c5e81169d8f3c9b17f0219ed",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a3421a2268336f7da6e445ac07ae4a30ea5fc5b1ee2d4b8dc739f033b30a4b92.000.bin",
+      "bytes": 15339016,
+      "sha256": "a3421a2268336f7da6e445ac07ae4a30ea5fc5b1ee2d4b8dc739f033b30a4b92"
+    },
+    {
+      "oid": "d728cfc918a706c238ff6d06af6a8e1449f12cd7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a397e8ba6dc5abf2a8e19c05e9c6731ca5fdb10a980d1a9b5e030a7f04f7f5e2.000.bin",
+      "bytes": 13779,
+      "sha256": "a397e8ba6dc5abf2a8e19c05e9c6731ca5fdb10a980d1a9b5e030a7f04f7f5e2"
+    },
+    {
+      "oid": "0ba2589050574b5b37818c18beb8fa01332775f6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a3aab63cb1e2470c10325327f2f01df109556fa86a5e440c2776cfca3c3d2b42.000.bin",
+      "bytes": 16979,
+      "sha256": "a3aab63cb1e2470c10325327f2f01df109556fa86a5e440c2776cfca3c3d2b42"
+    },
+    {
+      "oid": "3370e9572a157824b631d5eb83324acb027dc5b0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a4862d2a3b667ba62953e554845f3da34a74ba5e01d868f9f73fa39ffa2d0891.000.bin",
+      "bytes": 9804,
+      "sha256": "a4862d2a3b667ba62953e554845f3da34a74ba5e01d868f9f73fa39ffa2d0891"
+    },
+    {
+      "oid": "68c27cac2bf48380ddc5f7d30edafefd0bca8a01",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a4cf2d1147458210589b719ac247a2ca5b936e41db58a9f8ef1754474786338b.000.bin",
+      "bytes": 381,
+      "sha256": "a4cf2d1147458210589b719ac247a2ca5b936e41db58a9f8ef1754474786338b"
+    },
+    {
+      "oid": "1095b09b6c820b56efa79b0e1b617c8ae37e1374",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a4da3c831fe082060d329083a6647ebd0c1bf1a11aa6ea06e150d989e6758ce4.000.bin",
+      "bytes": 3594,
+      "sha256": "a4da3c831fe082060d329083a6647ebd0c1bf1a11aa6ea06e150d989e6758ce4"
+    },
+    {
+      "oid": "c6ddcfc1abb1ba626140a254623edf7fead18792",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a504f7249b052cfdb1eebb9a2a1348c853ece9fcf0263e55d5e2c7ef685a7f26.000.bin",
+      "bytes": 1084188,
+      "sha256": "a504f7249b052cfdb1eebb9a2a1348c853ece9fcf0263e55d5e2c7ef685a7f26"
+    },
+    {
+      "oid": "c3ac06218872d7e6908986d42ab1e65779043720",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a53361de5c904b2e64b447c3196cd20d7df965bb65fff2a9cb4e4f2b992a2645.000.bin",
+      "bytes": 3988,
+      "sha256": "a53361de5c904b2e64b447c3196cd20d7df965bb65fff2a9cb4e4f2b992a2645"
+    },
+    {
+      "oid": "b191eccac8de63f967f57cf12d7c5a761feb0686",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a5a5052ce653ecdd5f9a414937cb94bb02b5096ede82ff007b48c938d3188c99.000.bin",
+      "bytes": 7087,
+      "sha256": "a5a5052ce653ecdd5f9a414937cb94bb02b5096ede82ff007b48c938d3188c99"
+    },
+    {
+      "oid": "67e40d7cde283b4efb7fe654c5d700abee288559",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a6944c40e0696e1d74c0d40a7ad28a2a3d39df61e3b76ab48f3cffecf8ca8863.000.bin",
+      "bytes": 13613,
+      "sha256": "a6944c40e0696e1d74c0d40a7ad28a2a3d39df61e3b76ab48f3cffecf8ca8863"
+    },
+    {
+      "oid": "b4553ced044fff48aef5dd86c267681a6cca1c17",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a71773e5bace9e1de6944dc66656b010ccafe177fdd720ee26677b5c57bd70ca.000.bin",
+      "bytes": 1107707,
+      "sha256": "a71773e5bace9e1de6944dc66656b010ccafe177fdd720ee26677b5c57bd70ca"
+    },
+    {
+      "oid": "d4a74ac08b8240d70ebb10e5c87e60e7209d4be6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a74687dd76a743db8f6966ca676eb675ecc09f93eb94490528783f3c40d36400.000.bin",
+      "bytes": 13602,
+      "sha256": "a74687dd76a743db8f6966ca676eb675ecc09f93eb94490528783f3c40d36400"
+    },
+    {
+      "oid": "d6115edf1e2185c502333b4528b245864157efca",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a7921b970ba1d0151f5ed540dff7334aa628204e98261d209b9399236ed98ba8.000.bin",
+      "bytes": 78,
+      "sha256": "a7921b970ba1d0151f5ed540dff7334aa628204e98261d209b9399236ed98ba8"
+    },
+    {
+      "oid": "df2ca9728f7d6383d18d6e7bb9e3af79493518d5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a87eb7328a2199aba32be8c39e9f2fb0c9d4c016f8eb78694db4a67aadb84e54.000.bin",
+      "bytes": 3988,
+      "sha256": "a87eb7328a2199aba32be8c39e9f2fb0c9d4c016f8eb78694db4a67aadb84e54"
+    },
+    {
+      "oid": "b2a628556a89bc74773b9625695ff1adb9ed142b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/a9c7641a276b1b70bab6fa1d35d3b80529b283e11a15066ddcae41745c081ec9.000.bin",
+      "bytes": 344,
+      "sha256": "a9c7641a276b1b70bab6fa1d35d3b80529b283e11a15066ddcae41745c081ec9"
+    },
+    {
+      "oid": "468e1e7d9ba19f948a3385c672f71c8069679e91",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ab64d589554cf495f0b66f5707dcb3c77f8d4c98b0e48180e3445f582e5440a6.000.bin",
+      "bytes": 176952,
+      "sha256": "ab64d589554cf495f0b66f5707dcb3c77f8d4c98b0e48180e3445f582e5440a6"
+    },
+    {
+      "oid": "af392f1355048bbc478870c0013105130408c8aa",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ac8b952191ef8c23b25d3486ac395f498afb0e5917bfc3702669ff8ef9caaf75.000.bin",
+      "bytes": 13607,
+      "sha256": "ac8b952191ef8c23b25d3486ac395f498afb0e5917bfc3702669ff8ef9caaf75"
+    },
+    {
+      "oid": "0884f0c38d0d2c66a92f5e5a4dda56fddcb983f5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ad31a36b310b958520b505fa3410e34bdb21193375691f89b040958e9d2610e1.000.bin",
+      "bytes": 13773,
+      "sha256": "ad31a36b310b958520b505fa3410e34bdb21193375691f89b040958e9d2610e1"
+    },
+    {
+      "oid": "eaff5aaff4da1b293aaadf3d809032d56320800a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ad4ac191ed54b4c94ec3b4997d59fa5a8397b14b5da47b5da787511dfc5ccbe4.000.bin",
+      "bytes": 13605,
+      "sha256": "ad4ac191ed54b4c94ec3b4997d59fa5a8397b14b5da47b5da787511dfc5ccbe4"
+    },
+    {
+      "oid": "dd88f1fdab9a86ff159b604f3abe9e8296393666",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ad917fb3175432b4f5cac311a7fdfde336b7593d6ac75bca0b3c11fc8ad1d563.000.bin",
+      "bytes": 13780,
+      "sha256": "ad917fb3175432b4f5cac311a7fdfde336b7593d6ac75bca0b3c11fc8ad1d563"
+    },
+    {
+      "oid": "509b9e9e8bb89158f9860a74ef35637a55596c1e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ade05b584daec2f25dae9bbaa6b6a7a83a9231bfc832ef7eab113005aaf1629d.000.bin",
+      "bytes": 254029,
+      "sha256": "ade05b584daec2f25dae9bbaa6b6a7a83a9231bfc832ef7eab113005aaf1629d"
+    },
+    {
+      "oid": "b486d97c5ae15a1ec79f2ceb9170e1e90b4df79e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/adfc7b41cb3cf45439a5431433def243e91767f0a766dcff58ebbb1b6c28c668.000.bin",
+      "bytes": 364,
+      "sha256": "adfc7b41cb3cf45439a5431433def243e91767f0a766dcff58ebbb1b6c28c668"
+    },
+    {
+      "oid": "e46b7e625e10c2369ccb29dfebdf7f2ea4d1fba9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ae1d9c4d461528649f6847f001916daa76b408632f520d9dd07078aed33e579f.000.bin",
+      "bytes": 13612,
+      "sha256": "ae1d9c4d461528649f6847f001916daa76b408632f520d9dd07078aed33e579f"
+    },
+    {
+      "oid": "330c04cf74e26da46fe39d975ce04b1c20a2a905",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ae2bb346f7856ea4be997309ca55218c8c0d9893c568d7d410590fed4aced95e.000.bin",
+      "bytes": 221511,
+      "sha256": "ae2bb346f7856ea4be997309ca55218c8c0d9893c568d7d410590fed4aced95e"
+    },
+    {
+      "oid": "45f4c3608172a7e895eb65936eff82900dd263e8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ae613bf2675e4a2ea03383e98bbfd13eb2a610895a577c1ceecee4d102fbf2c4.000.bin",
+      "bytes": 1432460,
+      "sha256": "ae613bf2675e4a2ea03383e98bbfd13eb2a610895a577c1ceecee4d102fbf2c4"
+    },
+    {
+      "oid": "88e15a499d5b146dac4243b14f26519298388813",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/aec7c48240b5aac87640a958abe44e14d244e51c3a015664afeb244148111a79.000.bin",
+      "bytes": 13607,
+      "sha256": "aec7c48240b5aac87640a958abe44e14d244e51c3a015664afeb244148111a79"
+    },
+    {
+      "oid": "6a209639a0ebbc20a49d4f88329b7a257c5190ed",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/af09f8b7623bfbbf78d074f696e8659e7e98f82cf5ec10500b611d94d00d134c.000.bin",
+      "bytes": 8626,
+      "sha256": "af09f8b7623bfbbf78d074f696e8659e7e98f82cf5ec10500b611d94d00d134c"
+    },
+    {
+      "oid": "6f5667fee2ce903ff3af05e82f24330b39f04585",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/af69f68ea64a97a7f8212c5963d804cd830a32849015bc78cb2b814c89f30bdd.000.bin",
+      "bytes": 5550,
+      "sha256": "af69f68ea64a97a7f8212c5963d804cd830a32849015bc78cb2b814c89f30bdd"
+    },
+    {
+      "oid": "b4fc2ac3bde36b12ed75c5e62e2de31698646649",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/afce46d7381063a5eb0a23bf92e67531ab1faceb8b82c88cd0934ced62e4f0a1.000.bin",
+      "bytes": 11682,
+      "sha256": "afce46d7381063a5eb0a23bf92e67531ab1faceb8b82c88cd0934ced62e4f0a1"
+    },
+    {
+      "oid": "e56ed6da6dbf469f307dbc072ab2fa1d3bf8a8c4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b02c2d755bdfec36a951b1b56d009574fd8d7fb42e2f20753b6013cc2110ebf2.000.bin",
+      "bytes": 163,
+      "sha256": "b02c2d755bdfec36a951b1b56d009574fd8d7fb42e2f20753b6013cc2110ebf2"
+    },
+    {
+      "oid": "f8f350221087e3eba30c78c25570eb96c78c1c96",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b074a75b38bb09e09e57c3ac21830b85d29be746f027b6e6f47422a7296b9674.000.bin",
+      "bytes": 16979,
+      "sha256": "b074a75b38bb09e09e57c3ac21830b85d29be746f027b6e6f47422a7296b9674"
+    },
+    {
+      "oid": "0697ba616335edd6e72f49fb0063a1c0c1ebe7e4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b128e92a0839ad741220638e00e412f5693de96a521881aea82b3ab910bc117d.000.bin",
+      "bytes": 350756,
+      "sha256": "b128e92a0839ad741220638e00e412f5693de96a521881aea82b3ab910bc117d"
+    },
+    {
+      "oid": "082fc279fff3dbc91e9e527875bf247d519ba673",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b18fd443b3aae2f38e88b758f5a1840dc9f452141ad4007d7545ab7b444fd567.000.bin",
+      "bytes": 10997,
+      "sha256": "b18fd443b3aae2f38e88b758f5a1840dc9f452141ad4007d7545ab7b444fd567"
+    },
+    {
+      "oid": "f0d708723e82bd9980f860f218a4f9fe48a2cfa7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b2b9bd707e8f338d7cbf63386e29f1c94f208d202460c54304db4f58aa93db85.000.bin",
+      "bytes": 13640,
+      "sha256": "b2b9bd707e8f338d7cbf63386e29f1c94f208d202460c54304db4f58aa93db85"
+    },
+    {
+      "oid": "af6ce30452a978ea123143aa2e7a69dac1883caf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b49d815331e2d7eb336ea316eb3e296ed5a0990827788124d8977202f55e8bf5.000.bin",
+      "bytes": 457,
+      "sha256": "b49d815331e2d7eb336ea316eb3e296ed5a0990827788124d8977202f55e8bf5"
+    },
+    {
+      "oid": "406f66100d05433b200c5d23cfea275f5b6bf470",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b4a477a5eeee2bb32f1a5b66dd73fa7cc559d4803f581c5279b8da078c9dc10a.000.bin",
+      "bytes": 1261266,
+      "sha256": "b4a477a5eeee2bb32f1a5b66dd73fa7cc559d4803f581c5279b8da078c9dc10a"
+    },
+    {
+      "oid": "dc9f789c4ffaeffdf0cf2a0bada8c1d49308d29b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b4b440a3bbeba3d8c0358a3a69763ccced803ad400f1aec221642e68c9323956.000.bin",
+      "bytes": 8648,
+      "sha256": "b4b440a3bbeba3d8c0358a3a69763ccced803ad400f1aec221642e68c9323956"
+    },
+    {
+      "oid": "5500ed3631b0c16a079d967f72f0f0bad65d729c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b528bdc79a4d6a324c325ee7080e224a3f64904edf408bc72a18abef822f598b.000.bin",
+      "bytes": 952133,
+      "sha256": "b528bdc79a4d6a324c325ee7080e224a3f64904edf408bc72a18abef822f598b"
+    },
+    {
+      "oid": "ca90761f5a10e3648c31c36369cfeedd7be5c102",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b5c9f43e5fc50a9bc1e2d57b906659efe9f48e5b8753b101bd21e6797cdafc22.000.bin",
+      "bytes": 25769266,
+      "sha256": "b5c9f43e5fc50a9bc1e2d57b906659efe9f48e5b8753b101bd21e6797cdafc22"
+    },
+    {
+      "oid": "c6333667ba9a945400091cf5c546b427009892b3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b5db4b03032149b5da7043fd96bae0cc0e30bfb8601343ce5f6d1482f29dc55b.000.bin",
+      "bytes": 954784,
+      "sha256": "b5db4b03032149b5da7043fd96bae0cc0e30bfb8601343ce5f6d1482f29dc55b"
+    },
+    {
+      "oid": "88908e3827c3831a0282d6724828bb3a844ed664",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b67ef33fb1dc69d98119c991fe4c4f96d903a3e63db363dbc3d3ee92cad99895.000.bin",
+      "bytes": 16979,
+      "sha256": "b67ef33fb1dc69d98119c991fe4c4f96d903a3e63db363dbc3d3ee92cad99895"
+    },
+    {
+      "oid": "232cc4960afe8e64cda167aedc5776eb4072ed76",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b699e533b6e90e85c9128c395eeb2452f21419fbedada6ab90c94f9c7bfb7cd6.000.bin",
+      "bytes": 13605,
+      "sha256": "b699e533b6e90e85c9128c395eeb2452f21419fbedada6ab90c94f9c7bfb7cd6"
+    },
+    {
+      "oid": "fd26aba0034026cf41640fd8259de76625a3c233",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b755c593954e56d2753af9543a071fd01bfc59425da9a9088d7ba93f52389334.000.bin",
+      "bytes": 13612,
+      "sha256": "b755c593954e56d2753af9543a071fd01bfc59425da9a9088d7ba93f52389334"
+    },
+    {
+      "oid": "56f9f6367a44d68a7ba481471ef00fe144cdf8de",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b7ca5d73971546dae8378bcd55225f1b0cb261a7542163b0825a3c2b72599a8a.000.bin",
+      "bytes": 13611,
+      "sha256": "b7ca5d73971546dae8378bcd55225f1b0cb261a7542163b0825a3c2b72599a8a"
+    },
+    {
+      "oid": "e935de0be15fb52948c65f7355bc5e5bf749bc69",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b7cdd3c335e13fcbc0f6db2bcdf0030030cc484a36b9303ace732467b192a435.000.bin",
+      "bytes": 5723,
+      "sha256": "b7cdd3c335e13fcbc0f6db2bcdf0030030cc484a36b9303ace732467b192a435"
+    },
+    {
+      "oid": "e53c40d79e710d09812e6babe425107340977490",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b7e99ada02e752977a99e732bdce941823f01556b16df9663ef6536302ef66dc.000.bin",
+      "bytes": 78,
+      "sha256": "b7e99ada02e752977a99e732bdce941823f01556b16df9663ef6536302ef66dc"
+    },
+    {
+      "oid": "8e36fc087a4dd0988efbcd5e52d446c1303a6784",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b809731086566ecbb02fb4535924b13bb9e3c22991f1fe5ebdf7213da0d02388.000.bin",
+      "bytes": 1815856,
+      "sha256": "b809731086566ecbb02fb4535924b13bb9e3c22991f1fe5ebdf7213da0d02388"
+    },
+    {
+      "oid": "3158486a1149c1d6e9604369efe49b39fa43ccb2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b8cac89367c53824208e66a3495b5df620a7990067158cf149bd72bf789a4972.000.bin",
+      "bytes": 2527948,
+      "sha256": "b8cac89367c53824208e66a3495b5df620a7990067158cf149bd72bf789a4972"
+    },
+    {
+      "oid": "8717f334abeeb605b9acad4b4af0d01104f5b727",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b99f4d5fa711e7867e5b4551da9c76a0ca576fbbacf2cc68a945fac2c3324d70.000.bin",
+      "bytes": 13613,
+      "sha256": "b99f4d5fa711e7867e5b4551da9c76a0ca576fbbacf2cc68a945fac2c3324d70"
+    },
+    {
+      "oid": "bf4b15119a485abfc5c5eeb1a09b32d4d610b37b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b9a0b024f4e78da9f836feb21f2a6eccc70399ba8dddd0e3551c50f2be07ffab.000.bin",
+      "bytes": 177197,
+      "sha256": "b9a0b024f4e78da9f836feb21f2a6eccc70399ba8dddd0e3551c50f2be07ffab"
+    },
+    {
+      "oid": "59d5d3e4511c39d3a8449941f00b4a2ca087aaeb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/b9b767750b960c67bd6788d8e9f145154cbd8fbb7ab2a49fb88a5783c864d4e1.000.bin",
+      "bytes": 163179,
+      "sha256": "b9b767750b960c67bd6788d8e9f145154cbd8fbb7ab2a49fb88a5783c864d4e1"
+    },
+    {
+      "oid": "3d62a8b9499688e05ff3df314bc770d03bfffd41",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ba3b15442b1ac6c5e42213feba903ee66f7a2266f43ff74e20e104217b6729f5.000.bin",
+      "bytes": 13771,
+      "sha256": "ba3b15442b1ac6c5e42213feba903ee66f7a2266f43ff74e20e104217b6729f5"
+    },
+    {
+      "oid": "2414f1e9f686382e0f05933ce66112fa8c167ec1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ba9653c52586433225e3e202d965f9bd15c69312449d5d47bc276dcb3da2d623.000.bin",
+      "bytes": 1972,
+      "sha256": "ba9653c52586433225e3e202d965f9bd15c69312449d5d47bc276dcb3da2d623"
+    },
+    {
+      "oid": "c80919acff1eb9d54c4e830191de30a0f83bcf7a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bb2c905c83081b057e0acedfe70a535cb1ae7d7be3ebff6b637cf9f3859917d8.000.bin",
+      "bytes": 176436,
+      "sha256": "bb2c905c83081b057e0acedfe70a535cb1ae7d7be3ebff6b637cf9f3859917d8"
+    },
+    {
+      "oid": "62fc710af8563aa635cc8ff97170fffd32efa626",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bb9f22950a512025d64ee2e3622223987699816ee57ab2615b5d86fcb24f4e80.000.bin",
+      "bytes": 13443,
+      "sha256": "bb9f22950a512025d64ee2e3622223987699816ee57ab2615b5d86fcb24f4e80"
+    },
+    {
+      "oid": "dc50a8853e6e1cab8a07af427bd92c847cdb88a5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bc6fc76392637fef14e27b3f4a73ed52cad025a898f9bad48f30e268883862d2.000.bin",
+      "bytes": 266085,
+      "sha256": "bc6fc76392637fef14e27b3f4a73ed52cad025a898f9bad48f30e268883862d2"
+    },
+    {
+      "oid": "a9691b9b8aa919bba223de28a9daa09165533be7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bcec36bed29c9dd3c6b5f9a3ab704c3f7dfb1bbc2f927af5ec4741065152f70a.000.bin",
+      "bytes": 1706272,
+      "sha256": "bcec36bed29c9dd3c6b5f9a3ab704c3f7dfb1bbc2f927af5ec4741065152f70a"
+    },
+    {
+      "oid": "39ece165d0c8b4b14d15b680bae556df1a51d34d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bd0cc2fd5e904507952dd56d21404f17786f0ae68fefb3d3de97a2ffee5ea0cb.000.bin",
+      "bytes": 180753,
+      "sha256": "bd0cc2fd5e904507952dd56d21404f17786f0ae68fefb3d3de97a2ffee5ea0cb"
+    },
+    {
+      "oid": "fc58031d5d4abcbeaadf2e7c2cb64c8b9e290934",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bd1a47dcb2e5edb3706f2a1db67d8759ebdbb418d3cd3c8e1b2689077a0f83c8.000.bin",
+      "bytes": 13636,
+      "sha256": "bd1a47dcb2e5edb3706f2a1db67d8759ebdbb418d3cd3c8e1b2689077a0f83c8"
+    },
+    {
+      "oid": "db853819e4593deea9d303ec2e30d23267bba25e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bd2c75c8613dadce22989159f278eead6237b2e31ea4798e30c08591ff75987c.000.bin",
+      "bytes": 13601,
+      "sha256": "bd2c75c8613dadce22989159f278eead6237b2e31ea4798e30c08591ff75987c"
+    },
+    {
+      "oid": "c5d1c33d86d091ac1804b00c4a33df2eae481ec6",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bd6b89c953c111bf402306fd52da39ef6bcf9a6ed4bf721efb3fe3f080ecb3b7.000.bin",
+      "bytes": 3989,
+      "sha256": "bd6b89c953c111bf402306fd52da39ef6bcf9a6ed4bf721efb3fe3f080ecb3b7"
+    },
+    {
+      "oid": "1620b7c9e090eaffcdc48bf0ec96f311be05e2d8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/be26a5e784d5195bd48b6b054a725cb0324d5f198970aa1ab47246f26f9340eb.000.bin",
+      "bytes": 4005,
+      "sha256": "be26a5e784d5195bd48b6b054a725cb0324d5f198970aa1ab47246f26f9340eb"
+    },
+    {
+      "oid": "4ae121e60d5c2110decd5a1e98047090f0a10dc3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/be275af6f962eaff06820c76527cf5354947ac704ac5b121c065184e857902cb.000.bin",
+      "bytes": 7097,
+      "sha256": "be275af6f962eaff06820c76527cf5354947ac704ac5b121c065184e857902cb"
+    },
+    {
+      "oid": "cc5e429af13f263a5332d2a5c3ded3fdfd1e5666",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/be50c2a5b1afb0fd6bc126362c042132d7c85e9f414cf3cc70074c6967eb11c9.000.bin",
+      "bytes": 1815326,
+      "sha256": "be50c2a5b1afb0fd6bc126362c042132d7c85e9f414cf3cc70074c6967eb11c9"
+    },
+    {
+      "oid": "1a1433aec08629015aa1d070be4ecbfa799093bc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/be90ef780beca96f6039896c888c8203c9054192272513302b6bb12ec9765ac3.000.bin",
+      "bytes": 13611,
+      "sha256": "be90ef780beca96f6039896c888c8203c9054192272513302b6bb12ec9765ac3"
+    },
+    {
+      "oid": "88ab2afeb3e429f54f214ad7516fe88dde1beb79",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bf0152b0f13e3f3930c142605fc25b47b765a0f1467867ab6cc746d06d982d6d.000.bin",
+      "bytes": 3591,
+      "sha256": "bf0152b0f13e3f3930c142605fc25b47b765a0f1467867ab6cc746d06d982d6d"
+    },
+    {
+      "oid": "76be72d07399867068e565fd688b46fc0983a92f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9.000.bin",
+      "bytes": 14690,
+      "sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9"
+    },
+    {
+      "oid": "2e637cf68953de57803cfb1a52df42b91de3825e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c0076c1258beafd24882b03ca1e6a18860240c7b7223db3bf12ef7b6645bc38d.000.bin",
+      "bytes": 13441,
+      "sha256": "c0076c1258beafd24882b03ca1e6a18860240c7b7223db3bf12ef7b6645bc38d"
+    },
+    {
+      "oid": "499b3e88130a63efbbcaa43948c5de5f81b965f0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c0082346194987a5897335ed0296bc9854decd03abd7da59fee8686ed656b21c.000.bin",
+      "bytes": 2157,
+      "sha256": "c0082346194987a5897335ed0296bc9854decd03abd7da59fee8686ed656b21c"
+    },
+    {
+      "oid": "8ebcf319a4c145809863c32b03fa126556354512",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c1936896882d7a36f678a4b60cbde55979d0c7703b32540e0e1dfeb37fb19e35.000.bin",
+      "bytes": 289085,
+      "sha256": "c1936896882d7a36f678a4b60cbde55979d0c7703b32540e0e1dfeb37fb19e35"
+    },
+    {
+      "oid": "8bdc6adcf5d10df6390c2d701c55b965c6ccf225",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c207e7ebd022ec3db895a3a90e91432046eee65312181c9c093d14e4ed6658ac.000.bin",
+      "bytes": 504955,
+      "sha256": "c207e7ebd022ec3db895a3a90e91432046eee65312181c9c093d14e4ed6658ac"
+    },
+    {
+      "oid": "3ce2a6803dd8a74818b83382561639a1a6a3484c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c243577967b4662bea3c19106eeea8ff4b7aff5dbc7a982f4847f644d024baaf.000.bin",
+      "bytes": 23514069,
+      "sha256": "c243577967b4662bea3c19106eeea8ff4b7aff5dbc7a982f4847f644d024baaf"
+    },
+    {
+      "oid": "4a7cef377a323e74ebf0cebbaf48871af6bab859",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c2570e0b2ceaf7895b9caf97a743f5dbd188f906cdbb269577f27391972149d3.000.bin",
+      "bytes": 13637,
+      "sha256": "c2570e0b2ceaf7895b9caf97a743f5dbd188f906cdbb269577f27391972149d3"
+    },
+    {
+      "oid": "6cce185926e82ab79726cac32ff4bfe399339a81",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c2b11527dd7a655cfff4212acbceb406cb6ff36a2f18dbea06bce1fd75f63b62.000.bin",
+      "bytes": 3986,
+      "sha256": "c2b11527dd7a655cfff4212acbceb406cb6ff36a2f18dbea06bce1fd75f63b62"
+    },
+    {
+      "oid": "245652ea0af78850c6b439bbb5422906b58453fc",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c3c72a1e2e57e853f66b58ee720a0fc42f90c2dc3a580a61a1432aa2434ede31.000.bin",
+      "bytes": 7098,
+      "sha256": "c3c72a1e2e57e853f66b58ee720a0fc42f90c2dc3a580a61a1432aa2434ede31"
+    },
+    {
+      "oid": "21c225bcef9539d7fbebd80fbb9f15703fbc69f3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c530a36eafb8191180f22ffd0c343c874d5ac6c91eb25eace29f8b43a514a5b6.000.bin",
+      "bytes": 13772,
+      "sha256": "c530a36eafb8191180f22ffd0c343c874d5ac6c91eb25eace29f8b43a514a5b6"
+    },
+    {
+      "oid": "b1ba81890a0d5cda106329f5adec9e86a9bcb46f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c569ac0e4545a4c650931d7edfc5b513e3409e3b1ad7be47eb1dcef2ba1ab35a.000.bin",
+      "bytes": 176471,
+      "sha256": "c569ac0e4545a4c650931d7edfc5b513e3409e3b1ad7be47eb1dcef2ba1ab35a"
+    },
+    {
+      "oid": "408707c2d7a1dd77fc3802abc7e00e7997e407c2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c5b44153b5b694951244e126c432c4566929afb9a20c843f588749cf3fc000d0.000.bin",
+      "bytes": 16927,
+      "sha256": "c5b44153b5b694951244e126c432c4566929afb9a20c843f588749cf3fc000d0"
+    },
+    {
+      "oid": "c6edf67089b6b6dfc498d677185ce739b0d4d7b8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c5dac9ce0d40a609dc5d59265da789ba43effaa5ca8412bd58ff441da8edb7ab.000.bin",
+      "bytes": 58592,
+      "sha256": "c5dac9ce0d40a609dc5d59265da789ba43effaa5ca8412bd58ff441da8edb7ab"
+    },
+    {
+      "oid": "7bf3b38c7aa9ce1f5bb34a09fcf8af27230a7494",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c6529e3ce82c87c58def20827a0fdfea3924e24232c84e94bbcd4d4ba4917897.000.bin",
+      "bytes": 78,
+      "sha256": "c6529e3ce82c87c58def20827a0fdfea3924e24232c84e94bbcd4d4ba4917897"
+    },
+    {
+      "oid": "4c60d295efd5ac912e37e4a061ce5745a80075d4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c6831a30222774cd096cd955f5ec59c7e016e7a930b9da53ea17984049a45c9c.000.bin",
+      "bytes": 16844,
+      "sha256": "c6831a30222774cd096cd955f5ec59c7e016e7a930b9da53ea17984049a45c9c"
+    },
+    {
+      "oid": "91780b15674f7b03512a33127b7f549fd60e384f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c70f6fcf6b5e7688e49503f3fa7ab79a87c387bd80d4382ad5c3e8556b6497ee.000.bin",
+      "bytes": 171765,
+      "sha256": "c70f6fcf6b5e7688e49503f3fa7ab79a87c387bd80d4382ad5c3e8556b6497ee"
+    },
+    {
+      "oid": "add26bd39812aaae625f601fb07cba3ab73fb259",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c7965c684787e33349395d678b716e36fa2cb790d2fcd91a323dfa355ca2b454.000.bin",
+      "bytes": 13444,
+      "sha256": "c7965c684787e33349395d678b716e36fa2cb790d2fcd91a323dfa355ca2b454"
+    },
+    {
+      "oid": "a96364022e1c21e5338d7bcc0169099af5c21b67",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c805154b653fa3da710b7090fd26de6a55ddbda9fe6793d796e82a9e8ab67b30.000.bin",
+      "bytes": 15339016,
+      "sha256": "c805154b653fa3da710b7090fd26de6a55ddbda9fe6793d796e82a9e8ab67b30"
+    },
+    {
+      "oid": "5326b597f171f8ae627d04ad84f690be21e52676",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c935ca60eb390ef4cdde6216965164cdf126e2f96e4bcffbc6d11d73c6d78cfc.000.bin",
+      "bytes": 78,
+      "sha256": "c935ca60eb390ef4cdde6216965164cdf126e2f96e4bcffbc6d11d73c6d78cfc"
+    },
+    {
+      "oid": "9f54616b80bb6d5a0cc05f04593b4d725a0b5875",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/c9f49b2b784072ac103d5113de958b37d18e2a59fc177541658ba969abb9535f.000.bin",
+      "bytes": 13640,
+      "sha256": "c9f49b2b784072ac103d5113de958b37d18e2a59fc177541658ba969abb9535f"
+    },
+    {
+      "oid": "f6b8c3669ae382e86702f847a39404f9916850f9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/cc23365a00efca5fcc98bd77083c7b53b2b438483886dfb59c2f5d6ed9e6751f.000.bin",
+      "bytes": 13612,
+      "sha256": "cc23365a00efca5fcc98bd77083c7b53b2b438483886dfb59c2f5d6ed9e6751f"
+    },
+    {
+      "oid": "d4f462359b169cd2d8908de7de5867d575113f0a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/cd066c8bf21b1c396f2b0b5b1679e94cb37ec7a406657e2d2bffdd1b2658bf28.000.bin",
+      "bytes": 2175675,
+      "sha256": "cd066c8bf21b1c396f2b0b5b1679e94cb37ec7a406657e2d2bffdd1b2658bf28"
+    },
+    {
+      "oid": "1d00f526f9daafc586230336eb95cb7cdac57028",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/cdd6ac0bfbc5b0bed3064f9d9fd31ac21a4f7c5573a74c1c9ec58800b33b085b.000.bin",
+      "bytes": 13610,
+      "sha256": "cdd6ac0bfbc5b0bed3064f9d9fd31ac21a4f7c5573a74c1c9ec58800b33b085b"
+    },
+    {
+      "oid": "80d9bd55246d5f2d87c0af874d9967e9511c6b4b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ce031dd4fa1220c0bb4345225f81b7bf8b869aad1a1026bacf2775d2b4c49dca.000.bin",
+      "bytes": 10143,
+      "sha256": "ce031dd4fa1220c0bb4345225f81b7bf8b869aad1a1026bacf2775d2b4c49dca"
+    },
+    {
+      "oid": "361acfe5b412eb9bfca8500bc5306987a1caadbb",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ce3572123099429c7e2df13f6a88f023addf60949cf52133f843654065633669.000.bin",
+      "bytes": 47300,
+      "sha256": "ce3572123099429c7e2df13f6a88f023addf60949cf52133f843654065633669"
+    },
+    {
+      "oid": "41440f6f85ddbd99020d53105ef6a05cb15bab6f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ce415efd7a6971dedad62f790eb49788cd2b6e0dfa02e9e1a0d7764ffba48d90.000.bin",
+      "bytes": 5710,
+      "sha256": "ce415efd7a6971dedad62f790eb49788cd2b6e0dfa02e9e1a0d7764ffba48d90"
+    },
+    {
+      "oid": "3a52695c76c81caef663a5bfa6569dc580e68720",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ce44c0eb7d4dd648d3a52f97a7b8a5b27f3bfb5bc29a541aaf8301562114fc09.000.bin",
+      "bytes": 7088,
+      "sha256": "ce44c0eb7d4dd648d3a52f97a7b8a5b27f3bfb5bc29a541aaf8301562114fc09"
+    },
+    {
+      "oid": "187368182b449b41bfc57bcc7755c1ed43a8dbe4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ceb0177475d01275b62c7aa20cea2e3b7c47cf1cd2d4900fe871fb7179c91640.000.bin",
+      "bytes": 15725,
+      "sha256": "ceb0177475d01275b62c7aa20cea2e3b7c47cf1cd2d4900fe871fb7179c91640"
+    },
+    {
+      "oid": "c29bac71399f1fd22a864ca80d84806735df5b17",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/cfa4d7484ebc487a7b2d21b962037166041fbbffbf72bf50177b41dc0355c0ba.000.bin",
+      "bytes": 13611,
+      "sha256": "cfa4d7484ebc487a7b2d21b962037166041fbbffbf72bf50177b41dc0355c0ba"
+    },
+    {
+      "oid": "3e9a77cdeb7c2185bd30ea021a17aec9ac975679",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d07d4b2a088ab921e53523eb4b1d704d8b174ba6d140a68863a4e3d66eda1a96.000.bin",
+      "bytes": 368,
+      "sha256": "d07d4b2a088ab921e53523eb4b1d704d8b174ba6d140a68863a4e3d66eda1a96"
+    },
+    {
+      "oid": "b8d5b2c57218cef77c6f30412acf784c8820a50a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d1086f5df6174e7bf19d52252472da5a1f08c8ff164b6031281f54e4f7e32ede.000.bin",
+      "bytes": 2838,
+      "sha256": "d1086f5df6174e7bf19d52252472da5a1f08c8ff164b6031281f54e4f7e32ede"
+    },
+    {
+      "oid": "c2d08f87f98bcc7791ac116d325c41bd9663568c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d12571064119899e048e82c15344f9ab5f876c87bf2bd69a0c4e8a7cc6c1f18f.000.bin",
+      "bytes": 1761766,
+      "sha256": "d12571064119899e048e82c15344f9ab5f876c87bf2bd69a0c4e8a7cc6c1f18f"
+    },
+    {
+      "oid": "c3edef98a106c02d3e2bcd66527aadc8a41ab876",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d147dd9d1783988651f493f0f6e3c438140368fddc030f9bdc49b6dcc073e056.000.bin",
+      "bytes": 13610,
+      "sha256": "d147dd9d1783988651f493f0f6e3c438140368fddc030f9bdc49b6dcc073e056"
+    },
+    {
+      "oid": "ae8eff2339aa78fd2a6f263af5ea5c02c13d9fc8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d277c6c9b8d700caf0e8785940bf9b39f3e9465609b2b22f20866dc76b162e1a.000.bin",
+      "bytes": 1761136,
+      "sha256": "d277c6c9b8d700caf0e8785940bf9b39f3e9465609b2b22f20866dc76b162e1a"
+    },
+    {
+      "oid": "e0922b50e09e4331d356cd755be11144df465c3c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6.000.bin",
+      "bytes": 8505,
+      "sha256": "d30bf14d895889e8007318336acfbbf0f5875103b12dbc6be87bd1ca3e4cc4d6"
+    },
+    {
+      "oid": "82a79dd07727883e1ee16af93c34c67ffc3b219e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d3be7cea0a014fb58990d71c632cf34d222754ea0a4b66a9de2fa00b470b0e3b.000.bin",
+      "bytes": 26735217,
+      "sha256": "d3be7cea0a014fb58990d71c632cf34d222754ea0a4b66a9de2fa00b470b0e3b"
+    },
+    {
+      "oid": "fe7ede8413c852168d4fb2c912bc055cde179857",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d45ca8b8fe387f56174f861c7aa78171bff16e186a3c8052267a06ee917ff6e8.000.bin",
+      "bytes": 4004,
+      "sha256": "d45ca8b8fe387f56174f861c7aa78171bff16e186a3c8052267a06ee917ff6e8"
+    },
+    {
+      "oid": "b0980db5e627f1958bb228f678f6f8d106385af5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d4f9a8eb81551492b1c747320b1e2f04abae58bd0c224e5ed6a18540c3be7002.000.bin",
+      "bytes": 10875,
+      "sha256": "d4f9a8eb81551492b1c747320b1e2f04abae58bd0c224e5ed6a18540c3be7002"
+    },
+    {
+      "oid": "367773fcb0eb1b302fa37e01a6219c79b4687c15",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d5cf0862fac63c38be548066b5c84071472eb73b462239153613b0251ae749ae.000.bin",
+      "bytes": 442,
+      "sha256": "d5cf0862fac63c38be548066b5c84071472eb73b462239153613b0251ae749ae"
+    },
+    {
+      "oid": "bb1fb741c4fd948172d3d59b047828b83342d697",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d698f27267bebb916784d4f4b7a156d63a64fd8d4bd189ec4fac16005ef4d675.000.bin",
+      "bytes": 13773,
+      "sha256": "d698f27267bebb916784d4f4b7a156d63a64fd8d4bd189ec4fac16005ef4d675"
+    },
+    {
+      "oid": "7ee9b37b6f84de5bd0db60312eee64d2972c3694",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d723e7d7ceb85afc6077cb3209b40ae7e258c49bbd9ff201a870491265d5f25c.000.bin",
+      "bytes": 13444,
+      "sha256": "d723e7d7ceb85afc6077cb3209b40ae7e258c49bbd9ff201a870491265d5f25c"
+    },
+    {
+      "oid": "8813d559cb44bc7620dc52c1cb3091e764f68e75",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb.000.bin",
+      "bytes": 26436,
+      "sha256": "d740a18a8d62d3827606144609287d8942ef715cc0cf45fdb04f4bb5a35c8efb"
+    },
+    {
+      "oid": "8e655a8fde9d941790252c48c090714cf3df9046",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d77293f72c9c956980cee77c1ef47dfd8181b754bfd424ccaf36a0180657df94.000.bin",
+      "bytes": 15339016,
+      "sha256": "d77293f72c9c956980cee77c1ef47dfd8181b754bfd424ccaf36a0180657df94"
+    },
+    {
+      "oid": "c185aa7a3b3d918ccea2cdc64cd6ad11e5c1e8a2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d7a097949657d723de79210f078b1a1919943544597bdc02cc273033cdd2cb27.000.bin",
+      "bytes": 817580,
+      "sha256": "d7a097949657d723de79210f078b1a1919943544597bdc02cc273033cdd2cb27"
+    },
+    {
+      "oid": "a4b3e4ae3ff62ffe9a82ac3c66fdcab37dcadf70",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d7bc575c61d2b5512c1db3fed131eaa2391f9d2decfb3e5cd66d0f7e83279555.000.bin",
+      "bytes": 6433,
+      "sha256": "d7bc575c61d2b5512c1db3fed131eaa2391f9d2decfb3e5cd66d0f7e83279555"
+    },
+    {
+      "oid": "661552dc98d9548b8bfa8489e85cc152abbc88c7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d84e490faee7762dcdebdd7f1978eda317f789449d6a62aafce15949f4fdb9c6.000.bin",
+      "bytes": 13612,
+      "sha256": "d84e490faee7762dcdebdd7f1978eda317f789449d6a62aafce15949f4fdb9c6"
+    },
+    {
+      "oid": "c87f0d8e9f9b0a8de94a3b456227f7bfb3325ff1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d9037a6449e29087cd483cfeb306f63788a7961f576f1fe0bcbe68dcb8b25e3b.000.bin",
+      "bytes": 13444,
+      "sha256": "d9037a6449e29087cd483cfeb306f63788a7961f576f1fe0bcbe68dcb8b25e3b"
+    },
+    {
+      "oid": "ed09777f837df2fa6c4f5b8dd0e7a4c22f6ca652",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d927753bd16ab2f64a5d1158e82a8f48ac4cee421406010c9eb6ebbc3f9d0433.000.bin",
+      "bytes": 8606,
+      "sha256": "d927753bd16ab2f64a5d1158e82a8f48ac4cee421406010c9eb6ebbc3f9d0433"
+    },
+    {
+      "oid": "4627a6e9bab29e756edec5e26d2341f62e6161bf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d942208eb6232e0ac75892acc225669a505fa92a4fe95329a2af3d5738d71d0d.000.bin",
+      "bytes": 2182512,
+      "sha256": "d942208eb6232e0ac75892acc225669a505fa92a4fe95329a2af3d5738d71d0d"
+    },
+    {
+      "oid": "52b133aa238909c6e2865aea2c65a3f46074fb51",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d9660d3d7903fbc38eff3e03bb07d96c7a44f3ae607a862765737d7c7f0d9b48.000.bin",
+      "bytes": 46176,
+      "sha256": "d9660d3d7903fbc38eff3e03bb07d96c7a44f3ae607a862765737d7c7f0d9b48"
+    },
+    {
+      "oid": "2e9df03e455ef40be7d0ceeabc5626c989e55da1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/d978b960f0d87e8b1b5a56e66c6d5fa5ecd4c3b9768a87b8752791e39a5251c3.000.bin",
+      "bytes": 31232,
+      "sha256": "d978b960f0d87e8b1b5a56e66c6d5fa5ecd4c3b9768a87b8752791e39a5251c3"
+    },
+    {
+      "oid": "c1399834c7d0d450d3fa513b4a3f710a3b990201",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/da13b225256704b4cb0c059b75f0d0daa7800dd8ef2d885185cf02331c7f8b1c.000.bin",
+      "bytes": 78,
+      "sha256": "da13b225256704b4cb0c059b75f0d0daa7800dd8ef2d885185cf02331c7f8b1c"
+    },
+    {
+      "oid": "91981fafb429d44b07c36234d53636a100bbaed5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/db90bf9186362170b746a125ccb19b411f631801f1b551de0b51fabcdd5179c4.000.bin",
+      "bytes": 13609,
+      "sha256": "db90bf9186362170b746a125ccb19b411f631801f1b551de0b51fabcdd5179c4"
+    },
+    {
+      "oid": "3bf552b1a3d9958609afaf6d4a1f67fc7ed95fac",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/dbf35be401447579a23a003607c1974054698eac2ff299da80862c297945b066.000.bin",
+      "bytes": 11702,
+      "sha256": "dbf35be401447579a23a003607c1974054698eac2ff299da80862c297945b066"
+    },
+    {
+      "oid": "7e81fc196cccd2b3a9e86c1b2ad51797da6acf22",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/dc7a5d2122b87d801fc4fcda1b41a304603bbcf5ddfbd196e4e59985fbbfcbf3.000.bin",
+      "bytes": 25417747,
+      "sha256": "dc7a5d2122b87d801fc4fcda1b41a304603bbcf5ddfbd196e4e59985fbbfcbf3"
+    },
+    {
+      "oid": "0c18828d86468414587b74a04d7349984c3cbd5b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/dce322ef166f5ea06c84686d47b97a4b4c2a93568f9ba9481e3f119ed125e10f.000.bin",
+      "bytes": 2177284,
+      "sha256": "dce322ef166f5ea06c84686d47b97a4b4c2a93568f9ba9481e3f119ed125e10f"
+    },
+    {
+      "oid": "416bbce443f53e28507bd3ba151e73564d1441e5",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/dd28fc4c0ca65bf0a6f9586e65895c15d8cefaea138041125ef80e5d224ea547.000.bin",
+      "bytes": 3510,
+      "sha256": "dd28fc4c0ca65bf0a6f9586e65895c15d8cefaea138041125ef80e5d224ea547"
+    },
+    {
+      "oid": "e84b5a8bcbf916491ba712ff0144728348598b32",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/dd3f9abc1145c37ba725d63b148b1e090a2ce6cb4689678d1498c509c5821af4.000.bin",
+      "bytes": 254029,
+      "sha256": "dd3f9abc1145c37ba725d63b148b1e090a2ce6cb4689678d1498c509c5821af4"
+    },
+    {
+      "oid": "bc67abcaef369b52109ac783b5f1835981f2f1a8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/de9b35b39ae02e6a56be11ec09eb8e4d8b49ac39280761ce9cd2f7a45ed13bab.000.bin",
+      "bytes": 1706365,
+      "sha256": "de9b35b39ae02e6a56be11ec09eb8e4d8b49ac39280761ce9cd2f7a45ed13bab"
+    },
+    {
+      "oid": "314b840749b3c56adf852ca5cd2d8258e5b0ac64",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/df2925ea27a7ee8f894fdf9f71421d275509ed16d0a15029f5ca499ecd5664e8.000.bin",
+      "bytes": 1288585,
+      "sha256": "df2925ea27a7ee8f894fdf9f71421d275509ed16d0a15029f5ca499ecd5664e8"
+    },
+    {
+      "oid": "c6528ce7894e707c0d4ff248233e73c83d6fffa0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/df5682bb79926721f16724055d94f073a8eda7476412b33c97c45b7efddf0920.000.bin",
+      "bytes": 13607,
+      "sha256": "df5682bb79926721f16724055d94f073a8eda7476412b33c97c45b7efddf0920"
+    },
+    {
+      "oid": "ce27436ad3c9a10926b06dbf1d532af2e15c174b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/df5fbcf3c60278fe2fb86712a6f6bdc1b87ef14de0bb2d789b45603e83a16b38.000.bin",
+      "bytes": 47316,
+      "sha256": "df5fbcf3c60278fe2fb86712a6f6bdc1b87ef14de0bb2d789b45603e83a16b38"
+    },
+    {
+      "oid": "4c9e3e3d15d8c9da054003b7fab98ffa48aa5010",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e06eacbe9cae7c9be8136ea8e5893b9cd0b63bfcd1647f470d02759552cfd1c3.000.bin",
+      "bytes": 1705071,
+      "sha256": "e06eacbe9cae7c9be8136ea8e5893b9cd0b63bfcd1647f470d02759552cfd1c3"
+    },
+    {
+      "oid": "b447b4869aec6421c026f9afa8a9797ebeb9a869",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e0eb30c441d3dba42b6e3640ed85520bfb33afb92a41fe3f24096f3c8e059729.000.bin",
+      "bytes": 1761141,
+      "sha256": "e0eb30c441d3dba42b6e3640ed85520bfb33afb92a41fe3f24096f3c8e059729"
+    },
+    {
+      "oid": "9fb188756b09486f81027950ecf9b3afcaf839de",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e12373b67d5a8b270c7e3e3c3a7466974bc5ea8f3984ca0c8d32311ed2e9f00d.000.bin",
+      "bytes": 16928,
+      "sha256": "e12373b67d5a8b270c7e3e3c3a7466974bc5ea8f3984ca0c8d32311ed2e9f00d"
+    },
+    {
+      "oid": "8c55f4a813deb35e48785a7eca087255d9ec8698",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e12f1e177aa6f1fe16c84b738f104b40486caf9c8fa5e45b387b7ba94e5b5887.000.bin",
+      "bytes": 78,
+      "sha256": "e12f1e177aa6f1fe16c84b738f104b40486caf9c8fa5e45b387b7ba94e5b5887"
+    },
+    {
+      "oid": "9133d2570164662885b7aa7c98c406f44bf59959",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73.000.bin",
+      "bytes": 47269,
+      "sha256": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73"
+    },
+    {
+      "oid": "c7c6a660f5c751d887a85a4d4b96952625c7f94f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e2a807c58a8f34a1c654a4f0a7f3e0143e6646fe5ae7a11353b22ce9ceb81fae.000.bin",
+      "bytes": 8266,
+      "sha256": "e2a807c58a8f34a1c654a4f0a7f3e0143e6646fe5ae7a11353b22ce9ceb81fae"
+    },
+    {
+      "oid": "fdd07a553ad0365f0e612a5e8d3170d701a2b636",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e3892f5bccfe6acf255ff0b2873a011b43ad639dc1b8dc0525f91b26c9ed5dfa.000.bin",
+      "bytes": 158998,
+      "sha256": "e3892f5bccfe6acf255ff0b2873a011b43ad639dc1b8dc0525f91b26c9ed5dfa"
+    },
+    {
+      "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.000.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "oid": "9f0dc2d57955a5477d979b7b02804b69860049e9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e612bd319d564e6a7cc8524fd1d98e576aaa9dc4950f89f7cf7ce0b52c5e7bb7.000.bin",
+      "bytes": 1179773,
+      "sha256": "e612bd319d564e6a7cc8524fd1d98e576aaa9dc4950f89f7cf7ce0b52c5e7bb7"
+    },
+    {
+      "oid": "4398556a182f387dd70546f13e24e754a984a9db",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e6479c86728fc9ada0ecb4c40d33fff8059a03e711b609f3b07ab9a5c4630830.000.bin",
+      "bytes": 13611,
+      "sha256": "e6479c86728fc9ada0ecb4c40d33fff8059a03e711b609f3b07ab9a5c4630830"
+    },
+    {
+      "oid": "85d5b92866074952ac7faafb0872d377df8249af",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e6709dd8aac23cc97983f5e60f005b071efa9b7a951b4962dcfdbee8f86dc3d6.000.bin",
+      "bytes": 7088,
+      "sha256": "e6709dd8aac23cc97983f5e60f005b071efa9b7a951b4962dcfdbee8f86dc3d6"
+    },
+    {
+      "oid": "69a4c875678fb85d988283cad0145017a6133729",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e6ac4a3cee407491984c19de5cdff058d99a8fc8c6f8bf149f6936b84140b394.000.bin",
+      "bytes": 137072,
+      "sha256": "e6ac4a3cee407491984c19de5cdff058d99a8fc8c6f8bf149f6936b84140b394"
+    },
+    {
+      "oid": "79fada427c010c1b772855ee035c1e99b2e6cadf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e7e1f1b3c45bbd4fbc1cb47214a86817d2decfcb75d40021015427b59f7bc75c.000.bin",
+      "bytes": 1763123,
+      "sha256": "e7e1f1b3c45bbd4fbc1cb47214a86817d2decfcb75d40021015427b59f7bc75c"
+    },
+    {
+      "oid": "c655599deca2d1d11b0a766154047bda6033a907",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e8aee6dc66a7fec6a6bcad7893aee4b7d6d1de08ff72562605a86237637d8824.000.bin",
+      "bytes": 13443,
+      "sha256": "e8aee6dc66a7fec6a6bcad7893aee4b7d6d1de08ff72562605a86237637d8824"
+    },
+    {
+      "oid": "53d66dcddf42e56391a13fc1a345d619b70d9071",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e8fc3d6dec7cd420edbf01a1707197530d71211fb2f52c0169d34a3707bb0ddb.000.bin",
+      "bytes": 6632,
+      "sha256": "e8fc3d6dec7cd420edbf01a1707197530d71211fb2f52c0169d34a3707bb0ddb"
+    },
+    {
+      "oid": "1c2457ecaed99952e2aeeb67021dec1eefe4740e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e93d106bc0e98842fdeeb7718f4e8febb0ff404ab350738d0be3070435be7b6b.000.bin",
+      "bytes": 11702,
+      "sha256": "e93d106bc0e98842fdeeb7718f4e8febb0ff404ab350738d0be3070435be7b6b"
+    },
+    {
+      "oid": "7b821b98ae24eb4c8cd63628101f2ab55640387f",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/e98e19a8ea30afe8fb99f82a8d9b1661823c9a80d50f8c348a08245eab4d9d7f.000.bin",
+      "bytes": 1813671,
+      "sha256": "e98e19a8ea30afe8fb99f82a8d9b1661823c9a80d50f8c348a08245eab4d9d7f"
+    },
+    {
+      "oid": "4a2a0beda5e074da91ea9c36c086cca66211274d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ea255720484081b03bb1993132eb2e33611c76b006bae08527748b6d2d42fe93.000.bin",
+      "bytes": 24817705,
+      "sha256": "ea255720484081b03bb1993132eb2e33611c76b006bae08527748b6d2d42fe93"
+    },
+    {
+      "oid": "03bc5847cf36a53ca478bd5b891f0c406350e650",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ea6d13997a8e37e23d6b21ffff5509b8af59a647f50046582f676dd44c7056e7.000.bin",
+      "bytes": 5530,
+      "sha256": "ea6d13997a8e37e23d6b21ffff5509b8af59a647f50046582f676dd44c7056e7"
+    },
+    {
+      "oid": "9f586635a455556e295e67f7f2d87d36730c0014",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af.000.bin",
+      "bytes": 11698,
+      "sha256": "eae3cdec80d594dffeb9bd37e8b2a4ba9e10f57f68d11e68da872aad9bdf07af"
+    },
+    {
+      "oid": "3c1038cb7d2cda79dbd4b001ee90ccd1458115e0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/eb0f9a9d7d1560f79d07c2bf9abf4f29916292740ae8d3e8be583f736f6a16e7.000.bin",
+      "bytes": 13611,
+      "sha256": "eb0f9a9d7d1560f79d07c2bf9abf4f29916292740ae8d3e8be583f736f6a16e7"
+    },
+    {
+      "oid": "82408911fbbf2fa9629ef0f816e44dc137f89f0c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ec5bd98f78f4b85c3a84d601d0e9319ff91d5b838ff506781242163e38b10e79.000.bin",
+      "bytes": 11681,
+      "sha256": "ec5bd98f78f4b85c3a84d601d0e9319ff91d5b838ff506781242163e38b10e79"
+    },
+    {
+      "oid": "322cdefdd15d31ab3a08fd5fbbfef5ee532f4d01",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ec5d50966cf965da60ae7979477c64ca548949cad842ef728964387570ee9397.000.bin",
+      "bytes": 7067,
+      "sha256": "ec5d50966cf965da60ae7979477c64ca548949cad842ef728964387570ee9397"
+    },
+    {
+      "oid": "63db369b6a41be9141499847d67466c84d0a9750",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ec87c3e54b75779feeb1b75f0890288be714f7295e5bd6638a4c2d4837ac4628.000.bin",
+      "bytes": 1813678,
+      "sha256": "ec87c3e54b75779feeb1b75f0890288be714f7295e5bd6638a4c2d4837ac4628"
+    },
+    {
+      "oid": "f29fde6c8566b6fda59ea6a426e89824a956891d",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ec907546b74caa39cbe07b8ca10fb3f2b691d1181dcb1f7e647493b18f7d16ab.000.bin",
+      "bytes": 16979,
+      "sha256": "ec907546b74caa39cbe07b8ca10fb3f2b691d1181dcb1f7e647493b18f7d16ab"
+    },
+    {
+      "oid": "aad370d15837509a4eb1bee11a392a9a844a81a7",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ed696f766e020069650a7a66e5f985871e07b84aa46186944abb965d52984126.000.bin",
+      "bytes": 158801,
+      "sha256": "ed696f766e020069650a7a66e5f985871e07b84aa46186944abb965d52984126"
+    },
+    {
+      "oid": "3423c64a0b71ed81a8455f6b7958c113816ae6ab",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ede91f54f27215f3d76b9c963612626b3dbf9a44714e6f36def5c979f62b91e0.000.bin",
+      "bytes": 653961,
+      "sha256": "ede91f54f27215f3d76b9c963612626b3dbf9a44714e6f36def5c979f62b91e0"
+    },
+    {
+      "oid": "fc82641da3c56ccd20f7516d853fe8eb11c7aab2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ee2cd835d824d0efafe6060bb2c3c04fb64d089dd9932ff3c975a66b2eb9d0da.000.bin",
+      "bytes": 1109650,
+      "sha256": "ee2cd835d824d0efafe6060bb2c3c04fb64d089dd9932ff3c975a66b2eb9d0da"
+    },
+    {
+      "oid": "4bb137bdf6be7941186c4ec381f36a53bd1582b0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ee32f5a5cbdd9261a906be44e5811547acabbd1437fcfb11dcd3f3868890511b.000.bin",
+      "bytes": 13639,
+      "sha256": "ee32f5a5cbdd9261a906be44e5811547acabbd1437fcfb11dcd3f3868890511b"
+    },
+    {
+      "oid": "03ac47477b90d46745bd2acdabb4a1c0d3f8f061",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9.000.bin",
+      "bytes": 36245,
+      "sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9"
+    },
+    {
+      "oid": "e3a46afbfa0650e0fed3dd921b0d557f98523895",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/eedd9b2d7c790c01cc89f589cf1bf193aad7598816ce92c66444cee5de7afde8.000.bin",
+      "bytes": 13442,
+      "sha256": "eedd9b2d7c790c01cc89f589cf1bf193aad7598816ce92c66444cee5de7afde8"
+    },
+    {
+      "oid": "902be1701f017eb3eb12549e0a8981b27f5dc325",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/eeee0ff40b29d86be8fa26312c257109f837c794ad1001770c16ebbbd28da852.000.bin",
+      "bytes": 25417747,
+      "sha256": "eeee0ff40b29d86be8fa26312c257109f837c794ad1001770c16ebbbd28da852"
+    },
+    {
+      "oid": "7b030c193a6a40c5b65efbc81a5ad02cebb17612",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ef20b5cdc4e6d32fad011160841f41a8f92fef550605aa2ae5fa0fe45ef1367d.000.bin",
+      "bytes": 15339016,
+      "sha256": "ef20b5cdc4e6d32fad011160841f41a8f92fef550605aa2ae5fa0fe45ef1367d"
+    },
+    {
+      "oid": "980e5d7c3185c1edcaa0c42c286c8d7787a7eba1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ef511535124fecbc4bb7c5870914b085adc59bb405939918fe2a660834130070.000.bin",
+      "bytes": 5743,
+      "sha256": "ef511535124fecbc4bb7c5870914b085adc59bb405939918fe2a660834130070"
+    },
+    {
+      "oid": "563a41ac4fcc6bbbc47313674b98131b8a37e809",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/eff11fcf5fce48bddded88dca7397e6ff9bf47f963ddee7864337fc890a1fb43.000.bin",
+      "bytes": 78,
+      "sha256": "eff11fcf5fce48bddded88dca7397e6ff9bf47f963ddee7864337fc890a1fb43"
+    },
+    {
+      "oid": "2e8c9021ef9615f7b486c897b6560f451df6016c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f0f13c03cc09525f40162c653141648859d2262619151923e430b64e2c448d8d.000.bin",
+      "bytes": 13775,
+      "sha256": "f0f13c03cc09525f40162c653141648859d2262619151923e430b64e2c448d8d"
+    },
+    {
+      "oid": "8ab30b0ce480f26204731e5a7f1fa28a01cbebcf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f19c1a26c2f6ef9507dce7b0894e8f3c080f2bf856997b0e8e540d3e5689dbce.000.bin",
+      "bytes": 951944,
+      "sha256": "f19c1a26c2f6ef9507dce7b0894e8f3c080f2bf856997b0e8e540d3e5689dbce"
+    },
+    {
+      "oid": "fe340874e95b84563a3e39b4a0349a15e37d3482",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f1b68ff4ca67df8da25791c14700fd7fcd02a697d38b3f7c13b5944ef966fa09.000.bin",
+      "bytes": 23514069,
+      "sha256": "f1b68ff4ca67df8da25791c14700fd7fcd02a697d38b3f7c13b5944ef966fa09"
+    },
+    {
+      "oid": "05fd05ca86e288c2107ba2344e4b8aa8df7a60ba",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f1dff8675468619e3c8bdcb0e861278dea5824c583c0522fecbf372b57744b53.000.bin",
+      "bytes": 1811781,
+      "sha256": "f1dff8675468619e3c8bdcb0e861278dea5824c583c0522fecbf372b57744b53"
+    },
+    {
+      "oid": "3a827716f371bd3b3b0e16948745b364ba683eba",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f209013eaf47b28207499a4c89ab59d5d70c471ded8684b87a680125a16b078a.000.bin",
+      "bytes": 13774,
+      "sha256": "f209013eaf47b28207499a4c89ab59d5d70c471ded8684b87a680125a16b078a"
+    },
+    {
+      "oid": "58f781d9bf508f0ea2e2aed17153a6a955433504",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f227321d2a6f13eab57c98efe24bc196eff17a5abd58566635b3ded02fb7f411.000.bin",
+      "bytes": 8726,
+      "sha256": "f227321d2a6f13eab57c98efe24bc196eff17a5abd58566635b3ded02fb7f411"
+    },
+    {
+      "oid": "e838c7bbd2255c535684d449a0b051214a843a2c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f31ac28474fe0589b0b4d7f8522db535342c1be37a8bb00edfba981050e49462.000.bin",
+      "bytes": 13611,
+      "sha256": "f31ac28474fe0589b0b4d7f8522db535342c1be37a8bb00edfba981050e49462"
+    },
+    {
+      "oid": "ae4542753e420490347ce95574135da2a4e898a0",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f4ae28d7c851a1aa0514ab58900ae99ea1e3a0c574435bb40b3291f9490f4ea0.000.bin",
+      "bytes": 94371840,
+      "sha256": "b816677d0a9b92299999665a477fed608dba727d9c84bd74d176193a20b29178"
+    },
+    {
+      "oid": "0fc1356d8ce86ceb912a1b2915990e7af8fe6080",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f4ae28d7c851a1aa0514ab58900ae99ea1e3a0c574435bb40b3291f9490f4ea0.001.bin",
+      "bytes": 9080877,
+      "sha256": "f8d826554c5c6174ac4dfce9b599a10ca8fc76577c5d38d2e424f57697d0e2ae"
+    },
+    {
+      "oid": "c231c5e1fc7f9727c72a5d19578cf565ff000664",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f5f812e408ee11393415e23a26b5904e44e7e89f729864faa1cbe6b18796fb0f.000.bin",
+      "bytes": 8089,
+      "sha256": "f5f812e408ee11393415e23a26b5904e44e7e89f729864faa1cbe6b18796fb0f"
+    },
+    {
+      "oid": "1ef6eb167e67a43d226d233cfa8a3fbc7fdbbeb2",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f600f2ae213eb2ea9e945750ef226213b251391c61bc4bc3ffc8706160e4ce6a.000.bin",
+      "bytes": 1156079,
+      "sha256": "f600f2ae213eb2ea9e945750ef226213b251391c61bc4bc3ffc8706160e4ce6a"
+    },
+    {
+      "oid": "ce7643be00fa169de055861fb3fce7312b1aec62",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f60aafdc89900e4e221758debc1d38b601e756c8e2ec71533d5398886aa3b447.000.bin",
+      "bytes": 391,
+      "sha256": "f60aafdc89900e4e221758debc1d38b601e756c8e2ec71533d5398886aa3b447"
+    },
+    {
+      "oid": "3de576067ee78371e46edffa7629ecfa95ec4afe",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f7edb9fbb9832de148cf945f5983bd9980fa27860d3252395005fe1a56810333.000.bin",
+      "bytes": 158117,
+      "sha256": "f7edb9fbb9832de148cf945f5983bd9980fa27860d3252395005fe1a56810333"
+    },
+    {
+      "oid": "224b4405b7971294d251fa7756727b7aea05f42a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f85684a235c24df756f22dad3f0428bbc7664af2d2be424363039b11f7e540dc.000.bin",
+      "bytes": 5528,
+      "sha256": "f85684a235c24df756f22dad3f0428bbc7664af2d2be424363039b11f7e540dc"
+    },
+    {
+      "oid": "4f4bde291c7d4db06b53ff06f40de88de934e059",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f8b1bdd039a04adeba1cd8eb7829c6740017fa3f02d8bad926fd297764f13222.000.bin",
+      "bytes": 176415,
+      "sha256": "f8b1bdd039a04adeba1cd8eb7829c6740017fa3f02d8bad926fd297764f13222"
+    },
+    {
+      "oid": "11dcb45ecc104cecc1b2baef08e07300dcb1cb28",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/f9f7025773bd25c5fbc9f6b680102d83c96a11eacecd0e967ce8d0385c309fc7.000.bin",
+      "bytes": 1705072,
+      "sha256": "f9f7025773bd25c5fbc9f6b680102d83c96a11eacecd0e967ce8d0385c309fc7"
+    },
+    {
+      "oid": "18a7d8ca5bb51dd6074746114517d3185ffb9fed",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fa2e0a6f04b4895634bd70c70f4b6048981f19a305c1348d532a787a2f8f720b.000.bin",
+      "bytes": 25417746,
+      "sha256": "fa2e0a6f04b4895634bd70c70f4b6048981f19a305c1348d532a787a2f8f720b"
+    },
+    {
+      "oid": "a418c3a39bcf86066b66a71141edb10552dfafc3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fa554dcce104266ee690b6cbf5fa006139c5e12d5a52024486526bf7733e8125.000.bin",
+      "bytes": 648,
+      "sha256": "fa554dcce104266ee690b6cbf5fa006139c5e12d5a52024486526bf7733e8125"
+    },
+    {
+      "oid": "f425ef2f7508c02014705cdc17891dbbe1c809f8",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fb092a40c415a7ea10e9155e9fde1435159d5a22371b00ae1f407cbe0bc43176.000.bin",
+      "bytes": 507065,
+      "sha256": "fb092a40c415a7ea10e9155e9fde1435159d5a22371b00ae1f407cbe0bc43176"
+    },
+    {
+      "oid": "2e316cccc16e96117b7307f51e2a76b29e951d71",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fb24a4ca3bb34474d2247af98e62ec65b46cdadc22cca78300f2bb33d2930975.000.bin",
+      "bytes": 13775,
+      "sha256": "fb24a4ca3bb34474d2247af98e62ec65b46cdadc22cca78300f2bb33d2930975"
+    },
+    {
+      "oid": "db37d48db81b7bd89e140a2ee8ef0403830950d3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6.000.bin",
+      "bytes": 2856812,
+      "sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6"
+    },
+    {
+      "oid": "5300ec7c2a1c384a86b4f0eefb470953069c6a8c",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a.000.bin",
+      "bytes": 11962,
+      "sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a"
+    },
+    {
+      "oid": "5d8b725c970b518c46a91a0ea18e0d35c79e3776",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fb7437be84f8ec3e4adc8cb8eb1ee36b60ef230883ccbb01c97e7ab913672f33.000.bin",
+      "bytes": 10143,
+      "sha256": "fb7437be84f8ec3e4adc8cb8eb1ee36b60ef230883ccbb01c97e7ab913672f33"
+    },
+    {
+      "oid": "e5d38b80161178456e639eef5640e13737e25564",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fc1fecac878f1b98c828969bb1607998bae10592d36ddec55f4ccb9b2b21ae11.000.bin",
+      "bytes": 13444,
+      "sha256": "fc1fecac878f1b98c828969bb1607998bae10592d36ddec55f4ccb9b2b21ae11"
+    },
+    {
+      "oid": "b0a6b5713cc06c899bc4fd7ca5d96707a7a6e16e",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fc3cc9e36bb580e1b6aaf0f1e0a9256479c94699f4b2ca20306c07892ed6d745.000.bin",
+      "bytes": 651860,
+      "sha256": "fc3cc9e36bb580e1b6aaf0f1e0a9256479c94699f4b2ca20306c07892ed6d745"
+    },
+    {
+      "oid": "9339c60a2e61681958b219ecdfa186534a7b8aa3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fc4f4608194b169ec694cb4abf994884aec6d8697a7c22595bd7fefe58e9a1a5.000.bin",
+      "bytes": 13778,
+      "sha256": "fc4f4608194b169ec694cb4abf994884aec6d8697a7c22595bd7fefe58e9a1a5"
+    },
+    {
+      "oid": "c15f7e0cf2aa63398badc5b6bd6840c451589299",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fc63d5126150d72bd00d12f711ee62eead31ecbe2adf4323313194487fe490db.000.bin",
+      "bytes": 4005,
+      "sha256": "fc63d5126150d72bd00d12f711ee62eead31ecbe2adf4323313194487fe490db"
+    },
+    {
+      "oid": "ca434d9dae384db83bfac11cfb235c39d88b0ba9",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fc821bbddc2ff3651c5b593bed80a75498fd9c7eda46c090608aa1fe8b2c5d50.000.bin",
+      "bytes": 543874,
+      "sha256": "fc821bbddc2ff3651c5b593bed80a75498fd9c7eda46c090608aa1fe8b2c5d50"
+    },
+    {
+      "oid": "827959fa01ee6635cbefe90c368307ed9d0aa02b",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fce1c543d0ae30c0507aa30d60f5b8c70f5e6b47566480018555a652915d681b.000.bin",
+      "bytes": 13428,
+      "sha256": "fce1c543d0ae30c0507aa30d60f5b8c70f5e6b47566480018555a652915d681b"
+    },
+    {
+      "oid": "a263c16f187d128c63a1ec5f97b8a06e01240a8a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fd102772c711514ca87d7ce5778a3b6e0588349bac9c02a28c7c65b5d26252a6.000.bin",
+      "bytes": 13611,
+      "sha256": "fd102772c711514ca87d7ce5778a3b6e0588349bac9c02a28c7c65b5d26252a6"
+    },
+    {
+      "oid": "40f4bb09267f77b43360de0907a84c7e05bd69aa",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/fe84c513d5d678f14772a57092dfba88882ebfdc59eedc842bd5dad1ebf78dfe.000.bin",
+      "bytes": 22515658,
+      "sha256": "fe84c513d5d678f14772a57092dfba88882ebfdc59eedc842bd5dad1ebf78dfe"
+    },
+    {
+      "oid": "aaf94f8786f5332588a8158d4afac60d27ad8baf",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ff0d7302bcb34ac10961ab31131a534e9be045b6b073cfea25caf75aadd8ad7b.000.bin",
+      "bytes": 1261512,
+      "sha256": "ff0d7302bcb34ac10961ab31131a534e9be045b6b073cfea25caf75aadd8ad7b"
+    },
+    {
+      "oid": "abc4c1dd5b1d2447fce9b4348272246ca848d561",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ffa85942fe0ceac258c2481dd9d47a818d8f7ec25fe93a8a662d73911600ebfd.000.bin",
+      "bytes": 43822,
+      "sha256": "ffa85942fe0ceac258c2481dd9d47a818d8f7ec25fe93a8a662d73911600ebfd"
+    },
+    {
+      "oid": "20d22b1398059a719a2f442e3b4e54cdbeff4de4",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ffabcbf7f4b76a7761072026ca51062cb1cc7d5bc3fa59aa91c5207bcba2e345.000.bin",
+      "bytes": 1289375,
+      "sha256": "ffabcbf7f4b76a7761072026ca51062cb1cc7d5bc3fa59aa91c5207bcba2e345"
+    },
+    {
+      "oid": "3b20ddbaa360be178ddc90e83f263f26dbeac4e1",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/objects/ffafc27e63057b020d275b0963500b882be8583f8cae9e924b5cbd90edd4eddb.000.bin",
+      "bytes": 456286,
+      "sha256": "ffafc27e63057b020d275b0963500b882be8583f8cae9e924b5cbd90edd4eddb"
+    },
+    {
+      "oid": "fc6fda240b17f5ba3a2b577c9f786793d0ffa2d3",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/archive-verification.json",
+      "bytes": 1101,
+      "sha256": "ae7c5491c863acca3fd8846fdc82664a811cf7d8f3a8f90ce2029e80f04bf60b"
+    },
+    {
+      "oid": "667d19d1aef7d14cfeb922491c5b221df3bf914a",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/frozen-manifest.json",
+      "bytes": 35236,
+      "sha256": "536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e"
+    },
+    {
+      "oid": "37263d4028d18c9a1bd3e0fcf4450e5aafb20935",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-review.md",
+      "bytes": 6653,
+      "sha256": "7541ca23efd6c25fe164b0a336b081ad20784a6c96669aa9404605d0c83554e5"
+    },
+    {
+      "oid": "353db50bbf31a0ac696770b7f1d0104b715a4015",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-summary.json",
+      "bytes": 9895,
+      "sha256": "863d52d8d363f6d681ee1bd65cd26f486fd69e2cf08e8b32c5b3d50d5e327390"
+    },
+    {
+      "oid": "52b133aa238909c6e2865aea2c65a3f46074fb51",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/independent-verdict.json",
+      "bytes": 46176,
+      "sha256": "d9660d3d7903fbc38eff3e03bb07d96c7a44f3ae607a862765737d7c7f0d9b48"
+    },
+    {
+      "oid": "303d8377aebbe5e124da07ba90e5d79d95d3d834",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/run-summary.json",
+      "bytes": 8147,
+      "sha256": "9711d8d749b3bc9a05c61befd3884a2e37ebae951b4da7cc5eec8b98a9d28ac6"
+    },
+    {
+      "oid": "e46510bad9da7c25ecc60c5c1631400cad671f85",
+      "path": "docs/campaign-certification/S22/qualification-pair-02/records/verdict.json",
+      "bytes": 46176,
+      "sha256": "7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b"
+    }
+  ]
+}

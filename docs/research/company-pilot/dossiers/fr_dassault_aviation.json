@@ -1,0 +1,689 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "fr_dassault_aviation",
+  "display_name": "Dassault Aviation",
+  "native_name": "Dassault Aviation SA (Avions Marcel Dassault-Breguet Aviation until 1990)",
+  "nation": "France",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "aerospace",
+    "civilian_industrial"
+  ],
+  "selection": {
+    "reason": "The French combat-aircraft and business-jet maker. The game already cites Dassault in France's sourced 1990 composite-structures technology, so this dossier extends an existing reference instead of inventing a new aerospace identity.",
+    "existing_game_references": [
+      {
+        "kind": "tech_source",
+        "path": "spheres-sim/data/nations/france.json",
+        "id": "France:matl_composite_structures",
+        "note": "Evidence text names Dassault (Rafale A demonstrator, 1986)."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "France:defense",
+        "note": "Generated fictional defense contractors only."
+      }
+    ]
+  },
+  "summary": "Avions Marcel Dassault-Breguet Aviation took the name Dassault Aviation in 1990. The Rafale became operational in the French Navy in 2004 and the Air Force in 2006, and export deliveries began in 2015. The 300th Rafale was produced in 2025. The Falcon 6X entered service on 30 November 2023; the Falcon 10X was still in development at the end of 2025. GIMD is the majority shareholder.",
+  "entities": [
+    {
+      "id": "fr_dassault_aviation_sa",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "RCS",
+        "number": "712 042 456",
+        "claims": [
+          "fr_dassault_aviation_c05",
+          "fr_dassault_aviation_c07"
+        ]
+      },
+      "names": [
+        {
+          "name": "Avions Marcel Dassault-Breguet Aviation",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": "1990",
+          "claims": [
+            "fr_dassault_aviation_c01",
+            "fr_dassault_aviation_c02"
+          ]
+        },
+        {
+          "name": "Dassault Aviation",
+          "from": "1990",
+          "until": null,
+          "claims": [
+            "fr_dassault_aviation_c02",
+            "fr_dassault_aviation_c04",
+            "fr_dassault_aviation_c06"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "designer and manufacturer of combat aircraft and business jets",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "fr_dassault_aviation_c02",
+            "fr_dassault_aviation_c06",
+            "fr_dassault_aviation_c17"
+          ]
+        }
+      ],
+      "note": "The registration number 712 042 456 is unchanged; it moved from RCS Paris to RCS Nanterre after the head-office transfer to Saint-Cloud effective 1 January 2026."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "fr_dassault_aviation_l01",
+      "kind": "rename",
+      "entity": "fr_dassault_aviation_sa",
+      "date": "1990",
+      "from_name": "Avions Marcel Dassault-Breguet Aviation",
+      "to_name": "Dassault Aviation",
+      "claims": [
+        "fr_dassault_aviation_c02"
+      ],
+      "note": "Year precision from the national library record. The company heritage page dates the Board decision to 19 June 1990, but its byte-stability recheck was blocked by bot protection, so the day is not used."
+    },
+    {
+      "id": "fr_dassault_aviation_l02",
+      "kind": "stake_change",
+      "entity": "fr_dassault_aviation_sa",
+      "date": "2009",
+      "counterparties": [
+        {
+          "name": "Thales",
+          "relation": "Dassault Aviation became a 26% shareholder"
+        },
+        {
+          "name": "Alcatel-Lucent",
+          "relation": "seller of Thales shares"
+        },
+        {
+          "name": "Groupe Industriel Marcel Dassault (GIMD)",
+          "relation": "seller of Thales shares"
+        }
+      ],
+      "claims": [
+        "fr_dassault_aviation_c18"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "Groupe Industriel Marcel Dassault (GIMD)",
+      "share": "66.28% of shares",
+      "date": "2025-12-31",
+      "claims": [
+        "fr_dassault_aviation_c09"
+      ]
+    },
+    {
+      "holder": "Airbus SE",
+      "share": "10.56% of shares",
+      "date": "2025-12-31",
+      "claims": [
+        "fr_dassault_aviation_c09"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "France",
+      "kind": "headquarters",
+      "date": "2026-01-01",
+      "claims": [
+        "fr_dassault_aviation_c08"
+      ],
+      "note": "Registered office moved from Paris to Saint-Cloud."
+    },
+    {
+      "country": "United States",
+      "kind": "subsidiary",
+      "date": "2025-12-31",
+      "claims": [
+        "fr_dassault_aviation_c10"
+      ],
+      "note": "Dassault Falcon Jet Corp. markets and completes Falcons for the Americas."
+    },
+    {
+      "country": "Egypt",
+      "kind": "export_customer",
+      "date": "2015",
+      "claims": [
+        "fr_dassault_aviation_c03",
+        "fr_dassault_aviation_c14"
+      ]
+    },
+    {
+      "country": "United Arab Emirates",
+      "kind": "export_customer",
+      "date": "2022",
+      "claims": [
+        "fr_dassault_aviation_c14"
+      ]
+    },
+    {
+      "country": "Greece",
+      "kind": "export_customer",
+      "date": "2008",
+      "claims": [
+        "fr_dassault_aviation_c16"
+      ]
+    },
+    {
+      "country": "India",
+      "kind": "joint_venture",
+      "date": "2022",
+      "claims": [
+        "fr_dassault_aviation_c15"
+      ]
+    },
+    {
+      "country": "India",
+      "kind": "export_customer",
+      "date": "2025",
+      "claims": [
+        "fr_dassault_aviation_c11"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "fr_dassault_rafale",
+      "name": "Rafale multirole combat aircraft",
+      "reality": "historical",
+      "category": "combat aircraft",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2004",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c03"
+          ],
+          "note": "French Navy."
+        },
+        {
+          "event": "operational",
+          "date": "2006",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c03"
+          ],
+          "note": "French Air Force."
+        },
+        {
+          "event": "delivery",
+          "date": "2008",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c17"
+          ],
+          "note": "14 series aircraft delivered in the year."
+        },
+        {
+          "event": "delivery",
+          "date": "2015",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c03"
+          ],
+          "note": "First export deliveries (Egypt)."
+        },
+        {
+          "event": "export_order",
+          "date": "2022",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c14"
+          ],
+          "note": "80 for the UAE, 6 for Greece, 6 for Indonesia."
+        },
+        {
+          "event": "production_milestone",
+          "date": "2025",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c04"
+          ],
+          "note": "300th Rafale produced."
+        }
+      ]
+    },
+    {
+      "id": "fr_dassault_mirage_2000_greece",
+      "name": "Mirage 2000 retrofit for Greece",
+      "reality": "historical",
+      "category": "combat aircraft retrofit",
+      "milestones": [
+        {
+          "event": "delivery",
+          "date": "2008",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c16"
+          ],
+          "note": "Nine retrofitted Greek Mirage 2000 delivered."
+        }
+      ]
+    },
+    {
+      "id": "fr_dassault_falcon_6x",
+      "name": "Falcon 6X business jet",
+      "reality": "historical",
+      "category": "business jet",
+      "milestones": [
+        {
+          "event": "type_certification",
+          "date": "2023-08-22",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c13"
+          ]
+        },
+        {
+          "event": "entry_into_service",
+          "date": "2023-11-30",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c13"
+          ]
+        },
+        {
+          "event": "first_delivery",
+          "date": "2024-02",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr_dassault_falcon_10x",
+      "name": "Falcon 10X business jet",
+      "reality": "announced",
+      "category": "business jet",
+      "outcome": "unknown_after_cutoff",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2025",
+          "maker_entity": "fr_dassault_aviation_sa",
+          "maker_name": "Dassault Aviation",
+          "claims": [
+            "fr_dassault_aviation_c12"
+          ],
+          "note": "First aircraft in final manufacture; no first flight or delivery is recorded."
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "designer_platform",
+        "target_id": "air_fighter",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "fr_dassault_rafale"
+        ],
+        "uncertainty": "Rafale is multirole. The game fighter only defends skies with finite short-range missiles; the naval Rafale Marine would also need carrier aviation (E04)."
+      },
+      {
+        "target_kind": "designer_platform",
+        "target_id": "air_tactical_strike",
+        "flow": "supplier_equipment_flow",
+        "confidence": "low",
+        "basis_products": [
+          "fr_dassault_rafale"
+        ],
+        "uncertainty": "A strike configuration of the same airframe; one real aircraft must not become two independent company products without a ruling."
+      },
+      {
+        "target_kind": "arsenal_kit",
+        "target_id": "air_gen4",
+        "flow": "no_company_consumer",
+        "confidence": "medium",
+        "basis_products": [
+          "fr_dassault_mirage_2000_greece"
+        ],
+        "uncertainty": "Generic legacy fourth-generation tier; arsenal kits have no company stock, so the Mirage retrofit informs flavour only."
+      },
+      {
+        "target_kind": "tech_node",
+        "target_id": "France:matl_composite_structures",
+        "flow": "reference_only",
+        "confidence": "high",
+        "existing_reference": {
+          "path": "spheres-sim/data/nations/france.json",
+          "match_text": "Dassault"
+        },
+        "uncertainty": "The existing evidence (1986 demonstrator) predates the window; it links identity only and grants no mechanic."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "France:defense",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Generated contractors are fictional; a real identity would replace one of them, not add a parallel firm."
+      }
+    ],
+    "duplicates_avoided": [
+      "Dassault Aviation (1990 rename) is one legal person; Avions Marcel Dassault-Breguet Aviation is not a separate company.",
+      "Thales, in which Dassault holds a stake, is not merged into this dossier."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. Business jets have no civilian aircraft consumer yet and stay outside the supplier flow.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Falcon business jets: no civilian aviation product consumer.",
+      "Rafale Marine: needs E04 carrier operations."
+    ]
+  },
+  "gaps": [
+    "A first probe of dassault-aviation.com received a bot-protection page; later requests succeeded and the guessed /en/group/about-us/history/ address is a 404. Regulated filings carry most claims.",
+    "First Rafale delivery dates to each service were not retrieved; only the operational years are recorded.",
+    "The exact day of the 1990 rename is not recorded: the company heritage page that dates it failed both byte-stability rechecks (bot-protection pages), so the rename stays at year precision."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "fr_dassault_aviation_c01",
+      "source": "fr_bnf_dassault_rdf",
+      "attests": [
+        "1971"
+      ],
+      "text": "In 1971 the Breguet company bought by Avions Marcel Dassault took the name Avions Marcel Dassault-Breguet Aviation (AMDBA).",
+      "locator": {
+        "record": "ark:/12148/cb118687432",
+        "field": "rdagroup2elements:corporateHistory"
+      },
+      "anchor": "En 1971, la société est achetée par",
+      "context_before_window": true
+    },
+    {
+      "id": "fr_dassault_aviation_c02",
+      "source": "fr_bnf_dassault_rdf",
+      "attests": [
+        "1990"
+      ],
+      "text": "In 1990 the company took the name Dassault Aviation.",
+      "locator": {
+        "record": "ark:/12148/cb118687432",
+        "field": "rdagroup2elements:corporateHistory"
+      },
+      "anchor": "puis en 1990 celle de"
+    },
+    {
+      "id": "fr_dassault_aviation_c03",
+      "source": "fr_dassault_pr_300th_rafale_en",
+      "attests": [
+        "2004",
+        "2006",
+        "2015"
+      ],
+      "text": "The first Rafale units became operational in the French Navy in 2004 and in the French Air Force in 2006; export deliveries began in 2015 (Egypt).",
+      "locator": {
+        "page": 1,
+        "section": "fourth paragraph"
+      },
+      "anchor": "Export deliveries began in 2015 (Egypt)"
+    },
+    {
+      "id": "fr_dassault_aviation_c04",
+      "source": "fr_dassault_pr_300th_rafale_en",
+      "attests": [
+        "2025-10-07"
+      ],
+      "text": "Production of the 300th Rafale was completed a few days before 7 October 2025; 533 Rafale had firm orders from France and eight export countries.",
+      "locator": {
+        "page": 1,
+        "section": "first and third paragraphs"
+      },
+      "anchor": "The production of the 300th Rafale has been completed"
+    },
+    {
+      "id": "fr_dassault_aviation_c05",
+      "source": "fr_dassault_pr_300th_rafale_en",
+      "attests": [
+        "2025-10-07"
+      ],
+      "text": "The release footer gives the registered office in Paris and RCS Paris number 712 042 456.",
+      "locator": {
+        "page": 1,
+        "section": "footer"
+      },
+      "anchor": "RCS Paris No. 712 042 456"
+    },
+    {
+      "id": "fr_dassault_aviation_c06",
+      "source": "fr_dassault_pr_deliveries_2025_en",
+      "attests": [
+        "2025-12-31"
+      ],
+      "text": "In 2025 Dassault Aviation delivered 26 Rafale (15 export, 11 France) and 37 Falcon; at 31 December 2025 the backlog was 220 Rafale and 73 Falcon.",
+      "locator": {
+        "page": 1,
+        "section": "Aircraft delivered in 2025; Aircraft in backlog"
+      },
+      "anchor": "26 Rafale (15 Export, 11 France) were delivered"
+    },
+    {
+      "id": "fr_dassault_aviation_c07",
+      "source": "fr_dassault_pr_deliveries_2025_en",
+      "attests": [
+        "2026-01-07"
+      ],
+      "text": "The release footer gives the head office at Saint-Cloud and registration 712 042 456 RCS Nanterre.",
+      "locator": {
+        "page": 1,
+        "section": "footer"
+      },
+      "anchor": "712 042 456 RCS Nanterre"
+    },
+    {
+      "id": "fr_dassault_aviation_c08",
+      "source": "fr_dassault_rfa2025_esef",
+      "attests": [
+        "2026-01-01"
+      ],
+      "text": "Shareholders were asked to ratify the transfer of the registered office from Paris to Saint-Cloud with effect from 1 January 2026.",
+      "locator": {
+        "section": "Rapport de gestion, presentation of resolutions: ratification du transfert du siege social"
+      },
+      "anchor": "Ratification du transfert du siège social"
+    },
+    {
+      "id": "fr_dassault_aviation_c09",
+      "source": "fr_dassault_rfa2025_esef",
+      "attests": [
+        "2025-12-31"
+      ],
+      "text": "At 31 December 2025 GIMD held 66.28% of the shares and Airbus SE 10.56%.",
+      "locator": {
+        "section": "Actionnariat au 31 decembre 2025 (table)"
+      },
+      "anchor": "GIMD 51 960 760 66,28%"
+    },
+    {
+      "id": "fr_dassault_aviation_c10",
+      "source": "fr_dassault_rfa2025_esef",
+      "attests": [
+        "2025-12-31"
+      ],
+      "text": "Dassault Falcon Jet Corp. (United States) markets Falcon aircraft in the Americas and completes their interiors.",
+      "locator": {
+        "section": "1.3.1 Filiales et societes consolidees"
+      },
+      "anchor": "Dassault Falcon Jet Corp. (DFJ) (États-Unis)"
+    },
+    {
+      "id": "fr_dassault_aviation_c11",
+      "source": "fr_dassault_rfa2025_esef",
+      "attests": [
+        "2025"
+      ],
+      "text": "In 2025 the contract for 26 Rafale Marine for India entered into force, making India the first export customer of the Rafale Marine.",
+      "locator": {
+        "section": "Rapport de gestion, programmes Defense (Rafale export)"
+      },
+      "anchor": "premier client Export du Rafale Marine"
+    },
+    {
+      "id": "fr_dassault_aviation_c12",
+      "source": "fr_dassault_rfa2025_esef",
+      "attests": [
+        "2025"
+      ],
+      "text": "In 2025 development continued on the Falcon 10X, whose first aircraft was in the final stage of manufacture.",
+      "locator": {
+        "section": "Rapport de gestion, recherche et developpement"
+      },
+      "anchor": "le Falcon 10X dont le premier avion est en finalisation de fabrication"
+    },
+    {
+      "id": "fr_dassault_aviation_c13",
+      "source": "fr_dassault_rfa2023_esef",
+      "attests": [
+        "2023-08-22",
+        "2023-11-30",
+        "2024-02"
+      ],
+      "text": "The Falcon 6X was certified by EASA and FAA on 22 August 2023, entered service on 30 November 2023, and the first customer delivery took place in February 2024.",
+      "locator": {
+        "section": "Rapport de gestion, programmes Falcon (Falcon 6X)"
+      },
+      "anchor": "La première livraison à un client a eu lieu en février 2024"
+    },
+    {
+      "id": "fr_dassault_aviation_c14",
+      "source": "fr_dassault_rfa2022",
+      "attests": [
+        "2015",
+        "2021",
+        "2022"
+      ],
+      "text": "Ninety-two Rafale were ordered in 2022 (80 UAE, 6 Greece, 6 Indonesia); in 2021 Egypt ordered 30 plus 1 completing its initial 2015 order, and Greece 6 new and 12 used aircraft.",
+      "locator": {
+        "page": 12,
+        "section": "Prises de commandes"
+      },
+      "anchor": "80 Rafale pour les Émirats Arabes Unis"
+    },
+    {
+      "id": "fr_dassault_aviation_c15",
+      "source": "fr_dassault_rfa2022",
+      "attests": [
+        "2022"
+      ],
+      "text": "Dassault Reliance Aerospace Limited (India), 49% held by Dassault Aviation, assembled and produced civil and military aerostructure parts.",
+      "locator": {
+        "page": 17,
+        "section": "1.3 Structure du Groupe"
+      },
+      "anchor": "Dassault Reliance Aerospace Limited (Inde), société détenue à 49%"
+    },
+    {
+      "id": "fr_dassault_aviation_c16",
+      "source": "fr_dassault_rfa2008",
+      "attests": [
+        "2008"
+      ],
+      "text": "Among 2008 programme events the report lists the delivery of nine retrofitted Greek Mirage 2000 aircraft.",
+      "locator": {
+        "page": 10,
+        "section": "Programmes Defense, autres programmes"
+      },
+      "anchor": "9 MIRAGE 2000 Grecs"
+    },
+    {
+      "id": "fr_dassault_aviation_c17",
+      "source": "fr_dassault_rfa2008",
+      "attests": [
+        "2008"
+      ],
+      "text": "In 2008 Dassault delivered 14 series-production Rafale.",
+      "locator": {
+        "page": 9,
+        "section": "Programmes Defense, Rafale"
+      },
+      "anchor": "la livraison de 14 RAFALE de série"
+    },
+    {
+      "id": "fr_dassault_aviation_c18",
+      "source": "fr_thales_urd2023",
+      "attests": [
+        "2009"
+      ],
+      "text": "In 2009 Dassault Aviation acquired the Thales shares held by Alcatel-Lucent and GIMD and became a 26% shareholder of Thales.",
+      "locator": {
+        "page": 253,
+        "section": "6.5 Historique (printed page 251)"
+      },
+      "anchor": "Dassault Aviation devient actionnaire de Thales à hauteur de 26 %"
+    }
+  ]
+}

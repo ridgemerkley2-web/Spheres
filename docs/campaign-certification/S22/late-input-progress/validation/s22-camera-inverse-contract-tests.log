@@ -1,0 +1,57 @@
+✔ frozen matrix requires every unique round/case/role and disjoint output root (4.7123ms)
+✔ 31-day native acceptance recomputes raw percentiles, batch equivalence and memory (18.9708ms)
+✔ native refuses insufficient samples, date drift, missing capability and unequal batch (49.6256ms)
+✔ native refuses false binary identity, altered copied input, understated memory and contradictory pass (37.7676ms)
+✔ failed final memory observation cannot hide a higher observed OS peak (13.6077ms)
+✔ native rejects damaged empty CSV, understated gaps and missing sequential stages (33.283ms)
+✔ camera controls require all 31 exact trusted actions, actual direction and unrounded p95 (2.4155ms)
+✖ zoom round-trip precision requires unchanged raw map centre and rejects real drift (0.2832ms)
+✔ draw validator counts actual completed frames using the full measured interval (0.8192ms)
+✔ complete map matrix independently enforces all eight views, full preset, drawable and memory (18.6258ms)
+✔ actual viewer orbit accepts 60, rejects 59.x and rejects out-of-order clocks/counters (1.5348ms)
+✔ passed flag cannot hide a trace error, empty trace or hash mismatch (4.2401ms)
+✔ browser memory observations are required separately without applying native memory ceiling (0.2373ms)
+✔ browser roots never select one result from several attempts (1.1588ms)
+✔ actual save date is read from the nested world, including default day one (1.8757ms)
+✔ freeze reserves all outputs before launch, refuses overwrite and reports missing cells truthfully (1602.9148ms)
+✔ freeze rejects a pre-existing output and wrong late campaign date before reserving (1298.3079ms)
+✔ post-freeze changed config, input, binary, harness or runtime invalidates the whole pair (5960.1916ms)
+✔ documentation-only committed HEAD changes preserve the pinned runtime tree (1364.6452ms)
+✔ freeze requires explicit reviewed, reachable, hash-matching source/adoption lineage (3205.1374ms)
+✔ qualification requires every ordered trusted camera action and its specific effect (1.4729ms)
+✔ qualification reference GPU gate accepts only the declared hardware and version (0.2291ms)
+✔ zoom preserves the exact map centre across bounded Robinson inverse rounding (0.098ms)
+✔ missing or failed trace cannot retain a passing verdict (0.2772ms)
+✔ first-draw observer ignores zero-count calls and records actual GL completion once per phase (0.8943ms)
+✔ inspection first draw belongs to the nested GL canvas and mounted specification, not the selected draft or thumbnail (0.708ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13679.3913
+
+✖ failing tests:
+
+test at tools\campaign\check_s22_qualification.cjs:90:1
+✖ zoom round-trip precision requires unchanged raw map centre and rejects real drift (0.2832ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 31
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\campaign\check_s22_qualification.cjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 31,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

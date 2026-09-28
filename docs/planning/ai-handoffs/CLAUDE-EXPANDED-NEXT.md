@@ -4,11 +4,12 @@ Assigned 27 September 2026 by the user's request, “Give Claude more sections t
 Base: `5979cf2fba78a6784a549d63223ca274950a2f7d`; fetch the latest
 `origin/codex/campaign-certification` before claiming a packet.
 
-Updated 28 September 2026 UTC after S19 closure and a fresh Git fetch.
-C01-GAPS-01 is **complete**, accepted with repairs in `68a38eb4`. The remaining five
-sections are **claimed**, not available for duplicate work: C03 `28b3c577`, C04
-`f1547abd`, S23 `b4c021ab`, S24 `328db128`, and E05 `1966fb06`. Their remote handoffs
-were inspected; these claim commits do not contain accepted deliverables.
+Updated 28 September 2026 UTC after S22 closure and independent preparation reviews.
+**All six bounded deliveries are complete:** C01-GAPS-01, C03-REVIEW-01,
+C04-PREP-01, S23-MATRIX-01, S24-SUCCESSORS-01 and E05-RESEARCH-01. Follow their
+updated handoffs for accepted scope, repairs and retained evidence. S24 retains
+unsupported activation cases; E05 retains explicit source/content-review limits.
+These completions do not close their parent content sessions or install company mechanics.
 
 | Order | Task / handoff | Concrete deliverable |
 |---|---|---|
@@ -43,10 +44,13 @@ were inspected; these claim commits do not contain accepted deliverables.
 
 ## Current submissions: skip duplicate work
 
-SOURCE-05 and SOURCE-06 are **complete** after independent source/content review;
-see their integration evidence. SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23
-`9c0f5c14`, C01-24 `a7a9e39c`, C01-25 `c06839c1`, and C01-27 `0765c590` declare
-`ready_for_review`. These pending submissions are not independent verification or
-merge acceptance. Do not duplicate them. See [the research handoff](CLAUDE-C01-NEXT.md).
+SOURCE-05/06/17/26 are **complete** after independent bounded source/content review;
+see their integration evidence. C01-23/24/25/27 remain `ready_for_review`;
+their parent historical content is not yet accepted. C01-28 and C01-29 preserve
+active Russia/Japan research claims. Do not duplicate those submissions or claims.
+See [the research handoff](CLAUDE-C01-NEXT.md) and query the current task queue.
 
-Codex has closed S19/S20 and earned G4. It retains S22 performance, historical acceptance and final integration. Human S26 playtests still require actual independent human participants.
+Codex has closed S19/S20/S22 and earned G4. It retains historical acceptance and
+final integration. S23 remains planned pending C06; the next content slice can
+advance an accepted Tonga research batch into reviewed identities and a small
+cartoon batch. Human S26 playtests still require independent human participants.

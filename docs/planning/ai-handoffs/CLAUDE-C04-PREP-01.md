@@ -1,7 +1,11 @@
 # CLAUDE-C04-PREP-01 — fictional successor pilot
 
-Owner: Claude. State: **queued**. Parent: C04, **preparation only**.
-Suggested branch: `claude/c04-prep-01`.
+Owner: Claude; reviewer/integrator: Codex. State: **complete — bounded preparation only** (28 September 2026).
+Submitted `62aae6b7`, integrated with repairs at `99f8a3bc`. All eight fictional dossiers
+and 73 validator tests pass; no production appointment, portrait or historical identity is installed.
+See [review and original submission](../../campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md).
+C04/C06/S23 remain open. Parent: C04, **preparation only**.
+Branch: `claude/c04-prep-01`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build

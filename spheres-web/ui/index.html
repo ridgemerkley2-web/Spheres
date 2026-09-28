@@ -5411,6 +5411,16 @@ function ministryDial(m, b, spec, i) {
 /// the same width, so the eye reads it as the first line of the budget — which
 /// is what it is, since `economy::tick` pays it before anything else survives.
 /// Both figures and the rate are `S.policy.money`, off one `economy::Fiscal`.
+function interestRateExplanation(money) {
+  const floor = money.real_rate_floor_adjustment > 5e-7
+    ? ` · debt-rate floor ${fmt.pct(money.real_rate_after_floor, 2)} (${fmt.pp(money.real_rate_floor_adjustment, 2)} adjustment)`
+    : "";
+  const spread = money.spread > 5e-7
+    ? `${fmt.pp(money.spread, 2)} sovereign spread at ${fmt.pct(money.debt_gdp, 0)} of GDP`
+    : "no sovereign spread";
+  return `real policy rate ${fmt.pct(money.real_rate, 2)}${floor} · ${spread}`;
+}
+
 function interestRow(m) {
   const money = (S && S.policy && S.policy.money) || null;
   if (!money || !money.on_the_books) return "";
@@ -5423,7 +5433,7 @@ function interestRow(m) {
     <span class="ministry-arms"><div class="arm-line">
       <span class="an">Rate paid</span>
       <span class="av">${fmt.pct(money.effective_rate, 2)}</span>
-      <span class="ax">real ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7 ? ` ${fmt.pp(money.spread, 2)} sovereign spread at ${fmt.pct(money.debt_gdp, 0)} of GDP` : " · no spread below 60% of GDP"}</span>
+      <span class="ax">${interestRateExplanation(money)}</span>
     </div></span>
   </div>`;
 }
@@ -5508,10 +5518,8 @@ function moneyCard(m) {
               money.debt_gdp > 0.9 ? "down" : "")}
     ${statRow("Net position", (net >= 0 ? "creditor " : "debtor ") + fmt.bn(Math.abs(net)),
               net >= 0 ? "up" : "down")}
-    <div class="note">Debt costs ${fmt.pct(money.effective_rate, 2)} a year: a real policy rate of
-      ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7
-        ? ` plus a ${fmt.pct(money.spread, 2)} sovereign spread, which is what ${fmt.pct(money.debt_gdp, 0)} of GDP costs to carry`
-        : `, with no sovereign spread below 60% of GDP`}.</div>
+    <div class="note">Debt costs ${fmt.pct(money.effective_rate, 2)} a year:
+      ${interestRateExplanation(money)}.</div>
   </div>`;
 }
 
@@ -5709,8 +5717,16 @@ function closeEquipmentDrawer() {
   if (!wasOpen) return;
   $("#app").inert=false;
   const previous=EQUIPMENT_ROOM.lastFocus;
-  const target=previous?.isConnected && previous.getClientRects().length && !previous.closest?.('[hidden], [inert]') ? previous : $("#techBtn");
-  target?.focus({preventScroll:true});
+  // Touch launchers may blur to BODY when their pending handler disables them.
+  // A connected node alone is not a usable focus destination after a room closes.
+  const targets=[previous,$("#techBtn"),$('[data-drawer="intelDrawer"]'),$("#worldFindBtn")];
+  for (const target of targets) {
+    if (!target?.isConnected || target===document.body || target===document.documentElement || target.disabled
+      || !target.matches?.('button, a[href], input, select, textarea, [tabindex]')
+      || !target.getClientRects().length || target.closest?.('[hidden], [inert], [aria-hidden="true"]')) continue;
+    target.focus({preventScroll:true});
+    if (document.activeElement===target) break;
+  }
   EQUIPMENT_ROOM.lastFocus=null;
 }
 function equipmentExternalPending() {
