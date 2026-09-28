@@ -2,10 +2,11 @@
 
 **Status: in progress. Owner: Codex.**
 
-This progress snapshot retains completed evidence through 28 September 2026,
-06:06:37 UTC: preparation/full regressions at `594c7ce1`, stock-target work at
-`a96bb097`, and ministry-read validation/preflights at `a4e246e4`. Later candidate
-changes and the running 2015 subsystem diagnosis are outside these claims.
+This progress snapshot includes completed actual input preparation through
+**30 November 2035**, candidate-scoped route/save tests, and the successful
+`5c650991` map preflight. The retained isolated `a4e246e4` 2015 attempt still
+fails latency. Later runtime repairs require fresh measurements; no complete
+qualification pair has started and neither S22, G5 nor CP1 is earned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
 start the next canonical session after S20/G4. They preserve the engineering
@@ -27,10 +28,10 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | Work | State |
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
-| Actual France 1999 / 2015 / end-2035 inputs | Adopted 1999 input and actual 1 January 2015 descendant retained; preparation to end-2035 remains open |
-| Native 31-day timing and headless memory | a4e246e4 2006 preflight passes numerical checks; actual 2015 still fails all latency limits while passing memory |
-| Actual rendered map, aircraft and UI performance | Early functional preflights pass; concurrent-run timings do not qualify, and both complete qualification rounds remain required |
-| City/inspection caches, context recovery, loading and layouts | Functional renderer/texture validation retained at 594c7ce1; final-candidate qualification required in both rounds |
+| Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
+| Native 31-day timing and headless memory | Last isolated 2015 attempt at a4e246e4 fails latency; current candidate and actual late input require fresh measurements |
+| Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
+| City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
 | S22 closure | **Not earned** |
 
 The original S19 save has economic competition disabled, which also gates
@@ -40,6 +41,37 @@ that adopted lineage with actual activity evidence. The original passive
 `prepare01` remains a diagnostic; its unchanged source is preserved.
 
 ## Current runtime findings
+
+The [route/UI packet](route-ui-progress/README.md) retains all four 2015 daily
+diagnoses, route regressions and failed browser attempts. At `1a8c07d7`, 49
+logistics tests, two transfer tests and 426 web tests passed; an additional
+actual-2015 transfer oracle matched full native worlds/headlines for 31 days.
+These are focused results, not a new full-workspace pass. Economic ranking now
+avoids work when both original investment-gap checks skip expansion, and freight
+and military transfer passes reuse identical pure access checks.
+
+The [late-input packet](late-input-progress/README.md) closes input preparation:
+7,638 ordinary days advanced 1 January 2015 to 30 November 2035, retaining France
+alive, 1,360 history points and 37,893 dispatches. The exact late save and full
+preparation records are archived. The compact loader passed 11 storage tests and
+separate actual-2015/2035 old-decoder comparisons; complete history, dispatches,
+journey and world bytes remain identical. Its memory effect still needs a fresh
+isolated run.
+
+The successful `5c650991` map preflight covers all eight Standard/Low views,
+62 ordered trusted camera controls, 390px/3440px layouts, focus/scroll checks and
+complete memory/trace observations. Minimum completed rendering was 36.16 FPS;
+control p95 was 48.2/44.5 ms. Timings overlapped other task work and do not qualify.
+The preceding failed control check remains unchanged: its first zoom exposed
+Robinson inverse rounding. A reviewed predicate correction requires an identical
+finite map center and bounds only that numerical conversion, leaving performance
+limits unchanged. The latest diagnostic isolates the remaining January military
+spikes to import command transactions; further repairs must retain atomicity.
+
+The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
+all 18 cells across two unchanged-candidate rounds, with raw evidence, complete
+workloads and reviewed lineage. Its tool tests and preflights do not substitute
+for those rounds.
 
 The [original preflight packet](runtime-preflight/README.md) preserves failures,
 raw samples, memory observations and immutable campaign inputs. These runs were
