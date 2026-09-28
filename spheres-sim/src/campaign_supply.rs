@@ -176,11 +176,45 @@ fn sea_factor(w: &WorldState, r: &SupplyRequest) -> f64 {
     lift * (1.0 - fraction(r.sea_denial) * (1.0 - 0.65 * protection)).clamp(0.0,1.0)
 }
 
+// Route permissions depend on legal/military control, living governments,
+// conflicts/belligerency and military access. Deployment holds an immutable
+// world borrow; the sole owned handoff continues into service preparation,
+// which changes service books
+// and freight reservations but none of those permission inputs. This scope is
+// never retained across preparations, commands, dates or standalone queries.
+#[derive(Default)]
+struct RoutePermissions {
+    nations: BTreeMap<NationId, Vec<bool>>,
+}
+fn route_permissions(w: &WorldState, g: &Graph, nation: NationId) -> Vec<bool> {
+    g.nodes.iter().map(|n| n.district.as_deref().is_none_or(|d| allowed(w,nation,d))).collect()
+}
+impl RoutePermissions {
+    fn get(&mut self, w: &WorldState, g: &Graph, nation: NationId) -> &[bool] {
+        #[cfg(test)]
+        if self.nations.contains_key(&nation) {
+            permission_scope_tests::REUSED.with(|count|count.set(count.get()+1));
+        }
+        self.nations.entry(nation).or_insert_with(||route_permissions(w,g,nation))
+    }
+}
+
+// The original fresh-access query remains available to tests that deliberately
+// keep a graph while changing control/access. Only the explicit immutable
+// deployment/service scope is permitted to retain a permission vector.
+#[cfg(test)]
 fn route(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &str) -> Result<Route,String> {
+    route_with_permissions(w,g,r,start,None)
+}
+fn route_with_permissions(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &str,
+    permissions: Option<&mut RoutePermissions>) -> Result<Route,String> {
     let source = *g.index.get(start).ok_or("No mapped national supply hub.")?;
     let goal = *g.index.get(&r.district).ok_or("The sector has no mapped freight destination.")?;
-    let pass: Vec<bool> = g.nodes.iter().map(|n| n.district.as_deref()
-        .is_none_or(|d| allowed(w,r.nation,d))).collect();
+    #[cfg(test)]
+    let permissions = if permission_scope_tests::FRESH.with(|flag|flag.get()) {None} else {permissions};
+    let fresh;
+    let pass = if let Some(permissions)=permissions { permissions.get(w,g,r.nation) }
+        else { fresh=route_permissions(w,g,r.nation); &fresh };
     if !pass[source] || !pass[goal] { return Err("The supply endpoint is contested, hostile or lacks military access.".into()); }
     let sea = sea_factor(w,r);
     let mut distances = vec![u64::MAX;g.nodes.len()];
@@ -247,15 +281,16 @@ pub(crate) struct DeploymentRoutes<'w> {
     world: &'w WorldState,
     graph: Option<Graph>,
     hubs: BTreeMap<NationId,Option<String>>,
+    permissions: RoutePermissions,
 }
 /// Owned opening graph for the immediately following service settlement.
 /// Only campaign records may change between the deployment quotes and that
 /// settlement: control, access, infrastructure, contractors, occupation and
 /// commercial freight usage must still describe the same opening world.
-pub(crate) struct PreparedSupplyGraph(Graph);
+pub(crate) struct PreparedSupplyGraph(Graph, RoutePermissions);
 impl<'w> DeploymentRoutes<'w> {
     pub(crate) fn new(world:&'w WorldState)->Self {
-        Self {world,graph:None,hubs:BTreeMap::new()}
+        Self {world,graph:None,hubs:BTreeMap::new(),permissions:RoutePermissions::default()}
     }
     pub(crate) fn route(&mut self,nation:NationId,district:&str)->Option<(Vec<String>,u32)> {
         let w=self.world;
@@ -265,11 +300,11 @@ impl<'w> DeploymentRoutes<'w> {
                 .map(|s|s.district.clone()).or_else(||choose_hub(w,g,nation))).as_deref()?;
         let request=SupplyRequest {key:String::new(),nation,conflict:0,district:district.into(),deployed:0.0,
             burn_monthly:0.0,sea_escort:0.0,sea_denial:0.0};
-        let path=route(w,g,&request,hub).ok()?;
+        let path=route_with_permissions(w,g,&request,hub,Some(&mut self.permissions)).ok()?;
         Some((path.nodes,path.days))
     }
     pub(crate) fn into_supply_graph(self) -> Option<PreparedSupplyGraph> {
-        self.graph.map(PreparedSupplyGraph)
+        self.graph.map(|graph|PreparedSupplyGraph(graph,self.permissions))
     }
 }
 
@@ -302,13 +337,13 @@ pub(crate) fn prepare_with_graph(w: &mut WorldState, requests: &[SupplyRequest],
     if requests.is_empty() && w.campaign_supply.is_empty() { return BTreeMap::new(); }
     #[cfg(test)]
     let graph = if graph_handoff_tests::FRESH_GRAPH.with(|flag| flag.get()) { None } else { graph };
-    let g = match graph {
-        Some(PreparedSupplyGraph(graph)) => {
+    let (g,mut permissions) = match graph {
+        Some(PreparedSupplyGraph(graph,permissions)) => {
             #[cfg(test)]
             graph_handoff_tests::HANDOFFS.with(|count| count.set(count.get() + 1));
-            graph
+            (graph,permissions)
         }
-        None => Graph::new(w),
+        None => (Graph::new(w),RoutePermissions::default()),
     };
     let mut state = std::mem::take(&mut w.campaign_supply);
     let mut rows = BTreeMap::new();
@@ -371,7 +406,7 @@ pub(crate) fn prepare_with_graph(w: &mut WorldState, requests: &[SupplyRequest],
         let local = b.service;
         let mut delivery = SupplyDelivery { key:key.clone(), coverage, days:0, route:vec![], reason:String::new() };
         let planned = state.sources.get(&r.nation).ok_or_else(|| "No controlled national supply hub.".to_string())
-            .and_then(|s| route(w,&g,r,&s.district));
+            .and_then(|s| route_with_permissions(w,&g,r,&s.district,Some(&mut permissions)));
         match planned {
             Ok(path) => {
                 delivery.days=path.days;
@@ -567,6 +602,10 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+#[path = "campaign_supply_permission_tests.rs"]
+mod permission_scope_tests;
 
 #[cfg(test)]
 pub(crate) mod graph_handoff_tests {
