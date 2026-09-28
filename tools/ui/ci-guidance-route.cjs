@@ -112,6 +112,8 @@ async function verifyEmbeddedText(page,url,revision,index){
     browser_channel:process.env.SPHERES_BROWSER_CHANNEL||'playwright-default',
     stages:[],actions:[],requests:[],guidance_requests:[],guidance_reads:[],observer_requests:[],archive_saves:[],screenshots:[],
     errors:[],console_errors:[],http_errors:[],checks:[]};
+  if(process.env.SPHERES_GUIDANCE_LATER_PROCUREMENT==='1')
+    evidence.source.procurement_driver={path:'tools/ui/guidance-later-procurement.cjs',sha256:hash(fs.readFileSync(path.join(__dirname,'guidance-later-procurement.cjs')))};
   const check=text=>{evidence.checks.push(text);progress('check',{text});};
   const write=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n');
   const progress=(event,details={})=>fs.appendFileSync(path.join(out,'progress.jsonl'),JSON.stringify({utc:new Date().toISOString(),stage,event,...details})+'\n');
@@ -887,6 +889,12 @@ async function verifyEmbeddedText(page,url,revision,index){
       check('Later construction completed and produced output through ordinary daily advancement; the existing save/load stages will verify milestone persistence');
     }
 
+    if(process.env.SPHERES_GUIDANCE_LATER_PROCUREMENT==='1'){
+      mark('7c later procurement');
+      await require('./guidance-later-procurement.cjs')({page,tap,type,press,command,reviewQuote,openGuide,readRoute,follow,
+        stepDay,nativeGuidance,observe,shot,progress,evidence,check});
+    }
+
     // 8. A held real response is overtaken by a newer real day (close / advance / reopen path).
     mark('8 stale response');
     await closePanels();const held=await holdGuidance();
@@ -1056,14 +1064,17 @@ async function verifyEmbeddedText(page,url,revision,index){
     const loadedRoute=await readRoute('loaded');
     const lr=loadedRoute.step('save_resume');assert.equal(lr.status,'achieved','Loading the save achieves save_resume');
     assert.equal(lr.milestones.find(m=>m.id==='campaign_resumed').date,iso(loadedRoute.native.outcomes.as_of_day));
-    for(const id of ['finances','construction','research_design','air_force']){
-      assert.equal(loadedRoute.step(id).status,'achieved',id+' must be re-derived as achieved under the loaded session');
+    for(const id of ['finances','construction','research_design','air_force',...(evidence.later_procurement?['procurement']:[])]){
+      // The multi-year procurement route may need a new annual budget. Loading
+      // must preserve that real obligation, not manufacture an achievement.
+      const expectedStatus=evidence.later_procurement&&id==='finances'?achievedBeforeSave[id].status:'achieved';
+      assert.equal(loadedRoute.step(id).status,expectedStatus,id+' must be re-derived under the loaded session');
       assert.deepEqual(loadedRoute.step(id).milestones,achievedBeforeSave[id].milestones,id+' milestones must re-derive identically from native records');
     }
-    check('Stage 9b: the save_resume obstacle "Open campaigns" led to Load + confirm, which started a new session on the same date; save_resume is Achieved and finances, construction, research_design and air_force re-derive identically from native records');
+    check('Stage 9b: the save_resume obstacle "Open campaigns" led to Load + confirm, which started a new session on the same date; save_resume is Achieved and the checked campaign milestones re-derive identically from native records, including any annual budget obligation');
     await shot('route-loaded-desktop',page.locator('#guidanceDialog .guidance-route'));
     evidence.stages.push({stage:'9b confirmed load',...loadedRoute.row,obstacle_control:toLoad.control.selector,previous_session:beforeSave.session_id,load_receipt:loadReceipt.loads.find(r=>r.session_id===loaded.session_id),
-      rederived:['finances','construction','research_design','air_force']});
+      rederived:['finances','construction','research_design','air_force',...(evidence.later_procurement?['procurement']:[])]});
 
     await closePanels();await page.reload({waitUntil:'domcontentloaded'});
     await page.locator('#continueBtn').waitFor({state:'visible'});await continueCampaign();
@@ -1101,7 +1112,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert(order.following&&order.lessonTop<order.routeTop&&order.completeTop<order.routeTop,'The lesson and its controls must render before the route panel: '+JSON.stringify(order));
     const buttons=await page.evaluate(()=>[...document.querySelectorAll('#guidanceDialog [data-guidance-route-step],#guidanceDialog [data-guidance-refresh]')].map(b=>{b.focus();
       return {tag:b.tagName,type:b.type,step:b.dataset.guidanceRouteStep||'refresh',tabIndex:b.tabIndex,disabled:b.disabled,focused:document.activeElement===b,width:b.getBoundingClientRect().width};}));
-    assert(buttons.length>=2);for(const b of buttons){assert.equal(b.tag,'BUTTON');assert.equal(b.type,'button');assert(b.tabIndex>=0);assert.equal(b.disabled,false);assert(b.focused,'Route button must take focus: '+b.step);}
+    assert.equal(buttons.length,narrowFinal.obstacles+1);if(!evidence.later_procurement)assert(buttons.length>=2);for(const b of buttons){assert.equal(b.tag,'BUTTON');assert.equal(b.type,'button');assert(b.tabIndex>=0);assert.equal(b.disabled,false);assert(b.focused,'Route button must take focus: '+b.step);}
     await page.locator('#guidanceDialog [data-guidance-close]').focus();
     await shot('narrow-lesson-top',page.locator('#guidanceDialog .guidance-intro'));
     await shot('narrow-lesson-controls',page.locator('#guidanceDialog .guidance-lesson-copy'));
@@ -1109,7 +1120,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     await shot('narrow-route-panel',page.locator('#guidanceDialog .guidance-route'));
     await shot('narrow-route-air-save',page.locator('#guidanceDialog [data-guidance-route-card="air_force"]'));
     await page.locator('#guidanceDialog [data-guidance-close]').focus();let tabbed=null,presses=0;
-    for(;presses<120&&!tabbed;presses++){await page.keyboard.press('Tab');tabbed=await page.evaluate(()=>document.activeElement?.dataset?.guidanceRouteStep||null);}
+    for(;presses<120&&!tabbed;presses++){await page.keyboard.press('Tab');tabbed=await page.evaluate(allowRefresh=>document.activeElement?.dataset?.guidanceRouteStep||(allowRefresh&&document.activeElement?.hasAttribute('data-guidance-refresh')?'refresh':null),narrowFinal.obstacles===0);}
     assert(tabbed,'Keyboard Tab must reach a route obstacle button');
     check('Stage 10: at 390x844 (final state, '+narrowFinal.obstacles+' obstacle) the dialog, content, lesson, route panel and cards have no horizontal overflow; the lesson and its controls render before the route panel; route buttons are native focusable buttons reached by Tab');
     evidence.stages.push({stage:'10 narrow',...narrow.row,narrow_final:narrowFinal,order,buttons,keyboard_tab_reached:{step:tabbed,presses}});
@@ -1175,9 +1186,12 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert.deepEqual(guided,[],'Guidance itself issued no request');
     for(const r of evidence.requests)assert(r.control,'Every order request follows a logged action: '+JSON.stringify(r));
     const commands=evidence.requests.filter(r=>r.route==='/api/command');
-    assert.deepEqual(commands.flatMap(r=>r.kinds),['construction_budget','start_industry_module','equipment_save','air_base'],'Only the four visible review confirmations sent commands');
+    const expectedCommands=['construction_budget','start_industry_module','equipment_save','air_base',...(evidence.later_procurement?[...(evidence.manufacturer_plant?['start_project']:[]),'company_establish','company_develop','company_purchase']:[])];
+    assert.deepEqual(commands.flatMap(r=>r.kinds),expectedCommands,'Only the explicit reviewed confirmations sent commands');
     const commandControl={construction_budget:s=>s==='#constructionBudgetForm button[type="submit"]',start_industry_module:s=>s==='[data-construction-confirm]',
-      equipment_save:s=>s==='[data-equipment-confirm]',air_base:s=>s.startsWith('[data-equipment-intent=')};
+      equipment_save:s=>s==='[data-equipment-confirm]',air_base:s=>s.startsWith('[data-equipment-intent='),
+      start_project:s=>s==='[data-construction-confirm]',
+      company_establish:s=>s.startsWith('[data-equipment-intent='),company_develop:s=>s.startsWith('[data-equipment-intent='),company_purchase:s=>s.startsWith('[data-equipment-intent=')};
     for(const r of commands)assert(r.control.how==='click'&&commandControl[r.kinds[0]](r.control.selector),'Unexpected control for '+r.kinds[0]+': '+JSON.stringify(r.control));
     const advances=evidence.requests.filter(r=>r.route==='/api/advance');
     for(const r of advances){assert.equal(r.payload.days,1);assert(r.control.how==='click'&&['#cabinetEnact','#stepBtn'].includes(r.control.selector),'Unexpected advance control: '+JSON.stringify(r.control));}
@@ -1188,7 +1202,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert.deepEqual(loads.map(r=>r.control.selector),['#campaignConfirmAccept'],'One visible confirmed load');
     assert.deepEqual(news.map(r=>r.control.selector),['#startBtn','#campaignConfirmAccept'],'Two visible new campaigns');
     assert.equal(evidence.archive_saves.length,4,'Four archive snapshots');
-    check(`Stage 12: no page errors; the only commands were construction_budget, start_industry_module, equipment_save and air_base, each sent right after its logged review-confirm click; `
+    check(`Stage 12: no page errors; the only commands were ${expectedCommands.join(', ')}, each sent right after its logged review-confirm click; `
       +`${advances.length} one-day advances, each right after a logged #cabinetEnact (1) or #stepBtn click (${advances.filter(r=>r.page==='second').length} on the second page); `
       +`POST /api/save ${saves.length+evidence.archive_saves.length} in total (1 visible #saveNamedBtn + ${evidence.archive_saves.length} page.request archive snapshots); guidance issued no request`);
     const controlCount=rows=>rows.reduce((m,r)=>{const k=`${r.page}:${r.control.how}:${r.control.selector}`;m[k]=(m[k]||0)+1;return m;},{});
@@ -1208,7 +1222,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     assert.equal(git(['rev-parse','HEAD']).trim(),head);
     evidence.binary={path:binary,sha256_before:binaryBefore,sha256_after:binaryAfter};
     evidence.scope_notes=[
-      'Procurement is expected to stay Not yet in the first hour: companies sell only certified designs (at least 180 days of ground or 240 days of air development) and no foreign import was attempted.',
+      evidence.later_procurement?'Later procurement used ordinary company development, stock purchase, payment and delivery. No foreign import was attempted.':'Procurement is expected to stay Not yet in the first hour: companies sell only certified designs (at least 180 days of ground or 240 days of air development) and no foreign import was attempted.',
       evidence.later_construction?'Later-construction mode reached matching project completion and positive site output; save/load stages checked the resulting milestones.':'Construction is achieved by paid work only; project completion and site output (about 182 days for this workshop) were not reached.',
       'The work_paid milestone is dated by the native last_day of the latest payment, so its displayed date moves forward while work continues.',
       'Air force is achieved by the completed airbase foundation; squadron formation, readiness and missions need delivered aircraft and were not exercised.',
