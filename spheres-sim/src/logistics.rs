@@ -1838,15 +1838,39 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
 }
 
 fn begin_month_impl(w: &mut WorldState, reuse_due_routes: bool) -> Vec<Cargo> {
+    if post_arrivals(w, reuse_due_routes) { w.logistics.arrivals.clone() } else { vec![] }
+}
+
+/// Credit only freshly posted arrivals without copying their complete saved
+/// route payloads. The entire freight pass finishes before the first callback,
+/// just as it did before the caller consumed begin_month's returned vector.
+/// Existing public callers retain their independent complete Cargo vector.
+pub(crate) fn for_new_arrivals(w: &mut WorldState, mut credit: impl FnMut(NationId, Commodity, f64)) {
+    #[cfg(test)]
+    if arrival_payload_tests::ORIGINAL.with(|flag| flag.get()) {
+        for cargo in begin_month(w) { credit(cargo.buyer, cargo.commodity, cargo.quantity); }
+        return;
+    }
+    if !post_arrivals(w, true) { return; }
+    for cargo in &w.logistics.arrivals {
+        #[cfg(test)]
+        arrival_payload_tests::record_eliminated_payload(cargo);
+        credit(cargo.buyer, cargo.commodity, cargo.quantity);
+    }
+}
+
+// True means this date's freight pass ran, including when it posted an empty
+// arrival list. False never permits a caller to consume retained old arrivals.
+fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
     if !enabled(w) {
-        return vec![];
+        return false;
     }
     let now = resources::month_abs(w);
     let daily = crate::clock::is_daily(w);
     let today = crate::clock::absolute_day(w);
     if if daily { w.logistics.last_day == Some(today) }
         else { w.logistics.last_month == Some(now) } {
-        return vec![];
+        return false;
     }
     w.logistics.last_month = Some(now);
     if daily { w.logistics.last_day = Some(today); }
@@ -1902,9 +1926,13 @@ fn begin_month_impl(w: &mut WorldState, reuse_due_routes: bool) -> Vec<Cargo> {
     arrivals.sort_by_key(|c| c.id);
     keep.sort_by_key(|c| c.id);
     w.logistics.cargo = keep;
-    w.logistics.arrivals = arrivals.clone();
-    arrivals
+    w.logistics.arrivals = arrivals;
+    true
 }
+
+#[cfg(test)]
+#[path = "logistics_arrival_payload_tests.rs"]
+mod arrival_payload_tests;
 
 pub fn pending(w: &WorldState, buyer: NationId, c: Commodity) -> f64 {
     w.logistics
