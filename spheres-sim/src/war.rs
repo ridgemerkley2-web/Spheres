@@ -663,7 +663,11 @@ fn tick_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static 
     // Each side picks its own rung before the month is fought, not after.
     measured!("ai_ladder", crate::commitment::ai_ladder(w));
 
-    measured!("resolve_conflicts", resolve_conflicts(w));
+    if let Some(observe) = observer.as_deref_mut() {
+        let start = std::time::Instant::now();
+        resolve_conflicts_traced(w, Some(&mut *observe));
+        observe("resolve_conflicts", start.elapsed());
+    } else { resolve_conflicts(w); }
     measured!("campaign_peace", crate::campaign_peace::tick(w));
 }
 
@@ -688,17 +692,29 @@ enum Ending {
 }
 
 fn resolve_conflicts(w: &mut WorldState) {
-    crate::campaign::ai_orders(w);
-    crate::airmissions::prepare(w);
+    resolve_conflicts_traced(w, None);
+}
+
+fn resolve_conflicts_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
+    macro_rules! measured {
+        ($name:expr, $body:expr) => {{
+            let start = observer.as_ref().map(|_| std::time::Instant::now());
+            let value = $body;
+            if let (Some(start), Some(observe)) = (start, observer.as_deref_mut()) { observe($name, start.elapsed()); }
+            value
+        }};
+    }
+    measured!("resolve.ai_orders", crate::campaign::ai_orders(w));
+    measured!("resolve.air_missions", crate::airmissions::prepare(w));
     let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
     // Snapshot before removing conflicts: every theatre shares one finite
     // national force, and later theatres cannot reuse or reread earlier losses.
-    let mut operations = w.rules.military_operations.then(|| crate::operations::Snapshot::new(w));
-    let opening_campaign = if crate::campaign::enabled(w) {
+    let mut operations = measured!("resolve.operations_snapshot", w.rules.military_operations.then(|| crate::operations::Snapshot::new(w)));
+    let opening_campaign = measured!("resolve.campaign_prepare", if crate::campaign::enabled(w) {
         operations.as_ref().map(|snapshot| crate::campaign::prepare(w, snapshot))
-    } else { None };
+    } else { None });
     let conflicts = std::mem::take(&mut w.conflicts);
 
     for mut c in conflicts {

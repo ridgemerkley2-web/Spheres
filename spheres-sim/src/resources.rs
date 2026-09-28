@@ -1051,7 +1051,11 @@ fn tick_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static 
     // after technology in `arsenal::tick`, against the exact recipe that will
     // be consumed there.
     if w.rules.resource_market {
-        measured!("post_market_flows", post_market_flows(w));
+        if let Some(observe) = observer.as_deref_mut() {
+            let start = std::time::Instant::now();
+            post_market_flows_traced(w, Some(&mut *observe));
+            observe("post_market_flows", start.elapsed());
+        } else { post_market_flows(w); }
     }
     measured!("deliver_contracts", deliver_contracts(w));
     measured!("expire_offers", expire_offers(w));
@@ -1417,6 +1421,10 @@ fn new_market_state(w: &WorldState) -> MarketState {
 /// an import cannot be re-exported in the same settlement and contracts from
 /// one seller are curtailed pro rata rather than by vector order.
 fn post_market_flows(w: &mut WorldState) {
+    post_market_flows_traced(w, None);
+}
+
+fn post_market_flows_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
     let now = month_abs(w);
     let fraction = crate::clock::month_fraction(w);
     if w.resources.market.as_ref().is_some_and(|m| produced_this_tick(w, m)) {
@@ -1426,7 +1434,11 @@ fn post_market_flows(w: &mut WorldState) {
     let physical = crate::logistics::enabled(w);
     // A purchase is not a warehouse receipt. Only the transport clock can
     // release in-flight goods, once, at a monthly settlement.
+    let freight_start = observer.as_ref().map(|_| std::time::Instant::now());
     begin_raw_freight(w, &mut market);
+    if let (Some(start), Some(observe)) = (freight_start, observer.as_deref_mut()) {
+        observe("post_market_flows.begin_raw_freight", start.elapsed());
+    }
     // A dead federation's warehouse stays inert until a later succession or
     // loot policy explicitly transfers it. Silently deleting physical goods
     // at a normal dissolution would break the ledger's conservation proof.
