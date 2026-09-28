@@ -405,10 +405,10 @@ C01_20_COUNTS = (73, 113)
 C01_27_ORGANIZATION = 'in_eci_20240323_np_03'
 C01_27_ROLE = 'in_bjp_president'
 C01_27_COUNTS = (74, 167)
-# CLAUDE-C01-33 (stacked on CLAUDE-C01-27) adds one organization observation, the Janata Dal row of the Election
-# Commission's national-party table of 10 January 1998, with one party role, in_jd_president, and appends its sources
-# after the C01-27 sources, with this many sources and claims; its own test pins them. This packet's assertions are
-# unchanged for its own records.
+# CLAUDE-C01-33 (claimed while stacked on CLAUDE-C01-27, now based on integration) adds one organization observation,
+# the Janata Dal row of the Election Commission's national-party table of 10 January 1998, with one party role,
+# in_jd_president, and appends its sources after the C01-27 sources, with this many sources and claims; its own test
+# pins them. This packet's assertions are unchanged for its own records.
 C01_33_ORGANIZATION = 'in_eci_19980110_np_06'
 C01_33_ROLE = 'in_jd_president'
 C01_33_COUNTS = (22, 41)
