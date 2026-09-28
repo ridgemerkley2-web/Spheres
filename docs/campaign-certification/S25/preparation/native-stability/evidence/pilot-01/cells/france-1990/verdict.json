@@ -1,0 +1,217 @@
+{
+  "id": "france-1990",
+  "passed": true,
+  "failure": null,
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "43bfe00033a30d3796c662a0df94e44e2e543fcd49b05e6db2e57ee07f53cb7e"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10798785,
+        "sha256": "0452578a6907d2430a559e7da7923979c11f551fb9924ece2cded014a0c6ea3d"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "43bfe00033a30d3796c662a0df94e44e2e543fcd49b05e6db2e57ee07f53cb7e"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "c6db8bfe8cc9fd3c765f264dc2d916ef67f1590b93a3919ffd99f98ae1c4e877"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10798784,
+        "sha256": "0f140c739dc6781fe60b6d93a3e968f60b6b1e6f5af8ec9856fb6629ef5b8c7c"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "c6db8bfe8cc9fd3c765f264dc2d916ef67f1590b93a3919ffd99f98ae1c4e877"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+        "bytes": 65236438,
+        "sha256": "0d2c82e604c752227d30630009cff5393b4c47ca9cbdcec26de16b38f59f10ea"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10779481,
+        "sha256": "026c501e76ca8f3b0201e33028b55170641c96223b164feb80692306ef18b065"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 65236438,
+        "sha256": "0d2c82e604c752227d30630009cff5393b4c47ca9cbdcec26de16b38f59f10ea"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 60126088,
+        "sha256": "af54e25233ec43871f607e632006a56191a850d7ece6197f29de60b01ebf7911"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 10075191,
+        "sha256": "3d504a7fe0bd8a1e95549b290ebbf22a2d101de97303b8c81e109845253cabaf"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 60126088,
+        "sha256": "af54e25233ec43871f607e632006a56191a850d7ece6197f29de60b01ebf7911"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "test_execution": {
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 471
+  },
+  "native_validation": {
+    "comparisons": 30,
+    "calendar_days_each_leg": 398,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 796,
+      "full_horizon_pause": null,
+      "monthly_reloads": 13,
+      "native_validation_checks": 60,
+      "sandbox_continued": false,
+      "sandbox_daily_invariant_checks": 0,
+      "terminal_reloads": 2
+    },
+    "actions": 19,
+    "final_archives": [
+      {
+        "leg": "uninterrupted",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+          "bytes": 65221417,
+          "sha256": "43bfe00033a30d3796c662a0df94e44e2e543fcd49b05e6db2e57ee07f53cb7e"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+          "bytes": 65221417,
+          "sha256": "c6db8bfe8cc9fd3c765f264dc2d916ef67f1590b93a3919ffd99f98ae1c4e877"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      }
+    ],
+    "actual_final_pair_sha256_equal": true
+  },
+  "native_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\result.json",
+    "bytes": 16777,
+    "sha256": "7d351c7bbe42f43b6c9ff858f297c4aa56e437eb70aec8f860734872596ca063"
+  },
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\archive-manifest.json",
+      "bytes": 4604,
+      "sha256": "24fe2d84c976e9151206f2fc120848e3f2f38bc212ac61f44bee7e6fd4b85364"
+    },
+    {
+      "relative": "execution.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\execution.json",
+      "bytes": 1681,
+      "sha256": "b08947acb5010ad9df808f9dcaa6b421067eb8783eed2ac4b3969c77c15a4781"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\result.json",
+      "bytes": 16777,
+      "sha256": "7d351c7bbe42f43b6c9ff858f297c4aa56e437eb70aec8f860734872596ca063"
+    },
+    {
+      "relative": "native/resumed/saves/final.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+      "bytes": 10798784,
+      "sha256": "0f140c739dc6781fe60b6d93a3e968f60b6b1e6f5af8ec9856fb6629ef5b8c7c"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "bytes": 10075191,
+      "sha256": "3d504a7fe0bd8a1e95549b290ebbf22a2d101de97303b8c81e109845253cabaf"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "026c501e76ca8f3b0201e33028b55170641c96223b164feb80692306ef18b065"
+    },
+    {
+      "relative": "native/uninterrupted/saves/final.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+      "bytes": 10798785,
+      "sha256": "0452578a6907d2430a559e7da7923979c11f551fb9924ece2cded014a0c6ea3d"
+    },
+    {
+      "relative": "request.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\request.json",
+      "bytes": 191,
+      "sha256": "9d96b96460e2324f45a404e747fb1b62569697a9216c41a7117db8665fa49318"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\stdout.log",
+      "bytes": 168,
+      "sha256": "e3e1f82cbd183ba07a14b90131b984c99bcd8edbd10c50ad2a2d4e24783eea97"
+    }
+  ]
+}

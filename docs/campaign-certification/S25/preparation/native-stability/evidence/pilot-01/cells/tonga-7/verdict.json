@@ -1,0 +1,217 @@
+{
+  "id": "tonga-7",
+  "passed": true,
+  "failure": null,
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "dbee9dd1d20a4f0c11e0c57124c7e112e2d19033acc1aefb4e72322edaba60c3"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "09e69e6e86c57222086ef178b15bb7d583e79f447c329a7a7377603e4f46b377"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "dbee9dd1d20a4f0c11e0c57124c7e112e2d19033acc1aefb4e72322edaba60c3"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "11016e67f08ae7d896b7f98909f4554cad1953740e885df67704d97ac0c296ff"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "c75ead3248255c76f3c53ba5a2218c722c73808418a26779a4bff9e6eb3121b5"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "11016e67f08ae7d896b7f98909f4554cad1953740e885df67704d97ac0c296ff"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json",
+        "bytes": 61545940,
+        "sha256": "d3ebbec7e5d3942fb4c414fbe4b5135935685fbbcd591eeccce7f038fdc23804"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10393944,
+        "sha256": "d592e24078d41f89b91798e2b92c50bff42b2f8db43ddfcb232d167aaf0ce851"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 61545940,
+        "sha256": "d3ebbec7e5d3942fb4c414fbe4b5135935685fbbcd591eeccce7f038fdc23804"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 54331217,
+        "sha256": "d54800f8aef427971eb30efa756e92e51afe0989e4b4f3252ebee8525b854b6d"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 9486495,
+        "sha256": "10a3d9fa245d6b118576e5987fca280d8c2b07fe4bb4096e58683a19bddc110e"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 54331217,
+        "sha256": "d54800f8aef427971eb30efa756e92e51afe0989e4b4f3252ebee8525b854b6d"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "test_execution": {
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 471
+  },
+  "native_validation": {
+    "comparisons": 30,
+    "calendar_days_each_leg": 398,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 796,
+      "full_horizon_pause": null,
+      "monthly_reloads": 13,
+      "native_validation_checks": 60,
+      "sandbox_continued": false,
+      "sandbox_daily_invariant_checks": 0,
+      "terminal_reloads": 2
+    },
+    "actions": 13,
+    "final_archives": [
+      {
+        "leg": "uninterrupted",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json",
+          "bytes": 62575024,
+          "sha256": "dbee9dd1d20a4f0c11e0c57124c7e112e2d19033acc1aefb4e72322edaba60c3"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json",
+          "bytes": 62575024,
+          "sha256": "11016e67f08ae7d896b7f98909f4554cad1953740e885df67704d97ac0c296ff"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      }
+    ],
+    "actual_final_pair_sha256_equal": true
+  },
+  "native_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\result.json",
+    "bytes": 15142,
+    "sha256": "845e684d9408382d7a9050fcbaf6de7aa3c36dd6f3bb4039e0b87e28f953efd6"
+  },
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\archive-manifest.json",
+      "bytes": 4571,
+      "sha256": "d3090a30676f049806303bd8e21b9448d8b6e2f17e7b98ed646662cb699dd4b3"
+    },
+    {
+      "relative": "execution.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\execution.json",
+      "bytes": 1668,
+      "sha256": "d00dfce197fdbf9e22d9763a3a056753343ab6e2ae435c52734119247eb86d87"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\result.json",
+      "bytes": 15142,
+      "sha256": "845e684d9408382d7a9050fcbaf6de7aa3c36dd6f3bb4039e0b87e28f953efd6"
+    },
+    {
+      "relative": "native/resumed/saves/final.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json.gz",
+      "bytes": 10509394,
+      "sha256": "c75ead3248255c76f3c53ba5a2218c722c73808418a26779a4bff9e6eb3121b5"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "bytes": 9486495,
+      "sha256": "10a3d9fa245d6b118576e5987fca280d8c2b07fe4bb4096e58683a19bddc110e"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "d592e24078d41f89b91798e2b92c50bff42b2f8db43ddfcb232d167aaf0ce851"
+    },
+    {
+      "relative": "native/uninterrupted/saves/final.json.gz",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json.gz",
+      "bytes": 10509394,
+      "sha256": "09e69e6e86c57222086ef178b15bb7d583e79f447c329a7a7377603e4f46b377"
+    },
+    {
+      "relative": "request.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\request.json",
+      "bytes": 183,
+      "sha256": "67708283287c8ed33dfb9008cfc0477c10333d067c4ea5bc0ba5aec820185254"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\stdout.log",
+      "bytes": 167,
+      "sha256": "1a1d9f0586e07b82b85faa96a06f6715aa446adf1e38e7d287dfbecaad2e73ce"
+    }
+  ]
+}

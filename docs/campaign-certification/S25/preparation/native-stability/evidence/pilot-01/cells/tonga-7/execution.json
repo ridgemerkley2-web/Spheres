@@ -1,0 +1,29 @@
+{
+  "args": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "--exact",
+    "s25_stability_tests::s25_stability_cell",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "environment": {
+    "SPHERES_S25_REQUEST": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\request.json",
+    "SPHERES_S25_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native"
+  },
+  "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7",
+  "started_utc": "2026-09-28T16:32:28.413802+00:00",
+  "binary_before": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "bytes": 353088690,
+    "sha256": "cdde22f6b845845e654fe2d7e940c3214d2d27d4f38e8afa781bfa459f1b9968"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-09-28T16:33:39.962729+00:00",
+  "elapsed_seconds": 71.36852260000887,
+  "binary_after": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "bytes": 353088690,
+    "sha256": "cdde22f6b845845e654fe2d7e940c3214d2d27d4f38e8afa781bfa459f1b9968"
+  }
+}

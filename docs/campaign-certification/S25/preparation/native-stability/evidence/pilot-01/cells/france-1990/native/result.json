@@ -1,0 +1,594 @@
+{
+  "actions": [
+    {
+      "date": "1990-01-01",
+      "kind": "competition_adoption",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "command": {
+          "kind": "enable_economic_competition"
+        },
+        "pc_after": 62.02720000000001,
+        "pc_before": 62.02720000000001,
+        "price_pc": 0.0
+      }
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1990,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1990-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1990-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Charles Haughey dies in office."
+    },
+    {
+      "date": "1990-04-20",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: France receives a trade treaty from Equatorial Guinea. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1990-05-20",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "France's unanswered a trade treaty from Equatorial Guinea expires and is declined."
+    },
+    {
+      "date": "1990-06-10",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Iraq escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1990-08-03",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Cape Verde convenes a round table; first free elections in six months, though the Nationalist movement, 20% of the country, has no party to carry it and the Non-Aligned movement, 21% of the country, has no party to carry it."
+    },
+    {
+      "date": "1990-08-26",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: France receives a mutual-defense pact from Tunisia. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1990-09-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Uganda passes a third of the country."
+    },
+    {
+      "date": "1990-09-13",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Israel escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1990-09-25",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "France's unanswered a mutual-defense pact from Tunisia expires and is declined."
+    },
+    {
+      "date": "1990-10-11",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: France receives a trade treaty from Comoros. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1990-11-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Cambodia passes a third of the country."
+    },
+    {
+      "date": "1990-11-10",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "France's unanswered a trade treaty from Comoros expires and is declined."
+    },
+    {
+      "date": "1990-12-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Afghanistan exposes Saudi Arabia backing the Islamist movement in Afghanistan — the scandal rallies the country behind its government."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1991,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1991-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1991-01-17",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Albania convenes a round table; first free elections in six months, though the Nationalist movement, 7% of the country, has no party to carry it."
+    },
+    {
+      "date": "1991-01-24",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Angola passes a third of the country."
+    },
+    {
+      "date": "1991-01-28",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Zaire passes a third of the country."
+    }
+  ],
+  "artifact_errors": [],
+  "artifacts": [
+    {
+      "bytes": 65221417,
+      "canonical_fnv64": "56d06368f00c9c59",
+      "date": "1991-02-03",
+      "file_fnv64": "7fad01ff1518eba9",
+      "kind": "final",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/final.json"
+    },
+    {
+      "bytes": 65221417,
+      "canonical_fnv64": "56d06368f00c9c59",
+      "date": "1991-02-03",
+      "file_fnv64": "7faa01ff1516b5d2",
+      "kind": "final",
+      "leg": "resumed",
+      "path": "resumed/saves/final.json"
+    }
+  ],
+  "checks": {
+    "competition_adoptions": 2,
+    "daily_invariant_checks": 796,
+    "full_horizon_pause": null,
+    "monthly_reloads": 13,
+    "native_validation_checks": 60,
+    "sandbox_continued": false,
+    "sandbox_daily_invariant_checks": 0,
+    "terminal_reloads": 2
+  },
+  "comparisons": [
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182165,
+      "canonical_fnv64": "83150fbab6d79bd2",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "opening",
+      "log_rows": 1,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 31,
+      "canonical_bytes": 25807657,
+      "canonical_fnv64": "6644fe3e97a4ad3b",
+      "date": "1990-02-01",
+      "history_rows": 32,
+      "kind": "monthly_after_reload",
+      "log_rows": 144,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 32,
+      "canonical_bytes": 26988421,
+      "canonical_fnv64": "0d2f18de242da01b",
+      "date": "1990-02-02",
+      "history_rows": 33,
+      "kind": "day_after_reload",
+      "log_rows": 148,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 59,
+      "canonical_bytes": 31187249,
+      "canonical_fnv64": "ecc7a99502827945",
+      "date": "1990-03-01",
+      "history_rows": 60,
+      "kind": "monthly_after_reload",
+      "log_rows": 151,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 60,
+      "canonical_bytes": 31850962,
+      "canonical_fnv64": "a7483311ef7c4ec1",
+      "date": "1990-03-02",
+      "history_rows": 61,
+      "kind": "day_after_reload",
+      "log_rows": 158,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 90,
+      "canonical_bytes": 33073653,
+      "canonical_fnv64": "a03879ad3081476c",
+      "date": "1990-04-01",
+      "history_rows": 91,
+      "kind": "monthly_after_reload",
+      "log_rows": 162,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 91,
+      "canonical_bytes": 33703620,
+      "canonical_fnv64": "d19f7823992d788f",
+      "date": "1990-04-02",
+      "history_rows": 92,
+      "kind": "day_after_reload",
+      "log_rows": 164,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 120,
+      "canonical_bytes": 34514639,
+      "canonical_fnv64": "048061997efbf89c",
+      "date": "1990-05-01",
+      "history_rows": 121,
+      "kind": "monthly_after_reload",
+      "log_rows": 169,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 121,
+      "canonical_bytes": 35145761,
+      "canonical_fnv64": "aea43d1be1b03fa2",
+      "date": "1990-05-02",
+      "history_rows": 122,
+      "kind": "day_after_reload",
+      "log_rows": 172,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 151,
+      "canonical_bytes": 36092954,
+      "canonical_fnv64": "fcacfa653ab1ee44",
+      "date": "1990-06-01",
+      "history_rows": 152,
+      "kind": "monthly_after_reload",
+      "log_rows": 177,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 152,
+      "canonical_bytes": 36697833,
+      "canonical_fnv64": "7a04dc9cd4992806",
+      "date": "1990-06-02",
+      "history_rows": 153,
+      "kind": "day_after_reload",
+      "log_rows": 180,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 181,
+      "canonical_bytes": 37493491,
+      "canonical_fnv64": "41ddd63431cdfd79",
+      "date": "1990-07-01",
+      "history_rows": 182,
+      "kind": "monthly_after_reload",
+      "log_rows": 186,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 182,
+      "canonical_bytes": 38078139,
+      "canonical_fnv64": "54d39a30d376654d",
+      "date": "1990-07-02",
+      "history_rows": 183,
+      "kind": "day_after_reload",
+      "log_rows": 187,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 212,
+      "canonical_bytes": 39013885,
+      "canonical_fnv64": "6f3bc263d895f3f8",
+      "date": "1990-08-01",
+      "history_rows": 213,
+      "kind": "monthly_after_reload",
+      "log_rows": 196,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 213,
+      "canonical_bytes": 39588647,
+      "canonical_fnv64": "85dc80bba96bfe60",
+      "date": "1990-08-02",
+      "history_rows": 214,
+      "kind": "day_after_reload",
+      "log_rows": 198,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 243,
+      "canonical_bytes": 40382712,
+      "canonical_fnv64": "67d53ccdca90827c",
+      "date": "1990-09-01",
+      "history_rows": 244,
+      "kind": "monthly_after_reload",
+      "log_rows": 203,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 244,
+      "canonical_bytes": 40940708,
+      "canonical_fnv64": "37ebdab9ab37ab8d",
+      "date": "1990-09-02",
+      "history_rows": 245,
+      "kind": "day_after_reload",
+      "log_rows": 203,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 273,
+      "canonical_bytes": 41709831,
+      "canonical_fnv64": "f233e00907543c97",
+      "date": "1990-10-01",
+      "history_rows": 274,
+      "kind": "monthly_after_reload",
+      "log_rows": 208,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 274,
+      "canonical_bytes": 42251247,
+      "canonical_fnv64": "ae9a4172aba1f1e6",
+      "date": "1990-10-02",
+      "history_rows": 275,
+      "kind": "day_after_reload",
+      "log_rows": 213,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 304,
+      "canonical_bytes": 43173189,
+      "canonical_fnv64": "088548742e08e957",
+      "date": "1990-11-01",
+      "history_rows": 305,
+      "kind": "monthly_after_reload",
+      "log_rows": 218,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 305,
+      "canonical_bytes": 43692043,
+      "canonical_fnv64": "ec5524d9fa7d0f24",
+      "date": "1990-11-02",
+      "history_rows": 306,
+      "kind": "day_after_reload",
+      "log_rows": 219,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 334,
+      "canonical_bytes": 44454551,
+      "canonical_fnv64": "2b5b03288bb8d762",
+      "date": "1990-12-01",
+      "history_rows": 335,
+      "kind": "monthly_after_reload",
+      "log_rows": 225,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 335,
+      "canonical_bytes": 44956433,
+      "canonical_fnv64": "c937f063593b003b",
+      "date": "1990-12-02",
+      "history_rows": 336,
+      "kind": "day_after_reload",
+      "log_rows": 229,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 365,
+      "canonical_bytes": 60126064,
+      "canonical_fnv64": "347b380d1400781a",
+      "date": "1991-01-01",
+      "history_rows": 366,
+      "kind": "monthly_after_reload",
+      "log_rows": 281,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 365,
+      "canonical_bytes": 60126064,
+      "canonical_fnv64": "347b380d1400781a",
+      "date": "1991-01-01",
+      "history_rows": 366,
+      "kind": "mandatory",
+      "log_rows": 281,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 366,
+      "canonical_bytes": 60218313,
+      "canonical_fnv64": "02489e393f2eec3f",
+      "date": "1991-01-02",
+      "history_rows": 367,
+      "kind": "day_after_reload",
+      "log_rows": 295,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 396,
+      "canonical_bytes": 65236414,
+      "canonical_fnv64": "57106565d3537dbc",
+      "date": "1991-02-01",
+      "history_rows": 397,
+      "kind": "monthly_after_reload",
+      "log_rows": 312,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 397,
+      "canonical_bytes": 65660541,
+      "canonical_fnv64": "41772d54d7dd14de",
+      "date": "1991-02-02",
+      "history_rows": 398,
+      "kind": "day_after_reload",
+      "log_rows": 318,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 398,
+      "canonical_bytes": 65221393,
+      "canonical_fnv64": "56d06368f00c9c59",
+      "date": "1991-02-03",
+      "history_rows": 399,
+      "kind": "terminal",
+      "log_rows": 319,
+      "matched": true,
+      "player": "France"
+    },
+    {
+      "absolute_day": 398,
+      "canonical_bytes": 65221393,
+      "canonical_fnv64": "56d06368f00c9c59",
+      "date": "1991-02-03",
+      "history_rows": 399,
+      "kind": "terminal_reload",
+      "log_rows": 319,
+      "matched": true,
+      "player": "France"
+    }
+  ],
+  "compiled_revision": "0106ecedfb49",
+  "country": "France",
+  "days_each_leg": 398,
+  "end_native_date": "1991-02-03",
+  "failure": null,
+  "format": "spheres-stability-result/v1",
+  "id": "france-1990",
+  "initial_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "economic_competition": true,
+    "fiscal_recovery": true,
+    "historical_party_leadership": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 1990
+  },
+  "legs": 2,
+  "passed": true,
+  "provenance": {
+    "archive_exception": "Only terminal top-level saved_unix removed; remaining native encode bytes, key order and numeric spelling unchanged",
+    "cessation_policy": "Ordinary Russia continuation only for a dissolved USSR with an eligible living Russia; otherwise ordinary observer continuation. No grants or forced dissolution.",
+    "fingerprint_scope": "FNV64 is diagnostic only; the matrix wrapper supplies SHA256 provenance",
+    "initialization": "Real new_game; ordinary competition adoption; existing budget allocations/departments renewed through dated native commands",
+    "request_bytes": 191,
+    "request_fnv64": "e0f089b169cf444e",
+    "request_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\france-1990\\request.json",
+    "request_unchanged": true,
+    "retention": "Two final native archives plus two sandbox archives for full-horizon cells; resumed/saves/monthly.json plus its native backup are bounded scratch; failing worlds retained when serializable"
+  },
+  "revision": "0106ecedfb4968bf3b10d55768a5ece08713882b",
+  "scope": "Native paired stability cell only; no S25 or CP1 certification",
+  "seed": 1990,
+  "start_native_date": "1990-01-01",
+  "through": "1991-02-02"
+}

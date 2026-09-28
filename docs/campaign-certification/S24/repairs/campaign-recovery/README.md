@@ -20,7 +20,7 @@ complete S24's worldwide startup/character qualification or award CP1.
 
 | Check | Result |
 |---|---|
-| Native web suite at `910c5bda` | 440 passed, 0 failed, 26 existing opt-in tests ignored; asset-dimensions executable: 1 passed |
+| Native web suite at `910c5bda` | 440 passed, 0 failed, 26 existing opt-in tests ignored; HTTP connection regression: 1 passed |
 | Focused shipped menu/session/dialog UI | 64 passed, 0 failed |
 | Ordinary France save/backup browser | Passed at 1440px and 390px; actual committed save reply lost, retry preserves older backup; missing primary recovered through Campaigns; old-session save refused |
 | Five active-work browser cases | 5/5 passed, with 20 complete archive comparisons and desktop/narrow retry controls |

@@ -1,0 +1,89 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "dbee9dd1d20a4f0c11e0c57124c7e112e2d19033acc1aefb4e72322edaba60c3"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "09e69e6e86c57222086ef178b15bb7d583e79f447c329a7a7377603e4f46b377"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "dbee9dd1d20a4f0c11e0c57124c7e112e2d19033acc1aefb4e72322edaba60c3"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "11016e67f08ae7d896b7f98909f4554cad1953740e885df67704d97ac0c296ff"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "c75ead3248255c76f3c53ba5a2218c722c73808418a26779a4bff9e6eb3121b5"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "11016e67f08ae7d896b7f98909f4554cad1953740e885df67704d97ac0c296ff"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json",
+        "bytes": 61545940,
+        "sha256": "d3ebbec7e5d3942fb4c414fbe4b5135935685fbbcd591eeccce7f038fdc23804"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10393944,
+        "sha256": "d592e24078d41f89b91798e2b92c50bff42b2f8db43ddfcb232d167aaf0ce851"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 61545940,
+        "sha256": "d3ebbec7e5d3942fb4c414fbe4b5135935685fbbcd591eeccce7f038fdc23804"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 54331217,
+        "sha256": "d54800f8aef427971eb30efa756e92e51afe0989e4b4f3252ebee8525b854b6d"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 9486495,
+        "sha256": "10a3d9fa245d6b118576e5987fca280d8c2b07fe4bb4096e58683a19bddc110e"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 54331217,
+        "sha256": "d54800f8aef427971eb30efa756e92e51afe0989e4b4f3252ebee8525b854b6d"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}
