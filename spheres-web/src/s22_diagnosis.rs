@@ -44,7 +44,13 @@ fn s22_observed_day(
         if *name == "arsenal" {
             // Same persistent-pool clearing position as tick_day_with_routes.
             // Arsenal's subsequent clearing sees the settled marker.
-            timed!("prelude.arsenal_spot_market", spheres_sim::resources::clear_spot_market_with_pool(w, routes));
+            let start = Instant::now();
+            spheres_sim::resources::clear_spot_market_observed_with_pool(w, routes,
+                &mut |stage, commodity, elapsed| {
+                    stages.push((format!("detail.market.{stage}.{}", commodity.map_or("all", |c| c.key())),
+                        elapsed.as_secs_f64() * 1000.0));
+                });
+            stages.push(("prelude.arsenal_spot_market".into(), ms(start)));
         }
         if *name == "economic_ai" {
             let start = Instant::now();
@@ -113,6 +119,9 @@ fn s22_daily_subsystem_diagnosis() {
         "starting":s22_facts(&g), "requested_days":31, "renew_existing_budget":renew,
         "certified_profile_required":certified, "status":"running", "passed":false, "rows":[],
         "system_order":spheres_sim::SYSTEMS.iter().map(|(name,_)|*name).collect::<Vec<_>>(),
+        "timing_hierarchy":{"detail.market.*":"Nested inside prelude.arsenal_spot_market; never add to its enclosing time.",
+            "detail.market.dispatch_*":"Nested inside detail.market.orders_and_dispatch for the same commodity; sub-timers also overlap (source search/assembly within dispatch_plan). Zero-duration count/buffer labels are observations, not measured work.",
+            "detail.economic_ai.*":"Nested inside system.economic_ai; never add to its enclosing time."},
         "scope":"Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance."});
     s08_diagnostic_write(&mut report_file, &report);
     for index in 0..31 {
@@ -206,6 +215,9 @@ fn s22_observed_schedule_matches_native_commands_airbases_and_headlines() {
         assert!(spheres_sim::save(&observed)==spheres_sim::save(&g.world),"Observed schedule changed native world");
         assert!(headlines.iter().map(String::as_str).eq(g.log[log_start..].iter().map(|event|event.text.as_str())));
         assert!(stages.iter().any(|(name,_)|name=="prelude.airbases"));
+        assert_eq!(stages.iter().filter(|(name,_)|name=="prelude.arsenal_spot_market").count(),1);
+        assert!(stages.iter().any(|(name,_)|name=="detail.market.opening_and_enrolled_draws.all"));
+        assert!(stages.iter().any(|(name,_)|name=="detail.market.prices_and_finance.all"));
         for (name,_) in spheres_sim::SYSTEMS {
             assert_eq!(stages.iter().filter(|(stage,_)|stage==&format!("system.{name}")).count(),1);
         }

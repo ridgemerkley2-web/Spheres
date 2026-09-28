@@ -1765,6 +1765,15 @@ pub fn clear_spot_market_observed(w: &mut WorldState,
     clear_spot_market_traced(w, true, Some(observer), None);
 }
 
+/// Diagnostic observation of the ordinary game-owned persistent-pool path.
+/// Trace callbacks do not change clearing decisions or retained route trees.
+#[doc(hidden)]
+pub fn clear_spot_market_observed_with_pool(w: &mut WorldState,
+    pool: &mut crate::logistics::NominalRoutePool,
+    observer: &mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)) {
+    clear_spot_market_traced(w, true, Some(observer), Some(pool));
+}
+
 fn clear_spot_market_traced(w: &mut WorldState, cache_pure_reads: bool,
     mut observer: Option<&mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)>,
     mut pool: Option<&mut crate::logistics::NominalRoutePool>) {
@@ -6248,6 +6257,54 @@ mod tests {
         clear_spot_market_with_pool(&mut disabled, &mut empty_pool);
         assert!(empty_pool.is_empty());
         assert!(crate::save(&disabled) == before);
+    }
+
+    #[test]
+    fn s22_observed_pooled_clearing_keeps_cold_warm_world_and_held_cargo_identical() {
+        let mut base = pending_cargo_clearing_fixture();
+        let (seller, buyer) = (NationId::Austria, NationId::Germany);
+        let kit = crate::arsenal::index_of("trophy").unwrap();
+        let tech = crate::tech::index_of(crate::arsenal::DECK[kit as usize].tech.unwrap()).unwrap();
+        if let Err(index) = base.nation(buyer).tech.known.binary_search(&tech) {
+            base.nation_mut(buyer).tech.known.insert(index, tech);
+        }
+        for nation in &mut base.nations { nation.mil_spend_gdp = 0.0; nation.arsenal.banked = 0.0; }
+        base.nation_mut(buyer).arsenal.preference = Some(crate::arsenal::DECK[kit as usize].id.into());
+        base.nation_mut(buyer).mil_spend_gdp = 0.000001;
+        base.set_relation(buyer, seller, 100.0);
+        for stock in &mut base.resources.market.as_mut().unwrap().stocks { stock.quantity = 0.0; }
+        for commodity in [Commodity::Coal, Commodity::Iron] {
+            set_stockpile_for_test(&mut base, seller, commodity, 1_000.0);
+        }
+        let retained = base.logistics.cargo.clone();
+        assert!(retained.iter().any(|cargo| cargo.hold_reason.is_some()));
+        assert!(retained.iter().any(|cargo| cargo.due_day.is_none()));
+        let mut observed_pool = crate::logistics::NominalRoutePool::default();
+        let mut native_pool = crate::logistics::NominalRoutePool::default();
+        for warm in [false, true] {
+            assert_eq!(!observed_pool.is_empty(), warm);
+            let mut observed = base.clone();
+            let mut native = base.clone();
+            let mut stages = Vec::new();
+            clear_spot_market_observed_with_pool(&mut observed, &mut observed_pool,
+                &mut |stage, commodity, _| stages.push((stage.to_owned(), commodity)));
+            clear_spot_market_with_pool(&mut native, &mut native_pool);
+            assert!(crate::save(&observed) == crate::save(&native), "warm={warm}: exact entire native world");
+            assert_eq!(observed.headlines, native.headlines);
+            assert_eq!(&observed.logistics.cargo[..retained.len()], retained.as_slice());
+            assert!(observed.logistics.cargo.len() > retained.len(), "real new dispatches exercise tracing");
+            assert_eq!(observed_pool.entry_count(), native_pool.entry_count());
+            assert!(!observed_pool.is_empty());
+            for stage in ["opening_and_enrolled_draws", "draws_and_route_context", "prices_and_finance"] {
+                assert_eq!(stages.iter().filter(|(name, commodity)| name == stage && commodity.is_none()).count(), 1);
+            }
+            assert!(stages.iter().any(|(name, _)| name.starts_with("dispatch_counts.")));
+            let settled = crate::save(&observed);
+            clear_spot_market_observed_with_pool(&mut observed, &mut observed_pool,
+                &mut |_, _, _| panic!("already-cleared calls do not fabricate trace stages"));
+            assert!(crate::save(&observed) == settled);
+            assert_eq!(observed_pool.entry_count(), native_pool.entry_count());
+        }
     }
 
     #[test]
