@@ -336,25 +336,23 @@
       "id": "CODEX-S27-A1-01",
       "owner": "Codex",
       "session": "S27",
-      "state": "in_progress",
+      "state": "blocked",
       "priority": 1,
       "title": "Repair the unchanged A1 political calibration gate",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
       "depends_on": [],
-      "next": "Reproduce and fix the political concentration failure with the unchanged cohort, thresholds and A1-A10 checks. Preserve failed attempts. Bounded S27 preparation only; no session closure."
+      "next": "Baseline and trial 01 retain the unchanged A1 failure; trial worsened concentration and was rejected with source restored. Diagnosed without a justified remaining runtime repair; no holdout run. Resume only from new causal evidence or an explicitly reviewed policy proposal. Evidence: docs/campaign-certification/S27/preparation/a1-20260928/README.md. Not complete; S27/CP1 remain unqualified."
     },
     {
       "id": "CODEX-S24-STARTUP-01",
       "owner": "Codex",
       "session": "S24",
-      "state": "queued",
+      "state": "in_progress",
       "priority": 2,
       "title": "Refresh all 137 starters and complete browser startup coverage",
       "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
-      "depends_on": [
-        "CODEX-S27-A1-01"
-      ],
-      "next": "Reuse the historical 137/137 native preflight at 8cf61817; refresh the full current-build sweep and add missing browser selection/map/government/budget/guidance, seven-day and save/reload evidence. Bounded engineering preparation; S24 still awaits S23."
+      "depends_on": [],
+      "next": "After the recorded blocked A1 attempt, continue independent engineering in the requested order. Rebuild/pin the restored current source, refresh all 137 native starters and add ordinary browser selection/map/government/budget/guidance, seven-day and save/reload coverage. A1 remains failed; this preflight grants no aggregate CI or S24 qualification."
     },
     {
       "id": "CODEX-S25-SUCCESSION-01",

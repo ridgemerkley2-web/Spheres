@@ -2,8 +2,12 @@
 
 Owner: Codex. Authorized 28 September 2026. These eight bounded tasks follow the
 completed recovery, paired stability pilot and portable packaging work in
-[the previous handoff](CODEX-INDEPENDENT-ENGINEERING.md). Work in the order below;
-each queued task depends on the preceding task. Only the first is in progress.
+[the previous handoff](CODEX-INDEPENDENT-ENGINEERING.md). Work in the order below.
+This is an order of attempts, not a new requirement
+that every independent task must pass before work can continue. A blocked attempt
+retains its failure and evidence; it does not become complete. A1 is now blocked
+after diagnosis and rejected trial 01, and independent startup work is in progress.
+The remaining queued tasks retain their listed order.
 Query the [task queue](../ai-task-queue.json) with
 `python tools/planning/workboard.py --tasks --owner Codex`.
 
@@ -13,10 +17,10 @@ S23, S25 awaits S24, and S27 retains its full release prerequisites. G5 and CP1
 remain unearned. A preflight result must identify its exact build, inputs and
 scope; an accepted research packet does not install historical people or art.
 
-| Order | Bounded task | Parent | Initial state |
+| Order | Bounded task | Parent | Current state |
 |---|---|---|---|
-| 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | In progress |
-| 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | Queued |
+| 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | Blocked; A1 still fails |
+| 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | In progress after A1 attempt |
 | 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Queued |
 | 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | Queued |
 | 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Queued |
@@ -39,6 +43,14 @@ the unchanged A1–A10 checks. Preserve failed attempts and explain any gameplay
 change. Completion requires a reviewed correction and retained passing gate
 evidence, not a change to the acceptance test. This task cannot close S27.
 
+The [28 September evidence](../../campaign-certification/S27/preparation/a1-20260928/README.md)
+retains the failed baseline and rejected trial 01. Both pass nine of ten outcome
+gates plus attribution; the trial worsened the displayed A1 concentration from
+0.59 to 0.67. Source is restored, with the unrebuilt candidate executable boundary
+recorded. No justified additional runtime correction was established, and no
+reserved seed was consumed. A1 stays blocked; independent startup work follows
+this attempted first task without claiming political or aggregate qualification.
+
 ## 2. Startup: CODEX-S24-STARTUP-01
 
 Reuse `tools/campaign/worldwide_preflight.py`; do not rebuild the earlier work
@@ -47,9 +59,11 @@ already records 137/137 backend starters passing on `8cf61817`, including the
 Congo selection repair and legitimate event-pause handling. That evidence
 explicitly excludes a 137-country browser review and S24 certification.
 
-Refresh the complete, unfiltered native sweep on the repaired current candidate
-and add the missing ordinary browser/menu and map coverage. Record every one of
-the 137 starting identities: selection, map, government, budget, guidance, seven
+Refresh the complete, unfiltered native sweep on a rebuilt, pinned current
+candidate and add the missing ordinary browser/menu and map coverage. This
+engineering preflight is independent of A1 success, which remains an explicit
+failed qualification gate; do not call the restored baseline an A1 repair.
+Record every one of the 137 starting identities: selection, map, government, budget, guidance, seven
 actual days, named save and reload. Compare the complete retained archive and
 identify all exceptions precisely. Preserve event pauses and reject duplicate
 or omitted cases. Keep private scratch saves, current build/source hashes and

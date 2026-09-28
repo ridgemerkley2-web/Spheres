@@ -25,11 +25,15 @@ its unchanged limit; no complete CI or campaign qualification is claimed.
 ## Newly authorized Codex order
 
 The next [eight bounded tasks](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md)
-are registered in execution order. A1 repair is in progress; the remaining tasks
-are queued behind their predecessor. Earlier preparation remains complete.
+are registered in execution order. The A1 attempt is **blocked and incomplete**:
+its fresh baseline and one rejected policy trial both fail the unchanged gate;
+source is restored and no reserved seed was run. [Retained evidence](campaign-certification/S27/preparation/a1-20260928/README.md).
+Startup is now in progress as an independent engineering preflight following the
+A1 attempt, without requiring or claiming an A1 pass. Remaining tasks keep their
+requested order. Earlier preparation remains complete.
 
 1. Repair the A1 political-calibration failure without changing its limits.
-2. Refresh the existing 137-country native sweep on the repaired current build
+2. Refresh the existing 137-country native sweep on a rebuilt, pinned current build
    and complete its missing ordinary browser startup/map coverage.
 3. Add controlled paired USSR → Russia continuity across save/resume boundaries.
 4. Run the full eight-country × three-seed 1990–2035 engineering preflight.
