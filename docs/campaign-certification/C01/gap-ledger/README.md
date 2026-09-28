@@ -49,6 +49,10 @@ commit whose packet file mentions its id. Commits are classified by hash in `COM
 Saudi packet's first commit still carries its pre-renumbering label). An unattributed source, an unclassified
 commit or a drift between the in-flight table and the task queue fails the build.
 
+Only the task-queue rows the ledger reads (Claude's C01 packet and source-repair tasks: id, state and branch) are
+recorded and hashed as its queue input, so unrelated queue changes, such as another session's closure, do not make
+the ledger stale.
+
 An accepted packet requires an explicit accepted decision in its integration `README.md`; creating a directory
 does not accept research. Those decision records are hashed among the ledger's inputs, so a review scope change
 makes the generated ledger stale even when packet contents and evidence-class totals are unchanged.

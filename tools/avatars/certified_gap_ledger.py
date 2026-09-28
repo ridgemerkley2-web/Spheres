@@ -417,6 +417,19 @@ def missing_fields(entry):
 
 # ---------------------------------------------------------------- ledger
 
+def queue_projection(queue):
+    """The task-queue input, reduced to what the ledger reads: Claude's C01 packet and source-repair tasks.
+
+    Hashing the whole queue made the ledger stale whenever an unrelated task changed state (for example an S19 or
+    S20 closure). Only these rows can change the ledger, so only they are recorded and hashed.
+    """
+    rows = sorted(({'id': t['id'], 'state': t.get('state'), 'branch': t.get('branch')}
+                   for t in queue['tasks'] if t.get('owner') == 'Claude' and IN_FLIGHT_ID.match(t['id'])),
+                  key=lambda row: row['id'])
+    return {'path': TASK_QUEUE.as_posix(), 'projection': 'Claude C01 packet and source-repair tasks: id, state, branch',
+            'tasks': rows, 'sha256': hashlib.sha256(canonical(rows).encode('utf-8')).hexdigest()}
+
+
 def build(root=ROOT, attribution=None):
     census = read_json(C01 / 'census.json', root)
     if census['existing_research_cutoff'] != CUTOFF or census['historical_from'] != PERIOD_FROM:
@@ -474,7 +487,8 @@ def build(root=ROOT, attribution=None):
               'research_roles': sum(c['totals']['research_roles'] for c in ledger_cases),
               'research_roles_with_unresolved_days': sum(c['totals']['research_roles_unresolved'] for c in ledger_cases),
               'next_batches': len(all_batches), 'next_items': sum(len(b['items']) for b in all_batches)}
-    inputs = ([sha(path, root) for path in INPUTS]
+    inputs = ([sha(path, root) for path in INPUTS if path != TASK_QUEUE]
+              + [queue_projection(queue)]
               + [sha(path, root) for path in sorted(set(packets.values()))]
               + [sha(path, root) for path in sorted(set(acceptance_records(root).values()))]
               + [e for repair in completed_repairs for e in repair['evidence']])

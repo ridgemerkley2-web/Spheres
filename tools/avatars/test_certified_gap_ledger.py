@@ -340,6 +340,24 @@ class FixtureLedger(unittest.TestCase):
         path.write_text(path.read_text(encoding='utf-8') + 'edited\n', encoding='utf-8')
         self.assertEqual(ledger.stale(first, self.root), [(ledger.OUTPUT / 'ledger.md').as_posix()])
 
+    def test_only_the_ledgers_own_queue_rows_can_make_it_stale(self):
+        first = ledger.outputs(self.root, self.attribution)
+        path = self.root / ledger.TASK_QUEUE
+        queue = json.loads(path.read_text(encoding='utf-8'))
+        # Unrelated queue churn (another owner, another session, an expanded Claude task) leaves the ledger current.
+        queue['tasks'] += [{'id': 'CODEX-S20-LATER-01', 'owner': 'Codex', 'state': 'complete'},
+                           {'id': 'CLAUDE-C03-REVIEW-01', 'owner': 'Claude', 'state': 'claimed'}]
+        queue['version'] = 2
+        path.write_text(json.dumps(queue), encoding='utf-8')
+        self.assertEqual(ledger.outputs(self.root, self.attribution), first)
+        projection = next(i for i in json.loads(first[ledger.OUTPUT / 'ledger.json'])['inputs']
+                          if i['path'] == ledger.TASK_QUEUE.as_posix())
+        self.assertEqual({row['id'] for row in projection['tasks']}, set(ledger.IN_FLIGHT))
+        # A change to one of the ledger's own rows (here a branch rename) does make it stale.
+        next(t for t in queue['tasks'] if t['id'] == 'CLAUDE-C01-24')['branch'] = 'claude/renamed'
+        path.write_text(json.dumps(queue), encoding='utf-8')
+        self.assertNotEqual(ledger.outputs(self.root, self.attribution), first)
+
     def test_unattributed_sources_unknown_packets_and_queue_drift_fail_loudly(self):
         broken = copy.deepcopy(self.attribution)
         del broken['sources']['USSR']['s_su']

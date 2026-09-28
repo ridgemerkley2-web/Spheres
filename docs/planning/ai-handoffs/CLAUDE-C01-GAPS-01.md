@@ -96,3 +96,12 @@ the inputs, so their unresolved spans may partly fall outside their lifetimes (e
 vice-presidency has no anchored end in the inputs and is audited to the cutoff. Any new integration, queue change or
 packet makes `--check` report the ledger stale until it is regenerated (and the attribution refreshed when sources are
 added). C01, G4 and CP1 remain open.
+
+## Follow-up fix (28 September 2026)
+
+After integration, `certified_gap_ledger.py --check` failed on `846df479` although the ledger's content was
+unchanged: the ledger hashed the whole `docs/planning/ai-task-queue.json`, so the S19/S20 closures made it stale.
+Branch `claude/c01-gaps-01-fix` (from `846df479`) records and hashes only the queue rows the ledger reads (Claude's
+C01 packet and source-repair tasks: id, state, branch), regenerates the ledger, notes the rule in the README and adds
+a test that unrelated queue churn leaves the ledger current while a change to one of its own rows still makes it stale.
+No other ledger content changed. Ready for Codex review.

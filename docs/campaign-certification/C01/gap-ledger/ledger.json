@@ -65,8 +65,50 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 10719,
-      "sha256": "aaa3dc43590214a914be1405dcef71377cb9a5daf7be6f3eee1d17bf03f09d84"
+      "projection": "Claude C01 packet and source-repair tasks: id, state, branch",
+      "tasks": [
+        {
+          "id": "CLAUDE-C01-23",
+          "state": "ready_for_review",
+          "branch": "claude/c01-fr-23"
+        },
+        {
+          "id": "CLAUDE-C01-24",
+          "state": "ready_for_review",
+          "branch": "claude/c01-to-24"
+        },
+        {
+          "id": "CLAUDE-C01-25",
+          "state": "ready_for_review",
+          "branch": "claude/c01-sa-25"
+        },
+        {
+          "id": "CLAUDE-C01-27",
+          "state": "ready_for_review",
+          "branch": "claude/c01-in-27"
+        },
+        {
+          "id": "CLAUDE-C01-SOURCE-05",
+          "state": "complete",
+          "branch": "claude/c01-source-05"
+        },
+        {
+          "id": "CLAUDE-C01-SOURCE-06",
+          "state": "complete",
+          "branch": "claude/c01-source-06"
+        },
+        {
+          "id": "CLAUDE-C01-SOURCE-17",
+          "state": "ready_for_review",
+          "branch": "claude/c01-source-17"
+        },
+        {
+          "id": "CLAUDE-C01-SOURCE-26",
+          "state": "ready_for_review",
+          "branch": "claude/c01-source-26"
+        }
+      ],
+      "sha256": "27c8754ebc4da3509b56c330cb1e095c6880d4aa25b1d67d59124721a8ca5fe6"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
