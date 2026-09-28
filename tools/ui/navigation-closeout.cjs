@@ -127,7 +127,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     proof.checks.push({label,district:id,owner:native.owner,activity:counts});return native;
   }
   async function adoptedProvince(){
-    const {reading,date}=await page.evaluate(()=>({reading:JSON.parse(JSON.stringify(PROVINCE_POPULATION)),date:S.date}));
+    const {reading,date}=await page.evaluate(()=>({reading:structuredClone(PROVINCE_POPULATION),date:S.date}));
     assert.equal(reading.read_date,date,'Province labels the actual campaign reading date');
     assert((await page.locator('#provinceDossier [role="status"]').allTextContents()).includes('Reading for '+date));
     // The sole UI annotation is validated separately; all native fields must
@@ -152,7 +152,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     await activate(page.locator(attr('data-prod-kind',kind)),mode,'Choose '+kind);
     await activate(page.locator(attr('data-prod-province',id)),mode,'Review local project effects');
     await page.waitForFunction(()=>constructionPreviewCurrent());
-    const preview=record(label+'-construction-review',await page.evaluate(()=>JSON.parse(JSON.stringify(PROD.preview))));
+    const preview=record(label+'-construction-review',await page.evaluate(()=>structuredClone(PROD.preview)));
     assert.equal(preview.district,id);assert.equal(preview.project_kind,kind);
     assert.equal(await page.locator('.construction-impact-scope').count(),2);
     await shot(label+'-review');await escape('Cancel unconfirmed project review');
@@ -264,13 +264,13 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
   const completedRoot=attr('data-construction-completed',other);
   const outcome=await nativeAction(completedRoot,'data-construction-outcome',a=>a.district===other&&a.kind==='arms_plant');
   await activate(outcome,'keyboard','Inspect completed Arms Plant');await page.waitForFunction(()=>industryCurrent());
-  const industry=record('navigation-industry',await read('industry'));assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(IDESK.data))),industry);
+  const industry=record('navigation-industry',await read('industry'));assert.deepEqual(await page.evaluate(()=>structuredClone(IDESK.data)),industry);
   const site='[data-industry-site='+JSON.stringify('site:'+other+':arms_plant')+']';await page.locator(site).waitFor({state:'visible'});await shot('s20-completed-arms-plant');
   const manage=await nativeAction(site,'data-industry-action',a=>a.action==='manufacture');
   await activate(manage,'keyboard','Manage equipment at completed plant');
   await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='companies');
   const equipment=record('navigation-equipment',await read('equipment'));
-  assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),equipment);await shot('s20-company-destination');
+  assert.deepEqual(await page.evaluate(()=>structuredClone(EQUIP.data)),equipment);await shot('s20-company-destination');
   await equipmentTab('flight','keyboard');await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='flight');
   assert(equipment.flight.squadrons.length>0,'S19 supplied real squadrons');
   for(const squadron of equipment.flight.squadrons)assert((await page.locator('#equipmentRoom').innerText()).includes(squadron.name));
