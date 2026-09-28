@@ -11089,6 +11089,7 @@ const DEFERRED = Symbol("city build deferred");
 /// says so in the line above `t1`: it times the DRAW SUBMISSION, and mesh
 /// construction is paid when coverage changes.
 function drawCityLayer(view, cw, ch) {
+  if (ui.mapDetails?.cities === false) return 0;
   const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return 0;
   if (!window.CITIES || !window.TerrainSurface) return 0;
   const surface = g.surface; if (!surface || !surface.ready) return 0;
@@ -11245,6 +11246,20 @@ function cityBuffers(gl, hit, view, defer) {
       extentMetres: mesh.extentMetres, bounds: mesh.bounds };
   } catch (e) { placed = null; }
   if (!placed) return null;
+  // Reserve before upload: post-upload eviction briefly kept the entire old
+  // cache plus this mesh resident. Keep the same count and payload ceilings
+  // during allocation as well as after the frame. Refuse an oversized mesh
+  // rather than repeatedly uploading and evicting it.
+  if (placed.triangleCount > CITY_LAYER.cacheTriangles) return null;
+  let held = 0;
+  for (const e of cache.values()) held += e.tris;
+  while (cache.size && (cache.size >= CITY_LAYER.cache || held + placed.triangleCount > CITY_LAYER.cacheTriangles)) {
+    const oldest = cache.keys().next().value;
+    const dead = cache.get(oldest); cache.delete(oldest);
+    held -= dead.tris;
+    for (const b of dead.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(dead.vao);
+  }
   const vao = gl.createVertexArray();
   gl.bindVertexArray(vao);
   const bufs = [];
@@ -11259,23 +11274,6 @@ function cityBuffers(gl, hit, view, defer) {
   const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount,
     model, span: wantSpan, exaggeration, waterZoomFloor, fresh: true };
   cache.set(key, entry);
-  // Bounded BY BOTH COUNT AND SIZE, and the buffers go with the vertex array:
-  // deleting the array does NOT free them, which is the trap arsenal3d's cache
-  // had to be taught. Eviction takes the oldest, which is never the city just
-  // built and -- because the cap is twice the largest frame the selector can
-  // produce -- never one being drawn this frame either. The `cache.size > 1`
-  // guard is the backstop for that reasoning rather than a substitute for it:
-  // a single city over the whole cap would otherwise delete itself and be
-  // rebuilt every frame.
-  let held = 0;
-  for (const e of cache.values()) held += e.tris;
-  while (cache.size > 1 && (cache.size > CITY_LAYER.cache || held > CITY_LAYER.cacheTriangles)) {
-    const oldest = cache.keys().next().value;
-    const dead = cache.get(oldest); cache.delete(oldest);
-    held -= dead.tris;
-    for (const b of dead.bufs) gl.deleteBuffer(b);
-    gl.deleteVertexArray(dead.vao);
-  }
   return entry;
 }
 function glFail(reason) {

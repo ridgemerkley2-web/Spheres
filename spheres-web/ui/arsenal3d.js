@@ -872,6 +872,7 @@
   /// expected to leave whatever it had in place — the catalogue keeps its
   /// class glyph, which is why the glyph was never removed from the markup.
   function mount(canvas, id, opts) {
+    pruneDetached();
     if (!canvas || !init()) return false;
     const o = opts || {};
     const state = {
@@ -892,6 +893,20 @@
   /// canvas does not survive that.
   /// The mount half of `scan`, shared by the immediate and the deferred path.
   const pending = new Set();
+  function pruneDetached() {
+    for (const canvas of mounted.keys()) if (!canvas.isConnected) {
+      mounted.delete(canvas);
+      if (active === canvas) {
+        active = null;
+        if (frame) root.cancelAnimationFrame(frame);
+        frame = 0;
+      }
+    }
+    for (const canvas of pending) if (!canvas.isConnected) {
+      observer?.unobserve(canvas);
+      pending.delete(canvas);
+    }
+  }
   function attach(canvas) {
     pending.delete(canvas);
     const ok = mount(canvas, canvas.getAttribute("data-kit3d"),
@@ -907,6 +922,7 @@
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
+        pending.delete(entry.target);
         if (entry.target.isConnected) attach(entry.target);
       });
     }, { rootMargin: "200px" })
@@ -927,6 +943,7 @@
   /// bench and the tests deterministic. A card below the fold is observed and
   /// mounts when it scrolls in, and keeps its class glyph until it does.
   function scan(where) {
+    pruneDetached();
     if (!init()) return 0;
     const host = where || document;
     const list = host.querySelectorAll ? host.querySelectorAll("canvas[data-kit3d]") : [];
@@ -944,10 +961,15 @@
       pending.add(canvas);
       observer.observe(canvas);
     });
-    if (mounted.size > 400) {
-      mounted.forEach((v, k) => { if (!k.isConnected) mounted.delete(k); });
-    }
     return n;
+  }
+
+  // Rooms replace their DOM, and city cards mount directly rather than using
+  // scan(). Release detached canvas references even if no new room opens.
+  if (typeof MutationObserver === "function" && document.body) {
+    new MutationObserver(records => {
+      if (records.some(record => record.removedNodes.length)) pruneDetached();
+    }).observe(document.body, {childList:true, subtree:true});
   }
 
   /// Install a surface treatment, or pass nothing to go back to flat albedo.
@@ -1080,7 +1102,7 @@
       const seen = new Set();
       for (const e of vaos.values()) seen.add(e);
       return { triangles: cachedTriangles, cap: CACHE_TRIANGLES,
-        models: seen.size, keys: vaos.size };
+        models: seen.size, keys: vaos.size, mounted: mounted.size, pending: pending.size };
     },
     mount, scan, dataURL, renderTo, sprite, setSurface, frameOf, draw,
     scenePlan, sceneTier, projectBox, drawScene, mountScene,
