@@ -111,7 +111,7 @@
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "S19 closed: actual construction/output, company payment/delivery and supported flight on 10 May 1999, funded readiness recovery, save/load/Continue and fresh-campaign isolation all qualified. See S19/integration/CLOSEOUT.md. S20 has also closed; G4 earned, S22 is next. CP1 remains open."
+      "next": "S19 and S20 are complete; G4 is earned. S22 subsequently closed with 18/18 performance qualification cells. S23 is next and remains planned pending C06. CP1 remains open."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
@@ -157,14 +157,15 @@
       "id": "CLAUDE-C03-REVIEW-01",
       "owner": "Claude",
       "session": "C03",
-      "state": "claimed",
+      "state": "complete",
       "priority": 10,
       "title": "Build a cartoon review workbench",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
       "depends_on": [],
-      "next": "Remote claim inspected at 28b3c5773f2d886c6133fbbc00d71cdb8ff06f10. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "next": "Bounded cartoon review workbench accepted with CRLF/UTF-8 provenance repairs in ae3610b4: 24 Python and 15 Node/browser entries pass. Review packet docs/campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/. No new art approval, historical acceptance or C03/C06/S23 closure.",
       "branch": "claude/c03-review-01",
-      "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10"
+      "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10",
+      "review_revision": "ae3610b4"
     },
     {
       "id": "CLAUDE-C04-PREP-01",
@@ -217,6 +218,32 @@
       "next": "Remote claim inspected at 1966fb06e0e7c9653910abfe40a9d9662bfdaf21. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
       "branch": "claude/e05-research-01",
       "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21"
+    },
+    {
+      "id": "CLAUDE-C01-28",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 15,
+      "title": "Research five Russian party-leader chains",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+      "depends_on": [],
+      "branch": "claude/c01-ru-28",
+      "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
+      "next": "Existing remote claim inspected at 2c4d5bd725b84161fd742adec75febc6241b8c92. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
+    },
+    {
+      "id": "CLAUDE-C01-29",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 16,
+      "title": "Research Japanese Socialist / Social Democratic Party chairs",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
+      "depends_on": [],
+      "branch": "claude/c01-jp-29",
+      "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
+      "next": "Existing remote claim inspected at 2d65b680a24eef1fcbc2425bb92c02b9b8217587. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
     }
   ]
 }

@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 10719,
-      "sha256": "aaa3dc43590214a914be1405dcef71377cb9a5daf7be6f3eee1d17bf03f09d84"
+      "bytes": 11775,
+      "sha256": "e19ae46bbd5dd01ce014179370e5e8dcea6bd588cb09fdc7eb1e1f0fe5b7e37a"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -304,6 +304,34 @@
       "scope": "Bharatiya Janata Party presidents, 1990-2026",
       "targets": [
         "party:India/in_bjp"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-28",
+      "state": "claimed",
+      "branch": "claude/c01-ru-28",
+      "case": "USSR -> Russia",
+      "scope": "Five Russian party-leader chains; active research claim, no accepted mapping",
+      "targets": [
+        "party:Russia/ru_kprf",
+        "party:Russia/ru_ldpr",
+        "party:Russia/ru_yabloko",
+        "party:Russia/ru_apr",
+        "party:Russia/ru_vybor"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-29",
+      "state": "claimed",
+      "branch": "claude/c01-jp-29",
+      "case": "Japan",
+      "scope": "Japan Socialist Party / Social Democratic Party chairs; active research claim, no accepted mapping",
+      "targets": [
+        "party:Japan/jp_jsp",
+        "party:Japan/jp_jsp/jp_jsp_1945",
+        "party:Japan/jp_jsp/jp_sdp_1996"
       ],
       "accepted": false
     },
@@ -3820,7 +3848,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -3984,7 +4012,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -4248,7 +4276,7 @@
           "related_work_orders": [
             "CH-Japan-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-29",
           "uncertain_research_candidates": []
         },
         {
@@ -17230,7 +17258,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17298,7 +17326,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17364,7 +17392,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17430,7 +17458,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -17496,7 +17524,7 @@
           "related_work_orders": [
             "CH-Russia-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-28",
           "uncertain_research_candidates": []
         },
         {
@@ -21282,71 +21310,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_jsp",
-          "title": "Japan Socialist Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "month",
-                "value": "2013-07"
-              },
-              "until": {
-                "kind": "month",
-                "value": "2013-10"
-              },
-              "reason": "The caretaker interval after Fukushima's resignation needs primary verification of Seiji Mataichi's acting role and the effective transfer date.",
-              "sources": [
-                "https://www.sdp-ishikawa.jp/archives/date/2013/10"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Several transition months deliberately retain uncertainty. Unresolved days are not assertions of historical vacancies. Full membership windows remain unresearched.",
-              "sources": [
-                "https://sdp.or.jp/sdp-journal/kettou-3/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/",
-            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
-            "https://www.sdp-ishikawa.jp/archives/date/2013/10"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "components_with_terms": [
-            "Japan/jp_jsp/jp_jsp_1945 (4 terms)",
-            "Japan/jp_jsp/jp_sdp_1996 (6 terms)"
-          ],
-          "note": "Leadership recorded on components or name phases does not fill this parent chain; check whether the parent office is separate from the components listed."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_komeito",
           "title": "Komeito",
           "role": "party leader (census term records)",
@@ -21908,133 +21871,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Japan",
-          "entity": "Japan/jp_jsp/jp_sdp_1996",
-          "title": "Social Democratic Party (renamed Japan Socialist Party)",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 2643,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1996-01-01",
-              "through": "1996-01-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1996-09-02",
-              "through": "1996-09-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2003-11-02",
-              "through": "2003-11-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2013-07-02",
-              "through": "2013-07-31",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2013-08-01",
-              "through": "2013-09-30",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2013-10-01",
-              "through": "2013-10-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2020-02-02",
-              "through": "2020-02-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2020-03-01",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "mizuho_fukushima",
-              "record": "jp_jsp_mizuho_fukushima_200311",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "mizuho_fukushima",
-              "record": "jp_jsp_mizuho_fukushima_202002",
-              "missing": [
-                "from (known only to month)",
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "seiji_mataichi",
-              "record": "jp_jsp_seiji_mataichi_201802",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tadatomo_yoshida",
-              "record": "jp_jsp_tadatomo_yoshida_201310",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "takako_doi",
-              "record": "jp_jsp_takako_doi_199609",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tomiichi_murayama",
-              "record": "jp_jsp_tomiichi_murayama_199601",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1996-01-01",
-            "until": "2026-09-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
           "entity": "Japan/jp_komeito/jp_komeito_1998",
           "title": "Komeito (reconstituted in 1998)",
           "role": "party leader (census term records)",
@@ -22067,83 +21903,6 @@
           "window": {
             "from": "1998-11-07",
             "until": "2026-09-07",
-            "pinned": true
-          },
-          "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Japan",
-          "entity": "Japan/jp_jsp/jp_jsp_1945",
-          "title": "Japan Socialist Party",
-          "role": "party leader (census term records)",
-          "priority": 3,
-          "unresolved_days": 87,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1991-07-02",
-              "through": "1991-07-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1993-09-02",
-              "through": "1993-09-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1996-01-02",
-              "through": "1996-01-31",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "dates",
-              "holder": "makoto_tanabe",
-              "record": "jp_jsp_makoto_tanabe_199107",
-              "missing": [
-                "from (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "sadao_yamahana",
-              "record": "jp_jsp_sadao_yamahana_19930119",
-              "missing": [
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "takako_doi",
-              "record": "jp_jsp_takako_doi_198609",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "tomiichi_murayama",
-              "record": "jp_jsp_tomiichi_murayama_199309",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to month)"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://sdp.or.jp/sdp-journal/kettou-3/"
-          ],
-          "related_work_orders": [
-            "CH-Japan-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "1996-01-31",
             "pinned": true
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
@@ -22201,15 +21960,7 @@
             "pinned": true
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Japan-B002",
-      "case": "Japan",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -22368,7 +22119,15 @@
           },
           "first_evidence": "2026-09-06",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Japan-B002",
+      "case": "Japan",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Japan",
@@ -26439,216 +26198,6 @@
       "items": [
         {
           "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_apr",
-          "title": "Agrarian Party of Russia",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_kprf",
-          "title": "Communist Party of the Russian Federation",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://en.wikipedia.org/wiki/Communist_Party_of_the_Russian_Federation"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_ldpr",
-          "title": "Liberal Democratic Party of Russia",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_vybor",
-          "title": "Russia's Choice",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Russia",
-          "entity": "Russia/ru_yabloko",
-          "title": "Yabloko",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2026-09-07",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-Russia-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
           "nation": "USSR",
           "entity": "USSR/su_cpsu",
           "title": "Communist Party of the Soviet Union",
@@ -27074,15 +26623,7 @@
             "pinned": true
           },
           "first_evidence": "1996-08-09"
-        }
-      ]
-    },
-    {
-      "id": "GAP-USSR-Russia-B002",
-      "case": "USSR -> Russia",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "USSR",
@@ -27426,7 +26967,15 @@
           },
           "first_evidence": "2021-10-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-USSR-Russia-B002",
+      "case": "USSR -> Russia",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Russia",
@@ -27729,6 +27278,6 @@
     "research_roles": 58,
     "research_roles_with_unresolved_days": 49,
     "next_batches": 12,
-    "next_items": 91
+    "next_items": 83
   }
 }

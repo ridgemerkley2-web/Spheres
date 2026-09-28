@@ -411,6 +411,12 @@ class CheckedInLedger(unittest.TestCase):
         for excluded in ('India/in_bjp', 'to_legislative_assembly#to_speaker', 'sa_shura#sa_shura_chair',
                          'sa_succession_commission#sa_succession_chair', 'institution:fr_presidency'):
             self.assertNotIn(excluded, entities)
+        for target in ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']:
+            self.assertNotIn(target.removeprefix('party:'), entities)
+        claims = {row['task']: row for row in self.data['in_flight']}
+        for tid in ('CLAUDE-C01-28', 'CLAUDE-C01-29'):
+            self.assertEqual(claims[tid]['state'], 'claimed')
+            self.assertFalse(claims[tid]['accepted'])
         self.assertIn('institution:fr_prime_minister', entities)
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))
         roles = {(r['nation'], r['id']): r for c in self.data['cases'] for r in c['research_roles']}
