@@ -17,7 +17,9 @@ param(
     [Parameter(Mandatory)][string]$EvidenceRoot,
     [ValidateSet('prepare','measure')][string]$Mode = 'measure',
     [ValidatePattern('^\d{4}-\d{2}-\d{2}$')][string]$Until = '2035-11-30',
-    [switch]$RenewBudget
+    [switch]$RenewBudget,
+    [switch]$AdoptCompetition,
+    [switch]$RequireCertified
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -27,7 +29,7 @@ $memory = [ordered]@{
     nominal_interval_ms=100; samples=0; failed_samples=0
     max_sampled_private_bytes=$null; max_sampled_working_set_bytes=$null
     os_peak_working_set_bytes=$null; max_observed_sample_gap_ms=$null
-    scope='Whole isolated native test process, including loading, both independent measurement passes, room reads and report work. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included.'
+    scope='Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included.'
 }
 $limits = [ordered]@{simulation_history_p95_ms=300; whole_turn_p95_ms=400; whole_turn_max_ms=750; sampled_private_bytes=1073741824; observed_os_peak_working_set_bytes=1073741824}
 $result = [ordered]@{
@@ -77,6 +79,7 @@ function Raw-Summary($Rows, [string]$Field) {
 }
 try {
     if ($CandidateRevision -notmatch '^[0-9a-f]{40}$' -or $InputSha256 -notmatch '^[0-9a-fA-F]{64}$') { throw 'Supply the full pinned Git revision and source SHA256.' }
+    if ($AdoptCompetition -and $Mode -ne 'prepare') { throw 'Competition adoption belongs to preparation before timing; measure the resulting immutable checkpoint.' }
     $binary=(Resolve-Path -LiteralPath $TestBinary).ProviderPath
     $source=(Resolve-Path -LiteralPath $InputSave).ProviderPath
     if (-not (Test-Path -LiteralPath $binary -PathType Leaf) -or -not (Test-Path -LiteralPath $source -PathType Leaf)) { throw 'Binary and input must be existing files.' }
@@ -98,6 +101,8 @@ try {
     $result.child_environment=[ordered]@{SPHERES_S22_INPUT=$result.copied_input; SPHERES_S22_OUT=$result.profile_json}
     if ($Mode -eq 'prepare') { $result.child_environment.SPHERES_S22_UNTIL=$Until }
     if ($RenewBudget) { $result.child_environment.SPHERES_S22_RENEW_BUDGET='1' }
+    if ($AdoptCompetition) { $result.child_environment.SPHERES_S22_ADOPT_COMPETITION='1' }
+    if ($RequireCertified -or $AdoptCompetition) { $result.child_environment.SPHERES_S22_REQUIRE_CERTIFIED='1' }
     # Retain invocation metadata even if the long preparation is interrupted.
     $result | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $output 'invocation.json') -Encoding utf8
     $stdoutFile=[IO.File]::Open((Join-Path $output 'stdout.log'),[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::Read)
@@ -162,6 +167,7 @@ if ($started -and $result.exit_code -eq 0) {
         $profile=Get-Content -LiteralPath $result.profile_json -Raw | ConvertFrom-Json
         if ($profile.revision -ne $CandidateRevision.Substring(0,12)) { throw 'Embedded native revision differs from pinned candidate.' }
         if (-not $profile.passed -or -not $profile.source_unchanged) { throw 'Native structural validation did not pass.' }
+        if (($RequireCertified -or $AdoptCompetition) -and -not $profile.certified_profile_required) { throw 'Native profile did not enforce requested certified capabilities.' }
         if ($Mode -eq 'prepare') {
             if ($profile.mode -ne 'prepare_only') { throw 'Expected preparation-only profile.' }
         } else {

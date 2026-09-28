@@ -7,6 +7,9 @@
 // allocation/shares through normal priced commands. No successful renewal is
 // inferred from a submitted command. The wrapper records cryptographic hashes;
 // the native report's FNV fingerprints are explicitly not SHA-256.
+// PREPARE's explicit ADOPT_COMPETITION=1 applies the ordinary native enable
+// command at the saved date, then requires the full active profile. Measurement
+// never adopts; REQUIRE_CERTIFIED=1 checks an already prepared copy instead.
 
 fn s22_date(g: &Game) -> (i32, u32, u32) {
     (g.world.year, g.world.month, g.world.day)
@@ -22,16 +25,42 @@ fn s22_facts(g: &Game) -> Value {
     let w = &g.world;
     let player = w.player.expect("S22 needs a player");
     let n = w.nation(player);
+    let power = spheres_sim::industry_operations::snapshot(w,player);
     json!({"date":w.date_str(),"calendar":s22_date(g),"absolute_day":spheres_sim::clock::absolute_day(w),
         "player":player,"alive":w.nation(player).alive,"seed":w.rules.seed,
         "rules":w.rules,"capabilities":profile_capabilities(w),"owned_work":profile_owned_work(w),
         "history_points":g.history.len(),"dispatches":g.log.len(),"history_epoch":g.history_epoch,
+        "archive":{"first_snapshot":g.history.first().map(|s|s.date_label()),
+            "last_snapshot":g.history.last().map(|s|s.date_label()),
+            "lifespan_milestones":g.history.iter().filter(|s|s.milestone).count(),
+            "first_dispatch":g.log.first().map(|e|&e.date),"last_dispatch":g.log.last().map(|e|&e.date)},
+        "autonomous_policies":{"economic_competition":w.rules.economic_competition,
+            "economic_active":spheres_sim::economic_ai::enabled(w),
+            "economic_plans":w.economic_ai.nations.len(),
+            "economic_reviews":w.economic_ai.nations.values().map(|p|p.evaluations as u64).sum::<u64>(),
+            "supplier_catalogue_enabled":w.supplier_catalogue.enabled,
+            "supplier_catalogue_active":w.supplier_catalogue.enabled&&spheres_sim::economic_ai::enabled(w),
+            "supplier_plans":w.supplier_catalogue.plans.len(),
+            "supplier_reviewed_plans":w.supplier_catalogue.plans.values().filter(|p|p.last_review_day.is_some()).count(),
+            "military_enabled":w.military_ai.enabled,
+            "military_active":w.military_ai.enabled&&spheres_sim::economic_ai::enabled(w),
+            "military_plans":w.military_ai.plans.len(),
+            "military_reviews":w.military_ai.plans.values().map(|p|p.reviews as u64).sum::<u64>()},
+        "player_power":{"as_of_day":power.as_of_day,"capacity_daily":power.power_capacity_daily,
+            "required_daily":power.power_required_daily,"inherited_used_daily":power.inherited_power_used_daily,
+            "facility_used_daily":power.facilities.iter().map(|f|f.power_used_daily).sum::<f64>(),
+            "completed_grid_levels":w.production.provinces.iter().filter(|p|w.districts.get(&p.district)==Some(&player)).map(|p|p.power_grid as u64).sum::<u64>()},
         "player_projects":spheres_sim::production::projects_for(w,player).count(),
         "feature_workload":{"airbases":w.airbases.as_ref().map_or(0,|a|a.bases.len()),
             "air_mission_orders":w.air_missions.as_ref().map_or(0,|a|a.orders.len()),
             "player_squadrons":n.aviation.as_ref().map_or(0,|a|a.squadrons.len()),
             "player_assigned_aircraft":n.aviation.as_ref().map_or(0,|a|a.squadrons.iter().map(|s|s.assigned as u64).sum::<u64>()),
             "player_arsenal_holdings":n.arsenal.held.len(),
+            "player_military_strength":n.mil_strength,
+            "world_military_strength":w.nations.iter().filter(|n|n.alive).map(|n|n.mil_strength).sum::<f64>(),
+            "world_arsenal_holding_rows":w.nations.iter().map(|n|n.arsenal.held.len()).sum::<usize>(),
+            "world_squadrons":w.nations.iter().filter_map(|n|n.aviation.as_ref()).map(|a|a.squadrons.len()).sum::<usize>(),
+            "world_assigned_aircraft":w.nations.iter().filter_map(|n|n.aviation.as_ref()).flat_map(|a|&a.squadrons).map(|s|s.assigned as u64).sum::<u64>(),
             "player_equipment_revisions":n.equipment.as_ref().map_or(0,|e|e.revisions.len()),
             "government_records":w.governments.states.len(),
             "government_performance_records":w.governments.states.iter().filter(|s|s.political_record.is_some()).count(),
@@ -42,6 +71,45 @@ fn s22_facts(g: &Game) -> Value {
         "shooting_wars":w.conflicts.iter().filter(|c|c.shooting()).count(),
         "world_fnv64":format!("{:016x}",spheres_sim::state_hash(w)),
         "journey":g.journey,"pause_reason":campaign_journey::pause_reason(g)})
+}
+
+fn s22_certified_capabilities(w: &WorldState, reviewed: bool) -> Result<(),String> {
+    let r=&w.rules;
+    if !(r.daily_simulation&&r.ideology_blocs&&r.historical_party_leadership&&r.resource_gates
+        &&r.resource_market&&r.logistics_routes&&r.physical_logistics&&r.military_operations
+        &&r.production_system&&r.manufacturing_system&&r.industry_rebuild&&r.fiscal_recovery
+        &&r.operational_warfare==1&&w.campaign.initialized&&w.party_leadership.is_some()
+        &&spheres_sim::population::active(w)&&w.sector_contractors.enabled&&w.supplier_operations.version==1
+        &&spheres_sim::economic_ai::enabled(w)&&w.supplier_catalogue.enabled&&w.military_ai.enabled) {
+        return Err("Required certified workload capabilities are absent or autonomous policies are dormant; explicit ordinary adoption is needed, never a synthetic flag/stock patch".into());
+    }
+    if reviewed && !(w.economic_ai.nations.values().any(|p|p.evaluations>0)
+        &&w.supplier_catalogue.plans.values().any(|p|p.last_review_day.is_some())
+        &&w.military_ai.plans.values().any(|p|p.reviews>0)) {
+        return Err("Thirty ordinary days did not retain actual economic, supplier and military policy reviews; enabled flags alone do not qualify this workload".into());
+    }
+    Ok(())
+}
+
+fn s22_adopt_competition(g: &mut Game) -> Result<Value,String> {
+    let me=g.world.player.ok_or("No player government")?;
+    if me!=NationId::France { return Err("This adoption retains the earned France campaign".into()); }
+    if g.world.rules.economic_competition {
+        s22_certified_capabilities(&g.world,false)?;
+        return Ok(json!({"applied":false,"reason":"Already adopted in the immutable input; no repeat command","date":g.world.date_str()}));
+    }
+    let command=Command::EnableEconomicCompetition{nation:me};
+    let price=spheres_sim::price_of(&g.world,&command);
+    let before=s22_facts(g);let pc_before=g.world.nation(me).political_capital;
+    let mut trial=g.world.clone();apply_command(&mut trial,&command)?;
+    s22_certified_capabilities(&trial,false)?;
+    drop(trial);
+    apply_command(&mut g.world,&command)?;
+    s22_certified_capabilities(&g.world,false)?;
+    Ok(json!({"applied":true,"date":g.world.date_str(),"command":command,"price_pc":price,
+        "payer_pc_before":pc_before,"payer_pc_after":g.world.nation(me).political_capital,
+        "before":before,"after":s22_facts(g),
+        "method":"Normal native command, separately preflighted; no simulated day, grant, redating or retrospective AI history"}))
 }
 
 fn s22_paths() -> (std::path::PathBuf, std::path::PathBuf) {
@@ -131,14 +199,20 @@ fn s22_prepare_checkpoints() {
     let root = out.parent().unwrap().join("campaigns");
     assert!(!root.exists(), "Use a new output directory when resuming a real checkpoint");
     let renew = std::env::var("SPHERES_S22_RENEW_BUDGET").as_deref()==Ok("1");
+    let adopt=std::env::var("SPHERES_S22_ADOPT_COMPETITION").as_deref()==Ok("1");
+    let certified=adopt||std::env::var("SPHERES_S22_REQUIRE_CERTIFIED").as_deref()==Ok("1");
+    let source_facts=s22_facts(&g);
+    let adoption=if adopt {Some(s22_adopt_competition(&mut g).expect("Ordinary economic competition adoption"))}else{None};
+    if certified {s22_certified_capabilities(&g.world,false).expect("Required active profile");}
     let mut report = json!({"format":"spheres-s22-preparation/v1","revision":env!("SPHERES_REVISION"),
         "mode":"prepare_only","passed":false,"input":input,"input_bytes":original.len(),
         "input_fnv64":s22_fingerprint(&original),"starting":s22_facts(&g),"target":target,
+        "immutable_source_facts":source_facts,"competition_adoption":adoption,"certified_profile_required":certified,
         "renew_existing_budget":renew,"checkpoints":[],"control_commands":[],"ordinary_days":0,
         "source_unchanged":true,"method":"Actual daily Game advancement from an unchanged archived France save; no redating, reseeding, grants or authored outcomes. Existing allocations/shares optionally renewed through ordinary priced commands. Every January checkpoint and requested final date saved with the native envelope. Preparation has no performance claim."});
     let journal_path = out.parent().unwrap().join("preparation-journal.jsonl");
     let mut journal = std::fs::OpenOptions::new().write(true).create_new(true).open(journal_path).unwrap();
-    report["checkpoints"].as_array_mut().unwrap().push(s22_checkpoint(&root,"s22-resume-input",&g));
+    report["checkpoints"].as_array_mut().unwrap().push(s22_checkpoint(&root,if adopt{"s22-adopted-input"}else{"s22-resume-input"},&g));
     s22_write_report(&out,&report);
     let mut failure = None;
     while s22_date(&g) < target {
@@ -152,6 +226,7 @@ fn s22_prepare_checkpoints() {
         if ordered { report["control_commands"].as_array_mut().unwrap().push(command_row); }
         if let Err(e) = s22_validate_day(&g,before,log_start,ordered) {failure=Some(e);break;}
         let days = report["ordinary_days"].as_u64().unwrap()+1;report["ordinary_days"]=json!(days);
+        if certified {if let Err(e)=s22_certified_capabilities(&g.world,days>=30){failure=Some(e);break;}}
         if g.world.day==1 || outcome.1.is_some() {
             writeln!(journal,"{}",json!({"facts":s22_facts(&g),"event_pause":outcome.1,
                 "response":"Ordinary event acknowledged by subsequent one-day request; terminal campaign pauses stop preparation"})).unwrap();
@@ -193,6 +268,9 @@ fn s22_read_rooms(g: &Game) -> Value {
 fn s22_measure_checkpoint() {
     let (input,out)=s22_paths();let original=std::fs::read(&input).unwrap();
     let mut g=storage::decode(std::str::from_utf8(&original).unwrap()).unwrap();
+    assert_ne!(std::env::var("SPHERES_S22_ADOPT_COMPETITION").as_deref(),Ok("1"),"Adoption belongs to preparation, before timing");
+    let certified=std::env::var("SPHERES_S22_REQUIRE_CERTIFIED").as_deref()==Ok("1");
+    if certified {s22_certified_capabilities(&g.world,false).expect("Required active profile");}
     let renew=std::env::var("SPHERES_S22_RENEW_BUDGET").as_deref()==Ok("1");
     assert!(s22_date(&g)<=(2035,11,30),"31 daily samples must fit through 31 December 2035");
     let initial=s22_facts(&g);let mut samples=vec![];let mut commands_log=vec![];let mut failure=None;
@@ -208,6 +286,7 @@ fn s22_measure_checkpoint() {
         let start=Instant::now();let delta=history::request(&g,&format!("/api/history?nations={}&epoch={epoch}&after={after}",player.code()));
         let delta_bytes=serde_json::to_vec(&delta).unwrap().len();let delta_ms=ms(start);let whole=ms(all);
         if let Err(e)=s22_validate_day(&g,before,log_start,ordered){failure=Some(e);break;}
+        if certified {if let Err(e)=s22_certified_capabilities(&g.world,index>=29){failure=Some(e);break;}}
         commands_log.push(json!({"index":index,"commands":orders,"event_pause":outcome.1}));
         samples.push(json!({"index":index,"date":g.world.date_str(),"simulation_history_ms":simulation,
             "state_read_model_ms":read_model,"state_serialization_ms":serialization,
@@ -225,6 +304,7 @@ fn s22_measure_checkpoint() {
         let ordered=!commands.is_empty();if ordered{batch_orders.push(serde_json::to_value(&commands).unwrap());}
         let day=spheres_sim::clock::absolute_day(&batch.world);let log_start=batch.log.len();batch.advance_days(1,commands);
         if let Err(e)=s22_validate_day(&batch,day,log_start,ordered){failure=Some(e);break;}settled+=1;
+        if certified {if let Err(e)=s22_certified_capabilities(&batch.world,settled>=30){failure=Some(e);break;}}
     }}
     let batch_ms=ms(batch_start);let batch_final=s22_facts(&batch);
     let extract=|name:&str|samples.iter().map(|s|s[name].as_f64().unwrap()).collect::<Vec<_>>();
@@ -235,12 +315,29 @@ fn s22_measure_checkpoint() {
     let passed=failure.is_none()&&samples.len()==31&&settled==31&&equivalent;
     let report=json!({"format":"spheres-s22-profile/v1","revision":env!("SPHERES_REVISION"),"mode":"measure_input",
         "passed":passed,"failure":failure,"input":input,"input_bytes":original.len(),"input_fnv64":s22_fingerprint(&original),
+        "certified_profile_required":certified,
         "renew_existing_budget":renew,"starting":initial,"final":final_facts,"samples":samples,"summaries":summaries,
         "control_commands":commands_log,"batch":{"ordinary_days":settled,"elapsed_ms":batch_ms,
             "days_per_second":if batch_ms>0.0{settled as f64*1000.0/batch_ms}else{0.0},"control_commands":batch_orders,
             "final":batch_final,"same_final_facts":equivalent},"source_unchanged":std::fs::read(&input).unwrap()==original,
         "method":"31 sequential real daily advances. Raw stage clocks exclude loading, preparation, room reads, save I/O, network and browser. Whole turn includes simulation/history, state read/serialization and selected-history delta; its percentile is not a sum of percentiles. Rooms independently include read plus serialization after each timed turn. Batch reloads the identical input and measures 31 actual daily advances as one wall interval, including command selection/preflight and validity bookkeeping but no room/state serialization. Structural pass does not imply latency/memory acceptance; use frozen S01 limits separately."});
     s22_write_report(&out,&report);assert_eq!(report["source_unchanged"],true);assert!(passed,"Incomplete or unequal native measurements: {}",report["failure"]);
+}
+
+#[test]
+fn s22_explicit_adoption_matches_an_ordinary_command_without_grants_or_redating() {
+    let mut g=Game::new_fresh(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
+    g.advance_days(1,vec![]); // Ordinary initial enrollment settles before this adoption proof.
+    assert!(s22_certified_capabilities(&g.world,false).is_err(),"Enabled but dormant AI does not qualify");
+    let mut expected=g.world.clone();let archive=serde_json::to_string(&(&g.history,&g.log)).unwrap();let date=s22_date(&g);
+    apply_command(&mut expected,&Command::EnableEconomicCompetition{nation:NationId::France}).unwrap();
+    let receipt=s22_adopt_competition(&mut g).unwrap();assert_eq!(receipt["applied"],true);
+    assert_eq!(receipt["price_pc"],0.0);assert_eq!(save(&g.world),save(&expected));
+    assert_eq!(s22_date(&g),date);assert_eq!(serde_json::to_string(&(&g.history,&g.log)).unwrap(),archive);
+    assert!(s22_certified_capabilities(&g.world,true).is_err(),"No retrospectively invented policy reviews");
+    assert_eq!(s22_adopt_competition(&mut g).unwrap()["applied"],false);
+    for _ in 0..31 {g.advance_days(1,vec![]);}
+    s22_certified_capabilities(&g.world,true).expect("Actual ordinary reviews after a policy cycle");
 }
 
 #[test]
