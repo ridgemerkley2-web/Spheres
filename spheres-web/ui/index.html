@@ -14000,14 +14000,16 @@ function onMapPick(e) {
     else if (work.district) selectProvince(work.district, true);
     return;
   }
+  // An actually drawn country label wins over a nearby city's wider marker
+  // radius. These targets exist only where basemap country geometry is absent.
+  const label = GLOBE?.nationLabelAt(e.clientX, e.clientY);
+  if (label && nationById(label)) { ui.selectedCity = null; renderMapCity(); openNation(label); return; }
   if (GLOBE?.cityFrame && window.CityDetail) {
     const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
     const city = CityDetail.pick(GLOBE.cityFrame,
       (e.clientX - rect.left) * (size?.ratio || 1), (e.clientY - rect.top) * (size?.ratio || 1));
     if (city) { selectMapCity(city, false); return; }
   }
-  const label = GLOBE?.nationLabelAt(e.clientX, e.clientY);
-  if (label && nationById(label)) { ui.selectedCity = null; renderMapCity(); openNation(label); return; }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   ui.selectedCity = null; renderMapCity();
