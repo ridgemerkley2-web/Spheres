@@ -343,6 +343,9 @@ fn company_import_preview(w:&WorldState,me:NationId,session:&str,command:&Value,
 fn company_amount(row: &Value, key: &str) -> f64 {row[key].as_f64().unwrap_or(0.0)}
 fn company_count(row: &Value, key: &str) -> u64 {row[key].as_u64().unwrap_or(0)}
 fn company_text<'a>(row: &'a Value, key: &str) -> &'a str {row[key].as_str().unwrap_or("")}
+fn company_idle_stock_status(stock:u64,target:u64)->&'static str {
+    if stock<target {"Waiting for plant"} else {"Stock target met"}
+}
 fn company_cash_input(key: &str, label: &str, value: f64) -> Value {
     json!({"key":key,"label":label,"type":"number","value":value,"min":0.001,"max":1_000_000,"step":0.001,"unit":"$m"})
 }
@@ -444,7 +447,9 @@ fn company_supplier_market(w:&WorldState,me:NationId)->Value {
             status_name(row["last_review_status"].as_str().unwrap_or(company_text(row,"status")))
         }else{"No review yet"};
         let live=row["products"].as_array().and_then(|p|p.first());
-        let status=live.map(|p|status_name(company_text(p,"status"))).unwrap_or(programme_status);
+        let status=live.map(|p|if company_text(p,"status")=="idle" {
+            company_idle_stock_status(company_count(p,"ready_stock"),company_count(p,"target"))
+        }else{status_name(company_text(p,"status"))}).unwrap_or(programme_status);
         let mut milestones:Vec<Value>=row["facilities"].as_array().into_iter().flatten().map(|facility|json!({
             "label":facility["name"],"value":format!("{} completed levels",company_count(facility,"level")),
             "detail":if let Some(progress)=facility["progress"].as_f64(){format!("Funded construction {:.1}% complete. {}",progress*100.0,company_text(facility,"reason"))}
@@ -620,7 +625,7 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
             }
             if certified {product_actions.push(target_action(w,me,revision));}
             if eq::is_aviation_platform(platform) {product_actions.push(nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})));}
-            let status=match company_text(p,"status") {"development"|"engineering"=>"Engineering","prototype"=>"Prototype development","trials"=>"Vehicle trials","tooling"=>"Preparing production","manufacturing"=>"Building company stock","stock"|"in_stock"=>"In stock","idle"=>"Stock target met","cancelled"=>"Development cancelled","blocked"=>"Needs attention",other=>other};
+            let status=match company_text(p,"status") {"development"|"engineering"=>"Engineering","prototype"=>"Prototype development","trials"=>"Vehicle trials","tooling"=>"Preparing production","manufacturing"=>"Building company stock","stock"|"in_stock"=>"In stock","idle"=>company_idle_stock_status(stock,target),"cancelled"=>"Development cancelled","blocked"=>"Needs attention",other=>other};
             let phase=match company_text(p,"status") {"development"|"engineering"|"prototype"|"trials"=>"development","in_stock"|"stock"=>"stock",other=>other};
             let mut metrics=vec![metric("Platform",eq::PLATFORMS.iter().find(|def|def.id==platform).map_or(platform,|def|def.name)),metric("Government development paid",company_money(company_amount(p,"development_spent_bn"))),
                 metric("Company tooling paid",company_money(company_amount(p,"tooling_spent_bn"))),metric("Units manufactured",company_count(p,"produced_units")),metric("Units sold",company_count(p,"sold_units")),
@@ -1118,6 +1123,59 @@ mod company_view_tests {
         assert!(milestones.iter().any(|m|m["value"].as_str().is_some_and(|v|v.starts_with("8.50 / ")&&v.ends_with("paid work-days"))));
         assert!(milestones.iter().any(|m|m["label"]=="Last administrative review"&&m["value"]=="Working capital settling"));
         assert!(spheres_sim::save(&g.world)==before,"Reading current product work cannot settle administrative receipts");
+    }
+
+    #[test]
+    fn queued_aircraft_is_not_a_met_stock_target_in_either_company_view() {
+        let (mut g,site)=fixture();
+        // Authored certification isolates native scheduling and its display;
+        // this is not evidence of earned campaign development or inventory.
+        g.world.nation_mut(ME).equipment.get_or_insert_with(Default::default).learned
+            .extend(["air_propulsion_integration","air_mission_systems","air_fighter_integration"].map(str::to_string));
+        let formed=reviewed(&g,establish_command(&site));confirm(&mut g,&formed);
+        let company=g.world.companies.firms[0].id;
+        let platform=eq::PLATFORMS.iter().find(|p|eq::is_aviation_platform(p.id)).unwrap().id;
+        let spec=eq::default_spec(platform);
+        let aircraft=reviewed(&g,json!({"kind":"company_develop","company":company,
+            "name":"Queued aircraft","platform":spec.platform,"components":spec.components,
+            "daily_budget_mn":0.1,"stock_target":2}));
+        confirm(&mut g,&aircraft);
+        let today=spheres_sim::clock::absolute_day(&g.world);
+        let first=&mut g.world.companies.firms[0].products[0];
+        first.certified_day=Some(today);let product=first.id;let revision=first.revision_id.clone();
+        g.world.nation_mut(ME).equipment.as_mut().unwrap().revisions.get_mut(&revision).unwrap().certified_day=Some(today);
+        let spec=eq::default_spec("ground_apc");
+        let development=reviewed(&g,json!({"kind":"company_develop","company":company,
+            "name":"Priority development","platform":spec.platform,"components":spec.components,
+            "daily_budget_mn":0.1,"stock_target":2}));
+        confirm(&mut g,&development);
+        g.world.supplier_catalogue.plans.insert(ME,spheres_sim::supplier_catalogue::Plan{
+            district:Some(site),company:Some(company),last_review_day:Some(today),
+            status:"development".into(),reason:"Existing administrative review.".into()});
+
+        for (stock,target,expected,market_expected) in [
+            (0,2,"Waiting for plant","Waiting for plant"),
+            (0,0,"Stock target met","Stock target met"),
+            (1,2,"In stock","Available stock"),
+        ] {
+            let first=&mut g.world.companies.firms[0].products[0];
+            first.stock=stock;first.stock_target=target;
+            spheres_sim::clock::advance_date(&mut g.world);
+            companies::tick_day(&mut g.world);
+            let native=&g.world.companies.firms[0].products[0];
+            assert_eq!(native.status,if stock==0 {"idle"} else {"in_stock"});
+            assert_eq!(native.reason,if stock<target {"Waiting for the leased plant's current product."}
+                else {"The finite stock target is met. No public purchase is implied."});
+            let native_reason=native.reason.clone();let before=spheres_sim::save(&g.world);
+            let board=company_board(&g.world,ME);
+            let row=board["products"].as_array().unwrap().iter().find(|p|p["product"]==product).unwrap();
+            assert_eq!(row["status"],expected);assert_eq!(row["detail"],native_reason);
+            assert_eq!(row["availability"]["ready_stock"],stock);
+            let market=company_supplier_market(&g.world,NationId::Tonga);
+            let program=market["programs"].as_array().unwrap().iter().find(|p|p["company"]==company).unwrap();
+            assert_eq!(program["status"],market_expected);assert_eq!(program["detail"],native_reason);
+            assert_eq!(spheres_sim::save(&g.world),before,"Status rendering cannot advance work or change assets");
+        }
     }
 
     #[test]

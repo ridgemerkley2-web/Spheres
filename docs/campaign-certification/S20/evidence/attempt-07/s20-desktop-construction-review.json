@@ -1,0 +1,114 @@
+{
+  "as_of_day": 3419,
+  "can_start": true,
+  "capacity_micros": null,
+  "cost_bn": 0.2,
+  "district": "FRA_le-de-france",
+  "district_name": "Île-de-France",
+  "eta_days": 360,
+  "minimum_days": 360,
+  "name": "Infrastructure",
+  "nation_name": "France",
+  "national_effects": [
+    {
+      "after": 0,
+      "before": 0,
+      "detail": "Links incident to this province whose actual modeled capacity rises. Other links, sea capacity, route access and travel time are unchanged.",
+      "label": "Mapped freight links improved",
+      "unit": "links"
+    },
+    {
+      "after": 0.2,
+      "after_label": "If queued",
+      "before": 0,
+      "detail": "Remaining cash bills for this country's funded buildings and mines. No lump-sum treasury debit at order time.",
+      "label": "Unpaid construction commitments",
+      "unit": "$bn"
+    },
+    {
+      "after": 0.014220119524390104,
+      "after_label": "If queued",
+      "before": null,
+      "detail": "A scale comparison for the total contract, not an annual tax increase or projected GDP return.",
+      "label": "Quoted contract / current annual GDP",
+      "unit": "% of annual GDP"
+    },
+    {
+      "after": 0.3995674885636159,
+      "after_label": "If queued",
+      "before": 0.3995674885636159,
+      "detail": "Starting a project shares this budget; it does not increase the budget automatically.",
+      "label": "National daily construction budget",
+      "unit": "$bn/day"
+    },
+    {
+      "after": 0.0005555555555555556,
+      "after_label": "If queued",
+      "before": 0,
+      "detail": "Exact opening-queue quote at normal priority, bounded by remaining capital authority and the shared daily cap.",
+      "label": "Today's funding for this proposed project",
+      "unit": "$bn/day"
+    }
+  ],
+  "notes": [
+    "After values describe completed facilities at the current rules, prices and ownership. Rated output requires operating inputs and funding; it is not guaranteed production, GDP, tax income or profit.",
+    "Construction is paid as work progresses. No raw materials, manufactured goods or political capital are charged to start this building; paid work is sunk if cancelled.",
+    "The initial cost is unassigned base work. Choosing a construction contractor later can add separately reviewed service fees within the same funding budget.",
+    "ETA holds today's allocation to this new normal-priority project constant. Queue completions, budget changes and fiscal renewals can change the finish date.",
+    "This level does not increase a mapped land-corridor ceiling today: an adjacent endpoint, missing mapped link or disabled freight model limits the result."
+  ],
+  "operating_requirements": [
+    {
+      "detail": "Freight benefits require resource gates, the resource market, freight routes and physical logistics. This investment has no separate modeled facility upkeep.",
+      "label": "Physical freight model enabled",
+      "unit": "enabled",
+      "value": 1
+    }
+  ],
+  "project_kind": "infrastructure",
+  "province_effects": [
+    {
+      "after": 1,
+      "before": 0,
+      "detail": "Completed physical assets only; other queued projects are not assumed complete.",
+      "label": "Completed facility levels",
+      "unit": "levels"
+    },
+    {
+      "after": 806.4516129032257,
+      "before": 806.4516129032257,
+      "detail": "Current-date edge ceiling. The weaker endpoint and terrain determine capacity; a route remains limited by its tightest segment and access rights.",
+      "label": "Corridor to Bourgogne-Franche-Comté",
+      "unit": "modeled tonnes/day"
+    },
+    {
+      "after": 806.4516129032257,
+      "before": 806.4516129032257,
+      "detail": "Current-date edge ceiling. The weaker endpoint and terrain determine capacity; a route remains limited by its tightest segment and access rights.",
+      "label": "Corridor to Centre-Val de Loire",
+      "unit": "modeled tonnes/day"
+    },
+    {
+      "after": 806.4516129032257,
+      "before": 806.4516129032257,
+      "detail": "Current-date edge ceiling. The weaker endpoint and terrain determine capacity; a route remains limited by its tightest segment and access rights.",
+      "label": "Corridor to Grand Est",
+      "unit": "modeled tonnes/day"
+    },
+    {
+      "after": 806.4516129032257,
+      "before": 806.4516129032257,
+      "detail": "Current-date edge ceiling. The weaker endpoint and terrain determine capacity; a route remains limited by its tightest segment and access rights.",
+      "label": "Corridor to Hauts-de-France",
+      "unit": "modeled tonnes/day"
+    },
+    {
+      "after": 806.4516129032257,
+      "before": 806.4516129032257,
+      "detail": "Current-date edge ceiling. The weaker endpoint and terrain determine capacity; a route remains limited by its tightest segment and access rights.",
+      "label": "Corridor to Normandie",
+      "unit": "modeled tonnes/day"
+    }
+  ],
+  "reason": null
+}

@@ -1,0 +1,218 @@
+{
+  "annual_growth": 0.003505,
+  "change_since_1990": 0.042024,
+  "day": 13,
+  "density_per_sqkm": 919.1887,
+  "economy": {
+    "change_since_opening": 0.1074526954268531,
+    "change_since_opening_bn": 29.97302132600663,
+    "contribution_date": {
+      "day": 12,
+      "month": 5,
+      "year": 1999
+    },
+    "current_date": {
+      "day": 13,
+      "month": 5,
+      "year": 1999
+    },
+    "id": "FRA_le-de-france",
+    "inherited_gdp_bn": 308.9112522832676,
+    "materials_accounting": {
+      "additional_annual_bn": 0,
+      "already_included_annual_bn": 0,
+      "background_annual_bn": 16.560162643655733,
+      "observed_annual_bn": 0,
+      "total_annual_bn": 16.560162643655733,
+      "unobserved_annual_bn": 16.560162643655733
+    },
+    "name": "Île-de-France",
+    "nation": "France",
+    "note": "Modeled province accounts: broad national agriculture/industry/services shares use frozen WDI observations or disclosed income-peer estimates; manufacturing retains the inherited UNIDO estimate. Sub-sector splits and bounded density-weighted population allocations are model assumptions. Province weights follow land and reconcile to national GDP; this grants no output or inventory. See inherited-industry source records for observation years, peer countries and normalization.",
+    "opening_date": {
+      "day": 1,
+      "month": 1,
+      "year": 1990
+    },
+    "opening_gdp_bn": 278.9415491806844,
+    "project_gdp_bn": 0.0033182234234077857,
+    "projects": [
+      {
+        "annual_gdp_bn": 0.00021076027958262414,
+        "annualization_days": 365,
+        "classification": "incremental_value_added",
+        "counted": true,
+        "daily_value_added_bn": 5.774254235140387e-7,
+        "district": "FRA_le-de-france",
+        "gross_output_daily_bn": 6.065218413690476e-7,
+        "id": "site:FRA_le-de-france:generation",
+        "intermediate_inputs_daily_bn": 2.9096417855008797e-8,
+        "kind": "generation",
+        "name": "Power Generation",
+        "output_quantity_daily": 0.06065218413690475,
+        "output_unit": "modeled power units",
+        "payments_daily_bn": 1.2130436827380949e-7,
+        "reason": "Only power actually consumed by running factories, apportioned across available generation by capacity. Plants deduct this same internal power value; generating coal is deducted here once.",
+        "sector": "utilities",
+        "status": "dispatching",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      },
+      {
+        "annual_gdp_bn": 0.0031074631438251614,
+        "annualization_days": 365,
+        "classification": "incremental_value_added",
+        "counted": true,
+        "daily_value_added_bn": 0.00000851359765431551,
+        "district": "FRA_le-de-france",
+        "gross_output_daily_bn": 0.0000101388,
+        "id": "site:FRA_le-de-france:starter_industry",
+        "intermediate_inputs_daily_bn": 0.0000016252023456844903,
+        "kind": "starter_industry",
+        "name": "Starter Industry",
+        "output_quantity_daily": 0.101388,
+        "output_unit": "intermediate packs",
+        "payments_daily_bn": 0.0000010138800000000002,
+        "reason": "Actual packs produced, less consumed raw materials, intermediate packs and internal power. Model prices are not sales proceeds or profit; wages are not deducted from value added.",
+        "sector": "manufacturing",
+        "status": "producing",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      }
+    ],
+    "receipt_date_label": "Work settled 12 May 1999 · not a forecast",
+    "sectors": [
+      {
+        "gdp_bn": 10.519595434114505,
+        "id": "agriculture",
+        "name": "Agriculture",
+        "share": 0.034053412944750214
+      },
+      {
+        "gdp_bn": 10.266367034905906,
+        "id": "extraction",
+        "name": "Extraction",
+        "share": 0.03323367692908334
+      },
+      {
+        "gdp_bn": 49.5093722751715,
+        "id": "manufacturing",
+        "name": "Manufacturing",
+        "share": 0.16026881540085575
+      },
+      {
+        "gdp_bn": 6.844455450216852,
+        "id": "utilities",
+        "name": "Utilities",
+        "share": 0.022156466880116306
+      },
+      {
+        "gdp_bn": 11.977428207390222,
+        "id": "construction",
+        "name": "Construction",
+        "share": 0.038772623083930556
+      },
+      {
+        "gdp_bn": 39.96315492816218,
+        "id": "transport",
+        "name": "Transport & logistics",
+        "share": 0.12936636450204797
+      },
+      {
+        "gdp_bn": 119.88946478448655,
+        "id": "services",
+        "name": "Market services",
+        "share": 0.38809909350614386
+      },
+      {
+        "gdp_bn": 59.944732392243296,
+        "id": "public_services",
+        "name": "Public services",
+        "share": 0.194049546753072
+      }
+    ],
+    "settled_day": 3418,
+    "total_gdp_bn": 308.914570506691
+  },
+  "id": "FRA_le-de-france",
+  "month": 5,
+  "name": "Île-de-France",
+  "national_share": 0.186765,
+  "opening_population": 10.645582,
+  "owner": "France",
+  "owner_count": 18,
+  "owner_name": "France",
+  "owner_rank": 1,
+  "population": 11.092953,
+  "starting_industry": {
+    "allocation_basis": "Population with a bounded density proxy for urban activity (0.75–1.25 times population, then normalized). Model allocation, not measured provincial GDP or historical factory locations. Broad sector observations and fallback sources are frozen with the campaign.",
+    "capacity_annual_bn": 55.87913235090415,
+    "current_output_annual_bn": 49.506264812027666,
+    "district": "FRA_le-de-france",
+    "factory_equivalents": 558.7913235090414,
+    "groups": [
+      {
+        "capacity_annual_bn": 7.709928554596257,
+        "current_output_annual_bn": 6.830631555063509,
+        "factory_equivalents": 77.09928554596256,
+        "key": "food_textiles",
+        "name": "Food & textiles",
+        "opening_output_annual_bn": 6.167942843677006,
+        "utilization": 0.885952639728606
+      },
+      {
+        "capacity_annual_bn": 18.691927650589324,
+        "current_output_annual_bn": 16.560162643655733,
+        "factory_equivalents": 186.91927650589324,
+        "key": "materials",
+        "name": "Materials",
+        "opening_output_annual_bn": 14.953542120471463,
+        "utilization": 0.885952639728606
+      },
+      {
+        "capacity_annual_bn": 6.7865143406131185,
+        "current_output_annual_bn": 6.012530294622231,
+        "factory_equivalents": 67.86514340613118,
+        "key": "chemicals",
+        "name": "Chemicals",
+        "opening_output_annual_bn": 5.429211472490495,
+        "utilization": 0.8859526397286058
+      },
+      {
+        "capacity_annual_bn": 19.163789639337544,
+        "current_output_annual_bn": 16.978210018174806,
+        "factory_equivalents": 191.63789639337543,
+        "key": "machinery_electronics",
+        "name": "Machinery & electronics",
+        "opening_output_annual_bn": 15.331031711470036,
+        "utilization": 0.8859526397286059
+      },
+      {
+        "capacity_annual_bn": 3.526972165767907,
+        "current_output_annual_bn": 3.1247303005113913,
+        "factory_equivalents": 35.26972165767907,
+        "key": "other",
+        "name": "Other manufacturing",
+        "opening_output_annual_bn": 2.821577732614326,
+        "utilization": 0.8859526397286047
+      }
+    ],
+    "nation": "France",
+    "note": "Estimated factory equivalents, not literal establishments. Inherited manufacturing output is already included in GDP; no goods, cash, operating inputs or construction are granted. Capacity stays frozen while the existing macroeconomy changes its output. Utilization above 100% indicates that output has outgrown the opening estimate, not new automatically built factories.",
+    "opening_output_annual_bn": 44.703305880723335,
+    "origin": "France",
+    "source": {
+      "manufacturing_share": 0.16026047755175676,
+      "mix_quality": "partial_1990_model",
+      "notes": "GAME CAPACITY ESTIMATE, not a literal factory or establishment census. Source GDP is retained for ratio provenance only; it does not replace the calibrated game GDP.\nPartial 1990 GAME MODEL sector profile: same-group aggregate parents counted once; any explicitly listed missing divisions use the within-country median positive uncombined value. Raw source nulls remain unknown.",
+      "origin": "France",
+      "share_quality": "sourced_1990",
+      "source": "{\n  \"country_iso3\": \"FRA\",\n  \"footnotes\": [\n    {\n      \"scope\": \"ym\",\n      \"value\": [\n        {\n          \"metadataList\": [\n            {\n              \"note\": \"Yes.\",\n              \"noteClass\": \"Adjusted for non-response\"\n            },\n            {\n              \"note\": \"Service des Etudes et des Statistiques  Industrielles (SESSI), Ministère de l'Economie, des Finances et de l'Industrie, Paris.Industrial statistics for the OECD countries are compiled by the OECD secretariat, which supplies them to UNIDO.\",\n              \"noteClass\": \"Data Supplier\"\n            },\n            {\n              \"note\": \"Data were originally classified according to the Nomenclature d'Activités et de Produits with 100 headings (NAP 100). The national conversion table was used to produce the ISIC-classified figures.\",\n              \"noteClass\": \"Deviations from ISIC\"\n            },\n            {\n              \"note\": \"Mail questionnaires.\",\n              \"noteClass\": \"Method of data collection\"\n            },\n            {\n              \"note\": \"La situation de l'industrie, published by Service des Etudes et des Statistiques Industrielles (SESSI), Ministère de l'Economie, des Finances et de l'Industrie, Paris.\",\n              \"noteClass\": \"Related national publications\"\n            },\n            {\n              \"note\": \"Kind-of-activity units with 20 or more employees.\",\n              \"noteClass\": \"Scope\"\n            },\n            {\n              \"note\": \"Annual survey; administrative data; business register.\",\n              \"noteClass\": \"Source\"\n            },\n            {\n              \"note\": \"Value added at factor values\",\n              \"noteClass\": \"Table Note\"\n            }\n          ],\n          \"year\": \"1990\"\n        }\n      ]\n    }\n  ],\n  \"indstat_cache_key\": \"6ffe8b45501c0fa91461a28e1358153c63f94b4dc0cf13bdaf5b953093647d53\",\n  \"indstat_country_code\": \"250\",\n  \"indstat_metadata_url\": \"https://stat.unido.org/portal/dataset/getDataset/INDSTAT/3\",\n  \"indstat_variable\": \"20\",\n  \"national_accounts_cache_key\": \"fcba21d924ceb0278ba85fda2476f1097bece7f0237c59c7bd41f8da071efc58\",\n  \"national_accounts_country_code\": \"250\",\n  \"national_accounts_metadata_url\": \"https://stat.unido.org/portal/dataset/getDataset/NATIONAL_ACCOUNTS\",\n  \"national_accounts_notes\": {\n    \"vm\": [],\n    \"ym\": []\n  },\n  \"national_accounts_observations\": [\n    {\n      \"c\": \"GdpCud\",\n      \"p\": \"1990\",\n      \"v\": 1257608803749.31\n    },\n    {\n      \"c\": \"MvaCud\",\n      \"p\": \"1990\",\n      \"v\": 201544987462.158\n    }\n  ],\n  \"national_accounts_reporter\": null,\n  \"national_accounts_variables\": [\n    \"GdpCud\",\n    \"MvaCud\"\n  ],\n  \"provider\": \"UNIDO\",\n  \"sector_mix_model\": {\n    \"aggregates\": [],\n    \"covered_by_parent\": [],\n    \"covered_divisions\": 20,\n    \"imputation_basis\": \"Within-country median of positive uncombined observed division value added; GAME MODEL estimate, not a historical observation.\",\n    \"imputed_value_added\": {\n      \"15\": 5539323500,\n      \"16\": 5539323500,\n      \"37\": 5539323500\n    },\n    \"missing_divisions\": [\n      \"15\",\n      \"16\",\n      \"37\"\n    ],\n    \"observed_divisions\": 20\n  }\n}",
+      "source_gdp_usd": 1257608803749.31,
+      "source_mva_share": 0.16026047755175676,
+      "source_mva_usd": 201544987462.158
+    },
+    "utilization": 0.8859526397286058
+  },
+  "world_count": 2610,
+  "world_rank": 88,
+  "year": 1999
+}

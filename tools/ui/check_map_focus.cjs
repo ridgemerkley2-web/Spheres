@@ -6,6 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const {test} = require('node:test');
 const page = fs.readFileSync(path.resolve(__dirname, '../../spheres-web/ui/index.html'), 'utf8');
+const provinceHelpers = fs.readFileSync(path.resolve(__dirname, '../../spheres-web/ui/province-economy-ui.js'), 'utf8');
 const helperNames = ['rememberMapControlFocus', 'restoreMapControlFocus', 'closeNavigationDisclosure', 'resourceCommodityChips'];
 function source(name) {
   const found = new RegExp('^function ' + name + '\\(', 'm').exec(page);
@@ -48,6 +49,8 @@ function fixture() {
         if (key === 'open') return this.open ? '' : null; if (key === 'disabled') return this.disabled ? '' : null;
         if (key.startsWith('data-')) return this.dataset[key.slice(5).replace(/-([a-z])/g, (_, ch) => ch.toUpperCase())] ?? null;
         return this.attributes[key] ?? null;},
+      setAttribute(key,value) {this.attributes[key]=value;},
+      append(...children) {for(const child of children){child.remove();this.children.push(child);child.parentElement=this;}},
       hasAttribute(key) {return this.getAttribute(key) !== null;},
       contains(other) {return this === other || this.children.some(child => child.contains(other));},
       closest(selector) {for (let item = this; item; item = item.parentElement) if (matches(item, selector)) return item; return null;},
@@ -66,6 +69,7 @@ function fixture() {
   document.querySelectorAll = selector => document.body.querySelectorAll(selector);
   document.querySelector = selector => document.querySelectorAll(selector)[0] || null;
   document.getElementById = id => document.querySelector('#' + id);
+  document.createElement = tag => node(tag);
   const app = node('main', {id: 'app'}, document.body);
   const timeMenu = node('details', {className: 'arc-time-menu'}, app);
   const timeSummary = node('summary', {}, timeMenu); const save = node('button', {}, timeMenu);
@@ -85,6 +89,7 @@ function fixture() {
     CSS: {escape: value => String(value).replace(/["\\]/g, char => '\\' + char)},
   });
   for (const name of helperNames) vm.runInContext(source(name), c);
+  vm.runInContext(provinceHelpers,c);
   const event = (target, key = 'Escape') => ({key, target, prevented: false, stopped: false,
     preventDefault() {this.prevented = true;}, stopPropagation() {this.stopped = true;}});
   return {c, document, node, app, mapModes, mode, overlay, resChips, commodity, layers, layersSummary,
@@ -207,4 +212,56 @@ test('the global Escape path handles navigation before closing a province and re
 
 test('the shipped map focus, disclosure and commodity helpers exist and parse', () => {
   for (const name of helperNames) assert.doesNotThrow(() => new vm.Script(source(name)));
+});
+
+test('detail refresh restores keyed focus, preserves an unrelated active control and rejects an old campaign',()=>{
+  const f=fixture(),panel=f.node('aside',{id:'provinceDossier'},f.app);
+  const title=f.node('h2',{id:'provinceTitle',dataset:{mapDetailHeading:''}},panel);
+  let button=f.node('button',{dataset:{mapDetailFocus:'province-center'}},panel);button.focus();
+  const saved=f.c.rememberMapDetailFocus(panel);button.remove();
+  button=f.node('button',{dataset:{mapDetailFocus:'province-center'}},panel);
+  assert.equal(f.c.restoreMapDetailFocus(panel,saved),true);assert.equal(f.document.activeElement,button);
+  f.outside.focus();assert.equal(f.c.restoreMapDetailFocus(panel,saved),false);assert.equal(f.document.activeElement,f.outside);
+  f.document.activeElement=f.document.body;button.remove();
+  assert.equal(f.c.restoreMapDetailFocus(panel,saved),true);assert.equal(f.document.activeElement,title,'disappearing Retry falls back to readable heading');
+  vm.runInContext('PROVINCE_DOSSIER_UI.campaign++',f.c);f.document.activeElement=f.document.body;
+  assert.equal(f.c.restoreMapDetailFocus(panel,saved),false);assert.equal(f.document.activeElement,f.document.body);
+});
+
+test('closing a detail restores a visible opener or the persistent Find control',()=>{
+  const f=fixture(),find=f.node('button',{id:'worldFindBtn'},f.app);
+  f.c.returnMapDetailFocus(f.outside);assert.equal(f.document.activeElement,f.outside);
+  f.outside.hidden=true;f.c.returnMapDetailFocus(f.outside);assert.equal(f.document.activeElement,find);
+  f.outside.remove();f.c.returnMapDetailFocus(f.outside);assert.equal(f.document.activeElement,find);
+});
+
+function cityFixture() {
+  const f=fixture(),pane=f.node('section',{id:'pane-map'},f.app);
+  f.node('div',{className:'globe-stage'},pane);f.find=f.node('button',{id:'worldFindBtn'},f.app);
+  Object.assign(f.c,{ui:{selectedCity:{name:'Paris',lon:2.35,lat:48.86,pop:2000000,capital:true}},
+    DINDEX:{paris:{id:'paris',name:'Île-de-France'}},Globe3D:{project:()=>[2,48]},countryAt:()=> 'FRA',
+    districtAt:()=>({id:'paris'}),nationOfDistrict:()=> 'current-owner',nationById:()=>({name:'Current owner nation'}),
+    cityIndexFor:()=>-1,GLOBE:{schedule(){}},selectProvince:()=>true,selectMapCity:()=>{}});
+  for(const name of ['cityProvince','closeMapCity','renderMapCity'])vm.runInContext(source(name),f.c);
+  f.c.renderMapCity();return f;
+}
+
+test('city redraw retains its action focus and current owner without changing geographic caveats',()=>{
+  const f=cityFixture(),old=f.document.getElementById('mapCityCard');
+  const explore=old.querySelector('[data-map-detail-focus="city-explore"]');explore.focus();f.c.renderMapCity();
+  const card=f.document.getElementById('mapCityCard');assert.notEqual(old,card);
+  assert.equal(f.document.activeElement,card.querySelector('[data-map-detail-focus="city-explore"]'));
+  assert.match(card.querySelector('.map-city-owner').textContent,/Current owner nation.*Île-de-France/);
+  assert.match(source('renderMapCity'),/the size and setting follow the record, the streets do not/);
+  f.document.activeElement=card.querySelector('[data-map-detail-focus="city-close"]');f.c.closeMapCity();
+  assert.equal(f.document.getElementById('mapCityCard'),null);assert.equal(f.document.activeElement,f.find);
+});
+
+test('unmapped city Province is disabled and even a stale action cannot dismiss the city',()=>{
+  const f=cityFixture();f.c.districtAt=()=>null;f.c.renderMapCity();
+  const card=f.document.getElementById('mapCityCard'),button=card.querySelector('[data-map-detail-focus="city-province"]');
+  assert.equal(button.disabled,true);assert.match(card.querySelector('.map-city-owner').textContent,/mapping unavailable/);
+  button.onclick();assert.equal(f.document.getElementById('mapCityCard'),card);assert.equal(f.c.ui.selectedCity.name,'Paris');
+  f.c.districtAt=()=>({id:'paris'});f.c.selectProvince=()=>false;button.onclick();
+  assert.equal(f.document.getElementById('mapCityCard'),card,'a refused province open does not close the city');
 });

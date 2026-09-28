@@ -310,11 +310,69 @@ defects were handled as follows.
 | Arabic 2015 dateline evidence omitted | info | **Applied.** Portal time and 02:33 trailer added to the uncertainty |
 | A/224 portal date "differs" | info | **Applied.** Explained as the 28 Oct filing day; printed 29/11/1432 = 27 Oct stands |
 
+## Source review (CLAUDE-C01-SOURCE-06)
+
+Reviewed 27 September 2026 (Pacific time) on `claude/c01-source-06`. Codex's premerge identity
+sample of 27 September re-downloaded the Public Papers page cited by `sa_bush41_address_19900808`
+and received 32,782 bytes (SHA-256 `ad596dc9…aa8c`) instead of the recorded 31,889 bytes
+(`539f1155…a1c3`).
+
+Method. The researcher's retained copy of the 21 September response (not checked in) still has the
+recorded identity. The page was downloaded with `curl -L` and no `Accept-Encoding` header at
+23:38:07 UTC on 27 September, with a cache-busting query at 23:43:24 UTC, and again at 00:09:02 UTC on
+28 September, more than 30 minutes after the first download. All three bodies were 32,782 bytes
+with Codex's SHA-256, although `Last-Modified` and `ETag` changed between requests. The recorded and
+live bodies were diffed line by line, and every changed hunk is classified below.
+
+| Recorded → live lines | Bytes | Change | Class |
+|---|---:|---|---|
+| 12 → 12 | 0 | Generator meta tag: Drupal 10 → Drupal 11 | Page furniture: platform metadata |
+| 21–22 → 21–22 | 0 | Two aggregated stylesheet file names changed | Page furniture: cache-busting asset names |
+| 24 → 24–27 | +2,559 | The head's empty script slot now holds the settings JSON, moved byte-identical from the footer, a header script aggregate and `menu-accordion-init.js?tm0po6` | Page furniture: script placement and assets |
+| 64 → 67 | −80 | Site-search block wrapper attributes | Page furniture: navigation |
+| 69 → 72 | +31 | Site-search form gains `data-component-variant="small"` | Page furniture: navigation |
+| 426–427 → 429–432 | −1,617 | Footer script aggregate replaced by jQuery 4.0.0, two new aggregates and jQuery Migrate 3.5.2 | Page furniture: script assets |
+
+The six hunks account for the whole +893-byte difference. Neither body contains a session value,
+form token, nonce or timestamp. The `<title>` (159 bytes), the page-title `<h1>` (206 bytes) and the
+`<article>` element (9,701 bytes, SHA-256 `a24fc94c…3bbf`) are byte-identical. The article holds
+the Public Papers ID (2147), the date field (08/08/1990) and the whole address, including the
+consultation paragraph (paragraph 13 of 21) and the closing editorial Note (paragraph 21) naming
+"King Fahd bin `Abd al-`Aziz Al Sa`ud of Saudi Arabia". **No factual content changed**: the claim
+text, its `attested_on` date and the Fahd holder stay as recorded.
+
+Reproducible identity. The address span, from `<p>In the life of a nation` through the `</p>` that
+closes the `<p>Note: ` paragraph, is 8,979 bytes with SHA-256
+`4bf739376d87f635a7687bf06f792ee84d504b921c9db9b82c85ffa7b055a4bf` in the recorded response, the
+live responses and the archive capture below. The full live response is an observation only: it
+changed with the site update and will change again when the asset names or the `tm0po6` query
+string change. The recorded 31,889-byte identity is kept as the originally recorded response; it
+can no longer be reproduced from the live URL.
+
+Archive. The Internet Archive has no capture of this URL: CDX queries (http and https, with and
+without `www`, exact and prefix) returned no rows, the availability API returned no snapshot, and
+an `id_` request returned 404. It does hold raw captures of the Library's former page for the same
+item, `https://bush41library.tamu.edu/archives/public-papers/2147`. The captures of 16 July 2019 and
+5 December 2021 (`https://web.archive.org/web/20211205194503id_/https://bush41library.tamu.edu/archives/public-papers/2147`),
+fetched with `Accept-Encoding: identity`, are byte-identical: 16,655 bytes, SHA-256
+`247a050e…a325`, matching the CDX digest. The 2021 capture returned the same bytes again at 00:18:04 UTC on
+28 September. Their address span is byte-identical to the recorded response's. On 6 September 2026
+the former URL redirected to the Library's home page rather than to this page, so the link rests on
+the shared title, date, item number and address bytes. The former-URL capture is recorded as a
+corroborating pre-cutoff identity; it does not replace the originally recorded response.
+
+The observation stays title-only. The address and Note attest that Fahd was styled King on
+8 August 1990; they do not establish his accession, a term start or uninterrupted tenure to 2005.
+The source record and the extract carry a `source_review` note with these identities. The
+extract's `provenance_note` and snapshot checksum changed; its claims did not. No test pin changed.
+The GPO print edition remains an unretrieved lead, and historical acceptance remains Codex's
+decision.
+
 ## Sources added
 
 | Source ID | What | Retained provenance |
 |---|---|---|
-| `sa_bush41_address_19900808` | [Public Papers address](https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states), 8 Aug 1990 | 31,889 bytes, SHA-256 `539f1155…ba1c3`, identical in two downloads |
+| `sa_bush41_address_19900808` | [Public Papers address](https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states), 8 Aug 1990 | 31,889 bytes, SHA-256 `539f1155…ba1c3`, identical in two downloads on 21 Sep; by 27 Sep only page furniture changed (see Source review) |
 | `sa_spa_fahd_death_20050801_ar` | [Royal Court statement](https://www.spa.gov.sa/7be193c458) (Arabic; legacy 280265) | 173,207 bytes; content `cc562d7e…5327` |
 | `sa_spa_fahd_death_20050801_en` | [English release](https://www.spa.gov.sa/en/35256ba2d1) | 164,267 bytes; content `d1354c57…e976` |
 | `sa_spa_allegiance_20050801_ar` | [Royal Court accession statement](https://www.spa.gov.sa/a1252ad00a) (Arabic) | 172,480 bytes; content `7c029335…6eb67`; rendered in a browser |
