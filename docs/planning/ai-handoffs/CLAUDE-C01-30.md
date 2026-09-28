@@ -102,8 +102,8 @@ last two entries.
 
 Integration: before committing, `codex/campaign-certification` was fetched; it had moved to `3ec6e155` and was merged
 (merge commit `b69e579a`, tree equal to `3ec6e155`). The only conflict was an add/add on this record: the integration
-copy is the claim record byte for byte plus the registration note above, so it was taken unchanged and this result was
-appended. After the packet commits (`033f098d`, index `cd335f3b`), `codex/campaign-certification` had moved again, to
+copy is the claim record byte for byte plus the registration note above, so it was taken unchanged in the merge;
+the packet commit `033f098d` then changed only its header (the State line to `ready_for_review`, the Report link and the claim-commit hash) and appended this result. After the packet commits (`033f098d`, index `cd335f3b`), `codex/campaign-certification` had moved again, to
 `5d970f6d` (the integrated CLAUDE-C01-23, 24, 25 and 27 packets among others); it was merged in `a39f1ac8`, whose only
 conflict, `research-index.json`, was regenerated. The task queue entry (state `claimed`) is left for Codex. New South
 Africa totals: 207 sources, 406 claims, 10 role observations; `mapping_pending` stays 53 and the six
@@ -123,6 +123,13 @@ Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` and `python -X utf8`:
 - `node --test tools/ui/check_leadership_research_review.cjs`: 11 passed.
 - `python tools/planning/workboard.py --check`: PASS.
 - `git diff --check` on the touched paths: clean. The gap ledger was not touched.
+- Known failures outside the listed checks, not fixed: `tools/avatars/test_certified_gap_ledger.py` errors on a new
+  packet's sources ("no pinned attribution") until Codex classifies the packet's commit in `COMMIT_PACKETS` at
+  integration; `tools/avatars/test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, which the sparse checkout
+  lacks, and in a full checkout reports the packet as `unclassified_packet` with stale boundary-matrix files, so Codex must
+  list the packet and regenerate `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. Both
+  already fail on the merged base `5d970f6d` (the gap ledger stops first at "Missing explicit acceptance record for
+  CLAUDE-C01-23").
 
 All of these checks were run again on the merged tree `a39f1ac8` with the same results (42, 79 and 16 tests OK; atlas 11
 passed; census exit 0; workboard PASS).
