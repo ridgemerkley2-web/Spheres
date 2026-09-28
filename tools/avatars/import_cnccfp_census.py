@@ -3,6 +3,16 @@
 
 No network or game writes. Financial reporting is an observation, not an active
 party interval, a chair appointment, or a census of every French organization.
+
+The generated packet is then merged with the hand-maintained supplement
+docs/campaign-certification/C01/research/supplements/france.json (CLAUDE-C01-23),
+which holds exactly three keys: its sources are appended after the CNCCFP
+sources, its institutions become the packet's institutions, and its
+coverage_unresolved notes are appended to the packet's coverage.unresolved.
+The merge is deterministic and changes no CNCCFP organization, source, claim or
+pinned checksum. A missing or malformed supplement, an id that collides with
+the generated packet or within the supplement, or a supplement snapshot path
+outside research/sources fails the build.
 """
 import argparse
 import csv
@@ -14,6 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 RAW = Path('docs/campaign-certification/C01/research/sources/cnccfp-2024.csv')
 DEST = Path('docs/campaign-certification/C01/research/france.json')
+SUPPLEMENT = Path('docs/campaign-certification/C01/research/supplements/france.json')
 SHA256 = '6ce50ac58fe95308b21995463a38a2cc83852980fde19cdd110002e8582c49f2'
 SOURCE = 'fr_cnccfp_2024'
 URL = 'https://static.data.gouv.fr/resources/comptes-des-partis-et-groupements-politiques/20260210-110641/comptes-partis-exercice-2024.csv'
@@ -175,7 +186,43 @@ def reconcile_publication(submitted, rows):
     return missing
 
 
-def build(raw, publication=None, snapshot_bytes=None):
+def merge_supplement(packet, raw=None):
+    """Append the hand-maintained supplement (CLAUDE-C01-23); anything missing or malformed fails loudly."""
+    if raw is None:
+        if not (ROOT / SUPPLEMENT).is_file():
+            raise ValueError(f'Missing France supplement: {SUPPLEMENT.as_posix()}')
+        raw = (ROOT / SUPPLEMENT).read_bytes()
+    try:
+        supplement = json.loads(raw.decode('utf-8'))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError(f'Malformed France supplement: {error}') from None
+    if not isinstance(supplement, dict) or set(supplement) != {'sources', 'institutions', 'coverage_unresolved'}:
+        raise ValueError('Malformed France supplement: expected exactly sources, institutions and coverage_unresolved')
+    sources, institutions, notes = supplement['sources'], supplement['institutions'], supplement['coverage_unresolved']
+    if (not all(isinstance(part, list) for part in (sources, institutions, notes))
+            or not all(isinstance(s, dict) and s.get('id') and isinstance(s.get('claims'), list)
+                       and all(isinstance(c, dict) and c.get('id') for c in s['claims']) for s in sources)
+            or not all(isinstance(i, dict) and i.get('id') for i in institutions)
+            or not all(isinstance(note, str) and note.strip() for note in notes)):
+        raise ValueError('Malformed France supplement entries')
+    for kind, ids in (('source', [s['id'] for s in packet['sources'] + sources]),
+                      ('claim', [c['id'] for s in packet['sources'] + sources for c in s['claims']]),
+                      ('entry', [e['id'] for e in packet['organizations'] + institutions])):
+        if len(ids) != len(set(ids)):
+            raise ValueError(f'France supplement {kind} id collision')
+    allowed = (ROOT / SOURCES_DIR).resolve()
+    for source in sources:
+        snapshot = source.get('snapshot')
+        path = snapshot.get('path') if isinstance(snapshot, dict) else None
+        if not isinstance(path, str) or not (ROOT / path).resolve().is_relative_to(allowed):
+            raise ValueError(f"France supplement snapshot outside research/sources: {source['id']}")
+    packet['sources'].extend(sources)
+    packet['institutions'] = institutions
+    packet['coverage']['unresolved'].extend(notes)
+    return packet
+
+
+def build(raw, publication=None, snapshot_bytes=None, supplement=None):
     packet = _build_submitted(raw)
     period = {'from': '2024-01-01', 'through': '2024-12-31'}
     observed_sources = {}
@@ -297,7 +344,7 @@ def build(raw, publication=None, snapshot_bytes=None):
         'Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.')
     packet['coverage']['unresolved'].append(
         'AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.')
-    return packet
+    return merge_supplement(packet, supplement)
 
 
 def main():

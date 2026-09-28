@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_proclamation_20020508",
+  "source_url": "https://web.archive.org/web/20020602063735id_/http://www.conseil-constitutionnel.fr:80/decision/2002/20020508.htm",
+  "original_url": "http://www.conseil-constitutionnel.fr/decision/2002/20020508.htm",
+  "archive_capture_utc": "2002-06-02T06:37:35Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-05-08",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13315,
+  "source_response_sha256": "c0c0267723ffaf05c5c226785afc5b95a33f4e158229fe191172e592b3c8b9ef",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2002-06-02T06:37:35Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 2 June 2002 of the Council's former site (ISO-8859-1 HTML; original Last-Modified 10 May 2002). The Council's 2017 dossier numbers this decision 2002-111 PDR. The page links to a site disclaimer ('Avertissement important : statut de l'information disponible sur le site', ../../divers/disclaimer.htm), not fetched, and to the Council's PDF version (listed under leads). The Journal officiel publication was not retrieved.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full after entity decoding (visas, grounds 1-5, results, operative part, deliberation); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2002_cites_chirac_proclamation_19950512",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques CHIRAC",
+      "role_title": "Président de la République",
+      "event_kind": "proclamation_reference",
+      "attested_on": "1995-05-12",
+      "text": "Its visas cite 'la décision du Conseil constitutionnel du 12 mai 1995 proclamant M. Jacques CHIRAC Président de la République et la date à laquelle celui-ci a pris ses fonctions'.",
+      "locator": {
+        "section": "visas"
+      }
+    },
+    {
+      "claim_id": "fr_cc_proclaims_chirac_20020508",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques CHIRAC",
+      "role_title": "Président de la République française",
+      "event_kind": "result_proclamation",
+      "attested_on": "2002-05-08",
+      "text": "The Council's decision of 8 May 2002, deliberated at the sittings of 6, 7 and 8 May 2002, records the second-round results (31 062 988 votes cast; M. Jacques CHIRAC 25 537 956, M. Jean-Marie LE PEN 5 525 032) and, 'En conséquence, P R O C L A M E M. Jacques CHIRAC Président de la République française'.",
+      "locator": {
+        "section": "'Sur l'ensemble des résultats du scrutin' and the operative part; deliberation line"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2002_states_effect_from_20020508",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques CHIRAC",
+      "role_title": "Président de la République française",
+      "event_kind": "stated_start_of_term",
+      "attested_on": "2002-05-08",
+      "text": "The operative part proclaims him President 'à compter du 17 mai 2002 à 0 heure'.",
+      "locator": {
+        "section": "operative part"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

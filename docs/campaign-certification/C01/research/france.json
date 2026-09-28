@@ -19347,6 +19347,1893 @@
         }
       ],
       "published_date": "2026-02-10"
+    },
+    {
+      "id": "fr_cc_decision_88_60_pdr_19880511",
+      "title": "Décision n° 88-60 PDR du 11 mai 1988, Proclamation des résultats de l'élection du Président de la République (Conseil constitutionnel decision page, archived)",
+      "url": "https://web.archive.org/web/20210227223450id_/https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+      "original_url": "https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "1988-05-11",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Council's web transcription of decision 88-60 PDR (raw Internet Archive capture of 27 February 2021; the live page is a Drupal render with per-request form tokens). The page cites 'Journal officiel du 12 mai 1988, page 7036', which was not retrieved (Légifrance refuses automated access and no capture was found). Its visa list misdates the 1981 proclamation as 15 May 1988; that visa is not used. The decision precedes the packet period and is recorded because it states the day the second septennat took effect.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-88-60-pdr-19880511-facts.json",
+        "bytes": 4691,
+        "sha256": "b01679e16a215c0c287ca3660f8495e6906748e75d2a6958f7845a73ca9bf8ca"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_proclaims_mitterrand_19880511",
+          "text": "Decision no. 88-60 PDR of 11 May 1988, deliberated at the sittings of 10 and 11 May 1988, records the second-round results (30 923 249 votes cast; Monsieur François MITTERRAND 16 704 279, Monsieur Jacques CHIRAC 14 218 970) and 'Proclame Monsieur François MITTERRAND Président de la République française'.",
+          "attested_on": "1988-05-11",
+          "locator": {
+            "section": "ground 7 (second-round results) and the operative part ('Proclame ...'); deliberation line",
+            "journal_officiel": "Journal officiel du 12 mai 1988, page 7036 (cited on the page, not retrieved)"
+          },
+          "uncertainty": "The proclamation of the result, not a start. Web transcription of the decision; the Journal officiel publication was not retrieved."
+        },
+        {
+          "id": "fr_cc_88_60_states_mandate_effect_19880511",
+          "text": "The same decision states: 'Conformément à l'article 6 de la Constitution, le mandat de Monsieur François MITTERRAND prendra effet le 21 mai 1988 à 0 heure.'",
+          "attested_on": "1988-05-11",
+          "locator": {
+            "section": "operative part, sentence after 'Proclame'"
+          },
+          "uncertainty": "A prospective statement dated by the day it was made (11 May 1988); the day it fixes, 21 May 1988 at 0 heure, is the stated start of the second septennat and the holder's `from`. The Constitution is cited by the Council as its ground; the date is the Council's, not taken from the Constitution's text."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_investiture_address_19880521",
+      "title": "Allocution de M. François Mitterrand, Président de la République, le jour de son investiture, Paris, Palais de l'Élysée, samedi 21 mai 1988 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-6886-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '21 mai 1988 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-investiture-address-19880521-facts.json",
+        "bytes": 4595,
+        "sha256": "c06507bd68154d92c937fed2584c8ac7da66b6d1834b787d0b3e3967d0f88fdf"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_investiture_ceremony_19880521",
+          "text": "The Élysée archive publishes François Mitterrand's address 'le jour de son investiture', Palais de l'Élysée, Saturday 21 May 1988; it opens 'Monsieur le Président du Conseil constitutionnel' and interprets 'la volonté populaire exprimée le 8 mai'.",
+          "attested_on": "1988-05-21",
+          "locator": {
+            "page": "1 (date line and heading) and 2 (salutation and first paragraph)"
+          },
+          "uncertainty": "An investiture ceremony is not itself a start. The heading is a later catalogue label; the day comes from the date line, which is marked 'Seul le prononcé fait foi'."
+        },
+        {
+          "id": "fr_mitterrand_assumes_second_septennat_statement_19880521",
+          "text": "In the address he asks what lesson to draw from 'l'événement qui me vaut d'assumer aujourd'hui, dans la continuité de nos institutions et de mon propre mandat, la magistrature suprême', at the threshold of 'ce septennat'.",
+          "attested_on": "1988-05-21",
+          "locator": {
+            "page": 2,
+            "section": "first paragraph after the salutation"
+          },
+          "uncertainty": "The holder's own statement; it supports but never makes a start. 'Aujourd'hui' is dated only by the archive's date line (21 May 1988); it agrees with the effect day the Council stated in advance (fr_cc_88_60_states_mandate_effect_19880511). Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_voeux_corps_diplomatique_19900103",
+      "title": "Allocution de M. François Mitterrand, Président de la République, lors de la présentation des voeux du corps diplomatique, Paris, le 3 janvier 1990 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-7325-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 26 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '3 janvier 1990 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-diplomatic-corps-19900103-facts.json",
+        "bytes": 3877,
+        "sha256": "4cc5fd19df7611f09bd84a8360a6746d1eaf0b0efda520f68e6824a18a3f6b6d"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_diplomatic_corps_new_year_19900103",
+          "text": "The Élysée archive publishes an address of François Mitterrand dated 3 January 1990, headed as given by the President of the Republic at the diplomatic corps' New Year wishes; he thanks the Nuncio for the wishes expressed 'à l'intention de mon pays et de moi-même'.",
+          "attested_on": "1990-01-03",
+          "locator": {
+            "page": 1,
+            "section": "date line, heading and first paragraph"
+          },
+          "uncertainty": "Supporting only: the office is named only in the archive heading, a later catalogue label, and the address text does not name the office. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_kohl_press_conference_19900104",
+      "title": "Conférence de presse conjointe de M. François Mitterrand, Président de la République et de M. Helmut Kohl, Chancelier de RFA, Latché le 4 janvier 1990 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-7326-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '4 janvier 1990 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line. Located by the part A check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-kohl-press-conference-19900104-facts.json",
+        "bytes": 3873,
+        "sha256": "d1a8de673a261bfbde607b212421676c8bdd7e33a5caf48c7a8b9cb7025344f4"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_kohl_press_conference_attestation_19900104",
+          "text": "In the Élysée archive's transcript of the joint press conference at Latché dated 4 January 1990, a questioner addresses him as 'monsieur le Président', and Chancellor Kohl says 'Je suis d'accord avec M. Mitterrand' and that 'en 1990, nous allons travailler particulièrement étroitement le Président de la République et moi'.",
+          "attested_on": "1990-01-04",
+          "locator": {
+            "page": "1 (first question) and 2 (the Chancellor's two answers)"
+          },
+          "uncertainty": "An in-text third-party attestation in the first week of the period, stronger than the heading-only item of 3 January 1990; still an archive transcript, not an official record, and not a start. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_an_jo_debats_19900827",
+      "title": "Journal officiel, Débats parlementaires, Assemblée nationale: compte rendu intégral, séance du lundi 27 août 1990 (Année 1990, No 55 A.N. (C.R.), mardi 28 août 1990)",
+      "url": "https://archives.assemblee-nationale.fr/9/cri/1989-1990-extraordinaire2/001.pdf",
+      "publisher": "Assemblée nationale (Journal officiel de la République française, Débats parlementaires)",
+      "published_date": "1990-08-28",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_legislature_debates_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF of a scanned issue on the Assemblée nationale's archive host (Apache; Last-Modified 6 February 2021, ETag \"16c0a1-5baa721ec6ac0\"), linked from https://archives.assemblee-nationale.fr/9/cri/9-1989-1990-extraordinaire2.html. The text layer is OCR of the scan, so printed page 3213 was rendered and read. The Journal officiel of 23 August 1990 that printed the decree was not retrieved.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-an-debats-seance-19900827-facts.json",
+        "bytes": 4570,
+        "sha256": "ec5c2e7bc50ebe4ce5dd467afb7d4a73a96206e725c328d78453aa126fc1121c"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+          "text": "The President of the Assembly reads the decree of the President of the Republic convening Parliament in extraordinary session from Monday 27 August 1990, 'Fait à Paris, le 22 août 1990', signed FRANÇOIS MITTERRAND with 'Par le Président de la République :' and 'Le Premier ministre, MICHEL ROCARD'; he states that it appeared in the Journal officiel of 23 August 1990.",
+          "attested_on": "1990-08-22",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 3213,
+            "item": "1 - Ouverture de la deuxième session extraordinaire de 1989-1990"
+          },
+          "uncertainty": "A contemporaneous official record attesting the signature as President on the decree's date; no start or end."
+        },
+        {
+          "id": "fr_mitterrand_message_to_parliament_read_19900827",
+          "text": "At the sitting of 27 August 1990 the President of the Assembly reads a letter from the President of the Republic dated 'Paris, le 27 août 1990', sent under Article 18 of the Constitution and signed FRANÇOIS MITTERRAND, and the message it transmits; the Assembly takes note ('donne acte') of the message of the President of the Republic.",
+          "attested_on": "1990-08-27",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 3213,
+            "item": "2 - Message de M. le Président de la République"
+          },
+          "uncertainty": "Attests the holder in office on that day only. No contemporaneous official record from January to July 1990 was found: the 2 April 1990 sitting record does not name the President."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_accepts_balladur_resignation_19950510",
+      "title": "Réponse de M. François Mitterrand, Président de la République, à la lettre de démission de M. Edouard Balladur, Premier ministre, Paris le 10 mai 1995 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-8253-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 26 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '10 mai 1995 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line. Located by the part A check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-reply-pm-resignation-19950510-facts.json",
+        "bytes": 3789,
+        "sha256": "1b0cb9103c0afdc4e2954668fad1ff3bbc650961478988859f214b21f833beee"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_accepts_pm_resignation_19950510",
+          "text": "A reply dated 10 May 1995, headed as François Mitterrand's answer as President of the Republic to the resignation letter of M. Edouard Balladur, Prime Minister, says 'j'accepte votre démission' and asks that the government handle current affairs 'jusqu'à la nomination de votre successeur'.",
+          "attested_on": "1995-05-10",
+          "locator": {
+            "page": 1,
+            "section": "date line, heading and letter body"
+          },
+          "uncertainty": "The latest in-office act found before the handover; the office is named only in the archive heading, a later catalogue label. Supporting only; not an end. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_congratulates_chirac_19950507",
+      "title": "Message de félicitations de M. François Mitterrand, Président de la République, adressé à M. Jacques Chirac, à l'occasion de son élection à la Présidence de la République, Paris le 7 mai 1995 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-8249-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '7 mai 1995 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-congratulates-chirac-19950507-facts.json",
+        "bytes": 3797,
+        "sha256": "2c644ea293788b47489eece549e1220bcbec9c69d51cc426f681007d91d121dd"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_congratulates_chirac_election_19950507",
+          "text": "A message dated 7 May 1995 to M. Jacques Chirac congratulates him on his election to the Presidency of the Republic and says that, once they have agreed on it, the writer will receive him 'avec la déférence que tout citoyen doit au chef de l'Etat'.",
+          "attested_on": "1995-05-07",
+          "locator": {
+            "page": 1,
+            "section": "heading and message body"
+          },
+          "uncertainty": "Acknowledges the second-round election; not the Council's proclamation (12 May 1995) and not a start. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_decision_95_81_pdr_19950512",
+      "title": "Décision n° 95-81 PDR du 12 mai 1995, Proclamation des résultats de l'élection du Président de la République (Conseil constitutionnel decision page, archived)",
+      "url": "https://web.archive.org/web/20210228124617id_/https://www.conseil-constitutionnel.fr/decision/1995/9581PDR.htm",
+      "original_url": "https://www.conseil-constitutionnel.fr/decision/1995/9581PDR.htm",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "1995-05-12",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Council's web transcription of decision 95-81 PDR (raw Internet Archive capture of 28 February 2021). The page cites 'Journal officiel du 14 mai 1995, page 8149', which was not retrieved.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-95-81-pdr-19950512-facts.json",
+        "bytes": 5023,
+        "sha256": "429d0c9a696632e1ec33ea131b39fdf58f60c9ba2491b08830129a3de83b0aee"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_1995_cites_mitterrand_proclamation_19880511",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel en date du 11 mai 1988 proclamant M. François Mitterrand Président de la République et la date à laquelle celui-ci a pris ses fonctions'.",
+          "attested_on": "1988-05-11",
+          "locator": {
+            "section": "visas"
+          },
+          "uncertainty": "A cross-reference confirming the date of decision 88-60 PDR; it does not restate the day he took office."
+        },
+        {
+          "id": "fr_cc_proclaims_chirac_19950512",
+          "text": "Decision no. 95-81 PDR of 12 May 1995, deliberated at the sittings of 10, 11 and 12 May 1995, records the second-round results (29 943 671 votes cast; M. Jacques Chirac 15 763 027, M. Lionel Jospin 14 180 644) and proclaims M. Jacques Chirac President of the French Republic 'à compter de la cessation des fonctions de M. François Mitterrand'.",
+          "attested_on": "1995-05-12",
+          "locator": {
+            "section": "ground 20 and the operative part ('Proclame :')",
+            "journal_officiel": "Journal officiel du 14 mai 1995, page 8149 (cited on the page, not retrieved)"
+          },
+          "uncertainty": "The proclamation is dated 12 May 1995, not 11 May. It fixes no day on which he takes office, only the condition, and is not a start; the outer limit in the same sentence is a separate claim (fr_mitterrand_cessation_latest_bound_19950512)."
+        },
+        {
+          "id": "fr_mitterrand_cessation_latest_bound_19950512",
+          "text": "The same sentence states that the cessation of M. François Mitterrand's functions 'en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 21 mai 1995 à 0 heure'; the new President's term runs from that cessation.",
+          "attested_on": "1995-05-12",
+          "locator": {
+            "section": "operative part"
+          },
+          "uncertainty": "An outer limit stated in advance: neither the day his functions ended nor his successor's start; never an `until` or a `from`."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_mitterrand_letter_19950516",
+      "title": "Lettre de M. François Mitterrand, Président de la République, adressée aux Français à l'issue de son deuxième septennat, Paris le 16 mai 1995 (Élysée archive page, archived)",
+      "url": "https://web.archive.org/web/20260215194604id_/https://www.elysee.fr/francois-mitterrand/1995/05/16/lettre-de-m-francois-mitterrand-president-de-la-republique-adressee-aux-francais-a-lissue-de-son-deuxieme-septennat-paris-le-16-mai-1995",
+      "original_url": "https://www.elysee.fr/francois-mitterrand/1995/05/16/lettre-de-m-francois-mitterrand-president-de-la-republique-adressee-aux-francais-a-lissue-de-son-deuxieme-septennat-paris-le-16-mai-1995",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": "1995-05-16",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 15 February 2026 of the Élysée archive page (served without Content-Encoding; the x-archive-orig-x-crawler-content-encoding header only records the original crawl). It replaces part A's per-item PDF of the same letter (elysee-module-8256-fr.pdf): one identity per record. The letter is marked 'Seul le prononcé fait foi' and is unsigned; the author's name and the styling 'Président de la République' come from the archive heading, a later catalogue label, and the body names only 'M. Jacques Chirac'.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-letter-19950516-facts.json",
+        "bytes": 4033,
+        "sha256": "b66c3d5aa9ce13bd0f9ddcca6388d059ba6c791221316714e8f2384e43fa702d"
+      },
+      "claims": [
+        {
+          "id": "fr_mitterrand_handover_announced_19950516",
+          "text": "In a letter to the French dated 'Paris le 16 mai 1995' and headed as written 'à l'issue de son deuxième septennat', the writer says: 'Demain matin à onze heures, je remettrai la haute charge que vous m'avez confiée au Président de la République, M. Jacques Chirac.'",
+          "attested_on": "1995-05-16",
+          "locator": {
+            "item": "heading; letter text, first sentence"
+          },
+          "uncertainty": "A prospective announcement made the day before, with no record made on 17 May 1995: never an `until`, as for the 2007 and 2017 announcements. The name comes from the archive heading; the body names only M. Jacques Chirac, styled President ahead of the handover (president-elect usage, not a holder observation). Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_address_elysee_19950517",
+      "title": "Discours de M. Jacques Chirac, Président de la République, sur son rôle en tant que Président de la République, à l'Élysée le 17 mai 1995 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-8257-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '17 mai 1995 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-address-19950517-facts.json",
+        "bytes": 5040,
+        "sha256": "ed5d16d256d092719701548de5bc07a398d7b87bc979214017f5a03832c2e84e"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_address_cites_election_day_19950507",
+          "text": "In the address dated 17 May 1995 the speaker says: 'Le 7 mai, le peuple français a exprimé sa volonté de changement.'",
+          "attested_on": "1995-05-07",
+          "locator": {
+            "page": 2,
+            "section": "third paragraph after the salutation"
+          },
+          "uncertainty": "A reference, ten days later, to the second-round day; the sentence names nobody. Marked 'Seul le prononcé fait foi'."
+        },
+        {
+          "id": "fr_chirac_assumes_office_statement_19950517",
+          "text": "In the address at the Élysée dated 17 May 1995 M. Jacques Chirac says 'En ce jour où je prends la responsabilité d'assumer la plus haute charge de l'Etat' and, later, 'Un nouveau septennat commence'.",
+          "attested_on": "1995-05-17",
+          "locator": {
+            "page": 2,
+            "section": "first and twelfth paragraphs after the salutation"
+          },
+          "uncertainty": "The holder's own statement: it dates the observation but never makes a start. The day comes from the archive's date line; no hour or form of the ceremony is stated. Marked 'Seul le prononcé fait foi'."
+        },
+        {
+          "id": "fr_chirac_predecessor_departure_statement_19950517",
+          "text": "The same address says: 'Le Président François Mitterrand a marqué de son empreinte les quatorze ans qui viennent de s'écouler.'",
+          "attested_on": "1995-05-17",
+          "locator": {
+            "page": 2,
+            "section": "eleventh paragraph after the salutation"
+          },
+          "uncertainty": "A successor's same-day statement that the predecessor's years have just elapsed; it states no day on which his functions ended and is never an `until`. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_armed_forces_message_19950517",
+      "title": "Message de M. Jacques Chirac, Président de la République, sur la mission des armées, la garantie de la souveraineté nationale et l'attachement à la construction d'une force européenne, Paris le 17 mai 1995 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-8258-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 26 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '17 mai 1995 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line. Located by the part A check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-armed-forces-message-19950517-facts.json",
+        "bytes": 3744,
+        "sha256": "3baabcace4c495dd06ea58569d749a99391b228b45066e0222363c82ed770978"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_armed_forces_message_as_president_19950517",
+          "text": "In a message to the armed forces dated 17 May 1995 the writer says 'Président de la République, c'est en tant que chef des Armées que je m'adresse à vous' and, of the nuclear deterrent forces, 'J'en assume aujourd'hui la responsabilité'.",
+          "attested_on": "1995-05-17",
+          "locator": {
+            "page": 2,
+            "section": "first and fourth paragraphs"
+          },
+          "uncertainty": "Self-styling in the text itself, not only the heading; it dates the observation and is never a start. The name comes from the archive heading. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_an_jo_debats_19950519",
+      "title": "Assemblée nationale, compte rendu intégral, séance du vendredi 19 mai 1995 (10e législature, session ordinaire 1994-1995)",
+      "url": "https://archives.assemblee-nationale.fr/10/cri/1994-1995-ordinaire2/003.pdf",
+      "publisher": "Assemblée nationale",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_legislature_debates_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF on the Assemblée nationale's archive host (Apache; Last-Modified 6 February 2021, ETag \"af41-5baa6d2b57c80\"), a typeset reconstruction of the sitting record (Acrobat Distiller, 2008), linked from https://archives.assemblee-nationale.fr/10/cri/10-1994-1995-ordinaire2.html. The sitting's first item, on the end of M. Jacques Chirac's deputy mandate recorded in the Journal officiel of 16 May 1995, concerns an Assembly seat and is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-an-debats-seance-19950519-facts.json",
+        "bytes": 3669,
+        "sha256": "db0e65952d6e8ee7d02c5fe8348d1760816c11b973d0304dbeb8ba1198cf685c"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_letter_to_assembly_as_president_19950518",
+          "text": "At the sitting of 19 May 1995 the President of the Assembly reads a letter from the President of the Republic dated 'Paris, le 18 mai 1995', sent under Article 18 of the Constitution and signed JACQUES CHIRAC, and the message it transmits, which says 'la façon dont s'est opérée la transition d'un septennat à l'autre' shows the continuity of the institutions.",
+          "attested_on": "1995-05-18",
+          "locator": {
+            "pdf_page": 2,
+            "printed_page": 2,
+            "item": "2 - Message de M. le Président de la République"
+          },
+          "uncertainty": "A continuation attestation dated the day after the holder's observation; not a start. The message opens 'A l'heure où je vais assumer le mandat que le peuple français m'a confié', forward-looking wording in a text dated after the 17 May address; its past-tense reference to the transition states no day."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_reelection_declaration_20020505",
+      "title": "Déclaration de M. Jacques Chirac, Président de la République et candidat à l'élection présidentielle 2002, après l'annonce de sa réelection à la Présidence de la République, Paris le 5 mai 2002 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-9984-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive); text taken from the campaign site 2002pourlafrance.net",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '5 mai 2002 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line. Page 2 ends '(Source http://www.2002pourlafrance.net, le 6 mai 2002)': the archive took the text from the candidate's campaign website the next day, so this is a copy of a campaign statement, not a Presidency record.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-reelection-declaration-20020505-facts.json",
+        "bytes": 4110,
+        "sha256": "9cb5782bb83bd2dda44742dd99bfb67fefc3cd3779ccba42aad78ee68de2820f"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_reelection_night_declaration_20020505",
+          "text": "A declaration dated 5 May 2002, headed as made after the announcement of M. Jacques Chirac's re-election, thanks voters for 'La confiance que vous venez de me témoigner' and calls 'Votre choix d'aujourd'hui' a founding choice.",
+          "attested_on": "2002-05-05",
+          "locator": {
+            "page": 1,
+            "section": "heading and opening paragraphs",
+            "source_note": "page 2, last line"
+          },
+          "uncertainty": "Election-night statement on the second-round day, copied by the archive from the campaign site 2002pourlafrance.net on 6 May 2002; not the Council's proclamation (8 May 2002) and not a start."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_proclamation_20020508",
+      "title": "Élection présidentielle 2002 - Décision du 8 mai 2002, Proclamation des résultats de l'élection du Président de la République (Conseil constitutionnel web page, archived)",
+      "url": "https://web.archive.org/web/20020602063735id_/http://www.conseil-constitutionnel.fr:80/decision/2002/20020508.htm",
+      "original_url": "http://www.conseil-constitutionnel.fr/decision/2002/20020508.htm",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2002-05-08",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 2 June 2002 of the Council's former site (ISO-8859-1 HTML; original Last-Modified 10 May 2002). The Council's 2017 dossier numbers this decision 2002-111 PDR. The page links to a site disclaimer ('Avertissement important : statut de l'information disponible sur le site', ../../divers/disclaimer.htm), not fetched, and to the Council's PDF version (listed under leads). The Journal officiel publication was not retrieved.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2002-111-pdr-20020508-facts.json",
+        "bytes": 4979,
+        "sha256": "06fac17b4672f9ec006c474103287adca6b3abbe07e346ef0d6a3146a55c0f07"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2002_cites_chirac_proclamation_19950512",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel du 12 mai 1995 proclamant M. Jacques CHIRAC Président de la République et la date à laquelle celui-ci a pris ses fonctions'.",
+          "attested_on": "1995-05-12",
+          "locator": {
+            "section": "visas"
+          },
+          "uncertainty": "Confirms the 1995 proclamation date; it does not restate the day he took office."
+        },
+        {
+          "id": "fr_cc_proclaims_chirac_20020508",
+          "text": "The Council's decision of 8 May 2002, deliberated at the sittings of 6, 7 and 8 May 2002, records the second-round results (31 062 988 votes cast; M. Jacques CHIRAC 25 537 956, M. Jean-Marie LE PEN 5 525 032) and, 'En conséquence, P R O C L A M E M. Jacques CHIRAC Président de la République française'.",
+          "attested_on": "2002-05-08",
+          "locator": {
+            "section": "'Sur l'ensemble des résultats du scrutin' and the operative part; deliberation line"
+          },
+          "uncertainty": "Dated 8 May 2002, not 9 May (a separate decision of 9 May 2002 cites it). The proclamation is not the start, which the same sentence fixes separately (fr_cc_2002_states_effect_from_20020508)."
+        },
+        {
+          "id": "fr_cc_2002_states_effect_from_20020508",
+          "text": "The operative part proclaims him President 'à compter du 17 mai 2002 à 0 heure'.",
+          "attested_on": "2002-05-08",
+          "locator": {
+            "section": "operative part"
+          },
+          "uncertainty": "A prospective statement dated by the day it was made; the day it fixes, 17 May 2002 at 0 heure, is the stated start of the second term and the holder's `from`. It does not state when the first term ended; no end is inferred."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_decision_requests_20020509",
+      "title": "Élection présidentielle 2002 - Décision du 9 mai 2002 sur des requêtes et une réclamation relatives à l'élection (Conseil constitutionnel web page, archived)",
+      "url": "https://web.archive.org/web/20020602063827id_/http://www.conseil-constitutionnel.fr:80/decision/2002/20020509.htm",
+      "original_url": "http://www.conseil-constitutionnel.fr/decision/2002/20020509.htm",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2002-05-09",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 2 June 2002 of the Council's former site (original Last-Modified 9 May 2002). Recorded only to explain the 9 May 2002 lead date; the requesters are private parties and are not named here.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-requests-20020509-facts.json",
+        "bytes": 3379,
+        "sha256": "df23127665859af147b61b09a0893e37a129f60ae2f7fc67728facd5a3fd132c"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_20020509_cites_proclamation_20020508",
+          "text": "A separate decision of 9 May 2002, rejecting requests and a complaint directed at preparatory acts of the election, cites among its visas 'la décision du 8 mai 2002 portant proclamation des résultats de l'élection du Président de la République'.",
+          "attested_on": "2002-05-08",
+          "locator": {
+            "section": "visas"
+          },
+          "uncertainty": "Explains the 9 May lead date: the 9 May 2002 decision is not the proclamation. The cited visa names nobody."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_investiture_declaration_20020516",
+      "title": "Déclaration de M. Jacques Chirac, Président de la République, à l'occasion de son investiture comme Président de la République, Paris, Palais de l'Élysée le 16 mai 2002 (Élysée archive, PDF rendering)",
+      "url": "https://www.elysee.fr/front/pdf/elysee-module-9989-fr.pdf",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+      "source_type": "primary_presidency_archive_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '16 mai 2002 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-investiture-declaration-20020516-facts.json",
+        "bytes": 4035,
+        "sha256": "1a3c0618cc4e5697352486fbebb3ea6ed87be180db8769dadd5c5a2fc64f82d3"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_investiture_ceremony_20020516",
+          "text": "The Élysée archive publishes M. Jacques Chirac's declaration 'à l'occasion de son investiture comme Président de la République', Palais de l'Élysée, 16 May 2002; it opens by addressing the President of the Constitutional Council and the Prime Minister, speaks of 'les cinq années du mandat' the French have given him, and closes 'Et c'est le mandat que les Françaises et les Français ... viennent de me confier. Je l'assumerai.'",
+          "attested_on": "2002-05-16",
+          "locator": {
+            "page": "1 (date line, heading, first paragraph) and 2 (closing paragraph)"
+          },
+          "uncertainty": "The investiture is dated the day before the proclaimed effect (17 May 2002 at 0 heure), and its future tense ('Je l'assumerai') keeps it distinct from the start. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_decision_2007_141_pdr",
+      "title": "Conseil constitutionnel, Décision du 10 mai 2007, Proclamation des résultats de l'élection du Président de la République (n° 2007-141 PDR), PDF version",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/20070510/20070510.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2007-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_decision_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 17 February 2010, ETag \"4b7bd564-58d7\"; embedded CreationDate 10 May 2007). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's HTML page for the same decision (2007141pdr.htm) is not recorded: one rendering per decision.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2007-141-pdr-20070510-facts.json",
+        "bytes": 5819,
+        "sha256": "ec687f602fe1c696b1fc44f2aaf9473c244db4089a3ac5a18787e9ed2b841c82"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2007_cites_chirac_proclamation_20020508",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel du 8 mai 2002 proclamant M. Jacques CHIRAC Président de la République à compter du 17 mai 2002 à 0 heure'.",
+          "attested_on": "2002-05-08",
+          "locator": {
+            "pdf_page": 1,
+            "item": "visa 'Vu la décision du Conseil constitutionnel du 8 mai 2002'"
+          },
+          "uncertainty": "A later decision's reference that repeats the 2002 effect day; corroboration of the 2002 decision, not itself the start."
+        },
+        {
+          "id": "fr_cc_2007_second_round_20070505_20070506",
+          "text": "The decision states that the second round was held 'les 5 et 6 mai 2007' and records 44 472 733 registered electors, 35 773 578 votes cast, 18 983 138 for M. Nicolas SARKOZY and 16 790 440 for Mme Ségolène ROYAL.",
+          "period": {
+            "from": "2007-05-05",
+            "through": "2007-05-06"
+          },
+          "locator": {
+            "pdf_page": 3,
+            "item": "ground 3, 'SUR L'ENSEMBLE DES RÉSULTATS DU SCRUTIN'"
+          },
+          "uncertainty": "The election round only; the decision prints two voting days and does not say where each applied."
+        },
+        {
+          "id": "fr_cc_2007_proclamation_sarkozy_20070510",
+          "text": "Deliberating at its sittings of 7, 8, 9 and 10 May 2007, the Council 'P R O C L A M E M. Nicolas SARKOZY Président de la République française à compter de la cessation des fonctions de M. Jacques CHIRAC'.",
+          "attested_on": "2007-05-10",
+          "locator": {
+            "pdf_page": 3,
+            "item": "dispositif 'P R O C L A M E'",
+            "also": "pdf_page 1 heading 'Décision du 10 mai 2007'; pdf_page 4 deliberation line"
+          },
+          "uncertainty": "The proclamation fixes no day on which he takes office and is not a start."
+        },
+        {
+          "id": "fr_cc_2007_chirac_cessation_bound_20070510",
+          "text": "The same sentence states that the cessation of M. Jacques CHIRAC's functions 'en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 16 mai 2007 à 24 heures'; the new President's term runs from that cessation.",
+          "attested_on": "2007-05-10",
+          "locator": {
+            "pdf_page": 3,
+            "item": "dispositif, sentence after 'P R O C L A M E'"
+          },
+          "uncertainty": "An outer limit stated in advance, recorded once for both parts of the sentence: neither the day the predecessor's functions ended nor the successor's start; never an `until` or a `from`."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_debre_communication_20070510",
+      "title": "Conseil constitutionnel, Communication de Monsieur Jean-Louis DEBRE, Président du Conseil constitutionnel, le jeudi 10 mai 2007, à l'occasion de la proclamation de l'élection du Président de la République (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/20070510/declaration.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2007-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_statement_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 17 February 2010, ETag \"4b7bd564-9949\"; embedded CreationDate 10 May 2007). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-communication-20070510-facts.json",
+        "bytes": 4033,
+        "sha256": "e8332609b4daf4daae0d80f137be5ba26e2cfa69c422701baeb6082d6b9e4755"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2007_results_arrested_session_20070510",
+          "text": "On Thursday 10 May 2007 the President of the Constitutional Council states that the second-round results were settled by the Council at its sitting of 10 May 2007 and that 'le Conseil constitutionnel proclame M. Nicolas SARKOZY Président de la République française'.",
+          "attested_on": "2007-05-10",
+          "locator": {
+            "pdf_page": 1,
+            "item": "heading and first paragraphs"
+          },
+          "uncertainty": "Oral communication of the same proclamation as fr_cc_2007_proclamation_sarkozy_20070510; not a start."
+        },
+        {
+          "id": "fr_cc_2007_mandate_begins_by_20070510",
+          "text": "The communication states: 'Son mandat de cinq ans, fixé par la Constitution, débutera au plus tard le 16 mai à minuit.'",
+          "attested_on": "2007-05-10",
+          "locator": {
+            "pdf_page": 1,
+            "item": "paragraph 'Son mandat de cinq ans'"
+          },
+          "uncertainty": "An upper bound only; 'à minuit' is less precise than the decision's '16 mai 2007 à 24 heures', whose wording governs. Not a start."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_proclamation_20070511",
+      "title": "Décision du 10 mai 2007 portant proclamation des résultats de l'élection du Président de la République, JORF n°109 du 11 mai 2007, Texte n° 1 (Légifrance text page, archived)",
+      "url": "https://web.archive.org/web/20250104095151id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000274786",
+      "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000274786",
+      "publisher": "Journal officiel de la République française (Légifrance, Direction de l'information légale et administrative)",
+      "published_date": "2007-05-11",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_official_journal_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 4 January 2025 of Légifrance's Journal officiel text page (NOR HRUX0710371X). Légifrance itself refuses automated access (HTTP 403 or a Cloudflare challenge), which was not bypassed. The page prints the names in mixed case where the Council's PDF prints capitals. A published correction of this decision (rectificatif, JORFTEXT000000465545) exists but could not be read (no capture found). Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2007-20070511-facts.json",
+        "bytes": 3743,
+        "sha256": "6fdeb63ac428e015ad14cfe79d1f01f3599d5ebca596d6676d7c8268b6d99208"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_publishes_2007_proclamation_20070511",
+          "text": "The Journal officiel n°109 of 11 May 2007 publishes as its text no. 1 the decision of 10 May 2007 proclaiming M. Nicolas Sarkozy President 'à compter de la cessation des fonctions de M. Jacques Chirac, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 16 mai 2007, à 24 heures'.",
+          "attested_on": "2007-05-11",
+          "locator": {
+            "item": "reference block ('NOR : HRUX0710371X', 'JORF n°109 du 11 mai 2007', 'Texte n° 1') and the dispositif"
+          },
+          "uncertainty": "The publication of the proclamation, not the proclamation itself and not a start. The rectificatif of the decision was not read; the Council's 2017 dossier reprints the dispositif with the same dates."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_debre_investiture_address_20070516",
+      "title": "Conseil constitutionnel, Adresse de Monsieur Jean-Louis DEBRE, Président du Conseil constitutionnel, au Président de la République à l'occasion de la cérémonie d'investiture au Palais de l'Elysée le 16 mai 2007 (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/2019-03/invest1.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2007-05-16",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_statement_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 7 March 2019, ETag \"5c8127d7-3b04\"; embedded CreationDate 16 May 2007, 12:25). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's 2007 election page links it as the President of the Council's proclamation of the final results. Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-investiture-address-20070516-facts.json",
+        "bytes": 4190,
+        "sha256": "6af4303e4ae91a11076542659de90d15bbb742e8894234544bab92bf863187b4"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_debre_2007_investiture_ceremony_20070516",
+          "text": "Address headed as that of the President of the Constitutional Council 'au Président de la République à l'occasion de la cérémonie d'investiture au Palais de l'Elysée le 16 mai 2007', recalling that on 6 May 2007 'vous avez recueilli 18.983.138 voix' and that the Council proclaimed him elected 'le 10 mai dernier'.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "pdf_page": 1,
+            "item": "heading and first two paragraphs"
+          },
+          "uncertainty": "The address names nobody: the holder is addressed by title and identified by the vote total, which decision 2007-141 PDR gives for M. Nicolas SARKOZY (fr_cc_2007_second_round_20070505_20070506)."
+        },
+        {
+          "id": "fr_cc_debre_2007_from_this_day_20070516",
+          "text": "The address states: 'vous devenez ainsi le sixième Président de la Cinquième République' and 'A compter de ce jour, et pour la durée de votre mandat, vous incarnez la France, symbolisez la République et représentez l'ensemble des Français.'",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "pdf_page": 1,
+            "item": "third and fourth body paragraphs"
+          },
+          "uncertainty": "The proclaiming authority's statement, at the ceremony, that the office runs from that day (dated by the heading, 16 May 2007); no hour. Identity rests on the vote total and on his own installation address of the same day."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_investiture_page_2007",
+      "title": "Conseil constitutionnel, Élection présidentielle 2007: Investiture du Président de la République (web page, archived)",
+      "url": "https://web.archive.org/web/20240405132235id_/https://www.conseil-constitutionnel.fr/election-presidentielle-2007/investiture-du-president-de-la-republique",
+      "original_url": "https://www.conseil-constitutionnel.fr/election-presidentielle-2007/investiture-du-president-de-la-republique",
+      "publisher": "Conseil constitutionnel",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 5 April 2024 of an undated page in the Council's 2007 election file; the live page is a Drupal render with a per-request form token and is not a reproducible identity. It links the President of the Council's address (invest1.pdf) and the President's address (disc-investiture-16-05-07.pdf). Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-investiture-page-2007-20240405-facts.json",
+        "bytes": 3744,
+        "sha256": "9aed6e90ca70e246a1ce8b34ac91467ab5a08ebe2e9ce77aaa228bc8d8fc2905"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2007_investiture_ceremony_at_1100_20070516",
+          "text": "The page states that 'La cérémonie d'investiture du Président de la République a eu lieu au palais de l'Elysée mercredi 16 mai à 11 heures', that the President of the Council proclaimed the final results of the election of 22 April and 6 May 2007, that the Grand Chancellor of the Legion of Honour presented the collar and that the President then gave an address.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "section": "main text under 'Cérémonie d'investiture du nouveau Président de la République'"
+          },
+          "uncertainty": "An undated retrospective page that names nobody; a ceremony, not a start. Its 11:00 conflicts with the Élysée's account that the outgoing President received his successor at 11:00 before the ceremony (fr_elysee_sarkozy_received_by_chirac_20070516); only the day is used anywhere."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_sarkozy_installation_speech_20070516",
+      "title": "Discours de M. Nicolas Sarkozy, Président de la République, cérémonie d'installation, Palais de l'Elysée, 16 mai 2007 (Présidence de la République print, PDF held in the Conseil constitutionnel's 2007 election file)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/dossiers_thematiques/presidentielle_2007/disc-investiture-16-05-07.pdf",
+      "publisher": "Présidence de la République (document); hosted by the Conseil constitutionnel",
+      "published_date": "2007-05-16",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "presidency_speech_print_hosted_by_constitutional_council",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 4 January 2010, ETag \"4b423114-387b5\"; embedded CreationDate 23 September 2007). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. A later-hosted copy of a Présidence print; the Élysée's own page reproduces the same address (not recorded twice).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-presidency-sarkozy-installation-speech-20070516-facts.json",
+        "bytes": 3573,
+        "sha256": "ac66273ea043645e638e5355c5e16463d732e2f429f9d860add44c15c569c956"
+      },
+      "claims": [
+        {
+          "id": "fr_sarkozy_takes_office_statement_20070516",
+          "text": "Headed as the installation-ceremony address of M. Nicolas Sarkozy, Président de la République, Palais de l'Elysée, 16 May 2007, the speech opens 'En ce jour où je prends officiellement mes fonctions de Président de la République française'.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "pdf_page": 1,
+            "item": "heading block and first paragraph"
+          },
+          "uncertainty": "The holder's own statement: it supports the Council's statement of the same day but never makes a start by itself; no hour."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_investiture_sarkozy",
+      "title": "Élysée, L'investiture de Nicolas Sarkozy (web page, archived)",
+      "url": "https://web.archive.org/web/20260618045617id_/https://www.elysee.fr/la-presidence/l-investiture-de-nicolas-sarkozy",
+      "original_url": "https://www.elysee.fr/la-presidence/l-investiture-de-nicolas-sarkozy",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 15 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day. The page also reproduces the 16 May 2007 installation address, recorded once from the Présidence print.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-sarkozy-20260618-facts.json",
+        "bytes": 4972,
+        "sha256": "9ade09b61258b17ae2e6ad327f73769ca5f20f4083d0b24cc9042e90efeb852f"
+      },
+      "claims": [
+        {
+          "id": "fr_elysee_sarkozy_received_by_chirac_20070516",
+          "text": "The Élysée states that M. Jacques CHIRAC received M. Nicolas SARKOZY, 'élu le 6 mai 2007 Président de la République', at the Élysée Palace 'à 11 heures le mercredi 16 mai 2007'.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "html": "main content, first paragraph"
+          },
+          "uncertainty": "A retrospective account (updated 15 December 2022); the meeting is neither the start nor an end."
+        },
+        {
+          "id": "fr_elysee_sarkozy_investiture_ceremony_20070516",
+          "text": "It states that after their meeting M. Nicolas SARKOZY went to the Salle des Fêtes, where the President of the Constitutional Council proclaimed the official results of the presidential election.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "html": "main content, second paragraph, first clause"
+          },
+          "uncertainty": "Retrospective ceremony account; the reading of the results is not a start. The day comes from the first paragraph."
+        },
+        {
+          "id": "fr_elysee_sarkozy_investiture_record_signed_20070516",
+          "text": "It states that the proclamation was followed by 'la signature du procès-verbal d'investiture, M. Nicolas SARKOZY devenant alors le 6ème président de la Vème République'.",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "html": "main content, second paragraph, closing clause"
+          },
+          "uncertainty": "The office's retrospective statement of when he became President; no hour, and the procès-verbal itself was not seen. Claim only, never a boundary."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_declaration_20070515",
+      "title": "Déclaration radiotélévisée de M. Jacques Chirac, Président de la République, à l'occasion de la fin de son mandat (Élysée, publié le 15 mai 2007; archived)",
+      "url": "https://web.archive.org/web/20260216083233id_/https://www.elysee.fr/jacques-chirac/2007/05/15/declaration-radiotelevisee-de-m-jacques-chirac-president-de-la-republique-a-loccasion-de-la-fin-de-son-mandat",
+      "original_url": "https://www.elysee.fr/jacques-chirac/2007/05/15/declaration-radiotelevisee-de-m-jacques-chirac-president-de-la-republique-a-loccasion-de-la-fin-de-son-mandat",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": "2007-05-15",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 16 February 2026 of the Élysée archive page (served without Content-Encoding). The text is marked 'Seul le prononcé fait foi' and is unsigned; the name and the styling 'Président de la République' come from the archive heading, a later catalogue label. The linked module PDF is not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-end-of-mandate-declaration-20070515-facts.json",
+        "bytes": 3710,
+        "sha256": "70d617253a348c34c185e399a9210d5d0d2a22375cad5b71eb611b77982e50e6"
+      },
+      "claims": [
+        {
+          "id": "fr_chirac_handover_announced_20070515",
+          "text": "In a televised declaration published on 15 May 2007 and headed as made 'à l'occasion de la fin de son mandat', the speaker says 'Demain, je transmettrai les pouvoirs que j'ai exercés en votre nom à Nicolas Sarkozy, notre nouveau Président de la République'.",
+          "attested_on": "2007-05-15",
+          "locator": {
+            "item": "heading; declaration text, first sentence"
+          },
+          "uncertainty": "A prospective announcement made the day before the transfer, with no hour: never an `until`. 'Notre nouveau Président' for Nicolas Sarkozy on 15 May is president-elect usage, not a holder observation. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_chirac_biography",
+      "title": "Jacques Chirac: biography page (Élysée, 'Les présidents'; archived)",
+      "url": "https://web.archive.org/web/20260618043407id_/https://www.elysee.fr/jacques-chirac",
+      "original_url": "https://www.elysee.fr/jacques-chirac",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of an undated biography page with a retrospective timeline. It replaces the part C capture of 4 August 2026, which the archive serves gzip-compressed even to requests for identity encoding; the timeline text is the same in both. Only the 16 May 2007 row is imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-biography-20260618-facts.json",
+        "bytes": 3447,
+        "sha256": "cc2050cd4a0bc1d405af45c94f114f3407ac3508fadef3f0bafa54cc56923207"
+      },
+      "claims": [
+        {
+          "id": "fr_elysee_bio_chirac_left_elysee_20070516",
+          "text": "The Élysée's biography timeline of Jacques Chirac lists under '16 mai 2007': 'Il quitte l'Élysée après la cérémonie d'investiture de Nicolas Sarkozy'.",
+          "locator": {
+            "item": "biography timeline entry '16 mai 2007'"
+          },
+          "uncertainty": "A row of a retrospective timeline on an undated page: no structured date is stored and it is never a boundary. Leaving the Élysée after the successor's investiture is not stated as the end of the term."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_note_mai_2012_duree_des_mandats",
+      "title": "Conseil constitutionnel, Mai 2012 : Proclamation des résultats de l'élection présidentielle et durée des mandats (web page, archived)",
+      "url": "https://web.archive.org/web/20250224042741id_/https://www.conseil-constitutionnel.fr/election-presidentielle-2012/mai-2012-proclamation-des-resultats-de-l-election-presidentielle-et-duree-des-mandats",
+      "original_url": "https://www.conseil-constitutionnel.fr/election-presidentielle-2012/mai-2012-proclamation-des-resultats-de-l-election-presidentielle-et-duree-des-mandats",
+      "publisher": "Conseil constitutionnel",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 24 February 2025 of the Council's undated explanatory note; it links Jean-Louis Debré's address of 15 May 2012, so it was completed on or after that day. The live page is a Drupal render with a per-request form token and is not a reproducible identity. The note is retrospective: its dated statements are claims only, never boundaries.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-note-duree-des-mandats-20250224-facts.json",
+        "bytes": 7113,
+        "sha256": "b1e407e061578d90a6c5125180a23b9b8dd5e500bb9b56aac1ce53b119532b30"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_note_mitterrand_second_mandate_due_end_19950521",
+          "text": "The note states: 'À la suite de sa réélection en 1988, M. Mitterrand voyait son second mandat s'achever le 21 mai 1995 à 0 heure', the Council fixing the entry into office for a renewed mandate 'jour pour jour' from the expiry of the previous one.",
+          "attested_on": "1995-05-21",
+          "locator": {
+            "html": "paragraph beginning 'À la suite de sa réélection en 1988'"
+          },
+          "uncertainty": "A retrospective statement of the scheduled expiry, not of the day his functions ended (the note itself dates the 1995 handover to 17 May); never an `until`."
+        },
+        {
+          "id": "fr_cc_note_chirac_1995_passation_19950517",
+          "text": "The note states: 'En 1995, la passation des pouvoirs avec Monsieur Jacques Chirac s'est, à nouveau d'un commun accord entre les deux Présidents, tenue le 17 mai'.",
+          "attested_on": "1995-05-17",
+          "locator": {
+            "html": "paragraph beginning 'En 1995, la passation des pouvoirs', first clause"
+          },
+          "uncertainty": "Retrospective (written in or after May 2012): a claim only, never a start or an end; it agrees with the same-day statements of 17 May 1995."
+        },
+        {
+          "id": "fr_cc_note_chirac_first_mandate_end_20020517",
+          "text": "The same sentence continues: 'le mandat de ce dernier s'achevant le 17 mai 2002 à 0 heure'.",
+          "attested_on": "2002-05-17",
+          "locator": {
+            "html": "paragraph beginning 'En 1995, la passation des pouvoirs', closing clause"
+          },
+          "uncertainty": "A retrospective computed expiry of the first term; it is never the 1995 holder's `until`, and the 2002 decision states only the second term's start."
+        },
+        {
+          "id": "fr_cc_note_passation_sarkozy_20070516",
+          "text": "The note states: 'La passation des pouvoirs avec Monsieur Nicolas Sarkozy s'est tenue le 16 mai 2007.'",
+          "attested_on": "2007-05-16",
+          "locator": {
+            "html": "paragraph beginning 'En 1995, la passation des pouvoirs', second sentence"
+          },
+          "uncertainty": "Retrospective; a claim only, and it names no outgoing President in this sentence."
+        },
+        {
+          "id": "fr_cc_note_sarkozy_mandate_expiry_20120516",
+          "text": "It adds: 'En application de l'article 6 de la Constitution, le mandat de ce dernier vient ainsi à échéance le 16 mai 2012 à 0 heure.'",
+          "attested_on": "2012-05-16",
+          "locator": {
+            "html": "paragraph beginning 'En 1995, la passation des pouvoirs', final sentence"
+          },
+          "uncertainty": "A computed expiry, the same instant as the 2012 decision's outer limit (15 May 2012 at 24 heures), not an observed end: the successor's investiture is dated 15 May 2012. Never an `until`."
+        },
+        {
+          "id": "fr_cc_note_links_debre_address_hollande_investiture",
+          "text": "The note links the PDF ceremonie_du_PR.pdf under the title 'Discours de Jean-Louis Debré, Président du conseil constitutionnel, lors de l'investiture de François Hollande, Président de la République'.",
+          "locator": {
+            "html": "link after the note text",
+            "href": "/sites/default/files/as/root/bank_mm/discours_interventions/2012/ceremonie_du_PR.pdf"
+          },
+          "uncertainty": "Identifies the addressee and the speaker of the Council's 15 May 2012 address, which names neither; the link title carries no date and no structured date is stored."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_decision_2012_154_pdr",
+      "title": "Conseil constitutionnel, Décision du 10 mai 2012, Proclamation des résultats de l'élection du Président de la République (n° 2012-154 PDR), PDF version",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2012proclamationPDR/2012proclamationPDR.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2012-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_decision_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2012, ETag \"4fab7944-5e4e\"; embedded CreationDate 10 May 2012). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's HTML page for the same decision (2012154PDR.htm) is not recorded: one rendering per decision.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2012-154-pdr-20120510-facts.json",
+        "bytes": 5774,
+        "sha256": "e06013fac8636dfb3a99fa660d3fc6ee524dc827545691d15ebaaeb679caa371"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2012_cites_sarkozy_proclamation_20070510",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2007 proclamant M. Nicolas SARKOZY Président de la République et la date à laquelle celui-ci a pris ses fonctions'.",
+          "attested_on": "2007-05-10",
+          "locator": {
+            "pdf_page": 1,
+            "item": "visa 'Vu la décision du Conseil constitutionnel du 10 mai 2007'"
+          },
+          "uncertainty": "Treats the day of taking office as distinct from the proclamation but states no day."
+        },
+        {
+          "id": "fr_cc_2012_second_round_20120505_20120506",
+          "text": "The decision states that the second round was held 'les 5 et 6 mai 2012' and records 46 066 307 registered electors, 34 861 353 votes cast, 18 000 668 for M. François HOLLANDE and 16 860 685 for M. Nicolas SARKOZY.",
+          "period": {
+            "from": "2012-05-05",
+            "through": "2012-05-06"
+          },
+          "locator": {
+            "pdf_page": 4,
+            "item": "ground 7"
+          },
+          "uncertainty": "The election round only."
+        },
+        {
+          "id": "fr_cc_2012_proclamation_hollande_20120510",
+          "text": "Deliberating at its sittings of 7, 8, 9 and 10 May 2012, the Council 'P R O C L A M E M. François HOLLANDE Président de la République française à compter de la cessation des fonctions de M. Nicolas SARKOZY'.",
+          "attested_on": "2012-05-10",
+          "locator": {
+            "pdf_page": 4,
+            "item": "dispositif 'P R O C L A M E'",
+            "also": "pdf_page 1 heading 'Décision du 10 mai 2012'; pdf_pages 4-5 deliberation line"
+          },
+          "uncertainty": "Fixes no day of taking office; not a start."
+        },
+        {
+          "id": "fr_cc_2012_sarkozy_cessation_bound_20120510",
+          "text": "The same sentence states that the cessation of M. Nicolas SARKOZY's functions 'en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 15 mai 2012 à 24 heures'; the new President's term runs from that cessation.",
+          "attested_on": "2012-05-10",
+          "locator": {
+            "pdf_page": 4,
+            "item": "dispositif, sentence after 'P R O C L A M E'"
+          },
+          "uncertainty": "An outer limit stated in advance, recorded once for both parts of the sentence; never an `until` or a `from`."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_debre_communication_20120510",
+      "title": "Conseil constitutionnel, Communication de Monsieur Jean-Louis DEBRÉ, Président du Conseil constitutionnel, le jeudi 10 mai 2012, à l'occasion de la proclamation de l'élection du Président de la République (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2012proclamationPDR/declaration.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2012-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_statement_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2012, ETag \"4fab7dda-7cab\"; embedded CreationDate 10 May 2012). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-communication-20120510-facts.json",
+        "bytes": 4020,
+        "sha256": "9be8cc0ec9d6b62b465030b9c4c3ae8ec25fafb3e9fefbc637fc271aad1ca748"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2012_results_arrested_session_20120510",
+          "text": "On Thursday 10 May 2012 the President of the Constitutional Council states that the second-round results were settled by the Council at its sitting of 10 May 2012 and that 'le Conseil constitutionnel proclame M. François HOLLANDE Président de la République française'.",
+          "attested_on": "2012-05-10",
+          "locator": {
+            "pdf_page": 1,
+            "item": "heading and first paragraphs"
+          },
+          "uncertainty": "Oral communication of the same proclamation as fr_cc_2012_proclamation_hollande_20120510."
+        },
+        {
+          "id": "fr_cc_2012_mandate_begins_by_20120510",
+          "text": "The communication states: 'Son mandat de cinq ans, fixé par la Constitution, débutera au plus tard le 15 mai à minuit.'",
+          "attested_on": "2012-05-10",
+          "locator": {
+            "pdf_page": 1,
+            "item": "paragraph 'Son mandat de cinq ans'"
+          },
+          "uncertainty": "An upper bound only; the decision's '15 mai 2012 à 24 heures' governs. Not a start."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_proclamation_20120511",
+      "title": "Décision du 10 mai 2012 portant proclamation des résultats de l'élection du Président de la République, JORF n°0110 du 11 mai 2012, Texte n° 1 (Légifrance text page, archived)",
+      "url": "https://web.archive.org/web/20210227042751id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025844007",
+      "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025844007",
+      "publisher": "Journal officiel de la République française (Légifrance, Direction de l'information légale et administrative)",
+      "published_date": "2012-05-11",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_official_journal_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 27 February 2021 of Légifrance's Journal officiel text page (NOR HRUX1223027S); Légifrance itself refuses automated access, which was not bypassed. Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2012-20120511-facts.json",
+        "bytes": 3510,
+        "sha256": "b5042207165e1f241fa4fa2e01cc4e3e76c6d5fa89de3e2100799b67e3c3eb45"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_publishes_2012_proclamation_20120511",
+          "text": "The Journal officiel n°0110 of 11 May 2012 publishes as its text no. 1 the decision of 10 May 2012 proclaiming M. François Hollande President 'à compter de la cessation des fonctions de M. Nicolas Sarkozy, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 15 mai 2012, à 24 heures'.",
+          "attested_on": "2012-05-11",
+          "locator": {
+            "item": "reference block ('NOR : HRUX1223027S', 'JORF n°0110 du 11 mai 2012', 'Texte n° 1') and the dispositif"
+          },
+          "uncertainty": "The publication of the proclamation; neither the proclamation nor a start."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_debre_investiture_address_20120515",
+      "title": "Conseil constitutionnel, address of the President of the Constitutional Council, Cérémonie d'investiture, Palais de l'Elysée, 15 mai 2012 (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/discours_interventions/2012/ceremonie_du_PR.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2012-05-15",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_statement_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 16 May 2012, ETag \"4fb3bdfa-2689\"; embedded CreationDate 16 May 2012). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The page names neither the speaker nor the addressee; the Council's 2012 note links it as Jean-Louis Debré's address at the investiture of François Hollande.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-investiture-address-20120515-facts.json",
+        "bytes": 4345,
+        "sha256": "de14c6982fc3b0a3b3d479401bbb23b849d578757c67a950a6646abaf128c733"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_debre_2012_investiture_ceremony_20120515",
+          "text": "Address headed 'Cérémonie d'investiture', 'Palais de l'Elysée', '15 mai 2012', delivered to 'Monsieur le Président de la République', recalling that on 6 May 2012 'vous avez recueilli 18 000 668 voix' and that the Council proclaimed him elected 'le 10 mai dernier'.",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "pdf_page": 1,
+            "item": "heading and first two body paragraphs"
+          },
+          "uncertainty": "The address names nobody: the holder is addressed by title and identified by the vote total, which decision 2012-154 PDR gives for M. François HOLLANDE, and by the note's link title (fr_cc_note_links_debre_address_hollande_investiture)."
+        },
+        {
+          "id": "fr_cc_debre_2012_from_this_day_20120515",
+          "text": "The address states that 'vous devenez ainsi le septième Président de la Cinquième République' and 'A compter de ce jour, 15 mai 2012, et pour la durée de votre mandat, vous incarnez la France, symbolisez la République et ses valeurs'.",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "pdf_page": 1,
+            "item": "first and second paragraphs after the second salutation 'Monsieur le Président de la République' (body paragraphs 3-4)"
+          },
+          "uncertainty": "The proclaiming authority's statement at the ceremony of the day from which the office runs; no hour. Identity as for the ceremony claim."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_investiture_hollande",
+      "title": "Élysée, L'investiture de François Hollande (web page, archived)",
+      "url": "https://web.archive.org/web/20260618045558id_/https://www.elysee.fr/linvestiture-de-francois-hollande",
+      "original_url": "https://www.elysee.fr/linvestiture-de-francois-hollande",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 15 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-hollande-20260618-facts.json",
+        "bytes": 4390,
+        "sha256": "e7bc96ebf3a0571580ebbbb2ade8a3178ff973bc9a7a536e69fa4a6ce7aec8a1"
+      },
+      "claims": [
+        {
+          "id": "fr_elysee_hollande_received_by_sarkozy_20120515",
+          "text": "The Élysée states that 'Le mardi 15 mai 2012 à 10h00, M. François Hollande a été accueilli par M. Nicolas Sarkozy au Palais de l'Élysée' following his election on 6 May 2012 as seventh President of the Fifth Republic, and that after their meeting he accompanied M. Nicolas Sarkozy to the steps.",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "html": "main content, first paragraph and the first sentence of the second"
+          },
+          "uncertainty": "A retrospective account (updated 15 December 2022); the meeting is neither the start nor an end."
+        },
+        {
+          "id": "fr_elysee_hollande_investiture_ceremony_20120515",
+          "text": "It states that he then received from General Georgelin, Grand Chancellor, the insignia of Grand Master of the Legion of Honour, and that the investiture ceremony continued with the proclamation of the official results presided over by Jean-Louis Debré, President of the Constitutional Council.",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "html": "main content, second and third paragraphs"
+          },
+          "uncertainty": "Retrospective ceremony account; it does not itself state when office was assumed. The day comes from the first paragraph."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_hollande_declaration_20120515",
+      "title": "Déclaration de M. François Hollande, Président de la République, sur son projet pour la France, à Paris le 15 mai 2012 (Élysée archive page, archived)",
+      "url": "https://web.archive.org/web/20260618082345id_/https://www.elysee.fr/francois-hollande/2012/05/15/declaration-de-m-francois-hollande-president-de-la-republique-sur-son-projet-pour-la-france-a-paris-le-15-mai-2012",
+      "original_url": "https://www.elysee.fr/francois-hollande/2012/05/15/declaration-de-m-francois-hollande-president-de-la-republique-sur-son-projet-pour-la-france-a-paris-le-15-mai-2012",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": "2012-05-15",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of the Élysée archive page, used in place of the live page, whose rotating menu blocks change the bytes. The text is marked 'Seul le prononcé fait foi'; the heading is a later catalogue label.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-hollande-declaration-20120515-facts.json",
+        "bytes": 3666,
+        "sha256": "2ea8c454f20ce32e19f0a8c6bb72fae1ace092ea25e536d52319ad85759e7c14"
+      },
+      "claims": [
+        {
+          "id": "fr_hollande_invested_statement_20120515",
+          "text": "In the declaration dated 15 May 2012, headed as M. François Hollande's as President of the Republic, the speaker opens: 'En ce jour où je suis investi de la plus haute charge de l'État, j'adresse aux Français un message de confiance.'",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "html": "document card dated '15 mai 2012', first paragraph"
+          },
+          "uncertainty": "The holder's own statement: it supports the Council's statement of the same day but never makes a start by itself. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_decree_prime_minister_20120515",
+      "title": "Décret du 15 mai 2012 portant nomination du Premier ministre, JORF n°0114 du 16 mai 2012, Texte n° 1 (Légifrance text page, archived)",
+      "url": "https://web.archive.org/web/20240919075204id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025885869",
+      "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025885869",
+      "publisher": "Journal officiel de la République française (Légifrance, Direction de l'information légale et administrative)",
+      "published_date": "2012-05-16",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_official_journal_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 19 September 2024 of Légifrance's Journal officiel text page (NOR HRUX1223252D); Légifrance itself refuses automated access, which was not bypassed. Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-jorf-decree-prime-minister-20120515-facts.json",
+        "bytes": 3389,
+        "sha256": "2f42a5b09fcd67b590cfcc32d32f6f489c5b4dc7ffce589883f7949117476463"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_hollande_signs_pm_appointment_decree_20120515",
+          "text": "The Journal officiel n°0114 of 16 May 2012 prints as its text no. 1 a decree by 'Le Président de la République' appointing M. Jean-Marc Ayrault Prime Minister, 'Fait à Paris, le 15 mai 2012. François Hollande'.",
+          "attested_on": "2012-05-15",
+          "locator": {
+            "item": "reference block ('NOR : HRUX1223252D', 'JORF n°0114 du 16 mai 2012', 'Texte n° 1') and the signature line"
+          },
+          "uncertainty": "An official same-day attestation of the holder acting as President; not a start. The appointment itself belongs to the Prime Minister's office, outside this role."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_decision_2017_171_pdr",
+      "title": "Conseil constitutionnel, Décision n° 2017-171 PDR du 10 mai 2017 (Proclamation des résultats de l'élection du Président de la République), PDF version",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2017-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_decision_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591332c4-b604\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's HTML page for the same decision (2017171PDR.htm) is not recorded: one rendering per decision.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2017-171-pdr-20170510-facts.json",
+        "bytes": 5824,
+        "sha256": "3e76bf0426b3f81da5f5a4b92ef29c60fb84eecb6fa064d64311080e62faf71b"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2017_cites_hollande_proclamation_20120510",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2012 proclamant M. François HOLLANDE Président de la République et de la date à laquelle celui-ci a pris ses fonctions'.",
+          "attested_on": "2012-05-10",
+          "locator": {
+            "pdf_page": 2,
+            "item": "visa 'Au vu de la décision du Conseil constitutionnel du 10 mai 2012'"
+          },
+          "uncertainty": "States no day of taking office."
+        },
+        {
+          "id": "fr_cc_2017_second_round_20170506_20170507",
+          "text": "The decision states that the second round was held 'les 6 et 7 mai 2017' and records 47 568 693 registered electors, 3 021 499 blank ballots, 31 381 603 votes cast, 20 743 128 for M. Emmanuel Macron and 10 638 475 for Mme Marine Le Pen.",
+          "period": {
+            "from": "2017-05-06",
+            "through": "2017-05-07"
+          },
+          "locator": {
+            "pdf_page": 6,
+            "item": "paragraph 17",
+            "also": "pdf_page 7 candidate rows"
+          },
+          "uncertainty": "The election round only."
+        },
+        {
+          "id": "fr_cc_2017_proclamation_macron_20170510",
+          "text": "Deliberating at its sittings of 8, 9 and 10 May 2017 and 'Rendu public le 10 mai 2017', the decision states 'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME M. Emmanuel MACRON élu Président de la République française'.",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 7,
+            "item": "'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME', deliberation line and 'Rendu public le 10 mai 2017'"
+          },
+          "uncertainty": "Fixes no day of taking office; not a start."
+        },
+        {
+          "id": "fr_cc_2017_hollande_cessation_bound_20170510",
+          "text": "It states: 'Il prendra ses fonctions à compter de la cessation de celles de M. François HOLLANDE, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 14 mai 2017 à 24 heures.'",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 7,
+            "item": "sentence 'Il prendra ses fonctions'"
+          },
+          "uncertainty": "An outer limit stated in advance, recorded once for both the successor's start and the predecessor's cessation; never an `until` or a `from`."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_fabius_proclamation_statement_20170510",
+      "title": "Conseil constitutionnel, Annonce des résultats officiels du second tour de l'élection présidentielle et proclamation de l'élection du Président de la République par M. Laurent Fabius, Président du Conseil constitutionnel, Paris, mercredi 10 mai 2017 (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr_discours.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2017-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_statement_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591336ca-46b6\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-proclamation-statement-20170510-facts.json",
+        "bytes": 4251,
+        "sha256": "bf90a4aebe173d14342a30168cd090cf79622cc52ab0e3c408583bd07c39ecc9"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_fabius_proclaims_macron_20170510",
+          "text": "M. Laurent Fabius states on Wednesday 10 May 2017 that the Council carried out its counting and control from Monday 8 May and that 'le Conseil constitutionnel en ce 10 mai 2017 proclame M. Emmanuel Macron élu Président de la République française', with 20 743 128 votes (66.10 per cent of votes cast).",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 2,
+            "item": "paragraphs from 'Depuis lundi dernier 8 mai' to the proclamation sentence",
+            "also": "pdf_page 1 heading"
+          },
+          "uncertainty": "Oral announcement of the same proclamation as fr_cc_2017_proclamation_macron_20170510; not a start."
+        },
+        {
+          "id": "fr_cc_fabius_2017_hollande_cessation_bound_20170510",
+          "text": "The announcement repeats: 'Il prendra ses fonctions à compter de la cessation de celles de M. François Hollande, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 14 mai 2017 à 24 heures.'",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 2,
+            "item": "paragraph 'Il prendra ses fonctions'"
+          },
+          "uncertainty": "An outer limit stated in advance; never an `until` or a `from`."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_proclamation_20170511",
+      "title": "Décision n° 2017-171 PDR du 10 mai 2017, JORF n°0110 du 11 mai 2017, Texte n° 1 (Légifrance text page, archived)",
+      "url": "https://web.archive.org/web/20210216045704id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034674096",
+      "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034674096",
+      "publisher": "Journal officiel de la République française (Légifrance, Direction de l'information légale et administrative)",
+      "published_date": "2017-05-11",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_official_journal_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 16 February 2021 of Légifrance's Journal officiel text page (NOR CSCL1714218S); Légifrance itself refuses automated access, which was not bypassed. Located by the part B check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2017-20170511-facts.json",
+        "bytes": 3457,
+        "sha256": "730c02428bda3fc0b7e3fc7a0bf435e5d7ee7b862c4cbfef26fc801f2c6bb415"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_publishes_2017_proclamation_20170511",
+          "text": "The Journal officiel n°0110 of 11 May 2017 publishes as its text no. 1 decision no. 2017-171 PDR, proclaiming 'M. Emmanuel MACRON élu Président de la République française', who 'prendra ses fonctions à compter de la cessation de celles de M. François HOLLANDE'.",
+          "attested_on": "2017-05-11",
+          "locator": {
+            "item": "reference block ('NOR : CSCL1714218S', 'JORF n°0110 du 11 mai 2017', 'Texte n° 1') and the dispositif"
+          },
+          "uncertainty": "The publication of the proclamation; neither the proclamation nor a start."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_dossier_documentaire_2017",
+      "title": "Conseil constitutionnel, Élection du Président de la République 2017, Proclamation des résultats, Dossier documentaire (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr_doc.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2017-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_publication_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591336d2-276bf\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. Issued with the 10 May 2017 proclamation. Its summary table 'Du scrutin à la prise de fonction' (page 8) and the formula entries (pages 11-12) are retrospective: each row is recorded as printed with no structured date and is never a boundary.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-dossier-documentaire-2017-20170510-facts.json",
+        "bytes": 7776,
+        "sha256": "fa28a59b93216ea606684b38b688667ed108f8a6fc9063c92c5ab65adb6819fd"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_dossier2017_row_1988",
+          "text": "The summary table gives for 1988: second round '8 mai', Council decision '10 et 11 mai', date in the decision 'Le 21 mai à 0 heures', investiture or transfer-of-powers ceremony '21 mai'; the page 11 entry prints 'Cérémonie : 21 mai 1988' above decision no. 88-60 PDR proclaiming Monsieur François Mitterrand.",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 1988",
+            "also": "pdf_page 11, entry '1988'"
+          },
+          "uncertainty": "A retrospective list row: no structured date is stored and it is never a boundary."
+        },
+        {
+          "id": "fr_cc_dossier2017_row_1995",
+          "text": "The same table gives for 1995: second round '7 mai', decision '10, 11 et 12 mai', date in the decision 'Au plus tard le 21 mai à 0 heures', ceremony '17 mai'; the page 11 entry prints 'Cérémonie : 17 mai 1995' above decision no. 95-81 PDR proclaiming M. Jacques Chirac.",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 1995",
+            "also": "pdf_page 11, entry '1995'"
+          },
+          "uncertainty": "A retrospective list row: no structured date is stored and it is never a boundary."
+        },
+        {
+          "id": "fr_cc_dossier2017_row_2002",
+          "text": "The same table gives for 2002: second round '5 mai', decision '6, 7 et 8 mai', date in the decision 'A compter du 17 mai à 0 heures', ceremony '16 mai'; the page 11 entry prints 'Cérémonie : 16 mai 2002' above decision no. 2002-111 PDR of 8 May 2002 proclaiming M. Jacques Chirac 'à compter du 17 mai 2002 à 0 heure'.",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 2002",
+            "also": "pdf_page 11, entry '2002'"
+          },
+          "uncertainty": "A retrospective list row: no structured date is stored and it is never a boundary. It keeps the ceremony (16 May) distinct from the effect (17 May)."
+        },
+        {
+          "id": "fr_cc_dossier2017_row_2007",
+          "text": "The same table gives for 2007: second round '6 mai', decision '7, 8 9 et 10 mai', date in the decision 'Au plus tard le 16 mai à 24 heures', ceremony '16 mai'; the page 12 entry prints 'Cérémonie : 16 mai 2007' above decision no. 2007-141 PDR proclaiming M. Nicolas SARKOZY.",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 2007",
+            "also": "pdf_page 12, entry '2007'"
+          },
+          "uncertainty": "A retrospective list row: no structured date is stored and it is never a boundary."
+        },
+        {
+          "id": "fr_cc_dossier2017_row_2012",
+          "text": "The same table gives for 2012: second round '6 mai', decision '7, 8, 9 et 10 mai', date in the decision 'Au plus tard le 15 mai à 24 heures', ceremony '15 mai'; the page 12 entry prints 'Cérémonie : 15 mai 2012' above decision 2012-154 PDR proclaiming M. François HOLLANDE.",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 2012",
+            "also": "pdf_page 12, entry '2012'"
+          },
+          "uncertainty": "A retrospective list row: no structured date is stored and it is never a boundary."
+        },
+        {
+          "id": "fr_cc_dossier2017_2017_ceremony_pending_20170510",
+          "text": "As issued with the proclamation of 10 May 2017, the table's 2017 row has an empty ceremony cell and the page 12 entry prints 'Cérémonie : à venir' above decision 2017-171 PDR proclaiming M. Emmanuel MACRON elected.",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 8,
+            "item": "table row 2017",
+            "also": "pdf_page 12, entry '2017'"
+          },
+          "uncertainty": "Shows only that no ceremony had taken place when the dossier was issued."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_fabius_investiture_address_20170514",
+      "title": "Conseil constitutionnel, Cérémonie d'investiture au Palais de l'Elysée: Adresse de M. Laurent Fabius, Président du Conseil constitutionnel, au Président de la République, dimanche 14 mai 2017 (web page, archived)",
+      "url": "https://web.archive.org/web/20241208030244id_/https://www.conseil-constitutionnel.fr/ceremonie-d-investiture-au-palais-de-l-elysee",
+      "original_url": "https://www.conseil-constitutionnel.fr/ceremonie-d-investiture-au-palais-de-l-elysee",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2017-05-14",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 8 December 2024 of the Council's page for the address; the live page is a Drupal render whose newsletter-form token changes when its cache is rebuilt, so it is not a reproducible identity. The main text matches the live page.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-investiture-address-20170514-facts.json",
+        "bytes": 4187,
+        "sha256": "c5fe6976ff438f85c0d74b26dffe2da24814faeb6ff1ad33ffac0fc541ca5359"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_fabius_2017_investiture_ceremony_20170514",
+          "text": "Address of M. Laurent Fabius 'au Président de la République', headed 'Cérémonie d'investiture au Palais de l'Elysée - Dimanche 14 mai 2017', recalling that on Sunday 7 May 2017 'vous avez recueilli 20 743 128 voix' and that on Wednesday 10 May the Council proclaimed him elected, 'le huitième Président élu au suffrage universel sous la Cinquième République'.",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "html": "main content: heading and first two paragraphs"
+          },
+          "uncertainty": "The address names nobody: the holder is addressed as 'Monsieur le Président de la République' and identified by the vote total, which decision 2017-171 PDR and the Council President's statement of 10 May 2017 give for M. Emmanuel Macron."
+        },
+        {
+          "id": "fr_cc_fabius_2017_takes_office_now_20170514",
+          "text": "The address says: 'Et aujourd'hui, en ce dimanche 14 mai, en cet instant précis où vous prenez vos hautes fonctions, nous vous présentons nos félicitations les plus sincères.'",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "html": "main content, third paragraph"
+          },
+          "uncertainty": "A contemporaneous statement, by the President of the proclaiming authority, of the day office was taken up; no hour. Identity as for the ceremony claim."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_rapport_activite_2017",
+      "title": "Conseil constitutionnel, Rapport d'activité 2017 (PDF)",
+      "url": "https://www.conseil-constitutionnel.fr/sites/default/files/2018-09/rapport_cc_2017.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_original_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_publication_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 26 September 2018, ETag \"5bab46a1-4783fc\"; embedded CreationDate 27 September 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. A retrospective annual report: its statements are claims only. A download on 26 September 2026 ended early at 4,573,046 bytes (a truncated transfer, not a changed file); every complete download matched the recorded identity.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-rapport-activite-2017-20180926-facts.json",
+        "bytes": 4394,
+        "sha256": "198f23a6c80db679ffa1a2571eb63d14f2fb8f7dad145a1b62c392c7f605cddd"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_rapport2017_officially_invested_20170514",
+          "text": "The report states that on 10 May 2017 the Council proclaimed the official second-round results and that 'Le 14 mai, à l'Élysée, Laurent Fabius a officiellement investi le nouveau Président de la République.'",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "pdf_page": 12,
+            "printed_page": 9,
+            "item": "photo caption headed '10 MAI 2017'"
+          },
+          "uncertainty": "A retrospective report; the new President is not named in this caption. Claim only, never a start."
+        },
+        {
+          "id": "fr_cc_rapport2017_transfer_of_powers_20170514",
+          "text": "Under the entry '7 mai' ('second tour de scrutin') the report states that the Council 'a proclamé élu Emmanuel Macron le 10 mai' and that 'La passation des pouvoirs entre l'ancien et le nouveau Président de la République a eu lieu à l'Élysée le 14 mai.'",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "pdf_page": 15,
+            "printed_page": 12,
+            "item": "'2017 résumé en 5 dates clés', entry '7 mai'"
+          },
+          "uncertainty": "A retrospective timeline entry of September 2018: a claim only, never a start or an end. The transfer sentence names neither President; Emmanuel Macron is named in the preceding sentence."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_investiture_macron",
+      "title": "Élysée, L'investiture d'Emmanuel Macron (web page, archived)",
+      "url": "https://web.archive.org/web/20260618043729id_/https://www.elysee.fr/linvestiture-demmanuel-macron",
+      "original_url": "https://www.elysee.fr/linvestiture-demmanuel-macron",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": null,
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 14 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day. Only the section 'Premier mandat - 14 mai 2017' is imported; the 2022 section duplicates the Élysée's page of 7 May 2022.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-macron-20260618-facts.json",
+        "bytes": 4544,
+        "sha256": "c98230137e8a68f6e88afb2264a9ff75f4b32b8e825ac85601b2ab26c28904c6"
+      },
+      "claims": [
+        {
+          "id": "fr_elysee_macron_received_by_hollande_20170514",
+          "text": "The Élysée states that 'M. François Hollande a accueilli au Palais de l'Élysée, à 10 heures le dimanche 14 mai 2017, M. Emmanuel Macron, élu le 7 mai 2017 Président de la République', and that after a meeting of nearly an hour M. Emmanuel Macron accompanied him to his car.",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "html": "section 'Premier mandat - 14 mai 2017', first paragraph and the first clause of the second"
+          },
+          "uncertainty": "A retrospective account (updated 14 December 2022); the meeting is neither the start nor an end."
+        },
+        {
+          "id": "fr_elysee_macron_2017_investiture_ceremony_20170514",
+          "text": "It states that he then went to the Salon des ambassadeurs, where he received the insignia of Grand Master of the Legion of Honour, and entered the Salle des Fêtes, where the President of the Constitutional Council, Laurent Fabius, proclaimed the official results of the presidential election.",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "html": "section 'Premier mandat - 14 mai 2017', second paragraph"
+          },
+          "uncertainty": "Retrospective ceremony account; it does not itself say when office was assumed."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_passation_20170514",
+      "title": "Passation de pouvoir et cérémonie d'investiture (Élysée, publié le 14 mai 2017; archived)",
+      "url": "https://web.archive.org/web/20260217204752id_/https://www.elysee.fr/emmanuel-macron/2017/05/14/passation-de-pouvoir-et-ceremonie-d-investiture",
+      "original_url": "https://www.elysee.fr/emmanuel-macron/2017/05/14/passation-de-pouvoir-et-ceremonie-d-investiture",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": "2017-05-14",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 17 February 2026 of a one-sentence live-stream notice; the live page carries rotating blocks and is not a reproducible identity. Recorded once, as FR-PRES-06 context.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-passation-notice-20170514-facts.json",
+        "bytes": 3358,
+        "sha256": "37620ffc1f3389a4be19c3efea11d17e4527a2e9d33fd81e033a602fd8946b51"
+      },
+      "claims": [
+        {
+          "id": "fr_elysee_passation_announced_20170514",
+          "text": "On 14 May 2017 the Élysée announced: 'A partir de 10H, suivez en direct la passation de pouvoir, puis la cérémonie d'investiture du président Emmanuel Macron.'",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "item": "article body, single sentence"
+          },
+          "uncertainty": "A same-day announcement that does not name the outgoing President and is not a record that the handover happened; context only, never a start or an end."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_hollande_interview_20170510",
+      "title": "Interview de M. François Hollande, Président de la République, sur la mémoire de l'esclavage et sur la fin de son quinquennat, à Paris le 10 mai 2017 (Élysée archive page, archived)",
+      "url": "https://web.archive.org/web/20201024091759id_/https://www.elysee.fr/francois-hollande/2017/05/10/interview-de-m-francois-hollande-president-de-la-republique-sur-la-memoire-de-lesclavage-et-sur-la-fin-de-son-quinquennat-a-paris-le-10-mai-2017",
+      "original_url": "https://www.elysee.fr/francois-hollande/2017/05/10/interview-de-m-francois-hollande-president-de-la-republique-sur-la-memoire-de-lesclavage-et-sur-la-fin-de-son-quinquennat-a-paris-le-10-mai-2017",
+      "publisher": "Présidence de la République (elysee.fr archive)",
+      "published_date": "2017-05-10",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 24 October 2020 of the Élysée archive page (served without Content-Encoding; the x-archive-orig-x-crawler-content-encoding header only records the original crawl). The transcript is marked 'Seul le prononcé fait foi'; the speaker is 'LE PRESIDENT', and the name comes from the archive heading, a later catalogue label. Located by the part C check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-hollande-interview-20170510-facts.json",
+        "bytes": 3864,
+        "sha256": "725e6f11b5925abbdd4c666ff6decba541c21f81c4c58f5aab8ed3d56fa34e9a"
+      },
+      "claims": [
+        {
+          "id": "fr_hollande_handover_announced_20170510",
+          "text": "In the transcript dated 10 May 2017 'LE PRESIDENT' speaks of 'Le Président qui va maintenant quitter ses fonctions et celui qui va entrer dans ses responsabilités' and of 'l'approche de la transmission effective qui viendra le 14, enfin qui viendra dimanche et qui scellera à ce moment-là sa prise de fonctions'.",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "item": "first and second answers of LE PRESIDENT"
+          },
+          "uncertainty": "A prospective statement made four days ahead: a claim only, never an `until`, like the 1995 and 2007 announcements. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_2022_195_pdr_first_round_declaration",
+      "title": "Décision n° 2022-195 PDR du 13 avril 2022 - Déclaration du 13 avril 2022 relative aux résultats du premier tour de scrutin de l'élection du Président de la République (decision page, archived)",
+      "url": "https://web.archive.org/web/20250210041806id_/https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+      "original_url": "https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2022-04-13",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 10 February 2025 of the Council's decision page (served without Content-Encoding; the x-archive-orig-x-crawler-content-encoding header only records the original crawl).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2022-195-pdr-20220413-facts.json",
+        "bytes": 4229,
+        "sha256": "26f59259b91cf08348ee5220ee4ae1db8b17c08ab05fabb2742a82d2a04dd585"
+      },
+      "claims": [
+        {
+          "id": "fr_2022_first_round_held_20220410",
+          "text": "Article 1 of the Council's declaration gives the results of the first round, 'auquel il a été procédé les 9 et 10 avril 2022', for twelve candidates; paragraph 20 finds that no candidate obtained the absolute majority of votes cast.",
+          "period": {
+            "from": "2022-04-09",
+            "through": "2022-04-10"
+          },
+          "locator": {
+            "item": "paragraph 20; 'LE CONSEIL CONSTITUTIONNEL DÉCLARE : Article 1er'"
+          },
+          "uncertainty": "First round only; nobody was elected, so no holder is named for this row."
+        },
+        {
+          "id": "fr_cc_first_round_results_declared_20220413",
+          "text": "The Council declared the first-round results on 13 April 2022 ('Rendu public le 13 avril 2022'); Article 2 says the proclamation of the results of the whole election will follow under the decree of 8 March 2001; the reference line gives 'JORF n°0088 du 14 avril 2022, texte n° 1'.",
+          "attested_on": "2022-04-13",
+          "locator": {
+            "item": "Articles 2 and 3; closing formula and reference line"
+          },
+          "uncertainty": "Distinct from the 27 April 2022 proclamation of the election result. Article 2's reference to the 2001 decree is procedure only."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_2022_197_pdr_proclamation_pdf",
+      "title": "Décision n° 2022-197 PDR du 27 avril 2022 (Proclamation des résultats de l'élection du Président de la République), PDF version (archived)",
+      "url": "https://web.archive.org/web/20230127073042id_/https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+      "original_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2022197pdr/2022197pdr.pdf",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2022-04-27",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_pdf_text_and_page_render_review",
+      "source_type": "primary_constitutional_council_decision_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 27 January 2023 of the Council's static PDF (original Last-Modified 27 April 2022; embedded CreationDate 27 April 2022), served without Content-Encoding. The Council's HTML page for the same decision is not recorded: one rendering per decision, and its Journal officiel reference is now taken from the Journal officiel's own page.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2022-197-pdr-20220427-facts.json",
+        "bytes": 5878,
+        "sha256": "36ff253b0352b2008441a45b9e3c7afb013dadc781d02fcbf59c5419a8fc701d"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_2022_cites_macron_proclamation_20170510",
+          "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2017 proclamant M. Emmanuel MACRON Président de la République et de la date à laquelle celui-ci a pris ses fonctions'.",
+          "attested_on": "2017-05-10",
+          "locator": {
+            "pdf_page": 2,
+            "item": "visa 'Au vu de la décision du Conseil constitutionnel du 10 mai 2017'"
+          },
+          "uncertainty": "States no day of taking office."
+        },
+        {
+          "id": "fr_2022_second_round_held_20220424",
+          "text": "The decision records the second round 'auquel il a été procédé les 23 et 24 avril 2022': 48 752 339 registered, 32 057 325 votes cast; M. Emmanuel MACRON 18 768 639 and Mme Marine LE PEN 13 288 686.",
+          "period": {
+            "from": "2022-04-23",
+            "through": "2022-04-24"
+          },
+          "locator": {
+            "page": 8,
+            "item": "paragraph 22 and the sentence after the results"
+          },
+          "uncertainty": "The election round only: it neither proclaims the result nor starts a term."
+        },
+        {
+          "id": "fr_cc_proclaims_macron_president_20220427",
+          "text": "'EN CONSÉQUENCE, LE CONSEIL CONSTITUTIONNEL PROCLAME M. Emmanuel MACRON Président de la République française'; the decision was deliberated at the sittings of 25, 26 and 27 April 2022 and 'Rendu public le 27 avril 2022'.",
+          "attested_on": "2022-04-27",
+          "locator": {
+            "page": "8-9",
+            "item": "operative paragraph after 'EN CONSÉQUENCE'; closing formula"
+          },
+          "uncertainty": "The proclamation, not the investiture (7 May 2022) and not the start, which the same sentence fixes separately (fr_cc_2022_states_effect_from_20220427)."
+        },
+        {
+          "id": "fr_cc_2022_states_effect_from_20220427",
+          "text": "The same operative sentence proclaims him President 'à compter du 14 mai 2022 à 0 heure'.",
+          "attested_on": "2022-04-27",
+          "locator": {
+            "page": 8,
+            "item": "operative paragraph"
+          },
+          "uncertainty": "A prospective statement dated by the day it was made; the day it fixes, 14 May 2022 at 0 heure, is the stated start of the second term and the holder's `from`. It does not state the end of the first term; 13 May 2022 is not inferred."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_proclamation_20220428",
+      "title": "Décision n° 2022-197 PDR du 27 avril 2022, JORF n°0099 du 28 avril 2022, Texte n° 1 (Légifrance text page, archived)",
+      "url": "https://web.archive.org/web/20220428153847id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045682724",
+      "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045682724",
+      "publisher": "Journal officiel de la République française (Légifrance, Direction de l'information légale et administrative)",
+      "published_date": "2022-04-28",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_official_journal_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made on the publication day (28 April 2022) of Légifrance's Journal officiel text page (NOR CSCX2212960S). The identifier JORFTEXT000045667581 tried by the part C researcher is not this text (no capture). Légifrance itself refuses automated access, which was not bypassed. Located by the part C check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2022-20220428-facts.json",
+        "bytes": 3569,
+        "sha256": "fdda4ef5df7e1a1f36cf9fffb0abfb146800b417454c4253e2743ce60ba28cca"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_publishes_2022_proclamation_20220428",
+          "text": "The Journal officiel n°0099 of 28 April 2022 publishes as its text no. 1 decision no. 2022-197 PDR, which proclaims 'M. Emmanuel MACRON Président de la République française à compter du 14 mai 2022 à 0 heure' and was 'Rendu public le 27 avril 2022'.",
+          "attested_on": "2022-04-28",
+          "locator": {
+            "item": "reference block ('NOR : CSCX2212960S', 'JORF n°0099 du 28 avril 2022', 'Texte n° 1') and the dispositif"
+          },
+          "uncertainty": "The publication of the proclamation; neither the proclamation nor the start."
+        }
+      ]
+    },
+    {
+      "id": "fr_elysee_investiture_20220507",
+      "title": "Cérémonie d'investiture du Président de la République (Élysée, publié le 7 mai 2022; archived)",
+      "url": "https://web.archive.org/web/20260618065523id_/https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+      "original_url": "https://www.elysee.fr/emmanuel-macron/2022/05/07/ceremonie-dinvestiture-du-president-de-la-republique",
+      "publisher": "Présidence de la République (elysee.fr)",
+      "published_date": "2022-05-07",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding). It replaces the part C capture of 26 January 2023, which the archive serves gzip-compressed even to requests for identity encoding; the article and the reproduced address are the same in both. The address is marked 'Seul le prononcé fait foi'.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-20220507-facts.json",
+        "bytes": 5131,
+        "sha256": "bba70629d4e691a8937eebb5d45d020c63ab16c5f13e2368f2c3b8c1a868ac21"
+      },
+      "claims": [
+        {
+          "id": "fr_macron_says_ending_term_began_20170514",
+          "text": "In the investiture address of 7 May 2022 reproduced on the page, the speaker says: 'Oui, le peuple français n'a pas prolongé le mandat qui s'achève, commencé le 14 mai 2017.'",
+          "attested_on": "2017-05-14",
+          "locator": {
+            "item": "'Discours du Président de la République lors de la Cérémonie d'investiture' card dated '7 mai 2022', paragraph beginning 'Oui, le peuple français'"
+          },
+          "uncertainty": "The holder's own later statement of his first term's start day, dated by the day it states: corroboration, not the basis of the 2017 `from`. It gives no end day. Marked 'Seul le prononcé fait foi'."
+        },
+        {
+          "id": "fr_macron_investiture_second_term_20220507",
+          "text": "The Élysée reports that 'Emmanuel Macron a été officiellement investi Président de la République, pour un second mandat ce samedi 7 mai', in a ceremony held in the salle des fêtes of the Élysée Palace 'à 11 heures'.",
+          "attested_on": "2022-05-07",
+          "locator": {
+            "item": "article body, first and second sentences"
+          },
+          "uncertainty": "A ceremony, not the start: the Council fixed the start at 14 May 2022 at 0 heure. On 7 May 2022 he was still serving the term that began in 2017."
+        },
+        {
+          "id": "fr_fabius_proclaims_results_at_investiture_20220507",
+          "text": "It states that Laurent Fabius, President of the Constitutional Council, 'a proclamé officiellement les résultats du scrutin du 24 avril', and that the Grand Chancellor of the Legion of Honour then handed the head of State the grand master's insignia.",
+          "attested_on": "2022-05-07",
+          "locator": {
+            "item": "article body, third sentence"
+          },
+          "uncertainty": "The ceremonial reading at the investiture is distinct from the Council's decision of 27 April 2022."
+        }
+      ]
+    },
+    {
+      "id": "fr_cc_fabius_investiture_address_20220507",
+      "title": "Conseil constitutionnel, Allocution de M. Laurent Fabius pour la cérémonie d'investiture de M. Emmanuel Macron, Président de la République, 7 mai 2022 (web page, archived)",
+      "url": "https://web.archive.org/web/20220507090054id_/https://www.conseil-constitutionnel.fr/actualites/allocution-de-m-laurent-fabius-pour-la-ceremonie-d-investiture-de-m-emmanuel-macron-president-de-la",
+      "original_url": "https://www.conseil-constitutionnel.fr/actualites/allocution-de-m-laurent-fabius-pour-la-ceremonie-d-investiture-de-m-emmanuel-macron-president-de-la",
+      "publisher": "Conseil constitutionnel",
+      "published_date": "2022-05-07",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_constitutional_council_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made the same morning (7 May 2022; original Last-Modified 7 May 2022 08:51:22 GMT) of the Council's news item, served without Content-Encoding. The text is marked 'Seul le prononcé fait foi'. Located by the part C check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-investiture-address-20220507-facts.json",
+        "bytes": 4254,
+        "sha256": "3a08ea3506448b4c6eb868558bd20d1e9a17ef1b1063b287a6410f6abc6facf7"
+      },
+      "claims": [
+        {
+          "id": "fr_cc_fabius_2022_investiture_ceremony_20220507",
+          "text": "The Council's item 'Allocution de M. Laurent Fabius pour la cérémonie d'investiture de M. Emmanuel Macron, Président de la République', headed 'Palais de l'Elysée, le 7 mai 2022', addresses 'Monsieur le Président de la République' and recalls the 18.768.639 votes of Sunday 24 April 2022.",
+          "attested_on": "2022-05-07",
+          "locator": {
+            "item": "title, dateline and first paragraph"
+          },
+          "uncertainty": "A ceremony, not the start. Marked 'Seul le prononcé fait foi'."
+        },
+        {
+          "id": "fr_cc_fabius_2022_second_mandate_begins_20220507",
+          "text": "The address says the Council 'vous a déclaré élu Président de la République pour un second mandat qui débutera le 14 mai à 0 heure', and it speaks of 'le quinquennat qui s'achève'.",
+          "attested_on": "2022-05-07",
+          "locator": {
+            "item": "first and second paragraphs"
+          },
+          "uncertainty": "The proclaiming authority's restatement, a week ahead, of the start fixed on 27 April 2022; it states no end day of the first term. Marked 'Seul le prononcé fait foi'."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_dila_opendata_20260904",
+      "title": "JORF open-data daily export JORF_20260904-212554.tar.gz (DILA; the texts of Journal officiel n°0206 du 4 septembre 2026)",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260904-212554.tar.gz",
+      "publisher": "Direction de l'information légale et administrative (DILA), publisher of the Journal officiel",
+      "published_date": "2026-09-04",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+      "source_type": "primary_official_journal_open_data_export",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified 4 September 2026 19:30:18 GMT; ETag \"25bdd2-65aad4c6e6e56\"); the .tar.gz is the file itself, not a Content-Encoding. The member read is 20260904-212554/jorf/global/texte/version/JORF/TEXT/00/00/54/79/43/JORFTEXT000054794375.xml (5 587 bytes, SHA-256 809e762eae8431954fb71f626cc9fe3d031fe74011d1518232a32fefc70f0ced), a TEXTE_VERSION record whose Légifrance identifiers are JORFTEXT000054794375 and NOR JUSB2615657D. Retention caveat: the directory lists daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; re-verify before mid-2027. Légifrance itself refuses automated access, which was not bypassed. The named civil servant or magistrate the decree concerns is not recorded.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-dila-jorf-opendata-20260904-facts.json",
+        "bytes": 4103,
+        "sha256": "e3b946213414bb5a50c74760cec5c8b62d6af4e89dd26e9a896a07f35ba99e25"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_decree_signed_macron_20260903",
+          "text": "A decree of 3 September 2026 keeping a magistrate on secondment, published in JORF n°0206 of 4 September 2026 (NOR JUSB2615657D, JORFTEXT000054794375), opens 'Le Président de la République, ... Décrète' and closes 'Fait le 3 septembre 2026.', signed 'Emmanuel MACRON', with 'Par le Président de la République :' and 'Le Premier ministre,' 'Sébastien LECORNU'.",
+          "attested_on": "2026-09-03",
+          "locator": {
+            "archive_member": "20260904-212554/jorf/global/texte/version/JORF/TEXT/00/00/54/79/43/JORFTEXT000054794375.xml",
+            "item": "DATE_TEXTE 2026-09-03; ORIGINE_PUBLI 'JORF n°0206 du 4 septembre 2026'; VISAS; SIGNATAIRES"
+          },
+          "uncertainty": "An in-office attestation four days before the cutoff; neither a start nor an end."
+        }
+      ]
+    },
+    {
+      "id": "fr_jorf_dila_opendata_20260905",
+      "title": "JORF open-data daily export JORF_20260905-213606.tar.gz (DILA; the texts of Journal officiel n°0207 du 5 septembre 2026)",
+      "url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260905-213606.tar.gz",
+      "publisher": "Direction de l'information légale et administrative (DILA), publisher of the Journal officiel",
+      "published_date": "2026-09-05",
+      "accessed_date": "2026-09-27",
+      "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+      "source_type": "primary_official_journal_open_data_export",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified 5 September 2026 19:39:53 GMT; ETag \"412d9e-65ac18c8f16a8\"); the .tar.gz is the file itself, not a Content-Encoding. The member read is 20260905-213606/jorf/global/texte/version/JORF/TEXT/00/00/54/79/71/JORFTEXT000054797136.xml (5 613 bytes, SHA-256 fff3a4461ee5e5c37501a98a8d48d5cc88fd2e4378fec13353679fc106dfa898), a TEXTE_VERSION record whose Légifrance identifiers are JORFTEXT000054797136 and NOR CPPE2619837D. Retention caveat: the directory lists daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; re-verify before mid-2027. Légifrance itself refuses automated access, which was not bypassed. The named civil servant or magistrate the decree concerns is not recorded.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/france-dila-jorf-opendata-20260905-facts.json",
+        "bytes": 4163,
+        "sha256": "b525da65b8b8fbae47b2d05bfde2946bce8567dde7994be3735ffc5a3f2f5793"
+      },
+      "claims": [
+        {
+          "id": "fr_jorf_decree_signed_macron_20260904",
+          "text": "A decree of 4 September 2026 making an appointment in a regional public-finance directorate, published in JORF n°0207 of 5 September 2026 (NOR CPPE2619837D, JORFTEXT000054797136), opens 'Le Président de la République, ... Décrète' and closes 'Fait le 4 septembre 2026.', signed 'Emmanuel MACRON', with 'Par le Président de la République :' and 'Le Premier ministre,' 'Sébastien LECORNU' and the countersigning minister.",
+          "attested_on": "2026-09-04",
+          "locator": {
+            "archive_member": "20260905-213606/jorf/global/texte/version/JORF/TEXT/00/00/54/79/71/JORFTEXT000054797136.xml",
+            "item": "DATE_TEXTE 2026-09-04; ORIGINE_PUBLI 'JORF n°0207 du 5 septembre 2026'; VISAS; SIGNATAIRES"
+          },
+          "uncertainty": "The latest presidential signature date found in the 4-6 September 2026 exports, three days before the cutoff; an in-office attestation, neither a start nor an end."
+        }
+      ]
     }
   ],
   "organizations": [
@@ -48142,7 +50029,464 @@
       }
     }
   ],
-  "institutions": [],
+  "institutions": [
+    {
+      "id": "fr_presidency",
+      "name": "Présidence de la République",
+      "kind": "executive_institution",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "These observations do not establish founding, dissolution, legal continuity or exact terms of the institution."
+      },
+      "roles": [
+        {
+          "id": "fr_president",
+          "title": "Président de la République",
+          "kind": "head_of_state",
+          "sources": [
+            "fr_cc_decision_88_60_pdr_19880511",
+            "fr_elysee_mitterrand_investiture_address_19880521",
+            "fr_elysee_mitterrand_voeux_corps_diplomatique_19900103",
+            "fr_elysee_mitterrand_kohl_press_conference_19900104",
+            "fr_an_jo_debats_19900827",
+            "fr_elysee_mitterrand_accepts_balladur_resignation_19950510",
+            "fr_elysee_mitterrand_congratulates_chirac_19950507",
+            "fr_cc_decision_95_81_pdr_19950512",
+            "fr_elysee_mitterrand_letter_19950516",
+            "fr_elysee_chirac_address_elysee_19950517",
+            "fr_elysee_chirac_armed_forces_message_19950517",
+            "fr_an_jo_debats_19950519",
+            "fr_elysee_chirac_reelection_declaration_20020505",
+            "fr_cc_proclamation_20020508",
+            "fr_cc_decision_requests_20020509",
+            "fr_elysee_chirac_investiture_declaration_20020516",
+            "fr_cc_decision_2007_141_pdr",
+            "fr_cc_debre_communication_20070510",
+            "fr_jorf_proclamation_20070511",
+            "fr_cc_debre_investiture_address_20070516",
+            "fr_cc_investiture_page_2007",
+            "fr_cc_sarkozy_installation_speech_20070516",
+            "fr_elysee_investiture_sarkozy",
+            "fr_elysee_chirac_declaration_20070515",
+            "fr_elysee_chirac_biography",
+            "fr_cc_note_mai_2012_duree_des_mandats",
+            "fr_cc_decision_2012_154_pdr",
+            "fr_cc_debre_communication_20120510",
+            "fr_jorf_proclamation_20120511",
+            "fr_cc_debre_investiture_address_20120515",
+            "fr_elysee_investiture_hollande",
+            "fr_elysee_hollande_declaration_20120515",
+            "fr_jorf_decree_prime_minister_20120515",
+            "fr_cc_decision_2017_171_pdr",
+            "fr_cc_fabius_proclamation_statement_20170510",
+            "fr_jorf_proclamation_20170511",
+            "fr_cc_dossier_documentaire_2017",
+            "fr_cc_fabius_investiture_address_20170514",
+            "fr_cc_rapport_activite_2017",
+            "fr_elysee_investiture_macron",
+            "fr_elysee_passation_20170514",
+            "fr_elysee_hollande_interview_20170510",
+            "fr_cc_2022_195_pdr_first_round_declaration",
+            "fr_cc_2022_197_pdr_proclamation_pdf",
+            "fr_jorf_proclamation_20220428",
+            "fr_elysee_investiture_20220507",
+            "fr_cc_fabius_investiture_address_20220507",
+            "fr_jorf_dila_opendata_20260904",
+            "fr_jorf_dila_opendata_20260905"
+          ],
+          "claim_ids": [
+            "fr_cc_proclaims_mitterrand_19880511",
+            "fr_cc_88_60_states_mandate_effect_19880511",
+            "fr_mitterrand_investiture_ceremony_19880521",
+            "fr_mitterrand_assumes_second_septennat_statement_19880521",
+            "fr_mitterrand_diplomatic_corps_new_year_19900103",
+            "fr_mitterrand_kohl_press_conference_attestation_19900104",
+            "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+            "fr_mitterrand_message_to_parliament_read_19900827",
+            "fr_mitterrand_accepts_pm_resignation_19950510",
+            "fr_mitterrand_congratulates_chirac_election_19950507",
+            "fr_cc_1995_cites_mitterrand_proclamation_19880511",
+            "fr_cc_proclaims_chirac_19950512",
+            "fr_mitterrand_cessation_latest_bound_19950512",
+            "fr_mitterrand_handover_announced_19950516",
+            "fr_chirac_address_cites_election_day_19950507",
+            "fr_chirac_assumes_office_statement_19950517",
+            "fr_chirac_predecessor_departure_statement_19950517",
+            "fr_chirac_armed_forces_message_as_president_19950517",
+            "fr_chirac_letter_to_assembly_as_president_19950518",
+            "fr_chirac_reelection_night_declaration_20020505",
+            "fr_cc_2002_cites_chirac_proclamation_19950512",
+            "fr_cc_proclaims_chirac_20020508",
+            "fr_cc_2002_states_effect_from_20020508",
+            "fr_cc_20020509_cites_proclamation_20020508",
+            "fr_chirac_investiture_ceremony_20020516",
+            "fr_cc_2007_cites_chirac_proclamation_20020508",
+            "fr_cc_2007_second_round_20070505_20070506",
+            "fr_cc_2007_proclamation_sarkozy_20070510",
+            "fr_cc_2007_chirac_cessation_bound_20070510",
+            "fr_cc_2007_results_arrested_session_20070510",
+            "fr_cc_2007_mandate_begins_by_20070510",
+            "fr_jorf_publishes_2007_proclamation_20070511",
+            "fr_cc_debre_2007_investiture_ceremony_20070516",
+            "fr_cc_debre_2007_from_this_day_20070516",
+            "fr_cc_2007_investiture_ceremony_at_1100_20070516",
+            "fr_sarkozy_takes_office_statement_20070516",
+            "fr_elysee_sarkozy_received_by_chirac_20070516",
+            "fr_elysee_sarkozy_investiture_ceremony_20070516",
+            "fr_elysee_sarkozy_investiture_record_signed_20070516",
+            "fr_chirac_handover_announced_20070515",
+            "fr_elysee_bio_chirac_left_elysee_20070516",
+            "fr_cc_note_mitterrand_second_mandate_due_end_19950521",
+            "fr_cc_note_chirac_1995_passation_19950517",
+            "fr_cc_note_chirac_first_mandate_end_20020517",
+            "fr_cc_note_passation_sarkozy_20070516",
+            "fr_cc_note_sarkozy_mandate_expiry_20120516",
+            "fr_cc_note_links_debre_address_hollande_investiture",
+            "fr_cc_2012_cites_sarkozy_proclamation_20070510",
+            "fr_cc_2012_second_round_20120505_20120506",
+            "fr_cc_2012_proclamation_hollande_20120510",
+            "fr_cc_2012_sarkozy_cessation_bound_20120510",
+            "fr_cc_2012_results_arrested_session_20120510",
+            "fr_cc_2012_mandate_begins_by_20120510",
+            "fr_jorf_publishes_2012_proclamation_20120511",
+            "fr_cc_debre_2012_investiture_ceremony_20120515",
+            "fr_cc_debre_2012_from_this_day_20120515",
+            "fr_elysee_hollande_received_by_sarkozy_20120515",
+            "fr_elysee_hollande_investiture_ceremony_20120515",
+            "fr_hollande_invested_statement_20120515",
+            "fr_jorf_hollande_signs_pm_appointment_decree_20120515",
+            "fr_cc_2017_cites_hollande_proclamation_20120510",
+            "fr_cc_2017_second_round_20170506_20170507",
+            "fr_cc_2017_proclamation_macron_20170510",
+            "fr_cc_2017_hollande_cessation_bound_20170510",
+            "fr_cc_fabius_proclaims_macron_20170510",
+            "fr_cc_fabius_2017_hollande_cessation_bound_20170510",
+            "fr_jorf_publishes_2017_proclamation_20170511",
+            "fr_cc_dossier2017_row_1988",
+            "fr_cc_dossier2017_row_1995",
+            "fr_cc_dossier2017_row_2002",
+            "fr_cc_dossier2017_row_2007",
+            "fr_cc_dossier2017_row_2012",
+            "fr_cc_dossier2017_2017_ceremony_pending_20170510",
+            "fr_cc_fabius_2017_investiture_ceremony_20170514",
+            "fr_cc_fabius_2017_takes_office_now_20170514",
+            "fr_cc_rapport2017_officially_invested_20170514",
+            "fr_cc_rapport2017_transfer_of_powers_20170514",
+            "fr_elysee_macron_received_by_hollande_20170514",
+            "fr_elysee_macron_2017_investiture_ceremony_20170514",
+            "fr_elysee_passation_announced_20170514",
+            "fr_hollande_handover_announced_20170510",
+            "fr_2022_first_round_held_20220410",
+            "fr_cc_first_round_results_declared_20220413",
+            "fr_cc_2022_cites_macron_proclamation_20170510",
+            "fr_2022_second_round_held_20220424",
+            "fr_cc_proclaims_macron_president_20220427",
+            "fr_cc_2022_states_effect_from_20220427",
+            "fr_jorf_publishes_2022_proclamation_20220428",
+            "fr_macron_says_ending_term_began_20170514",
+            "fr_macron_investiture_second_term_20220507",
+            "fr_fabius_proclaims_results_at_investiture_20220507",
+            "fr_cc_fabius_2022_investiture_ceremony_20220507",
+            "fr_cc_fabius_2022_second_mandate_begins_20220507",
+            "fr_jorf_decree_signed_macron_20260903",
+            "fr_jorf_decree_signed_macron_20260904"
+          ],
+          "holder_claims": [
+            {
+              "name": "François Mitterrand",
+              "attested_on": null,
+              "from": "1988-05-21",
+              "until": null,
+              "sources": [
+                "fr_cc_decision_88_60_pdr_19880511",
+                "fr_elysee_mitterrand_investiture_address_19880521",
+                "fr_elysee_mitterrand_kohl_press_conference_19900104",
+                "fr_an_jo_debats_19900827"
+              ],
+              "claim_ids": [
+                "fr_cc_88_60_states_mandate_effect_19880511",
+                "fr_mitterrand_assumes_second_septennat_statement_19880521",
+                "fr_mitterrand_kohl_press_conference_attestation_19900104",
+                "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+                "fr_mitterrand_message_to_parliament_read_19900827"
+              ],
+              "note": "From 21 May 1988: decision 88-60 PDR of 11 May 1988 states that his mandate 'prendra effet le 21 mai 1988 à 0 heure', and in his address of that day (the Élysée archive's date line) he speaks of assuming the supreme magistracy 'aujourd'hui'. He is in office when the period opens: Chancellor Kohl names him and 'le Président de la République' at their joint press conference of 4 January 1990 (Élysée archive transcript), and the Assemblée nationale's record of 27 August 1990 reads his decree of 22 August 1990 and his message of 27 August 1990, both signed FRANÇOIS MITTERRAND.",
+              "uncertainty": "The start is the effective day fixed in advance by the proclaiming authority, before the packet period. No end: no source reviewed states, as a record, the day his functions ended. His letter of 16 May 1995 announces the handover for 'Demain matin à onze heures' (prospective), decision 95-81 PDR gives only the outer limit of 21 May 1995 at 0 heure, his successor's address of 17 May 1995 speaks of the fourteen years 'qui viennent de s'écouler' without a day, and the Council's undated 2012 note dating the 1995 handover to 17 May is retrospective; all are claims, and Jacques Chirac's observation of 17 May 1995 is not used as this end."
+            },
+            {
+              "name": "Jacques Chirac",
+              "attested_on": "1995-05-17",
+              "from": null,
+              "until": null,
+              "sources": [
+                "fr_elysee_chirac_address_elysee_19950517",
+                "fr_elysee_chirac_armed_forces_message_19950517"
+              ],
+              "claim_ids": [
+                "fr_chirac_assumes_office_statement_19950517",
+                "fr_chirac_armed_forces_message_as_president_19950517"
+              ],
+              "note": "Observed on 17 May 1995: in his address at the Élysée dated that day he says 'En ce jour où je prends la responsabilité d'assumer la plus haute charge de l'Etat', and in his message to the armed forces of the same day he writes 'Président de la République, c'est en tant que chef des Armées que je m'adresse à vous' (Élysée archive).",
+              "uncertainty": "No start: the holder's own same-day statements support but never make a start, and decision 95-81 PDR of 12 May 1995 proclaims him only from the cessation of his predecessor's functions, at the latest 21 May 1995 at 0 heure, without fixing a day; no address of the President of the Council at a 1995 investiture was found. The Council's undated 2012 note and its 2017 dossier table, which date the handover or ceremony to 17 May 1995, are retrospective. The second round (7 May 1995) and the proclamation (12 May 1995) are separate claims, and his letter to Parliament dated 18 May 1995 is a continuation claim. No end: the 2002 decision fixes only the second term's start (17 May 2002 at 0 heure), and the Council's 2012 note computing the first term's end is retrospective."
+            },
+            {
+              "name": "Jacques Chirac",
+              "attested_on": null,
+              "from": "2002-05-17",
+              "until": null,
+              "sources": [
+                "fr_cc_proclamation_20020508"
+              ],
+              "claim_ids": [
+                "fr_cc_2002_states_effect_from_20020508"
+              ],
+              "note": "From 17 May 2002: the Constitutional Council's decision of 8 May 2002 proclaims M. Jacques CHIRAC President 'à compter du 17 mai 2002 à 0 heure'.",
+              "uncertainty": "The start is the day fixed in advance by the proclaiming authority; decision 2007-141 PDR repeats it in its visas. The investiture ceremony was held the day before (16 May 2002), when he said of the mandate 'Je l'assumerai', and is a separate claim, as is the election-night declaration of 5 May 2002. No end: his televised declaration of 15 May 2007 announces the transfer of powers for 'Demain' (prospective), decision 2007-141 PDR gives only the outer limit of 16 May 2007 at 24 heures, and the Élysée's biography timeline and the Council's 2012 note are retrospective; Nicolas Sarkozy's start is not used as this end."
+            },
+            {
+              "name": "Nicolas Sarkozy",
+              "attested_on": null,
+              "from": "2007-05-16",
+              "until": null,
+              "sources": [
+                "fr_cc_debre_investiture_address_20070516",
+                "fr_cc_sarkozy_installation_speech_20070516"
+              ],
+              "claim_ids": [
+                "fr_cc_debre_2007_from_this_day_20070516",
+                "fr_sarkozy_takes_office_statement_20070516"
+              ],
+              "note": "From 16 May 2007: at the investiture ceremony at the Élysée that day the President of the Constitutional Council told the President of the Republic, identified by his 18.983.138 second-round votes (the total decision 2007-141 PDR gives for M. Nicolas SARKOZY), that he thereby became the sixth President of the Fifth Republic and 'A compter de ce jour, et pour la durée de votre mandat, vous incarnez la France'; his own installation address of that day opens 'En ce jour où je prends officiellement mes fonctions'.",
+              "uncertainty": "The Council's address names nobody; identity rests on the vote total and on his own address. No hour: the Council's 2007 page puts the ceremony at 11:00, while the Élysée says his predecessor received him at 11:00 before it. The proclamation (10 May 2007), its publication (11 May 2007), the outer limit ('au plus tard, le 16 mai 2007 à 24 heures') and the Élysée's retrospective account of the procès-verbal d'investiture are separate claims. No end: decision 2012-154 PDR gives only the outer limit of 15 May 2012 at 24 heures, and the Council's 2012 note computing the expiry as 16 May 2012 at 0 heure is retrospective; François Hollande's start is not used as this end."
+            },
+            {
+              "name": "François Hollande",
+              "attested_on": null,
+              "from": "2012-05-15",
+              "until": null,
+              "sources": [
+                "fr_cc_debre_investiture_address_20120515",
+                "fr_cc_note_mai_2012_duree_des_mandats",
+                "fr_elysee_hollande_declaration_20120515",
+                "fr_jorf_decree_prime_minister_20120515"
+              ],
+              "claim_ids": [
+                "fr_cc_debre_2012_from_this_day_20120515",
+                "fr_cc_note_links_debre_address_hollande_investiture",
+                "fr_hollande_invested_statement_20120515",
+                "fr_jorf_hollande_signs_pm_appointment_decree_20120515"
+              ],
+              "note": "From 15 May 2012: at the investiture ceremony the President of the Constitutional Council told the President of the Republic, identified by his 18 000 668 votes, 'A compter de ce jour, 15 mai 2012, et pour la durée de votre mandat, vous incarnez la France'; the Council's note links this address as Jean-Louis Debré's speech at the investiture of François Hollande, his own declaration of that day opens 'En ce jour où je suis investi de la plus haute charge de l'État', and the Journal officiel prints his decree of 15 May 2012 appointing the Prime Minister, signed François Hollande.",
+              "uncertainty": "No hour. The proclamation (10 May 2012), its publication (11 May 2012), the outer limit and the handover meeting at 10:00 are separate claims. No end: his interview of 10 May 2017 announces the handover for Sunday 14 May (prospective), decision 2017-171 PDR gives only the outer limit of 14 May 2017 at 24 heures, and the Council's 2017 activity report is retrospective; Emmanuel Macron's start is not used as this end."
+            },
+            {
+              "name": "Emmanuel Macron",
+              "attested_on": null,
+              "from": "2017-05-14",
+              "until": null,
+              "sources": [
+                "fr_cc_fabius_investiture_address_20170514",
+                "fr_elysee_investiture_20220507"
+              ],
+              "claim_ids": [
+                "fr_cc_fabius_2017_takes_office_now_20170514",
+                "fr_macron_says_ending_term_began_20170514"
+              ],
+              "note": "From 14 May 2017: at the investiture ceremony at the Élysée on Sunday 14 May 2017 Laurent Fabius, President of the Constitutional Council, told the President of the Republic, identified by his 20 743 128 second-round votes (the total decision 2017-171 PDR and Fabius's statement of 10 May 2017 give for M. Emmanuel Macron), 'aujourd'hui, en ce dimanche 14 mai, en cet instant précis où vous prenez vos hautes fonctions'. In his investiture address of 7 May 2022 he says the ending mandate began on 14 May 2017.",
+              "uncertainty": "The Council's address names nobody; identity rests on the vote total. The 2022 statement is retrospective corroboration, not the basis. No hour: the Élysée says his predecessor received him at 10:00 before the ceremony. The proclamation (10 May 2017), its publication (11 May 2017), the outer limit, the Élysée's same-day live-stream notice and the Council's 2018 activity report (retrospective) are separate claims. No end: the 2022 decision fixes only the second term's start (14 May 2022 at 0 heure), and 13 May 2022 is not inferred."
+            },
+            {
+              "name": "Emmanuel Macron",
+              "attested_on": null,
+              "from": "2022-05-14",
+              "until": null,
+              "sources": [
+                "fr_cc_2022_197_pdr_proclamation_pdf",
+                "fr_cc_fabius_investiture_address_20220507",
+                "fr_jorf_dila_opendata_20260904",
+                "fr_jorf_dila_opendata_20260905"
+              ],
+              "claim_ids": [
+                "fr_cc_2022_states_effect_from_20220427",
+                "fr_cc_fabius_2022_second_mandate_begins_20220507",
+                "fr_jorf_decree_signed_macron_20260903",
+                "fr_jorf_decree_signed_macron_20260904"
+              ],
+              "note": "From 14 May 2022: decision 2022-197 PDR of 27 April 2022 proclaims M. Emmanuel MACRON President 'à compter du 14 mai 2022 à 0 heure', and Laurent Fabius repeated at the investiture of 7 May 2022 that the second mandate 'débutera le 14 mai à 0 heure'. The Journal officiel prints decrees he signed on 3 and 4 September 2026 (DILA open-data exports), attestations before the cutoff that neither extend nor end the term.",
+              "uncertainty": "The start is fixed in advance by the proclaiming authority; no record made on 14 May 2022 was reviewed. The first round (9-10 April 2022), the first-round declaration (13 April), the second round (23-24 April), the proclamation (27 April), its publication (28 April) and the investiture (7 May 2022) are separate claims. No end before the 7 September 2026 cutoff."
+            }
+          ],
+          "scope_note": "Président de la République under the Constitution of 4 October 1958, recorded as head of state. CLAUDE-C01-23 keeps each election round, the Constitutional Council's declaration of first-round results, its proclamation of the result and the President of the Council's oral announcement of it, the proclamation's publication in the Journal officiel, the handover meeting, the investiture ceremony, a stated start of term, the outer limit the Council states for the predecessor's cessation, the holder's own statements and announcements and his in-office acts as separate dated claims. A holder has a start only where the Constitutional Council, in its decision or in its President's address at the investiture, states the day the mandate takes effect or office is taken up, and an end only where a source states the day the office ended; otherwise it is dated by attested_on. The holder's own statement that he assumes office that day supports but never makes a start; a prospective announcement of a handover, an outer limit ('au plus tard'), a successor's statement, a computed expiry and a successor's start are never ends. Retrospective notes, reports, tables and timelines are claims only, and table rows and timeline entries carry no structured date. Élysée archive headings are later catalogue labels. Constitution texts establish procedure only, never a date. No interim presidency (Article 7) is stated for 1990-2026, so none is recorded; acting or interim service would be a claim only, never a holder. Prime ministers, ministers and party offices are outside this role."
+        }
+      ],
+      "sources": [
+        "fr_cc_decision_88_60_pdr_19880511",
+        "fr_elysee_mitterrand_investiture_address_19880521",
+        "fr_elysee_mitterrand_voeux_corps_diplomatique_19900103",
+        "fr_elysee_mitterrand_kohl_press_conference_19900104",
+        "fr_an_jo_debats_19900827",
+        "fr_elysee_mitterrand_accepts_balladur_resignation_19950510",
+        "fr_elysee_mitterrand_congratulates_chirac_19950507",
+        "fr_cc_decision_95_81_pdr_19950512",
+        "fr_elysee_mitterrand_letter_19950516",
+        "fr_elysee_chirac_address_elysee_19950517",
+        "fr_elysee_chirac_armed_forces_message_19950517",
+        "fr_an_jo_debats_19950519",
+        "fr_elysee_chirac_reelection_declaration_20020505",
+        "fr_cc_proclamation_20020508",
+        "fr_cc_decision_requests_20020509",
+        "fr_elysee_chirac_investiture_declaration_20020516",
+        "fr_cc_decision_2007_141_pdr",
+        "fr_cc_debre_communication_20070510",
+        "fr_jorf_proclamation_20070511",
+        "fr_cc_debre_investiture_address_20070516",
+        "fr_cc_investiture_page_2007",
+        "fr_cc_sarkozy_installation_speech_20070516",
+        "fr_elysee_investiture_sarkozy",
+        "fr_elysee_chirac_declaration_20070515",
+        "fr_elysee_chirac_biography",
+        "fr_cc_note_mai_2012_duree_des_mandats",
+        "fr_cc_decision_2012_154_pdr",
+        "fr_cc_debre_communication_20120510",
+        "fr_jorf_proclamation_20120511",
+        "fr_cc_debre_investiture_address_20120515",
+        "fr_elysee_investiture_hollande",
+        "fr_elysee_hollande_declaration_20120515",
+        "fr_jorf_decree_prime_minister_20120515",
+        "fr_cc_decision_2017_171_pdr",
+        "fr_cc_fabius_proclamation_statement_20170510",
+        "fr_jorf_proclamation_20170511",
+        "fr_cc_dossier_documentaire_2017",
+        "fr_cc_fabius_investiture_address_20170514",
+        "fr_cc_rapport_activite_2017",
+        "fr_elysee_investiture_macron",
+        "fr_elysee_passation_20170514",
+        "fr_elysee_hollande_interview_20170510",
+        "fr_cc_2022_195_pdr_first_round_declaration",
+        "fr_cc_2022_197_pdr_proclamation_pdf",
+        "fr_jorf_proclamation_20220428",
+        "fr_elysee_investiture_20220507",
+        "fr_cc_fabius_investiture_address_20220507",
+        "fr_jorf_dila_opendata_20260904",
+        "fr_jorf_dila_opendata_20260905"
+      ],
+      "claim_ids": [
+        "fr_cc_proclaims_mitterrand_19880511",
+        "fr_cc_88_60_states_mandate_effect_19880511",
+        "fr_mitterrand_investiture_ceremony_19880521",
+        "fr_mitterrand_assumes_second_septennat_statement_19880521",
+        "fr_mitterrand_diplomatic_corps_new_year_19900103",
+        "fr_mitterrand_kohl_press_conference_attestation_19900104",
+        "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+        "fr_mitterrand_message_to_parliament_read_19900827",
+        "fr_mitterrand_accepts_pm_resignation_19950510",
+        "fr_mitterrand_congratulates_chirac_election_19950507",
+        "fr_cc_1995_cites_mitterrand_proclamation_19880511",
+        "fr_cc_proclaims_chirac_19950512",
+        "fr_mitterrand_cessation_latest_bound_19950512",
+        "fr_mitterrand_handover_announced_19950516",
+        "fr_chirac_address_cites_election_day_19950507",
+        "fr_chirac_assumes_office_statement_19950517",
+        "fr_chirac_predecessor_departure_statement_19950517",
+        "fr_chirac_armed_forces_message_as_president_19950517",
+        "fr_chirac_letter_to_assembly_as_president_19950518",
+        "fr_chirac_reelection_night_declaration_20020505",
+        "fr_cc_2002_cites_chirac_proclamation_19950512",
+        "fr_cc_proclaims_chirac_20020508",
+        "fr_cc_2002_states_effect_from_20020508",
+        "fr_cc_20020509_cites_proclamation_20020508",
+        "fr_chirac_investiture_ceremony_20020516",
+        "fr_cc_2007_cites_chirac_proclamation_20020508",
+        "fr_cc_2007_second_round_20070505_20070506",
+        "fr_cc_2007_proclamation_sarkozy_20070510",
+        "fr_cc_2007_chirac_cessation_bound_20070510",
+        "fr_cc_2007_results_arrested_session_20070510",
+        "fr_cc_2007_mandate_begins_by_20070510",
+        "fr_jorf_publishes_2007_proclamation_20070511",
+        "fr_cc_debre_2007_investiture_ceremony_20070516",
+        "fr_cc_debre_2007_from_this_day_20070516",
+        "fr_cc_2007_investiture_ceremony_at_1100_20070516",
+        "fr_sarkozy_takes_office_statement_20070516",
+        "fr_elysee_sarkozy_received_by_chirac_20070516",
+        "fr_elysee_sarkozy_investiture_ceremony_20070516",
+        "fr_elysee_sarkozy_investiture_record_signed_20070516",
+        "fr_chirac_handover_announced_20070515",
+        "fr_elysee_bio_chirac_left_elysee_20070516",
+        "fr_cc_note_mitterrand_second_mandate_due_end_19950521",
+        "fr_cc_note_chirac_1995_passation_19950517",
+        "fr_cc_note_chirac_first_mandate_end_20020517",
+        "fr_cc_note_passation_sarkozy_20070516",
+        "fr_cc_note_sarkozy_mandate_expiry_20120516",
+        "fr_cc_note_links_debre_address_hollande_investiture",
+        "fr_cc_2012_cites_sarkozy_proclamation_20070510",
+        "fr_cc_2012_second_round_20120505_20120506",
+        "fr_cc_2012_proclamation_hollande_20120510",
+        "fr_cc_2012_sarkozy_cessation_bound_20120510",
+        "fr_cc_2012_results_arrested_session_20120510",
+        "fr_cc_2012_mandate_begins_by_20120510",
+        "fr_jorf_publishes_2012_proclamation_20120511",
+        "fr_cc_debre_2012_investiture_ceremony_20120515",
+        "fr_cc_debre_2012_from_this_day_20120515",
+        "fr_elysee_hollande_received_by_sarkozy_20120515",
+        "fr_elysee_hollande_investiture_ceremony_20120515",
+        "fr_hollande_invested_statement_20120515",
+        "fr_jorf_hollande_signs_pm_appointment_decree_20120515",
+        "fr_cc_2017_cites_hollande_proclamation_20120510",
+        "fr_cc_2017_second_round_20170506_20170507",
+        "fr_cc_2017_proclamation_macron_20170510",
+        "fr_cc_2017_hollande_cessation_bound_20170510",
+        "fr_cc_fabius_proclaims_macron_20170510",
+        "fr_cc_fabius_2017_hollande_cessation_bound_20170510",
+        "fr_jorf_publishes_2017_proclamation_20170511",
+        "fr_cc_dossier2017_row_1988",
+        "fr_cc_dossier2017_row_1995",
+        "fr_cc_dossier2017_row_2002",
+        "fr_cc_dossier2017_row_2007",
+        "fr_cc_dossier2017_row_2012",
+        "fr_cc_dossier2017_2017_ceremony_pending_20170510",
+        "fr_cc_fabius_2017_investiture_ceremony_20170514",
+        "fr_cc_fabius_2017_takes_office_now_20170514",
+        "fr_cc_rapport2017_officially_invested_20170514",
+        "fr_cc_rapport2017_transfer_of_powers_20170514",
+        "fr_elysee_macron_received_by_hollande_20170514",
+        "fr_elysee_macron_2017_investiture_ceremony_20170514",
+        "fr_elysee_passation_announced_20170514",
+        "fr_hollande_handover_announced_20170510",
+        "fr_2022_first_round_held_20220410",
+        "fr_cc_first_round_results_declared_20220413",
+        "fr_cc_2022_cites_macron_proclamation_20170510",
+        "fr_2022_second_round_held_20220424",
+        "fr_cc_proclaims_macron_president_20220427",
+        "fr_cc_2022_states_effect_from_20220427",
+        "fr_jorf_publishes_2022_proclamation_20220428",
+        "fr_macron_says_ending_term_began_20170514",
+        "fr_macron_investiture_second_term_20220507",
+        "fr_fabius_proclaims_results_at_investiture_20220507",
+        "fr_cc_fabius_2022_investiture_ceremony_20220507",
+        "fr_cc_fabius_2022_second_mandate_begins_20220507",
+        "fr_jorf_decree_signed_macron_20260903",
+        "fr_jorf_decree_signed_macron_20260904"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Presidents 1990-2026 (CLAUDE-C01-23, FR-PRES-01..10) are dated holder observations from the Constitutional Council's decisions, communications and investiture addresses, the Journal officiel (archived Légifrance text pages and DILA open-data exports), the Assemblée nationale's debates and the Élysée's archive. Stated starts: 21 May 1988 (François Mitterrand, before the period), 17 May 2002 (Jacques Chirac), 16 May 2007 (Nicolas Sarkozy), 15 May 2012 (François Hollande), and 14 May 2017 and 14 May 2022 (Emmanuel Macron). Jacques Chirac's 1995 term is dated only by attested_on (17 May 1995): no decision or address of the President of the Council fixes its first day.",
+          "No source reviewed states, as a record of the event, the day any President's functions ended, so no holder has an until. The Council states only outer limits ('au plus tard') for 1995, 2007, 2012 and 2017; François Mitterrand (16 May 1995), Jacques Chirac (15 May 2007) and François Hollande (10 May 2017) announced their handovers in advance; the Council's undated 2012 note, its 2017 dossier and activity report and the Élysée's biography timeline are retrospective.",
+          "Hours: no source fixes the hour at which any term began. The Council's 2007 page puts the investiture ceremony at 11:00, while the Élysée puts the outgoing President's reception of his successor at 11:00 before it; only days are recorded.",
+          "Not retrieved: the Journal officiel publications of the 1988, 1995 and 2002 proclamations (Légifrance refuses automated access and no capture was found), and the published correction (rectificatif) of the 2007 proclamation, JORFTEXT000000465545, whose content could not be read; the Council's 2017 dossier reprints the 2007 dispositif with the same dates.",
+          "No interim presidency (Article 7 of the Constitution) is stated for 1 January 1990 to the 7 September 2026 cutoff, so none is recorded; this records the absence of such a statement in the sources reviewed, not a proven absence. Keep executive office distinct from party leadership and from the CNCCFP financial-reporting identities: no organization in this packet is mapped to this institution."
+        ]
+      }
+    }
+  ],
   "coverage": {
     "status": "partial_primary_source_inventory",
     "period": {
@@ -48157,7 +50501,8 @@
       "Overseas/local reporting identities need explicit territorial and campaign-jurisdiction review.",
       "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts.",
       "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
-      "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence."
+      "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
+      "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched."
     ],
     "financial_reporting_universe": {
       "exercise": "2024",

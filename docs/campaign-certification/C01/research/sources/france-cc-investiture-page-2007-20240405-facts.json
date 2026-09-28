@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_investiture_page_2007",
+  "source_url": "https://web.archive.org/web/20240405132235id_/https://www.conseil-constitutionnel.fr/election-presidentielle-2007/investiture-du-president-de-la-republique",
+  "original_url": "https://www.conseil-constitutionnel.fr/election-presidentielle-2007/investiture-du-president-de-la-republique",
+  "archive_capture_utc": "2024-04-05T13:22:35Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 44200,
+  "source_response_sha256": "2778609bc16232bb99bebf37bc57e9adfb3d5611d5ca99597f90dc17ecc95258",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-04-05T13:22:35Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 5 April 2024 of an undated page in the Council's 2007 election file; the live page is a Drupal render with a per-request form token and is not a reproducible identity. It links the President of the Council's address (invest1.pdf) and the President's address (disc-investiture-16-05-07.pdf). Located by the part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full, including the two document links; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2007_investiture_ceremony_at_1100_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2007-05-16",
+      "text": "The page states that 'La cérémonie d'investiture du Président de la République a eu lieu au palais de l'Elysée mercredi 16 mai à 11 heures', that the President of the Council proclaimed the final results of the election of 22 April and 6 May 2007, that the Grand Chancellor of the Legion of Honour presented the collar and that the President then gave an address.",
+      "locator": {
+        "section": "main text under 'Cérémonie d'investiture du nouveau Président de la République'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

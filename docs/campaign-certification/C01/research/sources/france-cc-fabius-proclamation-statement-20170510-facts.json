@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_fabius_proclamation_statement_20170510",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr_discours.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-10",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 18102,
+  "source_response_sha256": "049e18b5e536b14683bd186244c570fdcc3b011d16e450c9a89cc513de092fd3",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:48Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591336ca-46b6\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both pages rendered and read by the part B researcher; text layer re-read."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_fabius_proclaims_macron_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel Macron",
+      "role_title": "Président de la République française",
+      "event_kind": "result_declaration_oral",
+      "attested_on": "2017-05-10",
+      "text": "M. Laurent Fabius states on Wednesday 10 May 2017 that the Council carried out its counting and control from Monday 8 May and that 'le Conseil constitutionnel en ce 10 mai 2017 proclame M. Emmanuel Macron élu Président de la République française', with 20 743 128 votes (66.10 per cent of votes cast).",
+      "locator": {
+        "pdf_page": 2,
+        "item": "paragraphs from 'Depuis lundi dernier 8 mai' to the proclamation sentence",
+        "also": "pdf_page 1 heading"
+      }
+    },
+    {
+      "claim_id": "fr_cc_fabius_2017_hollande_cessation_bound_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "M. François Hollande",
+      "role_title": "Président de la République française",
+      "event_kind": "cessation_latest_bound_stated",
+      "attested_on": "2017-05-10",
+      "text": "The announcement repeats: 'Il prendra ses fonctions à compter de la cessation de celles de M. François Hollande, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 14 mai 2017 à 24 heures.'",
+      "locator": {
+        "pdf_page": 2,
+        "item": "paragraph 'Il prendra ses fonctions'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

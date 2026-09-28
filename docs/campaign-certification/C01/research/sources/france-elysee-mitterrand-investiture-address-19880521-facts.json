@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_mitterrand_investiture_address_19880521",
+  "source_url": "https://www.elysee.fr/front/pdf/elysee-module-6886-fr.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+  "source_response_bytes": 161665,
+  "source_response_sha256": "346618ddb0ed0e8d288829ea5e7cd9dcf4efa00bda75cab932093461e9b4eb47",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '21 mai 1988 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Text layer read in full; pages 1 (date line and heading) and 2 (the address) rendered and read by the part A researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_mitterrand_investiture_ceremony_19880521",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "François Mitterrand",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "1988-05-21",
+      "text": "The Élysée archive publishes François Mitterrand's address 'le jour de son investiture', Palais de l'Élysée, Saturday 21 May 1988; it opens 'Monsieur le Président du Conseil constitutionnel' and interprets 'la volonté populaire exprimée le 8 mai'.",
+      "locator": {
+        "page": "1 (date line and heading) and 2 (salutation and first paragraph)"
+      }
+    },
+    {
+      "claim_id": "fr_mitterrand_assumes_second_septennat_statement_19880521",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "François Mitterrand",
+      "role_title": "Président de la République",
+      "event_kind": "holder_assumption_statement",
+      "attested_on": "1988-05-21",
+      "text": "In the address he asks what lesson to draw from 'l'événement qui me vaut d'assumer aujourd'hui, dans la continuité de nos institutions et de mon propre mandat, la magistrature suprême', at the threshold of 'ce septennat'.",
+      "locator": {
+        "page": 2,
+        "section": "first paragraph after the salutation"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}
