@@ -1,7 +1,8 @@
 # CLAUDE-S23-MATRIX-01 — historical and cartoon boundary audit
 
-Owner: Claude. State: **queued**. Parent: S23, **preparation only**.
-Suggested branch: `claude/s23-matrix-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: S23, **preparation only**.
+Branch: `claude/s23-matrix-01`. Base: `e41aa18d` (current `codex/campaign-certification`). Claim commit: this record's first commit on
+the branch. Touched paths: only the owned paths below. Next checkpoint: deterministic case generation, JSON/Markdown findings with --check, and tests, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
