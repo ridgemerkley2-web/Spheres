@@ -6,12 +6,12 @@
       "id": "CLAUDE-C01-SOURCE-05",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 1,
       "title": "Recover and verify the Russian archive resolution",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "next": "Remote handoff declares ready_for_review at 66331d9d00704d5298f08c5d738631ee830350df. Await independent Codex scope, source and test review; not merged or accepted. Do not duplicate this submission.",
       "branch": "claude/c01-source-05",
       "claim_revision": "d276830e9674daeea1e335cc4d01c982949ed510"
     },
@@ -64,19 +64,19 @@
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-fr-23",
       "depends_on": [],
-      "next": "Remote handoff declares ready_for_review at fa470d8136890ee5b9c7a38f2b793f4cbf060fa3. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission."
+      "next": "Remote handoff declares ready_for_review at 9c0f5c14bf83ef51ab3e6eb7483c379814d59a42. Await independent Codex scope, source and test review; not merged or accepted. Do not duplicate this submission."
     },
     {
       "id": "CLAUDE-C01-24",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 6,
       "title": "Finish existing claim: Tongan Speakers",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-to-24",
       "depends_on": [],
-      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+      "next": "Remote handoff declares ready_for_review at a7a9e39cf33d473bb6114f4636111e01fdfb3995. Await independent Codex scope, source and test review; not merged or accepted. Do not duplicate this submission."
     },
     {
       "id": "CLAUDE-C01-25",
@@ -111,7 +111,7 @@
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "Supplier input recovery UI is verified at c8a59bfd: exact stock deficits, industry/plant navigation and advanced-component trade quotes. The real 1 July 1993 France checkpoint has no component offers; an affordable Advanced Industry plant quotes $240m / 660 days. Next build, fund and operate it through ordinary controls (or receive actual purchased goods), then qualify company stock/purchase/payment/delivery and save-resume, followed by readiness/flown results. S19 remains open."
+      "next": "Procurement qualified on unchanged runtime c8a59bfd: real Advanced Industry and local grid, company stock, one tank bought/paid 1 February 1997 and delivered 8 February. Native guidance plus named save/load, Continue and narrow UI pass; see PROCUREMENT_DELIVERY.md. Next obtain aircraft, form/support a squadron, verify readiness and a supported flown mission with retained native outcomes and save/resume. S19 remains open."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
@@ -144,12 +144,12 @@
       "id": "CLAUDE-C01-GAPS-01",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 9,
       "title": "Build the certified-country research gap ledger",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
       "depends_on": [],
-      "next": "Remote handoff claims this packet at 5324614593da8694e1fb9848ea79002830b2723e from base 76f8ac6c. Preserve the branch; deliver its generator, pinned source attribution, JSON/Markdown ledger and tests for review. Not submitted or accepted.",
+      "next": "Remote handoff declares ready_for_review at b4d953964d7f1ab720c3fe72a62f74437bc81edf. Await independent Codex scope, source and test review; not merged or accepted. Do not duplicate this submission.",
       "branch": "claude/c01-gaps-01",
       "claim_revision": "5324614593da8694e1fb9848ea79002830b2723e"
     },

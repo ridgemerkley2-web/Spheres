@@ -6,9 +6,10 @@ Base: `5979cf2fba78a6784a549d63223ca274950a2f7d`; fetch the latest
 
 These six bounded tasks are **available now**. They are independent of the remaining
 C01 source repairs and Codex's S19 supplier work. Existing claims retain their branches;
-submitted packets await review. C01-GAPS-01 is now claimed on `claude/c01-gaps-01` at `53246145`; its remote
-handoff was read, but no completed submission or acceptance is claimed. The other
-five sections remain queued. Preserve that claim when selecting another task.
+submitted packets await review. C01-GAPS-01 declares `ready_for_review` on
+`claude/c01-gaps-01` at `b4d95396`; its remote handoff was read. Independent
+verification and acceptance remain pending. The other five sections remain queued.
+Do not duplicate this submitted packet when selecting another task.
 
 | Order | Task / handoff | Concrete deliverable |
 |---|---|---|
@@ -43,10 +44,11 @@ five sections remain queued. Preserve that claim when selecting another task.
 
 ## Current submissions: skip duplicate work
 
-SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `fa470d81`, and C01-25
+SOURCE-05 `66331d9d`, SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, and C01-25
 `c06839c1` declare `ready_for_review` on their remote handoffs. These are inventories
-of submissions, **not independent verification or merge acceptance**. SOURCE-05/17
-and C01-24/27 retain their existing claims. See [the research handoff](CLAUDE-C01-NEXT.md).
+of submissions, **not independent verification or merge acceptance**. SOURCE-17
+and C01-27 retain their existing claims. C01-24 `a7a9e39c` and C01-GAPS-01
+`b4d95396` also declare `ready_for_review`; neither is verified or merged. See [the research handoff](CLAUDE-C01-NEXT.md).
 
 Codex retains S19 advanced-component supply, actual purchase/delivery/readiness/flight
 qualification, S20 shared UI, historical acceptance and final integration. Human

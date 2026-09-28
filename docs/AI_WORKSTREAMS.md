@@ -10,11 +10,11 @@ CP1 certification and worldwide character coverage remain open.
 | Area | Verified state | Next owner / action |
 |---|---|---|
 | S19 construction | Payment, completion and output survive save/load and Continue (`24d05428`). | Codex: retain this evidence while qualifying later outcomes. |
-| S19 manufacturer prerequisites | Missing-plant blocker repaired (`8b93372e`); clean build `2cb1da4a` passes 270 focused checks and the full first-hour browser regression. | Codex: continue ordinary company development, stock purchase and delivery. |
-| S19 longer campaign | Real plant, manufacturer, paid tank development and completed tooling reached. The full route did **not** pass: the warehouse lacks advanced components, so no finished stock or delivery was produced. | Codex: resolve the ordinary supplier-input workflow, then qualify purchase/payment/delivery and save/resume, followed by readiness and a supported flown mission. |
-| S19 supplier input recovery | `c8a59bfd`: exact input quantities, industry/plant shortcuts and advanced-component trade restored. 355 UI tests, 17 native company tests and both browser routes pass. No finished stock or delivery yet. | Codex: fund and operate component production; no current offers, local plant review is $240m / 660 days. [Evidence](campaign-certification/S19/integration/INPUT_RECOVERY.md). |
+| S19 manufacturer prerequisites | Missing-plant blocker repaired (`8b93372e`); clean build `2cb1da4a` passes 270 focused checks and the full first-hour browser regression. | Codex: retain this prerequisite regression alongside the completed procurement proof. |
+| S19 procurement | Real component plant and local grid funded; one company-built tank purchased/paid 1 February 1997 and delivered 8 February. Native guidance, named save/load, Continue and narrow UI pass on unchanged runtime `c8a59bfd`. | Codex: obtain aircraft, prove squadron readiness and a supported flown result. [Evidence](campaign-certification/S19/integration/PROCUREMENT_DELIVERY.md). |
+| S19 supplier input recovery | Exact input quantities, industry/plant shortcuts and advanced-component trade verified at `c8a59bfd`; ordinary plant/grid recovery now reaches actual delivered equipment. | Retain the failed power-constrained run and the successful recovery separately. No production bypass or S19 closure. |
 | S20 shared interface | Waiting on S19 closure. | Codex: start only after the remaining S19 evidence passes. |
-| C01 submissions | SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `fa470d81` and C01-25 `c06839c1` declare **ready for review**. New heads were fetched and their handoffs read; no acceptance or merge is claimed. | Codex reviews; Claude retains SOURCE-05/17 and C01-24/27 claims and can pick an independent new section below. |
+| C01 submissions | SOURCE-05 `66331d9d`, SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, C01-25 `c06839c1`, C01-24 `a7a9e39c` and C01-GAPS-01 `b4d95396` declare **ready for review**. New heads were fetched and their handoffs read; no acceptance or merge is claimed. | Codex reviews; Claude retains SOURCE-17 and C01-27 claims and can pick an independent new section below. |
 
 [Contractor repair and exact validation evidence](campaign-certification/S19/integration/CONTRACTOR_PREREQUISITE.md).
 [Supplier-input checkpoint, recorded campaign and next actions](campaign-certification/S19/integration/PROCUREMENT_SUPPLY.md).
@@ -34,7 +34,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 follows final S19 qualification; independent narrow controls are integrated. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex qualifies remaining later outcomes before closure. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/25 are submitted; C01-24/27 remain claimed. C01 remains incomplete. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25 are submitted; C01-27 remains claimed. C01 remains incomplete. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Claude owns a bounded S24 successor-fixture preparation packet; Codex owns final qualification. Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
@@ -59,8 +59,8 @@ review and submission rules. Suggested order for one worker:
 | [CLAUDE-E05-RESEARCH-01](planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md) | Eight sourced French/Japanese company dossiers and catalog mappings. | Research now; company mechanics remain after S30/CP1. |
 
 Each task has its own allowed files, deliverables and acceptance checks. Claude has
-claimed C01-GAPS-01 on `claude/c01-gaps-01` at `53246145`; the other five new
-sections remain queued. A claim is not a completed submission. A parent session may still have unmet dependencies: only
+submitted C01-GAPS-01 on `claude/c01-gaps-01` at `b4d95396`; the other five new
+sections remain queued. This is submission inventory, not independent verification or acceptance. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
 44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
 S19 later-outcome evidence, S20 shared interface, historical acceptance and integration.
@@ -143,10 +143,10 @@ The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
 packet state and dependencies separately from canonical session status.
 [Claude's expanded task list](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md) adds six
 independent sections. The [existing research list](planning/ai-handoffs/CLAUDE-C01-NEXT.md)
-retains SOURCE-05/17 and C01-24/27 claims; SOURCE-06/26 and C01-23/25 await review. Codex's next
+retains SOURCE-17 and C01-27 claims; SOURCE-05/06/26, C01-23/24/25 and C01-GAPS-01 await review. Codex's next
 campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md):
-actual procurement/delivery and flown results with save/resume qualification.
-Construction payment, completion and output are already verified together.
+actual squadron readiness and flown results with save/resume qualification.
+Construction and procurement/payment/delivery are already verified with save/resume.
 The immediate gameplay task is supplying advanced components to the certified
 manufacturer through ordinary production or arrived purchases. The recovery UI is
 now verified; current quotes offer no goods, and the local plant is affordable but

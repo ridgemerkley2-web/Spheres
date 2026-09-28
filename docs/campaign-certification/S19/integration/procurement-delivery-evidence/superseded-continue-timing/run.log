@@ -1,0 +1,7 @@
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s19-delivery-proof\france-s37upT
+page.waitForFunction: Timeout 30000ms exceeded.
+    at verify (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\supplier-delivery-proof.cjs:13:16)
+    at async supplierDeliveryProof (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\supplier-delivery-proof.cjs:53:19)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-supplier-input-recovery.cjs:85:7 {
+  name: 'TimeoutError'
+}

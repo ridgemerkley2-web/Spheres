@@ -1,0 +1,249 @@
+{
+  "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+  "scope": "Ordinary component production, grid recovery, tank purchase/payment/delivery, guidance save/load/Continue. No S19 flight or CP1 claim.",
+  "files": [
+    {
+      "path": "component-shortfall/result.json.gz",
+      "sha256": "6f2f93061690dd93313d09784c57125700492c3bcf2cafa15bd04df3e1c3dcc7",
+      "bytes": 500078,
+      "uncompressed_sha256": "15e3dbca03f843ec03deb72e5fe3ed4fb50683878f1c7e2e580646230fa9b4f7",
+      "uncompressed_bytes": 7769709
+    },
+    {
+      "path": "component-shortfall/driver.cjs",
+      "sha256": "6bc9bf50a7f5117cdbd70b339b743a2e0336e9542dcd2ef30fc826ab77619dbc",
+      "bytes": 10740
+    },
+    {
+      "path": "component-shortfall/production-driver.cjs",
+      "sha256": "c74b9920f3ba88764fd022a3cda8e3271aad41cbdba632ecbc1ee09cc29ee995",
+      "bytes": 7378
+    },
+    {
+      "path": "component-shortfall/failure.txt",
+      "sha256": "76567a79596fe379effb3b07c476ad5af89bac4252136742efacf0302b215367",
+      "bytes": 851
+    },
+    {
+      "path": "component-shortfall/server.log",
+      "sha256": "da808217cadc0949fb21b1369f04d924aabf9387a6baf0ee8846dbdc1f24a5fa",
+      "bytes": 78
+    },
+    {
+      "path": "component-shortfall/run.log",
+      "sha256": "7ddc36858dbfb6aa407989be9ca04a3cc04aab3c4045b4434857431d5f8a9747",
+      "bytes": 178619
+    },
+    {
+      "path": "component-shortfall/failure.png",
+      "sha256": "303d64f548292754889d932e3ecc1685970e77c5e70895f6fcd572ad0ebca993",
+      "bytes": 469070
+    },
+    {
+      "path": "grid-and-delivery/result.json.gz",
+      "sha256": "b429b412b7bdfe0a1e61ac12e5b4304ca02f46df47d6b2611d59c88caac82f11",
+      "bytes": 506252,
+      "uncompressed_sha256": "aa3d61af53c9737d81dd4ffb9d32022ea711c4d5aaf8b9401631ceca96a18c90",
+      "uncompressed_bytes": 7158120
+    },
+    {
+      "path": "grid-and-delivery/driver.cjs",
+      "sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "bytes": 12295
+    },
+    {
+      "path": "grid-and-delivery/production-driver.cjs",
+      "sha256": "fe2ea61eb1f86f0c775cd7b06c46715e791e6a619225c41507454d5a4abbad41",
+      "bytes": 8639
+    },
+    {
+      "path": "grid-and-delivery/server.log",
+      "sha256": "22bc202673bff76fd1a6ea19f8da82db486faa7690e3c5bb6bdef18cdc05c876",
+      "bytes": 78
+    },
+    {
+      "path": "grid-and-delivery/run.log",
+      "sha256": "892268752e794f60802f40754504bc1188a37f48a43d16dead246679279fa6da",
+      "bytes": 27256
+    },
+    {
+      "path": "grid-and-delivery/grid-upgrade-review.png",
+      "sha256": "a150bac3aecb1cb8280c10651a9a3551fabd6f241fb7cd64b1fb1394bde076ae",
+      "bytes": 1148210
+    },
+    {
+      "path": "grid-and-delivery/tank-delivery-guidance.png",
+      "sha256": "10b8ce383a723b421eb1f71af2b5bd080099cdabea0b425a42f6ced695a2912c",
+      "bytes": 147662
+    },
+    {
+      "path": "grid-and-delivery/tank-delivery-reloaded.png",
+      "sha256": "37618c7618d52eb31021dea3259f3a06a10b77aa1a05436ea97698a9eb7d292d",
+      "bytes": 147829
+    },
+    {
+      "path": "superseded-continue-timing/result.json.gz",
+      "sha256": "1135fa36de54b70fa24ae20477261c8061b32cab95c7f058c4bb218108ce1fc9",
+      "bytes": 496040,
+      "uncompressed_sha256": "2ce0179e3f218d60d2fc651186360a06b038659675f8c4c5112bc70179e98287",
+      "uncompressed_bytes": 6282824
+    },
+    {
+      "path": "superseded-continue-timing/driver.cjs",
+      "sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "bytes": 12295
+    },
+    {
+      "path": "superseded-continue-timing/proof-driver.cjs",
+      "sha256": "4985ec3d92796082938705271dcf86e0d65157768af6fc2b6df7c120d4911e7d",
+      "bytes": 5044
+    },
+    {
+      "path": "superseded-continue-timing/failure.txt",
+      "sha256": "b6c85307a1d9a92c3d840dd5eb93a2bf5c26dd471438a0cadf798a2044151e04",
+      "bytes": 2612
+    },
+    {
+      "path": "superseded-continue-timing/server.log",
+      "sha256": "9f74b6c03be1a36fbfc81d2f70da8c182c4eed7188a894c8e38bcfcc3bce8239",
+      "bytes": 78
+    },
+    {
+      "path": "superseded-continue-timing/run.log",
+      "sha256": "686133c4e491cbdcbc0ab4b45c20f89b2bdb74eea0879fb917d518715212c835",
+      "bytes": 749
+    },
+    {
+      "path": "superseded-continue-timing/failure.png",
+      "sha256": "d70a149e766b8774b5b40ff25cdae1a8725b17eb326bbe101e1870b2dda4a1c6",
+      "bytes": 385884
+    },
+    {
+      "path": "delivery-resume/result.json.gz",
+      "sha256": "43fe377396317595de53c8e3f962c7ab8b1da0debb131b5ebb9ff1ab144ec38e",
+      "bytes": 495884,
+      "uncompressed_sha256": "d9cea9e02eaac025a54136356c832bc21e9e7ab8daa66e394456ca61b31bc2c9",
+      "uncompressed_bytes": 6285623
+    },
+    {
+      "path": "delivery-resume/driver.cjs",
+      "sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "bytes": 12295
+    },
+    {
+      "path": "delivery-resume/proof-driver.cjs",
+      "sha256": "03071e0316f1d948cb7ff516be7b3b48d8ad15bf96b0ab020484c398993fd1b1",
+      "bytes": 5232
+    },
+    {
+      "path": "delivery-resume/server.log",
+      "sha256": "05457780402865011b9e0e4f28c1039e43c946a9e05e0969972b5fc9a1d500d1",
+      "bytes": 78
+    },
+    {
+      "path": "delivery-resume/run.log",
+      "sha256": "e3e5719b2d7bca2581cda647820147ccb64309561e8bd19643a11ca3e4936f76",
+      "bytes": 238
+    },
+    {
+      "path": "delivery-resume/delivery-after-continue.png",
+      "sha256": "548b9d5a049852126a2e99d0ec279527694609fb4afcd30ee7170e6119ed375a",
+      "bytes": 144801
+    },
+    {
+      "path": "delivery-resume/delivery-after-load.png",
+      "sha256": "6bd2f7502ebc7e1a956dae173a286642e9043798472d79f0a55735e38ab8c221",
+      "bytes": 144906
+    },
+    {
+      "path": "delivery-resume/delivery-before-save.png",
+      "sha256": "630c72a6d9cd630d3f6fc18e349e7a756d35b3390106731ed2164fdb5b9b0d6e",
+      "bytes": 144996
+    },
+    {
+      "path": "delivery-resume/delivery-narrow.png",
+      "sha256": "1cca2b0f8eada5fa1324c13587c037862c666fe9cbd8ed71208f337f185d06ae",
+      "bytes": 53453
+    },
+    {
+      "path": "recorded-component-grid-checkpoint.json.gz",
+      "sha256": "b740f93275ad6cb1af0738ea39cf6a89329c348745030c55116a9fd92eefb56b",
+      "bytes": 15171022,
+      "uncompressed_sha256": "b1321c8b4ad44cd89816cb52f14d6093a013fef1ad51503f741d9efdcd56954e",
+      "uncompressed_bytes": 64955915
+    },
+    {
+      "path": "recorded-tank-delivered-checkpoint.json.gz",
+      "sha256": "9402921971bc45257c9e01ba679d8f2c600c37689d208cf6c1e2e34ddd040b04",
+      "bytes": 14885046,
+      "uncompressed_sha256": "85eb2afc68f948daa62fc0d10ab0b742512f46a2d415bc63eb5a39814dc62e22",
+      "uncompressed_bytes": 63038241
+    },
+    {
+      "path": "read-only-site-diagnostic.json.gz",
+      "sha256": "a40784e18b0fc88f04c779e466168a505839fd06c8eeeae2eae1dd59e9075b90",
+      "bytes": 2420,
+      "uncompressed_sha256": "73b28c84f086726f15a3d30277a0d82e67a72f55a08b962bef14e0811425d7f1",
+      "uncompressed_bytes": 9486
+    },
+    {
+      "path": "guidance-tests.log",
+      "sha256": "1492d3c21205741316343ae52ed26b5801c2957ace43ffe842a0ff5aa6bbecca",
+      "bytes": 7959
+    }
+  ],
+  "runs": [
+    {
+      "label": "component-shortfall",
+      "passed": false,
+      "scope": "Ordinary component production and equipment purchase/delivery from the recorded France campaign",
+      "input_save_sha256": "fbe56cdfec5d83b5d9c259f80acb7bb0888dab37d4f35c70beb8686b5eeaf91e",
+      "driver_sha256": "6bc9bf50a7f5117cdbd70b339b743a2e0336e9542dcd2ef30fc826ab77619dbc",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "errors": [],
+      "started_utc": "2026-09-28T01:28:01.500Z",
+      "finished_utc": "2026-09-28T01:36:25.996Z"
+    },
+    {
+      "label": "grid-and-delivery",
+      "passed": true,
+      "scope": "Ordinary grid recovery and equipment purchase/delivery from a recorded component-producing campaign",
+      "input_save_sha256": "b1321c8b4ad44cd89816cb52f14d6093a013fef1ad51503f741d9efdcd56954e",
+      "driver_sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "errors": [],
+      "started_utc": "2026-09-28T01:36:08.298Z",
+      "finished_utc": "2026-09-28T01:41:02.324Z"
+    },
+    {
+      "label": "superseded-continue-timing",
+      "passed": false,
+      "scope": "Native procurement milestones, save/load and Continue from a recorded delivered campaign",
+      "input_save_sha256": "85eb2afc68f948daa62fc0d10ab0b742512f46a2d415bc63eb5a39814dc62e22",
+      "driver_sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "errors": [],
+      "started_utc": "2026-09-28T01:41:05.712Z",
+      "finished_utc": "2026-09-28T01:41:56.639Z"
+    },
+    {
+      "label": "delivery-resume",
+      "passed": true,
+      "scope": "Native procurement milestones, save/load and Continue from a recorded delivered campaign",
+      "input_save_sha256": "85eb2afc68f948daa62fc0d10ab0b742512f46a2d415bc63eb5a39814dc62e22",
+      "driver_sha256": "898d3ab46a6f820bc0cf767f330a35cb17fd9477f26922d4720f20f4117e65fe",
+      "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+      "errors": [],
+      "started_utc": "2026-09-28T01:42:50.696Z",
+      "finished_utc": "2026-09-28T01:43:14.000Z"
+    }
+  ],
+  "notes": [
+    "Each run retains its exact executed driver/helper; those captured sources, rather than the final tool files, define the older failed attempts.",
+    "Component run reaches real output but fails at the 900-day stock bound because local power constrains assembly. Its 840-day checkpoint is the unmodified input to the successful grid run.",
+    "The first delivery proof passes load but times out opening guidance before Continue finishes. Final proof waits for the real campaign transition; no runtime change or result injection.",
+    "The independent site diagnostic is a read-only GET observation from the first run, outside its captured browser actions.",
+    "Result JSON and two raw campaign saves are losslessly gzip-compressed. Source paths/URLs in raw evidence refer to disposable local servers that are now stopped.",
+    "Factory/certification milestones are undated native tallies. Only the order/payment/delivery milestones assert historical dates."
+  ]
+}
