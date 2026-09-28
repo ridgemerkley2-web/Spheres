@@ -99,7 +99,7 @@ fn compact_candidates_match_actual_checkpoint_for_31_complete_days() {
     let source = std::fs::read_to_string(&path).unwrap();
     let mut value: serde_json::Value = serde_json::from_str(&source).unwrap();
     // Accept the complete campaign envelope without serializing its world again.
-    let world = if value.get("world").is_some() { value["world"].take() } else { value.take() };
+    let world = if value["format"] == "spheres-campaign" { value["world"].take() } else { value.take() };
     drop(value);
     let mut actual = crate::load_value(world).unwrap();
     assert!(enabled(&actual));
