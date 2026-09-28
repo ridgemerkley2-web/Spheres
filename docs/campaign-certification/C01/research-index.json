@@ -7,10 +7,10 @@
   "counts": {
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
-    "organization_observations": 841,
+    "organization_observations": 844,
     "institution_observations": 34,
-    "sources": 1328,
-    "source_claims": 3728,
+    "sources": 1396,
+    "source_claims": 3865,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -292,11 +292,11 @@
     {
       "nation": "Russia",
       "packet": "docs/campaign-certification/C01/research/russia.json",
-      "organization_observations": 14,
+      "organization_observations": 17,
       "institution_observations": 7,
-      "role_observations": 9,
-      "source_claims": 295,
-      "mapping_pending": 21,
+      "role_observations": 14,
+      "source_claims": 432,
+      "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -336,7 +336,8 @@
           "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
           "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
-          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-28 adds five party-leader roles: ru_kprf_chairman, ru_ldpr_chairman and ru_yabloko_chairman on the 2021 ballot-list observations 01, 03 and 07, and ru_apr_chairman and ru_dvr_chairman on two new organization observations made only from those parties' own records (ru_apr_party_self_record and ru_dvr_party_self_record), plus a third new observation, ru_vybor_rossii_bloc_1993, from the 1993 bloc's own programme, with no role. It records 24 holder observations of ten people from party records of 1994-2026 (retrospective party claims reach back to 1990), keeps congresses, elections, registrations, reorganisations, the 2022 death and interim, the 2008 accession and the 2001 dissolution as claims only, gives no holder a from or an until, and establishes no organization identity, lifecycle, game mapping, current roster, succession eligibility or artwork claim. The 2021 faction heads are unchanged."
         ]
       }
     },
@@ -2420,12 +2421,12 @@
         "ru_duma_ballot_list_2021_12",
         "ru_duma_ballot_list_2021_13",
         "ru_duma_ballot_list_2021_14",
+        "ru_apr_party_self_record",
+        "ru_vybor_rossii_bloc_1993",
+        "ru_dvr_party_self_record",
         "ru_duma_faction_20211012_er",
         "ru_duma_faction_20211012_kprf",
-        "ru_duma_faction_20211012_srzp",
-        "ru_duma_faction_20211012_ldpr",
-        "ru_duma_faction_20211012_nl",
-        "ru_rsfsr_presidency"
+        "ru_duma_faction_20211012_srzp"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2440,6 +2441,9 @@
         "C01-Russia-ROLE-001"
       ],
       "members": [
+        "ru_duma_faction_20211012_ldpr",
+        "ru_duma_faction_20211012_nl",
+        "ru_rsfsr_presidency",
         "ru_government"
       ],
       "maximum_reviewed_records": 10,
@@ -2688,8 +2692,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 575140,
-      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
+      "bytes": 804876,
+      "sha256": "43d942189e49bf3b60bb3a71598fcad40a11dcc4879d2291cd31876665fd291c"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
