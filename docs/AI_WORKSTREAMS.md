@@ -11,13 +11,21 @@ CP1 certification and worldwide character coverage remain open.
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
-| S22 art and performance | **In progress.** Offline art/accounting and actual 1999/2015/2035 input preparation are complete. Current map/renderer functional preflights pass; isolated campaign performance and both full confirmation rounds remain open. | Codex: [current evidence](campaign-certification/S22/README.md), [late-input record](campaign-certification/S22/late-input-progress/README.md), [protocol](campaign-certification/S22/measurement-protocol.json). Next: verify import transaction optimization and measure actual 2015/2035 inputs without concurrent task workloads; no threshold changes. |
+| S22 art and performance | **In progress.** All three actual inputs are ready. Full 9823b070 release regression: 1,922 passed, 0 failed, 96 ignored. Both isolated dated preflights pass memory but fail latency; later sovereignty repair passes bounded actual-2035 parity. | Codex: [current evidence](campaign-certification/S22/README.md), [import checks/failures](campaign-certification/S22/idle-import-progress/README.md), [diplomacy diagnosis](campaign-certification/S22/diplomacy-diagnosis-progress/README.md). Next: finish validation of integrated contract/campaign route repairs, then measure the combined candidate; no threshold changes. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
 | C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
 | Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
+
+S22's isolated 9823b070 preflights remain failed: 2015 simulation/whole-turn p95
+**356.2455 / 446.365 ms**, maximum **679.2651 ms**; 2035 p95 **452.9066 /
+554.1808 ms**, maximum **13,964.7566 ms**. Both memory limits pass. The newer
+8de6f2a0 contract/campaign route implementation is integrated with build/tests
+ongoing at this snapshot. No authoritative qualification pair has started;
+S22, G5 and CP1 remain unearned. Source review and bounded parity checks cannot
+replace the two complete qualifying rounds.
 
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
 [campaign-pathway.json](planning/campaign-pathway.json) owns session status, dependencies,

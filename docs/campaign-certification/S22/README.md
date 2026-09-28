@@ -3,9 +3,10 @@
 **Status: in progress. Owner: Codex.**
 
 This progress snapshot includes completed actual input preparation through
-**30 November 2035**, candidate-scoped route/save tests, and the successful
-`5c650991` map preflight. The retained isolated `a4e246e4` 2015 attempt still
-fails latency. Later runtime repairs require fresh measurements; no complete
+**30 November 2035**, the full `9823b070` release regression, both failed
+isolated 2015/2035 latency preflights, and sovereignty parity checks at
+`6de1d997`. The newer combined contract/campaign routing implementation is
+integrated at the `8de6f2a0` snapshot with build/tests still ongoing. No complete
 qualification pair has started and neither S22, G5 nor CP1 is earned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
@@ -29,7 +30,7 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | Last isolated 2015 attempt at a4e246e4 fails latency; current candidate and actual late input require fresh measurements |
+| Native 31-day timing and headless memory | Both isolated 9823b070 cases complete with memory below both limits but fail latency; newer combined repairs require validation and fresh measurements |
 | Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
 | City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
 | S22 closure | **Not earned** |
@@ -55,8 +56,23 @@ The [late-input packet](late-input-progress/README.md) closes input preparation:
 alive, 1,360 history points and 37,893 dispatches. The exact late save and full
 preparation records are archived. The compact loader passed 11 storage tests and
 separate actual-2015/2035 old-decoder comparisons; complete history, dispatches,
-journey and world bytes remain identical. Its memory effect still needs a fresh
-isolated run.
+journey and world bytes remain identical. Subsequent 9823b070 isolated runs pass
+both observed memory limits; their separate latency failures remain explicit.
+
+The [import repair packet](idle-import-progress/README.md) records the full
+`9823b070` release workspace regression: **1,922 passed, 0 failed, 96 ignored
+across 66 suites**, plus one actual-2015 31-day old/new import equivalence test.
+That full regression applies to 9823b070, not to the later combined repairs.
+Both actual inputs then completed isolated native preflights:
+
+| Input | Simulation/history p95 | Whole-turn p95 | Whole-turn maximum | Observed private / OS peak bytes |
+| --- | ---: | ---: | ---: | ---: |
+| 2015-01-01 | 356.2455 ms | 446.365 ms | 679.2651 ms | 862,003,200 / 858,652,672 |
+| 2035-11-30 | 452.9066 ms | 554.1808 ms | 13,964.7566 ms | 904,888,320 / 900,075,520 |
+
+Both memory checks pass the unchanged 1 GiB limits. Both p95 checks fail;
+2035's maximum also fails. A native profile's functional completion does not
+override the wrapper's `passed:false` and `numerical_acceptance:false`.
 
 The successful `5c650991` map preflight covers all eight Standard/Low views,
 62 ordered trusted camera controls, 390px/3440px layouts, focus/scroll checks and
@@ -65,8 +81,22 @@ control p95 was 48.2/44.5 ms. Timings overlapped other task work and do not qual
 The preceding failed control check remains unchanged: its first zoom exposed
 Robinson inverse rounding. A reviewed predicate correction requires an identical
 finite map center and bounds only that numerical conversion, leaving performance
-limits unchanged. The latest diagnostic isolates the remaining January military
-spikes to import command transactions; further repairs must retain atomicity.
+limits unchanged.
+
+The [diplomacy diagnosis packet](diplomacy-diagnosis-progress/README.md) retains
+the completed 9823b070 actual-2035 diagnosis: all 31 native worlds/headlines
+match, while sovereignty consumes about 14.17 seconds settling December 1.
+The repair rejects only unprotected candidates already forbidden by the
+original quote. At 6de1d997, two ordinary tests pass (one ignored), plus the
+explicit actual-2035 31-day full-world/headline oracle. Independent source
+review found no blocking semantic issue. This proves bounded correctness,
+not the repair's performance effect.
+
+Contract freight dispatch now reuses only nominal searches within one posting
+pass, and immediate military supply can consume deployment's already-built
+graph. Both implementations and their fixture adapters are integrated at
+8de6f2a0; root's combined build/tests are ongoing at this evidence cutoff.
+Their source reviews do not substitute for executed checks or qualification.
 
 The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
 all 18 cells across two unchanged-candidate rounds, with raw evidence, complete
