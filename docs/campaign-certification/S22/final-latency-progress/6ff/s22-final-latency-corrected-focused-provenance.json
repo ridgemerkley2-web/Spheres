@@ -1,0 +1,20 @@
+{
+  "format": "s22-focused-test-observation/v1",
+  "recorded_utc": "2026-09-28T08:45:23.0956476Z",
+  "candidate_revision": "6ff13350e8096d67c955b9710e983281aebc3eae",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-6ff13350\\sim-tests.exe",
+  "binary_sha256": "917e77da41abea7b46f7da77cad58cb47c8910bf2a5e2be330f37f35c2bec1c5",
+  "arguments": [
+    "economic_ai::mine_forecast_tests",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-corrected-focused-mine.log",
+  "log_sha256": "40ab92986722cba2ff47faeb660eacf0b7df0baad9142695ef661b8c8277d334",
+  "exit_code": 0,
+  "passed": 3,
+  "failed": 0,
+  "ignored": 1,
+  "qualification": false,
+  "scope": "Post-run observation of the root coordinated immutable-binary execution. Exact invocation and exit recorded by its tool result; no reconstructed start/end timestamps or timing claim."
+}

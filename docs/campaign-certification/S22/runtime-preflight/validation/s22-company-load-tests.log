@@ -1,0 +1,10 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 23s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 2 tests
+test company_save::tests::consumed_save_tree_keeps_legacy_migrations_and_shape_errors ... ok
+test company_save::tests::consumed_save_tree_preserves_each_capability_envelope_and_refusal ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1032 filtered out; finished in 2.70s
+

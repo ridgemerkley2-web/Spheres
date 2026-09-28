@@ -1,0 +1,15 @@
+{
+  "format": "s22-focused-regression-provenance/v1",
+  "recorded_utc": "2026-09-28T06:42:13.6935699Z",
+  "candidate_revision": "1a8c07d722de219f94f3f0ace9115c39b2a204fb",
+  "scope": "Retrospective command record from this task tool calls; web hash recovered from concurrent diagnostic invoking the same unchanged built test executable; sim hash read before any subsequent sim rebuild. Tests ran with preparation/other diagnostic activity; no timing qualification.",
+  "web_binary_sha256": "63e807bc76002b8504d5d5c8a85e126e8247bbe2947eda54d78c773e5edf7fe8",
+  "sim_binary_sha256": "6a1783275ba4acdce541a77d16fcb2896f6b8b9eac47f425af8537e87204648b",
+  "commands": [
+    "spheres_sim-de8a2e7790f15db6.exe logistics:: --nocapture --test-threads=1",
+    "spheres_sim-de8a2e7790f15db6.exe transfer_path_tests --nocapture --test-threads=1",
+    "spheres_web-55caf82b2dcec446.exe --test-threads=1",
+    "SPHERES_S22_CHECKPOINT=verbatim-extracted-2015-world spheres_sim-de8a2e7790f15db6.exe campaign::transfer_path_tests::transfer_path_cache_matches_actual_checkpoint_for_31_complete_days --exact --ignored --nocapture --test-threads=1"
+  ],
+  "qualification": false
+}

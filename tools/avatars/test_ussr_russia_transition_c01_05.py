@@ -353,6 +353,56 @@ class UssrRussiaTransitionTests(unittest.TestCase):
             for row in extract.get('facsimile_responses', []):
                 self.assertNotRegex(row['url'], r'/web/\d{4}id_/', 'year-wildcard capture left unresolved')
 
+    def test_source_review_c01_source_05_reproduces_the_recorded_cec_response(self):
+        # CLAUDE-C01-SOURCE-05: the recorded response is a raw Internet Archive capture, not the official host (which opened
+        # no connection from here). It and the three facsimiles were downloaded again byte for byte on 27-28 September
+        # 2026 (UTC). The claim, its date and the unresolved leaf-number discrepancy stay exactly as recorded.
+        sid = 'ru_garf_cec_result_19910619'
+        extract, source = self.extracts[sid], self.sources[sid]
+        review, summary = extract['source_review'], source['source_review']
+        for record in (review, summary):
+            self.assertEqual((record['review_id'], record['review_date'], record['result']),
+                             ('CLAUDE-C01-SOURCE-05', '2026-09-27', 'recorded_response_reproduced_exactly'))
+        reproduced = review['recorded_response_reproduction']
+        self.assertEqual(reproduced['url'], 'https://web.archive.org/web/20230604070106id_/' + source['url'])
+        self.assertEqual(reproduced['url'], extract['source_response_url'])
+        self.assertEqual((reproduced['bytes'], reproduced['sha256'], reproduced['result']),
+                         (*RESPONSES[sid], 'exact_identity_match'))
+        self.assertIsNone(reproduced['content_encoding'])
+        self.assertGreaterEqual(len(reproduced['downloads_utc']), 2)
+        self.assertEqual((summary['recorded_response_url'], summary['recorded_response_bytes'], summary['recorded_response_sha256']),
+                         (reproduced['url'], *RESPONSES[sid]))
+        self.assertEqual([(r['url'], r['bytes'], r['sha256']) for r in review['facsimile_reproduction']],
+                         [(r['url'], r['bytes'], r['sha256']) for r in extract['facsimile_responses']])
+        self.assertEqual([(r['bytes'], r['sha256']) for r in review['facsimile_reproduction']], FACSIMILES[sid])
+        # Every capture used predates the cutoff; six return the recorded bytes and the 2019 pair differs only in analytics.
+        captures = review['captures_before_cutoff']
+        self.assertTrue(all(c['timestamp'] < '20260907' for c in captures))
+        same = [c for c in captures if c.get('matches_recorded_response')]
+        self.assertEqual([c['timestamp'] for c in same], ['20210225052658', '20210511100649', '20210612153223',
+                                                          '20210924090951', '20230604070106', '20230929012544'])
+        for capture in same:
+            self.assertEqual((capture['bytes'], capture['sha256']), RESPONSES[sid])
+        # No live identity is invented for the unreachable official host.
+        for attempt in review['official_host_attempts']:
+            self.assertIn(urlsplit(attempt['url']).hostname, {'projects.rusarchives.ru', 'rusarchives.ru'})
+            self.assertNotIn('sha256', attempt)
+            self.assertTrue(attempt['outcome'].startswith('no response'))
+        # The claim, its date and the leaf-number discrepancy are unchanged.
+        claim = self.claims['ru_cec_resolution_20_25_19910619']
+        self.assertEqual(claim['text'], (
+            "CEC resolution No. 20-25 of 19 June 1991 takes note of chairman V. I. Kazakov's report on the results of the "
+            "election of the President of the RSFSR, approves the text of the CEC communication on the results and orders "
+            "the communication published through TASS in the republican and local press; signed by V. Kazakov (chairman) "
+            "and V. Prozorov (secretary)."))
+        self.assertEqual(claim['uncertainty'], (
+            "The TASS publication date is not given; that publication is the 'official announcement' from which Article 1 "
+            "of Law 1494-I counts one month. The archival leaf is unconfirmed: the exhibit caption gives GARF F. 10026, "
+            "Op. 8, D. 204, L. 6-7 and captions the three images L. 6, L. 6 ob. and L. 7, while the handwritten folio "
+            "numbers on the images read 5, 6 and 7."))
+        self.assertTrue(review['content_comparison']['leaf_numbers'].startswith('Unresolved'))
+        self.assertIn('## Source review (CLAUDE-C01-SOURCE-05)', self.report)
+
     def test_mutations_are_rejected(self):
         def mutated(packet, change):
             packet = copy.deepcopy(packet)

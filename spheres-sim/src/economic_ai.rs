@@ -300,10 +300,23 @@ fn record(
     w: &mut WorldState,
     nation: NationId,
     action: &str,
+    reason: String,
+    candidate: Option<(String, K)>,
+    raw_context: &RawSupplyContext,
+    observer: &mut DetailedReviewObserver<'_>,
+) {
+    record_with_raw_supply(w, nation, action, reason, candidate, raw_context, observer, None);
+}
+
+fn record_with_raw_supply(
+    w: &mut WorldState,
+    nation: NationId,
+    action: &str,
     mut reason: String,
     candidate: Option<(String, K)>,
     raw_context: &RawSupplyContext,
     observer: &mut DetailedReviewObserver<'_>,
+    retained_raw_supply: Option<RawSupplyForecast>,
 ) {
     let day = clock::absolute_day(w);
     let year = w.year;
@@ -337,7 +350,15 @@ fn record(
                 .unwrap_or_else(|| module_order_capacity(w, nation, d))
         }));
     let supply_review = observe_review_call(observer,"record.supply",Some(nation),||supply_forecast(w, nation));
-    let raw_supply_review = observe_review_call(observer,"record.raw_supply",Some(nation),||raw_supply_forecast_with_context(w, nation, raw_context));
+    let raw_supply_review = observe_review_call(observer,"record.raw_supply",Some(nation),|| {
+        if let Some(forecast) = retained_raw_supply {
+            #[cfg(test)]
+            mine_forecast_tests::REUSED.with(|count| count.set(count.get() + 1));
+            forecast
+        } else {
+            raw_supply_forecast_with_context(w, nation, raw_context)
+        }
+    });
     observe_review_call(observer,"record.write",Some(nation),|| {
     let p = w.economic_ai.nations.entry(nation).or_default();
     p.last_review_day = day;
@@ -1474,6 +1495,15 @@ pub fn candidate(w: &WorldState, nation: NationId) -> Result<(String, K, String)
 }
 
 fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String), String> {
+    candidate_with_reads_observed(reads, &mut None)
+}
+
+fn has_expansion_gap(intermediate: f64, capital: f64) -> bool {
+    !(intermediate <= 1e-9 && capital <= 1e-9)
+}
+
+fn candidate_with_reads_observed(reads: &IndustryReads<'_>,
+    observer: &mut DetailedReviewObserver<'_>) -> Result<(String, K, String), String> {
     let (w, nation) = (reads.world, reads.nation);
     let districts: Vec<_> = w
         .districts
@@ -1487,7 +1517,7 @@ fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String)
                 .into(),
         );
     }
-    let plan = reads.capacity();
+    let plan = observe_review_call(observer,"candidate.capacity",Some(nation),||reads.capacity());
     let estates: Vec<_> = districts
         .iter()
         .filter(|d| production::level(w, d, K::CivilianIndustry) > 0)
@@ -1564,10 +1594,17 @@ fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String)
     // Expansion is not another automatic bootstrap. Count every province,
     // including acquired/module sites and pending output, before buying more.
     let expansion_blocked = expansion_blocker(w, nation);
-    if expansion_blocked.is_none() {
+    // Ranking reads inherited-sector presentation and the reconciled province
+    // ledger. Neither can affect a choice when the existing per-kind guards
+    // skip both investments. Keep those exact <= predicates: a NaN must still
+    // enter the original ranking/selection path, not become a false > test.
+    // The uncached oracle deliberately retains the prior unconditional read.
+    if expansion_blocked.is_none() && (!reads.reuse
+        || has_expansion_gap(intermediate.expansion_daily, capital.expansion_daily)) {
         // Historical industrial structure breaks ties between evidenced pack
         // needs. It is not free physical supply or a reason to build without use.
-        for kind in reads.expansion_order(&plan) {
+        let order = observe_review_call(observer,"candidate.ranking",Some(nation),||reads.expansion_order(&plan));
+        for kind in order {
             let gap = if kind == K::ProcessingPlant {
                 intermediate.expansion_daily
             } else {
@@ -1749,17 +1786,32 @@ fn evaluate_with_context(
     review(w, nation, raw_context, observer);
 }
 
+/// An immutable mine review may retain its forecast only when it proposes no
+/// command. A candidate carries no forecast, so even a refused command attempt
+/// must take the ordinary fresh record read. This value never crosses a review.
+enum MineReview {
+    Candidate(String, Commodity),
+    NoCommand(Option<RawSupplyForecast>),
+}
+
 fn mine_for_shortage(
     w: &WorldState,
     nation: NationId,
     raw_context: &RawSupplyContext,
-) -> Option<(String, Commodity)> {
+) -> MineReview {
+    #[cfg(test)]
+    if mine_forecast_tests::ORIGINAL.with(|original| original.get()) {
+        return match mine_forecast_tests::original_mine_for_shortage(w, nation, raw_context) {
+            Some((district, commodity)) => MineReview::Candidate(district, commodity),
+            None => MineReview::NoCommand(None),
+        };
+    }
     if w.resources
         .mine_projects
         .iter()
         .any(|p| p.started_by == nation)
     {
-        return None;
+        return MineReview::NoCommand(None);
     }
     // Resources clear before economic AI in the daily system order. Do not call
     // a mine the trade fallback until today's ordinary raw order really had its
@@ -1768,14 +1820,21 @@ fn mine_for_shortage(
     if w.resources.market.as_ref()
         .is_none_or(|market| market.last_cleared_day != Some(today))
     {
-        return None;
+        return MineReview::NoCommand(None);
     }
     let demand = resources::automatic_tick_draw(w, nation);
-    let forecast = raw_supply_forecast_with_context(w, nation, raw_context);
+    let mut forecast = None;
     for c in resources::ALL {
         let stock = resources::stockpile(w, nation, c);
-        let run_gap = forecast.lines[c.idx()].shortage[0];
-        if demand[c.idx()] <= stock || run_gap <= 1e-9 {
+        // Keep the original comparison, including its NaN behavior. Only the
+        // pure full forecast is deferred until a raw draw exceeds this stock.
+        if demand[c.idx()] <= stock {
+            continue;
+        }
+        let run_gap = forecast.get_or_insert_with(|| {
+            raw_supply_forecast_with_context(w, nation, raw_context)
+        }).lines[c.idx()].shortage[0];
+        if run_gap <= 1e-9 {
             continue;
         }
         // The forecast already nets domestic output, executable freight and
@@ -1814,11 +1873,17 @@ fn mine_for_shortage(
         }
         for (district, owner) in &w.districts {
             if *owner == nation && resources::mine_refusal(w, nation, district, c).is_none() {
-                return Some((district.clone(), c));
+                return MineReview::Candidate(district.clone(), c);
             }
         }
     }
-    None
+    // Count only the completed stock-sufficient scan: the earlier active-mine
+    // and uncleared-market exits already skipped this read in the old path.
+    #[cfg(test)]
+    if forecast.is_none() {
+        mine_forecast_tests::DEFERRED.with(|count| count.set(count.get() + 1));
+    }
+    MineReview::NoCommand(forecast)
 }
 
 /// Explicit AI safety-stock policy, not additional mechanical consumption.
@@ -2085,7 +2150,14 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
                 .unwrap_or_else(|| "Existing paid work is progressing.".into()),
         ))
     } else {
-        observe_review_call(observer,"review.candidate",Some(nation),||candidate_with_reads(&reads))
+        // Nested candidate measurements are diagnostic only and are not
+        // additive to this enclosing review.candidate interval.
+        let started = observer.as_ref().map(|_|std::time::Instant::now());
+        let result = candidate_with_reads_observed(&reads, observer);
+        if let (Some(observer),Some(started))=(observer.as_deref_mut(),started) {
+            observer("review.candidate",Some(nation),started.elapsed());
+        }
+        result
     };
     let target = next.as_ref().ok().map(|(_, k, _)| *k);
     let renewal = w
@@ -2143,7 +2215,11 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
         drop(reads);
         let result = observe_review_call(observer,"review.commission",Some(nation),||execute_materials_order(w, &command));
         if active == 0 && result.0 {
-            next = observe_review_call(observer,"review.candidate",Some(nation),||candidate_with_reads(&IndustryReads::new(w, nation, reuse_reads)));
+            let started = observer.as_ref().map(|_|std::time::Instant::now());
+            next = candidate_with_reads_observed(&IndustryReads::new(w, nation, reuse_reads), observer);
+            if let (Some(observer),Some(started))=(observer.as_deref_mut(),started) {
+                observer("review.candidate",Some(nation),started.elapsed());
+            }
         }
         Some(result)
     } else {
@@ -2197,6 +2273,7 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
     }
     if active > 0 {
         let (district, kind, why) = next.unwrap();
+        let mut retained_raw_supply = None;
         // A proportional starter must not quietly commission a much larger
         // mine behind it. Operating raw deficits use the existing market;
         // construction itself does not require extraction or inventory.
@@ -2204,24 +2281,25 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
             && kind != K::StarterIndustry
             && !goods_trade.as_ref().is_some_and(|(success, _)| *success)
         {
-            if let Some((mine_district, commodity)) =
-                observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context))
-            {
-                let command = Command::DevelopResource {
-                    nation,
-                    district: mine_district.clone(),
-                    commodity,
-                };
-                match observe_review_call(observer,"review.execute",Some(nation),||execute(w, &command)) {
-                    Ok(()) => {
-                        record(w,nation,"mine",with_trade(format!("Develop mapped {} in {} to address a real input shortage. Progress is paid from the shared construction budget.",commodity.name(),mine_district)),Some((district,kind)),raw_context, observer);
-                        return;
+            match observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context)) {
+                MineReview::NoCommand(forecast) => retained_raw_supply = forecast,
+                MineReview::Candidate(mine_district, commodity) => {
+                    let command = Command::DevelopResource {
+                        nation,
+                        district: mine_district.clone(),
+                        commodity,
+                    };
+                    match observe_review_call(observer,"review.execute",Some(nation),||execute(w, &command)) {
+                        Ok(()) => {
+                            record(w,nation,"mine",with_trade(format!("Develop mapped {} in {} to address a real input shortage. Progress is paid from the shared construction budget.",commodity.name(),mine_district)),Some((district,kind)),raw_context, observer);
+                            return;
+                        }
+                        Err(_) => {} // Keep the primary project's actual blocker visible.
                     }
-                    Err(_) => {} // Keep the primary project's actual blocker visible.
                 }
             }
         }
-        record(
+        record_with_raw_supply(
             w,
             nation,
             if goods_trade.as_ref().is_some_and(|(success, _)| *success) {
@@ -2236,25 +2314,28 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
             Some((district, kind)),
             raw_context,
             observer,
+            retained_raw_supply,
         );
         return;
     }
     let (district, kind, why) = match next {
         Ok(v) => v,
         Err(why) => {
+            let mut retained_raw_supply = None;
             if !goods_trade.as_ref().is_some_and(|(success, _)| *success) {
-                if let Some((mine_district, commodity)) =
-                    observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context))
-                {
-                    let command = Command::DevelopResource { nation,
-                        district: mine_district.clone(), commodity };
-                    if observe_review_call(observer,"review.execute",Some(nation),||execute(w,&command)).is_ok() {
-                        record(w,nation,"mine",with_trade(format!("The ordinary raw market cleared without covering today's {} bundle. Develop the mapped deposit in {}; progress is paid from the shared construction budget.",commodity.name(),mine_district)),None,raw_context, observer);
-                        return;
+                match observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context)) {
+                    MineReview::NoCommand(forecast) => retained_raw_supply = forecast,
+                    MineReview::Candidate(mine_district, commodity) => {
+                        let command = Command::DevelopResource { nation,
+                            district: mine_district.clone(), commodity };
+                        if observe_review_call(observer,"review.execute",Some(nation),||execute(w,&command)).is_ok() {
+                            record(w,nation,"mine",with_trade(format!("The ordinary raw market cleared without covering today's {} bundle. Develop the mapped deposit in {}; progress is paid from the shared construction budget.",commodity.name(),mine_district)),None,raw_context, observer);
+                            return;
+                        }
                     }
                 }
             }
-            record(
+            record_with_raw_supply(
                 w,
                 nation,
                 if goods_trade.as_ref().is_some_and(|(success, _)| *success) {
@@ -2266,6 +2347,7 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
                 None,
                 raw_context,
                 observer,
+                retained_raw_supply,
             );
             return;
         }
@@ -2322,6 +2404,10 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
         observer,
     );
 }
+
+#[cfg(test)]
+#[path = "economic_ai_mine_tests.rs"]
+mod mine_forecast_tests;
 
 #[cfg(test)]
 mod ammunition_forecast_tests {
@@ -2654,6 +2740,58 @@ mod s08_industry_read_tests {
         let bootstrap = reads.bootstrap();
         serde_json::to_vec(&bootstrap.as_ref().as_ref().map(|b|
             (&b.command, &b.machinery_district, b.starts_machine, &b.waiting))).unwrap()
+    }
+
+    #[test]
+    fn s22_expansion_gap_guard_keeps_original_nonfinite_skip_semantics() {
+        for (intermediate, capital, expected) in [
+            (0.0, -0.0, false), (-1.0, 1e-9, false),
+            (1e-9, 1e-9, false), (1.00001e-9, 0.0, true),
+            (0.0, 1.00001e-9, true), (f64::NEG_INFINITY, -0.0, false),
+            (f64::INFINITY, 0.0, true), (f64::NAN, 0.0, true),
+            (0.0, f64::NAN, true), (f64::NAN, f64::NAN, true),
+        ] {
+            assert_eq!(has_expansion_gap(intermediate, capital), expected,
+                "the prior per-kind <= skip retains non-finite selection behavior");
+        }
+    }
+
+    #[test]
+    fn s22_lazy_expansion_ranking_preserves_candidate_and_full_review() {
+        let (mut base, _) = prepared(true);
+        // Explicit synthetic coverage makes both expansion gaps zero without
+        // changing the policy, the province set or any qualification input.
+        base.production.industry.goods.insert(BUYER, industry::Goods {
+            intermediates: 1e9, capital_goods: 1e9,
+        });
+        let before = crate::save(&base);
+        let reads = IndustryReads::new(&base, BUYER, true);
+        let original = IndustryReads::new(&base, BUYER, false);
+        let plan = reads.capacity();
+        assert!(!first_machine_needed(&plan));
+        assert!(expansion_blocker(&base, BUYER).is_none());
+        assert!(goods_balance(&plan, Good::Intermediates).expansion_daily <= 1e-9);
+        assert!(goods_balance(&plan, Good::CapitalGoods).expansion_daily <= 1e-9);
+        let mut optimized_stages = Vec::new();
+        let mut original_stages = Vec::new();
+        let selected = candidate_with_reads_observed(&reads,
+            &mut Some(&mut |stage, _, _| optimized_stages.push(stage.to_owned())));
+        let expected = candidate_with_reads_observed(&original,
+            &mut Some(&mut |stage, _, _| original_stages.push(stage.to_owned())));
+        assert_eq!(selected, expected, "target, reason and refusal ordering stay exact");
+        assert!(optimized_stages.iter().any(|stage| stage == "candidate.capacity"));
+        assert!(!optimized_stages.iter().any(|stage| stage == "candidate.ranking"));
+        assert!(original_stages.iter().any(|stage| stage == "candidate.ranking"),
+            "the uncached oracle must actually exercise the previous ranking path");
+        assert!(reads.expansion.get().is_none(), "skipped ranking creates no cached read");
+        assert_eq!(crate::save(&base), before, "candidate reads preserve every world byte");
+        let context = RawSupplyContext::new(&base);
+        let mut optimized = base.clone();
+        let mut original = base.clone();
+        review_impl(&mut optimized, BUYER, &context, &mut None, true);
+        review_impl(&mut original, BUYER, &context, &mut None, false);
+        assert_eq!(crate::save(&optimized), crate::save(&original),
+            "full review preserves command effects, prices, plans and ordered headlines");
     }
 
     #[test]

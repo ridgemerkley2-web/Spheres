@@ -1,0 +1,8 @@
+
+running 3 tests
+test logistics::arrival_access_tests::arrival_access_borrowed_keys_match_actual_checkpoint_for_31_complete_days ... ignored, actual immutable 2015/2035 checkpoint old owned-key freight pass for31days; no timing claim
+test logistics::arrival_access_tests::arrival_access_borrowed_order_is_exact_owned_key_order ... ok
+test logistics::arrival_access_tests::arrival_access_borrowing_preserves_due_transit_holds_duplicate_order_and_fresh_dates ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1108 filtered out; finished in 0.21s
+

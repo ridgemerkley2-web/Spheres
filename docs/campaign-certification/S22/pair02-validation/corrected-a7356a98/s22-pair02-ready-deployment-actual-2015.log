@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'campaign_supply::deployment_capacity_tests::deployment_capacity_reuse_matches_actual_checkpoint_for_31_complete_days' (17672) panicked at spheres-sim\src\campaign_supply_deployment_capacity_tests.rs:153:5:
+actual input must exercise repeated immutable edge reads
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test campaign_supply::deployment_capacity_tests::deployment_capacity_reuse_matches_actual_checkpoint_for_31_complete_days ... FAILED
+
+failures:
+
+failures:
+    campaign_supply::deployment_capacity_tests::deployment_capacity_reuse_matches_actual_checkpoint_for_31_complete_days
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1110 filtered out; finished in 52.49s
+

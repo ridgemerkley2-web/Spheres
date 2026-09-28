@@ -1,0 +1,22 @@
+✔ shipped image, canvas and shadow declarations are counted and replacement is not accumulation (1.6438ms)
+✔ actual bindings on the active unit determine ownership, including unobserved external rebinding (0.2597ms)
+✔ shipped immutable RGBA16F/R16F chains allocate all declared levels exactly once (0.3113ms)
+✔ generated mutable mips replace their own levels and retain separately allocated higher levels (0.167ms)
+✔ mipmap ranges query actual base and maximum texture levels (0.2765ms)
+✔ WebGL1 default mip range and half-float extension payload do not require WebGL2 parameters (0.1555ms)
+✔ cube faces have independent levels and immutable cube storage includes all six faces (0.2649ms)
+✔ known packed and sized depth payloads retain their declared width, excluding driver padding (0.4881ms)
+✔ unknown allocation formats are explicit and never silently counted as zero (0.1796ms)
+✔ unknown image dimensions and formats/types retain an unmeasured level (0.1688ms)
+✔ pre-existing textures and missing mip bases are disclosed until deletion (0.1066ms)
+✔ context loss clears resident declarations and restoration accepts new handles without stale bytes (0.1124ms)
+✔ probe preserves original results and exceptions, does not consume errors, and can detach (0.3417ms)
+✔ standalone browser export exposes the same instrumentation and its measurement limits (0.7937ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.5567

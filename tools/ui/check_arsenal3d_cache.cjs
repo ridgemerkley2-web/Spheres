@@ -75,6 +75,7 @@ function harness() {
   // The module wires a document-level pointer listener at load, so the fake
   // document needs the event surface as well as createElement.
   global.document = {
+    body: {},
     createElement: () => make(),
     addEventListener() {}, removeEventListener() {},
     querySelectorAll: () => [],
@@ -82,6 +83,14 @@ function harness() {
   global.devicePixelRatio = 1;
   global.requestAnimationFrame = () => 0;
   global.cancelAnimationFrame = () => {};
+  global.innerHeight=600;global.innerWidth=1000;
+  global.MutationObserver=class {
+    constructor(callback){log.removals=callback;}observe(){}
+  };
+  global.IntersectionObserver=class {
+    constructor(callback){log.intersections=callback;log.observed=new Set();}
+    observe(canvas){log.observed.add(canvas);}unobserve(canvas){log.observed.delete(canvas);}
+  };
   // arsenal3d refuses to initialise without the deck present.
   require(path.join(ui, "arsenal-models.js"));
   const Arsenal3D = require(path.join(ui, "arsenal3d.js"));
@@ -107,6 +116,46 @@ test("the fake context is real enough for the module to run at all", () => {
   assert.equal(Arsenal3D.mount(cv, "town:1990/residential/close"), true, "a mount that should work did not");
   assert.ok(log.draws > 0, "nothing was drawn, so the rest of this file proves nothing");
   assert.ok(Arsenal3D.cacheStats().triangles > 0, "the cache did not record the model it just built");
+});
+
+test("direct city-style mounts release detached canvases without waiting for scan or 400 visits", () => {
+  const before=Arsenal3D.cacheStats().mounted;
+  let previous=null;
+  for(let i=0;i<20;i++) {
+    if(previous)previous.isConnected=false;
+    const canvas=make();assert(Arsenal3D.mount(canvas,'arm_gen2'));previous=canvas;
+    assert.equal(Arsenal3D.cacheStats().mounted,before+1,'new direct mount prunes its detached predecessor');
+  }
+  previous.isConnected=false;log.removals([{removedNodes:[previous]}]);
+  assert.equal(Arsenal3D.cacheStats().mounted,before,'closing the last room releases its canvas too');
+});
+
+test("lazy cards build only on intersection and detached pending cards release observation", () => {
+  const canvas=make(),base=Arsenal3D.cacheStats();
+  canvas.getAttribute=name=>name==='data-kit3d'?'arm_gen2':null;
+  canvas.getBoundingClientRect=()=>({width:200,height:140,top:10000,bottom:10140,left:0,right:200});
+  const host={querySelectorAll:()=>[canvas]},draws=log.draws;
+  assert.equal(Arsenal3D.scan(host),0);assert.equal(log.draws,draws);
+  assert.equal(Arsenal3D.cacheStats().pending,base.pending+1);assert(log.observed.has(canvas));
+  log.intersections([{target:canvas,isIntersecting:true}]);
+  assert(log.draws>draws);assert.equal(Arsenal3D.cacheStats().pending,base.pending);assert(!log.observed.has(canvas));
+  canvas.isConnected=false;log.removals([{removedNodes:[canvas]}]);
+  assert.equal(Arsenal3D.cacheStats().mounted,base.mounted);
+  for(let i=0;i<20;i++) {
+    const pending=make();pending.getBoundingClientRect=canvas.getBoundingClientRect;
+    Arsenal3D.scan({querySelectorAll:()=>[pending]});pending.isConnected=false;
+    log.removals([{removedNodes:[pending]}]);
+    assert.equal(Arsenal3D.cacheStats().pending,base.pending);assert(!log.observed.has(pending));
+  }
+});
+
+test("a detached lazy target delivered by the intersection observer is forgotten", () => {
+  const canvas=make(),before=Arsenal3D.cacheStats();
+  canvas.getBoundingClientRect=()=>({width:200,height:140,top:10000,bottom:10140,left:0,right:200});
+  Arsenal3D.scan({querySelectorAll:()=>[canvas]});canvas.isConnected=false;
+  const draws=log.draws;log.intersections([{target:canvas,isIntersecting:true}]);
+  assert.equal(Arsenal3D.cacheStats().pending,before.pending);assert.equal(log.draws,draws);
+  assert(!log.observed.has(canvas));
 });
 
 test("the cache never exceeds its cap, however much is asked of it", () => {

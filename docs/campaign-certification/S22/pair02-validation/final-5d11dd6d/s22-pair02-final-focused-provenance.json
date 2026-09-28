@@ -1,0 +1,40 @@
+{
+  "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\sim-tests.exe",
+    "bytes": 50281564,
+    "sha256": "28c132769d1c367a7a088fc5299b11ca32e89a0f52b2655f5ffe5adfc630de3b"
+  },
+  "arguments": "FILTER --nocapture --test-threads=2",
+  "runs": [
+    {
+      "filter": "campaign_supply::deployment_capacity_tests",
+      "started_utc": "2026-09-28T11:16:53.1139146Z",
+      "finished_utc": "2026-09-28T11:16:53.5115544Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-focused-deployment.log"
+    },
+    {
+      "filter": "industry::energy_scope_tests",
+      "started_utc": "2026-09-28T11:16:53.5143306Z",
+      "finished_utc": "2026-09-28T11:16:54.5057871Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-focused-industry.log"
+    },
+    {
+      "filter": "logistics::arrival_access_tests",
+      "started_utc": "2026-09-28T11:16:54.5114696Z",
+      "finished_utc": "2026-09-28T11:16:54.7600261Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-focused-arrival-access.log"
+    },
+    {
+      "filter": "resources::purchase_route_tests",
+      "started_utc": "2026-09-28T11:16:54.7668858Z",
+      "finished_utc": "2026-09-28T11:16:54.8469347Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-focused-purchase-route.log"
+    }
+  ],
+  "qualification": false
+}

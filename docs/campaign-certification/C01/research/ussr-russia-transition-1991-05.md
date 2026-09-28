@@ -469,3 +469,109 @@ no `spheres-sim/data`; that is expected and was not widened. The new test was al
 five hand-made regressions (an end date on Gorbachev's 1991 holder, 24 April as the presidency's
 start, the vote re-dated to the approval day, an inferred Yeltsin end, and the result used as
 Yeltsin's start); it failed on each.
+
+## Source review (CLAUDE-C01-SOURCE-05)
+
+Dated 27 September 2026 (local). Requests ran from 27 September 23:40:28 to 28 September 00:55:57
+UTC. Branch `claude/c01-source-05`, base `a33a8987`. This is a source-identity repair of the
+integrated packet; historical acceptance remains Codex's decision.
+
+Codex's premerge source-identity sample of 27 September requested the official page URL of
+`ru_garf_cec_result_19910619` and timed out. That URL is the packet URL, not the recorded
+response. Since 21 September the extract has recorded the raw Internet Archive capture
+`https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml`
+(15,700 bytes, SHA-256 `54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e`) as
+`source_response_url`, because the official host refused this environment.
+
+Method: curl 8.16.0 with its default User-Agent, no proxy and `Accept-Encoding: identity`; every
+body hashed with SHA-256. The Internet Archive served every body without `Content-Encoding`, so
+each identity is the uncompressed body. Captures were listed with the Wayback CDX API bounded by
+the cutoff (`to=20260906235959`); each CDX digest equals the SHA-1 of the downloaded body, and
+every archive response was an `X-Page-Cache: MISS`.
+
+- **Official host: no response.** `projects.rusarchives.ru` resolves to 92.50.233.124 but opened
+  no TCP connection on port 443 or 80 at 23:40:28, 23:40:54 and 23:41:15 on 27 September and at
+  00:13:05, 00:13:27, 00:55:14 and 00:55:36 on 28 September (curl exit 28 after about 21 s each).
+  `rusarchives.ru` did not connect either, at 23:41:37 on 27 September. No live identity exists
+  and none is recorded; nothing was bypassed.
+- **Recorded response: reproduced exactly.** HTTP 200, `text/html; charset=UTF-8`, 15,700 bytes,
+  SHA-256 `54000d3c…19683e`, at 23:42:08 on 27 September and at 00:16:28 and 00:55:57 on 28
+  September UTC (34 and 74 minutes after the first). The archived origin Content-Length is also
+  15,700.
+
+Other captures before the cutoff, from the CDX listing:
+
+| Capture | Crawl source | Bytes | SHA-256 | Same as recorded |
+|---|---|---|---|---|
+| 20190823005913 | Common Crawl | 16,109 | `aadfea65…493a24` | no: the Yandex.Metrika counter script differs; the text, captions and image links are identical |
+| 20191208064002 | Internet Archive | 16,109 | `aadfea65…493a24` | no: as above |
+| 20210225052658 | Archive Team | 15,700 | `54000d3c…19683e` | yes |
+| 20210511100649 | Common Crawl | 15,700 | `54000d3c…19683e` | yes |
+| 20210612153223 | Internet Archive | 15,700 | `54000d3c…19683e` | yes |
+| 20210924090951 | Common Crawl | 15,700 | `54000d3c…19683e` | yes |
+| 20230604070106 | Common Crawl | 15,700 | `54000d3c…19683e` | yes: the recorded response |
+| 20230929012544 | Internet Archive (revisit) | 15,700 | `54000d3c…19683e` | yes |
+
+The 20230929012541 record is an http-to-https redirect with no page body.
+
+Facsimiles: reproduced exactly, each the only capture before the cutoff. Image 1
+(20191208064007) is 98,762 bytes, `9052337c…62b6c2`; image 2 (20191208064008) 133,816 bytes,
+`0a6d5e08…6a5229`; image 3 (20191208064005) 114,508 bytes, `188d308d…9e328e`.
+The Internet Archive answered five requests at 00:13:03-00:13:05 on 28 September with HTTP 429
+(rate limit), and one request at 23:43:33 on 27 September could not connect. Each was retried,
+and none of those responses is an identity.
+
+Content comparison. The exhibit caption is the same in every capture with a page body: the
+resolution "Об итогах выборов Президента РСФСР", 19 June 1991, original typescript, GARF
+F. 10026, Op. 8, D. 204, L. 6-7; the image captions end L. 6, L. 6об. and L. 7. Facsimile 1
+(folio 5) is resolution No. 20-25 of 19 June 1991. Point 1 takes note of chairman V. I. Kazakov's
+report on the results, point 2 approves the text of the communication, and point 3 orders it
+published through the Telegraph Agency of the Soviet Union (TASS) in the republican and local
+press. It is signed beside the typed names of V. Kazakov (chairman) and V. Prozorov (secretary).
+Facsimiles 2 and 3 (folios 6 and 7) carry the voting day, the figures and the Article 15
+paragraphs. `ru_cec_resolution_20_25_19910619` agrees in every element, and so do the source's
+other three claims. The page's own excerpt, which no claim cites, differs from the facsimiles in
+wording only (for example "был избран" where facsimile 3 reads "избран").
+
+The leaf-number discrepancy is unchanged and unresolved: the exhibit caption gives L. 6-7 and
+captions the three images L. 6, L. 6 ob. and L. 7, while the handwritten folio numbers on the
+images read 5, 6 and 7. It is identical in the 2019 and 2021-2023 captures, so it belongs to the
+published exhibit, not to an archive capture. Neither numbering is adopted.
+
+Changes: the extract gains `source_review` (method, every attempt and download with its
+identity, the capture table and the content comparison) and one provenance sentence. Its
+snapshot goes from 7,436 bytes (`6a1084e3…f690d3`) to 27,871 bytes (`23667eb7…8d1e02`). The
+`russia.json` source record gains a `source_review` summary and the new snapshot identity. No
+claim text, date, locator or uncertainty changed. `test_ussr_russia_transition_c01_05.py` gains
+one test pinning the reproduced identities, the six identical captures, the exact claim text and
+the leaf-number uncertainty; no existing value changed. The research index is regenerated in a
+separate commit.
+
+Remaining gaps: a response from the official host itself (unreachable from this environment
+throughout); the archival leaf numbering (GARF's own file or inventory); the TASS publication date
+(`C01-Russia-TR91-004`).
+
+Checks:
+
+```text
+python -X utf8 tools/avatars/campaign_research.py
+python -X utf8 tools/avatars/campaign_research.py --check
+python -X utf8 tools/avatars/campaign_census.py --check
+python -X utf8 -m unittest discover -s tools/avatars -p "test_ussr*.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_russia*.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_*research*.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"
+node --test tools/ui/check_leadership_research_review.cjs
+python tools/planning/workboard.py --check
+git diff --check -- <the six changed paths>
+```
+
+All passed on 28 September 2026 UTC (27 September local), from
+`C:/Users/ridge/Spheres-c01-src05` with `PYTHONDONTWRITEBYTECODE=1` and game data present: the
+index regeneration and exact check (9 packets, 1,329 sources, 3,731 claims, counts unchanged);
+`campaign_census.py --check` (exit 0); 28 USSR tests (one new); 29 Russia tests; 79 research
+tests; 16 campaign tests, census included, none skipped; 11 atlas Node tests; the workboard
+check (44 markers); and `git diff --check` on the changed paths. The new test also failed on
+each of ten hand-made regressions (the recorded SHA-256, a single download, the folio numbers,
+the claim number, a dropped capture, a post-cutoff capture, an invented live identity, a
+facsimile SHA-256, the packet summary's SHA-256, and the leaf note marked resolved).

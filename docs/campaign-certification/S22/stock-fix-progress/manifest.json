@@ -1,0 +1,666 @@
+{
+  "format": "spheres-s22-stock-fix-progress/v1",
+  "status": "preflight_and_preparation_only",
+  "qualification": false,
+  "packaged_utc": "2026-09-28T06:02:21.823Z",
+  "package_base_revision": "a96bb097b78ff8e65f06f347f26cde46a190467d",
+  "source_evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence",
+  "files": [
+    {
+      "path": "validation/s22-stock-target-company-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-stock-target-company-tests.log",
+      "bytes": 1638,
+      "sha256": "4a66132c5510022a8b03820b038fd1f22f52052aac2a78d00988e1f2611b78a2",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-pooled-observer-test.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pooled-observer-test.log",
+      "bytes": 227,
+      "sha256": "b6a79fc3f8a670ec896938f4a9fd6756fc864ff718f1a1e66ed36c25508bcc5d",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-stock-target-web-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-stock-target-web-tests.log",
+      "bytes": 43687,
+      "sha256": "2ded6ac3d67377366d9b10a3c2a3c0a51838d40cc49636554d2d93ab6b400366",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-stock-target-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-stock-target-tests-provenance.json",
+      "bytes": 1052,
+      "sha256": "a9e5f673c83d60283ad689f6104bd4e8da232c54783751749fe0866cee89b87b",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\invocation.json",
+      "bytes": 3593,
+      "sha256": "2df7e56501325547df29644713b5df06d28ed24eb6f4fb73cc48faf19d285b05",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\runner-result.json",
+      "bytes": 10953,
+      "sha256": "55dd1a90e7196ab3e1858ab2cf1902ba2e12f4fe197486bb5b5673d29d3fc302",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\profile.json",
+      "bytes": 180319,
+      "sha256": "0e9893860978f83d326d7bf2cef8639e296f4b802ba15863e8f324d7a2e75199",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\memory-samples.csv",
+      "bytes": 21160,
+      "sha256": "e612208b67e641d256a26e224ea4e29f05e2462c425d8c4d660f36a4ba510347",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "04ed69f09eabbe7723bca901b3a8487568aede8ae569a55d5f63113a78ce304d",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01-console.log",
+      "bytes": 11031,
+      "sha256": "3fea10e94dde5e9841f12017654e4d258aab41edb3cee0f65370ba6eb92a9e3f",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01-pause.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01-pause.json",
+      "bytes": 762,
+      "sha256": "0c08a2582e0c78a2e3e7ed64a14bc79f9c5e4d5cf5dacf61e417ed668c4f2cbf",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-stockfix-isolated-01-resume.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01-resume.json",
+      "bytes": 253,
+      "sha256": "46d4498c706092fdeaea9555ada5a509b5230eb317836e82c3574f810f7ce01a",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-subsystem-2006-stockfix-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2006-stockfix-isolated-01\\profile.json",
+      "bytes": 1933040,
+      "sha256": "4dee5311ffdd2c33eb117d5578b81e5ddfffe5b352dc67ccb1df1248ea9c3f6d",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-subsystem-2006-stockfix-isolated-01/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2006-stockfix-isolated-01\\native.log",
+      "bytes": 3745,
+      "sha256": "95a3982fc70692da5cfe06b53489107146a86bc10dd816f3e552afea273e6ea0",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-subsystem-2006-stockfix-isolated-01/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2006-stockfix-isolated-01\\provenance.json",
+      "bytes": 1130,
+      "sha256": "67f70f6abb2bcc41522a2aa91a967e03afb83db72ef410713a6abfad24a8267f",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\invocation.json",
+      "bytes": 3510,
+      "sha256": "dd28fc4c0ca65bf0a6f9586e65895c15d8cefaea138041125ef80e5d224ea547",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\runner-result.json",
+      "bytes": 6963,
+      "sha256": "631519e2d7f0927e378a287d2fa7700dab84ba258caeb62b925b540a6c4b551a",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\profile.json",
+      "bytes": 81676,
+      "sha256": "43df7aea4582168c07acd4dfe146702f78b4fdf30da5f1205de82c87c4fab3be",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\memory-samples.csv",
+      "bytes": 404380,
+      "sha256": "421376f57dd96627899f332147bfd111b85a10d9ba39779e4253c4db93945c3f",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/preparation-journal.jsonl",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\preparation-journal.jsonl",
+      "bytes": 363401,
+      "sha256": "7331915dde25bfef9f9e312b9d08eab3c6d97aef54a16c7dc06d5b3ed03ad314",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\stdout.log",
+      "bytes": 166,
+      "sha256": "1e13cbc1779a41421febd9a1ff25a9d0ad7fc69941c35c931ff3999c7cd40ab9",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\stderr.log",
+      "bytes": 439,
+      "sha256": "336ebd6f7f8434b38d7cd8c5688c7d3286b2488fe5f7951a6b976aaf6affe2a7",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-preparation-active-02-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02-console.log",
+      "bytes": 7041,
+      "sha256": "9f78842290a974a76063c0cb7801179972dfdaba2309a242d25b8734bdf78c85",
+      "encoding": "identity"
+    },
+    {
+      "path": "inputs/s22-2015-01-01.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "bytes": 22515658,
+      "sha256": "fe84c513d5d678f14772a57092dfba88882ebfdc59eedc842bd5dad1ebf78dfe",
+      "encoding": "gzip",
+      "uncompressed_bytes": 130222370,
+      "uncompressed_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "roundtrip_verified": true
+    },
+    {
+      "path": "validation/s22-ministry-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-ministry-tests-provenance.json",
+      "bytes": 637,
+      "sha256": "d9a90dcd05d87daed9f5b2f8dec6a129d715710885d7ecf784971d09639fc01b",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-ministry-web-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-ministry-web-tests.log",
+      "bytes": 43996,
+      "sha256": "247fe7032f321faa1fd3ae30bd402fa689f40b44adbf83ccc01db1e7d5b234da",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-ministry-actual-parity.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-ministry-actual-parity.log",
+      "bytes": 302,
+      "sha256": "fd64ef5a88b30dc30279cb3a06d0c8efa0dc5cd6dbc13625db65f2fe7e559ca0",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\invocation.json",
+      "bytes": 3593,
+      "sha256": "4da551dead792e65484910621f3b3bd9aa0a68d37829a56eead0f92ca8a04770",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\runner-result.json",
+      "bytes": 10880,
+      "sha256": "55b81d72fb682aa01f60e8d4d02197f5b763de8318f565a27d3fbb7e1d6aee91",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\profile.json",
+      "bytes": 180225,
+      "sha256": "8f3fdb4b367110b7a1c5513fd6e504fded15c4e721fb98c30c2464fb4389f9ff",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\memory-samples.csv",
+      "bytes": 19808,
+      "sha256": "4c47e4cd0f76577498568c8bb53d51a2d2aef920cf79ae39334e40eec3ff0328",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "456dce615387ef2cdb2f774035bfaadda737a6fde616bf52ccca1f29131363d3",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2006-ministry-isolated-01-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01-console.log",
+      "bytes": 10958,
+      "sha256": "9336c760a10b9d435eb832492acd0b57e00cbd8261caee4f58fe5b386e6c93a6",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\invocation.json",
+      "bytes": 3593,
+      "sha256": "9bd3e72dab3180c1eb898ddbb7d6027fd9c2537ea016e860d391063e844ea61f",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\runner-result.json",
+      "bytes": 11083,
+      "sha256": "0e3b7bfea49b556ac763fd92ede92bdc34efd56ad138fd2d112cde1b84698cbc",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\profile.json",
+      "bytes": 180747,
+      "sha256": "9e76fd92319ca7e009e6fbe1b4ca02a978ca3d51a4a1b9b3293c44c7be4c3868",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\memory-samples.csv",
+      "bytes": 28215,
+      "sha256": "2db8f9aa54e9ea2ec2ad6ce8cb7f045f08ecd708813e26aacaba50aeda8de247",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "9d20b9bf0838e9a2f3b4057ffa6f0ca3f8b6b35af25c9fbfe708da11db7dc95d",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "s22-native-preflight-2015-ministry-isolated-01-console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01-console.log",
+      "bytes": 11161,
+      "sha256": "6817dfd3b61b7a0ae5ffaa0dc0830ed9acfe0a645202559a3d44ce0b7d6a16d5",
+      "encoding": "identity"
+    }
+  ],
+  "cutoff_scope": "Completed a96 focused tests and failed isolated 2006 preflight; active-02 2015 preparation on 594c7ce1; subsequent a4e ministry tests and completed isolated 2006/2015 preflights. Running 2015 subsystem diagnosis and any later candidate are excluded.",
+  "validation": {
+    "candidate_revision": "a96bb097b78ff8e65f06f347f26cde46a190467d",
+    "provenance": "validation/s22-stock-target-tests-provenance.json",
+    "companies": {
+      "passed": 14,
+      "failed": 0
+    },
+    "pooled_equivalence": {
+      "passed": 1,
+      "failed": 0
+    },
+    "web": {
+      "passed": 425,
+      "failed": 0,
+      "ignored": 24
+    },
+    "full_workspace_rerun": false,
+    "previous_full_workspace": {
+      "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+      "passed": 1902,
+      "failed": 0,
+      "ignored": 92,
+      "suites": 66,
+      "existing_packet": "../support-fix-validation/manifest.json"
+    }
+  },
+  "preflight": {
+    "candidate_revision": "a96bb097b78ff8e65f06f347f26cde46a190467d",
+    "binary_sha256": "1e85872ddf539a655ea88595cf17a77c00f90e7b43f775a4d549213dbb5b8c43",
+    "started_utc": "2026-09-28T05:52:43.6821070Z",
+    "finished_utc": "2026-09-28T05:53:41.8581578Z",
+    "passed": false,
+    "qualification": false,
+    "failures": [
+      "Whole-turn maximum exceeds frozen 750 ms limit."
+    ],
+    "simulation_history": {
+      "samples": 31,
+      "median_ms": 224.2283,
+      "p95_ms": 291.01959999999997,
+      "max_ms": 678.1172
+    },
+    "whole_turn": {
+      "samples": 31,
+      "median_ms": 296.4892,
+      "p95_ms": 395.7494,
+      "max_ms": 792.7021
+    },
+    "memory": {
+      "nominal_interval_ms": 100,
+      "samples": 517,
+      "failed_samples": 1,
+      "max_sampled_private_bytes": 935395328,
+      "max_sampled_working_set_bytes": 840953856,
+      "os_peak_working_set_bytes": 934604800,
+      "max_observed_sample_gap_ms": 128.44799999999668,
+      "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+    },
+    "input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+    "input_unchanged": true,
+    "limits": {
+      "simulation_history_p95_ms": 300,
+      "whole_turn_p95_ms": 400,
+      "whole_turn_max_ms": 750,
+      "sampled_private_bytes": 1073741824,
+      "observed_os_peak_working_set_bytes": 1073741824
+    },
+    "pause_record": "s22-native-preflight-2006-stockfix-isolated-01-pause.json",
+    "resume_record": "s22-native-preflight-2006-stockfix-isolated-01-resume.json"
+  },
+  "subsystem": {
+    "candidate_revision": "a96bb097b78f",
+    "provenance": "s22-subsystem-2006-stockfix-isolated-01/provenance.json",
+    "passed": true,
+    "qualification": false,
+    "days": 31,
+    "military_ai": {
+      "max_ms": 28.1124,
+      "mean_per_completed_day_ms": 16.07362903225806,
+      "mean_per_observation_ms": 16.07362903225806,
+      "median_ms": 14.3987,
+      "p95_ms": 25.6833,
+      "samples": 31,
+      "total_ms": 498.2824999999999
+    },
+    "scope": "Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance."
+  },
+  "preparation": {
+    "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+    "binary_sha256": "db979eba5fdcf33fb93861805d5338edccfff19fa0e0f51d1f4d21aad16c195c",
+    "started_utc": "2026-09-28T05:38:47.6882937Z",
+    "finished_utc": "2026-09-28T05:56:16.2301347Z",
+    "passed": true,
+    "qualification": false,
+    "ordinary_days": 3287,
+    "starting_date": "1 Jan 2006",
+    "ending_date": "1 Jan 2015",
+    "original_input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+    "original_input_unchanged": true,
+    "original_input_packet": "../runtime-preflight/inputs/s22-2006-01-01.json.gz",
+    "resume_artifact": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-resume-input.json",
+      "bytes": 114060874,
+      "sha256": "90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f"
+    },
+    "saved_2015_checkpoint": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    "immutable_source_world_fnv64": "f35306a59bd9541a",
+    "starting_world_fnv64": "f35306a59bd9541a",
+    "ending_facts": {
+      "absolute_day": 9131,
+      "alive": true,
+      "archive": {
+        "first_dispatch": "1 Jan 1990",
+        "first_snapshot": "1 Jan 1990",
+        "last_dispatch": "31 Dec 2014",
+        "last_snapshot": "1 Jan 2015",
+        "lifespan_milestones": 5
+      },
+      "autonomous_policies": {
+        "economic_active": true,
+        "economic_competition": true,
+        "economic_plans": 156,
+        "economic_reviews": 31087,
+        "military_active": true,
+        "military_enabled": true,
+        "military_plans": 156,
+        "military_reviews": 29150,
+        "supplier_catalogue_active": true,
+        "supplier_catalogue_enabled": true,
+        "supplier_plans": 6,
+        "supplier_reviewed_plans": 6
+      },
+      "calendar": [
+        2015,
+        1,
+        1
+      ],
+      "capabilities": {
+        "campaign_initialized": true,
+        "fiscal_recovery": true,
+        "industry_rebuild": true,
+        "operational_warfare": 1,
+        "party_leadership": true,
+        "population": true,
+        "sector_contractors": true,
+        "supplier_operations_version": 1
+      },
+      "date": "1 Jan 2015",
+      "dispatches": 21975,
+      "feature_workload": {
+        "air_mission_orders": 1,
+        "airbases": 27,
+        "executive_bindings": 2,
+        "government_performance_records": 158,
+        "government_records": 158,
+        "operational_orders": 3,
+        "operational_reports": 4,
+        "operational_reserves": 155,
+        "party_leadership_assignments": 622,
+        "player_arsenal_holdings": 14,
+        "player_assigned_aircraft": 1,
+        "player_equipment_revisions": 2,
+        "player_military_strength": 35.54010580167061,
+        "player_squadrons": 1,
+        "world_arsenal_holding_rows": 876,
+        "world_assigned_aircraft": 40,
+        "world_military_strength": 1807.0634581712484,
+        "world_squadrons": 32
+      },
+      "history_epoch": 264,
+      "history_points": 1311,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": []
+      },
+      "owned_work": {
+        "advanced_components": 882.132995801,
+        "contractor_assignments": 828,
+        "contractor_roster": 1145,
+        "operational_sectors": 6,
+        "operational_supply_buffers": 6,
+        "operational_supply_cargo": 125,
+        "operational_supply_receipt_day": 9130,
+        "operational_transfers": 5349,
+        "supplier_active_refits": 0,
+        "supplier_ammunition_stock": 751920,
+        "supplier_development": 2,
+        "supplier_equipment_stock": 0,
+        "supplier_equipment_wip": 5,
+        "supplier_pending_ammunition_deliveries": 0,
+        "supplier_pending_equipment_deliveries": 0,
+        "supplier_receipt_day": 9130,
+        "supplier_receivables": 0,
+        "supplier_refit_escrow_bn": 0,
+        "supplier_refit_locked_capital_bn": 0,
+        "supplier_retained_operation_receipts": 5,
+        "suppliers": 6
+      },
+      "pause_reason": null,
+      "player": "France",
+      "player_power": {
+        "as_of_day": 9130,
+        "capacity_daily": 0.11346019759736226,
+        "completed_grid_levels": 1,
+        "facility_used_daily": 24.627239689692814,
+        "inherited_used_daily": 24.627239689692814,
+        "required_daily": 0
+      },
+      "player_projects": 0,
+      "rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "historical_party_leadership": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "seed": 1990,
+      "shooting_wars": 0,
+      "world_fnv64": "ab5b305e7fb2454f"
+    },
+    "memory": {
+      "nominal_interval_ms": 100,
+      "samples": 9435,
+      "failed_samples": 1,
+      "max_sampled_private_bytes": 1413386240,
+      "max_sampled_working_set_bytes": 1227960320,
+      "os_peak_working_set_bytes": 1290878976,
+      "max_observed_sample_gap_ms": 135.79299999994691,
+      "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+    },
+    "preparation_memory_is_not_a_performance_pass": true,
+    "late_2035_preparation_complete": false
+  },
+  "excluded": [
+    "Binaries",
+    "Raw duplicate input files",
+    "Intermediate annual saves",
+    "Previously archived immutable evidence; linked instead of duplicated"
+  ],
+  "ministry_followup": {
+    "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+    "qualification": false,
+    "tests_provenance": "validation/s22-ministry-tests-provenance.json",
+    "web": {
+      "passed": 426,
+      "failed": 0,
+      "ignored": 25
+    },
+    "actual_2015_parity": {
+      "passed": 1,
+      "failed": 0
+    },
+    "full_workspace_rerun": false,
+    "attempts": [
+      {
+        "id": "s22-native-preflight-2006-ministry-isolated-01",
+        "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+        "binary_sha256": "e18b01657a0e5e67bbe580f7d4a86f0ade0fe0f1a940bba33c4153d7a624b4bc",
+        "started_utc": "2026-09-28T06:04:02.4602202Z",
+        "finished_utc": "2026-09-28T06:04:57.3985347Z",
+        "passed": true,
+        "qualification": false,
+        "failures": [],
+        "input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+        "input_unchanged": true,
+        "simulation_history": {
+          "samples": 31,
+          "median_ms": 195.378,
+          "p95_ms": 290.692,
+          "max_ms": 440.42740000000003
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 283.7086,
+          "p95_ms": 362.8336,
+          "max_ms": 511.0135
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 484,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 916140032,
+          "max_sampled_working_set_bytes": 838770688,
+          "os_peak_working_set_bytes": 915787776,
+          "max_observed_sample_gap_ms": 129.5101,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "limits": {
+          "simulation_history_p95_ms": 300,
+          "whole_turn_p95_ms": 400,
+          "whole_turn_max_ms": 750,
+          "sampled_private_bytes": 1073741824,
+          "observed_os_peak_working_set_bytes": 1073741824
+        }
+      },
+      {
+        "id": "s22-native-preflight-2015-ministry-isolated-01",
+        "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+        "binary_sha256": "e18b01657a0e5e67bbe580f7d4a86f0ade0fe0f1a940bba33c4153d7a624b4bc",
+        "started_utc": "2026-09-28T06:05:19.6045335Z",
+        "finished_utc": "2026-09-28T06:06:36.9523423Z",
+        "passed": false,
+        "qualification": false,
+        "failures": [
+          "Simulation/history p95 exceeds frozen 300 ms limit.",
+          "Whole-turn p95 exceeds frozen 400 ms limit.",
+          "Whole-turn maximum exceeds frozen 750 ms limit."
+        ],
+        "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+        "input_unchanged": true,
+        "simulation_history": {
+          "samples": 31,
+          "median_ms": 310.6731,
+          "p95_ms": 433.455,
+          "max_ms": 966.6955
+        },
+        "whole_turn": {
+          "samples": 31,
+          "median_ms": 421.40729999999996,
+          "p95_ms": 545.8514,
+          "max_ms": 1084.5766999999998
+        },
+        "memory": {
+          "nominal_interval_ms": 100,
+          "samples": 689,
+          "failed_samples": 1,
+          "max_sampled_private_bytes": 1004343296,
+          "max_sampled_working_set_bytes": 978919424,
+          "os_peak_working_set_bytes": 994193408,
+          "max_observed_sample_gap_ms": 129.84969999999885,
+          "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+        },
+        "limits": {
+          "simulation_history_p95_ms": 300,
+          "whole_turn_p95_ms": 400,
+          "whole_turn_max_ms": 750,
+          "sampled_private_bytes": 1073741824,
+          "observed_os_peak_working_set_bytes": 1073741824
+        }
+      }
+    ]
+  }
+}

@@ -13,6 +13,8 @@ use serde_json::{json, Value};
 use std::time::Instant;
 
 include!("s08_performance_diagnostics.rs");
+include!("s22_performance.rs");
+include!("s22_diagnosis.rs");
 
 fn ms(start: Instant) -> f64 {
     start.elapsed().as_secs_f64() * 1000.0

@@ -48,12 +48,59 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
     serde_json::to_string(&file).map_err(|e| e.to_string())
 }
 pub(crate) fn decode(text: &str) -> Result<Game, String> {
+    // Keep the potentially large history/log in their compact typed form.
+    // Typed Serde structs skip unknown fields, unlike Value, so successful typed
+    // parsing alone is insufficient: even ignored numbers/depth must obey the
+    // original JSON parser's limits. The validation walk retains no value tree.
+    // A derived struct also accepts positional JSON arrays. The archive
+    // envelope historically requires an object with a named format field.
+    if text.trim_start().starts_with('{') {
+        if let Ok(file) = serde_json::from_str::<Campaign>(text) {
+            if file.format == "spheres-campaign" && file.version == VERSION
+                && serde_json::from_str::<CheckedJson>(text).is_ok()
+            {
+                return restore_campaign(file);
+            }
+        }
+    }
+    // Preserve legacy migrations, last-key-wins duplicate handling and the
+    // original error strings for every archive outside the fast path.
+    decode_value(text)
+}
+
+struct CheckedJson;
+impl<'de> Deserialize<'de> for CheckedJson {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        struct Visitor;
+        impl<'de> serde::de::Visitor<'de> for Visitor {
+            type Value = CheckedJson;
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result { f.write_str("a JSON value") }
+            fn visit_unit<E: serde::de::Error>(self) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_bool<E: serde::de::Error>(self, _: bool) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_i64<E: serde::de::Error>(self, _: i64) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_u64<E: serde::de::Error>(self, _: u64) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_f64<E: serde::de::Error>(self, _: f64) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_str<E: serde::de::Error>(self, _: &str) -> Result<CheckedJson, E> { Ok(CheckedJson) }
+            fn visit_seq<A: serde::de::SeqAccess<'de>>(self, mut seq: A) -> Result<CheckedJson, A::Error> {
+                while seq.next_element::<CheckedJson>()?.is_some() {}
+                Ok(CheckedJson)
+            }
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut map: A) -> Result<CheckedJson, A::Error> {
+                while map.next_key::<CheckedJson>()?.is_some() { map.next_value::<CheckedJson>()?; }
+                Ok(CheckedJson)
+            }
+        }
+        deserializer.deserialize_any(Visitor)
+    }
+}
+
+fn decode_value(text: &str) -> Result<Game, String> {
     let value: Value =
         serde_json::from_str(text).map_err(|e| format!("Cannot read campaign: {e}"))?;
     if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save" | "spheres-companies-save" | "spheres-integrated-save")) {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
-        let mut g = crate::loaded_play_game(crate::load(text)?);
+        let mut g = crate::loaded_play_game(spheres_sim::load_value(value)?);
         g.storage_notice=Some("Simulation save restored. Earlier history was not recorded in this file; new campaign saves preserve it.".into());
         return Ok(g);
     }
@@ -64,7 +111,11 @@ pub(crate) fn decode(text: &str) -> Result<Game, String> {
     }
     let file: Campaign =
         serde_json::from_value(value).map_err(|e| format!("Invalid campaign archive: {e}"))?;
-    let world = crate::load(&serde_json::to_string(&file.world).map_err(|e| e.to_string())?)?;
+    restore_campaign(file)
+}
+
+fn restore_campaign(file: Campaign) -> Result<Game, String> {
+    let world = spheres_sim::load_value(file.world)?;
     let mut g = crate::loaded_play_game(world);
     let current = Snapshot::from_world(&g.world).t;
     if file.history.iter().any(|s| {
@@ -244,6 +295,171 @@ pub(crate) fn autosave(root: &Path, g: &mut Game) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn assert_same_campaign(actual: &Game, expected: &Game) {
+        assert!(crate::save(&actual.world) == crate::save(&expected.world), "Exact world bytes differ");
+        assert!(serde_json::to_vec(&actual.history).unwrap() == serde_json::to_vec(&expected.history).unwrap(), "Exact history bytes differ");
+        assert!(serde_json::to_vec(&actual.log).unwrap() == serde_json::to_vec(&expected.log).unwrap(), "Exact dispatch bytes differ");
+        assert_eq!(actual.history_epoch, expected.history_epoch);
+        assert_eq!(actual.journey, expected.journey);
+        assert_eq!(actual.storage_notice, expected.storage_notice);
+        assert_eq!(actual.autosaved_month, expected.autosaved_month);
+    }
+
+    fn assert_decode_oracle(text: &str) {
+        // Original full-Value decoder remains the fallback and reference path.
+        match (decode(text), decode_value(text)) {
+            (Ok(actual), Ok(expected)) => assert_same_campaign(&actual, &expected),
+            (Err(actual), Err(expected)) => assert_eq!(actual, expected, "Legacy error text changed"),
+            (Ok(_), Err(error)) => panic!("Typed path accepted an archive rejected by the original: {error}"),
+            (Err(error), Ok(_)) => panic!("Typed path rejected an archive accepted by the original: {error}"),
+        }
+    }
+
+    #[test]
+    fn typed_campaign_decode_keeps_complete_history_log_journey_and_numeric_bytes() {
+        let mut g = crate::Game::new(1990, Some(crate::NationId::France));
+        crate::play_rules(&mut g);
+        g.record("Archive: accents é, Unicode 東京, quotes \" and a newline\nremain intact.".into());
+        g.world.day = 2;
+        g.snapshot();
+        g.history_epoch = 41;
+        g.journey.beyond_2035 = true;
+        g.journey.transitions.push(crate::campaign_journey::Transition {
+            from: crate::NationId::France, to: crate::NationId::Belgium, date: "2 Jan 1990".into(),
+        });
+        let archive = encode(&g).unwrap();
+        assert_decode_oracle(&archive);
+        let mut value: Value = serde_json::from_str(&archive).unwrap();
+        value["history"][0]["oil"] = json!("FLOAT_LITERAL");
+        let template = value.to_string();
+        for literal in ["-0", "-0.0", "1e-320", "2.2250738585072014e-308", "9007199254740993",
+            "18446744073709551615", "1.0000000000000002", "1.7976931348623157e308"] {
+            assert_decode_oracle(&template.replace("\"FLOAT_LITERAL\"", literal));
+        }
+        let mut defaults: Value = serde_json::from_str(&archive).unwrap();
+        defaults.as_object_mut().unwrap().remove("history_epoch");
+        defaults.as_object_mut().unwrap().remove("journey");
+        defaults["history"] = json!([]);
+        assert_decode_oracle(&defaults.to_string());
+    }
+
+    #[test]
+    fn typed_campaign_decode_preserves_duplicate_keys_legacy_migrations_and_exact_errors() {
+        let mut g = crate::Game::new(1990, Some(crate::NationId::France));
+        crate::play_rules(&mut g);
+        g.record("A retained dispatch.".into());
+        let value: Value = serde_json::from_str(&encode(&g).unwrap()).unwrap();
+        let archive = value.to_string();
+        for text in [
+            archive.replacen("\"history\":", "\"history\":[],\"history\":", 1),
+            format!("{},\"history\":[]}}", &archive[..archive.len()-1]),
+            archive.replacen("\"history\":[{", "\"history\":[{\"t\":-1,", 1),
+            archive.replacen("\"log\":[{", "\"log\":[{\"text\":\"Superseded duplicate\",", 1),
+            archive.replacen("\"version\":1", "\"version\":999,\"version\":1", 1),
+        ] { assert_decode_oracle(&text); }
+        for mutate in [
+            (|v: &mut Value| v["history"][0]["month"] = json!(13)) as fn(&mut Value),
+            |v| v["history"][0]["day"] = json!(32),
+            |v| v["history"][0]["t"] = json!(1e20),
+            |v| { let point = v["history"][0].clone(); v["history"].as_array_mut().unwrap().push(point); },
+            |v| { v.as_object_mut().unwrap().remove("log"); },
+            |v| v["saved_unix"] = json!("not an integer"),
+            |v| v["format"] = json!("unsupported-campaign"),
+            |v| v["version"] = json!(999),
+            |v| v["world"]["format"] = json!("unsupported-world"),
+        ] {
+            let mut invalid = value.clone(); mutate(&mut invalid);
+            assert!(decode_value(&invalid.to_string()).is_err());
+            assert_decode_oracle(&invalid.to_string());
+        }
+        assert_decode_oracle(&crate::save(&g.world));
+        let raw = serde_json::to_string(&g.world).unwrap();
+        assert_decode_oracle(&raw);
+        for text in ["{", "null", "[]", "{\"format\":true}", "{\"format\":\"spheres-campaign\",\"version\":1}"] {
+            assert_decode_oracle(text);
+        }
+    }
+
+    #[test]
+    fn typed_campaign_decode_cannot_skip_invalid_unknown_numbers_or_recursion_limits() {
+        let g = crate::Game::new(1990, Some(crate::NationId::France));
+        let archive = encode(&g).unwrap();
+        let deep = format!("{}0{}", "[".repeat(140), "]".repeat(140));
+        for extra in ["1e400", "-1e400", deep.as_str()] {
+            let text = format!("{},\"ignored_extension\":{extra}}}", &archive[..archive.len()-1]);
+            assert!(serde_json::from_str::<Value>(&text).is_err());
+            assert!(serde_json::from_str::<CheckedJson>(&text).is_err());
+            assert_decode_oracle(&text);
+        }
+        // Invalid ignored fields can also live inside typed timeline entries.
+        let nested = archive.replacen("\"history\":[{", "\"history\":[{\"ignored_extension\":1e400,", 1);
+        assert!(serde_json::from_str::<Value>(&nested).is_err());
+        assert_decode_oracle(&nested);
+        let valid_unknown = format!("{},\"ignored_extension\":{{\"unicode\":\"é東京\",\"all\":[null,true,false,-1,1.25,\"text\"]}}}}", &archive[..archive.len()-1]);
+        assert!(serde_json::from_str::<CheckedJson>(&valid_unknown).is_ok());
+        assert_decode_oracle(&valid_unknown);
+    }
+
+    #[test]
+    fn typed_campaign_decode_preserves_rejection_of_positional_archive_arrays() {
+        let g = crate::Game::new(1990, Some(crate::NationId::France));
+        let archive = encode(&g).unwrap();
+        let value: Value = serde_json::from_str(&archive).unwrap();
+        let positional = Value::Array([
+            "format", "version", "world", "history", "log", "history_epoch",
+            "journey", "saved_date", "player", "saved_unix",
+        ].into_iter().map(|field| value[field].clone()).collect()).to_string();
+        assert!(serde_json::from_str::<Campaign>(&positional).is_ok(),
+            "the derived struct accepts this otherwise complete positional archive");
+        assert!(serde_json::from_str::<CheckedJson>(&positional).is_ok());
+        for text in [positional.clone(), format!(" \r\n\t{positional}")] {
+            assert!(decode_value(&text).is_err(), "the original named-format archive decoder rejects arrays");
+            assert_decode_oracle(&text);
+        }
+        assert_decode_oracle(&format!(" \r\n\t{archive}"));
+    }
+
+    #[test]
+    #[ignore = "Read-only real archive parity; set SPHERES_S22_INPUT and coordinate with measured runs"]
+    fn typed_campaign_decode_matches_actual_checkpoint_value_oracle() {
+        let input = std::path::PathBuf::from(std::env::var_os("SPHERES_S22_INPUT").expect("SPHERES_S22_INPUT"));
+        let text = fs::read_to_string(&input).unwrap();
+        let started = std::time::Instant::now();
+        let actual = decode(&text).unwrap();
+        let typed_ms = started.elapsed().as_secs_f64()*1000.0;
+        let started = std::time::Instant::now();
+        let expected = decode_value(&text).unwrap();
+        let value_ms = started.elapsed().as_secs_f64()*1000.0;
+        assert_same_campaign(&actual, &expected);
+        assert!(fs::read_to_string(&input).unwrap() == text, "Immutable source changed");
+        eprintln!("Exact actual archive parity: {} bytes, {} history rows, {} dispatches; typed+validation load {typed_ms:.3} ms, original Value load {value_ms:.3} ms. Sequential diagnostic timings only, not memory or qualification.", text.len(), actual.history.len(), actual.log.len());
+    }
+
+    #[test]
+    fn consuming_archive_world_matches_string_import_and_keeps_paid_timeline() {
+        let crate::s05_campaign_api_tests::PaidWorkFixture{mut game,..}=crate::s05_campaign_api_tests::paid_work_fixture();
+        game.record("Preserve the paid campaign archive through consuming decode.".into());
+        let archived=encode(&game).unwrap();
+        let file:Campaign=serde_json::from_str(&archived).unwrap();
+        // This is the former world import boundary: serialize the already parsed
+        // world and reload it. The new consuming boundary must preserve its bytes.
+        let original_world=crate::load(&serde_json::to_string(&file.world).unwrap()).unwrap();
+        let mut restored=decode(&archived).unwrap();
+        assert_eq!(crate::save(&restored.world),crate::save(&original_world));
+        assert_eq!(restored.history,file.history);
+        assert_eq!(restored.log,file.log);
+        assert_eq!(restored.history_epoch,file.history_epoch);
+        assert_eq!(serde_json::to_value(&restored.journey).unwrap(),serde_json::to_value(&file.journey).unwrap());
+        game.advance_days(1,vec![]);
+        restored.advance_days(1,vec![]);
+        assert_eq!(crate::save(&restored.world),crate::save(&game.world));
+        assert_eq!(restored.history,game.history);
+        assert_eq!(restored.log,game.log);
+        let mut bad:Value=serde_json::from_str(&archived).unwrap();
+        bad["world"]["supplier_operations_version"]=json!(999);
+        let world_error=crate::load(&bad["world"].to_string()).unwrap_err();
+        assert_eq!(decode(&bad.to_string()).err().unwrap(),world_error);
+    }
     #[test]
     fn integrated_paid_work_survives_interrupted_write_and_valid_backup_recovery() {
         let crate::s05_campaign_api_tests::PaidWorkFixture{mut game,formation,assignment,..}=crate::s05_campaign_api_tests::paid_work_fixture();

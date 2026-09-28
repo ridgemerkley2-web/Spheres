@@ -1,0 +1,78 @@
+{
+  "format": "spheres-s22-checkpoint-storage-progress/v1",
+  "qualification": false,
+  "status": "local_lossless_storage_maintenance",
+  "packaged_utc": "2026-09-28T08:03:45.442Z",
+  "scope": "Small manifests only; intermediate annual checkpoint contents remain recoverable in adjacent local gzip files outside Git. No qualification, original report rewriting or canonical input removal.",
+  "first_attempt": {
+    "compressed": 0,
+    "removed": 0,
+    "scope": "Timestamp type mismatch caused false refreshed-file rejection before compression/removal; preserved rather than overwritten."
+  },
+  "second_attempt": {
+    "compressed": 34,
+    "raw_bytes": 4396021113,
+    "gzip_bytes": 793461528,
+    "reclaimed_payload_bytes": 3602559585,
+    "free_bytes_before": 4488826880,
+    "free_bytes_after": 8091283456,
+    "scope": "Only inventoried annual files in exact task saves directories, per-file nativePowerShell removal after durable lossless verification."
+  },
+  "protected_input_verification": "protected-input-verification.json",
+  "exclusions": [
+    "Large intermediate gzip bodies",
+    "Canonical source/input/resume contents and binary evidence",
+    "No independent benchmark/qualification or change to original preparation reports"
+  ],
+  "files": [
+    {
+      "path": "attempt-01/inventory.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression\\inventory.json",
+      "bytes": 47243,
+      "sha256": "46c605012f3f9a166246e01f1d61dde231472c52338ff6b08a34fabeacefb413",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-01/operations.jsonl",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression\\operations.jsonl",
+      "bytes": 13940,
+      "sha256": "b6f3063f62ea9b0648b3e19f42865d05e5360a3af5db15d76ad847a63ed40e4a",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-01/result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression\\result.json",
+      "bytes": 20791,
+      "sha256": "fc2a7f7beea3938987420b2ae9ca92e5ee76e0c7cac614a6d5c73acef95f97da",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-02/inventory.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression-02\\inventory.json",
+      "bytes": 47243,
+      "sha256": "cb7f45d1bdd7a26ddd7395e31de2867d1423202682256680e4e880bef24a3233",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-02/operations.jsonl",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression-02\\operations.jsonl",
+      "bytes": 98516,
+      "sha256": "a0d41fc9ed9b3411147f75504072ab21494e8e6dff849dcef51a7737da3e4068",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-02/result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression-02\\result.json",
+      "bytes": 61214,
+      "sha256": "fc3817e1b09f4e22771227974d31e3bfe121faf236664c1e9440576982b2ca3f",
+      "encoding": "identity"
+    },
+    {
+      "path": "attempt-02/summary.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-annual-checkpoint-compression-02\\summary.json",
+      "bytes": 1739,
+      "sha256": "c4ce5996bf2fb9a01ef5e6ec991b3dd1dcd7ec88adedbe5642c45ccd7950b88a",
+      "encoding": "identity"
+    }
+  ]
+}

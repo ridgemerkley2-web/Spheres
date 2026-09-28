@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'economic_ai::mine_forecast_tests::mine_review_matches_actual_checkpoint_for_31_complete_days' (4972) panicked at spheres-sim\src\economic_ai_mine_tests.rs:278:5:
+actual checkpoint must exercise real no-command forecast reuse
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test economic_ai::mine_forecast_tests::mine_review_matches_actual_checkpoint_for_31_complete_days ... FAILED
+
+failures:
+
+failures:
+    economic_ai::mine_forecast_tests::mine_review_matches_actual_checkpoint_for_31_complete_days
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1075 filtered out; finished in 55.72s
+

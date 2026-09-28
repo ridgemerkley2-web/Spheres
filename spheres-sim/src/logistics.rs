@@ -440,7 +440,12 @@ fn route_open(
 /// Only mapped gateways can receive a player-built terminal upgrade. This is
 /// routing geometry, not an assertion that a historical port existed here.
 pub fn has_terminal(district: &str) -> bool {
-    network().edges.iter().any(|e| e.kind == "terminal" && (e.a == district || e.b == district))
+    let net = network();
+    // Network initialization requires every edge endpoint in this index and
+    // records each edge in both endpoints' adjacency lists.
+    net.index.get(district).is_some_and(|&node| {
+        net.adj[node].iter().any(|&edge| net.edges[edge].kind == "terminal")
+    })
 }
 
 /// Read-only adapter for military service cargo. Geometry, stable segment keys,
@@ -546,6 +551,49 @@ fn terminal_company(w: &WorldState, e: &Edge) -> Option<(NationId, crate::sector
     }))
 }
 
+/// Static terminal assembly inputs for ONE clearing/posting pass. Neither
+/// caller changes ownership, access, calendar, installed facilities, assignment
+/// identity/order or roster identity/order while it holds ClearingRoutes.
+/// Receipts DO change company experience, so never retain its modifiers.
+#[derive(Clone)]
+struct TerminalAssemblyRead {
+    base_capacity: f64,
+    label: String,
+    company_index: Option<usize>,
+}
+
+impl TerminalAssemblyRead {
+    fn new(w: &WorldState, e: &Edge) -> Self {
+        debug_assert_eq!(e.kind, "terminal");
+        let net = network();
+        let (a, b) = (&net.nodes[net.index[&e.a]], &net.nodes[net.index[&e.b]]);
+        // Literal terminal branch of segment_capacity. Do not recover this
+        // base by dividing a previously rounded company-adjusted capacity.
+        let monthly = 45_000.0 * (1.0 + production::level(w,
+            if a.kind == "district" { &a.id } else { &b.id },
+            production::ProjectKind::FreightTerminal) as f64 * 0.25);
+        let label = format!("{} freight terminal", if a.kind == "district" { &a.name } else { &b.name });
+        let company_index = terminal_company(w, e).and_then(|(owner, target)| {
+            // Resolve through the public read once, preserving its first
+            // assignment, target-validity and first matching company rules,
+            // including malformed/duplicate saved IDs. The second lookup
+            // identifies that exact row; no mutation occurs between reads.
+            let id = crate::sector_contractors::modifiers(w, owner, &target).company_id?;
+            Some(w.sector_contractors.roster.iter().position(|company|
+                company.id == id && company.nation == owner && company.sector == target.sector())
+                .expect("modifier company must resolve to the same immutable roster row"))
+        });
+        Self { base_capacity: monthly * crate::clock::month_fraction(w), label, company_index }
+    }
+
+    fn capacity(&self, w: &WorldState) -> f64 {
+        let operator = self.company_index.map_or(1.0, |index|
+            w.sector_contractors.roster[index].modifiers().work_rate);
+        // Same left-associated monthly * fraction * live operator expression.
+        self.base_capacity * operator
+    }
+}
+
 /// MODEL handling basis: $10 per tonne at each contracted terminal. The
 /// contractor's quoted percentage is billed only when cargo actually moves.
 pub const COMPANY_HANDLING_BN_PER_TONNE: f64 = 0.00000001;
@@ -624,6 +672,9 @@ pub(crate) struct ClearingRoutes {
     /// One bounded slot per graph edge, filled only for non-terminal edges.
     /// Terminal company experience changes during dispatch and stays live.
     assembly_segments: Vec<Option<(f64, String)>>,
+    /// Bounded to visited terminal edges in this context only. Resolved roster
+    /// rows remain fixed, while Company::modifiers is read anew for live XP.
+    assembly_terminals: BTreeMap<usize, TerminalAssemblyRead>,
     /// One reusable membership bit per graph node. Clear only the preceding
     /// goal list; these are scratch inputs for the current immutable request.
     goal_membership: Vec<bool>,
@@ -754,6 +805,10 @@ impl SearchTree {
 
 impl ClearingRoutes {
     pub(crate) fn new(w: &WorldState) -> Self {
+        Self::new_with_capacities(w, true)
+    }
+
+    fn new_with_capacities(w: &WorldState, snapshot_capacities: bool) -> Self {
         let net = network();
         let mut owned_nodes = vec![vec![]; crate::nations::nation_count()];
         // Preserve the exact BTreeMap district/start ordering of plan_impl.
@@ -763,10 +818,11 @@ impl ClearingRoutes {
             }
         }
         let effective_owners = net.nodes.iter().map(|n| freight_controller(w, &n.id)).collect();
-        let capacities = if w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
+        let capacities = if snapshot_capacities && w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
         Self { access: Default::default(), trace: None, owned_nodes, effective_owners,
             military_operations: w.rules.military_operations,
             owner_access: vec![None; crate::nations::nation_count()], assembly_segments: vec![None; net.edges.len()],
+            assembly_terminals: BTreeMap::new(),
             goal_membership: vec![false; net.nodes.len()], current_goals: vec![],
             trees: BTreeMap::new(), tree_clock: 0,
             #[cfg(test)]
@@ -1016,8 +1072,13 @@ impl ClearingRoutes {
         let reuse_segments = true;
         #[cfg(test)]
         let reuse_segments = self.reuse_pure_plan_reads;
+        #[cfg(not(test))]
+        let reuse_terminals = true;
+        #[cfg(test)]
+        let reuse_terminals = !terminal_assembly_tests::ORIGINAL_TERMINAL_ASSEMBLY.with(|flag| flag.get());
         let result = if reuse_segments {
-            assemble_plan_with_segments(w, finish, &tree.prev, Some(&mut self.assembly_segments))
+            assemble_plan_with_reads(w, finish, &tree.prev, Some(&mut self.assembly_segments),
+                reuse_terminals.then_some(&mut self.assembly_terminals))
         } else { assemble_plan_with_segments(w, finish, &tree.prev, None) };
         if let (Some(trace), Some(started)) = (&mut self.trace, assembly_started) {
             trace.assembly += started.elapsed();
@@ -1169,8 +1230,14 @@ fn consider_cached_bottleneck(bottleneck: &mut (f64, String), candidate: &(f64, 
     }
 }
 
-fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut at: usize, prev: &P,
-    mut segments_read: Option<&mut [Option<(f64, String)>]>) -> Result<RoutePlan, String> {
+fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, at: usize, prev: &P,
+    segments_read: Option<&mut [Option<(f64, String)>]>) -> Result<RoutePlan, String> {
+    assemble_plan_with_reads(w, at, prev, segments_read, None)
+}
+
+fn assemble_plan_with_reads<P: PredecessorRead + ?Sized>(w: &WorldState, mut at: usize, prev: &P,
+    mut segments_read: Option<&mut [Option<(f64, String)>]>,
+    mut terminals_read: Option<&mut BTreeMap<usize, TerminalAssemblyRead>>) -> Result<RoutePlan, String> {
     let net = network();
     let mut ids = vec![at];
     let mut edge_ids = vec![];
@@ -1204,7 +1271,18 @@ fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut 
     let mut segments = if segments_read.is_some() { Vec::with_capacity(edge_ids.len()) } else { vec![] };
     for ei in edge_ids {
         let e = &net.edges[ei];
-        match segments_read.as_deref_mut() {
+        if let Some(read) = terminals_read.as_deref_mut().filter(|_| e.kind == "terminal") {
+            #[cfg(test)]
+            if read.contains_key(&ei) {
+                terminal_assembly_tests::REUSED_TERMINAL_ASSEMBLY.with(|count| count.set(count.get() + 1));
+            }
+            let terminal = read.entry(ei).or_insert_with(|| TerminalAssemblyRead::new(w, e));
+            let capacity = terminal.capacity(w);
+            // Preserve the original first strict minimum and its label. All
+            // company coefficients, including nonfinite values, use the live
+            // public Company's existing normalization on every read.
+            if capacity < bottleneck.0 { bottleneck = (capacity, terminal.label.clone()); }
+        } else { match segments_read.as_deref_mut() {
             Some(read) if e.kind != "terminal" => {
                 let candidate = read[ei].get_or_insert_with(|| segment_capacity(w, e));
                 consider_cached_bottleneck(&mut bottleneck, candidate);
@@ -1217,7 +1295,7 @@ fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut 
                     bottleneck = (cap, name)
                 }
             }
-        }
+        }}
         if let Some(c) = &e.chokepoint {
             chokes.insert(c.clone());
         }
@@ -1532,10 +1610,49 @@ fn dispatch_impl(
 
 /// Execute an atomic contract service fraction against frozen route choices.
 /// The resource ledger owns stock/cash; this function reserves capacity only.
+#[cfg(test)]
 pub(crate) fn dispatch_bundle(w: &mut WorldState,
     legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
 ) -> (f64, Vec<Dispatch>) {
-    let bundle = freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes);
+    dispatch_bundle_impl(w, legs, stock_fraction, contract, None)
+}
+
+/// One resource-posting pass's nominal search trees. Contract dispatch changes
+/// cargo, usage, finance and terminal experience, never calendar, ownership,
+/// access, infrastructure or routing policy. Drop this before leaving that
+/// pass. Unlike a forecast, it must NOT retain capacities or whole RoutePlans:
+/// assembly rereads every XP-sensitive terminal, and congestion uses live
+/// usage/capacity with the original per-search limit and no spot-market budget.
+#[derive(Default)]
+pub(crate) struct ContractDispatchRoutes {
+    nominal: Option<ClearingRoutes>,
+}
+
+impl ContractDispatchRoutes {
+    pub(crate) fn dispatch(&mut self, w: &mut WorldState,
+        legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
+    ) -> (f64, Vec<Dispatch>) {
+        #[cfg(test)]
+        if contract_dispatch_tests::ORIGINAL_CONTRACT_ROUTES.with(|flag| flag.get()) {
+            return dispatch_bundle(w, legs, stock_fraction, contract);
+        }
+        let routes = self.nominal.get_or_insert_with(|| ClearingRoutes::new_with_capacities(w, false));
+        let result = dispatch_bundle_impl(w, legs, stock_fraction, contract, Some(routes));
+        #[cfg(test)]
+        contract_dispatch_tests::REUSED_CONTRACT_FREIGHT.with(|count|
+            count.set(count.get() + result.1.iter().filter(|d| d.quantity > 0.0).count() as u64));
+        result
+    }
+}
+
+fn dispatch_bundle_impl(w: &mut WorldState,
+    legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
+    nominal: Option<&mut ClearingRoutes>,
+) -> (f64, Vec<Dispatch>) {
+    let bundle = match nominal {
+        Some(routes) => freight_routing::prepare_bundle_with_nominal(w, legs, &w.logistics.usage_tonnes, routes),
+        None => freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes),
+    };
     let service = stock_fraction.clamp(0.0, 1.0).min(bundle.ratio);
     let mut dispatches = Vec::with_capacity(legs.len());
     for (&(seller, buyer, commodity, quantity), route) in legs.iter().zip(bundle.routes) {
@@ -1550,6 +1667,14 @@ pub(crate) fn dispatch_bundle(w: &mut WorldState,
     }
     (bundle.ratio, dispatches)
 }
+
+#[cfg(test)]
+#[path = "logistics_contract_dispatch_tests.rs"]
+mod contract_dispatch_tests;
+
+#[cfg(test)]
+#[path = "logistics_terminal_assembly_tests.rs"]
+mod terminal_assembly_tests;
 
 fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
     route_segment_capacity_with(w, key, None)
@@ -1709,28 +1834,96 @@ impl<'w> ContractForecastRoutes<'w> {
 }
 
 pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
+    begin_month_impl(w, true)
+}
+
+fn begin_month_impl(w: &mut WorldState, reuse_due_routes: bool) -> Vec<Cargo> {
+    if post_arrivals(w, reuse_due_routes) { w.logistics.arrivals.clone() } else { vec![] }
+}
+
+/// Credit only freshly posted arrivals without copying their complete saved
+/// route payloads. The entire freight pass finishes before the first callback,
+/// just as it did before the caller consumed begin_month's returned vector.
+/// Existing public callers retain their independent complete Cargo vector.
+pub(crate) fn for_new_arrivals(w: &mut WorldState, mut credit: impl FnMut(NationId, Commodity, f64)) {
+    #[cfg(test)]
+    if arrival_payload_tests::ORIGINAL.with(|flag| flag.get()) {
+        for cargo in begin_month(w) { credit(cargo.buyer, cargo.commodity, cargo.quantity); }
+        return;
+    }
+    if !post_arrivals(w, true) { return; }
+    for cargo in &w.logistics.arrivals {
+        #[cfg(test)]
+        arrival_payload_tests::record_eliminated_payload(cargo);
+        credit(cargo.buyer, cargo.commodity, cargo.quantity);
+    }
+}
+
+// Exact ordered arrival-cache key without copying every saved node's strings.
+// Names remain part of due-route keys; transit keys deliberately retain the
+// original ID-only equivalence, including its first encountered refusal text.
+struct ArrivalAccessKey<'a> {
+    seller: NationId,
+    buyer: NationId,
+    nodes: &'a [RouteNode],
+    names: bool,
+}
+impl Ord for ArrivalAccessKey<'_> {
+    fn cmp(&self, other: &Self) -> Ordering {
+        (self.seller, self.buyer, self.names).cmp(&(other.seller, other.buyer, other.names))
+            .then_with(|| if self.names {
+                self.nodes.iter().map(|n| (n.id.as_str(), n.name.as_str()))
+                    .cmp(other.nodes.iter().map(|n| (n.id.as_str(), n.name.as_str())))
+            } else {
+                self.nodes.iter().map(|n| n.id.as_str()).cmp(other.nodes.iter().map(|n| n.id.as_str()))
+            })
+    }
+}
+impl PartialOrd for ArrivalAccessKey<'_> {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> { Some(self.cmp(other)) }
+}
+impl PartialEq for ArrivalAccessKey<'_> {
+    fn eq(&self, other: &Self) -> bool { self.cmp(other) == Ordering::Equal }
+}
+impl Eq for ArrivalAccessKey<'_> {}
+
+// True means this date's freight pass ran, including when it posted an empty
+// arrival list. False never permits a caller to consume retained old arrivals.
+fn post_arrivals(w: &mut WorldState, reuse_due_routes: bool) -> bool {
+    #[cfg(test)]
+    if arrival_access_tests::ORIGINAL.with(|flag| flag.get()) {
+        return arrival_access_tests::original_post_arrivals(w, reuse_due_routes);
+    }
     if !enabled(w) {
-        return vec![];
+        return false;
     }
     let now = resources::month_abs(w);
     let daily = crate::clock::is_daily(w);
     let today = crate::clock::absolute_day(w);
     if if daily { w.logistics.last_day == Some(today) }
         else { w.logistics.last_month == Some(now) } {
-        return vec![];
+        return false;
     }
     w.logistics.last_month = Some(now);
     if daily { w.logistics.last_day = Some(today); }
     w.logistics.usage_tonnes.clear();
     w.logistics.arrivals.clear();
     w.logistics.route_cache.clear();
-    let old = std::mem::take(&mut w.logistics.cargo);
+    let mut old = std::mem::take(&mut w.logistics.cargo);
     let mut keep = vec![];
     let mut arrivals = vec![];
+    let mut delivered = Vec::with_capacity(old.len());
     // Repeated consignments may share a booked path. Control and permissions
     // do not change during this arrival pass, so one exact path check suffices.
-    let mut open_routes: BTreeMap<(NationId, NationId, Vec<String>), Result<(), String>> = BTreeMap::new();
-    for mut c in old {
+    let mut open_routes: BTreeMap<ArrivalAccessKey<'_>, Result<(), String>> = BTreeMap::new();
+    // Due/held consignments also share pure access checks. Keep this separate
+    // from the existing in-transit cache: saved names affect exact refusal
+    // text, even when the ordered node IDs are identical. No movement, stock,
+    // ownership or permissions change until this arrival pass has finished.
+    let mut due_routes: BTreeMap<ArrivalAccessKey<'_>, Result<(), String>> = BTreeMap::new();
+    // Only due dates and hold reasons change while keys borrow the independent
+    // route fields. No cargo is moved until both caches have been dropped.
+    for c in &mut old {
         if daily && c.due_day.is_none() {
             // Legacy freight arrived at the END of due_month: preserve that
             // known boundary, rather than adding months to the load date.
@@ -1744,29 +1937,50 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
             else { c.due_month > now };
         if in_transit {
             if w.rules.military_operations {
-                let key = (c.seller, c.buyer, c.route.nodes.iter().map(|n| n.id.clone()).collect());
+                let key = ArrivalAccessKey { seller: c.seller, buyer: c.buyer, nodes: &c.route.nodes, names: false };
+                #[cfg(test)]
+                arrival_access_tests::record_key(&key, open_routes.contains_key(&key));
                 c.hold_reason = open_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone().err();
             }
-            keep.push(c);
+            delivered.push(false);
             continue;
         }
-        match route_open(w, c.seller, c.buyer, &c.route) {
+        let access = if reuse_due_routes {
+            let key = ArrivalAccessKey { seller: c.seller, buyer: c.buyer, nodes: &c.route.nodes, names: true };
+            #[cfg(test)]
+            arrival_access_tests::record_key(&key, due_routes.contains_key(&key));
+            due_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone()
+        } else { route_open(w, c.seller, c.buyer, &c.route) };
+        match access {
             Ok(()) => {
                 c.hold_reason = None;
-                arrivals.push(c)
+                delivered.push(true)
             }
             Err(reason) => {
                 c.hold_reason = Some(reason);
-                keep.push(c)
+                delivered.push(false)
             }
         }
+    }
+    drop(open_routes);
+    drop(due_routes);
+    for (c, arrived) in old.into_iter().zip(delivered) {
+        if arrived { arrivals.push(c); } else { keep.push(c); }
     }
     arrivals.sort_by_key(|c| c.id);
     keep.sort_by_key(|c| c.id);
     w.logistics.cargo = keep;
-    w.logistics.arrivals = arrivals.clone();
-    arrivals
+    w.logistics.arrivals = arrivals;
+    true
 }
+
+#[cfg(test)]
+#[path = "logistics_arrival_payload_tests.rs"]
+mod arrival_payload_tests;
+
+#[cfg(test)]
+#[path = "logistics_arrival_access_tests.rs"]
+mod arrival_access_tests;
 
 pub fn pending(w: &WorldState, buyer: NationId, c: Commodity) -> f64 {
     w.logistics
@@ -1824,6 +2038,51 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+    #[test]
+    fn terminal_adjacency_matches_original_scan_for_every_node_and_unknown_id() {
+        let net = network();
+        let original = |id: &str| net.edges.iter()
+            .any(|edge| edge.kind == "terminal" && (edge.a == id || edge.b == id));
+
+        // Prove that the missing-index fast return cannot omit an authored
+        // endpoint, including gateway IDs accepted by the original function.
+        assert_eq!(net.index.len(), net.nodes.len());
+        assert_eq!(net.adj.len(), net.nodes.len());
+        for (edge_index, edge) in net.edges.iter().enumerate() {
+            for endpoint in [&edge.a, &edge.b] {
+                let node = *net.index.get(endpoint).expect("every endpoint is indexed");
+                assert_eq!(&net.nodes[node].id, endpoint);
+                assert!(net.adj[node].contains(&edge_index));
+                if edge.kind == "terminal" { assert!(has_terminal(endpoint)); }
+            }
+        }
+        let mut terminal_districts = 0;
+        let mut terminal_gateways = 0;
+        let mut nodes_without_terminals = 0;
+        for (node_index, node) in net.nodes.iter().enumerate() {
+            assert_eq!(net.index.get(&node.id), Some(&node_index));
+            for &edge in &net.adj[node_index] {
+                assert!(net.edges[edge].a == node.id || net.edges[edge].b == node.id,
+                    "adjacency must not introduce an unrelated terminal");
+            }
+            let expected = original(&node.id);
+            assert_eq!(has_terminal(&node.id), expected, "node {} ({})", node.id, node.kind);
+            if expected && node.kind == "district" { terminal_districts += 1; }
+            if expected && node.kind == "gateway" { terminal_gateways += 1; }
+            if !expected { nodes_without_terminals += 1; }
+        }
+        assert!(terminal_districts > 0 && terminal_gateways > 0 && nodes_without_terminals > 0);
+        for unknown in ["", "__s22_unknown_terminal__", " ", "\0"] {
+            assert!(!net.index.contains_key(unknown));
+            assert_eq!(has_terminal(unknown), original(unknown));
+            assert!(!has_terminal(unknown));
+        }
+        for node in net.nodes.iter().filter(|node| original(&node.id)).take(2) {
+            let malformed = format!(" {} ", node.id);
+            assert!(!net.index.contains_key(&malformed));
+            assert_eq!(has_terminal(&malformed), original(&malformed));
+        }
+    }
     #[test]
     #[ignore = "observer-only Materials freight-capacity microprofile"]
     fn materials_segment_capacity_profile() {
@@ -2487,6 +2746,8 @@ mod tests {
             assert_eq!(cached_routes.plan(&cached, seller, buyer), plan(&cached, seller, buyer));
             assert_eq!(cached_routes.plan(&cached, seller, buyer), original_routes.plan(&original, seller, buyer));
             assert!(cached_routes.assembly_segments.iter().enumerate().all(|(i, value)| value.is_none() || network().edges[i].kind != "terminal"));
+            assert!(!cached_routes.assembly_terminals.is_empty(), "real dispatch routes must populate terminal identity reads");
+            assert!(original_routes.assembly_terminals.is_empty(), "original route assembly stays fresh");
             assert!(original_routes.assembly_segments.iter().all(Option::is_none));
             assert_eq!(cached_routes.search_nodes_left, original_routes.search_nodes_left);
             assert_eq!(crate::save(&cached), crate::save(&original),
@@ -2506,6 +2767,7 @@ mod tests {
             assert_eq!(resumed.trees.len(), retained, "terminal work and construction do not invalidate pure paths");
             assert_eq!(resumed.capacities, cold.capacities);
             assert!(resumed.assembly_segments.iter().all(Option::is_none));
+            assert!(resumed.assembly_terminals.is_empty(), "terminal identity never survives the clearing in a route pool");
             for quantity in [-0.0, 0.125, 1e8, 1.0] {
                 assert_eq!(dispatch_in_clearing(&mut cached, seller, buyer, Commodity::Copper, quantity, &mut resumed),
                     dispatch_in_clearing(&mut original, seller, buyer, Commodity::Copper, quantity, &mut cold));
@@ -2832,6 +3094,61 @@ mod tests {
             assert!(!read.is_open(seller,buyer,&missing),"missing interior IDs cannot reuse an open path");
             assert_eq!(crate::save(&w),before,"access reads cannot change cargo, money, policy or control");
         }
+    }
+
+    #[test]
+    fn s22_due_route_reuse_preserves_arrivals_holds_names_and_next_day_rechecks() {
+        for daily in [false, true] { for modern in [false, true] {
+            let mut base = world(); base.rules.daily_simulation = daily; base.rules.military_operations = modern;
+            let (seller, buyer) = (NationId::Germany, NationId::France);
+            let nominal = plan(&base, seller, buyer).unwrap();
+            let transit = base.districts.iter().find(|(_,owner)| **owner == NationId::Netherlands).unwrap().0.clone();
+            let mut named_a = nominal.clone();
+            let mut node = nominal.nodes[0].clone(); node.id = transit; node.name = "Saved transit A".into();
+            named_a.nodes.insert(1, node);
+            let mut named_b = named_a.clone(); named_b.nodes[1].name = "Saved transit B".into();
+            let mut missing = nominal.clone(); missing.nodes[0].id = "s22-missing-route-node".into();
+            let mut empty = nominal.clone(); empty.nodes.clear();
+            let today = crate::clock::absolute_day(&base); let now = resources::month_abs(&base);
+            for (r, route) in [nominal, named_a, named_b, missing, empty].into_iter().enumerate() {
+                for copy in 0..3 {
+                    let future = copy == 2;
+                    base.logistics.cargo.push(Cargo { id: (r * 3 + copy) as u64, seller, buyer,
+                        commodity: Commodity::Iron, quantity: 1.25, source: ShipmentSource::Spot,
+                        contract: None, route: route.clone(), dispatched_month: now - 2,
+                        due_month: if future { now + 1 } else { now - 1 },
+                        dispatched_day: None, due_day: if future {Some(today + 1)} else {None},
+                        hold_reason: Some("Previous hold must be reevaluated".into()) });
+                }
+            }
+            base.logistics.cargo.reverse();
+            for fault in 0..5 {
+                let mut actual = base.clone();
+                match fault {
+                    1 => actual.sanctions.push((NationId::Netherlands, seller)),
+                    2 => actual.sanctions.push((seller, buyer)),
+                    3 => actual.nation_mut(buyer).alive = false,
+                    4 => { actual.districts.insert(base.logistics.cargo.last().unwrap().route.nodes[0].id.clone(), NationId::Iraq); }
+                    _ => {}
+                }
+                let mut expected = actual.clone();
+                let arrivals = begin_month_impl(&mut actual, true);
+                assert_eq!(arrivals, begin_month_impl(&mut expected, false), "arrival ordering daily={daily} modern={modern} fault={fault}");
+                assert_eq!(crate::save(&actual), crate::save(&expected), "exact cargo/history/hold bytes daily={daily} modern={modern} fault={fault}");
+                if fault == 1 {
+                    assert!(actual.logistics.cargo.iter().any(|c| c.hold_reason.as_deref() == Some("Transit through Saved transit A is closed.")));
+                    assert!(actual.logistics.cargo.iter().any(|c| c.hold_reason.as_deref() == Some("Transit through Saved transit B is closed.")));
+                }
+                assert!(begin_month_impl(&mut actual, true).is_empty());
+                assert!(begin_month_impl(&mut expected, false).is_empty());
+                actual.sanctions.clear(); expected.sanctions.clear();
+                actual.nation_mut(buyer).alive = true; expected.nation_mut(buyer).alive = true;
+                if daily { actual.day += 1; expected.day += 1; }
+                else { actual.month += 1; expected.month += 1; }
+                assert_eq!(begin_month_impl(&mut actual, true), begin_month_impl(&mut expected, false));
+                assert_eq!(crate::save(&actual), crate::save(&expected), "cache cannot survive arrival pass");
+            }
+        }}
     }
 
     #[test]

@@ -1,0 +1,144 @@
+{
+  "format": "spheres-s22-diplomacy-diagnosis-progress/v1",
+  "status": "diagnosis_and_scoped_functional_validation_only",
+  "qualification": false,
+  "packaged_utc": "2026-09-28T07:42:28.279Z",
+  "package_base_revision": "8de6f2a0cc1f64932c28755539054fd7c852f3ca",
+  "source_evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence",
+  "scope": "Append-only completed actual2035 diagnosis, executed sovereignty validation at6de and independent source reviews. Current8de contract/campaign routing build/tests remain pending at this snapshot. No new performance or qualification claim.",
+  "diagnostic": {
+    "candidate_revision": "9823b070efea06a4f6e63e955d8ae23445108054",
+    "rows": 31,
+    "actual_start": [
+      2035,
+      11,
+      30
+    ],
+    "actual_end": [
+      2035,
+      12,
+      31
+    ],
+    "exact_native_world_and_headlines": true,
+    "source_unchanged": true,
+    "ending_world_fnv64": "3c3f21d9d67bd7b8",
+    "sovereignty_spike": {
+      "index": 1,
+      "date_before": "1 Dec 2035",
+      "date_after": "2 Dec 2035",
+      "elapsed_ms": 14170.832199999999
+    },
+    "scope": "Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance.",
+    "timing_hierarchy": {
+      "detail.economic_ai.*": "Nested inside system.economic_ai; never add to its enclosing time.",
+      "detail.market.*": "Nested inside prelude.arsenal_spot_market; never add to its enclosing time.",
+      "detail.market.dispatch_*": "Nested inside detail.market.orders_and_dispatch for the same commodity; sub-timers also overlap (source search/assembly within dispatch_plan). Zero-duration count/buffer labels are observations, not measured work.",
+      "detail.military_ai.*": "Nested inside system.military_ai; review stages are also nested inside review.total for the same nation. Never add nested measurements to their enclosing time.",
+      "detail.war.resolve.campaign_prepare.*": "Sequential child stages inside detail.war.resolve.campaign_prepare, itself inside detail.war.resolve_conflicts and system.war. Never add child and parent times. Advance-only stages are absent on a repeated same-date preparation; observer callback overhead belongs only to enclosing timers."
+    }
+  },
+  "sovereignty_validation": {
+    "candidate_revision": "6de1d9972fb3b1a7d5b67f4b73e08420687508d8",
+    "regular_passed": 2,
+    "regular_failed": 0,
+    "regular_ignored": 1,
+    "actual_2035_passed": 1,
+    "actual_2035_failed": 0,
+    "actual_days": 31,
+    "actual_input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+    "source_unchanged": true,
+    "independently_checked_binary_sha256": "74611ed125e693a98d9a130806272e5b2b7dfe2f35425b3ea54c582c891baa9a",
+    "resolved_provenance": "validation/provenance-resolution.json",
+    "scope": "Ordinary native 31-day full-world and headline equivalence versus original candidate search; no player annual renewal or timing acceptance"
+  },
+  "independent_reviews": {
+    "sovereignty": "reviews/s22-sovereignty-independent-review.md",
+    "contracts": "reviews/s22-contract-route-independent-review.md",
+    "campaign_graph": "reviews/s22-campaign-graph-independent-review.md",
+    "scope": "Source-only agent reviews; no executed tests, builds, benchmark or human qualification claimed by reviewers."
+  },
+  "actual_input": {
+    "manifest": "../late-input-progress/inputs/reviewed-late-input-manifest.json",
+    "archive": "../late-input-progress/inputs/s22-2035-11-30.json.gz",
+    "uncompressed_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+  },
+  "excluded": [
+    "Native binaries and repeated raw campaign input",
+    "Unfinished later builds, tests or measurements",
+    "No new frozen qualification pair, S22/G5/CP1 closure or timing acceptance"
+  ],
+  "files": [
+    {
+      "path": "diagnosis/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-idle-import-01\\native.log",
+      "bytes": 3750,
+      "sha256": "a500304abf2c85c07cd264b328f0c7550b212471f36478f199391a5125c854f8",
+      "encoding": "identity"
+    },
+    {
+      "path": "diagnosis/profile.json.gz",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-idle-import-01\\profile.json",
+      "bytes": 231421,
+      "sha256": "bdb9f4cadf3e44e4797a558749d4f970da6c183530b20463814fda46601bf1fb",
+      "encoding": "gzip",
+      "uncompressed_bytes": 2954283,
+      "uncompressed_sha256": "25a7741309f8a9a45d171ba46cf6576767c732edacbc2eb362460cb7cf930084"
+    },
+    {
+      "path": "diagnosis/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-idle-import-01\\provenance.json",
+      "bytes": 1111,
+      "sha256": "9747a8bfde09e5bccffff9b71eb2f240fe30ba10e55d8e7f91b6b552c91c7be3",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-campaign-graph-independent-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-campaign-graph-independent-review.md",
+      "bytes": 2242,
+      "sha256": "4b84ce0fe0982254e97a513fd7c224cd8d343e16f4910455e8b093663d6b79e3",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-contract-route-independent-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-contract-route-independent-review.md",
+      "bytes": 2135,
+      "sha256": "3c874ac525628f1c329510166d83c61133d97e0bada6ce75cbe2a925628a8166",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-sovereignty-independent-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-sovereignty-independent-review.md",
+      "bytes": 2707,
+      "sha256": "af4cc6133a289ca023cd3c4f987ad5eb38baa5f888b14417b54a11271e65fdaa",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-sovereignty-actual-2035-parity.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-sovereignty-actual-2035-parity.log",
+      "bytes": 228,
+      "sha256": "c710cafad7974828b9467158cae60df5d0bf5a79a869ac5f850961c376b10958",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-sovereignty-actual-2035-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-sovereignty-actual-2035-provenance.json",
+      "bytes": 1139,
+      "sha256": "881b05f9498e9b6632c713e747c78b94462eba58a74b9a8b327382bb3dcd2ed4",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-sovereignty-candidate-tests-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-sovereignty-candidate-tests-provenance.json",
+      "bytes": 380,
+      "sha256": "117e4291d1774b2ba60dac643859c4f5592ca2a5bdcdca613d4311e896b3950d",
+      "encoding": "identity"
+    },
+    {
+      "path": "validation/s22-sovereignty-candidate-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-sovereignty-candidate-tests.log",
+      "bytes": 956,
+      "sha256": "5017cb1b054d4de202f1b5c0d7beab0f5e72f389d3fe82f78568a645088fed0b",
+      "encoding": "identity"
+    }
+  ]
+}

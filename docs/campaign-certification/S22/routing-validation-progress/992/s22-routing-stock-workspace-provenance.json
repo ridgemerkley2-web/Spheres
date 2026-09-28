@@ -1,0 +1,9 @@
+{
+  "format": "s22-workspace-regression/v1",
+  "candidate_revision": "992bc99ab5529332cb7ba860f53ff0801a3283b3",
+  "started_utc": "2026-09-28T07:47:37.0717996Z",
+  "finished_utc": "2026-09-28T07:59:51.6768897Z",
+  "command": "cargo test --locked --release --workspace -- --test-threads=2",
+  "exit_code": 0,
+  "qualification": false
+}

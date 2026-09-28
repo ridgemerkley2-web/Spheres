@@ -1,0 +1,7 @@
+
+running 1 test
+31 exact native days: removed 3347 full Cargo copies, 68485 route-node copies and 2852122 route/hold string bytes (content bytes, not allocator or timing measurements).
+test logistics::arrival_payload_tests::arrival_payload_reuse_matches_actual_checkpoint_for_31_complete_days ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1097 filtered out; finished in 55.25s
+

@@ -3,6 +3,21 @@
 use spheres_sim::airmissions as am;
 use spheres_sim::{airbases as ab, aviation as av};
 
+fn flight_mission_detail(order: &am::MissionOrder) -> String {
+    let Some(report) = &order.report else {
+        return "Squadron reserved until launch or cancellation. Eligibility and shared stores are checked again on the launch day.".into();
+    };
+    // Presentation only: retain the original dated settlement in saved history.
+    let mut detail = report.summary.clone();
+    if let Some(name) = spheres_sim::districts::name_of(&order.target) {
+        detail = detail.replace(&order.target, name);
+    }
+    if let Some(family) = eq::ammo_def(&report.family) {
+        detail = detail.replace(&report.family, family.name);
+    }
+    detail
+}
+
 fn flight_input(key: &str, label: &str, value: Value, path: Vec<&str>, kind: &str) -> Value {
     json!({"key":key,"label":label,"value":value,"path":path,"type":kind})
 }
@@ -201,7 +216,7 @@ fn flight_missions_board(w: &WorldState, me: NationId) -> Value {
                 ]);
             }
         }
-        let row = json!({"id":o.id,"name":format!("{} · {}",o.kind.name(),spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target)),"status":match o.status{am::MissionStatus::Queued=>"Queued",am::MissionStatus::Flown=>"Flown",am::MissionStatus::Blocked=>"Held before launch",am::MissionStatus::Cancelled=>"Cancelled"},"detail":o.report.as_ref().map(|r|r.summary.clone()).unwrap_or_else(||"Squadron reserved until launch or cancellation. Eligibility and shared stores are checked again on the launch day.".into()),"metrics":metrics,"requirements":if o.report.as_ref().is_some_and(|r|r.defense.is_some()){vec!["Fighter combat and ground air defense are separate estimates of this squadron's own losses. Aircraft lost is the single settled whole-aircraft total; the estimates are not enemy kills."]}else{vec![]},"receipt_label":o.report.as_ref().map(|r|super::settled_day_json(r.day)["label"].clone()),"actions":actions});
+        let row = json!({"id":o.id,"name":format!("{} · {}",o.kind.name(),spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target)),"status":match o.status{am::MissionStatus::Queued=>"Queued",am::MissionStatus::Flown=>"Flown",am::MissionStatus::Blocked=>"Held before launch",am::MissionStatus::Cancelled=>"Cancelled"},"detail":flight_mission_detail(o),"metrics":metrics,"requirements":if o.report.as_ref().is_some_and(|r|r.defense.is_some()){vec!["Fighter combat and ground air defense are separate estimates of this squadron's own losses. Aircraft lost is the single settled whole-aircraft total; the estimates are not enemy kills."]}else{vec![]},"receipt_label":o.report.as_ref().map(|r|super::settled_day_json(r.day)["label"].clone()),"actions":actions});
         if o.status == am::MissionStatus::Queued {
             orders.push(row);
         } else if results.len() < 30 {
@@ -1097,6 +1112,19 @@ mod flight_view_tests {
             .iter()
             .any(|m| m["label"] == "Settled sorties" && m["value"] == 0.375));
         assert_eq!(spheres_sim::save(&g.world), before);
+        let order = &mut g.world.air_missions.as_mut().unwrap().orders[0];
+        let target_name = spheres_sim::districts::name_of(&order.target).unwrap();
+        order.report.as_mut().unwrap().summary = format!(
+            "Strike target at {}: 0.38 sortie equivalents, 0.75 air_bomb_unguided stores, 1 aircraft lost.", order.target);
+        let before = spheres_sim::save(&g.world);
+        let row = &flight_missions_board(&g.world, ME)["results"][0];
+        let text = row["detail"].as_str().unwrap();
+        assert!(text.contains(target_name));
+        assert!(text.contains(eq::ammo_def("air_bomb_unguided").unwrap().name));
+        assert!(!text.contains("air_bomb_unguided"));
+        assert!(text.contains("0.75") && text.contains("1 aircraft lost"));
+        assert_eq!(spheres_sim::save(&g.world), before);
+
     }
 }
 

@@ -1,0 +1,37 @@
+{
+  "candidate_revision": "d50f7ee1a3440b00c8968b530e8e8b45aa0899fd",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-d50f7ee1\\sim-tests.exe",
+  "binary_sha256": "3ac557cf1111764fe99e69bea01476af7360f5499cb104b65e1442bd43a72470",
+  "arguments": "FILTER --nocapture --test-threads=2",
+  "runs": [
+    {
+      "filter": "military_ai::tests::ground_offer_tests",
+      "started_utc": "2026-09-28T09:43:51.2624740Z",
+      "finished_utc": "2026-09-28T09:43:51.3636935Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-margin-focused-ammunition.log"
+    },
+    {
+      "filter": "military_ai::tests::ground_staff_uses_finite_ammunition_and_counts_inbound_rounds",
+      "started_utc": "2026-09-28T09:43:51.3758067Z",
+      "finished_utc": "2026-09-28T09:43:51.4279125Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-margin-focused-paid-ammunition.log"
+    },
+    {
+      "filter": "logistics::arrival_payload_tests",
+      "started_utc": "2026-09-28T09:43:51.4337419Z",
+      "finished_utc": "2026-09-28T09:43:51.7165315Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-margin-focused-arrivals.log"
+    },
+    {
+      "filter": "population::course_merge_tests",
+      "started_utc": "2026-09-28T09:43:51.7239906Z",
+      "finished_utc": "2026-09-28T09:43:52.1856242Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-margin-focused-population.log"
+    }
+  ],
+  "qualification": false
+}

@@ -5,6 +5,10 @@
   const modes = ["terrain", "political", "fronts"];
   const details = { relief: "Detailed terrain", borders: "Borders", provinces: "Provinces", cities: "Cities", labels: "Labels", features: "Physical names", grid: "Coordinate grid" };
   const defaults = { relief: true, borders: true, provinces: true, cities: true, labels: true, features: true, grid: false };
+  const presets = {
+    standard: { label: "Standard detail", flags: defaults },
+    low: { label: "Low detail", flags: { ...defaults, relief: false, cities: false, features: false } }
+  };
   let focusKey = null;
   let detailsOpen = false;
   let dockResizeObserver = null;
@@ -79,9 +83,12 @@
         <button type="button" data-map-action="tilt" data-map-focus="tilt" aria-label="Toggle 3D terrain view" aria-pressed="${ui.mapTilt !== false}" title="Angled terrain / top view">3D</button>
         <details class="map-detail-menu"${detailsOpen ? " open" : ""}>
           <summary data-map-focus="details">Details</summary>
-          <div class="map-detail-options" role="group" aria-label="Map detail layers">${Object.entries(details).map(([key, label]) =>
-            `<button type="button" data-map-detail="${key}" data-map-focus="detail-${key}" aria-pressed="${state[key]}"><span>${label}</span><span class="map-detail-state" aria-hidden="true">${state[key] ? "On" : "Off"}</span></button>`
+          <div class="map-detail-options"><div role="group" aria-label="Map detail preset">${Object.entries(presets).map(([key, preset]) =>
+            `<button type="button" data-map-preset="${key}" data-map-focus="preset-${key}" aria-pressed="${matchesPreset(state, preset)}">${preset.label}</button>`
           ).join("")}</div>
+          <div role="group" aria-label="Map detail layers">${Object.entries(details).map(([key, label]) =>
+            `<button type="button" data-map-detail="${key}" data-map-focus="detail-${key}" aria-pressed="${state[key]}"><span>${label}</span><span class="map-detail-state" aria-hidden="true">${state[key] ? "On" : "Off"}</span></button>`
+          ).join("")}</div></div>
         </details>
       </div>
       <div class="map-camera-controls" role="group" aria-label="Globe camera">
@@ -111,6 +118,9 @@
       button.setAttribute("aria-pressed", String(enabled));
       const status = button.querySelector(".map-detail-state");
       if (status) status.textContent = enabled ? "On" : "Off";
+    });
+    controls.querySelectorAll("[data-map-preset]").forEach(button => {
+      button.setAttribute("aria-pressed", String(matchesPreset(state, presets[button.dataset.mapPreset])));
     });
     const label = MAP_MODES[ui.mapMode]?.label || "Map";
     const status = controls.querySelector("#mapViewStatus");
@@ -153,6 +163,19 @@
     sync();
     return true;
   }
+  function matchesPreset(state, preset) {
+    return !!preset && Object.entries(preset.flags).every(([key, value]) => state[key] === value);
+  }
+  function setPreset(key) {
+    if (!Object.hasOwn(presets, key)) return false;
+    rememberFocus();
+    Object.assign(flags(), presets[key].flags);
+    POL.dirty = true;
+    SEL.dirty = true;
+    renderMap();
+    sync();
+    return true;
+  }
   function camera(action) {
     if (typeof camUserInput === "function") camUserInput();
     switch (action) {
@@ -183,6 +206,9 @@
     controls.querySelectorAll("[data-map-detail]").forEach(button => {
       button.onclick = () => toggleDetail(button.dataset.mapDetail);
     });
+    controls.querySelectorAll("[data-map-preset]").forEach(button => {
+      button.onclick = () => setPreset(button.dataset.mapPreset);
+    });
     controls.querySelectorAll("[data-map-action]").forEach(button => {
       button.onclick = () => { if (!button.disabled) camera(button.dataset.mapAction); };
     });
@@ -205,5 +231,5 @@
     }
     return true;
   }
-  window.MapControls = Object.freeze({ html, sync, bind, install: bind, rememberFocus, setMode, toggleDetail });
+  window.MapControls = Object.freeze({ html, sync, bind, install: bind, rememberFocus, setMode, toggleDetail, setPreset });
 })();

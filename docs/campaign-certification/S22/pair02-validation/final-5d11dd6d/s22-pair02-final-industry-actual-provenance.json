@@ -1,0 +1,30 @@
+{
+  "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\sim-tests.exe",
+  "binary_sha256": "28c132769d1c367a7a088fc5299b11ca32e89a0f52b2655f5ffe5adfc630de3b",
+  "test": "industry::energy_scope_tests::energy_scope_matches_actual_checkpoint_for_31_complete_days --ignored --exact --nocapture --test-threads=1",
+  "runs": [
+    {
+      "year": "2015",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "input_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "input_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "started_utc": "2026-09-28T11:17:07.4513256Z",
+      "finished_utc": "2026-09-28T11:17:49.0328446Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-industry-actual-2015.log"
+    },
+    {
+      "year": "2035",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "input_sha256_before": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "input_sha256_after": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "started_utc": "2026-09-28T11:17:49.2124128Z",
+      "finished_utc": "2026-09-28T11:18:44.6650424Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-final-industry-actual-2035.log"
+    }
+  ],
+  "qualification": false,
+  "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims."
+}

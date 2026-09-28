@@ -1,0 +1,51 @@
+{
+  "format": "s22-support-fix-validation/v1",
+  "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+  "qualification": false,
+  "files": [
+    {
+      "file": "workspace.log",
+      "source": "s22-native-workspace-regressions.log",
+      "bytes": 206174,
+      "sha256": "3d86ef9df95065f5cc0afb7d29a2b654eae5045ab1cf090c0030eb9761727420"
+    },
+    {
+      "file": "workspace-provenance.json",
+      "source": "s22-native-workspace-regressions-provenance.json",
+      "bytes": 1176,
+      "sha256": "2c6369b0ce99c3b2ab370cfb77b87f1853c24d65fc708b70dd7bad2b69d569b8"
+    },
+    {
+      "file": "diagnosis.json",
+      "source": "s22-subsystem-2006-supportfix-01/profile.json",
+      "bytes": 1212728,
+      "sha256": "034b1f88bb80ef905ded779a6f202f4e3031cf0525d0f961668cda7a766143bc"
+    },
+    {
+      "file": "diagnosis-provenance.json",
+      "source": "s22-subsystem-2006-supportfix-01/provenance.json",
+      "bytes": 1243,
+      "sha256": "70190c46cb480e408e154aefdfa9cb0549237ad446b2277d741b2b790d767d63"
+    },
+    {
+      "file": "diagnosis.log",
+      "source": "s22-subsystem-2006-supportfix-01/native.log",
+      "bytes": 3745,
+      "sha256": "293c365d11aa93947fa01c46ebc9eea58af6a6057ffd7f1b02c14dba759d8949"
+    }
+  ],
+  "workspace": {
+    "passed": 1902,
+    "failed": 0,
+    "ignored": 92,
+    "suites": 66
+  },
+  "diagnostic": {
+    "days": 31,
+    "passed": true,
+    "previous_world_fnv64": "e5b4020488bb8e15",
+    "current_world_fnv64": "e5b4020488bb8e15",
+    "military_ai_mean_ms": 23.939467741935477,
+    "scope": "Concurrent legacy regression sweeps; timings are diagnostic only. Within this run each instrumented world/headline result matches the ordinary native result byte-for-byte. Across versions the ending canonical world FNV64 fingerprint matches; this is not a SHA256 comparison of archived full campaign saves."
+  }
+}
