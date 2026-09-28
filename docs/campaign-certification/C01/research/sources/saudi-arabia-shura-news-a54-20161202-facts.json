@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_news_a54_20161202",
+  "source_url": "https://web.archive.org/web/20260820112847id_/https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+  "original_url": "https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+  "archive_capture_utc": "2026-08-20T11:28:47Z",
+  "source_title": "أمر ملكي بإعادة تشكيل مجلس الشورى, Shura Council news page (Arabic), Internet Archive capture 20260820112847",
+  "accessed_date": "2026-09-27",
+  "published_date": "2016-12-02",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260820112847id_/https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+  "source_response_bytes": 56416,
+  "source_response_sha256": "bd339eae23a0c531cd5d14beaa8a9f9244a27565c0542f6187916e59979b6a7f",
+  "source_response_encoding": "gzip transport; the recorded identity is the uncompressed body (HTML, UTF-8)",
+  "transport_response": {
+    "bytes": 18610,
+    "sha256": "45fdb04366f09e9e7c7bf8c7355204c7ad22233268099477314d53358ca43483",
+    "content_encoding": "gzip"
+  },
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part B): downloaded on 2026-09-26 at 02:10-02:11 UTC and again at 02:44 UTC, identical; its independent check re-downloaded it at 02:53 UTC and obtained the same gzip transport body and, decompressed, the same body. This packet: downloaded at 2026-09-27T23:57:14Z and again at 2026-09-28T00:33:20Z, 36 minutes later; both identical (56416 bytes, SHA-256 bd339eae23a0c531cd5d14beaa8a9f9244a27565c0542f6187916e59979b6a7f).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20260820112847 of https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. The archived original was itself gzip-encoded, so web.archive.org replays the id_ body with Content-Encoding: gzip even to Accept-Encoding: identity: curl without --compressed saves the 18610-byte gzip transport body (SHA-256 45fdb04366f09e9e7c7bf8c7355204c7ad22233268099477314d53358ca43483), and curl --compressed saves the 56416-byte body. Following the house convention, the recorded identity is the uncompressed body. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's republication of A/54, captured before the cutoff. The archived original was gzip-encoded, so the raw capture is replayed with Content-Encoding: gzip. Its rotating recent-news blocks are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_site_a54_20161202",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "republication",
+      "attested_on": "2016-12-02",
+      "text": "The Council's own news page reproduces Royal Order A/54 of 3/3/1438 AH: the Council consists of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' as Chairman and named members for four Hijri years beginning 3/3/1438 AH.",
+      "locator": "Headline, dateline, order number and date, items First and Second"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

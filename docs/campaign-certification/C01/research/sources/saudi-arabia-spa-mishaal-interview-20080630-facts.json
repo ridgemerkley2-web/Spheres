@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_mishaal_interview_20080630",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/8f4fcee598",
+  "original_url": "https://www.spa.gov.sa/8f4fcee598",
+  "portal_metadata": {
+    "uuid": "8f4fcee598",
+    "locale": "ar",
+    "published_at_utc": "2008-06-30T13:30:21Z",
+    "date_hijri_field": "1429-06-26"
+  },
+  "title_as_published": "عام / سمو الأمير مشعل بن عبدالعزيز / حديث",
+  "source_title": "عام / سمو الأمير مشعل بن عبدالعزيز / حديث: interview, main item (30 June 2008)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2008-06-30",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/8f4fcee598",
+  "source_response_bytes": 3557,
+  "source_response_sha256": "b37e3a28f86558e1fd5abfb27cf69374684e9cfd32383a8aa87fb18943d3a61e",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "a11da8a6e471cc6fca35c62384c1f7e133b66e50732e716778646adfc1a4a1a7",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part C, which downloaded it twice on 2026-09-26 UTC about five minutes apart, the second with a cache-busting query (Cloudflare MISS), identical. This packet: downloaded at 2026-09-27T23:52:55Z and again at 2026-09-28T00:37:00Z, 44 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3557 bytes, SHA-256 b37e3a28f86558e1fd5abfb27cf69374684e9cfd32383a8aa87fb18943d3a61e).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/8f4fcee598 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Main item of SPA's report of an interview given to a Saudi daily (filed 16:30 Makkah time). Located by the independent check of part C.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mishaal_chair_interview_20080630",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-10",
+      "role_id": "sa_succession_chair",
+      "holder_name": "Mishaal bin Abdulaziz Al Saud",
+      "printed_name": "مشعل بن عبدالعزيز آل سعود",
+      "role_title": "رئيس هيئة البيعة — Chairman of the Allegiance Commission",
+      "event_kind": "attestation",
+      "attested_on": "2008-06-30",
+      "text": "SPA, Jeddah 26 Jumada al-Akhira 1429 / 30 June 2008: 'صاحب السمو الملكي الأمير مشعل بن عبدالعزيز آل سعود رئيس هيئة البيعة' praised King Abdullah in an interview published that day, marking three years since the King's accession.",
+      "locator": "Dateline; paragraphs 1 and 3; trailer 1630 (16:30 Makkah time)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

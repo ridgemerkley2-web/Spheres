@@ -1,0 +1,72 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_a135_statement_20061019",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/d3e3d43825",
+  "original_url": "https://www.spa.gov.sa/d3e3d43825",
+  "portal_metadata": {
+    "uuid": "d3e3d43825",
+    "locale": "ar",
+    "published_at_utc": "2006-10-20T02:11:28Z",
+    "date_hijri_field": "1427-09-27"
+  },
+  "title_as_published": "سياسي / الديوان الملكي / بيان",
+  "source_title": "سياسي / الديوان الملكي / بيان: Royal Court statement reproducing Royal Order A/135 (19 October 2006)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2006-10-19",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/d3e3d43825",
+  "source_response_bytes": 2636,
+  "source_response_sha256": "f1e7dcbd2d4d2acb3a1aaf3055a950e78c610b9b0bf9188175283a221c6c6987",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "fc70a1e9c1e5d6b2af777315648684eaf4ebb8ec1210671a6e10db335154f409",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:51:27Z and again at 2026-09-28T00:34:53Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (2636 bytes, SHA-256 f1e7dcbd2d4d2acb3a1aaf3055a950e78c610b9b0bf9188175283a221c6c6987).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/d3e3d43825 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "First SPA transmission of the statement, filed at 05:11 Makkah time on 20 October 2006 under a 19 October dateline. SPA re-sent it with the law's text at the start of its 20 October service.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_law_a135_statement_20061019",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "royal_court_statement",
+      "attested_on": "2006-10-19",
+      "text": "SPA, under the dateline Makkah 27 Ramadan 1427 / 19 October 2006, reports a Royal Court statement issued 'today' (اليوم) reproducing Royal Order A/135 dated 26/9/1427 AH, signed by King Abdullah bin Abdulaziz, whose item First issues the Allegiance Commission Law (نظام هيئة البيعة) in the attached form.",
+      "locator": "Dateline; opening sentence; order number and date; item First; signature; trailer 0511 (05:11 Makkah time)"
+    },
+    {
+      "claim_id": "sa_allegiance_law_a135_basic_law_5c",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Item Second of Royal Order A/135 amends paragraph (c) of Article 5 of the Basic Law of Governance so that the call to pledge allegiance to the King and the choice of the Crown Prince take place according to the Allegiance Commission Law.",
+      "locator": "Royal Order A/135, item Second"
+    },
+    {
+      "claim_id": "sa_allegiance_law_a135_future_cases",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Item Third of Royal Order A/135 applies the Law to future cases and not to the King and Crown Prince in office when it was issued.",
+      "locator": "Royal Order A/135, item Third"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

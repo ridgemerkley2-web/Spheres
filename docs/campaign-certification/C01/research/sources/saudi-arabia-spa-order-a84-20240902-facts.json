@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a84_20240902",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/N2164448",
+  "original_url": "https://www.spa.gov.sa/N2164448",
+  "portal_metadata": {
+    "uuid": "N2164448",
+    "locale": "ar",
+    "published_at_utc": "2024-09-02T13:14:41Z",
+    "date_hijri_field": "1446-02-29"
+  },
+  "title_as_published": "عام / أمر ملكي: يتكون مجلس الشورى من معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ - رئيساً - والأعضاء التالية أسماؤهم لمدة أربع سنوات هجرية ابتداءً من 3 / 3 / 1446هـ",
+  "source_title": "Royal Order A/84 of 29/02/1446 AH: the Shura Council for four Hijri years from 3/3/1446 AH (2 September 2024)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2024-09-02",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/N2164448",
+  "source_response_bytes": 16335,
+  "source_response_sha256": "c4bb09c0f7b57987c9fd0f86afe79e7c640c6c19ee1684b2d0ffc00c5a576c5e",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "51a2344a04f09d882762f0bdea5f565cd95efefd760e0d2ab713557f0f486619",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:45Z and again at 2026-09-28T00:33:53Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (16335 bytes, SHA-256 c4bb09c0f7b57987c9fd0f86afe79e7c640c6c19ee1684b2d0ffc00c5a576c5e).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/N2164448 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The JSON also lists the item's translations, which could grow if SPA adds a language version; the list did not change between 26 and 28 September 2026. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The portal lists Persian (N2164508) and Russian (N2164986) versions, not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_named_a84_20240902",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "council_formation_naming_chair",
+      "attested_on": "2024-09-02",
+      "text": "An SPA report datelined Riyadh 29 Safar 1446 / 2 September 2024 prints Royal Order A/84 dated 29/02/1446 AH, issued that day by King Salman: the Shura Council consists of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ - رئيساً -' and 150 named members for four Hijri years from 3/3/1446 AH; it recites A/146 of 1/3/1442.",
+      "locator": "Dateline; order number and date; recitals; items First and Second; trailer 16:14 Makkah time"
+    },
+    {
+      "claim_id": "sa_shura_term_start_20240906",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_start",
+      "attested_on": "2024-09-06",
+      "text": "Under A/84 the term starts on 3/3/1446 AH; SPA datelines print that day as 6 September 2024.",
+      "locator": "Item First of A/84"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_uqn_order_a84_20240902",
+  "source_url": "https://web.archive.org/web/20240914235032id_/https://www.uqn.gov.sa/details?p=25419",
+  "original_url": "https://www.uqn.gov.sa/details?p=25419",
+  "archive_capture_utc": "2024-09-14T23:50:32Z",
+  "source_title": "أمر ملكي بتكوين مجلس الشورى, Umm al-Qura website (royal-orders news), Internet Archive capture 20240914235032",
+  "accessed_date": "2026-09-27",
+  "published_date": "2024-09-02",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240914235032id_/https://www.uqn.gov.sa/details?p=25419",
+  "source_response_bytes": 52606,
+  "source_response_sha256": "be596fc3c805e4d171f6120a9a4315194f37d6df6a6f38928b22e7b36f30291f",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "The independent check of part B listed this capture but could not fetch it (web.archive.org answered 429); first downloaded by this packet. This packet: downloaded at 2026-09-27T23:50:49Z and again at 2026-09-28T00:34:00Z, 43 minutes later; both identical (52606 bytes, SHA-256 be596fc3c805e4d171f6120a9a4315194f37d6df6a6f38928b22e7b36f30291f).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20240914235032 of https://www.uqn.gov.sa/details?p=25419, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pre-cutoff capture of the gazette website's republication of the SPA text, recorded instead of the live page, whose every response embeds a request time and a fresh CSRF token. Not a scanned gazette issue; no issue number or page is printed. The capture also prints the day it was captured (Sunday 12 Rabi al-Awwal 1446 = 15 September 2024), which is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_uqn_a84_20240902",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-06",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "republication",
+      "attested_on": "2024-09-02",
+      "text": "Umm al-Qura's royal-orders page, credited to SPA (الرياض- واس) and dated 1446-2-29 = 2024-09-02, says a royal order was issued on Monday 29 Safar 1446 / 2 September 2024 and prints Royal Order A/84 of 29/02/1446 AH: the Shura Council consists of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ رئيساً' and the named members for four Hijri years from 3/3/1446 AH.",
+      "locator": "Headline; date line; first paragraph; order number, date and item First"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

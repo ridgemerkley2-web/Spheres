@@ -1,0 +1,73 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_orders_20201018_ar",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/10ddc4a914",
+  "original_url": "https://www.spa.gov.sa/10ddc4a914",
+  "portal_metadata": {
+    "uuid": "10ddc4a914",
+    "locale": "ar",
+    "published_at_utc": "2020-10-18T18:31:55Z",
+    "date_hijri_field": "1442-03-01"
+  },
+  "title_as_published": "عام / صدور أوامر ملكية كريمة",
+  "source_title": "عام / صدور أوامر ملكية كريمة: royal orders of 18 October 2020, with ten additions including Royal Order A/146",
+  "accessed_date": "2026-09-27",
+  "published_date": "2020-10-18",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/10ddc4a914",
+  "source_response_bytes": 26311,
+  "source_response_sha256": "9b4e91c44ded76d817fd0ddca89b141cf838dd2a2eab492650276f929c75f530",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "f6b5b32f3eb964d6cec1121d996b3cfb5e86034a09ab7bb7c7e0bf32ca6f116a",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:27Z and again at 2026-09-28T00:33:27Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (26311 bytes, SHA-256 9b4e91c44ded76d817fd0ddca89b141cf838dd2a2eab492650276f929c75f530).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/10ddc4a914 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Additions served inside the lead item's JSON (related_news). Legacy ID 2145890 redirects to the A/145 addition (10ddc4a914#aaa25a5ec3) and 2145893 to the English release.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_royal_orders_issued_20201018",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "issuance_report",
+      "attested_on": "2020-10-18",
+      "text": "An SPA release datelined Riyadh 1 Rabi al-Awwal 1442 / 18 October 2020 says royal orders were issued that day.",
+      "locator": "data.content: dateline and opening sentence"
+    },
+    {
+      "claim_id": "sa_alsheikh_named_a146_20201018",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "council_formation_naming_chair",
+      "attested_on": "2020-10-18",
+      "text": "Royal Order A/146 dated 1/3/1442 AH, issued by King Salman, constitutes the Shura Council of 'معالي الشيخ الدكتور/ عبدالله بن محمد بن إبراهيم آل الشيخ - رئيساً -' and named members for four Hijri years from 3/3/1442 AH; it recites A/54 of 3/3/1438.",
+      "locator": "data.related_news entry 24a999dbea (fifth addition): order number, date, recitals and item First; the list ends in entry aebe11798b"
+    },
+    {
+      "claim_id": "sa_shura_term_start_20201020",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_start",
+      "attested_on": "2020-10-20",
+      "text": "Under A/146 the term starts on 3/3/1442 AH, two days after the order; SPA datelines print that day as 20 October 2020.",
+      "locator": "Item First of A/146"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,60 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_allegiance_law_arts1_5_20061020",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/e99200adca",
+  "original_url": "https://www.spa.gov.sa/e99200adca",
+  "portal_metadata": {
+    "uuid": "e99200adca",
+    "locale": "ar",
+    "published_at_utc": "2006-10-20T03:06:17Z",
+    "date_hijri_field": "1427-09-27"
+  },
+  "title_as_published": "سياسي / نظام هيئة البيعة / إصدار",
+  "source_title": "سياسي / نظام هيئة البيعة / إصدار: the Allegiance Commission Law, Articles 1-5 (SPA re-send, 20 October 2006)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2006-10-20",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/e99200adca",
+  "source_response_bytes": 3882,
+  "source_response_sha256": "5e65e69fb2b8cd68157f260ab7c4f5a2769d84a08b7075f745a2c43079fbb60c",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "49e0d08916b23bd2c8e2690c73f6ac46a5a1f0ff0cbaeaf7556fdfcc9ede729e",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:51:37Z and again at 2026-09-28T00:35:07Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3882 bytes, SHA-256 5e65e69fb2b8cd68157f260ab7c4f5a2769d84a08b7075f745a2c43079fbb60c).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/e99200adca loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Main item of the re-sent law text (filed 06:06 Makkah time). Articles 6-13 and 19-25 are in other additions, read but not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_law_art1_constitution",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 1: a commission called the Allegiance Commission (هيئة البيعة) is constituted by royal order from the sons of the founder King Abdulaziz bin Abdulrahman Al-Faisal Al Saud; one son, appointed by the King, of each son who has died, excused himself or is medically incapacitated; and two members appointed by the King, one of his sons and one of the Crown Prince's sons. The King fills vacancies.",
+      "locator": "Law text, Article 1"
+    },
+    {
+      "claim_id": "sa_allegiance_law_art5_oath",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": "sa_succession_chair",
+      "holder_name": null,
+      "role_title": "رئيس هيئة البيعة — Chairman of the Allegiance Commission",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 5: the chairman, the members and the secretary general of the Commission take the prescribed oath before the King before they begin their work in the Commission.",
+      "locator": "Law text, Article 5"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

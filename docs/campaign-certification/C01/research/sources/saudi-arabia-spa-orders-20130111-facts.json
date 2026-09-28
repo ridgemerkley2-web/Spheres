@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_orders_20130111",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/5602569e6f",
+  "original_url": "https://www.spa.gov.sa/5602569e6f",
+  "portal_metadata": {
+    "uuid": "5602569e6f",
+    "locale": "ar",
+    "published_at_utc": "2013-01-11T10:21:24Z",
+    "date_hijri_field": "1434-02-29"
+  },
+  "title_as_published": "عام / أمران ملكيان بتعديل مواد في نظام مجلس الشورى وتكوين المجلس لمدة أربع سنوات تبدأ من تاريخ انتهاء مدة المجلس الحالي",
+  "source_title": "Two royal orders amending the Shura Council Law and constituting the council (lead item, 11 January 2013)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2013-01-11",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/5602569e6f",
+  "source_response_bytes": 3783,
+  "source_response_sha256": "42e627706cb0232eb763d4957bdd5d09a96bf18e39f6edd7edd2c3f92e053b5e",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "4cd304a69a12d68ed319a54aaed4e933731ecb50586755774ddd4e0e55422e7b",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:06Z and again at 2026-09-28T00:33:00Z, 42 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3783 bytes, SHA-256 42e627706cb0232eb763d4957bdd5d09a96bf18e39f6edd7edd2c3f92e053b5e).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/5602569e6f loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Lead item; it prints the start of Royal Order A/44, whose amendments are procedure only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_royal_orders_issued_20130111",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "issuance_report",
+      "attested_on": "2013-01-11",
+      "text": "An SPA item datelined Riyadh 29 Safar 1434 / 11 January 2013 says two royal orders were issued that day, one amending provisions of the Shura Council Law and one constituting the council for four Hijri years from the end of the current council's term, and then prints the start of Royal Order A/44 of 29/2/1434 AH.",
+      "locator": "Dateline and opening sentence; trailer 13:22 Makkah time"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

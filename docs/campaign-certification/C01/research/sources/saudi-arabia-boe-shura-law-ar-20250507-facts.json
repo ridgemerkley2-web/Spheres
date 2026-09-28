@@ -1,0 +1,100 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_boe_shura_law_ar_20250507",
+  "source_url": "https://web.archive.org/web/20250507013950id_/https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+  "original_url": "https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+  "archive_capture_utc": "2025-05-07T01:39:50Z",
+  "source_title": "نظام مجلس الشورى (Shura Council Law), Bureau of Experts Arabic law record, Internet Archive capture 20250507013950",
+  "accessed_date": "2026-09-27",
+  "published_date": "1992-03-06",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250507013950id_/https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+  "source_response_bytes": 74490,
+  "source_response_sha256": "c16816025db847abcc14c4a7ebbd2bb0b8a5ea4e554d90d52730e4fc9c072d7c",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:46:27Z and again at 2026-09-28T00:29:03Z, 42 minutes later; both identical (74490 bytes, SHA-256 c16816025db847abcc14c4a7ebbd2bb0b8a5ea4e554d90d52730e4fc9c072d7c).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20250507013950 of https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Pre-cutoff Internet Archive capture of the Bureau's Arabic law record, used for procedure only. It overlaps the packet's existing sa_boe_shura_law (the English translation read through a search index) without replacing it. published_date is the law's publication date printed on the record.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_law_a91_dates_19920301",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "promulgation",
+      "attested_on": "1992-03-01",
+      "text": "The Bureau of Experts record names the instrument as Royal Order A/91 of 27/8/1412 AH and prints the issue date 1412/08/27 AH, equal to 01/03/1992, and the publication date 1412/09/02 AH, equal to 06/03/1992. It marks the law as in force (ساري).",
+      "locator": "Law summary panel (تاريخ الإصدار، تاريخ النشر، الحالة، أدوات إصدار النظام)"
+    },
+    {
+      "claim_id": "sa_shura_law_a91_order_terms",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "The order's clauses issue the law in the attached form; replace the Shura Council law of 1347 AH and provide that the Council's arrangements are settled by royal order; keep existing laws in force until amended; apply the law within at most six months of its publication; and publish it in the official gazette.",
+      "locator": "Royal Order A/91, clauses First to Fifth"
+    },
+    {
+      "claim_id": "sa_shura_law_art3_original_60",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "The original Article 3 provides for a Chairman and sixty members chosen by the King. The record's amendment notes cite Royal Order A/26 of 1426/3/2 AH (a Chairman and 150 members) and A/44 of 1434/2/29 AH (women at least 20 per cent).",
+      "locator": "Article 3 and its amendment notes"
+    },
+    {
+      "claim_id": "sa_shura_law_art10_chair_by_royal_order",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 10: the Chairman of the Shura Council, his deputy and the Secretary-General are appointed and relieved by royal orders, which also set their ranks, rights, duties and affairs. An amendment by Royal Order A/181 of 14/12/1428 AH adds the Assistant Chairman.",
+      "locator": "Article 10 and its amendment note"
+    },
+    {
+      "claim_id": "sa_shura_law_art11_oath_before_work",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 11: the Chairman, the members and the Secretary-General take the prescribed oath before the King before they begin their work in the Council.",
+      "locator": "Article 11"
+    },
+    {
+      "claim_id": "sa_shura_law_art13_term",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 13: the Council's term is four Hijri years from the date specified in the royal order forming it; a new council is formed at least two months before its predecessor's term ends, the old council continues if the term ends first, and at least half the members of a new council must be new.",
+      "locator": "Article 13"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

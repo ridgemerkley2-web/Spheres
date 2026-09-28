@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_shura_oath_20010604",
+  "source_url": "https://web.archive.org/web/20010711170353id_/http://www.saudiembassy.net:80/press_release/01-spa/06-04-shura.htm",
+  "original_url": "http://www.saudiembassy.net:80/press_release/01-spa/06-04-shura.htm",
+  "archive_capture_utc": "2001-07-11T17:03:53Z",
+  "source_title": "King Fahd Swears In New Shura Council for Third Term (June 4, 2001)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2001-06-04",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20010711170353id_/http://www.saudiembassy.net:80/press_release/01-spa/06-04-shura.htm",
+  "source_response_bytes": 2229,
+  "source_response_sha256": "3e82c74d9952198fed9ea7b158dfd01b60655a8c45e2347232fe71d00b27f25d",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:48:29Z and again at 2026-09-28T00:31:15Z, 42 minutes later; both identical (2229 bytes, SHA-256 3e82c74d9952198fed9ea7b158dfd01b60655a8c45e2347232fe71d00b27f25d).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20010711170353 of http://www.saudiembassy.net:80/press_release/01-spa/06-04-shura.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/01-spa/; an official Saudi government publication in English, not the Arabic original. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_oath_third_term_20010604",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad Ibrahim bin Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "2001-06-04",
+      "text": "Release dated June 4, 2001: King Fahd in Jeddah 'today swore in the members of the recently reconstituted Consultative Council ... for the Council's third term, including Chairman Shaikh Muhammad Ibrahim bin Jubair', the Deputy Chairman and the Secretary-General.",
+      "locator": "Paragraph 1"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

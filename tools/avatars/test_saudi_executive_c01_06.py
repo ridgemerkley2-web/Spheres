@@ -90,6 +90,11 @@ END_CLAIMS = {
     'sa_muqrin_relieved_a159': 'relieves him, at his request, of the crown princeship',
     'sa_mbn_relieved_20170621': 'relieves Prince Mohammed bin Nayef bin Abdulaziz of the crown princeship',
 }
+# CLAUDE-C01-25 chair holders whose until is the stated day of death (pinned in test_saudi_shura_allegiance_c01_25.py).
+LATER_END_CLAIMS = {
+    'sa_jubair_death_20020124': 'passed away this morning',
+    'sa_mishaal_death_20170503': 'this day, Wednesday 7/8/1438 AH',
+}
 KING_HOLDERS = [
     ('Fahd bin Abdulaziz Al Saud', '1990-08-08', None, ['sa_fahd_king_obs_19900808', 'sa_fahd_death_announced_20050801']),
     ('Abdullah bin Abdulaziz Al Saud', '2005-08-01', '2015-01-23', ['sa_abdullah_family_pledge_20050801', 'sa_abdullah_death_20150123']),
@@ -180,8 +185,9 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
 
     def test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited(self):
         ids = self.validate()
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (32, 48, 12, 10))
-        self.assertEqual([s['id'] for s in self.packet['sources'][-len(NEW_SOURCES):]], NEW_SOURCES)
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 156, 12, 10))
+        # The C01-06 sources end at position 32; only the 71 CLAUDE-C01-25 sources follow them.
+        self.assertEqual([s['id'] for s in self.packet['sources'][32 - len(NEW_SOURCES):32]], NEW_SOURCES)
         self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
         cited = {cid for row in list(self.entries.values()) + list(self.roles.values()) for cid in row['claim_ids']}
         self.assertLessEqual(NEW_CLAIMS, cited)
@@ -322,11 +328,16 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
             self.assertIsNone(current['until'])
             self.assertIn('No end date is inferred', current['uncertainty'])
             self.assertIn('continuity to 7 September 2026 is not established', current['uncertainty'])
-        # No until anywhere equals a later holder's start unless the holder's own end claim states it.
+        # No until anywhere equals a later holder's start unless the holder's own end claim states it
+        # (the CLAUDE-C01-25 chairs end on the stated deaths in LATER_END_CLAIMS).
+        ends = {**END_CLAIMS, **LATER_END_CLAIMS}
         for role in self.roles.values():
             for holder in role['holder_claims']:
                 if isinstance(holder, dict) and holder.get('until'):
-                    self.assertIn(holder['claim_ids'][-1], END_CLAIMS)
+                    end = holder['claim_ids'][-1]
+                    self.assertIn(end, ends)
+                    self.assertIn(ends[end], self.claims[end]['text'])
+                    self.assertEqual(self.claims[end]['attested_on'], holder['until'])
 
     def test_extracts_match_packet_claims_and_record_reproducible_identities(self):
         for sid in NEW_SOURCES + [REVERIFIED]:
@@ -435,7 +446,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
             self.assertIn(phrase, handoff)
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
-        self.assertEqual((country['source_claims'], country['role_observations']), (48, 10))
+        self.assertEqual((country['source_claims'], country['role_observations']), (156, 10))
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         batches = [row for row in index['work_orders'] if row['nation'] == 'SaudiArabia']
