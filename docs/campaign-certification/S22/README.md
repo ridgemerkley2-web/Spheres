@@ -11,10 +11,12 @@ simulation/history p95 **323.6552 ms > 300 ms** and whole-turn p95
 failed confirmation. All raw artifacts and the frozen manifest are retained in
 the [complete pair01 archive](qualification-pair-01/README.md).
 
-The same candidate passed the full release workspace regression: **1,954 passed,
-0 failed, 108 ignored across 66 suites**, seven focused tests and six actual
-31-day comparisons. Earlier preflights passed, but the complete pair governs
-qualification. S22, G5 and CP1 remain unearned.
+The final follow-up candidate, `5d11dd6d`, passes **1,963 release tests, zero
+failures, 112 ignored across 66 suites**, nine focused tests and eight actual
+31-day comparisons. A fresh art audit and both isolated 2015/end-2035 native
+preflights pass all unchanged limits. Initial fixture and coverage failures are
+preserved in the [pair02 validation packet](pair02-validation/README.md). The new
+complete 18-cell pair02 has not launched; S22, G5 and CP1 remain unearned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
 start the next canonical session after S20/G4. They preserve the engineering
@@ -35,11 +37,11 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 
 | Work | State |
 | --- | --- |
-| Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
+| Current offline art, accounting and reproduction audit | **Complete and passing at 5d11dd6d:** 245 configurations, 33 assets, 13 canonical exports, 35 Node entries; all 39 source pins unchanged during the clean run |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | Pair01: five of six native cells pass. All memory/state checks pass; confirmation end-2035 fails simulation/history p95 323.6552 ms and whole-turn p95 406.1905 ms |
+| Native 31-day timing and headless memory | Final 5d11dd6d isolated 2015/end-2035 preflights pass all limits. Failed pair01 remains retained; a new complete qualification pair is required |
 | Actual rendered map, aircraft and UI performance | All six map and six renderer cells pass in complete pair01 on d50f7ee1; the overall pair remains failed by native latency |
-| City/inspection caches, context recovery, loading and layouts | Both rounds pass actual draw attribution, cache/context/cleanup, loading, 390px/3440px layouts, navigation and read-only state checks |
+| City/inspection caches, context recovery, loading and layouts | Pair01's two rounds pass actual draw attribution, cache/context/cleanup, loading, 390px/3440px layouts, navigation and read-only state checks |
 | S22 closure | **Not earned** |
 
 The original S19 save has economic competition disabled, which also gates
@@ -49,6 +51,19 @@ that adopted lineage with actual activity evidence. The original passive
 `prepare01` remains a diagnostic; its unchanged source is preserved.
 
 ## Current runtime findings
+
+The [pair02 validation packet](pair02-validation/README.md) retains the four
+reviewed pass-local repairs and both test-only corrections. Final 5d11dd6d
+release tests, focused checks, eight actual 31-day comparisons and the fresh
+offline art audit pass. The monthly purchasing memo shows zero reuse on both
+actual inputs, so no actual-checkpoint saving is claimed for that change.
+
+Its isolated native preflights pass: 2015 simulation/whole-turn p95
+**258.6063 / 318.5443 ms**, maximum **683.2764 ms**; end-2035 p95
+**282.2180 / 382.0407 ms**, maximum **392.1018 ms**. Sampled private/OS peaks are
+867,627,008 / 864,006,144 bytes for 2015 and 902,393,856 / 886,210,560 for 2035.
+Input hashes and final world fingerprints remain exact. These are preflights;
+new full-pair qualification remains required without changing any limit.
 
 The [pair01 archive](qualification-pair-01/README.md) preserves every one of the
 18 declared cells, including the failed confirmation, without retries or selected
@@ -165,7 +180,7 @@ pair. The same packet retains lossless restore records for 11 retired executable
 copies and seven redundant input copies, including the original null freed-byte
 tally and its separate correction; no binary or save bodies are duplicated.
 
-The [latest native margin packet](margin-progress/README.md) preserves the
+The [earlier native margin packet](margin-progress/README.md) preserves the
 subsequent 697 end-2035 diagnosis and the reviewed ammunition, arrival-payload
 and population course-merge repairs at `d50f7ee1`. Seven focused tests and six
 actual-input 31-day original-path comparisons pass with complete native worlds,
@@ -177,8 +192,8 @@ Both isolated native preflights then pass: 2015 simulation/whole-turn p95
 **240.6596 / 312.8513 ms**, maximum **433.3893 ms**. Private/OS peaks are
 996,524,032 / 858,603,520 bytes for 2015 and 905,084,928 / 897,794,048 for 2035.
 The original inputs and final world fingerprints match prior runs. This closes
-these bounded preflight defects, not S22: the full 18-cell declared pair has
-not yet started and remains required without threshold or workload changes.
+these bounded preflight defects at that snapshot, not S22. The subsequent
+complete pair01 failed as recorded above; the historical packet is unchanged.
 
 The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
 all 18 cells across two unchanged-candidate rounds, with raw evidence, complete
@@ -254,6 +269,15 @@ These bounded results do not establish performance of the later dated inputs.
 
 ## Completed offline audit
 
+The [fresh final-candidate audit](pair02-validation/art-5d11dd6d/result.json)
+reran all four commands at 5d11dd6d on 28 September, 11:20:16–11:23:24 UTC.
+The checkout stayed clean and all 39 source pins stayed unchanged within that
+run. Its 245 configurations, 33-asset manifest, 13 GLB reproductions and 35 Node
+entries pass. The [findings](pair02-validation/art-5d11dd6d/findings.json) retain
+all advisory and historical diagnostics. This closes carry-forward uncertainty
+for renderer source changed after the original audit described below.
+
+
 [Audit findings](preflight-art/README.md), [command/source manifest](preflight-art/result.json)
 and [derived verdicts](preflight-art/findings.json) are copied byte for byte from
 the independent preflight at `846df4797712935efb5a221e188d410b09f0d083`.
@@ -297,9 +321,8 @@ retained as captured: its original staging layout was
 `work/campaign-certification/evidence/s22-preflight-art/`, next to `integration`.
 The exact portable command arguments and source hashes are in `result.json`.
 
-Next, reduce the confirmed end-2035 CPU cost while preserving exact behavior,
-then freeze the new candidate and attempt IDs and execute a new complete
-18-cell pair. Preserve pair01 and every other failed attempt; no cell substitution
-or threshold change is allowed. The initial round and 12 passing browser cells
-do not earn S22 while confirmation fails. No G5, CP1, worldwide-history or
-human-playtest completion is awarded here.
+Next, freeze the reviewed actual inputs and final candidate under fresh attempt
+IDs, then execute the new complete 18-cell pair02. Preserve pair01 and every
+other failed attempt; no cell substitution or threshold change is allowed.
+Final correctness, art and native preflight passes do not replace two qualifying
+rounds. No G5, CP1, worldwide-history or human-playtest completion is awarded here.

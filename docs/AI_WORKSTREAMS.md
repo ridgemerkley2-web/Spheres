@@ -11,7 +11,7 @@ CP1 certification and worldwide character coverage remain open.
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
-| S22 art and performance | **In progress.** Complete d50f7ee1 pair01: **17/18 cells pass; overall failed**. All 12 browser cases, all memory and exact-state checks pass. Confirmation end-2035 native p95 fails at 323.6552 ms simulation/history and 406.1905 ms whole-turn. Full release regression remains 1,954 passed, 0 failed, 108 ignored. | Codex: [complete failed pair and restoration](campaign-certification/S22/qualification-pair-01/README.md), [current evidence](campaign-certification/S22/README.md). Next: optimize late CPU cost, validate exact behavior, then run a new complete 18-cell pair; no threshold changes or selected-cell retries. |
+| S22 art and performance | **In progress.** Final 5d11dd6d: 1,963 release tests passed, 0 failed, 112 ignored; nine focused tests, eight actual 31-day comparisons, fresh art audit and both isolated native preflights pass. Complete pair01 remains failed at 17/18; its two exact late-native p95 failures are retained. | Codex: [final validation](campaign-certification/S22/pair02-validation/README.md), [complete failed pair](campaign-certification/S22/qualification-pair-01/README.md), [current evidence](campaign-certification/S22/README.md). Next: freeze final candidate and execute a new full 18-cell pair02; no threshold changes or selected-cell retries. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
 | C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
 | Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
@@ -28,6 +28,13 @@ preflights and the release regression cannot override this result. Every cell,
 frozen prerequisite and final verdict is losslessly retained, with explicit
 restore mappings for deduplicated raw saves. S22, G5 and CP1 remain unearned;
 the next candidate needs two new complete qualifying rounds.
+
+Final candidate 5d11dd6d now passes correctness and the fresh offline art audit.
+Its isolated 2015 simulation/whole-turn p95 is **258.6063 / 318.5443 ms**, maximum
+**683.2764 ms**; end-2035 p95 is **282.2180 / 382.0407 ms**, maximum **392.1018 ms**.
+Both memory limits and final-state/input checks pass. The initial fixture and
+coverage failures remain preserved. These are preflights; the new full pair02
+has not launched and S22 remains open.
 
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
 [campaign-pathway.json](planning/campaign-pathway.json) owns session status, dependencies,

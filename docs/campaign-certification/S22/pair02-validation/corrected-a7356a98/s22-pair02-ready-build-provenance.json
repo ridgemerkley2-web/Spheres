@@ -1,0 +1,9 @@
+{
+  "format": "s22-build-validation/v1",
+  "candidate_revision": "a7356a98413c020f4629df484a4d6ce9e4de55ca",
+  "started_utc": "2026-09-28T11:04:50.2465522Z",
+  "finished_utc": "2026-09-28T11:06:54.1383273Z",
+  "command": "cargo test --locked --release --workspace --no-run; then cargo build --locked --release -p spheres-web",
+  "exit_code": 0,
+  "qualification": false
+}

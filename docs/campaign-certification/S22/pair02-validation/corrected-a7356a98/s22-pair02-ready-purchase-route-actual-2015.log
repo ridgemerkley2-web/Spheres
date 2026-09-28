@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'resources::purchase_route_tests::purchase_route_memo_matches_actual_checkpoint_for_31_complete_days' (20108) panicked at spheres-sim\src\resource_purchase_route_tests.rs:145:5:
+actual monthly reviews must reuse expensive route searches
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test resources::purchase_route_tests::purchase_route_memo_matches_actual_checkpoint_for_31_complete_days ... FAILED
+
+failures:
+
+failures:
+    resources::purchase_route_tests::purchase_route_memo_matches_actual_checkpoint_for_31_complete_days
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1110 filtered out; finished in 51.42s
+
