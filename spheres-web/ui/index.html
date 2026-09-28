@@ -3721,8 +3721,8 @@ function renderMainMenuState() {
   $("#menuSaveEmpty").hidden = !Array.isArray(saves) || saves.length > 0;
   $("#loadBtn").hidden = !saves?.length;
   const locked = SESSION.busy || advancing || !!pendingAdvance || !!COMMAND_CHANNEL.pending || !!COMMAND_CHANNEL.busy;
-  $("#loadBtn").disabled = !saves?.length || locked;
   const slot = saves?.find(entry => entry.slot === $("#saveSlots").value);
+  $("#loadBtn").disabled = !slot || slot.current_exists === false || slot.readable === false || locked;
   $("#loadBackupBtn").hidden = !slot?.backup;
   $("#loadBackupBtn").disabled = !slot?.backup || locked;
   $("#saveSlots").disabled = !saves?.length || SESSION.busy;
