@@ -638,7 +638,7 @@ mod tests {
         let old_world = crate::save(&game.world);
         let old_log = game.log.clone();
         for slot in ["default", "France-recovery"] { write(&root, slot, &game).unwrap(); }
-        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
         game.record("Newest save whose primary file is now missing.".into());
         for slot in ["default", "France-recovery"] {
             write(&root, slot, &game).unwrap();
@@ -714,7 +714,7 @@ mod tests {
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let previous = fs::read(&path).unwrap();
-        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
         game.record("Current point with an interior saved_unix: 9 and a quoted \"saved_unix\" label.".into());
         write(&root, "default", &game).unwrap();
         assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous);
@@ -746,7 +746,7 @@ mod tests {
         for change in 0..5 {
             let previous = fs::read(&path).unwrap();
             match change {
-                0 => game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25,
+                0 => game.world.nation_mut(crate::NationId::France).gdp += 0.25,
                 1 => game.record("A same-day dispatch containing \"saved_unix\":123.".into()),
                 2 => game.history[0].oil += 0.5,
                 3 => game.history_epoch += 1,
@@ -791,7 +791,7 @@ mod tests {
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let good = fs::read(&path).unwrap();
-        game.world.nation_mut(crate::NationId::France).treasury_bn += 0.25;
+        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
         write(&root, "default", &game).unwrap();
         for bad in ["{truncated".to_owned(), encode(&game).unwrap().replacen("\"version\":1", "\"version\":999", 1)] {
             assert!(decode(&bad).is_err());
