@@ -90,16 +90,25 @@ this conservative extra synchronization is disclosed. Idle animation callbacks
 are not rendered frames. The existing map target is **at least 30 FPS** in
 every required cell, with no rounding tolerance added after a result is known.
 
-Inspect one released aircraft from the actual campaign with at least **100,000
-triangles**, recording its revision, specification and measured cost. Retain
+Inspect the released `air_fighter` asset in the actual native equipment designer
+of the loaded campaign with at least **100,000 triangles**, recording its asset
+revision, visible design/catalog specification and measured cost. This may differ
+from S19's delivered light-attack aircraft; it makes no stock-ownership or delivery
+claim for the inspected design. Retain
 the existing art-roadmap target of **60 FPS** for focused single-model viewing.
 Use the same settling/active-window and completed-draw principles; 59.x does not
 pass 60. Preserve the raw data if the target is missed and repair the cause.
 
-For each dated input and detail profile, run the frozen ordered 31-control
-ordinary navigation/read sequence. Measure real input to corresponding visible
-content/state and completed paint, including required request latency. Require
-**p95 ≤200 ms**. Retain every latency and control identity.
+For each dated input and detail profile, start at national France zoom 8 and run
+31 visible trusted camera-control clicks: repeat **west, east, zoom-in, zoom-out**
+in that order, ending at action 31. Measure each trusted event timestamp through
+confirmed camera-state change, two animation-frame paint opportunities and real
+GL completion. This is local UI handling plus paint opportunity/GPU completion;
+it does not prove compositor presentation or screen scanout. These view controls
+make no read request, so no server-response latency is claimed. Require
+**p95 ≤200 ms**. Retain every latency, control identity and before/after camera
+state, and assert the requested state change. Freeze selectors and exact camera
+parameters in the candidate manifest before either round.
 
 Record uncached loading, JS heap method/availability, browser-process observations
 and actual GL allocation/cache payloads separately. Neither GL payload nor
@@ -111,7 +120,9 @@ CityMesh path.
 
 Check keyboard/touch, focus, scrolling and readable content at **390×844** and
 room/map framing at the observed **3440×1440** desktop. Keep these layout checks
-separate from the 1080p performance cells. Retain screenshots and traces.
+separate from the 1080p performance cells. Retain screenshots and Chrome traces;
+trace capture is still pending implementation/verification by the browser owner,
+and is required before the evidence packet can qualify.
 
 ## 5. Require a complete confirmation pair
 

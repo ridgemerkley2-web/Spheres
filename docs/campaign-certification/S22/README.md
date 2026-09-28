@@ -8,6 +8,13 @@ targets from [S01](../S01/PERFORMANCE_BASELINE.md) and the existing
 [art contract](../../art/3D_MODEL_MASTER_ROADMAP.md). No current runtime timing
 qualification is claimed by this packet.
 
+A pre-qualification clarification fixes the 31-click local camera sequence and
+labels its measured endpoint as paint opportunity plus GPU completion, not proven
+screen presentation. The inspected released `air_fighter` asset may differ from
+S19's delivered aircraft; rendering it does not claim stock ownership. All original
+limits and the two complete confirmation rounds remain unchanged. Chrome trace
+capture is required and still pending implementation/verification.
+
 | Work | State |
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |

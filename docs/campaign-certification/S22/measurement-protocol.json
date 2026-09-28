@@ -140,7 +140,7 @@
     "map_fps_minimum": 30,
     "fps_definition": "Count actual completed globe redraws during the complete 12 s active-navigation window and divide by its full elapsed seconds, including blocked time and scheduling gaps. Invoke the real WebGL finish after each actual draw to confirm completed GPU work; retain raw draw durations, completion times, intervals and draw-call confirmations. This conservative synchronization is part of the frozen method. Idle requestAnimationFrame callbacks do not count.",
     "inspection": {
-      "model": "One released aircraft from the actual source campaign with at least 100,000 inspection triangles; record revision/specification and measured mesh count",
+      "model": "The released air_fighter inspection asset shown by the actual native equipment designer in the loaded campaign, with at least 100,000 inspection triangles; record asset revision, visible design/catalog specification and measured mesh count. It may differ from the S19 delivered light-attack aircraft; this rendering test does not assert procurement stock ownership or delivery of the displayed design.",
       "minimum_triangles": 100000,
       "existing_fps_target": 60,
       "workload": "3 s separately recorded settling followed by 12 s actual focused-model orbit/navigation, using the same completed-draw/full-window principle; retain actual CPU/GPU cadence and model cost",
@@ -150,8 +150,11 @@
       "p95_limit_ms": 200,
       "samples_per_case_profile": 31,
       "percentile": "nearest_rank;30th sorted sample of 31",
-      "boundary": "Real input dispatch through the corresponding visible control state/content and its completed paint, including required read-response latency; do not measure only event dispatch or idle callbacks",
-      "workload": "Freeze the ordered 31-control sequence before qualification using ordinary navigation/read controls; retain control identity, before/after state, timestamps and every latency"
+      "boundary": "Trusted control-event timestamp through confirmed corresponding camera-state change, two requestAnimationFrame paint opportunities and real GL finish completion. This measures local UI handling plus scheduled paint opportunity/GPU completion, not proof of compositor presentation or scanout. The local controls issue no read request, so no server/read-response latency is claimed.",
+      "workload": "31 visible trusted camera-control clicks per dated case/detail profile, starting at the national France view with zoom 8: repeat west, east, zoom-in, zoom-out in that order, stopping after action 31. Retain every control identity, trusted-event timestamp, before/after camera state, asserted state change and latency. Freeze exact button selectors and initial camera parameters in the candidate manifest before either qualification round.",
+      "ordered_controls": ["west", "east", "zoom-in", "zoom-out"],
+      "sequence_rule": "Repeat ordered_controls; take the first 31 entries",
+      "starting_zoom": 8
     },
     "layout_only_profiles": [
       {
@@ -224,5 +227,10 @@
     "session_completion": "S22 remains in_progress until both full rounds and all required accounting/lifecycle/layout cells are accepted. This protocol and offline audit award no S22, G5, CP1 or human-playtest completion.",
     "designation": "Declare immutable attempt IDs and round roles before launch. A completed preflight or diagnostic run cannot be promoted into qualification after its measurements are known."
   },
-  "frozen_utc": "2026-09-28T04:48:40Z"
+  "frozen_utc": "2026-09-28T04:48:40Z",
+  "pre_qualification_clarification": {
+    "recorded_utc": "2026-09-28T04:55:54Z",
+    "scope": "Before any authoritative timing, specify the local camera-control workload and honest paint-opportunity boundary, and distinguish the released designer aircraft asset from delivered stock. No threshold, window, map GPU-completion definition, case or confirmation rule changes.",
+    "trace_status": "Chrome trace capture remains required evidence and is pending implementation/verification by the browser qualification owner. No trace is claimed by the protocol itself."
+  }
 }
