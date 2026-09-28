@@ -1,0 +1,86 @@
+[
+  {
+    "name": "importer-check",
+    "argv": [
+      "tools/avatars/import_cnccfp_census.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "index",
+    "argv": [
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "census",
+    "argv": [
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "france",
+    "argv": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_france*.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "importer",
+    "argv": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_import_cnccfp_census.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "research",
+    "argv": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "campaign",
+    "argv": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "workboard",
+    "argv": [
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

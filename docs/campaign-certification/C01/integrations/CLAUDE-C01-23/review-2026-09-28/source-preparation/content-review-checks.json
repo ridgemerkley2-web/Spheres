@@ -1,0 +1,63 @@
+{
+  "format": "spheres-review-checks/v1",
+  "reviewer": "Codex /root/review_source05",
+  "submission": "9c0f5c14bf83ef51ab3e6eb7483c379814d59a42",
+  "repair_commit": "addf493459819e4bac8d777356e7cde887119df9",
+  "regression_before": {
+    "tests": 10,
+    "failures": 3,
+    "log": "semantic/regression-before.log"
+  },
+  "checks": [
+    {
+      "command": "python -X utf8 -B -m unittest discover -s tools/avatars -p 'test_france*.py'",
+      "passed": true,
+      "tests": 10
+    },
+    {
+      "command": "python -X utf8 -B -m unittest discover -s tools/avatars -p 'test_import_cnccfp_census.py'",
+      "passed": true,
+      "tests": 10
+    },
+    {
+      "command": "python -X utf8 -B -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "passed": true,
+      "tests": 79
+    },
+    {
+      "command": "python -X utf8 -B -m unittest discover -s tools/avatars -p 'test_campaign*.py'",
+      "passed": true,
+      "tests": 16
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "passed": true,
+      "tests": 11
+    },
+    {
+      "command": "python -X utf8 -B tools/avatars/import_cnccfp_census.py --check",
+      "passed": true,
+      "tests": null
+    },
+    {
+      "command": "python -X utf8 -B tools/avatars/campaign_research.py --check",
+      "passed": true,
+      "tests": null
+    },
+    {
+      "command": "python -X utf8 -B tools/avatars/campaign_census.py --check",
+      "passed": true,
+      "tests": null
+    },
+    {
+      "command": "python -X utf8 -B tools/planning/workboard.py --check",
+      "passed": true,
+      "tests": null
+    },
+    {
+      "command": "git diff --check",
+      "passed": true,
+      "tests": null
+    }
+  ]
+}

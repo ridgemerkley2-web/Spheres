@@ -1,0 +1,38 @@
+{
+  "reviewed_utc": "2026-09-28T18:27:37.634576+00:00",
+  "submission": "9c0f5c14bf83ef51ab3e6eb7483c379814d59a42",
+  "scope": "Four source bodies read independently; not all95 claims reviewed. No merge or acceptance.",
+  "sources": [
+    {
+      "source_id": "fr_cc_proclamation_20020508",
+      "body_sha256": "c0c0267723ffaf05c5c226785afc5b95a33f4e158229fe191172e592b3c8b9ef",
+      "review_method": "Complete relevant archived HTML text",
+      "finding": "The Council proclamation explicitly names Jacques Chirac and makes the presidency effective17May2002 at0h; election/proclamation dates remain distinct."
+    },
+    {
+      "source_id": "fr_cc_fabius_investiture_address_20170514",
+      "body_sha256": "25d5117f463403e2f7b63539e6610667c93a698a2394c17746f0bebd9348c283",
+      "review_method": "Complete relevant archived HTML text",
+      "finding": "The address dated14May2017 says the president takes office at that instant; the7May ballot and10May proclamation are distinct."
+    },
+    {
+      "source_id": "fr_cc_debre_investiture_address_20070516",
+      "body_sha256": "891028cb791b4be6dcbc1b3ecd1df721005892512704a83ab4c0a72e0c1c5f56",
+      "review_method": "Complete relevant text; also complete visual page1 for the two Debre PDF addresses",
+      "finding": "The complete one-page rendered16May2007 address says that from this day the addressee embodies France for the term; identity is linked by the separately cited proclamation."
+    },
+    {
+      "source_id": "fr_cc_debre_investiture_address_20120515",
+      "body_sha256": "f410fddf900598bb2156170d5065ed09315a03228d3fef0d10626b4b0c5d0719",
+      "review_method": "Complete relevant text; also complete visual page1 for the two Debre PDF addresses",
+      "finding": "The complete one-page rendered15May2012 address explicitly dates commencement to this day; identity is linked by the separately cited proclamation."
+    }
+  ],
+  "unavailable_source_ids": [
+    "fr_cc_2022_195_pdr_first_round_declaration",
+    "fr_cc_2022_197_pdr_proclamation_pdf",
+    "fr_jorf_proclamation_20220428",
+    "fr_elysee_investiture_20220507",
+    "fr_cc_fabius_investiture_address_20220507"
+  ]
+}
