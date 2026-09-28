@@ -621,13 +621,85 @@ pub fn energy_company_rates(w: &WorldState, nation: NationId) -> (f64, f64) {
     let fee = dispatch.iter().map(|(_, cap, m)| cap * m.fee_rate).sum::<f64>() / capacity;
     (input, fee)
 }
+
+/// Geometry shared only inside one factory operating pass. That pass changes
+/// stocks, fiscal/GDP receipts and contractor XP, but never ownership, control,
+/// installed generation, inherited opening capacity or assignment identities.
+/// Rates and dispatch modifiers remain live: even an earlier manufacturing
+/// receipt can advance an energy company's XP in an editable assignment.
+#[derive(Default)]
+pub(crate) struct OperatingEnergy {
+    dispatch: BTreeMap<NationId, Vec<(CompanyTarget, f64)>>,
+    power: BTreeMap<NationId, Vec<(String, f64)>>,
+    inherited: BTreeMap<NationId, f64>,
+}
+impl OperatingEnergy {
+    pub(crate) fn inherited(&mut self, w: &WorldState, nation: NationId) -> f64 {
+        #[cfg(test)]
+        if self.inherited.contains_key(&nation) { energy_scope_tests::REUSED.with(|n| n.set(n.get()+1)); }
+        *self.inherited.entry(nation).or_insert_with(||
+            crate::industry_operations::inherited_power_headroom(w, nation))
+    }
+    fn dispatch(&mut self, w: &WorldState, nation: NationId)
+        -> Vec<(CompanyTarget, f64, companies::CompanyModifiers)> {
+        #[cfg(test)]
+        if self.dispatch.contains_key(&nation) { energy_scope_tests::REUSED.with(|n| n.set(n.get()+1)); }
+        let layout = self.dispatch.entry(nation).or_insert_with(||
+            operating_districts_for(w, nation).into_iter().filter_map(|district| {
+                if resources::district_contested(w, &district) { return None; }
+                let capacity = site_level(w, &district, K::Generation) as f64 * 10.0
+                    + w.production.industry.modules.get(&district).copied().unwrap_or(0) as f64 / 1_000_000.0 * 10.0;
+                if capacity <= 0.0 { return None; }
+                Some((CompanyTarget::Facility { district, sector: CompanySector::Energy }, capacity))
+            }).collect());
+        layout.iter().map(|(target, capacity)| {
+            let modifier = companies::modifiers(w, nation, target);
+            (target.clone(), capacity * modifier.work_rate, modifier)
+        }).collect()
+    }
+    pub(crate) fn rates(&mut self, w: &WorldState, nation: NationId) -> (f64, f64) {
+        if !w.sector_contractors.enabled || !w.sector_contractors.assignments.iter().any(|a|
+            a.nation == nation && a.target.sector() == CompanySector::Energy) { return (1.0, 0.0); }
+        let dispatch = self.dispatch(w, nation);
+        let inherited = self.inherited(w, nation);
+        let capacity: f64 = dispatch.iter().map(|(_, cap, _)| cap).sum::<f64>() + inherited;
+        if capacity <= 0.0 { return (1.0, 0.0); }
+        let input = (dispatch.iter().map(|(_, cap, m)| cap * m.input_rate).sum::<f64>() + inherited) / capacity;
+        let fee = dispatch.iter().map(|(_, cap, m)| cap * m.fee_rate).sum::<f64>() / capacity;
+        (input, fee)
+    }
+    pub(crate) fn power_generators(&mut self, w: &WorldState, nation: NationId)
+        -> Vec<(String, f64, f64, f64)> {
+        #[cfg(test)]
+        if self.power.contains_key(&nation) { energy_scope_tests::REUSED.with(|n| n.set(n.get()+1)); }
+        // GDP dispatch uses effective_capacity * 10, while operating recipes
+        // use separate level/module terms. Preserve both original formulas.
+        let layout = self.power.entry(nation).or_insert_with(|| w.districts.iter()
+            .filter(|(d, owner)| **owner == nation && !resources::district_contested(w, d))
+            .filter_map(|(d, _)| {
+                let level = crate::industrial_modules::effective_capacity(w, d, K::Generation);
+                (level > 0.0).then(|| (d.clone(), level))
+            }).collect());
+        layout.iter().map(|(d, level)| {
+            let operator = companies::modifiers(w, nation, &CompanyTarget::Facility {
+                district: d.clone(), sector: CompanySector::Energy,
+            });
+            (d.clone(), level * 10.0 * operator.work_rate, operator.input_rate, operator.fee_rate)
+        }).collect()
+    }
+}
+
 pub(crate) fn record_energy_work(w: &mut WorldState, nation: NationId, power: f64, base_cash_bn: f64) {
+    record_energy_work_with_scope(w, nation, power, base_cash_bn, None)
+}
+fn record_energy_work_with_scope(w: &mut WorldState, nation: NationId, power: f64,
+    base_cash_bn: f64, mut scope: Option<&mut OperatingEnergy>) {
     if power <= 0.0 || !w.sector_contractors.enabled { return; }
     companies::record_sector_activity(w, nation, CompanySector::Energy, power);
     if !w.sector_contractors.assignments.iter().any(|a| a.nation == nation && a.target.sector() == CompanySector::Energy) { return; }
-    let dispatch = energy_dispatch(w, nation);
+    let dispatch = scope.as_deref_mut().map_or_else(||energy_dispatch(w, nation), |s|s.dispatch(w, nation));
     let capacity: f64 = dispatch.iter().map(|(_, cap, _)| cap).sum::<f64>()
-        + crate::industry_operations::inherited_power_headroom(w, nation);
+        + scope.map_or_else(||crate::industry_operations::inherited_power_headroom(w, nation), |s|s.inherited(w, nation));
     if capacity <= 0.0 { return; }
     for (target, cap, modifier) in dispatch {
         let actual = power * cap / capacity;
@@ -846,6 +918,10 @@ fn tick_day_impl(w: &mut WorldState, reuse_operating_reads: bool) {
     // levels or district ownership. Storage limits are fixed for the pass;
     // the amount already stored must still be read anew for every line.
     let mut storage_limits = BTreeMap::new();
+    let use_energy_scope = reuse_operating_reads;
+    #[cfg(test)]
+    let use_energy_scope = use_energy_scope && !energy_scope_tests::ORIGINAL.with(std::cell::Cell::get);
+    let mut energy_scope = use_energy_scope.then(OperatingEnergy::default);
     for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
         for d in &sites {
             let level = if kind==K::StarterIndustry {0} else {site_level(w, d, kind)};
@@ -914,7 +990,8 @@ fn tick_day_impl(w: &mut WorldState, reuse_operating_reads: bool) {
             // Fee, unit recipe and final bundle are quoted before this line's
             // first world mutation. Reuse only that immutable read; subsequent
             // lines and record_energy_work still observe live company XP.
-            let (fuel_rate, energy_fee) = energy_company_rates(w, nation);
+            let (fuel_rate, energy_fee) = energy_scope.as_mut()
+                .map_or_else(||energy_company_rates(w, nation), |s|s.rates(w, nation));
             let cash_per_pack = 0.00001 * (1.0 + company.fee_rate);
             let generating_cost_per_power = 0.000002 * (1.0 + energy_fee);
             let staffing = if crate::industry_operations::enabled(w) {
@@ -1054,7 +1131,7 @@ fn tick_day_impl(w: &mut WorldState, reuse_operating_reads: bool) {
                 ));
             }
             w.production.industry.operations.push(status);
-            crate::gdp_projects::record_factory(
+            crate::gdp_projects::record_factory_with_energy_scope(
                 w,
                 nation,
                 d,
@@ -1064,9 +1141,11 @@ fn tick_day_impl(w: &mut WorldState, reuse_operating_reads: bool) {
                 draw,
                 cash,
                 energy_cash,
+                energy_scope.as_mut(),
             );
             record_manufacturing_work(w, nation, d, output, output * 0.00001);
-            record_energy_work(w, nation, output * per_power, output * per_power * 0.000002);
+            record_energy_work_with_scope(w, nation, output * per_power,
+                output * per_power * 0.000002, energy_scope.as_mut());
         }
     }
     crate::materials::operate(w, &mut power, &mut grids);
@@ -1415,6 +1494,10 @@ pub fn advance_mine(w: &mut WorldState, p: &resources::MineProject) -> Option<f6
 }
 
 #[cfg(test)]
+#[path = "industry_energy_scope_tests.rs"]
+mod energy_scope_tests;
+
+#[cfg(test)]
 mod tests {
     use super::*;
     use crate::{init::world_1990, load, save, world::GameRules};
@@ -1498,7 +1581,7 @@ mod tests {
         }
     }
 
-    fn s08_line_energy_world(experience: f64) -> (WorldState, u32) {
+    pub(super) fn s08_line_energy_world(experience: f64) -> (WorldState, u32) {
         let mut w = prepared();
         let sites = districts(&w);
         for district in sites.iter().take(3) { chain(&mut w, district); }

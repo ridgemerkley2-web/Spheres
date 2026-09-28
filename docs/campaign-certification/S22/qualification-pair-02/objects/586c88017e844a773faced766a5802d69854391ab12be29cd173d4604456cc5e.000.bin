@@ -1,0 +1,54 @@
+{
+  "captured_utc": "2026-09-28T12:15:03.4796737Z",
+  "files": [
+    {
+      "bytes": 15824,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-config.json",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-pair-02-config.json",
+      "sha256": "66b10797b3cebccf7af6a84d0c1ce1388b6ac5b9f8e237c306a375d405ffe20d"
+    },
+    {
+      "bytes": 35236,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-manifest.json",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-pair-02-manifest.json",
+      "sha256": "536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e"
+    },
+    {
+      "bytes": 6632,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-attempt-index.jsonl",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-attempt-index.jsonl",
+      "sha256": "e8fc3d6dec7cd420edbf01a1707197530d71211fb2f52c0169d34a3707bb0ddb"
+    },
+    {
+      "bytes": 35928,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-freeze.log",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-qualification-pair-02-freeze.log",
+      "sha256": "82cf690013e49c57755556e07b95cd99cbdbf9bc69be0b182ce13ff9dddfea4b"
+    },
+    {
+      "bytes": 2838,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-hardware-qualification-02.json",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\s22-hardware-qualification-02.json",
+      "sha256": "d1086f5df6174e7bf19d52252472da5a1f08c8ff164b6031281f54e4f7e32ede"
+    },
+    {
+      "bytes": 48817,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-runner\\journal.jsonl",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\runner-journal.jsonl",
+      "sha256": "33b1a10bd415d02179f68757d0e16f9e5334c5214baea28b540ea9b3698dae8f"
+    },
+    {
+      "bytes": 8147,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-runner\\run-summary.json",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\runner-run-summary.json",
+      "sha256": "9711d8d749b3bc9a05c61befd3884a2e37ebae951b4da7cc5eec8b98a9d28ac6"
+    },
+    {
+      "bytes": 46176,
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-qualification-pair-02-runner\\verdict.json",
+      "capture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pair02-preservation-01\\frozen\\runner-verdict.json",
+      "sha256": "7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b"
+    }
+  ],
+  "scope": "Exact final passing pair02/config/registry bytes before approved recoverable raw-copy dedup."
+}

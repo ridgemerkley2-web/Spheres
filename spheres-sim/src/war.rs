@@ -605,10 +605,28 @@ pub fn industry_refill(w: &WorldState, id: NationId) -> f64 {
 
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
+    tick_traced(w, None);
+}
+
+/// Diagnostic observations only; each stage executes the ordinary war path.
+#[doc(hidden)]
+pub fn tick_observed(w: &mut WorldState, observer: &mut dyn FnMut(&'static str, std::time::Duration)) {
+    tick_traced(w, Some(observer));
+}
+
+fn tick_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
+    macro_rules! measured {
+        ($name:expr, $body:expr) => {{
+            let start = observer.as_ref().map(|_| std::time::Instant::now());
+            let value = $body;
+            if let (Some(start), Some(observe)) = (start, observer.as_deref_mut()) { observe($name, start.elapsed()); }
+            value
+        }};
+    }
     let dt = crate::clock::month_fraction(w);
     // ---- Strength accumulation from spending, and magazines refilling ----
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
-    for id in &ids {
+    measured!("standing_forces", { for id in &ids {
         // Munitions rebuild out of the industry standing behind the army, not
         // out of the army. A state with tankers and a machine-tool base refills
         // in two and a half years what it can shoot off in eighteen months; one
@@ -638,15 +656,19 @@ pub fn tick(w: &mut WorldState) {
         n.munitions = (n.munitions + refill * dt).clamp(0.0, 1.0);
         // Exhaustion decays in peace
         n.war_exhaustion = (n.war_exhaustion - 0.01 * dt).max(0.0);
-    }
+    }});
 
     // Standing on rung 5 is a thing a service keeps doing, not a state it enters.
-    crate::commitment::deniable_forces_upkeep(w);
+    measured!("deniable_upkeep", crate::commitment::deniable_forces_upkeep(w));
     // Each side picks its own rung before the month is fought, not after.
-    crate::commitment::ai_ladder(w);
+    measured!("ai_ladder", crate::commitment::ai_ladder(w));
 
-    resolve_conflicts(w);
-    crate::campaign_peace::tick(w);
+    if let Some(observe) = observer.as_deref_mut() {
+        let start = std::time::Instant::now();
+        resolve_conflicts_traced(w, Some(&mut *observe));
+        observe("resolve_conflicts", start.elapsed());
+    } else { resolve_conflicts(w); }
+    measured!("campaign_peace", crate::campaign_peace::tick(w));
 }
 
 /// One outcome per conflict that stopped being one.
@@ -670,17 +692,33 @@ enum Ending {
 }
 
 fn resolve_conflicts(w: &mut WorldState) {
-    crate::campaign::ai_orders(w);
-    crate::airmissions::prepare(w);
+    resolve_conflicts_traced(w, None);
+}
+
+fn resolve_conflicts_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
+    macro_rules! measured {
+        ($name:expr, $body:expr) => {{
+            let start = observer.as_ref().map(|_| std::time::Instant::now());
+            let value = $body;
+            if let (Some(start), Some(observe)) = (start, observer.as_deref_mut()) { observe($name, start.elapsed()); }
+            value
+        }};
+    }
+    measured!("resolve.ai_orders", crate::campaign::ai_orders(w));
+    measured!("resolve.air_missions", crate::airmissions::prepare(w));
     let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
     // Snapshot before removing conflicts: every theatre shares one finite
     // national force, and later theatres cannot reuse or reread earlier losses.
-    let mut operations = w.rules.military_operations.then(|| crate::operations::Snapshot::new(w));
-    let opening_campaign = if crate::campaign::enabled(w) {
-        operations.as_ref().map(|snapshot| crate::campaign::prepare(w, snapshot))
-    } else { None };
+    let mut operations = measured!("resolve.operations_snapshot", w.rules.military_operations.then(|| crate::operations::Snapshot::new(w)));
+    let opening_campaign = measured!("resolve.campaign_prepare", if crate::campaign::enabled(w) {
+        operations.as_ref().map(|snapshot| {
+            if let Some(observe) = observer.as_deref_mut() {
+                crate::campaign::prepare_observed(w, snapshot, observe)
+            } else { crate::campaign::prepare(w, snapshot) }
+        })
+    } else { None });
     let conflicts = std::mem::take(&mut w.conflicts);
 
     for mut c in conflicts {

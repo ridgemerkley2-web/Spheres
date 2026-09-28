@@ -1,0 +1,7 @@
+
+running 1 test
+Exact actual archive parity: 145134799 bytes, 1360 history rows, 37893 dispatches; typed+validation load 9779.563 ms, original Value load 11584.720 ms. Sequential diagnostic timings only, not memory or qualification.
+test storage::tests::typed_campaign_decode_matches_actual_checkpoint_value_oracle ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 455 filtered out; finished in 22.39s
+

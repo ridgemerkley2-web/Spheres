@@ -817,6 +817,39 @@ pub fn accounted_force(w: &WorldState, nation: NationId) -> f64 {
 }
 
 pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Opening {
+    prepare_traced(w, snapshot, None)
+}
+
+/// Nested stage observations for the native war diagnostic. The normal path
+/// supplies no observer and reads no clocks; neither path reorders preparation.
+#[doc(hidden)]
+pub(crate) fn prepare_observed(w: &mut WorldState, snapshot: &operations::Snapshot,
+    observer: &mut dyn FnMut(&'static str, std::time::Duration)) -> Opening {
+    prepare_traced(w, snapshot, Some(observer))
+}
+
+fn prepare_traced(w: &mut WorldState, snapshot: &operations::Snapshot,
+    observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) -> Opening {
+    #[cfg(test)]
+    if transfer_path_tests::UNCACHED_PATHS.with(|uncached| uncached.get()) {
+        return prepare_with_paths::<false>(w, snapshot, observer);
+    }
+    prepare_with_paths::<true>(w, snapshot, observer)
+}
+
+fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &operations::Snapshot,
+    mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) -> Opening {
+    let mut supply_graph = None;
+    let mut stage_start = observer.as_ref().map(|_| std::time::Instant::now());
+    macro_rules! stage {
+        ($name:expr) => {
+            if let (Some(start), Some(observe)) = (stage_start, observer.as_deref_mut()) {
+                observe($name, start.elapsed());
+                // Exclude callback/report overhead from the next child stage.
+                stage_start = Some(std::time::Instant::now());
+            }
+        };
+    }
     w.campaign.conflict_id_high_water = conflict_id_high_water(w);
     // First retain their identities above; closed-war intent is no longer an
     // active policy. Historic agreements and conserved return journeys live
@@ -834,11 +867,13 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
         .last_proposal
         .retain(|key, _| live_key(key));
     let day = clock::absolute_day(w);
+    stage!("resolve.campaign_prepare.setup");
     let owners: BTreeMap<_, _> = w
         .districts
         .keys()
         .map(|d| (d.clone(), control::controller(w, d)))
         .collect();
+    stage!("resolve.campaign_prepare.ownership");
     let mut state = std::mem::take(&mut w.campaign);
     let migration = !state.initialized;
     let migration_conflicts = state
@@ -864,6 +899,7 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
             orders.insert(key, o);
         }
     }
+    stage!("resolve.campaign_prepare.orders");
     if state.last_prepared != Some(day) {
         // Disbanded/conflict-ended troops return on a dated journey; their
         // fatigue and force cannot be laundered by closing/reopening a war.
@@ -933,7 +969,13 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 r.cohesion += (1.0 - r.cohesion) * 0.025;
             }
         }
+        stage!("resolve.campaign_prepare.normalize_reserves");
         let transit = std::mem::take(&mut state.transfers);
+        // This pass changes only the detached campaign book: control, military
+        // access and naval holdings remain immutable until all journeys have
+        // been checked. Reuse the pure result for identical remaining paths;
+        // never carry it into a later preparation or skip a transfer's update.
+        let mut open_paths: BTreeMap<(NationId, Vec<String>), bool> = BTreeMap::new();
         for mut t in transit {
             if t.conflict.is_some_and(|cid| {
                 w.conflict(cid)
@@ -953,8 +995,14 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 let completed =
                     (1 + elapsed * t.route.len().saturating_sub(1) / span).min(t.route.len());
                 let remaining = completed.min(t.route.len() - 1);
-                if !crate::campaign_supply::deployment_path_open(w, t.nation, &t.route[remaining..])
-                {
+                let path = &t.route[remaining..];
+                let open = if CACHE_PATHS {
+                    *open_paths.entry((t.nation, path.to_vec())).or_insert_with(||
+                        crate::campaign_supply::deployment_path_open(w, t.nation, path))
+                } else {
+                    crate::campaign_supply::deployment_path_open(w, t.nation, path)
+                };
+                if !open {
                     t.departed_day += 1;
                     t.arrives_day += 1;
                     t.cohesion = (t.cohesion - 0.005).max(0.05);
@@ -981,6 +1029,7 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 _ => add_reserve(&mut state, t.nation, t.strength, t.cohesion),
             }
         }
+        stage!("resolve.campaign_prepare.transfer_advance");
         let mut desired: BTreeMap<String, (u32, NationId, String, f64)> = BTreeMap::new();
         for ((cid, n), row) in &snapshot.rows {
             let Some(c) = w.conflict(*cid) else { continue };
@@ -997,6 +1046,7 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 );
             }
         }
+        stage!("resolve.campaign_prepare.desired_positions");
         // Only local campaign state changes during movement planning. Reuse
         // one lazy freight graph while the world it quotes stays immutable.
         let mut deployment_routes = crate::campaign_supply::DeploymentRoutes::new(w);
@@ -1116,6 +1166,11 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 });
             }
         }
+        // Quotes changed only the detached campaign book. Hand the identical
+        // opening graph to service settlement; its capacity reservations are
+        // still read live for every cargo dispatch below.
+        supply_graph = deployment_routes.into_supply_graph();
+        stage!("resolve.campaign_prepare.route_deploy");
         state.sectors.retain(|_, s| s.strength > EPS);
         state
             .orders
@@ -1129,6 +1184,7 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
     }
     let sectors = state.sectors.clone();
     w.campaign = state;
+    stage!("resolve.campaign_prepare.cleanup");
     let mut requests = vec![];
     for (key, s) in &sectors {
         let Some(c) = w.conflict(s.conflict) else {
@@ -1186,7 +1242,11 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
         });
     }
     requests.extend(crate::campaign_peace::garrison_requests(w, snapshot));
-    let supply = crate::campaign_supply::prepare(w, &requests);
+    stage!("resolve.campaign_prepare.supply_requests");
+    let supply = crate::campaign_supply::prepare_with_graph(w, &requests, supply_graph);
+    if let (Some(start), Some(observe)) = (stage_start, observer.as_deref_mut()) {
+        observe("resolve.campaign_prepare.supply_prepare", start.elapsed());
+    }
     Opening {
         sectors,
         control: owners,
@@ -2332,6 +2392,163 @@ pub(crate) fn validate_key(w: &WorldState, key: &str, debug_nation: bool) -> Res
         if debug_nation { format!("{n:?}") == name } else { n.index().to_string() == name }
     }).ok_or_else(|| format!("unknown campaign participant identity {key}"))?;
     Ok((id, nation))
+}
+
+#[cfg(test)]
+mod transfer_path_tests {
+    use super::*;
+    use crate::world::GameRules;
+    use std::cell::Cell;
+
+    thread_local! {
+        pub(super) static UNCACHED_PATHS: Cell<bool> = const { Cell::new(false) };
+    }
+    fn without_cache<T>(run: impl FnOnce() -> T) -> T {
+        struct Reset(bool);
+        impl Drop for Reset {
+            fn drop(&mut self) { UNCACHED_PATHS.with(|flag| flag.set(self.0)); }
+        }
+        let _reset = Reset(UNCACHED_PATHS.with(|flag| flag.replace(true)));
+        run()
+    }
+    // Explicit synthetic parity fixture, not a campaign/performance artifact.
+    // Actual quoted geometry is retained through repeated access closures.
+    fn fixture() -> WorldState {
+        let mut w = crate::init::world_1990(GameRules {
+            seed: 42, daily_simulation: true, military_operations: true,
+            operational_warfare: 1, resource_market: true, logistics_routes: true,
+            physical_logistics: true, ..Default::default()
+        });
+        w.campaign.initialized = true;
+        w.campaign_supply.sources.insert(NationId::Germany, crate::campaign_supply::Source {
+            district: "DE-BE".into(), service: 0.0,
+        });
+        let (path, _) = crate::campaign_supply::deployment_route(&w, NationId::Germany, "DE-BB").unwrap();
+        assert!(path.len() >= 2);
+        for i in 0..36 {
+            w.campaign.transfers.push(Transfer {
+                nation: if i % 3 == 0 { NationId::France } else { NationId::Germany },
+                conflict: None, district: None, strength: 0.01, cohesion: 0.7,
+                route: path.clone(), departed_day: 0, arrives_day: 2 + i % 3 * 5,
+            });
+        }
+        // Unknown/ended conflicts must still clear their old path and become
+        // dated returns; a route memo must not bypass that branch.
+        w.campaign.transfers.push(Transfer {
+            nation: NationId::Germany, conflict: Some(999_999), district: Some("DE-BB".into()),
+            strength: 0.01, cohesion: 0.6, route: path, departed_day: 0, arrives_day: 2,
+        });
+        w.campaign.transfers.push(Transfer {
+            nation: NationId::Germany, conflict: None, district: None,
+            strength: 0.01, cohesion: 0.6, route: vec![], departed_day: 0, arrives_day: 2,
+        });
+        w.districts.insert("DE-BB".into(), NationId::France);
+        w
+    }
+    fn change_access(w: &mut WorldState, day: u32) {
+        match day {
+            3 => w.access.push(theatre::Access {
+                theatre: theatre::TheatreId::CentralEurope, host: NationId::France,
+                seeker: NationId::Germany, since_year: 1990, since_month: 1,
+            }),
+            6 => w.access.retain(|a| !(a.host == NationId::France && a.seeker == NationId::Germany)),
+            8 => { w.districts.insert("DE-BB".into(), NationId::Germany); }
+            _ => {}
+        }
+    }
+    fn opening_bytes(opening: &Opening) -> Vec<u8> {
+        serde_json::to_vec(&(&opening.sectors, &opening.control, &opening.supply,
+            &opening.orders, &opening.assets)).unwrap()
+    }
+    #[test]
+    fn supply_graph_handoff_preserves_complete_opening_and_same_date_preparation() {
+        use crate::campaign_supply::graph_handoff_tests::{campaign_fixture, fresh_graphs};
+        let mut cached = campaign_fixture();
+        crate::logistics::begin_month(&mut cached);
+        let mut original = cached.clone();
+        for repeated in [false, true] {
+            let snapshot = operations::Snapshot::new(&cached);
+            let actual = prepare(&mut cached, &snapshot);
+            let expected = fresh_graphs(|| prepare(&mut original, &snapshot));
+            assert_eq!(opening_bytes(&actual), opening_bytes(&expected), "repeated={repeated}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "repeated={repeated}");
+            assert_eq!(cached.headlines, original.headlines);
+        }
+    }
+    #[test]
+    fn preparation_observer_preserves_opening_world_and_same_date_guard() {
+        let mut observed = fixture();
+        let mut ordinary = observed.clone();
+        for repeated in [false, true] {
+            let snapshot = operations::Snapshot::new(&ordinary);
+            let mut stages = Vec::new();
+            let actual = prepare_observed(&mut observed, &snapshot, &mut |name, elapsed| stages.push((name, elapsed)));
+            let expected = prepare(&mut ordinary, &snapshot);
+            assert_eq!(opening_bytes(&actual), opening_bytes(&expected));
+            assert_eq!(crate::save(&observed), crate::save(&ordinary));
+            assert_eq!(observed.headlines, ordinary.headlines);
+            let expected_stages = if repeated {
+                vec!["setup", "ownership", "orders", "cleanup", "supply_requests", "supply_prepare"]
+            } else {
+                vec!["setup", "ownership", "orders", "normalize_reserves", "transfer_advance",
+                    "desired_positions", "route_deploy", "cleanup", "supply_requests", "supply_prepare"]
+            };
+            assert_eq!(stages.iter().map(|(name,_)|name.strip_prefix("resolve.campaign_prepare.").unwrap())
+                .collect::<Vec<_>>(), expected_stages);
+        }
+    }
+    #[test]
+    fn transfer_path_cache_preserves_prepare_receipts_and_refreshes_after_access_changes() {
+        let mut cached = fixture();
+        let mut original = cached.clone();
+        for day in 0..15 {
+            change_access(&mut cached, day); change_access(&mut original, day);
+            let snapshot = operations::Snapshot::new(&cached);
+            let actual = prepare_with_paths::<true>(&mut cached, &snapshot, None);
+            let expected = prepare_with_paths::<false>(&mut original, &snapshot, None);
+            assert_eq!(opening_bytes(&actual), opening_bytes(&expected), "opening day {day}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "world day {day}");
+            assert_eq!(cached.headlines, original.headlines, "headlines day {day}");
+            if day == 0 {
+                assert!(cached.campaign.transfers.iter().any(|t| t.nation == NationId::Germany
+                    && !t.route.is_empty() && t.departed_day == 1 && t.cohesion < 0.7),
+                    "closed paths retain each journey and apply its normal delay/fatigue");
+                assert!(cached.campaign.transfers.iter().all(|t| t.conflict != Some(999_999)));
+            }
+            clock::advance_date(&mut cached); clock::advance_date(&mut original);
+        }
+    }
+    #[test]
+    fn transfer_path_cache_matches_original_checks_for_31_complete_days() {
+        let mut cached = fixture();
+        let mut original = cached.clone();
+        for day in 0..31 {
+            change_access(&mut cached, day); change_access(&mut original, day);
+            let actual = crate::tick_day(&mut cached, &[]);
+            let expected = without_cache(|| crate::tick_day(&mut original, &[]));
+            assert_eq!(actual, expected, "returned headlines day {day}");
+            assert_eq!(cached.headlines, original.headlines, "retained headlines day {day}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "full world day {day}");
+        }
+    }
+    #[test]
+    #[ignore = "explicit actual-checkpoint original-path parity; no timing assertions"]
+    fn transfer_path_cache_matches_actual_checkpoint_for_31_complete_days() {
+        let path = std::env::var("SPHERES_S22_CHECKPOINT").expect("actual checkpoint path required");
+        let source = std::fs::read_to_string(&path).unwrap();
+        let mut cached = crate::load(&source).unwrap();
+        assert!(enabled(&cached));
+        assert!(cached.campaign.transfers.iter().any(|t| !t.route.is_empty()), "checkpoint must exercise booked transfer paths");
+        let mut original = cached.clone();
+        for day in 0..31 {
+            let actual = crate::tick_day(&mut cached, &[]);
+            let expected = without_cache(|| crate::tick_day(&mut original, &[]));
+            assert_eq!(actual, expected, "actual returned headlines day {day}");
+            assert_eq!(cached.headlines, original.headlines, "actual retained headlines day {day}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "actual full world day {day}");
+        }
+        assert_eq!(std::fs::read_to_string(path).unwrap(), source, "source checkpoint stays immutable");
+    }
 }
 
 #[cfg(test)]

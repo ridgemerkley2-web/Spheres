@@ -247,11 +247,21 @@ pub fn record_factory(
     plant_cash: f64,
     generation_cash: f64,
 ) {
+    record_factory_with_energy_scope(w, nation, district, kind, output, power, raw,
+        plant_cash, generation_cash, None)
+}
+pub(crate) fn record_factory_with_energy_scope(
+    w: &mut WorldState, nation: NationId, district: &str, kind: K, output: f64,
+    power: f64, raw: [f64; 12], plant_cash: f64, generation_cash: f64,
+    mut scope: Option<&mut industry::OperatingEnergy>,
+) {
     let id = format!("site:{district}:{}", kind.key());
     if output <= 0.0 || !output.is_finite() || !power.is_finite() || !event(w, &id) {
         return;
     }
-    let fuel = (power * 0.02 * industry::energy_company_rates(w, nation).0 * 1e9).round() / 1e9;
+    let fuel_rate = scope.as_deref_mut().map_or_else(||industry::energy_company_rates(w, nation),
+        |s|s.rates(w, nation)).0;
+    let fuel = (power * 0.02 * fuel_rate * 1e9).round() / 1e9;
     let fuel = fuel.min(raw[C::Coal.idx()]);
     let mut plant_raw = raw;
     plant_raw[C::Coal.idx()] -= fuel;
@@ -299,7 +309,7 @@ pub fn record_factory(
     }
     insert(w, row);
 
-    record_power_dispatch(w, nation, power, fuel, generation_cash);
+    record_power_dispatch_with_energy_scope(w, nation, power, fuel, generation_cash, scope);
 }
 
 /// Actual service output belongs to the services account. Offices have one
@@ -405,7 +415,12 @@ pub fn record_materials_operation(
 /// Power is an internal transaction: factories deduct its full value and its
 /// dispatching producers earn that same gross amount, less generating fuel.
 pub(crate) fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel: f64, generation_cash: f64) {
-    let generators: Vec<_> = w
+    record_power_dispatch_with_energy_scope(w, nation, power, fuel, generation_cash, None)
+}
+fn record_power_dispatch_with_energy_scope(w: &mut WorldState, nation: NationId,
+    power: f64, fuel: f64, generation_cash: f64, mut scope: Option<&mut industry::OperatingEnergy>) {
+    let generators: Vec<_> = if let Some(s) = scope.as_deref_mut() { s.power_generators(w, nation) }
+    else { w
         .districts
         .iter()
         .filter(|(d, owner)| {
@@ -418,14 +433,16 @@ pub(crate) fn record_power_dispatch(w: &mut WorldState, nation: NationId, power:
             });
             (level > 0.0).then(|| (d.clone(), level * 10.0 * operator.work_rate, operator.input_rate, operator.fee_rate))
         })
-        .collect();
+        .collect() };
     let capacity: f64 = generators.iter().map(|(_, c, _, _)| *c).sum();
     if power <= 0.0 || capacity <= 0.0 {
         return;
     }
     // Opening utility service is already represented by inherited GDP. Only
     // the share dispatched by commissioned generators is new utility output.
-    let inherited = if w.rules.industry_rebuild { crate::industry_operations::inherited_power_headroom(w, nation) } else { 0.0 };
+    let inherited = if w.rules.industry_rebuild {
+        scope.map_or_else(||crate::industry_operations::inherited_power_headroom(w, nation), |s|s.inherited(w, nation))
+    } else { 0.0 };
     let new_share = capacity / (capacity + inherited);
     let fuel_weight: f64 = generators.iter().map(|(_, c, input, _)| c * input).sum();
     let cash_weight: f64 = generators.iter().map(|(_, c, _, fee)| c * (1.0 + fee)).sum();

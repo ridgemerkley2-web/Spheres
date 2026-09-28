@@ -1,0 +1,16 @@
+{
+  "format": "s22-provenance-resolution/v1",
+  "recorded_utc": "2026-09-28T07:42:28.277Z",
+  "reviewed_by": "Codex /root/review_gap_submission",
+  "qualification": false,
+  "original_provenance": "validation/s22-sovereignty-actual-2035-provenance.json",
+  "recorded_abbreviation": "6de1d997",
+  "full_candidate_revision": "6de1d9972fb3b1a7d5b67f4b73e08420687508d8",
+  "resolution_command": "git rev-parse 6de1d997^{commit}",
+  "immutable_binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-6de1d997\\sim-tests.exe",
+    "bytes": 50644433,
+    "sha256": "74611ed125e693a98d9a130806272e5b2b7dfe2f35425b3ea54c582c891baa9a"
+  },
+  "scope": "Read-only Git identity resolution and actual retained binary SHA256 check. Original abbreviated provenance remains unchanged. No build, test, replay or benchmark launched."
+}

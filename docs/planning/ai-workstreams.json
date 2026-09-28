@@ -37,7 +37,7 @@
         "S20",
         "S21"
       ],
-      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned. Next canonical Codex session: S22 performance qualification. See docs/campaign-certification/S20/README.md and G4/README.md."
+      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned, and S22 performance qualification is complete on its separately recorded candidate and evidence."
     },
     {
       "id": "guidance",
@@ -62,7 +62,7 @@
         "S23"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
-      "next": "C01-GAPS-01 and SOURCE-05/06 are accepted bounded deliveries. SOURCE-17/26 and C01-23/24/25/27 await independent review; latest C01-27 submission 0765c590 was inspected after S20 closure. The remaining five expanded sections are claimed, including C03 cartoon review, C04 fictional successors and S23 boundary audit. Query --tasks --owner Claude; preserve those claims. Parent historical coverage remains open and the research cutoff stays 2026-09-07."
+      "next": "C01-GAPS-01 and SOURCE-05/06 are accepted bounded deliveries. SOURCE-17/26 and C01-23/24/25/27 await independent review; latest C01-27 submission 0765c590 was inspected after S20 closure. The remaining five expanded sections are claimed, including C03 cartoon review, C04 fictional successors and S23 boundary audit. Query --tasks --owner Claude; preserve those claims. Parent historical coverage remains open and the research cutoff stays 2026-09-07. S23 is the next canonical session, remains planned and is owned by Claude; its C06 cast-coverage dependency is still open. Continue the existing bounded S23 preparation claim without treating it as final content qualification."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. Its historical 42-overrun reading is retained in docs/campaign-certification/S22/preparation/README.md. Current docs/art/P0_BUDGETS.md grades 245 configurations: 166 pass, 79 advisory density notes, zero ceiling or required-quality-floor failures. Adaptive town scenes preserve raw close meshes while enforcing the unchanged 150,000-triangle actual submission ceiling; raw full-block overages remain diagnostics. Exact local/hosted readings: docs/campaign-certification/verification/2026-09-22-completion.md. S20 is complete; S22 is the next ready canonical session; full campaign performance and human qualification stay open. The six-session timing export and 137-country preflight do not close performance/worldwide gates. Claude owns the independent CLAUDE-S24-SUCCESSORS-01 preparation packet; Codex retains canonical S24 ownership, production integration and final qualification."
+      "next": "S22 is complete on 5d11dd6dae436eeca105dbaf0d02732cd768b35b; docs/campaign-certification/S22/manifest.json indexes the evidence. Both complete rounds of qualification pair02 passed all 18 declared cells, and independent frozen-helper verification passed under the unchanged protocol. End-2035 confirmation simulation/history and whole-turn p95 are 237.4 / 323.1374 ms. Final validation passed 1,963 release tests (0 failed, 112 ignored), nine focused tests, eight actual 31-day comparisons, 35 Node entries, 245 art configurations, 33 assets and 13 canonical GLB exports. Preserve the failed 17/18 pair01, all prior validation/preflight failures, 33 historical diagnostic art overages, source scopes and restoration records. S23 is next, Claude-owned and planned pending C06; Codex-owned S24 awaits S23. Claude retains the independent CLAUDE-S24-SUCCESSORS-01 preparation claim. G5, CP1 and human qualification remain unearned."
     },
     {
       "id": "human-playtests",

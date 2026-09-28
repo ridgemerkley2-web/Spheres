@@ -1,0 +1,10 @@
+
+running 5 tests
+test logistics::contract_dispatch_tests::contract_nominal_reuse_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit actual-checkpoint original-contract routing parity; no timing assertions
+test logistics::contract_dispatch_tests::contract_nominal_reuse_preserves_barters_zero_invalid_and_congested_dispatches ... ok
+test logistics::contract_dispatch_tests::contract_nominal_reuse_reads_paid_terminal_experience_after_each_bundle ... ok
+test logistics::contract_dispatch_tests::contract_oracle_accepts_campaign_and_integrated_inputs_without_stripping_capabilities ... ok
+test logistics::contract_dispatch_tests::contract_posting_rebuilds_context_each_day_and_keeps_full_ledger_identical ... ok
+
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 1061 filtered out; finished in 0.24s
+

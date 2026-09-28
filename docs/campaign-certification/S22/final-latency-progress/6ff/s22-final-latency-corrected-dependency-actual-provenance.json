@@ -1,0 +1,30 @@
+{
+  "candidate_revision": "6ff13350e8096d67c955b9710e983281aebc3eae",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-6ff13350\\sim-tests.exe",
+  "binary_sha256": "917e77da41abea7b46f7da77cad58cb47c8910bf2a5e2be330f37f35c2bec1c5",
+  "test": "resources::dependency_tests::dependency_pair_gate_matches_actual_checkpoint_for_31_complete_days --ignored --exact --nocapture --test-threads=1",
+  "runs": [
+    {
+      "year": "2015",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "input_sha256_before": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "input_sha256_after": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "started_utc": "2026-09-28T08:41:18.0195814Z",
+      "finished_utc": "2026-09-28T08:42:02.1774298Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-corrected-dependency-actual-2015.log"
+    },
+    {
+      "year": "2035",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "input_sha256_before": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "input_sha256_after": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "started_utc": "2026-09-28T08:42:02.3330997Z",
+      "finished_utc": "2026-09-28T08:42:58.9480082Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-corrected-dependency-actual-2035.log"
+    }
+  ],
+  "qualification": false,
+  "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims."
+}

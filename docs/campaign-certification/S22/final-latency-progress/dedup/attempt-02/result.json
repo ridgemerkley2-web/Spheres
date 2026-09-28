@@ -1,0 +1,16 @@
+{
+  "schema": "spheres-s22-raw-copy-cleanup/v1",
+  "started_utc": "2026-09-28T08:06:32.4947857Z",
+  "finished_utc": "2026-09-28T08:07:10.2276790Z",
+  "passed": true,
+  "expected_count": 37,
+  "verified_count": 37,
+  "removed_count": 37,
+  "removed_raw_bytes": 2753814871,
+  "manifest": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preflight-raw-dedup-02\\restore-manifest.json",
+  "journal": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preflight-raw-dedup-02\\completion-journal.jsonl",
+  "free_bytes_before": 8077037568,
+  "free_bytes_after": 10830450688,
+  "failure": null,
+  "rollback_failures": []
+}

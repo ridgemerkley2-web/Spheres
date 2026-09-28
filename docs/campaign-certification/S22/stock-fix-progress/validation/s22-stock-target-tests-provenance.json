@@ -1,0 +1,21 @@
+{
+  "candidate_revision": "a96bb097b78ff8e65f06f347f26cde46a190467d",
+  "started_utc": "2026-09-28T05:49:29.4604162Z",
+  "finished_utc": "2026-09-28T05:50:15.0135323Z",
+  "commands": [
+    "spheres_sim companies::tests --test-threads=2",
+    "spheres_sim resources::tests::s22_observed_pooled_clearing_keeps_cold_warm_world_and_held_cargo_identical --exact --test-threads=1",
+    "spheres_web --test-threads=2"
+  ],
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "135733b459bb6eb076a93b779f2c18a2d5680c646df3a5a4e9e627c78a009d7d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "1e85872ddf539a655ea88595cf17a77c00f90e7b43f775a4d549213dbb5b8c43"
+    }
+  ],
+  "exit_code": 0
+}

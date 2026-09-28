@@ -1,0 +1,83 @@
+✔ aircraft inspection gate enforces the requested quality floor as well as the ceiling (0.9572ms)
+✔ inspection reconciliation does not relax the building or scene ceilings (1.05ms)
+✔ serialized export budgets use the actual strict byte limits for each family (0.3155ms)
+✔ shared envelope is charged fully to each dwelling and once to the scene (0.9674ms)
+✔ constituent accounting rejects hidden costs, overlap and invented owners (0.4793ms)
+✔ the bench renders every view, and every view has cards (1.4866ms)
+✔ every caption is the count of the mesh that card actually draws (840.0262ms)
+✔ no band on the bench is looser than the roadmap section 4 row it cites (9.1879ms)
+✔ town cards expose real focus controls and report draw-plan counts after each redraw (0.5811ms)
+✔ inspection cards distinguish tanks and specialists while compound cards retain complete scene counts (0.1737ms)
+✔ art with no section 4 row says so instead of inventing a bar (0.1055ms)
+✔ worst-spec search includes every accepted tank slot omitted by the default (24774.0895ms)
+✔ worst-spec search rejects incompatible generator slots instead of fabricating components (8095.5743ms)
+✔ GLB contains aligned embedded geometry, matte material, and preserved colors (1.3502ms)
+✔ normalizes normals without changing the source mesh (0.5911ms)
+✔ derives accessor bounds from exported positions instead of stale display bounds (0.1632ms)
+✔ preserves Unicode names and deterministic export bytes (0.1721ms)
+✔ rejects non-finite positions rather than writing an invalid model (0.2957ms)
+✔ rejects non-finite normals rather than writing an invalid model (0.0769ms)
+✔ rejects non-finite colors rather than writing an invalid model (0.0558ms)
+✔ rejects incomplete geometry, mismatched counts, and non-float attributes (0.1605ms)
+✔ rejects impossible colors, zero normals, and invalid semantic ranges (0.2014ms)
+✔ browser UMD API exports the same binary as the Node API (1.1703ms)
+✔ generated models for every vehicle type contain complete portable meshes and all twelve specifications (380.8023ms)
+✔ specialist GLB assets preserve complete geometry, all thirteen slots and pickable semantic parts (191.3302ms)
+✔ an upgraded specialist exports its current mission components and semantic slot labels (51.652ms)
+✔ all three aircraft GLBs preserve generated geometry, eight specifications and semantic picking ranges (1814.6138ms)
+PASS baseline is bounded finite geometry with normalized winding and semantic parts
+PASS mesh is deterministic and does not mutate a draft
+PASS standard chassis has full track loops, individual links, wheels, muzzle and fittings
+PASS drive_mobile visibly changes geometry in its named component part
+PASS protection_heavy visibly changes geometry in its named component part
+PASS protection_active visibly changes geometry in its named component part
+PASS armament_heavy visibly changes geometry in its named component part
+PASS sensors_integrated visibly changes geometry in its named component part
+PASS comms_data visibly changes geometry in its named component part
+PASS heavy chassis has larger width, longer hull and additional running gear
+PASS fully upgraded concept stays inside the renderer geometry budget
+PASS missing and unsupported values use stable safe visual defaults
+PASS browser global exports the same build contract without dependencies
+PASS every independent catalogue specification survives model resolution and GLB metadata
+PASS light chassis, casemate and separate exterior upgrades produce different valid meshes
+PASS reinforced armor and independent active protection are both represented
+PASS all five specialist chassis are distinct complete geometry with their thirteen role specifications
+PASS every new simulation component resolves and exterior choices change the actual triangles
+PASS every tank ammunition load draws its own stowage, at the card level too
+PASS mission upgrades alter observable silhouette, running gear and weapons
+PASS build(spec) still returns the inspection mesh, and lod selects a coarser one
+PASS every level keeps the same parts, slots, labels and order so picking survives the swap
+PASS a coarse level still answers every component choice with different geometry
+PASS every catalogue option holds the coarse triangle bands on every platform that fields it
+PASS the coarse bands survive a fully loaded vehicle, not only one changed slot
+PASS a wheeled platform pays for its extra road tyres inside the coarse budget
+PASS the reference exports stay under the byte cap check_equipment_export.cjs enforces
+PASS a specialist that fields two ammunition loads shows which one it carries
+PASS the committed component coverage report still matches the geometry
+PASS attack aircraft and fighters are distinct complete aircraft with eight pickable specifications
+PASS every aircraft component resolves on its native role and every selectable upgrade changes its own visible assembly
+PASS light aircraft reject heavy-only visuals and omit stale ground slots
+32 equipment mesh checks passed; baseline 64,840 triangles, 37.0% of its vertices smoothed, LOD1 8,050, LOD2 1,168.
+✔ tools\ui\check_equipment_mesh.cjs (74058.448ms)
+✔ CPU material tags are counted without being mistaken for an uploaded float attribute (0.6906ms)
+✔ shared backing allocation is counted once, while each GPU attribute upload has its own payload (0.1119ms)
+✔ changed or corrupt layouts refuse measurement rather than silently excluding bytes (2.1043ms)
+✔ inventory totals sum measured payloads without assuming one byte rate per triangle (0.3789ms)
+FIGHTER_TRIANGLES=200446,11594,1296
+PASS fighter inspection/card/map keep all eight native slots and valid geometry
+PASS fighter payload is two separated slender air-to-air missiles
+PASS every researched fighter fitting is retained and changes visible geometry
+PASS fighter resolver refuses bombs and ground parts without mutating the requested spec
+PASS ground assets retain reviewed sealed-pin optimization or S15 bytes and aircraft retain reviewed S18 interiors
+5 S16 fighter mesh checks passed.
+✔ tools\ui\check_s16_fighter_mesh.cjs (2083.5391ms)
+✔ town budget sweep measures the renderer, includes actual default framing, and retains every selection (350.3275ms)
+✔ unrenderable background cannot be silently removed or accepted by the draw gate (67.0819ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114827.9826

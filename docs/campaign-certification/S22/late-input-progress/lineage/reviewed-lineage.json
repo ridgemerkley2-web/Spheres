@@ -1,0 +1,420 @@
+{
+  "schema": "spheres-s22-reviewed-lineage/v1",
+  "status": "reviewed",
+  "reviewed_by": "Codex /root/review_gap_submission",
+  "reviewed_utc": "2026-09-28T06:56:31.515Z",
+  "review_scope": "Reviewed original invocation/native preparation reports, normal EnableEconomicCompetition adoption at zero recorded political-capital price, annual SetProgramBudget command records, checkpoint receipts, interruption record, monotonic/alive monthly/event journals, exact actual save SHA256 values and nested saved dates. The recorded 1999, 2006, 2015 and 2035 saves connect through the runners actual input identities. This is a hash/date/record review, not an independent replay of the intervening years, verification of every simulated decision, or performance qualification.",
+  "original_source_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+  "adopted_early_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+  "inputs": [
+    {
+      "id": "early-france-1999",
+      "actual_date": "1999-05-13",
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+    },
+    {
+      "id": "mid-france-2015",
+      "actual_date": "2015-01-01",
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "id": "late-france-2035",
+      "actual_date": "2035-11-30",
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    }
+  ],
+  "links": [
+    {
+      "kind": "ordinary_competition_adoption",
+      "from_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "to_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "from_date": "1999-05-13",
+      "to_date": "1999-05-13",
+      "command": "EnableEconomicCompetition",
+      "price_pc": 0,
+      "outcome": "completed",
+      "evidence": [
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/invocation.json",
+          "sha256": "bf0152b0f13e3f3930c142605fc25b47b765a0f1467867ab6cc746d06d982d6d"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/runner-result.json",
+          "sha256": "d7bc575c61d2b5512c1db3fed131eaa2391f9d2decfb3e5cd66d0f7e83279555"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/profile.json",
+          "sha256": "5052e354914983b40f14133ad419c91689379e5581dd473d20b8e42698715959"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/preparation-journal.jsonl",
+          "sha256": "df1b88128f60d4d6d9b2c6798299c7372c897b5680dd3c9ede26e721159875ea"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stdout.log",
+          "sha256": "1c205ab384bea34af797482536813beee6951d08f0dc4cf70ccfd6217ea0354b"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stderr.log",
+          "sha256": "4feaad1974378554ecccc1cb5f9e3dcb24b190a7178f1de487543d1b8474575b"
+        }
+      ]
+    },
+    {
+      "kind": "native_preparation",
+      "from_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "to_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "from_date": "1999-05-13",
+      "to_date": "2006-01-01",
+      "outcome": "checkpoint_retained",
+      "evidence": [
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/invocation.json",
+          "sha256": "bf0152b0f13e3f3930c142605fc25b47b765a0f1467867ab6cc746d06d982d6d"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/runner-result.json",
+          "sha256": "d7bc575c61d2b5512c1db3fed131eaa2391f9d2decfb3e5cd66d0f7e83279555"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/profile.json",
+          "sha256": "5052e354914983b40f14133ad419c91689379e5581dd473d20b8e42698715959"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/preparation-journal.jsonl",
+          "sha256": "df1b88128f60d4d6d9b2c6798299c7372c897b5680dd3c9ede26e721159875ea"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stdout.log",
+          "sha256": "1c205ab384bea34af797482536813beee6951d08f0dc4cf70ccfd6217ea0354b"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stderr.log",
+          "sha256": "4feaad1974378554ecccc1cb5f9e3dcb24b190a7178f1de487543d1b8474575b"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01-interruption.json",
+          "sha256": "f60aafdc89900e4e221758debc1d38b601e756c8e2ec71533d5398886aa3b447"
+        }
+      ]
+    },
+    {
+      "kind": "native_preparation_resume",
+      "from_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "to_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "from_date": "2006-01-01",
+      "to_date": "2015-01-01",
+      "outcome": "completed",
+      "evidence": [
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/invocation.json",
+          "sha256": "dd28fc4c0ca65bf0a6f9586e65895c15d8cefaea138041125ef80e5d224ea547"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/runner-result.json",
+          "sha256": "631519e2d7f0927e378a287d2fa7700dab84ba258caeb62b925b540a6c4b551a"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/profile.json",
+          "sha256": "43df7aea4582168c07acd4dfe146702f78b4fdf30da5f1205de82c87c4fab3be"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/preparation-journal.jsonl",
+          "sha256": "7331915dde25bfef9f9e312b9d08eab3c6d97aef54a16c7dc06d5b3ed03ad314"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stdout.log",
+          "sha256": "1e13cbc1779a41421febd9a1ff25a9d0ad7fc69941c35c931ff3999c7cd40ab9"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stderr.log",
+          "sha256": "336ebd6f7f8434b38d7cd8c5688c7d3286b2488fe5f7951a6b976aaf6affe2a7"
+        }
+      ]
+    },
+    {
+      "kind": "native_preparation_resume",
+      "from_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "to_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "from_date": "2015-01-01",
+      "to_date": "2035-11-30",
+      "outcome": "completed",
+      "evidence": [
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/invocation.json",
+          "sha256": "32c5dcd2fb14764fd296abe6fd8a76c44e0d93b0fabb3a02fa89cd77d52979d8"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/runner-result.json",
+          "sha256": "d4f9a8eb81551492b1c747320b1e2f04abae58bd0c224e5ed6a18540c3be7002"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/profile.json",
+          "sha256": "b9b767750b960c67bd6788d8e9f145154cbd8fbb7ab2a49fb88a5783c864d4e1"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/preparation-journal.jsonl",
+          "sha256": "355dc1ebc80d99e31d7c275ab423ee79d330610528e4282f0e3c25390b013012"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stdout.log",
+          "sha256": "1ac4b4bfeb45bff429c611d27d5fe8933100e1facec58003cc65236e7d3aa7f0"
+        },
+        {
+          "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stderr.log",
+          "sha256": "2d3cd134394ad6d1db69f31d138a8966a0816445555641ceca8735c1b6cc4881"
+        }
+      ]
+    }
+  ],
+  "reviewed_runs": [
+    {
+      "run": "s22-preparation-active-01",
+      "candidate_revision": "bb83d3b81d5e93a80925dfaeda1b6ec8764f7906",
+      "native_binary_sha256": "6fec549a28d9b883206e516b79c4c136771cc52c3f632c40482990602453a41e",
+      "wrapper_sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9",
+      "started_utc": "2026-09-28T04:50:30.4515479Z",
+      "finished_utc": "2026-09-28T05:08:00.2893443Z",
+      "input_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "output_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "from_date": "1999-05-13",
+      "to_date": "2006-01-01",
+      "ordinary_days": 2425,
+      "runner_passed": false,
+      "profile_passed": false,
+      "exit_code": -1,
+      "failures": [
+        "Native process exited with code -1."
+      ],
+      "source_unchanged": true,
+      "final_world_fnv64": "f35306a59bd9541a",
+      "annual_budget_years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "journal": {
+        "records": 354,
+        "kinds": {
+          "event_acknowledgment": 274,
+          "monthly_state": 80
+        },
+        "all_records_alive": true,
+        "nondecreasing_days": true,
+        "first_date": "1999-05-17",
+        "last_date": "2006-01-01"
+      }
+    },
+    {
+      "run": "s22-preparation-active-02",
+      "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+      "native_binary_sha256": "db979eba5fdcf33fb93861805d5338edccfff19fa0e0f51d1f4d21aad16c195c",
+      "wrapper_sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9",
+      "started_utc": "2026-09-28T05:38:47.6882937Z",
+      "finished_utc": "2026-09-28T05:56:16.2301347Z",
+      "input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "output_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "from_date": "2006-01-01",
+      "to_date": "2015-01-01",
+      "ordinary_days": 3287,
+      "runner_passed": true,
+      "profile_passed": true,
+      "exit_code": 0,
+      "failures": [],
+      "source_unchanged": true,
+      "final_world_fnv64": "ab5b305e7fb2454f",
+      "annual_budget_years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "journal": {
+        "records": 207,
+        "kinds": {
+          "event_acknowledgment": 99,
+          "monthly_state": 108
+        },
+        "all_records_alive": true,
+        "nondecreasing_days": true,
+        "first_date": "2006-01-18",
+        "last_date": "2015-01-01"
+      }
+    },
+    {
+      "run": "s22-preparation-active-03",
+      "candidate_revision": "a4e246e4399e0cc3148bdbb60b39dde3c9932b83",
+      "native_binary_sha256": "e18b01657a0e5e67bbe580f7d4a86f0ade0fe0f1a940bba33c4153d7a624b4bc",
+      "wrapper_sha256": "bf20b92a54bef346d7aef737ade01fadbe45a8cfec0800a3a61e2329edbaaaa9",
+      "started_utc": "2026-09-28T06:09:03.5716026Z",
+      "finished_utc": "2026-09-28T06:52:55.6687016Z",
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "output_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "from_date": "2015-01-01",
+      "to_date": "2035-11-30",
+      "ordinary_days": 7638,
+      "runner_passed": true,
+      "profile_passed": true,
+      "exit_code": 0,
+      "failures": [],
+      "source_unchanged": true,
+      "final_world_fnv64": "d80100ad9735c60b",
+      "annual_budget_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026,
+        2027,
+        2028,
+        2029,
+        2030,
+        2031,
+        2032,
+        2033,
+        2034,
+        2035
+      ],
+      "journal": {
+        "records": 588,
+        "kinds": {
+          "event_acknowledgment": 338,
+          "monthly_state": 250
+        },
+        "all_records_alive": true,
+        "nondecreasing_days": true,
+        "first_date": "2015-01-18",
+        "last_date": "2035-11-29"
+      }
+    }
+  ],
+  "input_artifacts": [
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s19-flight-funded-recovery/france-t9dIxt/server/saves/s19-flight-qualified.json",
+      "bytes": 63066286,
+      "sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "actual_date": "1999-05-13",
+      "saved_facts": {
+        "format": "spheres-campaign",
+        "world_format": "spheres-integrated-save",
+        "date": [
+          1999,
+          5,
+          13
+        ],
+        "player": "France",
+        "history_points": 1187,
+        "dispatches": 4623,
+        "history_epoch": 76,
+        "saved_unix": 1790567440
+      }
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/campaigns/saves/s22-adopted-input.json",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "actual_date": "1999-05-13",
+      "saved_facts": {
+        "format": "spheres-campaign",
+        "world_format": "spheres-integrated-save",
+        "date": [
+          1999,
+          5,
+          13
+        ],
+        "player": "France",
+        "history_points": 1187,
+        "dispatches": 4623,
+        "history_epoch": 76,
+        "saved_unix": 1790571033,
+        "economic_competition": true
+      }
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/campaigns/saves/s22-2006-01-01.json",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "actual_date": "2006-01-01",
+      "saved_facts": {
+        "format": "spheres-campaign",
+        "world_format": "spheres-integrated-save",
+        "date": [
+          2006,
+          1,
+          1
+        ],
+        "player": "France",
+        "history_points": 1258,
+        "dispatches": 12624,
+        "history_epoch": 156,
+        "saved_unix": 1790572071,
+        "economic_competition": true
+      }
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/campaigns/saves/s22-2015-01-01.json",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "actual_date": "2015-01-01",
+      "saved_facts": {
+        "format": "spheres-campaign",
+        "world_format": "spheres-integrated-save",
+        "date": [
+          2015,
+          1,
+          1
+        ],
+        "player": "France",
+        "history_points": 1311,
+        "dispatches": 21975,
+        "history_epoch": 264,
+        "saved_unix": 1790574972,
+        "economic_competition": true
+      }
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/campaigns/saves/s22-2035-11-30.json",
+      "bytes": 145134799,
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "actual_date": "2035-11-30",
+      "saved_facts": {
+        "format": "spheres-campaign",
+        "world_format": "spheres-integrated-save",
+        "date": [
+          2035,
+          11,
+          30
+        ],
+        "player": "France",
+        "history_points": 1360,
+        "dispatches": 37893,
+        "history_epoch": 514,
+        "saved_unix": 1790578369,
+        "economic_competition": true
+      }
+    }
+  ],
+  "notes": [
+    "Active01 was deliberately interrupted after retaining the actual 2006 checkpoint. Its overall requested 2035 preparation remains failed (exit -1), not retroactively passed.",
+    "Active02 original/copied source is 7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325. Its initial native s22-resume-input output 90cd908d2f67de062a7ec907c4a5d45e74d1f1651bad705799ceb495bc38084f is a same-date save-envelope serialization and is not inserted as an invented ancestor.",
+    "Active03 original/copied source is e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11. Its initial native s22-resume-input output e3f977d81def8f5efa5906bd1ce9d0b8e6fa8bada23d30fca9531588b3695b31 is likewise not the resumed source.",
+    "Preparation builds differ and are recorded explicitly. Read-only preparation-function comparison shows active01-to-active02 changed journal verbosity; active02-to-active03 preparation-function source is unchanged. This does not assert every game runtime subtree is identical.",
+    "All raw annual checkpoints and failed/interrupted preparation artifacts remain at their original evidence paths. No source save, report, or journal was modified.",
+    "The passed preparation result concerns reaching the dated checkpoint. Its memory and wall-time observations are not performance qualification; no qualification freeze or run is created by this review."
+  ]
+}

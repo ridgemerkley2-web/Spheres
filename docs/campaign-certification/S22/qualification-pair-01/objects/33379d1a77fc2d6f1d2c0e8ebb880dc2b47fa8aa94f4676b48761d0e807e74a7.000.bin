@@ -1,0 +1,83 @@
+$ErrorActionPreference = 'Stop'
+$taskBase = 'C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification'
+$evidenceRoot = Join-Path $taskBase 'evidence'
+$pairRoot = [IO.Path]::GetFullPath((Join-Path $evidenceRoot 's22-qualification-pair-01'))
+$archiveRoot = Join-Path $evidenceRoot 's22-pair01-preservation-01'
+if (Test-Path -LiteralPath $archiveRoot) { throw 'Preservation output already exists; do not overwrite or rerun.' }
+New-Item -ItemType Directory -Path $archiveRoot | Out-Null
+$frozenRoot = Join-Path $archiveRoot 'frozen'
+New-Item -ItemType Directory -Path $frozenRoot | Out-Null
+$freeBefore = (Get-PSDrive -Name C).Free
+$started = [DateTime]::UtcNow.ToString('o')
+$utf8 = [Text.UTF8Encoding]::new($false)
+function Write-NewJson($destination, $value) {
+    $body = $value | ConvertTo-Json -Depth 30
+    $stream = [IO.File]::Open($destination, [IO.FileMode]::CreateNew)
+    try { $bytes = $utf8.GetBytes($body + "`n"); $stream.Write($bytes, 0, $bytes.Length) } finally { $stream.Dispose() }
+}
+function Digest-Stream($stream) {
+    $hash = [Security.Cryptography.IncrementalHash]::CreateHash([Security.Cryptography.HashAlgorithmName]::SHA256)
+    $buffer = [byte[]]::new(1048576); [long]$count = 0
+    try { while (($n = $stream.Read($buffer,0,$buffer.Length)) -gt 0) { $hash.AppendData($buffer,0,$n); $count += $n }; return @{bytes=$count;sha256=[Convert]::ToHexString($hash.GetHashAndReset()).ToLowerInvariant()} } finally { $hash.Dispose() }
+}
+$frozen = @()
+$freezeNames = @('s22-qualification-pair-01-config.json','s22-qualification-pair-01-manifest.json','s22-qualification-attempt-index.jsonl','s22-qualification-pair-01-freeze.log','s22-hardware-qualification-01.json')
+foreach ($name in $freezeNames) {
+    $source = Join-Path $evidenceRoot $name; $destination = Join-Path $frozenRoot $name
+    [IO.File]::Copy($source,$destination,$false)
+    $sha = (Get-FileHash -Algorithm SHA256 -LiteralPath $source).Hash.ToLowerInvariant()
+    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $destination).Hash.ToLowerInvariant() -ne $sha) { throw 'Frozen capture mismatch' }
+    $frozen += @{source=$source;capture=$destination;bytes=(Get-Item -LiteralPath $source).Length;sha256=$sha}
+}
+foreach ($name in @('journal.jsonl','run-summary.json','verdict.json')) {
+    $source = Join-Path $evidenceRoot ('s22-qualification-pair-01-runner\'+$name)
+    $destination = Join-Path $frozenRoot ('runner-'+$name)
+    [IO.File]::Copy($source,$destination,$false)
+    $sha=(Get-FileHash -Algorithm SHA256 -LiteralPath $source).Hash.ToLowerInvariant()
+    if ((Get-FileHash -Algorithm SHA256 -LiteralPath $destination).Hash.ToLowerInvariant() -ne $sha) { throw 'Runner capture mismatch' }
+    $frozen += @{source=$source;capture=$destination;bytes=(Get-Item -LiteralPath $source).Length;sha256=$sha}
+}
+$verdict = Get-Content -Raw -LiteralPath (Join-Path $frozenRoot 'runner-verdict.json') | ConvertFrom-Json
+if ($verdict.passed -or $verdict.cells.Count -ne 18 -or @($verdict.cells | Where-Object { -not $_.passed }).Count -ne 1) { throw 'Unexpected final verdict' }
+Write-NewJson (Join-Path $archiveRoot 'frozen-capture-manifest.json') @{captured_utc=$started;files=$frozen;scope='Exact final failed pair01/config/registry bytes before approved recoverable raw-copy dedup.'}
+$inventory = @(Get-ChildItem -LiteralPath $pairRoot -File -Recurse | ForEach-Object { @{path=$_.FullName;relative_path=[IO.Path]::GetRelativePath($pairRoot,$_.FullName);bytes=$_.Length;last_write_utc=$_.LastWriteTimeUtc.ToString('o')} })
+Write-NewJson (Join-Path $archiveRoot 'inventory-before.json') @{root=$pairRoot;files=$inventory;free_bytes=$freeBefore}
+$selected = @($inventory | Where-Object { $_.relative_path -match '^r[12]-(early-france-1999|mid-france-2015|late-france-2035)-native\\input\.json$' -or $_.relative_path -match '^r[12]-(early-france-1999|mid-france-2015|late-france-2035)-(map|renderer)\\browser-[^\\]+\\server\\saves\\s22-(input|before|after)\.json$' })
+if ($selected.Count -ne 42) { throw "Expected exactly42 selected copies, got $($selected.Count)" }
+$repo = Join-Path $taskBase 's22-economic-ranking'
+$canonical = @{'early-france-1999'='runtime-preflight\inputs\s22-adopted-input.json.gz';'mid-france-2015'='stock-fix-progress\inputs\s22-2015-01-01.json.gz';'late-france-2035'='late-input-progress\inputs\s22-2035-11-30.json.gz'}
+$verifiedGzip = @{}; $plans=@()
+foreach ($row in $selected) {
+    $rawPath = [IO.Path]::GetFullPath($row.path)
+    if (-not $rawPath.StartsWith($pairRoot + '\',[StringComparison]::OrdinalIgnoreCase)) { throw 'Raw path escaped pair01' }
+    $item=Get-Item -LiteralPath $rawPath
+    if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Reparse file refused' }
+    if ($row.relative_path -match 's22-(before|after)\.json$') {
+        $browserRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $rawPath))
+        $gzipPath = Join-Path $browserRoot ($item.Name+'.gz')
+    } else {
+        $case = @($canonical.Keys | Where-Object { $row.relative_path.Contains($_) })
+        if ($case.Count -ne 1) { throw 'Unrecognized input case' }
+        $gzipPath=Join-Path (Join-Path $repo 'docs\campaign-certification\S22') $canonical[$case[0]]
+    }
+    if (-not $verifiedGzip.ContainsKey($gzipPath)) {
+        $file=[IO.File]::OpenRead($gzipPath)
+        try { $gzip=[IO.Compression.GZipStream]::new($file,[IO.Compression.CompressionMode]::Decompress);try{$digest=Digest-Stream $gzip}finally{$gzip.Dispose()} } finally { $file.Dispose() }
+        $verifiedGzip[$gzipPath]=@{raw_bytes=$digest.bytes;raw_sha256=$digest.sha256;gzip_bytes=(Get-Item -LiteralPath $gzipPath).Length;gzip_sha256=(Get-FileHash -Algorithm SHA256 -LiteralPath $gzipPath).Hash.ToLowerInvariant()}
+    }
+    $g=$verifiedGzip[$gzipPath];$rawSha=(Get-FileHash -Algorithm SHA256 -LiteralPath $rawPath).Hash.ToLowerInvariant()
+    if ($g.raw_bytes -ne $item.Length -or $g.raw_sha256 -ne $rawSha) { throw "Restore mismatch: $rawPath" }
+    $plans += @{original_path=$rawPath;relative_path=$row.relative_path;bytes=$item.Length;sha256=$rawSha;last_write_utc=$row.last_write_utc;creation_utc=$item.CreationTimeUtc.ToString('o');restore_gzip=$gzipPath;gzip_bytes=$g.gzip_bytes;gzip_sha256=$g.gzip_sha256;roundtrip_verified=$true;reason='Completed frozen pair01 redundant raw copy; exact uncompressed bytes retained by verified gzip. Restore before path-based verifier.'}
+}
+Write-NewJson (Join-Path $archiveRoot 'restore-manifest.json') @{format='s22-pair01-raw-restoration/v1';pair=$pairRoot;started_utc=$started;approved_scope='Exactly42 raw input/before/after files; no other deletion';files=$plans}
+[long]$removedBytes=0
+foreach ($row in $plans) {
+    $checked=[IO.Path]::GetFullPath((Resolve-Path -LiteralPath $row.original_path).Path)
+    if (-not $checked.StartsWith($pairRoot+'\',[StringComparison]::OrdinalIgnoreCase) -or $checked -ne $row.original_path) { throw 'Resolved removal path outside exact pair01 scope' }
+    if ((Get-Item -LiteralPath $checked).Length -ne $row.bytes -or (Get-FileHash -Algorithm SHA256 -LiteralPath $checked).Hash.ToLowerInvariant() -ne $row.sha256) { throw 'Raw bytes changed since verification' }
+    Remove-Item -LiteralPath $checked
+    $removedBytes += $row.bytes
+    [IO.File]::AppendAllText((Join-Path $archiveRoot 'completion-journal.jsonl'),(@{utc=[DateTime]::UtcNow.ToString('o');original_path=$checked;bytes=$row.bytes;sha256=$row.sha256;restore_gzip=$row.restore_gzip;removed=$true}|ConvertTo-Json -Compress)+"`n",$utf8)
+}
+Write-NewJson (Join-Path $archiveRoot 'result.json') @{passed=$true;started_utc=$started;finished_utc=[DateTime]::UtcNow.ToString('o');files=$plans.Count;reclaimed_raw_bytes=$removedBytes;free_bytes_before=$freeBefore;free_bytes_after=(Get-PSDrive -Name C).Free;scope='Lossless recoverable storage operation only; pair01 remains failed. Original frozen reports/config/manifest/registry unchanged.'}
+Get-Content -Raw -LiteralPath (Join-Path $archiveRoot 'result.json')

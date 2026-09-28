@@ -1,0 +1,75 @@
+[
+  {
+    "name": "budget-and-records",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "tools/ui/bench_art.cjs",
+      "--check"
+    ],
+    "started_utc": "2026-09-28T11:20:16.625Z",
+    "finished_utc": "2026-09-28T11:21:27.098Z",
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "log": "budget-and-records.log",
+    "log_bytes": 130,
+    "log_sha256": "c98654ddc5a43118d93e9a6b4d59a9e2b4824c868ac0365b8d4b36694d304c86"
+  },
+  {
+    "name": "manifest",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "tools/ui/build_art_manifest.cjs",
+      "--check"
+    ],
+    "started_utc": "2026-09-28T11:21:27.099Z",
+    "finished_utc": "2026-09-28T11:21:28.698Z",
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "log": "manifest.log",
+    "log_bytes": 28,
+    "log_sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5"
+  },
+  {
+    "name": "canonical-exports",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "tools/ui/build_equipment_models.cjs",
+      "--check"
+    ],
+    "started_utc": "2026-09-28T11:21:28.698Z",
+    "finished_utc": "2026-09-28T11:21:29.818Z",
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "log": "canonical-exports.log",
+    "log_bytes": 335,
+    "log_sha256": "516e2a0b689a66f9714cedcfc95ef0d96994beeb159426af22ce2aca6a384403"
+  },
+  {
+    "name": "focused-contract-accounting-quality",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tools/ui/check_art_budget_contract.cjs",
+      "tools/ui/check_mesh_accounting.cjs",
+      "tools/ui/check_art_budget_units.cjs",
+      "tools/ui/check_art_worst_spec.cjs",
+      "tools/ui/check_town_scene_budget.cjs",
+      "tools/ui/check_equipment_export.cjs",
+      "tools/ui/check_equipment_mesh.cjs",
+      "tools/ui/check_s16_fighter_mesh.cjs",
+      "tools/ui/check_art_gallery.cjs"
+    ],
+    "started_utc": "2026-09-28T11:21:29.818Z",
+    "finished_utc": "2026-09-28T11:23:24.695Z",
+    "exit_code": 0,
+    "signal": null,
+    "error": null,
+    "log": "focused-contract-accounting-quality.log",
+    "log_bytes": 6506,
+    "log_sha256": "d6df52ef4cb2ef9a51fba1863199c54f3127a39b45ca67308cc874346cc3982a"
+  }
+]

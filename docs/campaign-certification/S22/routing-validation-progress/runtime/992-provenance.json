@@ -1,0 +1,23 @@
+{
+  "candidate_revision": "992bc99ab5529332cb7ba860f53ff0801a3283b3",
+  "captured_utc": "2026-09-28T07:52:29.8498405Z",
+  "files": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-992bc99a\\sim-tests.exe",
+      "sha256": "5fe61ab9c51c0f3450d97d58a721c5a149cdbf29e2f15e1964f4564306ad6702",
+      "bytes": 49691902
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-992bc99a\\native-tests.exe",
+      "sha256": "3a1aad245296a88eba985a5aea2c36ba063dff569143e7cd34b2dac13f649e6f",
+      "bytes": 352887482
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-992bc99a\\spheres-web.exe",
+      "sha256": "00fdaf8f9448ac46951507a467b2c1648a4246250bd6b091c0f873af1e9363d6",
+      "bytes": 358639476
+    }
+  ],
+  "qualification": false,
+  "scope": "Copied immutable binaries after release compilation completed, workspace tests still running; not yet a passing regression claim"
+}

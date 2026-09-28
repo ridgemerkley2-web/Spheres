@@ -1,0 +1,27 @@
+{
+  "archive_verified": true,
+  "recorded_qualification_passed": true,
+  "qualification_rerun": false,
+  "manifest_sha256": "d6ac60be3325b9fbbe70389630dc27ed62aef69197f676e54eadfe1221102b4f",
+  "files": 782,
+  "original_pair_files": 636,
+  "original_pair_bytes": 6456235037,
+  "payloads": 559,
+  "chunks": 565,
+  "stored_payload_bytes": 1504014691,
+  "independently_decoded_encodings": 587,
+  "external_binary_bodies_verified": false,
+  "external_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+      "bytes": 352865219,
+      "sha256": "a27da17d309391620c5df7f7d3c8306884c71ddedf4a5a598ea43e39e774e024"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\spheres-web.exe",
+      "bytes": 358617837,
+      "sha256": "618046decce08bd80400f7a3fe4bb4c51d288e234ad60d5cfedecc8bc7b03c3e"
+    }
+  ],
+  "restored": null
+}

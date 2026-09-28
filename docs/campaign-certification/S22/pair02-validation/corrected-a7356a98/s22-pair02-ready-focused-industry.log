@@ -1,0 +1,8 @@
+
+running 3 tests
+test industry::energy_scope_tests::energy_scope_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit immutable actual-checkpoint 31-day original energy-layout oracle; no timing assertions
+test industry::energy_scope_tests::energy_scope_keeps_live_modifier_bits_and_rebuilds_changed_geometry ... ok
+test industry::energy_scope_tests::scoped_factory_pass_matches_original_bills_gdp_shortages_and_xp ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1108 filtered out; finished in 1.00s
+

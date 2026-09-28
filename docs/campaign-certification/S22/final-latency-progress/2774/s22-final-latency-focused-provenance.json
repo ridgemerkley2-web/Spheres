@@ -1,0 +1,29 @@
+{
+  "candidate_revision": "2774b0c5495a92de0ffd7abfedf10e5a7dd6eeaa",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-2774b0c5\\sim-tests.exe",
+  "binary_sha256": "04e657399575687379a89586a068c23f6048bc4819c1419c79fd4bccd189a231",
+  "runs": [
+    {
+      "filter": "terminal_adjacency_matches_original_scan_for_every_node_and_unknown_id",
+      "started_utc": "2026-09-28T08:26:53.0224037Z",
+      "finished_utc": "2026-09-28T08:26:53.1405132Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-focused-terminal.log"
+    },
+    {
+      "filter": "economic_ai::mine_forecast_tests",
+      "started_utc": "2026-09-28T08:26:53.1419135Z",
+      "finished_utc": "2026-09-28T08:26:53.6175581Z",
+      "exit_code": 101,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-focused-mine.log"
+    },
+    {
+      "filter": "resources::dependency_tests",
+      "started_utc": "2026-09-28T08:26:53.6183311Z",
+      "finished_utc": "2026-09-28T08:26:53.7083704Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-final-latency-focused-dependency.log"
+    }
+  ],
+  "qualification": false
+}

@@ -1,9 +1,9 @@
 # Spheres — Codex and Claude workboard
 
 Updated 28 September 2026 UTC. **Integration branch: `codex/campaign-certification`.**
-Start from this branch, not `master` or an older Claude branch. S01–S21 are complete.
-Codex closed S19 and S20 with actual campaign evidence. [G4 is earned](campaign-certification/G4/README.md); S22 performance qualification is next.
-CP1 certification and worldwide character coverage remain open.
+Start from this branch, not `master` or an older Claude branch. S01–S22 are complete.
+Codex closed S19 and S20 with actual campaign evidence. [G4 is earned](campaign-certification/G4/README.md); [S22 performance qualification](campaign-certification/S22/README.md) is complete.
+G5, CP1 certification and worldwide character coverage remain open. S23 is next: Claude owns it, its status remains planned, and C06 is still required. S24 awaits S23.
 
 ## Latest checkpoint — 28 September
 
@@ -11,12 +11,42 @@ CP1 certification and worldwide character coverage remain open.
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
+| S22 art and performance | **Complete.** Candidate `5d11dd6d`: both full qualification rounds passed all 18 cells; independent frozen-helper verification passed. Final release regression: 1,963 passed, 0 failed, 112 ignored; nine focused tests and eight actual 31-day comparisons passed. | [Closure evidence](campaign-certification/S22/manifest.json), [passing pair02](campaign-certification/S22/qualification-pair-02/README.md), [final validation](campaign-certification/S22/pair02-validation/README.md). Failed pair01 and every earlier failed attempt remain retained; limits are unchanged. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
 | C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
 | Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
+
+S22's first complete qualification pair at d50f7ee1 measured all 18 declared
+cells. The initial full round passed; the confirmation failed only its end-2035
+native cell: simulation/history p95 **323.6552 > 300 ms** and whole-turn p95
+**406.1905 > 400 ms**. All 12 browser cases, memory limits and exact campaign-state
+checks passed. The whole-turn maximum remained within 750 ms. Earlier passing
+preflights and the release regression cannot override this result. Every cell,
+frozen prerequisite and final verdict is losslessly retained, with explicit
+restore mappings for deduplicated raw saves. That pair remains failed; S22 was
+not earned from it. The later candidate qualified through two new complete
+rounds in pair02. G5 and CP1 remain unearned.
+
+Final candidate 5d11dd6d now passes correctness and the fresh offline art audit.
+Its isolated 2015 simulation/whole-turn p95 is **258.6063 / 318.5443 ms**, maximum
+**683.2764 ms**; end-2035 p95 is **282.2180 / 382.0407 ms**, maximum **392.1018 ms**.
+Both memory limits and final-state/input checks pass. The initial fixture and
+coverage failures remain preserved. These retain their preflight scope.
+
+The complete [qualification pair02](campaign-certification/S22/qualification-pair-02/README.md)
+then passed **18/18 cells** on exact candidate
+`5d11dd6dae436eeca105dbaf0d02732cd768b35b`, with an independent rerun of the
+frozen verification helper. End-2035 confirmation simulation/history p95 is
+**237.4 ms** and whole-turn p95 **323.1374 ms**. Both rounds cover all three
+actual campaign dates and the declared native, map and renderer workloads.
+No threshold changed and no selected-cell retry substituted for a complete round.
+The fresh offline audit passed **35 Node entries, 245 configurations, 33 assets
+and 13 canonical GLB exports**; the 33 historical diagnostic art overages retain
+their original scope. [S22 is complete](campaign-certification/S22/manifest.json).
+S23 remains planned with C06 open; S24 awaits S23.
 
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
 [campaign-pathway.json](planning/campaign-pathway.json) owns session status, dependencies,
@@ -28,10 +58,10 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 
 | Workstream | Owner | Session markers | Boundary and next step |
 |---|---|---|---|
-| Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification next. |
+| Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification complete on its recorded candidate. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex completed ordinary later-outcome qualification; S19 is closed. |
 | Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27 are submitted for review. C01 remains incomplete. |
-| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Claude owns a bounded S24 successor-fixture preparation packet; Codex owns final qualification. Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
+| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | S22 complete under the unchanged frozen protocol; Codex-owned S24 awaits Claude-owned S23 and its open C06 dependency. Claude retains bounded S24 successor-fixture preparation; Codex owns final qualification. G5 and CP1 remain unearned. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
 | Later company identity/history | Claude | E05 | Eight-company France/Japan research pilot claimed. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
@@ -140,7 +170,7 @@ independent sections. The [existing research list](planning/ai-handoffs/CLAUDE-C
 tracks the remaining source/content submissions. SOURCE-05/06 and C01-GAPS-01
 are closed as bounded tasks; their parent C01 remains incomplete. Codex completed
 [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md) and has completed
-S20's combined map, province and room navigation. S22 performance qualification is next.
+S20's combined map, province and room navigation. S22 performance qualification is complete; S23 remains planned pending C06.
 
 Copy this into Claude to resume its claimed sections:
 
@@ -190,7 +220,7 @@ campaign pathway; this is a work split, not a replacement roadmap.
 
 Codex completed the independently ready [S21 campaign journey](campaign-certification/S21/README.md) while S19 remained claimed. It adds campaign goals/history/continuation and repairs first-day successor saves. S19 and S20 are now complete, and the dated G4 decision records the earned player-journey gate.
 
-Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. Its original 42-overrun finding remains in the historical preparation record. The [current art audit](art/P0_BUDGETS.md) now grades 245 configurations with 166 passes, 79 advisory density notes and no ceiling or required-quality-floor failures. The [adaptive town renderer](art/TOWN_SCENE_RENDERING.md) preserves the original close meshes and measures actual submissions within the unchanged scene ceiling; raw full-block overages remain explicit diagnostics. This is independent preparation: S22 is now the next ready canonical session after S20, and full campaign performance and human qualification remain open. See the [current completion follow-up](campaign-certification/verification/2026-09-22-completion.md) for exact local and hosted validation status.
+Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. Its original 42-overrun finding remains in the historical preparation record. The [current art audit](art/P0_BUDGETS.md) now grades 245 configurations with 166 passes, 79 advisory density notes and no ceiling or required-quality-floor failures. The [adaptive town renderer](art/TOWN_SCENE_RENDERING.md) preserves the original close meshes and measures actual submissions within the unchanged scene ceiling; raw full-block overages remain explicit diagnostics. This is retained independent preparation. Codex subsequently completed S22 under that frozen protocol, with both complete qualification rounds and current offline accounting passing. Later campaign and human qualification remain open. See the [22 September completion follow-up](campaign-certification/verification/2026-09-22-completion.md) for local and hosted validation status at that earlier checkpoint.
 
 The [six-session development journal](campaign-certification/development/2026-09-21-six-sessions/README.md)
 records the subsequent equipment picker, province activity overview, local timing

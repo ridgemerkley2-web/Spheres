@@ -1,0 +1,156 @@
+{
+  "schema": "spheres-s22-reviewed-lineage-config-fragment/v1",
+  "created_utc": "2026-09-28T06:56:31.516Z",
+  "qualification": false,
+  "scope": "Input/provenance fragment only. Merge fields into an independently completed qualification configuration; this file does not reserve output roots, freeze a candidate, or declare qualification.",
+  "source_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s19-flight-funded-recovery/france-t9dIxt/server/saves/s19-flight-qualified.json",
+  "lineage_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/reviewed-lineage.json",
+  "provenance_paths": [
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/invocation.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/runner-result.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/profile.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/preparation-journal.jsonl",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stdout.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stderr.log",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01-interruption.json",
+    "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-late-input-reviewed/manifest.json"
+  ],
+  "cases": [
+    {
+      "id": "early-france-1999",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/campaigns/saves/s22-adopted-input.json"
+    },
+    {
+      "id": "mid-france-2015",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/campaigns/saves/s22-2015-01-01.json"
+    },
+    {
+      "id": "late-france-2035",
+      "input_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/campaigns/saves/s22-2035-11-30.json"
+    }
+  ],
+  "reviewed_reports": [
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/invocation.json",
+      "bytes": 3591,
+      "sha256": "bf0152b0f13e3f3930c142605fc25b47b765a0f1467867ab6cc746d06d982d6d"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/runner-result.json",
+      "bytes": 6433,
+      "sha256": "d7bc575c61d2b5512c1db3fed131eaa2391f9d2decfb3e5cd66d0f7e83279555"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/profile.json",
+      "bytes": 70438,
+      "sha256": "5052e354914983b40f14133ad419c91689379e5581dd473d20b8e42698715959"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/preparation-journal.jsonl",
+      "bytes": 1079706,
+      "sha256": "df1b88128f60d4d6d9b2c6798299c7372c897b5680dd3c9ede26e721159875ea"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stdout.log",
+      "bytes": 62,
+      "sha256": "1c205ab384bea34af797482536813beee6951d08f0dc4cf70ccfd6217ea0354b"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01/stderr.log",
+      "bytes": 340,
+      "sha256": "4feaad1974378554ecccc1cb5f9e3dcb24b190a7178f1de487543d1b8474575b"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/invocation.json",
+      "bytes": 3510,
+      "sha256": "dd28fc4c0ca65bf0a6f9586e65895c15d8cefaea138041125ef80e5d224ea547"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/runner-result.json",
+      "bytes": 6963,
+      "sha256": "631519e2d7f0927e378a287d2fa7700dab84ba258caeb62b925b540a6c4b551a"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/profile.json",
+      "bytes": 81676,
+      "sha256": "43df7aea4582168c07acd4dfe146702f78b4fdf30da5f1205de82c87c4fab3be"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/preparation-journal.jsonl",
+      "bytes": 363401,
+      "sha256": "7331915dde25bfef9f9e312b9d08eab3c6d97aef54a16c7dc06d5b3ed03ad314"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stdout.log",
+      "bytes": 166,
+      "sha256": "1e13cbc1779a41421febd9a1ff25a9d0ad7fc69941c35c931ff3999c7cd40ab9"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-02/stderr.log",
+      "bytes": 439,
+      "sha256": "336ebd6f7f8434b38d7cd8c5688c7d3286b2488fe5f7951a6b976aaf6affe2a7"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/invocation.json",
+      "bytes": 3510,
+      "sha256": "32c5dcd2fb14764fd296abe6fd8a76c44e0d93b0fabb3a02fa89cd77d52979d8"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/runner-result.json",
+      "bytes": 10875,
+      "sha256": "d4f9a8eb81551492b1c747320b1e2f04abae58bd0c224e5ed6a18540c3be7002"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/profile.json",
+      "bytes": 163179,
+      "sha256": "b9b767750b960c67bd6788d8e9f145154cbd8fbb7ab2a49fb88a5783c864d4e1"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/preparation-journal.jsonl",
+      "bytes": 896466,
+      "sha256": "355dc1ebc80d99e31d7c275ab423ee79d330610528e4282f0e3c25390b013012"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stdout.log",
+      "bytes": 166,
+      "sha256": "1ac4b4bfeb45bff429c611d27d5fe8933100e1facec58003cc65236e7d3aa7f0"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-03/stderr.log",
+      "bytes": 1028,
+      "sha256": "2d3cd134394ad6d1db69f31d138a8966a0816445555641ceca8735c1b6cc4881"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-preparation-active-01-interruption.json",
+      "bytes": 391,
+      "sha256": "f60aafdc89900e4e221758debc1d38b601e756c8e2ec71533d5398886aa3b447"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-late-input-reviewed/manifest.json",
+      "bytes": 3169,
+      "sha256": "3e3f3173027116499265944db933d9d94244842b4d36b5fc4074236a19fb6145"
+    }
+  ],
+  "lineage_file": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/reviewed-lineage.json",
+    "bytes": 19181,
+    "sha256": "0ccbbbc75b563572aa90c14dbc9e5e475a88f69a99c44e44fbb0712f36450e9f"
+  },
+  "compressed_late_input": {
+    "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/s22-late-input-reviewed/manifest.json",
+    "bytes": 3169,
+    "sha256": "3e3f3173027116499265944db933d9d94244842b4d36b5fc4074236a19fb6145"
+  }
+}

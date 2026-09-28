@@ -994,6 +994,25 @@ pub fn have_table(w: &WorldState) -> Have {
 /// before tech and arsenal read it. Rebuilds on an ownership or roster change;
 /// otherwise refreshes the oil column, which moves monthly.
 pub fn tick(w: &mut WorldState) {
+    tick_traced(w, None);
+}
+
+/// Diagnostic observations of the unchanged resource tick. Child durations
+/// overlap their enclosing SYSTEMS timer and are not additional daily work.
+#[doc(hidden)]
+pub fn tick_observed(w: &mut WorldState, observer: &mut dyn FnMut(&'static str, std::time::Duration)) {
+    tick_traced(w, Some(observer));
+}
+
+fn tick_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
+    macro_rules! measured {
+        ($name:expr, $body:expr) => {{
+            let start = observer.as_ref().map(|_| std::time::Instant::now());
+            let value = $body;
+            if let (Some(start), Some(observe)) = (start, observer.as_deref_mut()) { observe($name, start.elapsed()); }
+            value
+        }};
+    }
     if crate::clock::is_daily(w) {
         let today = crate::clock::absolute_day(w);
         if w.resources.last_tick_day == Some(today) { return; }
@@ -1005,15 +1024,15 @@ pub fn tick(w: &mut WorldState) {
     // because the flows it lifts are computed in `have_table` and there is
     // nowhere else for them to enter. They do not interact -- one moves mine
     // projects, the other a stock -- so the order is upstream's, unchanged.
-    advance_mines(w);
-    let infra = infrastructure_stock(w);
+    measured!("advance_mines", advance_mines(w));
+    let infra = measured!("infrastructure_stock", infrastructure_stock(w));
     let stamp = alive_stamp(w);
     let stale = !w.resource_have.built
         || w.resource_have.epoch != w.districts_epoch
         || w.resource_have.alive_stamp != stamp
         || infra;
     if stale {
-        w.resource_have = have_table(w);
+        w.resource_have = measured!("have_table", have_table(w));
     } else {
         for n in w.nations.iter().filter(|n| n.alive) {
             w.resource_have.flow[n.id.index()][OIL] = n.oil_mbd * 1000.0;
@@ -1032,11 +1051,15 @@ pub fn tick(w: &mut WorldState) {
     // after technology in `arsenal::tick`, against the exact recipe that will
     // be consumed there.
     if w.rules.resource_market {
-        post_market_flows(w);
+        if let Some(observe) = observer.as_deref_mut() {
+            let start = std::time::Instant::now();
+            post_market_flows_traced(w, Some(&mut *observe));
+            observe("post_market_flows", start.elapsed());
+        } else { post_market_flows(w); }
     }
-    deliver_contracts(w);
-    expire_offers(w);
-    cool_grievances(w);
+    measured!("deliver_contracts", deliver_contracts(w));
+    measured!("expire_offers", expire_offers(w));
+    measured!("cool_grievances", cool_grievances(w));
 }
 
 const MARKET_PRICE_FLOOR: f64 = 0.4;
@@ -1398,6 +1421,10 @@ fn new_market_state(w: &WorldState) -> MarketState {
 /// an import cannot be re-exported in the same settlement and contracts from
 /// one seller are curtailed pro rata rather than by vector order.
 fn post_market_flows(w: &mut WorldState) {
+    post_market_flows_traced(w, None);
+}
+
+fn post_market_flows_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
     let now = month_abs(w);
     let fraction = crate::clock::month_fraction(w);
     if w.resources.market.as_ref().is_some_and(|m| produced_this_tick(w, m)) {
@@ -1407,7 +1434,11 @@ fn post_market_flows(w: &mut WorldState) {
     let physical = crate::logistics::enabled(w);
     // A purchase is not a warehouse receipt. Only the transport clock can
     // release in-flight goods, once, at a monthly settlement.
+    let freight_start = observer.as_ref().map(|_| std::time::Instant::now());
     begin_raw_freight(w, &mut market);
+    if let (Some(start), Some(observe)) = (freight_start, observer.as_deref_mut()) {
+        observe("post_market_flows.begin_raw_freight", start.elapsed());
+    }
     // A dead federation's warehouse stays inert until a later succession or
     // loot policy explicitly transfers it. Silently deleting physical goods
     // at a normal dissolution would break the ledger's conservation proof.
@@ -1481,6 +1512,9 @@ fn post_market_flows(w: &mut WorldState) {
         (0..obligations.len()).map(|_| None).collect();
     let mut physical_supply_limited = vec![false; obligations.len()];
     if physical {
+        // Only this immutable-topology pass shares nominal route searches.
+        // Dispatch still observes live capacity, congestion and terminal XP.
+        let mut contract_routes = crate::logistics::ContractDispatchRoutes::default();
         let mut start = 0;
         while start < obligations.len() {
             let contract = obligations[start].0;
@@ -1493,7 +1527,7 @@ fn post_market_flows(w: &mut WorldState) {
                 else { ratios.get(&(o.1, o.3)).copied().unwrap_or(0.0) }
             }).fold(1.0_f64, f64::min);
             if w.rules.military_operations {
-                let (capacity_fraction, dispatches) = crate::logistics::dispatch_bundle(w, &legs, stock_fraction, contract);
+                let (capacity_fraction, dispatches) = contract_routes.dispatch(w, &legs, stock_fraction, contract);
                 for (i, dispatched) in (start..end).zip(dispatches) {
                     physical_supply_limited[i] = stock_fraction < 1.0 && stock_fraction <= capacity_fraction;
                     if obligations[i].6.is_none() { physical_dispatches[i] = Some(dispatched); }
@@ -1763,6 +1797,15 @@ pub fn clear_spot_market_with_pool(w: &mut WorldState, pool: &mut crate::logisti
 pub fn clear_spot_market_observed(w: &mut WorldState,
     observer: &mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)) {
     clear_spot_market_traced(w, true, Some(observer), None);
+}
+
+/// Diagnostic observation of the ordinary game-owned persistent-pool path.
+/// Trace callbacks do not change clearing decisions or retained route trees.
+#[doc(hidden)]
+pub fn clear_spot_market_observed_with_pool(w: &mut WorldState,
+    pool: &mut crate::logistics::NominalRoutePool,
+    observer: &mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)) {
+    clear_spot_market_traced(w, true, Some(observer), Some(pool));
 }
 
 fn clear_spot_market_traced(w: &mut WorldState, cache_pure_reads: bool,
@@ -4913,6 +4956,32 @@ pub(crate) fn cancel_contract(w: &mut WorldState, nation: NationId, contract: u3
 /// commitment.rs and theatre.rs feel a contract for free. Free while there
 /// are no contracts, which is every world the suite runs.
 pub fn contract_dependency(w: &WorldState, id: NationId, partner: NationId) -> f64 {
+    #[cfg(test)]
+    if TEST_ORIGINAL_CONTRACT_DEPENDENCY.with(|flag| flag.get()) {
+        return contract_dependency_original(w, id, partner);
+    }
+    // Only a bilateral contract can contribute to from_partner below. Keep
+    // every matched-pair calculation in its original order, but avoid building
+    // HAVE and scanning every commodity for pairs whose numerator stays zero.
+    if !w.resources.contracts.iter().any(|k|
+        (k.to == id && k.from == partner) || (k.from == id && k.to == partner))
+    {
+        #[cfg(test)]
+        if !w.resources.contracts.is_empty() {
+            TEST_UNRELATED_CONTRACT_DEPENDENCY.with(|count| count.set(count.get() + 1));
+        }
+        return 0.0;
+    }
+    contract_dependency_original(w, id, partner)
+}
+
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_CONTRACT_DEPENDENCY: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_UNRELATED_CONTRACT_DEPENDENCY: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
+fn contract_dependency_original(w: &WorldState, id: NationId, partner: NationId) -> f64 {
     if w.resources.contracts.is_empty() {
         return 0.0;
     }
@@ -5608,6 +5677,34 @@ fn purchase_route_open(w: &WorldState, seller: NationId, buyer: NationId) -> boo
     crate::logistics::plan(w, seller, buyer).is_ok()
 }
 
+/// Route availability for one synchronous monthly purchasing wave. Its asks
+/// contain only money/material legs: they can update contracts, offers,
+/// refusals, relations, standing and headlines, but never ownership, living
+/// governments, sanctions, belligerency, access, route policy, facilities or
+/// contractor experience. Those are the path planner's inputs; relation and
+/// available commercial supply are deliberately NOT cached here.
+#[derive(Default)]
+struct PurchaseRoutes {
+    open: BTreeMap<(NationId, NationId), bool>,
+}
+impl PurchaseRoutes {
+    fn is_open(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> bool {
+        #[cfg(test)]
+        if purchase_route_tests::ORIGINAL.with(|flag| flag.get()) {
+            return purchase_route_open(w, seller, buyer);
+        }
+        #[cfg(test)]
+        if self.open.contains_key(&(seller, buyer)) {
+            purchase_route_tests::REUSED.with(|count| count.set(count.get() + 1));
+        }
+        *self.open.entry((seller, buyer)).or_insert_with(|| purchase_route_open(w, seller, buyer))
+    }
+}
+
+#[cfg(test)]
+#[path = "resource_purchase_route_tests.rs"]
+mod purchase_route_tests;
+
 // The eager arm retains the old seller-list construction as a parity oracle.
 fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
     if !(w.rules.resource_gates && w.rules.resource_market) {
@@ -5616,6 +5713,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
     let player = w.player;
     let buyers: Vec<NationId> = w.resources.cover.iter().map(|r| r.nation).collect();
     let mut memo: BTreeMap<NationId, [f64; 12]> = BTreeMap::new();
+    let mut routes = PurchaseRoutes::default();
     for b in buyers {
         if Some(b) == player || !w.nation_opt(b).is_some_and(|n| n.alive) {
             continue;
@@ -5664,7 +5762,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
                 // Failed asks below change only refusal memory/headlines; a
                 // signing or offer ends this search. Route inputs therefore
                 // match the original eager list for every seller reached.
-                if lazy_routes && !purchase_route_open(w, s, b) { continue; }
+                if lazy_routes && !routes.is_open(w, s, b) { continue; }
                 let outcome = ask(w, b, s, c, short, capped, &mut memo);
                 #[cfg(test)]
                 meter::count(&outcome);
@@ -5702,7 +5800,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
             }
         }
     }
-    civilian_recurring_buy_pass_impl(w, player, &mut memo, lazy_routes);
+    civilian_recurring_buy_pass_with_routes(w, player, &mut memo, lazy_routes, &mut routes);
 }
 
 /// At most one additional civilian recurring-material intent per eligible AI
@@ -5718,11 +5816,22 @@ fn civilian_recurring_buy_pass(
     civilian_recurring_buy_pass_impl(w, player, memo, true);
 }
 
+#[cfg(test)]
 fn civilian_recurring_buy_pass_impl(
     w: &mut WorldState,
     player: Option<NationId>,
     memo: &mut BTreeMap<NationId, [f64; 12]>,
     lazy_routes: bool,
+) {
+    civilian_recurring_buy_pass_with_routes(w, player, memo, lazy_routes, &mut PurchaseRoutes::default());
+}
+
+fn civilian_recurring_buy_pass_with_routes(
+    w: &mut WorldState,
+    player: Option<NationId>,
+    memo: &mut BTreeMap<NationId, [f64; 12]>,
+    lazy_routes: bool,
+    routes: &mut PurchaseRoutes,
 ) {
     if !crate::economic_ai::enabled(w) || !w.rules.production_system {
         return;
@@ -5820,7 +5929,7 @@ fn civilian_recurring_buy_pass_impl(
         // only when a reachable producer exists. Preserve that distinction;
         // after finding the first open route, later routes can remain lazy.
         let first_reachable = if lazy_routes {
-            let Some(index) = sellers.iter().position(|seller| purchase_route_open(w, *seller, buyer))
+            let Some(index) = sellers.iter().position(|seller| routes.is_open(w, *seller, buyer))
                 else { continue; };
             index
         } else { 0 };
@@ -5847,7 +5956,7 @@ fn civilian_recurring_buy_pass_impl(
             {
                 continue;
             }
-            if lazy_routes && index != first_reachable && !purchase_route_open(w, seller, buyer) { continue; }
+            if lazy_routes && index != first_reachable && !routes.is_open(w, seller, buyer) { continue; }
             let outcome = ask(
                 w,
                 buyer,
@@ -5973,6 +6082,10 @@ pub fn resource_war_headline(
         sellers
     ))
 }
+
+#[cfg(test)]
+#[path = "resource_dependency_tests.rs"]
+mod dependency_tests;
 
 #[cfg(test)]
 mod tests {
@@ -6248,6 +6361,54 @@ mod tests {
         clear_spot_market_with_pool(&mut disabled, &mut empty_pool);
         assert!(empty_pool.is_empty());
         assert!(crate::save(&disabled) == before);
+    }
+
+    #[test]
+    fn s22_observed_pooled_clearing_keeps_cold_warm_world_and_held_cargo_identical() {
+        let mut base = pending_cargo_clearing_fixture();
+        let (seller, buyer) = (NationId::Austria, NationId::Germany);
+        let kit = crate::arsenal::index_of("trophy").unwrap();
+        let tech = crate::tech::index_of(crate::arsenal::DECK[kit as usize].tech.unwrap()).unwrap();
+        if let Err(index) = base.nation(buyer).tech.known.binary_search(&tech) {
+            base.nation_mut(buyer).tech.known.insert(index, tech);
+        }
+        for nation in &mut base.nations { nation.mil_spend_gdp = 0.0; nation.arsenal.banked = 0.0; }
+        base.nation_mut(buyer).arsenal.preference = Some(crate::arsenal::DECK[kit as usize].id.into());
+        base.nation_mut(buyer).mil_spend_gdp = 0.000001;
+        base.set_relation(buyer, seller, 100.0);
+        for stock in &mut base.resources.market.as_mut().unwrap().stocks { stock.quantity = 0.0; }
+        for commodity in [Commodity::Coal, Commodity::Iron] {
+            set_stockpile_for_test(&mut base, seller, commodity, 1_000.0);
+        }
+        let retained = base.logistics.cargo.clone();
+        assert!(retained.iter().any(|cargo| cargo.hold_reason.is_some()));
+        assert!(retained.iter().any(|cargo| cargo.due_day.is_none()));
+        let mut observed_pool = crate::logistics::NominalRoutePool::default();
+        let mut native_pool = crate::logistics::NominalRoutePool::default();
+        for warm in [false, true] {
+            assert_eq!(!observed_pool.is_empty(), warm);
+            let mut observed = base.clone();
+            let mut native = base.clone();
+            let mut stages = Vec::new();
+            clear_spot_market_observed_with_pool(&mut observed, &mut observed_pool,
+                &mut |stage, commodity, _| stages.push((stage.to_owned(), commodity)));
+            clear_spot_market_with_pool(&mut native, &mut native_pool);
+            assert!(crate::save(&observed) == crate::save(&native), "warm={warm}: exact entire native world");
+            assert_eq!(observed.headlines, native.headlines);
+            assert_eq!(&observed.logistics.cargo[..retained.len()], retained.as_slice());
+            assert!(observed.logistics.cargo.len() > retained.len(), "real new dispatches exercise tracing");
+            assert_eq!(observed_pool.entry_count(), native_pool.entry_count());
+            assert!(!observed_pool.is_empty());
+            for stage in ["opening_and_enrolled_draws", "draws_and_route_context", "prices_and_finance"] {
+                assert_eq!(stages.iter().filter(|(name, commodity)| name == stage && commodity.is_none()).count(), 1);
+            }
+            assert!(stages.iter().any(|(name, _)| name.starts_with("dispatch_counts.")));
+            let settled = crate::save(&observed);
+            clear_spot_market_observed_with_pool(&mut observed, &mut observed_pool,
+                &mut |_, _, _| panic!("already-cleared calls do not fabricate trace stages"));
+            assert!(crate::save(&observed) == settled);
+            assert_eq!(observed_pool.entry_count(), native_pool.entry_count());
+        }
     }
 
     #[test]

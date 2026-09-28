@@ -333,10 +333,13 @@ function shellSource(name){
 }
 function shellFixture(){
   const c=fixture(),app={inert:false};
-  const launch={isConnected:true,getClientRects:()=>[1],closest:()=>null,focus(){c.document.activeElement=this;}},fallback={focus(){c.document.activeElement=this;}};
+  const control=()=>({tagName:'BUTTON',isConnected:true,disabled:false,getClientRects:()=>[1],closest:()=>null,matches:()=>true,focus(){c.document.activeElement=this;}});
+  const launch=control(),fallback=control(),world=control(),find=control();
+  c.document.body={tagName:'BODY',isConnected:true,getClientRects:()=>[1],closest:()=>null,matches:()=>false,focus(){}};
+  c.document.documentElement={tagName:'HTML',isConnected:true,getClientRects:()=>[1],closest:()=>null,matches:()=>false,focus(){}};
   const room={id:'equipmentRoom',hidden:true,scrollTop:0,attributes:{},setAttribute(key,value){this.attributes[key]=value;},focus(){c.document.activeElement=this;},
     set innerHTML(value){c.mount.innerHTML=value;},get innerHTML(){return c.mount.innerHTML;},querySelectorAll:selector=>c.mount.querySelectorAll(selector)};
-  const nodes={'#equipmentRoom':room,'#equipmentRoot':c.mount,'#app':app,'#techBtn':fallback};c.$=selector=>nodes[selector]||null;
+  const nodes={'#equipmentRoom':room,'#equipmentRoot':c.mount,'#app':app,'#techBtn':fallback,'[data-drawer="intelDrawer"]':world,'#worldFindBtn':find};c.$=selector=>nodes[selector]||null;
   c.document.activeElement=launch;c.document.querySelector=selector=>nodes[selector]||c.mount.querySelector(selector);c.mount.parentElement=room;
   c.LOGI={open:false};c.stock={open:false};c.gov={open:false};c.tech={open:false,byId:new Map([['radar',0]]),data:[{id:'radar',domain:'Computing'}]};
   for(const name of ['closeGlobalMenus','closeTechMenu','closeSheet','closeGameDrawers','closeLogistics','closeProduction','closeStock','closeTech','closeDomination','setKeysCard'])c[name]=()=>c.calls.push(name);
@@ -344,7 +347,7 @@ function shellFixture(){
   c.cashFlowNavigate=value=>{c.calls.push(['budget',plain(value)]);return true;};c.openTech=async domain=>{c.calls.push(['tech',domain]);c.tech.open=true;};
   c.setTechView=(...args)=>c.calls.push(['tech-view',...args]);c.techNodeClick=index=>c.calls.push(['tech-node',index]);
   vm.runInContext('const EQUIPMENT_ROOM={lastFocus:null};\n'+['equipmentIsOpen','equipmentScroller','openEquipmentDrawer','closeEquipmentDrawer','equipmentExternalPending','equipmentCommand','equipmentNavigate'].map(shellSource).join('\n'),c);
-  return Object.assign(c,{room,app,launch,fallback});
+  return Object.assign(c,{room,app,launch,fallback,world,find});
 }
 
 test('fullscreen bridge mounts outside the inert game, closes other rooms, and preserves the draft on return',async()=>{
@@ -355,6 +358,34 @@ test('fullscreen bridge mounts outside the inert game, closes other rooms, and p
   c.closeEquipmentDrawer();assert.equal(c.eq.open,false);assert.equal(c.eq.draft.name,'Unsaved local revision');assert.equal(c.room.hidden,true);assert.equal(c.app.inert,false);assert.equal(c.document.activeElement,c.launch);
   c.document.activeElement=c.launch;await c.openEquipment({tab:'library'});await tick();assert.equal(c.eq.draft.name,'Unsaved local revision');assert.equal(c.eq.tab,'library');
   c.launch.isConnected=false;c.closeEquipmentDrawer();assert.equal(c.document.activeElement,c.fallback);
+});
+
+test('touch or disabled equipment launchers restore visible keyboard focus without issuing orders',async()=>{
+  for(const origin of ['body','html','disabled','hidden','aria-hidden','nonfocusable','focus-refused']){
+    const c=shellFixture();loaded(c);c.eq.draft.name='Retain touch draft';
+    if(origin==='body')c.document.activeElement=c.document.body;
+    if(origin==='html')c.document.activeElement=c.document.documentElement;
+    if(origin==='disabled')c.launch.disabled=true;
+    if(origin==='hidden')c.launch.getClientRects=()=>[];
+    if(origin==='aria-hidden')c.launch.closest=()=>({getAttribute:()=> 'true'});
+    if(origin==='nonfocusable')c.launch.matches=()=>false;
+    if(origin==='focus-refused')c.launch.focus=()=>{};
+    await c.openEquipment({tab:'service'});await tick();
+    assert.equal(c.room.hidden,false,origin);const requests=c.requests.length;
+    c.closeEquipmentDrawer();
+    assert.equal(c.document.activeElement,c.fallback,origin);
+    assert.equal(c.room.hidden,true);assert.equal(c.app.inert,false);assert.equal(c.eq.draft.name,'Retain touch draft');
+    assert.equal(c.requests.length,requests,'Closing is local presentation only');
+    assert(!c.requests.some(row=>row[0]==='/api/command'||row[0]==='/api/advance'));
+  }
+});
+
+test('equipment close skips hidden or disabled fallback launchers',async()=>{
+  const c=shellFixture();loaded(c);c.document.activeElement=c.document.body;
+  await c.openEquipment({tab:'service'});await tick();c.fallback.getClientRects=()=>[];
+  c.closeEquipmentDrawer();assert.equal(c.document.activeElement,c.world);
+  c.document.activeElement=c.document.body;await c.openEquipment({tab:'service'});await tick();c.world.disabled=true;
+  c.closeEquipmentDrawer();assert.equal(c.document.activeElement,c.find);
 });
 
 test('shell commands use the existing channel and adopted response while preserving local drafts and policy queues',async()=>{
