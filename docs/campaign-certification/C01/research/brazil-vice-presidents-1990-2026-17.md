@@ -644,3 +644,126 @@ git diff --check
 ```
 
 Results are recorded in the handoff.
+
+## Source review (CLAUDE-C01-SOURCE-17)
+
+Reviewed 27 September 2026 (downloads from 23:42 UTC on 27 September to 00:45 UTC on 28 September) on branch
+`claude/c01-source-17`, the source-review follow-up assigned in `docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-17.md`.
+It concerns this packet's record `br_cn_dcn1_20230102_p20_26` and its five rows in CLAUDE-C01-10's
+`br_cn_dcn1_20230102_p1_8` (CLAUDE-C01-10's own claims, and `br_cn_dcn1_20230102_p18_19`, are reviewed in that
+packet's report), all resting on the Senate's stored DCN nº 1/2023 issue at
+`https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true`.
+
+- **Question.** Codex's premerge identity sample of 27 September 2026 fetched this URL once as 24,950,158 bytes,
+  SHA-256 `d9808101c1b9926db26d4c0aaaaaa39d98d4dabaf0fc55200ebc305521f6a619`, against the recorded 24,950,218 bytes,
+  SHA-256 `d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee` (`changed_response_not_verified`). The
+  fetch time is not in the evidence, which was committed at 21:38 UTC.
+- **Identity: unchanged.** 9 downloads (6 of them origin responses with `Age: 0`, plain and with a cache-busting
+  query; the others edge-cache copies; curl 8.16.0 and Python urllib, no browser User-Agent) all returned 24,950,218
+  bytes with SHA-256 `d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee`: 23:42 (27 Sep; plain URL; Age
+  0, origin); 23:46 (27 Sep; cache-busting query &_cb=1790552787; Age 0, origin); 23:49 (27 Sep; plain URL; Age 422,
+  edge cache); 23:52 (27 Sep; cache-busting query with a Range: bytes=-300 header; Age 0, origin); 23:55 (27 Sep;
+  cache-busting query; Age 0, origin); 00:12 (28 Sep; plain URL, 30 minutes after the first; Age 1822, edge cache);
+  00:15 (28 Sep; cache-busting query, 33 minutes after the first; Age 0, origin); 00:41 (28 Sep; cache-busting query
+  &_cb=1790556092g; Age 0, origin); 00:45 (28 Sep; plain URL, 63 minutes after the first; Age 1965, edge cache). A
+  client that accepts gzip still receives the stored bytes, from the edge cache and from the origin (no
+  `Content-Encoding`), and the origin ignores `Range`. The raw Internet Archive capture
+  <https://web.archive.org/web/20230109012106id_/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=>
+  (memento 9 January 2023, 01:21:06 UTC; fetched with `Accept-Encoding: identity` and served uncompressed, so the
+  identity is the uncompressed body) has the same 24,950,218 bytes and SHA-256; its CDX digest
+  `5XNO3LSPQRA632PUOW7CPJCNFSAD6SEY` is the base-32 SHA-1 of the recorded file. The download=true URL itself has no
+  capture.
+- **Publication identity.** `DCN-1-2023.pdf`, 59 pages, `%PDF-1.4`; Info Producer "pdfTeX; modified using iTextSharp
+  5.3.0 (c) 1T3XT BVBA", Creator "pdfTeX + pdfx.sty with a-2b,mathxmp option", CreationDate `D:20230102105150-03'00'`,
+  ModDate `D:20230102105722-03'00'`; trailer /ID `<F1B0B1E3FCCB08D1E49118BC6481F4B2>` twice; XMP DocumentID
+  `uuid:21C75AEE-FD83-0922-042D-64C0C5F394C5`, InstanceID `uuid:897B27B4-2FEF-4C85-D158-17566F6146CE`, PDF/A-2B; no
+  embedded signature dictionary. Every page prints "ARQUIVO ASSINADO DIGITALMENTE. CÓDIGO DE VERIFICAÇÃO:
+  E08D962B004C6AB2.", the address http://www.senado.gov.br/sigadweb/v.aspx, a QR code and document number
+  00100.000338/2023-38. SHA-1 `eddaedae4f8441ede9f475be27a44d2c803f4898`, MD5 `f889639b0eb685451e896204206524ae`.
+- **Stored file, not rebuilt.** The same bytes were served in January 2023 and on 23-28 September 2026. Only the
+  viewer's page-range form is rebuilt per request: the two surviving copies of pages 1-8 from CLAUDE-C01-10's check
+  and verification (4,301,947 bytes each) differ in 38 bytes, the Aspose.PDF for Java 23.6 CreationDate and ModDate
+  (09:25:06 against 11:00:05 -03:00 on 23 September 2026) and the trailer /ID. No alternative identity is needed; the
+  capture above is an independent pre-cutoff reproduction.
+- **The reviewer's body.** Not reproduced, and not a truncated copy: the first 24,950,158 bytes of the recorded file
+  hash to `6149e0ee49ca18f915ca0598f2a45568ac3bdff3fe2017e04bd933baa2c9761f`. It was not kept, so the differing bytes
+  cannot be identified. This service has returned damaged HTTP 200 bodies before; the CLAUDE-C01-17 verification
+  received 19,397,271 bytes from this URL at 01:34:49 UTC on 25 September 2026 (SHA-256
+  `2bc18af6e3758b2512d2afc3f813f7e2d450497d9ea94bf28192c810ec065977`, not a prefix either) and the recorded identity
+  six minutes later. Origin responses are chunked without a Content-Length, so a reviewer who receives any other byte
+  count should retry or check the capture, which is served with Content-Length 24950218.
+- **Method for the content.** The text layers of all 59 pages were compared line by line (blank lines ignored) with
+  the complete-issue dumps that the CLAUDE-C01-17 researcher (24 September, 22:39 UTC) and check (25 September, 00:01
+  UTC) made from the recorded response (all 2,513 non-empty lines identical), and pages 1-8 with the CLAUDE-C01-10
+  check's dump of the page-range form (identical). The cited pages were rendered with pypdfium2 and are
+  pixel-identical to the renders the CLAUDE-C01-17 researcher and check made from the recorded response (pages 6, 20,
+  23 and 26), to CLAUDE-C01-10's renders of the page-range form (pages 1, 6 and 7) and to the page-range copies of
+  pages 1-8 and 18-19 kept by the CLAUDE-C01-10 verification. Each cited page was then read against its claims; the
+  image pages were read at 2.2x to 5x.
+- **Recorded in the records.** Each source record in `brazil.json` has a compact `source_review` and each extract the
+  full one (downloads, publication identity, capture, page table, gaps); the extract snapshots are re-recorded:
+  `br_cn_dcn1_20230102_p1_8` extract 10,023 bytes (`b03c6ef0…`) → 23,995 bytes (`92d55224…46caf3`);
+  `br_cn_dcn1_20230102_p20_26` extract 5,878 bytes (`b657689a…`) → 19,836 bytes (`08b9dee4…934ec5`). The recorded
+  response identity, URL, access date and page pins are unchanged.
+
+Page by page for this packet's claims (`br_vice_president` rows):
+
+- PDF page 1 (no claim): **agrees**. Masthead 'ANO LXXVIII Nº 1, SEGUNDA-FEIRA, 2 DE JANEIRO DE 2023', 'Edição
+  extraordinária': the issue and publication day of this record.
+- PDF page 3 (no claim): **agrees**. Summary items 1.2.4 to 1.2.6 (the two oaths and the posse for the period 1
+  January 2023 to 4 January 2027) on page 6 and 1.2.7 (the reading of the Termo de Posse by Deputy Luciano Bivar) on
+  page 7, as the locators give them.
+- PDF page 4 (no claim): **agrees**. Summary items 2.1.1 (the diplomas, page 18), 2.1.2 (the Termo de Posse, page 23)
+  and 2.1.3 (the Termos de Compromisso, page 25), as the page-scoped records locate them.
+- PDF page 5 (`br_alckmin_posse_declared_20230101`): **agrees**. 'Inicia-se a sessão às 14 horas e 55 minutos e
+  encerra-se às 16 horas e 4 minutos' (14:55-16:04).
+- PDF page 6 (`br_alckmin_elected_20221030`, `br_alckmin_oath_before_congress_20230101`,
+  `br_alckmin_posse_declared_20230101`): **agrees**. Opening: both 'eleitos em 30 de outubro de 2022 e diplomados pelo
+  Tribunal Superior Eleitoral no dia 12 de dezembro do mesmo ano', the diplomas sent to the Mesa for publication;
+  Lula's oath 'Prometo manter, defender e cumprir a Constituição'; Alckmin invited as 'Vice-Presidente da República
+  eleito' and his oath printed 'Prometo defender e cumprir' without 'manter', as the oath claim's uncertainty records;
+  'declaro empossados ... respectivamente, para o período de 1o de janeiro de 2023 a 4 de janeiro de 2027'.
+- PDF page 7 (`br_alckmin_elected_20221030`, `br_alckmin_termo_read_20230101`): **agrees**. Deputy Luciano Bivar reads
+  the termo headed '... Geraldo José Alckmin Filho' (without 'Rodrigues', as the claim's uncertainty says): 'Às 15h do
+  dia 1o de janeiro de 2023', the joint session in the Chamber's plenary, art. 78, elected 'no dia 30 de outubro de
+  2022', diplomados by the TSE 'no dia 12 de dezembro do mesmo ano', for 1 January 2023 to 4 January 2027. Rodrigo
+  Pacheco then names the signatories one by one (the President, the Vice-President, the presiding officer, the
+  Presidents of the Chamber and of the Supreme Court, the Prosecutor-General and the First Secretary); the claim's
+  'the Mesa' summarises the last five, whom the termo calls 'os membros da Mesa'.
+- PDF page 8 (`br_alckmin_saluted_vice_president_lula_address_20230101`): **agrees**. 'meu querido companheiro
+  Vice-Presidente da República, Geraldo Alckmin', as quoted.
+- PDF page 17 (no claim): **agrees**. Section cover 'Diplomas do Sr. Luiz Inácio Lula da Silva e do Sr. Geraldo José
+  Rodrigues Alckmin Filho' (summary item 2.1.1).
+- PDF page 20 (`br_alckmin_diplomado_tse_20221212`): **agrees except the letter case of one party abbreviation,
+  corrected**. 'expressa nas urnas em 30 de outubro de 2022', 'Coligação Brasil da Esperança, formada por FE Brasil
+  (PT/PCDOB/PV)/SOLIDARIEDADE/ Federação PSOL REDE (PSOL/REDE)/PSB/AGIR/AVANTE/PROS', 'Geraldo José Rodrigues Alckmin
+  Filho, foi eleito Vice-Presidente da República Federativa do Brasil', qualified for investiture before the Congress
+  on 1º de janeiro de 2023, 'Brasília, 12 de dezembro de 2022', signed 'Ministro Alexandre de Moraes, Presidente'; TSE
+  authenticity code fa11f8629e61074499d6e7268a9e665b. The diploma prints 'PCDOB' in capitals where the claim had
+  transcribed 'PCdoB'; the claim text now reads 'PCDOB' in the packet and in the extract. No date, name or role
+  changes.
+- PDF page 21 (no claim): **agrees**. The diploma's blank reverse (security background, the front showing through), as
+  the locator says.
+- PDF page 22 (no claim): **agrees**. Section cover 'Termo de Posse do Sr. Luiz Inácio Lula da Silva e do Sr. Geraldo
+  José Rodrigues Alckmin Filho' (summary item 2.1.2).
+- PDF page 23 (`br_alckmin_signed_termo_de_posse_20230101`): **agrees**. 'Às quinze horas do dia primeiro de janeiro
+  de dois mil e vinte e três', the joint session in the Chamber's plenary, 'artigo setenta e oito da Constituição
+  Federal', elected 'no dia trinta de outubro de dois mil e vinte e dois', diplomados by the TSE 'no dia doze de
+  dezembro do mesmo ano', for 'primeiro de janeiro de dois mil e vinte e três a quatro de janeiro de dois mil e vinte
+  e sete'; signatures present. The signed termo cites 'artigo sessenta e cinco do Regimento Comum' where the reading
+  on page 7 says art. 75; no claim uses that article.
+- PDF page 24 (no claim): **agrees**. Section cover 'Termos de Compromisso do Sr. Luiz Inácio Lula da Silva e do Sr.
+  Geraldo José Rodrigues Alckmin Filho' (summary item 2.1.3).
+- PDF page 26 (`br_alckmin_termo_de_compromisso_20230101`): **agrees**. Heading 'TERMO DE COMPROMISSO, PREVISTO NO
+  ARTIGO 78 DA CONSTITUIÇÃO FEDERAL, PRESTADO EM 1º DE JANEIRO DE 2023, PELO EXCELENTÍSSIMO SENHOR GERALDO JOSÉ
+  RODRIGUES ALCKMIN FILHO, ELEITO PARA O CARGO DE VICE-PRESIDENTE DA REPÚBLICA EM 30 DE OUTUBRO DE 2022 E DIPLOMADO EM
+  12 DE DEZEMBRO DE 2022', the full oath formula and one signature; the claim quotes the heading in lower case.
+
+- **Outcome.** Every claim of this packet on pages 5-8, 20, 23 and 26 agrees with the file, which is the recorded
+  response, except one transcription: the diploma on page 20 prints the federation as "FE Brasil (PT/PCDOB/PV)" in
+  capitals, and `br_alckmin_diplomado_tse_20221212` had "PCdoB". Its text now reads "PCDOB" in `brazil.json` and in
+  the extract (identical in both). No date, holder, role, identity or pinned test changes.
+- **Remaining gaps.** The reviewer's 24,950,158-byte body and its fetch time are unknown. The Senate's verification
+  service (sigadweb/v.aspx) was not queried and the QR codes were not decoded; only the printed code is recorded. The
+  review compares the file with the claims; it does not add sources or decide historical acceptance, which stays with
+  Codex.
