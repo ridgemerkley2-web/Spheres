@@ -1,0 +1,43 @@
+{
+  "format": "spheres-review-evidence-check/v1",
+  "source_revision": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+  "checked_utc": "2026-09-28T19:19:39.491634+00:00",
+  "passed": true,
+  "packets": [
+    {
+      "manifest": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/review-2026-09-28/manifest.json",
+      "status": "accepted_for_integration",
+      "evidence_files_verified_against_working_tree_and_committed_git_blob": 24,
+      "original_external_copies_verified": 21,
+      "manifest_sha256": "1ec9603d8569d7e7140734f10729cfc316c35ff81a5c17bd6d64c2e394de9113"
+    },
+    {
+      "manifest": "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/review-2026-09-28/manifest.json",
+      "status": "held_original_sources_unavailable",
+      "evidence_files_verified_against_working_tree_and_committed_git_blob": 18,
+      "original_external_copies_verified": 0,
+      "manifest_sha256": "46b71aa1f6cf6ef3f0967e39ac2959de257aaf66e0a3b47c69991b0d42fa49ed"
+    },
+    {
+      "manifest": "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/access-resolution-2026-09-28/manifest.json",
+      "status": "accepted_for_integration",
+      "evidence_files_verified_against_working_tree_and_committed_git_blob": 6,
+      "original_external_copies_verified": 0,
+      "manifest_sha256": "a164a34ce90995f2f8669ca9ee9f97655ed0f9642d253bcefdb4e08bc801594c"
+    },
+    {
+      "manifest": "docs/campaign-certification/C01/integrations/CLAUDE-C01-25/review-2026-09-28/manifest.json",
+      "status": "accepted_for_integration",
+      "evidence_files_verified_against_working_tree_and_committed_git_blob": 26,
+      "original_external_copies_verified": 23,
+      "manifest_sha256": "78b2853b20a76a0b097f4937e65da89efefd96b7d0700dd6e68fbe4df0715417"
+    },
+    {
+      "manifest": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/review-2026-09-28/manifest.json",
+      "status": "accepted_for_integration",
+      "evidence_files_verified_against_working_tree_and_committed_git_blob": 27,
+      "original_external_copies_verified": 24,
+      "manifest_sha256": "537b6f6cd0622edb2f7819a0f73dce4ecaf9e4c4e65bb742bee7864b05f4b0e0"
+    }
+  ]
+}

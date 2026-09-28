@@ -1,0 +1,15 @@
+{
+  "format": "spheres-research-integration-check/v1",
+  "checked_revision": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+  "checked_utc": "2026-09-28T19:20:58.597900+00:00",
+  "diff_command": [
+    "git",
+    "diff",
+    "--check",
+    "8d338dd217af0e4c83725f999812eef37e55bbb7",
+    "HEAD"
+  ],
+  "diff_exit_code": 0,
+  "scope": "Evidence-only followups to functional tested revision; no root checkout mutation or gate closure.",
+  "passed": true
+}
