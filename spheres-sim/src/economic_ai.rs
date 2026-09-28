@@ -1877,6 +1877,12 @@ fn mine_for_shortage(
             }
         }
     }
+    // Count only the completed stock-sufficient scan: the earlier active-mine
+    // and uncleared-market exits already skipped this read in the old path.
+    #[cfg(test)]
+    if forecast.is_none() {
+        mine_forecast_tests::DEFERRED.with(|count| count.set(count.get() + 1));
+    }
     MineReview::NoCommand(forecast)
 }
 

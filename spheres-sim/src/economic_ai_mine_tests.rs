@@ -6,6 +6,7 @@ use std::cell::Cell;
 thread_local! {
     pub(super) static ORIGINAL: Cell<bool> = const { Cell::new(false) };
     pub(super) static REUSED: Cell<u64> = const { Cell::new(0) };
+    pub(super) static DEFERRED: Cell<u64> = const { Cell::new(0) };
 }
 
 fn original_reads<T>(work: impl FnOnce() -> T) -> T {
@@ -173,7 +174,15 @@ fn mine_review_preserves_eager_selection_and_exact_public_forecast() {
         let context = RawSupplyContext::new(&w);
         let public = raw_supply_forecast_with_context(&w,ME,&context);
         let expected = original_mine_for_shortage(&w,ME,&context);
+        let deferred_before = DEFERRED.with(Cell::get);
         let actual = mine_for_shortage(&w,ME,&context);
+        if case == 2 {
+            assert_eq!(DEFERRED.with(Cell::get)-deferred_before,1,
+                "sufficient stock skips the old eager forecast");
+        } else if matches!(case,3|4) {
+            assert_eq!(DEFERRED.with(Cell::get),deferred_before,
+                "existing early exits are not new deferred-read savings");
+        }
         assert_eq!(candidate(&actual),expected,"exact district/commodity selection case {case}");
         match actual {
             MineReview::Candidate(_,_) => candidates += 1,
@@ -287,6 +296,7 @@ fn mine_review_matches_actual_checkpoint_for_31_complete_days() {
     assert!(enabled(&actual));
     let mut original=actual.clone();
     let before=REUSED.with(Cell::get);
+    let deferred_before=DEFERRED.with(Cell::get);
     let opening_month=actual.month;
     let mut crossed_month=false;
     // Native full days and no new player orders or budget renewal. This is an
@@ -300,8 +310,9 @@ fn mine_review_matches_actual_checkpoint_for_31_complete_days() {
         crossed_month |= actual.month != opening_month;
     }
     let reused=REUSED.with(Cell::get)-before;
+    let deferred=DEFERRED.with(Cell::get)-deferred_before;
     assert!(crossed_month,"include the monthly review boundary");
-    assert!(reused>0,"actual checkpoint must exercise real no-command forecast reuse");
+    assert!(reused+deferred>0,"actual checkpoint must exercise real forecast reuse or skip the old eager read");
     assert_eq!(std::fs::read_to_string(path).unwrap(),source,"immutable source campaign");
-    eprintln!("31 complete native days match original eager mine reads; {reused} exact no-command forecasts reused.");
+    eprintln!("31 complete native days match original eager mine reads; {reused} exact no-command forecasts reused; {deferred} eager mine forecasts deferred entirely after sufficient-stock scans.");
 }
