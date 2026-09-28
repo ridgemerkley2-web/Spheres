@@ -102,11 +102,11 @@ async function main(){
       await page.route('**/api/advance',handler);await page.locator('#stepBtn').click();await page.locator('#pendingTurn').waitFor({state:'visible'});await idle(page);
       await page.unroute('**/api/advance',handler);if(interceptError)throw interceptError;
       assert(lost);assert.equal(lost.status,200);assert.deepEqual(lost.response.errors||[],[]);assert.equal(lost.payload.days,1);assert.deepEqual(lost.payload.commands,[]);
-      assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(pendingAdvance.payload))),lost.payload);
+      assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify({player_context:S?.player,...pendingAdvance.payload}))),lost.payload);
       const committed=await snapshot('committed-response-lost',test,e);progressed(before.marker,committed.marker,test);e.lost={payload:lost.payload,status:lost.status,date:lost.response.date,actual_native_commit:true,browser_banner:await page.locator('#banner').innerText()};
       mark(test.id+': reload Continue frozen retry');await page.reload({waitUntil:'domcontentloaded'});await page.locator('#continueBtn').waitFor({state:'visible'});
       assert.equal((await get(page,url,'/api/state')).date,committed.state.date);await page.locator('#continueBtn').click();await page.locator('#app').waitFor({state:'visible'});await idle(page);
-      assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(pendingAdvance.payload))),lost.payload);
+      assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify({player_context:S?.player,...pendingAdvance.payload}))),lost.payload);
       const reloaded=await snapshot('browser-reloaded-pending',test,e);assert(reloaded.normalized===committed.normalized,'Browser reload/Continue changed committed campaign');
       for(const width of [1440,390]){await page.setViewportSize({width,height:width===390?844:1000});await page.locator('#retryAdvanceBtn').scrollIntoViewIfNeeded();const name=test.id+'-pending-'+width+'.png';await page.screenshot({path:path.join(out,name)});e.screenshots.push({path:name,sha256:fileHash(path.join(out,name)),width});}
       const replay=page.waitForResponse(r=>isPost(r,'/api/advance'));await page.locator('#retryAdvanceBtn').click();const replayResponse=await replay,replayValue=await replayResponse.json();assert(replayResponse.ok());assert.deepEqual(replayValue.errors||[],[]);assert.deepEqual(replayResponse.request().postDataJSON(),lost.payload);
