@@ -699,7 +699,7 @@ mod tests {
         let old_world = crate::save(&game.world);
         let old_log = game.log.clone();
         for slot in ["default", "France-recovery"] { write(&root, slot, &game).unwrap(); }
-        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
         game.record("Newest save whose primary file is now missing.".into());
         for slot in ["default", "France-recovery"] {
             write(&root, slot, &game).unwrap();
@@ -775,7 +775,7 @@ mod tests {
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let previous = fs::read(&path).unwrap();
-        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
         game.record("Current point with an interior saved_unix: 9 and a quoted \"saved_unix\" label.".into());
         write(&root, "default", &game).unwrap();
         assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous, "Changed state must retain the prior archive bytes exactly");
@@ -804,10 +804,13 @@ mod tests {
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let date = game.world.date_str();
+        // Political capital is a persisted independent stock. Mutating GDP
+        // alone would leave debt_gdp inconsistent with the authoritative debt_bn
+        // and correctly invoke load-time financial repair.
         for change in 0..5 {
             let previous = fs::read(&path).unwrap();
             match change {
-                0 => game.world.nation_mut(crate::NationId::France).gdp += 0.25,
+                0 => game.world.nation_mut(crate::NationId::France).political_capital -= 0.25,
                 1 => game.record("A same-day dispatch containing \"saved_unix\":123.".into()),
                 2 => game.history[0].oil += 0.5,
                 3 => game.history_epoch += 1,
@@ -852,7 +855,7 @@ mod tests {
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let good = fs::read(&path).unwrap();
-        game.world.nation_mut(crate::NationId::France).gdp += 0.25;
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
         write(&root, "default", &game).unwrap();
         for bad in ["{truncated".to_owned(), encode(&game).unwrap().replacen("\"version\":1", "\"version\":999", 1)] {
             assert!(decode(&bad).is_err());
