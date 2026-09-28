@@ -424,6 +424,67 @@ class ProposalPacketTests(unittest.TestCase):
         self.assertFlags('E_COUNT', doc)
 
 
+    def test_packet_cannot_lower_its_own_pilot_count(self):
+        doc = self.doc_copy()
+        doc['proposals'] = doc['proposals'][:1]
+        doc['expected_counts'] = {'France': 1}
+        self.assertFlags('E_COUNT', doc)
+
+    def test_role_specific_gates_cannot_be_replaced_by_vacancy_alone(self):
+        for proposal in self.doc['proposals']:
+            with self.subTest(role=proposal['role']['role_id']):
+                doc = self.doc_copy()
+                self.prop(doc, proposal['draft_id'])['eligibility_window']['gates'] = [
+                    {'kind': 'vacancy', 'text': 'An actual vacancy occurs in play.'}]
+                self.assertFlags('E_ROLE_GATE', doc)
+
+    def test_required_gate_cannot_have_empty_text(self):
+        doc = self.doc_copy()
+        self.prop(doc, 'draft_c04_to_02')['eligibility_window']['gates'][0]['text'] = ' '
+        self.assertFlags('E_ROLE_GATE', doc)
+
+    def test_packet_cannot_weaken_sourced_role_age(self):
+        doc = self.doc_copy()
+        next(r for r in doc['role_catalog'] if r['role_id'] == 'to_peoples_representative')['legal_minimum_age'] = 1
+        self.assertFlags('E_ROLE_CONTRACT', doc)
+
+    def test_packet_cannot_invent_role_to_bypass_pilot_constraints(self):
+        doc = self.doc_copy()
+        role = copy.deepcopy(doc['role_catalog'][0])
+        role['role_id'] = 'invented_eligible_role'
+        doc['role_catalog'].append(role)
+        self.prop(doc, 'draft_c04_fr_01')['role']['role_id'] = role['role_id']
+        self.assertFlags('E_ROLE_CONTRACT', doc)
+
+    def test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver(self):
+        for draft in ('draft_c04_fr_01', 'draft_c04_fr_03'):
+            with self.subTest(draft=draft):
+                doc = self.doc_copy()
+                proposal = self.prop(doc, draft)
+                proposal['eligibility_window']['earliest_from'] = '2026-09-08'
+                proposal['age']['youngest_age_at_window_start'] -= 3
+                self.assertFlags('E_WINDOW', doc, contains='membership')
+
+
+    def test_ps_role_affiliation_cannot_be_changed_to_skip_membership(self):
+        doc = self.doc_copy()
+        role = next(r for r in doc['role_catalog'] if r['role_id'] == 'fr_ps_first_secretary')
+        role['game_party_row'] = 'fr_pcf'
+        proposal = self.prop(doc, 'draft_c04_fr_01')
+        proposal['party_affiliation']['game_party_row'] = 'fr_pcf'
+        proposal['eligibility_window']['earliest_from'] = '2026-09-08'
+        proposal['age']['youngest_age_at_window_start'] -= 3
+        self.assertFlags('E_ROLE_CONTRACT', doc)
+
+    def test_presidential_pilot_affiliation_cannot_skip_ps_constraints(self):
+        doc = self.doc_copy()
+        proposal = self.prop(doc, 'draft_c04_fr_03')
+        proposal['party_affiliation']['game_party_row'] = 'fr_pcf'
+        proposal['eligibility_window']['earliest_from'] = '2026-09-08'
+        proposal['age']['youngest_age_at_window_start'] -= 3
+        self.assertFlags('E_PARTY', doc)
+
+
 class CommandLineTests(unittest.TestCase):
     SCRIPT = HERE / 'check_successor_proposals.py'
 

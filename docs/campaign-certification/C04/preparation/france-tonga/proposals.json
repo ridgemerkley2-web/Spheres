@@ -907,7 +907,7 @@
         "kind": "potential_eligibility_window",
         "earliest_from": "2029-09-08",
         "until_inclusive": "2035-12-31",
-        "derivation": "The PS applies its three-year membership rule to candidacies for national elections (arts. 5.1.5 and 2.6.5); membership cannot begin before 2026-09-08, giving 2029-09-08 unless the National Council grants an exception in play.",
+        "derivation": "Conservative authored PS path: ordinary membership begins no earlier than the fictional period, then three consecutive years accrue. The pilot does not invoke any statutory exception or predict a presidential election.",
         "gates": [
           {
             "kind": "election",
@@ -933,7 +933,7 @@
           },
           {
             "kind": "statutory",
-            "text": "Three consecutive years of fictional membership for a national candidacy, or a National Council exception.",
+            "text": "Three consecutive years of fictional membership accrued after the cutoff. This pilot does not use a seniority waiver; any exception needs separate review of the applicable party decision.",
             "source_refs": [
               "src_fr_ps_statuts_2021#fr_ps_national_candidacy_seniority"
             ]
@@ -965,7 +965,7 @@
         "background_undated": true,
         "background_scope": "private_professional_only",
         "background_before_cutoff": "An invented public-health physician who directed a network of rural health centres and later chaired a non-profit federation of home-care nursing services.",
-        "hypothetical_path_after_cutoff": "In play she may join the Parti socialiste after the fictional window opens and, once the party's seniority rule is met or waived, seek its designation for a presidential election by a vote of members. She would reach the ballot only by gathering the presentations required by law from elected officials, and would hold office only by winning an election reached in play. Nothing here schedules a candidacy, a victory or a transfer of office."
+        "hypothetical_path_after_cutoff": "In play she may join the Parti socialiste after the fictional window opens and, once three consecutive years of fictional membership have accrued, seek its designation for a presidential election by a vote of members. She would reach the ballot only by gathering the presentations required by law from elected officials, and would hold office only by winning an election reached in play. Nothing here schedules a candidacy, a victory or a transfer of office."
       },
       "career_constraints": [
         {
@@ -1550,7 +1550,7 @@
         "background_undated": true,
         "background_scope": "private_professional_only",
         "background_before_cutoff": "An invented public-finance specialist who managed budget-reform programmes for a regional development organisation in the Pacific and later taught public administration at a tertiary institute in Nuku'alofa.",
-        "hypothetical_path_after_cutoff": "In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would leave office with the government that nominated her or on its recommendation."
+        "hypothetical_path_after_cutoff": "In play a Prime Minister could nominate her as one of the few Cabinet Ministers who are not elected representatives; she would take a ministry only after formal appointment by the King on that nomination. She would sit and vote in the Assembly, but not in a vote of no confidence, and would retain office until a constitutionally defined termination. After a general election she would remain a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation; the election date alone does not remove her."
       },
       "career_constraints": [
         {
@@ -1576,6 +1576,12 @@
           "text": "A sentence over two years bars any Government office unless pardoned.",
           "source_refs": [
             "src_to_constitution_2020#to_c23_convict_disability"
+          ]
+        },
+        {
+          "text": "Following a general election, ministers remain as caretakers until appointments are revoked or continued on the incoming Prime Minister's recommendation; a general-election date is not automatic dismissal.",
+          "source_refs": [
+            "src_to_constitution_2020#to_c51_tenure_nonelected"
           ]
         }
       ],

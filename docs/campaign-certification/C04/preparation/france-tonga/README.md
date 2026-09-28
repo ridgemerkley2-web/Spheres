@@ -31,7 +31,7 @@ Every window is a **potential eligibility window**, not a prediction. A draft ca
 
 Each nation covers party leadership, executive eligibility and a collective institution. France has no hereditary office. Tonga's hereditary offices are excluded outright (see below).
 
-The two PS windows open on 8 September 2029, not 2026. A draft cannot have been a party member before the cutoff. The PS requires three consecutive years of membership for its national bodies (art. 2.6.5), which the First Secretary presides over. It applies the same rule to candidacies for national elections (art. 5.1.5).
+The two PS windows conservatively open on 8 September 2029. A draft cannot have been a party member before the cutoff. These authored paths accrue three consecutive years of membership before national-body or candidacy eligibility (arts. 2.6.5 and 5.1.5). The statutes contain exceptions, but this pilot uses none. In particular, the explicit National Council exception for legislative, senatorial and European candidacies is not assumed to waive presidential eligibility. Any exception needs separate source and party-decision review.
 
 ## Rules applied to every draft
 
@@ -92,7 +92,7 @@ Invented Tongan names are also screened against noble titles and royal names. Th
 **Dossiers.**
 - **`draft_c04_to_01` Lesieli Fotu.** An invented science teacher and cooperative coordinator from an outer island of Vava'u. She holds a people's seat only if she wins one in play, standing formally as an individual.
 - **`draft_c04_to_02` Sitani Lolohea.** An invented civil engineer. He must first win a Tongatapu people's seat in play. Only then could he be nominated, seconded and recommended by an Assembly majority for appointment as Prime Minister.
-- **`draft_c04_to_03` Pisila Tukuafu.** An invented public-finance specialist. A Prime Minister in play could nominate her as a non-elected Minister, within the cap of four, for appointment by the King. She would leave office with that government.
+- **`draft_c04_to_03` Pisila Tukuafu.** An invented public-finance specialist. A Prime Minister in play could nominate her as a non-elected Minister, within the cap of four, for appointment by the King. Following a general election she remains a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation (clause 51(3)); an election date alone does not dismiss her.
 - **`draft_c04_to_04` Kalolo Vaikona.** An invented community-radio producer. He could lead the Democratic Party of the Friendly Islands (PTOA) only under its own unpublished rules and only if its leadership falls vacant. Leading it gives him no seat.
 
 ## Unresolved institutional mappings
@@ -170,3 +170,7 @@ The 65 tests mutate the packet to show each check going red:
 - **Consolidated editions.** The Tonga Constitution and Electoral Act are consolidated editions, so later amendments were not checked. Dynamic pages have non-reproducible hashes.
 - **Name screening.** It covers the repository corpus plus lead searches. It cannot rule out private individuals.
 - **Not yet decided.** No runtime identity, grant, seat model, candidate list, portrait, prompt or production-manifest entry exists for any draft. Integration depends on the unresolved mappings above and on Codex review.
+
+## Independent bounded integration review
+
+Codex reviewed this submission on 28 September 2026. The [integration packet](../../integrations/CLAUDE-C04-PREP-01/README.md) retains the original submission identities, baseline results, negative regressions, corrected validation, primary-source response recaptures and source-access limits. The validator now fixes the eight-dossier pilot count and reviewed role/gate constraints outside the editable packet. This remains preparation only; no person, artwork, role or succession command is installed. C04, C06 and S23 remain incomplete.

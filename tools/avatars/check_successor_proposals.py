@@ -55,6 +55,35 @@ CATEGORIES = {'party_leadership', 'executive_eligibility', 'collective_instituti
 GATE_KINDS = {'vacancy', 'election', 'statutory', 'nomination', 'institutional_selection',
               'appointment_by_institution', 'party_process', 'authored_plausibility'}
 TRIGGER_GATES = {'vacancy', 'election'}
+# This is the bounded eight-dossier pilot, not a general editable role schema.
+# Keep reviewed institutional constraints outside the packet they validate.
+EXPECTED_COUNTS = {'France': 4, 'Tonga': 4}
+ROLE_CONTRACTS = {
+    'fr_ps_first_secretary': ('France', 'party_leadership', 15,
+                              {'vacancy', 'party_process', 'statutory', 'authored_plausibility'}),
+    'fr_pcf_national_secretary': ('France', 'party_leadership', None,
+                                 {'vacancy', 'party_process', 'authored_plausibility'}),
+    'fr_president_contender': ('France', 'executive_eligibility', 18,
+                               {'election', 'nomination', 'party_process', 'statutory'}),
+    'fr_national_assembly_deputy': ('France', 'collective_institution', 18,
+                                    {'election', 'party_process'}),
+    'to_peoples_representative': ('Tonga', 'collective_institution', 21,
+                                   {'election', 'statutory'}),
+    'to_prime_minister_via_peoples_seat': ('Tonga', 'executive_eligibility', 21,
+                                           {'election', 'vacancy', 'institutional_selection', 'appointment_by_institution'}),
+    'to_nonelected_cabinet_minister': ('Tonga', 'collective_institution', None,
+                                        {'vacancy', 'nomination', 'appointment_by_institution'}),
+    'to_ptoa_party_leader': ('Tonga', 'party_leadership', None,
+                             {'vacancy', 'party_process'}),
+}
+CATALOG_PARTY_ROWS = {'fr_ps_first_secretary': 'fr_ps', 'fr_pcf_national_secretary': 'fr_pcf'}
+# The generic executive/legislative catalog roles have no party restriction;
+# their reviewed pilot dossiers do. Changing affiliation needs a new review.
+PILOT_PARTY_ROWS = {**CATALOG_PARTY_ROWS, 'fr_president_contender': 'fr_ps',
+                   'fr_national_assembly_deputy': 'fr_fn'}
+# These authored pilot paths deliberately use ordinary accrued membership, not
+# any unreviewed statutory exception. This is not a universal PS eligibility law.
+PS_PILOT_MEMBERSHIP_FROM = dt.date(2029, 9, 8)
 SOURCE_KINDS = {'primary_institutional', 'official_explanatory', 'party_statute',
                 'official_legislative_document', 'institutional_corroboration'}
 ACCESS = {'downloaded', 'blocked', 'unreachable', 'not_found'}
@@ -420,6 +449,11 @@ def validate(doc, sources, repo: Repo):
             err('E_ROLE', p, f'missing or duplicate role id {rid!r}')
             continue
         catalog[rid] = role
+        reviewed = ROLE_CONTRACTS.get(rid)
+        if (reviewed is None
+                or (role.get('nation'), role.get('category'), role.get('legal_minimum_age')) != reviewed[:3]
+                or role.get('game_party_row') != CATALOG_PARTY_ROWS.get(rid)):
+            err('E_ROLE_CONTRACT', p, 'role must retain the reviewed pilot nation, category, party row and sourced minimum age')
         if role.get('category') not in CATEGORIES:
             err('E_ROLE', p, 'unknown role category')
         if role.get('nation') not in NATION_PREFIX:
@@ -564,6 +598,8 @@ def validate(doc, sources, repo: Repo):
                 err('E_ROLE', f'{p}.role.category', 'category differs from the role catalog')
         party = (prop.get('party_affiliation') or {}).get('game_party_row')
         rows = repo.game_rows.get(nation, set())
+        if rid in ROLE_CONTRACTS and party != PILOT_PARTY_ROWS.get(rid):
+            err('E_PARTY', f'{p}.party_affiliation', 'affiliation differs from the reviewed pilot path; changing it requires a new review')
         if role is not None and role.get('game_party_row') is not None and party != role.get('game_party_row'):
             err('E_PARTY', f'{p}.party_affiliation', 'game party row differs from the role catalog')
         if party is not None:
@@ -604,6 +640,10 @@ def validate(doc, sources, repo: Repo):
                 err('E_WINDOW', f'{p}.eligibility_window.until_inclusive', f'{end} is after {UNTIL}')
             if start > end:
                 err('E_WINDOW', f'{p}.eligibility_window', 'window starts after it ends')
+            if (rid in ('fr_ps_first_secretary', 'fr_president_contender')
+                    and start < PS_PILOT_MEMBERSHIP_FROM):
+                err('E_WINDOW', f'{p}.eligibility_window',
+                    'reviewed PS pilot uses three years of post-cutoff membership, without an unreviewed waiver')
         if not window.get('derivation'):
             err('E_WINDOW', f'{p}.eligibility_window.derivation', 'window derivation required')
         # historical-window contamination: every structured date inside the fictional window
@@ -656,8 +696,16 @@ def validate(doc, sources, repo: Repo):
             err('E_INCUMBENT', f'{p}.eligibility_window.gates', 'gates required')
         if not any(g.get('kind') in TRIGGER_GATES for g in gates):
             err('E_INCUMBENT', f'{p}.eligibility_window.gates', 'needs a vacancy or election gate; a date alone never triggers')
+        reviewed = ROLE_CONTRACTS.get(rid)
+        if reviewed:
+            missing = reviewed[3] - {g.get('kind') for g in gates}
+            if missing:
+                err('E_ROLE_GATE', f'{p}.eligibility_window.gates',
+                    f'missing reviewed institutional or career gates: {sorted(missing)}')
         for j, gate in enumerate(gates):
             gp = f'{p}.eligibility_window.gates[{j}]'
+            if not str(gate.get('text', '')).strip():
+                err('E_ROLE_GATE', gp, 'gate text must explain the required event or qualification')
             if gate.get('kind') not in GATE_KINDS:
                 err('E_INCUMBENT', gp, f'unknown or date-based gate kind {gate.get("kind")!r}')
             for _, _, value in walk(gate):
@@ -685,9 +733,8 @@ def validate(doc, sources, repo: Repo):
             err('E_MAPPING', f'{p}.contract_mapping', 'mapping must be uninstalled and unresolved/pending')
         for k, ref in enumerate(prop.get('source_refs', [])):
             check_ref(ref, f'{p}.source_refs[{k}]')
-    expected = doc.get('expected_counts') or {}
-    if counts != expected:
-        err('E_COUNT', '$.proposals', f'counts {counts} differ from expected {expected}')
+    if doc.get('expected_counts') != EXPECTED_COUNTS or counts != EXPECTED_COUNTS:
+        err('E_COUNT', '$.proposals', f'pilot requires {EXPECTED_COUNTS}; actual {counts}, declared {doc.get("expected_counts")}')
     return errors
 
 
