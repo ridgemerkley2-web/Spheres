@@ -41,8 +41,8 @@ world/headline comparisons matched; this is inferred from the assertion order
 and the recorded terminal panic, not a successful test verdict. Those three runs
 remain **failed**. The 2035 deployment oracle passed with 1,120,154 repeated edge
 reads, and both dated industry and arrival oracles passed. Input hashes before
-and after all eight attempts matched. Reuse applicability is under investigation;
-no successful test or speed improvement is inferred from those failed runs.
+and after all eight attempts matched. The follow-up below resolves the workload
+assumption; no successful test or speed improvement is inferred from those failed runs.
 
 Test-only follow-up `5d11dd6dae436eeca105dbaf0d02732cd768b35b` preserves every
 world/headline/source comparison. Deployment requires positive reuse on the
