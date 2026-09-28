@@ -4956,6 +4956,32 @@ pub(crate) fn cancel_contract(w: &mut WorldState, nation: NationId, contract: u3
 /// commitment.rs and theatre.rs feel a contract for free. Free while there
 /// are no contracts, which is every world the suite runs.
 pub fn contract_dependency(w: &WorldState, id: NationId, partner: NationId) -> f64 {
+    #[cfg(test)]
+    if TEST_ORIGINAL_CONTRACT_DEPENDENCY.with(|flag| flag.get()) {
+        return contract_dependency_original(w, id, partner);
+    }
+    // Only a bilateral contract can contribute to from_partner below. Keep
+    // every matched-pair calculation in its original order, but avoid building
+    // HAVE and scanning every commodity for pairs whose numerator stays zero.
+    if !w.resources.contracts.iter().any(|k|
+        (k.to == id && k.from == partner) || (k.from == id && k.to == partner))
+    {
+        #[cfg(test)]
+        if !w.resources.contracts.is_empty() {
+            TEST_UNRELATED_CONTRACT_DEPENDENCY.with(|count| count.set(count.get() + 1));
+        }
+        return 0.0;
+    }
+    contract_dependency_original(w, id, partner)
+}
+
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_CONTRACT_DEPENDENCY: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_UNRELATED_CONTRACT_DEPENDENCY: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
+fn contract_dependency_original(w: &WorldState, id: NationId, partner: NationId) -> f64 {
     if w.resources.contracts.is_empty() {
         return 0.0;
     }
@@ -6016,6 +6042,10 @@ pub fn resource_war_headline(
         sellers
     ))
 }
+
+#[cfg(test)]
+#[path = "resource_dependency_tests.rs"]
+mod dependency_tests;
 
 #[cfg(test)]
 mod tests {
