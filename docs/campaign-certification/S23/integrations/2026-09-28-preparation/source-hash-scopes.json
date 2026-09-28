@@ -1,0 +1,84 @@
+{
+  "format": "spheres-s23-source-hash-scope-clarification/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "verified_utc": "2026-09-28T14:01:36.789086+00:00",
+  "scope": "Additive clarification only. Original source_files bytes/SHA-256 describe raw, mixed-line-ending review-checkout files; their git_blob fields name separate LF Git objects. No original validation, manifest, code, test result or acceptance decision is rewritten. No suite or browser was rerun.",
+  "original_validation": {
+    "path": "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/validation/validation.json",
+    "hash_scope": "raw-immutable-evidence",
+    "bytes": 6317,
+    "sha256": "e133b085013472f052a7c9a6047adf328cbdf4fd1c754844e8cfe77fced73298",
+    "source_commit": "e39dd476c758d049dd3e1cc581f9fdaf68caf88b"
+  },
+  "merged_source_reviewed": "e94e07c5fcc8cf235d2f22f4205a35136c1822a7",
+  "sources": [
+    {
+      "path": "tools/avatars/certified_boundary_matrix.py",
+      "raw_review_checkout": {
+        "hash_scope": "raw-working-tree-bytes-at-recorded-validation",
+        "bytes": 98818,
+        "sha256": "0f40f5cabf11f731797ca01d98ff1fbc518c85bb10cc2c72b1463e6bc1adc82a",
+        "crlf_pairs": 1579,
+        "total_lf_bytes": 1739,
+        "lone_cr_bytes": 0,
+        "source": "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/validation/validation.json#/source_files"
+      },
+      "utf8_lf": {
+        "hash_scope": "utf8-lf",
+        "operation": "Replace each CRLF byte pair with LF; preserve every other byte. No decoding, BOM stripping, Unicode normalization or lone-CR removal.",
+        "bytes": 97239,
+        "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4"
+      },
+      "git_blob": {
+        "object_id": "9a3b8267097d1101b78265b55f56ef2ae20ada65",
+        "hash_scope": "exact-git-blob-bytes",
+        "bytes": 97239,
+        "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4",
+        "source_commit": "e39dd476c758d049dd3e1cc581f9fdaf68caf88b"
+      },
+      "verified_relations": {
+        "raw_identity_matches_original_validation": true,
+        "raw_CRLF_to_LF_equals_git_blob_byte_for_byte": true,
+        "merged_e94e07c5_source_equals_git_blob_byte_for_byte": true
+      }
+    },
+    {
+      "path": "tools/avatars/test_certified_boundary_matrix.py",
+      "raw_review_checkout": {
+        "hash_scope": "raw-working-tree-bytes-at-recorded-validation",
+        "bytes": 49373,
+        "sha256": "abe2a991b77122835177a96d7214b0a1f6d4347f7a71fa932289444032931dc1",
+        "crlf_pairs": 582,
+        "total_lf_bytes": 741,
+        "lone_cr_bytes": 0,
+        "source": "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/validation/validation.json#/source_files"
+      },
+      "utf8_lf": {
+        "hash_scope": "utf8-lf",
+        "operation": "Replace each CRLF byte pair with LF; preserve every other byte. No decoding, BOM stripping, Unicode normalization or lone-CR removal.",
+        "bytes": 48791,
+        "sha256": "2437023d4cde788a1c097e1dd9700ca9d5fb9372bacecb4aa186ce6323b92ab6"
+      },
+      "git_blob": {
+        "object_id": "21baf89315d1ed557dc070e051801a13e0a077ed",
+        "hash_scope": "exact-git-blob-bytes",
+        "bytes": 48791,
+        "sha256": "2437023d4cde788a1c097e1dd9700ca9d5fb9372bacecb4aa186ce6323b92ab6",
+        "source_commit": "e39dd476c758d049dd3e1cc581f9fdaf68caf88b"
+      },
+      "verified_relations": {
+        "raw_identity_matches_original_validation": true,
+        "raw_CRLF_to_LF_equals_git_blob_byte_for_byte": true,
+        "merged_e94e07c5_source_equals_git_blob_byte_for_byte": true
+      }
+    }
+  ],
+  "grouped_repair_review": {
+    "revision": "e94e07c5fcc8cf235d2f22f4205a35136c1822a7",
+    "method": "Read-only source and regression-code inspection; no execution.",
+    "actionable_findings": [],
+    "scope": "Grouped completion requires every explicitly listed extract in the accepted review manifest and byte-verifies each evidence entry. Exact SOURCE groups remain separate from numbered parent packet acceptance and do not create coverage tasks."
+  },
+  "qualification": false,
+  "s23_complete": false
+}
