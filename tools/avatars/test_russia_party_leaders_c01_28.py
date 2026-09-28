@@ -349,8 +349,9 @@ ROLES = {
     'ru_dvr_chairman': ('ru_dvr_party_self_record', 'Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia'),
 }
 SOURCE_TOTAL, CLAIM_TOTAL = 68, 137
-# Rows keeping an earlier printed title on the party role: two retrospective rows, and the 1998 holder row and the 2001
-# continuation row of the association «Объединение ЯБЛОКО», which became a party only on 22 December 2001.
+# Rows keeping an earlier printed title on the party role: four retrospective rows (the KPRF's Central Executive
+# Committee, the LDPSS and two 1998 Yabloko reference rows), and the 1998 holder row and the 2001 continuation row of
+# the association «Объединение ЯБЛОКО», which became a party only on 22 December 2001.
 AS_PRINTED_TITLES = {
     'ru_kprf_retro_zyuganov_elected_cec_chairman_1993':
         'Председатель ЦИК КПРФ — Chairman of the Central Executive Committee of the KPRF (as printed)',
@@ -360,6 +361,9 @@ AS_PRINTED_TITLES = {
         'organisation «Объединение ЯБЛОКО» (as printed)',
     'ru_yabloko_x_congress_association_chairman_report_20011222':
         'Председатель Объединения «ЯБЛОКО» — Chairman of the association «Объединение ЯБЛОКО» (as printed)',
+    'ru_yabloko_reference_yavlinsky_chairman_elected_1995': 'председатель движения — chairman of the movement (as printed)',
+    'ru_yabloko_reference_yavlinsky_chairman_since_january_1995':
+        'Председатель объединения — Chairman of the association (as printed)',
 }
 # A 1996 reference-book passage (Коргунюк and Заславский) that the party site republished as its history: not a party
 # record, so it is cited by no observation; its claims stay on the role as retrospective claims.
@@ -665,7 +669,7 @@ class RussianPartyLeadersTests(unittest.TestCase):
             self.assertEqual('printed_name' in row, row['holder_name'] is not None, cid)
         self.assertEqual({cid for cid, row in self.rows.items() if row['holder_name'] is None}, NAMELESS)
         self.assertTrue(all(EVENTS[c][1] not in HOLDER_KINDS for c in NAMELESS))
-        # Four earlier titles are kept as printed, on these rows only, and stay on the party roles.
+        # Six earlier titles are kept as printed, on these rows only, and stay on the party roles.
         self.assertEqual({cid: row['role_title'] for cid, row in self.rows.items()
                           if row['role_id'] and row['role_title'] != ROLES[row['role_id']][1]}, AS_PRINTED_TITLES)
 

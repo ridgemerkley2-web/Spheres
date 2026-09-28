@@ -387,7 +387,9 @@ Decision: **accepted in part**. Holders 1 and 2, Григорий Алексее
 of the association «Объединение ЯБЛОКО», which became a party only on 22 December 2001: they keep that printed title, marked
 "(as printed)" as for the KPRF's Central Executive Committee and the LDPSS, and stay on the party role. The party calls itself
 the association's legal successor ("правопреемницей которого является РДП «ЯБЛОКО»", release of 4 July 2004), a claim that
-reconciles no identity.
+reconciles no identity. The two 1998 reference rows (`ru_yabloko_reference_yavlinsky_chairman_elected_1995`, "председатель
+движения", and `ru_yabloko_reference_yavlinsky_chairman_since_january_1995`, "Председатель объединения") keep their printed
+titles the same way.
 
 Limits: no contemporaneous 1995 record was found; the 1993 bloc's leadership is not printed; the 1998 re-election is not
 reviewed.
@@ -757,7 +759,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     Russia role and holder is re-expressed exactly. The five party roles of this packet are named, asserted to be the only
     `party_leader` roles and excluded; every other Russia role and holder still hashes to the same pinned value.
 - The new test `test_russia_party_leaders_c01_28.py` pins the five roles, the three new observations, the 24 holders, every
-  claim's date, kind, observation and role, every response identity and capture, the extracts, the four titles kept as printed,
+  claim's date, kind, observation and role, every response identity and capture, the extracts, the six titles kept as printed,
   the one non-primary source (`ru_dvr_history_page_1998`, `party_republished_reference_text`, cited by no observation), the separation from the
   presidency, the Government, the factions and the USSR packet, and 47 mutations.
 - In the atlas, Russia gains three organizations and five party offices with 24 holder observations. No UI code changed;

@@ -99,7 +99,8 @@ Decisions per chain:
   founding and the 2001 transformation are claims; the elections' days are mostly unprinted and never starts. The 1998 holder
   row and the continuation row of 22 December 2001 print the chairman of the association «Объединение ЯБЛОКО» (a party only from
   22 December 2001) and keep that title marked "(as printed)", on the party role; the party calls itself the association's legal
-  successor (правопреемница).
+  successor (правопреемница). The two 1998 reference rows (the movement's and the association's chairman) keep their printed
+  titles the same way.
 - Agrarian Party (RU-PTY-08 and 09 accepted in part): Михаил Иванович Лапшин attested 9 September 2003; Владимир Николаевич
   Плотников 28 May 2004 and 26 September 2008. The 1993-2002 history is retrospective; the election of 28 April 2004, the
   memorandum of 12 September 2008 and the accession decision of 10 October 2008 are claims, not ends.
