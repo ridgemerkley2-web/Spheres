@@ -22,7 +22,8 @@ mod idle_import_tests {
         // Complete simulation ticks from the immutable checkpoint, with no
         // added player orders or annual-budget renewal. This is an equivalence
         // diagnostic, not the separate web qualification workload.
-        assert!(enabled(&actual), "checkpoint must exercise military procurement");
+        assert!(actual.military_ai.enabled && economic_ai::enabled(&actual),
+            "checkpoint must exercise military procurement");
         let initial_imports = actual.companies.imports.contracts.len();
         let initial_hits = crate::TEST_IDLE_IMPORT_SUCCESSES.with(|count| count.get());
         let mut original = actual.clone();
