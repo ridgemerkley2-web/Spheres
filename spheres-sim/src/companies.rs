@@ -676,19 +676,42 @@ pub(crate) fn try_apply_stock_target(
 pub(crate) fn try_apply_idle_capitalization(
     w: &mut WorldState, n: NationId, order: &CompanyOrder,
 ) -> Option<Result<(), String>> {
-    if !matches!(order, CompanyOrder::Capitalize { .. }) || !clock::is_daily(w) {
+    if !matches!(order, CompanyOrder::Capitalize { .. }) || !charge_hooks_idle(w) {
         return None;
     }
+    Some(apply_inner(w, n, order))
+}
+
+/// A reviewed equipment import validates actor, quote, source and route before
+/// charge. When both charge hooks are idle, spend_operating refuses before any
+/// write; after it succeeds, purchase_import has no remaining Result refusal.
+/// Keep its exact native ordering and all stock/escrow ownership mutations.
+/// Ammunition and every non-idle transaction retain the ordinary trial.
+pub(crate) fn try_apply_idle_equipment_import(
+    w: &mut WorldState, n: NationId, order: &CompanyOrder,
+) -> Option<Result<(), String>> {
+    if !matches!(order, CompanyOrder::ImportPurchase { ammunition: false, .. })
+        || !charge_hooks_idle(w)
+    {
+        return None;
+    }
+    Some(apply_inner(w, n, order))
+}
+
+// Exact shared no-op conditions for charge's settle_receivables + begin_day.
+// Do not substitute buyer-only checks: either hook may affect another nation.
+fn charge_hooks_idle(w: &WorldState) -> bool {
+    if !clock::is_daily(w) { return false; }
     let today = clock::absolute_day(w);
     if w.nations.iter().any(|n| n.alive && n.program_budget.as_ref().is_some_and(|p| p.day != Some(today))) {
-        return None;
+        return false;
     }
     if w.companies.imports.contracts.iter().any(|d| {
         (d.settled_day.is_none() && w.nation_opt(d.buyer)
             .and_then(|n| n.program_budget.as_ref()).and_then(|p| p.settled_day) == Some(d.purchased_day))
             || (d.cancelled_day.is_some() && d.settled_day.is_some() && d.refunded_day.is_none())
     }) {
-        return None;
+        return false;
     }
     if w.companies.firms.iter().any(|c| {
         w.nation_opt(c.nation).and_then(|n| n.program_budget.as_ref()).and_then(|p| p.settled_day)
@@ -696,9 +719,9 @@ pub(crate) fn try_apply_idle_capitalization(
     }) {
         // Include every matching row, even malformed receipt kinds or IDs;
         // native settlement may change cash before recognizing its kind.
-        return None;
+        return false;
     }
-    Some(apply_inner(w, n, order))
+    true
 }
 
 /// Read-only refusal uses the same execution path, discarding an accepted trial.

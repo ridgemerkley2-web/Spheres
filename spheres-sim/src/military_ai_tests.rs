@@ -3,6 +3,8 @@ use crate::{init, production, resources, world::GameRules};
 const HOME: NationId = NationId::France;
 const SMALL: NationId = NationId::Malta;
 
+include!("military_import_command_tests.rs");
+
 #[test]
 fn planned_aircraft_families_all_have_native_designs_and_company_support() {
     for id in AIR {

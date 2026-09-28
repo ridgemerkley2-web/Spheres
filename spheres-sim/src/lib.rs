@@ -894,7 +894,19 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     apply_command_impl(w, c, true)
 }
 
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_IMPORT_TRIAL: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_IDLE_IMPORT_SUCCESSES: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
 fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: bool) -> Result<(), String> {
+    // Test-only oracle selects the original full trial for just these orders
+    // during an otherwise identical complete native tick. No release toggle.
+    #[cfg(test)]
+    let retain_company_trial = retain_company_trial && !(matches!(c,
+        Command::Company { order: companies::CompanyOrder::ImportPurchase { ammunition: false, .. }, .. })
+        && TEST_ORIGINAL_IMPORT_TRIAL.with(|flag| flag.get()));
     // Priced before anything happens, so a command that cannot be afforded also
     // cannot take effect — and charged only once the act itself has gone
     // through. A government that asks for something the world refuses it (a
@@ -924,6 +936,23 @@ fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: boo
                 && fiscal_journal::before_policy(w, c).is_none()
             {
                 if let Some(result) = companies::try_apply_idle_capitalization(w, *nation, order) {
+                    return result;
+                }
+            }
+        }
+    }
+    // An equipment import may commit directly only when its global fiscal
+    // hooks are proven idle and no post-payment refusal remains. Quote/stale
+    // checks still execute in their original order. Any standing or policy
+    // journal effect, ammunition import or active hook keeps the full trial.
+    if retain_company_trial {
+        if let Command::Company { nation, order: order @ companies::CompanyOrder::ImportPurchase { ammunition: false, .. } } = c {
+            if command_price(w, c).filter(|(_, price, _)| *price > 0.0).is_none()
+                && fiscal_journal::before_policy(w, c).is_none()
+            {
+                if let Some(result) = companies::try_apply_idle_equipment_import(w, *nation, order) {
+                    #[cfg(test)]
+                    if result.is_ok() { TEST_IDLE_IMPORT_SUCCESSES.with(|count| count.set(count.get() + 1)); }
                     return result;
                 }
             }
