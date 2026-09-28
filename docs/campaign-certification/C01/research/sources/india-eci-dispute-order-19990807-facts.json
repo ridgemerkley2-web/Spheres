@@ -1,0 +1,152 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_dispute_case_1_of_1999_order_19990807",
+  "source_url": "https://electionjudgments.org/api/files/16008740057920ye3h4iaksq.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_third_party_repository_copy_pdf_text_layer_read",
+  "source_response_bytes": 28440,
+  "source_response_sha256": "2fa846930f971347601f0f0719954f2d49bc717ad5d54e68e6349fb92e1cb404",
+  "source_response_checked_in": false,
+  "provenance_note": "A third-party repository copy served by the IFES Election Judgments database (electionjudgments.org, Last-Modified Wed, 23 Sep 2020 15:13:25 GMT); the PDF is static (CreationDate 10 July 2002, ModDate 23 September 2020). This packet downloaded it at 19:28:00Z, 19:59:29Z and 20:32:08Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A third-party repository copy: the order's text as printed in a compilation of the Commission's orders (pages 329-338, with the compiler's headnote, summary and note), in a PDF made with Acrobat Distiller 3.0 (CreationDate 10 July 2002) and uploaded to the IFES Election Judgments database on 23 September 2020 (entity puqmcocuakg). The Commission's own host answered HTTP 406 and no copy of the order on an official host was found. The compiler's summary and note are recorded separately from the order's text.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "method": "All ten PDF pages read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_dispute_1999_janata_dal_recognised_national_party_chakra_19990807",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "recognition_statement",
+      "attested_on": "1999-08-07",
+      "text": "The Commission's order of 7 August 1999 in Dispute Case No. 1 of 1999 begins: 'The Janata Dal ('JD' for short) is a recognised National party with the symbol 'Chakra (Wheel)' reserved for it.'",
+      "locator": {
+        "pdf_page": 3,
+        "section": "ORDER, paragraph 2 (compilation p. 331)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_commission_records_sharad_yadav_president_19990807",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": "in_jd_president",
+      "holder_name": "Sharad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "registration_record_statement",
+      "attested_on": "1999-08-07",
+      "text": "The order states: 'As per the Commission's records, Shri Sharad Yadav is the President of the party.'",
+      "locator": {
+        "pdf_page": 3,
+        "section": "ORDER, paragraph 2 (compilation p. 331)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_deve_gowda_application_as_president_19990722",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": "in_jd_president",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "rival_presidency_claim",
+      "attested_on": "1999-07-22",
+      "text": "'On 22.7.99, Shri Deve Gowda filed an application under paragraph 15 of the Symbols Order seeking a direction that the symbol 'Chakra (Wheel)', reserved for JD may be allotted to the group of the JD represented by him as the President.'",
+      "locator": {
+        "pdf_page": 3,
+        "section": "ORDER, paragraph 3 (compilation p. 331)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_pac_removal_of_sharad_yadav_claimed_19990721",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": "in_jd_president",
+      "holder_name": "Sharad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "removal_claimed",
+      "attested_on": "1999-07-21",
+      "text": "According to the application, the Political Affairs Committee of the JD, 'at its meeting held on 21.7.99', 'decided to remove Shri Yadav from the post of party President'.",
+      "locator": {
+        "pdf_page": 3,
+        "section": "ORDER, paragraph 3 (compilation p. 331)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_pac_elected_deve_gowda_president_claimed",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": "in_jd_president",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "rival_presidency_claim",
+      "attested_on": null,
+      "text": "The application further stated that the Political Affairs Committee, 'under the chairmanship of Vice-President Shri Maulana Obaidullah Khan Azmi, elected Shri Deve Gowda as the party President'.",
+      "locator": {
+        "pdf_page": 3,
+        "section": "ORDER, paragraph 3 (compilation p. 331)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_national_executive_endorsement_claimed_19990729",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": "in_jd_president",
+      "holder_name": "Sharad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "endorsement_claimed",
+      "attested_on": "1999-07-29",
+      "text": "For Shri Sharad Yadav it was stated that 'a meeting of the National Executive Committee was held on 29th July, 1999' which endorsed his decision to work with the Lok Shakti and the Samata Party and 'approved the action of Shri Yadav in suspending Shri Deve Gowda and Shri Jaipal Reddy from the party'.",
+      "locator": {
+        "pdf_page": 5,
+        "section": "ORDER, paragraph 9 (compilation p. 333); also paragraph 6 (PDF page 4)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_ad_hoc_recognition_of_both_groups_19990807",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "interim_split_recognition",
+      "attested_on": "1999-08-07",
+      "text": "The Commission found that 'the party has split vertically and both the groups are more or less evenly poised', granted 'provisional and ad-hoc recognition to both the rival groups as National parties' for the ensuing elections, and directed that 'neither of the said two groups or any other group shall be permitted to use the name of the Janata Dal or its reserved symbol 'Chakra (Wheel)', until further orders of the Commission'.",
+      "locator": {
+        "pdf_page": 8,
+        "section": "ORDER, paragraphs 14, 16 and 18(iii) (compilation pp. 335-337)"
+      }
+    },
+    {
+      "claim_id": "in_eci_dispute_1999_compiler_note_jdu_and_jds_named",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "successor_group_recognition",
+      "attested_on": "1999-08-07",
+      "text": "A note printed with the order in the compilation says that 'By subsequent order dated 07.08.1999, the Election Commission recognised the group led by Sh. Sharad Yadav by the name of Janata Dal (United) and reserved the symbol 'Arrow' for that group', and recognised the group led by Sh. H.D. Deve Gowda under the name of Janata Dal (Secular) with the symbol 'Farmer Driving Tractor'.",
+      "locator": {
+        "pdf_page": 3,
+        "section": "compiler's summary of the case, Note (compilation p. 331)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

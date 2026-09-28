@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19970805_bihar_situation",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/16/50/22/165022357307981641243604604663778916856?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_181_05081997_01_p239-310_1.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read",
+  "source_response_bytes": 449285,
+  "source_response_sha256": "19d3c3f03f9fba7ba4753b7c52889ca9ddeff5f1143b0fbfccda237a3e279192",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body (ETag \"0b23c6eb6f30831080b11b3c27ea42fa\", Last-Modified Wed, 29 Jul 2026 13:17:11 GMT); the query sets only the served content type and file name. This packet downloaded it at 19:29:26Z, 20:00:47Z and 20:33:41Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/134942). Members' speeches; Parliament records are used only where they record the party office. The date is printed in the page headers ('[5 AUGUST 1997]').",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5,
+      24
+    ],
+    "method": "PDF pages 5 (cols 247-248) and 24 (cols 285-286) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_joyanta_roy_laloo_as_president_of_janata_dal_cmp_recalled",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-04",
+      "role_id": "in_jd_president",
+      "holder_name": "Laloo Prasad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "recalled_act_undated",
+      "attested_on": null,
+      "text": "In the Rajya Sabha on 5 August 1997 Shri Joyanta Roy (West Bengal) said that 'as President of the Janata Dal, Shri Laloo Prasad Yadav had taken active part in the formation of the Common Minimum Programme of the United Front Government'.",
+      "locator": {
+        "pdf_page": 24,
+        "columns": "285-286",
+        "section": "speech of Shri Joyanta Roy (West Bengal)"
+      }
+    },
+    {
+      "claim_id": "in_rs_som_pal_president_of_jd_charge_framed_19970805",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-05",
+      "role_id": "in_jd_president",
+      "holder_name": null,
+      "role_title": "President of the Janata Dal",
+      "event_kind": "unnamed_holder_attestation",
+      "attested_on": "1997-08-05",
+      "text": "In the same discussion Shri Som Pal said: 'Now, the President of the JD has been formally charge-framed by the court. Would my friends not demand the JD being out of the United Front Government?'",
+      "locator": {
+        "pdf_page": 5,
+        "columns": "247-248",
+        "section": "intervention of Shri Som Pal"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

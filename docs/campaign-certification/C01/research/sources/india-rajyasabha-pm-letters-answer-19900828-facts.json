@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_written_answers_19900828_usq2406_pm_letters",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/42/78/48/42784802429563657718560632993586827574?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_155_28081990_U2406_p181-183.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 105687,
+  "source_response_sha256": "94845f4a2e27e15432cdb79e9a69dfe532554ef0a584254407725ec0f8840788",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body (ETag \"bca9e5f3e547673c4073f2fde93ef284\", Last-Modified Wed, 29 Jul 2026 14:38:51 GMT); the query sets only the served content type and file name. This packet downloaded it at 19:29:11Z, 20:00:42Z and 20:33:36Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/254970). A Government answer printed in the official report with the copies of two letters it encloses; Parliament records are used only where they record the party office. The date is printed on col. 181 ('[28 AUG. 1990]'; 'To be answered on August 28, 1990').",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both PDF pages (cols 181-184) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_pm_letter_to_bommai_president_janata_dal_19900714",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-02",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-07-14",
+      "text": "The answer encloses a 'Copy of letter from Shri V. P. Singh, the Prime Minister to Shri S. R. Bommai, President, Janata Dal', dated 'New Delhi 14-7-1990', opening 'Dear Shri Bommai' and addressed at its foot to 'Shri S. R. Bommai, President, Janata Dal, New Delhi'; it asks him 'to call a meeting of the National Front Parliamentary Party to elect a new leader'.",
+      "locator": {
+        "pdf_page": 1,
+        "columns": "181-182",
+        "section": "Unstarred Question 2406, enclosed copy of the letter of 14-7-1990 to Shri S. R. Bommai"
+      }
+    },
+    {
+      "claim_id": "in_rs_pm_answer_styles_bommai_president_janata_dal_19900828",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-02",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1990-08-28",
+      "text": "Answering Unstarred Question 2406 on 28 August 1990, the Prime Minister (Shri Viswanath Pratap Singh) said: 'A copy each of two letters dated July 14, 1990 addressed by Shri Vishwanath Pratap Singh to Shri S. R. Bommai, president, Janata Dal and Shri N. T. Rama Rao, Chairman, National Front is enclosed.'",
+      "locator": {
+        "pdf_page": 1,
+        "columns": "181",
+        "section": "answer to Unstarred Question 2406"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

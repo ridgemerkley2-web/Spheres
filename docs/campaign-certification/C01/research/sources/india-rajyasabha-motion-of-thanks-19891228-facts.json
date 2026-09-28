@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19891228_motion_of_thanks",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/11/62/42/116242901201453682080197547375158743230?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_152_28121989_01_p202-356_1.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3544025,
+  "source_response_sha256": "3fdddf91d8e022da393d663f2061e738227ad6fb48a71103d46c8b1bc61644c2",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body (ETag \"009dc8bec6d4dd75a0f53092ca6b1bc4\", Last-Modified Mon, 03 Aug 2026 07:04:22 GMT); the query sets only the served content type and file name. This packet downloaded it at 19:29:03Z, 20:00:37Z and 20:33:28Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 3 August 2026; handle 123456789/258711), located through the Secretariat's data service; the store's second copy was not used. A member's speech in the House; Parliament records are used only where they record the party office. The date is printed in the page headers ('[28 DEC. 1989]'); the sitting is before the period.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      10
+    ],
+    "method": "PDF page 10 (cols 219-220) rendered and read; the same speech names Shri Vishwanath Pratap Singh on that page."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_anand_sharma_vp_singh_president_of_janata_dal_19891228",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-01",
+      "role_id": "in_jd_president",
+      "holder_name": "Vishwanath Pratap Singh",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_before_period",
+      "attested_on": "1989-12-28",
+      "text": "In the Rajya Sabha on 28 December 1989 Shri Anand Sharma, speaking of Shri Vishwanath Pratap Singh, said: 'Today he; is the Prime Minister of the country. He is the President of the Janata Dal. He is the Convenor of the; National Front.' (so printed)",
+      "locator": {
+        "pdf_page": 10,
+        "columns": "219-220",
+        "section": "Motion of Thanks on the President's Address, speech of Shri Anand Sharma"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_on28e_19990809_janata_dal_dispute",
+  "source_url": "https://archive.org/download/in.gazette.central.e.1999-08-09.4826/4826.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, Part II - Section 3 - Sub-section (iii), No. 24, 9 August 1999, file 4826)",
+  "accessed_date": "2026-09-28",
+  "published_date": "1999-08-09",
+  "access_method": "downloaded_internet_archive_stored_gazette_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 107430,
+  "source_response_sha256": "2c2f57244d870630f325d3e3ec287e76209cc4b0f798c495e64b63f234150164",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity (Last-Modified Mon, 06 Aug 2018 13:04:18 GMT, ETag \"5b684752-1a3a6\"); its MD5 (33c94f3f7acbeb4c1552a88640cedb08) equals the item's file listing (in.gazette.central.e.1999-08-09.4826). This packet downloaded it at 19:27:57Z, 19:59:27Z and 20:32:05Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.1999-08-09.4826, a Public.Resource.Org copy of the egazette.nic.in file, public since 6 August 2018, catalogued as Ref. 28(E)); eGazette has no reachable file for this issue. PDF CreationDate 12 March 2013. Claims about the organisation only.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "All three pages rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_on28e_janata_dal_name_and_symbol_under_dispute_19990809",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "recognition_row_under_dispute",
+      "attested_on": "1999-08-09",
+      "text": "O.N. 28(E) of 9 August 1999 amends Table I of notification No. 56/99/Jud.III of 30 July 1999 so that entry 6 (Janata Dal; symbol Chakra (Wheel); 7, Jantar Mantar Road, New Delhi-110001) carries the note 'The name of the party and the symbol under dispute - symbol not to be allotted until further orders.'",
+      "locator": {
+        "pdf_page": 3,
+        "section": "O.N. 28(E), paragraph 1 (entry 6, begun on PDF page 2)"
+      }
+    },
+    {
+      "claim_id": "in_eci_on28e_janata_dal_secular_and_united_rows_19990809",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "successor_group_recognition",
+      "attested_on": "1999-08-09",
+      "text": "The same amendment adds entry 6(A), Janata Dal (Secular), symbol Kisan Driving Tractor, at 5, Safdarjung Lane, New Delhi-110001, and entry 6(B), Janata Dal (United), symbol Arrow, at 7, Jantar Mantar Road, New Delhi-110001.",
+      "locator": {
+        "pdf_page": 3,
+        "section": "O.N. 28(E), paragraph 1, entries 6(A) and 6(B)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

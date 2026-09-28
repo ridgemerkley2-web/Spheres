@@ -1,0 +1,84 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_eci_on8e_19930117_janata_dal_dispute",
+  "source_url": "https://egazette.gov.in/WriteReadData/1993/E-0459-1993-0000-17812.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "1993-01-18",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 104268,
+  "source_response_sha256": "1d0a0b07556664d8c2cdca5cd2024d1374a8b269949f8900c6014fd7d45a7b32",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static egazette.gov.in object (Last-Modified Tue, 12 Mar 2013 05:49:04 GMT, fixed ETag \"048af4de51ece1:0\"; PDF CreationDate 12 March 2013, no per-request /ID or ModDate), so it is not generated per request. Its MD5 (a20942e19059dd30e28e5e0c1f567dfa) equals the stored file of the Internet Archive item in.gazette.central.e.1993-01-18.17812. This packet downloaded it at 19:27:23Z, 19:58:47Z and 20:31:33Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013; PDF CreationDate 12 March 2013, no ModDate). The masthead prints 'PART II-Section 3-Sub-Section (ii)' and the page header 'SEC. 3(iii)'; both are kept as printed. Claims about the organisation only.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both PDF pages rendered and read (page 1 masthead and Hindi text; page 2 Hindi table and English notification)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_janata_dal_symbol_and_name_frozen_order_19930114",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "dispute_name_and_symbol_frozen",
+      "attested_on": "1993-01-14",
+      "text": "O.N. 8(E) records that the Election Commission, 'by its order dated the 14th January, 1993, in the dispute relating to Janata Dal under paragraph 15 of the Election Symbols (Reservation and Allotment) Order, 1968', froze the symbol 'Chakra (Wheel)' reserved for the Janata Dal as a recognised National Party and directed that none of the rival or splinter groups would be entitled to use that symbol or the name of the party 'Janata Dal' until further orders.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "English notification O.N. 8(E), first recital"
+      }
+    },
+    {
+      "claim_id": "in_eci_janata_dal_two_groups_interim_recognition_order_19930114",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "interim_split_recognition",
+      "attested_on": "1993-01-14",
+      "text": "The same order of 14 January 1993 'also directed that the two groups of the Janata Dal headed by S/Shri Ajit Singh and S. R. Bommai respectively shall be recognised as National parties, as a purely ad hoc and interim arrangement and until further orders'.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "English notification O.N. 8(E), second recital"
+      }
+    },
+    {
+      "claim_id": "in_eci_janata_dal_a_and_b_named_further_order_199301",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "interim_split_recognition",
+      "attested_on": null,
+      "text": "By a further order the Commission directed that the group headed by Shri Ajit Singh be recognised under the name 'Janata Dal (A)' with the symbol 'Inkpot and Pen', and the group headed by Shri S. R. Bommai under the name 'Janata Dal (B)' with the symbol 'Cup and Saucer'; the English text dates that order 'the 17th January, 1993' and the Hindi text 16 January 1993.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "English notification O.N. 8(E), third recital (clauses (i)-(iv)); Hindi text on PDF page 1"
+      }
+    },
+    {
+      "claim_id": "in_eci_on8e_table_entry_janata_dal_dispute_pending_19930117",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "recognition_row_under_dispute",
+      "attested_on": "1993-01-17",
+      "text": "O.N. 8(E) of 17 January 1993 substitutes in Table I of notification No. 56/92 of 7 January 1993 the entry '5. Janata Dal Chakra (Wheel) 7, Jantar Mantar Road New Delhi-110001', with the note '(Dispute relating to Janata Dal pending before the Election Commission; symbol 'Chakra (Wheel)' not to be allotted to any candidate, until further orders of the Commission)', and adds entries 5A 'Janata Dal (A)' and 5B 'Janata Dal (B)'.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "English notification O.N. 8(E), paragraph I"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_synopsis_20071115_obituary_bommai",
+  "source_url": "https://cms.rajyasabha.nic.in/UploadedFiles/Synopsis/SynopsisUpload/212/15112007.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": "2007-11-15",
+  "access_method": "official_pdf_download_text_layer_read",
+  "source_response_bytes": 103683,
+  "source_response_sha256": "712056ec84df5a2623fa2b46b4f6c8293139ca83ff2411055e67a25decd3e4c7",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host (cms.rajyasabha.nic.in), a static object with a fixed ETag \"0589fd7ebe4d61:0\" and Last-Modified Thu, 07 Jan 2021 11:54:24 GMT; the PDF's CreationDate is of 15 November 2007, so it is not generated per request. This packet downloaded it at 19:29:01Z, 20:00:35Z and 20:33:26Z on 28 September 2026, the first and last 64 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official Rajya Sabha CMS file (Last-Modified 7 January 2021; PDF CreationDate 15 November 2007). The synopsis states that it 'is not an authoritative record of the proceedings of the Rajya Sabha'; it is used only for a retrospective span.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5
+    ],
+    "method": "PDF page 5 (the obituary reference) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_obituary_bommai_president_all_india_janta_dal_1990_to_1996",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-04",
+      "role_id": "in_jd_president",
+      "holder_name": "S. R. Bommai",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "retrospective_span",
+      "attested_on": null,
+      "text": "The Rajya Sabha's synopsis of 15 November 2007 records the Chairman's obituary reference to Shri S.R. Bommai: 'He was President of the All India Janta Dal from 1990 to 1996.'",
+      "locator": {
+        "pdf_page": 5,
+        "section": "obituary reference to Shri S.R. Bommai"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}

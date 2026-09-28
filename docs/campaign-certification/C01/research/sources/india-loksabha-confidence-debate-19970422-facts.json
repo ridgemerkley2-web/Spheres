@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debate_19970422_confidence_motion",
+  "source_url": "https://web.archive.org/web/20211202091920id_/https://eparlib.nic.in/bitstream/123456789/6598/1/11_IV_22041997_p9_p23_t14.pdf",
+  "original_url": "https://eparlib.nic.in/bitstream/123456789/6598/1/11_IV_22041997_p9_p23_t14.pdf",
+  "archive_capture_utc": "2021-12-02T09:19:20Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 937125,
+  "source_response_sha256": "1cb7dcbb11e90f68af7cf8109ef4459e9483963676f627b22a2a170e97c3f160",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2021-12-02T09:19:20Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the unreachable official file. This packet downloaded it at 20:20:07Z, 20:33:20Z and 20:51:03Z on 28 September 2026, the first and last 30 minutes apart (at least 30 minutes apart), each time with the same byte count and SHA-256, using curl with its default User-Agent and the request header Accept-Encoding: identity; the body was served with no Content-Encoding, so the identity is the uncompressed body. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Parliament Digital Library PDF of the printed debates, recorded as the raw Internet Archive capture of the official eparlib.nic.in bitstream made on 2 December 2021 (archived Last-Modified 25 November 2019; PDF CreationDate 16 February 2015). The eparlib hosts could not be reached. The Internet Archive item eparlib.nic.in.6598 holds a different 15,195,535-byte rendering of the same record (made with ReportLab on 29 January 2024), which is not used. The speech is in Hindi and the report prints the official English translation; the page header prints 'VAISAKHA 2, 1919 (Saka)', the date of 22 April 1997.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      6
+    ],
+    "method": "PDF page 6 (cols 17-18) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ls_sushma_swaraj_your_president_laloo_prasad_yadav_19970422",
+      "observation_id": "in_eci_19980110_np_06",
+      "review_observation": "JD-PRES-04",
+      "role_id": "in_jd_president",
+      "holder_name": "Laloo Prasad Yadav",
+      "role_title": "President of the Janata Dal",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1997-04-22",
+      "text": "In the confidence debate of 22 April 1997 Shrimati Sushma Swaraj (South Delhi) told Prime Minister Gujral, in the official translation, that he had 'to protect the prestige of your president and kingmaker Shri Laloo Prasad Yadav'.",
+      "locator": {
+        "pdf_page": 6,
+        "columns": "17-18",
+        "section": "speech of Shrimati Sushma Swaraj (South Delhi)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office and organisation observations for CLAUDE-C01-33 only: the role in_jd_president (President of the Janata Dal) and the Janata Dal recognition observation in_eci_19980110_np_06. In-office attestations, continuations, working presidencies, rival claims, removals claimed, recollections, retrospective spans, the Election Commission's dispute orders and table entries stay separate rows; holder boundaries are decided in the packet, not by any row. Rows about the organisation carry role_id null and holder_name null. The Prime Minister, the President of India, ministers, chief ministers, parliamentary leaders, state-unit presidents, the Rashtriya Janata Dal, the Janata Dal (Secular), the Janata Dal (United), the Janata Dal (A) and every other office or organisation are excluded as holders."
+}
