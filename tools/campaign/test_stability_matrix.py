@@ -6,6 +6,7 @@ import json
 import shutil
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
 
@@ -556,6 +557,208 @@ class RetainedVerificationTests(unittest.TestCase):
         with patch.object(matrix.subprocess, "Popen") as spawn:
             self.assertEqual(matrix.main(["--verify", "unused", "--binary", "forbidden"]), 2)
             self.assertEqual(matrix.main(["--restore", "unused"]), 2)
+            spawn.assert_not_called()
+
+
+class ConcurrentMatrixTests(unittest.TestCase):
+    def test_jobs_bounds_rejected_before_creating_output_or_launch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            for jobs in (0, 9, -1, True, 1.5, "2"):
+                with self.subTest(jobs=jobs), patch.object(matrix.subprocess, "Popen") as spawn:
+                    with self.assertRaisesRegex(matrix.InvalidEvidence, "Jobs"):
+                        matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", root / "unused", jobs=jobs)
+                    spawn.assert_not_called()
+                    self.assertFalse((root / "unused").exists())
+
+    def test_two_cells_can_finish_out_of_order_but_results_and_verifier_stay_canonical(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            first, second = [cell["id"] for cell in plan()["cells"]]
+            release_first = threading.Event()
+            actual_wait = matrix.concurrent.futures.wait
+            def wait_then_release(*args, **kwargs):
+                result = actual_wait(*args, **kwargs)
+                if result[0]:
+                    release_first.set()  # second worker already journalled its finish
+                return result
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    self.identity = request["id"]
+                    cell = {k: request[k] for k in ("id", "country", "seed", "through")}
+                    native = Path(kwargs["env"]["SPHERES_S25_OUT"])
+                    matrix.write_json_new(native / "result.json", synthetic_native_report(native, cell))
+                    kwargs["stdout"].write(TestSummaryTests.GOOD.encode())
+                    self.returncode = 0
+                def wait(self, timeout=None):
+                    if self.identity == first:
+                        assert release_first.wait(10), "second independent worker did not finish"
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), patch.object(matrix.concurrent.futures, "wait", wait_then_release):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-pilot.json", out, jobs=2)
+            self.assertTrue(result["passed"])
+            self.assertEqual([c["id"] for c in result["cells"]], [first, second])
+            events = [matrix.parse_json(line) for line in (out / "journal.jsonl").read_bytes().splitlines()]
+            self.assertEqual([e["id"] for e in events if e["event"] == "cell_started"], [first, second])
+            self.assertEqual([e["id"] for e in events if e["event"] == "cell_finished"], [second, first])
+            self.assertEqual(matrix.read_json(out / "freeze.json")["jobs"], 2)
+            self.assertTrue(matrix.verify_retained_run(out)["passed"])
+            frozen = matrix.read_json(out / "freeze.json")
+            frozen["jobs"] = 1
+            (out / "freeze.json").write_bytes(matrix.json_bytes(frozen))
+            with self.assertRaisesRegex(matrix.InvalidEvidence, "concurrency mismatch"):
+                matrix.verify_retained_run(out)
+
+    def test_full_plan_attempts_each_declared_cell_once_with_bounded_overlap_and_failures_retained(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            mutex, first_wave = threading.Lock(), threading.Event()
+            active, peak, count = 0, 0, 0
+            ids = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    nonlocal active, peak, count
+                    request = matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])
+                    with mutex:
+                        active += 1
+                        peak = max(peak, active)
+                        count += 1
+                        ids.append(request["id"])
+                        if count == 3:
+                            first_wave.set()
+                    self.returncode = 101  # deliberately failed native attempt, no retry
+                def wait(self, timeout=None):
+                    nonlocal active
+                    assert first_wave.wait(10), "configured workers did not overlap"
+                    with mutex:
+                        active -= 1
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=3)
+            self.assertEqual(peak, 3)
+            self.assertEqual(active, 0)
+            self.assertEqual(len(ids), 24)
+            self.assertEqual(set(ids), {c["id"] for c in plan("full")["cells"]})
+            self.assertEqual(result["coverage"]["attempted"], 24)
+            self.assertEqual(result["coverage"]["passed"], 0)
+            self.assertFalse(result["passed"])
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_observed_binary_drift_stops_new_dispatch_and_retains_already_started_cells(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"original")
+            both_started = threading.Event()
+            calls = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    calls.append(matrix.read_json(kwargs["env"]["SPHERES_S25_REQUEST"])["id"])
+                    if len(calls) == 2:
+                        both_started.set()
+                    self.returncode = 0
+                def wait(self, timeout=None):
+                    assert both_started.wait(10)
+                    binary.write_bytes(b"changed")
+                    return self.returncode
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=2)
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(result["coverage"]["attempted"], 2)
+            self.assertFalse(result["binary_unchanged"])
+            self.assertFalse(result["passed"])
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_interrupt_kills_and_reaps_owned_children_and_does_not_dispatch_remaining_plan(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            binary = root / "binary"
+            binary.write_bytes(b"synthetic only")
+            both_started = threading.Event()
+            children = []
+            class FakeProcess:
+                def __init__(self, args, **kwargs):
+                    self.ended = threading.Event()
+                    self.returncode = None
+                    self.killed = self.reaped = False
+                    children.append(self)
+                    if len(children) == 2:
+                        both_started.set()
+                def wait(self, timeout=None):
+                    assert self.ended.wait(10), "owned child was not stopped"
+                    self.reaped = True
+                    return self.returncode
+                def kill(self):
+                    self.killed = True
+                    self.returncode = -9
+                    self.ended.set()
+            def interrupt_once(*args, **kwargs):
+                assert both_started.wait(10)
+                raise KeyboardInterrupt()
+            out = root / "run"
+            with patch.object(matrix.subprocess, "Popen", FakeProcess), patch.object(matrix.concurrent.futures, "wait", interrupt_once):
+                result = matrix.run_matrix(binary, REV, HERE / "stability-full.json", out, jobs=2)
+            self.assertEqual(len(children), 2)
+            self.assertTrue(all(child.killed and child.reaped for child in children))
+            self.assertTrue(result["interrupted"])
+            self.assertFalse(result["passed"])
+            self.assertEqual(result["coverage"]["attempted"], 2)
+            self.assertTrue(matrix.verify_retained_run(out)["integrity_verified"])
+
+    def test_journal_rejects_oversubscription_duplicate_missing_and_premature_finishes(self):
+        cells = [{"id": "a"}, {"id": "b"}, {"id": "c"}]
+        def rows(sequence):
+            return [{"event": "cell_" + kind, "id": identity} for kind, identity in sequence]
+        good = rows([("started", "a"), ("started", "b"), ("finished", "b"),
+                     ("started", "c"), ("finished", "a"), ("finished", "c")])
+        matrix.validate_attempt_journal(good, cells, 2)
+        bad = [good[:-1], good + [good[-1]], [good[2]] + good, good + [good[0]],
+               rows([("started", "a"), ("started", "b"), ("started", "c"),
+                     ("finished", "a"), ("finished", "b"), ("finished", "c")]),
+               [{"event": "binary_changed_matrix_halted"}] + good]
+        for events in bad:
+            with self.subTest(events=events), self.assertRaises(matrix.InvalidEvidence):
+                matrix.validate_attempt_journal(events, cells, 2)
+        with self.assertRaises(matrix.InvalidEvidence):
+            matrix.validate_attempt_journal(good, cells, 1)
+
+    def test_legacy_serial_bundle_keeps_old_order_requirement_without_jobs_fields(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = make_retained_fixture(Path(tmp))
+            for name in ("freeze.json", "result.json"):
+                obj = matrix.read_json(out / name)
+                obj.pop("jobs")
+                (out / name).write_bytes(matrix.json_bytes(obj))
+            events = [matrix.parse_json(line) for line in (out / "journal.jsonl").read_bytes().splitlines()]
+            events[0].pop("jobs")
+            (out / "journal.jsonl").write_bytes(b"".join(matrix.json_bytes(e).replace(b"\n", b" ") + b"\n" for e in events))
+            self.assertTrue(matrix.verify_retained_run(out)["passed"])
+            finishes = [i for i, event in enumerate(events) if event["event"] == "cell_finished"]
+            events[finishes[0]], events[finishes[1]] = events[finishes[1]], events[finishes[0]]
+            (out / "journal.jsonl").write_bytes(b"".join(matrix.json_bytes(e).replace(b"\n", b" ") + b"\n" for e in events))
+            with self.assertRaises(matrix.InvalidEvidence):
+                matrix.verify_retained_run(out)
+
+    def test_cli_execution_defaults_to_one_job_and_preserves_explicit_jobs(self):
+        arguments = ["--binary", "native.exe", "--revision", REV, "--plan", "plan.json", "--out", "new-output"]
+        for extra, expected in (([], 1), (["--jobs", "3"], 3)):
+            with self.subTest(jobs=expected), patch.object(matrix, "run_matrix", return_value={"passed": True, "coverage": {}}) as run:
+                self.assertEqual(matrix.main(arguments + extra), 0)
+                run.assert_called_once_with(Path("native.exe"), REV, Path("plan.json"), Path("new-output"), None, expected)
+
+    def test_cli_verification_refuses_jobs_before_native_execution(self):
+        with patch.object(matrix.subprocess, "Popen") as spawn:
+            self.assertEqual(matrix.main(["--verify", "unused", "--jobs", "2"]), 2)
             spawn.assert_not_called()
 
 

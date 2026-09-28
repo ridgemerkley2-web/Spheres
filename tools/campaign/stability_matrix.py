@@ -6,6 +6,10 @@ Example (actual native execution, potentially many hours for the full matrix):
     --out <new-directory>
 
 Every attempt gets a new directory. The pilot cannot satisfy the full matrix.
+--jobs 1..8 bounds independent native cells (default 1); it never changes the
+plan, seeds, horizons or per-cell checks. Dispatches follow plan order, each cell
+is attempted once, and concurrent completion order is retained in the journal.
+The chosen parallelism is frozen before launch; this is not a latency benchmark.
 Even a complete full matrix leaves the controlled USSR-to-Russia case and other
 campaign certification gates outstanding. Synthetic unit tests are runner tests,
 not native campaign evidence. All verdicts retain qualification=false.
@@ -28,6 +32,7 @@ is claimed only after the new directory passes the same verifier.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import datetime as dt
 import gzip
 import hashlib
@@ -37,9 +42,11 @@ import os
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import time
+import threading
 
 TEST_NAME = "s25_stability_tests::s25_stability_cell"
 COUNTRIES = ("France", "Japan", "India", "Brazil", "SouthAfrica", "Tonga", "SaudiArabia", "USSR")
@@ -591,10 +598,18 @@ def verify_retained_run(root):
     require(events[-1].get("coverage") == summary and events[-1].get("passed") == proof["passed"], "Journal final outcome mismatch")
     started = [e for e in events if e.get("event") == "cell_started"]
     finished = [e for e in events if e.get("event") == "cell_finished"]
-    require([e.get("id") for e in started] == [c["id"] for c in cells] == [e.get("id") for e in finished], "Missing/duplicate native attempt journal rows")
+    jobs = freeze.get("jobs", 1)
+    require(integer(jobs, 1) and jobs <= 8, "Invalid frozen concurrency")
+    if "jobs" in freeze:
+        require(proof.get("jobs") == jobs and events[0].get("jobs") == jobs, "Frozen concurrency mismatch")
+    else:
+        require("jobs" not in proof and "jobs" not in events[0], "Legacy run cannot acquire new concurrency")
+    validate_attempt_journal(events, cells, jobs)
+    finishes = {event["id"]: event for event in finished}
     expected_files = {"freeze.json", "result.json", "plan.json", "stability_matrix.py", "journal.jsonl"}
     verified_cells, archives = [], []
-    for cell, outcome, begin, finish in zip(plan["cells"], cells, started, finished):
+    for cell, outcome, begin in zip(plan["cells"], cells, started):
+        finish = finishes[cell["id"]]
         prefix = "cells/" + cell["id"]
         cell_root = root / prefix
         native_root = cell_root / "native"
@@ -720,9 +735,36 @@ def restore_retained_run(source, destination):
     return receipt
 
 
-def run_matrix(binary, revision, plan_path, out, timeout=None):
+def validate_attempt_journal(events, cells, jobs):
+    """Old serial runs remain serial; newer concurrent runs keep exact attempts."""
+    ids = [cell["id"] for cell in cells]
+    starts, finishes, active = [], [], set()
+    halted = False
+    for event in events:
+        kind = event.get("event")
+        if kind in ("binary_changed_matrix_halted", "matrix_interrupted"):
+            halted = True
+        elif kind == "cell_started":
+            identity = event.get("id")
+            require(not halted, "Cell dispatched after matrix halt")
+            require(identity in ids and identity not in starts, "Unknown/duplicate native start")
+            require(len(active) < jobs, "Journal exceeds frozen concurrency")
+            starts.append(identity)
+            active.add(identity)
+        elif kind == "cell_finished":
+            identity = event.get("id")
+            require(identity in active and identity not in finishes, "Native finish lacks unique preceding start")
+            finishes.append(identity)
+            active.remove(identity)
+    require(not active and starts == ids and len(finishes) == len(ids), "Missing/duplicate native attempt journal rows")
+    if jobs == 1:
+        require(finishes == ids, "Serial native completions were reordered")
+
+
+def run_matrix(binary, revision, plan_path, out, timeout=None, jobs=1):
     require(type(revision) is str and REVISION_RE.fullmatch(revision), "Revision must be the exact lowercase 40-character commit")
-    require(timeout is None or (type(timeout) in (int, float) and timeout > 0), "Timeout must be positive")
+    require(timeout is None or (type(timeout) in (int, float) and math.isfinite(timeout) and timeout > 0), "Timeout must be positive and finite")
+    require(integer(jobs, 1) and jobs <= 8, "Jobs must be an integer in 1..8")
     binary = Path(binary).resolve(strict=True)
     require(binary.is_file(), "Native test binary is not a file")
     plan_path = Path(plan_path).resolve(strict=True)
@@ -738,54 +780,91 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
               "candidate_revision": revision, "expected_compiled_revision": revision[:12],
               "binary": initial_pin, "plan": file_pin(plan_path), "frozen_plan": file_pin(out / "plan.json"),
               "harness": file_pin(harness), "frozen_harness": file_pin(out / "stability_matrix.py"),
-              "native_test": TEST_NAME, "scope": plan["scope"],
+              "native_test": TEST_NAME, "scope": plan["scope"], "jobs": jobs,
               "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
               "qualification": False, "s25_complete": False}
     write_json_new(out / "freeze.json", freeze)
-    outcomes, interrupted = [], False
+    outcomes = {}
+    interrupted, stopped, drifted = threading.Event(), threading.Event(), threading.Event()
+    journal_lock, launch_lock = threading.Lock(), threading.RLock()
+    children = {}
+
+    def binary_pin():
+        # A removed/replaced executable is evidence of drift, not a reason to
+        # lose already-running cells' failure logs or skip their cleanup.
+        try:
+            return file_pin(binary)
+        except OSError:
+            return None
+
     with (out / "journal.jsonl").open("xb") as events:
         def journal(value):
-            events.write(json.dumps({"utc": utc_now(), **value}, ensure_ascii=False, allow_nan=False).encode() + b"\n")
-            events.flush()
-            os.fsync(events.fileno())
-        journal({"event": "matrix_started", "revision": revision, "scope": plan["scope"]})
-        for cell in plan["cells"]:
-            if file_pin(binary) != initial_pin:
-                journal({"event": "binary_changed_matrix_halted"})
-                break
+            with journal_lock:
+                events.write(json.dumps({"utc": utc_now(), **value}, ensure_ascii=False, allow_nan=False).encode() + b"\n")
+                events.flush()
+                os.fsync(events.fileno())
+
+        def check_binary():
+            if binary_pin() != initial_pin:
+                if not drifted.is_set():
+                    drifted.set()
+                    journal({"event": "binary_changed_matrix_halted"})
+                stopped.set()
+            return not stopped.is_set()
+
+        def halt_children():
+            # Only processes created by this run are killed. The lock closes
+            # the race with a worker registering a just-created process.
+            with launch_lock:
+                stopped.set()
+                owned = list(children.values())
+            for process in owned:
+                try:
+                    process.kill()
+                except ProcessLookupError:
+                    pass
+
+        def prepare(cell):
             cell_root = out / "cells" / cell["id"]
             cell_root.mkdir(parents=True, exist_ok=False)
             native_root = cell_root / "native"
-            request = {"format": "spheres-stability-cell/v1", **cell, "revision": revision}
             request_path = cell_root / "request.json"
-            write_json_new(request_path, request)
+            write_json_new(request_path, {"format": "spheres-stability-cell/v1", **cell, "revision": revision})
             request_pin = file_pin(request_path)
+            # The coordinator writes starts in declared order, before submitting
+            # a bounded worker. A halted prepared attempt remains a failed cell.
+            journal({"event": "cell_started", "id": cell["id"], "request": request_pin})
+            return cell_root, native_root, request_path, request_pin
+
+        def run_cell(cell, prepared):
+            cell_root, native_root, request_path, request_pin = prepared
             args = [str(binary), "--exact", TEST_NAME, "--ignored", "--nocapture", "--test-threads=1"]
             supplied_env = {"SPHERES_S25_REQUEST": str(request_path), "SPHERES_S25_OUT": str(native_root)}
-            env = os.environ.copy()
-            # Do not inherit other cells' simulator test fixture switches.
-            for key in list(env):
-                if key.startswith("SPHERES_S25_"):
-                    del env[key]
+            env = {key: value for key, value in os.environ.items() if not key.startswith("SPHERES_S25_")}
             env.update(supplied_env)
             execution = {"args": args, "environment": supplied_env, "cwd": str(cell_root),
-                         "started_utc": utc_now(), "binary_before": file_pin(binary)}
-            journal({"event": "cell_started", "id": cell["id"], "request": file_pin(request_path)})
+                         "started_utc": utc_now(), "binary_before": binary_pin()}
             started = time.monotonic()
             outcome = {"id": cell["id"], "passed": False, "failure": None, "archives": []}
             process = None
             try:
                 with (cell_root / "stdout.log").open("xb") as stdout, (cell_root / "stderr.log").open("xb") as stderr:
-                    process = subprocess.Popen(args, cwd=cell_root, env=env, stdout=stdout, stderr=stderr,
-                                               creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                    with launch_lock:
+                        require(check_binary(), "Matrix halted before native launch")
+                        process = subprocess.Popen(args, cwd=cell_root, env=env, stdout=stdout, stderr=stderr,
+                                                   creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                        children[cell["id"]] = process
                     try:
                         code = process.wait(timeout=timeout)
                     except (subprocess.TimeoutExpired, KeyboardInterrupt):
                         process.kill()
                         process.wait()
                         raise
+                    finally:
+                        with launch_lock:
+                            children.pop(cell["id"], None)
                 execution["exit_code"] = code
-                require(file_pin(binary) == initial_pin, "Native binary changed during cell")
+                require(binary_pin() == initial_pin, "Native binary changed during cell")
                 require(file_pin(request_path) == request_pin, "Native request changed during cell")
                 require(code == 0, f"Native cell exit code {code}")
                 outcome["test_execution"] = validate_test_log(cell_root / "stdout.log")
@@ -796,7 +875,8 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                 require(result.get("passed") is True, "Native result records failure")
                 outcome["passed"] = True
             except KeyboardInterrupt:
-                interrupted = True
+                interrupted.set()
+                halt_children()
                 outcome["failure"] = "Interrupted by operator; remaining cells were not attempted."
             except Exception as error:
                 outcome["failure"] = f"{type(error).__name__}: {str(error)[:2000]}"
@@ -805,9 +885,11 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                 execution["elapsed_seconds"] = time.monotonic() - started
                 if process is not None:
                     execution.setdefault("exit_code", process.returncode)
-                execution["binary_after"] = file_pin(binary)
-                # Preserve failure reports, too. Never infer success from a
-                # partial report; all original report bytes remain on disk.
+                execution["binary_after"] = binary_pin()
+                with launch_lock:
+                    check_binary()
+                # Archive only this cell's owned files after its native process
+                # is reaped. Other live cells have separate roots and RNG state.
                 if native_root.is_dir():
                     try:
                         names = discover_campaign_archives(native_root)
@@ -817,21 +899,72 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                         outcome["archive_failure"] = f"{type(error).__name__}: {str(error)[:2000]}"
                 write_json_new(cell_root / "execution.json", execution)
                 write_json_new(cell_root / "archive-manifest.json", {"format": "spheres-stability-archives/v1", "archives": outcome["archives"]})
-                outcome["files"] = [{"relative": str(p.relative_to(cell_root)).replace("\\", "/"), **file_pin(p)}
+                outcome["files"] = [{"relative": p.relative_to(cell_root).as_posix(), **file_pin(p)}
                                     for p in sorted(cell_root.rglob("*")) if p.is_file()]
                 write_json_new(cell_root / "verdict.json", outcome)
-                outcomes.append(outcome)
                 journal({"event": "cell_finished", "id": cell["id"], "passed": outcome["passed"],
                          "failure": outcome["failure"], "exit_code": execution.get("exit_code")})
-            if interrupted or file_pin(binary) != initial_pin:
-                break
-        summary = coverage(plan, outcomes)
-        final_pin = file_pin(binary)
+            return outcome
+
+        journal({"event": "matrix_started", "revision": revision, "scope": plan["scope"], "jobs": jobs})
+        previous_sigint = None
+        pool, pending = None, {}
+        try:
+            if jobs == 1:
+                # Preserve the existing serial execution/interrupt semantics.
+                for cell in plan["cells"]:
+                    with launch_lock:
+                        if not check_binary():
+                            break
+                        prepared = prepare(cell)
+                    outcome = run_cell(cell, prepared)
+                    outcomes[cell["id"]] = outcome
+                    if interrupted.is_set():
+                        break
+            else:
+                pool = concurrent.futures.ThreadPoolExecutor(max_workers=jobs)
+                next_cell = 0
+                while pending or (next_cell < len(plan["cells"]) and not stopped.is_set()):
+                    while len(pending) < jobs and next_cell < len(plan["cells"]):
+                        with launch_lock:
+                            if not check_binary():
+                                break
+                            cell = plan["cells"][next_cell]
+                            prepared = prepare(cell)
+                            future = pool.submit(run_cell, cell, prepared)
+                            pending[future] = cell["id"]
+                            next_cell += 1
+                    if pending:
+                        done, _ = concurrent.futures.wait(pending, timeout=0.2, return_when=concurrent.futures.FIRST_COMPLETED)
+                        for future in done:
+                            outcomes[pending.pop(future)] = future.result()
+        except KeyboardInterrupt:
+            interrupted.set()
+            stopped.set()
+            # Repeated Ctrl-C must not strand owned native children while the
+            # first interrupt is retaining their reports and closing the journal.
+            if threading.current_thread() is threading.main_thread():
+                previous_sigint = signal.signal(signal.SIGINT, signal.SIG_IGN)
+            journal({"event": "matrix_interrupted"})
+            halt_children()
+        finally:
+            if pool is not None:
+                if sys.exc_info()[0] is not None or interrupted.is_set():
+                    halt_children()
+                pool.shutdown(wait=True)
+                for future, identity in pending.items():
+                    outcomes[identity] = future.result()
+            if previous_sigint is not None:
+                signal.signal(signal.SIGINT, previous_sigint)
+        ordered = [outcomes[cell["id"]] for cell in plan["cells"] if cell["id"] in outcomes]
+        summary = coverage(plan, ordered)
+        final_pin = binary_pin()
+        unchanged = not drifted.is_set() and final_pin == initial_pin
         proof = {"format": "spheres-stability-matrix-result/v1", "finished_utc": utc_now(),
-                 "revision": revision, "plan_id": plan["id"], "scope": plan["scope"],
-                 "binary_unchanged": final_pin == initial_pin, "interrupted": interrupted,
-                 "coverage": summary, "cells": outcomes,
-                 "passed": summary["requested_plan_passed"] and final_pin == initial_pin and not interrupted,
+                 "revision": revision, "plan_id": plan["id"], "scope": plan["scope"], "jobs": jobs,
+                 "binary_unchanged": unchanged, "interrupted": interrupted.is_set(),
+                 "coverage": summary, "cells": ordered,
+                 "passed": summary["requested_plan_passed"] and unchanged and not interrupted.is_set(),
                  "qualification": False, "s25_complete": False}
         journal({"event": "matrix_finished", "passed": proof["passed"], "coverage": summary})
     write_json_new(out / "result.json", proof)
@@ -859,12 +992,13 @@ def main(argv=None):
     parser.add_argument("--plan", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--timeout-seconds", type=float)
+    parser.add_argument("--jobs", type=int, help="Concurrent independent cells, 1..8; default 1")
     parser.add_argument("--verify", type=Path, help="Read-only verification of retained raw/compressed evidence; never runs native code")
     parser.add_argument("--restore", type=Path, help="With --verify: restore all original archive bytes into a NEW directory")
     args = parser.parse_args(argv)
     try:
         if args.verify is not None:
-            require(all(value is None for value in (args.binary, args.revision, args.plan, args.out, args.timeout_seconds)), "Verification cannot be combined with native execution arguments")
+            require(all(value is None for value in (args.binary, args.revision, args.plan, args.out, args.timeout_seconds, args.jobs)), "Verification cannot be combined with native execution arguments")
             proof = verify_retained_run(args.verify)
             if args.restore is not None:
                 proof["restoration"] = restore_retained_run(args.verify, args.restore)
@@ -872,7 +1006,7 @@ def main(argv=None):
             return 0 if proof["passed"] else 1
         require(args.restore is None, "--restore requires --verify")
         require(all(value is not None for value in (args.binary, args.revision, args.plan, args.out)), "Execution requires --binary, --revision, --plan and --out")
-        proof = run_matrix(args.binary, args.revision, args.plan, args.out, args.timeout_seconds)
+        proof = run_matrix(args.binary, args.revision, args.plan, args.out, args.timeout_seconds, args.jobs if args.jobs is not None else 1)
     except Exception as error:
         print(f"Stability runner refused: {type(error).__name__}: {error}", file=sys.stderr)
         return 2
