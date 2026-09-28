@@ -4,12 +4,14 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const cp=require('node:child_process'),crypto=require('node:crypto'),net=require('node:net'),zlib=require('node:zlib');
 const {chromium}=require('playwright');
+const contract=require('./s22-browser-contract.cjs');
 const root=path.resolve(__dirname,'../..');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true}).trim();
 const summary=values=>{const a=[...values].sort((a,b)=>a-b);return {count:a.length,min:a[0],median:a[Math.ceil(a.length/2)-1],p95:a[Math.ceil(a.length*.95)-1],max:a.at(-1)};};
 
 async function install(page){
+  await page.addInitScript({path:path.join(__dirname,'s22-browser-observation.js')});
   await page.addInitScript({path:path.join(__dirname,'webgl-measurement.js')});
   await page.addInitScript({path:path.join(__dirname,'webgl-texture-measurement.js')});
   await page.addInitScript(()=>{
@@ -24,10 +26,10 @@ async function install(page){
     window.s22Inputs=[];window.s22CaptureInputs=false;
     document.addEventListener('click',event=>{
       if(!s22CaptureInputs||!event.isTrusted||!event.target.closest('#mapControls button'))return;
-      const button=event.target.closest('button'),row={key:button.dataset.mapFocus,start:performance.now(),event_timestamp:event.timeStamp,before_camera:{...ui.cam}};
+      const button=event.target.closest('button'),row={key:button.dataset.mapAction,trusted:event.isTrusted,start:performance.now(),event_timestamp:event.timeStamp,before_camera:{...ui.cam},before_globe:{yaw:GLOBE.yaw,pitch:GLOBE.pitch,zoom:GLOBE.zoom}};
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         if(typeof GL!=='undefined'&&GL.gl&&!GL.gl.isContextLost())GL.gl.finish();
-        row.complete=performance.now();row.elapsed_ms=row.complete-row.event_timestamp;row.after_camera={...ui.cam};s22Inputs.push(row);
+        row.complete=performance.now();row.elapsed_ms=row.complete-row.event_timestamp;row.after_camera={...ui.cam};row.after_globe={yaw:GLOBE.yaw,pitch:GLOBE.pitch,zoom:GLOBE.zoom};s22Inputs.push(row);
       }));
     },true);
   });
@@ -54,6 +56,10 @@ async function run(){
       input:'31 trusted visible map-control clicks per detail preset; event timestamp to a second animation-frame opportunity plus GPU completion. Includes input dispatch and main-thread work. This is a conservative paint-opportunity proxy, not compositor presentation latency or network command latency.',
       memory:'CDP JavaScript heap/DOM, queried WebGL buffer payload and separately declared texture texel payload. Texture requests are not verified physical allocations; unknown layouts remain null. Renderbuffers, framebuffer surfaces, driver overhead and total VRAM are excluded. No headless native 1GiB ceiling is applied to browser counters.'}};
   fs.copyFileSync(__filename,path.join(out,'driver.cjs'));console.log(out);
+  evidence.harness_dependencies=[];
+  for(const name of ['s22-browser-contract.cjs','s22-browser-observation.js','s22-layout-browser.cjs']){
+    const b=fs.readFileSync(path.join(__dirname,name));fs.writeFileSync(path.join(out,name),b);evidence.harness_dependencies.push({name,sha256:hash(b)});
+  }
   const probeBytes=fs.readFileSync(path.join(__dirname,'webgl-measurement.js'));
   fs.writeFileSync(path.join(out,'webgl-measurement.js'),probeBytes);evidence.probe_sha256=hash(probeBytes);
   const textureProbeBytes=fs.readFileSync(path.join(__dirname,'webgl-texture-measurement.js'));
@@ -80,6 +86,7 @@ async function run(){
       if(!gzip.write(data))await new Promise(resolve=>gzip.once('drain',resolve));if(chunk.eof)break;}
     await traceSession.send('IO.close',{handle:stream});gzip.end();await closed;
     evidence.trace={file,raw_bytes:rawBytes,compressed_bytes:fs.statSync(path.join(out,file)).size,sha256:hash(fs.readFileSync(path.join(out,file))),categories:'benchmark,cc,viz,gpu,blink.user_timing'};
+    assert(contract.completeTrace(evidence.trace),'Completed nonempty Chrome trace is required');
   }
   try{
     let ready=false;
@@ -93,6 +100,13 @@ async function run(){
     browserSession=await browser.newBrowserCDPSession();evidence.browser_launch={headless:true,channel:process.env.SPHERES_BROWSER_CHANNEL||'msedge',extra_flags:[]};
     page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1,reducedMotion:'reduce',hasTouch:true});
     traceSession=await page.context().newCDPSession(page);await traceSession.send('Performance.enable');
+    evidence.network={events:[],method:'CDP Network events from before uncached navigation through cleanup; monotonic timestamps, response/cache flags and failures are retained. Request cache flags are not estimates of GPU texture residency.'};
+    traceSession.on('Network.requestWillBeSent',e=>evidence.network.events.push({kind:'request',id:e.requestId,timestamp:e.timestamp,wall_time:e.wallTime,type:e.type,url:e.request.url,method:e.request.method,initiator:e.initiator?.type,redirect_response:e.redirectResponse?{url:e.redirectResponse.url,status:e.redirectResponse.status}:null}));
+    traceSession.on('Network.requestServedFromCache',e=>evidence.network.events.push({kind:'served_from_cache',id:e.requestId}));
+    traceSession.on('Network.responseReceived',e=>evidence.network.events.push({kind:'response',id:e.requestId,timestamp:e.timestamp,type:e.type,url:e.response.url,status:e.response.status,protocol:e.response.protocol,from_disk_cache:!!e.response.fromDiskCache,from_service_worker:!!e.response.fromServiceWorker,from_prefetch_cache:!!e.response.fromPrefetchCache,timing:e.response.timing||null}));
+    traceSession.on('Network.loadingFinished',e=>evidence.network.events.push({kind:'finished',id:e.requestId,timestamp:e.timestamp,encoded_data_length:e.encodedDataLength}));
+    traceSession.on('Network.loadingFailed',e=>evidence.network.events.push({kind:'failed',id:e.requestId,timestamp:e.timestamp,type:e.type,error:e.errorText,canceled:!!e.canceled,blocked_reason:e.blockedReason||null}));
+    await traceSession.send('Network.enable');
     await traceSession.send('Tracing.start',{categories:'benchmark,cc,viz,gpu,blink.user_timing',transferMode:'ReturnAsStream'});traceActive=true;
     if(process.env.SPHERES_S22_RENDERERS==='1')await require('./s22-renderer-browser.cjs').install(page);else await install(page);
     page.on('pageerror',e=>evidence.errors.push(e.message));
@@ -101,6 +115,7 @@ async function run(){
     const state=async()=>{const r=await page.request.get(url+'/api/state');assert(r.ok());return r.json();};
     const shot=async name=>{const file=name+'.png';await page.screenshot({path:path.join(out,file)});evidence.screenshots.push(file);};
     const cold=performance.now();await page.goto(url);await page.locator('#openSavesBtn').waitFor();evidence.cold_menu_ms=performance.now()-cold;
+    evidence.cold_loading={fresh_context:true,menu_navigation_to_usable_ms:evidence.cold_menu_ms,method:'Fresh disposable browser/context with no reused HTTP cache. Page-origin first draw timestamps are actual positive-count native GL submissions followed by gl.finish. Menu entry, campaign save loading and first inspection entry are separate boundaries; none is compositor presentation or total VRAM.'};
     evidence.navigation=await page.evaluate(()=>performance.getEntriesByType('navigation').map(e=>e.toJSON()));
     evidence.build=await(await page.request.get(url+'/api/build')).json();assert.equal(evidence.build.revision,expected.slice(0,12));
     for(const name of ['index.html','map-controls.js','globe3d.js','arsenal3d.js','equipment-model.js']){
@@ -109,8 +124,12 @@ async function run(){
       evidence.assets.push({name,sha256:hash(served)});
     }
     await tap('#openSavesBtn');await page.locator('#saveSlots').selectOption('s22-input');
+    await page.evaluate(()=>__s22PageObservation.setPhase('campaign-save-load'));
     const load=performance.now();await tap('#loadBtn');await page.waitForFunction(()=>S?.player&&!SESSION.busy&&GL.ok&&GL.ready&&GLOBE?.lastSize);
-    evidence.cold_campaign_to_usable_map_ms=performance.now()-load;
+    evidence.campaign_save_load_to_usable_map_ms=performance.now()-load;
+    evidence.cold_loading.campaign_save_load_to_usable_map_ms=evidence.campaign_save_load_to_usable_map_ms;
+    await page.waitForFunction(()=>__s22PageObservation.contexts.some(c=>c.first_draw_by_phase.some(d=>d.phase==='campaign-save-load'&&d.canvas_id==='glmap')));
+    evidence.cold_loading.after_map=await page.evaluate(()=>JSON.parse(JSON.stringify(__s22PageObservation)));
     const before=await state();evidence.campaign={date:before.date,player:before.player,session_id:before.session_id};
     async function save(slot){
       if(await page.locator('.arc-time-menu').getAttribute('open')===null)await tap('.arc-time-menu > summary');
@@ -125,13 +144,16 @@ async function run(){
     }
     evidence.before_save=await save('s22-before');
     evidence.browser_process_memory_before=await processMemory();
+    evidence.reference_gpu=await page.evaluate(()=>{const gl=GL.gl,e=gl.getExtension('WEBGL_debug_renderer_info');return {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),version:gl.getParameter(gl.VERSION),unmasked:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null};});
+    evidence.reference_gpu.reference_hardware_match=contract.referenceGpu(evidence.reference_gpu);
+    if(evidence.qualification)assert(evidence.reference_gpu.reference_hardware_match,'Qualification requires the frozen RTX 5070 ANGLE hardware renderer; unknown/software/other GPU remains unqualified');
     if(process.env.SPHERES_S22_RENDERERS==='1'){
       await require('./s22-renderer-browser.cjs')({page,tap,state,shot,evidence,expectedRevision:expected});
     }else{
       const cdp=traceSession;
       async function memory(){return {metrics:await cdp.send('Performance.getMetrics'),dom:await cdp.send('Memory.getDOMCounters'),
         contexts:await page.evaluate(()=>s22Probes.map(p=>({connected:p.gl.canvas.isConnected,id:p.gl.canvas.id,buffer_payload:p.metrics.snapshot(),declared_texture_payload:p.textures.snapshot(),texture_diagnostics:p.textures.diagnostics()})))};}
-      evidence.gpu=await page.evaluate(()=>{const gl=GL.gl,e=gl.getExtension('WEBGL_debug_renderer_info');return {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),unmasked:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null};});
+      evidence.gpu=evidence.reference_gpu;
       evidence.memory_before=await memory();
       await page.evaluate(()=>{
         const original=drawCityLayer;window.s22CityDraws=0;
@@ -183,12 +205,13 @@ async function run(){
         }
         // Local controls return to a nation-scale camera; no world command is sent.
         await page.evaluate(()=>{GLOBE.lookAt(2.3522,48.8566,8);GLOBE.render();s22Inputs=[];s22CaptureInputs=true;});
-        const actions=['west','east','zoom-in','zoom-out'];
+        const actions=contract.orderedControls;
         for(let i=0;i<31;i++){
           await tap(`[data-map-action="${actions[i%actions.length]}"]`);await page.waitForFunction(n=>s22Inputs.length===n,i+1);
         }
         cell.inputs=await page.evaluate(()=>{s22CaptureInputs=false;return s22Inputs;});cell.input_summary=summary(cell.inputs.map(i=>i.elapsed_ms));
-        cell.input_passed=cell.input_summary.p95<=200&&cell.inputs.every(i=>JSON.stringify(i.before_camera)!==JSON.stringify(i.after_camera));cell.memory=await memory();
+        cell.input_workload_valid=contract.validInputs(cell.inputs);
+        cell.input_passed=cell.input_summary.p95<=200&&cell.input_workload_valid;cell.memory=await memory();
       }
       evidence.layout=[];
       for(const viewport of [{width:390,height:844},{width:3440,height:1440}]){
@@ -201,6 +224,9 @@ async function run(){
       }
       await page.setViewportSize({width:1920,height:1080});evidence.memory_after=await memory();
     }
+    await require('./s22-layout-browser.cjs')({page,tap,shot,evidence});
+    evidence.cold_loading.final_observation=await page.evaluate(()=>JSON.parse(JSON.stringify(__s22PageObservation)));
+    evidence.cold_loading.resource_entries=await page.evaluate(()=>performance.getEntriesByType('resource').map(e=>e.toJSON()));
     for(const [panel,close] of [['#equipmentRoom','[data-equipment-close]'],['#guidanceDialog','#guidanceDialog [data-guidance-close]'],['#productionPanel','#productionClose'],['#cabinetDrawer','#cabinetDrawer [data-close-drawers]']])
       if(await page.locator(panel).isVisible())await tap(close);
     evidence.browser_process_memory_after=await processMemory();
@@ -212,11 +238,11 @@ async function run(){
     evidence.memory_complete=process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.memory_complete===true:
       [evidence.memory_before,evidence.memory_after,...evidence.cells.map(c=>c.memory)].every(m=>m?.contexts.length&&m.contexts.every(c=>textureComplete(c.declared_texture_payload)))&&
       evidence.cells.every(c=>c.views.every(v=>textureComplete(v.declared_texture_payload)));
-    evidence.passed=evidence.memory_complete&&(process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
-      evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed));
     await finishTrace();
+    evidence.passed=evidence.memory_complete&&contract.completeTrace(evidence.trace)&&evidence.layout_functional?.passed===true&&(process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
+      evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed));
     if(evidence.qualification)assert(evidence.passed,'Frozen browser performance/layout limits failed; raw evidence retained');
-  }catch(error){evidence.failure=error.stack;if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}
+  }catch(error){contract.markFailure(evidence,error);if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}
   finally{if(traceActive)try{await finishTrace();}catch(error){evidence.trace_failure=String(error);evidence.passed=false;}evidence.finished_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(evidence,null,2)+'\n');if(browser)await browser.close();if(server.exitCode===null)server.kill();serverLog.end();console.log(path.join(out,'result.json'));}
 }
 if(require.main===module)run().catch(e=>{console.error(e);process.exitCode=1;});

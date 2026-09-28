@@ -5,12 +5,14 @@
 // BEFORE goto, load through ordinary controls, then run({...}). No command,
 // save, load, fixture invention or simulation mutation occurs in this helper.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const contract=require('./s22-browser-contract.cjs');
 const root=path.resolve(__dirname,'../..'),hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const files=['index.html','city-mesh.js','city-layer.js','arsenal3d.js','arsenal-models.js','equipment-model.js',
   'equipment-mesh.js','equipment-ui.js','map-controls.js','terrain-surface.js','globe3d.js','cities.js','rivers.js',
   'water-detail.js','height-detail.js','coast.png','lake.png','relief.png','tank-surface.js','military-surface.js'];
 
 async function install(page) {
+  await page.addInitScript({path:path.join(__dirname,'s22-browser-observation.js')});
   await page.addInitScript({content:fs.readFileSync(path.join(__dirname,'webgl-measurement.js'),'utf8')});
   await page.addInitScript({content:fs.readFileSync(path.join(__dirname,'webgl-texture-measurement.js'),'utf8')});
   await page.addInitScript(()=>{
@@ -185,12 +187,15 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       return {platform:EQUIP.draft.platform,context_id:row.id,
         viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},
         canvas:{width:row.canvas.width,height:row.canvas.height},
-        gpu:{vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),
+        gpu:{vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),version:gl.getParameter(gl.VERSION),
           unmasked_renderer:(()=>{const ext=gl.getExtension('WEBGL_debug_renderer_info');return ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):null;})()},
         target_fps:target,passed:sample.completed_draw_fps>=target,warmup,sample,
         method:'3 seconds of separate orbit warm-up, then at least 12 seconds of continuous native controller.rotate calls. Only controller animation callbacks submitting one or more draw calls count. Each finishes GPU work with gl.finish(). Full elapsed time, including scheduling gaps and the first frame, is the acceptance denominator; no rounding or vsync tolerance is applied. Between-frame cadence excludes startup and is diagnostic only. Callback plus GPU-completion p95 yields a draw-work upper bound, not observed FPS. Instrumented submission/completion is not proof of compositor-presented frames.'};
     });
     proof.viewer_orbit=record('s22-fighter-orbit-performance',measured);
+    proof.reference_gpu={...measured.gpu,unmasked:measured.gpu.unmasked_renderer};
+    proof.reference_gpu.reference_hardware_match=contract.referenceGpu(proof.reference_gpu);
+    if(evidence.qualification)assert(proof.reference_gpu.reference_hardware_match,'Focused viewer qualification requires the frozen RTX 5070 ANGLE renderer');
   }
   try {
     const response=await page.request.get(new URL('/api/build',page.url()).href);assert(response.ok());proof.build=await response.json();
@@ -216,6 +221,52 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       drawCityLayer=function(...args){probe.drawingCity=true;try{return draw.apply(this,args);}finally{probe.drawingCity=false;}};
     });
     await page.setViewportSize({width:1920,height:1080});await detail('relief',true);await detail('cities',true);
+    // Native designer visits. The family controls change only the local draft;
+    // no commissioning, procurement or research command is sent.
+    for(let visit=0;visit<6;visit++){
+      const visitStarted=performance.now();
+      if(visit===0)await page.evaluate(()=>__s22PageObservation.setPhase('inspection-first-entry'));
+      if(await page.locator('#intelDrawer').getAttribute('aria-hidden')!=='false')await tap('[data-drawer="intelDrawer"]');
+      await tap('#warsCard [data-ground-equipment-tab="service"]');await page.waitForFunction(()=>equipmentCurrent());
+      await tap('[role="tab"][data-equipment-tab="designer"]');await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='designer'&&!equipmentPending());
+      const family=await page.evaluate(()=>equipmentFamily(equipmentRows('platforms').find(row=>row.id==='air_fighter')));
+      if(visit===0)await page.evaluate(()=>__s22PageObservation.setPhase('inspection-first-fighter'));
+      assert(family);await tap(`[data-equipment-family=${JSON.stringify(family)}]`);
+      await page.waitForFunction(()=>!equipmentPending());
+      if(await page.locator('#equipmentPlatform').inputValue()!=='air_fighter')await page.locator('#equipmentPlatform').selectOption('air_fighter');
+      await page.locator('[data-model-canvas]').scrollIntoViewIfNeeded();
+      await page.waitForFunction(()=>document.querySelector('[data-model-status]')?.textContent.includes('3D model ready'));
+      await settle();const inspection=await observe('s22-aircraft-visit-'+visit);
+      const mesh=await page.evaluate(()=>({triangles:EquipmentMesh.build(EQUIP.draft).triangleCount,platform:EQUIP.draft.platform,spec:structuredClone(EQUIP.draft)}));
+      assert.equal(mesh.platform,'air_fighter');assert(mesh.triangles>=100000&&mesh.triangles<=250000);record('s22-aircraft-mesh-'+visit,mesh);
+      const current=inspection.contexts.filter(row=>row.type==='webgl'&&row.connected);assert.equal(current.length,1,'one live native inspection canvas');
+      assert(current[0].metrics.draw_calls>0,'Ready inspection must have submitted actual geometry');
+      proof.inspection_loads??=[];proof.inspection_loads.push({visit,elapsed_ms:performance.now()-visitStarted,kind:visit===0?'first native inspection visit':'repeat visit',method:'Visible room and family navigation to ready released fighter with actual GPU draw submissions; includes Playwright interaction/observation overhead, not compositor presentation time.'});
+      if(visit===0){
+        const observed=await page.evaluate(()=>JSON.parse(JSON.stringify(__s22PageObservation)));
+        const fighter=observed.contexts.flatMap(context=>context.first_draw_by_phase.map(draw=>({context_id:context.id,...draw})))
+          .find(draw=>draw.phase==='inspection-first-fighter'&&draw.inspection_canvas&&draw.design_platform==='air_fighter');
+        assert(fighter,'First released fighter entry must submit actual GL geometry');
+        proof.cold_inspection={first_entry:true,before_city_lifecycle_work:true,first_fighter_draw:fighter,
+          entry_phase:observed.phases.find(p=>p.name==='inspection-first-entry'),fighter_phase:observed.phases.find(p=>p.name==='inspection-first-fighter'),
+          navigation_to_first_fighter_draw_ms:fighter.completed_ms,
+          entry_to_first_fighter_draw_ms:fighter.completed_ms-observed.phases.find(p=>p.name==='inspection-first-entry').at_ms,
+          method:'First native inspection entry in this fresh uncached page, before city tours or context/repeated-visit exercises. Page-origin timestamp includes prior menu/save loading; entry duration begins before room navigation. Actual first positive-count fighter draw finishes GL work. This is not a warm reload or save-load duration.'};
+      }
+      if(visit===0){await measureFighterOrbit();await loseRestore('inspection');await shot('s22-aircraft-restored');}
+      if(visit===5){await page.setViewportSize({width:390,height:844});await settle();
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await shot('s22-aircraft-390');await page.setViewportSize({width:1920,height:1080});}
+      await tap('[data-equipment-close]');await settle();
+      const closed=await observe('s22-aircraft-closed-'+visit);
+      for(const row of closed.contexts.filter(row=>row.type==='webgl')){
+        assert.equal(row.metrics.live_buffers,0,'closed viewers dispose every buffer');
+        assert.equal(row.declared_texture_payload.live_textures,0,'closed viewers dispose every texture');
+        assert.equal(row.declared_texture_payload.allocated_texture_levels,0);
+        assert.equal(row.declared_texture_payload.declared_texture_texel_payload_bytes,0);
+      }
+    }
+    proof.checks.push('Six native aircraft designer visits, one 100k+ model at a time, context recovery, 390px layout and complete buffer/texture disposal');
+
     for(const name of ['Tokyo','New York','Mexico City','Mumbai','Sao Paulo','Delhi']){await findCity(name);await observe('s22-city-'+name.replaceAll(' ','-').toLowerCase());}
     const toured=await observe('s22-city-tour-complete');assert(toured.city.deletions>0,'tour actually exercised native city eviction');
     assert(toured.city.uploaded>86400000,'tour exceeds one cache worth of uploads');
@@ -234,39 +285,6 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       const row=await observe('s22-city-room-closed-'+visit);assert.equal(row.arsenal.mounted,0);assert.equal(row.arsenal.pending,0);
     }
     proof.checks.push('Actual main CityMesh transient cache ceiling, LRU reuse, Cities Off, low-detail view, context restoration and repeated city cards');
-
-    // Native designer visits. The family controls change only the local draft;
-    // no commissioning, procurement or research command is sent.
-    for(let visit=0;visit<6;visit++){
-      const visitStarted=performance.now();
-      if(await page.locator('#intelDrawer').getAttribute('aria-hidden')!=='false')await tap('[data-drawer="intelDrawer"]');
-      await tap('#warsCard [data-ground-equipment-tab="service"]');await page.waitForFunction(()=>equipmentCurrent());
-      await tap('[role="tab"][data-equipment-tab="designer"]');await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='designer'&&!equipmentPending());
-      const family=await page.evaluate(()=>equipmentFamily(equipmentRows('platforms').find(row=>row.id==='air_fighter')));
-      assert(family);await tap(`[data-equipment-family=${JSON.stringify(family)}]`);
-      await page.waitForFunction(()=>!equipmentPending());
-      if(await page.locator('#equipmentPlatform').inputValue()!=='air_fighter')await page.locator('#equipmentPlatform').selectOption('air_fighter');
-      await page.locator('[data-model-canvas]').scrollIntoViewIfNeeded();
-      await page.waitForFunction(()=>document.querySelector('[data-model-status]')?.textContent.includes('3D model ready'));
-      await settle();const inspection=await observe('s22-aircraft-visit-'+visit);
-      const mesh=await page.evaluate(()=>({triangles:EquipmentMesh.build(EQUIP.draft).triangleCount,platform:EQUIP.draft.platform,spec:structuredClone(EQUIP.draft)}));
-      assert.equal(mesh.platform,'air_fighter');assert(mesh.triangles>=100000&&mesh.triangles<=250000);record('s22-aircraft-mesh-'+visit,mesh);
-      const current=inspection.contexts.filter(row=>row.type==='webgl'&&row.connected);assert.equal(current.length,1,'one live native inspection canvas');
-      assert(current[0].metrics.draw_calls>0,'Ready inspection must have submitted actual geometry');
-      proof.inspection_loads??=[];proof.inspection_loads.push({visit,elapsed_ms:performance.now()-visitStarted,kind:visit===0?'first native inspection visit':'repeat visit',method:'Visible room and family navigation to ready released fighter with actual GPU draw submissions; includes Playwright interaction/observation overhead, not compositor presentation time.'});
-      if(visit===0){await measureFighterOrbit();await loseRestore('inspection');await shot('s22-aircraft-restored');}
-      if(visit===5){await page.setViewportSize({width:390,height:844});await settle();
-        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await shot('s22-aircraft-390');await page.setViewportSize({width:1920,height:1080});}
-      await tap('[data-equipment-close]');await settle();
-      const closed=await observe('s22-aircraft-closed-'+visit);
-      for(const row of closed.contexts.filter(row=>row.type==='webgl')){
-        assert.equal(row.metrics.live_buffers,0,'closed viewers dispose every buffer');
-        assert.equal(row.declared_texture_payload.live_textures,0,'closed viewers dispose every texture');
-        assert.equal(row.declared_texture_payload.allocated_texture_levels,0);
-        assert.equal(row.declared_texture_payload.declared_texture_texel_payload_bytes,0);
-      }
-    }
-    proof.checks.push('Six native aircraft designer visits, one 100k+ model at a time, context recovery, 390px layout and complete buffer/texture disposal');
 
     // Explicit controlled lazy-card fixture on the real native page. This uses
     // the released deck and scanner; it is not evidence of a generated army or
