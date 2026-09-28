@@ -1,0 +1,6184 @@
+{
+  "format": "spheres-worldwide-browser/v1",
+  "scope": "Bounded startup engineering preflight; no historical, S24 or CP1 qualification",
+  "pilot": true,
+  "attached_server": false,
+  "coverage": "pilot",
+  "seed": 17,
+  "runtime": {
+    "expected_revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+    "binary_sha256": "dab61a118bb61d10d151001bce34f5bb9c50a3053b212099f15ec6c3792cbb40",
+    "source_trees": {
+      "spheres-sim": "a418f91459b4aed82713f998030c2d0667309d1e",
+      "spheres-web": "fa356396717973fa043d3fe5fdbdc23881403f54",
+      "spheres-cli": "ca897ed6da3fca5a39ccc4c253187d2549fde325",
+      "Cargo.toml": "cf3ec99232ebf6d8ba77e43c7fc50e0e8ac9e02e",
+      "Cargo.lock": "4004d4796cd617d9f821203d7c815d4106fecef1"
+    },
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790621530,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "full_revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+      "revision": "83046c162098",
+      "save_directory": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-01\\server",
+      "target_arch": "x86_64",
+      "target_os": "windows",
+      "version": "0.6.0"
+    },
+    "verification": {
+      "revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+      "build": {
+        "branch": "codex/campaign-certification",
+        "built_at_unix_seconds": 1790621530,
+        "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+        "distribution": "Local offline game server; source and attribution accompany the release",
+        "full_revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+        "revision": "83046c162098",
+        "save_directory": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-01\\server",
+        "target_arch": "x86_64",
+        "target_os": "windows",
+        "version": "0.6.0"
+      },
+      "binary_sha256": "dab61a118bb61d10d151001bce34f5bb9c50a3053b212099f15ec6c3792cbb40",
+      "assets": {
+        "index.html": {
+          "served_sha256": "2dac17662a2ab6ab2ccf15eda4255344c7030624008daeca28b1d5df9c938463",
+          "served_bytes": 1164106,
+          "checkout_sha256": "2dac17662a2ab6ab2ccf15eda4255344c7030624008daeca28b1d5df9c938463",
+          "checkout_bytes": 1164106,
+          "committed_sha256": "9d3611a91cf074f2e65c66641704208f94e04e3f63e460116b54a3d26bd76331",
+          "committed_bytes": 1145139,
+          "canonical_checkout_sha256": "9d3611a91cf074f2e65c66641704208f94e04e3f63e460116b54a3d26bd76331",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 18967
+          }
+        },
+        "campaign-transport.js": {
+          "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+          "served_bytes": 4775,
+          "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+          "checkout_bytes": 4775,
+          "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+          "committed_bytes": 4693,
+          "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 82
+          }
+        },
+        "campaign-ui.js": {
+          "served_sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+          "served_bytes": 13800,
+          "checkout_sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+          "checkout_bytes": 13800,
+          "committed_sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+          "committed_bytes": 13800,
+          "canonical_checkout_sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 0
+          }
+        },
+        "fiscal-recovery-ui.js": {
+          "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+          "served_bytes": 11098,
+          "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+          "checkout_bytes": 11098,
+          "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+          "committed_bytes": 11098,
+          "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 0
+          }
+        },
+        "cash-flow-ui.js": {
+          "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+          "served_bytes": 30198,
+          "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+          "checkout_bytes": 30198,
+          "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+          "committed_bytes": 29951,
+          "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 247
+          }
+        },
+        "companies-ui.js": {
+          "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+          "served_bytes": 32920,
+          "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+          "checkout_bytes": 32920,
+          "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+          "committed_bytes": 32920,
+          "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 0
+          }
+        },
+        "companies.css": {
+          "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+          "served_bytes": 13908,
+          "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+          "checkout_bytes": 13908,
+          "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+          "committed_bytes": 13798,
+          "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 110
+          }
+        },
+        "government-ui.js": {
+          "served_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+          "served_bytes": 52239,
+          "checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+          "checkout_bytes": 52239,
+          "committed_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+          "committed_bytes": 52239,
+          "canonical_checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 0
+          }
+        },
+        "government-ui.css": {
+          "served_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+          "served_bytes": 36730,
+          "checkout_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+          "checkout_bytes": 36730,
+          "committed_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+          "committed_bytes": 36403,
+          "canonical_checkout_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 327
+          }
+        },
+        "campaign-operations-ui.js": {
+          "served_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+          "served_bytes": 21133,
+          "checkout_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+          "checkout_bytes": 21133,
+          "committed_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+          "committed_bytes": 20913,
+          "canonical_checkout_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 220
+          }
+        },
+        "campaign-operations-ui.css": {
+          "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+          "served_bytes": 8447,
+          "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+          "checkout_bytes": 8447,
+          "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+          "committed_bytes": 8367,
+          "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 80
+          }
+        },
+        "map-controls.js": {
+          "served_sha256": "2ea4ca214173f52550a874291123038ae92c70476174a4caeee3edc9c168be75",
+          "served_bytes": 11870,
+          "checkout_sha256": "2ea4ca214173f52550a874291123038ae92c70476174a4caeee3edc9c168be75",
+          "checkout_bytes": 11870,
+          "committed_sha256": "ecc3b2ea0a51f9b6739d6650b02e508ec84796b0f09d3ed6d6f97fd3956f43b1",
+          "committed_bytes": 11674,
+          "canonical_checkout_sha256": "ecc3b2ea0a51f9b6739d6650b02e508ec84796b0f09d3ed6d6f97fd3956f43b1",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 196
+          }
+        },
+        "map-controls.css": {
+          "served_sha256": "29b09e8d642a56048455c32ddc5d7cd76aacde07fd5bee7f5c8a1a3744b5295f",
+          "served_bytes": 10150,
+          "checkout_sha256": "29b09e8d642a56048455c32ddc5d7cd76aacde07fd5bee7f5c8a1a3744b5295f",
+          "checkout_bytes": 10150,
+          "committed_sha256": "24091a998d9bfc2b6e04fe082b2de5badee1f4e8ace3a51c939d505129ae9d66",
+          "committed_bytes": 10044,
+          "canonical_checkout_sha256": "24091a998d9bfc2b6e04fe082b2de5badee1f4e8ace3a51c939d505129ae9d66",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 106
+          }
+        },
+        "guidance-ui.js": {
+          "served_sha256": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+          "served_bytes": 36381,
+          "checkout_sha256": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+          "checkout_bytes": 36381,
+          "committed_sha256": "e815bdde20b34395c93c9e8bb7704ba15ecfcedfe0cf0ae52c8e4250caac26e6",
+          "committed_bytes": 36054,
+          "canonical_checkout_sha256": "e815bdde20b34395c93c9e8bb7704ba15ecfcedfe0cf0ae52c8e4250caac26e6",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 327
+          }
+        },
+        "guidance-ui.css": {
+          "served_sha256": "0be61b6ffe4809b2f668cfa5a6952da2a8c482f222f8ead9f8a2ade864950916",
+          "served_bytes": 10622,
+          "checkout_sha256": "0be61b6ffe4809b2f668cfa5a6952da2a8c482f222f8ead9f8a2ade864950916",
+          "checkout_bytes": 10622,
+          "committed_sha256": "62a7e7e364b87ec2794f8e1753c73d7abe755a37510f4696dd73063fbfd499bf",
+          "committed_bytes": 10613,
+          "canonical_checkout_sha256": "62a7e7e364b87ec2794f8e1753c73d7abe755a37510f4696dd73063fbfd499bf",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 9
+          }
+        },
+        "globe3d.js": {
+          "served_sha256": "d5e3bc3ecd3958ec47034a65c982c0cb3a029da39ce37a92e3c99619e0fef348",
+          "served_bytes": 37284,
+          "checkout_sha256": "d5e3bc3ecd3958ec47034a65c982c0cb3a029da39ce37a92e3c99619e0fef348",
+          "checkout_bytes": 37284,
+          "committed_sha256": "83bc297d7d68246f312aeb5a082d72e87d58061d2be8656352d139195f7137a0",
+          "committed_bytes": 36569,
+          "canonical_checkout_sha256": "83bc297d7d68246f312aeb5a082d72e87d58061d2be8656352d139195f7137a0",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 715
+          }
+        },
+        "city-layer.js": {
+          "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+          "served_bytes": 12449,
+          "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+          "checkout_bytes": 12449,
+          "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+          "committed_bytes": 12222,
+          "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 227
+          }
+        },
+        "city-mesh.js": {
+          "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+          "served_bytes": 87641,
+          "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+          "checkout_bytes": 87641,
+          "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+          "committed_bytes": 86075,
+          "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 1566
+          }
+        },
+        "water-detail.js": {
+          "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+          "served_bytes": 11962,
+          "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+          "checkout_bytes": 11962,
+          "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+          "committed_bytes": 11729,
+          "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 233
+          }
+        },
+        "equipment-mesh.js": {
+          "served_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+          "served_bytes": 180994,
+          "checkout_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+          "checkout_bytes": 180994,
+          "committed_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+          "committed_bytes": 180994,
+          "canonical_checkout_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 0
+          }
+        },
+        "equipment-ui.js": {
+          "served_sha256": "e6ac4a3cee407491984c19de5cdff058d99a8fc8c6f8bf149f6936b84140b394",
+          "served_bytes": 137072,
+          "checkout_sha256": "e6ac4a3cee407491984c19de5cdff058d99a8fc8c6f8bf149f6936b84140b394",
+          "checkout_bytes": 137072,
+          "committed_sha256": "af7aa8119cc55a9678bd4c595f422b87f7a391628abfa299fb754c6ea89c60a7",
+          "committed_bytes": 136422,
+          "canonical_checkout_sha256": "af7aa8119cc55a9678bd4c595f422b87f7a391628abfa299fb754c6ea89c60a7",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 650
+          }
+        },
+        "equipment-ui.css": {
+          "served_sha256": "79aeb1c76c9b6f26751031a1694d3b172a95f191f6edb8b1ef3c0f0518218ad3",
+          "served_bytes": 40181,
+          "checkout_sha256": "79aeb1c76c9b6f26751031a1694d3b172a95f191f6edb8b1ef3c0f0518218ad3",
+          "checkout_bytes": 40181,
+          "committed_sha256": "61f9ebd5bad33724e44ecdbdcaf0b6d0466ee4610720cb975a63d51c75088c54",
+          "committed_bytes": 39770,
+          "canonical_checkout_sha256": "61f9ebd5bad33724e44ecdbdcaf0b6d0466ee4610720cb975a63d51c75088c54",
+          "newline_normalization": {
+            "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+            "crlf_pairs": 411
+          }
+        }
+      }
+    },
+    "binary_sha256_after": "dab61a118bb61d10d151001bce34f5bb9c50a3053b212099f15ec6c3792cbb40"
+  },
+  "harness": {
+    "revision": "3fbd803d1376d9f3f3083c05254075ed44007190",
+    "driver_sha256": "d4bede66b5d4afe71b27b01d4ada054778b346facdd2f70456c6de88d401bc76",
+    "helper_sha256": "b363b213c52c15a314c55b754facefb7fe595ad273ae1fbb8f560da4b2e20b27",
+    "verifier_sha256": "4fca6761cbe60fd606176375a17ab675f920106bfeee3fd7bec091011b5a827c",
+    "sources": [
+      {
+        "source_path": "tools/ui/worldwide_startup_browser.cjs",
+        "path": "sources/tools/ui/worldwide_startup_browser.cjs",
+        "bytes": 22781,
+        "sha256": "d4bede66b5d4afe71b27b01d4ada054778b346facdd2f70456c6de88d401bc76"
+      },
+      {
+        "source_path": "tools/ui/worldwide-startup-lib.cjs",
+        "path": "sources/tools/ui/worldwide-startup-lib.cjs",
+        "bytes": 11789,
+        "sha256": "b363b213c52c15a314c55b754facefb7fe595ad273ae1fbb8f560da4b2e20b27"
+      },
+      {
+        "source_path": "tools/ui/verify_worldwide_startup.cjs",
+        "path": "sources/tools/ui/verify_worldwide_startup.cjs",
+        "bytes": 432,
+        "sha256": "eb3ed2a385256ec4c42a59259fb28c032c5d90526a8181fe9ead9e20808bf5f3"
+      },
+      {
+        "source_path": "tools/ui/ci-integrated.cjs",
+        "path": "sources/tools/ui/ci-integrated.cjs",
+        "bytes": 15552,
+        "sha256": "4fca6761cbe60fd606176375a17ab675f920106bfeee3fd7bec091011b5a827c"
+      },
+      {
+        "source_path": "tools/ui/successor-fixtures/lib.cjs",
+        "path": "sources/tools/ui/successor-fixtures/lib.cjs",
+        "bytes": 37619,
+        "sha256": "6edde836bb4553ae435149fd50c8ddeed54cb2356144b7c00233cf08914f40d6"
+      }
+    ]
+  },
+  "source_checkout_head_before": "83046c162098d59a6c4532f4173041f82cfd79b3",
+  "started_utc": "2026-09-28T18:56:15.049Z",
+  "roster": [
+    {
+      "id": "Afghanistan",
+      "name": "Afghanistan"
+    },
+    {
+      "id": "Albania",
+      "name": "Albania"
+    },
+    {
+      "id": "Algeria",
+      "name": "Algeria"
+    },
+    {
+      "id": "Angola",
+      "name": "Angola"
+    },
+    {
+      "id": "Argentina",
+      "name": "Argentina"
+    },
+    {
+      "id": "Australia",
+      "name": "Australia"
+    },
+    {
+      "id": "Austria",
+      "name": "Austria"
+    },
+    {
+      "id": "Bahamas",
+      "name": "Bahamas"
+    },
+    {
+      "id": "Bahrain",
+      "name": "Bahrain"
+    },
+    {
+      "id": "Bangladesh",
+      "name": "Bangladesh"
+    },
+    {
+      "id": "Belgium",
+      "name": "Belgium"
+    },
+    {
+      "id": "Belize",
+      "name": "Belize"
+    },
+    {
+      "id": "Bhutan",
+      "name": "Bhutan"
+    },
+    {
+      "id": "Bolivia",
+      "name": "Bolivia"
+    },
+    {
+      "id": "Botswana",
+      "name": "Botswana"
+    },
+    {
+      "id": "Brazil",
+      "name": "Brazil"
+    },
+    {
+      "id": "Brunei",
+      "name": "Brunei"
+    },
+    {
+      "id": "Bulgaria",
+      "name": "Bulgaria"
+    },
+    {
+      "id": "Cambodia",
+      "name": "Cambodia"
+    },
+    {
+      "id": "Cameroon",
+      "name": "Cameroon"
+    },
+    {
+      "id": "Canada",
+      "name": "Canada"
+    },
+    {
+      "id": "CapeVerde",
+      "name": "Cape Verde"
+    },
+    {
+      "id": "CentralAfricanRepublic",
+      "name": "Central African Republic"
+    },
+    {
+      "id": "Chad",
+      "name": "Chad"
+    },
+    {
+      "id": "Chile",
+      "name": "Chile"
+    },
+    {
+      "id": "China",
+      "name": "China"
+    },
+    {
+      "id": "Colombia",
+      "name": "Colombia"
+    },
+    {
+      "id": "Comoros",
+      "name": "Comoros"
+    },
+    {
+      "id": "Congo",
+      "name": "Congo-Brazzaville"
+    },
+    {
+      "id": "CostaRica",
+      "name": "Costa Rica"
+    },
+    {
+      "id": "Cuba",
+      "name": "Cuba"
+    },
+    {
+      "id": "Cyprus",
+      "name": "Cyprus"
+    },
+    {
+      "id": "Czechoslovakia",
+      "name": "Czechoslovakia"
+    },
+    {
+      "id": "Denmark",
+      "name": "Denmark"
+    },
+    {
+      "id": "DominicanRepublic",
+      "name": "Dominican Republic"
+    },
+    {
+      "id": "Ecuador",
+      "name": "Ecuador"
+    },
+    {
+      "id": "Egypt",
+      "name": "Egypt"
+    },
+    {
+      "id": "ElSalvador",
+      "name": "El Salvador"
+    },
+    {
+      "id": "EquatorialGuinea",
+      "name": "Equatorial Guinea"
+    },
+    {
+      "id": "Ethiopia",
+      "name": "Ethiopia"
+    },
+    {
+      "id": "Fiji",
+      "name": "Fiji"
+    },
+    {
+      "id": "Finland",
+      "name": "Finland"
+    },
+    {
+      "id": "France",
+      "name": "France"
+    },
+    {
+      "id": "Gabon",
+      "name": "Gabon"
+    },
+    {
+      "id": "Germany",
+      "name": "Germany"
+    },
+    {
+      "id": "Ghana",
+      "name": "Ghana"
+    },
+    {
+      "id": "Greece",
+      "name": "Greece"
+    },
+    {
+      "id": "Guatemala",
+      "name": "Guatemala"
+    },
+    {
+      "id": "Guyana",
+      "name": "Guyana"
+    },
+    {
+      "id": "Haiti",
+      "name": "Haiti"
+    },
+    {
+      "id": "Honduras",
+      "name": "Honduras"
+    },
+    {
+      "id": "Hungary",
+      "name": "Hungary"
+    },
+    {
+      "id": "Iceland",
+      "name": "Iceland"
+    },
+    {
+      "id": "India",
+      "name": "India"
+    },
+    {
+      "id": "Indonesia",
+      "name": "Indonesia"
+    },
+    {
+      "id": "Iran",
+      "name": "Iran"
+    },
+    {
+      "id": "Iraq",
+      "name": "Iraq"
+    },
+    {
+      "id": "Ireland",
+      "name": "Ireland"
+    },
+    {
+      "id": "Israel",
+      "name": "Israel"
+    },
+    {
+      "id": "Italy",
+      "name": "Italy"
+    },
+    {
+      "id": "Jamaica",
+      "name": "Jamaica"
+    },
+    {
+      "id": "Japan",
+      "name": "Japan"
+    },
+    {
+      "id": "Jordan",
+      "name": "Jordan"
+    },
+    {
+      "id": "Kenya",
+      "name": "Kenya"
+    },
+    {
+      "id": "Kuwait",
+      "name": "Kuwait"
+    },
+    {
+      "id": "Laos",
+      "name": "Laos"
+    },
+    {
+      "id": "Lebanon",
+      "name": "Lebanon"
+    },
+    {
+      "id": "Lesotho",
+      "name": "Lesotho"
+    },
+    {
+      "id": "Libya",
+      "name": "Libya"
+    },
+    {
+      "id": "Luxembourg",
+      "name": "Luxembourg"
+    },
+    {
+      "id": "Madagascar",
+      "name": "Madagascar"
+    },
+    {
+      "id": "Malawi",
+      "name": "Malawi"
+    },
+    {
+      "id": "Malaysia",
+      "name": "Malaysia"
+    },
+    {
+      "id": "Maldives",
+      "name": "Maldives"
+    },
+    {
+      "id": "Malta",
+      "name": "Malta"
+    },
+    {
+      "id": "Mauritius",
+      "name": "Mauritius"
+    },
+    {
+      "id": "Mexico",
+      "name": "Mexico"
+    },
+    {
+      "id": "Mongolia",
+      "name": "Mongolia"
+    },
+    {
+      "id": "Morocco",
+      "name": "Morocco"
+    },
+    {
+      "id": "Mozambique",
+      "name": "Mozambique"
+    },
+    {
+      "id": "Myanmar",
+      "name": "Myanmar"
+    },
+    {
+      "id": "Nepal",
+      "name": "Nepal"
+    },
+    {
+      "id": "Netherlands",
+      "name": "Netherlands"
+    },
+    {
+      "id": "NewZealand",
+      "name": "New Zealand"
+    },
+    {
+      "id": "Nicaragua",
+      "name": "Nicaragua"
+    },
+    {
+      "id": "Nigeria",
+      "name": "Nigeria"
+    },
+    {
+      "id": "NorthKorea",
+      "name": "North Korea"
+    },
+    {
+      "id": "Norway",
+      "name": "Norway"
+    },
+    {
+      "id": "Oman",
+      "name": "Oman"
+    },
+    {
+      "id": "Pakistan",
+      "name": "Pakistan"
+    },
+    {
+      "id": "Panama",
+      "name": "Panama"
+    },
+    {
+      "id": "PapuaNewGuinea",
+      "name": "Papua New Guinea"
+    },
+    {
+      "id": "Paraguay",
+      "name": "Paraguay"
+    },
+    {
+      "id": "Peru",
+      "name": "Peru"
+    },
+    {
+      "id": "Philippines",
+      "name": "Philippines"
+    },
+    {
+      "id": "Poland",
+      "name": "Poland"
+    },
+    {
+      "id": "Portugal",
+      "name": "Portugal"
+    },
+    {
+      "id": "Qatar",
+      "name": "Qatar"
+    },
+    {
+      "id": "Romania",
+      "name": "Romania"
+    },
+    {
+      "id": "Samoa",
+      "name": "Western Samoa"
+    },
+    {
+      "id": "SaoTome",
+      "name": "Sao Tome and Principe"
+    },
+    {
+      "id": "SaudiArabia",
+      "name": "Saudi Arabia"
+    },
+    {
+      "id": "Senegal",
+      "name": "Senegal"
+    },
+    {
+      "id": "Seychelles",
+      "name": "Seychelles"
+    },
+    {
+      "id": "Singapore",
+      "name": "Singapore"
+    },
+    {
+      "id": "SolomonIslands",
+      "name": "Solomon Islands"
+    },
+    {
+      "id": "SouthAfrica",
+      "name": "South Africa"
+    },
+    {
+      "id": "SouthKorea",
+      "name": "South Korea"
+    },
+    {
+      "id": "Spain",
+      "name": "Spain"
+    },
+    {
+      "id": "SriLanka",
+      "name": "Sri Lanka"
+    },
+    {
+      "id": "Sudan",
+      "name": "Sudan"
+    },
+    {
+      "id": "Suriname",
+      "name": "Suriname"
+    },
+    {
+      "id": "Swaziland",
+      "name": "Swaziland"
+    },
+    {
+      "id": "Sweden",
+      "name": "Sweden"
+    },
+    {
+      "id": "Switzerland",
+      "name": "Switzerland"
+    },
+    {
+      "id": "Syria",
+      "name": "Syria"
+    },
+    {
+      "id": "Taiwan",
+      "name": "Taiwan"
+    },
+    {
+      "id": "Tanzania",
+      "name": "Tanzania"
+    },
+    {
+      "id": "Thailand",
+      "name": "Thailand"
+    },
+    {
+      "id": "Tonga",
+      "name": "Tonga"
+    },
+    {
+      "id": "TrinidadTobago",
+      "name": "Trinidad and Tobago"
+    },
+    {
+      "id": "Tunisia",
+      "name": "Tunisia"
+    },
+    {
+      "id": "Turkey",
+      "name": "Turkey"
+    },
+    {
+      "id": "UAE",
+      "name": "United Arab Emirates"
+    },
+    {
+      "id": "Uganda",
+      "name": "Uganda"
+    },
+    {
+      "id": "UK",
+      "name": "United Kingdom"
+    },
+    {
+      "id": "Uruguay",
+      "name": "Uruguay"
+    },
+    {
+      "id": "USA",
+      "name": "United States"
+    },
+    {
+      "id": "USSR",
+      "name": "Soviet Union"
+    },
+    {
+      "id": "Vanuatu",
+      "name": "Vanuatu"
+    },
+    {
+      "id": "Venezuela",
+      "name": "Venezuela"
+    },
+    {
+      "id": "Vietnam",
+      "name": "Vietnam"
+    },
+    {
+      "id": "Yemen",
+      "name": "Yemen"
+    },
+    {
+      "id": "Yugoslavia",
+      "name": "Yugoslavia"
+    },
+    {
+      "id": "Zaire",
+      "name": "Zaire"
+    },
+    {
+      "id": "Zambia",
+      "name": "Zambia"
+    },
+    {
+      "id": "Zimbabwe",
+      "name": "Zimbabwe"
+    }
+  ],
+  "requested_ids": [
+    "Bahrain",
+    "CapeVerde",
+    "Comoros",
+    "Maldives",
+    "Mauritius",
+    "Seychelles"
+  ],
+  "cases": [
+    {
+      "nation": "Bahrain",
+      "name": "Bahrain",
+      "passed": true,
+      "checks": [
+        "ordinary_selection",
+        "opening_map",
+        "opening_government",
+        "opening_budget",
+        "opening_guidance",
+        "seven_visible_days",
+        "named_save",
+        "ordinary_reload",
+        "reloaded_map",
+        "reloaded_government",
+        "reloaded_budget",
+        "reloaded_guidance",
+        "exact_archive_roundtrip",
+        "no_page_errors",
+        "ordinary_mutations_only"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 22,
+            "width": 1440,
+            "height": 638,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1526.3999999999996,
+              "cy": 388.8,
+              "yaw": -0.8806170778301095,
+              "pitch": 0.45407230479672683,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Bahrain",
+            "label": {
+              "id": "Bahrain",
+              "text": "Bahrain",
+              "box": [
+                719.9999965758111,
+                319.0000281842821,
+                43.27734375,
+                12
+              ],
+              "client_x": 719.9999965758111,
+              "client_y": 507.0000281842821,
+              "hit_nation": "Bahrain",
+              "canvas_topmost": true,
+              "opened_nation": "Bahrain",
+              "dossier_title": "Bahrain"
+            }
+          },
+          "government": {
+            "nation": "Bahrain",
+            "hero": "Bahrain",
+            "officeholder": "Isa bin Salman Al Khalifa",
+            "electoral": false,
+            "politics_tab": "Regime & institutions",
+            "native_reading_sha256": "89d2e62723e3ee3e9c103b412318c5f7386322715c7d5e753c5075351300cea9",
+            "layout": {
+              "width": 1440,
+              "scroll": 1440
+            }
+          },
+          "budget": {
+            "nation": "Bahrain",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$1.4bn\nAuthority + debt service / year\n$1.5bn\nIncludes $43m interest\nAt full use: funding gap / year\n$51m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Bahrain · your nation's next chapter",
+            "layout": {
+              "width": 1325,
+              "scroll": 1325
+            }
+          },
+          "guidance": {
+            "player": "Bahrain",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nChoose a current research project\n\nComputing & Software has no selected project and lists Sub-Micron CMOS Fabrication among its current-year options.\n\nWhy this recommendation?\n\nBefore deciding\nReview prerequisites, costs and alternatives before choosing. Researching an option is a separate decision.\n\nCompare research options ↗\nHide for now",
+            "layout": {
+              "width": 1118,
+              "scroll": 1118
+            }
+          }
+        },
+        "reloaded": {
+          "map": {
+            "draws_before": 40,
+            "draws_after": 59,
+            "width": 390,
+            "height": 355,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1526.3999999999996,
+              "cy": 388.8,
+              "yaw": -0.8806170778301095,
+              "pitch": 0.45407230479672683,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Bahrain",
+            "label": {
+              "id": "Bahrain",
+              "text": "Bahrain",
+              "box": [
+                194.9999980946911,
+                177.50001568247671,
+                43.27734375,
+                12
+              ],
+              "client_x": 194.9999980946911,
+              "client_y": 490.5000156824767,
+              "hit_nation": "Bahrain",
+              "canvas_topmost": true,
+              "opened_nation": "Bahrain",
+              "dossier_title": "Bahrain"
+            }
+          },
+          "government": {
+            "nation": "Bahrain",
+            "hero": "Bahrain",
+            "officeholder": "Isa bin Salman Al Khalifa",
+            "electoral": false,
+            "politics_tab": "Regime & institutions",
+            "native_reading_sha256": "b5c0147cf69fd21307d39a075ea54d753ea62acda2b0b36f6fe20172cd69e4cf",
+            "layout": {
+              "width": 390,
+              "scroll": 390
+            }
+          },
+          "budget": {
+            "nation": "Bahrain",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$1.4bn\nAuthority + debt service / year\n$1.5bn\nIncludes $43m interest\nAt full use: funding gap / year\n$50m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Bahrain · your nation's next chapter",
+            "layout": {
+              "width": 354,
+              "scroll": 354
+            }
+          },
+          "guidance": {
+            "player": "Bahrain",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nReview your research priority\n\nResearch effort is positive and projects are selected, but no priority domain is set.\n\nWhy this recommendation?\n\nBefore deciding\nA priority redistributes emphasis. Compare domains and current waits before changing it.\n\nReview research focus ↗\nHide for now",
+            "layout": {
+              "width": 372,
+              "scroll": 372
+            }
+          }
+        }
+      },
+      "advances": [
+        {
+          "before": 7305,
+          "after": 7306,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7306,
+          "after": 7307,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7307,
+          "after": 7308,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7308,
+          "after": 7309,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7309,
+          "after": 7310,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7310,
+          "after": 7311,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        },
+        {
+          "before": 7311,
+          "after": 7312,
+          "days": 1,
+          "player": "Bahrain",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621787216563900-1"
+        }
+      ],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Bahrain"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 1
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 2
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 3
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 4
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 5
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 6
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Bahrain",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621787216563900-1",
+            "client_id": "86449d82-288e-46aa-ad3d-b1354da07a1c",
+            "request_seq": 7
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "named_save",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-before",
+            "session_id": "29864-1790621787216563900-1"
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/load",
+          "payload": {
+            "slot": "startup-before",
+            "backup": false
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045625000000000006,
+            "education": 0.032850000000000004,
+            "housing": 0.036500000000000005,
+            "pensions": 0.05110000000000001,
+            "infrastructure": 0.036300000000000006,
+            "industry": 0.0198,
+            "science": 0.0099,
+            "defense": 0.053,
+            "security": 0.012775000000000003,
+            "diplomacy": 0.0036500000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "exact_archive_roundtrip",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-after",
+            "session_id": "29864-1790621797017221900-2"
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/bahrain-opening-map.jpg",
+          "bytes": 164058,
+          "sha256": "70ca62d363321887e2dccbccb2e95fcdffc94cd1af444edab7ee3121639d31a9",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-government",
+          "path": "screenshots/bahrain-opening-government.jpg",
+          "bytes": 117394,
+          "sha256": "6af8db0881acfb7f4e1313adb37841134a68d9a81d5a1604f77453cdb63f6bd3",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-budget",
+          "path": "screenshots/bahrain-opening-budget.jpg",
+          "bytes": 114047,
+          "sha256": "b35d3ee92ab72889e4c10a159220d646f5375c04c3ab9c2746106c9fea3f6ed0",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-guidance",
+          "path": "screenshots/bahrain-opening-guidance.jpg",
+          "bytes": 91108,
+          "sha256": "a2410a83daf739cd0efbe6d6c475bd9e5b838b3e63f92f2070579f2fd6696a2b",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "reloaded-map",
+          "path": "screenshots/bahrain-reloaded-map.jpg",
+          "bytes": 48943,
+          "sha256": "e7311e00640a632725479d38637722846e6749dced6b984bd17c4e63a94947ee",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-government",
+          "path": "screenshots/bahrain-reloaded-government.jpg",
+          "bytes": 39477,
+          "sha256": "0e395d1a608868d341b71ca5466e8701be7db2fd1fedcd7512fe3f98ec53e72c",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-budget",
+          "path": "screenshots/bahrain-reloaded-budget.jpg",
+          "bytes": 45194,
+          "sha256": "6647e2e9fdbc55be173ab613e5996c16d89f78dad58e4087f4684e326d6dad31",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-guidance",
+          "path": "screenshots/bahrain-reloaded-guidance.jpg",
+          "bytes": 39742,
+          "sha256": "f8fd8f7fa18986b5a7ee0bdcb1ce88b7370d2238eab62530159076ff891077c1",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:56:26.219Z",
+      "before": {
+        "player": "Bahrain",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "before_save": {
+        "bytes": 15267157,
+        "sha256": "e29bfac04840fd510c07cf9d3d672660091854b2c4cfd2b0c408aa2aeaec2d27",
+        "campaign_sha256": "13fb08f80d70cd3c7e09572c95a1bef0d247d23be444a1ad1e3dc8f43eeb7eb8",
+        "player": "Bahrain",
+        "date": "8 Jan 1990",
+        "world_player": "Bahrain",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/bahrain-before.json.gz",
+        "gzip_bytes": 2935938,
+        "gzip_sha256": "5f9a6e9d530af3179ea89833f8f65c36fae8b4f60d409e492ee173a7dd0cbcf8"
+      },
+      "old_session": "29864-1790621787216563900-1",
+      "new_session": "29864-1790621797017221900-2",
+      "after": {
+        "player": "Bahrain",
+        "year": 1990,
+        "month": 1,
+        "day": 8
+      },
+      "after_save": {
+        "bytes": 15267157,
+        "sha256": "66b1d659b0c1fc491da379abb9079774be257ecdd9f3e59fd4a1a6496d236fcc",
+        "campaign_sha256": "13fb08f80d70cd3c7e09572c95a1bef0d247d23be444a1ad1e3dc8f43eeb7eb8",
+        "player": "Bahrain",
+        "date": "8 Jan 1990",
+        "world_player": "Bahrain",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/bahrain-after.json.gz",
+        "gzip_bytes": 2935938,
+        "gzip_sha256": "98f5084719ce0e942a4dde4894e5c440da97ae4ebb455a1956392c007a4d71f4"
+      },
+      "elapsed_seconds": 18.604,
+      "finished_utc": "2026-09-28T18:56:44.823Z"
+    },
+    {
+      "nation": "CapeVerde",
+      "name": "Cape Verde",
+      "passed": false,
+      "checks": [
+        "ordinary_selection"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 23,
+            "width": 1440,
+            "height": 638,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1041.6,
+              "cy": 465.59999999999997,
+              "yaw": 0.4194342876762409,
+              "pitch": 0.2764624964318709,
+              "zoom": 2.1999999999999997
+            },
+            "player": "CapeVerde",
+            "label": {
+              "id": "CapeVerde",
+              "text": "Cape Verde",
+              "box": [
+                720.0000008572451,
+                319.0000234999139,
+                63.556640625,
+                12
+              ],
+              "client_x": 720.0000008572451,
+              "client_y": 507.0000234999139,
+              "hit_nation": "CapeVerde",
+              "canvas_topmost": true
+            }
+          }
+        }
+      },
+      "advances": [],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Cape Verde"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04725,
+            "education": 0.03402,
+            "housing": 0.0378,
+            "pensions": 0.05292000000000001,
+            "infrastructure": 0.08800000000000001,
+            "industry": 0.048,
+            "science": 0.024,
+            "defense": 0.02,
+            "security": 0.013230000000000002,
+            "diplomacy": 0.00378,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/capeverde-opening-map.jpg",
+          "bytes": 124183,
+          "sha256": "f7f1cba3a0ed56fc8760580a1658c74fefd254cd27770a4bae876f2eec248342",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "failure",
+          "path": "screenshots/capeverde-failure.jpg",
+          "bytes": 135986,
+          "sha256": "07444553619e475f697d1d6a485d215257376f1f6229ef5a20b1225c3f8c75e4",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:56:45.435Z",
+      "before": {
+        "player": "CapeVerde",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#sheet') to be visible\u001b[22m\n\u001b[2m    62 × locator resolved to hidden <div id=\"sheet\" role=\"dialog\" tabindex=\"-1\" aria-modal=\"true\" aria-label=\"National decisions\"></div>\u001b[22m\n\n    at views (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:41:111)\n    at async caseRun (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:67:27)\n    at async main (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:93:37)",
+      "failed_stage": "opening_views",
+      "retained_failure_slots": [
+        {
+          "bytes": 15267157,
+          "sha256": "e29bfac04840fd510c07cf9d3d672660091854b2c4cfd2b0c408aa2aeaec2d27",
+          "campaign_sha256": "13fb08f80d70cd3c7e09572c95a1bef0d247d23be444a1ad1e3dc8f43eeb7eb8",
+          "player": "Bahrain",
+          "date": "8 Jan 1990",
+          "world_player": "Bahrain",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/capeverde-startup-before-failure.json.gz",
+          "gzip_bytes": 2935938,
+          "gzip_sha256": "5f9a6e9d530af3179ea89833f8f65c36fae8b4f60d409e492ee173a7dd0cbcf8"
+        },
+        {
+          "bytes": 15267157,
+          "sha256": "66b1d659b0c1fc491da379abb9079774be257ecdd9f3e59fd4a1a6496d236fcc",
+          "campaign_sha256": "13fb08f80d70cd3c7e09572c95a1bef0d247d23be444a1ad1e3dc8f43eeb7eb8",
+          "player": "Bahrain",
+          "date": "8 Jan 1990",
+          "world_player": "Bahrain",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/capeverde-startup-after-failure.json.gz",
+          "gzip_bytes": 2935938,
+          "gzip_sha256": "98f5084719ce0e942a4dde4894e5c440da97ae4ebb455a1956392c007a4d71f4"
+        }
+      ],
+      "elapsed_seconds": 34.085,
+      "finished_utc": "2026-09-28T18:57:19.520Z"
+    },
+    {
+      "nation": "Comoros",
+      "name": "Comoros",
+      "passed": true,
+      "checks": [
+        "ordinary_selection",
+        "opening_map",
+        "opening_government",
+        "opening_budget",
+        "opening_guidance",
+        "seven_visible_days",
+        "named_save",
+        "ordinary_reload",
+        "reloaded_map",
+        "reloaded_government",
+        "reloaded_budget",
+        "reloaded_guidance",
+        "exact_archive_roundtrip",
+        "no_page_errors",
+        "ordinary_mutations_only"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 22,
+            "width": 1440,
+            "height": 624,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1485.6,
+              "cy": 674.4,
+              "yaw": -0.7526460270611341,
+              "pitch": -0.20641392288544283,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Comoros",
+            "label": {
+              "id": "Comoros",
+              "text": "Comoros",
+              "box": [
+                719.9999967659396,
+                311.9999295200825,
+                50.49609375,
+                12
+              ],
+              "client_x": 719.9999967659396,
+              "client_y": 499.9999295200825,
+              "hit_nation": "Comoros",
+              "canvas_topmost": true,
+              "opened_nation": "Comoros",
+              "dossier_title": "Comoros"
+            }
+          },
+          "government": {
+            "nation": "Comoros",
+            "hero": "Comoros",
+            "officeholder": "the office-holder",
+            "electoral": true,
+            "politics_tab": "Parliament & parties",
+            "native_reading_sha256": "f05d07f7cd02a45654686f0b2ec1c7466ccfc97e50f17190bc5c866978404d9f",
+            "layout": {
+              "width": 1440,
+              "scroll": 1440
+            }
+          },
+          "budget": {
+            "nation": "Comoros",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$60m\nAuthority + debt service / year\n$148m\nIncludes $13m interest\nAt full use: funding gap / year\n$87m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Comoros · your nation's next chapter",
+            "layout": {
+              "width": 1325,
+              "scroll": 1325
+            }
+          },
+          "guidance": {
+            "player": "Comoros",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nChoose a current research project\n\nComputing & Software has no selected project and lists Sub-Micron CMOS Fabrication among its current-year options.\n\nWhy this recommendation?\n\nBefore deciding\nReview prerequisites, costs and alternatives before choosing. Researching an option is a separate decision.\n\nCompare research options ↗\nHide for now",
+            "layout": {
+              "width": 1118,
+              "scroll": 1118
+            }
+          }
+        },
+        "reloaded": {
+          "map": {
+            "draws_before": 40,
+            "draws_after": 59,
+            "width": 390,
+            "height": 355,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1485.6,
+              "cy": 674.4,
+              "yaw": -0.7526460270611341,
+              "pitch": -0.20641392288544283,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Comoros",
+            "label": {
+              "id": "Comoros",
+              "text": "Comoros",
+              "box": [
+                194.9999981601099,
+                177.49995990325206,
+                50.49609375,
+                12
+              ],
+              "client_x": 194.9999981601099,
+              "client_y": 490.49995990325203,
+              "hit_nation": "Comoros",
+              "canvas_topmost": true,
+              "opened_nation": "Comoros",
+              "dossier_title": "Comoros"
+            }
+          },
+          "government": {
+            "nation": "Comoros",
+            "hero": "Comoros",
+            "officeholder": "the office-holder",
+            "electoral": true,
+            "politics_tab": "Parliament & parties",
+            "native_reading_sha256": "e3e5aafb220b11e32f766f1888b81a5b0ce54b5b036d2f38ce9ab6b1611dd288",
+            "layout": {
+              "width": 390,
+              "scroll": 390
+            }
+          },
+          "budget": {
+            "nation": "Comoros",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$60m\nAuthority + debt service / year\n$148m\nIncludes $13m interest\nAt full use: funding gap / year\n$87m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Comoros · your nation's next chapter",
+            "layout": {
+              "width": 354,
+              "scroll": 354
+            }
+          },
+          "guidance": {
+            "player": "Comoros",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nReview your research priority\n\nResearch effort is positive and projects are selected, but no priority domain is set.\n\nWhy this recommendation?\n\nBefore deciding\nA priority redistributes emphasis. Compare domains and current waits before changing it.\n\nReview research focus ↗\nHide for now",
+            "layout": {
+              "width": 372,
+              "scroll": 372
+            }
+          }
+        }
+      },
+      "advances": [
+        {
+          "before": 7305,
+          "after": 7306,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7306,
+          "after": 7307,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7307,
+          "after": 7308,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7308,
+          "after": 7309,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7309,
+          "after": 7310,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7310,
+          "after": 7311,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        },
+        {
+          "before": 7311,
+          "after": 7312,
+          "days": 1,
+          "player": "Comoros",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621840943402900-4"
+        }
+      ],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Comoros"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 1
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 2
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 3
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 4
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 5
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 6
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Comoros",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621840943402900-4",
+            "client_id": "6b036342-7864-4769-bfde-1b7e2a304f49",
+            "request_seq": 7
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "named_save",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-before",
+            "session_id": "29864-1790621840943402900-4"
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/load",
+          "payload": {
+            "slot": "startup-before",
+            "backup": false
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.04775,
+            "education": 0.03438,
+            "housing": 0.038200000000000005,
+            "pensions": 0.05348000000000001,
+            "infrastructure": 0.060500000000000005,
+            "industry": 0.033,
+            "science": 0.0165,
+            "defense": 0.012,
+            "security": 0.013370000000000002,
+            "diplomacy": 0.00382,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "exact_archive_roundtrip",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-after",
+            "session_id": "29864-1790621849122322600-6"
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/comoros-opening-map.jpg",
+          "bytes": 125179,
+          "sha256": "9f53a70ff0f2abc8e785788e2038d76bd780488567e993a2254655ad85debee4",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-government",
+          "path": "screenshots/comoros-opening-government.jpg",
+          "bytes": 103109,
+          "sha256": "403d95876d6b0e342bf9b24695ed4fc516189e646cfb3cbc3ff6ea4b7974760d",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-budget",
+          "path": "screenshots/comoros-opening-budget.jpg",
+          "bytes": 114057,
+          "sha256": "a33c49092d50a9db6984dac65f16609d6fe9c1b98c002560f187009c8e82084e",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-guidance",
+          "path": "screenshots/comoros-opening-guidance.jpg",
+          "bytes": 91145,
+          "sha256": "d986a1249a501762d9a1a744a0739ee3bf7da1f76ce5698c79c0c2440c3787db",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "reloaded-map",
+          "path": "screenshots/comoros-reloaded-map.jpg",
+          "bytes": 42148,
+          "sha256": "71eb12bfd1e21f1d323e942ee2c311fb8c9fd18b0f66664f641f151d556fd919",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-government",
+          "path": "screenshots/comoros-reloaded-government.jpg",
+          "bytes": 40349,
+          "sha256": "33dbb56e65f394d9327a9c670c4d19b119c4daac2555b2e1da7002a1355cb0ad",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-budget",
+          "path": "screenshots/comoros-reloaded-budget.jpg",
+          "bytes": 45090,
+          "sha256": "9a9f0963d42c92496a8b57b364188d3de9f4717e6a2fa4b1de8a4a7302f4062e",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-guidance",
+          "path": "screenshots/comoros-reloaded-guidance.jpg",
+          "bytes": 39797,
+          "sha256": "a4845bf7ce8ff817ebe10c3d46cacd08d0553e3c6542fdd836d9eb3a8708722c",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:57:19.894Z",
+      "before": {
+        "player": "Comoros",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "before_save": {
+        "bytes": 15267283,
+        "sha256": "64eaf866184e50e1c102e4317807a7fa39999395d8ce4612e0938a31bddf6f98",
+        "campaign_sha256": "25e2fa34b5130064f03e9d5aead625b2f30af834fdb71aac725459430e9f3777",
+        "player": "Comoros",
+        "date": "8 Jan 1990",
+        "world_player": "Comoros",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/comoros-before.json.gz",
+        "gzip_bytes": 2935948,
+        "gzip_sha256": "62276e27f96d53d7ea3c7d7bf79f1f23874c3a799e39436323f8ab0a7b53c1c7"
+      },
+      "old_session": "29864-1790621840943402900-4",
+      "new_session": "29864-1790621849122322600-6",
+      "after": {
+        "player": "Comoros",
+        "year": 1990,
+        "month": 1,
+        "day": 8
+      },
+      "after_save": {
+        "bytes": 15267283,
+        "sha256": "994854590e6f5c592900e47094586c9aaf0df8839c45529413eaae270f820da0",
+        "campaign_sha256": "25e2fa34b5130064f03e9d5aead625b2f30af834fdb71aac725459430e9f3777",
+        "player": "Comoros",
+        "date": "8 Jan 1990",
+        "world_player": "Comoros",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/comoros-after.json.gz",
+        "gzip_bytes": 2935949,
+        "gzip_sha256": "0f34395a3f63b7aab05cb45de5cd13eb8b7ae6be8d646e10a0d1f8d4ee888bb0"
+      },
+      "elapsed_seconds": 14.852,
+      "finished_utc": "2026-09-28T18:57:34.746Z"
+    },
+    {
+      "nation": "Maldives",
+      "name": "Maldives",
+      "passed": false,
+      "checks": [
+        "ordinary_selection"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 22,
+            "width": 1440,
+            "height": 624,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1689.6,
+              "cy": 554.4,
+              "yaw": -1.2832335437441102,
+              "pitch": 0.07110135774380132,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Maldives",
+            "label": {
+              "id": "Maldives",
+              "text": "Maldives",
+              "box": [
+                719.9999994898114,
+                312.0000248168724,
+                50.349609375,
+                12
+              ],
+              "client_x": 719.9999994898114,
+              "client_y": 500.0000248168724,
+              "hit_nation": "Maldives",
+              "canvas_topmost": true
+            }
+          }
+        }
+      },
+      "advances": [],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Maldives"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.046250000000000006,
+            "education": 0.0333,
+            "housing": 0.037000000000000005,
+            "pensions": 0.05180000000000001,
+            "infrastructure": 0.044000000000000004,
+            "industry": 0.024,
+            "science": 0.012,
+            "defense": 0.04,
+            "security": 0.012950000000000003,
+            "diplomacy": 0.0037000000000000006,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/maldives-opening-map.jpg",
+          "bytes": 131819,
+          "sha256": "c898675bb65c9b08ffaff8a56a9881e3af1273c1ddbb4b599ea8600edeba13e2",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "failure",
+          "path": "screenshots/maldives-failure.jpg",
+          "bytes": 144323,
+          "sha256": "1a7dd9616c16c0c23e9954f25ad4480623b1d48f1b6bb93d13f26ea03ac50f29",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:57:34.799Z",
+      "before": {
+        "player": "Maldives",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#sheet') to be visible\u001b[22m\n\u001b[2m    62 × locator resolved to hidden <div id=\"sheet\" role=\"dialog\" tabindex=\"-1\" aria-modal=\"true\" aria-label=\"National decisions\"></div>\u001b[22m\n\n    at views (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:41:111)\n    at async caseRun (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:67:27)\n    at async main (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:93:37)",
+      "failed_stage": "opening_views",
+      "retained_failure_slots": [
+        {
+          "bytes": 15267283,
+          "sha256": "64eaf866184e50e1c102e4317807a7fa39999395d8ce4612e0938a31bddf6f98",
+          "campaign_sha256": "25e2fa34b5130064f03e9d5aead625b2f30af834fdb71aac725459430e9f3777",
+          "player": "Comoros",
+          "date": "8 Jan 1990",
+          "world_player": "Comoros",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/maldives-startup-before-failure.json.gz",
+          "gzip_bytes": 2935948,
+          "gzip_sha256": "62276e27f96d53d7ea3c7d7bf79f1f23874c3a799e39436323f8ab0a7b53c1c7"
+        },
+        {
+          "bytes": 15267283,
+          "sha256": "994854590e6f5c592900e47094586c9aaf0df8839c45529413eaae270f820da0",
+          "campaign_sha256": "25e2fa34b5130064f03e9d5aead625b2f30af834fdb71aac725459430e9f3777",
+          "player": "Comoros",
+          "date": "8 Jan 1990",
+          "world_player": "Comoros",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/maldives-startup-after-failure.json.gz",
+          "gzip_bytes": 2935949,
+          "gzip_sha256": "0f34395a3f63b7aab05cb45de5cd13eb8b7ae6be8d646e10a0d1f8d4ee888bb0"
+        }
+      ],
+      "elapsed_seconds": 34.438,
+      "finished_utc": "2026-09-28T18:58:09.237Z"
+    },
+    {
+      "nation": "Mauritius",
+      "name": "Mauritius",
+      "passed": true,
+      "checks": [
+        "ordinary_selection",
+        "opening_map",
+        "opening_government",
+        "opening_budget",
+        "opening_guidance",
+        "seven_visible_days",
+        "named_save",
+        "ordinary_reload",
+        "reloaded_map",
+        "reloaded_government",
+        "reloaded_budget",
+        "reloaded_guidance",
+        "exact_archive_roundtrip",
+        "no_page_errors",
+        "ordinary_mutations_only"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 22,
+            "width": 1440,
+            "height": 638,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1576.8000000000002,
+              "cy": 739.1999999999999,
+              "yaw": -1.0051147282544228,
+              "pitch": -0.3562720414003382,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Mauritius",
+            "label": {
+              "id": "Mauritius",
+              "text": "Mauritius",
+              "box": [
+                719.9999965951092,
+                318.99996635062166,
+                54.052734375,
+                12
+              ],
+              "client_x": 719.9999965951092,
+              "client_y": 506.99996635062166,
+              "hit_nation": "Mauritius",
+              "canvas_topmost": true,
+              "opened_nation": "Mauritius",
+              "dossier_title": "Mauritius"
+            }
+          },
+          "government": {
+            "nation": "Mauritius",
+            "hero": "Mauritius",
+            "officeholder": "Anerood Jugnauth",
+            "electoral": true,
+            "politics_tab": "Parliament & parties",
+            "native_reading_sha256": "04b6c626ef0aab2f7cc1f5be454ed51e31fdef42c7a9df8ec904aebd913b5907",
+            "layout": {
+              "width": 1440,
+              "scroll": 1440
+            }
+          },
+          "budget": {
+            "nation": "Mauritius",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$596m\nAuthority + debt service / year\n$803m\nIncludes $42m interest\nAt full use: funding gap / year\n$207m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Mauritius · your nation's next chapter",
+            "layout": {
+              "width": 1325,
+              "scroll": 1325
+            }
+          },
+          "guidance": {
+            "player": "Mauritius",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nChoose a current research project\n\nComputing & Software has no selected project and lists Sub-Micron CMOS Fabrication among its current-year options.\n\nWhy this recommendation?\n\nBefore deciding\nReview prerequisites, costs and alternatives before choosing. Researching an option is a separate decision.\n\nCompare research options ↗\nHide for now",
+            "layout": {
+              "width": 1118,
+              "scroll": 1118
+            }
+          }
+        },
+        "reloaded": {
+          "map": {
+            "draws_before": 40,
+            "draws_after": 59,
+            "width": 390,
+            "height": 355,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1576.8000000000002,
+              "cy": 739.1999999999999,
+              "yaw": -1.0051147282544228,
+              "pitch": -0.3562720414003382,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Mauritius",
+            "label": {
+              "id": "Mauritius",
+              "text": "Mauritius",
+              "box": [
+                194.99999810542909,
+                177.4999812765998,
+                54.052734375,
+                12
+              ],
+              "client_x": 194.99999810542906,
+              "client_y": 490.4999812765998,
+              "hit_nation": "Mauritius",
+              "canvas_topmost": true,
+              "opened_nation": "Mauritius",
+              "dossier_title": "Mauritius"
+            }
+          },
+          "government": {
+            "nation": "Mauritius",
+            "hero": "Mauritius",
+            "officeholder": "Anerood Jugnauth",
+            "electoral": true,
+            "politics_tab": "Parliament & parties",
+            "native_reading_sha256": "c66467299229b6726ebf2e947a1f416e63745d54eb647f0f5d1ff51429fe2f07",
+            "layout": {
+              "width": 390,
+              "scroll": 390
+            }
+          },
+          "budget": {
+            "nation": "Mauritius",
+            "ministries": [
+              "health",
+              "education",
+              "housing",
+              "pensions",
+              "infrastructure",
+              "industry",
+              "science",
+              "defense",
+              "security",
+              "diplomacy"
+            ],
+            "summary": "Proposed revenue / year\n$597m\nAuthority + debt service / year\n$808m\nIncludes $47m interest\nAt full use: funding gap / year\n$211m\nAt current GDP; actual work is charged as delivered.",
+            "kicker": "Mauritius · your nation's next chapter",
+            "layout": {
+              "width": 354,
+              "scroll": 354
+            }
+          },
+          "guidance": {
+            "player": "Mauritius",
+            "cards": "ECONOMY · ATTENTION\n\nReview your yearly budget\n\nThe current budget reading says annual renewal is due.\n\nWhy this recommendation?\n\nBefore deciding\nReview ministry allocations and their effects before enacting a budget.\n\nReview yearly budget ↗\nHide for now\n\nECONOMY · ATTENTION\n\nOpen construction funding\n\nThe construction ledger is not enrolled in a funding budget.\n\nBefore deciding\nReview the daily cash limit and available civilian capital appropriations.\n\nReview construction funding ↗\nHide for now\n\nRESEARCH · OPPORTUNITY\n\nReview your research priority\n\nResearch effort is positive and projects are selected, but no priority domain is set.\n\nWhy this recommendation?\n\nBefore deciding\nA priority redistributes emphasis. Compare domains and current waits before changing it.\n\nReview research focus ↗\nHide for now",
+            "layout": {
+              "width": 372,
+              "scroll": 372
+            }
+          }
+        }
+      },
+      "advances": [
+        {
+          "before": 7305,
+          "after": 7306,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7306,
+          "after": 7307,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7307,
+          "after": 7308,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7308,
+          "after": 7309,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7309,
+          "after": 7310,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7310,
+          "after": 7311,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        },
+        {
+          "before": 7311,
+          "after": 7312,
+          "days": 1,
+          "player": "Mauritius",
+          "errors": [],
+          "interrupt": null,
+          "session_id": "29864-1790621890305548900-9"
+        }
+      ],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Mauritius"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 1
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 2
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 3
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 4
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 5
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 6
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/advance",
+          "payload": {
+            "player_context": "Mauritius",
+            "days": 1,
+            "commands": [],
+            "session_id": "29864-1790621890305548900-9",
+            "client_id": "ba58a553-4291-4c67-bacd-c145b2c97f9d",
+            "request_seq": 7
+          }
+        },
+        {
+          "stage": "seven_visible_days",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "named_save",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-before",
+            "session_id": "29864-1790621890305548900-9"
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/load",
+          "payload": {
+            "slot": "startup-before",
+            "backup": false
+          }
+        },
+        {
+          "stage": "ordinary_reload",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.053500000000000006,
+            "education": 0.038520000000000006,
+            "housing": 0.042800000000000005,
+            "pensions": 0.059920000000000015,
+            "infrastructure": 0.038500000000000006,
+            "industry": 0.021,
+            "science": 0.0105,
+            "defense": 0.003,
+            "security": 0.014980000000000004,
+            "diplomacy": 0.004280000000000001,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        },
+        {
+          "stage": "exact_archive_roundtrip",
+          "path": "/api/save",
+          "payload": {
+            "slot": "startup-after",
+            "session_id": "29864-1790621898433008500-11"
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/mauritius-opening-map.jpg",
+          "bytes": 112228,
+          "sha256": "4fbf12708b48eec9882635cf8b887efc3b90a7d2dba0942a5067355abe86fbe5",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-government",
+          "path": "screenshots/mauritius-opening-government.jpg",
+          "bytes": 94239,
+          "sha256": "4f161934ae2708da596f22e8a470f452d11ce9221b1d8cf7a6826fda7999f2c5",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-budget",
+          "path": "screenshots/mauritius-opening-budget.jpg",
+          "bytes": 114552,
+          "sha256": "18d31fe49a2327ea5b8e739f237a038a1a5fd66dabce33a42db3aa952d051a1c",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "opening-guidance",
+          "path": "screenshots/mauritius-opening-guidance.jpg",
+          "bytes": 91150,
+          "sha256": "ee63563b54a5103111c6c7155ea0264770bb47dd4d82b0ffcd42778776a80897",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "reloaded-map",
+          "path": "screenshots/mauritius-reloaded-map.jpg",
+          "bytes": 36560,
+          "sha256": "ec1e861167750b0d106c4cd39917346e436678e0561dbe078c2e50f0b42a0822",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-government",
+          "path": "screenshots/mauritius-reloaded-government.jpg",
+          "bytes": 39339,
+          "sha256": "110bfe920aef276475bf4e845b162193b908109c299a1ae262b756d7fb074436",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-budget",
+          "path": "screenshots/mauritius-reloaded-budget.jpg",
+          "bytes": 45308,
+          "sha256": "c76259e83d1c47064266131270c7259469cb98976a2f06ae64aaf0bb001e6fad",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        {
+          "stage": "reloaded-guidance",
+          "path": "screenshots/mauritius-reloaded-guidance.jpg",
+          "bytes": 39847,
+          "sha256": "0c412ea68010d1df4e5807e13a1d5edde8bd6778b864a0a13195385dee10bc0f",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:58:09.242Z",
+      "before": {
+        "player": "Mauritius",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "before_save": {
+        "bytes": 15267297,
+        "sha256": "631c7fabdc94a3602af42a6e4304650cc818ffa3b2cad0d86e3e6b99dc918606",
+        "campaign_sha256": "ed74a6ccb2adc3a2c4671e72fd11d20d06aa0984e3d54d83d47d977db39b69f5",
+        "player": "Mauritius",
+        "date": "8 Jan 1990",
+        "world_player": "Mauritius",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/mauritius-before.json.gz",
+        "gzip_bytes": 2935956,
+        "gzip_sha256": "1526be25afa79987020a3bff51bf6fce14cccb7cf1bf8fd458353ae772e9b348"
+      },
+      "old_session": "29864-1790621890305548900-9",
+      "new_session": "29864-1790621898433008500-11",
+      "after": {
+        "player": "Mauritius",
+        "year": 1990,
+        "month": 1,
+        "day": 8
+      },
+      "after_save": {
+        "bytes": 15267297,
+        "sha256": "0895982a8550b7a5bbcd527bc3827180dd9c2e46ae0dfa47b8e8ea04ab0a0753",
+        "campaign_sha256": "ed74a6ccb2adc3a2c4671e72fd11d20d06aa0984e3d54d83d47d977db39b69f5",
+        "player": "Mauritius",
+        "date": "8 Jan 1990",
+        "world_player": "Mauritius",
+        "world_seed": 17,
+        "world_date": {
+          "year": 1990,
+          "month": 1,
+          "day": 8
+        },
+        "path": "archives/mauritius-after.json.gz",
+        "gzip_bytes": 2935956,
+        "gzip_sha256": "49d3cf568b37bc0ac792ee51223beb6df421d7f558f1c0b6fa45e4c236d362a3"
+      },
+      "elapsed_seconds": 13.747,
+      "finished_utc": "2026-09-28T18:58:22.989Z"
+    },
+    {
+      "nation": "Seychelles",
+      "name": "Seychelles",
+      "passed": false,
+      "checks": [
+        "ordinary_selection"
+      ],
+      "views": {
+        "opening": {
+          "map": {
+            "draws_before": 4,
+            "draws_after": 22,
+            "width": 1440,
+            "height": 624,
+            "visible": true,
+            "in_viewport": true,
+            "owned_districts": 0,
+            "camera": {
+              "cx": 1569.6,
+              "cy": 619.1999999999999,
+              "yaw": -0.9688346436829054,
+              "pitch": -0.07875694053446766,
+              "zoom": 2.1999999999999997
+            },
+            "player": "Seychelles",
+            "label": {
+              "id": "Seychelles",
+              "text": "Seychelles",
+              "box": [
+                719.9999989207726,
+                311.9999304363978,
+                57.626953125,
+                12
+              ],
+              "client_x": 719.9999989207726,
+              "client_y": 499.9999304363978,
+              "hit_nation": "Seychelles",
+              "canvas_topmost": true
+            }
+          }
+        }
+      },
+      "advances": [],
+      "requests": [
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/new",
+          "payload": {
+            "seed": 17,
+            "nation": "Seychelles"
+          }
+        },
+        {
+          "stage": "ordinary_selection",
+          "path": "/api/program-preview",
+          "payload": {
+            "kind": "program_budget",
+            "fiscal_year": 1990,
+            "health": 0.045750000000000006,
+            "education": 0.032940000000000004,
+            "housing": 0.03660000000000001,
+            "pensions": 0.051240000000000015,
+            "infrastructure": 0.0825,
+            "industry": 0.045,
+            "science": 0.0225,
+            "defense": 0.04,
+            "security": 0.012810000000000004,
+            "diplomacy": 0.0036600000000000005,
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "policy_commands": []
+          }
+        }
+      ],
+      "page_errors": [],
+      "screenshots": [
+        {
+          "stage": "opening-map",
+          "path": "screenshots/seychelles-opening-map.jpg",
+          "bytes": 128323,
+          "sha256": "f44b1eb0e31745593fce5e24d2f9318bde86b7398d525f2a90209516497d0712",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        {
+          "stage": "failure",
+          "path": "screenshots/seychelles-failure.jpg",
+          "bytes": 140387,
+          "sha256": "13a7cf0646229f3625a25fbf5cd33ab2ba9c63a6a47f4d53f4a125502ac2a77d",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        }
+      ],
+      "started_utc": "2026-09-28T18:58:22.995Z",
+      "before": {
+        "player": "Seychelles",
+        "year": 1990,
+        "month": 1,
+        "day": 1
+      },
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#sheet') to be visible\u001b[22m\n\u001b[2m    62 × locator resolved to hidden <div id=\"sheet\" role=\"dialog\" tabindex=\"-1\" aria-modal=\"true\" aria-label=\"National decisions\"></div>\u001b[22m\n\n    at views (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:41:111)\n    at async caseRun (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:67:27)\n    at async main (D:\\spheres-offload\\codex-next-20260928\\startup-map-fix\\tools\\ui\\worldwide_startup_browser.cjs:93:37)",
+      "failed_stage": "opening_views",
+      "retained_failure_slots": [
+        {
+          "bytes": 15267297,
+          "sha256": "631c7fabdc94a3602af42a6e4304650cc818ffa3b2cad0d86e3e6b99dc918606",
+          "campaign_sha256": "ed74a6ccb2adc3a2c4671e72fd11d20d06aa0984e3d54d83d47d977db39b69f5",
+          "player": "Mauritius",
+          "date": "8 Jan 1990",
+          "world_player": "Mauritius",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/seychelles-startup-before-failure.json.gz",
+          "gzip_bytes": 2935956,
+          "gzip_sha256": "1526be25afa79987020a3bff51bf6fce14cccb7cf1bf8fd458353ae772e9b348"
+        },
+        {
+          "bytes": 15267297,
+          "sha256": "0895982a8550b7a5bbcd527bc3827180dd9c2e46ae0dfa47b8e8ea04ab0a0753",
+          "campaign_sha256": "ed74a6ccb2adc3a2c4671e72fd11d20d06aa0984e3d54d83d47d977db39b69f5",
+          "player": "Mauritius",
+          "date": "8 Jan 1990",
+          "world_player": "Mauritius",
+          "world_seed": 17,
+          "world_date": {
+            "year": 1990,
+            "month": 1,
+            "day": 8
+          },
+          "path": "archives/seychelles-startup-after-failure.json.gz",
+          "gzip_bytes": 2935956,
+          "gzip_sha256": "49d3cf568b37bc0ac792ee51223beb6df421d7f558f1c0b6fa45e4c236d362a3"
+        }
+      ],
+      "elapsed_seconds": 33.34,
+      "finished_utc": "2026-09-28T18:58:56.335Z"
+    }
+  ],
+  "passed": false,
+  "all_137_passed": false,
+  "cleanup": {
+    "browser_closed": true,
+    "server_stopped": true
+  },
+  "canonical_roster": {
+    "source_path": "runtime/nations.rs",
+    "path": "sources/runtime/nations.rs",
+    "bytes": 214148,
+    "sha256": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+    "git_blob": "daee3858344b42a46ae5724b867b19065162a0fe",
+    "revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+    "rows": [
+      {
+        "id": "Afghanistan",
+        "name": "Afghanistan"
+      },
+      {
+        "id": "Albania",
+        "name": "Albania"
+      },
+      {
+        "id": "Algeria",
+        "name": "Algeria"
+      },
+      {
+        "id": "Angola",
+        "name": "Angola"
+      },
+      {
+        "id": "Argentina",
+        "name": "Argentina"
+      },
+      {
+        "id": "Australia",
+        "name": "Australia"
+      },
+      {
+        "id": "Austria",
+        "name": "Austria"
+      },
+      {
+        "id": "Bahamas",
+        "name": "Bahamas"
+      },
+      {
+        "id": "Bahrain",
+        "name": "Bahrain"
+      },
+      {
+        "id": "Bangladesh",
+        "name": "Bangladesh"
+      },
+      {
+        "id": "Belgium",
+        "name": "Belgium"
+      },
+      {
+        "id": "Belize",
+        "name": "Belize"
+      },
+      {
+        "id": "Bhutan",
+        "name": "Bhutan"
+      },
+      {
+        "id": "Bolivia",
+        "name": "Bolivia"
+      },
+      {
+        "id": "Botswana",
+        "name": "Botswana"
+      },
+      {
+        "id": "Brazil",
+        "name": "Brazil"
+      },
+      {
+        "id": "Brunei",
+        "name": "Brunei"
+      },
+      {
+        "id": "Bulgaria",
+        "name": "Bulgaria"
+      },
+      {
+        "id": "Cambodia",
+        "name": "Cambodia"
+      },
+      {
+        "id": "Cameroon",
+        "name": "Cameroon"
+      },
+      {
+        "id": "Canada",
+        "name": "Canada"
+      },
+      {
+        "id": "CapeVerde",
+        "name": "Cape Verde"
+      },
+      {
+        "id": "CentralAfricanRepublic",
+        "name": "Central African Republic"
+      },
+      {
+        "id": "Chad",
+        "name": "Chad"
+      },
+      {
+        "id": "Chile",
+        "name": "Chile"
+      },
+      {
+        "id": "China",
+        "name": "China"
+      },
+      {
+        "id": "Colombia",
+        "name": "Colombia"
+      },
+      {
+        "id": "Comoros",
+        "name": "Comoros"
+      },
+      {
+        "id": "Congo",
+        "name": "Congo-Brazzaville"
+      },
+      {
+        "id": "CostaRica",
+        "name": "Costa Rica"
+      },
+      {
+        "id": "Cuba",
+        "name": "Cuba"
+      },
+      {
+        "id": "Cyprus",
+        "name": "Cyprus"
+      },
+      {
+        "id": "Czechoslovakia",
+        "name": "Czechoslovakia"
+      },
+      {
+        "id": "Denmark",
+        "name": "Denmark"
+      },
+      {
+        "id": "DominicanRepublic",
+        "name": "Dominican Republic"
+      },
+      {
+        "id": "Ecuador",
+        "name": "Ecuador"
+      },
+      {
+        "id": "Egypt",
+        "name": "Egypt"
+      },
+      {
+        "id": "ElSalvador",
+        "name": "El Salvador"
+      },
+      {
+        "id": "EquatorialGuinea",
+        "name": "Equatorial Guinea"
+      },
+      {
+        "id": "Ethiopia",
+        "name": "Ethiopia"
+      },
+      {
+        "id": "Fiji",
+        "name": "Fiji"
+      },
+      {
+        "id": "Finland",
+        "name": "Finland"
+      },
+      {
+        "id": "France",
+        "name": "France"
+      },
+      {
+        "id": "Gabon",
+        "name": "Gabon"
+      },
+      {
+        "id": "Germany",
+        "name": "Germany"
+      },
+      {
+        "id": "Ghana",
+        "name": "Ghana"
+      },
+      {
+        "id": "Greece",
+        "name": "Greece"
+      },
+      {
+        "id": "Guatemala",
+        "name": "Guatemala"
+      },
+      {
+        "id": "Guyana",
+        "name": "Guyana"
+      },
+      {
+        "id": "Haiti",
+        "name": "Haiti"
+      },
+      {
+        "id": "Honduras",
+        "name": "Honduras"
+      },
+      {
+        "id": "Hungary",
+        "name": "Hungary"
+      },
+      {
+        "id": "Iceland",
+        "name": "Iceland"
+      },
+      {
+        "id": "India",
+        "name": "India"
+      },
+      {
+        "id": "Indonesia",
+        "name": "Indonesia"
+      },
+      {
+        "id": "Iran",
+        "name": "Iran"
+      },
+      {
+        "id": "Iraq",
+        "name": "Iraq"
+      },
+      {
+        "id": "Ireland",
+        "name": "Ireland"
+      },
+      {
+        "id": "Israel",
+        "name": "Israel"
+      },
+      {
+        "id": "Italy",
+        "name": "Italy"
+      },
+      {
+        "id": "Jamaica",
+        "name": "Jamaica"
+      },
+      {
+        "id": "Japan",
+        "name": "Japan"
+      },
+      {
+        "id": "Jordan",
+        "name": "Jordan"
+      },
+      {
+        "id": "Kenya",
+        "name": "Kenya"
+      },
+      {
+        "id": "Kuwait",
+        "name": "Kuwait"
+      },
+      {
+        "id": "Laos",
+        "name": "Laos"
+      },
+      {
+        "id": "Lebanon",
+        "name": "Lebanon"
+      },
+      {
+        "id": "Lesotho",
+        "name": "Lesotho"
+      },
+      {
+        "id": "Libya",
+        "name": "Libya"
+      },
+      {
+        "id": "Luxembourg",
+        "name": "Luxembourg"
+      },
+      {
+        "id": "Madagascar",
+        "name": "Madagascar"
+      },
+      {
+        "id": "Malawi",
+        "name": "Malawi"
+      },
+      {
+        "id": "Malaysia",
+        "name": "Malaysia"
+      },
+      {
+        "id": "Maldives",
+        "name": "Maldives"
+      },
+      {
+        "id": "Malta",
+        "name": "Malta"
+      },
+      {
+        "id": "Mauritius",
+        "name": "Mauritius"
+      },
+      {
+        "id": "Mexico",
+        "name": "Mexico"
+      },
+      {
+        "id": "Mongolia",
+        "name": "Mongolia"
+      },
+      {
+        "id": "Morocco",
+        "name": "Morocco"
+      },
+      {
+        "id": "Mozambique",
+        "name": "Mozambique"
+      },
+      {
+        "id": "Myanmar",
+        "name": "Myanmar"
+      },
+      {
+        "id": "Nepal",
+        "name": "Nepal"
+      },
+      {
+        "id": "Netherlands",
+        "name": "Netherlands"
+      },
+      {
+        "id": "NewZealand",
+        "name": "New Zealand"
+      },
+      {
+        "id": "Nicaragua",
+        "name": "Nicaragua"
+      },
+      {
+        "id": "Nigeria",
+        "name": "Nigeria"
+      },
+      {
+        "id": "NorthKorea",
+        "name": "North Korea"
+      },
+      {
+        "id": "Norway",
+        "name": "Norway"
+      },
+      {
+        "id": "Oman",
+        "name": "Oman"
+      },
+      {
+        "id": "Pakistan",
+        "name": "Pakistan"
+      },
+      {
+        "id": "Panama",
+        "name": "Panama"
+      },
+      {
+        "id": "PapuaNewGuinea",
+        "name": "Papua New Guinea"
+      },
+      {
+        "id": "Paraguay",
+        "name": "Paraguay"
+      },
+      {
+        "id": "Peru",
+        "name": "Peru"
+      },
+      {
+        "id": "Philippines",
+        "name": "Philippines"
+      },
+      {
+        "id": "Poland",
+        "name": "Poland"
+      },
+      {
+        "id": "Portugal",
+        "name": "Portugal"
+      },
+      {
+        "id": "Qatar",
+        "name": "Qatar"
+      },
+      {
+        "id": "Romania",
+        "name": "Romania"
+      },
+      {
+        "id": "Samoa",
+        "name": "Western Samoa"
+      },
+      {
+        "id": "SaoTome",
+        "name": "Sao Tome and Principe"
+      },
+      {
+        "id": "SaudiArabia",
+        "name": "Saudi Arabia"
+      },
+      {
+        "id": "Senegal",
+        "name": "Senegal"
+      },
+      {
+        "id": "Seychelles",
+        "name": "Seychelles"
+      },
+      {
+        "id": "Singapore",
+        "name": "Singapore"
+      },
+      {
+        "id": "SolomonIslands",
+        "name": "Solomon Islands"
+      },
+      {
+        "id": "SouthAfrica",
+        "name": "South Africa"
+      },
+      {
+        "id": "SouthKorea",
+        "name": "South Korea"
+      },
+      {
+        "id": "Spain",
+        "name": "Spain"
+      },
+      {
+        "id": "SriLanka",
+        "name": "Sri Lanka"
+      },
+      {
+        "id": "Sudan",
+        "name": "Sudan"
+      },
+      {
+        "id": "Suriname",
+        "name": "Suriname"
+      },
+      {
+        "id": "Swaziland",
+        "name": "Swaziland"
+      },
+      {
+        "id": "Sweden",
+        "name": "Sweden"
+      },
+      {
+        "id": "Switzerland",
+        "name": "Switzerland"
+      },
+      {
+        "id": "Syria",
+        "name": "Syria"
+      },
+      {
+        "id": "Taiwan",
+        "name": "Taiwan"
+      },
+      {
+        "id": "Tanzania",
+        "name": "Tanzania"
+      },
+      {
+        "id": "Thailand",
+        "name": "Thailand"
+      },
+      {
+        "id": "Tonga",
+        "name": "Tonga"
+      },
+      {
+        "id": "TrinidadTobago",
+        "name": "Trinidad and Tobago"
+      },
+      {
+        "id": "Tunisia",
+        "name": "Tunisia"
+      },
+      {
+        "id": "Turkey",
+        "name": "Turkey"
+      },
+      {
+        "id": "UAE",
+        "name": "United Arab Emirates"
+      },
+      {
+        "id": "Uganda",
+        "name": "Uganda"
+      },
+      {
+        "id": "UK",
+        "name": "United Kingdom"
+      },
+      {
+        "id": "Uruguay",
+        "name": "Uruguay"
+      },
+      {
+        "id": "USA",
+        "name": "United States"
+      },
+      {
+        "id": "USSR",
+        "name": "Soviet Union"
+      },
+      {
+        "id": "Vanuatu",
+        "name": "Vanuatu"
+      },
+      {
+        "id": "Venezuela",
+        "name": "Venezuela"
+      },
+      {
+        "id": "Vietnam",
+        "name": "Vietnam"
+      },
+      {
+        "id": "Yemen",
+        "name": "Yemen"
+      },
+      {
+        "id": "Yugoslavia",
+        "name": "Yugoslavia"
+      },
+      {
+        "id": "Zaire",
+        "name": "Zaire"
+      },
+      {
+        "id": "Zambia",
+        "name": "Zambia"
+      },
+      {
+        "id": "Zimbabwe",
+        "name": "Zimbabwe"
+      }
+    ]
+  },
+  "canonical_geometry": {
+    "source_path": "runtime/districts.json",
+    "path": "sources/runtime/districts.json",
+    "bytes": 844035,
+    "sha256": "b6b1a88c891ccc4fa02f877cc73786d96bf81ea4269ecd8915a6759fac480f46",
+    "git_blob": "cd2431093e00b00142953f7b158a0f1b81cb808a",
+    "revision": "83046c162098d59a6c4532f4173041f82cfd79b3",
+    "zero_district_ids": [
+      "Bahrain",
+      "CapeVerde",
+      "Comoros",
+      "Maldives",
+      "Mauritius",
+      "Seychelles"
+    ]
+  },
+  "provenance_scope": "The frozen binary is rehashed at both boundaries; served assets are verified at start against the exact runtime commit. Immutable Git tree IDs are pinned. Mutable checkout HEAD is documentary, not an unchanged-checkout claim. The seed is bound to each ordinary new-campaign request and the retained native world.rules.seed.",
+  "url": "http://127.0.0.1:61084",
+  "run": "D:\\spheres-offload\\codex-next-20260928\\startup-browser-islands-pilot-01\\server",
+  "browser_version": "146.0.3856.97",
+  "source_checkout_head_after": "01ba6404a455dc8d70049c223bb5c27971698fb7",
+  "immutable_inputs_unchanged": true,
+  "finished_utc": "2026-09-28T18:58:57.107Z",
+  "validation_errors": [
+    "CapeVerde: failed/unfinished case",
+    "CapeVerde: missing required checks",
+    "CapeVerde: missing seven visible advances",
+    "CapeVerde: wrong resumed date/player",
+    "CapeVerde: archive roundtrip mismatch",
+    "CapeVerde: load did not renew session",
+    "CapeVerde: missing visible ordinary label selection at opening",
+    "CapeVerde: missing room observations at opening",
+    "CapeVerde: invalid opening government layout",
+    "CapeVerde: invalid opening budget layout",
+    "CapeVerde: invalid opening guidance layout",
+    "CapeVerde: no visible rendered map at reloaded",
+    "CapeVerde: missing visible ordinary label selection at reloaded",
+    "CapeVerde: missing room observations at reloaded",
+    "CapeVerde: invalid reloaded government layout",
+    "CapeVerde: invalid reloaded budget layout",
+    "CapeVerde: invalid reloaded guidance layout",
+    "CapeVerde: unexpected or missing mutation",
+    "CapeVerde: incomplete visible evidence",
+    "CapeVerde: missing opening government viewport",
+    "CapeVerde: missing opening budget viewport",
+    "CapeVerde: missing opening guidance viewport",
+    "CapeVerde: missing reloaded map viewport",
+    "CapeVerde: missing reloaded government viewport",
+    "CapeVerde: missing reloaded budget viewport",
+    "CapeVerde: missing reloaded guidance viewport",
+    "Maldives: failed/unfinished case",
+    "Maldives: missing required checks",
+    "Maldives: missing seven visible advances",
+    "Maldives: wrong resumed date/player",
+    "Maldives: archive roundtrip mismatch",
+    "Maldives: load did not renew session",
+    "Maldives: missing visible ordinary label selection at opening",
+    "Maldives: missing room observations at opening",
+    "Maldives: invalid opening government layout",
+    "Maldives: invalid opening budget layout",
+    "Maldives: invalid opening guidance layout",
+    "Maldives: no visible rendered map at reloaded",
+    "Maldives: missing visible ordinary label selection at reloaded",
+    "Maldives: missing room observations at reloaded",
+    "Maldives: invalid reloaded government layout",
+    "Maldives: invalid reloaded budget layout",
+    "Maldives: invalid reloaded guidance layout",
+    "Maldives: unexpected or missing mutation",
+    "Maldives: incomplete visible evidence",
+    "Maldives: missing opening government viewport",
+    "Maldives: missing opening budget viewport",
+    "Maldives: missing opening guidance viewport",
+    "Maldives: missing reloaded map viewport",
+    "Maldives: missing reloaded government viewport",
+    "Maldives: missing reloaded budget viewport",
+    "Maldives: missing reloaded guidance viewport",
+    "Seychelles: failed/unfinished case",
+    "Seychelles: missing required checks",
+    "Seychelles: missing seven visible advances",
+    "Seychelles: wrong resumed date/player",
+    "Seychelles: archive roundtrip mismatch",
+    "Seychelles: load did not renew session",
+    "Seychelles: missing visible ordinary label selection at opening",
+    "Seychelles: missing room observations at opening",
+    "Seychelles: invalid opening government layout",
+    "Seychelles: invalid opening budget layout",
+    "Seychelles: invalid opening guidance layout",
+    "Seychelles: no visible rendered map at reloaded",
+    "Seychelles: missing visible ordinary label selection at reloaded",
+    "Seychelles: missing room observations at reloaded",
+    "Seychelles: invalid reloaded government layout",
+    "Seychelles: invalid reloaded budget layout",
+    "Seychelles: invalid reloaded guidance layout",
+    "Seychelles: unexpected or missing mutation",
+    "Seychelles: incomplete visible evidence",
+    "Seychelles: missing opening government viewport",
+    "Seychelles: missing opening budget viewport",
+    "Seychelles: missing opening guidance viewport",
+    "Seychelles: missing reloaded map viewport",
+    "Seychelles: missing reloaded government viewport",
+    "Seychelles: missing reloaded budget viewport",
+    "Seychelles: missing reloaded guidance viewport"
+  ]
+}

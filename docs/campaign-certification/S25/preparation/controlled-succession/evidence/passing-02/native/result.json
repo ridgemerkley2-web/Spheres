@@ -1,0 +1,906 @@
+{
+  "actions": [
+    {
+      "kind": "collapse_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-01",
+        "interruption": "Your government no longer exists. Open Campaign to review its history and available continuation choices.",
+        "requested_days": 1,
+        "to": "1990-01-02"
+      }
+    },
+    {
+      "kind": "legal_refusals",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "archive_unchanged": true,
+        "invalid_successor": "Choose a living successor of this dissolved government.",
+        "not_applied": true,
+        "paused_turn": "Your government no longer exists. Open Campaign to review its history and available continuation choices."
+      }
+    },
+    {
+      "kind": "served_russia_choice",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "command": {
+          "action": "successor",
+          "date": "2 Jan 1990",
+          "kind": "continue_campaign",
+          "player": "USSR",
+          "target": "Russia"
+        },
+        "legacy_aim": {
+          "ended_day": 1,
+          "goal": {
+            "aim": "prosperity",
+            "baseline": 5536.332179930796,
+            "chosen_day": 0,
+            "completed_day": null,
+            "debt_limit": 0.65,
+            "held_days": 0,
+            "hold_days": 90,
+            "last_day": 0,
+            "nation": "USSR",
+            "starting_technologies": [],
+            "target": 6643.598615916955
+          },
+          "outcome": "government ended"
+        },
+        "legacy_aim_archived": true,
+        "replay_unchanged": true,
+        "served_label": "Continue as Russia",
+        "successor_state_unchanged": true
+      }
+    },
+    {
+      "index": 1,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-02",
+        "interruption": "Russia sets a date for national elections.",
+        "requested_days": 1,
+        "to": "1990-01-03"
+      }
+    },
+    {
+      "index": 2,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-03",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-04"
+      }
+    },
+    {
+      "index": 3,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-04",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-05"
+      }
+    },
+    {
+      "index": 4,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-05",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-06"
+      }
+    },
+    {
+      "index": 5,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-06",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-07"
+      }
+    },
+    {
+      "index": 6,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-07",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-08"
+      }
+    },
+    {
+      "index": 7,
+      "kind": "successor_day",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "commands": [],
+        "from": "1990-01-08",
+        "interruption": null,
+        "requested_days": 1,
+        "to": "1990-01-09"
+      }
+    }
+  ],
+  "artifact_errors": [],
+  "artifacts": [
+    {
+      "bytes": 13182227,
+      "canonical_fnv64": "0724ea9c76314031",
+      "date": "1990-01-01",
+      "file_fnv64": "fc3306a0690051b6",
+      "kind": "before_collapse",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/before_collapse.json"
+    },
+    {
+      "bytes": 13182227,
+      "canonical_fnv64": "0724ea9c76314031",
+      "date": "1990-01-01",
+      "file_fnv64": "fc3306a0690051b6",
+      "kind": "before_collapse",
+      "leg": "resumed",
+      "path": "resumed/saves/before_collapse.json"
+    },
+    {
+      "bytes": 13648610,
+      "canonical_fnv64": "b1309666c59bf0d9",
+      "date": "1990-01-02",
+      "file_fnv64": "9e68418c357af1a5",
+      "kind": "paused_succession",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/paused_succession.json"
+    },
+    {
+      "bytes": 13648610,
+      "canonical_fnv64": "b1309666c59bf0d9",
+      "date": "1990-01-02",
+      "file_fnv64": "9e68418c357af1a5",
+      "kind": "paused_succession",
+      "leg": "resumed",
+      "path": "resumed/saves/paused_succession.json"
+    },
+    {
+      "bytes": 13648980,
+      "canonical_fnv64": "ea7384cf7596a1ba",
+      "date": "1990-01-02",
+      "file_fnv64": "14990ea707587742",
+      "kind": "after_russia_choice",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/after_russia_choice.json"
+    },
+    {
+      "bytes": 13648980,
+      "canonical_fnv64": "ea7384cf7596a1ba",
+      "date": "1990-01-02",
+      "file_fnv64": "14990ea707587742",
+      "kind": "after_russia_choice",
+      "leg": "resumed",
+      "path": "resumed/saves/after_russia_choice.json"
+    },
+    {
+      "bytes": 14930698,
+      "canonical_fnv64": "cfebff0dea40c370",
+      "date": "1990-01-03",
+      "file_fnv64": "be95c74dae16d1c4",
+      "kind": "successor_day_1",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_1.json"
+    },
+    {
+      "bytes": 14930698,
+      "canonical_fnv64": "cfebff0dea40c370",
+      "date": "1990-01-03",
+      "file_fnv64": "be95c74dae16d1c4",
+      "kind": "successor_day_1",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_1.json"
+    },
+    {
+      "bytes": 15097426,
+      "canonical_fnv64": "a92d4462025241ac",
+      "date": "1990-01-04",
+      "file_fnv64": "22cfe9409902cef6",
+      "kind": "successor_day_2",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_2.json"
+    },
+    {
+      "bytes": 15097426,
+      "canonical_fnv64": "a92d4462025241ac",
+      "date": "1990-01-04",
+      "file_fnv64": "22cce54099009253",
+      "kind": "successor_day_2",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_2.json"
+    },
+    {
+      "bytes": 15247815,
+      "canonical_fnv64": "459ff3eafffb9fdc",
+      "date": "1990-01-05",
+      "file_fnv64": "d04c93f033f4404a",
+      "kind": "successor_day_3",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_3.json"
+    },
+    {
+      "bytes": 15247815,
+      "canonical_fnv64": "459ff3eafffb9fdc",
+      "date": "1990-01-05",
+      "file_fnv64": "d04c93f033f4404a",
+      "kind": "successor_day_3",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_3.json"
+    },
+    {
+      "bytes": 15390259,
+      "canonical_fnv64": "79779ef495be3ef9",
+      "date": "1990-01-06",
+      "file_fnv64": "f9f19f3af51ab441",
+      "kind": "successor_day_4",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_4.json"
+    },
+    {
+      "bytes": 15390259,
+      "canonical_fnv64": "79779ef495be3ef9",
+      "date": "1990-01-06",
+      "file_fnv64": "f9f49b3af51ce34c",
+      "kind": "successor_day_4",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_4.json"
+    },
+    {
+      "bytes": 15537676,
+      "canonical_fnv64": "853b0587118e2e4a",
+      "date": "1990-01-07",
+      "file_fnv64": "195c55cf0b5373f2",
+      "kind": "successor_day_5",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_5.json"
+    },
+    {
+      "bytes": 15537676,
+      "canonical_fnv64": "853b0587118e2e4a",
+      "date": "1990-01-07",
+      "file_fnv64": "195f55cf0b55a9c9",
+      "kind": "successor_day_5",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_5.json"
+    },
+    {
+      "bytes": 15663939,
+      "canonical_fnv64": "608dd9cb2523ae4c",
+      "date": "1990-01-08",
+      "file_fnv64": "9e1b06fb5a65d895",
+      "kind": "successor_day_6",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_6.json"
+    },
+    {
+      "bytes": 15663939,
+      "canonical_fnv64": "608dd9cb2523ae4c",
+      "date": "1990-01-08",
+      "file_fnv64": "9e1f02fb5a69baa0",
+      "kind": "successor_day_6",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_6.json"
+    },
+    {
+      "bytes": 15806373,
+      "canonical_fnv64": "4dfbd55aa5cca3da",
+      "date": "1990-01-09",
+      "file_fnv64": "01e47e2d57694600",
+      "kind": "successor_day_7",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/successor_day_7.json"
+    },
+    {
+      "bytes": 15806373,
+      "canonical_fnv64": "4dfbd55aa5cca3da",
+      "date": "1990-01-09",
+      "file_fnv64": "01b27e2d573f9f67",
+      "kind": "successor_day_7",
+      "leg": "resumed",
+      "path": "resumed/saves/successor_day_7.json"
+    }
+  ],
+  "checks": {
+    "daily_invariant_checks": 16,
+    "native_validation_checks": 40,
+    "scheduled_reloads": 10
+  },
+  "comparisons": [
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182203,
+      "canonical_fnv64": "0724ea9c76314031",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "before_collapse_before_reload",
+      "log_rows": 0,
+      "matched": true,
+      "player": "USSR"
+    },
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182203,
+      "canonical_fnv64": "0724ea9c76314031",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "before_collapse_after_reload",
+      "log_rows": 0,
+      "matched": true,
+      "player": "USSR"
+    },
+    {
+      "absolute_day": 1,
+      "canonical_bytes": 13648586,
+      "canonical_fnv64": "b1309666c59bf0d9",
+      "date": "1990-01-02",
+      "history_rows": 2,
+      "kind": "paused_succession_before_reload",
+      "log_rows": 4,
+      "matched": true,
+      "player": "USSR"
+    },
+    {
+      "absolute_day": 1,
+      "canonical_bytes": 13648586,
+      "canonical_fnv64": "b1309666c59bf0d9",
+      "date": "1990-01-02",
+      "history_rows": 2,
+      "kind": "paused_succession_after_reload",
+      "log_rows": 4,
+      "matched": true,
+      "player": "USSR"
+    },
+    {
+      "absolute_day": 1,
+      "canonical_bytes": 13648956,
+      "canonical_fnv64": "ea7384cf7596a1ba",
+      "date": "1990-01-02",
+      "history_rows": 2,
+      "kind": "after_russia_choice_before_reload",
+      "log_rows": 5,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 1,
+      "canonical_bytes": 13648956,
+      "canonical_fnv64": "ea7384cf7596a1ba",
+      "date": "1990-01-02",
+      "history_rows": 2,
+      "kind": "after_russia_choice_after_reload",
+      "log_rows": 5,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 2,
+      "canonical_bytes": 14930674,
+      "canonical_fnv64": "cfebff0dea40c370",
+      "date": "1990-01-03",
+      "history_rows": 3,
+      "kind": "successor_day_1_before_reload",
+      "log_rows": 25,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 2,
+      "canonical_bytes": 14930674,
+      "canonical_fnv64": "cfebff0dea40c370",
+      "date": "1990-01-03",
+      "history_rows": 3,
+      "kind": "successor_day_1_after_reload",
+      "log_rows": 25,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 3,
+      "canonical_bytes": 15097402,
+      "canonical_fnv64": "a92d4462025241ac",
+      "date": "1990-01-04",
+      "history_rows": 4,
+      "kind": "successor_day_2_before_reload",
+      "log_rows": 33,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 3,
+      "canonical_bytes": 15097402,
+      "canonical_fnv64": "a92d4462025241ac",
+      "date": "1990-01-04",
+      "history_rows": 4,
+      "kind": "successor_day_2_after_reload",
+      "log_rows": 33,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 4,
+      "canonical_bytes": 15247791,
+      "canonical_fnv64": "459ff3eafffb9fdc",
+      "date": "1990-01-05",
+      "history_rows": 5,
+      "kind": "successor_day_3_before_reload",
+      "log_rows": 41,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 4,
+      "canonical_bytes": 15247791,
+      "canonical_fnv64": "459ff3eafffb9fdc",
+      "date": "1990-01-05",
+      "history_rows": 5,
+      "kind": "successor_day_3_after_reload",
+      "log_rows": 41,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 5,
+      "canonical_bytes": 15390235,
+      "canonical_fnv64": "79779ef495be3ef9",
+      "date": "1990-01-06",
+      "history_rows": 6,
+      "kind": "successor_day_4_before_reload",
+      "log_rows": 49,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 5,
+      "canonical_bytes": 15390235,
+      "canonical_fnv64": "79779ef495be3ef9",
+      "date": "1990-01-06",
+      "history_rows": 6,
+      "kind": "successor_day_4_after_reload",
+      "log_rows": 49,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 6,
+      "canonical_bytes": 15537652,
+      "canonical_fnv64": "853b0587118e2e4a",
+      "date": "1990-01-07",
+      "history_rows": 7,
+      "kind": "successor_day_5_before_reload",
+      "log_rows": 57,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 6,
+      "canonical_bytes": 15537652,
+      "canonical_fnv64": "853b0587118e2e4a",
+      "date": "1990-01-07",
+      "history_rows": 7,
+      "kind": "successor_day_5_after_reload",
+      "log_rows": 57,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 7,
+      "canonical_bytes": 15663915,
+      "canonical_fnv64": "608dd9cb2523ae4c",
+      "date": "1990-01-08",
+      "history_rows": 8,
+      "kind": "successor_day_6_before_reload",
+      "log_rows": 65,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 7,
+      "canonical_bytes": 15663915,
+      "canonical_fnv64": "608dd9cb2523ae4c",
+      "date": "1990-01-08",
+      "history_rows": 8,
+      "kind": "successor_day_6_after_reload",
+      "log_rows": 65,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 8,
+      "canonical_bytes": 15806349,
+      "canonical_fnv64": "4dfbd55aa5cca3da",
+      "date": "1990-01-09",
+      "history_rows": 9,
+      "kind": "successor_day_7_before_reload",
+      "log_rows": 73,
+      "matched": true,
+      "player": "Russia"
+    },
+    {
+      "absolute_day": 8,
+      "canonical_bytes": 15806349,
+      "canonical_fnv64": "4dfbd55aa5cca3da",
+      "date": "1990-01-09",
+      "history_rows": 9,
+      "kind": "successor_day_7_after_reload",
+      "log_rows": 73,
+      "matched": true,
+      "player": "Russia"
+    }
+  ],
+  "compiled_revision": "ae8084e853a8",
+  "days_each_leg": 8,
+  "end_native_date": "1990-01-09",
+  "failure": null,
+  "fixture": true,
+  "format": "spheres-controlled-succession-result/v1",
+  "id": "controlled-ussr-russia-1990",
+  "initial_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "fiscal_recovery": true,
+    "historical_party_leadership": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 1990
+  },
+  "legs": 2,
+  "observations": [
+    {
+      "date": "1990-01-01",
+      "dissolved": false,
+      "history_rows": 1,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": []
+      },
+      "kind": "before_collapse",
+      "log_rows": 0,
+      "observing": false,
+      "ownership_fnv64": "da59883d4aa38d1c",
+      "paused": false,
+      "player": "USSR",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": false,
+      "russia_districts": 0,
+      "russia_government_fnv64": "5b9bc4ba528108e4",
+      "russia_nation_fnv64": "5b9bc4ba528108e4",
+      "ussr_alive": true,
+      "ussr_districts": 269
+    },
+    {
+      "date": "1990-01-02",
+      "dissolved": true,
+      "history_rows": 2,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": []
+      },
+      "kind": "paused_succession",
+      "log_rows": 4,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": true,
+      "player": "USSR",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "28399c66c69ef3ee",
+      "russia_nation_fnv64": "38b809a45a81c0bc",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-02",
+      "dissolved": true,
+      "history_rows": 2,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "after_russia_choice",
+      "log_rows": 5,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "28399c66c69ef3ee",
+      "russia_nation_fnv64": "38b809a45a81c0bc",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-03",
+      "dissolved": true,
+      "history_rows": 3,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_1",
+      "log_rows": 25,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "7cb86d7d7ac6eca9",
+      "russia_nation_fnv64": "3ccb1618b69b6c8c",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-04",
+      "dissolved": true,
+      "history_rows": 4,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_2",
+      "log_rows": 33,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "b6657d2fb1ca1963",
+      "russia_nation_fnv64": "85d50da289837b68",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-05",
+      "dissolved": true,
+      "history_rows": 5,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_3",
+      "log_rows": 41,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "9cff2f23d8fe1418",
+      "russia_nation_fnv64": "2f54c020aefbe4e3",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-06",
+      "dissolved": true,
+      "history_rows": 6,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_4",
+      "log_rows": 49,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "9fd481d7794c2f38",
+      "russia_nation_fnv64": "94998e6b7fb78753",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-07",
+      "dissolved": true,
+      "history_rows": 7,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_5",
+      "log_rows": 57,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "0fe8e8815ef287de",
+      "russia_nation_fnv64": "9906fc17b4af2c9f",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-08",
+      "dissolved": true,
+      "history_rows": 8,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_6",
+      "log_rows": 65,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "452abd2aed8ece7d",
+      "russia_nation_fnv64": "057398f486c297f6",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    },
+    {
+      "date": "1990-01-09",
+      "dissolved": true,
+      "history_rows": 9,
+      "journey": {
+        "beyond_2035": false,
+        "observing": false,
+        "transitions": [
+          {
+            "date": "2 Jan 1990",
+            "from": "USSR",
+            "to": "Russia"
+          }
+        ]
+      },
+      "kind": "successor_day_7",
+      "log_rows": 73,
+      "observing": false,
+      "ownership_fnv64": "93b58a4577adc69a",
+      "paused": false,
+      "player": "Russia",
+      "reading_scope": "Diagnostic fingerprints only; comparison covers every full archive byte including all nations, government, property, finances, forces, ammunition, histories and journey.",
+      "russia_alive": true,
+      "russia_districts": 86,
+      "russia_government_fnv64": "9d1eba5e78817bcb",
+      "russia_nation_fnv64": "38442666d9fd1c48",
+      "ussr_alive": false,
+      "ussr_districts": 0
+    }
+  ],
+  "organic_history": false,
+  "passed": true,
+  "provenance": {
+    "archive_exception": "Only terminal top-level saved_unix; every other encoded byte retained",
+    "fingerprint_scope": "FNV64 diagnostic; external runner supplies cryptographic pins",
+    "no_observer_fallback": true,
+    "request_bytes": 172,
+    "request_fnv64": "d0a50f615ffc15b9",
+    "request_path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\request.json",
+    "request_unchanged": true,
+    "uninterrupted_leg_never_loaded": true
+  },
+  "qualification": false,
+  "revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "s25_complete": false,
+  "scope": "Controlled paired authored USSR-to-Russia continuity, separate from the ordinary 24-cell seed matrix",
+  "seed": 1990,
+  "setup": {
+    "authored_fields": [
+      {
+        "field": "stability",
+        "nation": "USSR",
+        "value": 0.0
+      },
+      {
+        "field": "separatism",
+        "nation": "USSR",
+        "value": 1.0
+      }
+    ],
+    "constructor": "Game::new_fresh(1990, Some(USSR)); fresh_play_rules",
+    "native_aim": "Prosperity",
+    "no_competition_adoption": true,
+    "other_direct_world_edits": 0,
+    "recipe": "S24 N1 / campaign_journey::tests::dissolved"
+  },
+  "start_native_date": "1990-01-01",
+  "successor_days_each_leg": 7
+}

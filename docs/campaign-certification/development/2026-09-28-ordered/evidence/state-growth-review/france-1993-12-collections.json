@@ -1,0 +1,169 @@
+{
+  "saved_date": "1 Jan 1994",
+  "history_count": 1110,
+  "history_first_last": [
+    {
+      "year": 1990,
+      "month": 1,
+      "day": 1
+    },
+    {
+      "year": 1994,
+      "month": 1,
+      "day": 1
+    }
+  ],
+  "log_count": 1272,
+  "sections": {
+    "population_system": {
+      "enabled": {
+        "type": "bool",
+        "count": null
+      },
+      "last_day": {
+        "type": "int",
+        "count": null
+      },
+      "nations": {
+        "type": "dict",
+        "count": 158,
+        "keys_sample": [
+          "Afghanistan",
+          "Albania",
+          "Algeria",
+          "Angola",
+          "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh"
+        ]
+      },
+      "provinces": {
+        "type": "dict",
+        "count": 2584,
+        "keys_sample": [
+          "AE-AJ",
+          "AE-AZ",
+          "AE-DU",
+          "AE-FU",
+          "AE-RK",
+          "AE-SH",
+          "AE-UQ",
+          "AF-BAL",
+          "AF-BAM",
+          "AF-BDG",
+          "AF-BDS",
+          "AF-BGL"
+        ]
+      },
+      "unallocated": {
+        "type": "dict",
+        "count": 29,
+        "keys_sample": [
+          "Argentina",
+          "Bahrain",
+          "Belize",
+          "Cambodia",
+          "Cameroon",
+          "CapeVerde",
+          "Chile",
+          "Comoros",
+          "Egypt",
+          "ElSalvador",
+          "Honduras",
+          "Iraq"
+        ]
+      }
+    },
+    "fiscal_recovery": {
+      "nations": {
+        "type": "dict",
+        "count": 158,
+        "keys_sample": [
+          "Afghanistan",
+          "Albania",
+          "Algeria",
+          "Angola",
+          "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh"
+        ]
+      }
+    },
+    "logistics": {
+      "arrivals": {
+        "type": "list",
+        "count": 174,
+        "first": "{'buyer': 'Gabon', 'commodity': 'coal', 'contract': None, 'dispatched_day': 1430, 'dispatched_month': 47, 'due_day': 1460, 'due_month': 48, 'id': 146419, 'quantity': 0.196994752, 'route': {'bottleneck': 'Katanga land corridor', 'capacity_tonnes': 629.0322580645161, 'chokepoints': ['Strait of Malacca'], 'distance_km': 14508, 'estimated_days': 30, 'mode': 'mixed', 'months': 1, 'nodes': [{'id': 'JP-47', 'kind': 'district', 'lat': 26.50669, 'lon': 127.96123, 'name': 'Okinawa'}, {'id': 'gateway:JP-47', 'kind': 'gateway', 'lat': 26.55969, 'lon': 127.96394, 'name': 'Okinawa coastal gateway'}, {'id': 'sea:1619', 'kind': 'sea', 'lat': 25.0, 'lon': 127.5, 'name': 'Open sea'}, {'id': 'sea:1584', 'kind': 'sea', 'lat': 20.0, 'lon': 122.5, 'name': 'Open sea'}, {'id': 'sea:1543', 'kind': 'sea', 'lat': 20.0, 'lon': 117.5, 'name': 'Open sea'}, {'id': 'sea:1518', 'kind': 'sea', 'lat': 15.0, 'lon': 112.5, 'name': 'Open sea'}, {'id': 'sea:1487', 'kind': 'sea', 'lat': 10.0, 'lon': 108.0, 'name': 'Open sea'}, {'id': 'sea:1462', 'kind': 'sea', 'lat': 8.0, 'lon': 106.0, 'name': 'Open sea'}, {'id': 'sea:1452', 'kind': 'sea', 'lat': 6.0, 'lon': 104.0, 'name': 'Open sea'}, {'id': 'gateway:MY-03', 'kind': 'gateway', 'lat': 6.12761, 'lon': 102.38222, 'name': 'Kelantan coastal gateway'}, {'id': 'MY-03', 'kind': 'district', 'lat': 5.27959, 'lon': 102.02609, 'name': 'Kelantan'}, {'id': 'MY-08', 'kind': 'district', 'lat': 4.76282, 'lon': 101.11485, 'name': 'Perak'}, {'id': 'gateway:MY-08', 'kind': 'gateway',",
+        "last": "{'buyer': 'Mongolia', 'commodity': 'bauxite', 'contract': None, 'dispatched_day': 1457, 'dispatched_month': 47, 'due_day': 1460, 'due_month': 48, 'id': 151138, 'quantity': 0.044140002, 'route': {'bottleneck': 'Uvs land corridor', 'capacity_tonnes': 443.54838709677426, 'chokepoints': [], 'distance_km': 253, 'estimated_days': 3, 'mode': 'land', 'months': 1, 'nodes': [{'id': 'RU-TY', 'kind': 'district', 'lat': 51.57345, 'lon': 94.77035, 'name': 'Tuva'}, {'id': 'MN-046', 'kind': 'district', 'lat': 49.61404, 'lon': 92.93925, 'name': 'Uvs'}], 'segments': ['MN-046|RU-TY']}, 'seller': 'Russia', 'source': 'spot'}",
+        "nested_counts": {}
+      },
+      "cargo": {
+        "type": "list",
+        "count": 3537,
+        "first": "{'buyer': 'Haiti', 'commodity': 'coal', 'contract': None, 'dispatched_day': 790, 'dispatched_month': 26, 'due_day': 809, 'due_month': 27, 'hold_reason': 'Transit through Osjecko-Baranjska is closed.', 'id': 62367, 'quantity': 0.208081133, 'route': {'bottleneck': 'Koroška land corridor', 'capacity_tonnes': 443.54838709677426, 'chokepoints': [], 'distance_km': 8941, 'estimated_days': 19, 'mode': 'mixed', 'months': 1, 'nodes': [{'id': 'RS-05', 'kind': 'district', 'lat': 45.7169, 'lon': 19.20097, 'name': 'Zapadno-Backi'}, {'id': 'HR-14', 'kind': 'district', 'lat': 45.56753, 'lon': 18.51089, 'name': 'Osjecko-Baranjska'}, {'id': 'HR-10', 'kind': 'district', 'lat': 45.73048, 'lon': 17.62202, 'name': 'Viroviticko-Podravska'}, {'id': 'HR-06', 'kind': 'district', 'lat': 46.08353, 'lon': 16.81895, 'name': 'Koprivničko-Križevačka'}, {'id': 'HR-05', 'kind': 'district', 'lat': 46.24648, 'lon': 16.31343, 'name': 'Varaždinska'}, {'id': 'SVN_podravska', 'kind': 'district', 'lat': 46.47732, 'lon': 15.71232, 'name': 'Podravska'}, {'id': 'SVN_koro-ka', 'kind': 'district', 'lat': 46.53163, 'lon': 15.07553, 'name': 'Koroška'}, {'id': 'AT-2', 'kind': 'district', 'lat': 46.77605, 'lon': 13.91416, 'name': 'Kärnten'}, {'id': 'AT-7', 'kind': 'district', 'lat': 47.25131, 'lon': 11.29086, 'name': 'Tirol'}, {'id': 'AT-8', 'kind': 'district', 'lat': 47.23773, 'lon': 9.88077, 'name': 'Vorarlberg'}, {'id': 'CH-SG', 'kind': 'district', 'lat': 47.25131, 'lon': 9.28737, 'name': 'Sankt Gallen'}, {'id': 'CH-ZH', ",
+        "last": "{'buyer': 'UK', 'commodity': 'rare_earths', 'contract': None, 'dispatched_day': 1460, 'dispatched_month': 47, 'due_day': 1472, 'due_month': 48, 'id': 151707, 'quantity': 0.001201434, 'route': {'bottleneck': 'Northern Ireland land corridor', 'capacity_tonnes': 806.4516129032257, 'chokepoints': [], 'distance_km': 5531, 'estimated_days': 12, 'mode': 'mixed', 'months': 1, 'nodes': [{'id': 'US-RI', 'kind': 'district', 'lat': 41.70044, 'lon': -71.60212, 'name': 'Rhode Island'}, {'id': 'gateway:US-RI', 'kind': 'gateway', 'lat': 41.82105, 'lon': -71.38715, 'name': 'Rhode Island coastal gateway'}, {'id': 'sea:0537', 'kind': 'sea', 'lat': 40.0, 'lon': -67.5, 'name': 'Open sea'}, {'id': 'sea:0548', 'kind': 'sea', 'lat': 40.0, 'lon': -62.5, 'name': 'Open sea'}, {'id': 'sea:0566', 'kind': 'sea', 'lat':",
+        "nested_counts": {}
+      },
+      "last_day": {
+        "type": "int",
+        "count": null
+      },
+      "last_month": {
+        "type": "int",
+        "count": null
+      },
+      "next_id": {
+        "type": "int",
+        "count": null
+      },
+      "usage_tonnes": {
+        "type": "dict",
+        "count": 842,
+        "keys_sample": [
+          "AF-HER|IR-30",
+          "AL-09|MKD_polog",
+          "AL-09|gateway:AL-09",
+          "AO-BIE|AO-CUS",
+          "AO-BIE|AO-MOX",
+          "AO-CAB|CD-BC",
+          "AO-CAB|gateway:AO-CAB",
+          "AO-CUS|gateway:AO-CUS",
+          "AO-MOX|ZM-01",
+          "AO-MOX|ZM-06",
+          "AO-UIG|CD-BN",
+          "AZE_aran-economic-region|AZE_lankaran-economic-region"
+        ]
+      }
+    },
+    "economic_ai": {
+      "nations": {
+        "type": "dict",
+        "count": 157,
+        "keys_sample": [
+          "Afghanistan",
+          "Albania",
+          "Algeria",
+          "Angola",
+          "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh"
+        ]
+      }
+    }
+  }
+}

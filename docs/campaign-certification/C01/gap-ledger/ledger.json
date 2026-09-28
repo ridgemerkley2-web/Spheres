@@ -13,6 +13,7 @@
     "Research organizations are never mapped to simulation party rows here; name matches are listed as uncertain candidates and are not counted.",
     "Executive observations (census seed executives, executive gameplay grants, research executive offices) never count as party-leader coverage, and the reverse.",
     "Integrated packets C01-05/06/09-22/26 are research with historical acceptance pending; claimed or submitted packets that are not integrated appear only as in-flight work, never as accepted evidence.",
+    "Completed research intakes are bounded accepted evidence only: remaining gaps stay unresolved, and research organizations are not thereby mapped to runtime parties.",
     "Completed source repairs record bounded independently accepted source-identity evidence separately; they do not promote their parent packet or add historical coverage."
   ],
   "evidence_classes": {
@@ -49,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 114824,
-      "sha256": "e9bc905869c63dd7319bf98b886df71afa9fad90d843cc197090171b5b13064e"
+      "bytes": 117447,
+      "sha256": "a7124dc515f824353517d522c1414bbe1ca99b046d0c4787064ec9dd1797faed"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -65,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 21818,
-      "sha256": "51d0a3405bae80f13602aed3bde4f6a72524fdec5b017104fe85706bd5e5a49d"
+      "bytes": 23980,
+      "sha256": "ed2d30ff543390d2e38c09ac5990c0a666501ad429cdfac37e8170d76f95b4fd"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -75,13 +76,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 1803439,
-      "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+      "bytes": 1987748,
+      "sha256": "a6e6bd18f47a78e5c2de84e562bd86c1013e5281b4afde9d1bb37a102f22d126"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 846631,
-      "sha256": "1bedf89e1d13d1f391b23030c6bb5e7b16fe23b347c7a64487a6c387c66e82bf"
+      "bytes": 1153096,
+      "sha256": "173c1c93ba538e99e453d7e9b9476c4094ea191c124c5ad76cb60198de0301c0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -95,8 +96,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 93763,
-      "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa"
+      "bytes": 266372,
+      "sha256": "1b53b184753b95cd85670362220a57c5ca0151a5577e5a46af784487aa6afd2b"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -105,8 +106,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 360940,
-      "sha256": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69"
+      "bytes": 524600,
+      "sha256": "ddff43808e68bc19c0ea74d5751125c57950a041c603f238a1e1310bb464b5b4"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
@@ -141,6 +142,30 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
       "bytes": 10834,
       "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+      "bytes": 1889,
+      "sha256": "68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/README.md",
+      "bytes": 1895,
+      "sha256": "8ebe4555bc3a864ed15bc7a8396183aef8b2e7840d79bd020bd0194d0269a98b",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-25/README.md",
+      "bytes": 1915,
+      "sha256": "f7bc4b58b7706d95a96c63bb38738291384017e2543cf4634621d832a4c39fae",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
+      "bytes": 1983,
+      "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -685,55 +710,10 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 205459,
-    "sha256": "f9edb686e7b6c7a43858e4b7b1d43d5d217d3574afb98dbfeb10e02508d89210"
+    "bytes": 244247,
+    "sha256": "7db7a4e1c842161d80b6e0e4f83eb604767224e5d8b8b35ee534d730ef1d796c"
   },
   "in_flight": [
-    {
-      "task": "CLAUDE-C01-23",
-      "state": "ready_for_review",
-      "branch": "claude/c01-fr-23",
-      "case": "France",
-      "scope": "French presidents, 1990-2026",
-      "targets": [
-        "institution:fr_presidency"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-24",
-      "state": "ready_for_review",
-      "branch": "claude/c01-to-24",
-      "case": "Tonga",
-      "scope": "Tongan Speakers of the Legislative Assembly, 1990-2026",
-      "targets": [
-        "role:to_speaker"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-25",
-      "state": "ready_for_review",
-      "branch": "claude/c01-sa-25",
-      "case": "SaudiArabia",
-      "scope": "Saudi Shura Council and Allegiance Commission chairs, 1990-2026",
-      "targets": [
-        "role:sa_shura_chair",
-        "role:sa_succession_chair"
-      ],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-27",
-      "state": "ready_for_review",
-      "branch": "claude/c01-in-27",
-      "case": "India",
-      "scope": "Bharatiya Janata Party presidents, 1990-2026",
-      "targets": [
-        "party:India/in_bjp"
-      ],
-      "accepted": false
-    },
     {
       "task": "CLAUDE-C01-28",
       "state": "ready_for_review",
@@ -1420,6 +1400,80 @@
       ]
     }
   ],
+  "completed_research_intakes": [
+    {
+      "task": "CLAUDE-C01-23",
+      "state": "complete",
+      "case": "France",
+      "scope": "French presidents, 1990-2026",
+      "integration_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+          "bytes": 1889,
+          "sha256": "68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-24",
+      "state": "complete",
+      "case": "Tonga",
+      "scope": "Tongan Speakers of the Legislative Assembly, 1990-2026",
+      "integration_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/README.md",
+          "bytes": 1895,
+          "sha256": "8ebe4555bc3a864ed15bc7a8396183aef8b2e7840d79bd020bd0194d0269a98b",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-25",
+      "state": "complete",
+      "case": "SaudiArabia",
+      "scope": "Saudi Shura Council and Allegiance Commission chairs, 1990-2026",
+      "integration_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-25/README.md",
+          "bytes": 1915,
+          "sha256": "f7bc4b58b7706d95a96c63bb38738291384017e2543cf4634621d832a4c39fae",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-27",
+      "state": "complete",
+      "case": "India",
+      "scope": "Bharatiya Janata Party presidents, 1990-2026",
+      "integration_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
+          "bytes": 1983,
+          "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    }
+  ],
   "cases": [
     {
       "case": "France",
@@ -1433,10 +1487,12 @@
         "documented_research_organizations": 635,
         "documented_unmapped_organizations": 635,
         "research_organizations_with_roles": 0,
-        "research_institutions": 0,
-        "research_roles": 0,
-        "research_roles_unresolved": 0,
-        "research_holders_by_evidence": {},
+        "research_institutions": 1,
+        "research_roles": 1,
+        "research_roles_unresolved": 1,
+        "research_holders_by_evidence": {
+          "c01_accepted": 7
+        },
         "seed_executive_observations": 1,
         "executive_gameplay_grants": 0
       },
@@ -4158,7 +4214,237 @@
           ]
         }
       ],
-      "research_roles": [],
+      "research_roles": [
+        {
+          "nation": "France",
+          "category": "institutions",
+          "entity": "fr_presidency",
+          "entity_name": "Présidence de la République",
+          "id": "fr_president",
+          "title": "Président de la République",
+          "kind": "head_of_state",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 4517,
+              "attested_within_period": 0,
+              "attested_day": 2,
+              "open_end": 8880,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1990-01-04",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1990-01-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1990-01-04",
+                "through": "1990-01-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "1990-01-05",
+                "through": "1995-05-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-05-17",
+                "through": "1995-05-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-05-18",
+                "through": "2002-05-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-05-17",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1990-01-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1990-01-04",
+                "through": "1990-01-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "1990-01-05",
+                "through": "1995-05-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-05-17",
+                "through": "1995-05-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-05-18",
+                "through": "2002-05-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-05-17",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "François Mitterrand",
+              "attested_on": "1990-01-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Jacques Chirac",
+              "attested_on": "1995-05-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Jacques Chirac",
+              "attested_on": null,
+              "from": "2002-05-17",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Nicolas Sarkozy",
+              "attested_on": null,
+              "from": "2007-05-16",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "François Hollande",
+              "attested_on": null,
+              "from": "2012-05-15",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Emmanuel Macron",
+              "attested_on": null,
+              "from": "2017-05-14",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Emmanuel Macron",
+              "attested_on": null,
+              "from": "2022-05-14",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-23"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            }
+          ],
+          "source_count": 49,
+          "leads": [
+            "https://web.archive.org/web/20210227223450id_/https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+            "https://www.elysee.fr/front/pdf/elysee-module-6886-fr.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-7325-fr.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-7326-fr.pdf",
+            "https://archives.assemblee-nationale.fr/9/cri/1989-1990-extraordinaire2/001.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-8253-fr.pdf"
+          ],
+          "in_flight": null
+        }
+      ],
       "documented_organizations": {
         "total": 635,
         "with_roles": [],
@@ -4349,7 +4635,60 @@
           ]
         }
       ],
-      "cross_role_people": []
+      "cross_role_people": [
+        {
+          "person_key": "francoishollande",
+          "party_leader_roles": [
+            [
+              "France/fr_ps",
+              "Delegated first secretary"
+            ],
+            [
+              "France/fr_ps",
+              "First secretary"
+            ]
+          ],
+          "office_roles": [
+            [
+              "fr_presidency",
+              "fr_president"
+            ]
+          ],
+          "note": "Same name in a party-leader chain and an office chain; neither counts toward the other."
+        },
+        {
+          "person_key": "jacqueschirac",
+          "party_leader_roles": [
+            [
+              "France/fr_rpr",
+              "President"
+            ]
+          ],
+          "office_roles": [
+            [
+              "fr_presidency",
+              "fr_president"
+            ]
+          ],
+          "note": "Same name in a party-leader chain and an office chain; neither counts toward the other."
+        },
+        {
+          "person_key": "nicolassarkozy",
+          "party_leader_roles": [
+            [
+              "France/fr_rpr",
+              "Acting president"
+            ]
+          ],
+          "office_roles": [
+            [
+              "fr_presidency",
+              "fr_president"
+            ]
+          ],
+          "note": "Same name in a party-leader chain and an office chain; neither counts toward the other."
+        }
+      ]
     },
     {
       "case": "Japan",
@@ -7583,11 +7922,12 @@
         "party_chains_unresolved": 4,
         "documented_research_organizations": 82,
         "documented_unmapped_organizations": 82,
-        "research_organizations_with_roles": 1,
+        "research_organizations_with_roles": 2,
         "research_institutions": 2,
-        "research_roles": 3,
-        "research_roles_unresolved": 3,
+        "research_roles": 4,
+        "research_roles_unresolved": 4,
         "research_holders_by_evidence": {
+          "c01_accepted": 19,
           "c01_integrated_pending": 31
         },
         "seed_executive_observations": 1,
@@ -8035,12 +8375,14 @@
           "related_work_orders": [
             "CH-India-B001"
           ],
-          "in_flight": "CLAUDE-C01-27",
+          "in_flight": null,
           "uncertain_research_candidates": [
             {
               "organization": "in_eci_20240323_np_03",
               "name": "Bharatiya Janata Party",
-              "roles": [],
+              "roles": [
+                "in_bjp_president"
+              ],
               "counted": false,
               "mapped_by_packet": false
             }
@@ -8875,6 +9217,502 @@
         }
       ],
       "research_roles": [
+        {
+          "nation": "India",
+          "category": "organizations",
+          "entity": "in_eci_20240323_np_03",
+          "entity_name": "Bharatiya Janata Party",
+          "id": "in_bjp_president",
+          "title": "National President of the Bharatiya Janata Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 4558,
+              "attested_within_period": 0,
+              "attested_day": 6,
+              "open_end": 8835,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1991-01-08",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1991-01-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1991-01-08",
+                "through": "1991-01-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "1991-01-09",
+                "through": "1991-12-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1991-12-10",
+                "through": "1991-12-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "1991-12-11",
+                "through": "1997-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-07-16",
+                "through": "1997-07-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-07-17",
+                "through": "1999-02-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1999-02-27",
+                "through": "1999-02-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "1999-02-28",
+                "through": "2000-08-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-08-31",
+                "through": "2000-08-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2000-09-01",
+                "through": "2001-03-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-03-14",
+                "through": "2001-03-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-03-15",
+                "through": "2002-06-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-07-01",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1991-01-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1991-01-09",
+                "through": "1991-12-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1991-12-11",
+                "through": "1997-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-07-17",
+                "through": "1999-02-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1999-02-28",
+                "through": "2000-08-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2000-09-01",
+                "through": "2001-03-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-03-15",
+                "through": "2002-06-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-07-01",
+                "through": "2026-09-07",
+                "status": "open_end"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "L. K. Advani",
+              "attested_on": "1991-01-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Murli Manohar Joshi",
+              "attested_on": "1991-12-10",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "L. K. Advani",
+              "attested_on": "1997-07-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Kushabhau Thakre",
+              "attested_on": "1999-02-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Bangaru Laxman",
+              "attested_on": "2000-08-31",
+              "from": null,
+              "until": "2001-03-14",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "M. Venkaiah Naidu",
+              "attested_on": null,
+              "from": "2002-07-01",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "L. K. Advani",
+              "attested_on": "2004-10-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Rajnath Singh",
+              "attested_on": "2006-01-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Nitin Gadkari",
+              "attested_on": "2009-12-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Nitin Gadkari",
+              "attested_on": "2013-01-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "Rajnath Singh",
+              "attested_on": "2013-03-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "Amit Shah",
+              "attested_on": "2014-07-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 12,
+              "name": "Amit Shah",
+              "attested_on": "2016-02-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 13,
+              "name": "Amit Shah",
+              "attested_on": "2019-06-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 14,
+              "name": "J. P. Nadda",
+              "attested_on": null,
+              "from": "2020-01-20",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 15,
+              "name": "J. P. Nadda",
+              "attested_on": "2023-01-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 16,
+              "name": "J. P. Nadda",
+              "attested_on": "2025-12-15",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 17,
+              "name": "Nitin Nabin",
+              "attested_on": null,
+              "from": "2026-01-20",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 18,
+              "name": "Nitin Nabin",
+              "attested_on": "2026-08-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-27"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 74,
+          "leads": [
+            "https://library.bjp.org/jspui/bitstream/123456789/264/1/Untitled-2.pdf",
+            "https://library.bjp.org/jspui/bitstream/123456789/265/1/BJP-Economics%20Resolutions.pdf",
+            "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/58/50/68/58506864111270525533137094688919784898?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_156_08011991_U1586_p324.pdf%22",
+            "https://library.bjp.org/jspui/bitstream/123456789/248/1/DR.%20MM%20JOSHI.pdf",
+            "https://web.archive.org/web/19961019165000id_/http://www.bjp.org:80/bjp/profiles/advani-1.html",
+            "https://web.archive.org/web/20030317090529id_/http://www.bjp.org:80/leader/lka-profile.htm"
+          ],
+          "in_flight": null
+        },
         {
           "nation": "India",
           "category": "organizations",
@@ -9828,6 +10666,7 @@
       "documented_organizations": {
         "total": 82,
         "with_roles": [
+          "in_eci_20240323_np_03",
           "in_eci_20240323_np_05"
         ],
         "discovery_work_orders": [
@@ -15320,7 +16159,7 @@
         "research_roles": 15,
         "research_roles_unresolved": 11,
         "research_holders_by_evidence": {
-          "c01_accepted": 3,
+          "c01_accepted": 14,
           "c01_accepted+c01_integrated_pending": 16,
           "s10_discovery_intake": 10
         },
@@ -16702,19 +17541,149 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13399,
+              "no_evidence": 13386,
               "attested_within_period": 0,
-              "attested_day": 0,
+              "attested_day": 13,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": null,
+            "first_evidence": "1996-11-14",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "1996-11-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-11-14",
+                "through": "1996-11-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-11-15",
+                "through": "2001-04-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-04-30",
+                "through": "2001-04-30",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-05-01",
+                "through": "2003-04-07",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2003-04-08",
+                "through": "2003-04-08",
+                "status": "attested_day"
+              },
+              {
+                "from": "2003-04-09",
+                "through": "2005-03-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2005-03-22",
+                "through": "2005-03-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2005-03-23",
+                "through": "2006-01-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-25",
+                "through": "2006-01-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2006-01-26",
+                "through": "2008-06-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-06-02",
+                "through": "2008-06-02",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-06-03",
+                "through": "2011-01-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2011-01-14",
+                "through": "2011-01-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "2011-01-15",
+                "through": "2012-07-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-07-17",
+                "through": "2012-07-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-07-18",
+                "through": "2012-07-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-07-19",
+                "through": "2012-07-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-07-20",
+                "through": "2015-02-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-02-24",
+                "through": "2015-02-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "2015-02-25",
+                "through": "2018-03-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-03-05",
+                "through": "2018-03-05",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-03-06",
+                "through": "2022-02-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-02-17",
+                "through": "2022-02-17",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-02-18",
+                "through": "2026-05-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-05-19",
+                "through": "2026-05-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-05-20",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -16722,7 +17691,42 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "2026-09-07",
+                "through": "1996-11-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-11-15",
+                "through": "2001-04-29",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2006-01-26",
+                "through": "2008-06-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-06-03",
+                "through": "2011-01-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-07-20",
+                "through": "2015-02-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2015-02-25",
+                "through": "2018-03-04",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-03-06",
+                "through": "2022-02-16",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-02-18",
+                "through": "2026-05-18",
                 "status": "no_evidence"
               }
             ]
@@ -16744,14 +17748,214 @@
               "missing_fields": [
                 "holder identity and dates (claim-only observation)"
               ]
+            },
+            {
+              "position": 1,
+              "name": "Fusitu'a",
+              "attested_on": "1996-11-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Hon. Veikune",
+              "attested_on": "2001-04-30",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Hon. Tu'ivakano",
+              "attested_on": "2003-04-08",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Hon. Veikune",
+              "attested_on": "2005-03-22",
+              "from": null,
+              "until": "2006-01-25",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Lord Tu'ilakepa",
+              "attested_on": "2008-06-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Lord Lasike",
+              "attested_on": "2011-01-14",
+              "from": null,
+              "until": "2012-07-17",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Lord Fakafanua",
+              "attested_on": "2012-07-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Lord Tu'ivakano",
+              "attested_on": "2015-02-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Lord Fakafanua",
+              "attested_on": "2018-03-05",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "Lord Fakafanua",
+              "attested_on": "2022-02-17",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "Lord Vaea",
+              "attested_on": "2026-05-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-24"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
             }
           ],
-          "source_count": 2,
+          "source_count": 51,
           "leads": [
             "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
-            "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy"
+            "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+            "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+            "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1563:2003_tlr",
+            "https://web.archive.org/web/20010430084337id_/http://pmo.gov.to:80/legislative_assembly.htm",
+            "https://web.archive.org/web/20011214102436id_/http://pmo.gov.to:80/legislative_assembly.htm"
           ],
-          "in_flight": "CLAUDE-C01-24"
+          "in_flight": null
         },
         {
           "nation": "Tonga",
@@ -17018,6 +18222,7 @@
         "research_roles": 10,
         "research_roles_unresolved": 6,
         "research_holders_by_evidence": {
+          "c01_accepted": 33,
           "c01_integrated_pending": 16
         },
         "seed_executive_observations": 1,
@@ -17721,37 +18926,606 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13399,
+              "no_evidence": 4421,
               "attested_within_period": 0,
-              "attested_day": 0,
-              "open_end": 0,
+              "attested_day": 3,
+              "open_end": 8975,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": null,
+            "first_evidence": "1997-07-06",
             "segments": [
               {
                 "from": "1990-01-01",
-                "through": "2026-09-07",
+                "through": "1997-07-05",
                 "status": "no_evidence"
+              },
+              {
+                "from": "1997-07-06",
+                "through": "1997-07-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-07-07",
+                "through": "2002-01-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-01-24",
+                "through": "2002-01-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-01-25",
+                "through": "2002-02-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-02-07",
+                "through": "2002-02-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-02-08",
+                "through": "2002-02-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-02-11",
+                "through": "2026-09-07",
+                "status": "open_end"
               }
             ],
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
-                "through": "2026-09-07",
+                "through": "1997-07-05",
                 "status": "no_evidence"
+              },
+              {
+                "from": "1997-07-06",
+                "through": "1997-07-06",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-07-07",
+                "through": "2002-01-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-01-24",
+                "through": "2002-01-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-01-25",
+                "through": "2002-02-06",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-02-07",
+                "through": "2002-02-07",
+                "status": "attested_day"
+              },
+              {
+                "from": "2002-02-08",
+                "through": "2002-02-10",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2002-02-11",
+                "through": "2026-09-07",
+                "status": "open_end"
               }
             ]
           },
-          "holders": [],
-          "source_count": 1,
-          "leads": [
-            "https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237"
+          "holders": [
+            {
+              "position": 0,
+              "name": "Muhammad bin Ibrahim bin Jubair",
+              "attested_on": "1997-07-06",
+              "from": null,
+              "until": "2002-01-24",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 1,
+              "name": null,
+              "claim": "sa_order_a72_second_term_19970706",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 2,
+              "name": null,
+              "claim": "sa_jubair_oath_second_term_19970714",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 3,
+              "name": null,
+              "claim": "sa_order_a80_third_term_20010524",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 4,
+              "name": null,
+              "claim": "sa_fahd_letter_chair_end_second_term",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 5,
+              "name": null,
+              "claim": "sa_fahd_message_chair_20010524",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 6,
+              "name": null,
+              "claim": "sa_jubair_oath_third_term_20010604",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 7,
+              "name": null,
+              "claim": "sa_jubair_chairs_first_session_20010605",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 8,
+              "name": null,
+              "claim": "sa_jubair_chairs_third_term_session_20010610",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 9,
+              "name": null,
+              "claim": "sa_jubair_chairs_48th_session_20020115",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "Saleh bin Abdullah bin Humaid",
+              "attested_on": "2002-02-07",
+              "from": "2002-02-11",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": null,
+              "claim": "sa_humaid_statement_20020207",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 12,
+              "name": null,
+              "claim": "sa_humaid_chairs_56th_session_20020212",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 13,
+              "name": null,
+              "claim": "sa_spa_humaid_chair_received_20020212",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 14,
+              "name": null,
+              "claim": "sa_spa_en_humaid_first_session_20020212",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 15,
+              "name": null,
+              "claim": "sa_humaid_chairs_65th_session_20020331",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 16,
+              "name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+              "attested_on": "2009-02-14",
+              "from": "2009-02-28",
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "until"
+              ]
+            },
+            {
+              "position": 17,
+              "name": null,
+              "claim": "sa_shura_formed_a15_20090214",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 18,
+              "name": null,
+              "claim": "sa_alsheikh_oath_20090301",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 19,
+              "name": null,
+              "claim": "sa_alsheikh_named_a45_20130111",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 20,
+              "name": null,
+              "claim": "sa_alsheikh_oath_20130219",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 21,
+              "name": null,
+              "claim": "sa_alsheikh_named_a54_20161202",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 22,
+              "name": null,
+              "claim": "sa_alsheikh_oath_20161213",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 23,
+              "name": null,
+              "claim": "sa_alsheikh_named_a146_20201018",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 24,
+              "name": null,
+              "claim": "sa_alsheikh_oath_20201111",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 25,
+              "name": null,
+              "claim": "sa_alsheikh_named_a84_20240902",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 26,
+              "name": null,
+              "claim": "sa_alsheikh_oath_20240918",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 27,
+              "name": null,
+              "claim": "sa_shura_chair_obs_20260906",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 28,
+              "name": null,
+              "claim": "sa_shura_chair_obs_20260907",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            }
           ],
-          "in_flight": "CLAUDE-C01-25"
+          "source_count": 47,
+          "leads": [
+            "https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+            "https://web.archive.org/web/20250507013950id_/https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+            "https://web.archive.org/web/20010627024458id_/http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+            "https://web.archive.org/web/20090415050234id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+            "https://web.archive.org/web/20090415050338id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+            "https://web.archive.org/web/19991004234358id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html"
+          ],
+          "in_flight": null
         },
         {
           "nation": "SaudiArabia",
@@ -17826,19 +19600,39 @@
           "coverage": {
             "window_days": 13399,
             "days": {
-              "no_evidence": 13399,
+              "no_evidence": 13397,
               "attested_within_period": 0,
-              "attested_day": 0,
+              "attested_day": 2,
               "open_end": 0,
               "boundary_imprecise": 0,
               "acting_definite": 0,
               "definite": 0
             },
             "unresolved_days": 13399,
-            "first_evidence": null,
+            "first_evidence": "2007-12-09",
             "segments": [
               {
                 "from": "1990-01-01",
+                "through": "2007-12-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2007-12-09",
+                "through": "2007-12-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2007-12-10",
+                "through": "2017-05-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2017-05-03",
+                "through": "2017-05-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2017-05-04",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
@@ -17846,17 +19640,111 @@
             "longest_unresolved": [
               {
                 "from": "1990-01-01",
+                "through": "2007-12-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2007-12-09",
+                "through": "2007-12-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2007-12-10",
+                "through": "2017-05-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2017-05-03",
+                "through": "2017-05-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2017-05-04",
                 "through": "2026-09-07",
                 "status": "no_evidence"
               }
             ]
           },
-          "holders": [],
-          "source_count": 1,
-          "leads": [
-            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377"
+          "holders": [
+            {
+              "position": 0,
+              "name": "Mishaal bin Abdulaziz Al Saud",
+              "attested_on": "2007-12-09",
+              "from": null,
+              "until": "2017-05-03",
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "from"
+              ]
+            },
+            {
+              "position": 1,
+              "name": null,
+              "claim": "sa_mishaal_chair_thanks_20071211",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 2,
+              "name": null,
+              "claim": "sa_mishaal_chair_interview_20080630",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "position": 3,
+              "name": null,
+              "claim": "sa_mishaal_chair_obs_20151219",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-25"
+              ],
+              "missing_fields": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            }
           ],
-          "in_flight": "CLAUDE-C01-25"
+          "source_count": 12,
+          "leads": [
+            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
+            "https://portalapi.spa.gov.sa/api/v1/news/e99200adca",
+            "https://portalapi.spa.gov.sa/api/v1/news/727f838436",
+            "https://portalapi.spa.gov.sa/api/v1/news/c6933762ab",
+            "https://portalapi.spa.gov.sa/api/v1/news/b7c5304aa8",
+            "https://portalapi.spa.gov.sa/api/v1/news/ace867077a"
+          ],
+          "in_flight": null
         },
         {
           "nation": "SaudiArabia",
@@ -21601,6 +23489,131 @@
           }
         },
         {
+          "item": "research_role_chain",
+          "nation": "France",
+          "entity": "fr_presidency#fr_president",
+          "title": "Président de la République",
+          "role": "head_of_state",
+          "priority": 1,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1990-01-03",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1990-01-04",
+              "through": "1990-01-04",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1990-01-05",
+              "through": "1995-05-16",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1995-05-17",
+              "through": "1995-05-17",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1995-05-18",
+              "through": "2002-05-16",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-05-17",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "François Mitterrand",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Jacques Chirac",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Jacques Chirac",
+              "record": 2,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Nicolas Sarkozy",
+              "record": 3,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "François Hollande",
+              "record": 4,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Emmanuel Macron",
+              "record": 5,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Emmanuel Macron",
+              "record": 6,
+              "missing": [
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20210227223450id_/https://www.conseil-constitutionnel.fr/decision/1988/8860PDR.htm",
+            "https://www.elysee.fr/front/pdf/elysee-module-6886-fr.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-7325-fr.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-7326-fr.pdf",
+            "https://archives.assemblee-nationale.fr/9/cri/1989-1990-extraordinaire2/001.pdf",
+            "https://www.elysee.fr/front/pdf/elysee-module-8253-fr.pdf"
+          ],
+          "related_work_orders": [
+            "C01-France-DISC-B064"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1990-01-04",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
           "item": "missing_institution",
           "nation": "France",
           "entity": "institution:fr_prime_minister",
@@ -21745,7 +23758,15 @@
             "pinned": false
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-France-B002",
+      "case": "France",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "party_leader_chain",
           "nation": "France",
@@ -21791,15 +23812,7 @@
             "pinned": false
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        }
-      ]
-    },
-    {
-      "id": "GAP-France-B002",
-      "case": "France",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "party_leader_chain",
           "nation": "France",
@@ -23359,6 +25372,210 @@
             "https://sikhheritageeducation.com/vp-to-give-up-party-post/",
             "https://eparlib.sansad.in/bitstream/123456789/2964651/1/lsd_10_16th_29-02-1996.pdf",
             "https://www.business-standard.com/article/economy-policy/gujral-may-take-over-as-dal-president-197070101131_1.html"
+          ],
+          "related_work_orders": [
+            "CH-India-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "India",
+          "entity": "India/in_bjp",
+          "title": "Bharatiya Janata Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 2438,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1991-01-02",
+              "through": "1991-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "1993-01-02",
+              "through": "1993-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "1998-01-02",
+              "through": "1998-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2000-01-02",
+              "through": "2000-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2001-01-02",
+              "through": "2001-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2002-01-02",
+              "through": "2002-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2013-01-02",
+              "through": "2013-01-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2026-01-21",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "bangaru_laxman",
+              "record": "in_bjp_bangaru_laxman_2000",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "jana_krishnamurthi",
+              "record": "in_bjp_jana_krishnamurthi_2001",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "kushabhau_thakre",
+              "record": "in_bjp_kushabhau_thakre_1998",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "lal_krishna_advani",
+              "record": "in_bjp_lal_krishna_advani_198605",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "lal_krishna_advani",
+              "record": "in_bjp_lal_krishna_advani_1993",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "m_venkaiah_naidu",
+              "record": "in_bjp_m_venkaiah_naidu_2002",
+              "missing": [
+                "from (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "murli_manohar_joshi",
+              "record": "in_bjp_murli_manohar_joshi_1991",
+              "missing": [
+                "from (known only to year)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "nitin_gadkari",
+              "record": "in_bjp_nitin_gadkari_20091219",
+              "missing": [
+                "until (known only to month)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "nitin_nabin",
+              "record": "in_bjp_nitin_nabin_20260120",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "rajnath_singh",
+              "record": "in_bjp_rajnath_singh_201301",
+              "missing": [
+                "from (known only to month)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "year",
+                "value": "1991"
+              },
+              "until": {
+                "kind": "year",
+                "value": "1993"
+              },
+              "reason": "1991/1993 boundary days are uncertain; this marker is not a two-year vacancy.",
+              "sources": [
+                "https://www.apbjp.org/eng/history/"
+              ]
+            },
+            {
+              "from": {
+                "kind": "year",
+                "value": "1998"
+              },
+              "until": {
+                "kind": "year",
+                "value": "2002"
+              },
+              "reason": "Several transitions retain year precision; recover election notices and 2001 interim records.",
+              "sources": [
+                "https://jkbjp.in/about-bjp/bjp-history/timeline/"
+              ]
+            },
+            {
+              "from": {
+                "kind": "month",
+                "value": "2013-01"
+              },
+              "until": {
+                "kind": "month",
+                "value": "2013-01"
+              },
+              "reason": "Exact effective handover day remains unresolved.",
+              "sources": [
+                "https://jkbjp.in/about-bjp/bjp-history/timeline/"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [
+            "in_eci_20240323_np_03"
+          ],
+          "leads": [
+            "https://www.apbjp.org/eng/history/",
+            "https://jkbjp.in/about-bjp/bjp-history/timeline/"
           ],
           "related_work_orders": [
             "CH-India-B001"
@@ -26148,6 +28365,190 @@
         {
           "item": "research_role_chain",
           "nation": "Tonga",
+          "entity": "to_legislative_assembly#to_speaker",
+          "title": "Speaker",
+          "role": "institutional_office",
+          "priority": 2,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1996-11-13",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1996-11-15",
+              "through": "2001-04-29",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2006-01-26",
+              "through": "2008-06-01",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2008-06-03",
+              "through": "2011-01-13",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2012-07-20",
+              "through": "2015-02-23",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2015-02-25",
+              "through": "2018-03-04",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2018-03-06",
+              "through": "2022-02-16",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-02-18",
+              "through": "2026-05-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "to_speakers_appointment",
+              "record": "to_speakers_appointment",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Fusitu'a",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Hon. Veikune",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Hon. Tu'ivakano",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Hon. Veikune",
+              "record": 4,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Tu'ilakepa",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Lasike",
+              "record": 6,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Fakafanua",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Tu'ivakano",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Fakafanua",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Fakafanua",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Lord Vaea",
+              "record": 11,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+            "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+            "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+            "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1563:2003_tlr",
+            "https://web.archive.org/web/20010430084337id_/http://pmo.gov.to:80/legislative_assembly.htm",
+            "https://web.archive.org/web/20011214102436id_/http://pmo.gov.to:80/legislative_assembly.htm"
+          ],
+          "related_work_orders": [
+            "C01-Tonga-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1996-11-14",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "Tonga",
           "entity": "to_dpfi#to_dpfi_leader",
           "title": "Party leader",
           "role": "party_leader",
@@ -26404,7 +28805,15 @@
           },
           "first_evidence": "2022-04-19",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-Tonga-B002",
+      "case": "Tonga",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Tonga",
@@ -26781,6 +29190,410 @@
             "pinned": false
           },
           "first_evidence": "2005-08-01",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "SaudiArabia",
+          "entity": "sa_shura#sa_shura_chair",
+          "title": "Chairman of the Shura Council",
+          "role": "institutional_office",
+          "priority": 2,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1997-07-05",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1997-07-06",
+              "through": "1997-07-06",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "1997-07-07",
+              "through": "2002-01-23",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-01-24",
+              "through": "2002-01-24",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2002-01-25",
+              "through": "2002-02-06",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-02-07",
+              "through": "2002-02-07",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2002-02-08",
+              "through": "2002-02-10",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2002-02-11",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "Muhammad bin Ibrahim bin Jubair",
+              "record": 0,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_order_a72_second_term_19970706",
+              "record": "sa_order_a72_second_term_19970706",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_jubair_oath_second_term_19970714",
+              "record": "sa_jubair_oath_second_term_19970714",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_order_a80_third_term_20010524",
+              "record": "sa_order_a80_third_term_20010524",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_fahd_letter_chair_end_second_term",
+              "record": "sa_fahd_letter_chair_end_second_term",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_fahd_message_chair_20010524",
+              "record": "sa_fahd_message_chair_20010524",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_jubair_oath_third_term_20010604",
+              "record": "sa_jubair_oath_third_term_20010604",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_jubair_chairs_first_session_20010605",
+              "record": "sa_jubair_chairs_first_session_20010605",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_jubair_chairs_third_term_session_20010610",
+              "record": "sa_jubair_chairs_third_term_session_20010610",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_jubair_chairs_48th_session_20020115",
+              "record": "sa_jubair_chairs_48th_session_20020115",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Saleh bin Abdullah bin Humaid",
+              "record": 10,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_humaid_statement_20020207",
+              "record": "sa_humaid_statement_20020207",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_humaid_chairs_56th_session_20020212",
+              "record": "sa_humaid_chairs_56th_session_20020212",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_spa_humaid_chair_received_20020212",
+              "record": "sa_spa_humaid_chair_received_20020212",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_spa_en_humaid_first_session_20020212",
+              "record": "sa_spa_en_humaid_first_session_20020212",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_humaid_chairs_65th_session_20020331",
+              "record": "sa_humaid_chairs_65th_session_20020331",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+              "record": 16,
+              "missing": [
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_shura_formed_a15_20090214",
+              "record": "sa_shura_formed_a15_20090214",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_oath_20090301",
+              "record": "sa_alsheikh_oath_20090301",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_named_a45_20130111",
+              "record": "sa_alsheikh_named_a45_20130111",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_oath_20130219",
+              "record": "sa_alsheikh_oath_20130219",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_named_a54_20161202",
+              "record": "sa_alsheikh_named_a54_20161202",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_oath_20161213",
+              "record": "sa_alsheikh_oath_20161213",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_named_a146_20201018",
+              "record": "sa_alsheikh_named_a146_20201018",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_oath_20201111",
+              "record": "sa_alsheikh_oath_20201111",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_named_a84_20240902",
+              "record": "sa_alsheikh_named_a84_20240902",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_alsheikh_oath_20240918",
+              "record": "sa_alsheikh_oath_20240918",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_shura_chair_obs_20260906",
+              "record": "sa_shura_chair_obs_20260906",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_shura_chair_obs_20260907",
+              "record": "sa_shura_chair_obs_20260907",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+            "https://web.archive.org/web/20250507013950id_/https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+            "https://web.archive.org/web/20010627024458id_/http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+            "https://web.archive.org/web/20090415050234id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+            "https://web.archive.org/web/20090415050338id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+            "https://web.archive.org/web/19991004234358id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html"
+          ],
+          "related_work_orders": [
+            "C01-SaudiArabia-DISC-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1997-07-06",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "SaudiArabia",
+          "entity": "sa_succession_commission#sa_succession_chair",
+          "title": "Chairman",
+          "role": "institutional_office",
+          "priority": 2,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "2007-12-08",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2007-12-09",
+              "through": "2007-12-09",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2007-12-10",
+              "through": "2017-05-02",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2017-05-03",
+              "through": "2017-05-03",
+              "current_status": "attested_day"
+            },
+            {
+              "field": "holder",
+              "from": "2017-05-04",
+              "through": "2026-09-07",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Mishaal bin Abdulaziz Al Saud",
+              "record": 0,
+              "missing": [
+                "from"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mishaal_chair_thanks_20071211",
+              "record": "sa_mishaal_chair_thanks_20071211",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mishaal_chair_interview_20080630",
+              "record": "sa_mishaal_chair_interview_20080630",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "sa_mishaal_chair_obs_20151219",
+              "record": "sa_mishaal_chair_obs_20151219",
+              "missing": [
+                "holder identity and dates (claim-only observation)"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
+            "https://portalapi.spa.gov.sa/api/v1/news/e99200adca",
+            "https://portalapi.spa.gov.sa/api/v1/news/727f838436",
+            "https://portalapi.spa.gov.sa/api/v1/news/c6933762ab",
+            "https://portalapi.spa.gov.sa/api/v1/news/b7c5304aa8",
+            "https://portalapi.spa.gov.sa/api/v1/news/ace867077a"
+          ],
+          "related_work_orders": [
+            "C01-SaudiArabia-DISC-B002"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "2007-12-09",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
@@ -27886,9 +30699,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 58,
-    "research_roles_with_unresolved_days": 49,
-    "next_batches": 11,
-    "next_items": 80
+    "research_roles": 60,
+    "research_roles_with_unresolved_days": 51,
+    "next_batches": 12,
+    "next_items": 85
   }
 }

@@ -1,0 +1,29 @@
+[
+  {
+    "name": "campaign",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "exit_code": 0,
+    "log": "campaign-corrected.log"
+  },
+  {
+    "name": "atlas",
+    "args": [
+      "node",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "exit_code": 0,
+    "log": "atlas-corrected.log"
+  }
+]

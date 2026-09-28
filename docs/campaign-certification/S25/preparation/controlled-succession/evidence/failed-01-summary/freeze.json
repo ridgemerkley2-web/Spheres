@@ -1,0 +1,29 @@
+{
+  "format": "spheres-controlled-succession-freeze/v1",
+  "revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "native_test": "s25_stability_tests::s25_controlled_ussr_russia_continuity",
+  "binary": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\frozen-ae8084e8\\spheres_web.exe",
+    "bytes": 353133206,
+    "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+  },
+  "harnesses": {
+    "controlled_succession.py": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-01\\controlled_succession.py",
+      "bytes": 26000,
+      "sha256": "360f0ca53fb34e448102ce70c94b50d85e7de88fc8fd2f23eddb0c62e2ac5764"
+    },
+    "stability_matrix.py": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-01\\stability_matrix.py",
+      "bytes": 61747,
+      "sha256": "113ae9496b3b2610b05a494ef9f33f45a80e348d463527d9034e2af4c84c9a5b"
+    }
+  },
+  "request": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-01\\request.json",
+    "bytes": 172,
+    "sha256": "7451930e56a99d4dbd44701101aa5cb290549d0176b6dd01bf44bb84d0103939"
+  },
+  "created_utc": "2026-09-28T18:45:01.871402+00:00",
+  "qualification": false
+}

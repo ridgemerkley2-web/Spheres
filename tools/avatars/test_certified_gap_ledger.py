@@ -241,6 +241,42 @@ class FixtureLedger(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'needs an explicit ledger review rule'):
             ledger.build(self.root, self.attribution)
 
+    def test_completed_research_intake_removes_pending_status_but_preserves_registry_gaps(self):
+        tid = 'CLAUDE-C01-27'
+        queue_path = self.root / ledger.TASK_QUEUE
+        queue = json.loads(queue_path.read_text(encoding='utf-8'))
+        task = next(t for t in queue['tasks'] if t['id'] == tid)
+        task.update(state='complete', review_revision=HEX)
+        queue_path.write_text(json.dumps(queue), encoding='utf-8')
+        review = self.root / ledger.INTEGRATIONS / tid / 'README.md'
+        review.parent.mkdir()
+        review.write_text('Accepted as a bounded research intake. No runtime mapping or period completeness.\n', encoding='utf-8')
+        result = ledger.build(self.root, self.attribution)
+        self.assertNotIn(tid, {row['task'] for row in result['in_flight']})
+        self.assertEqual(len(result['completed_research_intakes']), 1)
+        intake = result['completed_research_intakes'][0]
+        self.assertEqual(intake['task'], tid)
+        self.assertFalse(intake['runtime_mapping_accepted'])
+        self.assertFalse(intake['historical_period_complete'])
+        self.assertEqual(intake['integration_revision'], HEX)
+        self.assertIn(ledger.sha(review.relative_to(self.root), self.root), result['inputs'])
+        chain = next(chain for case in result['cases'] for chain in case['party_chains'] if chain['id'] == 'India/in_bjp')
+        self.assertIsNone(chain['in_flight'])
+        self.assertEqual(chain['terms'], self.chain('India', 'India/in_bjp')['terms'])
+        self.assertEqual(chain['coverage'], self.chain('India', 'India/in_bjp')['coverage'])
+        self.assertIn('Completed research intakes', ledger.render(result))
+
+    def test_completed_intake_requires_pinned_review_and_cannot_borrow_another_acceptance(self):
+        task = {'id': 'CLAUDE-C01-27', 'review_revision': HEX}
+        with self.assertRaisesRegex(ValueError, 'explicit ledger review rule'):
+            ledger.completed_research_intake(task, {'CLAUDE-C01-27': 'c01_accepted'}, self.root)
+        review = self.root / ledger.INTEGRATIONS / task['id'] / 'README.md'
+        review.parent.mkdir()
+        review.write_text('Accepted as a bounded research intake.\n', encoding='utf-8')
+        for revision in (None, '', 'not-a-revision', 'A' * 40):
+            with self.subTest(revision=revision), self.assertRaisesRegex(ValueError, 'pinned integration review revision'):
+                ledger.completed_research_intake({**task, 'review_revision': revision}, ledger.acceptance_classes(self.root), self.root)
+
     def test_all_eight_cases_and_both_ussr_russia_identities(self):
         self.assertEqual([c['case'] for c in self.result['cases']], CASES)
         self.assertEqual(self.cases['USSR -> Russia']['identities'], ['USSR', 'Russia'])
@@ -435,9 +471,11 @@ class CheckedInLedger(unittest.TestCase):
         self.assertEqual([c['case'] for c in self.data['cases']], CASES)
         items = [i for b in self.data['next_batches'] for i in b['items']]
         entities = {i['entity'] for i in items}
-        for excluded in ('India/in_bjp', 'to_legislative_assembly#to_speaker', 'sa_shura#sa_shura_chair',
-                         'sa_succession_commission#sa_succession_chair', 'institution:fr_presidency'):
-            self.assertNotIn(excluded, entities)
+        completed = {row['task']: row for row in self.data['completed_research_intakes']}
+        self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25', 'CLAUDE-C01-27'})
+        self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
+                            for row in completed.values()))
+        self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
         for target in (ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']
                        + ledger.IN_FLIGHT['CLAUDE-C01-30']['targets']):
             self.assertNotIn(target.removeprefix('party:'), entities)
@@ -469,6 +507,13 @@ class CheckedInLedger(unittest.TestCase):
             self.assertTrue(all(row['packet'] in classes for row in attribution['sources'][nation].values()))
         self.assertEqual(classes['CLAUDE-C01-06'], 'c01_integrated_pending')  # renumbered from its first-commit label 03
         self.assertEqual(classes['CLAUDE-C01-03'], 'c01_accepted')
+        expected = {'CLAUDE-C01-23': ('09b27c49', 49), 'CLAUDE-C01-24': ('6af1e942', 49),
+                    'CLAUDE-C01-25': ('61a3402d', 71), 'CLAUDE-C01-27': ('644ce003', 74)}
+        for packet, (commit, count) in expected.items():
+            rows = [row for sources in attribution['sources'].values() for row in sources.values() if row['packet'] == packet]
+            self.assertEqual(len(rows), count)
+            self.assertTrue(all(row['commit'] == commit and row['via'] == 'extract_first_added' for row in rows))
+            self.assertEqual(classes[packet], 'c01_accepted')
 
 
 if __name__ == '__main__':

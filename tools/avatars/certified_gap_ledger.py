@@ -61,6 +61,9 @@ COMMIT_PACKETS = {
     '0f1d604b': 'CLAUDE-C01-16', '9c738b95': 'CLAUDE-C01-17', 'd03f4982': 'CLAUDE-C01-18',
     '9417dc93': 'CLAUDE-C01-19', 'f0da27b2': 'CLAUDE-C01-20', '0c841429': 'CLAUDE-C01-21',
     'f8676b0f': 'CLAUDE-C01-22', '8701a28e': 'CLAUDE-C01-26',
+    # First source-addition imports pinned by ORDERED-2026-09-28/import-map.json.
+    '09b27c49': 'CLAUDE-C01-23', '6af1e942': 'CLAUDE-C01-24',
+    '61a3402d': 'CLAUDE-C01-25', '644ce003': 'CLAUDE-C01-27',
 }
 
 EVIDENCE_CLASSES = {
@@ -333,6 +336,21 @@ def modifications(root=ROOT):
     return {path: sorted(packets) for path, packets in changed.items()}
 
 
+def completed_research_intake(task, classes, root=ROOT):
+    """Queue completion is not acceptance: require the existing explicit review."""
+    tid = task['id']
+    records = acceptance_records(root)
+    if classes.get(tid) != 'c01_accepted' or tid not in records:
+        raise ValueError(f'Completion of {tid} needs an explicit ledger review rule and accepted intake record')
+    revision = task.get('review_revision')
+    if not isinstance(revision, str) or not re.fullmatch(r'[0-9a-f]{40}', revision):
+        raise ValueError(f'Completed research intake {tid} lacks a pinned integration review revision')
+    return {'task': tid, 'state': 'complete', 'case': IN_FLIGHT[tid]['case'],
+            'scope': IN_FLIGHT[tid]['scope'], 'integration_revision': revision,
+            'evidence_class': 'c01_accepted', 'evidence': [sha(records[tid], root)],
+            'runtime_mapping_accepted': False, 'historical_period_complete': False}
+
+
 def completed_source_repair(task, classes, root=ROOT):
     """Require an integrated queue decision plus a scoped accepted review with intact evidence."""
     tid = task['id']
@@ -503,7 +521,10 @@ def build(root=ROOT, attribution=None):
     completed = {tid: t for tid, t in queue_claude.items() if tid in IN_FLIGHT and t.get('state') == 'complete'}
     if set(active) | set(completed) != set(IN_FLIGHT):
         raise ValueError(f'In-flight table differs from the task queue: queue={sorted(active)} table={sorted(IN_FLIGHT)}')
-    completed_repairs = [completed_source_repair(completed[tid], classes, root) for tid in sorted(completed)]
+    completed_repairs = [completed_source_repair(completed[tid], classes, root)
+                         for tid in sorted(completed) if tid in SOURCE_REPAIRS]
+    completed_intakes = [completed_research_intake(completed[tid], classes, root)
+                         for tid in sorted(completed) if tid not in SOURCE_REPAIRS]
     in_flight = [{'task': tid, 'state': active[tid]['state'], 'branch': active[tid].get('branch'),
                   'case': IN_FLIGHT[tid]['case'], 'scope': IN_FLIGHT[tid]['scope'], 'targets': IN_FLIGHT[tid]['targets'],
                   'accepted': False} for tid in sorted(active)]
@@ -545,6 +566,7 @@ def build(root=ROOT, attribution=None):
             'Research organizations are never mapped to simulation party rows here; name matches are listed as uncertain candidates and are not counted.',
             'Executive observations (census seed executives, executive gameplay grants, research executive offices) never count as party-leader coverage, and the reverse.',
             'Integrated packets C01-05/06/09-22/26 are research with historical acceptance pending; claimed or submitted packets that are not integrated appear only as in-flight work, never as accepted evidence.',
+            'Completed research intakes are bounded accepted evidence only: remaining gaps stay unresolved, and research organizations are not thereby mapped to runtime parties.',
             'Completed source repairs record bounded independently accepted source-identity evidence separately; they do not promote their parent packet or add historical coverage.',
         ],
         'evidence_classes': EVIDENCE_CLASSES,
@@ -552,6 +574,7 @@ def build(root=ROOT, attribution=None):
         'attribution': sha(ATTRIBUTION, root) if (root / ATTRIBUTION).exists() else None,
         'in_flight': in_flight,
         'completed_source_repairs': completed_repairs,
+        'completed_research_intakes': completed_intakes,
         'cases': ledger_cases,
         'next_batches': all_batches,
         'totals': totals,
@@ -907,6 +930,12 @@ def render(ledger):
     lines += ['', '## In-flight work (excluded from new batches, never accepted)', '', '| Task | State | Case | Scope | Targets |', '|---|---|---|---|---|']
     for row in ledger['in_flight']:
         lines.append(f'| {row["task"]} | {row["state"]} | {row["case"]} | {row["scope"]} | {", ".join(row["targets"]) or "none (source repair)"} |')
+    if ledger['completed_research_intakes']:
+        lines += ['', '## Completed research intakes (bounded acceptance only)', '',
+                  'These completed reviews are no longer pending work. Their remaining coverage gaps and unmapped runtime identities remain unresolved.', '',
+                  '| Task | Case | Integration review | Scope |', '|---|---|---|---|']
+        for intake in ledger['completed_research_intakes']:
+            lines.append(f'| {intake["task"]} | {intake["case"]} | `{intake["integration_revision"]}` | {intake["scope"]} |')
     if ledger['completed_source_repairs']:
         lines += ['', '## Completed source repairs (bounded acceptance only)', '',
                   'These integrated source-identity reviews add no historical coverage and do not accept the parent packet.', '']

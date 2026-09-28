@@ -1,0 +1,259 @@
+{
+  "format": "spheres-controlled-succession-verification/v1",
+  "integrity_verified": true,
+  "original_passed": true,
+  "proof": {
+    "controlled_pair_passed": true,
+    "archive_pairs": 10,
+    "scheduled_reloads": 10,
+    "complete_archive_pins": [
+      {
+        "relative": "uninterrupted/saves/before_collapse.json",
+        "bytes": 13182227,
+        "sha256": "a1cf8a31e62ba123bbd64dd6883d9f8b449aeb0c599f1dbe43fdce9b6b4f23fb",
+        "canonical": {
+          "bytes": 13182203,
+          "sha256": "0b650178ff6f5d6ed3516c988d82ad3827f0f3a5cc388602de8f24805d4ac44f",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "fc3306a0690051b6",
+        "canonical_fnv64": "0724ea9c76314031"
+      },
+      {
+        "relative": "resumed/saves/before_collapse.json",
+        "bytes": 13182227,
+        "sha256": "a1cf8a31e62ba123bbd64dd6883d9f8b449aeb0c599f1dbe43fdce9b6b4f23fb",
+        "canonical": {
+          "bytes": 13182203,
+          "sha256": "0b650178ff6f5d6ed3516c988d82ad3827f0f3a5cc388602de8f24805d4ac44f",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "fc3306a0690051b6",
+        "canonical_fnv64": "0724ea9c76314031"
+      },
+      {
+        "relative": "uninterrupted/saves/paused_succession.json",
+        "bytes": 13648610,
+        "sha256": "1ca478c963839d87b61f5d34fc300b5f4b040660a61c4b692b2e3f8afc69188b",
+        "canonical": {
+          "bytes": 13648586,
+          "sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "9e68418c357af1a5",
+        "canonical_fnv64": "b1309666c59bf0d9"
+      },
+      {
+        "relative": "resumed/saves/paused_succession.json",
+        "bytes": 13648610,
+        "sha256": "1ca478c963839d87b61f5d34fc300b5f4b040660a61c4b692b2e3f8afc69188b",
+        "canonical": {
+          "bytes": 13648586,
+          "sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "9e68418c357af1a5",
+        "canonical_fnv64": "b1309666c59bf0d9"
+      },
+      {
+        "relative": "uninterrupted/saves/after_russia_choice.json",
+        "bytes": 13648980,
+        "sha256": "2de89fd8297728dc96afcd329723accc01afc30f39486ecb7d77cab14c3feaca",
+        "canonical": {
+          "bytes": 13648956,
+          "sha256": "81415d07b631cd11361121d1ef26cf21b0ca8740b2a7fe05bba674f226301ffd",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "14990ea707587742",
+        "canonical_fnv64": "ea7384cf7596a1ba"
+      },
+      {
+        "relative": "resumed/saves/after_russia_choice.json",
+        "bytes": 13648980,
+        "sha256": "2de89fd8297728dc96afcd329723accc01afc30f39486ecb7d77cab14c3feaca",
+        "canonical": {
+          "bytes": 13648956,
+          "sha256": "81415d07b631cd11361121d1ef26cf21b0ca8740b2a7fe05bba674f226301ffd",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "14990ea707587742",
+        "canonical_fnv64": "ea7384cf7596a1ba"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_1.json",
+        "bytes": 14930698,
+        "sha256": "5f4c00464463eb0e1a91f5e71a835f670bb6af3257e001412e2e4fca99ef42a5",
+        "canonical": {
+          "bytes": 14930674,
+          "sha256": "9611a084db0be6944a0f759f4deefdba0306b378407849a2b77607774bd0d391",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "be95c74dae16d1c4",
+        "canonical_fnv64": "cfebff0dea40c370"
+      },
+      {
+        "relative": "resumed/saves/successor_day_1.json",
+        "bytes": 14930698,
+        "sha256": "5f4c00464463eb0e1a91f5e71a835f670bb6af3257e001412e2e4fca99ef42a5",
+        "canonical": {
+          "bytes": 14930674,
+          "sha256": "9611a084db0be6944a0f759f4deefdba0306b378407849a2b77607774bd0d391",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "be95c74dae16d1c4",
+        "canonical_fnv64": "cfebff0dea40c370"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_2.json",
+        "bytes": 15097426,
+        "sha256": "92f81c8618381b0f3bc829a5a674e707bcd6c64b8b9227757f673e551c8616c7",
+        "canonical": {
+          "bytes": 15097402,
+          "sha256": "1ba283d162a6b9687094bab80b41177176cb8302f216cbd404271ee848a1a9b3",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "22cfe9409902cef6",
+        "canonical_fnv64": "a92d4462025241ac"
+      },
+      {
+        "relative": "resumed/saves/successor_day_2.json",
+        "bytes": 15097426,
+        "sha256": "bd63ae54d620710c74e6f32bf82e3b5173bcc88783c2fa0f4af6d86b88811b3c",
+        "canonical": {
+          "bytes": 15097402,
+          "sha256": "1ba283d162a6b9687094bab80b41177176cb8302f216cbd404271ee848a1a9b3",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "22cce54099009253",
+        "canonical_fnv64": "a92d4462025241ac"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_3.json",
+        "bytes": 15247815,
+        "sha256": "ab852f3c4f7ff7d3e984cddc43e0b01f69bc9273783d134aeed3131cd786b6ed",
+        "canonical": {
+          "bytes": 15247791,
+          "sha256": "c41a72daec80f1d0a84341d6755cdbaca0a0793ba495e5ea5090708bfaf73cef",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "d04c93f033f4404a",
+        "canonical_fnv64": "459ff3eafffb9fdc"
+      },
+      {
+        "relative": "resumed/saves/successor_day_3.json",
+        "bytes": 15247815,
+        "sha256": "ab852f3c4f7ff7d3e984cddc43e0b01f69bc9273783d134aeed3131cd786b6ed",
+        "canonical": {
+          "bytes": 15247791,
+          "sha256": "c41a72daec80f1d0a84341d6755cdbaca0a0793ba495e5ea5090708bfaf73cef",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "d04c93f033f4404a",
+        "canonical_fnv64": "459ff3eafffb9fdc"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_4.json",
+        "bytes": 15390259,
+        "sha256": "8769067f55a3a0074d9f4ca3e24da016b03f174bd391253dbea2e1b9d99945c4",
+        "canonical": {
+          "bytes": 15390235,
+          "sha256": "e4569bf3d0fdbff7004534e2df241b84024a8c5257fc2affc129bf8ff549328e",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "f9f19f3af51ab441",
+        "canonical_fnv64": "79779ef495be3ef9"
+      },
+      {
+        "relative": "resumed/saves/successor_day_4.json",
+        "bytes": 15390259,
+        "sha256": "d71e3ade50331e308a516e67f20ef0f3352775d5f97d175ddd08c7e843596886",
+        "canonical": {
+          "bytes": 15390235,
+          "sha256": "e4569bf3d0fdbff7004534e2df241b84024a8c5257fc2affc129bf8ff549328e",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "f9f49b3af51ce34c",
+        "canonical_fnv64": "79779ef495be3ef9"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_5.json",
+        "bytes": 15537676,
+        "sha256": "5d92f8110c099aebe95434886c8a75cf4a7173576b1f9206ecc62bde21c4af29",
+        "canonical": {
+          "bytes": 15537652,
+          "sha256": "5c261cbf4820465df48a636afe836153a5960e1d43a069b0fa2e6be35d4f4a5b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "195c55cf0b5373f2",
+        "canonical_fnv64": "853b0587118e2e4a"
+      },
+      {
+        "relative": "resumed/saves/successor_day_5.json",
+        "bytes": 15537676,
+        "sha256": "fe184ddd780da61253ae76816106a1982b2ca954270aaee9b434fdcf2704b65c",
+        "canonical": {
+          "bytes": 15537652,
+          "sha256": "5c261cbf4820465df48a636afe836153a5960e1d43a069b0fa2e6be35d4f4a5b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "195f55cf0b55a9c9",
+        "canonical_fnv64": "853b0587118e2e4a"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_6.json",
+        "bytes": 15663939,
+        "sha256": "849bdb62c732bc066dd1f4cad371f64a57d9ff278a93ad7d77bcba3e338fc87a",
+        "canonical": {
+          "bytes": 15663915,
+          "sha256": "97183596fc28bf23e22f6301a6dacb19d733b85fb0b3f807d3d7056ffaee0992",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "9e1b06fb5a65d895",
+        "canonical_fnv64": "608dd9cb2523ae4c"
+      },
+      {
+        "relative": "resumed/saves/successor_day_6.json",
+        "bytes": 15663939,
+        "sha256": "b6599599b061c65034ef10cee759ca98e0fb5ebaa68e7768ab6a0760983ac6a9",
+        "canonical": {
+          "bytes": 15663915,
+          "sha256": "97183596fc28bf23e22f6301a6dacb19d733b85fb0b3f807d3d7056ffaee0992",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "9e1f02fb5a69baa0",
+        "canonical_fnv64": "608dd9cb2523ae4c"
+      },
+      {
+        "relative": "uninterrupted/saves/successor_day_7.json",
+        "bytes": 15806373,
+        "sha256": "43643789619d50c380e4a393e740782ab173fa473c317b21a29b8616f22903de",
+        "canonical": {
+          "bytes": 15806349,
+          "sha256": "e840e688c001390e565208b447f16bd13c878d7a06ce4f7f7d4c02ba1307f278",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "01e47e2d57694600",
+        "canonical_fnv64": "4dfbd55aa5cca3da"
+      },
+      {
+        "relative": "resumed/saves/successor_day_7.json",
+        "bytes": 15806373,
+        "sha256": "be01b6e27d424fd98d600b8d1fb36e5465c55900ef4afddcea1584c3b0f01238",
+        "canonical": {
+          "bytes": 15806349,
+          "sha256": "e840e688c001390e565208b447f16bd13c878d7a06ce4f7f7d4c02ba1307f278",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        },
+        "file_fnv64": "01b27e2d573f9f67",
+        "canonical_fnv64": "4dfbd55aa5cca3da"
+      }
+    ],
+    "qualification": false,
+    "s25_complete": false,
+    "organic_history": false
+  },
+  "native_reexecuted": false,
+  "qualification": false,
+  "s25_complete": false,
+  "organic_history": false
+}

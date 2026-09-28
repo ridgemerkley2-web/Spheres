@@ -1,0 +1,2647 @@
+{
+  "source_revision": "3ec6e155a416f713149820f9d6276b5ad2e7d721",
+  "binary_sha256": "bd1b442488e499d6294f092b2c2bfe5c8473ef53e46148e8af7ad4a060105b3f",
+  "scope": "Native API preflight of ordinary 1990 starters: reads, seven days and full campaign save/load. No browser interaction, successor activation, long campaign, adversarial recovery or content certification.",
+  "started_utc": "2026-09-28T18:29:31.718784+00:00",
+  "seed": 17,
+  "cases": [
+    {
+      "nation": "Afghanistan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5ab77b75ad1158766d0e7d50259a34a266c7c3d81b930352b902b0ee6041e101",
+      "roundtrip_sha256": "5ab77b75ad1158766d0e7d50259a34a266c7c3d81b930352b902b0ee6041e101",
+      "elapsed_seconds": 2.689
+    },
+    {
+      "nation": "Albania",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "fdf8056067cd28b0534a05a94350decdc076827171cf7f0305e07b874a8f4d79",
+      "roundtrip_sha256": "fdf8056067cd28b0534a05a94350decdc076827171cf7f0305e07b874a8f4d79",
+      "elapsed_seconds": 3.735
+    },
+    {
+      "nation": "Algeria",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9f5cd8e1040742d403c58a2752faa516b93883c69974b72845fe3543fb9556e3",
+      "roundtrip_sha256": "9f5cd8e1040742d403c58a2752faa516b93883c69974b72845fe3543fb9556e3",
+      "elapsed_seconds": 3.749
+    },
+    {
+      "nation": "Angola",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1e303a459a6bfbe46ac5a8ce3ed4f8e320e3f70f54280b16c16df5966080e176",
+      "roundtrip_sha256": "1e303a459a6bfbe46ac5a8ce3ed4f8e320e3f70f54280b16c16df5966080e176",
+      "elapsed_seconds": 3.794
+    },
+    {
+      "nation": "Argentina",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "639c689f4dc1d159786feff1f733a2bdf200bf06378527640664b84e57e546b5",
+      "roundtrip_sha256": "639c689f4dc1d159786feff1f733a2bdf200bf06378527640664b84e57e546b5",
+      "elapsed_seconds": 3.765
+    },
+    {
+      "nation": "Australia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "dbd5ae730af1967113be47d58bad18e2aa25e9f681f64968807a4982ef4eb2e2",
+      "roundtrip_sha256": "dbd5ae730af1967113be47d58bad18e2aa25e9f681f64968807a4982ef4eb2e2",
+      "elapsed_seconds": 3.809
+    },
+    {
+      "nation": "Austria",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "12b916d18090fa6738e0590ef177a909bd874f22f6d2fa56ff1d0829eb50ab02",
+      "roundtrip_sha256": "12b916d18090fa6738e0590ef177a909bd874f22f6d2fa56ff1d0829eb50ab02",
+      "elapsed_seconds": 3.656
+    },
+    {
+      "nation": "Bahamas",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5777e4b1f440d17345abdadeb17b76f19bd6fb9e9ca1a282d600258777a3d90e",
+      "roundtrip_sha256": "5777e4b1f440d17345abdadeb17b76f19bd6fb9e9ca1a282d600258777a3d90e",
+      "elapsed_seconds": 3.717
+    },
+    {
+      "nation": "Bahrain",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f688e3e8d0d92d1bf5b4762b13b19b40d8e0248f304aa052775182f8b31dbd84",
+      "roundtrip_sha256": "f688e3e8d0d92d1bf5b4762b13b19b40d8e0248f304aa052775182f8b31dbd84",
+      "elapsed_seconds": 3.701
+    },
+    {
+      "nation": "Bangladesh",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5a8d689d9f248b5a11e7361e2f51e4603e1a5120064fbfbb9ad890c2038b33dc",
+      "roundtrip_sha256": "5a8d689d9f248b5a11e7361e2f51e4603e1a5120064fbfbb9ad890c2038b33dc",
+      "elapsed_seconds": 3.685
+    },
+    {
+      "nation": "Belgium",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b1fb54a5b2f99e4a97209ea03484482911ef03194b5bdb4a47caf68bd4cf82b6",
+      "roundtrip_sha256": "b1fb54a5b2f99e4a97209ea03484482911ef03194b5bdb4a47caf68bd4cf82b6",
+      "elapsed_seconds": 3.711
+    },
+    {
+      "nation": "Belize",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e8a95c765e241b39e61bed7de19484ac210fc080d30565628eef95d0b4aae335",
+      "roundtrip_sha256": "e8a95c765e241b39e61bed7de19484ac210fc080d30565628eef95d0b4aae335",
+      "elapsed_seconds": 3.637
+    },
+    {
+      "nation": "Bhutan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "422726842dc66e57f2611997ae374443468c49a7da2582fbbc98dd636bb6ec98",
+      "roundtrip_sha256": "422726842dc66e57f2611997ae374443468c49a7da2582fbbc98dd636bb6ec98",
+      "elapsed_seconds": 3.6
+    },
+    {
+      "nation": "Bolivia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b781cdbd0e4711ed71044fb1bff5b32daa9fd80181a51b9a8ea15c63778cdecc",
+      "roundtrip_sha256": "b781cdbd0e4711ed71044fb1bff5b32daa9fd80181a51b9a8ea15c63778cdecc",
+      "elapsed_seconds": 3.707
+    },
+    {
+      "nation": "Botswana",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "302c598216e3526ccbb068833aebbe0c262ae0f333892e91533630ac35955512",
+      "roundtrip_sha256": "302c598216e3526ccbb068833aebbe0c262ae0f333892e91533630ac35955512",
+      "elapsed_seconds": 3.711
+    },
+    {
+      "nation": "Brazil",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b0e7b1be5b6d35190fdb03ec91370f82e3c7fed76bb066976158511b1e83e77c",
+      "roundtrip_sha256": "b0e7b1be5b6d35190fdb03ec91370f82e3c7fed76bb066976158511b1e83e77c",
+      "elapsed_seconds": 3.665
+    },
+    {
+      "nation": "Brunei",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "d2e207fcc4ef28011ed47fe5344af5896af98bdcadbb1619b2eae6169ea7b807",
+      "roundtrip_sha256": "d2e207fcc4ef28011ed47fe5344af5896af98bdcadbb1619b2eae6169ea7b807",
+      "elapsed_seconds": 3.651
+    },
+    {
+      "nation": "Bulgaria",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5726f6a4bed7f5ad64343fc2daba12fc037f3371675701c9702f9d779f94d205",
+      "roundtrip_sha256": "5726f6a4bed7f5ad64343fc2daba12fc037f3371675701c9702f9d779f94d205",
+      "elapsed_seconds": 3.662
+    },
+    {
+      "nation": "Cambodia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e0f5aa71dbc84a622add1e95831c0474bfa75f02ea01b08806e94b0bb9bf7c5a",
+      "roundtrip_sha256": "e0f5aa71dbc84a622add1e95831c0474bfa75f02ea01b08806e94b0bb9bf7c5a",
+      "elapsed_seconds": 3.603
+    },
+    {
+      "nation": "Cameroon",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "30cc238c64c025e9e04bf806e7b037341a9725618d69a5d0cc42376cf7345b15",
+      "roundtrip_sha256": "30cc238c64c025e9e04bf806e7b037341a9725618d69a5d0cc42376cf7345b15",
+      "elapsed_seconds": 3.634
+    },
+    {
+      "nation": "Canada",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e78ebe5f74cece4ad5179be5cb07b45cb2c9343408a205a966be2bf8e5799f2a",
+      "roundtrip_sha256": "e78ebe5f74cece4ad5179be5cb07b45cb2c9343408a205a966be2bf8e5799f2a",
+      "elapsed_seconds": 3.637
+    },
+    {
+      "nation": "CapeVerde",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "0ddada6b7f0c324e030d77a7e3a8d33896b2185495ed77e89c1e8995d3ad5e8b",
+      "roundtrip_sha256": "0ddada6b7f0c324e030d77a7e3a8d33896b2185495ed77e89c1e8995d3ad5e8b",
+      "elapsed_seconds": 3.691
+    },
+    {
+      "nation": "CentralAfricanRepublic",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "76c2464bf1564cc23f0f3c9d1f79f38b1ba8e8bd7f045b071b75c4d4b8a9191a",
+      "roundtrip_sha256": "76c2464bf1564cc23f0f3c9d1f79f38b1ba8e8bd7f045b071b75c4d4b8a9191a",
+      "elapsed_seconds": 3.68
+    },
+    {
+      "nation": "Chad",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "eed86300c46c4b5218452fce6ee938b7f255f565f7ad97f98d909531fadb80a4",
+      "roundtrip_sha256": "eed86300c46c4b5218452fce6ee938b7f255f565f7ad97f98d909531fadb80a4",
+      "elapsed_seconds": 3.603
+    },
+    {
+      "nation": "Chile",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "a28a0d9e9828af27887653176dacbeb78c27bae214f17592d07634d73cb764f7",
+      "roundtrip_sha256": "a28a0d9e9828af27887653176dacbeb78c27bae214f17592d07634d73cb764f7",
+      "elapsed_seconds": 3.648
+    },
+    {
+      "nation": "China",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "4ff6903f6fc38ac5cf34c8d29b4abd608abf7f6c012a53d5ababf4ef04e33762",
+      "roundtrip_sha256": "4ff6903f6fc38ac5cf34c8d29b4abd608abf7f6c012a53d5ababf4ef04e33762",
+      "elapsed_seconds": 3.705
+    },
+    {
+      "nation": "Colombia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9f27177513f55c2f7af6a269aa9ee5d8cbaf27910d15fde82e338e5137809ea1",
+      "roundtrip_sha256": "9f27177513f55c2f7af6a269aa9ee5d8cbaf27910d15fde82e338e5137809ea1",
+      "elapsed_seconds": 3.725
+    },
+    {
+      "nation": "Comoros",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "0ce0055bc2687c8fd36940ad7c9ffcc6ec1430b4c5bb6617faab4f2a5b5430fe",
+      "roundtrip_sha256": "0ce0055bc2687c8fd36940ad7c9ffcc6ec1430b4c5bb6617faab4f2a5b5430fe",
+      "elapsed_seconds": 3.647
+    },
+    {
+      "nation": "Congo",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f4316269bac39f611de54f113419cd90adfe0b66bcb4f0c3ec5ca9a24308100d",
+      "roundtrip_sha256": "f4316269bac39f611de54f113419cd90adfe0b66bcb4f0c3ec5ca9a24308100d",
+      "elapsed_seconds": 3.766
+    },
+    {
+      "nation": "CostaRica",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9f00c09fa90767d5df5ee318de817fb1a59e0435f3102c17f4a6299bc8564421",
+      "roundtrip_sha256": "9f00c09fa90767d5df5ee318de817fb1a59e0435f3102c17f4a6299bc8564421",
+      "elapsed_seconds": 3.699
+    },
+    {
+      "nation": "Cuba",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e132a57ee7c077e5c527c72d308d27a65a80146f56e0902d4677601823d0afb2",
+      "roundtrip_sha256": "e132a57ee7c077e5c527c72d308d27a65a80146f56e0902d4677601823d0afb2",
+      "elapsed_seconds": 3.634
+    },
+    {
+      "nation": "Cyprus",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b334394af021d046d83e273f90c6da8fb9a56a1d34398973f58c7df868f74b0e",
+      "roundtrip_sha256": "b334394af021d046d83e273f90c6da8fb9a56a1d34398973f58c7df868f74b0e",
+      "elapsed_seconds": 3.747
+    },
+    {
+      "nation": "Czechoslovakia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "744739cccd6247f98a96a5815141aa37afc40463e643af7f5549cb89394f5de1",
+      "roundtrip_sha256": "744739cccd6247f98a96a5815141aa37afc40463e643af7f5549cb89394f5de1",
+      "elapsed_seconds": 3.713
+    },
+    {
+      "nation": "Denmark",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "6ca740e8768369cf27930cbfaa773377a01d8edf196999e0367b6c04c93bab0c",
+      "roundtrip_sha256": "6ca740e8768369cf27930cbfaa773377a01d8edf196999e0367b6c04c93bab0c",
+      "elapsed_seconds": 3.625
+    },
+    {
+      "nation": "DominicanRepublic",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1bafa499742be0de5a3bcf37a89c3978d8dd39baae3358d7de4669ad5e66905b",
+      "roundtrip_sha256": "1bafa499742be0de5a3bcf37a89c3978d8dd39baae3358d7de4669ad5e66905b",
+      "elapsed_seconds": 3.65
+    },
+    {
+      "nation": "Ecuador",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "671b6fff831b5a6d7fd81415bbce066dfd3fb69bc3c2872424a2844496140c4e",
+      "roundtrip_sha256": "671b6fff831b5a6d7fd81415bbce066dfd3fb69bc3c2872424a2844496140c4e",
+      "elapsed_seconds": 3.665
+    },
+    {
+      "nation": "Egypt",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "df1301c522ad8668f0ad67cee4e52e4677792a9aaf457d393c7caeb2918e9a54",
+      "roundtrip_sha256": "df1301c522ad8668f0ad67cee4e52e4677792a9aaf457d393c7caeb2918e9a54",
+      "elapsed_seconds": 3.632
+    },
+    {
+      "nation": "ElSalvador",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "484ca567d7d08d318a1d14f195d7327626e7edc1773bf634831f2fc8b5a2ddfb",
+      "roundtrip_sha256": "484ca567d7d08d318a1d14f195d7327626e7edc1773bf634831f2fc8b5a2ddfb",
+      "elapsed_seconds": 3.732
+    },
+    {
+      "nation": "EquatorialGuinea",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "16006921321e16951f6cc6d4a717bdd61e0b88e388153de0d544f3dbc50f9af8",
+      "roundtrip_sha256": "16006921321e16951f6cc6d4a717bdd61e0b88e388153de0d544f3dbc50f9af8",
+      "elapsed_seconds": 3.603
+    },
+    {
+      "nation": "Ethiopia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "420ba6bd4a08b9e515fc8ad3d469c9bed770f04c4f91f45bb1ea478fa3711808",
+      "roundtrip_sha256": "420ba6bd4a08b9e515fc8ad3d469c9bed770f04c4f91f45bb1ea478fa3711808",
+      "elapsed_seconds": 3.662
+    },
+    {
+      "nation": "Fiji",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b82dbd0477fcf1f43f92f7737166708e5836ea021b01b29c799c65fd4bb88996",
+      "roundtrip_sha256": "b82dbd0477fcf1f43f92f7737166708e5836ea021b01b29c799c65fd4bb88996",
+      "elapsed_seconds": 3.639
+    },
+    {
+      "nation": "Finland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "2678f8b0b15e589c9cd5335d7b53a216d726f8599b8c5fd7400b73f37a21a102",
+      "roundtrip_sha256": "2678f8b0b15e589c9cd5335d7b53a216d726f8599b8c5fd7400b73f37a21a102",
+      "elapsed_seconds": 3.725
+    },
+    {
+      "nation": "France",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "eeb22213291850d59ef1b4242a86d11f1518eb11e5f6b6dd4fe8e14614e5802b",
+      "roundtrip_sha256": "eeb22213291850d59ef1b4242a86d11f1518eb11e5f6b6dd4fe8e14614e5802b",
+      "elapsed_seconds": 3.564
+    },
+    {
+      "nation": "Gabon",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f8ff84f8a2d480c60c3b4d756e9c3de3c746798f9b99fd4b0a233e312f81aecd",
+      "roundtrip_sha256": "f8ff84f8a2d480c60c3b4d756e9c3de3c746798f9b99fd4b0a233e312f81aecd",
+      "elapsed_seconds": 3.651
+    },
+    {
+      "nation": "Germany",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "8a08a3a8e814870accee08075ebf33cb051d229503fed2e66a19c001259f9028",
+      "roundtrip_sha256": "8a08a3a8e814870accee08075ebf33cb051d229503fed2e66a19c001259f9028",
+      "elapsed_seconds": 3.683
+    },
+    {
+      "nation": "Ghana",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b0cf5dd20fe16dd9d579d97c9b01c2a4ddec4e651af2d0c30d063f48cdafca09",
+      "roundtrip_sha256": "b0cf5dd20fe16dd9d579d97c9b01c2a4ddec4e651af2d0c30d063f48cdafca09",
+      "elapsed_seconds": 3.681
+    },
+    {
+      "nation": "Greece",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "64f92c9e4a0d0da94987bde65b0e3de0d1d27be32fabb8f96fd7f2319e2de8b1",
+      "roundtrip_sha256": "64f92c9e4a0d0da94987bde65b0e3de0d1d27be32fabb8f96fd7f2319e2de8b1",
+      "elapsed_seconds": 3.736
+    },
+    {
+      "nation": "Guatemala",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "ed8ee8a53d6d465a070b193d21f9b9b7525701b6b9f86f2d0cc9a7ba5bf4cace",
+      "roundtrip_sha256": "ed8ee8a53d6d465a070b193d21f9b9b7525701b6b9f86f2d0cc9a7ba5bf4cace",
+      "elapsed_seconds": 3.791
+    },
+    {
+      "nation": "Guyana",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "6632e9f876a35aab36a26403b6b1e6be802f92864959a16370237a6b7a4243ff",
+      "roundtrip_sha256": "6632e9f876a35aab36a26403b6b1e6be802f92864959a16370237a6b7a4243ff",
+      "elapsed_seconds": 3.61
+    },
+    {
+      "nation": "Haiti",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "91592c8ba468abee877729a08c47b996a6ee65736b67a3fa1974344c5c24668a",
+      "roundtrip_sha256": "91592c8ba468abee877729a08c47b996a6ee65736b67a3fa1974344c5c24668a",
+      "elapsed_seconds": 3.652
+    },
+    {
+      "nation": "Honduras",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [
+        {
+          "date": "2 Jan 1990",
+          "reason": "Honduras is led by a new Liberal Party of Honduras president."
+        }
+      ],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1a9a788a960a6a712a0c240d9b73ce39950805121eb2626f17ac0dbf945e4abd",
+      "roundtrip_sha256": "1a9a788a960a6a712a0c240d9b73ce39950805121eb2626f17ac0dbf945e4abd",
+      "elapsed_seconds": 3.778
+    },
+    {
+      "nation": "Hungary",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "4dcd1ace15963b68c60a75d20d950bb60005e8951371e405872df49baf61e8ff",
+      "roundtrip_sha256": "4dcd1ace15963b68c60a75d20d950bb60005e8951371e405872df49baf61e8ff",
+      "elapsed_seconds": 3.639
+    },
+    {
+      "nation": "Iceland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f3ce5562d2d40b443bd271d4189d60b5d53ca9bca6222df37f9acce3c5ff17e4",
+      "roundtrip_sha256": "f3ce5562d2d40b443bd271d4189d60b5d53ca9bca6222df37f9acce3c5ff17e4",
+      "elapsed_seconds": 3.599
+    },
+    {
+      "nation": "India",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "01fb19935994a281dd85141c43597d989ed2164d97fccb991dd52a82af4a3b24",
+      "roundtrip_sha256": "01fb19935994a281dd85141c43597d989ed2164d97fccb991dd52a82af4a3b24",
+      "elapsed_seconds": 3.729
+    },
+    {
+      "nation": "Indonesia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "6b9b8121bd19ac30d59be180eba80292fa0e797b0240ba1f8414c8b74539e863",
+      "roundtrip_sha256": "6b9b8121bd19ac30d59be180eba80292fa0e797b0240ba1f8414c8b74539e863",
+      "elapsed_seconds": 3.683
+    },
+    {
+      "nation": "Iran",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "db7f9e50262a59774d950ab31afba0826c4c32f5f2365effcb90af7a2a3affb2",
+      "roundtrip_sha256": "db7f9e50262a59774d950ab31afba0826c4c32f5f2365effcb90af7a2a3affb2",
+      "elapsed_seconds": 3.641
+    },
+    {
+      "nation": "Iraq",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "c02240d841010a54663fc617765c511b2067a5db3b98d06aef701c0a607d958a",
+      "roundtrip_sha256": "c02240d841010a54663fc617765c511b2067a5db3b98d06aef701c0a607d958a",
+      "elapsed_seconds": 3.687
+    },
+    {
+      "nation": "Ireland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "7207fb03664b127ad14f7c6ac5d6fefe36b48047f48d3199322508f1af88ca96",
+      "roundtrip_sha256": "7207fb03664b127ad14f7c6ac5d6fefe36b48047f48d3199322508f1af88ca96",
+      "elapsed_seconds": 3.594
+    },
+    {
+      "nation": "Israel",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [
+        {
+          "date": "5 Jan 1990",
+          "reason": "ACTION REQUIRED: Israel receives a trade treaty from South Africa. Reply within 30 days in Decisions; an unanswered request is declined."
+        }
+      ],
+      "date": "8 Jan 1990",
+      "archive_sha256": "faf7828d80fd0e2e1a21eae098daa51e937dd63d13307809a4d12a557faac4a4",
+      "roundtrip_sha256": "faf7828d80fd0e2e1a21eae098daa51e937dd63d13307809a4d12a557faac4a4",
+      "elapsed_seconds": 3.939
+    },
+    {
+      "nation": "Italy",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5f1813d8506734de1f1c7efe9e498119c974bad70fec053e997dafa68ee87e2a",
+      "roundtrip_sha256": "5f1813d8506734de1f1c7efe9e498119c974bad70fec053e997dafa68ee87e2a",
+      "elapsed_seconds": 3.712
+    },
+    {
+      "nation": "Jamaica",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "3604ecd9d1ab17e48ca83aa9c43c0424e36cd5807bd59e6352b3b631c3308eec",
+      "roundtrip_sha256": "3604ecd9d1ab17e48ca83aa9c43c0424e36cd5807bd59e6352b3b631c3308eec",
+      "elapsed_seconds": 3.692
+    },
+    {
+      "nation": "Japan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "454c841e772771e97a3ce0965d0f05ab86dfbe92e857693c369e404e589ec171",
+      "roundtrip_sha256": "454c841e772771e97a3ce0965d0f05ab86dfbe92e857693c369e404e589ec171",
+      "elapsed_seconds": 3.696
+    },
+    {
+      "nation": "Jordan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b313adc3dcfe70fae28bf55e56147a322adca715c5e717c655b06208631f6fc7",
+      "roundtrip_sha256": "b313adc3dcfe70fae28bf55e56147a322adca715c5e717c655b06208631f6fc7",
+      "elapsed_seconds": 3.701
+    },
+    {
+      "nation": "Kenya",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "3d0e8c57ac58a89b5925ebd9bd4ecb4fa0a9149f3a9c7332b109ef89b9fb9de2",
+      "roundtrip_sha256": "3d0e8c57ac58a89b5925ebd9bd4ecb4fa0a9149f3a9c7332b109ef89b9fb9de2",
+      "elapsed_seconds": 3.81
+    },
+    {
+      "nation": "Kuwait",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "4c6d0b924571c947bd35bff4648cdae9301b971a32bffdc1c3150331d07145f2",
+      "roundtrip_sha256": "4c6d0b924571c947bd35bff4648cdae9301b971a32bffdc1c3150331d07145f2",
+      "elapsed_seconds": 3.822
+    },
+    {
+      "nation": "Laos",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "8ef6c868cf07290f9cbad0c041ac15bd5d82fc8652d4faf26ded1695424f9dde",
+      "roundtrip_sha256": "8ef6c868cf07290f9cbad0c041ac15bd5d82fc8652d4faf26ded1695424f9dde",
+      "elapsed_seconds": 3.924
+    },
+    {
+      "nation": "Lebanon",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "2f8b6c663de7322172539419af5e82d16a367bcc793db807e14a3be270443275",
+      "roundtrip_sha256": "2f8b6c663de7322172539419af5e82d16a367bcc793db807e14a3be270443275",
+      "elapsed_seconds": 3.831
+    },
+    {
+      "nation": "Lesotho",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e80e30cb72f6d198531fc6fd354df57b20ea6dc0def9dcff49916cf6c730d18a",
+      "roundtrip_sha256": "e80e30cb72f6d198531fc6fd354df57b20ea6dc0def9dcff49916cf6c730d18a",
+      "elapsed_seconds": 3.859
+    },
+    {
+      "nation": "Libya",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "81809ece4a51da9f3ade2039274ec12b435fc56c131964fef81aace210372bd2",
+      "roundtrip_sha256": "81809ece4a51da9f3ade2039274ec12b435fc56c131964fef81aace210372bd2",
+      "elapsed_seconds": 4.233
+    },
+    {
+      "nation": "Luxembourg",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "d7164f3202f6961f1238f91c442bce246b9ea6b43d33141a1d776f2189995f7a",
+      "roundtrip_sha256": "d7164f3202f6961f1238f91c442bce246b9ea6b43d33141a1d776f2189995f7a",
+      "elapsed_seconds": 4.407
+    },
+    {
+      "nation": "Madagascar",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1730726d23eaf2ac286fab14347cd9c04d1bf2f1562a45aec7037a36181721f0",
+      "roundtrip_sha256": "1730726d23eaf2ac286fab14347cd9c04d1bf2f1562a45aec7037a36181721f0",
+      "elapsed_seconds": 3.785
+    },
+    {
+      "nation": "Malawi",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "7fabc7e9f3aea4ba7edbe0da7c27b8f1f61383f5523f7706b8544ecfc12dee7a",
+      "roundtrip_sha256": "7fabc7e9f3aea4ba7edbe0da7c27b8f1f61383f5523f7706b8544ecfc12dee7a",
+      "elapsed_seconds": 4.463
+    },
+    {
+      "nation": "Malaysia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "535e189ffd8b7ed2515cb96df83cf7f08c8a81cbf75da4a0b203bac10492a9fb",
+      "roundtrip_sha256": "535e189ffd8b7ed2515cb96df83cf7f08c8a81cbf75da4a0b203bac10492a9fb",
+      "elapsed_seconds": 4.292
+    },
+    {
+      "nation": "Maldives",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "139d42708529b744ab6f3feff07ee136a3b53058262a37c1952207424e57d485",
+      "roundtrip_sha256": "139d42708529b744ab6f3feff07ee136a3b53058262a37c1952207424e57d485",
+      "elapsed_seconds": 3.646
+    },
+    {
+      "nation": "Malta",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "3e9789aaa53bc281756a46a1ca72e73bfc4561b9c64aeab7a965b36cd129179b",
+      "roundtrip_sha256": "3e9789aaa53bc281756a46a1ca72e73bfc4561b9c64aeab7a965b36cd129179b",
+      "elapsed_seconds": 3.716
+    },
+    {
+      "nation": "Mauritius",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "aaf7ff539bcd2b1eb42175163da7794ab9e50819be5b870856f5587244e9cea0",
+      "roundtrip_sha256": "aaf7ff539bcd2b1eb42175163da7794ab9e50819be5b870856f5587244e9cea0",
+      "elapsed_seconds": 3.704
+    },
+    {
+      "nation": "Mexico",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f1a0f6f98a591908ab36bfabc6c575713be10bb6274ab76b3f902c3e96bf02a1",
+      "roundtrip_sha256": "f1a0f6f98a591908ab36bfabc6c575713be10bb6274ab76b3f902c3e96bf02a1",
+      "elapsed_seconds": 3.734
+    },
+    {
+      "nation": "Mongolia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "831b189b0d2acee9791e3c589acbbb8dac3e6b1e0d68c7d9bd2358e40104f6fc",
+      "roundtrip_sha256": "831b189b0d2acee9791e3c589acbbb8dac3e6b1e0d68c7d9bd2358e40104f6fc",
+      "elapsed_seconds": 3.772
+    },
+    {
+      "nation": "Morocco",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b400f6cb103417f001e4ca73629cda87e7df55764ef97b70f751cb6bea3e3a23",
+      "roundtrip_sha256": "b400f6cb103417f001e4ca73629cda87e7df55764ef97b70f751cb6bea3e3a23",
+      "elapsed_seconds": 3.693
+    },
+    {
+      "nation": "Mozambique",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b5c366a110af9a85b8f89d44bb55b19b39b8abb016219288a07a4373bd27f70d",
+      "roundtrip_sha256": "b5c366a110af9a85b8f89d44bb55b19b39b8abb016219288a07a4373bd27f70d",
+      "elapsed_seconds": 3.621
+    },
+    {
+      "nation": "Myanmar",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1e24dd9cbd3162c72276fe3cbbaa26abfef3bcf8ff9f92bd340ab313fc2a5bf3",
+      "roundtrip_sha256": "1e24dd9cbd3162c72276fe3cbbaa26abfef3bcf8ff9f92bd340ab313fc2a5bf3",
+      "elapsed_seconds": 3.789
+    },
+    {
+      "nation": "Nepal",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "8a7ee92a445bd9bfdc6effd039bdae38450078d59932925d2dd8f24187302dfc",
+      "roundtrip_sha256": "8a7ee92a445bd9bfdc6effd039bdae38450078d59932925d2dd8f24187302dfc",
+      "elapsed_seconds": 3.703
+    },
+    {
+      "nation": "Netherlands",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "a4dcb59b990175c223a5aa9ad256f9605abacacc8efccfdef558d1d0e894f39a",
+      "roundtrip_sha256": "a4dcb59b990175c223a5aa9ad256f9605abacacc8efccfdef558d1d0e894f39a",
+      "elapsed_seconds": 3.632
+    },
+    {
+      "nation": "NewZealand",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "23e69664f98f6e494f4c8f2c5f7309cfcaa39e3d170eca1a41ba52a6803b14de",
+      "roundtrip_sha256": "23e69664f98f6e494f4c8f2c5f7309cfcaa39e3d170eca1a41ba52a6803b14de",
+      "elapsed_seconds": 3.657
+    },
+    {
+      "nation": "Nicaragua",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "deaaabf352a1dac4a53b6e17102aa4fcf69abfb5055789fe892981bce2b6564e",
+      "roundtrip_sha256": "deaaabf352a1dac4a53b6e17102aa4fcf69abfb5055789fe892981bce2b6564e",
+      "elapsed_seconds": 3.676
+    },
+    {
+      "nation": "Nigeria",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "915932df228543672d9e2773952ed9fcc964332d046b34a2ddf06997519a7d0e",
+      "roundtrip_sha256": "915932df228543672d9e2773952ed9fcc964332d046b34a2ddf06997519a7d0e",
+      "elapsed_seconds": 3.634
+    },
+    {
+      "nation": "NorthKorea",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "46d79d8fa20053c4581696b8bdcb920a6a1ce0e82f898d4f5751e98544a0fd50",
+      "roundtrip_sha256": "46d79d8fa20053c4581696b8bdcb920a6a1ce0e82f898d4f5751e98544a0fd50",
+      "elapsed_seconds": 3.686
+    },
+    {
+      "nation": "Norway",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "aa4b0cb546dfc4b0d250d392f558b7507dd4280805a5f1d5aada93963fa114d0",
+      "roundtrip_sha256": "aa4b0cb546dfc4b0d250d392f558b7507dd4280805a5f1d5aada93963fa114d0",
+      "elapsed_seconds": 3.657
+    },
+    {
+      "nation": "Oman",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "520bda1636aa8d49ee4a1fb3e773809d911f0e5f86af2baa4b7323326a93eac4",
+      "roundtrip_sha256": "520bda1636aa8d49ee4a1fb3e773809d911f0e5f86af2baa4b7323326a93eac4",
+      "elapsed_seconds": 3.621
+    },
+    {
+      "nation": "Pakistan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "4a6184ef36b9b1a2c94f8b8d76f5a698a70daa912446732a1579912f29ce816e",
+      "roundtrip_sha256": "4a6184ef36b9b1a2c94f8b8d76f5a698a70daa912446732a1579912f29ce816e",
+      "elapsed_seconds": 3.599
+    },
+    {
+      "nation": "Panama",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "20ef2cc06358710efa497fac1ec1e1b66659f8d54b9032331acf8feeea93433e",
+      "roundtrip_sha256": "20ef2cc06358710efa497fac1ec1e1b66659f8d54b9032331acf8feeea93433e",
+      "elapsed_seconds": 3.68
+    },
+    {
+      "nation": "PapuaNewGuinea",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9262f029c21152171caa60f66f0a80faa49bc19fcf0c761648ee32a48070f898",
+      "roundtrip_sha256": "9262f029c21152171caa60f66f0a80faa49bc19fcf0c761648ee32a48070f898",
+      "elapsed_seconds": 3.64
+    },
+    {
+      "nation": "Paraguay",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "988b4a349ce90e8aaec2a2b9bc61fe1ed1e3716f98dc599025f0a4cd4b4188f6",
+      "roundtrip_sha256": "988b4a349ce90e8aaec2a2b9bc61fe1ed1e3716f98dc599025f0a4cd4b4188f6",
+      "elapsed_seconds": 3.64
+    },
+    {
+      "nation": "Peru",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "af6aca7bb2380ef697b0714f4611f353dc4a83abc5783880b8bc44a1ae7b69ba",
+      "roundtrip_sha256": "af6aca7bb2380ef697b0714f4611f353dc4a83abc5783880b8bc44a1ae7b69ba",
+      "elapsed_seconds": 3.577
+    },
+    {
+      "nation": "Philippines",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "85b96f8f4ef80960cdb8e5364f26836c0b711e80ba9c9cb0f1792f58efe6a3f9",
+      "roundtrip_sha256": "85b96f8f4ef80960cdb8e5364f26836c0b711e80ba9c9cb0f1792f58efe6a3f9",
+      "elapsed_seconds": 3.614
+    },
+    {
+      "nation": "Poland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "fde7006032a83bf54549d943c23e6fb6172b76e5b7386add18a41a8e0cda42a5",
+      "roundtrip_sha256": "fde7006032a83bf54549d943c23e6fb6172b76e5b7386add18a41a8e0cda42a5",
+      "elapsed_seconds": 3.703
+    },
+    {
+      "nation": "Portugal",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5e4508bd6c47e571292bc6abd704e8cf9db83611dccd828cb24337f826217d6d",
+      "roundtrip_sha256": "5e4508bd6c47e571292bc6abd704e8cf9db83611dccd828cb24337f826217d6d",
+      "elapsed_seconds": 3.707
+    },
+    {
+      "nation": "Qatar",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "df415315407ce2d6672a14d178ab695143bf0324437a9006510a92d6449833ab",
+      "roundtrip_sha256": "df415315407ce2d6672a14d178ab695143bf0324437a9006510a92d6449833ab",
+      "elapsed_seconds": 3.584
+    },
+    {
+      "nation": "Romania",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b8a0ce9e0be49da3a3e62f3429d801c4df0a42bf8507d5448c5e62dbd3cdee1f",
+      "roundtrip_sha256": "b8a0ce9e0be49da3a3e62f3429d801c4df0a42bf8507d5448c5e62dbd3cdee1f",
+      "elapsed_seconds": 3.735
+    },
+    {
+      "nation": "Samoa",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "84c7691b18629ca3e73884fc15c999d50532eaecc02c8d5b6ed2a833c0f32f4d",
+      "roundtrip_sha256": "84c7691b18629ca3e73884fc15c999d50532eaecc02c8d5b6ed2a833c0f32f4d",
+      "elapsed_seconds": 3.748
+    },
+    {
+      "nation": "SaoTome",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "6c5b6d12f0acfbbcd25a39e964dc030a8b81e225977ee23a23af9cae8030252c",
+      "roundtrip_sha256": "6c5b6d12f0acfbbcd25a39e964dc030a8b81e225977ee23a23af9cae8030252c",
+      "elapsed_seconds": 3.576
+    },
+    {
+      "nation": "SaudiArabia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "dbc5ae62ad39bf6c7182e43aa3ad0a522704942475361b0565f15bbfac140c70",
+      "roundtrip_sha256": "dbc5ae62ad39bf6c7182e43aa3ad0a522704942475361b0565f15bbfac140c70",
+      "elapsed_seconds": 3.672
+    },
+    {
+      "nation": "Senegal",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "c5c9492172365d4d5042b6cd668e5f52c7b5509a8be4d52459d6f8865f366aab",
+      "roundtrip_sha256": "c5c9492172365d4d5042b6cd668e5f52c7b5509a8be4d52459d6f8865f366aab",
+      "elapsed_seconds": 3.669
+    },
+    {
+      "nation": "Seychelles",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "8a8adb43252385b4fd692adcf6711425d1876fa1f09623771293a07762d035c3",
+      "roundtrip_sha256": "8a8adb43252385b4fd692adcf6711425d1876fa1f09623771293a07762d035c3",
+      "elapsed_seconds": 3.598
+    },
+    {
+      "nation": "Singapore",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9502b8925efdf6aa0ac477c9ff69edfa386bd686fdd6f11fd4859fdfa4b3463c",
+      "roundtrip_sha256": "9502b8925efdf6aa0ac477c9ff69edfa386bd686fdd6f11fd4859fdfa4b3463c",
+      "elapsed_seconds": 3.589
+    },
+    {
+      "nation": "SolomonIslands",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "c370ea97d3dbde6ca2225a9ca9d6388a43b48bb16b43f47f58be0a7807e1957f",
+      "roundtrip_sha256": "c370ea97d3dbde6ca2225a9ca9d6388a43b48bb16b43f47f58be0a7807e1957f",
+      "elapsed_seconds": 3.693
+    },
+    {
+      "nation": "SouthAfrica",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "3edf3948eac6d413aa4a12178571f119b94c397387b0d3dc40d6c7dd09872748",
+      "roundtrip_sha256": "3edf3948eac6d413aa4a12178571f119b94c397387b0d3dc40d6c7dd09872748",
+      "elapsed_seconds": 3.658
+    },
+    {
+      "nation": "SouthKorea",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "a07b9dc2a49872c2dcb2300bee8fefa603443cbe541bdb270ae94d2c75d5200b",
+      "roundtrip_sha256": "a07b9dc2a49872c2dcb2300bee8fefa603443cbe541bdb270ae94d2c75d5200b",
+      "elapsed_seconds": 3.75
+    },
+    {
+      "nation": "Spain",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "7f757a0cb65a582978007ce09ce4b2a2371c47e07e7491c0e3c5741adf69a167",
+      "roundtrip_sha256": "7f757a0cb65a582978007ce09ce4b2a2371c47e07e7491c0e3c5741adf69a167",
+      "elapsed_seconds": 3.625
+    },
+    {
+      "nation": "SriLanka",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "7755c75eb6db776fa39eb9712c335a757028176c5de43ec23a55232594c56b59",
+      "roundtrip_sha256": "7755c75eb6db776fa39eb9712c335a757028176c5de43ec23a55232594c56b59",
+      "elapsed_seconds": 3.666
+    },
+    {
+      "nation": "Sudan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "6aa083189ad6d97b999d73767ffbb80a1b372e818532e144fe4a9cf4f2f8c14c",
+      "roundtrip_sha256": "6aa083189ad6d97b999d73767ffbb80a1b372e818532e144fe4a9cf4f2f8c14c",
+      "elapsed_seconds": 3.704
+    },
+    {
+      "nation": "Suriname",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1e0f569d56b6881cd46b509d75143718219b93b2f5bd363f868749abbe4ce0d1",
+      "roundtrip_sha256": "1e0f569d56b6881cd46b509d75143718219b93b2f5bd363f868749abbe4ce0d1",
+      "elapsed_seconds": 3.675
+    },
+    {
+      "nation": "Swaziland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5bf6670531ae6697653e317401a454fe478e3c290aee27e2f82fef750d48fd41",
+      "roundtrip_sha256": "5bf6670531ae6697653e317401a454fe478e3c290aee27e2f82fef750d48fd41",
+      "elapsed_seconds": 3.632
+    },
+    {
+      "nation": "Sweden",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "71d50a949feab185acc9ef1b964ff8d2b39102bd6dcfe9ba58278103bd6faf61",
+      "roundtrip_sha256": "71d50a949feab185acc9ef1b964ff8d2b39102bd6dcfe9ba58278103bd6faf61",
+      "elapsed_seconds": 3.74
+    },
+    {
+      "nation": "Switzerland",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "54637d2ca2e7cce7803141ed01fac1143395aa91a9a1978f1803c226e092c88e",
+      "roundtrip_sha256": "54637d2ca2e7cce7803141ed01fac1143395aa91a9a1978f1803c226e092c88e",
+      "elapsed_seconds": 3.772
+    },
+    {
+      "nation": "Syria",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "f2b9429a580db545b72e03ea488d2e76febc6f0059bdbb5d2df32c0f02de1f07",
+      "roundtrip_sha256": "f2b9429a580db545b72e03ea488d2e76febc6f0059bdbb5d2df32c0f02de1f07",
+      "elapsed_seconds": 3.68
+    },
+    {
+      "nation": "Taiwan",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "ea7e2e22c28ee3f99efc9e408a33434b4b57a0c4eb58718dfe78ebc6bcb0f9db",
+      "roundtrip_sha256": "ea7e2e22c28ee3f99efc9e408a33434b4b57a0c4eb58718dfe78ebc6bcb0f9db",
+      "elapsed_seconds": 3.718
+    },
+    {
+      "nation": "Tanzania",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "867462000305f9b4a6ac20aa00d27847a87cab2f08a6f9ef29638ce18fe51a48",
+      "roundtrip_sha256": "867462000305f9b4a6ac20aa00d27847a87cab2f08a6f9ef29638ce18fe51a48",
+      "elapsed_seconds": 3.737
+    },
+    {
+      "nation": "Thailand",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5fc6867e571ed9a01bfa4aad2b18a122472b6f7b05a645a0932ed08f0f3eeca4",
+      "roundtrip_sha256": "5fc6867e571ed9a01bfa4aad2b18a122472b6f7b05a645a0932ed08f0f3eeca4",
+      "elapsed_seconds": 3.62
+    },
+    {
+      "nation": "Tonga",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "fcd4bf4b9a84131c8625f53cf7bce734f27f41fb831de6583f0f0f208e1da0e5",
+      "roundtrip_sha256": "fcd4bf4b9a84131c8625f53cf7bce734f27f41fb831de6583f0f0f208e1da0e5",
+      "elapsed_seconds": 3.793
+    },
+    {
+      "nation": "TrinidadTobago",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "15c7b05b79e9f32f2a2b17e04618a608abec5599396c1dfc0364efd1898b7f42",
+      "roundtrip_sha256": "15c7b05b79e9f32f2a2b17e04618a608abec5599396c1dfc0364efd1898b7f42",
+      "elapsed_seconds": 3.876
+    },
+    {
+      "nation": "Tunisia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "592b21e4e0b18fb941f2d283933b73e4531d69badb9c34dab900e695f6b5d22f",
+      "roundtrip_sha256": "592b21e4e0b18fb941f2d283933b73e4531d69badb9c34dab900e695f6b5d22f",
+      "elapsed_seconds": 3.878
+    },
+    {
+      "nation": "Turkey",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "0300225a30f23766976e019cf977d0fa49eb480c3194333cdac2630070e74486",
+      "roundtrip_sha256": "0300225a30f23766976e019cf977d0fa49eb480c3194333cdac2630070e74486",
+      "elapsed_seconds": 3.836
+    },
+    {
+      "nation": "UAE",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "7752288a3fdf0500f5652a16896115ac814e5df5ad8ea3a33e20de03008582b2",
+      "roundtrip_sha256": "7752288a3fdf0500f5652a16896115ac814e5df5ad8ea3a33e20de03008582b2",
+      "elapsed_seconds": 3.92
+    },
+    {
+      "nation": "UK",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "fd1d918e14494d06b04c561ed14a3b54c645a90557d4dfcf4f959822649e9f24",
+      "roundtrip_sha256": "fd1d918e14494d06b04c561ed14a3b54c645a90557d4dfcf4f959822649e9f24",
+      "elapsed_seconds": 3.789
+    },
+    {
+      "nation": "USA",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [
+        {
+          "date": "5 Jan 1990",
+          "reason": "ACTION REQUIRED: United States receives a trade treaty from Colombia. Reply within 30 days in Decisions; an unanswered request is declined."
+        }
+      ],
+      "date": "8 Jan 1990",
+      "archive_sha256": "62db02f8e0539717f9d63cfb4f32c4de13cb890ed0b3193cdc931f0d48479c9d",
+      "roundtrip_sha256": "62db02f8e0539717f9d63cfb4f32c4de13cb890ed0b3193cdc931f0d48479c9d",
+      "elapsed_seconds": 3.969
+    },
+    {
+      "nation": "USSR",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "b43ebe23ac220294933a775a8cf68073873690001803c0a682a926f04d2266ba",
+      "roundtrip_sha256": "b43ebe23ac220294933a775a8cf68073873690001803c0a682a926f04d2266ba",
+      "elapsed_seconds": 4.015
+    },
+    {
+      "nation": "Uganda",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "233cd8bdfcb12329bf8eee338eabfd24d0bc92f1b4f209d94f447857f71d1442",
+      "roundtrip_sha256": "233cd8bdfcb12329bf8eee338eabfd24d0bc92f1b4f209d94f447857f71d1442",
+      "elapsed_seconds": 3.694
+    },
+    {
+      "nation": "Uruguay",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "1f7cfc14af55c267e547c8f1c35e7bb94662ca3ebb005eb707b84d5329c89c4b",
+      "roundtrip_sha256": "1f7cfc14af55c267e547c8f1c35e7bb94662ca3ebb005eb707b84d5329c89c4b",
+      "elapsed_seconds": 3.606
+    },
+    {
+      "nation": "Vanuatu",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9e665a2c3820894551e0d2f73004b2ad286313b7201fb7c2e92b625fef45d3a2",
+      "roundtrip_sha256": "9e665a2c3820894551e0d2f73004b2ad286313b7201fb7c2e92b625fef45d3a2",
+      "elapsed_seconds": 3.654
+    },
+    {
+      "nation": "Venezuela",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "c8551485c2ff1d836c8591028644bc44f2f870f94c1c3d9264f7857af55fda3d",
+      "roundtrip_sha256": "c8551485c2ff1d836c8591028644bc44f2f870f94c1c3d9264f7857af55fda3d",
+      "elapsed_seconds": 4.606
+    },
+    {
+      "nation": "Vietnam",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "d8072934f6d25639ab5aa90f334fc5536b4f7500bfb435e58d791ac74ab11f31",
+      "roundtrip_sha256": "d8072934f6d25639ab5aa90f334fc5536b4f7500bfb435e58d791ac74ab11f31",
+      "elapsed_seconds": 3.516
+    },
+    {
+      "nation": "Yemen",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "2b1afbd30edd18c5ffa0831579c7b754e8dfa7f88e980f1cc9fa54a093ce369c",
+      "roundtrip_sha256": "2b1afbd30edd18c5ffa0831579c7b754e8dfa7f88e980f1cc9fa54a093ce369c",
+      "elapsed_seconds": 3.731
+    },
+    {
+      "nation": "Yugoslavia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "5d5bbaf68035288ab8a13ce33b5ca11f17144debca542fc4d1e39cad53bb199c",
+      "roundtrip_sha256": "5d5bbaf68035288ab8a13ce33b5ca11f17144debca542fc4d1e39cad53bb199c",
+      "elapsed_seconds": 3.881
+    },
+    {
+      "nation": "Zaire",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "9e8064c5ffcc3dde164f90ea5638996726c65f69d2e13c24ef74a94d15c4f91c",
+      "roundtrip_sha256": "9e8064c5ffcc3dde164f90ea5638996726c65f69d2e13c24ef74a94d15c4f91c",
+      "elapsed_seconds": 3.747
+    },
+    {
+      "nation": "Zambia",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "c03892023b43ec9cb141c4be0b2a173559e1d7cd9b78aaee745fed8eb9b63922",
+      "roundtrip_sha256": "c03892023b43ec9cb141c4be0b2a173559e1d7cd9b78aaee745fed8eb9b63922",
+      "elapsed_seconds": 4.563
+    },
+    {
+      "nation": "Zimbabwe",
+      "passed": true,
+      "checks": [
+        "start_and_map_ownership_state",
+        "government",
+        "cash-flow",
+        "guidance",
+        "seven_days",
+        "duplicate_turn",
+        "full_archive_roundtrip"
+      ],
+      "interruptions": [],
+      "date": "8 Jan 1990",
+      "archive_sha256": "e246253e778f0368e051193a4337eca0d6840a26907ec1cd7950cd005c413ee8",
+      "roundtrip_sha256": "e246253e778f0368e051193a4337eca0d6840a26907ec1cd7950cd005c413ee8",
+      "elapsed_seconds": 3.646
+    }
+  ],
+  "passed": true,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1790619607,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "full_revision": "3ec6e155a416f713149820f9d6276b5ad2e7d721",
+    "revision": "3ec6e155a416",
+    "save_directory": "D:\\spheres-offload\\codex-next-20260928\\startup-native-01\\server",
+    "target_arch": "x86_64",
+    "target_os": "windows",
+    "version": "0.6.0"
+  },
+  "roster": [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Angola",
+    "Argentina",
+    "Australia",
+    "Austria",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Belgium",
+    "Belize",
+    "Bhutan",
+    "Bolivia",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "CapeVerde",
+    "CentralAfricanRepublic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo",
+    "CostaRica",
+    "Cuba",
+    "Cyprus",
+    "Czechoslovakia",
+    "Denmark",
+    "DominicanRepublic",
+    "Ecuador",
+    "Egypt",
+    "ElSalvador",
+    "EquatorialGuinea",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Guatemala",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kenya",
+    "Kuwait",
+    "Laos",
+    "Lebanon",
+    "Lesotho",
+    "Libya",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Malta",
+    "Mauritius",
+    "Mexico",
+    "Mongolia",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Nepal",
+    "Netherlands",
+    "NewZealand",
+    "Nicaragua",
+    "Nigeria",
+    "NorthKorea",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Panama",
+    "PapuaNewGuinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Samoa",
+    "SaoTome",
+    "SaudiArabia",
+    "Senegal",
+    "Seychelles",
+    "Singapore",
+    "SolomonIslands",
+    "SouthAfrica",
+    "SouthKorea",
+    "Spain",
+    "SriLanka",
+    "Sudan",
+    "Suriname",
+    "Swaziland",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tanzania",
+    "Thailand",
+    "Tonga",
+    "TrinidadTobago",
+    "Tunisia",
+    "Turkey",
+    "UAE",
+    "UK",
+    "USA",
+    "USSR",
+    "Uganda",
+    "Uruguay",
+    "Vanuatu",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Yugoslavia",
+    "Zaire",
+    "Zambia",
+    "Zimbabwe"
+  ],
+  "coverage": "all_starters",
+  "all_137_passed": true,
+  "finished_utc": "2026-09-28T18:38:06.276488+00:00",
+  "source_clean_after": true,
+  "source_revision_after": "3ec6e155a416f713149820f9d6276b5ad2e7d721"
+}

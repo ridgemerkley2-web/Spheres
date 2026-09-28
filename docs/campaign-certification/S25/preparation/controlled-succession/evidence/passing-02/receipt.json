@@ -1,0 +1,196 @@
+{
+  "format": "spheres-controlled-succession-retention/v1",
+  "passed": true,
+  "failure": null,
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\archive-manifest.json",
+      "bytes": 20136,
+      "sha256": "ed025b8636816ed3d017ee4388271fe2354d5e0c8f43e491508dde995702742a"
+    },
+    {
+      "relative": "controlled_succession.py",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\controlled_succession.py",
+      "bytes": 26152,
+      "sha256": "82a21ab3f40b44c8538bb08d51de354a1f9766b581842cc99e73dafd84bb3d3c"
+    },
+    {
+      "relative": "execution.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\execution.json",
+      "bytes": 1165,
+      "sha256": "1eee44282510a13bfb5aaa2ed9763ccab61bcb86f334d76d15c8e345b2a7160e"
+    },
+    {
+      "relative": "freeze.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\freeze.json",
+      "bytes": 1208,
+      "sha256": "88295b30b39c5151fda1f9b521f72e49320c73517a0357d1d25e7330a3d4ad6d"
+    },
+    {
+      "relative": "journal.jsonl",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\journal.jsonl",
+      "bytes": 26156,
+      "sha256": "9b9e851bfb87a9fd29fcce5ae9b4274485b3852ab1f969c617110a373f8d6005"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\progress.jsonl",
+      "bytes": 1152,
+      "sha256": "67a533347d4a19d6c6821c8f00535733a0676274f1cba8f20bff95586cf7a635"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\result.json",
+      "bytes": 25862,
+      "sha256": "70537085fc830354a986f43549baf42e3d1636d432b623c8a89a2b4fdacb8b5f"
+    },
+    {
+      "relative": "native/resumed/saves/after_russia_choice.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\after_russia_choice.json.gz",
+      "bytes": 2155954,
+      "sha256": "398f288491e3dd4d8b3bc99b1d91fc14350cc14067b8f94e2b7ee2528b067fd7"
+    },
+    {
+      "relative": "native/resumed/saves/before_collapse.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\before_collapse.json.gz",
+      "bytes": 2062650,
+      "sha256": "bc2fe59fea4a8aefafdb267fb8b99222556597b459e51de713356df14fe47fb7"
+    },
+    {
+      "relative": "native/resumed/saves/paused_succession.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\paused_succession.json.gz",
+      "bytes": 2155744,
+      "sha256": "262c473e4d983019e67669b446494bbf8135f3a2f122bc96b6704135f99b08b3"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_1.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_1.json.gz",
+      "bytes": 2891592,
+      "sha256": "2716f30dedbee1ebb0eb056b0d490629c71e82c205554d3af8b9aa6ed0b8d7f2"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_2.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_2.json.gz",
+      "bytes": 2925569,
+      "sha256": "976b10020b154a1ef85f8296da7ace8f60f7c0a557bc8d79fc4bf26e7efbaf9d"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_3.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_3.json.gz",
+      "bytes": 2950247,
+      "sha256": "ae970f6b01b2f259d1fb13d882b8d101e361c69c5a3a410f0807c87bb8a7ca64"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_4.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_4.json.gz",
+      "bytes": 2972068,
+      "sha256": "17efe1f39db90b0c9b4c697be90a09e052b3df34f0069fc306f56b911fe2e655"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_5.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_5.json.gz",
+      "bytes": 2993910,
+      "sha256": "68cca1e4a1d9db9be4587f89ca76cfd44aba10e637a26ad914580ded4c088146"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_6.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_6.json.gz",
+      "bytes": 3014708,
+      "sha256": "98ca85c2223ae97b0a32f18f3ae61b6e776a59ab2e537f738545446ab770cf42"
+    },
+    {
+      "relative": "native/resumed/saves/successor_day_7.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\resumed\\saves\\successor_day_7.json.gz",
+      "bytes": 3034747,
+      "sha256": "321f08b6de6d9154b745d63dc49f200a357b5867e4c02a2cc7203c7d0b6561c6"
+    },
+    {
+      "relative": "native/uninterrupted/saves/after_russia_choice.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\after_russia_choice.json.gz",
+      "bytes": 2155954,
+      "sha256": "398f288491e3dd4d8b3bc99b1d91fc14350cc14067b8f94e2b7ee2528b067fd7"
+    },
+    {
+      "relative": "native/uninterrupted/saves/before_collapse.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\before_collapse.json.gz",
+      "bytes": 2062650,
+      "sha256": "bc2fe59fea4a8aefafdb267fb8b99222556597b459e51de713356df14fe47fb7"
+    },
+    {
+      "relative": "native/uninterrupted/saves/paused_succession.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\paused_succession.json.gz",
+      "bytes": 2155744,
+      "sha256": "262c473e4d983019e67669b446494bbf8135f3a2f122bc96b6704135f99b08b3"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_1.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_1.json.gz",
+      "bytes": 2891592,
+      "sha256": "2716f30dedbee1ebb0eb056b0d490629c71e82c205554d3af8b9aa6ed0b8d7f2"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_2.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_2.json.gz",
+      "bytes": 2925569,
+      "sha256": "94a27686d10248655ee3d52c2cd4c50cb0f2c5808e6b2c406e953575ee83b7ac"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_3.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_3.json.gz",
+      "bytes": 2950247,
+      "sha256": "ae970f6b01b2f259d1fb13d882b8d101e361c69c5a3a410f0807c87bb8a7ca64"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_4.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_4.json.gz",
+      "bytes": 2972068,
+      "sha256": "db6a9761a67518c7d8e3404329c690b83b833dbfefa0df9b098d1c75b2bc45bb"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_5.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_5.json.gz",
+      "bytes": 2993911,
+      "sha256": "891e98107e5267f335d9668d4349170365fa0329ac47b721a3aa9a251c092029"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_6.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_6.json.gz",
+      "bytes": 3014708,
+      "sha256": "2305766eacfb81e2730d50a8261f3eae0c301e5c047ccbba16a68212f0334fce"
+    },
+    {
+      "relative": "native/uninterrupted/saves/successor_day_7.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\native\\uninterrupted\\saves\\successor_day_7.json.gz",
+      "bytes": 3034747,
+      "sha256": "857063d7e77e1f52c5830b69fef489dbb21062848b39e859c000d5278dd2e951"
+    },
+    {
+      "relative": "request.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\request.json",
+      "bytes": 172,
+      "sha256": "7451930e56a99d4dbd44701101aa5cb290549d0176b6dd01bf44bb84d0103939"
+    },
+    {
+      "relative": "stability_matrix.py",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\stability_matrix.py",
+      "bytes": 61747,
+      "sha256": "113ae9496b3b2610b05a494ef9f33f45a80e348d463527d9034e2af4c84c9a5b"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\succession-full-02\\stdout.log",
+      "bytes": 186,
+      "sha256": "0954c79fdc50cafc16c50955ace98cc4e65c1ffa7ab5a9a216affb39f74a7d86"
+    }
+  ],
+  "qualification": false,
+  "s25_complete": false,
+  "organic_history": false
+}

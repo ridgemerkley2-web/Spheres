@@ -22,31 +22,40 @@ and [portable release closeout](campaign-certification/S28/preparation/portable-
 The existing A1 political-calibration concentration gate remains failed under
 its unchanged limit; no complete CI or campaign qualification is claimed.
 
-## Newly authorized Codex order
+## Current eight-task closeout
 
-The next [eight bounded tasks](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md)
-are registered in execution order. The A1 attempt is **blocked and incomplete**:
-its fresh baseline and one rejected policy trial both fail the unchanged gate;
-source is restored and no reserved seed was run. [Retained evidence](campaign-certification/S27/preparation/a1-20260928/README.md).
-Startup is now in progress as an independent engineering preflight following the
-A1 attempt, without requiring or claiming an A1 pass. Remaining tasks keep their
-requested order. Earlier preparation remains complete.
+**Six of the eight bounded Codex tasks are complete.** The remaining two are
+A1 political calibration and the full 24-cell 1990–2035 matrix. Canonical session
+and certification prerequisites are unchanged.
 
-1. Repair the A1 political-calibration failure without changing its limits.
-2. Refresh the existing 137-country native sweep on a rebuilt, pinned current build
-   and complete its missing ordinary browser startup/map coverage.
-3. Add controlled paired USSR → Russia continuity across save/resume boundaries.
-4. Run the full eight-country × three-seed 1990–2035 engineering preflight.
-5. Independently review the submitted French presidents packet C01-23.
-6. Independently review the Tongan Speakers packet C01-24.
-7. Independently review the Saudi council-chairs packet C01-25.
-8. Independently review the BJP presidents packet C01-27.
+| Order | Task | Verified state |
+|---|---|---|
+| 1 | A1 political calibration | **Open/blocked.** The unchanged concentration gate still fails; rejected trial and restored source retained. Further diagnostic work uses only the existing development cohort. |
+| 2 | Worldwide startup | **Complete.** 137/137 native and 137/137 actual-browser cases pass on the same frozen runtime. Independent verification passed all 1,377 browser artifacts. |
+| 3 | Controlled USSR → Russia continuity | **Complete.** Twenty whole archives, ten reloads and every paired comparison pass; actual Russia continuation is required. |
+| 4 | Full long-campaign matrix | **In progress.** Two resource-limited local attempts are retained. [Frozen distributed run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011141) uses the unchanged 24-cell plan. No full-matrix pass yet. |
+| 5 | French presidents C01-23 | **Complete.** Bounded source review accepted and merged; missing-snapshot checks and term-hour description repaired. |
+| 6 | Tongan Speakers C01-24 | **Complete.** Bounded source review accepted and merged; initial held evidence and subsequent access resolution retained. |
+| 7 | Saudi council chairs C01-25 | **Complete.** Bounded source review accepted and merged; distinct roles, uncertainty and earlier SOURCE-06 fix preserved. |
+| 8 | BJP presidents C01-27 | **Complete.** Bounded source review accepted and merged; acting/elected/appointed distinctions and disputed dates retained. |
 
-These tasks can progress independently of additional Claude research. They do
-not close S24, S25 or S27: formal dependencies and required historical/human
-qualification remain unchanged. Russian C01-28 is newly submitted at `16153784`;
-South African C01-30 is newly claimed at `68535825`. These are inventory updates,
-not acceptance or additional steps in this ordered Codex work.
+[Startup closeout](campaign-certification/S24/preparation/worldwide-startup/README.md),
+[controlled continuity](campaign-certification/S25/preparation/controlled-succession/README.md),
+[ordered research acceptance](campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md)
+and [execution/failure journal](campaign-certification/development/2026-09-28-ordered/README.md)
+retain exact scope and build pins. The research merge passed 268 overlapping test
+executions. Its 243 source responses and 454 claims are bounded intake, not
+complete country history or installed avatars.
+
+The order is an order of attempts. The full matrix's resource interruptions do
+not create a historical-research prerequisite; France → Tonga → Saudi Arabia →
+India were reviewed and integrated in that order after the recorded attempts.
+A1 and the matrix remain open until their actual acceptance requirements pass.
+[Task details](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md).
+
+Russia C01-28 has a newer unreviewed follow-up at `03141c43`. South Africa C01-30
+is claimed at `68535825`; India C01-33 is separately claimed at `89decb6a`. These
+inventory entries are not new acceptance or additional tasks in the current order.
 
 | Area | Verified state | Next owner / action |
 |---|---|---|
@@ -62,7 +71,7 @@ not acceptance or additional steps in this ordered Codex work.
 | Budget explanation repair | **CODEX-S24-BUDGET-01 complete.** Rate floor and sovereign risk are now shown separately. | [Native/UI/browser evidence](campaign-certification/S24/repairs/budget-rate-explanation/README.md), current runtime `52e1c2ab`; unchanged economic charges. |
 | E05 company pilot | **CLAUDE-E05-RESEARCH-01 complete as research preparation.** Eight dossiers, corrected validator and 61 tests. | [Review](campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md). 68/99 bodies retrieved (54 byte-exact, 14 changed); explicit claim-level content limits remain. No runtime installation. |
 | S26 human-playtest preparation | **CODEX-S26-PREP-01 complete.** Facilitator guide, eight-country plan and evidence/coverage validator; 23 synthetic tests pass. | [Kit](campaign-certification/S26/preparation/README.md). Zero actual human observations; S26 still awaits S24 and real participants. |
-| Pending Claude work | C01-23/24/25/27 await independent historical review. Japan C01-29 at `3b304785` passes 150 passing test executions; 35/54 original responses reproduced exactly, but 19 archived responses remain unavailable. Merge and historical acceptance are held. Russia C01-28 is submitted at `16153784`; South Africa C01-30 is claimed at `68535825`. Neither is accepted. | [Japan review checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md); resume source review without duplicating research. |
+| Pending Claude work | C01-23/24/25/27 are accepted bounded intake after independent review; their parent historical coverage remains open. Japan C01-29 at `3b304785` passes 150 passing test executions; 35/54 original responses reproduced exactly, but 19 archived responses remain unavailable. Merge and historical acceptance are held. Russia C01-28 is submitted with follow-up `03141c43`; South Africa C01-30 is claimed at `68535825`. Neither is accepted. | [Japan review checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md); resume source review without duplicating research. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
