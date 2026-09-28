@@ -195,6 +195,9 @@ async function main() {
       assert(await page.locator('#loadBtn').isDisabled()); assert(await page.locator('#loadBackupBtn').isEnabled());
       const label=await page.locator('#saveSlots option:checked').textContent();
       assert.match(label,/main save missing/); assert.match(label,/backup available/); assert(label.includes(a.record.date));
+      assert(await page.locator('#saveRecoveryStatus').isVisible());
+      const recoveryMessage=await page.locator('#saveRecoveryStatus').innerText();
+      assert(recoveryMessage.includes(a.record.date) && recoveryMessage.includes('main save is missing'));
       const layout=await page.locator('#savedCampaigns').evaluate(element => ({client:element.clientWidth,scroll:element.scrollWidth}));
       assert(layout.client>0 && layout.scroll<=layout.client+1,'Saved campaigns panel overflows: '+JSON.stringify(layout));
       assert(!/\bNaN\b|\bundefined\b/.test(await page.locator('#savedCampaigns').innerText()));

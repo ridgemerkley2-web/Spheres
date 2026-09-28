@@ -113,6 +113,8 @@ test('a missing or unreadable main save exposes backup recovery without enabling
     assert.equal(f.node('#loadBtn').disabled,true);
     assert.equal(f.node('#loadBackupBtn').hidden,false);
     assert.equal(f.node('#loadBackupBtn').disabled,false);
+    assert.equal(f.node('#saveRecoveryStatus').hidden,false);
+    assert.match(f.node('#saveRecoveryStatus').textContent,/main save is.*Try loading the previous backup/);
     f.c.SESSION.busy=true;f.run('renderMainMenuState()');
     assert.equal(f.node('#loadBackupBtn').disabled,true);
     f.c.SESSION.busy=false;f.run('renderMainMenuState()');
