@@ -1556,6 +1556,11 @@ fn scale_people(p: &mut ProvincePopulation, f: f64) {
     }
 }
 fn add_people(to: &mut ProvincePopulation, from: &ProvincePopulation) {
+    #[cfg(test)]
+    if course_merge_tests::ORIGINAL.with(std::cell::Cell::get) {
+        course_merge_tests::add_people_original(to, from);
+        return;
+    }
     let old = to.population_m();
     let incoming = from.population_m();
     let weight = ratio(incoming, old + incoming);
@@ -1567,19 +1572,7 @@ fn add_people(to: &mut ProvincePopulation, from: &ProvincePopulation) {
     }
     to.retirees_m += from.retirees_m;
     to.military_m += from.military_m;
-    for course in &from.courses {
-        if let Some(same) = to.courses.iter_mut().find(|x| {
-            x.from == course.from
-                && x.to == course.to
-                && x.started_day == course.started_day
-                && x.required_days.to_bits() == course.required_days.to_bits()
-                && x.funded_days.to_bits() == course.funded_days.to_bits()
-        }) {
-            same.people_m += course.people_m;
-        } else {
-            to.courses.push(course.clone());
-        }
-    }
+    merge_courses(&mut to.courses, &from.courses);
     for i in 0..6 {
         let class_weight = ratio(
             incoming * from.class_shares[i],
@@ -1590,6 +1583,48 @@ fn add_people(to: &mut ProvincePopulation, from: &ProvincePopulation) {
         to.class_living[i] += (from.class_living[i] - to.class_living[i]) * class_weight;
         to.class_risk_reference[i] +=
             (from.class_risk_reference[i] - to.class_risk_reference[i]) * class_weight;
+    }
+}
+
+type CourseKey = (usize, usize, i32, u64, u64);
+fn course_key(course: &Course) -> CourseKey {
+    (course.from, course.to, course.started_day,
+        course.required_days.to_bits(), course.funded_days.to_bits())
+}
+
+fn merge_courses(to: &mut Vec<Course>, from: &[Course]) {
+    // A destination may retain many distinct funding histories. Index only
+    // this incoming batch's keys, then locate their FIRST existing rows in one
+    // pass. The index dies with this merge; no course is sorted or discarded.
+    let mut first: BTreeMap<CourseKey, Option<usize>> =
+        from.iter().map(|course| (course_key(course), None)).collect();
+    if first.is_empty() { return; }
+    let mut missing = first.len();
+    for (index, course) in to.iter().enumerate() {
+        #[cfg(test)]
+        course_merge_tests::SCANNED.with(|count| count.set(count.get() + 1));
+        if let Some(slot) = first.get_mut(&course_key(course)) {
+            if slot.is_none() {
+                *slot = Some(index);
+                missing -= 1;
+                if missing == 0 { break; }
+            }
+        }
+    }
+    // Keep incoming order and every original floating-point addition. A new
+    // append immediately becomes the first match for later batch duplicates.
+    for course in from {
+        let slot = first.get_mut(&course_key(course)).expect("incoming key indexed");
+        #[cfg(test)]
+        course_merge_tests::ORIGINAL_COMPARISONS.with(|count| {
+            count.set(count.get() + slot.map_or(to.len(), |index| index + 1) as u64);
+        });
+        if let Some(index) = *slot {
+            to[index].people_m += course.people_m;
+        } else {
+            *slot = Some(to.len());
+            to.push(course.clone());
+        }
     }
 }
 fn researchers(w: &WorldState, id: NationId) -> f64 {
@@ -2164,6 +2199,10 @@ pub fn district_skill_staffing(w: &WorldState, d: &str, sector: usize, recipe: [
     }
     result
 }
+
+#[cfg(test)]
+#[path = "population_course_merge_tests.rs"]
+mod course_merge_tests;
 
 #[cfg(test)]
 mod tests {
