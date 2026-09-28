@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_doi_profile_2000_retrospective",
+  "source_url": "https://web.archive.org/web/20000516232711id_/http://www.sdp.or.jp:80/central/representatives/doi.html",
+  "original_url": "http://www.sdp.or.jp/central/representatives/doi.html",
+  "archive_capture_utc": "2000-05-16T23:27:11Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 2726,
+  "source_response_sha256": "9c071b37b1562347fac94334305de10578f78d38109297ce995907096f7e33dd",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "WQ3YJCQWPK6HWJ6GFWDL4JP2HCTFZF7D",
+  "source_character_encoding": "ISO-2022-JP",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20000516232711id_/http://www.sdp.or.jp:80/central/representatives/doi.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2000-05-16T23:27:11Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Tue, 31 Aug 1999 05:08:15 GMT. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher (part A): downloaded on 28 September 2026 (UTC) at 14:06:19Z (plain, discovery copy, identical bytes); 14:15:27Z (plain, r1, 2726 bytes, sha256 9c071b37b156); 14:52:57Z (plain, r2, 2726 bytes, sha256 9c071b37b156), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:34:48Z and 16:09:35Z, 34 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's own profile page of its member 土井たか子 (then 党首), raw capture of 16 May 2000 (server Last-Modified 31 August 1999). Retrospective biography: its month/year dates are kept as printed and give no structured date and no boundary. The Speaker office it also mentions is a state office and is not imported; its 党首 entries are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_doi_profile_chair_from_september_1986",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-01",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The party profile states that 土井 became chair of 日本社会党 (中央執行委員長) in September 1986 (\"8６年9月…就任\"), i.e. she held the office when the period opens (retrospective; printed month only).",
+      "locator": {
+        "section": "◇プロフィール／略歴",
+        "paragraph": 2
+      }
+    },
+    {
+      "claim_id": "jp_sdp_doi_profile_resigned_july_1991",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-01",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "retrospective_resignation_reference",
+      "attested_on": null,
+      "text": "The same profile of 土井たか子 states that she resigned in July 1991 (\"91年7月辞任\").",
+      "locator": {
+        "section": "◇プロフィール／略歴",
+        "paragraph": 2
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}

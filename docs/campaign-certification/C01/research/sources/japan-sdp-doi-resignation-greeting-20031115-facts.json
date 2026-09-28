@@ -1,0 +1,112 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_doi_resignation_greeting_20031115",
+  "source_url": "https://web.archive.org/web/20031208185818id_/http://www5.sdp.or.jp:80/central/news/news111502.html",
+  "original_url": "http://www5.sdp.or.jp/central/news/news111502.html",
+  "archive_capture_utc": "2003-12-08T18:58:18Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 6373,
+  "source_response_sha256": "b39999f382a5dcc21b5257b14f5b21150082d366b4f285f52cc6231f176b193f",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "XIPHQAMAMA7YAT275KG66ROQGVSYXR5W",
+  "source_character_encoding": "ISO-2022-JP",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20031208185818id_/http://www5.sdp.or.jp:80/central/news/news111502.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-12-08T18:58:18Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Sat, 15 Nov 2003 12:47:17 GMT. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher (part B): downloaded on 28 September 2026 (UTC) at 13:59:17Z (plain); 14:46:41Z (plain), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:35:47Z and 16:11:08Z, 35 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Party record of 土井たか子's resignation address to the meeting of prefectural federation representatives, 15 November 2003. Used for her formal resignation, the steps she recalls, her 1996 succession to 村山富市 (year only), and the same-day selection of 福島瑞穂.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_doi_in_office_resignation_greeting_20031115",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-06",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2003-11-15",
+      "text": "The record dated 15 November 2003 is headed as the resignation address of 土井たか子党首.",
+      "locator": {
+        "section": "heading"
+      }
+    },
+    {
+      "claim_id": "jp_sdp_doi_resignation_submitted_20031115",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-06",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "resignation_submitted",
+      "attested_on": "2003-11-15",
+      "text": "土井たか子 tells the representatives' meeting that she has decided to resign as party leader and that she is stating her resignation to them at the opening of the meeting today.",
+      "locator": {
+        "paragraph": 2,
+        "section": "本日は都道府県連合代表者会議の冒頭に"
+      }
+    },
+    {
+      "claim_id": "jp_sdp_doi_resignation_recalled_three_officers_20031111",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-06",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "resignation_recalled_by_holder",
+      "attested_on": "2003-11-11",
+      "text": "土井たか子 recalls that on the 11th the three party officers met and accepted her resignation.",
+      "locator": {
+        "paragraph": 3
+      }
+    },
+    {
+      "claim_id": "jp_sdp_doi_resignation_recalled_standing_committee_20031113",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-06",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "土井たか子",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "resignation_recalled_by_holder",
+      "attested_on": "2003-11-13",
+      "text": "土井たか子 recalls that on the 13th the regular standing executive committee received her statement of intent to resign.",
+      "locator": {
+        "paragraph": 3
+      }
+    },
+    {
+      "claim_id": "jp_sdp_murayama_predecessor_recalled",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-06",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "村山富市",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "predecessor_referred_to_as_former",
+      "attested_on": null,
+      "text": "土井たか子 recalls that in 1996 she took over from 村山富市前党首 and that her time as leader began with the general election immediately after.",
+      "locator": {
+        "paragraph": 4
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_selection_reported_by_doi_20031115",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-07",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "joint_plenary_selection",
+      "attested_on": "2003-11-15",
+      "text": "土井たか子 tells the meeting that at the joint plenary meeting of both houses' members held just before, 福島瑞穂さん was chosen as the new party leader.",
+      "locator": {
+        "paragraph": 6
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}

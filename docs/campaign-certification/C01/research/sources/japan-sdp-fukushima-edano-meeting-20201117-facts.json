@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sdp_fukushima_edano_meeting_20201117",
+  "source_url": "https://web.archive.org/web/20210125100528id_/http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/",
+  "original_url": "http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/",
+  "archive_capture_utc": "2021-01-25T10:05:28Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 14040,
+  "source_response_sha256": "7d4bce35ace5c07af62c6318a1fd8d29f61e1dfdb354830c85b237ad949ebc6e",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "6OED27K6KAXRXC5SBBVBR3RUYUX26BGC",
+  "source_character_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20210125100528id_/http://www5.sdp.or.jp/topics/2020/11/17/%E7%A6%8F%E5%B3%B6%E5%85%9A%E9%A6%96%E3%81%A8%E6%9E%9D%E9%87%8E%E4%BB%A3%E8%A1%A8%E3%81%8C%E4%BC%9A%E8%AB%87/' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2021-01-25T10:05:28Z; that form replays the archived bytes unchanged. The base32 SHA-1 of the bytes equals the Internet Archive CDX digest of the capture. Researcher (part B): downloaded on 28 September 2026 (UTC) at 14:04:39Z (plain); 14:47:47Z (plain), each time with the same byte count and SHA-256. Downloaded on 28 September 2026 (UTC) by this packet at 15:36:56Z and 16:12:27Z, 35 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Party web page on 福島党首 reporting the 14 November 2020 convention decision to the leader of the Constitutional Democratic Party.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sdp_split_decision_20201114",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-10",
+      "role_id": "jp_sdp_chair",
+      "holder_name": null,
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "organization_split_decision",
+      "attested_on": "2020-11-14",
+      "text": "The page reports that the extraordinary convention of 14 November passed by majority the motion that both choices, keeping the SDP and joining the Constitutional Democratic Party, be mutually accepted.",
+      "locator": {
+        "paragraph": 1
+      }
+    },
+    {
+      "claim_id": "jp_sdp_fukushima_in_office_20201117",
+      "observation_id": "jp_sangiin_pr_2025_10",
+      "review_observation": "SDP-CHAIR-10",
+      "role_id": "jp_sdp_chair",
+      "holder_name": "福島瑞穂",
+      "role_title": "委員長 / 党首 — chair of the Japan Socialist Party and, from its 1996 renaming, the Social Democratic Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2020-11-17",
+      "text": "On 17 November, at a meeting of the two parties' leaders, 福島党首 reported the convention's decision to 枝野代表.",
+      "locator": {
+        "paragraph": 1
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the chair of 日本社会党 (委員長) and, from the January 1996 renaming, the party leader of 社会民主党 (党首), for CLAUDE-C01-29 only, 1990-2026. Party elections and selections, notices, filings, counts and declarations, convention approvals, statements of assumption, in-office attestations, announced, submitted, accepted and withdrawn resignations, stated ends, acting arrangements, predecessor references, the renaming, the 2020 convention decision and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a schedule, a filing by several candidates, an organization event, an acting leader). The prime-ministership (jp_pm), ministerial and Speaker offices, parliamentary groups and other party offices are excluded: no row feeds them, and none of their claims feeds this office. Organization identities stay unresolved; no row maps or merges 日本社会党, 社会民主党 or any other party."
+}
