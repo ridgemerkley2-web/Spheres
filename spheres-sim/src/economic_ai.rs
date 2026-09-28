@@ -300,10 +300,23 @@ fn record(
     w: &mut WorldState,
     nation: NationId,
     action: &str,
+    reason: String,
+    candidate: Option<(String, K)>,
+    raw_context: &RawSupplyContext,
+    observer: &mut DetailedReviewObserver<'_>,
+) {
+    record_with_raw_supply(w, nation, action, reason, candidate, raw_context, observer, None);
+}
+
+fn record_with_raw_supply(
+    w: &mut WorldState,
+    nation: NationId,
+    action: &str,
     mut reason: String,
     candidate: Option<(String, K)>,
     raw_context: &RawSupplyContext,
     observer: &mut DetailedReviewObserver<'_>,
+    retained_raw_supply: Option<RawSupplyForecast>,
 ) {
     let day = clock::absolute_day(w);
     let year = w.year;
@@ -337,7 +350,15 @@ fn record(
                 .unwrap_or_else(|| module_order_capacity(w, nation, d))
         }));
     let supply_review = observe_review_call(observer,"record.supply",Some(nation),||supply_forecast(w, nation));
-    let raw_supply_review = observe_review_call(observer,"record.raw_supply",Some(nation),||raw_supply_forecast_with_context(w, nation, raw_context));
+    let raw_supply_review = observe_review_call(observer,"record.raw_supply",Some(nation),|| {
+        if let Some(forecast) = retained_raw_supply {
+            #[cfg(test)]
+            mine_forecast_tests::REUSED.with(|count| count.set(count.get() + 1));
+            forecast
+        } else {
+            raw_supply_forecast_with_context(w, nation, raw_context)
+        }
+    });
     observe_review_call(observer,"record.write",Some(nation),|| {
     let p = w.economic_ai.nations.entry(nation).or_default();
     p.last_review_day = day;
@@ -1765,17 +1786,32 @@ fn evaluate_with_context(
     review(w, nation, raw_context, observer);
 }
 
+/// An immutable mine review may retain its forecast only when it proposes no
+/// command. A candidate carries no forecast, so even a refused command attempt
+/// must take the ordinary fresh record read. This value never crosses a review.
+enum MineReview {
+    Candidate(String, Commodity),
+    NoCommand(Option<RawSupplyForecast>),
+}
+
 fn mine_for_shortage(
     w: &WorldState,
     nation: NationId,
     raw_context: &RawSupplyContext,
-) -> Option<(String, Commodity)> {
+) -> MineReview {
+    #[cfg(test)]
+    if mine_forecast_tests::ORIGINAL.with(|original| original.get()) {
+        return match mine_forecast_tests::original_mine_for_shortage(w, nation, raw_context) {
+            Some((district, commodity)) => MineReview::Candidate(district, commodity),
+            None => MineReview::NoCommand(None),
+        };
+    }
     if w.resources
         .mine_projects
         .iter()
         .any(|p| p.started_by == nation)
     {
-        return None;
+        return MineReview::NoCommand(None);
     }
     // Resources clear before economic AI in the daily system order. Do not call
     // a mine the trade fallback until today's ordinary raw order really had its
@@ -1784,14 +1820,21 @@ fn mine_for_shortage(
     if w.resources.market.as_ref()
         .is_none_or(|market| market.last_cleared_day != Some(today))
     {
-        return None;
+        return MineReview::NoCommand(None);
     }
     let demand = resources::automatic_tick_draw(w, nation);
-    let forecast = raw_supply_forecast_with_context(w, nation, raw_context);
+    let mut forecast = None;
     for c in resources::ALL {
         let stock = resources::stockpile(w, nation, c);
-        let run_gap = forecast.lines[c.idx()].shortage[0];
-        if demand[c.idx()] <= stock || run_gap <= 1e-9 {
+        // Keep the original comparison, including its NaN behavior. Only the
+        // pure full forecast is deferred until a raw draw exceeds this stock.
+        if demand[c.idx()] <= stock {
+            continue;
+        }
+        let run_gap = forecast.get_or_insert_with(|| {
+            raw_supply_forecast_with_context(w, nation, raw_context)
+        }).lines[c.idx()].shortage[0];
+        if run_gap <= 1e-9 {
             continue;
         }
         // The forecast already nets domestic output, executable freight and
@@ -1830,11 +1873,11 @@ fn mine_for_shortage(
         }
         for (district, owner) in &w.districts {
             if *owner == nation && resources::mine_refusal(w, nation, district, c).is_none() {
-                return Some((district.clone(), c));
+                return MineReview::Candidate(district.clone(), c);
             }
         }
     }
-    None
+    MineReview::NoCommand(forecast)
 }
 
 /// Explicit AI safety-stock policy, not additional mechanical consumption.
@@ -2224,6 +2267,7 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
     }
     if active > 0 {
         let (district, kind, why) = next.unwrap();
+        let mut retained_raw_supply = None;
         // A proportional starter must not quietly commission a much larger
         // mine behind it. Operating raw deficits use the existing market;
         // construction itself does not require extraction or inventory.
@@ -2231,24 +2275,25 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
             && kind != K::StarterIndustry
             && !goods_trade.as_ref().is_some_and(|(success, _)| *success)
         {
-            if let Some((mine_district, commodity)) =
-                observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context))
-            {
-                let command = Command::DevelopResource {
-                    nation,
-                    district: mine_district.clone(),
-                    commodity,
-                };
-                match observe_review_call(observer,"review.execute",Some(nation),||execute(w, &command)) {
-                    Ok(()) => {
-                        record(w,nation,"mine",with_trade(format!("Develop mapped {} in {} to address a real input shortage. Progress is paid from the shared construction budget.",commodity.name(),mine_district)),Some((district,kind)),raw_context, observer);
-                        return;
+            match observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context)) {
+                MineReview::NoCommand(forecast) => retained_raw_supply = forecast,
+                MineReview::Candidate(mine_district, commodity) => {
+                    let command = Command::DevelopResource {
+                        nation,
+                        district: mine_district.clone(),
+                        commodity,
+                    };
+                    match observe_review_call(observer,"review.execute",Some(nation),||execute(w, &command)) {
+                        Ok(()) => {
+                            record(w,nation,"mine",with_trade(format!("Develop mapped {} in {} to address a real input shortage. Progress is paid from the shared construction budget.",commodity.name(),mine_district)),Some((district,kind)),raw_context, observer);
+                            return;
+                        }
+                        Err(_) => {} // Keep the primary project's actual blocker visible.
                     }
-                    Err(_) => {} // Keep the primary project's actual blocker visible.
                 }
             }
         }
-        record(
+        record_with_raw_supply(
             w,
             nation,
             if goods_trade.as_ref().is_some_and(|(success, _)| *success) {
@@ -2263,25 +2308,28 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
             Some((district, kind)),
             raw_context,
             observer,
+            retained_raw_supply,
         );
         return;
     }
     let (district, kind, why) = match next {
         Ok(v) => v,
         Err(why) => {
+            let mut retained_raw_supply = None;
             if !goods_trade.as_ref().is_some_and(|(success, _)| *success) {
-                if let Some((mine_district, commodity)) =
-                    observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context))
-                {
-                    let command = Command::DevelopResource { nation,
-                        district: mine_district.clone(), commodity };
-                    if observe_review_call(observer,"review.execute",Some(nation),||execute(w,&command)).is_ok() {
-                        record(w,nation,"mine",with_trade(format!("The ordinary raw market cleared without covering today's {} bundle. Develop the mapped deposit in {}; progress is paid from the shared construction budget.",commodity.name(),mine_district)),None,raw_context, observer);
-                        return;
+                match observe_review_call(observer,"review.mine",Some(nation),||mine_for_shortage(w, nation, raw_context)) {
+                    MineReview::NoCommand(forecast) => retained_raw_supply = forecast,
+                    MineReview::Candidate(mine_district, commodity) => {
+                        let command = Command::DevelopResource { nation,
+                            district: mine_district.clone(), commodity };
+                        if observe_review_call(observer,"review.execute",Some(nation),||execute(w,&command)).is_ok() {
+                            record(w,nation,"mine",with_trade(format!("The ordinary raw market cleared without covering today's {} bundle. Develop the mapped deposit in {}; progress is paid from the shared construction budget.",commodity.name(),mine_district)),None,raw_context, observer);
+                            return;
+                        }
                     }
                 }
             }
-            record(
+            record_with_raw_supply(
                 w,
                 nation,
                 if goods_trade.as_ref().is_some_and(|(success, _)| *success) {
@@ -2293,6 +2341,7 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
                 None,
                 raw_context,
                 observer,
+                retained_raw_supply,
             );
             return;
         }
@@ -2349,6 +2398,10 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
         observer,
     );
 }
+
+#[cfg(test)]
+#[path = "economic_ai_mine_tests.rs"]
+mod mine_forecast_tests;
 
 #[cfg(test)]
 mod ammunition_forecast_tests {
