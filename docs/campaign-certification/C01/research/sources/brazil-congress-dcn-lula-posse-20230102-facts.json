@@ -146,5 +146,198 @@
       }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-17",
+    "reviewed_date": "2026-09-27",
+    "trigger": "Codex's premerge identity sample of 27 September 2026 (premerge-source-identity-sample.json; the fetch time is not recorded, the evidence was committed at 21:38 UTC) fetched this URL once as 24,950,158 bytes, SHA-256 d9808101c1b9926db26d4c0aaaaaa39d98d4dabaf0fc55200ebc305521f6a619, against the recorded 24,950,218 bytes, SHA-256 d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee (changed_response_not_verified).",
+    "method": "The URL was downloaded again on 27-28 September 2026 (UTC; downloads_utc) without a browser User-Agent: plain and with a cache-busting query, from the origin (Age 0, chunked) and from the Senate's edge cache, and with Python urllib, whose error text appears in the reviewer's sample. Each body was hashed. The PDF metadata, trailer, XMP packet and page count were read with pypdfium2 and a byte scan. The text layers of all 59 pages were compared line by line (blank lines ignored) with the complete-issue dumps that the CLAUDE-C01-17 researcher (download of 24 September, 22:39 UTC) and check (25 September, 00:01 UTC) made from the recorded response, and pages 1-8 with the CLAUDE-C01-10 check's dump of the page-range form (23 September); the cited pages were rendered and compared pixel by pixel with the renders the CLAUDE-C01-17 researcher and check made from the recorded response (pages 6, 20, 23 and 26), with CLAUDE-C01-10's renders of the page-range form (pages 1, 6 and 7, 23 September) and with the page-range copies kept by the CLAUDE-C01-10 verification (pages 1-8 and 18-19). Each cited page was then read against the claims, the image pages (18-21, 23 and 26) visually at 2.2x to 5x. The Internet Archive CDX index was searched for captures of the issue.",
+    "downloads_utc": [
+      {
+        "utc": "2026-09-27T23:42:00Z",
+        "request": "plain URL; curl 8.16.0 default User-Agent; Accept-Encoding: identity",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee"
+      },
+      {
+        "utc": "2026-09-27T23:46:27Z",
+        "request": "cache-busting query &_cb=1790552787; curl",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee"
+      },
+      {
+        "utc": "2026-09-27T23:49:04Z",
+        "request": "plain URL; curl with Accept-Encoding: gzip and the body left undecoded",
+        "http_status": 200,
+        "age_header_s": 422,
+        "transfer": "Content-Length 24950218 (edge cache)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+        "note": "served without Content-Encoding: the stored bytes, not a gzip body"
+      },
+      {
+        "utc": "2026-09-27T23:52:24Z",
+        "request": "cache-busting query with a Range: bytes=-300 header; curl",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+        "note": "the origin ignored the Range header and sent the whole file"
+      },
+      {
+        "utc": "2026-09-27T23:55:18Z",
+        "request": "cache-busting query; Python 3.13 urllib with its default headers",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee"
+      },
+      {
+        "utc": "2026-09-28T00:12:23Z",
+        "request": "plain URL, 30 minutes after the first; curl",
+        "http_status": 200,
+        "age_header_s": 1822,
+        "transfer": "Content-Length 24950218 (edge cache)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee"
+      },
+      {
+        "utc": "2026-09-28T00:15:08Z",
+        "request": "cache-busting query, 33 minutes after the first; curl",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee"
+      },
+      {
+        "utc": "2026-09-28T00:41:32Z",
+        "request": "cache-busting query &_cb=1790556092g; curl with Accept-Encoding: gzip and the body left undecoded",
+        "http_status": 200,
+        "age_header_s": 0,
+        "transfer": "chunked (origin)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+        "note": "no Content-Encoding: the origin also sends the stored bytes to a client that accepts gzip"
+      },
+      {
+        "utc": "2026-09-28T00:45:09Z",
+        "request": "plain URL, 63 minutes after the first; curl",
+        "http_status": 200,
+        "age_header_s": 1965,
+        "transfer": "Content-Length 24950218 (edge cache)",
+        "bytes": 24950218,
+        "sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+        "note": "the edge stored this copy at about 00:12:25 UTC (Age 1965 at 00:45:10), so it is a second origin response for the plain URL, taken 30 minutes after the first"
+      }
+    ],
+    "result": "Unchanged. Every download reproduced the recorded identity byte for byte (24,950,218 bytes, SHA-256 d6c9c275...c854ee), from the origin and from the edge cache, and the raw Internet Archive capture of 9 January 2023 has the same bytes; the text of all 59 pages and the renders of every compared page are identical to those made from the recorded response on 24-25 September 2026 and from the page-range form on 23 September. The stored issue is a fixed file (pdfTeX, modified by iTextSharp; ModDate 10:57:22 -03:00 on 2 January 2023), not rebuilt per request; only the viewer's page-range form is rebuilt (the two surviving copies of pages 1-8 from CLAUDE-C01-10's check and verification, 4,301,947 bytes each, differ in 38 bytes: Aspose.PDF for Java 23.6 CreationDate and ModDate 09:25:06 against 11:00:05 -03:00 on 23 September 2026, and the trailer /ID). The reviewer's 24,950,158-byte body was not reproduced in 9 requests; it is not a truncated copy of the recorded file, whose first 24,950,158 bytes hash to 6149e0ee49ca18f915ca0598f2a45568ac3bdff3fe2017e04bd933baa2c9761f. The recorded identity stands and is not replaced.",
+    "publication_identity": {
+      "filename": "DCN-1-2023.pdf (Content-Disposition)",
+      "pdf_pages": 59,
+      "pdf_header": "%PDF-1.4",
+      "info_title": "Diário Eletrônico do Senado e do Diário do Congresso",
+      "info_producer": "pdfTeX; modified using iTextSharp 5.3.0 (c) 1T3XT BVBA",
+      "info_creator": "pdfTeX + pdfx.sty with a-2b,mathxmp option",
+      "info_creation_date": "D:20230102105150-03'00'",
+      "info_mod_date": "D:20230102105722-03'00'",
+      "trailer_id": [
+        "F1B0B1E3FCCB08D1E49118BC6481F4B2",
+        "F1B0B1E3FCCB08D1E49118BC6481F4B2"
+      ],
+      "startxref": 24913976,
+      "xmp": "CreateDate 2023-01-02T10:51:50-03:00, ModifyDate and MetadataDate 2023-01-02T10:57:22-03:00, DocumentID uuid:21C75AEE-FD83-0922-042D-64C0C5F394C5, InstanceID uuid:897B27B4-2FEF-4C85-D158-17566F6146CE, PDF/A-2B",
+      "embedded_signature": "none (no /ByteRange signature dictionary in the file)",
+      "verification_code": "E08D962B004C6AB2",
+      "verification_footer": "Every one of the 59 pages prints 'ARQUIVO ASSINADO DIGITALMENTE. CÓDIGO DE VERIFICAÇÃO: E08D962B004C6AB2.' and 'CONSULTE EM http://www.senado.gov.br/sigadweb/v.aspx.', a QR code and the document number 00100.000338/2023-38.",
+      "sha1": "eddaedae4f8441ede9f475be27a44d2c803f4898",
+      "md5": "f889639b0eb685451e896204206524ae"
+    },
+    "independent_capture": {
+      "url": "https://web.archive.org/web/20230109012106id_/https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&paginaInicial=&paginaFinal=",
+      "memento_utc": "2023-01-09T01:21:06Z",
+      "fetched_utc": "2026-09-27T23:58:45Z",
+      "response_bytes": 24950218,
+      "response_sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+      "note": "Raw Internet Archive capture of the viewer's older whole-issue form (paginaInicial and paginaFinal empty; the download=true URL has no capture), fetched with Accept-Encoding: identity and served uncompressed (Content-Length 24950218, no Content-Encoding), so the identity is that of the uncompressed body; x-archive-src WPO-20230108083804-crawl835. Its CDX digest 5XNO3LSPQRA632PUOW7CPJCNFSAD6SEY is the base-32 SHA-1 of the recorded file. The same bytes were served a week after publication."
+    },
+    "pages": [
+      {
+        "pdf_page": 1,
+        "claims": [],
+        "compared": "text layer; render pixel-identical to the CLAUDE-C01-10 render of the page-range form",
+        "result": "agrees",
+        "observed": "Masthead 'ANO LXXVIII Nº 1, SEGUNDA-FEIRA, 2 DE JANEIRO DE 2023', 'Edição extraordinária': the issue and publication day of this record."
+      },
+      {
+        "pdf_page": 3,
+        "claims": [],
+        "compared": "text layer",
+        "result": "agrees",
+        "observed": "Summary items 1.2.4 to 1.2.6 (the two oaths and the posse for the period 1 January 2023 to 4 January 2027) on page 6 and 1.2.7 (the reading of the Termo de Posse by Deputy Luciano Bivar) on page 7, as the locators give them."
+      },
+      {
+        "pdf_page": 4,
+        "claims": [],
+        "compared": "text layer",
+        "result": "agrees",
+        "observed": "Summary items 2.1.1 (the diplomas, page 18), 2.1.2 (the Termo de Posse, page 23) and 2.1.3 (the Termos de Compromisso, page 25), as the page-scoped records locate them."
+      },
+      {
+        "pdf_page": 5,
+        "claims": [
+          "br_lula_posse_declared_20230101",
+          "br_alckmin_posse_declared_20230101"
+        ],
+        "compared": "text layer",
+        "result": "agrees",
+        "observed": "'Inicia-se a sessão às 14 horas e 55 minutos e encerra-se às 16 horas e 4 minutos' (14:55-16:04)."
+      },
+      {
+        "pdf_page": 6,
+        "claims": [
+          "br_lula_posse_declared_20230101",
+          "br_lula_elected_20221030",
+          "br_lula_diplomacao_recited_20221212",
+          "br_alckmin_elected_20221030",
+          "br_alckmin_oath_before_congress_20230101",
+          "br_alckmin_posse_declared_20230101"
+        ],
+        "compared": "text layer and render, pixel-identical to the CLAUDE-C01-17 renders and the CLAUDE-C01-10 render of the page-range form",
+        "result": "agrees",
+        "observed": "Opening: both 'eleitos em 30 de outubro de 2022 e diplomados pelo Tribunal Superior Eleitoral no dia 12 de dezembro do mesmo ano', the diplomas sent to the Mesa for publication; Lula's oath 'Prometo manter, defender e cumprir a Constituição'; Alckmin invited as 'Vice-Presidente da República eleito' and his oath printed 'Prometo defender e cumprir' without 'manter', as the oath claim's uncertainty records; 'declaro empossados ... respectivamente, para o período de 1o de janeiro de 2023 a 4 de janeiro de 2027'."
+      },
+      {
+        "pdf_page": 7,
+        "claims": [
+          "br_lula_posse_declared_20230101",
+          "br_lula_elected_20221030",
+          "br_lula_diplomacao_recited_20221212",
+          "br_alckmin_termo_read_20230101"
+        ],
+        "compared": "text layer and render, pixel-identical to the CLAUDE-C01-10 render of the page-range form",
+        "result": "agrees",
+        "observed": "Deputy Luciano Bivar reads the termo headed '... Geraldo José Alckmin Filho' (without 'Rodrigues', as the claim's uncertainty says): 'Às 15h do dia 1o de janeiro de 2023', the joint session in the Chamber's plenary, art. 78, elected 'no dia 30 de outubro de 2022', diplomados by the TSE 'no dia 12 de dezembro do mesmo ano', for 1 January 2023 to 4 January 2027. Rodrigo Pacheco then names the signatories one by one (the President, the Vice-President, the presiding officer, the Presidents of the Chamber and of the Supreme Court, the Prosecutor-General and the First Secretary); the claim's 'the Mesa' summarises the last five, whom the termo calls 'os membros da Mesa'."
+      },
+      {
+        "pdf_page": 8,
+        "claims": [
+          "br_alckmin_saluted_vice_president_lula_address_20230101"
+        ],
+        "compared": "text layer",
+        "result": "agrees",
+        "observed": "'meu querido companheiro Vice-Presidente da República, Geraldo Alckmin', as quoted."
+      }
+    ],
+    "outcome": "Response unchanged; every claim on pages 5-8 agrees with the file. No claim, date, holder or identity changes.",
+    "remaining_gaps": "The reviewer's 24,950,158-byte body was not kept and no copy exists on this machine, so which bytes differed cannot be shown, and its fetch time is not in the evidence. This service has returned damaged HTTP 200 bodies before: the CLAUDE-C01-17 verification received 19,397,271 bytes from this URL at 01:34:49 UTC on 25 September 2026 (SHA-256 2bc18af6e3758b2512d2afc3f813f7e2d450497d9ea94bf28192c810ec065977, not a prefix of the recorded file either) and the recorded identity six minutes later, and the CLAUDE-C01-10 and CLAUDE-C01-17 reports record other short Senate transfers. Origin responses are chunked with no Content-Length, so a damaged body cannot be recognised from the headers: a re-download that is not 24,950,218 bytes should be retried, or checked against the raw Internet Archive capture, which serves Content-Length 24950218. The Senate's verification service (sigadweb/v.aspx) was not queried and the QR codes were not decoded; only the printed verification code is recorded."
+  }
 }
