@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 34,
-    "sources": 1329,
-    "source_claims": 3731,
+    "sources": 1400,
+    "source_claims": 3839,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -346,7 +346,7 @@
       "organization_observations": 6,
       "institution_observations": 6,
       "role_observations": 10,
-      "source_claims": 48,
+      "source_claims": 156,
       "mapping_pending": 12,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -366,7 +366,8 @@
           "Six institutional records are a bounded starting inventory, not all royal, religious, judicial, regional, administrative or advisory bodies.",
           "Legal registration, permitted activity, actual political influence and executive eligibility remain separate unresolved questions; no blanket legal prohibition is inferred from the documents read.",
           "Arabic originals, exact commencement dates, consolidated amendments and complete named role histories still require review. Undated current website office holders were deliberately not bound to the pre-cutoff roster.",
-          "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy."
+          "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy.",
+          "CLAUDE-C01-25 fills sa_shura_chair (three holders, from 1997 attestations to 2026) and sa_succession_chair (one holder, 2007-2017). The first Shura Chairman's appointment, the second Chairman's end and any Allegiance Commission chairman after May 2017 remain unresolved."
         ]
       }
     },
@@ -2693,8 +2694,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 91251,
-      "sha256": "b88926650563a145e0f87783706657fdd28484a764f8512125b67538b68d68e7"
+      "bytes": 262255,
+      "sha256": "ce2293f4f565d93acb1c72c4351e4551284adaece5f2a983c8ee74cca87aaab7"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
