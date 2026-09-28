@@ -134,7 +134,13 @@ def read_json(path, root=ROOT):
 
 def sha(path, root=ROOT):
     data = (root / path).read_bytes()
-    return {'path': path.as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+    normalization = {}
+    if path.suffix == '.md':
+        # Review Markdown has no fixed Git checkout EOL. Hash the text the parser reads,
+        # with LF endings explicitly recorded; JSON/source evidence remains byte-exact.
+        data = data.decode('utf-8').replace('\r\n', '\n').replace('\r', '\n').encode('utf-8')
+        normalization['hash_encoding'] = 'UTF-8 text with LF line endings'
+    return {'path': path.as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(), **normalization}
 
 
 def canonical(data):
@@ -228,14 +234,27 @@ def certified_packets(root=ROOT):
     return {row['nation']: Path(row['packet']) for row in index['countries'] if row['nation'] in identities}
 
 
-def acceptance_classes(root=ROOT):
-    """Packet -> evidence class, from the acceptance directories and the 27 September integration record."""
-    classes = {'S10': 's10_discovery_intake'}
+def acceptance_records(root=ROOT):
+    """Accepted packets -> explicit review records; a directory alone is not an acceptance."""
+    records = {}
     for entry in sorted((root / INTEGRATIONS).iterdir()):
         match = re.fullmatch(r'CLAUDE-C01-(\d\d(?:-\d\d)*)', entry.name)
         if entry.is_dir() and match:
+            record = entry / 'README.md'
+            if not record.is_file():
+                raise ValueError(f'Missing explicit acceptance record for {entry.name}')
+            decision = record.read_text(encoding='utf-8')
+            if not re.search(r'^(?:\*\*Decision: accepted\b|Accepted as a bounded research intake\b)', decision, re.M):
+                raise ValueError(f'No explicit accepted decision in {record.relative_to(root).as_posix()}')
             for number in match.group(1).split('-'):
-                classes[f'CLAUDE-C01-{number}'] = 'c01_accepted'
+                records[f'CLAUDE-C01-{number}'] = record.relative_to(root)
+    return records
+
+
+def acceptance_classes(root=ROOT):
+    """Packet -> evidence class, from explicit reviews and the 27 September integration record."""
+    classes = {'S10': 's10_discovery_intake'}
+    classes.update({packet: 'c01_accepted' for packet in acceptance_records(root)})
     record = (root / INTEGRATION_RECORD).read_text(encoding='utf-8')
     for number in re.findall(r'^\| C01-(\d\d) \| `[0-9a-f]{40}` \|$', record, flags=re.M):
         packet = f'CLAUDE-C01-{number}'
@@ -407,7 +426,9 @@ def build(root=ROOT, attribution=None):
               'research_roles': sum(c['totals']['research_roles'] for c in ledger_cases),
               'research_roles_with_unresolved_days': sum(c['totals']['research_roles_unresolved'] for c in ledger_cases),
               'next_batches': len(all_batches), 'next_items': sum(len(b['items']) for b in all_batches)}
-    inputs = [sha(path, root) for path in INPUTS] + [sha(path, root) for path in sorted(set(packets.values()))]
+    inputs = ([sha(path, root) for path in INPUTS]
+              + [sha(path, root) for path in sorted(set(packets.values()))]
+              + [sha(path, root) for path in sorted(set(acceptance_records(root).values()))])
     return {
         'format': 'spheres-c01-certified-gap-ledger/v1',
         'task': 'CLAUDE-C01-GAPS-01',

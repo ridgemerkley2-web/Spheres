@@ -49,6 +49,12 @@ commit whose packet file mentions its id. Commits are classified by hash in `COM
 Saudi packet's first commit still carries its pre-renumbering label). An unattributed source, an unclassified
 commit or a drift between the in-flight table and the task queue fails the build.
 
+An accepted packet requires an explicit accepted decision in its integration `README.md`; creating a directory
+does not accept research. Those decision records are hashed among the ledger's inputs, so a review scope change
+makes the generated ledger stale even when packet contents and evidence-class totals are unchanged.
+Markdown input byte counts and hashes explicitly use UTF-8 text with LF line endings, independent of Git checkout
+conversion on Windows. Other input hashes remain over the exact file bytes.
+
 ## Limitations
 
 This audits checked-in inputs; it does not show that every real organization, office or holder has been found.

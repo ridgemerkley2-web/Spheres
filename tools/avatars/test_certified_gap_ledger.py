@@ -132,6 +132,8 @@ class FixtureLedger(unittest.TestCase):
         (self.root / ledger.INTEGRATION_RECORD).parent.mkdir(parents=True, exist_ok=True)
         (self.root / ledger.INTEGRATION_RECORD).write_text(record, encoding='utf-8')
         (self.root / ledger.INTEGRATIONS / 'CLAUDE-C01-01').mkdir(parents=True, exist_ok=True)
+        (self.root / ledger.INTEGRATIONS / 'CLAUDE-C01-01' / 'README.md').write_text(
+            '**Decision: accepted as bounded research intake.**\n', encoding='utf-8')
         self.result = ledger.build(self.root, self.attribution)
         self.cases = {c['case']: c for c in self.result['cases']}
 
@@ -201,6 +203,36 @@ class FixtureLedger(unittest.TestCase):
         for excluded in ('India/in_bjp', 'to_legislative_assembly#to_speaker', 'sa_shura#sa_shura_chair', 'institution:fr_presidency'):
             self.assertNotIn(excluded, entities)
         self.assertEqual(self.chain('India', 'India/in_bjp')['in_flight'], 'CLAUDE-C01-27')
+
+    def test_acceptance_requires_an_explicit_decision_not_a_directory(self):
+        review = self.root / ledger.INTEGRATIONS / 'CLAUDE-C01-01' / 'README.md'
+        review.unlink()
+        with self.assertRaisesRegex(ValueError, 'Missing explicit acceptance record'):
+            ledger.build(self.root, self.attribution)
+        review.write_text('Ready for review. Acceptance is pending.\n', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'No explicit accepted decision'):
+            ledger.build(self.root, self.attribution)
+
+    def test_acceptance_records_are_pinned_and_changes_stale_the_ledger(self):
+        relative = ledger.INTEGRATIONS / 'CLAUDE-C01-01' / 'README.md'
+        self.assertIn(ledger.sha(relative, self.root), self.result['inputs'])
+        before = ledger.outputs(self.root, self.attribution)
+        ledger.write(before, self.root)
+        review = self.root / relative
+        review.write_text(review.read_text(encoding='utf-8') + 'Scope clarification.\n', encoding='utf-8')
+        after = ledger.outputs(self.root, self.attribution)
+        self.assertIn((ledger.OUTPUT / 'ledger.json').as_posix(), ledger.stale(after, self.root))
+
+    def test_markdown_input_hashes_ignore_checkout_line_endings(self):
+        relative = ledger.INTEGRATION_RECORD
+        review = self.root / relative
+        lf = review.read_text(encoding='utf-8').encode('utf-8')
+        review.write_bytes(lf)
+        before = ledger.outputs(self.root, self.attribution)
+        review.write_bytes(lf.replace(b'\n', b'\r\n'))
+        self.assertEqual(ledger.outputs(self.root, self.attribution), before)
+        self.assertEqual(ledger.sha(relative, self.root)['hash_encoding'], 'UTF-8 text with LF line endings')
+        self.assertNotIn('hash_encoding', ledger.sha(ledger.C01 / 'census.json', self.root))
 
     def test_components_never_fill_the_parent_chain(self):
         parent = self.chain('France', 'France/fr_udf')
