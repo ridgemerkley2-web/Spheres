@@ -1,0 +1,10 @@
+
+running 5 tests
+test sovereignty::candidate_tests::compact_candidate_prefilter_preserves_ties_refusals_and_live_gates ... ok
+test sovereignty::candidate_tests::compact_candidates_match_actual_checkpoint_for_31_complete_days ... ignored, actual checkpoint, original compact-search oracle; no timing claims
+test sovereignty::candidate_tests::compact_scalar_prefilter_keeps_thresholds_nonfinite_values_and_public_quotes_exact ... ok
+test sovereignty::candidate_tests::compact_candidate_prefilter_preserves_sequential_proposals_and_same_day_reentry ... ok
+test sovereignty::candidate_tests::compact_scalar_prefilter_reads_subjects_live_without_shortcutting_hostility ... ok
+
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 1084 filtered out; finished in 0.15s
+

@@ -1,0 +1,729 @@
+{
+  "format": "spheres-s22-pass-local-progress/v1",
+  "qualification": false,
+  "packaged_utc": "2026-09-28T09:28:49.177Z",
+  "scope": "Small immutable source artifacts only; no binary/gzip/save bodies, no new tests or measurements. Compilation, focused checks, actual-input checks and full workspace regression completed. Isolated 2015 passed; end-2035 failed simulation/history p95 only. No authoritative qualification pair has started.",
+  "candidate": "697448c160a53cadd8b6132717a0df22ed430eb8",
+  "diagnostic_6ff": {
+    "revision": "6ff13350e8096d67c955b9710e983281aebc3eae",
+    "ordinary_days": 31,
+    "exact_native_world_and_headlines": true,
+    "source_unchanged": true,
+    "final_world_fnv64": "3c3f21d9d67bd7b8",
+    "scope": "Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance."
+  },
+  "read_model_6ff": {
+    "pure": true,
+    "date": "30 Nov 2035",
+    "scope": "Single read-only diagnostic sample, including serialization; not an acceptance measurement.",
+    "rows": [
+      {
+        "bytes": 2697386,
+        "component": "nations",
+        "elapsed_ms": 29.5772
+      },
+      {
+        "bytes": 119582,
+        "component": "connected_economy",
+        "elapsed_ms": 33.8183
+      },
+      {
+        "bytes": 1656,
+        "component": "fiscal_recovery",
+        "elapsed_ms": 0.0329
+      },
+      {
+        "bytes": 979,
+        "component": "operations",
+        "elapsed_ms": 0.081
+      },
+      {
+        "bytes": 372,
+        "component": "warfare_adoption",
+        "elapsed_ms": 0.007
+      },
+      {
+        "bytes": 5423,
+        "component": "theatres",
+        "elapsed_ms": 0.0858
+      },
+      {
+        "bytes": 714,
+        "component": "stratagems",
+        "elapsed_ms": 0.0294
+      },
+      {
+        "bytes": 10978,
+        "component": "research",
+        "elapsed_ms": 0.358
+      },
+      {
+        "bytes": 66324,
+        "component": "resources",
+        "elapsed_ms": 25.0203
+      },
+      {
+        "bytes": 264,
+        "component": "logistics_summary",
+        "elapsed_ms": 0.022699999999999998
+      },
+      {
+        "bytes": 280,
+        "component": "production_summary",
+        "elapsed_ms": 0.0496
+      },
+      {
+        "bytes": 270,
+        "component": "manufacturing_summary",
+        "elapsed_ms": 0.0356
+      },
+      {
+        "bytes": 28632,
+        "component": "programs",
+        "elapsed_ms": 0.4364
+      },
+      {
+        "bytes": 8306,
+        "component": "domination",
+        "elapsed_ms": 2.5003
+      },
+      {
+        "bytes": 6098,
+        "component": "agency",
+        "elapsed_ms": 0.044700000000000004
+      },
+      {
+        "bytes": 1894,
+        "component": "campaign_aims",
+        "elapsed_ms": 0.8062
+      },
+      {
+        "bytes": 28077,
+        "component": "policy",
+        "elapsed_ms": 0.4837
+      },
+      {
+        "bytes": 27829,
+        "component": "ministries",
+        "elapsed_ms": 1.6417000000000002
+      },
+      {
+        "bytes": 3694828,
+        "component": "whole_state",
+        "elapsed_ms": 100.7149
+      },
+      {
+        "bytes": 620917,
+        "component": "equipment",
+        "elapsed_ms": 100.2545
+      }
+    ]
+  },
+  "storage": {
+    "retired_binary_archives": {
+      "files": 11,
+      "original_bytes": 2993057983,
+      "archive_bytes": 2095390567,
+      "reclaimed_payload_bytes": 897667416,
+      "scope": "Operation author verified decompress-roundtrip bytes/SHA before individual raw removal. Packaging preserves records only; no new decompression."
+    },
+    "recent_input_copies": {
+      "files": 7,
+      "raw_bytes": 971206306,
+      "original_result_freed_bytes": null,
+      "correction": "Original null Measure-Object tally preserved; verification-supplement separately supplies correct sum and canonical-source hash recheck."
+    }
+  },
+  "files": [
+    {
+      "path": "697/native-2015-isolated-01/console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01-console.log",
+      "bytes": 10976,
+      "sha256": "026b2c50b1ca8d546337a30e1c743b630783a0161d812397c23415f2c6099688",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\invocation.json",
+      "bytes": 3584,
+      "sha256": "d24ea9e0a6e4aabfc9901548c378f61ecc0b8e3cf45e2f93b3034302bd333a61",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\memory-samples.csv",
+      "bytes": 22556,
+      "sha256": "ae78786e28274c4bb0d67251b7143d40522022424fa94c1e9f493667e95ed688",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\profile.json",
+      "bytes": 180626,
+      "sha256": "1f9f8092e8e3a3a029efd2c5ee5bab197530aae58d23ce4d8dfa872c5d006da5",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\runner-result.json",
+      "bytes": 10898,
+      "sha256": "759ec5ef689b2f647e96f91038bc4e5d41f98e3e4f878bdeef7e5124329f7319",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2015-isolated-01/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-pass-local-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "85a534eb25a47db5f7636344a3447c84c82737d7838b008198f1061c00c13b4a",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/console.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01-console.log",
+      "bytes": 8753,
+      "sha256": "b9618c61055ffd830a127fd8a79ad35ef0e0ebf2021cd800017aee0cf0d80a29",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/invocation.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\invocation.json",
+      "bytes": 3584,
+      "sha256": "35bb153f391c376275f3edb5cd25fbe240517a83fabba3220a3871466f127092",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/memory-samples.csv",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\memory-samples.csv",
+      "bytes": 29443,
+      "sha256": "93e13b38151d042ce96aed4a10de814e39be6b831213edb86e274d4c4d2e79e1",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\profile.json",
+      "bytes": 176732,
+      "sha256": "bdfc288e04126418f943dddab1f5e0652027be53b1c995b28779f0fab52fff86",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/runner-result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\runner-result.json",
+      "bytes": 8675,
+      "sha256": "9d9d274d32e21463b906b0adf3d085c15faa2af2c150671d71ca307ba46343ef",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/stderr.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/native-2035-isolated-01/stdout.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-pass-local-isolated-01\\stdout.log",
+      "bytes": 163,
+      "sha256": "74c710b11727d01c1274d208b7859321295eddc1b86f696898488f7ef9ea936f",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/runtime-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-697448c1\\provenance.json",
+      "bytes": 1151,
+      "sha256": "2264c778b57252026bdadd01b144e655b56557d52728869565c74c59df984f32",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-build-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-build-provenance.json",
+      "bytes": 381,
+      "sha256": "ef5d4c4c9fc3fa800dcc8698e454e40813853758a56a92c0ff228191679147f8",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-ledger.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-ledger.log",
+      "bytes": 602,
+      "sha256": "5b5000bb465de841b1bf2d8a249e1a56a1cbfa14a15b1d9bb4a41a0f888a8189",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-permission.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-permission.log",
+      "bytes": 731,
+      "sha256": "a50600dfd31703497c93bc26444ad38627ecf66b3309319c21f5f62105059e31",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-provenance.json",
+      "bytes": 2326,
+      "sha256": "86ce5409896c9811ff43f6ec8504f551061f34e1451dbc7c41f692e6106ed9fa",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-scalar.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-scalar.log",
+      "bytes": 780,
+      "sha256": "f1898b4894016ca6998135e1b158a10e000b5858ea013ea124d9b5d76d45b41e",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-terminal-xp.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-terminal-xp.log",
+      "bytes": 223,
+      "sha256": "2b986b5c487bcc4e4865a994497f34af314f5074e0c539786b9b5b14fa7bebc2",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-focused-terminal.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-terminal.log",
+      "bytes": 710,
+      "sha256": "6a5d539c2c39497bb7c598aae50df6ac406e73f155a3def71cbe2af1ac335a6f",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-git-push.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-git-push.log",
+      "bytes": 138,
+      "sha256": "f4b6764ced0f5f8655c09a4221903abc24624068f6e2b5264f82554b4cedc131",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-ledger-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-ledger-actual-2015.log",
+      "bytes": 360,
+      "sha256": "fdb81c8b9310dafcd7c029764866f58df3dc2b9f8743a414ca7ca2ba666ce717",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-ledger-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-ledger-actual-2035.log",
+      "bytes": 361,
+      "sha256": "0af4e6af7eba6c7a59b636cd1426e24e1ead01ba454e932afc4739b7814e4a01",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-ledger-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-ledger-actual-provenance.json",
+      "bytes": 2184,
+      "sha256": "c1d79acb92cb7ddcde7ba320b11044c552f1cdfff10a9d01d2d7031f73a627e7",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-permission-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-permission-actual-2015.log",
+      "bytes": 321,
+      "sha256": "cf22a9f59875f4d5f8638f65ab53e3291cf55bf9b393eef7b773706b64316fff",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-permission-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-permission-actual-2035.log",
+      "bytes": 321,
+      "sha256": "5f4da928454baddf6cf2ba4775f467de48421a300c665a4382bdd2da9bfc9fa7",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-permission-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-permission-actual-provenance.json",
+      "bytes": 2141,
+      "sha256": "991360f76383d819b9def488799f053a32942153d8c6974cbdaed61c6ddd64e0",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-preflight-coordination.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-preflight-coordination.json",
+      "bytes": 14525,
+      "sha256": "9bf98627443c74b07bff85c7207968240e77522773fda2796a1814ea44baf1dc",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-remote-fetch.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-remote-fetch.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-scalar-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-scalar-actual-2015.log",
+      "bytes": 352,
+      "sha256": "775c2c0ee52879bd7744f2bf40b1f74a7b1270aec2c44dd4a8b07d17feafa704",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-scalar-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-scalar-actual-2035.log",
+      "bytes": 352,
+      "sha256": "8fd19e84f1ad7cc388ada389b95b797e95ecdd6f5352aa384f73d8940b95ae68",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-scalar-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-scalar-actual-provenance.json",
+      "bytes": 2122,
+      "sha256": "a6d6c93fc5c5629e25f24f5c1c1cde1961b8e478bf49dd40fc3fb6597844901e",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-server-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-server-build.log",
+      "bytes": 1069,
+      "sha256": "dce4d6eb98669f68e3f93417c32f408e1a3a5657b2fe70b0248c47ad9c6a689f",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-terminal-actual-2015.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-terminal-actual-2015.log",
+      "bytes": 355,
+      "sha256": "703e174951cb4b4cfb269aaf09beb81c489d3bb204b9ae992d1a5fa8d8094822",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-terminal-actual-2035.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-terminal-actual-2035.log",
+      "bytes": 355,
+      "sha256": "9fabd8154e3c434ba89d42bdf41a0d3e07f794812a5d473fd7ad756114de5d02",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-terminal-actual-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-terminal-actual-provenance.json",
+      "bytes": 2139,
+      "sha256": "9e7c5993eb6c14e021764821b0600fb13e3f55b0411bbc5c6fc84c5dd90add54",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-workspace-build.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-workspace-build.log",
+      "bytes": 15227,
+      "sha256": "b1dd5bfd243afa66a67389ee19e1c7570a98aca14236b2d8a773b7a132fbee21",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-workspace-provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-workspace-provenance.json",
+      "bytes": 344,
+      "sha256": "0ff4475058a562f4e43f77b44a785334df49b05c466282d3241af811b2f3d35f",
+      "encoding": "identity"
+    },
+    {
+      "path": "697/s22-pass-local-workspace-tests.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-workspace-tests.log",
+      "bytes": 214413,
+      "sha256": "90883db64493b93e6a23b4b96e4ec86a04c407ec8beca433060e3a2d380e6310",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/read-model-2035/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-read-model-2035-6ff13350-01\\native.log",
+      "bytes": 171,
+      "sha256": "39b011c12abc8316d2b4dba8630d51d8fddd092c10d618f65c5b81a9d654d95b",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/read-model-2035/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-read-model-2035-6ff13350-01\\profile.json",
+      "bytes": 2353,
+      "sha256": "d09a2aa0a2e8a1fc9d6ea072b295f0466013e0a3a4b57d26e31cc73d5b9df09b",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/read-model-2035/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-read-model-2035-6ff13350-01\\provenance.json",
+      "bytes": 1097,
+      "sha256": "9eb211d173cb9e202a2321a880863f9f20fc7f2342ee09c0ca46a87976be47c6",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/tick-diagnosis-2035/native.log",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-final-latency-01\\native.log",
+      "bytes": 3745,
+      "sha256": "5dad090ca09f965c1240def1d189e879b5c7c7cc8693dbd7cf3aa799f5cac53a",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/tick-diagnosis-2035/profile.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-final-latency-01\\profile.json",
+      "bytes": 2948190,
+      "sha256": "59f5fbb3f894e4f6fe56e289aa9826528de742d711c37eb6ce5908b7d4df33d7",
+      "encoding": "identity"
+    },
+    {
+      "path": "6ff/tick-diagnosis-2035/provenance.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-subsystem-2035-final-latency-01\\provenance.json",
+      "bytes": 1111,
+      "sha256": "af83ab238261c9367708c94acb167c5c901d31c856a9c1a7e3707d9e6c85e574",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-connected-economy-ledger-review.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-connected-economy-ledger-review.md",
+      "bytes": 2416,
+      "sha256": "f438ff069b71818ae72384e8b6abe0b5a5c2f09c5dd98a67ce9b45167636c86a",
+      "encoding": "identity"
+    },
+    {
+      "path": "reviews/s22-pass-local-source-reviews.md",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-source-reviews.md",
+      "bytes": 4089,
+      "sha256": "af59eac33f331e0d0f17cf5b36f97a8687781b5da5b367335c58b5595930ab96",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/recent-input-copies/journal.jsonl",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-recent-preflight-input-dedup-01\\journal.jsonl",
+      "bytes": 2199,
+      "sha256": "31f42ebda86a551dfde8c412a89efc02912477b0905b0f7ded7a570d660d3543",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/recent-input-copies/manifest.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-recent-preflight-input-dedup-01\\manifest.json",
+      "bytes": 4448,
+      "sha256": "7fb58fc5f4970c3f5da7cfca74f5a20945b236c9e1ffd2979e9cc1dfd93f2a29",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/recent-input-copies/result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-recent-preflight-input-dedup-01\\result.json",
+      "bytes": 147,
+      "sha256": "dbbad8eef24d02279542e117d798bb24fa8c4c38093f11b08c317086512339eb",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/recent-input-copies/verification-supplement.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-recent-preflight-input-dedup-01\\verification-supplement.json",
+      "bytes": 337,
+      "sha256": "e0c7367223330958b192a6e3285a029aa2016f9b669e74473161daa29bfc4964",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/retired-binaries/journal.jsonl",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-retired-binary-compression-01\\journal.jsonl",
+      "bytes": 13653,
+      "sha256": "80af2ff71c84e85a4e04572f2b5e48784bfc2afca22d557231f67d3882d867a8",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/retired-binaries/manifest.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-retired-binary-compression-01\\manifest.json",
+      "bytes": 8297,
+      "sha256": "b0ec64bc21b988fe81ab1df15f79bbeb18e09984870c018bde17a0d4b76c3acb",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/retired-binaries/result.json",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-retired-binary-compression-01\\result.json",
+      "bytes": 7957,
+      "sha256": "b19752bbdcbdf979464dda61f470797300be1a9d900e0aeeca345ed60ef1ec11",
+      "encoding": "identity"
+    },
+    {
+      "path": "storage/s22-compress-retired-binaries.ps1",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-compress-retired-binaries.ps1",
+      "bytes": 4249,
+      "sha256": "8d7d19e21e36d0917121f665b3c58ddb696829cf56c877d8b10f75c26d8a67e4",
+      "encoding": "identity"
+    }
+  ],
+  "build": {
+    "passed": true,
+    "finished_utc": "2026-09-28T09:12:31.7533272Z",
+    "command": "cargo test --locked --release --workspace --no-run; then cargo build --locked --release -p spheres-web",
+    "scope": "Completed release compilation; executed checks and isolated preflights recorded separately. Qualification remains false."
+  },
+  "focused": {
+    "groups": 5,
+    "passed": 13,
+    "failed": 0,
+    "ignored": 4,
+    "unique_test_names": [
+      "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_ties_refusals_and_live_gates",
+      "sovereignty::candidate_tests::compact_scalar_prefilter_keeps_thresholds_nonfinite_values_and_public_quotes_exact",
+      "sovereignty::candidate_tests::compact_candidate_prefilter_preserves_sequential_proposals_and_same_day_reentry",
+      "sovereignty::candidate_tests::compact_scalar_prefilter_reads_subjects_live_without_shortcutting_hostility",
+      "campaign_supply::permission_scope_tests::permission_scope_preserves_each_search_live_reservations_and_complete_supply",
+      "campaign_supply::permission_scope_tests::permission_scope_matches_complete_native_days_with_original_access_reads",
+      "campaign_supply::permission_scope_tests::permission_scope_reuses_only_immutable_queries_and_fresh_scopes_observe_mutations",
+      "industry_operations::snapshot_read_tests::connected_snapshot_rebuilds_after_a_same_day_command",
+      "industry_operations::snapshot_read_tests::connected_snapshot_reuses_exact_ledger_across_ownership_fractional_and_missing_states",
+      "logistics::terminal_assembly_tests::terminal_identity_cache_drops_before_assignment_roster_and_calendar_changes",
+      "logistics::terminal_assembly_tests::terminal_identity_reads_observe_shared_company_xp_and_exact_paid_work",
+      "logistics::terminal_assembly_tests::terminal_identity_reads_match_original_bits_and_first_duplicate_selection",
+      "logistics::tests::s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live"
+    ]
+  },
+  "actual_oracles": [
+    {
+      "family": "scalar",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 21,
+      "source_unchanged": true,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "family": "scalar",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 27,
+      "source_unchanged": true,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "family": "permission",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 179,
+      "source_unchanged": true,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "family": "permission",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 341,
+      "source_unchanged": true,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "family": "terminal",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 301540,
+      "source_unchanged": true,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "family": "terminal",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": 31,
+      "scope": "Actual31day original-path complete native world and headlines; overlaps regression, no timing claims.",
+      "exercised_count": 310599,
+      "source_unchanged": true,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    },
+    {
+      "family": "ledger",
+      "year": "2015",
+      "passed": 1,
+      "ordinary_days": null,
+      "scope": "Actual checkpoint original-path complete ordered read-model parity; unchanged world/source; overlaps regression, no timing claims.",
+      "exercised_count": 18,
+      "source_unchanged": true,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+    },
+    {
+      "family": "ledger",
+      "year": "2035",
+      "passed": 1,
+      "ordinary_days": null,
+      "scope": "Actual checkpoint original-path complete ordered read-model parity; unchanged world/source; overlaps regression, no timing claims.",
+      "exercised_count": 18,
+      "source_unchanged": true,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+    }
+  ],
+  "workspace": {
+    "suites": 66,
+    "passed": 1948,
+    "failed": 0,
+    "ignored": 105,
+    "command": "cargo test --locked --release --workspace -- --test-threads=4",
+    "started_utc": "2026-09-28T09:16:04.5251886Z",
+    "finished_utc": "2026-09-28T09:23:01.9723395Z",
+    "exit_code": 0
+  },
+  "isolated_preflights": [
+    {
+      "year": 2015,
+      "qualification": false,
+      "passed": true,
+      "failures": [],
+      "started_utc": "2026-09-28T09:24:47.7629617Z",
+      "finished_utc": "2026-09-28T09:25:50.0140171Z",
+      "source_unchanged": true,
+      "input_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 171.5223,
+        "p95_ms": 269.67609999999996,
+        "max_ms": 462.95779999999996
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 234.1347,
+        "p95_ms": 343.8634,
+        "max_ms": 550.9814
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 551,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 856403968,
+        "max_sampled_working_set_bytes": 777031680,
+        "os_peak_working_set_bytes": 852856832,
+        "max_observed_sample_gap_ms": 147.5809999999999,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "final_world_fnv64": "5c486d0c186f921e"
+    },
+    {
+      "year": 2035,
+      "qualification": false,
+      "passed": false,
+      "failures": [
+        "Simulation/history p95 exceeds frozen 300 ms limit."
+      ],
+      "started_utc": "2026-09-28T09:25:50.2229719Z",
+      "finished_utc": "2026-09-28T09:27:11.2339706Z",
+      "source_unchanged": true,
+      "input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+      "simulation_history": {
+        "samples": 31,
+        "median_ms": 201.133,
+        "p95_ms": 302.2232,
+        "max_ms": 354.6103
+      },
+      "whole_turn": {
+        "samples": 31,
+        "median_ms": 261.6227,
+        "p95_ms": 395.061,
+        "max_ms": 407.3937
+      },
+      "memory": {
+        "nominal_interval_ms": 100,
+        "samples": 719,
+        "failed_samples": 1,
+        "max_sampled_private_bytes": 906432512,
+        "max_sampled_working_set_bytes": 855564288,
+        "os_peak_working_set_bytes": 895119360,
+        "max_observed_sample_gap_ms": 126.83709999999883,
+        "scope": "Whole isolated native test process, including loading, retained immutable input bytes, raw summary rows, world fingerprint serialization, both independent measurement passes, room reads and report work. This conservative observed envelope is not steady-state server memory. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included."
+      },
+      "final_world_fnv64": "3c3f21d9d67bd7b8"
+    }
+  ]
+}
