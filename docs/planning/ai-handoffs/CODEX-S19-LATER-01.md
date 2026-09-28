@@ -84,3 +84,17 @@ the visible Load flow in an isolated server, trace the ordinary component supply
 or purchase route, and resolve the player workflow without inventing goods or
 waiving supplier requirements. Then qualify stock, purchase, payment, delivery and
 their save/resume behavior before proceeding to readiness and flown results.
+
+## Input recovery UI verified
+
+Runtime `c8a59bfd` fixes the reproduced missing component selector and missing
+supplier recovery navigation. The saved campaign now shows exact input quantities,
+Industry/Advanced Industry shortcuts and a preselected component quote form.
+355 UI tests, 17 native company tests (one existing ignored), locked release build,
+recorded-campaign browser recovery and the existing first-hour browser route pass.
+[Evidence and limits](../../campaign-certification/S19/integration/INPUT_RECOVERY.md).
+
+The real campaign has no component offers. Its local Advanced Industry review is
+affordable at $240m over 660 days, but no plant order or delivered goods is claimed
+by this recovery test. Next complete ordinary component production/purchase, then
+company stock and equipment payment/delivery with save/resume. S19 remains open.

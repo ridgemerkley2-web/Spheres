@@ -1,0 +1,123 @@
+{
+  "scope": "Supplier input recovery UI; S19 remains open",
+  "runtime_revision": "c8a59bfd48cb49b7596332ab76f42aa8b2f03712",
+  "binary_sha256": "12d8ef4fbb26609ba224274584220079eb4b1daacf8e64958446a5874da51d3a",
+  "checkpoint_sha256": "fbe56cdfec5d83b5d9c259f80acb7bb0888dab37d4f35c70beb8686b5eeaf91e",
+  "recovery_passed": true,
+  "first_hour_passed": true,
+  "checks": {
+    "ui_passed": 355,
+    "native_company_passed": 17,
+    "native_existing_ignored": 1,
+    "locked_release_build": "passed; three existing tiny_http warnings"
+  },
+  "driver_identity": {
+    "ci-supplier-input-recovery.cjs": {
+      "raw_sha256": "6ad7744f94484a89a932a7ac8736ef5399c9a5ab03e273edae88b3753c588938",
+      "git_blob_sha256": "e4a9625d032fd9262fdc617b2faa5f4f7bcdff9954c5d38b5a7d520f037961d4",
+      "matches_commit_after_crlf_to_lf": true
+    },
+    "ci-guidance-route.cjs": {
+      "raw_sha256": "3cf8da999d59dc3341a345734626ece07e7604f7a396aea994bb648478b74be7",
+      "git_blob_sha256": "f07b124b4a9fb6dbcebecf69449309e146d32f50a901d86b3a50f4ef43931f5f",
+      "matches_commit_after_crlf_to_lf": true
+    }
+  },
+  "first_hour_driver_committed_field_note": "The retained first-hour driver hardcodes driver_committed=false; independent comparison above verifies its exact source in the runtime commit. The raw result has not been edited.",
+  "visual_review": {
+    "reviewed": [
+      "supplier-inputs-desktop.png",
+      "supplier-inputs-narrow.png",
+      "component-quotes.png"
+    ],
+    "finding": "Inputs use three compact numeric columns; the shortage is highlighted and remains readable at 390px without horizontal overflow."
+  },
+  "ordinary_mutations": [
+    "Loaded the original checkpoint through visible Saved campaigns controls.",
+    "Enabled Economic Competition through its explicit UI action in this isolated copy. No equipment, goods or construction purchase was placed."
+  ],
+  "observed": {
+    "date": "1 Jul 1993",
+    "missing_components": 0.44410000000000005,
+    "goods_quotes": 0,
+    "advanced_industry_can_start": true,
+    "plant_cost_bn": 0.24,
+    "plant_eta_days": 660,
+    "warehouse_components_after": 0
+  },
+  "remaining": [
+    "Build/fund/operate component production or obtain an actual arrived goods purchase.",
+    "Obtain company finished stock, purchase it, settle and deliver, then qualify save/resume.",
+    "Qualify real squadron readiness and a supported flown result."
+  ],
+  "files": {
+    "advanced-industry-review.png": {
+      "bytes": 1118423,
+      "sha256": "6ebf03177e0bff5c5724ad97abafdf79cf766240df9c24283d18645491b421aa"
+    },
+    "component-quotes.png": {
+      "bytes": 893683,
+      "sha256": "d785804e7c4fe6bff0a29b2c8ab2c52e5cb28c8af13c8f2aa3d240f098c9a2ac"
+    },
+    "driver.cjs": {
+      "bytes": 10181,
+      "sha256": "6ad7744f94484a89a932a7ac8736ef5399c9a5ab03e273edae88b3753c588938"
+    },
+    "first-hour-driver.cjs": {
+      "bytes": 119343,
+      "sha256": "3cf8da999d59dc3341a345734626ece07e7604f7a396aea994bb648478b74be7"
+    },
+    "first-hour-narrow-initial-route.png": {
+      "bytes": 45819,
+      "sha256": "367429d87e05ba7b6a4ace24b7acb2708399809058c4867bfbca33d084a4eb6b"
+    },
+    "first-hour-result.json": {
+      "bytes": 364287,
+      "sha256": "e9097fa65314a45ccbee5184a3fa78abb451463ae98d714c49e00a674a4994fa"
+    },
+    "first-hour-route-initial-desktop.png": {
+      "bytes": 139966,
+      "sha256": "485709662864fd4266af053c659d0d7c703729b33aa6a2b40b9eaefc73bd7070"
+    },
+    "first-hour-server.log": {
+      "bytes": 78,
+      "sha256": "a5ce5e94b1642b56309f774025b2a0de81ab6616c84baec6214a5708883ba077"
+    },
+    "operating-industry.png": {
+      "bytes": 1140000,
+      "sha256": "2b01595ca14d55aa9f1da91b4730025b7cb9616263f0255025856c0254400974"
+    },
+    "result.json": {
+      "bytes": 11660178,
+      "sha256": "241a63ace89bfeff8e8005dd43c22e6d3e37546fb9728048fe7eb109138dc814"
+    },
+    "s19-input-first-hour.log": {
+      "bytes": 844,
+      "sha256": "49376841b6c1c22f69036a44f412d592cc707dd0c8c213380109985ba6bf7422"
+    },
+    "s19-input-native-final.log": {
+      "bytes": 3738,
+      "sha256": "7d137737802cac77bce5ecb8c82dcc80ae98e93812951cc68fd17b1bbf07bf1c"
+    },
+    "s19-input-release-final.log": {
+      "bytes": 1069,
+      "sha256": "b2fa167eb11dadf79ca837e4eda367aa9ffb150c3f4ab18c550da80a64b1ccd3"
+    },
+    "s19-input-ui-final.log": {
+      "bytes": 37947,
+      "sha256": "dac33853d764cd09324ef5789df357553a49a9698316cc3c7de335ebe64e2b5b"
+    },
+    "server.log": {
+      "bytes": 78,
+      "sha256": "f1ca9451f54c51c3a8589ce2fe94762df24fb8e04df142a85250871db89e3d75"
+    },
+    "supplier-inputs-desktop.png": {
+      "bytes": 139059,
+      "sha256": "626687423f08f8d4cb2fc4601f1aa579b8f2601dd48f80d5e98527b40cc89ca6"
+    },
+    "supplier-inputs-narrow.png": {
+      "bytes": 87102,
+      "sha256": "867361894e39c71856fdd2bb6c1f040ad66dee3b83ddaf549813faaa4cadccbc"
+    }
+  }
+}

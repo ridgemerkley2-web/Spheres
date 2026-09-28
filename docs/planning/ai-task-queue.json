@@ -111,7 +111,7 @@
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "Resolve the ordinary advanced-components supply workflow from the recorded 1 July 1993 France campaign. Plant, manufacturer, paid certification and tooling were observed, but the full later route failed with zero stock after 540 days. Then qualify purchase/payment/delivery and save-resume, followed by readiness and flown results. Contractor prerequisite fix and first-hour regression pass; S19 remains open."
+      "next": "Supplier input recovery UI is verified at c8a59bfd: exact stock deficits, industry/plant navigation and advanced-component trade quotes. The real 1 July 1993 France checkpoint has no component offers; an affordable Advanced Industry plant quotes $240m / 660 days. Next build, fund and operate it through ordinary controls (or receive actual purchased goods), then qualify company stock/purchase/payment/delivery and save-resume, followed by readiness/flown results. S19 remains open."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
@@ -144,12 +144,14 @@
       "id": "CLAUDE-C01-GAPS-01",
       "owner": "Claude",
       "session": "C01",
-      "state": "queued",
+      "state": "claimed",
       "priority": 9,
       "title": "Build the certified-country research gap ledger",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
       "depends_on": [],
-      "next": "Generate a reproducible eight-country gap ledger and numbered next research batches; preserve pending evidence and minority/coalition roles. Available independently of the remaining source repairs; follow the bounded handoff."
+      "next": "Remote handoff claims this packet at 5324614593da8694e1fb9848ea79002830b2723e from base 76f8ac6c. Preserve the branch; deliver its generator, pinned source attribution, JSON/Markdown ledger and tests for review. Not submitted or accepted.",
+      "branch": "claude/c01-gaps-01",
+      "claim_revision": "5324614593da8694e1fb9848ea79002830b2723e"
     },
     {
       "id": "CLAUDE-C03-REVIEW-01",

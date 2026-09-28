@@ -12,6 +12,7 @@ CP1 certification and worldwide character coverage remain open.
 | S19 construction | Payment, completion and output survive save/load and Continue (`24d05428`). | Codex: retain this evidence while qualifying later outcomes. |
 | S19 manufacturer prerequisites | Missing-plant blocker repaired (`8b93372e`); clean build `2cb1da4a` passes 270 focused checks and the full first-hour browser regression. | Codex: continue ordinary company development, stock purchase and delivery. |
 | S19 longer campaign | Real plant, manufacturer, paid tank development and completed tooling reached. The full route did **not** pass: the warehouse lacks advanced components, so no finished stock or delivery was produced. | Codex: resolve the ordinary supplier-input workflow, then qualify purchase/payment/delivery and save/resume, followed by readiness and a supported flown mission. |
+| S19 supplier input recovery | `c8a59bfd`: exact input quantities, industry/plant shortcuts and advanced-component trade restored. 355 UI tests, 17 native company tests and both browser routes pass. No finished stock or delivery yet. | Codex: fund and operate component production; no current offers, local plant review is $240m / 660 days. [Evidence](campaign-certification/S19/integration/INPUT_RECOVERY.md). |
 | S20 shared interface | Waiting on S19 closure. | Codex: start only after the remaining S19 evidence passes. |
 | C01 submissions | SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `fa470d81` and C01-25 `c06839c1` declare **ready for review**. New heads were fetched and their handoffs read; no acceptance or merge is claimed. | Codex reviews; Claude retains SOURCE-05/17 and C01-24/27 claims and can pick an independent new section below. |
 
@@ -57,8 +58,9 @@ review and submission rules. Suggested order for one worker:
 | [CLAUDE-S24-SUCCESSORS-01](planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md) | 23-successor inventory and isolated activation/load/UI harness. | Authored fixtures labeled; Codex retains full S24 qualification. |
 | [CLAUDE-E05-RESEARCH-01](planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md) | Eight sourced French/Japanese company dossiers and catalog mappings. | Research now; company mechanics remain after S30/CP1. |
 
-Each task has its own allowed files, deliverables and acceptance checks. Queue state
-is `queued`, not started. A parent session may still have unmet dependencies: only
+Each task has its own allowed files, deliverables and acceptance checks. Claude has
+claimed C01-GAPS-01 on `claude/c01-gaps-01` at `53246145`; the other five new
+sections remain queued. A claim is not a completed submission. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
 44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
 S19 later-outcome evidence, S20 shared interface, historical acceptance and integration.
@@ -146,7 +148,9 @@ campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md
 actual procurement/delivery and flown results with save/resume qualification.
 Construction payment, completion and output are already verified together.
 The immediate gameplay task is supplying advanced components to the certified
-manufacturer through ordinary production or arrived purchases, not granting stock.
+manufacturer through ordinary production or arrived purchases. The recovery UI is
+now verified; current quotes offer no goods, and the local plant is affordable but
+requires 660 funded days before operation. See [input recovery](campaign-certification/S19/integration/INPUT_RECOVERY.md).
 
 Copy this into Claude to start one of the new sections:
 

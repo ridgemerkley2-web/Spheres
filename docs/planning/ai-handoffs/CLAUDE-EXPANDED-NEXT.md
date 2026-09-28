@@ -6,7 +6,9 @@ Base: `5979cf2fba78a6784a549d63223ca274950a2f7d`; fetch the latest
 
 These six bounded tasks are **available now**. They are independent of the remaining
 C01 source repairs and Codex's S19 supplier work. Existing claims retain their branches;
-submitted packets await review. A queued assignment does not mean Claude has started it.
+submitted packets await review. C01-GAPS-01 is now claimed on `claude/c01-gaps-01` at `53246145`; its remote
+handoff was read, but no completed submission or acceptance is claimed. The other
+five sections remain queued. Preserve that claim when selecting another task.
 
 | Order | Task / handoff | Concrete deliverable |
 |---|---|---|
