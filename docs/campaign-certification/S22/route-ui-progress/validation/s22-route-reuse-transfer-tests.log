@@ -1,0 +1,8 @@
+
+running 3 tests
+test campaign::transfer_path_tests::transfer_path_cache_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit actual-checkpoint original-path parity; no timing assertions
+test campaign::transfer_path_tests::transfer_path_cache_matches_original_checks_for_31_complete_days ... ok
+test campaign::transfer_path_tests::transfer_path_cache_preserves_prepare_receipts_and_refreshes_after_access_changes ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1044 filtered out; finished in 1.16s
+

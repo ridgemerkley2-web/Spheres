@@ -1,0 +1,15 @@
+
+running 10 tests
+test economic_ai::ammunition_forecast_tests::ammunition_only_preserves_standing_procurement_and_adds_its_material_bill_once ... ok
+test economic_ai::ammunition_forecast_tests::ammunition_and_vehicle_orders_preserve_separate_funding_and_one_material_bill ... ok
+test economic_ai::ammunition_forecast_tests::s08_pending_windows_match_independent_reads_at_boundaries_and_closures ... ok
+test economic_ai::s08_industry_read_tests::s08_industry_reads_match_uncached_candidates_forecasts_and_mutated_worlds ... ok
+test economic_ai::ammunition_forecast_tests::detailed_review_observer_preserves_exact_decisions_and_same_day_noop ... ok
+test economic_ai::s08_industry_read_tests::s08_raw_forecast_shared_components_and_material_horizons_match_native_rows ... ok
+test economic_ai::s08_industry_read_tests::s22_expansion_gap_guard_keeps_original_nonfinite_skip_semantics ... ok
+test economic_ai::s08_industry_read_tests::s22_lazy_expansion_ranking_preserves_candidate_and_full_review ... ok
+test economic_ai::s08_industry_read_tests::s08_shared_review_reads_preserve_paid_orders_imports_waits_and_post_command_records ... ok
+test economic_ai::sale_forecast_tests::shared_sale_forecast_matches_independent_reads_and_command_effects ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 1033 filtered out; finished in 0.41s
+
