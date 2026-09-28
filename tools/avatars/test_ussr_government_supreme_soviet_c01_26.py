@@ -353,8 +353,13 @@ def c26_invariants(ussr, russia):
     assert got == PRESIDENT_HOLDERS, got
     got = [(h['name'], h.get('attested_on'), h['from'], h['until'], h['claim_ids']) for h in roles[SS_ROLE][1]['holder_claims'][:1]]
     assert got == [('Mikhail Gorbachev (signature: M. Gorbachev)', '1990-03-14', None, None, ['su_gorbachev_chair_signature_19900314'])], got
+    # CLAUDE-C01-28 added exactly five party-leader roles, pinned with their holders in test_russia_party_leaders_c01_28;
+    # every other Russia role and holder still hashes to the CLAUDE-C01-19 value.
+    c01_28 = ['ru_kprf_chairman', 'ru_ldpr_chairman', 'ru_yabloko_chairman', 'ru_apr_chairman', 'ru_dvr_chairman']
+    assert sorted(r['id'] for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']
+                  if r['kind'] == 'party_leader') == sorted(c01_28)
     ru = [(r['id'], [(h['name'], h.get('attested_on'), h['from'], h['until']) for h in r['holder_claims'] if isinstance(h, dict)])
-          for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles']]
+          for g in ('organizations', 'institutions') for e in russia[g] for r in e['roles'] if r['id'] not in c01_28]
     assert hashlib.sha256(json.dumps(ru, ensure_ascii=False).encode('utf-8')).hexdigest() == RUSSIA_HOLDERS_SHA256
     # Exact holders on the two roles, in chronological order; each rests on its own claim, dated that day; no from, no until.
     for role_id in (GOV_ROLE, SS_ROLE):

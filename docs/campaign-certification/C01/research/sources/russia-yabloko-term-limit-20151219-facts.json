@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_news_term_limit_20151219",
+  "source_url": "https://web.archive.org/web/20151224043458id_/http://www.yabloko.ru:80/news/2015/12/19_1",
+  "source_title": "«ЯБЛОКО» гарантирует сменяемость председателя партии, press release of 19 December 2015 — the XVIII congress limits the chairmanship to two terms",
+  "accessed_date": "2026-09-28",
+  "published_date": "2015-12-19",
+  "document_date": "2015-12-19",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/news/2015/12/19_1",
+  "archive_capture_utc": "2015-12-24T04:34:58Z",
+  "source_response_url": "https://web.archive.org/web/20151224043458id_/http://www.yabloko.ru:80/news/2015/12/19_1",
+  "source_response_bytes": 51785,
+  "source_response_sha256": "aad04b2c6b5a040b7721e255c2d7f82f3f7758e0ccba6c391fd0dd71cdcdb983",
+  "source_response_sha1_base32": "XQ43IGPY7SH27BHDL7X6B66I2E5I63YL",
+  "archive_index_digest": "XQ43IGPY7SH27BHDL7X6B66I2E5I63YL",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:02:07Z and again at 2026-09-28T16:33:46Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:27:50Z and again at 2026-09-28T17:28:11Z (60 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2015-12-24T04:34:58Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. A Drupal page whose site chrome (menus, related lists) is frozen in the capture; the live page differs, so only the capture is recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "News page read from the capture of 24 December 2015; the dateline prints \"19 декабря\", the year is in the page path. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_mitrokhin_holds_chairmanship_20151219",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Сергей Сергеевич Митрохин",
+      "printed_name": "Сергея Митрохин (as printed)",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2015-12-19",
+      "text": "A release dated 19 December 2015 says \"Сергея Митрохин занимает пост председателя с 2008 года\" (as printed) and calls him \"действующий руководитель «ЯБЛОКА»\".",
+      "locator": "paragraph beginning \"Первый председатель партии\""
+    },
+    {
+      "claim_id": "ru_yabloko_retro_yavlinsky_chairman_2001_2008",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Григорий Алексеевич Явлинский",
+      "printed_name": "Григорий Явлинский",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "retrospective_term_statement",
+      "attested_on": null,
+      "printed_date": "с 2001 по 2008 год; с 1993 года",
+      "text": "It says \"Григорий Явлинский был председателем с 2001 по 2008 год и возглавлял общественно-политическое объединение «ЯБЛОКО» с 1993 года\".",
+      "locator": "same paragraph"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

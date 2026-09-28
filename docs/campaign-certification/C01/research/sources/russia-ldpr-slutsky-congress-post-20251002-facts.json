@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_news_slutsky_congress_post_20251002",
+  "source_url": "https://web.archive.org/web/20251012062743id_/https://ldpr.ru/event/tolko-chto-zakonchilsya-37-y-sezd-ldpr-pogovorili-otkryto-sverili-chasy-dela-predstoyat-bolshie/",
+  "source_title": "«Только что закончился 37-й съезд ЛДПР ...» — Slutsky's first-person post on the party site, 2 October 2025",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-10-02",
+  "document_date": "2025-10-02",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://ldpr.ru/event/tolko-chto-zakonchilsya-37-y-sezd-ldpr-pogovorili-otkryto-sverili-chasy-dela-predstoyat-bolshie/",
+  "archive_capture_utc": "2025-10-12T06:27:43Z",
+  "source_response_url": "https://web.archive.org/web/20251012062743id_/https://ldpr.ru/event/tolko-chto-zakonchilsya-37-y-sezd-ldpr-pogovorili-otkryto-sverili-chasy-dela-predstoyat-bolshie/",
+  "source_response_bytes": 110098,
+  "source_response_sha256": "45af9535e5e5dca087b49d176167c4f8d0edbb2367d469a116d6f886fedea8e5",
+  "source_response_sha1_base32": "E7N4G2OVZEM6VLCGZV7JKBFCZHKYGMNJ",
+  "archive_index_digest": "E7N4G2OVZEM6VLCGZV7JKBFCZHKYGMNJ",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:54:10Z and again at 2026-09-28T15:25:57Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:27:33Z and again at 2026-09-28T16:01:15Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-10-12T06:27:43Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The capture freezes the page chrome, including a view counter (\"Просмотров\") and the footer year; the live page changes per view and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "First-person post published as party news, read from the capture of 12 October 2025.",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_slutsky_says_reelected_today_20251002",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "меня (first person; post tagged \"леонид слуцкий\")",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "leader_election_reported",
+      "attested_on": "2025-10-02",
+      "text": "In a post dated 02.10.2025 Slutsky writes \"Также сегодня меня переизбрали Председателем ЛДПР ... Остаюсь на боевом посту\".",
+      "locator": "second-to-last body paragraph; date field \"02.10.2025\""
+    },
+    {
+      "claim_id": "ru_ldpr_slutsky_post_signed_as_chairman_20251002",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "Леонид Слуцкий",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-10-02",
+      "text": "The same post is signed \"Председатель ЛДПР Леонид Слуцкий\".",
+      "locator": "signature at the end of the post"
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

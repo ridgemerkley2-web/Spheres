@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_newspaper_plenum_resolution_19961123",
+  "source_url": "https://web.archive.org/web/19980207231628id_/http://www.ldpr.ru:80/book/ldpr_01_97.htm",
+  "source_title": "A page of the party site's library (ldpr.ru/book/ldpr_01_97.htm, untitled) including «Из Постановления Пленума ЦК ЛДПР (23 ноября 1996 г.)», an extract of the Central Committee plenum resolution of 23 November 1996",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1996-11-23",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.ldpr.ru/book/ldpr_01_97.htm",
+  "archive_capture_utc": "1998-02-07T23:16:28Z",
+  "source_response_url": "https://web.archive.org/web/19980207231628id_/http://www.ldpr.ru:80/book/ldpr_01_97.htm",
+  "source_response_bytes": 21866,
+  "source_response_sha256": "3910baae790f7035b46d30d70d024e8db118947bdf98bd5df59da7087b1cfacb",
+  "source_response_sha1_base32": "RDQVI36HXEEYBMO4NU6N3BUWZJNQSIR6",
+  "archive_index_digest": "RDQVI36HXEEYBMO4NU6N3BUWZJNQSIR6",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:51:49Z and again at 2026-09-28T15:25:39Z (UTC), 33 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:27:12Z and again at 2026-09-28T16:00:46Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 1998-02-07T23:16:28Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. No charset is declared; the bytes are windows-1251. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Library page of the party site read from the capture of 7 February 1998. The page itself has an empty title and no masthead; the library index (capture 19980207221312, not recorded) lists it under «Из газеты \"ЛДПР\"» as «Выпуск N 1 (31), 1997 г.». Only the plenum resolution extract is used.",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_plenum_resolution_chairman_report_19961123",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-03",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Владимир Вольфович Жириновский",
+      "printed_name": "В.В. Жириновского (genitive)",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-11-23",
+      "text": "A page of the party site's library gives an extract of the resolution of the LDPR Central Committee plenum of 23 November 1996: \"Обсудив доклад Председателя партии В.В. Жириновского Пленум ЦК ЛДПР постановляет\".",
+      "locator": "section \"Стратегия Либерально-демократической партии России до конца 2000 года ...\", heading \"Из Постановления Пленума ЦК ЛДПР (23 ноября 1996 г.)\""
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

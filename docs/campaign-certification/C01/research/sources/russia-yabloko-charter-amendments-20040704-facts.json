@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_press_charter_amendments_20040704",
+  "source_url": "https://web.archive.org/web/20040927193602id_/http://www.yabloko.ru:80/Press/2004/040704.html",
+  "source_title": "«Съезд \"ЯБЛОКА\" изменил принцип управления партией», press release of 4 July 2004 — the XII congress's charter amendments",
+  "accessed_date": "2026-09-28",
+  "published_date": "2004-07-04",
+  "document_date": "2004-07-04",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Press/2004/040704.html",
+  "archive_capture_utc": "2004-09-27T19:36:02Z",
+  "source_response_url": "https://web.archive.org/web/20040927193602id_/http://www.yabloko.ru:80/Press/2004/040704.html",
+  "source_response_bytes": 8028,
+  "source_response_sha256": "8a4df4bbd74f2425b62603f235a5e9078aff05314323a3c8469765a981a4fb77",
+  "source_response_sha1_base32": "UAX6O3DFJKNOL635IEDOBELTPHJKNGH3",
+  "archive_index_digest": "UAX6O3DFJKNOL635IEDOBELTPHJKNGH3",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:02:19Z and again at 2026-09-28T16:33:54Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:27:47Z and again at 2026-09-28T17:27:56Z (60 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2004-09-27T19:36:02Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press release read from the capture of 27 September 2004. Its charter content is procedure only. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_yavlinsky_proposes_term_limit_on_his_post_20040704",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Григорий Алексеевич Явлинский",
+      "printed_name": "Григорий Явлинский",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2004-07-04",
+      "text": "A release dated 4 July 2004 on the XII congress says \"Григорий Явлинский предложил съезду поправку об ограничении пребывания на своем посту Председателя партии двумя четырехлетними сроками\".",
+      "locator": "paragraph after the list of charter amendments"
+    },
+    {
+      "claim_id": "ru_yabloko_party_named_successor_of_1995_association",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "retrospective_name_lineage",
+      "attested_on": null,
+      "printed_date": "с 1995 года",
+      "text": "It adds that he proposed counting the term from 1995, \"момента образования общественного объединения «ЯБЛОКО», правопреемницей которого является РДП «ЯБЛОКО»\".",
+      "locator": "same paragraph"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

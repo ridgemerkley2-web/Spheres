@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_news_slutsky_reelected_20251002",
+  "source_url": "https://web.archive.org/web/20251012062735id_/https://ldpr.ru/event/leonida-slutskogo-izbrali-predsedatelem-ldpr-na-sleduyushchie-chetyre-goda/",
+  "source_title": "«Леонида Слуцкого избрали Председателем ЛДПР на следующие четыре года» — party news of 2 October 2025",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-10-02",
+  "document_date": "2025-10-02",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://ldpr.ru/event/leonida-slutskogo-izbrali-predsedatelem-ldpr-na-sleduyushchie-chetyre-goda/",
+  "archive_capture_utc": "2025-10-12T06:27:35Z",
+  "source_response_url": "https://web.archive.org/web/20251012062735id_/https://ldpr.ru/event/leonida-slutskogo-izbrali-predsedatelem-ldpr-na-sleduyushchie-chetyre-goda/",
+  "source_response_bytes": 124272,
+  "source_response_sha256": "e57f89ea3b83cd3cc581022616685c05c42f5f0678f5fc6a6be5974f38b8cbc0",
+  "source_response_sha1_base32": "WFPGJYPJBP56SSXQXDS4UXICTGNE3OJE",
+  "archive_index_digest": "WFPGJYPJBP56SSXQXDS4UXICTGNE3OJE",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:54:24Z and again at 2026-09-28T15:26:03Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:27:31Z and again at 2026-09-28T16:01:05Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-10-12T06:27:35Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The capture freezes the page chrome, including a view counter (\"Просмотров\") and the footer year; the live page changes per view and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Party news item read from the capture of 12 October 2025 (the index row of 4 October redirects to it).",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_xxxvii_congress_slutsky_reelected_20251002",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "Леонида Слуцкого (accusative)",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "leader_election",
+      "attested_on": "2025-10-02",
+      "text": "The item says \"Леонида Слуцкого вновь избрали на пост Председателя ЛДПР в ходе XXXVII съезда партии 2 октября 2025 года\", its headline adding \"на следующие четыре года\".",
+      "locator": "headline and lead; date field \"02.10.2025\""
+    },
+    {
+      "claim_id": "ru_ldpr_xxxvii_congress_chairman_presents_strategy_20251002",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "Председатель партии (Леонид Слуцкий, named in the next sentence)",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-10-02",
+      "text": "It says \"Председатель партии представил участникам съезда Стратегию развития ЛДПР до 2030 года\".",
+      "locator": "body paragraph 3"
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

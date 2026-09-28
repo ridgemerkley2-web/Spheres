@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_dvr_politsovet_decision_19971216",
+  "source_url": "https://web.archive.org/web/19980627072026id_/http://www.dvr.ru:80/politsovet_16-12-97.htm",
+  "source_title": "«Решение Политсовета партии \"О ситуации в стране и судьбе реформ\"» — decision of the party's Political Council of 16 December 1997, dvr.ru",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1997-12-16",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.dvr.ru/politsovet_16-12-97.htm",
+  "archive_capture_utc": "1998-06-27T07:20:26Z",
+  "source_response_url": "https://web.archive.org/web/19980627072026id_/http://www.dvr.ru:80/politsovet_16-12-97.htm",
+  "source_response_bytes": 4566,
+  "source_response_sha256": "97a5c08d21ad52fe55c5e547263903fef10440da4c09ddec2d39b5c28bdb6de5",
+  "source_response_sha1_base32": "IXRR2YI4M4CDZJNK2MBCGVN3ZVAPABIN",
+  "archive_index_digest": "GK4RSRHX3IZX6VZ5E3OHGGDZNHLKWERF",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:05:09Z and again at 2026-09-28T15:36:26Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:57:05Z and again at 2026-09-28T16:29:40Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 1998-06-27T07:20:26Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. The 1998 page carries no charset; its bytes are KOI8-R. The 1998 response was stored chunked (\"x-archive-orig-transfer-encoding: chunked\") and is served de-chunked, so its SHA-1 differs from the capture index digest; the recorded identity is the served, uncompressed body, byte-identical on every download. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Party page read in full from the capture of 27 June 1998.",
+  "rows": [
+    {
+      "claim_id": "ru_dvr_politsovet_decision_signed_by_chairman_19971216",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": "Егор Тимурович Гайдар",
+      "printed_name": "Е.Гайдар",
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-12-16",
+      "text": "The decision ends \"Принято на заседании Политсовета партии 16 декабря 1997 года\" and is signed \"Председатель партии Е.Гайдар\".",
+      "locator": "end of the decision"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

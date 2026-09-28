@@ -36,10 +36,14 @@ class RussiaDiscoveryTests(unittest.TestCase):
         # CLAUDE-C01-05 added 13 sources, 24 claims, one institution and two roles.
         # CLAUDE-C01-14 added 53 sources, 94 claims and one role (ru_president) to that institution; no entry.
         # CLAUDE-C01-19 added 102 sources, 153 claims (two of them on a C01-14 source), one institution and one role.
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (21, 170, 295, 9))
-        self.assertEqual(len(self.packet['organizations']), 14)
+        # CLAUDE-C01-28 added 68 sources, 137 claims, three organizations and five party roles (three of them on
+        # existing ballot-list organizations), pinned in test_russia_party_leaders_c01_28.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (24, 238, 432, 14))
+        self.assertEqual(len(self.packet['organizations']), 17)
         self.assertEqual(len(self.packet['institutions']), 7)
-        self.assertEqual({e['kind'] for e in self.packet['organizations']}, {'federal_election_ballot_party_list'})
+        self.assertEqual([e['kind'] for e in self.packet['organizations']], ['federal_election_ballot_party_list'] * 14 + [
+            'political_party_self_record_observation', 'electoral_association_self_record_observation',
+            'political_party_self_record_observation'])
         self.assertEqual({e['kind'] for e in self.packet['institutions']},
                          {'parliamentary_faction', 'executive_presidency_office', 'executive_institution'})
         self.assertEqual(len(self.factions()), 5)
@@ -111,7 +115,14 @@ class RussiaDiscoveryTests(unittest.TestCase):
             self.assertIsNone(holder['until'])
             self.assertEqual(len(holder['name'].split()), 2, 'Do not import dynamic hover biography names')
         self.assertEqual(actual, expected)
-        self.assertTrue(all(not entry['roles'] for entry in self.packet['organizations']))
+        # CLAUDE-C01-28 gave exactly five organizations one party-leader role each (pinned with their holders in
+        # test_russia_party_leaders_c01_28); every other organization still has no role and no parliamentary office.
+        self.assertEqual({e['id']: [(r['id'], r['kind']) for r in e['roles']] for e in self.packet['organizations'] if e['roles']}, {
+            'ru_duma_ballot_list_2021_01': [('ru_kprf_chairman', 'party_leader')],
+            'ru_duma_ballot_list_2021_03': [('ru_ldpr_chairman', 'party_leader')],
+            'ru_duma_ballot_list_2021_07': [('ru_yabloko_chairman', 'party_leader')],
+            'ru_apr_party_self_record': [('ru_apr_chairman', 'party_leader')],
+            'ru_dvr_party_self_record': [('ru_dvr_chairman', 'party_leader')]})
 
     def test_downloaded_pdf_hash_is_distinct_from_the_derived_factual_extract(self):
         source = self.sources['ru_cec_ballot_order_20210816']
@@ -146,34 +157,79 @@ class RussiaDiscoveryTests(unittest.TestCase):
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
                          {'www.rcoit.ru', 'duma.gov.ru', 'pravo.gov.ru', 'projects.rusarchives.ru', 'www.prlib.ru',
                           'web.archive.org', 'transcript.duma.gov.ru', 'publication.pravo.gov.ru'})
-        # Access dates are pinned per packet: the two original sources, CLAUDE-C01-05's 13, CLAUDE-C01-14's 53 and
-        # CLAUDE-C01-19's 102 (which use only the hosts above).
+        # Access dates are pinned per packet: the two original sources, CLAUDE-C01-05's 13, CLAUDE-C01-14's 53,
+        # CLAUDE-C01-19's 102 and CLAUDE-C01-28's 68 (which use only the hosts above).
         original = {'ru_cec_ballot_order_20210816', 'ru_duma_factions_20211012'}
         c01_05 = {s['id'] for s in self.packet['sources'][2:15]}
         c01_14 = {s['id'] for s in self.packet['sources'][15:68]}
-        c01_19 = {s['id'] for s in self.packet['sources'][68:]}
+        c01_19 = {s['id'] for s in self.packet['sources'][68:170]}
+        c01_28 = {s['id'] for s in self.packet['sources'][170:]}
         self.assertEqual([s['id'] for s in self.packet['sources'][:2]], sorted(original))
-        self.assertEqual((len(c01_05), len(c01_14), len(c01_19)), (13, 53, 102))
+        self.assertEqual((len(c01_05), len(c01_14), len(c01_19), len(c01_28)), (13, 53, 102, 68))
         self.assertTrue(all(sid.startswith('ru_rsfsr_') or sid.startswith('ru_garf_') or sid == 'ru_prlib_inauguration_stenogram_19910710'
                             for sid in c01_05))
-        # Constitution text and one retrospective court statement carry no structured date; every other claim does.
+        # Constitution text and one retrospective court statement carry no structured date; so do CLAUDE-C01-28's
+        # retrospective, span-only, month-only and undated party claims, listed exactly; every other claim does.
         undated = {'ru_ks_134o_rsfsr_president_retitled_19981105', 'ru_const1993_entry_into_force_rule',
                    'ru_const1993_transitional_president_rule', 'ru_const1993_art80_head_of_state',
                    'ru_const1993_oath_and_term_rules', 'ru_portal_const1993_publication_citation'}
-        self.assertEqual({c['id'] for s in self.packet['sources'] for c in s['claims'] if 'attested_on' not in c}, undated)
+        c01_28_undated = {'ru_kprf_retro_congress_renamed_party_1993', 'ru_kprf_retro_congress_elected_cec_1993',
+                          'ru_kprf_retro_zyuganov_elected_cec_chairman_1993',
+                          'ru_kprf_reference_zyuganov_since_february_1993',
+                          'ru_kprf_reference_registered_since_ii_congress_1993',
+                          'ru_ldpr_history2010_iii_congress_founds_ldpr_1992',
+                          'ru_ldpr_history2010_iii_congress_chairman_1992',
+                          'ru_ldpr_history2010_iv_congress_chairman_1993', 'ru_ldpr_news_xxxiv_congress_announced',
+                          'ru_ldpr_newspaper_chairman_speech_xxxiv_congress',
+                          'ru_ldpr_newspaper_death_referenced_undated',
+                          'ru_yabloko_reference_bloc_lists_autumn_1993',
+                          'ru_yabloko_reference_former_names_1993_1994',
+                          'ru_yabloko_reference_founding_congress_19950105_19950106',
+                          'ru_yabloko_reference_yavlinsky_chairman_elected_1995',
+                          'ru_yabloko_reference_yavlinsky_chairman_since_january_1995',
+                          'ru_yabloko_x_congress_dates_20011222_20011223', 'ru_yabloko_chairman_vote_scheduled_2004',
+                          'ru_yabloko_yavlinsky_reelected_chairman_2004',
+                          'ru_yabloko_party_named_successor_of_1995_association',
+                          'ru_yabloko_report_2008_chairman_title_block', 'ru_yabloko_report_2008_xii_congress_2004',
+                          'ru_yabloko_report_2008_xiii_congress_2006', 'ru_yabloko_report_2008_bureau_list_chairman',
+                          'ru_yabloko_xv_congress_dates_20080621_20080622',
+                          'ru_yabloko_xv_congress_mitrokhin_elected_2008',
+                          'ru_yabloko_retro_yavlinsky_chairman_2001_2008',
+                          'ru_yabloko_xviii_congress_dates_20151219_20151220',
+                          'ru_yabloko_xxi_congress_dates_20191214_20191215',
+                          'ru_yabloko_slabunova_report_as_chairman_2015_2019',
+                          'ru_yabloko_xxi_congress_vote_about_one_am', 'ru_apr_history_chairman_heading_2002',
+                          'ru_apr_history_lapshin_elected_founding_congress_1993',
+                          'ru_apr_history_iii_congress_lapshin_reelected_1994',
+                          'ru_apr_history_v_congress_lapshin_remained_1997',
+                          'ru_apr_leadership_page_plotnikov_chairman_2004', 'ru_apr_chairman_page_heading_2008',
+                          'ru_dvr_supporters_founding_congress_planned',
+                          'ru_dvr_political_council_gaidar_chairman_1994',
+                          'ru_dvr_statement_signed_by_chairman_199412',
+                          'ru_dvr_ii_congress_statement_signed_by_chairman_1995',
+                          'ru_dvr_history_created_on_basis_of_movement', 'ru_dvr_history_founded_and_named_1994',
+                          'ru_dvr_about_page_chairman_gaidar_2001',
+                          'ru_dvr_x_congress_self_dissolution_decision_2001',
+                          'ru_dvr_x_congress_gaidar_speech_dissolution_2001'}
+        self.assertEqual({c['id'] for s in self.packet['sources'] for c in s['claims'] if 'attested_on' not in c},
+                         undated | c01_28_undated)
+        self.assertTrue(all(cid.startswith(('ru_kprf_', 'ru_ldpr_', 'ru_yabloko_', 'ru_apr_', 'ru_dvr_')) for cid in c01_28_undated))
         for source in self.packet['sources']:
             extract = self.extracts[source['id']]
             self.assertEqual(extract['source_url'], source['url'])
             expected = ('2026-09-13' if source['id'] in original else '2026-09-21' if source['id'] in c01_05
-                        else '2026-09-24' if source['id'] in c01_14 else '2026-09-25')
+                        else '2026-09-24' if source['id'] in c01_14 else '2026-09-25' if source['id'] in c01_19
+                        else '2026-09-28')
             self.assertEqual(source['id'] in c01_19, expected == '2026-09-25')
+            self.assertEqual(source['id'] in c01_28, expected == '2026-09-28')
             self.assertEqual(source['accessed_date'], expected)
             self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
             if 'claims' in extract:
                 self.assertEqual(extract['claims'], source['claims'])
             else:
                 self.assertEqual({r['claim_id'] for r in extract['rows']}, {c['id'] for c in source['claims']})
-            self.assertTrue(all(c['attested_on'] <= research.CUTOFF for c in source['claims'] if c['id'] not in undated))
+            self.assertTrue(all(c['attested_on'] <= research.CUTOFF for c in source['claims']
+                                if c['id'] not in undated | c01_28_undated))
         packet = copy.deepcopy(self.packet)
         packet['sources'][0]['claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -195,10 +251,12 @@ class RussiaDiscoveryTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual(country['mapping_pending'], 21)  # CLAUDE-C01-19 added ru_government, with no party mapping
-        self.assertEqual(country['role_observations'], 9)  # CLAUDE-C01-14 added ru_president, CLAUDE-C01-19 ru_government_chairman
+        # CLAUDE-C01-19 added ru_government and CLAUDE-C01-28 three organizations, all with no party mapping.
+        self.assertEqual(country['mapping_pending'], 24)
+        # CLAUDE-C01-14 added ru_president, CLAUDE-C01-19 ru_government_chairman and CLAUDE-C01-28 five party roles.
+        self.assertEqual(country['role_observations'], 14)
         work = [row for row in index['work_orders'] if row['nation'] == 'Russia']
-        self.assertEqual([len(row['members']) for row in work], [10, 10, 1])
+        self.assertEqual([len(row['members']) for row in work], [10, 10, 4])
         self.assertEqual({member for row in work for member in row['members']}, set(self.validate()['entries']))
         self.assertEqual({row['status'] for row in work}, {'open'})
         self.assertFalse(index['runtime_roster_modified'])

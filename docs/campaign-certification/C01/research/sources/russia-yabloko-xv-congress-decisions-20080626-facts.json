@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_press_xv_congress_decisions_20080626",
+  "source_url": "https://web.archive.org/web/20111112203944id_/http://www.yabloko.ru/Press/2008/080626.html",
+  "source_title": "«Основные решения XV съезда РОДП «Яблоко»», press release of 26 June 2008 — the XV congress's main decisions",
+  "accessed_date": "2026-09-28",
+  "published_date": "2008-06-26",
+  "document_date": "2008-06-26",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.yabloko.ru/Press/2008/080626.html",
+  "archive_capture_utc": "2011-11-12T20:39:44Z",
+  "source_response_url": "https://web.archive.org/web/20111112203944id_/http://www.yabloko.ru/Press/2008/080626.html",
+  "source_response_bytes": 12728,
+  "source_response_sha256": "2bb4b07376397e9e818a4806908422ae1a99fdff29d73588f92c426e607f099a",
+  "source_response_sha1_base32": "2BYTSWAVLFCBJXPFSJ2GCFIMLKEWLV5M",
+  "archive_index_digest": "2BYTSWAVLFCBJXPFSJ2GCFIMLKEWLV5M",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T13:49:13Z and again at 2026-09-28T14:22:54Z (UTC), 33 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T14:54:38Z and again at 2026-09-28T15:59:36Z (64 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2011-11-12T20:39:44Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. (HTTP header). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press-release page read from the capture.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_xv_congress_dates_20080621_20080622",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "congress_dates",
+      "attested_on": null,
+      "printed_date": "21-22 июня",
+      "text": "The release of 26 June 2008 lists the key decisions of the XV congress held near Moscow on 21-22 June (\"прошел в Подмосковье 21-22 июня\").",
+      "locator": "first body line"
+    },
+    {
+      "claim_id": "ru_yabloko_xv_congress_mitrokhin_elected_2008",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-06",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Сергей Сергеевич Митрохин",
+      "printed_name": "Сергей Митрохин",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "leader_election",
+      "attested_on": null,
+      "printed_date": "21-22 июня (congress); release of 26 June 2008",
+      "text": "Its third item, \"Избран председатель партии\", gives the votes: Сергей Митрохин 75, Максим Резник 24, Василий Попов 20.",
+      "locator": "item 3 of the decisions list"
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}

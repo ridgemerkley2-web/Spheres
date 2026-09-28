@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kprf_zyuganov_greeting_20260828",
+  "source_url": "https://web.archive.org/web/20260829220349id_/https://kprf.ru/party-live/cknews/246862.html",
+  "source_title": "«Г.А. Зюганов: «С Днём знаний!»» — the Chairman's greeting for Knowledge Day, party news of 28 August 2026",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-08-28",
+  "document_date": "2026-08-28",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://kprf.ru/party-live/cknews/246862.html",
+  "archive_capture_utc": "2026-08-29T22:03:49Z",
+  "source_response_url": "https://web.archive.org/web/20260829220349id_/https://kprf.ru/party-live/cknews/246862.html",
+  "source_response_bytes": 31109,
+  "source_response_sha256": "a2a9026c7f8e4d758b328a3ce6b51a8ac12165d3105cf18d33a06f2f1a0e1cc5",
+  "source_response_sha1_base32": "5DSWTRBJMD6UBR6Q47L4NJNGG62E2K6Z",
+  "archive_index_digest": "5DSWTRBJMD6UBR6Q47L4NJNGG62E2K6Z",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T13:57:19Z and again at 2026-09-28T14:52:54Z (UTC), 55 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:10:32Z and again at 2026-09-28T16:00:44Z (50 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2026-08-29T22:03:49Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The site chrome (menus, related items, the \"© 1993-20xx\" footer) is frozen in the capture; the live page regenerates per request and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Party news item read from the capture of 29 August 2026; two other captures of that day replayed gzip-encoded were rejected.",
+  "rows": [
+    {
+      "claim_id": "ru_kprf_zyuganov_chairman_greeting_20260828",
+      "observation_id": "ru_duma_ballot_list_2021_01",
+      "review_observation": "RU-PTY-02",
+      "role_id": "ru_kprf_chairman",
+      "holder_name": "Геннадий Андреевич Зюганов",
+      "printed_name": "Геннадий Зюганов; Г.А. Зюганова (genitive)",
+      "role_title": "Председатель Центрального Комитета КПРФ — Chairman of the Central Committee of the KPRF",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-28",
+      "text": "The item, bylined \"Геннадий Зюганов, Председатель ЦК КПРФ\" and dated \"28 августа 2026, 15:58\", opens \"Публикуем поздравление Председателя ЦК КПРФ Г.А. Зюганова с Днем знаний\".",
+      "locator": "byline, date line and first sentence"
+    }
+  ],
+  "bounded_scope": "KPRF chairman observations for CLAUDE-C01-28 only. Congresses, plenum elections, retrospective and registration statements, continuation claims and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Duma faction head of 2021 is outside this extract."
+}

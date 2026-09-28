@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_dvr_supporters_protocol_19940519",
+  "source_url": "https://web.archive.org/web/20170823160756id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4791",
+  "source_title": "«Протокол собрания сторонников создания партии \"Выбор России\" от 19 мая 1994г.» — minutes of a meeting of supporters of founding the party \"Russia's Choice\" (Southern administrative district of Moscow; scan)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1994-05-19",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4791",
+  "archive_capture_utc": "2017-08-23T16:07:56Z",
+  "source_response_url": "https://web.archive.org/web/20170823160756id_/http://gaidar-arc.ru:80/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/4791",
+  "source_response_bytes": 122938,
+  "source_response_sha256": "be163177e0a890176612f4b1e809492bd0b24f81e513ed1713573cfef00f5cae",
+  "source_response_sha1_base32": "AD22C6N5R3D75KXHWYQNOQIYR36MNYVC",
+  "archive_index_digest": "AD22C6N5R3D75KXHWYQNOQIYR36MNYVC",
+  "source_response_encoding": "application/pdf (7 pages; producer ABBYY FineReader 11; CreationDate D:16010101000000Z), served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:15:05Z and again at 2026-09-28T15:47:31Z (UTC), 32 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:56:43Z and again at 2026-09-28T16:28:47Z (32 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2017-08-23T16:07:56Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. A scanned PDF with an OCR text layer supplied by the archive. Every cited page was rendered (headless Chrome's PDF viewer) and read from the image; the OCR layer, read with pdftotext, is not quoted where it differs from the print. The archive hosts the organization's own document; it is not itself the organization's publisher, and its catalogue pages (not recorded) supply only titles and dates. Handwritten archival marks on the scans are the archive's, not the party's. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Scan of the minutes of a district meeting of the party in formation; only the heading and the opening speech are used.",
+  "rows": [
+    {
+      "claim_id": "ru_dvr_supporters_meeting_working_name_19940519",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "party_working_name",
+      "attested_on": "1994-05-19",
+      "text": "The minutes are headed \"ПРОТОКОЛ собрания сторонников создания партии \"Выбор России\" от 19 мая 1994г.\" (180 present).",
+      "locator": "PDF p. 1, heading"
+    },
+    {
+      "claim_id": "ru_dvr_supporters_founding_congress_planned",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "congress_dates_planned",
+      "attested_on": null,
+      "printed_date": "12,13 июня (planned)",
+      "text": "The opening speaker named the dates of the party's founding congress as \"12,13 июня\".",
+      "locator": "PDF p. 1"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

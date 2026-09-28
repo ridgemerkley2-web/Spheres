@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_apr_release_xi_congress_20030910",
+  "source_url": "https://web.archive.org/web/20031022201803id_/http://www.agroparty.ru:80/releases/3/106/",
+  "source_title": "Пресс-релиз «XI съезд Аграрной партии России - представлена новая аграрная политика», 10.09.2003 — press release on the XI congress",
+  "accessed_date": "2026-09-28",
+  "published_date": "2003-09-10",
+  "document_date": "2003-09-10",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.agroparty.ru/releases/3/106/",
+  "archive_capture_utc": "2003-10-22T20:18:03Z",
+  "source_response_url": "https://web.archive.org/web/20031022201803id_/http://www.agroparty.ru:80/releases/3/106/",
+  "source_response_bytes": 35412,
+  "source_response_sha256": "523a89c97d75d4319799bd1e68904d3021afeb188535703471b6474ab536dfe3",
+  "source_response_sha1_base32": "DL3PESZM22IKS67THNIC5PQ2DYX44GXF",
+  "archive_index_digest": "DL3PESZM22IKS67THNIC5PQ2DYX44GXF",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T15:02:02Z and again at 2026-09-28T15:32:22Z (UTC), 30 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:55:07Z and again at 2026-09-28T16:28:07Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2003-10-22T20:18:03Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset windows-1251. (meta tag). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Press release read from the capture of 22 October 2003; the sidebar lists other dated releases.",
+  "rows": [
+    {
+      "claim_id": "ru_apr_xi_congress_opened_20030909",
+      "observation_id": "ru_apr_party_self_record",
+      "review_observation": "RU-PTY-08",
+      "role_id": "ru_apr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+      "event_kind": "congress_dates",
+      "attested_on": "2003-09-09",
+      "text": "The release dated 10.09.2003 says \"9 сентября открылся XI внеочередной съезд Аграрной партии России\".",
+      "locator": "release body, first paragraph"
+    },
+    {
+      "claim_id": "ru_apr_xi_congress_lapshin_reports_as_chairman_20030909",
+      "observation_id": "ru_apr_party_self_record",
+      "review_observation": "RU-PTY-08",
+      "role_id": "ru_apr_chairman",
+      "holder_name": "Михаил Иванович Лапшин",
+      "printed_name": "Михаил Лапшин",
+      "role_title": "Председатель Аграрной партии России — Chairman of the Agrarian Party of Russia",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2003-09-09",
+      "text": "It says the congress heard a report by \"председатель Аграрной партии Михаил Лапшин\".",
+      "locator": "release body, first paragraph"
+    }
+  ],
+  "bounded_scope": "Agrarian Party of Russia chairman and organization observations for CLAUDE-C01-28 only. Congresses, elections, retrospective and registration statements, the reorganisation and accession decisions, undated pages and in-office attestations stay separate rows; holder boundaries and the organization lifecycle are decided in the packet, not by any row."
+}

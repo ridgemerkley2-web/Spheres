@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_dvr_v_congress_decisions_19960922",
+  "source_url": "https://web.archive.org/web/20250115065600id_/http://www.gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3801",
+  "source_title": "Decisions of the V congress of the party \"Демократический выбор России\" of 22 September 1996, including «Об утверждении протоколов № 3-4 заседания Счетной комиссии», signed by the party chairman (scan)",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "document_date": "1996-09-22",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "http://www.gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3801",
+  "archive_capture_utc": "2025-01-15T06:56:00Z",
+  "source_response_url": "https://web.archive.org/web/20250115065600id_/http://www.gaidar-arc.ru/file/bulletin-1/DEFAULT/org.stretto.plugins.bulletin.core.Article/file/3801",
+  "source_response_bytes": 341045,
+  "source_response_sha256": "79022c35e9990e3b552f4c7310e31a9a03a7e7af87c0aff4a70c1006c1d86a71",
+  "source_response_sha1_base32": "TDSXZLNJJODDCLFCUPMZADK4LJ7T67BO",
+  "archive_index_digest": "TDSXZLNJJODDCLFCUPMZADK4LJ7T67BO",
+  "source_response_encoding": "application/pdf (3 pages; producer ABBYY FineReader 10; CreationDate D:20130312154656+04'00'), served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:30:52Z and again at 2026-09-28T17:01:58Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:45:16Z and again at 2026-09-28T17:28:36Z (43 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2025-01-15T06:56:00Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. A scanned PDF with an OCR text layer supplied by the archive. Every cited page was rendered (headless Chrome's PDF viewer) and read from the image; the OCR layer, read with pdftotext, is not quoted where it differs from the print. The archive hosts the organization's own document; it is not itself the organization's publisher, and its catalogue pages (not recorded) supply only titles and dates. Handwritten archival marks on the scans are the archive's, not the party's. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Scan of the congress's decisions of 22 September 1996, rendered and read; only the decision on protocols 3-4 (PDF p. 2, printed p. 17) is used. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_dvr_v_congress_chairman_ballot_protocol_approved_19960922",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": null,
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "leader_ballot_record",
+      "attested_on": "1996-09-22",
+      "text": "The decision «Об утверждении протоколов № 3-4 заседания Счетной комиссии», adopted on 22 September 1996, approves \"протокол № 3 заседания Счетной комиссии Пятого Съезда ... от 21 сентября 1996 года об итогах тайного голосования по выдвижению Председателя Партии\".",
+      "locator": "PDF p. 2 (printed p. 17), point 1"
+    },
+    {
+      "claim_id": "ru_dvr_v_congress_decision_signed_by_chairman_19960922",
+      "observation_id": "ru_dvr_party_self_record",
+      "review_observation": "RU-PTY-10",
+      "role_id": "ru_dvr_chairman",
+      "holder_name": "Егор Тимурович Гайдар",
+      "printed_name": "Е.Т. Гайдар",
+      "role_title": "Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-09-22",
+      "text": "The same decision ends \"Принято Пятым Съездом Партии “Демократический выбор России” 22 сентября 1996 г.\" and is signed \"Председатель Партии\" with the printed name \"Е.Т. Гайдар\".",
+      "locator": "PDF p. 2 (printed p. 17), adoption and signature lines"
+    }
+  ],
+  "bounded_scope": "Russia's Choice (1993 bloc) and Democratic Choice of Russia observations for CLAUDE-C01-28 only. The bloc's programme, the working name, founding, registration and dissolution statements, the election of the Political Council, the chairmanship ballot record, undated and bare-title signatures and in-office attestations stay separate rows; holder boundaries and organization lifecycles are decided in the packet, not by any row."
+}

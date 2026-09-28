@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ldpr_news_citizenship_proposal_20260811",
+  "source_url": "https://web.archive.org/web/20260816173730id_/https://ldpr.ru/event/ldpr-predlozhila-lishat-grazhdanstva-tekh-kto-poluchil-pasport-radi-lgot-i-zhilya/",
+  "source_title": "«ЛДПР предложила лишать гражданства тех, кто получил паспорт ради льгот и жилья» — party news of 11 August 2026",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-08-11",
+  "document_date": "2026-08-11",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://ldpr.ru/event/ldpr-predlozhila-lishat-grazhdanstva-tekh-kto-poluchil-pasport-radi-lgot-i-zhilya/",
+  "archive_capture_utc": "2026-08-16T17:37:30Z",
+  "source_response_url": "https://web.archive.org/web/20260816173730id_/https://ldpr.ru/event/ldpr-predlozhila-lishat-grazhdanstva-tekh-kto-poluchil-pasport-radi-lgot-i-zhilya/",
+  "source_response_bytes": 152667,
+  "source_response_sha256": "f60abeb96d9b4e8202c0e5cc78a6766772f6a96bdad7e4c5a72455cf4d3cbdec",
+  "source_response_sha1_base32": "AY2U4DC55JSBFC6CX7JHWVZV6GGHCEK6",
+  "archive_index_digest": "AY2U4DC55JSBFC6CX7JHWVZV6GGHCEK6",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-28T14:51:23Z and again at 2026-09-28T15:25:33Z (UTC), 34 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T15:27:36Z and again at 2026-09-28T16:01:18Z (33 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2026-08-16T17:37:30Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. The capture freezes the page chrome, including a view counter (\"Просмотров\") and the footer year; the live page changes per view and is not used. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Party news item read from the capture of 16 August 2026; most later ldpr.ru captures before the cutoff are 403 pages.",
+  "rows": [
+    {
+      "claim_id": "ru_ldpr_slutsky_chairman_proposal_20260811",
+      "observation_id": "ru_duma_ballot_list_2021_03",
+      "review_observation": "RU-PTY-04",
+      "role_id": "ru_ldpr_chairman",
+      "holder_name": "Леонид Эдуардович Слуцкий",
+      "printed_name": "Леонид Слуцкий",
+      "role_title": "Председатель ЛДПР — Chairman of the LDPR",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-11",
+      "text": "The item dated 11.08.2026 opens \"Председатель ЛДПР Леонид Слуцкий предложил аннулировать приобретенное гражданство\" of those who do not live or work in Russia.",
+      "locator": "lead under the headline; date field \"11.08.2026\""
+    }
+  ],
+  "bounded_scope": "LDPR chairman observations for CLAUDE-C01-28 only. Retrospective timeline entries, registration statements, elections, election reports, the interim record, the undated death reference and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The State Duma faction and its head are outside this extract."
+}

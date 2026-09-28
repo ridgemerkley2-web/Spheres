@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_yabloko_news_fsin_appeal_20231213",
+  "source_url": "https://web.archive.org/web/20231217211933id_/https://www.yabloko.ru/cat-news/2023/12/13",
+  "source_title": "«Яблоко» призвало главу ФСИН предоставить незамедлительную медпомощь Алексею Горинову — press release of 13 December 2023",
+  "accessed_date": "2026-09-28",
+  "published_date": "2023-12-13",
+  "document_date": "2023-12-13",
+  "access_method": "internet_archive_raw_capture",
+  "original_url": "https://www.yabloko.ru/cat-news/2023/12/13",
+  "archive_capture_utc": "2023-12-17T21:19:33Z",
+  "source_response_url": "https://web.archive.org/web/20231217211933id_/https://www.yabloko.ru/cat-news/2023/12/13",
+  "source_response_bytes": 45887,
+  "source_response_sha256": "8140b7fb70d918e8db142eb160ff2295f2feefc40a450a33cd74b67f1b93b818",
+  "source_response_sha1_base32": "BKAH2OK4E3FYPTELTHUMPTFGEI2GYGGU",
+  "archive_index_digest": "BKAH2OK4E3FYPTELTHUMPTFGEI2GYGGU",
+  "source_response_encoding": "text/html, served without Content-Encoding (uncompressed body)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check: downloaded at 2026-09-28T16:02:27Z and again at 2026-09-28T16:34:02Z (UTC), 31 minutes apart; byte-identical. This packet: re-downloaded at 2026-09-28T16:27:53Z and again at 2026-09-28T17:28:26Z (60 minutes later); identical bytes and SHA-256 each time, matching the recorded identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) made at 2023-12-17T21:19:33Z, before the 7 September 2026 cutoff, fetched over HTTPS without an Accept-Encoding header and served uncompressed (no Content-Encoding), so the recorded identity is the uncompressed body. Its SHA-1 (base32) equals the capture index digest. Charset UTF-8. A Drupal page whose site chrome (menus, related lists) is frozen in the capture; the live page differs, so only the capture is recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases and short quotations only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "News page read from the capture of 17 December 2023. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
+  "rows": [
+    {
+      "claim_id": "ru_yabloko_rybakov_chairman_appeal_20231213",
+      "observation_id": "ru_duma_ballot_list_2021_07",
+      "review_observation": "RU-PTY-07",
+      "role_id": "ru_yabloko_chairman",
+      "holder_name": "Николай Игоревич Рыбаков",
+      "printed_name": "Николай Рыбаков",
+      "role_title": "Председатель партии «ЯБЛОКО» — Chairman of Yabloko",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2023-12-13",
+      "text": "A release dated 13 December 2023 says \"Председатель «Яблока» Николай Рыбаков просит руководителя ФСИН\" to examine a prisoner and ensure his medical care.",
+      "locator": "lead under the dateline \"13 декабря 2023 / Пресс-релиз\""
+    }
+  ],
+  "bounded_scope": "Yabloko chairman observations for CLAUDE-C01-28 only. Congress spans, elections, election reports, continuation, retrospective and registration statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row."
+}
