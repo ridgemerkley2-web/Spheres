@@ -13,8 +13,11 @@ G5, CP1 certification and worldwide character coverage remain open. S23 is next:
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
 | S22 art and performance | **Complete.** Candidate `5d11dd6d`: both full qualification rounds passed all 18 cells; independent frozen-helper verification passed. Final release regression: 1,963 passed, 0 failed, 112 ignored; nine focused tests and eight actual 31-day comparisons passed. | [Closure evidence](campaign-certification/S22/manifest.json), [passing pair02](campaign-certification/S22/qualification-pair-02/README.md), [final validation](campaign-certification/S22/pair02-validation/README.md). Failed pair01 and every earlier failed attempt remain retained; limits are unchanged. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
-| C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
-| Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
+| C01 source repairs | **SOURCE-05/06/17/26 complete**, with independent source/content review; the bounded **CODEX-C01-ACCEPTANCE-01** review task is complete. | [Russian archive](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md), [Brazilian Senate](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/README.md), [Soviet facsimiles](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/README.md). Parent historical coverage remains pending. |
+| C03 cartoon reviewer | **CLAUDE-C03-REVIEW-01 complete.** Browser, narrow layout, keyboard and portable input checks pass. | [Review](campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/README.md). 411 missing portraits remain visible; no new art approval. |
+| C04 successor pilot | **CLAUDE-C04-PREP-01 complete.** Eight explicitly fictional France/Tonga proposals, 73 tests passing. | [Review](campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md). No runtime installation, portraits or automatic appointments. |
+| S23 boundary audit | **CLAUDE-S23-MATRIX-01 complete.** Corrected date/role/art audit, 36 tests passing. | [S23 progress and remaining work](campaign-certification/S23/README.md). Preparation does not complete S23 or C06. |
+| Pending Claude work | C01-23/24/25/27 await independent review. C01-28/29 preserve active Russia/Japan research claims; S24 successor fixtures and E05 company research remain claimed. | Query the bounded task queue; avoid duplicate work and review each new remote delivery. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
@@ -67,7 +70,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 | Later company identity/history | Claude | E05 | Eight-company France/Japan research pilot claimed. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
 | Completed foundation | Codex / retained evidence | S00–S17 | Reference only. Reopen only for a specific reproduced defect; retain the original qualification records. |
 
-## Six additional Claude sections — claims synchronized
+## Six additional Claude sections — four bounded deliveries complete
 
 The user authorized this expanded assignment on 27 September. These are six new
 bounded deliveries, **not six completed roadmap sessions**. They can proceed
@@ -84,9 +87,12 @@ review and submission rules. Suggested order for one worker:
 | [CLAUDE-S24-SUCCESSORS-01](planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md) | 23-successor inventory and isolated activation/load/UI harness. | Authored fixtures labeled; Codex retains full S24 qualification. |
 | [CLAUDE-E05-RESEARCH-01](planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md) | Eight sourced French/Japanese company dossiers and catalog mappings. | Research now; company mechanics remain after S30/CP1. |
 
-Each task has its own allowed files, deliverables and acceptance checks. Claude has
-completed C01-GAPS-01, accepted with repairs in `68a38eb4`; the other five new
-sections are claimed: C03 `28b3c577`, C04 `f1547abd`, S23 `b4c021ab`, S24 `328db128`, and E05 `1966fb06`. Remote handoffs were read; these claim commits contain no accepted implementation. This bounded audit does not complete historical coverage. A parent session may still have unmet dependencies: only
+Each task has its own allowed files, deliverables and acceptance checks.
+C01-GAPS-01, C03-REVIEW-01, C04-PREP-01 and S23-MATRIX-01 are complete as bounded
+deliveries after independent review and repairs. S24 `328db128` and E05 `1966fb06`
+remain active claims with no accepted implementation. C01-28/29 are separately
+registered Russia/Japan research claims. This work does not complete historical
+coverage. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
 44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
 S19 later-outcome evidence, S20 shared interface, historical acceptance and integration.
@@ -167,8 +173,9 @@ The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
 packet state and dependencies separately from canonical session status.
 [Claude's expanded task list](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md) adds six
 independent sections. The [existing research list](planning/ai-handoffs/CLAUDE-C01-NEXT.md)
-tracks the remaining source/content submissions. SOURCE-05/06 and C01-GAPS-01
-are closed as bounded tasks; their parent C01 remains incomplete. Codex completed
+tracks the remaining source/content submissions. SOURCE-05/06/17/26, C01-GAPS-01,
+C03-REVIEW-01, C04-PREP-01 and S23-MATRIX-01 are closed as bounded tasks;
+their parent character sessions remain incomplete. Codex completed
 [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md) and has completed
 S20's combined map, province and room navigation. S22 performance qualification is complete; S23 remains planned pending C06.
 
@@ -177,10 +184,11 @@ Copy this into Claude to resume its claimed sections:
 > Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
 > docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
 > `python tools/planning/workboard.py --tasks --owner Claude`. Start with
-> one of your five existing claimed expanded sections. C01-GAPS-01 is complete; do not repeat it.
+> one of your existing active claims: S24 successor fixtures, E05 company research,
+> C01-28 Russia or C01-29 Japan. Skip the four completed expanded deliveries.
 > Read that task's handoff, record your branch/base and claim, and build its bounded
 > deliverables with the required checks. The six new sections do not wait on unrelated
-> source repairs. Keep existing claims, skip completed SOURCE-05/06, and do not duplicate pending submissions.
+> source repairs. Keep existing claims, skip completed SOURCE-05/06/17/26, and do not duplicate pending submissions.
 > Return exact ready-for-review commits and evidence. Do not edit shared runtime,
 > install unaccepted content or change canonical roadmap status.
 

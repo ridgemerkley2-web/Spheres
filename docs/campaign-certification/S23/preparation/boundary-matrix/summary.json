@@ -275,14 +275,16 @@
    "status": "pending",
    "status_source": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
    "reviewed_head": "09f41dd4bbe05cec693e619eedd1740aec897d54",
-   "sources_listed": 31
+   "sources_listed": 30
   }
  ],
  "packets_without_report": [],
  "integration_records_not_packet_acceptance": [
   "CLAUDE-C01-GAPS-01",
   "CLAUDE-C01-SOURCE-05",
-  "CLAUDE-C01-SOURCE-06"
+  "CLAUDE-C01-SOURCE-06",
+  "CLAUDE-C01-SOURCE-17",
+  "CLAUDE-C01-SOURCE-26"
  ],
  "executive_pairing": {
   "France": [],
@@ -899,10 +901,10 @@
        "production_party": 3,
        "executive": 1
       },
-      "cases": 563,
+      "cases": 561,
       "case_kinds": {
-       "attestation_day": 12,
-       "attestation_day_after": 12,
+       "attestation_day": 11,
+       "attestation_day_after": 11,
        "creation_day_after": 1,
        "creation_day_before": 1,
        "creation_day_of": 1,
@@ -923,7 +925,7 @@
        "yearly": 460
       },
       "observations_by_acceptance": {
-       "pending": 7,
+       "pending": 6,
        "unattributed_intake": 4
       },
       "research_yearly_status": {
@@ -951,7 +953,7 @@
      },
      "headline": [
       "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
-      "Research holder observations by acceptance: pending 7, unattributed_intake 4.",
+      "Research holder observations by acceptance: pending 6, unattributed_intake 4.",
       "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
       "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -1533,8 +1535,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/brazil-presidents-1990-2026-10.md",
-   "bytes": 64132,
-   "sha256": "0b0e97d43d00c5199f3a1a9648615f5c398d9fbee0cacd9e8ef520b3e06d2902",
+   "bytes": 75010,
+   "sha256": "8726df2d0686246977681b4df04250c9c4b4386a9869a884ecdb082eb7c1ae09",
    "newline_normalized": true,
    "exists": true
   },
@@ -1547,15 +1549,15 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/brazil-vice-presidents-1990-2026-17.md",
-   "bytes": 63984,
-   "sha256": "5c471a52b1e9418b27d8c378f71bf58afeee822d7f271dac914fba3a0e6c670f",
+   "bytes": 77139,
+   "sha256": "ba4b7e94ea0d3590f22557f13cc9e41ee5790203bf648d115717d4a5d599ec5d",
    "newline_normalized": true,
    "exists": true
   },
   {
    "path": "docs/campaign-certification/C01/research/brazil.json",
-   "bytes": 774754,
-   "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36",
+   "bytes": 786813,
+   "sha256": "d4136c3d287d604f980f1da2107b31568790366debeb20eb0bc91a3b82122009",
    "newline_normalized": true,
    "exists": true
   },
@@ -1736,8 +1738,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/ussr-government-and-supreme-soviet-1990-1991-26.md",
-   "bytes": 72704,
-   "sha256": "69ed13a48616260054892a7bdab7cacb810485ac453a20116be21fb908ba1c1a",
+   "bytes": 93463,
+   "sha256": "23e9f262d6115e945d4010431cd4188ffc4b41764d6e2242f9ffc841bdd434fb",
    "newline_normalized": true,
    "exists": true
   },
@@ -1750,8 +1752,8 @@
   },
   {
    "path": "docs/campaign-certification/C01/research/ussr.json",
-   "bytes": 191099,
-   "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062",
+   "bytes": 199067,
+   "sha256": "68b7d66a5ce6d5f4b88f5ea670c265e348f93ef689309b87967308d48e69c0b8",
    "newline_normalized": true,
    "exists": true
   },

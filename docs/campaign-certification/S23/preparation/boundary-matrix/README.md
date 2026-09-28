@@ -93,7 +93,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-20 | pending | 73 |
 | CLAUDE-C01-21 | pending | 59 |
 | CLAUDE-C01-22 | pending | 108 |
-| CLAUDE-C01-26 | pending | 31 |
+| CLAUDE-C01-26 | pending | 30 |
 
 ## Coverage by country
 
@@ -106,7 +106,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | SouthAfrica | SouthAfrica | 7 / 7 / 1 | 911 | 4/259 | 151/259 | 13/151 |
 | Tonga | Tonga | 15 / 0 / 1 | 920 | 15/555 | none | none |
 | SaudiArabia | SaudiArabia | 10 / 0 / 1 | 623 | 0/370 | none | none |
-| USSR -> Russia | USSR | 6 / 3 / 1 | 563 | 0/222 | 0/111 | none |
+| USSR -> Russia | USSR | 6 / 3 / 1 | 561 | 0/222 | 0/111 | none |
 | USSR -> Russia | Russia | 9 / 5 / 1 | 885 | 3/333 | 0/185 | none |
 
 ## Headline findings
@@ -194,7 +194,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 **USSR**
 
 - Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.
-- Research holder observations by acceptance: pending 7, unattributed_intake 4.
+- Research holder observations by acceptance: pending 6, unattributed_intake 4.
 - Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.
 - Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -317,7 +317,7 @@ established holders at those samples; for the executive they count the campaign-
 | USSR | `research:su_president` President of the USSR | pending 1, unattributed_intake 1 | 0/0/0/0/36/0/1 | 3 | 4 | - |
 | USSR | `research:su_congress_deputies` USSR people's deputies in Congress | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | USSR | `research:su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | pending 2, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 5 | - |
-| USSR | `research:su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | pending 4 | 0/0/0/0/37/0/0 | 0 | 8 | - |
+| USSR | `research:su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | pending 3 | 0/0/0/0/37/0/0 | 0 | 6 | - |
 | Russia | `executive` none at campaign start (successor identity) | pending 8 | 3/0/0/32/2/0/0 | 27 | 0 | - |
 | Russia | `party:ru_ldpr` Liberal Democratic Party of Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Russia | `party:ru_vybor` Russia's Choice | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -345,4 +345,4 @@ established holders at those samples; for the executive they count the campaign-
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06) do not change a packet's class.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26) do not change a packet's class.

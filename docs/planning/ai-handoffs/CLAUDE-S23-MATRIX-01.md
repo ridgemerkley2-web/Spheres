@@ -1,7 +1,12 @@
 # CLAUDE-S23-MATRIX-01 — historical and cartoon boundary audit
 
-Owner: Claude. State: **queued**. Parent: S23, **preparation only**.
-Suggested branch: `claude/s23-matrix-01`.
+Owner: Claude; reviewer/integrator: Codex. State: **complete — bounded preparation only** (28 September 2026).
+Submitted `8c9f6ce1`, integrated with repairs at `36740f8b`. All 36 tests pass.
+See [independent review](../../campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/README.md)
+and the regenerated [coverage report](../../campaign-certification/S23/preparation/boundary-matrix/README.md).
+The audit preserves uncertain dates, missing history/art and campaign divergence; it is not native replay.
+S23 remains planned pending C06. Parent: S23, **preparation only**.
+Branch: `claude/s23-matrix-01`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build

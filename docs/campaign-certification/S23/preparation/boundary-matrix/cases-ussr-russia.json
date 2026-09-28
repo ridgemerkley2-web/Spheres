@@ -24,10 +24,10 @@
      "production_party": 3,
      "executive": 1
     },
-    "cases": 563,
+    "cases": 561,
     "case_kinds": {
-     "attestation_day": 12,
-     "attestation_day_after": 12,
+     "attestation_day": 11,
+     "attestation_day_after": 11,
      "creation_day_after": 1,
      "creation_day_before": 1,
      "creation_day_of": 1,
@@ -48,7 +48,7 @@
      "yearly": 460
     },
     "observations_by_acceptance": {
-     "pending": 7,
+     "pending": 6,
      "unattributed_intake": 4
     },
     "research_yearly_status": {
@@ -76,7 +76,7 @@
    },
    "headline": [
     "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
-    "Research holder observations by acceptance: pending 7, unattributed_intake 4.",
+    "Research holder observations by acceptance: pending 6, unattributed_intake 4.",
     "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
     "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -1038,8 +1038,7 @@
    "observations": [
     "su_government_head#1",
     "su_government_head#2",
-    "su_government_head#3",
-    "su_government_head#4"
+    "su_government_head#3"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1049,9 +1048,7 @@
     {"date":"1990-11-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_government_head#2","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1990-11-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_government_head#3","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-08-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_government_head#4","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-08-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["su_government_head#3","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1991-08-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1104,13 +1101,13 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 60,
+    "cases": 58,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
     },
     "boundary_cases": 0,
-    "attestation_cases": 8
+    "attestation_cases": 6
    }
   },
   {
@@ -3325,7 +3322,7 @@
     "su_ips_cm_1177_ryzhkov_signs_as_chairman_19901124"
    ],
    "note": "Attested on 24 November 1990: Council of Ministers resolution No. 1177 on the legal portal is signed 'Председатель Совета Министров СССР Н.РЫЖКОВ', the latest signature of his reviewed. A separate observation from 12 January 1990; the signature of 26 May 1990 (resolution 525) is a role claim.",
-   "uncertainty": "No reviewed source states the day his chairmanship ended: the reports of his heart attack and illness (26-27 December 1990), Law 1862-I, the Premier's approval of 14 January 1991 and the pension resolution 1907-I (a lead) are not used as an end, so no until is set.",
+   "uncertainty": "No reviewed source states the day his chairmanship ended: the reports of his heart attack and illness (26-27 December 1990), Law 1862-I, the Premier's approval of 14 January 1991 (its only recorded publication withdrawn; SU-GOV-05) and the pension resolution 1907-I (a lead) are not used as an end, so no until is set.",
    "sources": [
     "su_ips_cm_res_1177_19901124"
    ],
@@ -3342,34 +3339,12 @@
    "name": "Валентин Сергеевич Павлов",
    "from": null,
    "until": null,
-   "attested_on": "1991-01-14",
-   "claim_ids": [
-    "su_izv13_vs_approves_pavlov_premier_19910114"
-   ],
-   "note": "Named as the resolution prints him ('товарища Павлова Валентина Сергеевича', genitive). Attested on 14 January 1991: the Supreme Soviet's resolution 'О премьер-министре СССР', signed by the Chairman of the Supreme Soviet and published in Izvestia No. 13 of 15 January 1991, resolves 'Утвердить премьер-министром СССР' him.",
-   "uncertainty": "The resolution has no effect clause and no source states the day he took office, so from is null; the President's submission recited in it is a separate claim. The publication is a dynamic page rendering (see the source's provenance note).",
-   "sources": [
-    "su_izvestia_19910115_no13_p1"
-   ],
-   "acceptance": "pending",
-   "packets": [
-    "CLAUDE-C01-26"
-   ],
-   "source_classes": {
-    "pending": 1
-   }
-  },
-  "su_government_head#4": {
-   "role": "research:su_government_head",
-   "name": "Валентин Сергеевич Павлов",
-   "from": null,
-   "until": null,
    "attested_on": "1991-08-19",
    "claim_ids": [
     "su_km_943r_pavlov_signs_as_premier_19910819"
    ],
-   "note": "Attested on 19 August 1991: Cabinet of Ministers order 943р on the legal portal is signed 'Премьер-министр СССР В. Павлов', the latest signature of his reviewed.",
-   "uncertainty": "The same order entrusts the general direction of the Cabinet to the First Deputy Premier because of his stated illness (a claim, never a holder). No until: decree УП-2443 (22 August) releases him and refers the decision to the Supreme Soviet, which agreed on 28 August (2366-I), and neither states the day the office ended; an integrator ruling is requested. Resolution 2371-I's retrospective styling of 29 August is not an attestation.",
+   "note": "Named as decree УП-2443 prints him in full ('Павлова Валентина Сергеевича', genitive). Attested on 19 August 1991: Cabinet of Ministers order 943р on the legal portal is signed 'Премьер-министр СССР В. Павлов', the latest signature of his reviewed.",
+   "uncertainty": "The same order entrusts the general direction of the Cabinet to the First Deputy Premier because of his stated illness (a claim, never a holder). No until: decree УП-2443 (22 August) releases him and refers the decision to the Supreme Soviet, which agreed on 28 August (2366-I), and neither states the day the office ended; an integrator ruling is requested. Resolution 2371-I's retrospective styling of 29 August is not an attestation. It is his only observation: the observation of 14 January 1991 (the Supreme Soviet's approval, recorded from Izvestia) was withdrawn by the CLAUDE-C01-SOURCE-26 review (SU-GOV-05).",
    "sources": [
     "su_km_rasp_943r_19910819"
    ],
@@ -3449,7 +3424,7 @@
     "su_garf_1362i_lukyanov_signs_as_chairman_19900315"
    ],
    "note": "Named as the Supreme Soviet's resolution 2368-I and the Congress's resolution 2389-I print him in full ('Лукьянова Анатолия Ивановича'); the 1990 original is signed '(А.Лукьянов)'. Attested on 15 March 1990: he signs as 'Председатель Верховного Совета СССР' the original of the Congress's resolution 1362-I of that date (GARF, Rosarkhiv exhibit 09-30).",
-   "uncertainty": "The date of signature is not stated, and the resolution electing him Chairman (1367-I) was not read on an official host, so from is null. His later signatures of 27 December 1990 (1870-I) and 14 January 1991 are role claims. The existing observation of 14 March 1990 has no end, and none is inferred from this one.",
+   "uncertainty": "The date of signature is not stated, and the resolution electing him Chairman (1367-I) was not read on an official host, so from is null. His later signature of 27 December 1990 (1870-I) is a role claim; that of 14 January 1991, recorded from Izvestia, was withdrawn by the CLAUDE-C01-SOURCE-26 review. The existing observation of 14 March 1990 has no end, and none is inferred from this one.",
    "sources": [
     "su_garf_exhibit_res_1362i_19900315"
    ],

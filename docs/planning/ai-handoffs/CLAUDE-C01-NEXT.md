@@ -6,15 +6,16 @@ The machine-readable task queue is `docs/planning/ai-task-queue.json`; query it 
 `python tools/planning/workboard.py --tasks --owner Claude` or `--task TASK_ID`.
 This is a work assignment, not a claim that Claude has begun a repair.
 
-Updated inventory, 28 September 2026 UTC: SOURCE-05 and SOURCE-06 are **complete**
-after independent Codex source/content review, merged at `00860644` and `9f94f684`.
-C01-GAPS-01 is also **complete**, accepted with repairs at `68a38eb4`. These bounded
-closures do not promote the parent research packets to complete historical coverage.
+Updated inventory, 28 September 2026 UTC: **SOURCE-05/06/17/26 are complete** after
+independent Codex source/content review. Their immutable review packets are under
+`docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-XX/`.
+C01-GAPS-01 and the bounded CODEX-C01-ACCEPTANCE-01 follow-up review are also
+complete. These closures do not accept the parent packets as complete histories.
 
-SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, C01-24 `a7a9e39c`,
-C01-25 `c06839c1`, and C01-27 `0765c590` declare `ready_for_review`. Their remote
-handoffs were read; independent acceptance remains pending. Do not duplicate them.
-The five remaining [expanded sections](CLAUDE-EXPANDED-NEXT.md) are now claimed.
+C01-23/24/25/27 declare `ready_for_review`; independent acceptance remains pending.
+C01-28/29 are active Russia/Japan claims. Do not duplicate them. Four of the six
+[expanded sections](CLAUDE-EXPANDED-NEXT.md) are accepted bounded deliveries;
+S24 successor fixtures and E05 company research remain claimed.
 
 ## Existing source-review follow-ups
 
@@ -26,10 +27,10 @@ The five remaining [expanded sections](CLAUDE-EXPANDED-NEXT.md) are now claimed.
    address against the recorded extract. Identify dynamic-page changes versus
    changed factual content. Preserve the title-only observation; it does not
    establish Fahd's accession or uninterrupted tenure.
-3. **CLAUDE-C01-SOURCE-17:** compare the Brazilian Senate diary download response
+3. **CLAUDE-C01-SOURCE-17 — complete:** Historical assignment: compare the Brazilian Senate diary download response
    against its recorded extract. Record the exact pages, publication identity and
    factual agreement/disagreement rather than replacing a checksum blindly.
-4. **CLAUDE-C01-SOURCE-26:** document provenance and legibility for the Vedomosti
+4. **CLAUDE-C01-SOURCE-26 — complete:** Historical assignment: document provenance and legibility for the Vedomosti
    issue scans permitted by C01-26. Explain why the PDFs qualify as primary
    facsimiles while the same host's HTML transcriptions remain excluded. Codex
    independently decides acceptance; a test allowlist is not historical proof.
@@ -53,8 +54,11 @@ retain disclosed limitations and propose further bounded review separately.
 | C01-24 | `claude/c01-to-24` | Tongan Speakers, 1990–2026 |
 | C01-25 | `claude/c01-sa-25` | Saudi Shura Council / Allegiance Commission chairs |
 | C01-27 | `claude/c01-in-27` | BJP presidents, 1990–2026 |
+| C01-28 | `claude/c01-ru-28` | Five Russian party-leader chains; active claim |
+| C01-29 | `claude/c01-jp-29` | Japan Socialist / Social Democratic Party chairs; active claim |
 
-C01-23/24/25/27 are now submitted for review at the heads above. Preserve each branch; fetch current integration before
+C01-23/24/25/27 are submitted for review; C01-28/29 remain in progress.
+See their queue/handoff entries for exact reviewed claim or submission heads. Preserve each branch; fetch current integration before
 continuing unfinished work. Do not
 restart these as new packet IDs. Follow their existing bounded deliverables.
 Regenerate the shared research index separately; run tests with actual game data

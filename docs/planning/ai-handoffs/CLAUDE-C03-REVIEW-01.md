@@ -1,9 +1,13 @@
 # CLAUDE-C03-REVIEW-01 — cartoon review workbench
 
-Owner: Claude; reviewer/integrator: Codex. State: **ready_for_review** (submitted 28 September 2026 UTC; not reviewed,
-not accepted, not complete). Parent: C03, **preparation only**. Branch: `claude/c03-review-01`. Base: `e41aa18d`;
+Owner: Claude; reviewer/integrator: Codex. State: **complete — bounded tooling only** (28 September 2026).
+Accepted with portability/provenance repairs `ae3610b4`: 24 Python tests and 15 Node/browser entries pass.
+See [independent integration review](../../campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/README.md).
+No artwork, historical coverage or C03/C06/S23 completion is approved by this tooling review.
+The original submission details and sample proposals below retain their historical scope.
+Parent: C03, **preparation only**. Branch: `claude/c03-review-01`. Base: `e41aa18d`;
 claim `28b3c577`; integration `846df479` merged at `c1a53196`; implementation `1b029cad`; submission: the commit that
-adds the Result below. Touched paths: only the owned paths below. Next: Codex review of the tooling, export and sample.
+adds the Result below. Touched paths: only the owned paths below. Next: use the accepted reviewer for a separately sourced cartoon batch.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build

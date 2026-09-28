@@ -1,0 +1,20 @@
+F.........................
+======================================================================
+FAIL: test_committed_output_is_current (test_certified_gap_ledger.CheckedInLedger.test_committed_output_is_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_gap_ledger.py", line 432, in test_committed_output_is_current
+    self.assertEqual(ledger.stale(self.files), [])
+AssertionError: Lists differ: ['docs/campaign-certification/C01/gap-ledger/ledger.json'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'docs/campaign-certification/C01/gap-ledger/ledger.json'
+
+- ['docs/campaign-certification/C01/gap-ledger/ledger.json']
++ []
+
+----------------------------------------------------------------------
+Ran 26 tests in 2.931s
+
+FAILED (failures=1)

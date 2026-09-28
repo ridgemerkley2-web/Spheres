@@ -32,27 +32,29 @@
       "id": "CLAUDE-C01-SOURCE-17",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 3,
       "title": "Compare the changed Brazilian Senate diary response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Remote handoff declares ready_for_review at efeac5461022ed27f27973cbc215615339ee5c10. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission.",
+      "next": "Bounded source repair accepted after independent live/archive response and cited-page review, plus qualification repair bdb35a07. Three reviewed extracts are pinned; the earlier unavailable body discrepancy remains unexplained. Parent Brazil/C01 history remains pending.",
       "branch": "claude/c01-source-17",
-      "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17"
+      "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17",
+      "review_revision": "1c5f129f"
     },
     {
       "id": "CLAUDE-C01-SOURCE-26",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 4,
       "title": "Review Vedomosti facsimile provenance",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Remote handoff declares ready_for_review at c1f537f2d5d364ef03fde75cc32db576af17aa39. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission.",
+      "next": "Bounded source repair accepted after 41 exact reported retrievals, corrected-quotation review and withdrawal of unsupported Izvestia evidence. Thirty reviewed extracts are pinned. Parent chronology and C12 source admissibility remain separate; no C01/C06 closure.",
       "branch": "claude/c01-source-26",
-      "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6"
+      "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6",
+      "review_revision": "1c5f129f"
     },
     {
       "id": "CLAUDE-C01-23",
@@ -76,7 +78,8 @@
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-to-24",
       "depends_on": [],
-      "next": "Remote handoff declares ready_for_review at a7a9e39cf33d473bb6114f4636111e01fdfb3995. Await independent Codex scope, source and test review; not merged or accepted. Do not duplicate this submission."
+      "next": "Remote ready_for_review handoff inspected at a32d44536b4ea290e57c8b51be2e5bf469c344d0, including follow-up fixes/index commit. Independent content/source/test review remains pending; do not duplicate.",
+      "submission_revision": "a32d44536b4ea290e57c8b51be2e5bf469c344d0"
     },
     {
       "id": "CLAUDE-C01-25",
@@ -88,7 +91,8 @@
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-sa-25",
       "depends_on": [],
-      "next": "Remote handoff declares ready_for_review at c06839c1908d4ac691fa8de28c66eee97369a7fe. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission."
+      "next": "Remote ready_for_review handoff inspected at 78e52b03cb2f321ed30e621fe0512e92b2e1e579, including follow-up fixes/index commit. Independent content/source/test review remains pending; do not duplicate.",
+      "submission_revision": "78e52b03cb2f321ed30e621fe0512e92b2e1e579"
     },
     {
       "id": "CLAUDE-C01-27",
@@ -117,7 +121,7 @@
       "id": "CODEX-C01-ACCEPTANCE-01",
       "owner": "Codex",
       "session": "C01",
-      "state": "blocked",
+      "state": "complete",
       "priority": 3,
       "title": "Independently review source follow-ups before historical acceptance",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
@@ -127,7 +131,8 @@
         "CLAUDE-C01-SOURCE-17",
         "CLAUDE-C01-SOURCE-26"
       ],
-      "next": "Independently compare the returned primary content, record unresolved limitations, and accept only the bounded claims supported by evidence. Passing technical tests alone does not close C01."
+      "next": "All four assigned SOURCE-05/06/17/26 follow-up reviews are complete with pinned bounded decisions and preserved limitations. This closes the review task only; parent historical packets and complete country coverage remain pending.",
+      "review_revision": "1c5f129f"
     },
     {
       "id": "CODEX-C01-SOURCE-06-REVIEW",
@@ -162,7 +167,7 @@
       "title": "Build a cartoon review workbench",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
       "depends_on": [],
-      "next": "Bounded cartoon review workbench accepted with CRLF/UTF-8 provenance repairs in ae3610b4: 24 Python and 15 Node/browser entries pass. Review packet docs/campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/. No new art approval, historical acceptance or C03/C06/S23 closure.",
+      "next": "Bounded cartoon review workbench accepted with CRLF/UTF-8 provenance repairs: 24 Python and 15 Node/browser entries pass. No new art approval, historical acceptance or C03/C06/S23 closure.",
       "branch": "claude/c03-review-01",
       "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10",
       "review_revision": "ae3610b4"
@@ -171,27 +176,29 @@
       "id": "CLAUDE-C04-PREP-01",
       "owner": "Claude",
       "session": "C04",
-      "state": "claimed",
+      "state": "complete",
       "priority": 11,
       "title": "Prepare a fictional successor pilot",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C04-PREP-01.md",
       "depends_on": [],
-      "next": "Remote claim inspected at f1547abd111f580ea2045c57906cc1d1af3356f1. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "next": "Eight fictional France/Tonga proposal dossiers and validator accepted with independent source review and constraint repairs; 73 tests pass. C04/C06/S23 remain open; no runtime installation or art approval.",
       "branch": "claude/c04-prep-01",
-      "claim_revision": "f1547abd111f580ea2045c57906cc1d1af3356f1"
+      "claim_revision": "f1547abd111f580ea2045c57906cc1d1af3356f1",
+      "review_revision": "99f8a3bc"
     },
     {
       "id": "CLAUDE-S23-MATRIX-01",
       "owner": "Claude",
       "session": "S23",
-      "state": "claimed",
+      "state": "complete",
       "priority": 12,
       "title": "Build the historical and cartoon boundary audit",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md",
       "depends_on": [],
-      "next": "Remote claim inspected at b4c021ab911851382856061a8c2c00b716b7b6f7. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "next": "Corrected source-derived date/role/art audit accepted as preparation only; 36 tests pass. Recomputed output preserves uncertain dates, missing history/art and saved incumbents. S23 remains planned pending C06; no native replay or certificate granted.",
       "branch": "claude/s23-matrix-01",
-      "claim_revision": "b4c021ab911851382856061a8c2c00b716b7b6f7"
+      "claim_revision": "b4c021ab911851382856061a8c2c00b716b7b6f7",
+      "review_revision": "36740f8b"
     },
     {
       "id": "CLAUDE-S24-SUCCESSORS-01",
