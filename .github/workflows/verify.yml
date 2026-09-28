@@ -123,7 +123,9 @@ jobs:
         if: always()
         with:
           name: portable-package-${{ matrix.os }}
-          compression-level: 0
+          # Compress the artifact transport only; the deterministic inner ZIP
+          # and its checksums remain byte-for-byte unchanged after download.
+          compression-level: 6
           retention-days: 7
           path: |
             artifacts/release/*.zip
