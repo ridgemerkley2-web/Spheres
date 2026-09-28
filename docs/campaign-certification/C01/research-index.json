@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 34,
-    "sources": 1329,
-    "source_claims": 3731,
+    "sources": 1328,
+    "source_claims": 3728,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -461,7 +461,7 @@
       "organization_observations": 1,
       "institution_observations": 4,
       "role_observations": 6,
-      "source_claims": 98,
+      "source_claims": 95,
       "mapping_pending": 5,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -2708,8 +2708,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 191099,
-      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
+      "bytes": 199067,
+      "sha256": "6a648d4b01a0488bdd99105dc12312de591871d191428c6986ac9c050a6e7cc9"
     },
     {
       "path": "tools/avatars/campaign_research.py",
