@@ -33,7 +33,7 @@ attestation never extends.
 | `boundary_day` | A source states a start or end on this day; the listed observations begin or end here. |
 | `established` | Inside a closed interval whose start and end are both stated (research) or a production term active under party_leadership::historical_on. |
 | `attested` | A research observation is attested on exactly this day. |
-| `period_attested` | Inside a research attested period or month-precision observation window. |
+| `period_attested` | A holder was observed sometime in this period; not an exact-day incumbent or a continuous term. Listed as possible, never counted as identified. |
 | `bracketed` | Between two evidence points of one observation; interpolated, not a stated interval. |
 | `uncertain` | Only one-sided or imprecise bounds overlap the date; possible holders are pointers, not incumbents. |
 | `unknown` | The role has evidence, but none covers this date. |
@@ -45,7 +45,8 @@ attestation never extends.
 | `accepted` | Evidence belongs to a C01 packet with an integration acceptance record (bounded research acceptance, not country certification). |
 | `pending` | Evidence belongs to a C01 packet integrated on 27 September 2026 whose historical acceptance remains pending. |
 | `unclassified_packet` | Evidence belongs to a C01 packet report with neither an acceptance record nor a pending-integration listing. |
-| `s10_intake` | Evidence cites only S10 discovery-intake sources that no C01 packet report claims. |
+| `unattributed_intake` | Checked-in discovery evidence that no numbered C01 packet report claims; its intake batch and acceptance are not established by this audit. |
+| `mixed_intake` | Evidence mixes accepted packet sources with unattributed discovery sources; the whole observation is not labelled accepted. |
 | `production_registry` | spheres-sim/data/party_leaders.json: the partial production registry the game serves; not reviewed as C01 research. |
 | `fictional_catalog` | Authored future fiction (spheres-web/data/future_candidates_2035.json); never historical evidence. |
 
@@ -63,7 +64,7 @@ attestation never extends.
 | `identity_not_present_at_campaign_start` | A successor identity has no office or party assignment at the 1990 start. |
 | `no_campaign_observation` | No saved campaign was observed for that date. |
 
-The committed matrix holds actual production observations only. Divergent-campaign behaviour is
+The committed matrix holds source-derived production observations using pinned runtime mirrors; no native execution is performed. Divergent-campaign behaviour is
 asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.py`, never here.
 
 ## Packet classification
@@ -99,14 +100,14 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
 | France | France | 0 / 15 / 1 | 924 | none | 197/555 | 23/198 |
-| Japan | Japan | 5 / 8 / 1 | 931 | 9/185 | 151/296 | 15/151 |
-| India | India | 3 / 4 / 1 | 537 | 6/111 | 109/148 | 10/109 |
-| Brazil | Brazil | 3 / 6 / 1 | 661 | 20/111 | 99/222 | 7/100 |
-| SouthAfrica | SouthAfrica | 7 / 7 / 1 | 884 | 4/259 | 151/259 | 13/151 |
-| Tonga | Tonga | 15 / 0 / 1 | 889 | 23/555 | none | none |
-| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 612 | 0/370 | none | none |
-| USSR -> Russia | USSR | 6 / 3 / 1 | 540 | 0/222 | 0/111 | none |
-| USSR -> Russia | Russia | 9 / 5 / 1 | 859 | 3/333 | 0/185 | none |
+| Japan | Japan | 5 / 8 / 1 | 1013 | 9/185 | 151/296 | 15/151 |
+| India | India | 3 / 4 / 1 | 568 | 6/111 | 109/148 | 10/109 |
+| Brazil | Brazil | 3 / 6 / 1 | 688 | 20/111 | 99/222 | 7/100 |
+| SouthAfrica | SouthAfrica | 7 / 7 / 1 | 911 | 4/259 | 151/259 | 13/151 |
+| Tonga | Tonga | 15 / 0 / 1 | 920 | 15/555 | none | none |
+| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 623 | 0/370 | none | none |
+| USSR -> Russia | USSR | 6 / 3 / 1 | 563 | 0/222 | 0/111 | none |
+| USSR -> Russia | Russia | 9 / 5 / 1 | 885 | 3/333 | 0/185 | none |
 
 ## Headline findings
 
@@ -122,18 +123,19 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Japan
 
-- Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 44, s10_intake 5.
+- Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.
+- Research holder observations by acceptance: pending 44, unattributed_intake 5.
 - Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.
 - Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).
 - Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
 - Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.
 - Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.
+- Portrait window extends past a recorded death: eiichi_nagasue.
 
 ### India
 
-- Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.
+- Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.
 - Research holder observations by acceptance: pending 31.
 - Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.
 - Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).
@@ -146,7 +148,7 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Brazil
 
-- Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.
+- Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.
 - Research holder observations by acceptance: pending 39.
 - Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.
 - Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).
@@ -157,8 +159,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### SouthAfrica
 
-- Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 32, s10_intake 5.
+- Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.
+- Research holder observations by acceptance: pending 32, unattributed_intake 5.
 - Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.
 - Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).
 - Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -169,8 +171,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Tonga
 
-- Research roles: 15 (11 with holder observations); 23 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.
-- Research holder observations by acceptance: accepted 19, s10_intake 10.
+- Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.
+- Research holder observations by acceptance: accepted 19, unattributed_intake 10.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -178,8 +180,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### SaudiArabia
 
-- Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.
-- Research holder observations by acceptance: pending 13, s10_intake 3.
+- Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.
+- Research holder observations by acceptance: pending 13, unattributed_intake 3.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -191,8 +193,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **USSR**
 
-- Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.
-- Research holder observations by acceptance: pending 7, s10_intake 4.
+- Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.
+- Research holder observations by acceptance: pending 7, unattributed_intake 4.
 - Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.
 - Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -201,8 +203,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 **Russia**
 
-- Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 24, s10_intake 5.
+- Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.
+- Research holder observations by acceptance: pending 24, unattributed_intake 5.
 - Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.
 - Successor identity: no executive or party assignment exists at the 1990 campaign start.
 - Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.
@@ -211,126 +213,126 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 ## Role coverage
 
 Yearly counts use the 37 samples from 1 January 1990 to 1 January 2026: identified (boundary day, established,
-attested or period-attested) / bracketed / uncertain / unknown / unresearched / inapplicable. Portraits count
+or exact day attested) / period-observed / bracketed / uncertain / unknown / unresearched / inapplicable. Portraits count
 established holders at those samples; for the executive they count the campaign-start person if retained.
 
-| Identity | Role | Evidence | Yearly id/br/unc/unk/unr/n.a. | Boundary cases | Attestation cases | Portraits bound |
+| Identity | Role | Evidence | Yearly id/period/br/unc/unk/unr/n.a. | Boundary cases | Attestation cases | Portraits bound |
 |---|---|---|---|---:|---:|---|
-| France | `executive` President of the Republic | none | 0/0/0/0/37/0 | 0 | 0 | 0/37 |
-| France | `party:fr_ps` Socialist Party | production_registry 16 | 37/0/0/0/0/0 | 24 | 0 | 3/37 |
-| France | `party:fr_rpr` Rally for the Republic | production_registry 6 | 13/0/0/0/0/24 | 9 | 0 | 5/13 |
-| France | `party:fr_udf/fr_udf_federation` UDF federal / national leadership | production_registry 3 | 18/0/0/19/0/0 | 9 | 0 | 5/18 |
-| France | `party:fr_udf/fr_udf_pr` Parti républicain (PR) | production_registry 3 | 8/0/0/29/0/0 | 9 | 0 | 0/8 |
-| France | `party:fr_udf/fr_udf_dl` Démocratie libérale (DL; former PR) | production_registry 1 | 1/0/0/36/0/0 | 0 | 0 | 0/1 |
-| France | `party:fr_udf/fr_udf_cds` Centre des démocrates sociaux (CDS) | production_registry 2 | 6/0/0/31/0/0 | 9 | 0 | 0/6 |
-| France | `party:fr_udf/fr_udf_fd` Force démocrate (CDS/PSD merger) | production_registry 1 | 3/0/0/34/0/0 | 6 | 0 | 0/3 |
-| France | `party:fr_udf/fr_udf_radical` Parti radical (Valoisien) | production_registry 4 | 10/0/3/24/0/0 | 3 | 0 | 0/10 |
-| France | `party:fr_udf/fr_udf_psd` Parti social-démocrate (PSD) | production_registry 1 | 6/0/0/31/0/0 | 0 | 0 | 0/6 |
-| France | `party:fr_udf/fr_udf_perspectives` Clubs Perspectives et Réalités | production_registry 1 | 6/0/0/31/0/0 | 0 | 0 | 0/6 |
-| France | `party:fr_udf/fr_udf_ppdf` Parti populaire pour la démocratie française (PPDF) | production_registry 1 | 6/0/1/30/0/0 | 0 | 0 | 0/6 |
-| France | `party:fr_udf/fr_udf_direct` Adhérents directs de l'UDF | production_registry 2 | 9/0/0/28/0/0 | 3 | 0 | 0/9 |
-| France | `party:fr_udf/fr_udf_pril` Pôle républicain, indépendant et libéral (PRIL) | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| France | `party:fr_pcf` French Communist Party | production_registry 6 | 37/0/0/0/0/0 | 9 | 0 | 5/38 |
-| France | `party:fr_fn` National Front | production_registry 7 | 37/0/0/0/0/0 | 15 | 0 | 5/37 |
-| Japan | `executive` Prime Minister | pending 30 | 9/0/21/7/0/0 | 0 | 0 | 5/37 |
-| Japan | `party:jp_ldp` Liberal Democratic Party | production_registry 16 | 37/0/0/0/0/0 | 45 | 0 | 2/37 |
-| Japan | `party:jp_jsp/jp_jsp_1945` Japan Socialist Party | production_registry 4 | 6/0/1/0/0/30 | 3 | 0 | 2/6 |
-| Japan | `party:jp_jsp/jp_sdp_1996` Social Democratic Party (renamed Japan Socialist Party) | production_registry 6 | 30/0/1/0/0/6 | 0 | 0 | 0/30 |
-| Japan | `party:jp_komeito/jp_komeito_1964` Komeito (1964 organization) | production_registry 1 | 5/0/0/0/0/32 | 3 | 0 | 5/5 |
-| Japan | `party:jp_komeito/jp_komei_1994` Komei (local assembly and House of Councillors organization) | production_registry 2 | 3/0/1/0/0/33 | 6 | 0 | 0/3 |
-| Japan | `party:jp_komeito/jp_komeito_1998` Komeito (reconstituted in 1998) | production_registry 7 | 28/0/0/0/0/9 | 21 | 0 | 0/28 |
-| Japan | `party:jp_jcp` Japanese Communist Party | production_registry 3 | 37/0/0/0/0/0 | 3 | 0 | 5/37 |
-| Japan | `party:jp_dsp` Democratic Socialist Party | production_registry 3 | 5/0/0/0/0/32 | 3 | 0 | 1/5 |
-| Japan | `research:jp_jcp_executive_committee_chair` 幹部会委員長 — Executive Committee chair | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Japan | `research:jp_jcp_central_committee_chair` 中央委員会議長 — Central Committee chair | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Japan | `research:jp_dpfp_representative` 代表 — party representative | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, s10_intake 2 | 0/0/26/11/0/0 | 3 | 30 | - |
-| Japan | `research:jp_pm` 内閣総理大臣 — Prime Minister of Japan | pending 30 | 9/0/21/7/0/0 | 66 | 16 | - |
-| India | `executive` Prime Minister of India | pending 13 | 6/2/29/0/0/0 | 0 | 0 | 0/37 |
-| India | `party:in_inc` Indian National Congress (I) | production_registry 7 | 36/0/1/0/0/0 | 15 | 0 | 2/36 |
-| India | `party:in_jd` Janata Dal | production_registry 3 | 7/0/30/0/0/0 | 6 | 0 | 4/7 |
-| India | `party:in_bjp` Bharatiya Janata Party | production_registry 14 | 30/0/7/0/0/0 | 18 | 0 | 2/30 |
-| India | `party:in_cpm` Communist Party of India (Marxist) | production_registry 6 | 36/0/1/0/0/0 | 9 | 0 | 2/36 |
-| India | `research:in_inc_president` President of the Indian National Congress | pending 10 | 0/0/0/37/0/0 | 0 | 20 | - |
-| India | `research:in_pm` Prime Minister of India | pending 13 | 6/2/29/0/0/0 | 15 | 16 | - |
-| India | `research:in_president` President of India | pending 8 | 0/0/34/3/0/0 | 21 | 2 | - |
-| Brazil | `executive` President of the Republic | pending 12 | 11/0/25/1/0/0 | 0 | 0 | 0/37 |
-| Brazil | `party:br_pmdb` Brazilian Democratic Movement Party | production_registry 13 | 35/0/0/2/0/0 | 42 | 0 | 0/36 |
-| Brazil | `party:br_pfl` Liberal Front Party | production_registry 1 | 2/0/1/30/0/4 | 3 | 0 | 2/2 |
-| Brazil | `party:br_prn` National Reconstruction Party | production_registry 1 | 0/0/0/37/0/0 | 3 | 0 | - |
-| Brazil | `party:br_pt` Workers' Party | production_registry 11 | 25/0/12/0/0/0 | 0 | 0 | 0/25 |
-| Brazil | `party:br_pdt` Democratic Labour Party | production_registry 2 | 37/0/0/0/0/0 | 3 | 0 | 5/37 |
-| Brazil | `party:br_pds` Democratic Social Party | none | 0/0/0/0/4/33 | 0 | 0 | - |
-| Brazil | `research:br_pt_president` Presidente Nacional do Partido dos Trabalhadores | pending 18 | 1/0/35/1/0/0 | 21 | 24 | - |
-| Brazil | `research:br_president` President of the Federative Republic of Brazil | pending 12 | 11/0/25/1/0/0 | 33 | 2 | - |
-| Brazil | `research:br_vice_president` Vice-President of the Federative Republic of Brazil | pending 9 | 8/0/28/1/0/0 | 27 | 0 | - |
-| SouthAfrica | `executive` State President | pending 10, s10_intake 1 | 4/9/10/14/0/0 | 0 | 0 | 5/37 |
-| SouthAfrica | `party:za_anc` African National Congress | production_registry 5 | 37/0/0/0/0/0 | 9 | 0 | 2/37 |
-| SouthAfrica | `party:za_np` National Party | production_registry 2 | 16/0/0/1/0/20 | 3 | 0 | 5/16 |
-| SouthAfrica | `party:za_ifp` Inkatha Freedom Party | production_registry 2 | 37/0/0/0/0/0 | 3 | 0 | 5/37 |
-| SouthAfrica | `party:za_ff` Freedom Front | production_registry 3 | 22/0/1/9/0/5 | 6 | 0 | 0/22 |
-| SouthAfrica | `party:za_dp` Democratic Party | production_registry 3 | 0/0/1/36/0/0 | 0 | 0 | - |
-| SouthAfrica | `party:za_pac` Pan Africanist Congress | production_registry 2 | 6/0/1/30/0/0 | 3 | 0 | 1/6 |
-| SouthAfrica | `party:za_acdp` African Christian Democratic Party | production_registry 1 | 33/0/0/0/0/4 | 0 | 0 | 0/33 |
-| SouthAfrica | `research:za_anc_president` President of the African National Congress | pending 10 | 0/0/0/37/0/0 | 0 | 20 | - |
-| SouthAfrica | `research:za_da_federal_leader` Federal Leader | s10_intake 2 | 0/0/0/37/0/0 | 0 | 4 | - |
-| SouthAfrica | `research:za_da_federal_chair` Federal Chairperson | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| SouthAfrica | `research:za_da_council_chair` Chairperson of the Federal Council | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| SouthAfrica | `research:za_president_election` President of the Republic of South Africa | pending 9, s10_intake 1 | 4/9/10/14/0/0 | 12 | 18 | - |
-| SouthAfrica | `research:za_state_president` State President of the Republic of South Africa | pending 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| SouthAfrica | `research:za_deputy_president` Deputy President of the Republic of South Africa | pending 12 | 0/0/27/10/0/0 | 3 | 22 | - |
-| Tonga | `executive` King | accepted 3, s10_intake 1 | 6/0/31/0/0/0 | 0 | 0 | 1/37 |
-| Tonga | `research:to_pdp_leader` Party leader | s10_intake 1 | 0/0/0/37/0/0 | 0 | 0 | - |
-| Tonga | `research:to_dpfi_leader` Party leader | accepted 1, s10_intake 1 | 0/0/0/37/0/0 | 0 | 4 | - |
-| Tonga | `research:to_dpfi_president` President of the party (PTOA) | accepted 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Tonga | `research:to_peoples_party_leader` Leader | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Tonga | `research:to_peoples_party_society_president` President (incorporated-society officer reported at trial) | accepted 1 | 0/0/0/37/0/0 | 0 | 0 | - |
-| Tonga | `research:to_peoples_party_society_secretary` Secretary (incorporated-society officer reported at trial) | accepted 1 | 0/0/0/37/0/0 | 0 | 0 | - |
-| Tonga | `research:to_king` King | accepted 3, s10_intake 1 | 6/0/31/0/0/0 | 6 | 2 | - |
-| Tonga | `research:to_pm` Prime Minister | accepted 9, s10_intake 3 | 17/0/5/15/0/0 | 15 | 14 | - |
-| Tonga | `research:to_ministers` Cabinet ministers | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Tonga | `research:to_deputy_pm` Deputy Prime Minister | accepted 3, s10_intake 1 | 0/0/5/32/0/0 | 6 | 4 | - |
-| Tonga | `research:to_privy_councillors` Privy Councillors | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Tonga | `research:to_speaker` Speaker | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Tonga | `research:to_deputy_speaker` Deputy Speaker | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Tonga | `research:to_peoples_representatives` People's representatives | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Tonga | `research:to_nobles_representatives` Nobles' representatives | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `executive` King and Prime Minister | pending 5, s10_intake 2 | 0/10/16/11/0/0 | 0 | 0 | 0/37 |
-| SaudiArabia | `research:sa_king` King | pending 4, s10_intake 1 | 0/10/16/11/0/0 | 3 | 10 | - |
-| SaudiArabia | `research:sa_crown_prince` Crown Prince | pending 8, s10_intake 1 | 0/12/16/9/0/0 | 15 | 16 | - |
-| SaudiArabia | `research:sa_pm` Prime Minister | pending 1, s10_intake 1 | 0/0/0/37/0/0 | 0 | 4 | - |
-| SaudiArabia | `research:sa_cabinet_ministers` Ministers | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_shura_chair` Chairman of the Shura Council | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_shura_members` Shura Council members | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_succession_chair` Chairman | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_succession_secretary` Secretary General | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_succession_members` Commission members | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_municipal_members` Municipal council members | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `executive` General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet | pending 2, s10_intake 2 | 0/0/0/37/0/0 | 0 | 0 | 0/37 |
-| USSR | `party:su_cpsu` Communist Party of the Soviet Union | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `party:su_dr` Democratic Russia | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `party:su_soyuz` Soyuz group | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `research:su_cpsu_general_secretary` General Secretary | s10_intake 1 | 0/0/0/37/0/0 | 0 | 0 | - |
-| USSR | `research:su_cpsu_deputy_general_secretary` Deputy General Secretary | s10_intake 1 | 0/0/0/37/0/0 | 0 | 0 | - |
-| USSR | `research:su_president` President of the USSR | pending 1, s10_intake 1 | 0/0/0/36/0/1 | 3 | 4 | - |
-| USSR | `research:su_congress_deputies` USSR people's deputies in Congress | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| USSR | `research:su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | pending 2, s10_intake 1 | 0/0/0/37/0/0 | 0 | 5 | - |
-| USSR | `research:su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | pending 4 | 0/0/0/37/0/0 | 0 | 8 | - |
-| Russia | `executive` none at campaign start (successor identity) | pending 8 | 3/0/32/2/0/0 | 0 | 0 | - |
-| Russia | `party:ru_ldpr` Liberal Democratic Party of Russia | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Russia | `party:ru_vybor` Russia's Choice | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Russia | `party:ru_kprf` Communist Party of the Russian Federation | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Russia | `party:ru_apr` Agrarian Party of Russia | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Russia | `party:ru_yabloko` Yabloko | none | 0/0/0/0/37/0 | 0 | 0 | - |
-| Russia | `research:ru_duma_faction_20211012_er_head` Руководитель фракции — head of the parliamentary faction | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Russia | `research:ru_duma_faction_20211012_kprf_head` Руководитель фракции — head of the parliamentary faction | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Russia | `research:ru_duma_faction_20211012_srzp_head` Руководитель фракции — head of the parliamentary faction | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Russia | `research:ru_duma_faction_20211012_ldpr_head` Руководитель фракции — head of the parliamentary faction | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Russia | `research:ru_duma_faction_20211012_nl_head` Руководитель фракции — head of the parliamentary faction | s10_intake 1 | 0/0/0/37/0/0 | 0 | 2 | - |
-| Russia | `research:ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | pending 1 | 0/0/35/2/0/0 | 3 | 0 | - |
-| Russia | `research:ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | pending 1 | 0/0/35/2/0/0 | 3 | 0 | - |
-| Russia | `research:ru_president` Президент Российской Федерации — President of the Russian Federation | pending 7 | 3/0/26/8/0/0 | 24 | 0 | - |
-| Russia | `research:ru_government_chairman` Председатель Правительства — Chairman of the Government | pending 15 | 0/0/27/10/0/0 | 30 | 10 | - |
+| France | `executive` President of the Republic | none | 0/0/0/0/0/37/0 | 0 | 0 | 0/37 |
+| France | `party:fr_ps` Socialist Party | production_registry 16 | 37/0/0/0/0/0/0 | 24 | 0 | 3/37 |
+| France | `party:fr_rpr` Rally for the Republic | production_registry 6 | 13/0/0/0/0/0/24 | 9 | 0 | 5/13 |
+| France | `party:fr_udf/fr_udf_federation` UDF federal / national leadership | production_registry 3 | 18/0/0/0/19/0/0 | 9 | 0 | 5/18 |
+| France | `party:fr_udf/fr_udf_pr` Parti républicain (PR) | production_registry 3 | 8/0/0/0/29/0/0 | 9 | 0 | 0/8 |
+| France | `party:fr_udf/fr_udf_dl` Démocratie libérale (DL; former PR) | production_registry 1 | 1/0/0/0/36/0/0 | 0 | 0 | 0/1 |
+| France | `party:fr_udf/fr_udf_cds` Centre des démocrates sociaux (CDS) | production_registry 2 | 6/0/0/0/31/0/0 | 9 | 0 | 0/6 |
+| France | `party:fr_udf/fr_udf_fd` Force démocrate (CDS/PSD merger) | production_registry 1 | 3/0/0/0/34/0/0 | 6 | 0 | 0/3 |
+| France | `party:fr_udf/fr_udf_radical` Parti radical (Valoisien) | production_registry 4 | 10/0/0/3/24/0/0 | 3 | 0 | 0/10 |
+| France | `party:fr_udf/fr_udf_psd` Parti social-démocrate (PSD) | production_registry 1 | 6/0/0/0/31/0/0 | 0 | 0 | 0/6 |
+| France | `party:fr_udf/fr_udf_perspectives` Clubs Perspectives et Réalités | production_registry 1 | 6/0/0/0/31/0/0 | 0 | 0 | 0/6 |
+| France | `party:fr_udf/fr_udf_ppdf` Parti populaire pour la démocratie française (PPDF) | production_registry 1 | 6/0/0/1/30/0/0 | 0 | 0 | 0/6 |
+| France | `party:fr_udf/fr_udf_direct` Adhérents directs de l'UDF | production_registry 2 | 9/0/0/0/28/0/0 | 3 | 0 | 0/9 |
+| France | `party:fr_udf/fr_udf_pril` Pôle républicain, indépendant et libéral (PRIL) | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| France | `party:fr_pcf` French Communist Party | production_registry 6 | 37/0/0/0/0/0/0 | 9 | 0 | 5/38 |
+| France | `party:fr_fn` National Front | production_registry 7 | 37/0/0/0/0/0/0 | 15 | 0 | 5/37 |
+| Japan | `executive` Prime Minister | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | 5/37 |
+| Japan | `party:jp_ldp` Liberal Democratic Party | production_registry 16 | 37/0/0/0/0/0/0 | 45 | 0 | 2/37 |
+| Japan | `party:jp_jsp/jp_jsp_1945` Japan Socialist Party | production_registry 4 | 6/0/0/1/0/0/30 | 3 | 0 | 2/6 |
+| Japan | `party:jp_jsp/jp_sdp_1996` Social Democratic Party (renamed Japan Socialist Party) | production_registry 6 | 30/0/0/1/0/0/6 | 0 | 0 | 0/30 |
+| Japan | `party:jp_komeito/jp_komeito_1964` Komeito (1964 organization) | production_registry 1 | 5/0/0/0/0/0/32 | 3 | 0 | 5/5 |
+| Japan | `party:jp_komeito/jp_komei_1994` Komei (local assembly and House of Councillors organization) | production_registry 2 | 3/0/0/1/0/0/33 | 6 | 0 | 0/3 |
+| Japan | `party:jp_komeito/jp_komeito_1998` Komeito (reconstituted in 1998) | production_registry 7 | 28/0/0/0/0/0/9 | 21 | 0 | 0/28 |
+| Japan | `party:jp_jcp` Japanese Communist Party | production_registry 3 | 37/0/0/0/0/0/0 | 3 | 0 | 5/37 |
+| Japan | `party:jp_dsp` Democratic Socialist Party | production_registry 3 | 5/0/0/0/0/0/32 | 3 | 0 | 1/5 |
+| Japan | `research:jp_jcp_executive_committee_chair` 幹部会委員長 — Executive Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Japan | `research:jp_jcp_central_committee_chair` 中央委員会議長 — Central Committee chair | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Japan | `research:jp_dpfp_representative` 代表 — party representative | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Japan | `research:jp_ldp_party_president` 総裁 — party president | pending 14, unattributed_intake 2 | 0/0/0/26/11/0/0 | 3 | 30 | - |
+| Japan | `research:jp_pm` 内閣総理大臣 — Prime Minister of Japan | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | - |
+| India | `executive` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | 0/37 |
+| India | `party:in_inc` Indian National Congress (I) | production_registry 7 | 36/0/0/1/0/0/0 | 15 | 0 | 2/36 |
+| India | `party:in_jd` Janata Dal | production_registry 3 | 7/0/0/30/0/0/0 | 6 | 0 | 4/7 |
+| India | `party:in_bjp` Bharatiya Janata Party | production_registry 14 | 30/0/0/7/0/0/0 | 18 | 0 | 2/30 |
+| India | `party:in_cpm` Communist Party of India (Marxist) | production_registry 6 | 36/0/0/1/0/0/0 | 9 | 0 | 2/36 |
+| India | `research:in_inc_president` President of the Indian National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
+| India | `research:in_pm` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | - |
+| India | `research:in_president` President of India | pending 8 | 0/0/0/34/3/0/0 | 21 | 2 | - |
+| Brazil | `executive` President of the Republic | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | 0/37 |
+| Brazil | `party:br_pmdb` Brazilian Democratic Movement Party | production_registry 13 | 35/0/0/0/2/0/0 | 42 | 0 | 0/36 |
+| Brazil | `party:br_pfl` Liberal Front Party | production_registry 1 | 2/0/0/1/30/0/4 | 3 | 0 | 2/2 |
+| Brazil | `party:br_prn` National Reconstruction Party | production_registry 1 | 0/0/0/0/37/0/0 | 3 | 0 | - |
+| Brazil | `party:br_pt` Workers' Party | production_registry 11 | 25/0/0/12/0/0/0 | 0 | 0 | 0/25 |
+| Brazil | `party:br_pdt` Democratic Labour Party | production_registry 2 | 37/0/0/0/0/0/0 | 3 | 0 | 5/37 |
+| Brazil | `party:br_pds` Democratic Social Party | none | 0/0/0/0/0/4/33 | 0 | 0 | - |
+| Brazil | `research:br_pt_president` Presidente Nacional do Partido dos Trabalhadores | pending 18 | 1/0/0/35/1/0/0 | 21 | 24 | - |
+| Brazil | `research:br_president` President of the Federative Republic of Brazil | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | - |
+| Brazil | `research:br_vice_president` Vice-President of the Federative Republic of Brazil | pending 9 | 8/0/0/28/1/0/0 | 27 | 0 | - |
+| SouthAfrica | `executive` State President | pending 10, unattributed_intake 1 | 4/0/9/10/14/0/0 | 12 | 20 | 5/37 |
+| SouthAfrica | `party:za_anc` African National Congress | production_registry 5 | 37/0/0/0/0/0/0 | 9 | 0 | 2/37 |
+| SouthAfrica | `party:za_np` National Party | production_registry 2 | 16/0/0/0/1/0/20 | 3 | 0 | 5/16 |
+| SouthAfrica | `party:za_ifp` Inkatha Freedom Party | production_registry 2 | 37/0/0/0/0/0/0 | 3 | 0 | 5/37 |
+| SouthAfrica | `party:za_ff` Freedom Front | production_registry 3 | 22/0/0/1/9/0/5 | 6 | 0 | 0/22 |
+| SouthAfrica | `party:za_dp` Democratic Party | production_registry 3 | 0/0/0/1/36/0/0 | 0 | 0 | - |
+| SouthAfrica | `party:za_pac` Pan Africanist Congress | production_registry 2 | 6/0/0/1/30/0/0 | 3 | 0 | 1/6 |
+| SouthAfrica | `party:za_acdp` African Christian Democratic Party | production_registry 1 | 33/0/0/0/0/0/4 | 0 | 0 | 0/33 |
+| SouthAfrica | `research:za_anc_president` President of the African National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
+| SouthAfrica | `research:za_da_federal_leader` Federal Leader | unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
+| SouthAfrica | `research:za_da_federal_chair` Federal Chairperson | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| SouthAfrica | `research:za_da_council_chair` Chairperson of the Federal Council | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| SouthAfrica | `research:za_president_election` President of the Republic of South Africa | pending 9, unattributed_intake 1 | 4/0/9/10/14/0/0 | 12 | 18 | - |
+| SouthAfrica | `research:za_state_president` State President of the Republic of South Africa | pending 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| SouthAfrica | `research:za_deputy_president` Deputy President of the Republic of South Africa | pending 12 | 0/0/0/27/10/0/0 | 3 | 22 | - |
+| Tonga | `executive` King | accepted 3, unattributed_intake 1 | 6/0/0/31/0/0/0 | 6 | 2 | 1/37 |
+| Tonga | `research:to_pdp_leader` Party leader | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| Tonga | `research:to_dpfi_leader` Party leader | accepted 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
+| Tonga | `research:to_dpfi_president` President of the party (PTOA) | accepted 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Tonga | `research:to_peoples_party_leader` Leader | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Tonga | `research:to_peoples_party_society_president` President (incorporated-society officer reported at trial) | accepted 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| Tonga | `research:to_peoples_party_society_secretary` Secretary (incorporated-society officer reported at trial) | accepted 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| Tonga | `research:to_king` King | accepted 3, unattributed_intake 1 | 6/0/0/31/0/0/0 | 6 | 2 | - |
+| Tonga | `research:to_pm` Prime Minister | accepted 9, unattributed_intake 3 | 9/8/0/5/15/0/0 | 15 | 14 | - |
+| Tonga | `research:to_ministers` Cabinet ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Tonga | `research:to_deputy_pm` Deputy Prime Minister | accepted 3, unattributed_intake 1 | 0/0/0/5/32/0/0 | 6 | 4 | - |
+| Tonga | `research:to_privy_councillors` Privy Councillors | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Tonga | `research:to_speaker` Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Tonga | `research:to_deputy_speaker` Deputy Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Tonga | `research:to_peoples_representatives` People's representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Tonga | `research:to_nobles_representatives` Nobles' representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `executive` King and Prime Minister | pending 5, unattributed_intake 2 | 0/0/10/16/11/0/0 | 3 | 10 | 0/37 |
+| SaudiArabia | `research:sa_king` King | pending 4, unattributed_intake 1 | 0/0/10/16/11/0/0 | 3 | 10 | - |
+| SaudiArabia | `research:sa_crown_prince` Crown Prince | pending 8, unattributed_intake 1 | 0/0/12/16/9/0/0 | 15 | 16 | - |
+| SaudiArabia | `research:sa_pm` Prime Minister | pending 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
+| SaudiArabia | `research:sa_cabinet_ministers` Ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_shura_chair` Chairman of the Shura Council | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_shura_members` Shura Council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_succession_chair` Chairman | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_succession_secretary` Secretary General | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_succession_members` Commission members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_municipal_members` Municipal council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| USSR | `executive` General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet | pending 2, unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 5 | 0/37 |
+| USSR | `party:su_cpsu` Communist Party of the Soviet Union | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| USSR | `party:su_dr` Democratic Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| USSR | `party:su_soyuz` Soyuz group | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| USSR | `research:su_cpsu_general_secretary` General Secretary | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| USSR | `research:su_cpsu_deputy_general_secretary` Deputy General Secretary | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 0 | - |
+| USSR | `research:su_president` President of the USSR | pending 1, unattributed_intake 1 | 0/0/0/0/36/0/1 | 3 | 4 | - |
+| USSR | `research:su_congress_deputies` USSR people's deputies in Congress | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| USSR | `research:su_supreme_soviet_chair` Chairman of the USSR Supreme Soviet | pending 2, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 5 | - |
+| USSR | `research:su_government_head` Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government | pending 4 | 0/0/0/0/37/0/0 | 0 | 8 | - |
+| Russia | `executive` none at campaign start (successor identity) | pending 8 | 3/0/0/32/2/0/0 | 27 | 0 | - |
+| Russia | `party:ru_ldpr` Liberal Democratic Party of Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `party:ru_vybor` Russia's Choice | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `party:ru_kprf` Communist Party of the Russian Federation | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `party:ru_apr` Agrarian Party of Russia | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `party:ru_yabloko` Yabloko | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| Russia | `research:ru_duma_faction_20211012_er_head` Руководитель фракции — head of the parliamentary faction | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Russia | `research:ru_duma_faction_20211012_kprf_head` Руководитель фракции — head of the parliamentary faction | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Russia | `research:ru_duma_faction_20211012_srzp_head` Руководитель фракции — head of the parliamentary faction | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Russia | `research:ru_duma_faction_20211012_ldpr_head` Руководитель фракции — head of the parliamentary faction | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Russia | `research:ru_duma_faction_20211012_nl_head` Руководитель фракции — head of the parliamentary faction | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Russia | `research:ru_rsfsr_president` President of the RSFSR (Президент РСФСР) | pending 1 | 0/0/0/35/2/0/0 | 3 | 0 | - |
+| Russia | `research:ru_rsfsr_vice_president` Vice-President of the RSFSR (вице-президент РСФСР) | pending 1 | 0/0/0/35/2/0/0 | 3 | 0 | - |
+| Russia | `research:ru_president` Президент Российской Федерации — President of the Russian Federation | pending 7 | 3/0/0/26/8/0/0 | 24 | 0 | - |
+| Russia | `research:ru_government_chairman` Председатель Правительства — Chairman of the Government | pending 15 | 0/0/0/27/10/0/0 | 30 | 10 | - |
 
 ## Asset checks
 
@@ -342,4 +344,5 @@ established holders at those samples; for the executive they count the campaign-
 - Only structured holder fields are used. Dates that appear only in claim text, notes or linked documents do not create boundaries, and deaths recorded only in text are not death cases.
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
+- Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
 - Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06) do not change a packet's class.

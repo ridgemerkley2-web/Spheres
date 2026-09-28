@@ -22,26 +22,32 @@
      "production_party": 0,
      "executive": 1
     },
-    "cases": 889,
+    "cases": 920,
     "case_kinds": {
-     "attestation_day": 16,
-     "attestation_day_after": 16,
+     "attestation_day": 17,
+     "attestation_day_after": 17,
+     "attested_period_from_day_after": 5,
+     "attested_period_from_day_before": 5,
+     "attested_period_from_day_of": 5,
+     "attested_period_through_day_after": 5,
+     "attested_period_through_day_before": 5,
+     "attested_period_through_day_of": 5,
      "cutoff_day": 16,
      "cutoff_day_before": 16,
      "fictional_end_exclusive": 16,
      "fictional_last_day": 16,
      "fictional_start_day": 16,
      "future_2030": 16,
-     "handover_day_after": 9,
-     "handover_day_before": 9,
-     "handover_day_of": 9,
+     "handover_day_after": 11,
+     "handover_day_before": 11,
+     "handover_day_of": 11,
      "reference_start": 16,
      "reference_start_day_before": 16,
      "yearly": 736
     },
     "observations_by_acceptance": {
      "accepted": 19,
-     "s10_intake": 10
+     "unattributed_intake": 10
     },
     "research_yearly_status": {
      "established": 15,
@@ -71,8 +77,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 15 (11 with holder observations); 23 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
-    "Research holder observations by acceptance: accepted 19, s10_intake 10.",
+    "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
+    "Research holder observations by acceptance: accepted 19, unattributed_intake 10.",
     "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
     "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -80,7 +86,7 @@
    ]
   }
  ],
- "interpretation": "Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
  "roles": [
   {
    "key": "executive",
@@ -132,12 +138,18 @@
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-09-10","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["to_king#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-09-11","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_king#2","stated_end_day"],["to_king#3","stated_start_day"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-09-12","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2012-03-17","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["to_king#3","within_stated_interval"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2012-03-18","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_king#3","stated_end_day"],["to_king#4","stated_start_day"]]},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2012-03-19","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -151,6 +163,8 @@
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_king#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","possible":[["to_king#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["accepted"],"image":[{"person":"taufaahau_tupou_iv","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -168,14 +182,14 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 60,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "established": 6,
      "uncertain": 31
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0,
+    "boundary_cases": 6,
+    "attestation_cases": 2,
     "yearly_image_bindings": {
      "bound": 1,
      "unbound": 36
@@ -222,6 +236,12 @@
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-03-31","kinds":["attested_period_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-04-01","kinds":["attested_period_from_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pdp_leader#1","within_attested_period"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-04-02","kinds":["attested_period_from_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pdp_leader#1","within_attested_period"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-04-29","kinds":["attested_period_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pdp_leader#1","within_attested_period"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-04-30","kinds":["attested_period_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pdp_leader#1","within_attested_period"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-05-01","kinds":["attested_period_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -259,7 +279,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 58,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
@@ -314,7 +334,7 @@
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-11-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_dpfi_leader#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-11-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_dpfi_leader#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2010-11-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -503,7 +523,7 @@
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-05-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_peoples_party_leader#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-05-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_peoples_party_leader#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-05-29","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -592,6 +612,11 @@
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-18","kinds":["attested_period_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-19","kinds":["attested_period_from_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_president#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-20","kinds":["attested_period_from_day_after","attested_period_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_president#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-21","kinds":["attested_period_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_president#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-22","kinds":["attested_period_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -612,7 +637,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 57,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
@@ -678,6 +703,11 @@
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-18","kinds":["attested_period_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-19","kinds":["attested_period_from_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_secretary#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-20","kinds":["attested_period_from_day_after","attested_period_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_secretary#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-21","kinds":["attested_period_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_peoples_party_society_secretary#1","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-04-22","kinds":["attested_period_through_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -698,7 +728,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 57,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "unknown": 37
@@ -776,7 +806,7 @@
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_king#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_king#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_king#4","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
@@ -839,17 +869,24 @@
     "to_pm#12"
    ],
    "cases": [
-    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"period_attested","holders":[["to_pm#3","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"period_attested","holders":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1989-12-31","kinds":["attested_period_from_day_before","reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["attested_period_from_day_of","reference_start","yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#3","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-02","kinds":["attested_period_from_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#3","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-12-30","kinds":["attested_period_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#3","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-12-31","kinds":["attested_period_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#3","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["attested_period_through_day_after","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-31","kinds":["attested_period_from_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["attested_period_from_day_of","yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-02","kinds":["attested_period_from_day_after"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-12-30","kinds":["attested_period_through_day_before"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-12-31","kinds":["attested_period_through_day_of"],"historical":{"status":"period_attested","reason":"observation_window_not_an_exact_day_or_term","possible":[["to_pm#4","within_attested_period"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["attested_period_through_day_after","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2000-01-02","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2000-01-03","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_pm#5","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
@@ -884,7 +921,7 @@
     {"date":"2018-01-02","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_pm#9","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2018-01-03","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-10-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#10","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-10-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#10","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-10-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
@@ -900,10 +937,10 @@
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-08-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#2","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_pm#2","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-08-04","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_pm#9","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
@@ -921,7 +958,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 80,
+    "cases": 87,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "established": 9,
@@ -1088,7 +1125,7 @@
     {"date":"2025-01-27","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#2","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_deputy_pm#4","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-29","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-12-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_pm#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["attestation_day_after","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_deputy_pm#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
@@ -1260,7 +1297,7 @@
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1348,7 +1385,7 @@
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_speaker#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_deputy_speaker#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1554,13 +1591,14 @@
    "from": null,
    "until": null,
    "attested_on": "2025-12-31",
+   "uncertainty": "This initial Cabinet list is not asserted to remain unchanged through September 2026.",
    "sources": [
     "to_cabinet_2026"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_deputy_pm#2": {
@@ -1572,6 +1610,8 @@
    "claim_ids": [
     "to_sovaleni_cabinet_effective_20211228"
    ],
+   "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
+   "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred.",
    "sources": [
     "to_pmo_cabinet_20211229"
    ],
@@ -1592,6 +1632,8 @@
    "claim_ids": [
     "to_deputy_pm_vaipulu_listed_20241209"
    ],
+   "note": "Printed as 'Hon. Samiu Vaipulu', Deputy Prime Minister and Minister of Justice and Prisons, in the members' list of the minutes of 9 December 2024 (TO-TR24-02). The Assembly's 24 December 2024 roll and the PMO's 6 January 2025 announcement print 'Samiu Kuita Vaipulu'.",
+   "uncertainty": "A dated membership-list observation only; his appointment date and the end of his deputy premiership are unrecorded, and Poasi Mataele Tei's 2021 observation gains no end from it. By 31 January 2025 he is listed as the People's Representative for Vava'u 15, outside the Cabinet (to_vaipulu_peoples_rep_listed_20250131); that is an upper bound, not an end date. His acting premiership is recorded as claims on the Prime Minister's office, not as a holder observation.",
    "sources": [
     "to_assembly_minutes_48_20241209"
    ],
@@ -1612,6 +1654,8 @@
    "claim_ids": [
     "to_eke_cabinet_effective_20250128"
    ],
+   "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
+   "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred.",
    "sources": [
     "to_pmo_eke_cabinet_20250128"
    ],
@@ -1634,10 +1678,10 @@
    "sources": [
     "to_speaker_appointment_2025"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_dpfi_leader#1": {
@@ -1648,13 +1692,14 @@
    "from": null,
    "until": null,
    "attested_on": "2010-11-25",
+   "uncertainty": "Attestation at the election, not an exact founding or leadership-start date.",
    "sources": [
     "to_ipu_2010"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_dpfi_leader#2": {
@@ -1666,6 +1711,8 @@
    "claim_ids": [
     "to_ipu_2014_dpfi_pohiva_leader"
    ],
+   "note": "IPU describes DPFI as led by Pohiva at the 27 November 2014 election and calls him the DPFI leader during the campaign (TO-DPFI-05).",
+   "uncertainty": "IPU-only: an interparliamentary summary, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a start, end or continuous term; it is not joined to the 2010 observation.",
    "sources": [
     "to_ipu_2014"
    ],
@@ -1686,6 +1733,8 @@
    "claim_ids": [
     "to_ptoa_president_helu_20220829"
    ],
+   "note": "Recited in the present tense ('is the President of the party') in the background of the 29 August 2022 leave ruling, CV 55/2022 (TO-DPFI-07).",
+   "uncertainty": "A judicial background recital, probably drawn from the applicants' own filings, not a court finding; it carries the weight of party self-description relayed by the court. No selection date, term, constitution or successor is given. Kept separate from the Party leader role (to_dpfi_leader) because no constitution shows whether they are one office.",
    "sources": [
     "to_sc_helu_piukala_v_ec_20220829"
    ],
@@ -1705,13 +1754,14 @@
    "from": null,
    "until": null,
    "attested_on": "2025-12-18",
+   "uncertainty": "This attestation does not supply accession or a complete reign chronology.",
    "sources": [
     "to_pm_appointment_2025"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_king#2": {
@@ -1726,6 +1776,8 @@
     "to_crown_tupou_iv_death_20060911",
     "to_crown_gtv_devolution_proclamation_20060911"
    ],
+   "note": "King when the period opens: dated royal assents of 12 July and 8 August 1990 (TO-CROWN-01). His reign ended with his death in Auckland at 00:34 on 11 September 2006, Tongan time (23:34 on 10 September, New Zealand time), as Gazette No. 20 records; Gazette No. 19 states that the Crown devolved by his decease (TO-CROWN-03, TO-CROWN-04).",
+   "uncertainty": "The start of the reign (1965) is outside the period and is not structured. The end is the Tongan calendar date of the death, to which the proclamation's devolution wording ties the transfer of the Crown; it is not taken from George Tupou V's proclamation or coronation. The State Funeral, burial and mourning are separate claims.",
    "sources": [
     "to_act_income_tax_amend_1990",
     "to_act_constitution_amend_1990",
@@ -1753,6 +1805,8 @@
     "to_crown_gtv_death_20120318",
     "to_crown_tupou_vi_devolution_proclamation_20120319"
    ],
+   "note": "Formerly Crown Prince Tupouto'a; Siaosi Tupou V in the Tongan texts. Accession by devolution of the Crown on the decease of Taufa'ahau Tupou IV at 00:34 on 11 September 2006, Tongan time (TO-CROWN-04); proclaimed King by Gazette No. 19 on the same Tongan day, as a separate event. Traditional installation (taumafa kava) on 30 July 2008 and coronation on 1 August 2008 (TO-CROWN-05). Died in Hong Kong at 20:58 on 18 March 2012, Tonga time (TO-CROWN-06).",
+   "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation, the traditional installation, the coronation or the coronation oath (which no source dates). The end is his death as Gazette Extraordinary No. 8 records it; Gazette Extraordinary No. 9 states that the Crown devolved by his decease. No accession time is stored.",
    "sources": [
     "to_pmo_20060911_death_notice",
     "to_pmo_20060911_proclamation",
@@ -1778,6 +1832,8 @@
     "to_crown_gtv_death_20120318",
     "to_crown_tupou_vi_devolution_proclamation_20120319"
    ],
+   "note": "Formerly Crown Prince Tupouto'a Lavaka, the former Prince 'Ulukalala Lavaka Ata, on whom the Crown Prince title was vested in September 2006. Accession by devolution of the Crown on the decease of George Tupou V at 20:58 on 18 March 2012, Tonga time; proclaimed King on 19 March 2012 as a separate event (TO-CROWN-07); crowned on 4 July 2015 (TO-CROWN-08).",
+   "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation or the coronation. No end is inferred: no source here records one before the 7 September 2026 cutoff, and the latest attestation in this packet is 18 December 2025 (to_tupou_vi_2025).",
    "sources": [
     "to_gazette_ext_8_2012",
     "to_gazette_ext_9_2012"
@@ -1802,13 +1858,14 @@
     "from": "2005-04-01",
     "through": "2005-04-30"
    },
+   "uncertainty": "A month-level formation and leadership observation, not an exact appointment or complete term.",
    "sources": [
     "to_ipu_2008"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_peoples_party_leader#1": {
@@ -1820,13 +1877,14 @@
    "claim_ids": [
     "to_peoples_party_leader_20210528"
    ],
+   "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown.",
    "sources": [
     "to_idcpc_dialogue_20210528"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_peoples_party_society_president#1": {
@@ -1842,6 +1900,8 @@
    "claim_ids": [
     "to_peoples_party_incorporated_society_2022"
    ],
+   "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+   "uncertainty": "Not reconciled with the 'Leader' title. Whether Leader and society President are one office is unresolved.",
    "sources": [
     "to_sc_kiu_v_tuionetoa_20220429"
    ],
@@ -1866,6 +1926,8 @@
    "claim_ids": [
     "to_peoples_party_incorporated_society_2022"
    ],
+   "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+   "uncertainty": "A society officer observation, not a Cabinet office or party leadership term.",
    "sources": [
     "to_sc_kiu_v_tuionetoa_20220429"
    ],
@@ -1888,10 +1950,10 @@
    "sources": [
     "to_pm_appointment_2025"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_pm#10": {
@@ -1903,13 +1965,14 @@
    "claim_ids": [
     "to_tuionetoa_royal_appointment_20191008"
    ],
+   "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation.",
    "sources": [
     "to_pm_appointment_20191008"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_pm#11": {
@@ -1924,6 +1987,8 @@
     "to_sovaleni_resignation_statement_20241209",
     "to_palace_acceptance_letter_20241209"
    ],
+   "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses. His resignation of 9 December 2024 ends the observation (TO-TR24-01); the 2024 Assembly records print 'Siaosi 'Ofa ki Vahafolau Sovaleni' and the Palace letter 'Hon. Hu'akavameiliku'.",
+   "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. The end is the resignation of 9 December 2024, stated in the House as effective immediately (1150-1200 transcript block) and accepted by the King the same day, during the recess before the Palace Office letter was read at 1400-1405; the date is exact to the day and the clock time of acceptance is not recorded. The end is attached to this holder as the resignation of the sitting Prime Minister, named Hu'akavameiliku in both the 2021 Tongan release and the Palace letter, not by matching spellings. No term length is inferred.",
    "sources": [
     "to_pmo_sovaleni_appointment_20211228",
     "to_pmo_sovaleni_appointment_to_20211228",
@@ -1947,6 +2012,8 @@
    "claim_ids": [
     "to_eke_royal_appointment_20250122"
    ],
+   "note": "Royal appointment under Clause 50A(1) at the Royal Palace on Wednesday 22 January 2025 (TO-TR24-04), read from Wayback captures of the removed PMO release; the live PMO release of 24 January 2025 calls him Prime Minister.",
+   "uncertainty": "An appointment event, recorded like the 2019 Tu'i'onetoa observation: the release states no separate 'with effect from' date, and no warrant signature, presentation or instrument number is recorded (TO-TR24-05). The 24 December 2024 Assembly selection, the 28 January 2025 Cabinet list and the 31 January 2025 oath are separate claims, not the start of office. No end or term is inferred; Lord Fakafanua's 18 December 2025 appointment does not supply one.",
    "sources": [
     "to_pmo_eke_appointment_20250122"
    ],
@@ -1966,13 +2033,14 @@
    "from": null,
    "until": null,
    "attested_on": "2026-08-03",
+   "uncertainty": "A dated office observation, not evidence that no intervening or subsequent temporary arrangements existed.",
    "sources": [
     "to_pm_august_2026"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "to_pm#3": {
@@ -1991,6 +2059,8 @@
     "to_mic_pm_list_2011_list",
     "to_ipu_1990_tuipelehake"
    ],
+   "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU's summary of the February 1990 election names him as Prime Minister in a present-tense sentence written in March 1990 or later (reference date unknown).",
+   "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used.",
    "sources": [
     "to_pmo_former_pms_2026",
     "to_pmo_former_pms_2015",
@@ -2022,6 +2092,8 @@
     "to_pmo_vaea_tribute_appointment_undated",
     "to_ipu_1993_retirement_succession_199108"
    ],
+   "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+   "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03).",
    "sources": [
     "to_pmo_former_pms_2026",
     "to_pmo_former_pms_2015",
@@ -2049,6 +2121,8 @@
     "to_lavaka_ata_resignation_accepted_20060211",
     "to_lavaka_ata_resignation_accepted_20060211_to"
    ],
+   "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+   "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start.",
    "sources": [
     "to_pmo_office_pm_2002",
     "to_pmo_timeline_2000_en",
@@ -2073,6 +2147,8 @@
     "to_sevele_pm_20060407",
     "to_sevele_acting_then_pm_20060413"
    ],
+   "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+   "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date.",
    "sources": [
     "to_pmo_20060410_marist_remarks",
     "to_pmo_20060413_psc"
@@ -2094,6 +2170,8 @@
    "claim_ids": [
     "to_tuivakano_royal_appointment_20101222"
    ],
+   "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+   "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end.",
    "sources": [
     "to_palace_20101222_appointment"
    ],
@@ -2114,6 +2192,8 @@
    "claim_ids": [
     "to_pohiva_royal_appointment_20141230"
    ],
+   "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+   "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018.",
    "sources": [
     "to_pmo_20141230_appointment"
    ],
@@ -2135,6 +2215,8 @@
     "to_pohiva_royal_appointment_20180102",
     "to_pohiva_appointment_repeated_20180122"
    ],
+   "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+   "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08).",
    "sources": [
     "to_pmo_20180104_appointment",
     "to_pmo_20180122_cabinet"
@@ -2158,10 +2240,10 @@
    "sources": [
     "to_speaker_appointment_2025"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   }
  },

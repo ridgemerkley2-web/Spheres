@@ -78,7 +78,7 @@
    ]
   }
  ],
- "interpretation": "Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
  "roles": [
   {
    "key": "executive",
@@ -358,17 +358,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["fr_ps_olivier_faure_20180407_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"olivier_faure","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:olivier_faure:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["fr_ps_olivier_faure_20180407_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"olivier_faure","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:olivier_faure:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["fr_ps_olivier_faure_20180407_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"olivier_faure","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:olivier_faure:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -528,17 +528,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -698,17 +698,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -866,17 +866,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1024,17 +1024,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1190,17 +1190,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1354,17 +1354,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1518,17 +1518,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1677,17 +1677,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1835,17 +1835,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1993,17 +1993,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -2156,17 +2156,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -2312,17 +2312,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"no_registry_term_for_organization","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"no_registry_term_for_organization","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"no_registry_term_for_organization","declared_gaps":[5]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -2437,17 +2437,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["fr_pcf_fabien_roussel_20181125_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"fabien_roussel","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:fabien_roussel:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["fr_pcf_fabien_roussel_20181125_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"fabien_roussel","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:fabien_roussel:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["fr_pcf_fabien_roussel_20181125_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"fabien_roussel","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:fabien_roussel:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -2573,17 +2573,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["fr_fn_federal_jordan_bardella_20221105_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"jordan_bardella","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:jordan_bardella:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["fr_fn_federal_jordan_bardella_20221105_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"jordan_bardella","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:jordan_bardella:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["fr_fn_federal_jordan_bardella_20221105_leader","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"jordan_bardella","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:jordan_bardella:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -5048,6 +5048,7 @@
    "party": "fr_fn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5056,6 +5057,7 @@
    "party": "fr_fn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5064,6 +5066,7 @@
    "party": "fr_fn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5072,6 +5075,7 @@
    "party": "fr_fn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5080,6 +5084,7 @@
    "party": "fr_pcf",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5088,6 +5093,7 @@
    "party": "fr_pcf",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5096,6 +5102,7 @@
    "party": "fr_pcf",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5104,6 +5111,7 @@
    "party": "fr_pcf",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5112,6 +5120,7 @@
    "party": "fr_ps",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5120,6 +5129,7 @@
    "party": "fr_ps",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5128,6 +5138,7 @@
    "party": "fr_ps",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5136,6 +5147,7 @@
    "party": "fr_ps",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5144,6 +5156,7 @@
    "party": "fr_rpr",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5152,6 +5165,7 @@
    "party": "fr_rpr",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5160,6 +5174,7 @@
    "party": "fr_rpr",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5168,6 +5183,7 @@
    "party": "fr_rpr",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5176,6 +5192,7 @@
    "party": "fr_udf",
    "component": "fr_udf_cds",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5184,6 +5201,7 @@
    "party": "fr_udf",
    "component": "fr_udf_cds",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5192,6 +5210,7 @@
    "party": "fr_udf",
    "component": "fr_udf_cds",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5200,6 +5219,7 @@
    "party": "fr_udf",
    "component": "fr_udf_cds",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5208,6 +5228,7 @@
    "party": "fr_udf",
    "component": "fr_udf_direct",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5216,6 +5237,7 @@
    "party": "fr_udf",
    "component": "fr_udf_direct",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5224,6 +5246,7 @@
    "party": "fr_udf",
    "component": "fr_udf_direct",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5232,6 +5255,7 @@
    "party": "fr_udf",
    "component": "fr_udf_direct",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5240,6 +5264,7 @@
    "party": "fr_udf",
    "component": "fr_udf_dl",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5248,6 +5273,7 @@
    "party": "fr_udf",
    "component": "fr_udf_dl",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5256,6 +5282,7 @@
    "party": "fr_udf",
    "component": "fr_udf_dl",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5264,6 +5291,7 @@
    "party": "fr_udf",
    "component": "fr_udf_dl",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5272,6 +5300,7 @@
    "party": "fr_udf",
    "component": "fr_udf_fd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5280,6 +5309,7 @@
    "party": "fr_udf",
    "component": "fr_udf_fd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5288,6 +5318,7 @@
    "party": "fr_udf",
    "component": "fr_udf_fd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5296,6 +5327,7 @@
    "party": "fr_udf",
    "component": "fr_udf_fd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5304,6 +5336,7 @@
    "party": "fr_udf",
    "component": "fr_udf_federation",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5312,6 +5345,7 @@
    "party": "fr_udf",
    "component": "fr_udf_federation",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5320,6 +5354,7 @@
    "party": "fr_udf",
    "component": "fr_udf_federation",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5328,6 +5363,7 @@
    "party": "fr_udf",
    "component": "fr_udf_federation",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5336,6 +5372,7 @@
    "party": "fr_udf",
    "component": "fr_udf_perspectives",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5344,6 +5381,7 @@
    "party": "fr_udf",
    "component": "fr_udf_perspectives",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5352,6 +5390,7 @@
    "party": "fr_udf",
    "component": "fr_udf_perspectives",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5360,6 +5399,7 @@
    "party": "fr_udf",
    "component": "fr_udf_perspectives",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5368,6 +5408,7 @@
    "party": "fr_udf",
    "component": "fr_udf_ppdf",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5376,6 +5417,7 @@
    "party": "fr_udf",
    "component": "fr_udf_ppdf",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5384,6 +5426,7 @@
    "party": "fr_udf",
    "component": "fr_udf_ppdf",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5392,6 +5435,7 @@
    "party": "fr_udf",
    "component": "fr_udf_ppdf",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5400,6 +5444,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pr",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5408,6 +5453,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pr",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5416,6 +5462,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pr",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5424,6 +5471,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pr",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5432,6 +5480,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pril",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5440,6 +5489,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pril",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5448,6 +5498,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pril",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5456,6 +5507,7 @@
    "party": "fr_udf",
    "component": "fr_udf_pril",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5464,6 +5516,7 @@
    "party": "fr_udf",
    "component": "fr_udf_psd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5472,6 +5525,7 @@
    "party": "fr_udf",
    "component": "fr_udf_psd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5480,6 +5534,7 @@
    "party": "fr_udf",
    "component": "fr_udf_psd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5488,6 +5543,7 @@
    "party": "fr_udf",
    "component": "fr_udf_psd",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5496,6 +5552,7 @@
    "party": "fr_udf",
    "component": "fr_udf_radical",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5504,6 +5561,7 @@
    "party": "fr_udf",
    "component": "fr_udf_radical",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5512,6 +5570,7 @@
    "party": "fr_udf",
    "component": "fr_udf_radical",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -5520,6 +5579,7 @@
    "party": "fr_udf",
    "component": "fr_udf_radical",
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   }
  ]

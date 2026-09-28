@@ -22,10 +22,10 @@
      "production_party": 4,
      "executive": 1
     },
-    "cases": 537,
+    "cases": 568,
     "case_kinds": {
-     "attestation_day": 19,
-     "attestation_day_after": 19,
+     "attestation_day": 27,
+     "attestation_day_after": 27,
      "cutoff_day": 8,
      "cutoff_day_before": 8,
      "death_day_after": 2,
@@ -35,9 +35,9 @@
      "fictional_last_day": 8,
      "fictional_start_day": 8,
      "future_2030": 8,
-     "handover_day_after": 28,
-     "handover_day_before": 28,
-     "handover_day_of": 28,
+     "handover_day_after": 33,
+     "handover_day_before": 33,
+     "handover_day_of": 33,
      "reference_start": 8,
      "reference_start_day_before": 8,
      "yearly": 368
@@ -79,7 +79,7 @@
     ]
    },
    "headline": [
-    "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
+    "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
     "Research holder observations by acceptance: pending 31.",
     "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
     "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
@@ -92,7 +92,7 @@
    ]
   }
  ],
- "interpretation": "Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
  "roles": [
   {
    "key": "executive",
@@ -128,40 +128,71 @@
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","possible":[["in_pm#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:v_p_singh:1990-01-01:1990-01-02:v1","context":"fresh_campaign_start"}],"asset":[],"campaign":{"observed":"fresh_campaign_start","incumbent":"V. P. Singh","person":"v_p_singh","verdict":"historical_identity_not_established"}},
+    {"date":"1990-03-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#1","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-03-13","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#2","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-11-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-11-17","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["in_pm#2","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["in_pm#2","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-06-20","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["in_pm#2","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-06-21","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_pm#2","stated_end_day"],["in_pm#3","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1991-06-22","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-05-15","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["in_pm#3","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-05-16","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_pm#3","stated_end_day"],["in_pm#4","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-05-17","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#4","after_stated_start"],["in_pm#5","before_stated_end"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-06-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#5","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1996-06-12","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["in_pm#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["in_pm#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1997-04-20","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["in_pm#5","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1997-04-21","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_pm#5","stated_end_day"],["in_pm#6","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1997-04-22","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-03-18","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["in_pm#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-03-19","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_pm#7","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-03-20","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["in_pm#7","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_pm#7","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-10-12","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["in_pm#7","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-10-13","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_pm#7","stated_end_day"],["in_pm#8","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-10-14","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-05-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#9","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-05-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-05-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#10","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-05-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-05-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#11","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-05-27","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-05-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#12","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-05-31","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_pm#13","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","possible":[["in_pm#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"v_p_singh","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -180,15 +211,15 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 83,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "bracketed": 2,
      "established": 6,
      "uncertain": 29
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0,
+    "boundary_cases": 15,
+    "attestation_cases": 16,
     "yearly_image_bindings": {
      "unbound": 37
     }
@@ -325,17 +356,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_inc_mallikarjun_kharge_20221026","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mallikarjun_kharge","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mallikarjun_kharge:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["in_inc_mallikarjun_kharge_20221026","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mallikarjun_kharge","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mallikarjun_kharge:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["in_inc_mallikarjun_kharge_20221026","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"mallikarjun_kharge","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:mallikarjun_kharge:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -460,17 +491,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["in_jd_v_p_singh_198810","uncertain_bounds"]],"declared_gaps":[2]},"acceptance":["production_registry"],"image":[{"person":"v_p_singh","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["in_jd_v_p_singh_198810","uncertain_bounds"]],"declared_gaps":[2]},"acceptance":["production_registry"],"image":[{"person":"v_p_singh","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"imprecise_or_unknown_bounds_only","possible":[["in_jd_v_p_singh_198810","uncertain_bounds"]],"declared_gaps":[2]},"acceptance":["production_registry"],"image":[{"person":"v_p_singh","as":"possible","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -617,17 +648,17 @@
     {"date":"2026-01-21","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["in_bjp_nitin_nabin_20260120","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"nitin_nabin","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:nitin_nabin:2026-01-20:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["in_bjp_nitin_nabin_20260120","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"nitin_nabin","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:nitin_nabin:2026-01-20:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["in_bjp_nitin_nabin_20260120","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"nitin_nabin","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:nitin_nabin:2026-01-20:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -769,17 +800,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["in_cpm_m_a_baby_20250406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"m_a_baby","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:m_a_baby:2025-04-06:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["in_cpm_m_a_baby_20250406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"m_a_baby","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:m_a_baby:2025-04-06:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["in_cpm_m_a_baby_20250406","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"m_a_baby","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:m_a_baby:2025-04-06:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1796,6 +1827,8 @@
    "claim_ids": [
     "in_rs_natarajan_rajiv_gandhi_congress_president_19900829"
    ],
+   "note": "Observed on 29 August 1990: in the Rajya Sabha, Shrimati Jayanthi Natarajan speaks of the Indo-Sri Lankan Accord 'that the former Prime Minister and the Congress President, Shri Rajiv Gandhi, had entered into' (in English, on the official debates store), the earliest record adopted in the period.",
+   "uncertainty": "No start: he became Congress President before the period, and no record reviewed attests the holder on 1 January 1990 itself. No end: his death on 21 May 1991 is stated by the Rajya Sabha Chairman's resolution and by the party's own page, but no source states the day the party office ended or became vacant; a death is its own claim, never an until, and P. V. Narasimha Rao's later observation is not used as his end. The Secretariat's heading of 4 March 1991 and a member's words of 5 March 1991 are continuation attestations; the statements of 3 and 4 June 1991 are posthumous. No acting or interim President is named in any record reviewed.",
    "sources": [
     "in_rs_debate_19900829_sri_lanka"
    ],
@@ -1816,6 +1849,8 @@
    "claim_ids": [
     "in_kharge_congress_president_attested_20260903"
    ],
+   "note": "Observed on 3 September 2026: the INC's highlights of that day style him 'Shri Mallikarjun Kharge, Congress President & Leader of Opposition (LoP), Rajya Sabha'.",
+   "uncertainty": "No start or end: it attests the office held since 2022; the release of 7 September 2026 records an act of the unnamed 'Hon'ble Congress President' (a claim only), and no vacancy, acting or interim arrangement was found up to the cutoff. The Rajya Sabha office is outside this role.",
    "sources": [
     "in_inc_cp_media_bite_20260903"
    ],
@@ -1836,6 +1871,8 @@
    "claim_ids": [
     "in_rs_gujral_rao_president_of_congress_party_19960715"
    ],
+   "note": "Observed on 15 July 1996: the Leader of the House, Shri Inder Kumar Gujral, tells the Rajya Sabha that the Government has 'the highest esteem and respect for the President of the Congress Party, Shri Narasimha Rao'.",
+   "uncertainty": "No start: no record of his 1991 selection was found; the Lok Sabha Secretariat's retrospective sketch gives '29 May'91 - Sept.1996' (a claim with no structured date, never a boundary), a member recalled on 31 July 1991, in translation, that he became President after Rajiv Gandhi's death, and the party's session list and biography place him at Tirupati in April 1992 (retrospective). No Working Committee decision or AICC confirmation was found, and no record of 1991 or 1992 that names him as Congress President. No end: he is still 'our Congress President' on 10 September 1996, the party's time line and history say only that he resigned in 1996, and Sitaram Kesri's selection is not used as his end.",
    "sources": [
     "in_rs_debate_19960715_remarks_against_congress_president"
    ],
@@ -1856,6 +1893,8 @@
    "claim_ids": [
     "in_ls_premchandran_kesri_cwc_president_19970411"
    ],
+   "note": "Observed on 11 April 1997: in the Lok Sabha, Shri N.K. Premchandran speaks of 'the decision taken by the Congress Working Committee President, Shri Sitaram Kesri to withdraw the support of the Congress Party to the United Front'.",
+   "uncertainty": "No start: the party's records date his selection to 1996 only (the AICC time line: 'chosen as President'; the brief history: 'elected as the new Congress president'), the Rajya Sabha sketch gives '1996-98', and the Prime Minister's reply of the same day recalls, without a date, the day he 'became the President of the Congress Party'; no record gives the day, the selecting body or the day of Rao's resignation. 'Congress Working Committee President' is the member's wording. No end: no record reviewed states the day his presidency ended, and Sonia Gandhi's selection is not used as his end.",
    "sources": [
     "in_ls_debates_19970411_premchandran"
    ],
@@ -1876,6 +1915,8 @@
    "claim_ids": [
     "in_inc_site_heading_congress_president_sonia_gandhi_19990515"
    ],
+   "note": "Observed on 15 May 1999: the INC website heads her letter of that day 'Text of the resignation letter written by the Congress President Smt. Sonia Gandhi to the Congress Working Committee'.",
+   "uncertainty": "The page prints no date; the day is the one the same site's speech index gives the letter. No start: no INC record of the Working Committee's March 1998 selection was found; her remarks at the AICC session of 6 April 1998 ('You have elected me President') and the index entry of that day name no one, the INC's 2015 history calls 6 April 1998 her ratification (a recollection), and later INC texts say 'March 1998 onwards' or 'April 1998'. No end: the resignation she tendered that day was withdrawn on 25 May 1999.",
    "sources": [
     "in_inc_site_sonia_resignation_letter_19990515"
    ],
@@ -1896,6 +1937,8 @@
    "claim_ids": [
     "in_sonia_converts_cwc_into_steering_committee_20001126"
    ],
+   "note": "Observed on 26 November 2000: the party journal reports that 'The Congress president, Mrs. Sonia Gandhi' converted the Working Committee into a Steering Committee after the organisational election, as the AICC general secretary said on 26 November.",
+   "uncertainty": "The year is the issue's (December 2000). No start: her election on 15 November 2000, the Central Election Authority's declaration and the certificate are separate claims, and no source states the day the new term began. No end: the elections of 28 May 2005 and 3 September 2010 (with a signed certificate) are claims only, because no same-day record styling her in office was found for either, and the 2015 and 2016 extensions of her term were not found in any archived INC record.",
    "sources": [
     "in_congress_sandesh_dec2000_reports"
    ],
@@ -1916,6 +1959,8 @@
    "claim_ids": [
     "in_congress_president_sonia_approves_cea_composition_20170429"
    ],
+   "note": "Observed on 29 April 2017: an AICC press release says 'The Congress President Smt. Sonia Gandhi has approved the composition of the Central Organisational Election Authority'.",
+   "uncertainty": "No start: it attests the office held since her earlier elections, while the 2015 and 2016 extensions remain unsourced. No end: her styling on 11 December 2017 is a continuation attestation, and her farewell of 16 December 2017, the Working Committee's thanks to the 'outgoing' President of 22 December 2017 and Rahul Gandhi's observation are never her end.",
    "sources": [
     "in_aicc_press_release_cea_composition_20170429"
    ],
@@ -1936,6 +1981,8 @@
    "claim_ids": [
     "in_rahul_gandhi_styled_new_president_20171216"
    ],
+   "note": "Observed on 16 December 2017: the Hindi original of the INC's release of that day is headed as the speech of the outgoing Congress President Smt. Sonia Gandhi on the occasion of 'नये अध्यक्ष श्री राहुल गांधी' (the new President Shri Rahul Gandhi) accepting the election certificate.",
+   "uncertainty": "No start: the Returning Officer's declaration of 11 December 2017, his styling as President-elect on 13 December, the certificate ceremony and his acceptance on 16 December are separate claims, and the INC's statement that he 'assumed the Presidency ... on December 16, 2017' is a recollection captured in 2026 (CLAUDE-C01-15 check C1), never a start. His opening remarks as Congress President at the Working Committee of 22 December 2017 are a continuation attestation. No end here: see the 2019 observation.",
    "sources": [
     "in_aicc_sonia_gandhi_outgoing_president_speech_20171216"
    ],
@@ -1956,6 +2003,8 @@
    "claim_ids": [
     "in_rahul_gandhi_attested_congress_president_20190525"
    ],
+   "note": "Observed on 25 May 2019: the Working Committee resolution of that day names 'Congress President, Shri Rahul Gandhi', records his offer to resign and its unanimous rejection, and calls on him to lead the party.",
+   "uncertainty": "No start or end: his statement that he has resigned (published 3 July 2019), the Working Committee's resolutions of 10 August 2019 (that he should continue, that he declined to withdraw, and the appreciation of his stepping down) and the INC's later 'stepped down ... in May 2019' state no day on which his office ended, and no acceptance of the resignation was found. Sonia Gandhi's service from 10 August 2019 was an interim arrangement pending an AICC election, recorded as claims only, never as a holder.",
    "sources": [
     "in_inc_cwc_resolution_20190525"
    ],
@@ -1978,6 +2027,8 @@
     "in_venugopal_greets_congress_president_kharge_20221026",
     "in_steering_committee_list_kharge_congress_president_20221026"
    ],
+   "note": "Observed on 26 October 2022: the INC heads his address 'Shri Mallikarjun Kharge, President Indian National Congress', the General Secretary greets the 'Respected Congress President, Shri Mallikarjun Kharge Ji', and the Steering Committee list of that day is headed 'Shri Mallikarjun Kharge, Congress President'.",
+   "uncertainty": "No start: the resolution of thanks read that day says the post is being handed over 'today', and Sonia Gandhi and Kharge speak of the handover, but these are handover statements (claims), as in the stacked ANC packet, and no record says he took charge (karyabhar sambhala) that day; the declaration of 19 October 2022, his styling as President-elect and the announcement that he would take charge on the 26th are separate claims. No AICC ratification was found in the 85th Plenary records of February 2023. No end: none is recorded before the cutoff.",
    "sources": [
     "in_inc_kharge_address_20221026",
     "in_inc_venugopal_address_20221026",
@@ -2237,6 +2288,8 @@
    "claim_ids": [
     "in_vp_singh_pm_introduces_minister_19900312"
    ],
+   "note": "Observed on 12 March 1990, the first Lok Sabha sitting of 1990, introducing a Minister as 'THE PRIME MINISTER (SHRI VISHWANATH PRATAP SINGH)': the earliest 1990 attestation pinned to a byte-stable response. He moved the confidence motion of 7 November 1990, which was negatived; that act and the vote are claims on the role, not holder dates.",
+   "uncertainty": "No start: his appointment of 2 December 1989 lies before the period and no instrument was reviewed. No end: no accessible primary source states his resignation, its acceptance, any request to continue or the day his office ended; the defeat of 7 November 1990 is not an end, the PMO's retrospective span to 10 November 1990 is a claim only, and Chandra Shekhar's appointment is not used as this end.",
    "sources": [
     "in_ls_debates_19900312"
    ],
@@ -2257,6 +2310,8 @@
    "claim_ids": [
     "in_mms_appointed_pm_communique_20090522"
    ],
+   "note": "Observed on 22 May 2009: the President's communique of that day states that the President has appointed Dr. Manmohan Singh as the Prime Minister of India. He had been appointed on 20 May 2009 while continuing in office at the President's request.",
+   "uncertainty": "No start: no source states a day from which the reappointment took effect; the appointment of 20 May 2009 and the oath announced for 22 May are claims on the role. No end: the acceptance of 17 May 2014 asks him to continue till the new Government assumes office; the PMO's retrospective span to 26 May 2014 is a claim only, and Narendra Modi's swearing-in is not used as this end.",
    "sources": [
     "in_rb_patil_council_oath_20090522"
    ],
@@ -2278,6 +2333,8 @@
     "in_modi_appointed_pm_communique_20140526",
     "in_cabsec_modi_sworn_in_as_pm_20140526"
    ],
+   "note": "Observed on 26 May 2014: the Cabinet Secretariat memorandum of that day states that he was sworn in as the Prime Minister by the President at 1800 hours, and the President's communique of the same day states his appointment.",
+   "uncertainty": "No start: neither record states that office was assumed or took effect that day, so the oath dates the observation only; the appointment of 20 May 2014 was made while Manmohan Singh continued in office and is a claim on the role. No end: the acceptance of 24 May 2019 asks him to continue till the new Government assumes office; no source states when that continuation ended.",
    "sources": [
     "in_rb_pranab_council_oath_20140526",
     "in_cabsec_modi_sworn_in_20140526"
@@ -2301,6 +2358,8 @@
     "in_modi_oath_administered_20190530",
     "in_cabsec_modi_sworn_in_as_pm_20190530"
    ],
+   "note": "Observed on 30 May 2019: the President's communique of that day, headed as administering the oath to the Prime Minister and other members of the Union Council of Ministers, states his appointment, and the Cabinet Secretariat memorandum states that he was sworn in as the Prime Minister at 1900 hours.",
+   "uncertainty": "No start: no source states a day of effect; the appointment of 25 May 2019 and the oath announced on 26 May 2019 are claims on the role, made while he continued in office at the President's request from 24 May. No end: the acceptance of 5 June 2024 asks him to continue till the new Government assumes office; no source states when that continuation ended.",
    "sources": [
     "in_rb_kovind_council_oath_20190530",
     "in_cabsec_modi_sworn_in_20190530"
@@ -2326,6 +2385,8 @@
     "in_cabsec_lists_modi_pm_20260725",
     "in_modi_pm_state_visit_uzbekistan_20260830"
    ],
+   "note": "Observed on 9 June 2024: the Cabinet Secretariat memorandum of that day states that he was sworn in as the Prime Minister at 1915 hours, and the President's communique states his appointment. Cabinet Secretariat council lists as on 23 June and 25 July 2026 and the PMO's joint statement of 30 August 2026 attest him in office before the cutoff.",
+   "uncertainty": "No start and no end: no source states a day of effect, and the 2026 attestations are dated observations that neither end nor extend any term. The appointment of 7 June 2024 and the oath announced for 9 June were made while he continued in office at the President's request from 5 June; they are claims on the role.",
    "sources": [
     "in_rb_murmu_council_oath_20240609",
     "in_cabsec_modi_sworn_in_20240609",
@@ -2352,6 +2413,8 @@
     "in_chandra_shekhar_introduces_ministers_rs_19901227",
     "in_president_accepts_chandra_shekhar_resignation_wef_19910621"
    ],
+   "note": "Observed on 16 November 1990, moving the motion of confidence in the Lok Sabha as 'THE PRIME MINISTER (SHRI CHANDRA SHEKHAR)'; the Rajya Sabha records him introducing Ministers as Prime Minister on 27 December 1990. Until 21 June 1991: the Ministry of Home Affairs notification of 5 July 1991 accepts his resignation of the office of Prime Minister with effect from that day, which this packet reads as also ending the service he continued at the President's request of 6 March 1991 (the notification does not mention the request). The atlas shows only the observation date for a holder with attested_on, so this note carries the end: 21 June 1991.",
+   "uncertainty": "No start: the day of his appointment or swearing-in (10 November 1990 in the PMO's retrospective list) is not stated by any accessible contemporary primary source; Gazette Extraordinary Part I Section 2 Nos. 15 and 16 of 1990 were never digitized. The end is day-only. The resignation announced and tendered on 6 March 1991, the President's acceptance of that day, the request to continue and his appearance as Prime Minister in the Rajya Sabha on 4 June 1991 are claims on the role; the continuation is not a separate holder, and the 6 March acceptance is not an end. The 16 November attestation rests on a third-party mirror of the Lok Sabha debates; the 27 December Rajya Sabha record is on an official host.",
    "sources": [
     "in_ls_debates_19901116",
     "in_rs_debates_19901227",
@@ -2375,6 +2438,8 @@
     "in_rao_appointed_pm_wef_19910621",
     "in_president_accepts_rao_resignation_wef_19960516"
    ],
+   "note": "From 21 June 1991: appointed Prime Minister with effect from 12.50 P.M. that day (MHA notification No. 10/4/91-M&G(ii) of 5 July 1991). Until 16 May 1996: his resignation of the office accepted with effect from that day (MHA notification No. 10/5/96-M&G(i) of 24 May 1996).",
+   "uncertainty": "Both boundaries are day-only; the clock time of the start is not stored. The day he tendered the resignation, the President's acceptance letter and any request to continue until 16 May 1996 are unresolved. The Speaker's statement of 28 May 1996 that his government was sworn in on 21 June 1991 is a retrospective claim, not the basis of the start. Vajpayee's appointment from noon on 16 May 1996 is a separate notification and is not used to derive this end.",
    "sources": [
     "in_gazette_ext_p1s2_no17_19910705",
     "in_gazette_ext_p1s2_no14_19960524"
@@ -2397,6 +2462,8 @@
     "in_vajpayee_appointed_pm_wef_19960516",
     "in_vajpayee_introduces_council_as_pm_19960523"
    ],
+   "note": "From 16 May 1996: appointed Prime Minister with effect from 12 noon that day (MHA notification No. 10/5/96-M&G of 24 May 1996); he introduced his Council of Ministers as Prime Minister in the Lok Sabha on 23 May 1996.",
+   "uncertainty": "No end: the resignation announced on the floor of the Lok Sabha on 28 May 1996 is not an end, and no resignation letter, acceptance, request to continue or stated effective day was found for 1996; the retrospective ends (31 May in PIB's profiles, 1 June in the PMO list) conflict and are claims only, and Deve Gowda's swearing-in is not used as this end. The confidence motion of 27 May 1996 was not put to a vote.",
    "sources": [
     "in_gazette_ext_p1s2_no13_19960524",
     "in_ls_debates_19960523_council_introduction"
@@ -2419,6 +2486,8 @@
     "in_deve_gowda_introduced_as_pm_19960611",
     "in_president_accepts_deve_gowda_resignation_wef_19970421"
    ],
+   "note": "Observed on 11 June 1996, when the Speaker introduced him to the Lok Sabha as Prime Minister. Until 21 April 1997: the MHA notification No. 10/1/97-M&G(i) of 29 April 1997 accepts his resignation of the office of Prime Minister with effect from that day, which this packet reads as also ending the continuation requested by the President on 12 April 1997. The atlas shows only the observation date for a holder with attested_on, so this note carries the end: 21 April 1997.",
+   "uncertainty": "No start: no appointment notification was found (Gazette Extraordinary Part I Section 2 Nos. 15 and 16 of 1996 are not in the mirror), and the 1 June 1996 swearing-in rests only on a member's statement in debate and the PMO's retrospective list. The lost confidence vote of 11 April 1997, the resignation letter of that day and the President's letter of 12 April 1997 (acceptance and request to continue) are claims on the role; the continuation is not a separate holder. The end is day-only; Gujral's appointment from 10.00 hours that day is a separate notification and is not used to derive it.",
    "sources": [
     "in_ls_debates_19960611_pm_introduction",
     "in_gazette_ext_p1s2_no13_19970429"
@@ -2441,6 +2510,8 @@
     "in_gujral_appointed_pm_wef_19970421",
     "in_gujral_introduced_as_pm_19970421"
    ],
+   "note": "From 21 April 1997: appointed Prime Minister with effect from 10.00 hours that day (MHA notification No. 10/1/97-M&G(ii) of 29 April 1997); the Speaker reported at 11:04 that the swearing-in ceremony had just concluded and introduced him as Prime Minister at 11:31.",
+   "uncertainty": "No end: his resignation letter and the President's acceptance with a request to continue are both dated 28 November 1997, and PIB still styled him Prime Minister on 12 March 1998, but no source states the day his office ended. The Gazette of 6 April 1998 first printed an acceptance with effect from 19 March 1998, which the corrigendum of 14 August 1998 replaced (only the listed ministers relinquished charge that day, and he is not among them); the PMO's retrospective span to 19 March 1998 is a claim only; Vajpayee's appointment from 0930 hours on 19 March 1998 is not used as this end.",
    "sources": [
     "in_gazette_ext_p1s2_no13_19970429",
     "in_ls_debates_19970421_pm_introduction"
@@ -2466,6 +2537,8 @@
     "in_vajpayee_heads_council_list_19980319",
     "in_president_accepts_vajpayee_resignation_wef_19991013"
    ],
+   "note": "From 19 March 1998: appointed Prime Minister with effect from 0930 hours that day (MHA notification No. 10/1/98-M&G(i) of 6 April 1998); PIB reported him sworn in 'here today', captioned the President administering the oath of office and listed him first in the Council of Ministers as on that day. Until 13 October 1999: the MHA notification No. 10/1/99-M&G(ii) of 26 October 1999 accepts his resignation of the office of Prime Minister with effect from that day, which this packet reads as also ending the continuation requested by the President on 17 April 1999.",
+   "uncertainty": "Both boundaries are day-only (the Hindi text of the 1998 notification gives 09.00 hours against the English 0930). The lost confidence vote of 17 April 1999, the resignation letter and the President's acceptance with a request to continue (both 17 April 1999) and his appearance as Prime Minister at the Red Fort on 15 August 1999 are claims on the role; the continuation is not a separate holder. His reappointment from 1030 hours on 13 October 1999 is a separate notification and a separate holder, not used to derive this end.",
    "sources": [
     "in_gazette_ext_p1s2_no6_19980406",
     "in_pib_19980319_releases",
@@ -2493,6 +2566,8 @@
     "in_vajpayee_sworn_in_19991013",
     "in_vajpayee_assumes_office_statement_19991013"
    ],
+   "note": "From 13 October 1999: appointed Prime Minister with effect from 1030 hours that day (MHA notification No. 10/1/99-M&G(i) of 26 October 1999); PIB reported that he had been sworn in and had assumed the office 'here today', and its captions show the President administering the oath and the new Council of Ministers after the ceremony.",
+   "uncertainty": "No end: on 13 May 2004 he tendered his resignation and the President accepted it and asked him to continue till alternative arrangements are made, but no primary source reviewed states the day his office ended; the PMO's retrospective span to 22 May 2004 is a claim only, and Manmohan Singh's appointment is not used as this end. The 13 May 2004 claims are resignation-day claims on the role and date no holder.",
    "sources": [
     "in_gazette_ext_p1s2_no16_19991026",
     "in_pib_photo_19991013_oath",
@@ -2516,6 +2591,8 @@
    "claim_ids": [
     "in_mms_appointed_pm_communique_20040522"
    ],
+   "note": "Observed on 22 May 2004: the President's Secretariat communique of that day states that the President has appointed Dr. Manmohan Singh as the Prime Minister of India, with the oaths administered at Rashtrapati Bhavan the same day.",
+   "uncertainty": "No start: the communique states no day from which the appointment took effect, and the President's appointment of 19 May 2004 (PIB relid 1734) could not be pinned to a byte-stable response. The communique's oath sentence covers 'the above members of the Council of Ministers' and does not name his own oath. No end: the acceptance of 18 May 2009 states no effective day and asks him to continue; his continuation in office after that acceptance is recorded only as claims, and no source states when it ended.",
    "sources": [
     "in_pib_president_communique_council_20040522"
    ],
@@ -2536,6 +2613,8 @@
    "claim_ids": [
     "in_venkataraman_president_order_delhi_19900113"
    ],
+   "note": "Observed on 13 January 1990 by his own Order under section 31 of the Delhi Administration Act, 1966 ('Whereas I, R. Venkataraman, President of India'), published in the Gazette that day: the earliest 1990 attestation pinned to a byte-stable response. The Election Commission's notice of 10 June 1992 that his term was due to expire on 24 July 1992 and the members' farewell of 21 July 1992 are claims on the role, not holder dates.",
+   "uncertainty": "No start: his assumption of office on 25 July 1987 lies before the period, and the 1987 Gazette resolution and proclamation are recorded as a lead. No end: no accessible primary source states the day his office ended; the expiry 'due' on 24 July 1992 is prospective, the Lok Sabha Secretariat's journal and the President's website give retrospective spans ending 25 July 1992 (claims only), and Shankar Dayal Sharma's assumption of office on 25 July 1992 is not used as this end.",
    "sources": [
     "in_gazette_ext_p2s3ii_no19_19900113"
    ],
@@ -2559,6 +2638,8 @@
     "in_cji_kania_administers_oath_to_sharma_19920725",
     "in_sharma_address_on_entering_office_19920725"
    ],
+   "note": "From 25 July 1992: Ministry of Home Affairs Resolution S.O. 548(E) of that day says he takes his seat as President of India, and its Proclamation that he has entered upon the office; the Lok Sabha Secretariat's journal reproduces his address on assumption of office and records the oath administered that day by the Chief Justice of India, M.H. Kania (mirror-only). The Returning Officer's declaration (16 July), its publication (17 July) and the ceremony programme (24 July) are claims on the role.",
+   "uncertainty": "No end: no primary source reviewed states the day his office ended; the Election Commission's notice of 9 June 1997 that his term was due to expire on 24 July 1997 is prospective, the President's website's span to 25 July 1997 is retrospective, and K. R. Narayanan's assumption of office on 25 July 1997 is not used as this end. The 1992 records print 'Shanker'; the 1997 notice and the President's website print 'Shankar'. No clock time is stored.",
    "sources": [
     "in_gazette_ext_p2s3ii_no479_19920725",
     "in_ls_jpi_199209"
@@ -2581,6 +2662,8 @@
     "in_narayanan_takes_seat_as_president_19970725",
     "in_proclamation_narayanan_entered_upon_office_19970725"
    ],
+   "note": "From 25 July 1997: Ministry of Home Affairs Resolution S.O. 525(E) of that day says he takes his seat as President of India, and its Proclamation that he has entered upon the office. A member's statement in the Lok Sabha that day refers to his assumption of office (a claim only).",
+   "uncertainty": "No end: the Election Commission's notice of 11 June 2002 that his term was due to expire on 24 July 2002 is prospective, the President's Secretariat's release of 25 July 2002 calls him 'ex-President' without stating the day his office ended, the President's website's span to 25 July 2002 is retrospective, and A. P. J. Abdul Kalam's assumption of office is not used as this end. No accessible record names the Chief Justice who administered his oath or gives its hour.",
    "sources": [
     "in_gazette_ext_p2s3ii_no416_19970725"
    ],
@@ -2603,6 +2686,8 @@
     "in_kalam_oath_taken_reported_20020725",
     "in_kalam_president_first_day_engagements_20020725"
    ],
+   "note": "From 25 July 2002: his own speech 'on his assumption of office as President of India', dated that day and published by the President's Secretariat ('While I assume the office of the President'); the Secretariat's release of the same day says he had taken the oath and records his first day's engagements. The Ministry of Home Affairs' corrigendum of 13 August 2002 describes its notification S.O. 788(E), whose text was not found, as regarding his assumption of office on 25-7-2002 (corroboration only).",
+   "uncertainty": "No end: the Election Commission's notice of 16 June 2007 that his term was due to expire on 24 July 2007 is prospective, and Pratibha Devisingh Patil's assumption of office is not used as this end. The text of S.O. 788(E), the Chief Justice who administered the oath and the hour are not found.",
    "sources": [
     "in_poi_kalam_assumption_speech_20020725",
     "in_poi_kalam_first_day_release_20020725"
@@ -2626,6 +2711,8 @@
     "in_mha_proclaims_patil_entered_upon_office_20070725",
     "in_patil_assumption_speech_20070725"
    ],
+   "note": "From 25 July 2007: Ministry of Home Affairs Resolution S.O. 1207(E) of that day says she takes her seat as President of India, its Proclamation that she has entered upon the office, and her own address on assumption of office that day. The Secretariat's later caption recalling her swearing-in by the Chief Justice and the former President's profile are retrospective claims.",
+   "uncertainty": "No end: the Election Commission's notice of 16 June 2012 that her term was due to expire on 24 July 2012 is prospective, and Pranab Mukherjee's assumption of office is not used as this end. The Chief Justice who administered the oath is not named and the hour (2.30 PM) is only scheduled.",
    "sources": [
     "in_gazette_ext_no903_so1207e_20070725",
     "in_poi_patil_assumption_speech_20070725"
@@ -2650,6 +2737,8 @@
     "in_pranab_assumption_speech_20120725",
     "in_pranab_sworn_in_by_chief_justice_caption_20120725"
    ],
+   "note": "From 25 July 2012: Ministry of Home Affairs Resolution S.O. 1687(E) of that day says he takes his seat as President of India, its Proclamation that he has entered upon the office, his address on assumption of office that day and the Secretariat's caption of his swearing-in by the Chief Justice of India. The Lok Sabha Secretariat's notice S.O. 1724(E) of 30 July 2012 (seat vacated with effect from 25 July 2012) is corroboration only.",
+   "uncertainty": "No end: the Election Commission's notice of 14 June 2017 that his term was due to expire on 24 July 2017 is prospective; the farewell records of 24 July 2017 and PIB's caption of 25 July 2017 calling him 'former President' state no day on which his office ended; Ram Nath Kovind's assumption of office is not used as this end. The caption does not name the Chief Justice (his address greets Justice S. H. Kapadia) and the hour (11.30 AM) is only scheduled.",
    "sources": [
     "in_gazette_ext_no1389_so1687e_20120725",
     "in_poi_pranab_assumption_speech_20120725",
@@ -2677,6 +2766,8 @@
     "in_kovind_oath_administered_by_cji_khehar_20170725",
     "in_kovind_signs_register_after_swearing_in_20170725"
    ],
+   "note": "From 25 July 2017: Ministry of Home Affairs Resolution S.O. 2318(E) of that day says he takes his seat as President of India, and its Proclamation that he has entered upon the office; his address on assumption of office and the Secretariat's profile ('before assuming charge ... on July 25, 2017') are of the same day, and PIB's captions show the Chief Justice of India, J.S. Khehar, administering the oath that day and the new President signing the register at his office. The corrigendum S.O. 2487(E) of 4 August 2017 sets his name for all official purposes as 'Shri Ram Nath Kovind' (the resolution printed 'Ramnath') and changes no date.",
+   "uncertainty": "No end: the Election Commission's notice of 15 June 2022 that his term was due to expire on 24 July 2022 is prospective, his farewell of 24 July 2022 and the Secretariat's caption of 25 July 2022 calling him 'former President' state no day on which his office ended, and Droupadi Murmu's assumption of office is not used as this end. The hour of the oath (12.15 PM) is only scheduled.",
    "sources": [
     "in_gazette_ext_so2318_assumption_20170725",
     "in_rb_kovind_assumption_speech_20170725",
@@ -2706,6 +2797,8 @@
     "in_murmu_promulgates_income_tax_ordinance_20260605",
     "in_murmu_independence_day_eve_address_20260814"
    ],
+   "note": "From 25 July 2022: Ministry of Home Affairs Resolution S.O. 3373(E) of that day says she takes her seat as President of India, and its Proclamation that she has entered upon the office; her address on assumption of office is of the same day, and the Secretariat's caption shows the Chief Justice of India, N.V. Ramana, administering the oath that day. In office on 29 July 2022, on 5 June 2026 (she signs an ordinance) and on 14 August 2026 (her address on the eve of Independence Day); these attestations do not extend or bound her term.",
+   "uncertainty": "No end: she is in office at the last attestation before the cutoff, and no end is inferred. The hour of the oath (10:15 AM) is only scheduled; the Prime Minister's Office report that she took oath and the Secretariat's recollection of 29 July 2022 are claims only.",
    "sources": [
     "in_gazette_ext_so3373_assumption_20220725",
     "in_rb_murmu_assumption_address_20220725",
@@ -3252,6 +3345,7 @@
    "party": "in_bjp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3260,6 +3354,7 @@
    "party": "in_bjp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3268,6 +3363,7 @@
    "party": "in_bjp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3276,6 +3372,7 @@
    "party": "in_bjp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3284,6 +3381,7 @@
    "party": "in_cpm",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3292,6 +3390,7 @@
    "party": "in_cpm",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3300,6 +3399,7 @@
    "party": "in_cpm",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3308,6 +3408,7 @@
    "party": "in_cpm",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3316,6 +3417,7 @@
    "party": "in_inc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3324,6 +3426,7 @@
    "party": "in_inc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3332,6 +3435,7 @@
    "party": "in_inc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3340,6 +3444,7 @@
    "party": "in_inc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3348,6 +3453,7 @@
    "party": "in_jd",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3356,6 +3462,7 @@
    "party": "in_jd",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3364,6 +3471,7 @@
    "party": "in_jd",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3372,6 +3480,7 @@
    "party": "in_jd",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   }
  ]

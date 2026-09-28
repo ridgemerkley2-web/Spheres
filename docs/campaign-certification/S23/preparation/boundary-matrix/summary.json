@@ -76,7 +76,7 @@
   "boundary_day": "A source states a start or end on this day; the listed observations begin or end here.",
   "established": "Inside a closed interval whose start and end are both stated (research) or a production term active under party_leadership::historical_on.",
   "attested": "A research observation is attested on exactly this day.",
-  "period_attested": "Inside a research attested period or month-precision observation window.",
+  "period_attested": "A holder was observed sometime in this period; not an exact-day incumbent or a continuous term. Listed as possible, never counted as identified.",
   "bracketed": "Between two evidence points of one observation; interpolated, not a stated interval.",
   "uncertain": "Only one-sided or imprecise bounds overlap the date; possible holders are pointers, not incumbents.",
   "unknown": "The role has evidence, but none covers this date.",
@@ -87,7 +87,8 @@
   "accepted": "Evidence belongs to a C01 packet with an integration acceptance record (bounded research acceptance, not country certification).",
   "pending": "Evidence belongs to a C01 packet integrated on 27 September 2026 whose historical acceptance remains pending.",
   "unclassified_packet": "Evidence belongs to a C01 packet report with neither an acceptance record nor a pending-integration listing.",
-  "s10_intake": "Evidence cites only S10 discovery-intake sources that no C01 packet report claims.",
+  "unattributed_intake": "Checked-in discovery evidence that no numbered C01 packet report claims; its intake batch and acceptance are not established by this audit.",
+  "mixed_intake": "Evidence mixes accepted packet sources with unattributed discovery sources; the whole observation is not labelled accepted.",
   "production_registry": "spheres-sim/data/party_leaders.json: the partial production registry the game serves; not reviewed as C01 research.",
   "fictional_catalog": "Authored future fiction (spheres-web/data/future_candidates_2035.json); never historical evidence."
  },
@@ -400,10 +401,10 @@
        "production_party": 8,
        "executive": 1
       },
-      "cases": 931,
+      "cases": 1013,
       "case_kinds": {
-       "attestation_day": 26,
-       "attestation_day_after": 26,
+       "attestation_day": 34,
+       "attestation_day_after": 34,
        "cutoff_day": 14,
        "cutoff_day_before": 14,
        "dissolution_day_after": 3,
@@ -416,9 +417,9 @@
        "founding_day_before": 2,
        "founding_day_of": 2,
        "future_2030": 14,
-       "handover_day_after": 50,
-       "handover_day_before": 50,
-       "handover_day_of": 50,
+       "handover_day_after": 72,
+       "handover_day_before": 72,
+       "handover_day_of": 72,
        "reference_start": 14,
        "reference_start_day_before": 14,
        "yearly": 644
@@ -426,7 +427,7 @@
       "observations_by_acceptance": {
        "pending": 44,
        "production_registry": 42,
-       "s10_intake": 5
+       "unattributed_intake": 5
       },
       "research_yearly_status": {
        "established": 9,
@@ -453,18 +454,21 @@
       "fictional_candidates_with_portrait": 4,
       "fictional_executive_authorized": 32,
       "research_roles_without_holder_observation": [],
-      "windows_extending_past_recorded_death": [],
+      "windows_extending_past_recorded_death": [
+       "eiichi_nagasue"
+      ],
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: pending 44, s10_intake 5.",
+      "Research roles: 5 (5 with holder observations); 9 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 47 uncertain, 129 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 44, unattributed_intake 5.",
       "Production party rows/components: 8; 151 of 296 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 0 unknown, 0 unresearched and 142 inapplicable.",
       "Registry holder portraits at yearly samples: 15 bound, 136 unbound (29 distinct people without served art).",
       "Campaign-start executive Toshiki Kaifu: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
       "Paired executive research (research:jp_pm): 9 of 37 yearly samples 1990-2026 identify a holder.",
-      "Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive."
+      "Future: 32 fictional candidates, 4 with a served portrait, 32 authorized for a national executive.",
+      "Portrait window extends past a recorded death: eiichi_nagasue."
      ]
     }
    ]
@@ -482,10 +486,10 @@
        "production_party": 4,
        "executive": 1
       },
-      "cases": 537,
+      "cases": 568,
       "case_kinds": {
-       "attestation_day": 19,
-       "attestation_day_after": 19,
+       "attestation_day": 27,
+       "attestation_day_after": 27,
        "cutoff_day": 8,
        "cutoff_day_before": 8,
        "death_day_after": 2,
@@ -495,9 +499,9 @@
        "fictional_last_day": 8,
        "fictional_start_day": 8,
        "future_2030": 8,
-       "handover_day_after": 28,
-       "handover_day_before": 28,
-       "handover_day_of": 28,
+       "handover_day_after": 33,
+       "handover_day_before": 33,
+       "handover_day_of": 33,
        "reference_start": 8,
        "reference_start_day_before": 8,
        "yearly": 368
@@ -539,7 +543,7 @@
       ]
      },
      "headline": [
-      "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
+      "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
       "Research holder observations by acceptance: pending 31.",
       "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
       "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
@@ -566,10 +570,10 @@
        "production_party": 6,
        "executive": 1
       },
-      "cases": 661,
+      "cases": 688,
       "case_kinds": {
-       "attestation_day": 13,
-       "attestation_day_after": 13,
+       "attestation_day": 14,
+       "attestation_day_after": 14,
        "cutoff_day": 10,
        "cutoff_day_before": 10,
        "death_day_after": 1,
@@ -582,9 +586,9 @@
        "fictional_last_day": 10,
        "fictional_start_day": 10,
        "future_2030": 10,
-       "handover_day_after": 43,
-       "handover_day_before": 43,
-       "handover_day_of": 43,
+       "handover_day_after": 54,
+       "handover_day_before": 54,
+       "handover_day_of": 54,
        "reference_start": 10,
        "reference_start_day_before": 10,
        "yearly": 460
@@ -626,7 +630,7 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
+      "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
       "Research holder observations by acceptance: pending 39.",
       "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
       "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
@@ -651,10 +655,10 @@
        "production_party": 7,
        "executive": 1
       },
-      "cases": 884,
+      "cases": 911,
       "case_kinds": {
-       "attestation_day": 35,
-       "attestation_day_after": 35,
+       "attestation_day": 45,
+       "attestation_day_after": 45,
        "cutoff_day": 15,
        "cutoff_day_before": 15,
        "death_day_after": 1,
@@ -667,9 +671,9 @@
        "fictional_last_day": 15,
        "fictional_start_day": 15,
        "future_2030": 15,
-       "handover_day_after": 12,
-       "handover_day_before": 12,
-       "handover_day_of": 12,
+       "handover_day_after": 16,
+       "handover_day_before": 16,
+       "handover_day_of": 16,
        "reference_start": 15,
        "reference_start_day_before": 15,
        "yearly": 690
@@ -677,7 +681,7 @@
       "observations_by_acceptance": {
        "pending": 32,
        "production_registry": 18,
-       "s10_intake": 5
+       "unattributed_intake": 5
       },
       "research_yearly_status": {
        "bracketed": 9,
@@ -714,8 +718,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: pending 32, s10_intake 5.",
+      "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 32, unattributed_intake 5.",
       "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
       "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
       "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -740,26 +744,32 @@
        "production_party": 0,
        "executive": 1
       },
-      "cases": 889,
+      "cases": 920,
       "case_kinds": {
-       "attestation_day": 16,
-       "attestation_day_after": 16,
+       "attestation_day": 17,
+       "attestation_day_after": 17,
+       "attested_period_from_day_after": 5,
+       "attested_period_from_day_before": 5,
+       "attested_period_from_day_of": 5,
+       "attested_period_through_day_after": 5,
+       "attested_period_through_day_before": 5,
+       "attested_period_through_day_of": 5,
        "cutoff_day": 16,
        "cutoff_day_before": 16,
        "fictional_end_exclusive": 16,
        "fictional_last_day": 16,
        "fictional_start_day": 16,
        "future_2030": 16,
-       "handover_day_after": 9,
-       "handover_day_before": 9,
-       "handover_day_of": 9,
+       "handover_day_after": 11,
+       "handover_day_before": 11,
+       "handover_day_of": 11,
        "reference_start": 16,
        "reference_start_day_before": 16,
        "yearly": 736
       },
       "observations_by_acceptance": {
        "accepted": 19,
-       "s10_intake": 10
+       "unattributed_intake": 10
       },
       "research_yearly_status": {
        "established": 15,
@@ -789,8 +799,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 15 (11 with holder observations); 23 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
-      "Research holder observations by acceptance: accepted 19, s10_intake 10.",
+      "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
+      "Research holder observations by acceptance: accepted 19, unattributed_intake 10.",
       "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
       "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -812,26 +822,26 @@
        "production_party": 0,
        "executive": 1
       },
-      "cases": 612,
+      "cases": 623,
       "case_kinds": {
-       "attestation_day": 15,
-       "attestation_day_after": 15,
+       "attestation_day": 20,
+       "attestation_day_after": 20,
        "cutoff_day": 11,
        "cutoff_day_before": 11,
        "fictional_end_exclusive": 11,
        "fictional_last_day": 11,
        "fictional_start_day": 11,
        "future_2030": 11,
-       "handover_day_after": 6,
-       "handover_day_before": 6,
-       "handover_day_of": 6,
+       "handover_day_after": 7,
+       "handover_day_before": 7,
+       "handover_day_of": 7,
        "reference_start": 11,
        "reference_start_day_before": 11,
        "yearly": 506
       },
       "observations_by_acceptance": {
        "pending": 13,
-       "s10_intake": 3
+       "unattributed_intake": 3
       },
       "research_yearly_status": {
        "bracketed": 22,
@@ -864,8 +874,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.",
-      "Research holder observations by acceptance: pending 13, s10_intake 3.",
+      "Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.",
+      "Research holder observations by acceptance: pending 13, unattributed_intake 3.",
       "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
       "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -889,10 +899,10 @@
        "production_party": 3,
        "executive": 1
       },
-      "cases": 540,
+      "cases": 563,
       "case_kinds": {
-       "attestation_day": 9,
-       "attestation_day_after": 9,
+       "attestation_day": 12,
+       "attestation_day_after": 12,
        "creation_day_after": 1,
        "creation_day_before": 1,
        "creation_day_of": 1,
@@ -902,13 +912,19 @@
        "fictional_last_day": 10,
        "fictional_start_day": 10,
        "future_2030": 10,
+       "observation_window_from_day_after": 3,
+       "observation_window_from_day_before": 3,
+       "observation_window_from_day_of": 3,
+       "observation_window_through_day_after": 3,
+       "observation_window_through_day_before": 3,
+       "observation_window_through_day_of": 3,
        "reference_start": 10,
        "reference_start_day_before": 10,
        "yearly": 460
       },
       "observations_by_acceptance": {
        "pending": 7,
-       "s10_intake": 4
+       "unattributed_intake": 4
       },
       "research_yearly_status": {
        "inapplicable": 1,
@@ -934,8 +950,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
-      "Research holder observations by acceptance: pending 7, s10_intake 4.",
+      "Research roles: 6 (5 with holder observations); 0 of 222 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 0 uncertain, 184 unknown and 37 unresearched.",
+      "Research holder observations by acceptance: pending 7, unattributed_intake 4.",
       "Production party rows/components: 3; 0 of 111 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 111 unresearched and 0 inapplicable.",
       "Campaign-start executive Mikhail Gorbachev: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
       "Campaign-start comparison: historical_identity_not_established.",
@@ -951,7 +967,7 @@
        "production_party": 5,
        "executive": 1
       },
-      "cases": 859,
+      "cases": 885,
       "case_kinds": {
        "attestation_day": 10,
        "attestation_day_after": 10,
@@ -961,16 +977,16 @@
        "fictional_last_day": 15,
        "fictional_start_day": 15,
        "future_2030": 15,
-       "handover_day_after": 20,
-       "handover_day_before": 20,
-       "handover_day_of": 20,
+       "handover_day_after": 29,
+       "handover_day_before": 29,
+       "handover_day_of": 29,
        "reference_start": 15,
        "reference_start_day_before": 15,
        "yearly": 690
       },
       "observations_by_acceptance": {
        "pending": 24,
-       "s10_intake": 5
+       "unattributed_intake": 5
       },
       "research_yearly_status": {
        "established": 3,
@@ -996,8 +1012,8 @@
       "registry_terms_with_unknown_end": []
      },
      "headline": [
-      "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.",
-      "Research holder observations by acceptance: pending 24, s10_intake 5.",
+      "Research roles: 9 (9 with holder observations); 3 of 333 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 123 uncertain, 207 unknown and 0 unresearched.",
+      "Research holder observations by acceptance: pending 24, unattributed_intake 5.",
       "Production party rows/components: 5; 0 of 185 yearly samples 1990-2026 have an established registry holder, 0 uncertain, 0 unknown, 185 unresearched and 0 inapplicable.",
       "Successor identity: no executive or party assignment exists at the 1990 campaign start.",
       "Paired executive research (research:ru_rsfsr_president, research:ru_president): 3 of 37 yearly samples 1990-2026 identify a holder.",
@@ -1453,10 +1469,10 @@
  ],
  "wrong_or_unavailable_assets": [],
  "assets_shared_across_people": [],
- "campaign_comparison": "Only the fresh campaign start is observed from production data. Divergent saved campaigns are exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is an expected outcome, never an error, and history never overwrites it.",
+ "campaign_comparison": "The fresh campaign start is derived from production data and a runtime mirror, not observed through native execution. Divergent saved campaigns are exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is an expected outcome, never an error, and history never overwrites it.",
  "not_used": [
-  "CLAUDE-C01-GAPS-01 ledger (unmerged; not required)",
-  "docs/campaign-certification/S10/b saved campaigns (outside this checkout; equivalent to the 1990 start rows)"
+  "CLAUDE-C01-GAPS-01 ledger (not a dependency)",
+  "docs/campaign-certification/S10/b saved campaigns (not read; no equivalence to start rows is asserted)"
  ],
  "inputs": [
   {
@@ -1775,6 +1791,13 @@
    "exists": true
   },
   {
+   "path": "spheres-sim/src/clock.rs",
+   "bytes": 6036,
+   "sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+   "newline_normalized": true,
+   "exists": true
+  },
+  {
    "path": "spheres-sim/src/party_executive_eligibility.rs",
    "bytes": 11005,
    "sha256": "3a60b808c4adca72b4397d35962b5bb09ac919934d4a58c174107f3c29846204",
@@ -2028,8 +2051,8 @@
   },
   {
    "path": "tools/avatars/certified_boundary_matrix.py",
-   "bytes": 91342,
-   "sha256": "8ad0d8de283c81f0297e591cec4dd8a694bbebec3499499f558ef5b2555e1c1f",
+   "bytes": 97239,
+   "sha256": "7f0f66cfbac03e5d0f5396258d8d0e5df7ab27cd752ed66df9a79ac9e375dab4",
    "newline_normalized": true,
    "exists": true
   }

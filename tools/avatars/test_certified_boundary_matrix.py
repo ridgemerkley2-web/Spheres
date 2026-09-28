@@ -306,7 +306,7 @@ class OffByOneHandovers(FixtureTree):
         attested = self.case('research:al_pm', '2005-05-05')
         self.assertIn('attestation_day', attested['kinds'])
         self.assertEqual(attested['historical']['holders'], [['al_pm#4', 'attested_on_day']])
-        self.assertEqual(attested['acceptance'], ['s10_intake'])
+        self.assertEqual(attested['acceptance'], ['unattributed_intake'])
         following = self.case('research:al_pm', '2005-05-06')
         self.assertIn('attestation_day_after', following['kinds'])
         self.assertNotIn('holders', following['historical'])
@@ -368,7 +368,7 @@ class PendingEvidence(FixtureTree):
         obs = self.alpha['observations']
         self.assertEqual(obs['al_pm#1']['acceptance'], 'accepted')
         self.assertEqual(obs['al_pm#3']['acceptance'], 'pending')
-        self.assertEqual(obs['al_pm#4']['acceptance'], 's10_intake')
+        self.assertEqual(obs['al_pm#4']['acceptance'], 'unattributed_intake')
         self.assertEqual(obs['al_pm#5']['acceptance'], 'pending')  # accepted + pending sources
         self.assertEqual(obs['al_pm#6']['acceptance'], 'unclassified_packet')
         self.assertEqual(obs['al_main_old']['acceptance'], 'production_registry')
@@ -516,6 +516,151 @@ class DeterministicRegeneration(FixtureTree):
         self.assertFalse(rows[matrix.PORTRAIT_PREFIX + 'p-exec-1991.png']['exists'])
 
 
+class IndependentReviewRegressions(FixtureTree):
+    def test_negative_acceptance_mentions_do_not_accept_a_packet(self):
+        path = self.tmp / matrix.INTEGRATIONS / 'CLAUDE-C01-33/README.md'
+        path.parent.mkdir()
+        for text in ('# Review\n\nNot accepted.\n',
+                     '# Review\n\nThe prior packet was accepted; this submission is pending.\n',
+                     '# Review\n\n> **Decision: accepted as bounded research.**\n\nQuoted request only.\n'):
+            with self.subTest(text=text):
+                path.write_text(text, encoding='utf-8')
+                packets, _, _, _ = matrix.packet_provenance(matrix.Inputs(self.tmp))
+                self.assertEqual(packets['CLAUDE-C01-33']['status'], 'unclassified_packet')
+
+    def test_accepted_and_unattributed_sources_are_not_wholly_accepted(self):
+        packets, owners, _, _ = matrix.packet_provenance(matrix.Inputs(self.tmp))
+        status, _, classes = matrix.evidence_class(['src_acc', 'new_unclaimed_source'], owners, packets)
+        self.assertEqual(status, 'mixed_intake')
+        self.assertEqual(classes, {'accepted': 1, 'unattributed_intake': 1})
+        self.assertEqual(matrix.evidence_class(['new_unclaimed_source'], owners, packets)[0], 'unattributed_intake')
+
+    def test_period_observations_never_become_exact_day_holders(self):
+        observations = {
+            'month': {'name': 'Month holder', 'from': None, 'until': None,
+                      'observation_window': {'from': '1990-07-01', 'through': '1990-07-31'}},
+            'trial': {'name': 'Trial witness', 'from': None, 'until': None,
+                      'attested_period': {'from': '2022-04-19', 'through': '2022-04-21'}}}
+        role = {'observations': list(observations), 'entry': {'lifecycle': {}}}
+        for when, oid in [('1990-07-01', 'month'), ('1990-07-15', 'month'), ('1990-07-31', 'month'),
+                          ('2022-04-19', 'trial'), ('2022-04-20', 'trial'), ('2022-04-21', 'trial')]:
+            with self.subTest(when=when):
+                cell = matrix.research_cell(role, observations, date.fromisoformat(when))
+                self.assertEqual(cell['status'], 'period_attested')
+                self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+                self.assertNotIn('holders', cell)
+                self.assertEqual(cell['possible'][0][0], oid)
+        for when in ('1990-06-30', '1990-08-01', '2022-04-18', '2022-04-22'):
+            self.assertEqual(matrix.research_cell(role, observations, date.fromisoformat(when))['status'], 'unknown')
+        dates = matrix.research_boundaries(role, observations)
+        self.assertTrue({date(1990, 6, 30), date(1990, 7, 1), date(1990, 7, 2), date(1990, 7, 30),
+                         date(1990, 7, 31), date(1990, 8, 1)} <= set(dates))
+        self.assertTrue(all(not label.startswith('handover') for labels in dates.values() for label in labels))
+
+    def test_executive_inherits_paired_office_handover_and_attestation_dates(self):
+        for when in ('1996-04-01', '1996-04-02', '1996-04-03', '2005-05-05', '2005-05-06'):
+            executive = self.case('executive', when)
+            research = self.case('research:al_pm', when)
+            self.assertEqual(executive['historical'], research['historical'])
+            self.assertEqual(executive['kinds'], research['kinds'])
+
+    def test_invalid_calendar_and_noncanonical_portrait_windows_never_bind(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        for start, end in [('1990-02-30', '1991-01-01'), ('19900101', '1991-01-01'),
+                           ('1990-01-01', '1991-02-30'), ('1990-01-01', '19911231')]:
+            with self.subTest(start=start, end=end):
+                production.portraits['p_exec']['portraits'] = [record('p_exec', start, end, 'p-exec-1990.png')]
+                self.assertEqual(production.portrait('p_exec', date(1990, 6, 1))['binding'], 'unbound')
+        pid = 'fictional_v1_alpha_al_main_main_01'
+        for start, end in [('2026-09-31', '2036-01-01'), ('20260908', '2036-01-01'),
+                           ('2026-09-08', '2035-02-30'), ('2026-09-08', '20350101')]:
+            with self.subTest(start=start, end=end):
+                production.fictional_portraits[pid]['portraits'] = [fictional_record(pid, 'seed01', 'fictional-alpha-01.png', **{'from': start, 'to': end})]
+                self.assertEqual(production.portrait(pid, date(2030, 1, 1))['binding'], 'unbound')
+
+    def test_enabled_missing_book_does_not_invent_legacy_executive_identity(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        world = {'rules': {'historical_party_leadership': True},
+                 'leadership': [{'nation': 'Alpha', 'name': 'Exec Person', 'since': '1988-01-01', 'emergent': None}]}
+        for book in (None, {}):
+            world['party_leadership'] = book
+            self.assertIsNone(matrix.campaign_observation(production, world, 'Alpha')['person'])
+        world['rules']['historical_party_leadership'] = False
+        self.assertEqual(matrix.campaign_observation(production, world, 'Alpha')['person'], 'p_exec')
+
+    def test_saved_executive_assignment_precedes_legacy_office_row(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        world = {'rules': {'historical_party_leadership': True}, 'leadership': [],
+                 'party_leadership': {'executives': [{'nation': 'Alpha', 'holder': {'person': 'p_new'}}]}}
+        self.assertEqual(matrix.campaign_observation(production, world, 'Alpha')['person'], 'p_new')
+        self.assertEqual(matrix.campaign_observation(production, world, 'Alpha')['source'], 'saved_executive_assignment')
+
+    def test_saved_report_pins_exact_save_and_marks_future_history_inapplicable(self):
+        save = self.tmp / 'save.json.gz'
+        data = json.dumps({'world': {'world': {'year': 2035, 'month': 12, 'day': 31,
+             'rules': {'daily_simulation': True}, 'leadership': [], 'party_leadership': None}}}).encode()
+        raw = gzip.compress(data, mtime=0)
+        save.write_bytes(raw)
+        before = save.read_bytes()
+        report = matrix.campaign_report(self.tmp, save)
+        self.assertEqual(report['save_identity']['sha256'], sha(raw))
+        self.assertEqual(report['save_identity']['decoded_sha256'], sha(data))
+        self.assertEqual(report['save_identity']['bytes'], len(raw))
+        self.assertEqual(report['save_identity']['decoded_bytes'], len(data))
+        self.assertTrue(report['inputs'])
+        self.assertEqual(report['status'], 'read_only_observation_not_campaign_validation')
+        for identity in report['identities']:
+            self.assertEqual(identity['executive']['historical']['reason'], 'after_historical_cutoff')
+        self.assertEqual(before, save.read_bytes())
+
+    def test_unknown_kind_dissolved_party_is_inapplicable_not_missing(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        party = production.parties[('Alpha', 'al_gone')]
+        party['kind'] = 'unknown'
+        cell = matrix.production_cell(production, self.role('party:al_gone'), party, date(2001, 3, 4))
+        self.assertEqual(cell, {'status': 'inapplicable', 'reason': 'organization_not_existing'})
+
+    def test_death_day_coverage_and_open_ended_portraits_are_flagged(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        for end, expected in [('1995-06-10', False), ('1995-06-11', True), (None, True)]:
+            with self.subTest(end=end):
+                production.portraits['p_old']['portraits'][0]['to'] = end
+                people, _ = matrix.person_audit(production, matrix.Assets(matrix.Inputs(self.tmp), production),
+                    'Alpha', self.alpha['observations'], self.alpha['roles'])
+                person = next(p for p in people if p['person'] == 'p_old')
+                self.assertEqual(person['portrait_windows'][0]['extends_past_recorded_death'], expected)
+
+    def test_changed_research_cutoff_and_duplicate_identity_fail_closed(self):
+        packet_path = self.tmp / matrix.RESEARCH / 'alpha.json'
+        packet = json.loads(packet_path.read_text())
+        packet['research_cutoff'] = '2035-12-31'
+        write_tree(self.tmp, {matrix.RESEARCH + '/alpha.json': packet})
+        with self.assertRaisesRegex(matrix.MatrixError, 'Research cutoff changed'):
+            matrix.build(self.tmp)
+        packet['research_cutoff'] = '2026-09-07'
+        write_tree(self.tmp, {matrix.RESEARCH + '/alpha.json': packet, matrix.RESEARCH + '/duplicate.json': packet})
+        with self.assertRaisesRegex(matrix.MatrixError, 'Duplicate research identity'):
+            matrix.build(self.tmp)
+
+    def test_fictional_manifest_entry_does_not_count_as_served_art(self):
+        stats = self.alpha['identities'][0]['statistics']
+        self.assertEqual(stats['fictional_candidates'], 2)
+        self.assertEqual(stats['fictional_candidates_with_portrait'], 1)
+        wrong = next(p for p in self.alpha['fictional_candidates'] if p['person'].endswith('_02'))
+        self.assertTrue(wrong['portrait_assets'])
+        self.assertEqual(wrong['bound_portrait_sample_dates'], [])
+        future = self.case('party:al_main', '2030-01-01')['future']
+        self.assertTrue(future['listed_in_simulation_future_reference'])
+        self.assertFalse(future['served_web_historical_reference'])
+
+    def test_shared_asset_with_missing_checksum_is_reported_not_crashed(self):
+        production = matrix.Production(matrix.Inputs(self.tmp))
+        production.portraits['p_co2']['portraits'][0].pop('sha256')
+        row = matrix.Assets(matrix.Inputs(self.tmp), production).check(matrix.PORTRAIT_PREFIX + 'p-old-cartoon.png')
+        self.assertEqual(row['status'], 'sha256_mismatch')
+        self.assertIn(None, row['manifest_sha256'])
+
+
 class RealCommittedOutput(unittest.TestCase):
     """Actual production observations recorded in the committed matrix."""
 
@@ -581,6 +726,15 @@ class RealCommittedOutput(unittest.TestCase):
         self.assertNotIn('holders', death['historical'])
         rpr = self.case('cases-france.json', 'party:fr_rpr', '2002-09-22')['historical']
         self.assertEqual(rpr, {'status': 'inapplicable', 'reason': 'organization_not_existing'})
+        # A year-level observation is not proof of the PM on 1 January.
+        tonga_period = self.case('cases-tonga.json', 'research:to_pm', '1990-01-01')['historical']
+        self.assertEqual(tonga_period['status'], 'period_attested')
+        self.assertNotIn('holders', tonga_period)
+        tonga_exec = self.case('cases-tonga.json', 'executive', '2006-09-11')['historical']
+        self.assertEqual(tonga_exec, tonga)
+        ussr_window = self.case('cases-ussr-russia.json', 'research:su_cpsu_general_secretary', '1990-07-01')['historical']
+        self.assertEqual(ussr_window['status'], 'period_attested')
+        self.assertNotIn('holders', ussr_window)
 
 
 if __name__ == '__main__':

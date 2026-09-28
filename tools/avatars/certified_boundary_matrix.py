@@ -13,7 +13,7 @@ Each case reports five things separately:
   attestation, bracketed, uncertain, unknown, unresearched or inapplicable);
 * role: the research role, production party row/component or national executive;
 * source acceptance: accepted C01 packet, integrated-but-pending C01 packet,
-  S10 discovery intake, production registry or authored fiction;
+  unattributed discovery intake, production registry or authored fiction;
 * actual image binding: a mirror of spheres-web/src/person_portraits.rs;
 * asset availability: the bound file exists, matches its manifest hash and is on
   the served allowlist.
@@ -65,6 +65,7 @@ FUTURE_CATALOG = 'spheres-web/data/future_candidates_2035.json'
 # Rust whose binding semantics this module mirrors. They are hashed so that a
 # semantic change makes the committed matrix stale and forces a re-review.
 MIRRORED_SEMANTICS = (
+    'spheres-sim/src/clock.rs',
     'spheres-sim/src/party_leadership.rs',
     'spheres-sim/src/party_leadership_future.rs',
     'spheres-sim/src/party_executive_eligibility.rs',
@@ -112,7 +113,8 @@ ACCEPTANCE_CLASSES = {
     'accepted': 'Evidence belongs to a C01 packet with an integration acceptance record (bounded research acceptance, not country certification).',
     'pending': 'Evidence belongs to a C01 packet integrated on 27 September 2026 whose historical acceptance remains pending.',
     'unclassified_packet': 'Evidence belongs to a C01 packet report with neither an acceptance record nor a pending-integration listing.',
-    's10_intake': 'Evidence cites only S10 discovery-intake sources that no C01 packet report claims.',
+    'unattributed_intake': 'Checked-in discovery evidence that no numbered C01 packet report claims; its intake batch and acceptance are not established by this audit.',
+    'mixed_intake': 'Evidence mixes accepted packet sources with unattributed discovery sources; the whole observation is not labelled accepted.',
     'production_registry': 'spheres-sim/data/party_leaders.json: the partial production registry the game serves; not reviewed as C01 research.',
     'fictional_catalog': 'Authored future fiction (spheres-web/data/future_candidates_2035.json); never historical evidence.',
 }
@@ -137,7 +139,7 @@ RELATION_STATUS = {
     'within_attested_period': 'period_attested', 'within_observation_window': 'period_attested',
     'bracketed_by_evidence': 'bracketed',
 }
-IDENTIFIED = ('boundary_day', 'established', 'attested', 'period_attested')
+IDENTIFIED = ('boundary_day', 'established', 'attested')
 
 
 class MatrixError(ValueError):
@@ -219,6 +221,16 @@ def day(value):
     return date.fromisoformat(value) if value else None
 
 
+def exact_day(value):
+    """Mirror the served portrait selector's exact Gregorian YYYY-MM-DD guard."""
+    if not isinstance(value, str):
+        return False
+    try:
+        return date.fromisoformat(value).isoformat() == value
+    except ValueError:
+        return False
+
+
 def month_end(y, m):
     return (date(y + (m == 12), m % 12 + 1, 1) - timedelta(days=1))
 
@@ -284,7 +296,7 @@ def packet_provenance(inputs):
     A packet report's "Sources added" table names the sources it contributed.
     Acceptance comes from integration records; pending status from the
     27 September 2026 integration note. A source that no packet report claims
-    is S10 discovery intake.
+    is unattributed discovery intake, not proof of its batch or acceptance.
     """
     accepted = {}
     base = inputs.root / INTEGRATIONS
@@ -294,7 +306,9 @@ def packet_provenance(inputs):
         if not match or not (inputs.root / readme).is_file():
             continue
         text = inputs.text(readme)
-        if not re.search(r'\baccepted\b', text, re.I):
+        # A mention such as "not accepted" or "previously accepted" is not a
+        # decision. Match the explicit decision forms in the reviewed records.
+        if not re.search(r'^(?:\*\*Decision: accepted\b|Accepted as a bounded research intake\b)', text, re.M):
             continue
         for number in match.group(1).split('-'):
             accepted[f'CLAUDE-C01-{number}'] = readme
@@ -336,7 +350,7 @@ def evidence_class(source_ids, owners, packets):
     for source in source_ids:
         packs = owners.get(source)
         if not packs:
-            classes['s10_intake'] += 1
+            classes['unattributed_intake'] += 1
             continue
         for packet in packs:
             classes[packets[packet]['status']] += 1
@@ -345,10 +359,12 @@ def evidence_class(source_ids, owners, packets):
         overall = 'pending'
     elif classes['unclassified_packet']:
         overall = 'unclassified_packet'
+    elif classes['accepted'] and classes['unattributed_intake']:
+        overall = 'mixed_intake'
     elif classes['accepted']:
         overall = 'accepted'
     else:
-        overall = 's10_intake'
+        overall = 'unattributed_intake'
     return overall, sorted(found), dict(sorted(classes.items()))
 
 
@@ -386,6 +402,9 @@ def research_model(identity, packet, owners, packets):
                                   'attested_on': attested}
                         if span:
                             record['attested_period'] = span
+                        for field in ('precision', 'uncertainty'):
+                            if claim.get(field):
+                                record[field] = claim[field]
                     else:
                         sources = holder['sources']
                         record = {'role': key, 'name': holder['name'], 'from': holder.get('from'),
@@ -396,6 +415,9 @@ def research_model(identity, packet, owners, packets):
                             record['observation_window'] = holder['observation_window']
                             record['precision'] = holder.get('precision')
                         record['claim_ids'] = holder['claim_ids']
+                        for field in ('precision', 'note', 'uncertainty'):
+                            if holder.get(field):
+                                record[field] = holder[field]
                     acceptance, found, classes = evidence_class(sources, owners, packets)
                     record.update({'sources': sources, 'acceptance': acceptance,
                                    'packets': found, 'source_classes': classes})
@@ -455,10 +477,14 @@ def research_cell(role, observations, at):
         return {'status': 'inapplicable', 'reason': 'institution_ended_per_source'}
     if not role['observations']:
         return {'status': 'unresearched', 'reason': 'role_has_no_holder_observation'}
-    holders, one_sided = [], []
+    holders, one_sided, windows = [], [], []
     for oid in role['observations']:
         relation = research_relation(observations[oid], at)
-        if relation in RELATION_STATUS:
+        if relation in ('within_attested_period', 'within_observation_window'):
+            # The source may attest the holder sometime within a month, year,
+            # or multi-day hearing. It does not establish every individual day.
+            windows.append([oid, relation])
+        elif relation in RELATION_STATUS:
             holders.append([oid, relation])
         elif relation:
             one_sided.append((oid, relation))
@@ -466,6 +492,9 @@ def research_cell(role, observations, at):
     if holders:
         cell['status'] = min((RELATION_STATUS[r] for _, r in holders), key=STATUS_ORDER.index)
         cell['holders'] = holders
+    elif windows:
+        cell['status'] = 'period_attested'
+        cell['reason'] = 'observation_window_not_an_exact_day_or_term'
     elif one_sided:
         cell['status'] = 'uncertain'
         cell['reason'] = 'one_sided_observation_only'
@@ -485,6 +514,8 @@ def research_cell(role, observations, at):
         cell['possible'] = possible
         if len(one_sided) > len(possible):
             cell['possible_total'] = len(one_sided)
+    if windows:
+        cell.setdefault('possible', []).extend(windows)
     names = {observations[o]['name'] or observations[o].get('claim') for o, r in holders
              if RELATION_STATUS[r] != 'boundary_day'}
     if len(names) > 1:
@@ -509,6 +540,11 @@ def research_boundaries(role, observations):
             if REFERENCE_FROM <= attested <= CUTOFF:
                 marks[attested].add('attestation_day')
                 marks[attested + timedelta(days=1)].add('attestation_day_after')
+        for key in ('attested_period', 'observation_window'):
+            span = obs.get(key) or {}
+            for endpoint in ('from', 'through'):
+                if span.get(endpoint):
+                    add_triple(marks, day(span[endpoint]), f'{key}_{endpoint}')
     return marks
 
 
@@ -630,8 +666,8 @@ class Production:
         records = entry.get('portraits', []) if entry else []
         if not records:
             return {'person': person_id, 'binding': 'unbound', 'reason': 'no_portrait_record'}
-        covering = [p for p in records if p.get('from') and p['from'] <= iso(at)
-                    and (p.get('to') is None or iso(at) < p['to'])]
+        covering = [p for p in records if exact_day(p.get('from')) and p['from'] <= iso(at)
+                    and (p.get('to') is None or (exact_day(p['to']) and iso(at) < p['to']))]
         valid = [p for p in covering
                  if (p.get('identity_source') or {}).get('person_id') == person_id
                  and p.get('style') == 'cartoon' and p.get('method') == 'generated'
@@ -656,8 +692,8 @@ class Production:
             return {'person': person_id, 'binding': 'unbound', 'reason': 'no_portrait_record'}
         if entry.get('name') != candidate['name'] or entry.get('appearance_seed') != candidate['appearance_seed']:
             return {'person': person_id, 'binding': 'unbound', 'reason': 'record_identity_mismatch'}
-        covering = [p for p in entry['portraits'] if p.get('from') and p['from'] <= iso(at)
-                    and p.get('to') and iso(at) < p['to']]
+        covering = [p for p in entry['portraits'] if exact_day(p.get('from')) and p['from'] <= iso(at)
+                    and exact_day(p.get('to')) and iso(at) < p['to']]
         valid = [p for p in covering
                  if (p.get('design_source') or {}).get('kind') == 'authored_fiction'
                  and p['design_source'].get('person_id') == person_id
@@ -720,7 +756,7 @@ class Assets:
         info = self.inputs.asset(asset)
         recorded = sorted({r.get('sha256') for manifest in (self.production.portraits, self.production.fictional_portraits)
                            for entry in manifest.values() for r in entry.get('portraits', [])
-                           if r.get('asset') == asset})
+                           if r.get('asset') == asset}, key=lambda value: json.dumps(value))
         name = asset[len(PORTRAIT_PREFIX):] if asset.startswith(PORTRAIT_PREFIX) else asset
         people = sorted(self.users.get(asset, ()))
         slug_ok = all(name.startswith(('fictional-' if p in self.production.candidates else p.replace('_', '-') + '-'))
@@ -842,11 +878,11 @@ def production_cell(production, role, party, at):
         cell.update(status='inapplicable', reason='before_reference_period')
     elif at > CUTOFF:
         cell.update(status='inapplicable', reason='after_historical_cutoff')
-    elif party['kind'] == 'unknown':
-        cell.update(status='unresearched', reason='party_kind_unknown_no_researched_chain')
     elif not (possible_life(party.get('founded'), party.get('dissolved'), at)
               and (not component or possible_life(entity.get('founded'), entity.get('dissolved'), at))):
         cell.update(status='inapplicable', reason='organization_not_existing')
+    elif party['kind'] == 'unknown':
+        cell.update(status='unresearched', reason='party_kind_unknown_no_researched_chain')
     else:
         holders = [[t['id'], 'historical_on'] for t in terms
                    if production.historical_on(party, t, at) and t['kind'] != 'candidate']
@@ -899,8 +935,10 @@ def future_cell(production, identity, party, role, at):
             reasons[result['reason']] += 1
     available = all(c.get('component_available') for c in pool) if pool else False
     cell = {'eligible': True, 'candidates': len(pool),
+            'eligibility_scope': 'fictional_window_only; a live campaign vacancy and saved eligibility are still required',
             'component_available_for_campaign_vacancy': available,
-            'listed_in_reference_view': exists and available,
+            'listed_in_simulation_future_reference': exists and available,
+            'served_web_historical_reference': False,
             'executive_authorized': sum(bool(c['executive_eligibility'].get('authorized')) for c in pool)}
     if bound_people:
         cell['portraits_bound'] = bound_people
@@ -1049,7 +1087,15 @@ def build_identity(production, assets, identity, packet, owners, packets, alive_
     executive = executive_role(production, identity, research_by_key)
     start_person = executive['office_link']['person'] if executive['office_link'] else None
     cases = []
-    for at, kinds in case_dates({}):
+    executive_dates = defaultdict(set)
+    for key in executive['paired_research_roles']:
+        for when, labels in research_boundaries(research_by_key[key], observations).items():
+            executive_dates[when].update(labels)
+    if start_person:
+        death = bound(production.people.get(start_person, {}).get('died'))
+        if death and death[0] == death[1]:
+            add_triple(executive_dates, death[0], 'death')
+    for at, kinds in case_dates(executive_dates):
         paired = [research_cell(research_by_key[k], observations, at) for k in executive['paired_research_roles']]
         if not paired:
             if at < REFERENCE_FROM or at > CUTOFF:
@@ -1112,7 +1158,8 @@ def person_audit(production, assets, identity, observations, roles):
             asset = assets.check(record['asset']) if record.get('asset') else None
             windows.append({'from': record.get('from'), 'to': record.get('to'),
                             'asset': record.get('asset'), 'asset_status': asset['status'] if asset else 'no_asset',
-                            'extends_past_recorded_death': bool(died and record.get('to') and date.fromisoformat(record['to']) > died[1] + timedelta(days=1))})
+                            'extends_past_recorded_death': bool(died and (record.get('to') is None or
+                                (exact_day(record['to']) and date.fromisoformat(record['to']) > died[1])))})
         board = production.board_people.get(pid, {})
         rows.append({'person': pid, 'name': person.get('name'), 'born': person.get('born'), 'died': person.get('died'),
                      'portrait_windows': windows,
@@ -1125,9 +1172,21 @@ def person_audit(production, assets, identity, observations, roles):
             continue
         for candidate in pool:
             records = production.fictional_portraits.get(candidate['person_id'], {}).get('portraits', [])
+            # A manifest entry alone is not a served portrait. Check every
+            # selector transition, including the ends of overlapping windows.
+            samples = {FICTIONAL_FROM}
+            for record in records:
+                for key in ('from', 'to'):
+                    if exact_day(record.get(key)):
+                        when = day(record[key])
+                        if FICTIONAL_FROM <= when < FICTIONAL_UNTIL:
+                            samples.add(when)
+            bound_samples = [iso(when) for when in sorted(samples)
+                             if production.portrait(candidate['person_id'], when)['binding'] == 'bound']
             fictional.append({'person': candidate['person_id'], 'name': candidate['name'], 'party': party,
                               'component': component,
                               'portrait_assets': [[r.get('asset'), assets.check(r['asset'])['status']] for r in records if r.get('asset')],
+                              'bound_portrait_sample_dates': bound_samples,
                               'executive_authorized': bool(candidate['executive_eligibility'].get('authorized'))})
     return rows, fictional
 
@@ -1177,7 +1236,7 @@ def identity_summary(production, identity, roles, observations, people, fictiona
         'people_without_bound_art_at_yearly_samples': len({p for p, _ in unbound_people}),
         'unbound_yearly_samples_without_art_job': sorted({p for p, job in unbound_people if job == 'none_covers_date'}),
         'fictional_candidates': len(fictional),
-        'fictional_candidates_with_portrait': sum(1 for f in fictional if f['portrait_assets']),
+        'fictional_candidates_with_portrait': sum(1 for f in fictional if f['bound_portrait_sample_dates']),
         'fictional_executive_authorized': sum(f['executive_authorized'] for f in fictional),
         'research_roles_without_holder_observation': sorted(r['role_id'] for r in research if not r['observations']),
         'windows_extending_past_recorded_death': sorted(p['person'] for p in people
@@ -1204,7 +1263,8 @@ def headline(identity, stats, roles, production):
         identified = sum(rs.get(s, 0) for s in IDENTIFIED)
         lines.append(f"Research roles: {len(research)} ({len(with_holders)} with holder observations); "
                      f"{identified} of {total} yearly role-samples 1990-2026 identify a holder "
-                     f"(stated interval, boundary day, day or period attestation), "
+                     f"(stated interval, boundary day or exact day attestation); "
+                     f"{rs.get('period_attested', 0)} have period observations only, "
                      f"{rs.get('bracketed', 0)} are bracketed, {rs.get('uncertain', 0)} uncertain, "
                      f"{rs.get('unknown', 0)} unknown and {rs.get('unresearched', 0)} unresearched.")
         acc = stats['observations_by_acceptance']
@@ -1309,6 +1369,8 @@ def build(root=ROOT):
     research = {}
     for rel in inputs.glob(RESEARCH, '*.json'):
         packet = inputs.json(rel)
+        require(packet.get('research_cutoff') == iso(CUTOFF), f'Research cutoff changed: {rel}')
+        require(packet['nation'] not in research, f'Duplicate research identity: {packet["nation"]}')
         research[packet['nation']] = (rel, packet)
     production = Production(inputs)
     for rel in MIRRORED_SEMANTICS + (SELF,):
@@ -1344,7 +1406,7 @@ def build(root=ROOT):
         notes = case_notes(case, ids, doc_roles)
         outputs[name] = {
             'format': CASE_FORMAT, 'case': case, 'case_notes': notes, 'identities': identity_rows,
-            'interpretation': 'Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.',
+            'interpretation': 'Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.',
             'roles': doc_roles, 'observations': dict(sorted(doc_obs.items())),
             'people': people_rows, 'fictional_candidates': fictional_rows,
         }
@@ -1369,7 +1431,7 @@ def build(root=ROOT):
             'boundary_day': 'A source states a start or end on this day; the listed observations begin or end here.',
             'established': 'Inside a closed interval whose start and end are both stated (research) or a production term active under party_leadership::historical_on.',
             'attested': 'A research observation is attested on exactly this day.',
-            'period_attested': 'Inside a research attested period or month-precision observation window.',
+            'period_attested': 'A holder was observed sometime in this period; not an exact-day incumbent or a continuous term. Listed as possible, never counted as identified.',
             'bracketed': 'Between two evidence points of one observation; interpolated, not a stated interval.',
             'uncertain': 'Only one-sided or imprecise bounds overlap the date; possible holders are pointers, not incumbents.',
             'unknown': 'The role has evidence, but none covers this date.',
@@ -1386,11 +1448,11 @@ def build(root=ROOT):
         'assets': [assets.rows[a] for a in sorted(assets.rows)],
         'wrong_or_unavailable_assets': wrong,
         'assets_shared_across_people': shared,
-        'campaign_comparison': ('Only the fresh campaign start is observed from production data. Divergent saved campaigns are '
+        'campaign_comparison': ('The fresh campaign start is derived from production data and a runtime mirror, not observed through native execution. Divergent saved campaigns are '
                                 'exercised by test fixtures and by --campaign against a supplied save; a divergent incumbent is '
                                 'an expected outcome, never an error, and history never overwrites it.'),
-        'not_used': ['CLAUDE-C01-GAPS-01 ledger (unmerged; not required)',
-                     'docs/campaign-certification/S10/b saved campaigns (outside this checkout; equivalent to the 1990 start rows)'],
+        'not_used': ['CLAUDE-C01-GAPS-01 ledger (not a dependency)',
+                     'docs/campaign-certification/S10/b saved campaigns (not read; no equivalence to start rows is asserted)'],
         'inputs': inputs.listing(),
     }
     outputs['summary.json'] = summary
@@ -1431,7 +1493,7 @@ def findings_markdown(summary, outputs):
     lines += ['', '| Campaign verdict | Meaning |', '|---|---|']
     for key, text in CAMPAIGN_VERDICTS.items():
         lines.append(f'| `{key}` | {text} |')
-    lines += ['', 'The committed matrix holds actual production observations only. Divergent-campaign behaviour is',
+    lines += ['', 'The committed matrix holds source-derived production observations using pinned runtime mirrors; no native execution is performed. Divergent-campaign behaviour is',
               'asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.py`, never here.']
     lines += ['', '## Packet classification', '',
               '| Packet | Status | Sources listed |', '|---|---|---:|']
@@ -1466,16 +1528,16 @@ def findings_markdown(summary, outputs):
             lines.append('')
     lines += ['## Role coverage', '',
               'Yearly counts use the 37 samples from 1 January 1990 to 1 January 2026: identified (boundary day, established,',
-              'attested or period-attested) / bracketed / uncertain / unknown / unresearched / inapplicable. Portraits count',
+              'or exact day attested) / period-observed / bracketed / uncertain / unknown / unresearched / inapplicable. Portraits count',
               'established holders at those samples; for the executive they count the campaign-start person if retained.', '',
-              '| Identity | Role | Evidence | Yearly id/br/unc/unk/unr/n.a. | Boundary cases | Attestation cases | Portraits bound |',
+              '| Identity | Role | Evidence | Yearly id/period/br/unc/unk/unr/n.a. | Boundary cases | Attestation cases | Portraits bound |',
               '|---|---|---|---|---:|---:|---|']
     for case in summary['cases']:
         doc = outputs[case['file']]
         for role in doc['roles']:
             s = role['statistics']
             ys = s['yearly_status']
-            yearly = '/'.join(str(n) for n in (sum(ys.get(k, 0) for k in IDENTIFIED), ys.get('bracketed', 0),
+            yearly = '/'.join(str(n) for n in (sum(ys.get(k, 0) for k in IDENTIFIED), ys.get('period_attested', 0), ys.get('bracketed', 0),
                                                ys.get('uncertain', 0), ys.get('unknown', 0),
                                                ys.get('unresearched', 0), ys.get('inapplicable', 0)))
             evidence = Counter(doc['observations'][o]['acceptance'] for o in role['observations'])
@@ -1503,6 +1565,7 @@ def findings_markdown(summary, outputs):
               '- Only structured holder fields are used. Dates that appear only in claim text, notes or linked documents do not create boundaries, and deaths recorded only in text are not death cases.',
               '- Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.',
               '- Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.',
+              '- Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.',
               '- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (' +
               (', '.join(summary['integration_records_not_packet_acceptance']) or 'none') + ') do not change a packet\'s class.',
               '']
@@ -1511,16 +1574,19 @@ def findings_markdown(summary, outputs):
 
 # --------------------------------------------------------------- campaign ----
 
-def load_campaign(path):
+def load_campaign(path, with_provenance=False):
     raw = Path(path).read_bytes()
+    provenance = {'path': str(path), 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(),
+                  'gzip': raw[:2] == b'\x1f\x8b'}
     if raw[:2] == b'\x1f\x8b':
         raw = gzip.decompress(raw)
+    provenance.update(decoded_bytes=len(raw), decoded_sha256=hashlib.sha256(raw).hexdigest())
     data = json.loads(raw.decode('utf-8-sig'))
     world = data
     while isinstance(world, dict) and 'world' in world and 'year' not in world:
         world = world['world']
     require(isinstance(world, dict) and 'year' in world, 'Unrecognised campaign save shape')
-    return world
+    return (world, provenance) if with_provenance else world
 
 
 def campaign_date(world):
@@ -1535,14 +1601,20 @@ def campaign_observation(production, world, identity):
     book = world.get('party_leadership')
     rules = world.get('rules') or {}
     person = None
-    if office is None:
-        return {'person': None, 'name': None, 'source': 'no_leadership_row'}
-    named = office.get('name') and not office.get('emergent')
-    if rules.get('historical_party_leadership') and book:
+    # The enabled runtime checks the saved executive assignment before an
+    # office row. In particular, an absent book must not trigger legacy art.
+    if rules.get('historical_party_leadership') and book is not None:
         executive = next((e for e in book.get('executives', []) if e['nation'] == identity), None)
         if executive:
             person = executive['holder']['person']
-        elif named:
+            record = production.people.get(person) or production.candidates.get(person) or {}
+            return {'person': person, 'name': (office or {}).get('name') or record.get('name'),
+                    'source': 'saved_executive_assignment'}
+    if office is None:
+        return {'person': None, 'name': None, 'source': 'no_leadership_row'}
+    named = office.get('name') is not None and office.get('emergent') is None
+    if rules.get('historical_party_leadership'):
+        if book is not None and named:
             link = next((o for o in book.get('office_identities', [])
                          if o['nation'] == identity and o['since'] == office.get('since')), None)
             person = link['person'] if link else None
@@ -1558,11 +1630,17 @@ def campaign_observation(production, world, identity):
 
 def campaign_report(root, save_path):
     outputs = build(root)
-    world = load_campaign(save_path)
+    world, save_identity = load_campaign(save_path, with_provenance=True)
     at = campaign_date(world)
     inputs = Inputs(root)
     production = Production(inputs)
-    report = {'save': str(save_path), 'campaign_date': iso(at), 'identities': []}
+    report = {'format': 'spheres-s23-saved-boundary-comparison/v1',
+              'status': 'read_only_observation_not_campaign_validation',
+              'save': str(save_path), 'save_identity': save_identity,
+              'campaign_date': iso(at), 'historical_period': outputs['summary.json']['periods'],
+              'inputs': outputs['summary.json']['inputs'],
+              'interpretation': 'Saved identity observations only: no native loading, replay, integrity validation, historical overwrite or S23 acceptance is performed.',
+              'identities': []}
     for name, doc in outputs.items():
         if not name.startswith('cases-'):
             continue
@@ -1571,7 +1649,10 @@ def campaign_report(root, save_path):
             executive = next(r for r in doc['roles'] if r['identity'] == ident and r['key'] == 'executive')
             research_roles = {r['key']: r for r in doc['roles'] if r['identity'] == ident and r['family'] == 'research_role'}
             paired = [research_cell(research_roles[k], doc['observations'], at) for k in executive['paired_research_roles']]
-            historical = combine_research(paired) if paired else {'status': 'unresearched'}
+            if at < REFERENCE_FROM or at > CUTOFF:
+                historical = {'status': 'inapplicable', 'reason': 'before_reference_period' if at < REFERENCE_FROM else 'after_historical_cutoff'}
+            else:
+                historical = combine_research(paired) if paired else {'status': 'unresearched'}
             observed = campaign_observation(production, world, ident)
             parties = []
             book = world.get('party_leadership') or {}

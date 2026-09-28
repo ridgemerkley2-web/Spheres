@@ -22,10 +22,10 @@
      "production_party": 7,
      "executive": 1
     },
-    "cases": 884,
+    "cases": 911,
     "case_kinds": {
-     "attestation_day": 35,
-     "attestation_day_after": 35,
+     "attestation_day": 45,
+     "attestation_day_after": 45,
      "cutoff_day": 15,
      "cutoff_day_before": 15,
      "death_day_after": 1,
@@ -38,9 +38,9 @@
      "fictional_last_day": 15,
      "fictional_start_day": 15,
      "future_2030": 15,
-     "handover_day_after": 12,
-     "handover_day_before": 12,
-     "handover_day_of": 12,
+     "handover_day_after": 16,
+     "handover_day_before": 16,
+     "handover_day_of": 16,
      "reference_start": 15,
      "reference_start_day_before": 15,
      "yearly": 690
@@ -48,7 +48,7 @@
     "observations_by_acceptance": {
      "pending": 32,
      "production_registry": 18,
-     "s10_intake": 5
+     "unattributed_intake": 5
     },
     "research_yearly_status": {
      "bracketed": 9,
@@ -85,8 +85,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: pending 32, s10_intake 5.",
+    "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: pending 32, unattributed_intake 5.",
     "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
     "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
     "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -97,7 +97,7 @@
    ]
   }
  ],
- "interpretation": "Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
  "roles": [
   {
    "key": "executive",
@@ -134,40 +134,67 @@
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"fresh_campaign_start"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]],"campaign":{"observed":"fresh_campaign_start","incumbent":"F. W. de Klerk","person":"f_w_de_klerk","verdict":"historical_identity_not_established"}},
+    {"date":"1990-02-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_state_president#1","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
+    {"date":"1990-02-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#1","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
+    {"date":"1994-05-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#1","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
+    {"date":"1994-05-11","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"bound","asset":"spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","window":["1990-01-01","1995-01-01"],"context":"if_original_executive_retained"}],"asset":[["spheres-web/ui/person-portraits/f-w-de-klerk-cartoon-1990-v1.png","available"]]},
     {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:f_w_de_klerk:1995-01-01:1997-09-01:v1","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:f_w_de_klerk:1995-01-01:1997-09-01:v1","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"cartoon:f_w_de_klerk:1995-01-01:1997-09-01:v1","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-06-15","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["za_president_election#1","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-06-16","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["za_president_election#1","stated_end_day"],["za_president_election#2","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-06-17","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["za_president_election#3","before_stated_end"]],"reason":"mixed:no_observation_covers_date,one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-04-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#3","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2004-04-28","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2008-09-24","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["za_president_election#3","bracketed_by_evidence"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2008-09-25","kinds":["attestation_day","handover_day_of"],"historical":{"status":"boundary_day","holders":[["za_president_election#3","stated_end_day"],["za_president_election#4","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2008-09-26","kinds":["attestation_day_after","handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-05-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#5","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2009-05-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-05-23","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-05-24","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["za_president_election#6","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-05-25","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-02-13","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["za_president_election#6","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-02-14","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["za_president_election#6","stated_end_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-02-15","kinds":["attestation_day","handover_day_after"],"historical":{"status":"attested","holders":[["za_president_election#7","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-02-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-05-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#8","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-05-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#9","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#10","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2024-06-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"f_w_de_klerk","binding":"unbound","reason":"no_record_covers_date","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -186,7 +213,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 79,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "bracketed": 9,
@@ -194,8 +221,8 @@
      "uncertain": 10,
      "unknown": 14
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0,
+    "boundary_cases": 12,
+    "attestation_cases": 20,
     "yearly_image_bindings": {
      "bound": 5,
      "unbound": 32
@@ -292,17 +319,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_anc_cyril_ramaphosa_20171218","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"cyril_ramaphosa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:cyril_ramaphosa:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_anc_cyril_ramaphosa_20171218","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"cyril_ramaphosa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:cyril_ramaphosa:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_anc_cyril_ramaphosa_20171218","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"cyril_ramaphosa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:cyril_ramaphosa:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -416,17 +443,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -526,17 +553,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ifp_velenkosini_hlabisa_20190824","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"velenkosini_hlabisa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:velenkosini_hlabisa:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_ifp_velenkosini_hlabisa_20190824","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"velenkosini_hlabisa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:velenkosini_hlabisa:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_ifp_velenkosini_hlabisa_20190824","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"velenkosini_hlabisa","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:velenkosini_hlabisa:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -665,17 +692,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_ff_corne_mulder_20250716","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"corne_mulder","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:corne_mulder:2025-07-16:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -773,17 +800,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[0]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[0]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[0]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -889,17 +916,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[1]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[1]},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_registry_term_covers_date","declared_gaps":[1]},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1011,17 +1038,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["za_acdp_kenneth_meshoe_199312","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"kenneth_meshoe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:kenneth_meshoe:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["za_acdp_kenneth_meshoe_199312","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"kenneth_meshoe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:kenneth_meshoe:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["za_acdp_kenneth_meshoe_199312","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"kenneth_meshoe","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:kenneth_meshoe:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1212,12 +1239,12 @@
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-04-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-04-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-04-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#2","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_leader#2","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-04-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1305,7 +1332,7 @@
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_chair#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_federal_chair#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-04-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1393,7 +1420,7 @@
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_council_chair#1","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-04-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_da_council_chair#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-04-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1509,7 +1536,7 @@
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-06-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#9","attested_on_day"]]},"acceptance":["s10_intake"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-06-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#9","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-06-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-06-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_president_election#10","attested_on_day"]]},"acceptance":["pending"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-06-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1907,6 +1934,8 @@
    "claim_ids": [
     "za_anc_tambo_president_jan8_statement_19900108"
    ],
+   "note": "Observed on 8 January 1990: the NEC's anniversary statement calls him President of the ANC and speaks on his instructions while he was ill.",
+   "uncertainty": "No start: no source in the period states the day he assumed the office. No end: Mandela's July 1991 closing address says the NEC 'released' him on a day not stated, and his election as National Chairman at the 48th conference is a separate claim; his successor's election is not used as his end. No acting President is named in any record reviewed; Mandela's election as Deputy President by the NEC (1 or 2 March 1990) is a claim on the role, never a holder. The attestations of 2 March 1990 and 2 July 1991 are continuation claims.",
    "sources": [
     "za_anc_jan8_statement_19900108"
    ],
@@ -1927,6 +1956,8 @@
    "claim_ids": [
     "za_anc_nec_reaffirms_ramaphosa_anc_president_20260515"
    ],
+   "note": "Observed on 15 May 2026: the Secretary-General's statement records the NEC's 'full and continuing support' for 'the President of the African National Congress, Comrade Cyril Ramaphosa'.",
+   "uncertainty": "The statement's date line is its publication date; the NEC briefing it reports was on or before the evening of 14 May 2026. No start or end: it attests the office held since the 55th conference, and no acting arrangement, vacancy or change was found in ANC records to the cutoff.",
    "sources": [
     "za_anc_sg_statement_special_nec_20260515"
    ],
@@ -1947,6 +1978,8 @@
    "claim_ids": [
     "za_anc_nec_meeting_president_mandela_19910718"
    ],
+   "note": "Observed on 18 July 1991: the NEC statement of that day says the newly elected NEC met on 17 and 18 July 'presided over by President Comrade Nelson Mandela'.",
+   "uncertainty": "No start: the 48th conference's election (reported on 13 July 1991 for a conference of 2 to 7 July; 2 to 6 July on the documents page) and his acceptance in the closing address are separate claims, and no source states the day he assumed the office. No end: the 49th conference re-elected him.",
    "sources": [
     "za_anc_nec_statement_19910718"
    ],
@@ -1967,6 +2000,8 @@
    "claim_ids": [
     "za_anc_mandela_leads_incoming_nec_19941222"
    ],
+   "note": "Observed on 22 December 1994: in his closing address to the 49th conference he congratulates the incoming National Executive and says he is proud to lead its members.",
+   "uncertainty": "No start: the NEC list 'as elected by the 49th National Conference' is month-only (December 1994; the later web edition's 20 December 1994 is a retrospective heading) and no day of the election, declaration or assumption is stated. No end: the 50th Conference Declaration says he takes leave of the Presidency and the conference report records his departure, but neither states the day his party office ended, and Mbeki's election is not used as his end.",
    "sources": [
     "za_anc_mandela_49th_closing_19941222"
    ],
@@ -1989,6 +2024,8 @@
     "za_anc_mbeki_president_closing_statement_19971220",
     "za_anc_mbeki_president_stadium_address_19971220"
    ],
+   "note": "Observed on 20 December 1997: saluted as 'My President' by Mandela at the closing session, and headed President of the ANC in his closing statement and stadium address.",
+   "uncertainty": "No start: his election (office bearers elected on 'the second day of conference', per Mayibuye of March 1998, during the conference of 16 to 20 December 1997) is a separate claim with no stored date, and no source states the day he assumed the office. No end: the 51st conference re-elected him.",
    "sources": [
     "za_anc_mandela_closing_address_19971220",
     "za_anc_mbeki_closing_statement_19971220",
@@ -2011,6 +2048,8 @@
    "claim_ids": [
     "za_anc_mbeki_president_closing_statement_20021220"
    ],
+   "note": "Observed on 20 December 2002: his closing statement to the 51st conference, headed as by the President, welcomes the incoming NEC.",
+   "uncertainty": "No start: the NEC list as elected at the 51st conference gives only the conference span (16 to 20 December 2002) and no day of the vote or declaration. No end: Zuma calls him 'former President of the ANC' on 20 December 2007 and he writes as 'the Outgoing President' on 21 December 2007, but no source states the day his party office ended, so no end is inferred from Zuma's election.",
    "sources": [
     "za_anc_mbeki_closing_statement_20021220"
    ],
@@ -2031,6 +2070,8 @@
    "claim_ids": [
     "za_anc_zuma_president_closing_statement_20071220"
    ],
+   "note": "Observed on 20 December 2007: his closing statement to the 52nd conference says he stands before the delegates 'as the 12th President of the ANC'.",
+   "uncertainty": "No start: the first round of voting on 18 December 2007, the results expected that evening, the undated results list (published under 19 December) and his acceptance of the mandate are separate claims, and no source states the day he assumed the office. No end: the 53rd conference re-elected him.",
    "sources": [
     "za_anc_zuma_closing_statement_20071220"
    ],
@@ -2051,6 +2092,8 @@
    "claim_ids": [
     "za_anc_zuma_closing_remarks_incoming_leadership_20121220"
    ],
+   "note": "Observed on 20 December 2012: his closing remarks to the 53rd conference congratulate the newly elected leadership and speak for 'the incoming leadership collective'.",
+   "uncertainty": "The remarks say only 'President'; the party office is read from their being the closing address to Conference, with the ANC statements of 18 and 19 December 2012 (his election and re-election) and his address of 6 January 2013 as 'ANC President' as corroborating claims. No start: no day of the vote, declaration or assumption is stated. No end: the ANC called him 'Outgoing' and 'Former ANC President' on 20 December 2017 and thanked him for 10 years as President, but no source states the day his party office ended, so no end is inferred from Ramaphosa's election.",
    "sources": [
     "za_anc_closing_remarks_zuma_53rd_20121220"
    ],
@@ -2072,6 +2115,8 @@
     "za_anc_ramaphosa_new_anc_president_statement_20171220",
     "za_anc_ramaphosa_closing_address_as_president_20171220"
    ],
+   "note": "Observed on 20 December 2017: an ANC statement of that day calls him the new President of the ANC, and his closing address is titled as by 'ANC President Cyril Ramaphosa'.",
+   "uncertainty": "No start: the ANC biography's statement that he was elected on 18 December 2017 is an election reference, not a stated assumption, and no result declaration or handover record was found. No end: the 55th conference re-elected him.",
    "sources": [
     "za_anc_statement_zuma_congratulates_ramaphosa_20171220",
     "za_anc_closing_address_ramaphosa_54th_20171220"
@@ -2093,6 +2138,8 @@
    "claim_ids": [
     "za_anc_ramaphosa_january8_address_as_president_20230108"
    ],
+   "note": "Observed on 8 January 2023: the NEC's January 8 Statement is headed 'Address by ANC President Cyril Ramaphosa', after the 55th conference concluded on 5 January 2023.",
+   "uncertainty": "No start: the ANC dates the 55th conference's election only as December 2022 (retrospectively), and no day of the vote, declaration or assumption is stated. No end; the 2017 observation has no end either.",
    "sources": [
     "za_anc_january_8_statement_2023"
    ],
@@ -2141,13 +2188,14 @@
    "claim_ids": [
     "za_da_council_chair_elected_20260412"
    ],
+   "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted.",
    "sources": [
     "za_da_leadership_20260412"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "za_da_federal_chair#1": {
@@ -2159,13 +2207,14 @@
    "claim_ids": [
     "za_da_federal_chair_elected_20260412"
    ],
+   "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted.",
    "sources": [
     "za_da_leadership_20260412"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "za_da_federal_leader#1": {
@@ -2177,13 +2226,14 @@
    "claim_ids": [
     "za_da_steenhuisen_attested_20230403"
    ],
+   "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted.",
    "sources": [
     "za_da_kzn_leader_20230403"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "za_da_federal_leader#2": {
@@ -2195,13 +2245,14 @@
    "claim_ids": [
     "za_da_leader_elected_20260412"
    ],
+   "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted.",
    "sources": [
     "za_da_leadership_20260412"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "za_deputy_president#1": {
@@ -2213,6 +2264,8 @@
    "claim_ids": [
     "za_de_klerk_styled_second_deputy_president_inauguration_19940510"
    ],
+   "note": "Observed on 10 May 1994: in the statement at his inauguration the President names 'my Second Deputy President, the Honourable F.W. de Klerk' (gov.za copy, issued by The Presidency).",
+   "uncertainty": "No start: no designation, appointment or oath record for either Executive Deputy President in May 1994 was found, and the Presidency's retrospective list starts him on 13 May 1994 without an event record. No end: he was still styled Deputy President on 9 May 1996, when he told the President of the National Party's withdrawal from the Government of National Unity; the President's statement of 13 May 1996 dates ministerial vacancies 'as from 1 July 1996' without naming him, and only the retrospective list gives 30 June 1996, so no end is set.",
    "sources": [
     "za_govza_mandela_inauguration_19940510"
    ],
@@ -2234,6 +2287,8 @@
     "za_mashatile_dp_sworn_in_20230307",
     "za_presidency_profile_mashatile_sworn_in_20230307"
    ],
+   "note": "Observed on 7 March 2023: the Presidency's statement of 11 April 2023 and its profile say he was sworn in as Deputy President on 7 March 2023.",
+   "uncertainty": "The oath dates the observation but is not a start; its time and officiant are not stated in these records (the advisory of 7 March 2023 scheduled the ceremony at Tuynhuys at 18h00 with Chief Justice Zondo presiding). The President's statement of 6 March 2023 is an announcement, and his letter of 8 March 2023 is a continuation claim. No end: only the retrospective gov.za directory gives 19 June 2024.",
    "sources": [
     "za_presidency_deputy_president_office_appointments_20230411",
     "za_presidency_profile_mashatile"
@@ -2255,6 +2310,8 @@
    "claim_ids": [
     "za_mashatile_deputy_president_logb_letter_20240704"
    ],
+   "note": "Observed on 4 July 2024: the President's letter of that date, recorded in the Announcements, Tablings and Committee Reports of 5 July 2024, appoints 'Deputy President S P Mashatile' as Leader of Government Business.",
+   "uncertainty": "The paper prints the letter's date as '4 July' without a year, in a paper dated 5 July 2024. No start: the President's statement of 30 June 2024 is an announcement, and no primary record was found that the swearing-in scheduled for 3 July 2024 took place; the gov.za directory's 'from 3 July 2024' is retrospective. No end.",
    "sources": [
     "za_parliament_atc4_20240705"
    ],
@@ -2275,6 +2332,8 @@
    "claim_ids": [
     "za_mashatile_dp_in_office_20260830"
    ],
+   "note": "Observed on 30 August 2026: a statement issued by The Presidency for the Office of the Deputy President says his programme and official responsibilities continue to be managed and that he has joined Parliament and other meetings virtually.",
+   "uncertainty": "An in-office attestation eight days before the cutoff; not an appointment, oath or boundary. The Presidency's profile page captured on 11 June 2026 (submitted on 4 December 2023) is headed 'Deputy President Paul Mashatile', but that is a live page's current title and is a claim only. No start or end; no acting arrangement or vacancy was found before the cutoff.",
    "sources": [
     "za_govza_deputy_president_recovering_20260830"
    ],
@@ -2296,6 +2355,8 @@
     "za_mbeki_first_executive_deputy_president_unsc_19940525",
     "za_dfa_mbeki_first_deputy_statement_security_council_19940525"
    ],
+   "note": "Observed on 25 May 1994: the UN Security Council's verbatim record receives him as 'First Executive Deputy President of the Republic of South Africa', and the Department of Foreign Affairs' copy of his statement to the Council that day heads him 'First Deputy Vice-President of South Africa'.",
+   "uncertainty": "The UN record is an international body's record of the title under which the Republic's delegate was received; the Department of Foreign Affairs' copy is the South African record of the same day but mis-styles the office, and his own office's statement of 18 April 1996 ('Executive Deputy President Thabo Mbeki') is a later South African attestation, recorded as a continuation claim. No start: no designation, appointment or oath record was found (the retrospective list gives 13 May 1994, his profile 'May 1994'). No end: the retrospective sources give 13 June 1999 (profile) and 16 June 1999 (list), which conflict, and his election as President in June 1999 is not used as this end.",
    "sources": [
     "za_un_spv3379_19940525",
     "za_dfa_mbeki_security_council_statement_19940525"
@@ -2317,6 +2378,8 @@
    "claim_ids": [
     "za_zuma_deputy_president_appointment_effective_19990617"
    ],
+   "note": "From 17 June 1999: General Notice 1392 of 1999 (Office of the Presidency, Government Gazette No. 20261 of 2 July 1999) records the appointment of 'Mr J. G. Zuma as Deputy President with effect from 17 June 1999'.",
+   "uncertainty": "The start is the effective day the notice states; the notice's publication on 2 July 1999 is a separate claim, and the decision date, any announcement and the oath were not seen (the archive file lacks the rest of the notice). No end: the President announced his release at the Joint Sitting of 14 June 2005 and Zuma accepted it that day, but no source states the day or time the release took effect; the Presidency's retrospective list gives 14 June 2005 and the Presidency called him 'former Deputy President' on 20 June 2005, and neither is used as an end.",
    "sources": [
     "za_gazette_20261_19990702"
    ],
@@ -2338,6 +2401,8 @@
     "za_mlambo_ngcuka_assumed_duties_20050622",
     "za_mlambo_ngcuka_appointment_noted_by_assembly_20050622"
    ],
+   "note": "Observed on 22 June 2005: the Presidency's profile of the serving Deputy President says she 'assumed her duties as the Deputy President of the Republic of South Africa on 22 June 2005', and the National Assembly that day noted 'the appointment today of the Hon Phumzile Mlambo-Ngcuka as Deputy President'.",
+   "uncertainty": "No start: the stated assumption is not used as a start because the evidence conflicts. The same profile says the President appointed her on 21 June 2005, the Presidency's advisory scheduled her swearing-in for 23 June 2005 at 14h00 at Tuynhuys, and no record that the oath took place was found; the President told Cabinet of his decision on 22 June 2005, and the retrospective list starts her on 23 June. No end: the Presidency's statement of 23 September 2008 names only 'the Deputy President' and fixes the effect of the resignations by reference to the day the President's resignation takes effect; setting 25 September 2008 would combine two sources and identify an unnamed holder, so no end is set (the retrospective profile gives 23 September and the list 24 September 2008).",
    "sources": [
     "za_presidency_deputy_profile_mlambo_ngcuka_2007",
     "za_parliament_hansard_na_20050622"
@@ -2359,6 +2424,8 @@
    "claim_ids": [
     "za_mbete_deputy_president_logb_announced_20081021"
    ],
+   "note": "Observed on 21 October 2008: the Speaker announced to the National Assembly that the President had appointed 'the Deputy President, Ms B Mbete', as Leader of Government Business with effect from 6 October 2008.",
+   "uncertainty": "No start: the records of 25 September 2008 are a designation, not an in-office attestation. The President 'intend[s] appointing' her, the Presidency's list is of the Cabinet 'as Announced', and members congratulated her on her 'nomination' and on the opportunity 'to become the Deputy President'; no oath, effective day or stated assumption was found. The 6 October 2008 effect belongs to the Leader of Government Business appointment. The Presidency's 2009 profile gives 'since September 2008' (month only) and its retrospective list '5 September 2008', which the contemporaneous records contradict. No end: no source reviewed states the day her office ended, and Motlanthe's oath of 11 May 2009 is not used as her end.",
    "sources": [
     "za_parliament_hansard_na_20081021"
    ],
@@ -2379,6 +2446,8 @@
    "claim_ids": [
     "za_motlanthe_sworn_in_deputy_president_caption_20090511"
    ],
+   "note": "Observed on 11 May 2009: the Presidency's page for the President's statement of 10 May 2009, as captured on 18 May 2009, captions a photograph 'Kgalema Motlanthe being sworn in as Deputy President - 11 May 2009'.",
+   "uncertainty": "The oath dates the observation but is not a start; its time, venue and officiant are not stated. The President's statement of 10 May 2009 that the Deputy President 'will be' Motlanthe is an announcement. No end: only the retrospective gov.za directory gives 25 May 2014, and Ramaphosa's appointment is not used as this end.",
    "sources": [
     "za_presidency_zuma_cabinet_statement_20090510"
    ],
@@ -2399,6 +2468,8 @@
    "claim_ids": [
     "za_ramaphosa_deputy_president_logb_letter_20140530"
    ],
+   "note": "Observed on 30 May 2014: the President's letter of that date, recorded in the Announcements, Tablings and Committee Reports of 9 June 2014, appoints 'the Deputy President of the Republic, Mr M C Ramaphosa', as Leader of Government Business.",
+   "uncertainty": "No start: the President's statement of 25 May 2014 ('The Deputy President is Mr Cyril Ramaphosa') is an announcement and the Presidency's retrospective profile dates only his appointment to that day; no primary record of his oath was found (a news agency's report of a swearing-in on 26 May 2014 is a lead only). No end: he became Acting President and then President in February 2018, but no source reviewed states the day his deputy presidency ended.",
    "sources": [
     "za_parliament_atc6_20140609"
    ],
@@ -2419,6 +2490,8 @@
    "claim_ids": [
     "za_presidency_profile_mabuza_sworn_in_20180227"
    ],
+   "note": "Observed on 27 February 2018: the Presidency's profile says he 'was first sworn in as Deputy President of the Republic of South Africa on 27 February 2018'.",
+   "uncertainty": "The oath dates the observation but is not a start; the profile is retrospective and names no officiant. The President's statement of 26 February 2018 framed the appointment as an intention pending his swearing-in as a Member of the Assembly, the Presidency's advisory of 27 February says he was appointed on 26 February and schedules the swearing-in for 16h00 that day, and the Assembly's minutes fill his seat with effect from 26 February; the President's letter of 1 March 2018 styling him Deputy President is a continuation claim. No end: no source states that this appointment ended before the 2019 reappointment.",
    "sources": [
     "za_presidency_profile_mabuza"
    ],
@@ -2439,6 +2512,8 @@
    "claim_ids": [
     "za_presidency_profile_mabuza_sworn_in_20190530"
    ],
+   "note": "Observed on 30 May 2019: the Presidency's profile says he was sworn in again on Thursday, 30 May 2019.",
+   "uncertainty": "Rests on the retrospective profile only: the Presidency's advisory for 30 May 2019 covers Ministers and Deputy Ministers only, and Parliament dates his oath as a Member of the Assembly to 28 May 2019. Not a start. His later styling (the President's letter of 5 June 2019, Parliament's release of 6 June 2019, the reply of 16 February 2023) is continuation. No end: the President announced his request to step down on 16 February 2023, his letter resigned his Assembly seat 'as of 28 February 2023', and the Presidency said on 1 March 2023 that this resignation ended his term without giving the day; combining these would be an inference, so no end is set, and the gov.za directory's 6 March 2023 is retrospective.",
    "sources": [
     "za_presidency_profile_mabuza"
    ],
@@ -2799,6 +2874,8 @@
     "za_mandela_oath_recalled_zuma_address_20090509",
     "za_mandela_presidency_ended_morning_19990616"
    ],
+   "note": "Observed on 10 May 1994, the day of his oath of office (archival copy credited to the Nelson Mandela Foundation; the Presidency-issued 2009 inauguration address also dates his oath to 10 May 1994). Until 16 June 1999: his own statement that day of the new status he had held 'since this morning'.",
+   "uncertainty": "The oath dates the observation but is not used as a start: no source states the day he assumed office, and the oath wording is the constitutional form. The 9 May 1994 nomination and election sitting is a separate claim. The end is stated by Mandela in a prepared text marked check against delivery, with no time; it is corroborated by the Presidency's retrospective list and is not inferred from Mbeki's inauguration.",
    "sources": [
     "za_mandela_gov_oath_19940510",
     "za_presidency_zuma_inauguration_address_20090509",
@@ -2821,6 +2898,8 @@
    "claim_ids": [
     "za_ramaphosa_oath_of_office_20240619"
    ],
+   "note": "Observed on 19 June 2024: the Presidency's page for the 2024 inauguration, under that date, gives the text of the President's oath of office in his name.",
+   "uncertainty": "The oath dates the observation but is not a start; the inauguration address of the same day is a separate claim. It follows, and does not change, the existing 14 June 2024 election observation. No end is set.",
    "sources": [
     "za_presidency_oath_of_office_20240619"
    ],
@@ -2841,6 +2920,8 @@
    "claim_ids": [
     "za_mbeki_styled_president_farewell_19990616"
    ],
+   "note": "Observed on 16 June 1999, styled President as host of Mandela's farewell banquet on the day of his inauguration (Office of the President release).",
+   "uncertainty": "No start: no oath or assumption record for 16 June 1999 was found (the Presidency-issued 2009 address says only that he took the oath 'In June 1999'), and Mandela's stated end that morning is not used as Mbeki's start. The 14 June 1999 election and the 16 June inauguration ceremony are separate claims. No end of this first term is set; his 2004 re-election is a separate holder observation.",
    "sources": [
     "za_infogov_mandela_farewell_19990616"
    ],
@@ -2862,6 +2943,8 @@
     "za_mbeki_oath_of_office_20040427",
     "za_na_resolves_mbeki_resignation_effective_20080923"
    ],
+   "note": "Observed on 27 April 2004, the day he says he took the oath of office after his re-election (his letter read to the National Assembly on 22 September 2008). Until 25 September 2008: the National Assembly resolved on 23 September 2008 that his resignation takes effect that day.",
+   "uncertainty": "The oath dates the observation but is not a start. The end is the day fixed by the resolution; no time of day is stated, and whether anyone acted as President between the effect and Motlanthe's oath is unresolved. The intention (20 September), announcement and tender (21 September), the letter's reading (22 September) and the Chief Justice's vacancy notice are separate claims, and the ANC recall is context only. The Presidency's retrospective list, which ends his row on 24 September 2008, is not used.",
    "sources": [
     "za_parliament_hansard_na_20080922",
     "za_parliament_hansard_na_20080923"
@@ -2885,6 +2968,8 @@
     "za_motlanthe_swearing_in_recess_20080925",
     "za_motlanthe_president_cabinet_list_20080925"
    ],
+   "note": "Observed on 25 September 2008: sworn in that day (Presidency profile), speaking as President after the Assembly's recess for the swearing-in, and first in the Presidency's Cabinet list of that day.",
+   "uncertainty": "The swearing-in dates the observation but is not a start; its time and officiant are not stated. No end is set: only retrospective span sources (the gov.za contact directory and the Presidency list) give 9 May 2009, and they are not used as boundaries; Zuma's oath of 9 May 2009 is not used as this end.",
    "sources": [
     "za_presidency_profile_motlanthe",
     "za_parliament_hansard_na_20080925",
@@ -2907,6 +2992,8 @@
    "claim_ids": [
     "za_zuma_oath_of_office_20090509"
    ],
+   "note": "Observed on 9 May 2009, when he says in his Presidency-issued inauguration address that he is taking the oath of office that day.",
+   "uncertainty": "The oath dates the observation but is not a start; the 6 May 2009 election and the inauguration ceremony are separate claims, and the gov.za directory's 'from 9 May 2009' is a retrospective span that is not used. No end of this first term is set; his assumption of a second term on 24 May 2014 is a separate holder observation.",
    "sources": [
     "za_presidency_zuma_inauguration_address_20090509"
    ],
@@ -2930,6 +3017,8 @@
     "za_pd25_zuma_resignation_effective_20180214",
     "za_gcis_zuma_resignation_vacancy_20180214"
    ],
+   "note": "From 24 May 2014: the Presidency states that he 'assumed his second term in office' that day. Until 14 February 2018: President Act No. 24, his resignation 'with immediate effect', given at Pretoria that day and reproduced in Parliament's paper of 15 February 2018.",
+   "uncertainty": "The start rests on a retrospective Presidency profile, not an instrument; the 21 May 2014 election and the 24 May 2014 inauguration address are separate claims. No time of day is stated for the resignation; Parliament received and tabled the letter on 15 February 2018, which is not the end. The ANC recall is context only, and Ramaphosa's election and oath on 15 February 2018 are not used as this end.",
    "sources": [
     "za_presidency_profile_zuma",
     "za_parliament_atc14_20180215",
@@ -2954,6 +3043,8 @@
     "za_ramaphosa_oath_of_office_20180215",
     "za_presidency_ramaphosa_sworn_in_20180215"
    ],
+   "note": "Observed on 15 February 2018: sworn in later that afternoon at Tuynhuys after his election (National Assembly Table Division) and sworn in that day (Presidency profile).",
+   "uncertainty": "The swearing-in dates the observation but is not a start; no time or officiant is stated. His acting service earlier that day and the election are separate claims. No end is set; his 2019 oath is a separate holder observation and is not used as an end.",
    "sources": [
     "za_parliament_procedural_developments_25_2018",
     "za_presidency_ramaphosa_profile"
@@ -2975,6 +3066,8 @@
    "claim_ids": [
     "za_ramaphosa_oath_of_office_20190525"
    ],
+   "note": "Observed on 25 May 2019, when he says in his Presidency-issued inauguration address that he has 'just taken the oath to be President'.",
+   "uncertainty": "The oath dates the observation but is not a start; the 22 May 2019 election is a separate claim. No end is set, and the end of the 2018 observation is not inferred from this oath.",
    "sources": [
     "za_presidency_inauguration_address_20190525"
    ],
@@ -2995,13 +3088,14 @@
    "claim_ids": [
     "za_ramaphosa_president_elect_20240614"
    ],
+   "note": "Dated observation only; no continuous term, game identity, biography or likeness rights granted.",
    "sources": [
     "za_parliament_president_elect_20240614"
    ],
-   "acceptance": "s10_intake",
+   "acceptance": "unattributed_intake",
    "packets": [],
    "source_classes": {
-    "s10_intake": 1
+    "unattributed_intake": 1
    }
   },
   "za_state_president#1": {
@@ -3013,6 +3107,8 @@
    "claim_ids": [
     "za_de_klerk_state_president_proclamation_r16_19900202"
    ],
+   "note": "Observed on 2 February 1990, signing a commission and proclamations as State President (Government Gazette No. 12286). He had been Acting State President from 15 August 1989 (Gazette No. 12059) and signed as State President by 28 September 1989 and still on 9 May 1994; those are claims on this role, not holder dates.",
+   "uncertainty": "No start: no primary record of the 1989 electoral-college election or the substantive oath was found, and the Foundation's 20 September 1989 transcript is an archival copy of a post-inauguration address. No end: no primary source reviewed states the day his State Presidency ended; the last in-office signature is 9 May 1994, and the Presidency's retrospective list (15 August 1989 - 10 May 1994) merges acting service and is not used. Mandela's oath of 10 May 1994 is not used as this end. Acting service is never a holder.",
    "sources": [
     "za_gazette_12286_19900202"
    ],
@@ -3387,6 +3483,7 @@
    "party": "za_acdp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3395,6 +3492,7 @@
    "party": "za_acdp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3403,6 +3501,7 @@
    "party": "za_acdp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3411,6 +3510,7 @@
    "party": "za_acdp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3419,6 +3519,7 @@
    "party": "za_anc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3427,6 +3528,7 @@
    "party": "za_anc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3435,6 +3537,7 @@
    "party": "za_anc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3443,6 +3546,7 @@
    "party": "za_anc",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3451,6 +3555,7 @@
    "party": "za_dp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3459,6 +3564,7 @@
    "party": "za_dp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3467,6 +3573,7 @@
    "party": "za_dp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3475,6 +3582,7 @@
    "party": "za_dp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3483,6 +3591,7 @@
    "party": "za_ff",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3491,6 +3600,7 @@
    "party": "za_ff",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3499,6 +3609,7 @@
    "party": "za_ff",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3507,6 +3618,7 @@
    "party": "za_ff",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3515,6 +3627,7 @@
    "party": "za_ifp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3523,6 +3636,7 @@
    "party": "za_ifp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3531,6 +3645,7 @@
    "party": "za_ifp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3539,6 +3654,7 @@
    "party": "za_ifp",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3547,6 +3663,7 @@
    "party": "za_np",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3555,6 +3672,7 @@
    "party": "za_np",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3563,6 +3681,7 @@
    "party": "za_np",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3571,6 +3690,7 @@
    "party": "za_np",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3579,6 +3699,7 @@
    "party": "za_pac",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3587,6 +3708,7 @@
    "party": "za_pac",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3595,6 +3717,7 @@
    "party": "za_pac",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3603,6 +3726,7 @@
    "party": "za_pac",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   }
  ]

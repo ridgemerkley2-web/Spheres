@@ -22,10 +22,10 @@
      "production_party": 6,
      "executive": 1
     },
-    "cases": 661,
+    "cases": 688,
     "case_kinds": {
-     "attestation_day": 13,
-     "attestation_day_after": 13,
+     "attestation_day": 14,
+     "attestation_day_after": 14,
      "cutoff_day": 10,
      "cutoff_day_before": 10,
      "death_day_after": 1,
@@ -38,9 +38,9 @@
      "fictional_last_day": 10,
      "fictional_start_day": 10,
      "future_2030": 10,
-     "handover_day_after": 43,
-     "handover_day_before": 43,
-     "handover_day_of": 43,
+     "handover_day_after": 54,
+     "handover_day_before": 54,
+     "handover_day_of": 54,
      "reference_start": 10,
      "reference_start_day_before": 10,
      "yearly": 460
@@ -82,7 +82,7 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day, day or period attestation), 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
+    "Research roles: 3 (3 with holder observations); 20 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 88 uncertain, 3 unknown and 0 unresearched.",
     "Research holder observations by acceptance: pending 39.",
     "Production party rows/components: 6; 99 of 222 yearly samples 1990-2026 have an established registry holder, 13 uncertain, 69 unknown, 4 unresearched and 37 inapplicable.",
     "Registry holder portraits at yearly samples: 7 bound, 93 unbound (20 distinct people without served art).",
@@ -93,7 +93,7 @@
    ]
   }
  ],
- "interpretation": "Actual production observations from checked-in inputs only. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
+ "interpretation": "Source-derived observations of checked-in production bindings, using the pinned runtime mirrors; no native execution is performed. Test fixtures live in tools/avatars/test_certified_boundary_matrix.py and are never mixed into this file. A passing checker does not make this coverage pass.",
  "roles": [
   {
    "key": "executive",
@@ -129,39 +129,66 @@
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:jose_sarney:1990-01-01:1990-01-02:v1","context":"fresh_campaign_start"}],"asset":[],"campaign":{"observed":"fresh_campaign_start","incumbent":"Jose Sarney","person":"jose_sarney","verdict":"historical_identity_not_established"}},
+    {"date":"1990-01-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["br_president#1","attested_on_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-01-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-03-14","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-03-15","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["br_president#2","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1990-03-16","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_president#2","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_president#2","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_president#2","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1992-12-28","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_president#2","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1992-12-29","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["br_president#2","stated_end_day"],["br_president#3","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1992-12-30","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#3","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#3","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#3","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#4","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1994-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#3","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1995-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#4","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1995-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#5","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1998-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#4","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#5","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"1999-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#5","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#5","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#5","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#5","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#6","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2002-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#5","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2003-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#6","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2003-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#7","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2006-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#6","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#7","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2007-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#7","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#7","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#7","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#7","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#8","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2010-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#7","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2011-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#8","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2011-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#9","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2014-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#8","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#9","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2015-01-02","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_president#9","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_president#9","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2016-08-30","kinds":["handover_day_before"],"historical":{"status":"established","holders":[["br_president#9","within_stated_interval"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2016-08-31","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["br_president#9","stated_end_day"],["br_president#10","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2016-09-01","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#10","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#10","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#10","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#11","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2018-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#10","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#11","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2019-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#11","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#11","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#11","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#11","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"boundary_day","holders":[["br_president#12","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2022-12-31","kinds":["handover_day_before"],"historical":{"status":"uncertain","possible":[["br_president#11","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2023-01-01","kinds":["handover_day_of","yearly"],"historical":{"status":"boundary_day","holders":[["br_president#12","stated_start_day"]]},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
+    {"date":"2023-01-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","possible":[["br_president#12","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#12","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#12","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","possible":[["br_president#12","after_stated_start"]],"reason":"one_sided_observation_only"},"acceptance":["pending"],"image":[{"person":"jose_sarney","binding":"unbound","reason":"no_portrait_record","art_job":"none_covers_date","context":"if_original_executive_retained"}],"asset":[]},
@@ -181,7 +208,7 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 79,
     "yearly_historical_samples": 37,
     "yearly_status": {
      "boundary_day": 8,
@@ -189,8 +216,8 @@
      "uncertain": 25,
      "unknown": 1
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0,
+    "boundary_cases": 33,
+    "attestation_cases": 2,
     "yearly_image_bindings": {
      "unbound": 37
     }
@@ -348,17 +375,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pmdb_baleia_rossi_20191006","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"baleia_rossi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:baleia_rossi:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -471,17 +498,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -580,17 +607,17 @@
     {"date":"2026-07-06","kinds":["handover_day_after"],"historical":{"status":"established","holders":[["br_prn_daniel_sampaio_tourinho_20260705","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"daniel_sampaio_tourinho","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_prn_daniel_sampaio_tourinho_20260705","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"daniel_sampaio_tourinho","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_prn_daniel_sampaio_tourinho_20260705","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"daniel_sampaio_tourinho","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:daniel_sampaio_tourinho:2026-07-05:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -734,17 +761,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pt_edinho_silva_202508","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"edinho_silva","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:edinho_silva:2025-08-31:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pt_edinho_silva_202508","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"edinho_silva","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:edinho_silva:2025-08-31:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pt_edinho_silva_202508","historical_on"]]},"acceptance":["production_registry"],"image":[{"person":"edinho_silva","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:edinho_silva:2025-08-31:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -858,17 +885,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[]},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"established","holders":[["br_pdt_carlos_lupi_200406","historical_on"]],"declared_gaps":[1]},"acceptance":["production_registry"],"image":[{"person":"carlos_lupi","as":"holder","binding":"unbound","reason":"no_portrait_record","art_job":"cartoon:carlos_lupi:2025-01-01:2026-09-08:v1"}],"asset":[],"future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":true,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":true,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -976,17 +1003,17 @@
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"inapplicable","reason":"organization_not_existing"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"before_fictional_window"}},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
-    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"component_available_for_campaign_vacancy":true,"listed_in_reference_view":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":true,"candidates":4,"eligibility_scope":"fictional_window_only; a live campaign vacancy and saved eligibility are still required","component_available_for_campaign_vacancy":true,"listed_in_simulation_future_reference":false,"served_web_historical_reference":false,"executive_authorized":0,"portraits_unbound":{"no_portrait_record":4}}},
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_holder","asset":"n/a","future":{"eligible":false,"reason":"after_fictional_window"}}
    ],
    "statistics": {
@@ -1910,6 +1937,8 @@
    "claim_ids": [
     "br_sarney_signs_decreto_98797_19900105"
    ],
+   "note": "Observed on 5 January 1990, signing Decree No. 98.797 as President (the Presidency's archived legislation page): the earliest 1990 attestation pinned to a byte-stable response. He also signed Decree No. 99.167 on 13 March 1990; that act is a claim on the role, not a holder date.",
+   "uncertainty": "No start: his 1985 assumption lies outside the packet period. No end: no primary source reviewed states the day his term ended; the Presidency Library's retrospective span (15.03.1985-15.03.1990) is a claim only, the Constitution's transitional provision is procedure only, and Collor's posse of 15 March 1990 is not used as this end.",
    "sources": [
     "br_planalto_decreto_98797_19900105"
    ],
@@ -1931,6 +1960,8 @@
     "br_temer_posse_declared_20160831",
     "br_temer_termo_de_posse_20160831"
    ],
+   "note": "From 31 August 2016: declared invested for the period beginning that day 'tendo em vista a vacância do cargo', and the signed termo records the posse by virtue of the vacancy that occurred on 31 August 2016 (DCN nº 15/2016).",
+   "uncertainty": "His exercise as Vice-President from 12 May 2016 (MP 726 and later acts) is recorded only as claims, never as this holder or its start. No end: the printed period end (31 December 2018) is prospective, the Congress President's 'ex-Presidente' styling on 1 January 2019 is context, and Bolsonaro's posse is not used as this end.",
    "sources": [
     "br_cn_dcn15_20160901"
    ],
@@ -1954,6 +1985,8 @@
     "br_bolsonaro_signed_termo_de_posse_20190101",
     "br_bolsonaro_signs_as_president_mpv870_20190101"
    ],
+   "note": "From 1 January 2019: declared invested for the period beginning that day, and the signed termo records the posse at 15:00 (DCN nº 1/2019); he signed MP 870 as President the same day.",
+   "uncertainty": "No end: the printed period end (31 December 2022) is prospective; Vice-President Mourão's exercise of the office on 30 and 31 December 2022 is recorded only as claims; Lula's posse is not used as this end. The 1 January 2019 sash ceremony is a claim with a misprinted dateline that names no giver. The 28 October 2018 election and the 10 December 2018 diplomação are separate claims.",
    "sources": [
     "br_cn_dcn1_20190102_p5_11",
     "br_cn_dcn1_20190102_full",
@@ -1979,6 +2012,8 @@
     "br_lula_signs_as_president_mpv1154_20230101",
     "br_lula_signs_as_president_mpv1388_20260824"
    ],
+   "note": "From 1 January 2023: declared invested for the period beginning that day (DCN nº 1/2023); he signed MP 1.154 as President the same day, and MP 1.388 as President on 24 August 2026, before the cutoff.",
+   "uncertainty": "No end: the printed period end (4 January 2027) falls after the 7 September 2026 cutoff and is kept in claim text only; the 2026 attestation does not extend the term. The 30 October 2022 election and the 12 December 2022 diplomação are separate claims; no sash record of 1 January 2023 was found.",
    "sources": [
     "br_cn_dcn1_20230102_p1_8",
     "br_planalto_mpv1154_20230101",
@@ -2009,6 +2044,8 @@
     "br_collor_resignation_occurred_19921229",
     "br_collor_resignation_letter_printed_19921229"
    ],
+   "note": "From 15 March 1990: the President of Congress declared him invested for the period beginning that day, and the termo records the posse at 10:00 (DCN nº 8/1990); in his address he says he has just assumed the Presidency. Until 29 December 1992: his letter resigns the mandate 'nesta data e por este instrumento', the President of Congress declared the office vacant that day, and Itamar Franco's termo de posse states that the resignation occurred that day; the letter was also read to the Senate that morning.",
+   "uncertainty": "The end is day-only: the letter reached the Senate between 9:00 and 9:43 and was read in Congress between 11:30 and 11:50, and no source states the hour of effect. He was suspended from 2 October 1992 on receiving the summons (a claim); the suspension is not an end and the holder is not split. The TSE diploma (30 December 1989) and the ballots of 15 November and 17 December 1989 are separate claims. The judgment of 30 December 1992 and Resolução nº 101 (disqualification for eight years) follow the resignation and bound nothing.",
    "sources": [
     "br_dcn_08_19900316",
     "br_dsf_223_suplemento_19921230",
@@ -2034,6 +2071,8 @@
     "br_itamar_posse_declared_congress_19921229",
     "br_itamar_termo_de_posse_19921229"
    ],
+   "note": "From 29 December 1992: declared invested as President for the period beginning that day, and the termo records the posse at 12:30 by virtue of Collor's resignation that day (DCN nº 70/1992).",
+   "uncertainty": "His exercise of the office as Vice-President from 2 October 1992 (his own statement; Law No. 8.471) is recorded only as claims, never as this holder or its start. No end: the only statement is Fernando Henrique Cardoso's thanks in his 1 January 1995 posse address ('No momento em que deixa o Governo'), a successor's statement recorded as a claim, not a boundary; the printed period end is prospective, and Cardoso's posse is not used as this end.",
    "sources": [
     "br_dcn_70_19921230"
    ],
@@ -2057,6 +2096,8 @@
     "br_fhc_termo_de_posse_19950101",
     "br_fhc_assumes_position_today_19950101"
    ],
+   "note": "From 1 January 1995: declared invested for the period beginning that day, and the termo records the solemn posse (DCN nº 1/1995); in his address he speaks of the position 'que assumo hoje'.",
+   "uncertainty": "No end: the stated period end (31 December 1998) is prospective, and the Congress President's 1999 reference to 'o mandato que se findou' gives no day. The oath before Congress, the 3 October 1994 election and the 17 December 1994 diplomação are separate claims and never boundaries.",
    "sources": [
     "br_dcn_1_1995_posse_19950101"
    ],
@@ -2080,6 +2121,8 @@
     "br_fhc_termo_de_posse_19990101",
     "br_fhc_second_mandate_assumed_acm_address_19990101"
    ],
+   "note": "From 1 January 1999: declared invested for the second mandate beginning that day ('a iniciar-se nesta data'), and the termo records the posse at 17:00 (DCN nº 1/1999); the Congress President speaks of the mandate 'que hoje se inicia'.",
+   "uncertainty": "No end: the period end printed at the posse (31 December 2002) is prospective, and the 2003 Congress record does not name him. No record of the 2003 sash transfer is imported (the Senate agency's report is a lead).",
    "sources": [
     "br_dcn_1_1999_posse_19990101"
    ],
@@ -2104,6 +2147,8 @@
     "br_lula_assumes_presidency_first_secretary_20030101",
     "br_lula_assumption_recalled_20070101"
    ],
+   "note": "From 1 January 2003: declared invested for the period beginning that day, and the signed termo records the posse (DCN nº 1/2003); the First Secretary said he 'hoje assume a Presidência', and in 2007 Lula recalled assuming the Presidency in that chamber on a 1 January four years earlier.",
+   "uncertainty": "No end: the printed period end (31 December 2006) is prospective and the end of the first term is not dated. The oath, the 27 October 2002 election and the 14 December 2002 diplomação are separate claims. The termo's clock time (15:00) precedes the recorded session opening (15:05) and is not used.",
    "sources": [
     "br_dcn_1_2003_posse_20030101",
     "br_dcn_1_2007_posse_20070101"
@@ -2128,6 +2173,8 @@
     "br_lula_termo_de_posse_20070101",
     "br_lula_new_mandate_inaugural_day_20070101"
    ],
+   "note": "From 1 January 2007: declared invested for the new mandate beginning that day, and the signed termo records the posse (DCN nº 1/2007); he speaks of 'this inaugural day of my new mandate'.",
+   "uncertainty": "No end. Dilma Rousseff's Parlatório address of 1 January 2011 says 'Hoje o presidente Lula deixa o governo', a successor's statement recorded as a claim and not used as a boundary; the printed period end (31 December 2010) is prospective and differs from it by a day; Rousseff's posse is not used as this end.",
    "sources": [
     "br_dcn_1_2007_posse_20070101"
    ],
@@ -2152,6 +2199,8 @@
     "br_dilma_assumes_responsibility_sarney_address_20110101",
     "br_dilma_assumes_government_parlatorio_20110101"
    ],
+   "note": "From 1 January 2011: declared invested for the period beginning that day, and the signed termo records the posse (DCN nº 1/2011); the President of Congress told her that through the commitment the President-elect assumes the responsibility, and in her Parlatório address she says 'eu assumo hoje o governo do meu país'.",
+   "uncertainty": "No end: the printed period end (31 December 2014) is prospective. Her statement in Congress that the sash would be placed on her 'today' is prospective and a claim only; no record of the transfer itself is imported.",
    "sources": [
     "br_dcn_1_2011_posse_20110101",
     "br_planalto_library_dilma_parlatorio_20110101"
@@ -2178,6 +2227,8 @@
     "br_senate_resolution35_removal_rousseff_20160831",
     "br_dou_publishes_resolution35_20160831"
    ],
+   "note": "From 1 January 2015: declared invested for the period beginning that day, and the signed termo records the posse (DCN nº 1/2015); in her Parlatório address she says 'Assumo meu segundo mandato'. Until 31 August 2016: the Senate's Resolution No. 35 of that day imposes loss of office and enters into force on publication, and the DOU extra edition of 31 August 2016 publishes it.",
+   "uncertainty": "The end is day-only; no hour of effect is printed. Michel Temer's termo de posse also states that the vacancy occurred on 31 August 2016 (cited by his holder). She was suspended from 12 May 2016 on receiving the intimation (a claim); the suspension is not an end and the holder is not split. The printed period end (31 December 2018), the Chamber's authorization, the Senate's admission, the judgment votes and the separate disqualification vote (not imposed) are claims, never boundaries.",
    "sources": [
     "br_dcn_1_2015_posse_20150101",
     "br_planalto_dilma_parlatorio_20150101",
@@ -2451,6 +2502,8 @@
     "br_pt_bn051_lula_reconducted_closing_speech_19900603",
     "br_pt_bn051_lula_states_he_assumes_presidency_19900603"
    ],
+   "note": "From 3 June 1990: in his closing speech to the VII Encontro Nacional, printed by the party's Boletim Nacional nº 51, Lula says 'Volto a assumir a Presidência do Partido dos Trabalhadores' and that he receives the baton from Luiz Gushiken 'hoje' (Sunday 3 June 1990); the standfirst calls him 'reconduzido à presidência do PT'.",
+   "uncertainty": "No end: no party record states the day or the reason his presidency ended in 1994; the bulletin still calls him 'o presidente do PT' in the first fortnight of April 1994, and Rui Falcão's styling as Presidente Nacional from the second fortnight of May 1994 is not used as his end. The VII Encontro's election (31 May-3 June 1990) and the executive committee's election of 15 July 1990 are separate claims. If a speech is not accepted as a stated assumption, the fallback is attested_on 1990-06-03. Luiz Gushiken, president when the period opens, has no holder: no record gives a single day of his presidency.",
    "sources": [
     "br_pt_bn051_199007"
    ],
@@ -2471,6 +2524,8 @@
    "claim_ids": [
     "br_pt_berzoini_listed_president_cen_biennium_2008_2009_20091113"
    ],
+   "note": "Observed on 13 November 2009 (the capture date of an undated page): the Portal do PT's page 'Integrantes da CEN para o biênio 2008/2009' lists 'Ricardo Berzoini - Presidente'.",
+   "uncertainty": "No start: no PT record of the PED 2007 result or of a 2008 posse was found (a deputy's aside of 2010 gives him terms '2005 a 2007 e de 2007 a 2010', a retrospective claim), and the printed biennium is not a boundary. No end: his statement in Congress that 10 February 2010 was 'o último dia do meu mandato' conflicts with the PT's report that he 'deixa a presidência' at José Eduardo Dutra's posse on 19 February 2010; both are claims only, and Dutra's posse is not used as his end.",
    "sources": [
     "br_pt_portal_cen_members_2008_2009_20091113"
    ],
@@ -2492,6 +2547,8 @@
     "br_pt_dutra_empossado_president_20100219",
     "br_pt_dutra_resignation_20110429"
    ],
+   "note": "From 19 February 2010: the Portal do PT reports that on the night of Friday 19 February 2010 'foram empossados o novo presidente José Eduardo Dutra' and the new Diretório Nacional. Until 29 April 2011: the Portal do PT's item of 8 May 2011 says 'A renúncia do presidente do PT José Eduardo Dutra no dia 29 de abril'.",
+   "uncertainty": "The end rests on the party's statement of the day of his resignation (the year from the item's date); the day of the Diretório Nacional meeting that elected Rui Falcão (29 or 30 April 2011) is not used. The PED 2009 declaration (25 November 2009), final result (2 December 2009) and the rule setting the posse for 20 February 2010 are separate claims; Rui Falcão's acting service in April 2011 is a claim only.",
    "sources": [
     "br_pt_portal_dn_posse_dutra_20100219",
     "br_pt_portal_novo_comando_20110508"
@@ -2513,6 +2570,8 @@
    "claim_ids": [
     "br_pt_falcao_styled_new_national_president_20110508"
    ],
+   "note": "Observed on 8 May 2011: the Portal do PT quotes the secretary-general on 'o novo presidente nacional do PT, Rui Falcão'.",
+   "uncertainty": "No start: his election by the Diretório Nacional by unanimity is reported without a day, and the PT's own article on it has no usable capture; his acting service of 26 April 2011 is a claim only. No end: the PED 2013 re-election begins a new observation.",
    "sources": [
     "br_pt_portal_novo_comando_20110508"
    ],
@@ -2533,6 +2592,8 @@
    "claim_ids": [
     "br_pt_dn_composition_lists_falcao_president_20131218"
    ],
+   "note": "Observed on 18 December 2013: the Portal do PT lists the national leaders 'empossado durante o 5º Congresso', headed 'Rui Goethe da Costa Falcão, Presidente'.",
+   "uncertainty": "No start: the PED 2013 vote (10 November) and announcement (12 November) are election claims; the posse took place during the 5th Congress and was scheduled for the night of 12 December 2013, but no source reports the day it took place (the posse speech was published on 12 December). No end: no source states the day his presidency ended; Gleisi Hoffmann's election (3 June 2017) and posse (5 July 2017), the retrospective 'maio de 2017' and the TSE registry periods (to 8 September and 9 October 2017) are not used. The 2015 re-election in the work order's hint is not supported.",
    "sources": [
     "br_pt_portal_dn_composition_20131218"
    ],
@@ -2554,6 +2615,8 @@
     "br_pt_gleisi_posse_20170705",
     "br_pt_gleisi_posse_reported_lula_20170705"
    ],
+   "note": "From 5 July 2017: the PT reports that the new Diretório Nacional 'está sendo empossado hoje' with the new presidenta, Gleisi Hoffmann (in a post dated Wednesday 5 July 2017), and a same-day report speaks of the posse of 'the new presidenta of the PT, Gleisi Hoffmann'.",
+   "uncertainty": "No end: her re-election at the 7th Congress (24 November 2019) begins a new observation. Her election by the 6th Congress on 3 June 2017 is a claim only.",
    "sources": [
     "br_pt_new_directorate_gleisi_posse_20170705",
     "br_pt_lula_at_gleisi_posse_20170705"
@@ -2575,6 +2638,8 @@
    "claim_ids": [
     "br_pt_dn_page_gleisi_presidenta_20200401"
    ],
+   "note": "Observed on 1 April 2020 (the capture date of an undated page): the PT's Diretório Nacional page heads its list 'Presidenta Nacional do PT - Gleisi Hoffmann - Paraná'.",
+   "uncertainty": "No start: no posse day of the 2019 term was found. No end: on 7 March 2025 the PT announced her departure and the executive named Humberto Costa for the interim command, and the Diretório page cites her resignation as the reason, but no source states the day her office ended (the PT's pages of 13 and 20 March 2025 say Humberto Costa took over early in the following week); the TSE registry's exercise end of 07/03/2025 is a registry period. Her ministerial post is state office and ends nothing here.",
    "sources": [
     "br_pt_dn_page_gleisi_20200401"
    ],
@@ -2595,6 +2660,8 @@
    "claim_ids": [
     "br_pt_humberto_states_interim_to_effective_20250320"
    ],
+   "note": "From 20 March 2025: after the Diretório Nacional ratified his choice that day, Humberto Costa said 'agora saio da condição de presidente interino para presidente efetivo' (pt.org.br, 20 March 2025).",
+   "uncertainty": "His service from 7 to 19 March 2025 is interim (the executive's designation, the Diretório page and the PT pages of 12 and 13 March), claims only. The start rests on his own statement of that day; Codex may prefer attested_on 2025-03-20. The Diretório Nacional's election of that day (63-0-5) is a separate claim. No end: Edinho Silva's posse of 3 August 2025 is not used as his end, and the TSE registry's end (23/08/2025) is the organ's.",
    "sources": [
     "br_pt_portal_humberto_reiterates_unity_20250320"
    ],
@@ -2615,6 +2682,8 @@
    "claim_ids": [
     "br_pt_edinho_empossado_20250803"
    ],
+   "note": "From 3 August 2025: the PT states that Edinho Silva was 'empossado neste domingo (3)' at the close of the 17th Encontro Nacional.",
+   "uncertainty": "The same day's 13h27 page announced that he 'assume oficialmente o cargo na próxima segunda-feira (4)'; that statement is prospective and unconfirmed and is recorded as a claim. If Codex prefers it, the fallback is attested_on 2025-09-17 (the Diretório page), never 4 August. The PED vote (6 July), the partial result (7 July), the totalization (15 July) and the president-elect styling (16 July) are separate claims, and the TSE registry's 23 August 2025 is a registry period. No end is stated before the cutoff.",
    "sources": [
     "br_pt_edinho_posse_speech_20250803"
    ],
@@ -2635,6 +2704,8 @@
    "claim_ids": [
     "br_pt_dn_page_edinho_presidente_nacional_20260815"
    ],
+   "note": "Observed on 15 August 2026 (the capture date of an undated page): the PT's Diretório Nacional page heads its list 'Presidente Nacional do PT - Edinho Silva - São Paulo'.",
+   "uncertainty": "No start and no end: the latest attestation before the cutoff, a second observation of the term begun on 3 August 2025. The TSE's live SGIP record of the current national organ (last altered 8 July 2026) also lists him as PRESIDENTE, Ativo, but it is a lead: the record is in force and will change on its next annotation.",
    "sources": [
     "br_pt_dn_page_edinho_20260815"
    ],
@@ -2655,6 +2726,8 @@
    "claim_ids": [
     "br_pt_bnee94_rui_falcao_opens_seminar_as_president_19941125"
    ],
+   "note": "Observed on 25 November 1994: the PT's special edition of the Boletim Nacional (Dezembro/94) says 'O presidente nacional do PT, deputado Rui Falcão, abriu o Seminário' held that day.",
+   "uncertainty": "No start: no party record states when or how he took the office or whether his service was interim (Boletim Nacional nº 85 calls him a vice-president in the first fortnight of April 1994; nº 87 and nº 91 style him Presidente Nacional in May and October 1994 without a day). No end: who led the party from December 1994 to August 1995 is unresolved, and José Dirceu's election at the 10th Encontro (18-20 August 1995) is not used as his end. The PT's December 2002 count of its presidents omits him; the party's portal of 2011 ('já foi presidente do partido') and its 2017 biography ('em 1994, presidente do PT Nacional') count him.",
    "sources": [
     "br_pt_bn_edicao_especial_199412"
    ],
@@ -2675,6 +2748,8 @@
    "claim_ids": [
     "br_pt_sncr_oficio_addressed_to_president_dirceu_19950824"
    ],
+   "note": "Observed on 24 August 1995: the ofício nº 001/95 of the PT's Secretaria Nacional de Combate ao Racismo is addressed 'Ao Sr. José Dirceu, Presidente do Diretório Nacional'.",
+   "uncertainty": "No start: the 10th Encontro's vote (215 to 183, day not printed) and the directorate lists are election claims, and no source states the day he assumed the office. No end: his re-election at the 11th Encontro (August 1997) begins a new observation and is not an end.",
    "sources": [
     "br_pt_sncr_oficio_001_19950824"
    ],
@@ -2695,6 +2770,8 @@
    "claim_ids": [
     "br_pt_ptn052_dirceu_national_president_at_vitoria_meeting_19970917"
    ],
+   "note": "Observed on 17 September 1997: PT Notícias nº 52 reports that 'o presidente nacional do PT, José Dirceu' took part in the meeting held in Vitória 'No dia 17'.",
+   "uncertainty": "No start: the vote of 31 August 1997 (284 to 256) and the undated proclamation are election claims, never a start; the earlier proposal to date this holder by the vote day was withdrawn after the independent check. No end.",
    "sources": [
     "br_pt_noticias_052_19970920"
    ],
@@ -2715,6 +2792,8 @@
    "claim_ids": [
     "br_pt_presidencia_letter_signed_dirceu_19991202"
    ],
+   "note": "Observed on 2 December 1999: a letter of the national presidency is signed 'José Dirceu, Presidente Nacional do Partido dos Trabalhadores'.",
+   "uncertainty": "No start: the result was known on 28 November 1999 and he 'assumed his third term during the II Congresso' (24-28 November) with no day printed. No end: his leave of 17 July 2001 to stand in the direct election and José Genoino's acting service (July to October 2001) are claims only and neither end nor split this holder.",
    "sources": [
     "br_pt_presidencia_comunicacao_19991202"
    ],
@@ -2735,6 +2814,8 @@
    "claim_ids": [
     "br_pt_ptn109_dirceu_signs_note_as_president_20011004"
    ],
+   "note": "Observed on 4 October 2001: an official note dated 'São Paulo, 4 de outubro de 2001' is signed 'Deputado federal José Dirceu (PT-SP), presidente nacional do PT' (PT Notícias nº 109).",
+   "uncertainty": "No start: the totalisation of 27 September 2001 is a result declaration, and his stated resumption of 1 October 2001 follows a leave. The same issue's masthead still lists José Genoino '(em exercício)', recorded as an acting-service claim (probably stale, but the source does not say so). No end: on 7 December 2002 he took leave and José Genoino replaced him on an interim basis; he resigned at the Diretório Nacional meeting of 15-16 March 2003, a two-day meeting with no single day, so no until is recorded.",
    "sources": [
     "br_pt_noticias_109_20011010"
    ],
@@ -2755,6 +2836,8 @@
    "claim_ids": [
     "br_pt_genoino_attends_affiliation_as_pt_president_20030318"
    ],
+   "note": "Observed on 18 March 2003: the Portal do PT reports a ceremony attended by 'o presidente do PT, José Genoino' and quotes 'O presidente nacional do PT'.",
+   "uncertainty": "No start: the Diretório Nacional elected him on 15 March 2003 (an election claim), and the party compilation records his service from 7 December 2002 to 15 March 2003 as interim, so the portal's stylings of 8 and 13 January 2003 are claims only. No end: his declaration of 9 July 2005 hands the office to the Diretório Nacional and calls it a leave, no act accepting a resignation or declaring a vacancy was found, and Tarso Genro's selection that night is not used as his end.",
    "sources": [
     "br_pt_portal_genoino_governor_affiliation_20030318"
    ],
@@ -2775,6 +2858,8 @@
    "claim_ids": [
     "br_pt_tarso_reports_as_president_after_cen_meeting_20050710"
    ],
+   "note": "Observed on 10 July 2005: the Portal do PT reports the national executive committee's decisions 'segundo informou o presidente Tarso Genro'.",
+   "uncertainty": "No start: the Diretório Nacional approved his name on 9 July 2005 (a selection claim), the report's 'novos empossados' names nobody and records no posse, and the selection day is kept out of holder dates. No PT record calls him interim (Berzoini's 2010 speech recalls leading the party 'primeiro interinamente' in 2005, a retrospective claim). No end: the last dated styling is of 14 October 2005, and Ricardo Berzoini's posse of 22 October 2005 is not used as his end.",
    "sources": [
     "br_pt_portal_tarso_after_cen_meeting_20050710"
    ],
@@ -2796,6 +2881,8 @@
     "br_pt_dn_gives_posse_to_berzoini_20051022",
     "br_pt_new_cen_lists_berzoini_presidency_20051022"
    ],
+   "note": "From 22 October 2005: the Portal do PT reports that 'O Diretório Nacional deu posse, neste sábado (22), ao presidente eleito, Ricardo Berzoini', and lists 'Presidência - Ricardo Berzoini' in the new executive committee.",
+   "uncertainty": "No end: Marco Aurélio Garcia's listing as 'Presidente (interino)' (November 2006 to January 2007) is claims only and neither splits nor ends this holder; the PED 2007 begins a new observation. The PED 2005 ballots (18 September and 9 October) and result declarations (11 and 13 October 2005) are separate claims.",
    "sources": [
     "br_pt_portal_dn_posse_new_executive_20051022"
    ],
@@ -2901,6 +2988,8 @@
     "br_itamar_vp_posse_declared_19900315",
     "br_itamar_vp_termo_de_posse_19900315"
    ],
+   "note": "From 15 March 1990: the President of Congress declared Collor and Itamar Augusto Cautiero Franco invested as President and Vice-President 'para o período de 15 de março de 1990 a 1º de janeiro de 1995', and the signed termo records their posse under Article 78 (DCN nº 8/1990).",
+   "uncertainty": "No end: no reviewed source states the day his vice-presidential office ended or that the office became vacant. His exercise of the Presidency (11 December 1991; from 2 October 1992) is recorded only as claims, and his posse as President on 29 December 1992, the vacancy of the office of President declared that day, the printed period end (1 January 1995) and the retrospective 29/12/1992 spans are not used as this end. The 17 December 1989 election, the 30 December 1989 diplomação and the oath are separate claims.",
    "sources": [
     "br_dcn_08_19900316"
    ],
@@ -2924,6 +3013,8 @@
     "br_maciel_termo_de_posse_19950101",
     "br_maciel_saluted_vice_president_closing_19950101"
    ],
+   "note": "From 1 January 1995: declared invested as Vice-President for the period beginning that day, and the joint termo records the solemn posse (DCN nº 1/1995); the President of Congress saluted him as Vice-President at the close.",
+   "uncertainty": "No end: the printed period end (31 December 1998) is prospective and no reviewed source states the day the term ended; his styling as Vice-President at the opening of the 1999 session is a claim only, and his 1999 posse is not used as this end. The 3 October 1994 election, the 17 December 1994 diplomação (Congress record and TSE diploma) and the oath are separate claims and never boundaries.",
    "sources": [
     "br_dcn_1_1995_posse_19950101"
    ],
@@ -2947,6 +3038,8 @@
     "br_maciel_termo_de_posse_19990101",
     "br_maciel_saluted_vice_president_cardoso_address_19990101"
    ],
+   "note": "From 1 January 1999: declared invested as Vice-President for the second mandate beginning that day ('a iniciar-se nesta data'), and the termo records the posse (DCN nº 1/1999).",
+   "uncertainty": "No end: the printed period end (31 December 2002) is prospective, the 2003 Congress record does not name him, and Alencar's posse is not used as this end. The 4 October 1998 re-election, the 12 December 1998 diploma and the oath are separate claims.",
    "sources": [
     "br_dcn_1_1999_posse_19990101"
    ],
@@ -2970,6 +3063,8 @@
     "br_alencar_termo_de_posse_20030101",
     "br_alencar_saluted_vice_president_lula_address_20030101"
    ],
+   "note": "From 1 January 2003: declared invested as Vice-President for the period beginning that day, and the signed termo records the posse (DCN nº 1/2003).",
+   "uncertainty": "No end: the printed period end (31 December 2006) is prospective; his styling at the opening of the 2007 session is a claim only, and his 2007 posse is not used as this end. The 27 October 2002 election, the 14 December 2002 diploma and the oath are separate claims.",
    "sources": [
     "br_dcn_1_2003_posse_20030101"
    ],
@@ -2993,6 +3088,8 @@
     "br_alencar_termo_de_posse_20070101",
     "br_alencar_saluted_vice_president_lula_address_20070101"
    ],
+   "note": "From 1 January 2007: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2007).",
+   "uncertainty": "No end: the printed period end (31 December 2010) is prospective; Rousseff's 1 January 2011 tribute (br_alencar_tribute_rousseff_address_20110101) is a successor administration's statement with no day, a claim only and never a boundary; Temer's posse is not used as this end. The 29 October 2006 re-election, the 14 December 2006 diploma and the oath are separate claims.",
    "sources": [
     "br_dcn_1_2007_posse_20070101"
    ],
@@ -3016,6 +3113,8 @@
     "br_temer_vp_termo_de_posse_20110101",
     "br_temer_vp_styled_after_posse_20110101"
    ],
+   "note": "From 1 January 2011: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2011).",
+   "uncertainty": "No end: the printed period end (31 December 2014) is prospective, no reviewed source states the day the term ended, and his 2015 posse is not used as this end. The 31 October 2010 election, the 17 December 2010 diploma and the oath are separate claims.",
    "sources": [
     "br_dcn_1_2011_posse_20110101"
    ],
@@ -3039,6 +3138,8 @@
     "br_temer_vp_termo_de_posse_20150101",
     "br_temer_vp_styled_after_posse_20150101"
    ],
+   "note": "From 1 January 2015: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2015).",
+   "uncertainty": "No end: the printed period end (31 December 2018) is prospective. His notification and interim exercise of the Presidency from 12 May 2016 are claims only and neither split nor end this holder, and his posse as President on 31 August 2016 (by virtue of the vacancy of the office of President) states no end of the Vice-Presidency and no vacancy of it; the retrospective 31/08/2016 span and chronology are claims only, and Mourão's posse is not used as this end. His br_president holder (CLAUDE-C01-10, from 31 August 2016) is unchanged. The 26 October 2014 election, the 18 December 2014 diploma and the oath are separate claims.",
    "sources": [
     "br_dcn_1_2015_posse_20150101"
    ],
@@ -3063,6 +3164,8 @@
     "br_mourao_signed_termo_de_posse_20190101",
     "br_mourao_saluted_vice_president_bolsonaro_address_20190101"
    ],
+   "note": "From 1 January 2019: declared invested as Vice-President for the period beginning that day ('para o período a iniciar-se nesta data'), with the termo read into the record and the signed joint termo de posse at 15:00 (DCN nº 1/2019). The minutes print Antonio Hamilton Martins Mourão; the signed termos and decrees print Antônio.",
+   "uncertainty": "No end: the printed period end (31 December 2022) is prospective, no reviewed source states the day his term ended, and Alckmin's posse is not used as this end. His exercise of the Presidency on 30 and 31 December 2022 (Decrees No. 11.322 and 11.324) is claims only and never a holder or a boundary. The 28 October 2018 election, the 10 December 2018 diploma and the oath are separate claims.",
    "sources": [
     "br_cn_dcn1_20190102_p5_11",
     "br_cn_dcn1_20190102_full"
@@ -3088,6 +3191,8 @@
     "br_alckmin_signed_termo_de_posse_20230101",
     "br_alckmin_saluted_vice_president_lula_address_20230101"
    ],
+   "note": "From 1 January 2023: declared invested as Vice-President (Geraldo José Rodrigues Alckmin Filho) for the period beginning that day, with the termo read into the record and the signed joint termo de posse at 15:00 (DCN nº 1/2023).",
+   "uncertainty": "No end: the declared end (4 January 2027) is prospective and after the 7 September 2026 cutoff, and the Vice-Presidency's profile prints 31/12/2026; neither is a structured date. His exercise of the Presidency in 2026 (Laws No. 15.434 of 16 June and 15.436 of 17 June 2026) attests him as Vice-President before the cutoff but is recorded as claims only, never cited by this holder, and extends nothing. The 30 October 2022 election, the 12 December 2022 diploma and the oath are separate claims.",
    "sources": [
     "br_cn_dcn1_20230102_p1_8",
     "br_cn_dcn1_20230102_p20_26"
@@ -3678,6 +3783,7 @@
    "party": "br_pds",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3686,6 +3792,7 @@
    "party": "br_pds",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3694,6 +3801,7 @@
    "party": "br_pds",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3702,6 +3810,7 @@
    "party": "br_pds",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3710,6 +3819,7 @@
    "party": "br_pdt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3718,6 +3828,7 @@
    "party": "br_pdt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3726,6 +3837,7 @@
    "party": "br_pdt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3734,6 +3846,7 @@
    "party": "br_pdt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3742,6 +3855,7 @@
    "party": "br_pfl",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3750,6 +3864,7 @@
    "party": "br_pfl",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3758,6 +3873,7 @@
    "party": "br_pfl",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3766,6 +3882,7 @@
    "party": "br_pfl",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3774,6 +3891,7 @@
    "party": "br_pmdb",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3782,6 +3900,7 @@
    "party": "br_pmdb",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3790,6 +3909,7 @@
    "party": "br_pmdb",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3798,6 +3918,7 @@
    "party": "br_pmdb",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3806,6 +3927,7 @@
    "party": "br_prn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3814,6 +3936,7 @@
    "party": "br_prn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3822,6 +3945,7 @@
    "party": "br_prn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3830,6 +3954,7 @@
    "party": "br_prn",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3838,6 +3963,7 @@
    "party": "br_pt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3846,6 +3972,7 @@
    "party": "br_pt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3854,6 +3981,7 @@
    "party": "br_pt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   },
   {
@@ -3862,6 +3990,7 @@
    "party": "br_pt",
    "component": null,
    "portrait_assets": [],
+   "bound_portrait_sample_dates": [],
    "executive_authorized": false
   }
  ]
