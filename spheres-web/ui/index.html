@@ -14007,7 +14007,7 @@ function onMapPick(e) {
     if (city) { selectMapCity(city, false); return; }
   }
   const label = GLOBE?.nationLabelAt(e.clientX, e.clientY);
-  if (label && nationById(label)) { openNation(label); return; }
+  if (label && nationById(label)) { ui.selectedCity = null; renderMapCity(); openNation(label); return; }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   ui.selectedCity = null; renderMapCity();
