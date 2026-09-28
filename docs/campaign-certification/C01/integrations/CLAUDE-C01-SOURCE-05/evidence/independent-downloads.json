@@ -1,0 +1,58 @@
+[
+  {
+    "utc": "2026-09-28T03:37:19.679448+00:00",
+    "url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+    "curl_exit": 0,
+    "http_status": "200",
+    "stderr": "",
+    "bytes": 15700,
+    "sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+    "expected_bytes": 15700,
+    "expected_sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+    "matches": true,
+    "headers_file": "retry-page.headers.txt",
+    "local_body": "retry-page.html"
+  },
+  {
+    "utc": "2026-09-28T03:37:25.107950+00:00",
+    "url": "https://web.archive.org/web/20191208064007id_/https://projects.rusarchives.ru/statehood/images/09-37-1-postanovlenie-vybory-prezident.jpg",
+    "curl_exit": 0,
+    "http_status": "200",
+    "stderr": "",
+    "bytes": 98762,
+    "sha256": "9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2",
+    "expected_bytes": 98762,
+    "expected_sha256": "9052337ceab3818e95968197989853581e6b3aaf21560455ced9ad8c2c62b6c2",
+    "matches": true,
+    "headers_file": "image-1.headers.txt",
+    "local_body": "image-1.jpg"
+  },
+  {
+    "utc": "2026-09-28T03:37:31.373083+00:00",
+    "url": "https://web.archive.org/web/20191208064008id_/https://projects.rusarchives.ru/statehood/images/09-37-2-postanovlenie-vybory-prezident.jpg",
+    "curl_exit": 0,
+    "http_status": "200",
+    "stderr": "",
+    "bytes": 133816,
+    "sha256": "0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229",
+    "expected_bytes": 133816,
+    "expected_sha256": "0a6d5e086e016decf3cd8167ce320e3628b10290f5698f8d6d8f6db4596a5229",
+    "matches": true,
+    "headers_file": "image-2.headers.txt",
+    "local_body": "image-2.jpg"
+  },
+  {
+    "utc": "2026-09-28T03:37:37.125968+00:00",
+    "url": "https://web.archive.org/web/20191208064005id_/https://projects.rusarchives.ru/statehood/images/09-37-3-postanovlenie-vybory-prezident.jpg",
+    "curl_exit": 0,
+    "http_status": "200",
+    "stderr": "",
+    "bytes": 114508,
+    "sha256": "188d308d5631fdb54d5873014d3f3a9b7a91b0f9c97cd337b21173c5a09e328e",
+    "expected_bytes": 114508,
+    "expected_sha256": "188d308d5631fdb54d5873014d3f3a9b7a91b0f9c97cd337b21173c5a09e328e",
+    "matches": true,
+    "headers_file": "image-3.headers.txt",
+    "local_body": "image-3.jpg"
+  }
+]

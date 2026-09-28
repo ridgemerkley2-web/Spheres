@@ -1,0 +1,42 @@
+{
+  "format": "spheres-g4-decision/v1",
+  "gate": "G4",
+  "status": "earned",
+  "date": "2026-09-28",
+  "candidate_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+  "cp1_earned": false,
+  "scope": "Supported AI and player journey, inheriting the stated bounded session qualifications; no full-period, performance, historical-coverage or human-testing certificate.",
+  "evidence": [
+    {
+      "marker": "G3",
+      "path": "docs/campaign-certification/S16/manifest.json",
+      "sha256": "4b9ed2df35dd0a87dad488584a89f269a4b266010545e2893a223fca98088970"
+    },
+    {
+      "marker": "S17",
+      "path": "docs/campaign-certification/S17/manifest.json",
+      "sha256": "039fcfb364a4864af59a611a994f4ba660fa15670c1feda0cdca9d11d9fa05c8"
+    },
+    {
+      "marker": "S18",
+      "path": "docs/campaign-certification/S18/manifest.json",
+      "sha256": "fb4ee4005b8d13253083393c1f94e83eb6e4e265148156e125503683d0005d84"
+    },
+    {
+      "marker": "S19",
+      "path": "docs/campaign-certification/S19/integration/flight-closeout-evidence/manifest.json",
+      "sha256": "8c1f034fa25b65c74ce2214a323980b32442c6391b1f798a3e7061ac6aa7a284"
+    },
+    {
+      "marker": "S20",
+      "path": "docs/campaign-certification/S20/manifest.json",
+      "sha256": "4940f24d799c1657bd7564c3df74a4cd395e56d46782ae2b0e977bb6411e7036"
+    },
+    {
+      "marker": "S21",
+      "path": "docs/campaign-certification/S21/manifest.json",
+      "sha256": "4bea189fc062d603dbc48e404a139a6ed10f0fe08c7f577ef8a50e78513fbf39"
+    }
+  ],
+  "hash_basis": "Exact Git blob bytes, not platform checkout line endings."
+}

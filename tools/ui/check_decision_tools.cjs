@@ -1,5 +1,31 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const d=require('../../spheres-web/ui/decision-tools.js');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+function dialogFixture(){
+  const source=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/decision-tools.js'),'utf8');
+  const start=source.indexOf('  function toolsDialog('),body=source.slice(start,source.indexOf('\n  }',start)+4);
+  const document={activeElement:null},events=[];
+  const opener={isConnected:true,focus(){document.activeElement=this;}};
+  const destination={isConnected:true,focus(){document.activeElement=this;}};
+  const inside={isConnected:true},closeButton={};let mounted=false;
+  const box={open:false,setAttribute(){},contains:node=>node===inside||node===closeButton,
+    addEventListener(type,callback){if(type==='close')this.closed=callback;},querySelector:()=>closeButton,
+    showModal(){this.open=true;document.activeElement=inside;},
+    close(){this.open=false;opener.focus();events.push(()=>this.closed());}};
+  document.body={append(){mounted=true;}};document.getElementById=()=>mounted?box:null;document.createElement=()=>box;
+  opener.focus();const c=vm.createContext({document,DTOOLS:{seq:0,returnFocus:null},toolsEsc:String});vm.runInContext(body,c);
+  return {c,document,opener,destination,box,closeButton,events};
+}
+test('queued dialog close preserves a destination focus established by Finder or advisor navigation',()=>{
+  const f=dialogFixture();f.c.toolsDialog('Finder','');f.closeButton.onclick();f.destination.focus();
+  f.events.shift()();assert.equal(f.document.activeElement,f.destination);
+});
+test('ordinary dialog dismissal returns focus while a queued close cannot disturb a reopened dialog',()=>{
+  const f=dialogFixture();f.c.toolsDialog('Finder','');f.closeButton.onclick();f.document.activeElement=f.document.body;
+  f.events.shift()();assert.equal(f.document.activeElement,f.opener);
+  f.c.toolsDialog('Finder','');f.closeButton.onclick();f.c.toolsDialog('About','');const active=f.document.activeElement;
+  const sequence=f.c.DTOOLS.seq;f.events.shift()();assert.equal(f.document.activeElement,active);assert.equal(f.c.DTOOLS.seq,sequence);
+});
 test('shared labels reserve the entire text rectangle across layers',()=>{assert(d.overlap([10,10,40,20],[35,15,10,10]));assert(!d.overlap([10,10,40,20],[100,100,10,10]));});
 test('finder finds owned provinces without requiring a globe hit',()=>{const rows=d.search([{id:'USA',name:'United States',alive:true}],{'US-CA':{name:'California'}},()=> 'USA','California','USA');assert.equal(rows[0].id,'US-CA');assert.equal(rows[0].kind,'province');});
 test('advisor distinguishes annual renewal, unopened funding and an intentional daily pause',()=>{

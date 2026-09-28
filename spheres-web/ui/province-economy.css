@@ -1,6 +1,9 @@
 /* A soft, code-drawn economic atlas. No data or map geometry lives here. */
 .pe-province,.pe-nation { --pe-tone:var(--arc-mint,#a8d4c3); min-width:0; color:var(--arc-text,#f4f0ec); }
 .pe-province { margin-top:18px; }
+.province-dossier button,.province-dossier summary { min-height:44px; }
+.province-dossier button:focus-visible,.province-dossier summary:focus-visible,.province-dossier [data-map-detail-heading]:focus-visible { outline:3px solid var(--arc-gold,#ebcc91); outline-offset:2px; }
+.province-dossier .province-close { min-width:44px; }
 .pe-nation { margin:20px 0; }
 .pe-composition { min-width:0; overflow-wrap:anywhere; }
 .pe-hero { position:relative; display:flex; align-items:center; justify-content:space-between; gap:20px; overflow:hidden; padding:25px; border:1px solid #a8d4c352; border-radius:24px 24px 8px 24px; background:linear-gradient(130deg,#a8d4c31c,#c6b5e30b); }

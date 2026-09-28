@@ -49,7 +49,14 @@ if(typeof window!=="undefined"){
     if(typeof clockPause==="function")clockPause();
     ++DTOOLS.seq;
     let box=document.getElementById("decisionDialog");
-    if(!box){box=document.createElement("dialog");box.id="decisionDialog";box.className="decision-dialog";document.body.append(box);box.addEventListener("keydown",e=>e.stopPropagation());box.addEventListener("close",()=>{if(box.open)return;++DTOOLS.seq;DTOOLS.returnFocus?.focus({preventScroll:true});});}
+    if(!box){box=document.createElement("dialog");box.id="decisionDialog";box.className="decision-dialog";document.body.append(box);box.addEventListener("keydown",e=>e.stopPropagation());box.addEventListener("close",()=>{
+      if(box.open)return;++DTOOLS.seq;
+      // close() queues this event. Finder/advisor navigation may already have
+      // focused its destination after the browser restored the dialog opener.
+      const active=document.activeElement;
+      if(active && active!==document.body && active!==DTOOLS.returnFocus && active.isConnected && !box.contains(active))return;
+      DTOOLS.returnFocus?.focus({preventScroll:true});
+    });}
     box.setAttribute("aria-label",title);
     if(!box.open)DTOOLS.returnFocus=document.activeElement;
     box.innerHTML=`<header><h2>${toolsEsc(title)}</h2><button type="button" data-tools-close aria-label="Close ${toolsEsc(title)}">Close</button></header><div class="decision-body">${body}</div>`;
