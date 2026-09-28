@@ -83,12 +83,12 @@
         <button type="button" data-map-action="tilt" data-map-focus="tilt" aria-label="Toggle 3D terrain view" aria-pressed="${ui.mapTilt !== false}" title="Angled terrain / top view">3D</button>
         <details class="map-detail-menu"${detailsOpen ? " open" : ""}>
           <summary data-map-focus="details">Details</summary>
-          <div class="map-detail-options" role="group" aria-label="Map detail preset">${Object.entries(presets).map(([key, preset]) =>
+          <div class="map-detail-options"><div role="group" aria-label="Map detail preset">${Object.entries(presets).map(([key, preset]) =>
             `<button type="button" data-map-preset="${key}" data-map-focus="preset-${key}" aria-pressed="${matchesPreset(state, preset)}">${preset.label}</button>`
           ).join("")}</div>
-          <div class="map-detail-options" role="group" aria-label="Map detail layers">${Object.entries(details).map(([key, label]) =>
+          <div role="group" aria-label="Map detail layers">${Object.entries(details).map(([key, label]) =>
             `<button type="button" data-map-detail="${key}" data-map-focus="detail-${key}" aria-pressed="${state[key]}"><span>${label}</span><span class="map-detail-state" aria-hidden="true">${state[key] ? "On" : "Off"}</span></button>`
-          ).join("")}</div>
+          ).join("")}</div></div>
         </details>
       </div>
       <div class="map-camera-controls" role="group" aria-label="Globe camera">
