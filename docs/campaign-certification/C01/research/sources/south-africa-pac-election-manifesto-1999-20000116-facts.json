@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_election_manifesto_1999",
+  "source_url": "https://web.archive.org/web/20000116035918id_/http://paca.org.za:80/elect99.htm",
+  "original_url": "http://paca.org.za/elect99.htm",
+  "archive_capture_utc": "2000-01-16T03:59:18Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 37428,
+  "source_response_sha256": "d84e45f72c83d63e7c6400de72bc32a29ba8cac0a836bc5725f661aeb24fb38c",
+  "source_response_sha1_base32": "3SF2NVIESGFNTNCL3TJRJGMDPX2FVNUL",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T20:46:50Z; downloaded again at 2026-09-28T21:41:40Z, 2026-09-28T22:29:14Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (37428 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2000-01-16T03:59:18Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 16 January 2000 of the 1999 election manifesto (archived Last-Modified Wed, 07 Apr 1999 19:07:54 GMT); the manifesto prints no day (\"This year's elections\"). Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_manifesto_1999_president_mogoba",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-03",
+      "role_id": "za_pac_president",
+      "holder_name": "Stanley Mogoba",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": null,
+      "printed_range": "1999 Election Manifesto (no day printed)",
+      "text": "The PAC's 1999 Election Manifesto carries \"The Viewpoint of the President, Rev. Dr. Stanley Mogoba\" and lists its \"Office Bearers\" beginning \"President Rev. Dr. Stanley Mogoba\".",
+      "locator": {
+        "section": "Section 2 heading; section 7, first row of the office-bearer list"
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}

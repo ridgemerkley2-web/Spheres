@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_release_fraud_case_mbinda_20180304",
+  "source_url": "https://web.archive.org/web/20180322212842id_/http://pac.org.za:80/2018/03/04/pac-opens-fraud-theft-against-former-leader/",
+  "original_url": "http://pac.org.za/2018/03/04/pac-opens-fraud-theft-against-former-leader/",
+  "archive_capture_utc": "2018-03-22T21:28:42Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2018-03-04",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 49110,
+  "source_response_sha256": "e382f881e487bd03390847ad3c738deebf428ceec2f6fa6e629761f1da8cb411",
+  "source_response_sha1_base32": "E3Q7KPBV74NKWMM4MPMH2LVMF2MILLIX",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T20:52:53Z; downloaded again at 2026-09-28T21:53:25Z, 2026-09-28T22:37:22Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (49110 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2018-03-22T21:28:42Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 22 March 2018 of a PAC post dated March 4, 2018 quoting an affidavit by the party's finance secretary. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_release_mbinda_expulsion_took_effect_20170613",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-08",
+      "role_id": "za_pac_president",
+      "holder_name": "Luthando Mbinda",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "expulsion_effective",
+      "attested_on": "2017-06-13",
+      "text": "The PAC release quotes an affidavit calling Mr Luthando Mbinda \"the erstwhile and now expelled president of the Pan African Congress of Azania (who’s expulsion took effect on 13 June 2017)\".",
+      "locator": {
+        "section": "Paragraph quoting the affidavit"
+      }
+    },
+    {
+      "claim_id": "za_pac_release_mbinda_claims_to_be_legitimate_pac_20180304",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-08",
+      "role_id": "za_pac_president",
+      "holder_name": "Luthando Mbinda",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "rival_claim",
+      "attested_on": "2018-03-04",
+      "text": "The same release says \"Mr Mbinda has been attempting to sow confusion by claiming that he is the legitimate PAC\".",
+      "locator": {
+        "section": "Paragraph beginning \"We argue that the fraud\""
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}

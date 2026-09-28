@@ -14,12 +14,15 @@ from test_south_africa_deputy_presidents_c01_21 import (HOLDERS as C01_21_HOLDER
                                                         UNDATED as C01_21_UNDATED)
 from test_south_africa_party_leaders_c01_30 import (CHAINS as C01_30_CHAINS, RESPONSES as C01_30_RESPONSES,
                                                     UNDATED as C01_30_UNDATED)
+from test_south_africa_pac_presidents_c01_32 import (HOLDERS as C01_32_HOLDERS, RESPONSES as C01_32_RESPONSES,
+                                                     UNDATED as C01_32_UNDATED)
 
 # The five sources of the original S10h intake keep every assertion below by id. CLAUDE-C01-09 adds 50 sources whose
 # response identities are pinned exactly (bytes and SHA-256) in test_south_africa_heads_of_state_c01_09.py.
 # CLAUDE-C01-16 adds 54 ANC sources, pinned the same way in test_south_africa_anc_presidents_c01_16.py.
 # CLAUDE-C01-21 adds 59 Deputy President sources, pinned in test_south_africa_deputy_presidents_c01_21.py.
 # CLAUDE-C01-30 adds 39 ACDP, Freedom Front and IFP sources, pinned in test_south_africa_party_leaders_c01_30.py.
+# CLAUDE-C01-32 adds 38 PAC sources, pinned in test_south_africa_pac_presidents_c01_32.py.
 ORIGINAL_SOURCES = ('za_iec_national_results_20240621', 'za_iec_national_seats_20240606', 'za_da_kzn_leader_20230403',
                     'za_da_leadership_20260412', 'za_parliament_president_elect_20240614')
 # CLAUDE-C01-09: every presidency holder observation, exactly, as (role, name, attested_on, from, until).
@@ -57,8 +60,9 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
         # CLAUDE-C01-09 adds 50 sources, 78 claims and one role (za_state_president) and no entry; CLAUDE-C01-16 adds 54
         # sources, 73 claims and one role (za_anc_president) and no entry; CLAUDE-C01-21 adds 59 sources, 82 claims and one
         # role (za_deputy_president) and no entry; CLAUDE-C01-30 adds 39 sources, 64 claims and three roles
-        # (za_acdp_president, za_ff_leader, za_ifp_president) and no entry.
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (53, 207, 406, 10))
+        # (za_acdp_president, za_ff_leader, za_ifp_president) and no entry; CLAUDE-C01-32 adds 38 sources, 65 claims and
+        # one role (za_pac_president) and no entry.
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (53, 245, 471, 11))
         coverage = self.packet['coverage']
         self.assertFalse(coverage['exhaustive_organization_register_reviewed'])
         self.assertIsNone(coverage['unrepresented_organization_total'])
@@ -129,20 +133,27 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
         self.assertEqual([r['holder_claims'][0]['name'] for r in da['roles'][1:]], ['Solly Msimanga', 'Ashor Sarupen'])
         first = self.extracts['za_da_kzn_leader_20230403']['rows'][0]
         self.assertIsNone(first['election_date'])
-        # CLAUDE-C01-16 gives the ANC exactly one party role, and CLAUDE-C01-30 gives the ACDP, the VRYHEIDSFRONT PLUS
-        # observation and the IFP exactly one party-leader role each (with the holders pinned in its own test); every
-        # other organization still has none.
+        # CLAUDE-C01-16 gives the ANC exactly one party role, CLAUDE-C01-30 gives the ACDP, the VRYHEIDSFRONT PLUS
+        # observation and the IFP exactly one party-leader role each, and CLAUDE-C01-32 gives the PAN AFRICANIST
+        # CONGRESS OF AZANIA observation one (with the holders pinned in their own tests); every other organization
+        # still has none.
         self.assertEqual({o['name']: [r['id'] for r in o['roles']] for o in self.packet['organizations'] if o['roles']},
                          {'DEMOCRATIC ALLIANCE': ['za_da_federal_leader', 'za_da_federal_chair', 'za_da_council_chair'],
                           'AFRICAN NATIONAL CONGRESS': ['za_anc_president'],
                           'AFRICAN CHRISTIAN DEMOCRATIC PARTY': ['za_acdp_president'],
                           'INKATHA FREEDOM PARTY': ['za_ifp_president'],
+                          'PAN AFRICANIST CONGRESS OF AZANIA': ['za_pac_president'],
                           'VRYHEIDSFRONT PLUS': ['za_ff_leader']})
         for chain in C01_30_CHAINS.values():
             org = next(o for o in self.packet['organizations'] if o['id'] == chain['obs'])
             self.assertEqual([(r['kind'], r['title']) for r in org['roles']], [('party_leader', chain['title'])])
             self.assertEqual([(h['name'], h['attested_on'], h['from'], h['until']) for h in org['roles'][0]['holder_claims']],
                              chain['holders'])
+        pac = next(o for o in self.packet['organizations'] if o['id'] == 'za_iec_n2024_039')
+        self.assertEqual([(r['kind'], r['title']) for r in pac['roles']],
+                         [('party_leader', 'President of the Pan Africanist Congress of Azania')])
+        self.assertEqual([(h['name'], h['attested_on'], h['from'], h['until']) for h in pac['roles'][0]['holder_claims']],
+                         C01_32_HOLDERS)
 
     def test_election_as_president_elect_does_not_grant_inauguration_or_party_presidency(self):
         self.assertEqual(len(self.packet['institutions']), 1)
@@ -219,7 +230,7 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 # exactly.
                 self.assertEqual((data['source_response_bytes'], data['source_response_sha256']),
                                  {**C01_09_RESPONSES, **C01_16_RESPONSES, **C01_21_RESPONSES,
-                                  **C01_30_RESPONSES}[source['id']])
+                                  **C01_30_RESPONSES, **C01_32_RESPONSES}[source['id']])
             self.assertNotEqual(data['source_response_sha256'], source['snapshot']['sha256'])
             self.assertIn('not checked into this repository', data['provenance_note'])
             for row in data['rows']:
@@ -233,7 +244,7 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 self.assertEqual(data['reviewed_pdf_pages'], [1, 2])
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + list(C01_09_RESPONSES) + list(C01_16_RESPONSES)
-                         + list(C01_21_RESPONSES) + list(C01_30_RESPONSES))
+                         + list(C01_21_RESPONSES) + list(C01_30_RESPONSES) + list(C01_32_RESPONSES))
         p = copy.deepcopy(self.packet)
         p['sources'][0]['snapshot']['sha256'] = '0' * 64
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
@@ -252,10 +263,16 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
         # CLAUDE-C01-30 sources: raw Internet Archive captures of the ACDP's, Freedom Front's and IFP's own pages, all
         # accessed on 2026-09-28.
         c01_30_hosts = {'web.archive.org'}
+        # CLAUDE-C01-32 sources: raw Internet Archive captures of the PAC's own pages, SAFLII judgments and the PAC's X
+        # account, all accessed on 2026-09-28.
+        c01_32_hosts = {'web.archive.org'}
         for source in self.packet['sources']:
             if source['id'] in ORIGINAL_SOURCES:
                 self.assertIn(urlsplit(source['url']).hostname, hosts)
                 self.assertEqual(source['accessed_date'], '2026-09-14')
+            elif source['id'] in C01_32_RESPONSES:
+                self.assertIn(urlsplit(source['url']).hostname, c01_32_hosts)
+                self.assertEqual(source['accessed_date'], '2026-09-28')
             elif source['id'] in C01_30_RESPONSES:
                 self.assertIn(urlsplit(source['url']).hostname, c01_30_hosts)
                 self.assertEqual(source['accessed_date'], '2026-09-28')
@@ -270,17 +287,18 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 self.assertEqual(source['accessed_date'], '2026-09-22')
             for claim in source['claims']:
                 if (claim['id'] in C01_09_UNDATED or claim['id'] in C01_16_UNDATED or claim['id'] in C01_21_UNDATED
-                        or claim['id'] in C01_30_UNDATED):
+                        or claim['id'] in C01_30_UNDATED or claim['id'] in C01_32_UNDATED):
                     # Retrospective list and directory spans, month-only, year-only and span-only claims and later
                     # web-edition headings carry no structured date at all.
                     self.assertNotIn('attested_on', claim)
                     continue
                 self.assertLessEqual(date.fromisoformat(claim['attested_on']), date.fromisoformat(research.CUTOFF))
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
-                         hosts | c01_09_hosts | c01_16_hosts | c01_21_hosts | c01_30_hosts)
-        # Seven C01-09 claims, 31 C01-16 claims, 13 C01-21 claims and 21 C01-30 claims carry no structured date.
+                         hosts | c01_09_hosts | c01_16_hosts | c01_21_hosts | c01_30_hosts | c01_32_hosts)
+        # Seven C01-09 claims, 31 C01-16 claims, 13 C01-21 claims, 21 C01-30 claims and 29 C01-32 claims carry no
+        # structured date.
         self.assertEqual(sum('attested_on' not in c for s in self.packet['sources'] for c in s['claims']),
-                         7 + 31 + 13 + 21)
+                         7 + 31 + 13 + 21 + 29)
         self.assertEqual([s['published_date'] for s in self.packet['sources'][:2]], [None, None])
         self.assertEqual(self.extracts['za_iec_national_results_20240621']['report_as_at'], '2024-06-21T13:51:28')
         self.assertEqual(self.extracts['za_iec_national_seats_20240606']['report_as_at'], '2024-06-06T11:56:55')

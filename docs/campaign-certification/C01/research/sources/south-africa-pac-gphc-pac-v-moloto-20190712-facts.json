@@ -1,0 +1,83 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_saflii_gphc_2019_537",
+  "source_url": "https://web.archive.org/web/20250427101519id_/https://www.saflii.org/za/cases/ZAGPPHC/2019/537.html",
+  "original_url": "https://www.saflii.org/za/cases/ZAGPPHC/2019/537.html",
+  "archive_capture_utc": "2025-04-27T10:15:19Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-07-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 45931,
+  "source_response_sha256": "d65722a97a841c156173e801431f3373362e2269e20a23e1c96703740f41b0d7",
+  "source_response_sha1_base32": "HQWHWTYBNIKWGHKPXLO3XPDOWSDRXAOD",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T21:02:07Z; downloaded again at 2026-09-28T21:53:45Z, 2026-09-28T22:37:29Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (45931 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the judgment as published by SAFLII, captured at 2025-04-27T10:15:19Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live SAFLII page, which serves a bot challenge to direct requests and is not used. The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 27 April 2025 of the judgment of Millar AJ, heard 9 July 2019 and delivered 12 July 2019. The applicant, the PAC, was represented by its Secretary General. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_court_consent_order_moloto_acknowledged_president_20190308",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "court_order",
+      "attested_on": "2019-03-08",
+      "text": "The judgment says that \"On 8 March 2019, pursuant to litigation between various members of the applicant, an order was granted by consent\" under which \"the respondent was acknowledged to be the applicant's president\".",
+      "locator": {
+        "section": "Paragraph 10"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_moloto_invokes_emergency_powers_20190609",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "emergency_powers_invocation",
+      "attested_on": "2019-06-09",
+      "text": "The judgment says that \"On 9 June 2019, the respondent addressed a letter to all structures\" invoking clause 14.2 of the Disciplinary Code, under which \"The President shall have emergency powers\".",
+      "locator": {
+        "section": "Paragraphs 2 and 3"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_current_president_moloto_20190712",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2019-07-12",
+      "text": "In Pan Africanist Congress of Azania v Moloto, the judgment delivered on 12 July 2019 describes the application as one \"to set aside a decision by the respondent. its current President, to suspend the applicant's constitution and office bearers\".",
+      "locator": {
+        "section": "Paragraph 1"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_emergency_powers_set_aside_20190712",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "court_order",
+      "attested_on": "2019-07-12",
+      "text": "The court ordered that \"The respondent's unilateral invocation of clause 14.2 of the PAC disciplinary code\" \"is hereby set aside\".",
+      "locator": {
+        "section": "Paragraph 28.1, order"
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}

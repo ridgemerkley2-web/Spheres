@@ -11,6 +11,7 @@ import campaign_research as research
 from test_south_africa_anc_presidents_c01_16 import RESPONSES as C01_16_RESPONSES
 from test_south_africa_deputy_presidents_c01_21 import RESPONSES as C01_21_RESPONSES
 from test_south_africa_party_leaders_c01_30 import RESPONSES as C01_30_RESPONSES
+from test_south_africa_pac_presidents_c01_32 import RESPONSES as C01_32_RESPONSES
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -368,10 +369,11 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (50, 78))
         # CLAUDE-C01-16 appends its ANC party-office sources, pinned in test_south_africa_anc_presidents_c01_16.py, and
         # CLAUDE-C01-21 its Deputy President sources, pinned in test_south_africa_deputy_presidents_c01_21.py, and
-        # CLAUDE-C01-30 its ACDP, Freedom Front and IFP sources, pinned in test_south_africa_party_leaders_c01_30.py.
+        # CLAUDE-C01-30 its ACDP, Freedom Front and IFP sources, pinned in test_south_africa_party_leaders_c01_30.py, and
+        # CLAUDE-C01-32 its PAC sources, pinned in test_south_africa_pac_presidents_c01_32.py.
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + NEW_SOURCES + list(C01_16_RESPONSES) + list(C01_21_RESPONSES)
-                         + list(C01_30_RESPONSES))
+                         + list(C01_30_RESPONSES) + list(C01_32_RESPONSES))
         self.assertEqual(len(ids['entries']), 53)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for role in HOLDER_CLAIMS.values() for ids_ in role for cid in ids_}

@@ -1,0 +1,99 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_statement_litigation_moloto_20191230",
+  "source_url": "https://web.archive.org/web/20210516213210id_/https://www.pacofazania.org.za/litigation-process-between-the-pan-africanist-congress-of-azania-pac-and-narius-moloto/",
+  "original_url": "https://www.pacofazania.org.za/litigation-process-between-the-pan-africanist-congress-of-azania-pac-and-narius-moloto/",
+  "archive_capture_utc": "2021-05-16T21:32:10Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-12-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 44241,
+  "source_response_sha256": "3fb6983fe8606ce517110e38c9f712ce0f5d8af8a4c4e705af53184d95207d22",
+  "source_response_sha1_base32": "3OFTCH5WU3S3SRTKBU6V7LSBAGLJONE3",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T21:04:57Z; downloaded again at 2026-09-28T21:54:06Z, 2026-09-28T22:37:33Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (44241 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2021-05-16T21:32:10Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 16 May 2021 of a post dated January 3, 2020 whose body is \"Dated: 30 December 2019\" and signed by the PAC's Publicity Department, on the site of the leadership elected at Bloemfontein. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_statement_rival_necs_kimberly_2018_mpumalanga_2017",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "rival_congresses_reference",
+      "attested_on": null,
+      "printed_range": "December 2018; 2017",
+      "text": "The PAC statement says that under the order of 8 March 2019 \"the NEC elected in December 2018, in Kimberly would be combined with that elected in Mpumalanga in 2017\", forming the combined NEC.",
+      "locator": {
+        "section": "First paragraph"
+      }
+    },
+    {
+      "claim_id": "za_pac_statement_moloto_chaired_as_then_president",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "retrospective_in_office_reference",
+      "attested_on": null,
+      "printed_range": "the meeting of 18 May 2019 (retrospective)",
+      "text": "The same statement says of the combined NEC's meeting of 18 May 2019 that \"Mr Naruis Moloto chaired the said meeting as then President of the PAC.\"",
+      "locator": {
+        "section": "Paragraph beginning \"Indeed the combined NEC met on 18 May 2019\""
+      }
+    },
+    {
+      "claim_id": "za_pac_statement_moloto_suspended_20190720",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Narius Moloto",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "suspension",
+      "attested_on": "2019-07-20",
+      "text": "The same statement says \"Mr Narius Moloto was then suspended on 20 th July 2019, for bringing the organisation into disrepute among other reasons\".",
+      "locator": {
+        "section": "Paragraph beginning \"Mr Narius Moloto was then suspended\""
+      }
+    },
+    {
+      "claim_id": "za_pac_statement_nyhontso_elected_at_bloemfontein_20191230",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": "Mzwanele Nyhontso",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "election_reference",
+      "attested_on": "2019-12-30",
+      "text": "The same statement says \"the only legitimate, legal and Constitutional Congress was held in Bloemfontein wherein Mr Mzwanele Nyhotso was elected President together with all NEC Members.\"",
+      "locator": {
+        "section": "Concluding paragraph"
+      }
+    },
+    {
+      "claim_id": "za_pac_statement_electoral_court_application_20191230",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-09",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "court_application",
+      "attested_on": "2019-12-30",
+      "text": "The same statement says \"the PAC has approached the Electoral Court for final determination of the matter and awaits its decision\".",
+      "locator": {
+        "section": "Last paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}

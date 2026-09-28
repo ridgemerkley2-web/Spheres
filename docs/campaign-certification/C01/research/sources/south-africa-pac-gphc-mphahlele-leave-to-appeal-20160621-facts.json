@@ -1,0 +1,100 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_saflii_gphc_2016_485",
+  "source_url": "https://web.archive.org/web/20250215013134id_/https://www.saflii.org/za/cases/ZAGPPHC/2016/485.html",
+  "original_url": "https://www.saflii.org/za/cases/ZAGPPHC/2016/485.html",
+  "archive_capture_utc": "2025-02-15T01:31:34Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32608,
+  "source_response_sha256": "2058879b224b324ec78325740ef9c128f64ad03e5ac5e00f6cc6c2ba5873a9e0",
+  "source_response_sha1_base32": "TTY2MMFIDXNPES3XMV5Q65RXSJMK2UYN",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T21:02:02Z; downloaded again at 2026-09-28T21:53:40Z, 2026-09-28T22:37:10Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (32608 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the judgment as published by SAFLII, captured at 2025-02-15T01:31:34Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live SAFLII page, which serves a bot challenge to direct requests and is not used. The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 15 February 2025 of the judgment on leave to appeal (Makgoka J). Its heading reads \"21/6/2016\" and its signature block \"Date of judgment: 20 June 2016\", so no single day is stored as its date; heard 17 June 2016. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_court_order_iec_to_deal_with_mbinda_moloto_20160420",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-07",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "court_order",
+      "attested_on": "2016-04-20",
+      "text": "The judgment records that under the order of the court \"handed down on 20 April 2016\" \"the Electoral Commission was directed to communicate with Mr Luthando Mpinda and Mr Narius Moloto as representatives of the Pan Africanist Congress of Azania (PAC)\" for the local government elections.",
+      "locator": {
+        "section": "Paragraph [1]"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_mphahlele_expelled_may_2013",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-06",
+      "role_id": "za_pac_president",
+      "holder_name": "Letlapa Mphahlele",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "expulsion_reference",
+      "attested_on": null,
+      "printed_range": "May 2013",
+      "text": "The judgment says that the effect of the Full Court's judgment \"is that the PAC's decision in May 2013 to expel Mr Mphahlele stands.\"",
+      "locator": {
+        "section": "Paragraph [7]"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_mphahlele_claims_presidency_2016",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-06",
+      "role_id": "za_pac_president",
+      "holder_name": "Letlapa Mphahlele",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "rival_claim",
+      "attested_on": null,
+      "printed_range": "judgment headed 21/6/2016, date of judgment 20 June 2016",
+      "text": "The judgment says \"Mr Mphahlele continues to base his claim to the membership and presidency of the PAC\" on obiter comments in earlier judgments.",
+      "locator": {
+        "section": "Paragraph [7]"
+      }
+    },
+    {
+      "claim_id": "za_pac_iec_funding_suspended_leadership_struggle_20150617",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-07",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "iec_decision_on_leadership_dispute",
+      "attested_on": "2015-06-17",
+      "text": "The judgment records the Electoral Commission's decision under which it \"suspended the allocation of funding to the PAC until such time as the leadership struggle within the PAC had been resolved\", and says \"The decision of the Electoral Commission was taken on 17 June 2015.\"",
+      "locator": {
+        "section": "Paragraph [8] and footnote 8"
+      }
+    },
+    {
+      "claim_id": "za_pac_court_leave_to_appeal_refused_mphahlele_2016",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-07",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "court_order",
+      "attested_on": null,
+      "printed_range": "judgment headed 21/6/2016, date of judgment 20 June 2016",
+      "text": "The court ordered: \"The application by the first applicant. Mr Letlapa Mphahlele for leave to appeal is dismissed with costs\", struck Mr Mphethi's application from the roll, and gave costs to \"the Pan Africanist Congress of Azania as represented by Mr Luthando Mpinda\".",
+      "locator": {
+        "section": "Paragraph [12], order"
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}
