@@ -17167,6 +17167,11 @@ function setProductionMode(mode) {
 function openProduction() {
   if (!S || !S.player || (!S.production_summary && !S.manufacturing_summary)) return;
   const launchFocus = document.activeElement;
+  const launchProvince = launchFocus?.closest?.("#provinceDossier");
+  const returnOrigin = launchProvince && launchFocus.dataset?.mapDetailFocus ? {
+    campaign: PROVINCE_DOSSIER_UI.campaign, province: launchProvince.dataset.province,
+    key: launchFocus.dataset.mapDetailFocus,
+  } : null;
   if (LOGI.open) closeLogistics();
   if (stock.open) closeStock();
   if (tech.open) closeTech();
@@ -17177,6 +17182,7 @@ function openProduction() {
   PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
   MANU.view = "lines"; MANU.pickKit = null; MANU.error = null;
   PROD.lastFocus = launchFocus;
+  PROD.returnOrigin = returnOrigin;
   const panel = $("#productionPanel");
   panel.classList.remove("map-view");
   panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
@@ -17195,9 +17201,18 @@ function closeProduction() {
   if (panel) { panel.classList.remove("open", "map-view"); panel.setAttribute("aria-hidden", "true"); panel.setAttribute("aria-modal", "false"); }
   document.body.classList.remove("production-open");
   renderProductionDock();
-  const focus = PROD.lastFocus && PROD.lastFocus.isConnected && PROD.lastFocus.getClientRects().length ? PROD.lastFocus : $("#productionDockBtn");
+  const usable = element => element && !element.disabled && element.isConnected && element.getClientRects().length;
+  let focus = PROD.lastFocus;
+  if (PROD.returnOrigin) {
+    const origin = PROD.returnOrigin, dossier = $("#provinceDossier");
+    // Native readings may recreate the opener while Construction is open.
+    focus = origin.campaign === PROVINCE_DOSSIER_UI.campaign && dossier?.dataset.province === origin.province
+      ? [...dossier.querySelectorAll("[data-map-detail-focus]")].find(element => element.dataset.mapDetailFocus === origin.key && usable(element)) : null;
+  }
+  if (!usable(focus)) focus = $("#productionDockBtn");
   if (focus) focus.focus({ preventScroll: true });
   PROD.lastFocus = null;
+  PROD.returnOrigin = null;
   if (GLOBE) GLOBE.render();
 }
 function toggleProduction() { if (PROD.open) closeProduction(); else openConstruction(); }
