@@ -208,6 +208,20 @@ fn route(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &str) -> Result<Ro
 }
 fn route_with_permissions(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &str,
     permissions: Option<&mut RoutePermissions>) -> Result<Route,String> {
+    route_with_reads(w, g, r, start, permissions, None)
+}
+
+// Only pure deployment quotes may retain capacity reads. Their caller owns an
+// immutable WorldState borrow and one opening graph. Service dispatch instead
+// calls route_with_permissions above and rereads every live reservation.
+#[derive(Default)]
+struct DeploymentCapacities {
+    by_sea_bits: BTreeMap<u64, Vec<Option<f64>>>,
+}
+
+fn route_with_reads(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &str,
+    permissions: Option<&mut RoutePermissions>,
+    capacities: Option<&mut DeploymentCapacities>) -> Result<Route,String> {
     let source = *g.index.get(start).ok_or("No mapped national supply hub.")?;
     let goal = *g.index.get(&r.district).ok_or("The sector has no mapped freight destination.")?;
     #[cfg(test)]
@@ -217,6 +231,22 @@ fn route_with_permissions(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &
         else { fresh=route_permissions(w,g,r.nation); &fresh };
     if !pass[source] || !pass[goal] { return Err("The supply endpoint is contested, hostile or lacks military access.".into()); }
     let sea = sea_factor(w,r);
+    #[cfg(test)]
+    let capacities = if deployment_capacity_tests::FRESH.with(|flag| flag.get()) { None } else { capacities };
+    let mut capacity_slots = capacities.map(|reads| reads.by_sea_bits.entry(sea.to_bits())
+        .or_insert_with(|| vec![None; g.edges.len()]));
+    let mut edge_capacity = |ei: usize| {
+        if let Some(slots) = capacity_slots.as_deref_mut() {
+            if let Some(value) = slots[ei] {
+                #[cfg(test)]
+                deployment_capacity_tests::REUSED.with(|count| count.set(count.get() + 1));
+                return value;
+            }
+            let value = remaining_capacity(w, g, ei, sea);
+            slots[ei] = Some(value);
+            value
+        } else { remaining_capacity(w, g, ei, sea) }
+    };
     let mut distances = vec![u64::MAX;g.nodes.len()];
     let mut previous = vec![None;g.nodes.len()];
     let mut q = BinaryHeap::new();
@@ -228,7 +258,7 @@ fn route_with_permissions(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &
         for &ei in &g.adj[node] {
             let e = &g.edges[ei];
             let next = if e.a == node { e.b } else { e.a };
-            let remaining = remaining_capacity(w,g,ei,sea);
+            let remaining = edge_capacity(ei);
             if !pass[next] || remaining <= EPS || (e.sea && sea <= EPS) { continue; }
             let new = cost.saturating_add(e.travel_weight);
             if new < distances[next] { distances[next] = new; previous[next] = Some((node,ei)); q.push(Reverse((new,next))); }
@@ -245,7 +275,7 @@ fn route_with_permissions(w: &WorldState, g: &Graph, r: &SupplyRequest, start: &
         let e = &g.edges[ei];
         has_sea |= e.sea;
     }
-    let capacity = edges.iter().map(|&ei|remaining_capacity(w,g,ei,sea)).fold(f64::INFINITY,f64::min);
+    let capacity = edges.iter().map(|&ei| edge_capacity(ei)).fold(f64::INFINITY,f64::min);
     Ok(Route { nodes, edges, sea:has_sea, capacity,
         days: if source == goal { 1 } else { ((distances[goal]+1679)/1680) as u32 + 2 } })
 }
@@ -282,6 +312,7 @@ pub(crate) struct DeploymentRoutes<'w> {
     graph: Option<Graph>,
     hubs: BTreeMap<NationId,Option<String>>,
     permissions: RoutePermissions,
+    capacities: DeploymentCapacities,
 }
 /// Owned opening graph for the immediately following service settlement.
 /// Only campaign records may change between the deployment quotes and that
@@ -290,7 +321,8 @@ pub(crate) struct DeploymentRoutes<'w> {
 pub(crate) struct PreparedSupplyGraph(Graph, RoutePermissions);
 impl<'w> DeploymentRoutes<'w> {
     pub(crate) fn new(world:&'w WorldState)->Self {
-        Self {world,graph:None,hubs:BTreeMap::new(),permissions:RoutePermissions::default()}
+        Self {world,graph:None,hubs:BTreeMap::new(),permissions:RoutePermissions::default(),
+            capacities:DeploymentCapacities::default()}
     }
     pub(crate) fn route(&mut self,nation:NationId,district:&str)->Option<(Vec<String>,u32)> {
         let w=self.world;
@@ -300,10 +332,12 @@ impl<'w> DeploymentRoutes<'w> {
                 .map(|s|s.district.clone()).or_else(||choose_hub(w,g,nation))).as_deref()?;
         let request=SupplyRequest {key:String::new(),nation,conflict:0,district:district.into(),deployed:0.0,
             burn_monthly:0.0,sea_escort:0.0,sea_denial:0.0};
-        let path=route_with_permissions(w,g,&request,hub,Some(&mut self.permissions)).ok()?;
+        let path=route_with_reads(w,g,&request,hub,Some(&mut self.permissions),Some(&mut self.capacities)).ok()?;
         Some((path.nodes,path.days))
     }
     pub(crate) fn into_supply_graph(self) -> Option<PreparedSupplyGraph> {
+        // Capacity reservations become mutable in service settlement. Only the
+        // opening graph and invariant permission vectors cross that boundary.
         self.graph.map(|graph|PreparedSupplyGraph(graph,self.permissions))
     }
 }
@@ -606,6 +640,10 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
 #[cfg(test)]
 #[path = "campaign_supply_permission_tests.rs"]
 mod permission_scope_tests;
+
+#[cfg(test)]
+#[path = "campaign_supply_deployment_capacity_tests.rs"]
+mod deployment_capacity_tests;
 
 #[cfg(test)]
 pub(crate) mod graph_handoff_tests {
