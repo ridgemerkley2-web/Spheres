@@ -1474,6 +1474,15 @@ pub fn candidate(w: &WorldState, nation: NationId) -> Result<(String, K, String)
 }
 
 fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String), String> {
+    candidate_with_reads_observed(reads, &mut None)
+}
+
+fn has_expansion_gap(intermediate: f64, capital: f64) -> bool {
+    !(intermediate <= 1e-9 && capital <= 1e-9)
+}
+
+fn candidate_with_reads_observed(reads: &IndustryReads<'_>,
+    observer: &mut DetailedReviewObserver<'_>) -> Result<(String, K, String), String> {
     let (w, nation) = (reads.world, reads.nation);
     let districts: Vec<_> = w
         .districts
@@ -1487,7 +1496,7 @@ fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String)
                 .into(),
         );
     }
-    let plan = reads.capacity();
+    let plan = observe_review_call(observer,"candidate.capacity",Some(nation),||reads.capacity());
     let estates: Vec<_> = districts
         .iter()
         .filter(|d| production::level(w, d, K::CivilianIndustry) > 0)
@@ -1564,10 +1573,17 @@ fn candidate_with_reads(reads: &IndustryReads<'_>) -> Result<(String, K, String)
     // Expansion is not another automatic bootstrap. Count every province,
     // including acquired/module sites and pending output, before buying more.
     let expansion_blocked = expansion_blocker(w, nation);
-    if expansion_blocked.is_none() {
+    // Ranking reads inherited-sector presentation and the reconciled province
+    // ledger. Neither can affect a choice when the existing per-kind guards
+    // skip both investments. Keep those exact <= predicates: a NaN must still
+    // enter the original ranking/selection path, not become a false > test.
+    // The uncached oracle deliberately retains the prior unconditional read.
+    if expansion_blocked.is_none() && (!reads.reuse
+        || has_expansion_gap(intermediate.expansion_daily, capital.expansion_daily)) {
         // Historical industrial structure breaks ties between evidenced pack
         // needs. It is not free physical supply or a reason to build without use.
-        for kind in reads.expansion_order(&plan) {
+        let order = observe_review_call(observer,"candidate.ranking",Some(nation),||reads.expansion_order(&plan));
+        for kind in order {
             let gap = if kind == K::ProcessingPlant {
                 intermediate.expansion_daily
             } else {
@@ -2085,7 +2101,14 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
                 .unwrap_or_else(|| "Existing paid work is progressing.".into()),
         ))
     } else {
-        observe_review_call(observer,"review.candidate",Some(nation),||candidate_with_reads(&reads))
+        // Nested candidate measurements are diagnostic only and are not
+        // additive to this enclosing review.candidate interval.
+        let started = observer.as_ref().map(|_|std::time::Instant::now());
+        let result = candidate_with_reads_observed(&reads, observer);
+        if let (Some(observer),Some(started))=(observer.as_deref_mut(),started) {
+            observer("review.candidate",Some(nation),started.elapsed());
+        }
+        result
     };
     let target = next.as_ref().ok().map(|(_, k, _)| *k);
     let renewal = w
@@ -2143,7 +2166,11 @@ fn review_impl(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyCont
         drop(reads);
         let result = observe_review_call(observer,"review.commission",Some(nation),||execute_materials_order(w, &command));
         if active == 0 && result.0 {
-            next = observe_review_call(observer,"review.candidate",Some(nation),||candidate_with_reads(&IndustryReads::new(w, nation, reuse_reads)));
+            let started = observer.as_ref().map(|_|std::time::Instant::now());
+            next = candidate_with_reads_observed(&IndustryReads::new(w, nation, reuse_reads), observer);
+            if let (Some(observer),Some(started))=(observer.as_deref_mut(),started) {
+                observer("review.candidate",Some(nation),started.elapsed());
+            }
         }
         Some(result)
     } else {
@@ -2654,6 +2681,58 @@ mod s08_industry_read_tests {
         let bootstrap = reads.bootstrap();
         serde_json::to_vec(&bootstrap.as_ref().as_ref().map(|b|
             (&b.command, &b.machinery_district, b.starts_machine, &b.waiting))).unwrap()
+    }
+
+    #[test]
+    fn s22_expansion_gap_guard_keeps_original_nonfinite_skip_semantics() {
+        for (intermediate, capital, expected) in [
+            (0.0, -0.0, false), (-1.0, 1e-9, false),
+            (1e-9, 1e-9, false), (1.00001e-9, 0.0, true),
+            (0.0, 1.00001e-9, true), (f64::NEG_INFINITY, -0.0, false),
+            (f64::INFINITY, 0.0, true), (f64::NAN, 0.0, true),
+            (0.0, f64::NAN, true), (f64::NAN, f64::NAN, true),
+        ] {
+            assert_eq!(has_expansion_gap(intermediate, capital), expected,
+                "the prior per-kind <= skip retains non-finite selection behavior");
+        }
+    }
+
+    #[test]
+    fn s22_lazy_expansion_ranking_preserves_candidate_and_full_review() {
+        let (mut base, _) = prepared(true);
+        // Explicit synthetic coverage makes both expansion gaps zero without
+        // changing the policy, the province set or any qualification input.
+        base.production.industry.goods.insert(BUYER, industry::Goods {
+            intermediates: 1e9, capital_goods: 1e9,
+        });
+        let before = crate::save(&base);
+        let reads = IndustryReads::new(&base, BUYER, true);
+        let original = IndustryReads::new(&base, BUYER, false);
+        let plan = reads.capacity();
+        assert!(!first_machine_needed(&plan));
+        assert!(expansion_blocker(&base, BUYER).is_none());
+        assert!(goods_balance(&plan, Good::Intermediates).expansion_daily <= 1e-9);
+        assert!(goods_balance(&plan, Good::CapitalGoods).expansion_daily <= 1e-9);
+        let mut optimized_stages = Vec::new();
+        let mut original_stages = Vec::new();
+        let selected = candidate_with_reads_observed(&reads,
+            &mut Some(&mut |stage, _, _| optimized_stages.push(stage.to_owned())));
+        let expected = candidate_with_reads_observed(&original,
+            &mut Some(&mut |stage, _, _| original_stages.push(stage.to_owned())));
+        assert_eq!(selected, expected, "target, reason and refusal ordering stay exact");
+        assert!(optimized_stages.iter().any(|stage| stage == "candidate.capacity"));
+        assert!(!optimized_stages.iter().any(|stage| stage == "candidate.ranking"));
+        assert!(original_stages.iter().any(|stage| stage == "candidate.ranking"),
+            "the uncached oracle must actually exercise the previous ranking path");
+        assert!(reads.expansion.get().is_none(), "skipped ranking creates no cached read");
+        assert_eq!(crate::save(&base), before, "candidate reads preserve every world byte");
+        let context = RawSupplyContext::new(&base);
+        let mut optimized = base.clone();
+        let mut original = base.clone();
+        review_impl(&mut optimized, BUYER, &context, &mut None, true);
+        review_impl(&mut original, BUYER, &context, &mut None, false);
+        assert_eq!(crate::save(&optimized), crate::save(&original),
+            "full review preserves command effects, prices, plans and ordered headlines");
     }
 
     #[test]
