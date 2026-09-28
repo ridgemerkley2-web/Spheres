@@ -214,6 +214,9 @@ class TongaTransitionTests(unittest.TestCase):
         self.assertEqual(speaker[0], 'to_speakers_appointment')
         self.assertEqual([h for h in speaker if isinstance(h, str)], ['to_speakers_appointment'])
         self.assertEqual(len(speaker), 12)
+        self.assertEqual([h['name'] for h in speaker if isinstance(h, dict)], [
+            "Fusitu'a", 'Hon. Veikune', "Hon. Tu'ivakano", 'Hon. Veikune', "Lord Tu'ilakepa", 'Lord Lasike', 'Lord Fakafanua',
+            "Lord Tu'ivakano", 'Lord Fakafanua', 'Lord Fakafanua', 'Lord Vaea'])
         for entry in speaker[1:]:
             self.assertFalse(set(entry['claim_ids']) & NEW_CLAIMS, entry['name'])
 
