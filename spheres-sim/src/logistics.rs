@@ -1709,6 +1709,10 @@ impl<'w> ContractForecastRoutes<'w> {
 }
 
 pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
+    begin_month_impl(w, true)
+}
+
+fn begin_month_impl(w: &mut WorldState, reuse_due_routes: bool) -> Vec<Cargo> {
     if !enabled(w) {
         return vec![];
     }
@@ -1730,6 +1734,11 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
     // Repeated consignments may share a booked path. Control and permissions
     // do not change during this arrival pass, so one exact path check suffices.
     let mut open_routes: BTreeMap<(NationId, NationId, Vec<String>), Result<(), String>> = BTreeMap::new();
+    // Due/held consignments also share pure access checks. Keep this separate
+    // from the existing in-transit cache: saved names affect exact refusal
+    // text, even when the ordered node IDs are identical. No movement, stock,
+    // ownership or permissions change until this arrival pass has finished.
+    let mut due_routes: BTreeMap<(NationId, NationId, Vec<(String, String)>), Result<(), String>> = BTreeMap::new();
     for mut c in old {
         if daily && c.due_day.is_none() {
             // Legacy freight arrived at the END of due_month: preserve that
@@ -1750,7 +1759,11 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
             keep.push(c);
             continue;
         }
-        match route_open(w, c.seller, c.buyer, &c.route) {
+        let access = if reuse_due_routes {
+            let key = (c.seller, c.buyer, c.route.nodes.iter().map(|n| (n.id.clone(), n.name.clone())).collect());
+            due_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone()
+        } else { route_open(w, c.seller, c.buyer, &c.route) };
+        match access {
             Ok(()) => {
                 c.hold_reason = None;
                 arrivals.push(c)
@@ -2832,6 +2845,61 @@ mod tests {
             assert!(!read.is_open(seller,buyer,&missing),"missing interior IDs cannot reuse an open path");
             assert_eq!(crate::save(&w),before,"access reads cannot change cargo, money, policy or control");
         }
+    }
+
+    #[test]
+    fn s22_due_route_reuse_preserves_arrivals_holds_names_and_next_day_rechecks() {
+        for daily in [false, true] { for modern in [false, true] {
+            let mut base = world(); base.rules.daily_simulation = daily; base.rules.military_operations = modern;
+            let (seller, buyer) = (NationId::Germany, NationId::France);
+            let nominal = plan(&base, seller, buyer).unwrap();
+            let transit = base.districts.iter().find(|(_,owner)| **owner == NationId::Netherlands).unwrap().0.clone();
+            let mut named_a = nominal.clone();
+            let mut node = nominal.nodes[0].clone(); node.id = transit; node.name = "Saved transit A".into();
+            named_a.nodes.insert(1, node);
+            let mut named_b = named_a.clone(); named_b.nodes[1].name = "Saved transit B".into();
+            let mut missing = nominal.clone(); missing.nodes[0].id = "s22-missing-route-node".into();
+            let mut empty = nominal.clone(); empty.nodes.clear();
+            let today = crate::clock::absolute_day(&base); let now = resources::month_abs(&base);
+            for (r, route) in [nominal, named_a, named_b, missing, empty].into_iter().enumerate() {
+                for copy in 0..3 {
+                    let future = copy == 2;
+                    base.logistics.cargo.push(Cargo { id: (r * 3 + copy) as u64, seller, buyer,
+                        commodity: Commodity::Iron, quantity: 1.25, source: ShipmentSource::Spot,
+                        contract: None, route: route.clone(), dispatched_month: now - 2,
+                        due_month: if future { now + 1 } else { now - 1 },
+                        dispatched_day: None, due_day: if future {Some(today + 1)} else {None},
+                        hold_reason: Some("Previous hold must be reevaluated".into()) });
+                }
+            }
+            base.logistics.cargo.reverse();
+            for fault in 0..5 {
+                let mut actual = base.clone();
+                match fault {
+                    1 => actual.sanctions.push((NationId::Netherlands, seller)),
+                    2 => actual.sanctions.push((seller, buyer)),
+                    3 => actual.nation_mut(buyer).alive = false,
+                    4 => { actual.districts.insert(base.logistics.cargo.last().unwrap().route.nodes[0].id.clone(), NationId::Iraq); }
+                    _ => {}
+                }
+                let mut expected = actual.clone();
+                let arrivals = begin_month_impl(&mut actual, true);
+                assert_eq!(arrivals, begin_month_impl(&mut expected, false), "arrival ordering daily={daily} modern={modern} fault={fault}");
+                assert_eq!(crate::save(&actual), crate::save(&expected), "exact cargo/history/hold bytes daily={daily} modern={modern} fault={fault}");
+                if fault == 1 {
+                    assert!(actual.logistics.cargo.iter().any(|c| c.hold_reason.as_deref() == Some("Transit through Saved transit A is closed.")));
+                    assert!(actual.logistics.cargo.iter().any(|c| c.hold_reason.as_deref() == Some("Transit through Saved transit B is closed.")));
+                }
+                assert!(begin_month_impl(&mut actual, true).is_empty());
+                assert!(begin_month_impl(&mut expected, false).is_empty());
+                actual.sanctions.clear(); expected.sanctions.clear();
+                actual.nation_mut(buyer).alive = true; expected.nation_mut(buyer).alive = true;
+                if daily { actual.day += 1; expected.day += 1; }
+                else { actual.month += 1; expected.month += 1; }
+                assert_eq!(begin_month_impl(&mut actual, true), begin_month_impl(&mut expected, false));
+                assert_eq!(crate::save(&actual), crate::save(&expected), "cache cannot survive arrival pass");
+            }
+        }}
     }
 
     #[test]
