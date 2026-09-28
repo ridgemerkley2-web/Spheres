@@ -228,6 +228,9 @@ def check_sources(reg, problems):
         b = s.get('byte_stability') or {}
         status = b.get('status')
         recheck = utc(b.get('recheck_utc'))
+        if (not SHA_RE.fullmatch(str(b.get('recheck_sha256', '')))
+                or type(b.get('recheck_bytes')) is not int or b.get('recheck_bytes', 0) <= 0):
+            problems.add('provenance', f'{where}: recheck identity needs a SHA-256 and a positive integer byte count.')
         if status not in ('byte_stable', 'changed'):
             problems.add('provenance', f'{where}: byte stability must be checked (byte_stable or changed).')
         elif not recheck or not fetched or (recheck - fetched).total_seconds() < RECHECK_MINUTES * 60:
@@ -344,7 +347,11 @@ def check_dossier(d, fname, sources, game, hashes, root, problems, ids, used_sou
             problems.add('period', f'{label}: an ongoing period needs evidence dated on or after {FRESH_FROM}.')
 
     def interval(item, label):
-        """Validate a [from, until) period; until None means ongoing at the cutoff."""
+        """Validate a [from, until) period, except an inclusive last_observed endpoint.
+
+        An observation is evidence on its recorded day, not a legal end event.
+        until None means ongoing at the cutoff. Partial dates retain their precision.
+        """
         f = pdate(item.get('from'))
         u = pdate(item['until']) if item.get('until') else None
         if not f or (item.get('until') and not u):
@@ -419,7 +426,9 @@ def check_dossier(d, fname, sources, game, hashes, root, problems, ids, used_sou
                 continue
             f = pdate(n.get('from'))
             u = pdate(n['until']) if n.get('until') else (CUTOFF, CUTOFF, 3)
-            if f and u and p and p[1] >= f[0] and p[0] <= u[1]:
+            inclusive_end = n.get('until') is None or n.get('until_basis') == 'last_observed'
+            before_end = bool(u and p and (p[0] <= u[1] if inclusive_end else p[0] < u[1]))
+            if f and p and p[1] >= f[0] and before_end:
                 return True
         return False
 

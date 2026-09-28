@@ -228,6 +228,13 @@ around a block, and none supports a claim.
   - ownership splits reported only by news, such as MHI/Hitachi in MHPS;
   - later GCAP and MGCS outcomes;
   - Type 16, the Soryu class, the T-4 trainer and other products without official dated evidence.
-- **Validator coverage.** The validator can confirm that an anchor exists and that dates are
-  covered, but not that a paraphrase is faithful. The paraphrases were checked by reading the
-  French and Japanese sources directly.
+- **Validator coverage.** The offline validator checks that a locating anchor is recorded,
+  provenance metadata is complete, dates match the declared source coverage, and game targets
+  exist. It does not download source bodies or prove that an anchor occurs in a source, that a
+  response hash reproduces, or that a paraphrase is faithful. Source retrieval and content
+  review are separate checks. The original researcher reports reading the French and Japanese
+  sources directly; independent access limits are recorded in the integration review.
+- **Name periods.** Legal rename endpoints are exclusive: the new name applies on an exact
+  rename day. An endpoint explicitly marked `last_observed` includes the observation day and
+  does not assert that the company or name ceased to exist then. Year-only dates retain their
+  uncertainty; they do not resolve which day in that year a name changed.

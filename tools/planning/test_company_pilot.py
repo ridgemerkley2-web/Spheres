@@ -247,6 +247,25 @@ class CompanyPilotTests(unittest.TestCase):
         self.d()['products'][0]['milestones'][0]['maker_name'] = self.d()['entities'][0]['names'][1]['name']
         self.assertViolation('identity', 'was not the name of')
 
+    def test_old_name_is_not_valid_on_exact_rename_day(self):
+        d = self.d()
+        m = d['products'][0]['milestones'][0]
+        m.update(date='2000-06-01', claims=[d['claims'][1]['id']])
+        self.assertViolation('identity', 'was not the name of')
+
+    def test_new_name_is_valid_on_exact_rename_day(self):
+        d = self.d()
+        m = d['products'][0]['milestones'][0]
+        m.update(date='2000-06-01', claims=[d['claims'][1]['id']],
+                 maker_name=d['entities'][0]['names'][1]['name'])
+        self.assertEqual(self.problems(), [])
+
+    def test_last_observed_name_includes_the_observation_day(self):
+        d = self.d()
+        d['entities'][0]['names'][0]['until_basis'] = 'last_observed'
+        d['products'][0]['milestones'][0].update(date='2000-06-01', claims=[d['claims'][1]['id']])
+        self.assertEqual(self.problems(), [])
+
     def test_rename_across_legal_entities(self):
         d = self.d()
         d['entities'].append({'id': f'{d["id"]}_holding', 'kind': 'holding', 'subject': False,
@@ -360,6 +379,20 @@ class CompanyPilotTests(unittest.TestCase):
         b = self.registry['sources'][0]['byte_stability']
         b.update(status='changed', recheck_sha256='b' * 64, anchors_reverified=False)
         self.assertViolation('provenance', 'needs re-verified anchors')
+
+    def test_changed_response_requires_complete_recheck_identity(self):
+        original = copy.deepcopy(self.registry['sources'][0]['byte_stability'])
+        for field, value in [('recheck_sha256', None), ('recheck_sha256', ''),
+                             ('recheck_sha256', 'not-a-sha'), ('recheck_bytes', None),
+                             ('recheck_bytes', 0), ('recheck_bytes', -1),
+                             ('recheck_bytes', True), ('recheck_bytes', '1200')]:
+            with self.subTest(field=field, value=value):
+                b = copy.deepcopy(original)
+                b.update(status='changed', recheck_sha256='b' * 64,
+                         anchors_reverified=True, note='regenerated page')
+                b[field] = value
+                self.registry['sources'][0]['byte_stability'] = b
+                self.assertViolation('provenance', 'recheck identity')
 
     def test_changed_status_with_identical_recheck(self):
         b = self.registry['sources'][0]['byte_stability']
