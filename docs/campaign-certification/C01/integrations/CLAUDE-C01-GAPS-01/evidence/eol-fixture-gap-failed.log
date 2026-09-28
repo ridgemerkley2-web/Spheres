@@ -1,0 +1,15 @@
+...............F......
+======================================================================
+FAIL: test_markdown_input_hashes_ignore_checkout_line_endings (test_certified_gap_ledger.FixtureLedger.test_markdown_input_hashes_ignore_checkout_line_endings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-c01-gaps-b4d95396\tools\avatars\test_certified_gap_ledger.py", line 232, in test_markdown_input_hashes_ignore_checkout_line_endings
+    self.assertEqual(ledger.outputs(self.root, self.attribution), before)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {Wind[4668 chars]s": 52,\n      "sha256": "5ef5416a11ccc0907924[70922 chars]u\n"} != {Wind[4668 chars]s": 51,\n      "sha256": "9a64675b6d142a6bc9ff[70922 chars]u\n"}
+Diff is 661719 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 22 tests in 2.417s
+
+FAILED (failures=1)

@@ -1,7 +1,39 @@
 /* Economic dossiers only display the simulation's ledger. Sector weights,
    project value added and district attribution are never calculated here. */
 const ECONOMIC_LEDGER = { generation: 0, entries: new Map(), details: new Map() };
-const PROVINCE_DOSSIER_UI = { campaign: 0, views: new Map() };
+const PROVINCE_DOSSIER_UI = { campaign: 0, views: new Map(), opener:null, cityOpener:null };
+
+function mapDetailFocusKey(element) {
+  return element?.dataset?.mapDetailFocus || element?.dataset?.econFocus || element?.id ||
+    (element?.tagName === "SUMMARY" ? element.parentElement?.dataset?.detailKey : null);
+}
+
+function rememberMapDetailFocus(root) {
+  const element=document.activeElement;
+  return root?.contains(element) ? {element,key:mapDetailFocusKey(element),campaign:PROVINCE_DOSSIER_UI.campaign} : null;
+}
+
+function restoreMapDetailFocus(root,saved) {
+  if (!root || !saved || saved.campaign!==PROVINCE_DOSSIER_UI.campaign) return false;
+  const active=document.activeElement;
+  if (active && active!==document.body && active!==saved.element && active.isConnected && !root.contains(active)) return false;
+  const targets=[...root.querySelectorAll('[data-map-detail-focus],[data-econ-focus],[id],summary')];
+  const usable=el=>el && !el.disabled && el.isConnected && el.getClientRects().length;
+  const match=targets.find(el=>mapDetailFocusKey(el)===saved.key && usable(el));
+  const target=match || root.querySelector('[data-map-detail-heading]');
+  if (!usable(target)) return false;
+  target.focus({preventScroll:true}); return true;
+}
+
+function returnMapDetailFocus(opener) {
+  const usable=el=>el && !el.disabled && el.isConnected && el.getClientRects().length;
+  const target=usable(opener) ? opener : document.querySelector('#worldFindBtn') || document.querySelector('#mapControls button');
+  if (usable(target)) target.focus({preventScroll:true});
+}
+
+function provinceReadingKey() {
+  return JSON.stringify([PROVINCE_DOSSIER_UI.campaign,S?.date,S?.year,S?.month,S?.day]);
+}
 
 function economyText(value) {
   return String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
@@ -168,13 +200,13 @@ function provinceActivityHtml(data) {
     <dl class="pe-activity-counts"><div><dt>Construction records</dt><dd>${activity.construction}</dd></div><div><dt>Producing records</dt><dd>${activity.producing}</dd></div><div><dt>Need attention</dt><dd>${activity.attention.length}</dd></div></dl>
     <p class="pe-note">${economyText(economyReceiptLabel(data))}. Counts describe project records, not a census of buildings. A construction or producing record may also need attention.</p>
     ${activity.attention.length?`<ul class="pe-activity-problems">${activity.attention.slice(0,3).map(p=>`<li><strong>${economyText(p.name||p.kind||"Project")} · ${economyText(p.status)}</strong><p>${economyText(p.reason||"Open the project record for the available details.")}</p></li>`).join("")}</ul>${activity.attention.length>3?`<p>${activity.attention.length-3} more records need attention.</p>`:""}`:`<p>${activity.total?"No blocked, paused, slowed, stalled or inactive project status is recorded here.":"No project records yet. The inherited economy still contributes output."}</p>`}
-    ${activity.total?'<button type="button" data-economy-review-projects>Review project records ↓</button>':""}</section>`;
+    ${activity.total?'<button type="button" data-economy-review-projects data-map-detail-focus="province-projects">Review project records ↓</button>':""}</section>`;
 }
 
 function provinceEconomyHtml(reading) {
   if (!reading || reading.loading) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Reading the province's economic ledger…</div></section>`;
-  if (reading.error) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Economic reading unavailable. ${economyText(reading.error)}</div></section>`;
-  return `<section class="pe-province" aria-label="Province economy">${provinceActivityHtml(reading.economy)}${economicCompositionHtml(reading.economy,"province")}${reading.economy?.starting_industry?"":economyStartingIndustryHtml(reading.starting_industry,"province")}</section>`;
+  if (reading.error) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Economic reading unavailable. ${economyText(reading.error)}<p><button type="button" data-province-retry data-map-detail-focus="province-retry">Retry province reading</button></p></div></section>`;
+  return `<section class="pe-province" aria-label="Province economy">${reading.read_date?`<p class="pe-note" role="status">Reading for ${economyText(reading.read_date)}${reading.refreshing?' · refreshing for the current day…':''}</p>`:""}${provinceActivityHtml(reading.economy)}${economicCompositionHtml(reading.economy,"province")}${reading.economy?.starting_industry?"":economyStartingIndustryHtml(reading.starting_industry,"province")}</section>`;
 }
 
 function economyProvincesHtml(data) {
@@ -206,6 +238,7 @@ function rememberProvinceDossier() {
   const view=PROVINCE_DOSSIER_UI.views.get(district) || {details:new Map(),scroll:0};
   for (const [key,open] of economicDetailsState(box)) view.details.set(key,open);
   view.scroll=box.scrollTop;
+  view.focus=rememberMapDetailFocus(box);
   PROVINCE_DOSSIER_UI.views.set(district,view);
 }
 
@@ -219,6 +252,10 @@ function wireProvinceDossierState(box) {
     details.ontoggle=()=>rememberProvinceDossier();
   });
   box.onscroll=()=>rememberProvinceDossier();
+  box.querySelectorAll('[data-province-retry]').forEach(button=>button.onclick=()=>{
+    if (box.dataset.economyCampaign!==String(PROVINCE_DOSSIER_UI.campaign) || box.dataset.province!==selectedDistrict) return;
+    loadProvincePopulation(selectedDistrict,false);
+  });
   box.querySelectorAll("[data-economy-review-projects]").forEach(button=>button.onclick=()=>{
     const details=box.querySelector('details[data-detail-key="economy-projects"]');if(!details)return;
     details.open=true;const target=details.querySelector("summary");target?.focus({preventScroll:true});
@@ -230,6 +267,11 @@ function wireProvinceDossierState(box) {
 function resetProvinceDossierState() {
   ++PROVINCE_DOSSIER_UI.campaign;
   PROVINCE_DOSSIER_UI.views.clear();
+  PROVINCE_DOSSIER_UI.opener=null;
+  PROVINCE_DOSSIER_UI.cityOpener=null;
+  // City selection belongs to this world too; its card and keyboard focus must
+  // not be adopted into a loaded save or a newly started campaign.
+  if (typeof ui!=="undefined") ui.selectedCity=null;
   // A response issued by the previous world cannot become the new baseline.
   ++PROVINCE_POPULATION_REQUEST;
   PROVINCE_POPULATION=null;

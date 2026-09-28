@@ -1,6 +1,8 @@
 # CODEX-C01-SOURCE-06-REVIEW — submitted source repair
 
-Owner: Codex. State: queued. Parent C01 remains incomplete.
+Owner: Codex. State: **complete**. Parent C01 remains incomplete.
+
+The following was the original review brief; the completed decision is recorded below.
 
 Review `claude/c01-source-06` at
 `93467faaef254a71b4a776d00e56c16dda963eca` (submission commits `006561f8` and
@@ -28,3 +30,7 @@ S19 later-outcome qualification as Codex's first gameplay priority.
 
 The initial inventory found changes only to `provenance_note` and `source_review`
 in the Bush extract. This is a scope check, not independent historical acceptance.
+
+## Completed review — 28 September UTC
+
+Accepted and integrated reviewed tip `63746790`; [independent evidence](../../campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Bounded repair only; C01 remains open.

@@ -515,11 +515,20 @@
         }
       ],
       "scope_note": "The 2012 exhibition page (caption and transcription) and three facsimile images of the GARF originals, read from Internet Archive captures because the official host refused connections. All three images were viewed at full size and agree with the exhibition transcription.",
+      "source_review": {
+        "review_id": "CLAUDE-C01-SOURCE-05",
+        "review_date": "2026-09-27",
+        "result": "recorded_response_reproduced_exactly",
+        "recorded_response_url": "https://web.archive.org/web/20230604070106id_/https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+        "recorded_response_bytes": 15700,
+        "recorded_response_sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+        "note": "Codex's 27 September 2026 sample requested the official page URL, not this recorded response, and timed out. Between 2026-09-27T23:40:28Z and 2026-09-28T00:55:36Z projects.rusarchives.ru again opened no TCP connection on port 443 or 80, nor rusarchives.ru on 443 (8 attempts in all), so no live identity exists. The recorded raw Internet Archive capture, requested with Accept-Encoding: identity and served uncompressed, returned 15,700 bytes with the recorded SHA-256 at 2026-09-27T23:42:08Z and at 2026-09-28T00:55:57Z; captures 20210225052658, 20210511100649, 20210612153223, 20210924090951, 20230929012544 return the same bytes, and the 2019 captures differ only in the analytics script. The three facsimiles reproduce their recorded identities. Content comparison: the caption (GARF F. 10026, Op. 8, D. 204, L. 6-7), the image captions (L. 6, L. 6 ob., L. 7) and facsimile 1 (No. 20-25 of 19 June 1991, points 1-3, signed by V. Kazakov and V. Prozorov) agree with every claim; the leaf discrepancy against the handwritten folios 5, 6 and 7 is unchanged and unresolved. No claim or date changed. Per-capture identities are in the extract's source_review."
+      },
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-garf-cec-result-19910619-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 7436,
-        "sha256": "6a1084e3f9861b42988e7b450a5f9fe6d65d47fcb142dfef158c09488ef690d3"
+        "bytes": 27871,
+        "sha256": "23667eb7080c58e9466442dcd1cbb7ac96a9453e28db603cf2ef8694248d1e02"
       }
     },
     {

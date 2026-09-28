@@ -1,0 +1,177 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-SOURCE-06",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewed_commit": "93467faaef254a71b4a776d00e56c16dda963eca",
+  "base_commit": "a33a89873273f2cd43097f77d401c58b709f3b98",
+  "reviewed_utc": "2026-09-28T03:43:03.355358+00:00",
+  "decision": "Accept the bounded source-identity repair: the exact current and former archived bodies and the identical address-span identity reproduce independently; the existing single title-only observation is supported. Root integration is separate. No accession, tenure continuity, other C01-06 observation, country census or campaign gate is accepted by this decision.",
+  "method": "curl 8.18.0 Windows, default User-Agent, Accept-Encoding: identity. Downloaded both exact recorded URLs, checked byte lengths and SHA-256; applied the recorded unique anchors to raw response bytes and compared the spans byte for byte. Read the consultation paragraph and editorial Note; verified document title, date and item identifier. No source artwork or original responses are checked in.",
+  "responses": [
+    {
+      "utc": "2026-09-28T03:40:26.055945+00:00",
+      "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 32782,
+      "sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c"
+    },
+    {
+      "utc": "2026-09-28T03:41:20.304458+00:00",
+      "url": "https://web.archive.org/web/20211205194503id_/https://bush41library.tamu.edu/archives/public-papers/2147",
+      "curl_exit": 0,
+      "http_status": "200",
+      "stderr": "",
+      "bytes": 16655,
+      "sha256": "247a050e3c68b78a72c1ee68590d9526683508cee8b65bd2ca92cd6636caa325",
+      "matches_recorded": true
+    }
+  ],
+  "content_identities": {
+    "address": {
+      "bytes": 8979,
+      "sha256": "4bf739376d87f635a7687bf06f792ee84d504b921c9db9b82c85ffa7b055a4bf",
+      "offset": 19506
+    },
+    "paragraph_count": 21,
+    "claim_locators": [
+      {
+        "paragraph": 13,
+        "bytes": 321,
+        "offset": 24918,
+        "sha256": "683d98cf9875f9f3bac53d720249fb0f3fadcf5a9a1f008d30beeaa3506ea5e8"
+      },
+      {
+        "paragraph": 21,
+        "bytes": 370,
+        "offset": 28115,
+        "sha256": "5299dd10cd70f381a602a7cbd82da4195346a2c0ff83b23c7e41dd19ae9a8482"
+      }
+    ]
+  },
+  "scope_comparison": {
+    "saudi_change_limited_to_source_review_and_snapshot": true,
+    "extract_change_limited_to_source_review_and_provenance_note": true,
+    "all_claims_dates_holders_unchanged": true,
+    "former_live_address_bytes_equal": true,
+    "former_address_offset": 4844,
+    "former_address_bytes": 8979,
+    "former_address_sha256": "4bf739376d87f635a7687bf06f792ee84d504b921c9db9b82c85ffa7b055a4bf",
+    "former_title_and_date_verified": true,
+    "test_file_unchanged": true
+  },
+  "scope_limits": [
+    "The retained 21 September 31,889-byte body is not in the repository and no longer served. Codex did not independently recompute the six claimed old-versus-new page-template diff hunks.",
+    "The independent check verifies the currently served document and its former-URL pre-cutoff capture. The former capture is corroboration, not the originally recorded response and not proof of a redirect to the current URL.",
+    "The broader CDX no-capture search and every extra 2019 capture were not rerun.",
+    "Foreign web transcription supports Fahd being styled King on 8 August 1990 only. Saudi accession and continuous tenure remain unestablished."
+  ],
+  "files_reviewed": [
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "git_blob_bytes": 114824,
+      "git_blob_sha256": "010c10c899319843dfdba3b7f875ac36e93d934daa73e0426cc7bceffa763211"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "git_blob_bytes": 93763,
+      "git_blob_sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-executive-chronology-06.md",
+      "git_blob_bytes": 37877,
+      "git_blob_sha256": "b54db2a5a22577d68f96569b6d178537a50134ef55d1a9028a1d2e4d1d4a7065"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
+      "git_blob_bytes": 13185,
+      "git_blob_sha256": "1b27b30a8837d78b2a6400a021c123e4699ed3467895a275330639fd198c6b1c"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-06.md",
+      "git_blob_bytes": 9399,
+      "git_blob_sha256": "9648d1332b3dd8845ff50bc78c570a294c4f0e16626adf0675026e1aaa82bd38"
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -B -X utf8 tools/avatars/campaign_research.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/campaign_census.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_saudi*.py'",
+      "exit_code": 0,
+      "tests_passed": 8,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "exit_code": 0,
+      "tests_passed": 79,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_campaign*.py'",
+      "exit_code": 0,
+      "tests_passed": 16,
+      "skipped": 0
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "exit_code": 0,
+      "tests_passed": 11,
+      "skipped": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/planning/workboard.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff a33a8987..93467faa --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/.gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "evidence/content-identities.json",
+      "bytes": 541,
+      "sha256": "39deb174899b26922285e8886d857a52a30c4eace26c037b19b22f9cb95f282b"
+    },
+    {
+      "path": "evidence/former-result.json",
+      "bytes": 359,
+      "sha256": "0c5f0eb7c5d12eb94b34b92d38bb85b0446d18c53b2a18236cb189526cbbd6bb"
+    },
+    {
+      "path": "evidence/former.headers.txt",
+      "bytes": 2001,
+      "sha256": "9c52f67b0a7d4ab17264ae2de4d986ba265480f33521af66b783382d72b708e3"
+    },
+    {
+      "path": "evidence/live-result.json",
+      "bytes": 354,
+      "sha256": "01dde91d35c219becfb975bf8127e68a06f802d284d6fa48e20d41d2c01db36c"
+    },
+    {
+      "path": "evidence/live.headers.txt",
+      "bytes": 1156,
+      "sha256": "c7a2d36442aa069f5a47d43bfeed5b61bb355d5c5d9e1dde3ec51360094a78e1"
+    },
+    {
+      "path": "evidence/scope-and-content.json",
+      "bytes": 469,
+      "sha256": "ff64f2204d73243b816683374d2dc63283b37e2f962bab43e8fc384bafbe849c"
+    }
+  ]
+}

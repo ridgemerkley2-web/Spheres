@@ -343,6 +343,44 @@ test('opening and closing operations resets map mode, modality and launch focus'
   }
 });
 
+function constructionProvinceFocusFixture() {
+  const c=fixture(['openProduction','closeProduction']);
+  const focused=[];
+  const control=key=>({dataset:{mapDetailFocus:key},isConnected:true,disabled:false,
+    getClientRects:()=>[1],focus(){focused.push(this);}});
+  const opener=control('province-build'), replacement=control('province-build'), dock=control('dock');
+  const dossier={dataset:{province:'FR-IDF'},querySelectorAll:()=>[replacement]};
+  opener.closest=selector=>selector==='#provinceDossier'?dossier:null;
+  const lookup=c.$;
+  c.$=selector=>selector==='#provinceDossier'?dossier:selector==='#productionDockBtn'?dock:lookup(selector);
+  c.document.activeElement=opener;
+  c.showTab=()=>{opener.isConnected=false;};
+  run(c,'const PROVINCE_DOSSIER_UI={campaign:1}; PROD.open=false; LOGI.open=false; openProduction();');
+  return {c,focused,opener,replacement,dock,dossier};
+}
+
+test('Construction returns to the same province Build here after native readings recreate its opener', () => {
+  const {c,focused,opener,replacement}=constructionProvinceFocusFixture();
+  assert.equal(opener.isConnected,false,'map repaint detached the launch node');
+  run(c,'closeProduction();');
+  assert.deepEqual(focused,[replacement]);
+  assert.equal(run(c,'PROD.lastFocus'),null);
+  assert.equal(run(c,'PROD.returnOrigin'),null,'closing consumes the captured origin');
+});
+
+test('Construction uses its dock when the captured province or campaign context is gone', () => {
+  for(const changed of ['campaign','province','removed','hidden','disabled']) {
+    const {c,focused,replacement,dock,dossier}=constructionProvinceFocusFixture();
+    if(changed==='campaign')run(c,'PROVINCE_DOSSIER_UI.campaign++;');
+    if(changed==='province')dossier.dataset.province='FR-OCC';
+    if(changed==='removed')replacement.isConnected=false;
+    if(changed==='hidden')replacement.getClientRects=()=>[];
+    if(changed==='disabled')replacement.disabled=true;
+    run(c,'closeProduction();');
+    assert.deepEqual(focused,[dock],changed);
+  }
+});
+
 test('cargo keeps escaped diversion information alongside its booked date', () => {
   const c=fixture();
   c.cargo={...lane,id:4,quantity:2,due_day:'19 Jan 1990',route:{...lane.route,
