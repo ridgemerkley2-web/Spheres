@@ -15,6 +15,36 @@ fn original_routes<T>(run: impl FnOnce() -> T) -> T {
     run()
 }
 
+fn checkpoint_world(source: &str) -> WorldState {
+    let mut value: serde_json::Value=serde_json::from_str(source).unwrap();
+    let world=if value.get("format").and_then(serde_json::Value::as_str)==Some("spheres-campaign") {
+        let world=value.get_mut("world").expect("campaign simulation payload").take();
+        drop(value); // Release history/archive before decoding and cloning the world.
+        world
+    } else {
+        // An integrated simulation save itself also has a world property;
+        // keep its capability/version envelope for the native validator.
+        value
+    };
+    crate::load_value(world).unwrap()
+}
+
+#[test]
+fn contract_oracle_accepts_campaign_and_integrated_inputs_without_stripping_capabilities() {
+    let mut w=crate::init::world_1990(crate::world::GameRules {
+        daily_simulation:true,military_operations:true,production_system:true,
+        manufacturing_system:true,resource_market:true,..Default::default()
+    });
+    crate::operational_warfare::enable(&mut w).unwrap();
+    let integrated=crate::save(&w);
+    let value:serde_json::Value=serde_json::from_str(&integrated).unwrap();
+    assert_eq!(value["format"],"spheres-integrated-save");
+    let campaign=serde_json::json!({"format":"spheres-campaign","version":1,"world":value,
+        "history":[],"log":["Synthetic archive metadata; only the world is used by this oracle."]}).to_string();
+    assert_eq!(crate::save(&checkpoint_world(&integrated)),integrated);
+    assert_eq!(crate::save(&checkpoint_world(&campaign)),integrated);
+}
+
 fn world() -> WorldState {
     let mut w = crate::init::world_1990(crate::world::GameRules {
         daily_simulation: true, resource_gates: true, resource_market: true,
@@ -167,7 +197,7 @@ fn contract_posting_rebuilds_context_each_day_and_keeps_full_ledger_identical() 
 fn contract_nominal_reuse_matches_actual_checkpoint_for_31_complete_days() {
     let path=std::env::var("SPHERES_S22_CHECKPOINT").expect("actual checkpoint path required");
     let source=std::fs::read_to_string(&path).unwrap();
-    let mut actual=crate::load(&source).unwrap();
+    let mut actual=checkpoint_world(&source);
     assert!(enabled(&actual) && actual.rules.military_operations);
     assert!(actual.resources.contracts.len()>1,"actual checkpoint must retain recurring contracts");
     let before=REUSED_CONTRACT_FREIGHT.with(|count|count.get());
