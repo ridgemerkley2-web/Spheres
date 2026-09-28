@@ -13,8 +13,10 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
   assert.equal(git(['status','--porcelain','--','spheres-web','spheres-sim']).trim(),'');
   assert.equal(git(['diff','--name-only',expected,'HEAD','--','spheres-web','spheres-sim','Cargo.toml','Cargo.lock']).trim(),'');
   const binary=path.resolve(process.env.SPHERES_BINARY||path.join(root,'target/release/spheres-web.exe'));
-  const raw=zlib.gunzipSync(fs.readFileSync(path.join(root,'docs/campaign-certification/S19/integration/procurement-supply-evidence/recorded-france-supplier-checkpoint.json.gz')));
-  assert.equal(sha(raw),'fbe56cdfec5d83b5d9c259f80acb7bb0888dab37d4f35c70beb8686b5eeaf91e');
+  const checkpoint=process.env.SPHERES_SUPPLIER_CHECKPOINT||path.join(root,'docs/campaign-certification/S19/integration/procurement-supply-evidence/recorded-france-supplier-checkpoint.json.gz');
+  const bytes=fs.readFileSync(checkpoint),raw=bytes[0]===0x1f&&bytes[1]===0x8b?zlib.gunzipSync(bytes):bytes;
+  const expectedSave=process.env.SPHERES_SUPPLIER_CHECKPOINT?process.env.SPHERES_SUPPLIER_CHECKPOINT_SHA256:'fbe56cdfec5d83b5d9c259f80acb7bb0888dab37d4f35c70beb8686b5eeaf91e';
+  assert.match(expectedSave||'',/^[a-f0-9]{64}$/,'Custom checkpoints require a recorded hash');assert.equal(sha(raw),expectedSave);
   const output=path.resolve(process.env.SPHERES_SUPPLY_OUTPUT||path.join(root,'artifacts/supplier-input-recovery'));
   fs.mkdirSync(output,{recursive:true});const out=fs.mkdtempSync(path.join(output,'france-')),run=path.join(out,'server');
   fs.mkdirSync(path.join(run,'saves'),{recursive:true});fs.writeFileSync(path.join(run,'saves/s19-input.json'),raw);
@@ -68,6 +70,22 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
     evidence.actions.push({select:'#saveSlots',value:'s19-input'});await page.locator('#saveSlots').selectOption('s19-input');
     await tap('#loadBtn');await page.waitForFunction(()=>S?.player&&!SESSION.busy);
     evidence.before={state:await state(),industry:await read('industry'),companies:await read('companies')};
+    if(process.env.SPHERES_SUPPLIER_GRID_RECOVERY==='1'){
+      evidence.scope='Ordinary grid recovery and equipment purchase/delivery from a recorded component-producing campaign';
+      const helper=path.join(__dirname,'supplier-production-route.cjs');
+      evidence.production_driver_sha256=sha(fs.readFileSync(helper));fs.copyFileSync(helper,path.join(out,'production-driver.cjs'));
+      await require(helper)({page,tap,state,read,shot,companies,evidence});
+      assert.deepEqual(evidence.errors,[]);assert.equal(sha(fs.readFileSync(binary)),evidence.binary_sha256);
+      evidence.passed=true;return;
+    }
+    if(process.env.SPHERES_SUPPLIER_VERIFY_DELIVERY==='1'){
+      evidence.scope='Native procurement milestones, save/load and Continue from a recorded delivered campaign';
+      const helper=path.join(__dirname,'supplier-delivery-proof.cjs');
+      evidence.proof_driver_sha256=sha(fs.readFileSync(helper));fs.copyFileSync(helper,path.join(out,'proof-driver.cjs'));
+      await require(helper)({page,tap,read,state,shot,evidence});
+      assert.deepEqual(evidence.errors,[]);assert.equal(sha(fs.readFileSync(binary)),evidence.binary_sha256);
+      evidence.passed=true;return;
+    }
     await companies();
     const card=page.locator('[data-equipment-record="1:3"]');evidence.card_text=await card.innerText();
     const shortage=card.locator('.eq-supplier-input').filter({has:page.getByRole('heading',{name:'Advanced components components',exact:true})});
@@ -84,6 +102,12 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
     await tap(`[data-prod-province="${district}"]`);await page.waitForFunction(()=>constructionPreviewCurrent());
     evidence.construction_preview=await page.evaluate(()=>JSON.parse(JSON.stringify(PROD.preview)));
     assert.equal(await page.evaluate(()=>PROD.pickKind),'advanced_industry');await shot('advanced-industry-review');
+    if(process.env.SPHERES_SUPPLIER_PRODUCTION==='1'){
+      evidence.scope='Ordinary component production and equipment purchase/delivery from the recorded France campaign';
+      const helper=path.join(__dirname,'supplier-production-route.cjs');
+      evidence.production_driver_sha256=sha(fs.readFileSync(helper));fs.copyFileSync(helper,path.join(out,'production-driver.cjs'));
+      await require(helper)({page,tap,state,read,shot,companies,evidence});
+    }else{
     await companies();await card.getByRole('button',{name:'Review component imports',exact:true}).click();evidence.actions.push({click:'Review component imports'});
     await page.waitForFunction(()=>COMP.open&&!COMP.loading&&!COMP.stale);
     if(await page.locator('[data-comp-action="enable"]').isVisible()){
@@ -100,8 +124,9 @@ const git=args=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide
     assert.equal(evidence.after.industry.goods.find(g=>g.good==='advanced_components').stock,0);
     assert(!evidence.requests.some(r=>r.route==='/api/advance'));
     assert(evidence.requests.filter(r=>r.route==='/api/command').every(r=>(r.payload.commands||[]).every(c=>c.kind==='enable_economic_competition')));
+    }
     assert.deepEqual(evidence.errors,[]);assert.equal(sha(fs.readFileSync(binary)),evidence.binary_sha256);
-    evidence.passed=true;console.log('PASS: exact shortage, industry/build navigation and real component quotes; no stock grant or purchase');
+    evidence.passed=true;console.log(evidence.production?'PASS: component production and equipment delivery route':'PASS: exact shortage, industry/build navigation and real component quotes; no stock grant or purchase');
   }catch(error){evidence.error=error.stack;if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}
   finally{evidence.finished_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(evidence,null,2));if(browser)await browser.close();if(server.exitCode===null)server.kill();log.end();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

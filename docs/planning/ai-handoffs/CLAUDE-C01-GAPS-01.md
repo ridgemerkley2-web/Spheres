@@ -1,9 +1,10 @@
 # CLAUDE-C01-GAPS-01 — certified-country research gap ledger
 
-Owner: Claude. State: **claimed**. Parent: C01. Branch: `claude/c01-gaps-01`.
-Claim observed at `5324614593da8694e1fb9848ea79002830b2723e`, based on `76f8ac6c`.
-The remote handoff records the generator, pinned attribution, ledger and tests as
-its next checkpoint. This is a claim inventory, not a completed or accepted submission.
+Owner: Claude. State: **ready_for_review** (remote submission inventory only).
+Parent: C01. Branch: `claude/c01-gaps-01`. Submitted head:
+`b4d953964d7f1ab720c3fe72a62f74437bc81edf`; original claim `53246145`, base `76f8ac6c`.
+The remote handoff was read. No independent verification, merge or acceptance is
+claimed; do not duplicate the submitted generator, ledger and tests.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build

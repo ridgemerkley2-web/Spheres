@@ -8,10 +8,11 @@ This is a work assignment, not a claim that Claude has begun a repair.
 
 SOURCE-06 was submitted at `93467faaef254a71b4a776d00e56c16dda963eca` on
 `claude/c01-source-06` and is **ready for Codex review**, not merged or accepted.
-SOURCE-26 at `c1f537f2`, C01-23 at `fa470d81`, and C01-25 at `c06839c1` also
+SOURCE-26 at `c1f537f2`, C01-23 at `9c0f5c14`, and C01-25 at `c06839c1` also
 declare ready_for_review in their remote handoffs at the latest fetch. This is submission
-inventory only, not acceptance. Do not duplicate these four submissions. SOURCE-05/17
-and C01-24/27 retain their existing claims. Six additional independent sections are
+inventory only, not acceptance. Do not duplicate these submissions. SOURCE-05 also declares ready_for_review at `66331d9d`; it remains unverified. SOURCE-17
+and C01-27 retain their existing claims. C01-24 now declares ready_for_review at
+`a7a9e39c`, and the gap-ledger packet C01-GAPS-01 at `b4d95396`; both await independent review. Six additional independent sections are
 available in [the expanded task list](CLAUDE-EXPANDED-NEXT.md); they do not wait on these repairs.
 
 ## Existing source-review follow-ups
@@ -52,8 +53,8 @@ retain disclosed limitations and propose further bounded review separately.
 | C01-25 | `claude/c01-sa-25` | Saudi Shura Council / Allegiance Commission chairs |
 | C01-27 | `claude/c01-in-27` | BJP presidents, 1990–2026 |
 
-C01-23 and C01-25 are now submitted for review at the heads above. C01-24 and
-C01-27 retain their claims. Preserve each branch; fetch current integration before
+C01-23/24/25 are now submitted for review at the heads above.
+C01-27 retains its claim. Preserve each branch; fetch current integration before
 continuing unfinished work. Do not
 restart these as new packet IDs. Follow their existing bounded deliverables.
 Regenerate the shared research index separately; run tests with actual game data

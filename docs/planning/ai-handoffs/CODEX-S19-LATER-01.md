@@ -1,6 +1,6 @@
 # CODEX-S19-LATER-01 — later outcome qualification
 
-Owner: Codex. State: in progress (preflight complete). Parent S19 remains in progress; no closure is claimed.
+Owner: Codex. State: in progress (construction and procurement qualified; flight remains). Parent S19 remains in progress; no closure is claimed.
 Start from `codex/campaign-certification` at or after `474df63e`.
 
 Use a separate native preview and campaign save. Extend the existing
@@ -98,3 +98,18 @@ The real campaign has no component offers. Its local Advanced Industry review is
 affordable at $240m over 660 days, but no plant order or delivered goods is claimed
 by this recovery test. Next complete ordinary component production/purchase, then
 company stock and equipment payment/delivery with save/resume. S19 remains open.
+
+## Procurement qualified — 27 September
+
+The unchanged `c8a59bfd` runtime now passes ordinary company production,
+purchase/payment/delivery and native guidance save/load/Continue. A real component
+plant and local grid were funded; the company manufactured one tank, purchased
+and paid on 1 February 1997 and delivered on 8 February. The exact unedited
+9 February campaign is archived for continuation. The earlier stock-bound failure
+and superseded Continue test timing attempt remain labeled as failures.
+[Reproducible evidence and limits](../../campaign-certification/S19/integration/PROCUREMENT_DELIVERY.md).
+
+**Current next action:** obtain actual aircraft through the ordinary supplier
+route, form/support a squadron, and verify readiness plus a supported flown result
+under an eligible conflict. Retain construction/procurement outcomes and their
+save/resume behavior. S19, S20 and CP1 completion are not implied by this checkpoint.
