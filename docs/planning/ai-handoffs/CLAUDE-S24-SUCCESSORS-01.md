@@ -1,9 +1,23 @@
 # CLAUDE-S24-SUCCESSORS-01 — successor-country fixture harness
 
-Owner: Claude; reviewer/integrator: Codex. State: **ready_for_review** (28 September 2026). Parent: S24, **preparation only**; Codex owns S24 closure.
+Owner: Claude; reviewer/integrator: Codex. State: **complete as bounded preparation** (reviewed 28 September 2026). Parent: S24, **preparation only**; Codex owns S24 closure.
 Branch: `claude/s24-successors-01`. Base: `e41aa18d`; claim `328db128`; merged with integration `75626a13` at `26d5d63a`, the
 source of the committed run. Touched paths: only the owned paths below. S24 is not advanced beyond preparation; see the Result.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
+
+## Independent integration decision
+
+Original submission `5a23ebe0` is preserved; Codex repaired incomplete-check acceptance,
+missing retained inputs, nonzero failure exits and exact Git/served asset comparison.
+Twenty-six focused tests pass. An independent immutable `5d11dd6d` run passes
+23 selection guards, 21 supported activation/save-reload routes and four browser
+representatives. Namibia and East Timor remain `no_native_hook`; unrun browser
+cases are not passing. [Review and retained attempts](../../campaign-certification/S24/integrations/CLAUDE-S24-SUCCESSORS-01/README.md).
+
+The reported interest-floor explanation defect is separately repaired on `52e1c2ab`
+with [current-build evidence](../../campaign-certification/S24/repairs/budget-rate-explanation/README.md).
+Full S24 still awaits S23 and its canonical qualification. The original Result below
+is retained as the submission record, not a claim about the newer runtime.
 
 ## Build
 

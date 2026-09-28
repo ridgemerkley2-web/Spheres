@@ -13,10 +13,11 @@ C01-GAPS-01 and the bounded CODEX-C01-ACCEPTANCE-01 follow-up review are also
 complete. These closures do not accept the parent packets as complete histories.
 
 C01-23/24/25/27 declare `ready_for_review`; independent acceptance remains pending.
-C01-28/29 are active Russia/Japan claims. Do not duplicate them. Four of the six
-[expanded sections](CLAUDE-EXPANDED-NEXT.md) are accepted bounded deliveries;
-S24 successor fixtures and E05 company research are newly submitted for review;
-their content remains unmerged and unaccepted.
+C01-28/29 are active Russia/Japan claims. Do not duplicate them. All six
+[expanded sections](CLAUDE-EXPANDED-NEXT.md) are accepted bounded preparation
+deliveries, including the S24 successor fixtures and E05 company research.
+Their reviews retain unsupported cases and claim-level verification limits;
+parent sessions and runtime content acceptance remain separate.
 
 ## Existing source-review follow-ups
 

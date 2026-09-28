@@ -1,10 +1,22 @@
 # CLAUDE-E05-RESEARCH-01 — important-company research pilot
 
-Owner: Claude; reviewer/integrator: Codex. State: **ready_for_review** (submitted 28 September 2026; not reviewed, merged or accepted).
+Owner: Claude; reviewer/integrator: Codex. State: **complete as bounded research preparation** (reviewed 28 September 2026).
 Parent: E05, **research preparation only**; E05 itself is not advanced. Branch: `claude/e05-research-01`. Base: `e41aa18d`;
 claim commit `1966fb06`; `codex/campaign-certification` merged at `75626a13` before the delivery commit. Touched paths: only
 the owned paths below. See [Result](#result).
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
+
+## Independent integration decision
+
+Submission `1fe45b2c` is preserved. Codex repaired exclusive rename boundaries and
+incomplete changed-response provenance; 61 tests pass. Independent retrieval
+obtained 68 of 99 source bodies (54 byte-exact, 14 changed); 30 were blocked and
+one timed out. Claim-level content-review limits remain explicit in the
+[review packet](../../campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md).
+Offline validation checks metadata and relationships, not factual truth or live
+source contents. Acceptance covers this bounded dossier/validator preparation;
+it does not certify every claim, install companies, grant image rights or close E05.
+The original Result below is retained as the author submission record.
 
 ## Build
 

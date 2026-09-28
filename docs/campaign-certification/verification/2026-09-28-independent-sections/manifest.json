@@ -1,0 +1,133 @@
+{
+  "scope": "Integrated bounded repairs/preparation; no new canonical campaign qualification",
+  "runtime_candidate": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+  "successor_fixture_runtime": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "head_before_docs": "7f98b83a0f28d86db6947dc2b70b052abc61cb22",
+  "completed_tasks": [
+    "CODEX-S24-BUDGET-01",
+    "CLAUDE-S24-SUCCESSORS-01",
+    "CLAUDE-E05-RESEARCH-01",
+    "CODEX-S26-PREP-01"
+  ],
+  "canonical_pathway_changed": false,
+  "tests": {
+    "ui_default": {
+      "passed": 1777,
+      "failed": 0,
+      "skipped": 1
+    },
+    "cartoon_browser_including_unit_entries": {
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python": {
+      "avatar_research": 469,
+      "company_pilot": 61,
+      "human_playtest_bookkeeping": 23,
+      "failed": 0,
+      "skipped": 0
+    },
+    "native_budget": {
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 26,
+      "sha256": "155348a89d5e749f50d336f8f164a39bf8415179177b36e8b51766f3ab9a16d3"
+    },
+    {
+      "path": "python/avatar-suite.log",
+      "bytes": 575,
+      "sha256": "95a1f5e5933d91710ab22a05879c5869ac3b205bbbd945a03e694b4962a66326"
+    },
+    {
+      "path": "python/boundary-matrix.log",
+      "bytes": 235,
+      "sha256": "4db49ed13f08476214ba04806620d54c6875cb264b076b3313f360116ebe7457"
+    },
+    {
+      "path": "python/cartoon-export.log",
+      "bytes": 336,
+      "sha256": "a06ff5831b1cf661958e0b734f4ce50ac46b45423adbada1d0560ff72b579502"
+    },
+    {
+      "path": "python/census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "python/company-pilot.log",
+      "bytes": 1201,
+      "sha256": "4cfb3fd4132c184a2c21c2bcdbdfe9938ed033b6a6cf9dbbca0bfce29cf30a85"
+    },
+    {
+      "path": "python/company-tests.log",
+      "bytes": 165,
+      "sha256": "0c5067d4b67a72a1c0f816f072f77ce631b2e74ce7508964a1914f250ea7a7ed"
+    },
+    {
+      "path": "python/gap-ledger.log",
+      "bytes": 258,
+      "sha256": "78f7777f711a43ce0ea6dab35ae3af95c8d75c98ac3d1292e0b9b9a6e041f74e"
+    },
+    {
+      "path": "python/playtest-tests.log",
+      "bytes": 127,
+      "sha256": "f2da7e774d70d63a43e9b09a9fa6a470d02912b3c610a0938e032e4bd1503c49"
+    },
+    {
+      "path": "python/research-index.log",
+      "bytes": 251,
+      "sha256": "b42a3d33f39eb0aba3b14b8ae80ec55049dfe0c753130be543010c11dfde12b4"
+    },
+    {
+      "path": "python/successor-proposals.log",
+      "bytes": 208,
+      "sha256": "d4bc1afcb3665891e9c9b8acb4615c41a3e8502fab5114d5bd211bcae20471d5"
+    },
+    {
+      "path": "python/validation.json",
+      "bytes": 494432,
+      "sha256": "9573de06990af97d952b465bf9a3b82cf26f9f70dc3a945c200d04d2870614cd"
+    },
+    {
+      "path": "python/workboard.log",
+      "bytes": 146,
+      "sha256": "db10767b71450eb7a4f6128b9f50f084f0450e8779680f2e4e396e0fcdbcbf09"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5152,
+      "sha256": "a9f9f3ac8cbd1db28e4bf6cddf7023aaf9e84661d0e81e58c72c8e39ebd745fd"
+    },
+    {
+      "path": "root-packet-check.json",
+      "bytes": 2942,
+      "sha256": "322e9b3ceb303eedae5934ce4cfda8b70f0e8da0b73655ee15a9d39422937fd2"
+    },
+    {
+      "path": "run-checks.py",
+      "bytes": 4008,
+      "sha256": "25bed569764159a8e928b6dd796dc5644393ab20daf35b587e3c45a0e1b0f071"
+    },
+    {
+      "path": "s24-cartoon-browser-final.log",
+      "bytes": 1511,
+      "sha256": "0da80bdda910f151d9464cd54e84721ca403bd51d97792dd25fa49e638577e31"
+    },
+    {
+      "path": "s24-merged-ui-suite-final.log",
+      "bytes": 178468,
+      "sha256": "29a65bcbe63709b545acfac6f0ddd5ffa5a65662aaf581e5a12730e64d9a1148"
+    },
+    {
+      "path": "s24-merged-ui-suite.log",
+      "bytes": 180470,
+      "sha256": "b0040edaecc7f4e5b6b3f2439db36e032c0b9415642737db55922224ce80ed37"
+    }
+  ]
+}

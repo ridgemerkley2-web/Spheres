@@ -204,29 +204,31 @@
       "id": "CLAUDE-S24-SUCCESSORS-01",
       "owner": "Claude",
       "session": "S24",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 13,
       "title": "Build successor-country fixture coverage",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
       "depends_on": [],
-      "next": "New remote ready_for_review submission inspected at 5a23ebe018612ab008a6ac911af6c2ca498231f6 after preparation closeout 43373d2e. Handoff mirrored only; implementation/research remains unmerged and independently unverified. Preserve the delivery and avoid duplicate work. Parent session remains open.",
+      "next": "Bounded successor fixture preparation accepted with retained-input, complete-check and portable source-identity repairs. Independent 5d11 baseline: 23 selection guards, 21 supported activation/save-reload routes and four browser representatives pass; Namibia/East Timor remain no_native_hook. Current budget finding repaired separately. S24 remains planned pending S23; no qualification granted.",
       "branch": "claude/s24-successors-01",
       "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c",
-      "submission_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6"
+      "submission_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6",
+      "review_revision": "32135770"
     },
     {
       "id": "CLAUDE-E05-RESEARCH-01",
       "owner": "Claude",
       "session": "E05",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 14,
       "title": "Research important French and Japanese companies",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
       "depends_on": [],
-      "next": "New remote ready_for_review submission inspected at 1fe45b2cae22538240a58ad2407f31d0c0fa213e after preparation closeout 43373d2e. Handoff mirrored only; implementation/research remains unmerged and independently unverified. Preserve the delivery and avoid duplicate work. Parent session remains open.",
+      "next": "Eight-company France/Japan research pilot and validator accepted as bounded preparation with rename-boundary/provenance repairs; 61 tests pass. Independent retrieval obtained 68 of 99 bodies (54 byte-exact, 14 changed); inaccessible sources and claim-level content-review limits remain recorded. This is not certification of all factual claims, runtime installation, or E05 completion.",
       "branch": "claude/e05-research-01",
       "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21",
-      "submission_revision": "1fe45b2cae22538240a58ad2407f31d0c0fa213e"
+      "submission_revision": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+      "review_revision": "8c2b3e1d"
     },
     {
       "id": "CLAUDE-C01-28",
@@ -253,6 +255,30 @@
       "branch": "claude/c01-jp-29",
       "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
       "next": "Existing remote claim inspected at 2d65b680a24eef1fcbc2425bb92c02b9b8217587. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
+    },
+    {
+      "id": "CODEX-S24-BUDGET-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "complete",
+      "priority": 17,
+      "title": "Separate the debt-rate floor from sovereign risk",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S24-BUDGET-01.md",
+      "depends_on": [],
+      "review_revision": "15b35901",
+      "next": "Completed budget explanation repair with native, UI and actual Brazil/France desktop/narrow browser evidence. No economic formula change or S24 qualification."
+    },
+    {
+      "id": "CODEX-S26-PREP-01",
+      "owner": "Codex",
+      "session": "S26",
+      "state": "complete",
+      "priority": 18,
+      "title": "Prepare reproducible independent human playtests",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S26-PREP-01.md",
+      "depends_on": [],
+      "review_revision": "3eeb6c4e",
+      "next": "Facilitator kit and observation/evidence validator complete; 23 synthetic tests pass. No human observations; actual S26 remains dependent on S24 and real participants."
     }
   ]
 }

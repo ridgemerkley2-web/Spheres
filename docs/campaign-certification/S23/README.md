@@ -20,8 +20,9 @@ and [AI workboard](../../AI_WORKSTREAMS.md).
 The six entries are bounded task closures, not six roadmap-session certificates.
 The original submissions, failed regressions, source limitations and review
 artifacts are retained. [Combined integration checks](integrations/2026-09-28-preparation/README.md)
-cover the merged tools and research inputs. The game runtime/art trees remain
-unchanged from the S22 closeout.
+cover that preparation checkpoint, whose runtime/art trees matched S22. The later
+[budget explanation repair](../S24/repairs/budget-rate-explanation/README.md) changes
+only the finance read model and display; it has separate exact-build evidence.
 
 ## What the audit currently shows
 
@@ -58,10 +59,13 @@ research-to-runtime identity mappings remain incomplete.
    that country's certificate.
 
 C01-23/24/25/27 remain submitted for independent review. Preserve the active
-C01-28 Russia and C01-29 Japan claims. New S24 successor-fixture and E05
-company-research submissions await independent review and remain unmerged.
+C01-28 Russia and C01-29 Japan claims. The S24 successor-fixture and E05
+company-research deliveries are now accepted as bounded preparation, with
+[successor limitations](../S24/integrations/CLAUDE-S24-SUCCESSORS-01/README.md) and
+[company source-review limits](../E05/integrations/CLAUDE-E05-RESEARCH-01/README.md).
 Query the [task queue](../../planning/ai-task-queue.json)
 before starting a new research batch.
 
-The [latest receipt](integrations/2026-09-28-remote-receipts.md) records these two
-submissions after validated preparation checkpoint `43373d2e`.
+The [original receipt](integrations/2026-09-28-remote-receipts.md) records these two
+submissions after validated preparation checkpoint `43373d2e`; their later
+integration reviews above supersede its pending status.
