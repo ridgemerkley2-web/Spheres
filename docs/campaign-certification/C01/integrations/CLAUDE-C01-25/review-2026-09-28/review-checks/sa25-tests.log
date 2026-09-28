@@ -1,0 +1,42 @@
+test_extracts_match_packet_claims_and_record_original_responses (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_extracts_match_packet_claims_and_record_original_responses) ... ok
+test_holders_are_exactly_as_intended (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_holders_are_exactly_as_intended) ... ok
+test_leads_and_volatile_urls_stay_out_of_the_packet (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_leads_and_volatile_urls_stay_out_of_the_packet) ... ok
+test_mutations_are_rejected (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_appended_and_every_claim_is_classified (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_new_records_are_bounded_appended_and_every_claim_is_classified) ... ok
+test_orders_effective_days_oaths_term_starts_and_deaths_never_collapse (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_orders_effective_days_oaths_term_starts_and_deaths_never_collapse) ... ok
+test_packet_formatting_is_preserved (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_packet_formatting_is_preserved) ... ok
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... ok
+test_separation_from_the_executive_packet_and_the_bush_source_repair (test_saudi_shura_allegiance_c01_25.SaudiShuraAllegianceChairTests.test_separation_from_the_executive_packet_and_the_bush_source_repair) ... ok
+test_death_pledge_selection_relief_and_publication_dates_never_collapse (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_death_pledge_selection_relief_and_publication_dates_never_collapse) ... ok
+test_extracts_match_packet_claims_and_record_reproducible_identities (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_extracts_match_packet_claims_and_record_reproducible_identities) ... ok
+test_holders_are_event_dated_with_stated_ends_only (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_holders_are_event_dated_with_stated_ends_only) ... ok
+test_mutations_are_rejected (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_mutations_are_rejected) ... ok
+test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited) ... ok
+test_report_and_handoff_are_ready_for_review_and_close_nothing (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_report_and_handoff_are_ready_for_review_and_close_nothing) ... ok
+test_secondary_and_unread_leads_stay_out_of_the_packet (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_secondary_and_unread_leads_stay_out_of_the_packet) ... ok
+test_term_ends_come_from_the_holders_own_death_relief_or_accession (test_saudi_executive_c01_06.SaudiExecutiveChronologyTests.test_term_ends_come_from_the_holders_own_death_relief_or_accession) ... ok
+test_claim_must_belong_to_the_cited_source (test_campaign_research.ResearchTests.test_claim_must_belong_to_the_cited_source) ... ok
+test_duplicate_identity_and_broken_claim_fail (test_campaign_research.ResearchTests.test_duplicate_identity_and_broken_claim_fail) ... ok
+test_every_discovery_gets_one_bounded_work_order_without_closing_gate (test_campaign_research.ResearchTests.test_every_discovery_gets_one_bounded_work_order_without_closing_gate) ... ok
+test_no_postcutoff_holders_but_later_research_access_is_allowed (test_campaign_research.ResearchTests.test_no_postcutoff_holders_but_later_research_access_is_allowed) ... ok
+test_official_snapshot_is_pinned_and_observations_are_not_terms (test_campaign_research.ResearchTests.test_official_snapshot_is_pinned_and_observations_are_not_terms) ... ok
+test_partial_intake_cannot_close_census (test_campaign_research.ResearchTests.test_partial_intake_cannot_close_census) ... ok
+test_role_holders_need_explicit_roles_and_matching_source_claims (test_campaign_research.ResearchTests.test_role_holders_need_explicit_roles_and_matching_source_claims) ... ok
+test_snapshot_path_cannot_escape_sources (test_campaign_research.ResearchTests.test_snapshot_path_cannot_escape_sources) ... ok
+test_unknown_party_mapping_is_not_silently_accepted (test_campaign_research.ResearchTests.test_unknown_party_mapping_is_not_silently_accepted) ... ok
+test_campaign (unittest.loader._FailedTest.test_campaign) ... ERROR
+
+======================================================================
+ERROR: test_campaign (unittest.loader._FailedTest.test_campaign)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_campaign
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'test_campaign'
+
+
+----------------------------------------------------------------------
+Ran 27 tests in 4.174s
+
+FAILED (errors=1)

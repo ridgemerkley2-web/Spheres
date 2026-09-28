@@ -1,0 +1,140 @@
+[
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\content-review-checks.json",
+    "packet_path": "source-preparation/content-review-checks.json",
+    "bytes": 2873,
+    "sha256": "dfa65d61f4b8722fb962b1e594c3d5f5c4a5d18f4cb00baf18dc2cd9c365ad0f"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\content-review-final.json",
+    "packet_path": "source-preparation/content-review-final.json",
+    "bytes": 64140,
+    "sha256": "278751fbb48794966e33e19524736898b164a304c031d664603d770e41a472bb"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\content-review-final.md",
+    "packet_path": "source-preparation/content-review-final.md",
+    "bytes": 3235,
+    "sha256": "759bf702b56de70d3257a05153bc1b984ec79d21006ed020423a4f615a3a22a5"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\content-review-resolution.json",
+    "packet_path": "source-preparation/content-review-resolution.json",
+    "bytes": 66725,
+    "sha256": "260c7e10c8e13ec2520fd701317caed5e14043b1865128266101e50559980c9b"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\content-review-resolution.md",
+    "packet_path": "source-preparation/content-review-resolution.md",
+    "bytes": 2282,
+    "sha256": "0e23eefce88e613a596eb804e0bb9c6f2f1ae112f1979936ce3fc58e06033e91"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\retrieval-final.json",
+    "packet_path": "source-preparation/retrieval-final.json",
+    "bytes": 5692,
+    "sha256": "8e186e2e3fbaea4e74197673ad50471b5490952a6839ad6cc9ef48e9be397a3b"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\retrieval-retry.json",
+    "packet_path": "source-preparation/retrieval-retry.json",
+    "bytes": 9069,
+    "sha256": "07624ec3583082e750df5b36f96edc4f2a1cae85c8091d501d017a0aedda36f6"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-source-preparation\\retrieval.json",
+    "packet_path": "source-preparation/retrieval.json",
+    "bytes": 49200,
+    "sha256": "f4a976c7259ebdd07859eb1e809536ef9311384d01123f674fc35b3b342ac86b"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\retrieve_sa25.py",
+    "packet_path": "review-checks/retrieve_sa25.py",
+    "bytes": 2624,
+    "sha256": "ea042fc22f70c7aaa75930ac6cdab7a2aeef660f9ec0b7074c23fabff5da639f"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\retrieve_sa25_final.py",
+    "packet_path": "review-checks/retrieve_sa25_final.py",
+    "bytes": 3350,
+    "sha256": "868cc14e098b8c963a8fc4d85614f7eec88c0679935e37aeb1b01eff89ca768e"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\retrieve_sa25_retry.py",
+    "packet_path": "review-checks/retrieve_sa25_retry.py",
+    "bytes": 2778,
+    "sha256": "c56717c8f5ee7d65172ca132e3db546c9c619f6b9f6098340dcb53f5246d8ca2"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-atlas-tests.log",
+    "packet_path": "review-checks/sa25-atlas-tests.log",
+    "bytes": 1138,
+    "sha256": "5cd29de22b2c32b2a8891b69ea4401655f6ea93b1233bff31cadbabe94998ba9"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-campaign-tests.log",
+    "packet_path": "review-checks/sa25-campaign-tests.log",
+    "bytes": 2544,
+    "sha256": "5f1dc38ffac5645ce5b6c40fb3493a9071f046a65453c9bd69221372497dcb22"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-census-check.log",
+    "packet_path": "review-checks/sa25-census-check.log",
+    "bytes": 1462,
+    "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-index-check.log",
+    "packet_path": "review-checks/sa25-index-check.log",
+    "bytes": 251,
+    "sha256": "7a470ddf96bec09722c3affa641081f3ad36934e20183fd757c6e37324a3c9d3"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-pdf-render.log",
+    "packet_path": "review-checks/sa25-pdf-render.log",
+    "bytes": 188,
+    "sha256": "d4544384d1df73fc0e9dc58cc88e0efaca525d12faeca52ddd26c211aa1b2d50"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-research-tests.log",
+    "packet_path": "review-checks/sa25-research-tests.log",
+    "bytes": 14711,
+    "sha256": "4fa69c6174ff0cefb4bb29b42585103f698fad606af37200c141f5d1a5c7cedb"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-retrieval-final.log",
+    "packet_path": "review-checks/sa25-retrieval-final.log",
+    "bytes": 645,
+    "sha256": "476efcf7886e2bc09d913798677905ce85f2165fef33882d92d97e0ed3b155a3"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-retrieval-retry.log",
+    "packet_path": "review-checks/sa25-retrieval-retry.log",
+    "bytes": 1803,
+    "sha256": "57f2c005b1ce0951e78e99b718c393abb180be6cd8fc7aab303c37be9aeb80b2"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-retrieval.log",
+    "packet_path": "review-checks/sa25-retrieval.log",
+    "bytes": 6667,
+    "sha256": "353b39a4f317a8c9e8c28cf4339e68338b964557b375216dafa3f5a9e533ad68"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-saudi-tests.log",
+    "packet_path": "review-checks/sa25-saudi-tests.log",
+    "bytes": 3246,
+    "sha256": "c9a1b98aafbb705658903994a2046b8154682a551095a93720dd54f4e6c65983"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-tests.log",
+    "packet_path": "review-checks/sa25-tests.log",
+    "bytes": 5285,
+    "sha256": "ada95599aa103f2734eb4e9c2f090fa40b74dc51328765958fc0836d24419aa4"
+  },
+  {
+    "original_path": "D:\\spheres-offload\\codex-next-20260928\\sa25-workboard-check.log",
+    "packet_path": "review-checks/sa25-workboard-check.log",
+    "bytes": 146,
+    "sha256": "fea48f4670d1b09ae63edc66cc7a343b0ec07f3d65321d6d3865b552dfb87705"
+  }
+]
