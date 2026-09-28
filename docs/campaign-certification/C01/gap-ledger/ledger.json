@@ -12,7 +12,8 @@
     "Coverage statuses describe the pinned evidence, not the truth: an attested day or an open-ended start never becomes an interval, and a day with no evidence is not proof that an office was vacant.",
     "Research organizations are never mapped to simulation party rows here; name matches are listed as uncertain candidates and are not counted.",
     "Executive observations (census seed executives, executive gameplay grants, research executive offices) never count as party-leader coverage, and the reverse.",
-    "Integrated packets C01-05/06/09-22/26 are research with historical acceptance pending; claimed or submitted packets that are not integrated appear only as in-flight work, never as accepted evidence."
+    "Integrated packets C01-05/06/09-22/26 are research with historical acceptance pending; claimed or submitted packets that are not integrated appear only as in-flight work, never as accepted evidence.",
+    "Completed source repairs record bounded independently accepted source-identity evidence separately; they do not promote their parent packet or add historical coverage."
   ],
   "evidence_classes": {
     "production_registry": "Existing simulation registry rows and term records from the C01 census (partial; not a research acceptance).",
@@ -49,7 +50,7 @@
     {
       "path": "docs/campaign-certification/C01/research-index.json",
       "bytes": 114824,
-      "sha256": "f7f6744498a15dc1bf8813ac53a26e9dc35a42921c76a49776e9dd3a8f862c4c"
+      "sha256": "05c5c17a7d5586982e50b2a6c7f8254f7c32c768c83633814314f14b87d4854e"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -64,8 +65,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 10320,
-      "sha256": "dad1c7513828dcde3ec7473a954c75bc58ddaeff25f5eb74ef91e0196f2bee44"
+      "bytes": 10340,
+      "sha256": "f0202ef101e6dbf54332fb643bb61936edfe9833820dc42cda8a67e83cd31b9c"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -89,13 +90,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 573475,
-      "sha256": "02a014ccb98351f623a627d40b45938944edca2160ff8172a7f79f37527dd647"
+      "bytes": 575140,
+      "sha256": "aff5fbec16cc0104488d71f4737e5ebf19ab5542372e263b4970e7351d466378"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 91251,
-      "sha256": "b88926650563a145e0f87783706657fdd28484a764f8512125b67538b68d68e7"
+      "bytes": 93763,
+      "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -141,6 +142,118 @@
       "bytes": 10834,
       "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
       "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/manifest.json",
+      "bytes": 8517,
+      "sha256": "8a3669ebd0813dcb24230fa9148f6aff69872adb7e289ed90899f31ed61a2138"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md",
+      "bytes": 2258,
+      "sha256": "8d0e105508cc3aaea124dea0887d19fe1e3ed0ab9e4a850e6d4015fbfef47db1",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/russia-garf-cec-result-19910619-facts.json",
+      "bytes": 27871,
+      "sha256": "23667eb7080c58e9466442dcd1cbb7ac96a9453e28db603cf2ef8694248d1e02"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/.gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-1.headers.txt",
+      "bytes": 1971,
+      "sha256": "72cd3a5cd6d3cf6a81a0484f0bed1f2a51454c80f1a60a288e7d22307550e835"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-2.headers.txt",
+      "bytes": 1971,
+      "sha256": "0d41fda3abee6e68e39b3e5891694c1f55cb602436f54242c8a92449e5c897f5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-3.headers.txt",
+      "bytes": 1972,
+      "sha256": "b2d5b91c3236735081d10f592bf8866d59787c27b23ca8ae8f23ab5b190b11ce"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/independent-downloads.json",
+      "bytes": 2425,
+      "sha256": "97bcf919062000283fa9a2420e4d9012f1d051a1425a39f4312faef6624be7e0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/official-page.headers.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/recorded-page.headers.txt",
+      "bytes": 363,
+      "sha256": "b3543708ff55f67fb807ac21d0163bde91ee1becdb9b4c2bf0f3815cc54c75c1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/retry-page.headers.txt",
+      "bytes": 1991,
+      "sha256": "30c82ad88032f5336b56a99f5239c70fbf8857c2709d1eb26c90801e182d0af0"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/scope-identities.json",
+      "bytes": 1476,
+      "sha256": "9d383c3156372b23cfa4142f2cb9e1be3275c56b89209d15ce501277cec73860"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/manifest.json",
+      "bytes": 7076,
+      "sha256": "1fccb24af6dd079f4eb766fa470f7e7aa3b4116c7d10cb6398ebd0f22008ba71"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md",
+      "bytes": 2424,
+      "sha256": "b1de6a113e7bec93a3ebac574d930d3ce22307da71b62ed92f2ffb03ab0d32e1",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
+      "bytes": 13185,
+      "sha256": "1b27b30a8837d78b2a6400a021c123e4699ed3467895a275330639fd198c6b1c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/.gitattributes",
+      "bytes": 21,
+      "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/content-identities.json",
+      "bytes": 541,
+      "sha256": "39deb174899b26922285e8886d857a52a30c4eace26c037b19b22f9cb95f282b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/former-result.json",
+      "bytes": 359,
+      "sha256": "0c5f0eb7c5d12eb94b34b92d38bb85b0446d18c53b2a18236cb189526cbbd6bb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/former.headers.txt",
+      "bytes": 2001,
+      "sha256": "9c52f67b0a7d4ab17264ae2de4d986ba265480f33521af66b783382d72b708e3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/live-result.json",
+      "bytes": 354,
+      "sha256": "01dde91d35c219becfb975bf8127e68a06f802d284d6fa48e20d41d2c01db36c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/live.headers.txt",
+      "bytes": 1156,
+      "sha256": "c7a2d36442aa069f5a47d43bfeed5b61bb355d5c5d9e1dde3ec51360094a78e1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/scope-and-content.json",
+      "bytes": 469,
+      "sha256": "ff64f2204d73243b816683374d2dc63283b37e2f962bab43e8fc384bafbe849c"
     }
   ],
   "attribution": {
@@ -195,24 +308,6 @@
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-SOURCE-05",
-      "state": "ready_for_review",
-      "branch": "claude/c01-source-05",
-      "case": "USSR -> Russia",
-      "scope": "Source-review repair of one CLAUDE-C01-05 source (no coverage change)",
-      "targets": [],
-      "accepted": false
-    },
-    {
-      "task": "CLAUDE-C01-SOURCE-06",
-      "state": "ready_for_review",
-      "branch": "claude/c01-source-06",
-      "case": "SaudiArabia",
-      "scope": "Source-review repair of one CLAUDE-C01-06 source (no coverage change)",
-      "targets": [],
-      "accepted": false
-    },
-    {
       "task": "CLAUDE-C01-SOURCE-17",
       "state": "claimed",
       "branch": "claude/c01-source-17",
@@ -229,6 +324,150 @@
       "scope": "Source-review repair of CLAUDE-C01-26 (facsimile provenance and defects)",
       "targets": [],
       "accepted": false
+    }
+  ],
+  "completed_source_repairs": [
+    {
+      "task": "CLAUDE-C01-SOURCE-05",
+      "state": "complete",
+      "case": "USSR -> Russia",
+      "source": "ru_garf_cec_result_19910619",
+      "nation": "Russia",
+      "scope": "Accept the bounded recorded-response reproduction and its unchanged four claims. This does not resolve the archival leaf discrepancy, a TASS publication date, any country census or any campaign/session gate. Integration is a separate root action.",
+      "reviewed_commit": "66331d9d00704d5298f08c5d738631ee830350df",
+      "parent_packet": "CLAUDE-C01-05",
+      "parent_evidence_class": "c01_integrated_pending",
+      "parent_acceptance_changed": false,
+      "historical_coverage_changed": false,
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/manifest.json",
+          "bytes": 8517,
+          "sha256": "8a3669ebd0813dcb24230fa9148f6aff69872adb7e289ed90899f31ed61a2138"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md",
+          "bytes": 2258,
+          "sha256": "8d0e105508cc3aaea124dea0887d19fe1e3ed0ab9e4a850e6d4015fbfef47db1",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        },
+        {
+          "path": "docs/campaign-certification/C01/research/sources/russia-garf-cec-result-19910619-facts.json",
+          "bytes": 27871,
+          "sha256": "23667eb7080c58e9466442dcd1cbb7ac96a9453e28db603cf2ef8694248d1e02"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/.gitattributes",
+          "bytes": 21,
+          "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-1.headers.txt",
+          "bytes": 1971,
+          "sha256": "72cd3a5cd6d3cf6a81a0484f0bed1f2a51454c80f1a60a288e7d22307550e835"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-2.headers.txt",
+          "bytes": 1971,
+          "sha256": "0d41fda3abee6e68e39b3e5891694c1f55cb602436f54242c8a92449e5c897f5"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/image-3.headers.txt",
+          "bytes": 1972,
+          "sha256": "b2d5b91c3236735081d10f592bf8866d59787c27b23ca8ae8f23ab5b190b11ce"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/independent-downloads.json",
+          "bytes": 2425,
+          "sha256": "97bcf919062000283fa9a2420e4d9012f1d051a1425a39f4312faef6624be7e0"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/official-page.headers.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/recorded-page.headers.txt",
+          "bytes": 363,
+          "sha256": "b3543708ff55f67fb807ac21d0163bde91ee1becdb9b4c2bf0f3815cc54c75c1"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/retry-page.headers.txt",
+          "bytes": 1991,
+          "sha256": "30c82ad88032f5336b56a99f5239c70fbf8857c2709d1eb26c90801e182d0af0"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/evidence/scope-identities.json",
+          "bytes": 1476,
+          "sha256": "9d383c3156372b23cfa4142f2cb9e1be3275c56b89209d15ce501277cec73860"
+        }
+      ]
+    },
+    {
+      "task": "CLAUDE-C01-SOURCE-06",
+      "state": "complete",
+      "case": "SaudiArabia",
+      "source": "sa_bush41_address_19900808",
+      "nation": "SaudiArabia",
+      "scope": "Accept the bounded source-identity repair: the exact current and former archived bodies and the identical address-span identity reproduce independently; the existing single title-only observation is supported. Root integration is separate. No accession, tenure continuity, other C01-06 observation, country census or campaign gate is accepted by this decision.",
+      "reviewed_commit": "93467faaef254a71b4a776d00e56c16dda963eca",
+      "parent_packet": "CLAUDE-C01-06",
+      "parent_evidence_class": "c01_integrated_pending",
+      "parent_acceptance_changed": false,
+      "historical_coverage_changed": false,
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/manifest.json",
+          "bytes": 7076,
+          "sha256": "1fccb24af6dd079f4eb766fa470f7e7aa3b4116c7d10cb6398ebd0f22008ba71"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md",
+          "bytes": 2424,
+          "sha256": "b1de6a113e7bec93a3ebac574d930d3ce22307da71b62ed92f2ffb03ab0d32e1",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        },
+        {
+          "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
+          "bytes": 13185,
+          "sha256": "1b27b30a8837d78b2a6400a021c123e4699ed3467895a275330639fd198c6b1c"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/.gitattributes",
+          "bytes": 21,
+          "sha256": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/content-identities.json",
+          "bytes": 541,
+          "sha256": "39deb174899b26922285e8886d857a52a30c4eace26c037b19b22f9cb95f282b"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/former-result.json",
+          "bytes": 359,
+          "sha256": "0c5f0eb7c5d12eb94b34b92d38bb85b0446d18c53b2a18236cb189526cbbd6bb"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/former.headers.txt",
+          "bytes": 2001,
+          "sha256": "9c52f67b0a7d4ab17264ae2de4d986ba265480f33521af66b783382d72b708e3"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/live-result.json",
+          "bytes": 354,
+          "sha256": "01dde91d35c219becfb975bf8127e68a06f802d284d6fa48e20d41d2c01db36c"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/live.headers.txt",
+          "bytes": 1156,
+          "sha256": "c7a2d36442aa069f5a47d43bfeed5b61bb355d5c5d9e1dde3ec51360094a78e1"
+        },
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/evidence/scope-and-content.json",
+          "bytes": 469,
+          "sha256": "ff64f2204d73243b816683374d2dc63283b37e2f962bab43e8fc384bafbe849c"
+        }
+      ]
     }
   ],
   "cases": [

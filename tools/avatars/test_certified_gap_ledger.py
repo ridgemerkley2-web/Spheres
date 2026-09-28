@@ -1,5 +1,6 @@
 """CLAUDE-C01-GAPS-01: the certified-country gap ledger keeps roles, evidence classes and registries apart."""
 import copy
+import hashlib
 import json
 import shutil
 import tempfile
@@ -145,6 +146,73 @@ class FixtureLedger(unittest.TestCase):
 
     def items(self):
         return [i for b in self.result['next_batches'] for i in b['items']]
+
+    def complete_source_repair(self, tid):
+        spec = ledger.SOURCE_REPAIRS[tid]
+        queue_path = self.root / ledger.TASK_QUEUE
+        queue = json.loads(queue_path.read_text(encoding='utf-8'))
+        next(t for t in queue['tasks'] if t['id'] == tid)['state'] = 'complete'
+        queue_path.write_text(json.dumps(queue), encoding='utf-8')
+        integration = self.root / ledger.INTEGRATION_RECORD
+        integration.write_text(integration.read_text(encoding='utf-8')
+                               + f'| C01-{tid[-2:]} | `{HEX}` |\n', encoding='utf-8')
+        folder = self.root / ledger.INTEGRATIONS / tid
+        folder.mkdir(parents=True)
+        (folder / 'README.md').write_text('Bounded source identity accepted; parent remains pending.\n', encoding='utf-8')
+        payload = b'Independently verified fixture source identity.\n'
+        (folder / 'receipt.txt').write_bytes(payload)
+        review = {'format': 'spheres-research-review/v1', 'task': tid, 'status': 'accepted_for_integration',
+                  'reviewer': 'Codex', 'reviewed_commit': HEX, 'decision': 'Bounded source identity only.',
+                  'evidence': [{'path': 'receipt.txt', 'bytes': len(payload),
+                                'sha256': hashlib.sha256(payload).hexdigest()}]}
+        (folder / 'manifest.json').write_text(json.dumps(review), encoding='utf-8')
+        snapshot = self.root / spec['snapshot']
+        snapshot.parent.mkdir(parents=True, exist_ok=True)
+        snapshot.write_text('{}\n', encoding='utf-8')
+        return folder
+
+    def test_completed_source_repairs_are_pinned_without_accepting_parent_or_adding_work(self):
+        for tid in ledger.SOURCE_REPAIRS:
+            self.complete_source_repair(tid)
+        result = ledger.build(self.root, self.attribution)
+        self.assertEqual(result['next_batches'], self.result['next_batches'])
+        self.assertEqual(result['totals'], self.result['totals'])
+        self.assertFalse(set(ledger.SOURCE_REPAIRS) & {t['task'] for t in result['in_flight']})
+        self.assertEqual({r['task'] for r in result['completed_source_repairs']}, set(ledger.SOURCE_REPAIRS))
+        for repair in result['completed_source_repairs']:
+            self.assertEqual(repair['parent_evidence_class'], 'c01_integrated_pending')
+            self.assertFalse(repair['parent_acceptance_changed'])
+            self.assertFalse(repair['historical_coverage_changed'])
+            self.assertTrue(all(e in result['inputs'] for e in repair['evidence']))
+            self.assertTrue(any(e['path'].endswith('/manifest.json') for e in repair['evidence']))
+            self.assertTrue(any(e['path'].endswith('/receipt.txt') for e in repair['evidence']))
+        self.assertIn('Completed source repairs', ledger.render(result))
+
+    def test_completed_source_repair_requires_accepted_intact_review(self):
+        tid = 'CLAUDE-C01-SOURCE-05'
+        folder = self.complete_source_repair(tid)
+        manifest = folder / 'manifest.json'
+        review = json.loads(manifest.read_text(encoding='utf-8'))
+        review['status'] = 'ready_for_review'
+        manifest.write_text(json.dumps(review), encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'lacks a bounded accepted review'):
+            ledger.build(self.root, self.attribution)
+        review['status'] = 'accepted_for_integration'
+        manifest.write_text(json.dumps(review), encoding='utf-8')
+        (folder / 'receipt.txt').write_bytes(b'Changed receipt')
+        with self.assertRaisesRegex(ValueError, 'Source repair evidence changed'):
+            ledger.build(self.root, self.attribution)
+        manifest.unlink()
+        with self.assertRaisesRegex(ValueError, 'Missing completed source repair review'):
+            ledger.build(self.root, self.attribution)
+
+    def test_research_packet_completion_still_requires_explicit_review_rule(self):
+        queue_path = self.root / ledger.TASK_QUEUE
+        queue = json.loads(queue_path.read_text(encoding='utf-8'))
+        next(t for t in queue['tasks'] if t['id'] == 'CLAUDE-C01-23')['state'] = 'complete'
+        queue_path.write_text(json.dumps(queue), encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'needs an explicit ledger review rule'):
+            ledger.build(self.root, self.attribution)
 
     def test_all_eight_cases_and_both_ussr_russia_identities(self):
         self.assertEqual([c['case'] for c in self.result['cases']], CASES)

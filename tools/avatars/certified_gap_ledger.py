@@ -92,6 +92,17 @@ IN_FLIGHT = {
 }
 IN_FLIGHT_ID = re.compile(r'^CLAUDE-C01-(\d\d|SOURCE-\d\d)$')
 
+# A completed source repair accepts only its independently reviewed source identity,
+# never the parent historical packet. Additional completion types need an explicit review.
+SOURCE_REPAIRS = {
+    'CLAUDE-C01-SOURCE-05': {'parent': 'CLAUDE-C01-05', 'nation': 'Russia',
+                            'source': 'ru_garf_cec_result_19910619',
+                            'snapshot': RESEARCH / 'sources/russia-garf-cec-result-19910619-facts.json'},
+    'CLAUDE-C01-SOURCE-06': {'parent': 'CLAUDE-C01-06', 'nation': 'SaudiArabia',
+                            'source': 'sa_bush41_address_19900808',
+                            'snapshot': RESEARCH / 'sources/saudi-arabia-bush41-address-19900808-facts.json'},
+}
+
 # Applicability windows, pinned only where a checked-in claim anchors the boundary. Days outside a window are
 # reported as inapplicable to that role, not as missing. Everything else is audited over the full period, and the
 # span before a role's first observation is flagged as of unknown applicability.
@@ -274,6 +285,41 @@ def modifications(root=ROOT):
     return {path: sorted(packets) for path, packets in changed.items()}
 
 
+def completed_source_repair(task, classes, root=ROOT):
+    """Require an integrated queue decision plus a scoped accepted review with intact evidence."""
+    tid = task['id']
+    spec = SOURCE_REPAIRS.get(tid)
+    if spec is None:
+        raise ValueError(f'Completion of {tid} needs an explicit ledger review rule')
+    folder = INTEGRATIONS / tid
+    review_path, summary_path = folder / 'manifest.json', folder / 'README.md'
+    if not (root / review_path).is_file() or not (root / summary_path).is_file():
+        raise ValueError(f'Missing completed source repair review for {tid}')
+    review = read_json(review_path, root)
+    if (review.get('format') != 'spheres-research-review/v1' or review.get('task') != tid
+            or review.get('status') != 'accepted_for_integration' or review.get('reviewer') != 'Codex'
+            or not re.fullmatch(r'[0-9a-f]{40}', review.get('reviewed_commit', ''))
+            or not review.get('decision') or not review.get('evidence')):
+        raise ValueError(f'Completed source repair {tid} lacks a bounded accepted review')
+    evidence_paths = []
+    for record in review['evidence']:
+        relative = Path(record['path'])
+        if relative.is_absolute() or '..' in relative.parts:
+            raise ValueError(f'Invalid source repair evidence path for {tid}: {relative}')
+        path = folder / relative
+        data = (root / path).read_bytes()
+        if len(data) != record['bytes'] or hashlib.sha256(data).hexdigest() != record['sha256']:
+            raise ValueError(f'Source repair evidence changed for {tid}: {relative}')
+        evidence_paths.append(path)
+    inputs = [review_path, summary_path, spec['snapshot'], *evidence_paths]
+    return {'task': tid, 'state': 'complete', 'case': IN_FLIGHT[tid]['case'],
+            'source': spec['source'], 'nation': spec['nation'], 'scope': review['decision'],
+            'reviewed_commit': review['reviewed_commit'],
+            'parent_packet': spec['parent'], 'parent_evidence_class': classes[spec['parent']],
+            'parent_acceptance_changed': False, 'historical_coverage_changed': False,
+            'evidence': [sha(path, root) for path in inputs]}
+
+
 # ---------------------------------------------------------------- coverage
 
 def ordinal(text):
@@ -398,12 +444,14 @@ def build(root=ROOT, attribution=None):
 
     queue_claude = {t['id']: t for t in queue['tasks'] if t.get('owner') == 'Claude' and IN_FLIGHT_ID.match(t['id'])}
     active = {tid: t for tid, t in queue_claude.items() if t.get('state') in ('claimed', 'ready_for_review')}
-    if set(active) != set(IN_FLIGHT):
+    completed = {tid: t for tid, t in queue_claude.items() if tid in IN_FLIGHT and t.get('state') == 'complete'}
+    if set(active) | set(completed) != set(IN_FLIGHT):
         raise ValueError(f'In-flight table differs from the task queue: queue={sorted(active)} table={sorted(IN_FLIGHT)}')
+    completed_repairs = [completed_source_repair(completed[tid], classes, root) for tid in sorted(completed)]
     in_flight = [{'task': tid, 'state': active[tid]['state'], 'branch': active[tid].get('branch'),
                   'case': IN_FLIGHT[tid]['case'], 'scope': IN_FLIGHT[tid]['scope'], 'targets': IN_FLIGHT[tid]['targets'],
-                  'accepted': False} for tid in sorted(IN_FLIGHT)]
-    flight_targets = {target: tid for tid, row in IN_FLIGHT.items() for target in row['targets']}
+                  'accepted': False} for tid in sorted(active)]
+    flight_targets = {target: tid for tid in active for target in IN_FLIGHT[tid]['targets']}
 
     terms_by_org = {}
     for term in roles['term_records']:
@@ -428,7 +476,8 @@ def build(root=ROOT, attribution=None):
               'next_batches': len(all_batches), 'next_items': sum(len(b['items']) for b in all_batches)}
     inputs = ([sha(path, root) for path in INPUTS]
               + [sha(path, root) for path in sorted(set(packets.values()))]
-              + [sha(path, root) for path in sorted(set(acceptance_records(root).values()))])
+              + [sha(path, root) for path in sorted(set(acceptance_records(root).values()))]
+              + [e for repair in completed_repairs for e in repair['evidence']])
     return {
         'format': 'spheres-c01-certified-gap-ledger/v1',
         'task': 'CLAUDE-C01-GAPS-01',
@@ -440,11 +489,13 @@ def build(root=ROOT, attribution=None):
             'Research organizations are never mapped to simulation party rows here; name matches are listed as uncertain candidates and are not counted.',
             'Executive observations (census seed executives, executive gameplay grants, research executive offices) never count as party-leader coverage, and the reverse.',
             'Integrated packets C01-05/06/09-22/26 are research with historical acceptance pending; claimed or submitted packets that are not integrated appear only as in-flight work, never as accepted evidence.',
+            'Completed source repairs record bounded independently accepted source-identity evidence separately; they do not promote their parent packet or add historical coverage.',
         ],
         'evidence_classes': EVIDENCE_CLASSES,
         'inputs': inputs,
         'attribution': sha(ATTRIBUTION, root) if (root / ATTRIBUTION).exists() else None,
         'in_flight': in_flight,
+        'completed_source_repairs': completed_repairs,
         'cases': ledger_cases,
         'next_batches': all_batches,
         'totals': totals,
@@ -800,6 +851,13 @@ def render(ledger):
     lines += ['', '## In-flight work (excluded from new batches, never accepted)', '', '| Task | State | Case | Scope | Targets |', '|---|---|---|---|---|']
     for row in ledger['in_flight']:
         lines.append(f'| {row["task"]} | {row["state"]} | {row["case"]} | {row["scope"]} | {", ".join(row["targets"]) or "none (source repair)"} |')
+    if ledger['completed_source_repairs']:
+        lines += ['', '## Completed source repairs (bounded acceptance only)', '',
+                  'These integrated source-identity reviews add no historical coverage and do not accept the parent packet.', '']
+        for repair in ledger['completed_source_repairs']:
+            lines.append(f'- `{repair["task"]}` / `{repair["source"]}`: {repair["scope"]}')
+            lines.append(f'  - Reviewed `{repair["reviewed_commit"]}`; parent `{repair["parent_packet"]}` remains '
+                         f'`{repair["parent_evidence_class"]}`. Review and evidence hashes are pinned in `ledger.json`.')
     lines += ['', '## Totals', '']
     lines += [f'- {k.replace("_", " ")}: {v}' for k, v in ledger['totals'].items()]
     for case in ledger['cases']:
