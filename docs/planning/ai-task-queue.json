@@ -19,12 +19,12 @@
       "id": "CLAUDE-C01-SOURCE-06",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 2,
       "title": "Compare the changed Bush Library response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Review submission 93467faaef254a71b4a776d00e56c16dda963eca on claude/c01-source-06: changed Bush Library response, content-span comparison and corroborating archive identity. Not yet merged or historically accepted.",
+      "next": "Bounded Bush Library repair accepted after independent review63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open.",
       "branch": "claude/c01-source-06",
       "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
     },
@@ -133,12 +133,12 @@
       "id": "CODEX-C01-SOURCE-06-REVIEW",
       "owner": "Codex",
       "session": "C01",
-      "state": "queued",
+      "state": "complete",
       "priority": 2,
       "title": "Review the submitted Bush Library source repair",
       "handoff": "docs/planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md",
       "depends_on": [],
-      "next": "Independently review claude/c01-source-06 at 93467faaef254a71b4a776d00e56c16dda963eca, reproduce source/content identity and affected checks, then merge only if accepted. Preserve the title-only observation; C01 remains open."
+      "next": "Bounded Bush Library repair accepted after independent review63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open."
     },
     {
       "id": "CLAUDE-C01-GAPS-01",

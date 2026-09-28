@@ -28,3 +28,7 @@ S19 later-outcome qualification as Codex's first gameplay priority.
 
 The initial inventory found changes only to `provenance_note` and `source_review`
 in the Bush extract. This is a scope check, not independent historical acceptance.
+
+## Completed review — 28 September UTC
+
+Accepted and integrated reviewed tip `63746790`; [independent evidence](../../campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Bounded repair only; C01 remains open.
