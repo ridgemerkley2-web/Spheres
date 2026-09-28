@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_national_election_officer_declaration_rajnath_singh_20130123",
+  "source_url": "https://web.archive.org/web/20131021002030id_/http://www.bjp.org/images/pdf_2013/hindi_thawarji_jan_23_2013.pdf",
+  "original_url": "http://www.bjp.org/images/pdf_2013/hindi_thawarji_jan_23_2013.pdf",
+  "archive_capture_utc": "2013-10-21T00:20:30Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2013-01-23",
+  "access_method": "downloaded_archived_raw_capture_pdf_pages_rendered",
+  "source_response_bytes": 510935,
+  "source_response_sha256": "32e7d314a50dfc1b7abd93810ebfda57f7d596121c131bc22da45b8cf92df532",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-10-21T00:20:30Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 04:13:44Z and 04:48:01Z on 26 September 2026, and the Part C check again at 23:45:40Z on 27 September 2026, and this packet downloaded it at 02:01:11Z and 02:50:50Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored PDF on the party website (one scanned page, no text layer; archived Last-Modified 23 January 2013; PDF CreationDate 23 January 2013), linked from the release 'Press release regarding appointment of BJP National President', recorded as a raw Internet Archive capture of 21 October 2013. The archive lists the same digest for captures of 2017 and 2025.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered by this packet and read in full in the original Devanagari (letterhead, heading, three paragraphs and signature block); the emblem and signature are not reused."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_national_president_election_process_completed_20130123",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_result",
+      "attested_on": "2013-01-23",
+      "text": "Under the heading 'भारतीय जनता पार्टी संगठनात्मक चुनाव वर्ष–2013 / राष्ट्रीय अध्यक्ष का निर्वाचन' (BJP organisational elections 2013: election of the National President), the National Election Officer states that 'आज दिनांक 23 जनवरी, 2013 (बुधवार)' (today, Wednesday 23 January 2013) the constitutional process of electing the National President was completed at the party headquarters, 11 Ashoka Road, New Delhi, and that 'श्री राजनाथ सिंह जी' (Shri Rajnath Singh) was elected unanimously to the post for the session 2013-2015.",
+      "locator": {
+        "page": 1,
+        "section": "heading and first paragraph",
+        "language": "hi"
+      }
+    },
+    {
+      "claim_id": "in_bjp_gehlot_declares_rajnath_singh_elected_unopposed_20130123",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "result_declaration",
+      "attested_on": "2013-01-23",
+      "text": "In the same document the officer declares 'श्री राजनाथ सिंह जी' elected unopposed ('निर्विरोध निर्वाचित') as National President for the session 2013-2015 and says the certificate of election is being sent accordingly; it is signed '(थावरचन्द गेहलोत) राष्ट्रीय चुनाव अधिकारी' (Thawarchand Gehlot, National Election Officer).",
+      "locator": {
+        "page": 1,
+        "section": "second and third paragraphs; signature block",
+        "language": "hi"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

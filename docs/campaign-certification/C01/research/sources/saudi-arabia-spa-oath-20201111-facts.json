@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_oath_20201111",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/4d552786de",
+  "original_url": "https://www.spa.gov.sa/4d552786de",
+  "portal_metadata": {
+    "uuid": "4d552786de",
+    "locale": "ar",
+    "published_at_utc": "2020-11-11T21:26:00Z",
+    "date_hijri_field": "1442-03-26"
+  },
+  "title_as_published": "سياسي / خادم الحرمين الشريفين يفتتح أعمال السنة الأولى من الدورة الثامنة لمجلس الشورى",
+  "source_title": "سياسي / خادم الحرمين الشريفين يفتتح أعمال السنة الأولى من الدورة الثامنة لمجلس الشورى (11 November 2020)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2020-11-11",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/4d552786de",
+  "source_response_bytes": 13387,
+  "source_response_sha256": "9637b22ef8a0423ab07010e434df8c0d2ba9c9c98bb17f3f44270ead64979186",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "d20f23cb967d4b1b4b16867a45f2cb4495c210dacfa6c748cee3ba2857616967",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part B, which downloaded it three or four times on 2026-09-26 UTC (plain and cache-busting requests), the last at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:51:23Z and again at 2026-09-28T00:34:47Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (13387 bytes, SHA-256 9637b22ef8a0423ab07010e434df8c0d2ba9c9c98bb17f3f44270ead64979186).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/4d552786de loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Lead item with three additions; filed at 00:26 Makkah time on 12 November 2020 under an 11 November dateline (portal date_hijri 1442-03-26 is the filing day). Located by the independent check of part B.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_oath_20201111",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "2020-11-11",
+      "text": "SPA, NEOM 25 Rabi al-Awwal 1442 / 11 November 2020: King Salman opened the first year of the eighth term by video link 'today', and 'معالي رئيس مجلس الشورى الشيخ الدكتور عبدالله بن محمد آل الشيخ' and the members took the oath after the royal order appointing them to the eighth term.",
+      "locator": "Dateline and paragraphs 1-3; trailer 00:26 Makkah time"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

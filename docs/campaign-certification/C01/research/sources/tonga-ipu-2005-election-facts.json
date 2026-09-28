@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_ipu_2005",
+  "source_url": "https://web.archive.org/web/20241107233206id_/https://data.ipu.org/election-summary/HTML/2317_05.htm",
+  "original_url": "https://data.ipu.org/election-summary/HTML/2317_05.htm",
+  "archive_capture_utc": "2024-11-07T23:32:06Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 18665,
+  "source_response_sha256": "4c8d5ad55488323d1c1a4d873b774db7ffd77987ff11480660c90513b7f5bb62",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8 with a byte-order mark",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:04:12Z and again at 2026-09-28T00:56:13Z (UTC), 52 minutes later, from the same URL: both responses were 18665 bytes with SHA-256 4c8d5ad55488323d1c1a4d873b774db7ffd77987ff11480660c90513b7f5bb62. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-11-07T23:32:06Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "IPU's legacy summary of the 2005 elections (raw Internet Archive capture of 7 November 2024; archived server Last-Modified 22 April 2024). Its bytes are identical to the static copy on archive.ipu.org. Interparliamentary corroboration, not a Tongan record; the live data.ipu.org page carries a per-request Cloudflare script and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_ipu_2005_speaker_veikune_order_20050323",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "Hon. Veikune",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2005-03-23",
+      "text": "IPU's summary of the 2005 elections states: 'On 23 March, the Speaker of the Legislative Assembly, Hon. Veikune (see note below), issued an election order for by-elections for the four seats vacated by the newly appointed ministers'.",
+      "locator": "Background paragraph",
+      "uncertainty": "IPU corroboration only: an interparliamentary summary whose listed sources are the Electoral Supervisor of the Government of Tonga (20.07.2005), the Government of Tonga (www.pmo.gov.to) and a Tongan news website; not a Tongan record."
+    },
+    {
+      "claim_id": "to_ipu_2005_tuihaangana_appointment_effective_20060210",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-03",
+      "role_id": "to_speaker",
+      "holder_name": "Mr. Tu'iha'angana",
+      "role_title": "Speaker",
+      "event_kind": "appointment_effective_reported",
+      "attested_on": "2006-02-10",
+      "text": "IPU's note and comments state that Mr. Veikune lost his post as Speaker following his conviction on 25 January 2006 and that King Taufa'ahau Tupou IV consented to the appointment of Mr. Tu'iha'angana as the new Speaker of the Legislative Assembly '(effective from 10 February 2006)'.",
+      "locator": "Note under the background paragraph; 'Comments' under the results",
+      "uncertainty": "IPU corroboration only. attested_on is the effective date IPU states, not the day of the royal consent, which IPU does not give. No Tongan royal instrument, Palace or PMO release for this appointment was found, so no Tu'iha'angana holder is created from it."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

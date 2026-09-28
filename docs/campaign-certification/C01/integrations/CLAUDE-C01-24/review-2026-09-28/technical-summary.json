@@ -1,0 +1,123 @@
+[
+  {
+    "name": "tonga",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_tonga*.py"
+    ],
+    "exit_code": 1,
+    "started": "2026-09-28T18:46:24.889210+00:00",
+    "finished": "2026-09-28T18:46:31.883748+00:00"
+  },
+  {
+    "name": "research",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:31.883796+00:00",
+    "finished": "2026-09-28T18:46:36.786166+00:00"
+  },
+  {
+    "name": "campaign",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:36.786205+00:00",
+    "finished": "2026-09-28T18:46:37.900610+00:00"
+  },
+  {
+    "name": "index",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:37.900651+00:00",
+    "finished": "2026-09-28T18:46:38.425476+00:00"
+  },
+  {
+    "name": "census",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:38.425514+00:00",
+    "finished": "2026-09-28T18:46:38.631397+00:00"
+  },
+  {
+    "name": "workboard",
+    "args": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:38.631432+00:00",
+    "finished": "2026-09-28T18:46:38.708222+00:00"
+  },
+  {
+    "name": "atlas",
+    "args": [
+      "node",
+      "--test",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:38.708250+00:00",
+    "finished": "2026-09-28T18:46:38.878827+00:00"
+  },
+  {
+    "name": "diff",
+    "args": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "started": "2026-09-28T18:46:38.878883+00:00",
+    "finished": "2026-09-28T18:46:38.919361+00:00"
+  }
+]

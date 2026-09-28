@@ -1,0 +1,135 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "C01-ORDERED-INTEGRATION-2026-09-28",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewed_commit": "6a9ad1b9ee3b0d0d6660eed6b16288aa0106aa4b",
+  "decision": "Combined compatibility and exact evidence packaging passed; bounded source review recommendations retained, no parent task or gate closure.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "atlas.log",
+      "bytes": 1123,
+      "sha256": "a2f978f59b30954147c69408ae3e8a932eed9c049710518563e34a192f4d818d"
+    },
+    {
+      "path": "campaign.log",
+      "bytes": 120,
+      "sha256": "b0690044a0d40882a981eac457e8873bf8ec63c547222dfec7ce7b94dfbc5abc"
+    },
+    {
+      "path": "census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "combined-check-summary.json",
+      "bytes": 948,
+      "sha256": "0754358ebed1b1eac47c70778f4f1d6c987688a2666d44296698d861daf4dc1b"
+    },
+    {
+      "path": "combined-isolation.json",
+      "bytes": 44881,
+      "sha256": "42fbf61522e7f1e8d1537757176c1fc0fbb669467a17bf810318f12b35830cbd"
+    },
+    {
+      "path": "commands.json",
+      "bytes": 6463,
+      "sha256": "08f3da2ebd9e0e3b22e1c12c691a3718233aca3b1f91861cde592a74f81c2c0a"
+    },
+    {
+      "path": "diff-after-evidence.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diff-materialized.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diff.log",
+      "bytes": 14320,
+      "sha256": "e94d5f32e84e5c999968997bd562d70877de6d78b8a29ec332c61d30cd88e679"
+    },
+    {
+      "path": "final-check.json",
+      "bytes": 465,
+      "sha256": "5751744b0d31c0f4c45cda778e3d3db7581755742415966a49f76929cd9c2143"
+    },
+    {
+      "path": "france.log",
+      "bytes": 114,
+      "sha256": "1378fa71e5ba3590f37c212fcbbc794de4fdafd3e09806b7dac2ec606b29e8f3"
+    },
+    {
+      "path": "import-map.json",
+      "bytes": 6708,
+      "sha256": "2ce0534272d6017f9fe36d3615620f0a87f0e8c6e5e64492a261f364ad89262b"
+    },
+    {
+      "path": "importer-check.log",
+      "bytes": 149,
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "path": "importer.log",
+      "bytes": 114,
+      "sha256": "bd3899d1f6a206b46c7b58de7173bfcec46fa849cd600f3b4d94bab09f1d8edb"
+    },
+    {
+      "path": "index.log",
+      "bytes": 251,
+      "sha256": "08a0a1d2955493c7cfffc90c3336cee48ccb8614221859e77edb63ec4acbfadb"
+    },
+    {
+      "path": "india.log",
+      "bytes": 150,
+      "sha256": "b5d4d3fb4c9333c92d4b0f8b4a9e5520cf2fa3166a6d3417b2dab5ef817ad72a"
+    },
+    {
+      "path": "packet-byte-verification.json",
+      "bytes": 2211,
+      "sha256": "0086e1d9918f6b4a9c9330dfcb13b3faea1758edc0a904a95d8ff024bc044d05"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4161,
+      "sha256": "cb4a993edcd0004f6df7895ef44af1ad60bfabeffa8921a230b5d0cf67aee0d3"
+    },
+    {
+      "path": "research.log",
+      "bytes": 183,
+      "sha256": "feb6f933828774d8de0e23ab3a90056869c7377ec2a72dc1862a373cad52e3c2"
+    },
+    {
+      "path": "run-c01-combined.py",
+      "bytes": 2218,
+      "sha256": "8e7a927ee7108b318f5d1ea717f8d7f6e5339bcf0254460e406898a3bd2dfa01"
+    },
+    {
+      "path": "saudi.log",
+      "bytes": 121,
+      "sha256": "09acd4136a9a73e12b7fb4de603b141dc6ab72007be8ce3aafdbe326dbce40c9"
+    },
+    {
+      "path": "tonga.log",
+      "bytes": 183,
+      "sha256": "939d235a3be89f5d21fdeb2dd23befa59cd17b49dfd6c40451f18b46ffbcf7d7"
+    },
+    {
+      "path": "verify-c01-combined.py",
+      "bytes": 7492,
+      "sha256": "d783a8cc8a4985dd5424b1b1311bb314a11783cea9f18b67d5f894e83de4672e"
+    },
+    {
+      "path": "workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    }
+  ]
+}

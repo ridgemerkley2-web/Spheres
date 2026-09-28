@@ -6,6 +6,29 @@ Example (actual native execution, potentially many hours for the full matrix):
     --out <new-directory>
 
 Every attempt gets a new directory. The pilot cannot satisfy the full matrix.
+--jobs 1..8 bounds independent native cells (default 1); it never changes the
+plan, seeds, horizons or per-cell checks. Dispatches follow plan order, each cell
+is attempted once, and concurrent completion order is retained in the journal.
+The chosen parallelism is frozen before launch; this is not a latency benchmark.
+--only-cell <full-plan-id> --batch-sha256 <central-manifest-sha256> executes one predeclared full-plan shard with jobs=1.
+Its selected_cell_passed controls CLI success; matrix passed/full_matrix_passed
+remain false. A separate aggregator must verify every one of the 24 shards.
+
+Optional resource separation (both roots must be NEW and disjoint):
+  --out D:/evidence/new-attempt --scratch-root C:/stability/new-attempt
+  --jobs 1 --min-free-bytes 1073741824 --compress-scratch
+The last option is Windows-only standard NTFS directory compression. It preserves
+file contents; it is neither /EXE nor compression of an existing/system tree.
+Only active cells live in scratch. After a process is reaped, complete campaign
+archives are gzip roundtrip verified, all cell evidence is copied and SHA-256
+verified in out, and a durable transfer receipt precedes exact scratch cleanup.
+Free space on BOTH roots is polled every two seconds (default reserve 1 GiB).
+This guard cannot predict peak memory or instantaneous disk growth. A guard halt
+never shortens the requested horizon or promotes incomplete work. Failed and
+interrupted cells are retained too; any failed copy leaves remaining scratch
+intact and stops dispatch. Do not delete scratch until retained verification
+passes. A hard process kill/power loss may require manual recovery from scratch;
+the runner never overwrites or resumes a prior attempt.
 Even a complete full matrix leaves the controlled USSR-to-Russia case and other
 campaign certification gates outstanding. Synthetic unit tests are runner tests,
 not native campaign evidence. All verdicts retain qualification=false.
@@ -28,6 +51,7 @@ is claimed only after the new directory passes the same verifier.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import datetime as dt
 import gzip
 import hashlib
@@ -37,9 +61,12 @@ import os
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import re
 import shutil
+import signal
+import stat
 import subprocess
 import sys
 import time
+import threading
 
 TEST_NAME = "s25_stability_tests::s25_stability_cell"
 COUNTRIES = ("France", "Japan", "India", "Brazil", "SouthAfrica", "Tonga", "SaudiArabia", "USSR")
@@ -182,16 +209,115 @@ def owned_file(root, relative):
     require(type(relative) is str and relative and "\\" not in relative, "Artifact path must use relative forward slashes")
     parts = relative.split("/")
     require(all(part not in ("", ".", "..") for part in parts), "Unsafe artifact path")
-    root = Path(root).resolve(strict=True)
+    root = plain_path(root)
     path = root.joinpath(*parts)
     require(not Path(relative).is_absolute(), "Absolute artifact path is forbidden")
     current = root
     for part in parts:
         current = current / part
-        require(not current.is_symlink(), "Symlink artifact is forbidden")
+        require(not linked_path(current), "Symlink/reparse artifact is forbidden")
     resolved = path.resolve(strict=True)
     require(resolved.is_relative_to(root) and resolved.is_file(), "Artifact escapes cell directory or is not a file")
     return resolved
+
+
+def linked_path(path):
+    info = Path(path).lstat()
+    return stat.S_ISLNK(info.st_mode) or bool(getattr(info, "st_file_attributes", 0) & 0x400)
+
+
+def plain_path(path):
+    """Reject aliases before resolving: scratch cleanup must never follow links."""
+    path = Path(path).absolute()
+    for part in (path, *path.parents):
+        if part.exists() or part.is_symlink():
+            require(not linked_path(part), "Managed path contains a symlink/reparse point")
+    return path.resolve()
+
+
+def tree_files(root):
+    root = plain_path(root)
+    require(root.is_dir(), "Managed cell is not a directory")
+    files = []
+    def visit(directory):
+        for path in sorted(directory.iterdir()):
+            require(not linked_path(path), "Managed cell contains a symlink/reparse point")
+            if path.is_dir():
+                visit(path)
+            else:
+                require(path.is_file(), "Managed cell contains a nonregular file")
+                files.append({"relative": path.relative_to(root).as_posix(), **file_pin(path)})
+    visit(root)
+    return files
+
+
+def setup_scratch(scratch, out, compress):
+    scratch.mkdir(parents=True, exist_ok=False)
+    compression = {"requested": compress, "method": "standard NTFS directory compression; inherited by newly created files" if compress else "not requested"}
+    if compress:
+        # /EXE does NOT mark future files; standard /C does. No wildcard,
+        # recursion, shell, or system-volume compression is used here.
+        executable = Path(os.environ["SystemRoot"]) / "System32" / "compact.exe"
+        command = [str(executable), "/C", str(scratch)]
+        completed = subprocess.run(command, capture_output=True, check=False, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        compression.update(args=command, exit_code=completed.returncode,
+                           stdout=completed.stdout.decode(errors="replace"), stderr=completed.stderr.decode(errors="replace"))
+        compression["directory_compressed_attribute"] = bool(getattr(scratch.stat(), "st_file_attributes", 0) & 0x800)
+        require(completed.returncode == 0 and compression["directory_compressed_attribute"],
+                "NTFS compression was not enabled on the new scratch directory")
+    setup = {"format": "spheres-stability-scratch/v1", "created_utc": utc_now(),
+             "scratch_root": str(scratch), "retained_root": str(out), "compression": compression}
+    write_json_new(scratch / "scratch-owner.json", setup)
+    write_json_new(out / "resource-setup.json", setup)
+    return setup
+
+
+def offload_cell(source, target, scratch, setup, journal):
+    """Copy/verify first, record restoration provenance, then delete exact files.
+
+    Any failure leaves all not-yet-removed scratch data intact. The verified D
+    copy is never removed, even if cleanup is interrupted. No recursive delete.
+    """
+    scratch, source, target = plain_path(scratch), plain_path(source), plain_path(target)
+    require(source.parent == scratch / "cells" and ID_RE.fullmatch(source.name), "Cell is outside its managed scratch scope")
+    require(read_json(owned_file(scratch, "scratch-owner.json")) == setup, "Scratch ownership marker changed")
+    require(not target.exists() and not target.is_relative_to(scratch), "Offload target must be new and outside scratch")
+    files = tree_files(source)
+    target.mkdir(parents=True, exist_ok=False)
+    copied = []
+    for entry in files:
+        original = owned_file(source, entry["relative"])
+        destination = target / entry["relative"]
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with original.open("rb") as reader, destination.open("xb") as writer:
+            shutil.copyfileobj(reader, writer, length=1024 * 1024)
+            writer.flush()
+            os.fsync(writer.fileno())
+        expected = {key: entry[key] for key in ("bytes", "sha256")}
+        destination_pin = file_pin(destination)
+        require({key: destination_pin[key] for key in expected} == expected, "Offload copy hash mismatch; scratch retained")
+        copied.append({"relative": entry["relative"], "original": {key: entry[key] for key in ("path", "bytes", "sha256")},
+                       "retained": destination_pin})
+    require(tree_files(source) == files, "Scratch changed while copying; scratch retained")
+    receipt = {"format": "spheres-stability-transfer/v1", "source": str(source), "destination": str(target),
+               "files": copied, "verified_before_cleanup": True,
+               "restoration": "Retained relative paths contain exact original bytes; campaign gzip restoration uses archive-manifest.json. Cleanup events are append-only in journal.jsonl."}
+    write_json_new(target / "transfer.json", receipt)
+    journal({"event": "scratch_transfer_verified", "id": source.name, "receipt": file_pin(target / "transfer.json")})
+    for entry in files:
+        original = owned_file(source, entry["relative"])
+        require(file_pin(original) == {key: entry[key] for key in ("path", "bytes", "sha256")}, "Scratch changed before cleanup; remaining data retained")
+        verify_pin(target / entry["relative"], {key: entry[key] for key in ("path", "bytes", "sha256")})
+        original.unlink()
+        journal({"event": "scratch_file_removed", "id": source.name, "relative": entry["relative"], "sha256": entry["sha256"]})
+    # Remove only empty directories inside the proven new cell; unexpected new
+    # entries cause rmdir to fail and are retained, never recursively deleted.
+    for directory in sorted((p for p in source.rglob("*") if p.is_dir()), key=lambda p: len(p.parts), reverse=True):
+        require(not linked_path(directory), "Reparse directory appeared during cleanup")
+        directory.rmdir()
+    source.rmdir()
+    journal({"event": "scratch_cell_cleaned", "id": source.name})
+    return receipt
 
 
 def archive_content_pins(path, compressed=False):
@@ -236,7 +362,7 @@ def archive_campaign_files(root, names, journal, records=None):
     verification and a durable restore record. On any error, remaining raw bytes
     are retained. The caller's new output tree is the ownership boundary.
     """
-    root = Path(root).resolve(strict=True)
+    root = plain_path(root)
     require(len(names) == len(set(names)), "Duplicate archive path")
     if records is None:
         records = []
@@ -557,7 +683,7 @@ def verify_retained_run(root):
     streams are compared to original hashes without writing giant raw copies.
     A coherent failed/incomplete run remains failed, never promoted.
     """
-    root = Path(root).resolve(strict=True)
+    root = plain_path(root)
     require(root.is_dir(), "Retained run is not a directory")
     freeze = read_json(owned_file(root, "freeze.json"))
     proof = read_json(owned_file(root, "result.json"))
@@ -581,24 +707,70 @@ def verify_retained_run(root):
     summary = coverage(plan, cells)
     require(proof.get("coverage") == summary, "Recorded matrix coverage disagrees with cell outcomes")
     computed_pass = summary["requested_plan_passed"] and proof["binary_unchanged"] and not proof["interrupted"]
+    resource = freeze.get("resource_execution")
+    if resource is not None:
+        require(type(resource) is dict and set(resource) == {"scratch_root", "min_free_bytes", "monitor_seconds", "compress_scratch", "setup"}, "Malformed frozen resource execution")
+        require(integer(resource["min_free_bytes"], 1) and resource["monitor_seconds"] == 2 and type(resource["compress_scratch"]) is bool, "Invalid frozen resource limits")
+        require(type(proof.get("resource_halted")) is bool, "Missing resource halt status")
+        verify_pin(owned_file(root, "resource-setup.json"), resource["setup"], recorded_join(origin, "resource-setup.json"))
+        setup = read_json(root / "resource-setup.json")
+        require(setup.get("format") == "spheres-stability-scratch/v1" and logical_path(setup.get("scratch_root")) == logical_path(resource["scratch_root"])
+                and logical_path(setup.get("retained_root")) == origin, "Scratch setup identity mismatch")
+        require(setup.get("compression", {}).get("requested") is resource["compress_scratch"], "Scratch compression declaration mismatch")
+        if resource["compress_scratch"]:
+            require(setup["compression"].get("exit_code") == 0 and setup["compression"].get("directory_compressed_attribute") is True, "Requested scratch compression failed")
+        computed_pass = computed_pass and not proof["resource_halted"]
+    else:
+        require("resource_halted" not in proof, "Undeclared resource execution")
     require(type(proof.get("passed")) is bool and proof["passed"] == computed_pass, "Matrix pass claim disagrees with its records")
-    require([c["id"] for c in cells] == [c["id"] for c in plan["cells"][:len(cells)]], "Cells were reordered, retried, or cherry-picked")
+    selected = plan["cells"]
+    if "only_cell" in freeze:
+        only_cell = freeze["only_cell"]
+        batch_sha256 = freeze.get("batch_sha256")
+        require(type(batch_sha256) is str and re.fullmatch(r"[0-9a-f]{64}", batch_sha256)
+                and proof.get("batch_sha256") == batch_sha256, "Missing/changed frozen batch SHA")
+        selected = [cell for cell in plan["cells"] if cell["id"] == only_cell]
+        require(plan["scope"] == "full" and len(selected) == 1 and freeze.get("jobs") == 1 and proof.get("only_cell") == only_cell,
+                "Invalid frozen full-plan shard selection")
+        selected_pass = len(cells) == 1 and cells[0]["id"] == only_cell and cells[0]["passed"] and proof["binary_unchanged"] and not proof["interrupted"] and not proof.get("resource_halted", False)
+        require(type(proof.get("selected_cell_passed")) is bool and proof["selected_cell_passed"] == selected_pass, "Shard pass claim disagrees with records")
+        require(proof["passed"] is False and summary["full_matrix_passed"] is False, "A shard cannot pass the full matrix")
+    else:
+        require("only_cell" not in proof and "selected_cell_passed" not in proof and "batch_sha256" not in freeze and "batch_sha256" not in proof, "Undeclared shard selection")
+    require([c["id"] for c in cells] == [c["id"] for c in selected[:len(cells)]], "Cells were reordered, retried, or cherry-picked")
     journal_path = owned_file(root, "journal.jsonl")
     with journal_path.open("rb") as stream:
         events = [parse_json(line) for line in stream if line.strip()]
     require(events and events[0].get("event") == "matrix_started" and events[-1].get("event") == "matrix_finished", "Missing matrix journal boundaries")
     require(events[0].get("revision") == revision and events[0].get("scope") == plan["scope"], "Journal identity mismatch")
+    if "only_cell" in freeze:
+        require(events[0].get("only_cell") == freeze["only_cell"] and events[0].get("batch_sha256") == freeze["batch_sha256"], "Journal shard/batch identity mismatch")
+    else:
+        require("only_cell" not in events[0] and "batch_sha256" not in events[0], "Undeclared journal shard identity")
     require(events[-1].get("coverage") == summary and events[-1].get("passed") == proof["passed"], "Journal final outcome mismatch")
+    if resource is not None:
+        require(bool([e for e in events if e.get("event") == "resource_limit_matrix_halted"]) is proof["resource_halted"], "Resource halt journal mismatch")
     started = [e for e in events if e.get("event") == "cell_started"]
     finished = [e for e in events if e.get("event") == "cell_finished"]
-    require([e.get("id") for e in started] == [c["id"] for c in cells] == [e.get("id") for e in finished], "Missing/duplicate native attempt journal rows")
+    jobs = freeze.get("jobs", 1)
+    require(integer(jobs, 1) and jobs <= 8, "Invalid frozen concurrency")
+    if "jobs" in freeze:
+        require(proof.get("jobs") == jobs and events[0].get("jobs") == jobs, "Frozen concurrency mismatch")
+    else:
+        require("jobs" not in proof and "jobs" not in events[0], "Legacy run cannot acquire new concurrency")
+    validate_attempt_journal(events, cells, jobs)
+    finishes = {event["id"]: event for event in finished}
     expected_files = {"freeze.json", "result.json", "plan.json", "stability_matrix.py", "journal.jsonl"}
+    if resource is not None:
+        expected_files.add("resource-setup.json")
     verified_cells, archives = [], []
-    for cell, outcome, begin, finish in zip(plan["cells"], cells, started, finished):
+    for cell, outcome, begin in zip(selected, cells, started):
+        finish = finishes[cell["id"]]
         prefix = "cells/" + cell["id"]
         cell_root = root / prefix
         native_root = cell_root / "native"
-        native_origin = recorded_join(origin, prefix, "native")
+        execution_origin = recorded_join(resource["scratch_root"] if resource is not None else origin, prefix)
+        native_origin = recorded_join(execution_origin, "native")
         local_files = outcome.get("files")
         require(type(local_files) is list and local_files, "Missing cell file ledger")
         seen = set()
@@ -616,13 +788,35 @@ def verify_retained_run(root):
         expected_files.add(prefix + "/verdict.json")
         request_path = cell_root / "request.json"
         require(read_json(request_path) == {"format": "spheres-stability-cell/v1", **cell, "revision": revision}, "Frozen cell request mismatch")
-        verify_pin(request_path, begin["request"], recorded_join(origin, prefix, "request.json"))
+        verify_pin(request_path, begin["request"], recorded_join(execution_origin, "request.json"))
         execution = read_json(cell_root / "execution.json")
         require(execution.get("args") == [freeze["binary"]["path"], "--exact", TEST_NAME, "--ignored", "--nocapture", "--test-threads=1"], "Wrong native test invocation")
-        require(logical_path(execution.get("cwd")) == recorded_join(origin, prefix), "Wrong native working directory")
+        require(logical_path(execution.get("cwd")) == execution_origin, "Wrong native working directory")
         env = execution.get("environment")
         require(type(env) is dict and set(env) == {"SPHERES_S25_REQUEST", "SPHERES_S25_OUT"}, "Wrong native environment record")
-        require(logical_path(env["SPHERES_S25_REQUEST"]) == recorded_join(origin, prefix, "request.json") and logical_path(env["SPHERES_S25_OUT"]) == native_origin, "Wrong native request/output isolation")
+        require(logical_path(env["SPHERES_S25_REQUEST"]) == recorded_join(execution_origin, "request.json") and logical_path(env["SPHERES_S25_OUT"]) == native_origin, "Wrong native request/output isolation")
+        if resource is not None:
+            receipt = read_json(owned_file(cell_root, "transfer.json"))
+            require(receipt.get("format") == "spheres-stability-transfer/v1" and receipt.get("verified_before_cleanup") is True,
+                    "Missing verified scratch transfer")
+            require(logical_path(receipt.get("source")) == execution_origin and logical_path(receipt.get("destination")) == recorded_join(origin, prefix), "Transfer roots mismatch")
+            copied = receipt.get("files")
+            require(type(copied) is list and len(copied) == len(seen - {"transfer.json"}) and {r.get("relative") for r in copied} == seen - {"transfer.json"}, "Transfer file coverage mismatch")
+            for entry in copied:
+                relative = entry["relative"]
+                require(set(entry) == {"relative", "original", "retained"}, "Malformed transfer file")
+                validate_pin(entry["original"])
+                require(logical_path(entry["original"]["path"]) == recorded_join(execution_origin, relative), "Transfer original path mismatch")
+                verify_pin(owned_file(cell_root, relative), entry["retained"], recorded_join(origin, prefix, relative))
+                require(all(entry["original"][key] == entry["retained"][key] for key in ("bytes", "sha256")), "Transfer changed file bytes")
+            transferred = [e for e in events if e.get("event") == "scratch_transfer_verified" and e.get("id") == cell["id"]]
+            require(len(transferred) == 1, "Missing/duplicate pre-cleanup transfer journal")
+            verify_pin(cell_root / "transfer.json", transferred[0]["receipt"], recorded_join(origin, prefix, "transfer.json"))
+            removed = [e for e in events if e.get("event") == "scratch_file_removed" and e.get("id") == cell["id"]]
+            expected_removed = {r["relative"]: r["original"]["sha256"] for r in copied}
+            require(len({e.get("relative") for e in removed}) == len(removed) and all(expected_removed.get(e.get("relative")) == e.get("sha256") for e in removed), "Unexpected scratch removal journal")
+            if "retention_failure" not in outcome:
+                require(len(removed) == len(copied) and len([e for e in events if e.get("event") == "scratch_cell_cleaned" and e.get("id") == cell["id"]]) == 1, "Incomplete scratch cleanup record")
         require(finite(execution.get("elapsed_seconds"), True), "Invalid elapsed execution time")
         if outcome["passed"]:
             require(execution.get("binary_before") == freeze["binary"] == execution.get("binary_after"), "Binary drift in a passing cell")
@@ -648,7 +842,7 @@ def verify_retained_run(root):
                 expected_files.add(prefix + "/native/" + record["original_relative"])
             archives.append({"relative": prefix + "/native/" + record["original_relative"], "record": record})
         if outcome["passed"]:
-            require(outcome.get("failure") is None and "archive_failure" not in outcome, "Passing cell retains failure")
+            require(outcome.get("failure") is None and "archive_failure" not in outcome and "retention_failure" not in outcome, "Passing cell retains failure")
             require(outcome.get("test_execution") == validate_test_log(cell_root / "stdout.log"), "Native executed-test summary mismatch")
             result_path = owned_file(native_root, "result.json")
             verify_pin(result_path, outcome["native_result"], recorded_join(native_origin, "result.json"))
@@ -667,13 +861,16 @@ def verify_retained_run(root):
             owned_file(root, relative)
             actual_files.add(relative)
     require(actual_files == expected_files, "Unlisted or missing retained artifacts")
-    return {"format": "spheres-stability-retained-verification/v1", "integrity_verified": True,
+    verification = {"format": "spheres-stability-retained-verification/v1", "integrity_verified": True,
             "native_reexecuted": False, "source": str(root), "recorded_origin": origin,
             "candidate_revision": revision, "frozen_harness_sha256": freeze["frozen_harness"]["sha256"],
             "verifier": file_pin(Path(__file__)), "binary_reexecuted_or_rebuilt": False,
             "passed": proof["passed"], "coverage": summary, "cells": verified_cells,
             "files_verified": len(actual_files), "archives_verified": len(archives),
-            "qualification": False, "s25_complete": False}
+             "qualification": False, "s25_complete": False}
+    if "only_cell" in freeze:
+        verification.update(only_cell=freeze["only_cell"], batch_sha256=freeze["batch_sha256"], selected_cell_passed=proof["selected_cell_passed"])
+    return verification
 
 
 def restore_retained_run(source, destination):
@@ -720,16 +917,63 @@ def restore_retained_run(source, destination):
     return receipt
 
 
-def run_matrix(binary, revision, plan_path, out, timeout=None):
+def validate_attempt_journal(events, cells, jobs):
+    """Old serial runs remain serial; newer concurrent runs keep exact attempts."""
+    ids = [cell["id"] for cell in cells]
+    starts, finishes, active = [], [], set()
+    halted = False
+    for event in events:
+        kind = event.get("event")
+        if kind in ("binary_changed_matrix_halted", "matrix_interrupted", "resource_limit_matrix_halted"):
+            halted = True
+        elif kind == "cell_started":
+            identity = event.get("id")
+            require(not halted, "Cell dispatched after matrix halt")
+            require(identity in ids and identity not in starts, "Unknown/duplicate native start")
+            require(len(active) < jobs, "Journal exceeds frozen concurrency")
+            starts.append(identity)
+            active.add(identity)
+        elif kind == "cell_finished":
+            identity = event.get("id")
+            require(identity in active and identity not in finishes, "Native finish lacks unique preceding start")
+            finishes.append(identity)
+            active.remove(identity)
+    require(not active and starts == ids and len(finishes) == len(ids), "Missing/duplicate native attempt journal rows")
+    if jobs == 1:
+        require(finishes == ids, "Serial native completions were reordered")
+
+
+def run_matrix(binary, revision, plan_path, out, timeout=None, jobs=1, *, scratch_root=None,
+               compress_scratch=False, min_free_bytes=None, only_cell=None, batch_sha256=None):
     require(type(revision) is str and REVISION_RE.fullmatch(revision), "Revision must be the exact lowercase 40-character commit")
-    require(timeout is None or (type(timeout) in (int, float) and timeout > 0), "Timeout must be positive")
+    require(timeout is None or (type(timeout) in (int, float) and math.isfinite(timeout) and timeout > 0), "Timeout must be positive and finite")
+    require(integer(jobs, 1) and jobs <= 8, "Jobs must be an integer in 1..8")
     binary = Path(binary).resolve(strict=True)
     require(binary.is_file(), "Native test binary is not a file")
     plan_path = Path(plan_path).resolve(strict=True)
     raw_plan = plan_path.read_bytes()
     plan = validate_plan(parse_json(raw_plan))
-    out = Path(out).resolve()
+    require((only_cell is None) == (batch_sha256 is None), "Single-cell selection and batch SHA must be paired")
+    if batch_sha256 is not None:
+        require(type(batch_sha256) is str and re.fullmatch(r"[0-9a-f]{64}", batch_sha256), "Batch SHA must be 64 lowercase hex characters")
+    selected = plan["cells"]
+    if only_cell is not None:
+        require(plan["scope"] == "full" and jobs == 1 and type(only_cell) is str,
+                "A single-cell shard requires the complete full plan and jobs=1")
+        selected = [cell for cell in plan["cells"] if cell["id"] == only_cell]
+        require(len(selected) == 1, "Unknown canonical full-plan cell selector")
+    require(type(compress_scratch) is bool and (not compress_scratch or (scratch_root is not None and os.name == "nt")),
+            "NTFS compression requires Windows and a new scratch root")
+    require(min_free_bytes is None or (scratch_root is not None and integer(min_free_bytes, 1)),
+            "A positive free-space reserve requires scratch execution")
+    out = plain_path(out)
+    scratch = plain_path(scratch_root) if scratch_root is not None else None
+    if scratch is not None:
+        require(not scratch.exists(), "Scratch root must be a NEW directory")
+        require(not scratch.is_relative_to(out) and not out.is_relative_to(scratch), "Scratch and retained roots must be disjoint")
     out.mkdir(parents=True, exist_ok=False)
+    setup = setup_scratch(scratch, out, compress_scratch) if scratch is not None else None
+    minimum = min_free_bytes if min_free_bytes is not None else 1024 ** 3
     write_new(out / "plan.json", raw_plan)
     initial_pin = file_pin(binary)
     harness = Path(__file__).resolve()
@@ -738,54 +982,113 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
               "candidate_revision": revision, "expected_compiled_revision": revision[:12],
               "binary": initial_pin, "plan": file_pin(plan_path), "frozen_plan": file_pin(out / "plan.json"),
               "harness": file_pin(harness), "frozen_harness": file_pin(out / "stability_matrix.py"),
-              "native_test": TEST_NAME, "scope": plan["scope"],
+              "native_test": TEST_NAME, "scope": plan["scope"], "jobs": jobs,
               "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
               "qualification": False, "s25_complete": False}
+    if only_cell is not None:
+        freeze["only_cell"] = only_cell
+        freeze["batch_sha256"] = batch_sha256
+    if scratch is not None:
+        freeze["resource_execution"] = {"scratch_root": str(scratch), "min_free_bytes": minimum,
+                                        "monitor_seconds": 2, "compress_scratch": compress_scratch,
+                                        "setup": file_pin(out / "resource-setup.json")}
     write_json_new(out / "freeze.json", freeze)
-    outcomes, interrupted = [], False
+    outcomes = {}
+    interrupted, stopped, drifted = threading.Event(), threading.Event(), threading.Event()
+    resource_halted, monitor_done = threading.Event(), threading.Event()
+    journal_lock, launch_lock = threading.Lock(), threading.RLock()
+    children = {}
+
+    def binary_pin():
+        # A removed/replaced executable is evidence of drift, not a reason to
+        # lose already-running cells' failure logs or skip their cleanup.
+        try:
+            return file_pin(binary)
+        except OSError:
+            return None
+
     with (out / "journal.jsonl").open("xb") as events:
         def journal(value):
-            events.write(json.dumps({"utc": utc_now(), **value}, ensure_ascii=False, allow_nan=False).encode() + b"\n")
-            events.flush()
-            os.fsync(events.fileno())
-        journal({"event": "matrix_started", "revision": revision, "scope": plan["scope"]})
-        for cell in plan["cells"]:
-            if file_pin(binary) != initial_pin:
-                journal({"event": "binary_changed_matrix_halted"})
-                break
-            cell_root = out / "cells" / cell["id"]
+            with journal_lock:
+                events.write(json.dumps({"utc": utc_now(), **value}, ensure_ascii=False, allow_nan=False).encode() + b"\n")
+                events.flush()
+                os.fsync(events.fileno())
+
+        def check_binary():
+            if binary_pin() != initial_pin:
+                if not drifted.is_set():
+                    drifted.set()
+                    journal({"event": "binary_changed_matrix_halted"})
+                stopped.set()
+            return not stopped.is_set()
+
+        def check_resources():
+            if scratch is None or resource_halted.is_set():
+                return not resource_halted.is_set()
+            try:
+                samples = [{"path": str(path), "free_bytes": shutil.disk_usage(path).free} for path in (scratch, out)]
+                require(all(row["free_bytes"] >= minimum for row in samples), "Free-space reserve reached")
+            except Exception as error:
+                resource_halted.set()
+                stopped.set()
+                journal({"event": "resource_limit_matrix_halted", "failure": f"{type(error).__name__}: {error}",
+                         "min_free_bytes": minimum, "samples": locals().get("samples", [])})
+                return False
+            return True
+
+        def halt_children():
+            # Only processes created by this run are killed. The lock closes
+            # the race with a worker registering a just-created process.
+            with launch_lock:
+                stopped.set()
+                owned = list(children.values())
+            for process in owned:
+                try:
+                    process.kill()
+                except ProcessLookupError:
+                    pass
+
+        def prepare(cell):
+            cell_root = (scratch or out) / "cells" / cell["id"]
             cell_root.mkdir(parents=True, exist_ok=False)
             native_root = cell_root / "native"
-            request = {"format": "spheres-stability-cell/v1", **cell, "revision": revision}
             request_path = cell_root / "request.json"
-            write_json_new(request_path, request)
+            write_json_new(request_path, {"format": "spheres-stability-cell/v1", **cell, "revision": revision})
             request_pin = file_pin(request_path)
+            # The coordinator writes starts in declared order, before submitting
+            # a bounded worker. A halted prepared attempt remains a failed cell.
+            journal({"event": "cell_started", "id": cell["id"], "request": request_pin})
+            return cell_root, native_root, request_path, request_pin
+
+        def run_cell(cell, prepared):
+            cell_root, native_root, request_path, request_pin = prepared
             args = [str(binary), "--exact", TEST_NAME, "--ignored", "--nocapture", "--test-threads=1"]
             supplied_env = {"SPHERES_S25_REQUEST": str(request_path), "SPHERES_S25_OUT": str(native_root)}
-            env = os.environ.copy()
-            # Do not inherit other cells' simulator test fixture switches.
-            for key in list(env):
-                if key.startswith("SPHERES_S25_"):
-                    del env[key]
+            env = {key: value for key, value in os.environ.items() if not key.startswith("SPHERES_S25_")}
             env.update(supplied_env)
             execution = {"args": args, "environment": supplied_env, "cwd": str(cell_root),
-                         "started_utc": utc_now(), "binary_before": file_pin(binary)}
-            journal({"event": "cell_started", "id": cell["id"], "request": file_pin(request_path)})
+                         "started_utc": utc_now(), "binary_before": binary_pin()}
             started = time.monotonic()
             outcome = {"id": cell["id"], "passed": False, "failure": None, "archives": []}
             process = None
             try:
                 with (cell_root / "stdout.log").open("xb") as stdout, (cell_root / "stderr.log").open("xb") as stderr:
-                    process = subprocess.Popen(args, cwd=cell_root, env=env, stdout=stdout, stderr=stderr,
-                                               creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                    with launch_lock:
+                        require(check_binary() and check_resources(), "Matrix halted before native launch")
+                        process = subprocess.Popen(args, cwd=cell_root, env=env, stdout=stdout, stderr=stderr,
+                                                   creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                        children[cell["id"]] = process
                     try:
                         code = process.wait(timeout=timeout)
                     except (subprocess.TimeoutExpired, KeyboardInterrupt):
                         process.kill()
                         process.wait()
                         raise
+                    finally:
+                        with launch_lock:
+                            children.pop(cell["id"], None)
                 execution["exit_code"] = code
-                require(file_pin(binary) == initial_pin, "Native binary changed during cell")
+                require(binary_pin() == initial_pin, "Native binary changed during cell")
                 require(file_pin(request_path) == request_pin, "Native request changed during cell")
                 require(code == 0, f"Native cell exit code {code}")
                 outcome["test_execution"] = validate_test_log(cell_root / "stdout.log")
@@ -796,7 +1099,8 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                 require(result.get("passed") is True, "Native result records failure")
                 outcome["passed"] = True
             except KeyboardInterrupt:
-                interrupted = True
+                interrupted.set()
+                halt_children()
                 outcome["failure"] = "Interrupted by operator; remaining cells were not attempted."
             except Exception as error:
                 outcome["failure"] = f"{type(error).__name__}: {str(error)[:2000]}"
@@ -805,9 +1109,11 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                 execution["elapsed_seconds"] = time.monotonic() - started
                 if process is not None:
                     execution.setdefault("exit_code", process.returncode)
-                execution["binary_after"] = file_pin(binary)
-                # Preserve failure reports, too. Never infer success from a
-                # partial report; all original report bytes remain on disk.
+                execution["binary_after"] = binary_pin()
+                with launch_lock:
+                    check_binary()
+                # Archive only this cell's owned files after its native process
+                # is reaped. Other live cells have separate roots and RNG state.
                 if native_root.is_dir():
                     try:
                         names = discover_campaign_archives(native_root)
@@ -817,22 +1123,109 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
                         outcome["archive_failure"] = f"{type(error).__name__}: {str(error)[:2000]}"
                 write_json_new(cell_root / "execution.json", execution)
                 write_json_new(cell_root / "archive-manifest.json", {"format": "spheres-stability-archives/v1", "archives": outcome["archives"]})
-                outcome["files"] = [{"relative": str(p.relative_to(cell_root)).replace("\\", "/"), **file_pin(p)}
+                if scratch is not None:
+                    retained_root = out / "cells" / cell["id"]
+                    try:
+                        offload_cell(cell_root, retained_root, scratch, setup, journal)
+                    except Exception as error:
+                        # The exact unremoved scratch path is retained in the
+                        # outcome. Never retry an exclusive partial copy or
+                        # delete it to make a later attempt appear successful.
+                        outcome["passed"] = False
+                        outcome["retention_failure"] = f"{type(error).__name__}: {str(error)[:2000]}"
+                        outcome["remaining_scratch"] = str(cell_root)
+                        resource_halted.set()
+                        halt_children()
+                        retained_root.mkdir(parents=True, exist_ok=True)
+                        journal({"event": "resource_limit_matrix_halted", "id": cell["id"], "failure": outcome["retention_failure"]})
+                    cell_root = retained_root
+                outcome["files"] = [{"relative": p.relative_to(cell_root).as_posix(), **file_pin(p)}
                                     for p in sorted(cell_root.rglob("*")) if p.is_file()]
                 write_json_new(cell_root / "verdict.json", outcome)
-                outcomes.append(outcome)
                 journal({"event": "cell_finished", "id": cell["id"], "passed": outcome["passed"],
                          "failure": outcome["failure"], "exit_code": execution.get("exit_code")})
-            if interrupted or file_pin(binary) != initial_pin:
-                break
-        summary = coverage(plan, outcomes)
-        final_pin = file_pin(binary)
+            return outcome
+
+        journal({"event": "matrix_started", "revision": revision, "scope": plan["scope"], "jobs": jobs,
+                 **({"only_cell": only_cell, "batch_sha256": batch_sha256} if only_cell is not None else {})})
+        monitor = None
+        if scratch is not None:
+            def watch_resources():
+                while not monitor_done.wait(2):
+                    with launch_lock:
+                        if not check_resources():
+                            halt_children()
+                            return
+            monitor = threading.Thread(target=watch_resources, name="stability-storage-guard", daemon=True)
+            monitor.start()
+        previous_sigint = None
+        pool, pending = None, {}
+        try:
+            if jobs == 1:
+                # Preserve the existing serial execution/interrupt semantics.
+                for cell in selected:
+                    with launch_lock:
+                        if not check_binary() or not check_resources():
+                            break
+                        prepared = prepare(cell)
+                    outcome = run_cell(cell, prepared)
+                    outcomes[cell["id"]] = outcome
+                    if interrupted.is_set():
+                        break
+            else:
+                pool = concurrent.futures.ThreadPoolExecutor(max_workers=jobs)
+                next_cell = 0
+                while pending or (next_cell < len(selected) and not stopped.is_set()):
+                    while len(pending) < jobs and next_cell < len(selected):
+                        with launch_lock:
+                            if not check_binary() or not check_resources():
+                                break
+                            cell = selected[next_cell]
+                            prepared = prepare(cell)
+                            future = pool.submit(run_cell, cell, prepared)
+                            pending[future] = cell["id"]
+                            next_cell += 1
+                    if pending:
+                        done, _ = concurrent.futures.wait(pending, timeout=0.2, return_when=concurrent.futures.FIRST_COMPLETED)
+                        for future in done:
+                            outcomes[pending.pop(future)] = future.result()
+        except KeyboardInterrupt:
+            interrupted.set()
+            stopped.set()
+            # Repeated Ctrl-C must not strand owned native children while the
+            # first interrupt is retaining their reports and closing the journal.
+            if threading.current_thread() is threading.main_thread():
+                previous_sigint = signal.signal(signal.SIGINT, signal.SIG_IGN)
+            journal({"event": "matrix_interrupted"})
+            halt_children()
+        finally:
+            if pool is not None:
+                if sys.exc_info()[0] is not None or interrupted.is_set():
+                    halt_children()
+                pool.shutdown(wait=True)
+                for future, identity in pending.items():
+                    outcomes[identity] = future.result()
+            if previous_sigint is not None:
+                signal.signal(signal.SIGINT, previous_sigint)
+            monitor_done.set()
+            if monitor is not None:
+                monitor.join()
+        ordered = [outcomes[cell["id"]] for cell in plan["cells"] if cell["id"] in outcomes]
+        summary = coverage(plan, ordered)
+        final_pin = binary_pin()
+        unchanged = not drifted.is_set() and final_pin == initial_pin
         proof = {"format": "spheres-stability-matrix-result/v1", "finished_utc": utc_now(),
-                 "revision": revision, "plan_id": plan["id"], "scope": plan["scope"],
-                 "binary_unchanged": final_pin == initial_pin, "interrupted": interrupted,
-                 "coverage": summary, "cells": outcomes,
-                 "passed": summary["requested_plan_passed"] and final_pin == initial_pin and not interrupted,
-                 "qualification": False, "s25_complete": False}
+                 "revision": revision, "plan_id": plan["id"], "scope": plan["scope"], "jobs": jobs,
+                 "binary_unchanged": unchanged, "interrupted": interrupted.is_set(),
+                 "coverage": summary, "cells": ordered,
+                  "passed": summary["requested_plan_passed"] and unchanged and not interrupted.is_set() and not resource_halted.is_set(),
+                  "qualification": False, "s25_complete": False}
+        if scratch is not None:
+            proof["resource_halted"] = resource_halted.is_set()
+        if only_cell is not None:
+            proof["only_cell"] = only_cell
+            proof["batch_sha256"] = batch_sha256
+            proof["selected_cell_passed"] = len(ordered) == 1 and ordered[0]["id"] == only_cell and ordered[0]["passed"] and unchanged and not interrupted.is_set() and not resource_halted.is_set()
         journal({"event": "matrix_finished", "passed": proof["passed"], "coverage": summary})
     write_json_new(out / "result.json", proof)
     return proof
@@ -841,7 +1234,7 @@ def run_matrix(binary, revision, plan_path, out, timeout=None):
 def discover_campaign_archives(root):
     # Restrict deletion/compression eligibility to the native test's fixed
     # archive locations. Unexpected files remain byte-for-byte untouched.
-    root = Path(root).resolve(strict=True)
+    root = plain_path(root)
     names = []
     for leg in ("uninterrupted", "resumed"):
         for filename in ("final.json", "sandbox.json", "failure.json", "monthly.json", "monthly.json.bak"):
@@ -859,25 +1252,35 @@ def main(argv=None):
     parser.add_argument("--plan", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--timeout-seconds", type=float)
+    parser.add_argument("--jobs", type=int, help="Concurrent independent cells, 1..8; default 1")
+    parser.add_argument("--scratch-root", type=Path, help="NEW managed active-cell directory; verified completed evidence is offloaded to --out")
+    parser.add_argument("--compress-scratch", action="store_true", default=None, help="Windows: mark only the new scratch directory for inherited NTFS compression")
+    parser.add_argument("--min-free-bytes", type=int, help="With scratch: halt if either root has less free space; default 1 GiB")
+    parser.add_argument("--only-cell", help="One exact canonical FULL-plan cell; jobs must be 1; never awards a matrix pass")
+    parser.add_argument("--batch-sha256", help="Required with --only-cell: SHA-256 of the predeclared distributed batch manifest")
     parser.add_argument("--verify", type=Path, help="Read-only verification of retained raw/compressed evidence; never runs native code")
     parser.add_argument("--restore", type=Path, help="With --verify: restore all original archive bytes into a NEW directory")
     args = parser.parse_args(argv)
     try:
         if args.verify is not None:
-            require(all(value is None for value in (args.binary, args.revision, args.plan, args.out, args.timeout_seconds)), "Verification cannot be combined with native execution arguments")
+            require(all(value is None for value in (args.binary, args.revision, args.plan, args.out, args.timeout_seconds, args.jobs, args.scratch_root, args.compress_scratch, args.min_free_bytes, args.only_cell, args.batch_sha256)), "Verification cannot be combined with native execution arguments")
             proof = verify_retained_run(args.verify)
             if args.restore is not None:
                 proof["restoration"] = restore_retained_run(args.verify, args.restore)
             print(json.dumps(proof, indent=2))
-            return 0 if proof["passed"] else 1
+            return 0 if proof.get("selected_cell_passed", proof["passed"]) else 1
         require(args.restore is None, "--restore requires --verify")
         require(all(value is not None for value in (args.binary, args.revision, args.plan, args.out)), "Execution requires --binary, --revision, --plan and --out")
-        proof = run_matrix(args.binary, args.revision, args.plan, args.out, args.timeout_seconds)
+        proof = run_matrix(args.binary, args.revision, args.plan, args.out, args.timeout_seconds, args.jobs if args.jobs is not None else 1,
+                           scratch_root=args.scratch_root, compress_scratch=args.compress_scratch is True,
+                           min_free_bytes=args.min_free_bytes, only_cell=args.only_cell, batch_sha256=args.batch_sha256)
     except Exception as error:
         print(f"Stability runner refused: {type(error).__name__}: {error}", file=sys.stderr)
         return 2
-    print(json.dumps({"passed": proof["passed"], "coverage": proof["coverage"], "output": str(args.out.resolve())}, indent=2))
-    return 0 if proof["passed"] else 1
+    print(json.dumps({"passed": proof["passed"], "only_cell": proof.get("only_cell"),
+                      "selected_cell_passed": proof.get("selected_cell_passed"),
+                      "coverage": proof["coverage"], "output": str(args.out.resolve())}, indent=2))
+    return 0 if proof.get("selected_cell_passed", proof["passed"]) else 1
 
 
 if __name__ == "__main__":

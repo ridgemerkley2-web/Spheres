@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_written_answers_19920304_usq1060_rocket_fire",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/15/87/94/158794360390408866402079166037312571197?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_162_04031992_U1060_p181-182.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 44815,
+  "source_response_sha256": "5c3a7881bdd28d660196c83357ff6b169badac4d3d0890092307ea6a816936e4",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body; the query sets only the served content type and file name. The research part downloaded it at 02:03:43Z, 02:22:17Z and 02:44:11Z on 26 September 2026, and the Part A check again at 02:46:50Z on 26 September 2026, and this packet downloaded it at 01:41:09Z and 02:39:31Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/232453). A member's printed question and the Government's answer; the column header prints '[ 4 MAR. 1992]'.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single PDF page (cols 181-182; a re-set text page) rendered and read by the research part; its text read again by this packet. The heading is printed 'Rocket Firp on Plane Carrying BJP President'."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_question_joshi_president_bjp_rocket_fire_19920304",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1992-03-04",
+      "text": "Under the heading printed 'Rocket Firp on Plane Carrying BJP President', Shri Vishwasrao Ramrao Patil's question asks whether militants opened rocket fire on 'the plane carrying Dr. Murli Manohar Joshi, President, BJP' as it took off from Srinagar for Jammu on 26 January; the Minister of State, Shri M. M. Jacob, answers that the Government of Jammu and Kashmir had no confirmed report that 'the aeroplane carrying the President of Bharatiya Janata Party' was attacked.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "181-182",
+        "item": "Unstarred Question 1060 and answer"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

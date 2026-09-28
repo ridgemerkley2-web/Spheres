@@ -1,0 +1,96 @@
+name: Full campaign stability evidence
+on:
+  workflow_dispatch:
+  # Deliberate run branches only; ordinary development pushes do not launch a
+  # 24-cell long campaign. The fixed plan supplies every matrix member.
+  push:
+    branches: ['codex/s25-run-*']
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      cells: ${{ steps.bundle.outputs.cells }}
+      manifest: ${{ steps.bundle.outputs.manifest }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify orchestration guards before freezing
+        run: python -B -m unittest discover -s tools/campaign -p 'test_*stability*.py'
+      - name: Build exactly one native test executable
+        run: |
+          mkdir -p artifacts
+          cargo test --locked --release -p spheres-web --bin spheres-web --no-run --message-format=json > artifacts/build.jsonl
+      - name: Freeze executable, full plan and verification code
+        id: bundle
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, subprocess
+          records = [json.loads(line) for line in pathlib.Path('artifacts/build.jsonl').read_text().splitlines() if line.startswith('{')]
+          binaries = [r['executable'] for r in records if r.get('reason') == 'compiler-artifact' and r.get('profile', {}).get('test') and r.get('target', {}).get('name') == 'spheres-web' and r.get('executable')]
+          if len(binaries) != 1:
+              raise SystemExit('Expected exactly one compiled native test executable')
+          subprocess.run(['python', '-B', 'tools/campaign/distributed_stability.py', 'prepare', '--binary', binaries[0], '--revision', os.environ['GITHUB_SHA'], '--out', 'artifacts/frozen'], check=True)
+          path = pathlib.Path('artifacts/frozen/manifest.json')
+          manifest = json.loads(path.read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('manifest=' + hashlib.sha256(path.read_bytes()).hexdigest() + '\n')
+              output.write('cells=' + json.dumps([cell['id'] for cell in manifest['cells']]) + '\n')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-stability-frozen-${{ github.run_attempt }}
+          path: artifacts/frozen
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-stability-build-${{ github.run_attempt }}
+          path: artifacts/build.jsonl
+          if-no-files-found: warn
+          retention-days: 7
+  cell:
+    needs: freeze
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        cell: ${{ fromJSON(needs.freeze.outputs.cells) }}
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: full-stability-frozen-${{ github.run_attempt }}
+          path: frozen
+      - name: Execute the assigned full-horizon paired campaign
+        env:
+          FROZEN_MANIFEST: ${{ needs.freeze.outputs.manifest }}
+          CELL_ID: ${{ matrix.cell }}
+        run: |
+          chmod u+x frozen/native-test
+          python -B frozen/distributed_stability.py cell --bundle frozen --manifest-sha256 "$FROZEN_MANIFEST" --id "$CELL_ID" --out evidence --timeout-seconds 18000
+      - name: Retain complete evidence, including failed or timed-out cells
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-stability-cell-${{ matrix.cell }}-${{ github.run_attempt }}
+          path: evidence
+          if-no-files-found: error
+          # Native archives are already losslessly gzipped by the frozen runner.
+          compression-level: 0
+          retention-days: 7
+      # Passing jobs are individual cells, never a full matrix qualification.
+      # Download all 24 artifacts and run the frozen distributed verifier's
+      # aggregate command against actual archives before claiming the matrix.

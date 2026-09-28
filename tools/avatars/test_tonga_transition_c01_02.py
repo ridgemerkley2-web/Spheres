@@ -208,8 +208,17 @@ class TongaTransitionTests(unittest.TestCase):
         # Other ministers in the twelve-member list are not imported as holders.
         self.assertEqual(self.roles['to_ministers']['holder_claims'], [])
         self.assertTrue(any(u.startswith('TO-TR21-06') for u in self.entries['to_cabinet']['coverage']['unresolved']))
-        # The interim Speaker procedure notice does not become a Speaker holder.
-        self.assertEqual(self.roles['to_speaker']['holder_claims'], ['to_speakers_appointment'])
+        # The interim Speaker procedure notice does not become a Speaker holder. CLAUDE-C01-24 appends eleven dated Speaker
+        # observations after the string observation, which stays first and is the only string; none cites this packet's claims.
+        speaker = self.roles['to_speaker']['holder_claims']
+        self.assertEqual(speaker[0], 'to_speakers_appointment')
+        self.assertEqual([h for h in speaker if isinstance(h, str)], ['to_speakers_appointment'])
+        self.assertEqual(len(speaker), 12)
+        self.assertEqual([h['name'] for h in speaker if isinstance(h, dict)], [
+            "Fusitu'a", 'Hon. Veikune', "Hon. Tu'ivakano", 'Hon. Veikune', "Lord Tu'ilakepa", 'Lord Lasike', 'Lord Fakafanua',
+            "Lord Tu'ivakano", 'Lord Fakafanua', 'Lord Fakafanua', 'Lord Vaea'])
+        for entry in speaker[1:]:
+            self.assertFalse(set(entry['claim_ids']) & NEW_CLAIMS, entry['name'])
 
     def test_no_second_prime_minister_institution(self):
         self.assertEqual({e['id'] for e in self.packet['institutions']},

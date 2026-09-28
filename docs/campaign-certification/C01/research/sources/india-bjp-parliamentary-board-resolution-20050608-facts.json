@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_resolution_advani_resignation_20050608",
+  "source_url": "https://web.archive.org/web/20070807192659id_/http://www.bjp.org/Press/june_0805.htm",
+  "original_url": "http://www.bjp.org/Press/june_0805.htm",
+  "archive_capture_utc": "2007-08-07T19:26:59Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2005-06-08",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7570,
+  "source_response_sha256": "8dff1d2cd5a2afac46a0e914df6d35449309fc13c4f0e46323b6fcac24fbfa29",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2007-08-07T19:26:59Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:11:27Z and 03:47:22Z on 26 September 2026, and the Part B check again at 03:59:48Z and 04:34:28Z on 26 September 2026, and this packet downloaded it at 01:55:38Z and 02:46:54Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the resolution (a Word-exported page); the only capture found is of 7 August 2007, before the cutoff (archived Last-Modified Wed, 08 Jun 2005 13:48:19 GMT), recorded as a raw Internet Archive capture of 7 August 2007.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_parliamentary_board_rejects_advani_resignation_20050608",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_rejected",
+      "attested_on": "2005-06-08",
+      "text": "The Parliamentary Board, the Central Office Bearers and the Chief Ministers of BJP-ruled States met on 8 June 2005 'to discuss the resignation submitted by Shri L.K. Advaniji', with Shri M. Venkaiah Naidu presiding; 'The meeting unequivocally rejected the resignation' and appealed to Shri Advani 'to continue to lead the party'.",
+      "locator": {
+        "section": "resolution dated June 08, 2005, first three paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

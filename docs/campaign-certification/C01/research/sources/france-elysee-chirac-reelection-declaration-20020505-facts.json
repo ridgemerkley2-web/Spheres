@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_chirac_reelection_declaration_20020505",
+  "source_url": "https://www.elysee.fr/front/pdf/elysee-module-9984-fr.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+  "source_response_bytes": 170755,
+  "source_response_sha256": "e23141dbfdc4bab52e47f216ba6797e7efe15bbc1129544e55002c7874eaf2b7",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '5 mai 2002 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line. Page 2 ends '(Source http://www.2002pourlafrance.net, le 6 mai 2002)': the archive took the text from the candidate's campaign website the next day, so this is a copy of a campaign statement, not a Presidency record.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 1 rendered and read by the part A researcher; page 2 (end of the declaration and the source note) read from the text layer for this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_chirac_reelection_night_declaration_20020505",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "election_acceptance_statement",
+      "attested_on": "2002-05-05",
+      "text": "A declaration dated 5 May 2002, headed as made after the announcement of M. Jacques Chirac's re-election, thanks voters for 'La confiance que vous venez de me témoigner' and calls 'Votre choix d'aujourd'hui' a founding choice.",
+      "locator": {
+        "page": 1,
+        "section": "heading and opening paragraphs",
+        "source_note": "page 2, last line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

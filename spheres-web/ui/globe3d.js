@@ -370,11 +370,29 @@
       context.clearRect(0, 0, size.width, size.height);
       context.lineJoin = "round";
       this.labelBoxes = [];
+      this.nationLabelHits = [];
+      this.nationLabelOcclusions = [];
       if (this.options.onOverlay) this.options.onOverlay(context, view, this);
       this.drawCities(view);
     }
 
     // ---- projection ------------------------------------------------------
+
+    // Only labels actually drawn in the current frame can replace absent
+    // basemap geometry. Coordinates are backing-store pixels, just like text.
+    nationLabelAt(clientX, clientY) {
+      const size = this.lastSize, rect = this.canvas.getBoundingClientRect();
+      if (!size || !(rect.width > 0 && rect.height > 0) ||
+          clientX < rect.left || clientY < rect.top ||
+          clientX >= rect.left + rect.width || clientY >= rect.top + rect.height) return null;
+      const x = (clientX - rect.left) * size.width / rect.width;
+      const y = (clientY - rect.top) * size.height / rect.height;
+      const inside = box => Math.abs(x - box[0]) <= box[2] / 2 && Math.abs(y - box[1]) <= box[3] / 2;
+      if ((this.nationLabelOcclusions || []).some(inside)) return null;
+      const hits = this.nationLabelHits || [];
+      for (let i = hits.length - 1; i >= 0; i--) if (inside(hits[i].box)) return hits[i].id;
+      return null;
+    }
 
     /// lon/lat -> backing-store pixels, or null when the point is behind the
     /// globe or off the frame. `lift` places the mark just above the surface so

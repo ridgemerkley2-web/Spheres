@@ -1,0 +1,118 @@
+{
+  "revision": "0765c590c120d3aed3291dccec9d391670110543",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py"
+      ],
+      "started_utc": "2026-09-28T18:45:35.469339+00:00",
+      "exit_code": 0,
+      "log": "01.log"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "started_utc": "2026-09-28T18:45:44.645986+00:00",
+      "exit_code": 1,
+      "log": "02.log"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "started_utc": "2026-09-28T18:45:49.580925+00:00",
+      "exit_code": 0,
+      "log": "03.log"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T18:45:50.761301+00:00",
+      "exit_code": 0,
+      "log": "04.log"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T18:45:51.238465+00:00",
+      "exit_code": 0,
+      "log": "05.log"
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "started_utc": "2026-09-28T18:45:51.472375+00:00",
+      "exit_code": 0,
+      "log": "06.log"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T18:45:51.646345+00:00",
+      "exit_code": 0,
+      "log": "07.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T18:45:51.772678+00:00",
+      "exit_code": 0,
+      "log": "08.log"
+    }
+  ]
+}

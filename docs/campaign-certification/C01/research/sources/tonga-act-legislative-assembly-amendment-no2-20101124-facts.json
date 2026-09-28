@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_amendment_no2_act21_2010",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2010/2010-0021/LegislativeAssemblyAmendmentNo.2Act2010.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 43541,
+  "source_response_sha256": "ddd1ce7878a5af23926f577fd89d8d1dca06ee582de8cac9859e1a57450b849e",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (a static PDF stored on ago.gov.to) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received; a cache-busting query string returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:04:29Z and again at 2026-09-28T00:56:39Z (UTC), 52 minutes later, from the same URL: both responses were 43541 bytes with SHA-256 ddd1ce7878a5af23926f577fd89d8d1dca06ee582de8cac9859e1a57450b849e. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AGO amending-legislation copy of Act No. 21 of 2010 (8-page PDF, a static stored file), which replaced sections 15 and 16 of the Legislative Assembly Act (Cap. 4). Statute text: procedure only. Read on 2026-09-27, after the 7 September 2026 historical cutoff; only the 2010 enactment is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_act21_2010_section15_speaker_procedure",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Section 5 replaces section 15 of the Legislative Assembly Act: 'The King shall on the recommendation of the Legislative Assembly appoint one of the elected representatives of the nobles to be the Speaker who shall preside over all meetings and he shall hold office as provided in clause 61 of the Constitution.'",
+      "locator": "Section 5 (new section 15), PDF page 6",
+      "uncertainty": "Statute text: procedure only, never a date for any holder. MIC's English release of 19 July 2012 cites this rule as 'Clause 15 of the Legislative Assembly Act' and the Assembly's Tongan item of the same day cites 'kupu 16'; the numbering difference is recorded, not resolved."
+    },
+    {
+      "claim_id": "to_la_act21_2010_section16_deputy_presides_procedure",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Section 6 replaces section 16: the King appoints a Deputy Speaker from the elected representatives of the nobles on the Assembly's recommendation, and 'If the Speaker is not presiding, or if there is no Speaker, the Deputy Speaker shall preside over the Assembly and perform the duties of the Speaker until the Speaker is able to resume the chair and perform his duties.'",
+      "locator": "Section 6 (new section 16(1)-(3)), PDF pages 6-7",
+      "uncertainty": "Procedure only. A Deputy Speaker presiding or acting as Speaker is a claim only, never a Speaker holder."
+    },
+    {
+      "claim_id": "to_la_act21_2010_royal_assent_printed",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-04",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "enactment_printed",
+      "attested_on": null,
+      "text": "Act No. 21 of 2010 prints the assent 'I assent, GEORGE TUPOU V, 24th November 2010' and the line 'Passed by the Legislative Assembly this 22th day of July 2010' (as printed).",
+      "locator": "PDF page 5 (assent block); PDF page 8 (passage line)",
+      "uncertainty": "Enactment metadata of the procedure only; no commencement provision is printed. Not a Speaker event, so no structured date is stored on this claim."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

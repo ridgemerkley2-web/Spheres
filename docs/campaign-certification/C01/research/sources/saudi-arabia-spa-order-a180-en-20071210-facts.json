@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a180_en_20071210",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/0b3bf053f5",
+  "original_url": "https://www.spa.gov.sa/0b3bf053f5",
+  "portal_metadata": {
+    "uuid": "0b3bf053f5",
+    "locale": "en",
+    "published_at_utc": "2007-12-10T08:52:39Z",
+    "date_hijri_field": "1428-11-30"
+  },
+  "title_as_published": "King addresses Princes 2 Riyadh",
+  "source_title": "King addresses Princes 2 (SPA English translation of Royal Order A/180, members 1-9, 10 December 2007)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-12-10",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/0b3bf053f5",
+  "source_response_bytes": 1879,
+  "source_response_sha256": "83887899cf905306a1259d87b5618efa63b48eaa05d7e73788482275554f4539",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "5fd63854fa0d3f7385f10d823c36d6652b938a6f8beae9486124aa738ae4e32a",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:52:15Z and again at 2026-09-28T00:36:01Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (1879 bytes, SHA-256 83887899cf905306a1259d87b5618efa63b48eaa05d7e73788482275554f4539).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/0b3bf053f5 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "English parts 1, 3 and 4 were read and not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_a180_english_no_chair_title_20071210",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "translation_note",
+      "attested_on": "2007-12-10",
+      "text": "SPA's English translation of Royal Order A/180 lists 'Prince Mishaal bin Abdulaziz al-Saud' first among the Commission's members and dates the formation meeting 29-11-1428AH, but does not render the word chairman that the Arabic original prints.",
+      "locator": "Second English part (item First, entry 1)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

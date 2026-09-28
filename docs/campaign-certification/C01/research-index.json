@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 34,
-    "sources": 1367,
-    "source_claims": 3792,
+    "institution_observations": 35,
+    "sources": 1610,
+    "source_claims": 4246,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -80,10 +80,10 @@
       "nation": "France",
       "packet": "docs/campaign-certification/C01/research/france.json",
       "organization_observations": 635,
-      "institution_observations": 0,
-      "role_observations": 0,
-      "source_claims": 1277,
-      "mapping_pending": 635,
+      "institution_observations": 1,
+      "role_observations": 1,
+      "source_claims": 1372,
+      "mapping_pending": 636,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -100,7 +100,8 @@
           "Overseas/local reporting identities need explicit territorial and campaign-jurisdiction review.",
           "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts.",
           "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
-          "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence."
+          "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
+          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -193,8 +194,8 @@
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 82,
       "institution_observations": 2,
-      "role_observations": 3,
-      "source_claims": 391,
+      "role_observations": 4,
+      "source_claims": 558,
       "mapping_pending": 84,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -235,7 +236,8 @@
           "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched.",
           "Prime ministers 1990-2026 (CLAUDE-C01-11): the packet now holds one institution, in_prime_minister, with one role, in_pm, and thirteen dated holder observations (stated starts for Rao, Vajpayee in 1996, 1998 and 1999 and Gujral; stated ends for Chandra Shekhar, Rao, Deve Gowda and Vajpayee's 1998 term). Still open for the prime-ministership: V. P. Singh's end, Chandra Shekhar's and Deve Gowda's starts, the end of every continuation that no Gazette acceptance fixes, the President's 1990-1999 communiques in the PIB archive and the 2004-2024 Gazette notifications. Deputy prime ministers, ministers, the President, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
           "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
-          "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted."
+          "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
+          "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -346,7 +348,7 @@
       "organization_observations": 6,
       "institution_observations": 6,
       "role_observations": 10,
-      "source_claims": 48,
+      "source_claims": 158,
       "mapping_pending": 12,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -366,7 +368,8 @@
           "Six institutional records are a bounded starting inventory, not all royal, religious, judicial, regional, administrative or advisory bodies.",
           "Legal registration, permitted activity, actual political influence and executive eligibility remain separate unresolved questions; no blanket legal prohibition is inferred from the documents read.",
           "Arabic originals, exact commencement dates, consolidated amendments and complete named role histories still require review. Undated current website office holders were deliberately not bound to the pre-cutoff roster.",
-          "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy."
+          "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy.",
+          "CLAUDE-C01-25 fills sa_shura_chair (three holders, from 1997 attestations to 2026) and sa_succession_chair (one holder, 2007-2017). The first Shura Chairman's appointment, the second Chairman's end and any Allegiance Commission chairman after May 2017 remain unresolved."
         ]
       }
     },
@@ -426,7 +429,7 @@
       "organization_observations": 4,
       "institution_observations": 5,
       "role_observations": 15,
-      "source_claims": 184,
+      "source_claims": 266,
       "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -452,7 +455,8 @@
           "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed.",
           "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved.",
           "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved.",
-          "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed."
+          "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed.",
+          "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed."
         ]
       }
     },
@@ -2102,7 +2106,8 @@
         "fr_cnccfp_1564",
         "fr_cnccfp_1573",
         "fr_cnccfp_1584",
-        "fr_cnccfp_1598"
+        "fr_cnccfp_1598",
+        "fr_presidency"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2674,13 +2679,13 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 1803439,
-      "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+      "bytes": 1987748,
+      "sha256": "a6e6bd18f47a78e5c2de84e562bd86c1013e5281b4afde9d1bb37a102f22d126"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 846631,
-      "sha256": "1bedf89e1d13d1f391b23030c6bb5e7b16fe23b347c7a64487a6c387c66e82bf"
+      "bytes": 1153096,
+      "sha256": "173c1c93ba538e99e453d7e9b9476c4094ea191c124c5ad76cb60198de0301c0"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -2694,8 +2699,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 93763,
-      "sha256": "21d1bafce08b1f7c822b63ca8c704119237707103f159a290b24bcd36acdcdaa"
+      "bytes": 266372,
+      "sha256": "1b53b184753b95cd85670362220a57c5ca0151a5577e5a46af784487aa6afd2b"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
@@ -2704,8 +2709,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 360940,
-      "sha256": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69"
+      "bytes": 524600,
+      "sha256": "ddff43808e68bc19c0ea74d5751125c57950a041c603f238a1e1310bb464b5b4"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
@@ -2719,8 +2724,8 @@
     },
     {
       "path": "tools/avatars/import_cnccfp_census.py",
-      "bytes": 21317,
-      "sha256": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c"
+      "bytes": 24576,
+      "sha256": "93d6e863dce068f86ff417244eb598ecf93f204a09167aa730353824e34a2d80"
     },
     {
       "path": "docs/campaign-certification/C01/countries.json",

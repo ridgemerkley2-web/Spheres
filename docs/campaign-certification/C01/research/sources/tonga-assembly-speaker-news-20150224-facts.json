@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_speaker_china_20150224",
+  "source_url": "https://web.archive.org/web/20150702052047id_/http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/338-speaker-continues-to-pursue-vision-to-boost-tourism-fisheries-and-education-in-tonga",
+  "original_url": "http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/338-speaker-continues-to-pursue-vision-to-boost-tourism-fisheries-and-education-in-tonga",
+  "archive_capture_utc": "2015-07-02T05:20:47Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2015-02-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 43468,
+  "source_response_sha256": "73c01ed5fdda819262b92a00e4b689d52c389db3ef34709060bdecfb72c7f82f",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:06:04Z and again at 2026-09-28T01:09:29Z (UTC), 63 minutes later, from the same URL: both responses were 43468 bytes with SHA-256 73c01ed5fdda819262b92a00e4b689d52c389db3ef34709060bdecfb72c7f82f. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2015-07-02T05:20:47Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 24 February 2015' (raw Internet Archive capture of 2 July 2015; the hit counter is frozen in the capture). The trip's outcomes are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_tuivakano_styled_20150224",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-07",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'ivakano",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "2015-02-24",
+      "text": "The Assembly's news item created on 24 February 2015 reports a recent trade and investment trip to Zhoushan City, China, 'led by Lord Speaker of the Legislative Assembly of Tonga, Lord Tu'ivakano'; its photograph captions print 'Hon. Speaker, Lord Tu'ivakano', and it lists 'Lord Tu'ivakano (Head of the Delegation) Hon. Speaker of Parliament'.",
+      "locator": "Article header ('Created: 24 February 2015'); photograph captions; paragraph 1; the delegation list",
+      "uncertainty": "Contemporaneous styling by the Assembly's own news service; it attests the holder in office on the item's creation date only. The item dates the trip 'from February 10-18' without printing the year on that line. It dates neither the Assembly's election of the Speaker after the 2014 election, nor a royal appointment, nor an oath; no source retrieved for this packet dates any of the three for the 2014 Assembly."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

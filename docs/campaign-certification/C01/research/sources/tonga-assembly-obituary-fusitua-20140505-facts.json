@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_obituary_fusitua_20140505",
+  "source_url": "https://web.archive.org/web/20220114203857id_/https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+  "original_url": "https://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/220-late-lord-fusitu-a-achieved-four-levels-of-god-s-goodness-dr-tevita-havea-says",
+  "archive_capture_utc": "2022-01-14T20:38:57Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2014-05-05",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 44098,
+  "source_response_sha256": "fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:03:52Z and again at 2026-09-28T00:55:35Z (UTC), 51 minutes later, from the same URL: both responses were 44098 bytes with SHA-256 fcd9294121ef73e339461af46293199af0d5fb530af5ada128b749161c133392. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2022-01-14T20:38:57Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 05 May 2014' (raw Internet Archive capture of 14 January 2022; the live URL now redirects to a 404 page, so only the capture is used). Retrospective; the sermon and the biography beyond his Speakership are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_obituary_fusitua_appointed_1991_20140505",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-01",
+      "role_id": "to_speaker",
+      "holder_name": "Late Lord Fusitu'a",
+      "role_title": "Speaker",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2014-05-05",
+      "text": "The Assembly's news item on Lord Fusitu'a's funeral states that 'Late Lord Fusitu'a was appointed the Hon. Speaker of the Legislative Assembly of Tonga in 1991'; its PARLIAMENTARY CAREER section says that he was appointed Speaker of the House by his late Majesty King Taufa'ahau Tupou IV and 'served for three terms from 1991-1998', and the item adds that he remained a Noble representative of the Niuas until he died at his residence on April 24, 2014.",
+      "locator": "Sentences beginning 'Late Lord Fusitu'a was appointed' and 'Dwelling near Mt Zion'; the PARLIAMENTARY CAREER section",
+      "uncertainty": "Retrospective year and span written 23 years later: claims only, not a start or an end. They conflict with the Assembly's lists (1990-1998 in 2011; 1995-1998 in 2006). The death is context, not a Speaker event."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

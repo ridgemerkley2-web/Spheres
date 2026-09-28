@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_notice_pm_meeting_20251212",
+  "source_url": "https://web.archive.org/web/20251212191842id_/https://parliament.gov.to/en/media-centre/latest-news/meeting-on-monday-15-december-2025-to-elect-the-prime-minister-designate",
+  "original_url": "https://parliament.gov.to/en/media-centre/latest-news/meeting-on-monday-15-december-2025-to-elect-the-prime-minister-designate",
+  "archive_capture_utc": "2025-12-12T19:18:42Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2025-12-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 57442,
+  "source_response_sha256": "74b015598df5b8f43cfcd74ab5f40ceb2237ce79f80a1411462c8df8355258dc",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:18:52Z and again at 2026-09-28T01:17:17Z (UTC), 58 minutes later, from the same URL: both responses were 57442 bytes with SHA-256 74b015598df5b8f43cfcd74ab5f40ceb2237ce79f80a1411462c8df8355258dc. The raw id_ form replays the stored capture rather than generating a page per request. Located by the independent check, which downloaded it twice on 2026-09-26 (UTC), at least 30 minutes apart, with the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-12-12T19:18:42Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Release 'Created: 12 December 2025' from the Office of the Interim Speaker, issued by the Chief Clerk (raw Internet Archive capture of 12 December 2025, 19:18 UTC; the capture of 06:53 UTC the same day redirects to it). The live page carries a hit counter and is not used. The nomination details are not imported. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_election_meeting_notice_20251212",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-10",
+      "role_id": "to_speaker",
+      "holder_name": null,
+      "role_title": "Speaker",
+      "event_kind": "meeting_notice",
+      "attested_on": "2025-12-12",
+      "text": "The release states that 'The Interim Speaker of the Legislative Assembly, Lord Tangi 'o Vaonukonuka has issued a notice for a meeting of the Elected Representatives to be convened on Monday 15 December 2025, at 10:00am', and that 'The election of the Speaker and Deputy Speaker of the Legislative Assembly will be held at the same meeting, following the announcement of the elected Prime Minister Designate'.",
+      "locator": "Release body, paragraphs 1 and 3",
+      "uncertainty": "A prospective notice naming no Speaker: it schedules the Speaker's election but does not record it. No record of the sitting itself was found, so the day of the election is not inferred from this notice."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

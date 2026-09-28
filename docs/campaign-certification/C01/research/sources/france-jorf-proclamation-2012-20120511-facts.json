@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_proclamation_20120511",
+  "source_url": "https://web.archive.org/web/20210227042751id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025844007",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025844007",
+  "archive_capture_utc": "2021-02-27T04:27:51Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-05-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 130955,
+  "source_response_sha256": "2ad59e111fbfcb1e5f49e6f904806a18aca5ec0744ab461b77cdaf8e90ebf6f7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-02-27T04:27:51Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 27 February 2021 of Légifrance's Journal officiel text page (NOR HRUX1223027S); Légifrance itself refuses automated access, which was not bypassed. Located by the part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decision text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_publishes_2012_proclamation_20120511",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François Hollande",
+      "role_title": "Président de la République française",
+      "event_kind": "result_publication",
+      "attested_on": "2012-05-11",
+      "text": "The Journal officiel n°0110 of 11 May 2012 publishes as its text no. 1 the decision of 10 May 2012 proclaiming M. François Hollande President 'à compter de la cessation des fonctions de M. Nicolas Sarkozy, laquelle, en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 15 mai 2012, à 24 heures'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1223027S', 'JORF n°0110 du 11 mai 2012', 'Texte n° 1') and the dispositif"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

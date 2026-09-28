@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_tlr_1997",
+  "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1572:1997_tlr",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 4010541,
+  "source_response_sha256": "7a4726f077c92de73d6cd1e53cf1f868b31011d82bd5c510026fb1a00842e71c",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url (an Attorney General's Office Phoca Download link that serves the stored PDF as an attachment) with curl's default user agent and no Accept-Encoding header, then hash the bytes as received. A 403 HTML page from ago.gov.to is a user-agent rejection, not a changed file.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:02:32Z and again at 2026-09-28T00:53:10Z (UTC), 50 minutes later, from the same URL: both responses were 4010541 bytes with SHA-256 7a4726f077c92de73d6cd1e53cf1f868b31011d82bd5c510026fb1a00842e71c. The file is served from storage; it carries no per-request token or timestamp. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Original PDF response downloaded from the Attorney General's Office site; the identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AGO's 1997 Tonga Law Reports volume (145-page PDF served as the attachment 1997TLR.pdf by a Phoca Download link). Used for three reported judgments: Attorney General v Fusitu'a, 'Akau'ola & Moala (Supreme Court, 1996-97), 'Akau'ola v Attorney General (Court of Appeal, June 1997) and Pohiva v Lasike (Supreme Court, 1 August 1997). The contempt and assault proceedings themselves are not imported. Read on 2026-09-27, after the 7 September 2026 historical cutoff; the volume is a dated historical report and no later content is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      27,
+      30,
+      135,
+      136
+    ],
+    "method": "The text layer was read around the cited passages, and the listed PDF pages were rendered and visually checked against it for this packet on 2026-09-27."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_speaker_lasike_19950802",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "the Honourable Lasike",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": "1995-08-02",
+      "text": "In Pohiva v Lasike (Supreme Court, Hampton CJ, Cr App 95/96, judgment 1 August 1997) the court records that during a sitting of the Legislative Assembly on 2nd August 1995 the appellant, a people's representative, was interrupted in debate by 'the Acting Speaker, the Honourable Lasike' and threw a volume of the Laws of Tonga that hit him; the Assembly suspended the appellant for 14 days and the Acting Speaker brought a private prosecution for assault.",
+      "locator": "[1997] Tonga LR 247-248 (PDF pages 135-136): headnote; judgment lines 50-81",
+      "uncertainty": "Acting Speaker presiding on one sitting day: a claim only, never a holder. The source names him only by his noble title, and no identity with the Lord Lasike of 2010-2012 is asserted. The judgment does not say who appointed him, for how long, or who the substantive Speaker was. The 1996 volume's report of Moala v Minister of Police places the incident 'in October 1995' with 'the then Acting or Deputy Speaker' (a lead, listed in the report); the dated appellate account is used and the conflict is retained."
+    },
+    {
+      "claim_id": "to_speaker_fusitua_interview_19961114",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "Fusitu'a",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "1996-11-14",
+      "text": "In 'Akau'ola v Attorney General (Court of Appeal, Morling, Burchett and Tompkins JJ, App. 3/97, 12 and 20 June 1997) the court states that on 14 November 1996 the appellant journalist 'interviewed the Speaker of the Legislative Assembly' about the Chief Justice's order of 14 October 1996 releasing three persons imprisoned under a warrant issued by the Speaker; the article it quotes begins 'In a statement by Fusitu'a [i.e. the Speaker]'.",
+      "locator": "[1997] Tonga LR 36-37 (PDF page 30): header; judgment lines 55-80",
+      "uncertainty": "Shows who held the office on 14 November 1996 only; no appointment, start or end date. The source names him only by his noble title (Fusitu'a); the gloss '[i.e. the Speaker]' is the court's. The contempt proceedings are not imported."
+    },
+    {
+      "claim_id": "to_speaker_fusitua_material_times_19961114",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-02",
+      "role_id": "to_speaker",
+      "holder_name": "Fusitu'a",
+      "role_title": "Speaker",
+      "event_kind": "attested_in_office",
+      "attested_on": "1996-11-14",
+      "text": "In Attorney General v Fusitu'a, 'Akau'ola & Moala (Supreme Court, Lewis J, C.1329/96, 12 December 1996, January and 4 February 1997) the judge finds that Fusitu'a spoke the published words in the interview of 14 November 1996 and that 'Fusitu'a was at all material times the Speaker of the Supreme Law making Body of Tonga' [the Legislative Assembly]; he adds that the reversal of the will of Parliament 'would not be tolerated while he was Speaker' and, on sentence, that 'For years he has carried well, the solemn burden in his role as Speaker'.",
+      "locator": "[1997] Tonga LR 18-31 (PDF pages 21-27): header and headnote pp. 18-19; the interview finding p. 26 (PDF page 25); p. 30 lines 581-587 and p. 31 lines 646-650 (PDF page 27)",
+      "uncertainty": "'For years' gives no start year. The source names him only by his noble title; the bracketed gloss is this packet's. The court held that he spoke in a personal capacity; the contempt finding and penalty are not imported."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

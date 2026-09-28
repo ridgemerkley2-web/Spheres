@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_a135_statement_resend_20061020",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/888ccb60a4",
+  "original_url": "https://www.spa.gov.sa/888ccb60a4",
+  "portal_metadata": {
+    "uuid": "888ccb60a4",
+    "locale": "ar",
+    "published_at_utc": "2006-10-20T03:05:55Z",
+    "date_hijri_field": "1427-09-27"
+  },
+  "title_as_published": "سياسي / الديوان الملكي / بيان",
+  "source_title": "سياسي / الديوان الملكي / بيان: the Royal Court statement on Royal Order A/135, re-sent (20 October 2006)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2006-10-20",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/888ccb60a4",
+  "source_response_bytes": 2680,
+  "source_response_sha256": "ec092537bd01795e9a0000fbc59c85adead469138a8de3f3123ee89b0c1ba9fa",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "65c8ea94f49ee8d61b7ef56f08d39cbe7d830ca383d34b89179b205659fa51cc",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:51:32Z and again at 2026-09-28T00:35:00Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (2680 bytes, SHA-256 ec092537bd01795e9a0000fbc59c85adead469138a8de3f3123ee89b0c1ba9fa).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/888ccb60a4 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Re-sent statement filed at 06:05 Makkah time on 20 October 2006.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_law_a135_statement_yesterday_20061020",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "publication",
+      "attested_on": "2006-10-20",
+      "text": "SPA's re-sent item, under the dateline Makkah 28 Ramadan 1427 / 20 October 2006, says the Royal Court issued the statement 'yesterday' (أمس) and reproduces the same Royal Order A/135 of 26/9/1427 AH.",
+      "locator": "Dateline; opening sentence; order number and date; trailer 0605 (06:05 Makkah time)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

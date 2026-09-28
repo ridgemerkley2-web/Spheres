@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_mishaal_interview_addition_20080630",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/3d24f87f04",
+  "original_url": "https://www.spa.gov.sa/3d24f87f04",
+  "portal_metadata": {
+    "uuid": "3d24f87f04",
+    "locale": "ar",
+    "published_at_utc": "2008-06-30T13:31:26Z",
+    "date_hijri_field": "1429-06-26"
+  },
+  "title_as_published": "عام / سمو الأمير مشعل بن عبدالعزيز / حديث إضافة ثانية",
+  "source_title": "عام / سمو الأمير مشعل بن عبدالعزيز / حديث، إضافة ثانية: interview, second addition (30 June 2008)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2008-06-30",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/3d24f87f04",
+  "source_response_bytes": 3779,
+  "source_response_sha256": "d84103dd96c2fd17b0bf22fb93d7a99a3311eee6514a86f9347b7215eaa7a1dc",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "a234ffa303cb80b848d617b148c86c2f71af8b9d5fe6b4a5e4835b4e0cf7be24",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part C, which downloaded it twice on 2026-09-26 UTC about five minutes apart, the second with a cache-busting query (Cloudflare MISS), identical. This packet: downloaded at 2026-09-27T23:52:51Z and again at 2026-09-28T00:36:53Z, 44 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3779 bytes, SHA-256 d84103dd96c2fd17b0bf22fb93d7a99a3311eee6514a86f9347b7215eaa7a1dc).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/3d24f87f04 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Second addition of SPA's report of an interview (filed 16:31 Makkah time); no dateline of its own. Located by the independent check of part C.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_mishaal_on_appointment_art15_20080630",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-08",
+      "role_id": "sa_succession_chair",
+      "holder_name": "Mishaal bin Abdulaziz Al Saud",
+      "printed_name": "مشعل بن عبدالعزيز",
+      "role_title": "رئيس هيئة البيعة — Chairman of the Allegiance Commission",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2008-06-30",
+      "text": "In the interview's second addition the chairman describes his feelings at his appointment as chairman (بتعيينه رئيساً لهيئة البيعة) and says that although a provision of the Law gives the chairmanship to the eldest member (أن يتولى رئاسة هيئة البيعة أكبر الأعضاء سناً), he took great pride in the King's trust in him.",
+      "locator": "Addition 2, paragraph 1; trailer 1631 (16:31 Makkah time)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

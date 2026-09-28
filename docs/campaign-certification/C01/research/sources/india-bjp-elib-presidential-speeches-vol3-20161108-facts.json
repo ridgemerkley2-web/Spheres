@@ -1,0 +1,118 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_elib_party_document_vol3_presidential_speeches_part2",
+  "source_url": "https://library.bjp.org/jspui/bitstream/123456789/248/1/DR.%20MM%20JOSHI.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "party_repository_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 2822399,
+  "source_response_sha256": "d12b2d2d86819f7ddebac2b8eb51096fbed3c931d47f3c4220342836ded59a20",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static bitstream on the Bharatiya Janata Party's e-Library (DSpace, library.bjp.org), served without Content-Encoding and with a fixed Last-Modified header, not generated per request. The research part downloaded it at 01:48:58Z, 02:16:33Z and 02:19:13Z on 26 September 2026, and the Part A check again at 02:46:34Z on 26 September 2026, and this packet downloaded it at 01:40:08Z and 02:39:00Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party compilation on the Bharatiya Janata Party's own e-Library (DSpace, library.bjp.org, item 123456789/248), served as a static bitstream without Content-Encoding (Last-Modified Tue, 08 Nov 2016 07:34:08 GMT; no ETag). The PDF was made in November 2016 (PDF CreationDate 8 November 2016); it reprints dated party texts, each under a printed heading giving the body, place and date. Presidential addresses of 1980-1993 under three named section headings: 'DR. MM JOSHI' (the cover, PDF p.1; addresses at pp.3-72), 'SHRI LK ADVANI' (p.73; pp.75-202) and 'SHRI ATAL BIHARI VAJPAYEE' (p.203; pp.205-324); pp.74 and 204 are blank backs. The addresses print no speaker's name, and the section headings contradict each other for the same farewell (p.28 under 'DR. MM JOSHI', p.85 under 'SHRI LK ADVANI'), so this packet never takes a speaker's name from a section heading.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      28,
+      31,
+      32,
+      73,
+      74,
+      85,
+      203,
+      204
+    ],
+    "method": "Text layer (InDesign text, not OCR; 325 pages; printed page = PDF page) read on the cited pages by this packet, including the section headings at pp.1, 73 and 203 and the blank backs at pp.74 and 204; the research part rendered and read pages 1, 28, 31, 32, 74 and 85, and the Part A check rendered pages 73 and 203."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_valedictory_joshi_taking_over_tomorrow_19910131",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_announced_prospective",
+      "attested_on": "1991-01-31",
+      "text": "In an address printed under 'National Council / New Delhi 31 January, 1991', in the section the compilation heads 'SHRI LK ADVANI' (p.73), the speaker, whom the text does not name, says 'Today, it is the last sitting of the National Executive' and 'Tomorrow, our renowned associate Dr. Murli Manohar Joshi would be taking over as President of Bharatiya Janata Party'.",
+      "locator": {
+        "pdf_page": 85,
+        "printed_page": 85,
+        "item": "National Council, New Delhi 31 January, 1991, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_valedictory_joshi_to_assume_presidency_tomorrow_1991",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_announced_prospective",
+      "attested_on": null,
+      "text": "The same farewell is printed, in different words, under 'National Executive / Jaipur 1-3 February, 1991' in the section the compilation heads 'DR. MM JOSHI': 'Today is the last meeting of this National Executive. Tomorrow, a distinguished colleague of ours, Dr. MM Joshi will be assuming the stewardship of the BJP as Party President'.",
+      "locator": {
+        "pdf_page": 28,
+        "printed_page": 28,
+        "item": "National Executive, Jaipur 1-3 February, 1991: 'BJP is no Longer a Peripheral Party', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_outgoing_president_farewell_five_year_tenure_199101",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "farewell_address",
+      "attested_on": null,
+      "text": "In both printings of the farewell the speaker, whom the text does not name, thanks colleagues and office-bearers for their support 'during my tenure as Party President' (p.28; 'during my tenure as President of the party', p.85) and looks back on a five-year tenure.",
+      "locator": {
+        "pdf_page": [
+          28,
+          85
+        ],
+        "printed_page": "28 and 85",
+        "item": "second and third paragraphs of each printing"
+      }
+    },
+    {
+      "claim_id": "in_bjp_nc_jaipur_new_president_accepts_presidentship_19910201",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_acceptance_statement",
+      "attested_on": "1991-02-01",
+      "text": "In the address printed under 'National Council / Jaipur 1 February, 1991' the speaker, whom the text does not name, thanks the party's workers 'who have honoured an ordinary fellow-worker like me by entrusting to him the onerous responsibility of presidentship of the Party', and later prays to prove worthy of the confidence 'with which you have entrusted to me the responsibility of presidentship of the party'.",
+      "locator": {
+        "pdf_page": [
+          31,
+          32
+        ],
+        "printed_page": "31-32",
+        "item": "National Council, Jaipur 1 February, 1991: opening paragraph (p.31) and 'Advani Ji takes the Party to New Heights' (p.32)"
+      }
+    },
+    {
+      "claim_id": "in_bjp_nc_jaipur_advani_declined_third_term_19910201",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "declined_further_term",
+      "attested_on": "1991-02-01",
+      "text": "The same address says Shri Lal Krishna Advani was a worthy successor of Shri Vajpayee, that everyone wished 'he should continue as our President for a third term', and that 'like Shri Vajpayee, Shri Advani declined it'.",
+      "locator": {
+        "pdf_page": 32,
+        "printed_page": 32,
+        "item": "'Advani Ji takes the Party to New Heights', first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

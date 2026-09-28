@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_cv_humaid_20020609",
+  "source_url": "https://web.archive.org/web/20020609224450id_/http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+  "original_url": "http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+  "archive_capture_utc": "2002-06-09T22:44:50Z",
+  "source_title": "السير الذاتية: صالح بن عبدالله بن محمد بن حميد (Council CV, member no. 1), Shura Council website (Internet Archive capture 20020609224450)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020609224450id_/http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+  "source_response_bytes": 9686,
+  "source_response_sha256": "a24b110d9b4e833bf75b5b2e73d0c0bc301506ed461967cddb99af31f9a5c72a",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:47:36Z and again at 2026-09-28T00:30:16Z, 42 minutes later; both identical (9686 bytes, SHA-256 a24b110d9b4e833bf75b5b2e73d0c0bc301506ed461967cddb99af31f9a5c72a).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020609224450 of http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A server-generated CV page on the Council's site, used through a fixed capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_humaid_cv_chair_since_24_11_1422",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "صالح بن عبدالله بن محمد بن حميد",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "retrospective_statement",
+      "attested_on": "2002-02-07",
+      "text": "The Council's CV of 'الشيخ الدكتور صالح بن عبدالله بن محمد بن حميد' lists him as a member of the Shura Council from 1414 to 1421 AH, President General of the Affairs of the Two Holy Mosques from 1421 AH, and 'رئيس مجلس الشورى منذ تاريخ 24/11/1422هـ' (Chairman of the Shura Council since 24/11/1422 AH).",
+      "locator": "الحياة العملية, last three lines"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

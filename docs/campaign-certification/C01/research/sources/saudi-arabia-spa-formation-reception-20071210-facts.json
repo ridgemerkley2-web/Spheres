@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_formation_reception_20071210",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/721b17bba0",
+  "original_url": "https://www.spa.gov.sa/721b17bba0",
+  "portal_metadata": {
+    "uuid": "721b17bba0",
+    "locale": "ar",
+    "published_at_utc": "2007-12-10T05:51:19Z",
+    "date_hijri_field": "1428-11-30"
+  },
+  "title_as_published": "عام / خادم الحرمين الشريفين / استقبال",
+  "source_title": "عام / خادم الحرمين الشريفين / استقبال: King Abdullah receives the sons of the founder (main item, 10 December 2007)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-12-10",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/721b17bba0",
+  "source_response_bytes": 5273,
+  "source_response_sha256": "9e633a9d0800b727de5829244bc43dfbcda6eed5a046bbc74bf65fc4e836aa5a",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "fc7e4dddccfba0f4ac2a5c437265ddb0b540b56bb9a6465bf4cd298d3729be0a",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:51:55Z and again at 2026-09-28T00:35:33Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (5273 bytes, SHA-256 9e633a9d0800b727de5829244bc43dfbcda6eed5a046bbc74bf65fc4e836aa5a).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/721b17bba0 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "SPA transmitted the release twice within a second; one copy of each part is recorded (duplicates are leads).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_formation_reception_20071209",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "meeting",
+      "attested_on": "2007-12-09",
+      "text": "SPA, Riyadh 30 Dhu al-Qa'da 1428 / 10 December 2007: King Abdullah received at his Riyadh palace 'مساء امس' (yesterday evening) the sons of the founder, led by Prince Mishaal bin Abdulaziz and Crown Prince Sultan bin Abdulaziz, with sons and grandsons of the deceased sons, and addressed them.",
+      "locator": "Dateline; opening paragraph; trailer 0851 (08:51 Makkah time)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

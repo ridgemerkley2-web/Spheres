@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_org_swarna_jayanti_press_release_19970716",
+  "source_url": "https://web.archive.org/web/19980519064759id_/http://bjp.org:80/leader/sjry-press.html",
+  "original_url": "http://bjp.org/leader/sjry-press.html",
+  "archive_capture_utc": "1998-05-19T06:47:59Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "1997-07-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 24191,
+  "source_response_sha256": "0eb50f1109f6b90d928a72f52a3870304b946a2e18f5c797e8318fdf2681918e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 1998-05-19T06:47:59Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:12:51Z and 02:44:23Z on 26 September 2026, and the Part A check again at 02:47:09Z on 26 September 2026, and this packet downloaded it at 01:43:00Z and 02:39:43Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the release, recorded as a raw Internet Archive capture of 19 May 1998 (the original was sent chunked, so no archived Content-Length); the release's day is its dateline.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full (heading, dateline and the passages cited)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_press_release_president_advani_19970716",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-07-16",
+      "text": "The party's release headed 'Press Release by President, Shri Lal Krishna Advani', dated 'July 16, 1997, New Delhi', after the Swarna Jayanti Rath Yatra (Mumbai, 18 May, to New Delhi, 15 July 1997), has the author write 'As President of the BJP' and later 'As President of the Party'.",
+      "locator": {
+        "item": "heading and dateline; first section; closing section"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_magazine_column_20020623",
+  "source_url": "https://web.archive.org/web/20020623145159id_/http://www.shura.gov.sa:80/arabicsite/majalah/last.htm",
+  "original_url": "http://www.shura.gov.sa:80/arabicsite/majalah/last.htm",
+  "archive_capture_utc": "2002-06-23T14:51:59Z",
+  "source_title": "ومضى عام...وقضى ركن, back-page column by the Secretary-General, Ash-Shura magazine, Dhu al-Hijja 1422 issue (Internet Archive capture 20020623145159)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020623145159id_/http://www.shura.gov.sa:80/arabicsite/majalah/last.htm",
+  "source_response_bytes": 11715,
+  "source_response_sha256": "5e2908592639ec6a0d18796aa11fcb4e417d8110bd610defe25a76ba71a6e968",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:47:30Z and again at 2026-09-28T00:30:09Z, 42 minutes later; both identical (11715 bytes, SHA-256 5e2908592639ec6a0d18796aa11fcb4e417d8110bd610defe25a76ba71a6e968).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020623145159 of http://www.shura.gov.sa:80/arabicsite/majalah/last.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's own magazine column, signed by its Secretary-General. It prints no Gregorian date.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_death_stated_sg_column",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "محمد بن جبير",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The Secretary-General, Dr Humud bin Abdulaziz al-Badr, writes that death came to 'شيخنا المرحوم ... الشيخ محمد بن جبير' and that the ruler then appointed a colleague of eight years in the Council, printing the successor's name as 'الشيخ الدكتور صالح بن إبراهيم بن حميد'.",
+      "locator": "Column paragraphs 3-4, signed الأمين العام لمجلس الشورى"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_opening_20220111",
+  "source_url": "https://web.archive.org/web/20220111080954id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/882-king-tupou-vi-officially-opens-the-2022-parliamentary-session",
+  "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/882-king-tupou-vi-officially-opens-the-2022-parliamentary-session",
+  "archive_capture_utc": "2022-01-11T08:09:54Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2022-01-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 39214,
+  "source_response_sha256": "0d5fa34e461426e5c01c76a70d2e68c1563cbaa59c2b5cff271673e6f3c7de74",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:19:17Z and again at 2026-09-28T01:17:43Z (UTC), 58 minutes later, from the same URL: both responses were 39214 bytes with SHA-256 0d5fa34e461426e5c01c76a70d2e68c1563cbaa59c2b5cff271673e6f3c7de74. The raw id_ form replays the stored capture rather than generating a page per request. Located for this packet; a first download at 2026-09-27T23:58:11Z gave the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2022-01-11T08:09:54Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 11 January 2022' (raw Internet Archive capture of the same day). Used only for the Acting Speaker; the King's opening address is not imported. Located for this packet in place of the minutes of 13 January 2022, which are served only through a download form (see the report).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_speaker_tuihaangana_20220111",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-09",
+      "role_id": "to_speaker",
+      "holder_name": "Lord Tu'iha'angana",
+      "role_title": "Speaker",
+      "event_kind": "acting_service",
+      "attested_on": "2022-01-11",
+      "text": "The Assembly's news item created on 11 January 2022 reports that King Tupou VI opened the 2022 parliamentary session 'this morning' by livestream and that 'Following the Opening Address, the Acting Speaker Lord Tu'iha'angana announced the Members of the Select Committee' to prepare the response to the address.",
+      "locator": "Article header; paragraphs 1-2 and 6",
+      "uncertainty": "Acting service on the opening day: a claim only, never a holder. The item does not say why the Speaker was not presiding."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

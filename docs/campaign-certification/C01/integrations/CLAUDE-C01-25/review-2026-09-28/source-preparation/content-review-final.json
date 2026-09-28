@@ -1,0 +1,1180 @@
+{
+  "format": "spheres-bounded-content-review/v1",
+  "reviewer": "Codex /root/review_source05",
+  "reviewed_at_utc": "2026-09-28T18:57:50.341121+00:00",
+  "task": "CLAUDE-C01-25",
+  "submission": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+  "recommendation": "held_original_source_access_gap",
+  "task_closed": false,
+  "merged": false,
+  "parent_certification": false,
+  "scope": "Only 71 new original-response records and 110 appended chair-related claims; two existing roles. Earlier 32-source C01-06 content is not re-certified.",
+  "retrieval": {
+    "initial": {
+      "total": 71,
+      "obtained": 58,
+      "byte_exact": 58
+    },
+    "single_missing_only_retry": {
+      "total": 13,
+      "obtained": 7,
+      "byte_exact": 7
+    },
+    "combined": {
+      "obtained": 65,
+      "byte_exact": 65,
+      "inaccessible": 6,
+      "spa_content_hashes_exact": 39
+    },
+    "preserved": "retrieval.json and retrieval-retry.json; first failures retained",
+    "web_fallback": {
+      "attempted_source_ids": [
+        "sa_shura_magazine_p8_20020824",
+        "sa_shura_magazine_p28_20020425",
+        "sa_shura_cv_humaid_20020609"
+      ],
+      "result": "All three original archive URLs returned Internal Error / inaccessible via web open; no alternate body or bypass used."
+    }
+  },
+  "content_review": {
+    "reviewed_sources": 65,
+    "reviewed_claims": 101,
+    "unverified_claims": [
+      "sa_humaid_cv_chair_since_24_11_1422",
+      "sa_humaid_first_day_20020211",
+      "sa_vice_chair_presides_55th_20020210",
+      "sa_humaid_order_issued_before_20020212",
+      "sa_humaid_oath_before_20020212",
+      "sa_humaid_chairs_56th_session_20020212",
+      "sa_humaid_chairs_65th_session_20020331",
+      "sa_shura_cv_a13_retrospective_20260808",
+      "sa_shura_site_a54_20161202"
+    ],
+    "method": "Read primary response text at material claim locators, including related_news additions and original datelines; exact body and SPA content hash reproduction is recorded separately from this semantic review. Two full relevant PDF pages visually checked. No contradiction identified in the reviewed scope.",
+    "groups": [
+      {
+        "observations": [
+          "SA-CHR-01",
+          "SA-CHR-02"
+        ],
+        "checked": "BOE Arabic issue/publication dates, original and amended procedure, English cover and articles, Council histories/statistics and speakers in archived speeches. The first Council opening and session are separately described; no original first-chair appointment is promoted.",
+        "limits": "English cover prints 2 March 1992 while Arabic record prints 1 March. Later histories/speeches are retrospective; exact first appointment stays null. PDF pages 1 and 4 rendered and viewed; remaining relevant text extracted with pypdf 6.17.0."
+      },
+      {
+        "observations": [
+          "SA-CHR-03"
+        ],
+        "checked": "Official Embassy 1997 and 2001 releases support dated Jubair observations, extension/effective days, oath and term-opening distinctions. Council 2001 A/78-A/80 text and 2002 last session checked. Embassy Royal Court release expressly states 24 January 2002 death and chairmanship until death. February 7 appointment and statement recovered on retry; SPA February 12 English and Arabic copies support first session and the Gregorian/Hijri calendar anchor.",
+        "limits": "Humaid first-work-day magazine p8, p28 session details, old CV and March 2002 session remain inaccessible. Calendar equation alone cannot establish the 11 February first-work-day fact. The packet stays held; no fallback day is invented. Official Embassy publications are accepted here as primary government releases, not independent eyewitness testimony. Arabic A/62 vs 1997 English A/63 discrepancy remains disclosed."
+      },
+      {
+        "observations": [
+          "SA-CHR-04"
+        ],
+        "checked": "A/13 expressly couples Justice relief and Shura appointment to 3/3/1430; native SPA dateline equates that day to 28 February 2009. A/15 formation differs from appointment; oath 1 March, with Humaid styled Supreme Judicial Council chairman, does not state Humaid Shura end.",
+        "limits": "Retrospective Council CV unavailable. No predecessor end inferred."
+      },
+      {
+        "observations": [
+          "SA-CHR-05",
+          "SA-CHR-06"
+        ],
+        "checked": "2013 A/45 and separate oath; 2016 A/54, 2020 A/146 and 2024 A/84 named holder, term starts and separate oath/opening events checked. A/54 and A/146 are in the pinned response related_news bodies. Umm al-Qura archived 2024 republication recovered. Calendar anchors are original datelines, not external conversion.",
+        "limits": "2016 Council mirror unavailable. Term-renewal observations do not prove uninterrupted tenure. November 2020 filing timestamp/Hijri metadata differs from the original 11-November dateline; extract scope note already discloses overnight filing."
+      },
+      {
+        "observations": [
+          "SA-CHR-07",
+          "SA-CHR-08"
+        ],
+        "checked": "A/135 release and next-day resend; relevant law articles and A/164 regulations; A/180 formation listing, Mishaal explicit Arabic chairman title, members 10-35, collective oath and prior-evening reception. English A/180 omission of the title is honestly recorded. December 2007 statements and June 2008 interview support chair identity and appointment/seniority description.",
+        "limits": "Procedure does not populate an actual successor. A/164 royal-order Hijri date and release dateline remain distinct. No unstated effective appointment date inferred."
+      },
+      {
+        "observations": [
+          "SA-CHR-09",
+          "SA-CHR-10"
+        ],
+        "checked": "Arabic and corrected English Royal Court/SPA death statements explicitly name Mishaal as chairman and date his death 3 May 2017. 2008/2015 Mishaal attestations and 6/7 September 2026 Shura attestations read.",
+        "limits": "December 2015 article calls arrival last night; holder attestation is the publication observation, not an asserted arrival day. No independent exhaustive archive search proves the absence of later Allegiance chairmen; no continuity beyond/between observed dates is established."
+      }
+    ]
+  },
+  "integration_scope": {
+    "base": "a33a8987",
+    "existing_32_sources_unchanged": true,
+    "masked_appended_claims_and_two_owned_role_changes_equal_base": true,
+    "runtime_files_changed": false,
+    "existing_source_repair_must_preserve": "sa_bush41_address_19900808 differs in integration 83046c162098d59a6c4532f4173041f82cfd79b3; do not restore full old packet"
+  },
+  "changes_made": [],
+  "checks": "content-review-checks.json",
+  "limitations": [
+    "The 11-February-2002 from for Saleh bin Abdullah bin Humaid cannot yet receive independent content acceptance: its sole stated first-day original is inaccessible. The packet has not been edited merely because retrieval failed.",
+    "Nine claims in six inaccessible sources are explicitly unverified. Reproduced companion sources do not reproduce those original bodies.",
+    "No full Saudi historical census, continuous chair roster, portrait rights, runtime installation, C01/C06/S23/WC1/CP1 acceptance or no-later-chair proof is implied.",
+    "No Cargo/native/browser game tests were run for this research preparation. No task/workboard status or root integration file was changed."
+  ],
+  "sources": [
+    {
+      "id": "sa_boe_shura_law_ar_20250507",
+      "url": "https://web.archive.org/web/20250507013950id_/https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/b5cf540a-e6ac-426a-b348-a9a700f163de/1",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-boe-shura-law-ar-20250507-facts.json",
+      "extract_sha256": "fd261e80bd813aef9382925996540ad94b4705a6d285a66457f4f446bb608654",
+      "claim_ids": [
+        "sa_shura_law_a91_dates_19920301",
+        "sa_shura_law_a91_order_terms",
+        "sa_shura_law_art3_original_60",
+        "sa_shura_law_art10_chair_by_royal_order",
+        "sa_shura_law_art11_oath_before_work",
+        "sa_shura_law_art13_term"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_boe_shura_law_ar_20250507.bin",
+      "bytes": 74490,
+      "sha256": "c16816025db847abcc14c4a7ebbd2bb0b8a5ea4e554d90d52730e4fc9c072d7c",
+      "response_exact": true
+    },
+    {
+      "id": "sa_boe_shura_law_en_20250513",
+      "url": "https://web.archive.org/web/20250513164302id_/https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-boe-shura-law-en-20250513-facts.json",
+      "extract_sha256": "65e3ca0c1f7e49a5614d9cf4fe4eeedfe9e687a8ece0d8ee075d8620b5cd9500",
+      "claim_ids": [
+        "sa_shura_law_en_cover_19920302"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_boe_shura_law_en_20250513.bin",
+      "bytes": 261632,
+      "sha256": "a58d7c0036b7f5174f7a165b3c76a816774ea325672d101736a0e3f9850770cf",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_law_text_20010627",
+      "url": "https://web.archive.org/web/20010627024458id_/http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-law-text-20010627-facts.json",
+      "extract_sha256": "799ef52a01b0e425922f02de8b576e447e2bdda31f4d7a07c1817937a2678bed",
+      "claim_ids": [
+        "sa_shura_site_law_a91_27_8_1412",
+        "sa_shura_site_law_art3_120_2001"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_law_text_20010627.bin",
+      "bytes": 48227,
+      "sha256": "f8cb0c1cc19f56f82fa9ff54ecd217b2fed7c3078a2be8bdd75f47448ce2b5e4",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_history_20020208",
+      "url": "https://web.archive.org/web/20020208141417id_/http://www.shura.gov.sa:80/ArabicSite/Maserah/Maserah.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-history-20020208-facts.json",
+      "extract_sha256": "e2bd30cd097533b37dfb6283882d369346133ceb06c1d4a92db007860058685a",
+      "claim_ids": [
+        "sa_shura_history_fahd_speech_27_8_1412"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_history_20020208.bin",
+      "bytes": 12434,
+      "sha256": "f4c71b31655d56f7ebc049aeaeaaab3d4c04a134042f45c085ced70a30325bf9",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_history_20090315",
+      "url": "https://web.archive.org/web/20090315054852id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Historical+BG/",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-history-20090315-facts.json",
+      "extract_sha256": "780e36b55eb43194166bf000b5ed5511aefe9cf32851c165abd398c0cb7a4ee2",
+      "claim_ids": [
+        "sa_shura_history_internal_rules_3_3_1414"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_history_20090315.bin",
+      "bytes": 22558,
+      "sha256": "6b3c9db79ba086c44515cf0713681f7fe76d6c4e6006fe1e9a72cbb6e164a3af",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_intro_en_20010527",
+      "url": "https://web.archive.org/web/20010527001951id_/http://www.shura.gov.sa:80/EnglishSite/EIntrd.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-intro-en-20010527-facts.json",
+      "extract_sha256": "92aa6a9ecc67b0d1173dbff6e6b16f0466843b062ff2c924ec29bd1af0ae61dc",
+      "claim_ids": [
+        "sa_shura_first_session_inaugurated_19931229",
+        "sa_shura_membership_90_19970705"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_intro_en_20010527.bin",
+      "bytes": 4486,
+      "sha256": "1cb57fe9f206bd1a135fb6b85bc5f1481ceb0bb93d2003476683b989698923e0",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_statistics_20020208",
+      "url": "https://web.archive.org/web/20020208130801id_/http://www.shura.gov.sa:80/ArabicSite/Shnw/Shnw.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-statistics-20020208-facts.json",
+      "extract_sha256": "64691adbd28597ec0e972a93ff660d8da26741eaa2b3ba7a130349eeda1ba591",
+      "claim_ids": [
+        "sa_shura_term_years_listed"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_statistics_20020208.bin",
+      "bytes": 10951,
+      "sha256": "e4bbef934328a0e7617919f0521da385ad02138a7f76ae033a15a6a364c65605",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_speeches_term1_20090415",
+      "url": "https://web.archive.org/web/20090415050234id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/1st+Term+1st+Year,+1414+-+1415+A.H./",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-speeches-term1-20090415-facts.json",
+      "extract_sha256": "197fea4ec0166a76a70ecd6520c74af7ca1915a97ad12848e5e3679217c48de5",
+      "claim_ids": [
+        "sa_jubair_speech_first_term_opening"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_speeches_term1_20090415.bin",
+      "bytes": 33817,
+      "sha256": "9ef48ff223c2d307d9311597c6075647339b78a6df658bb492c643e237f3a811",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_speeches_term2_20090415",
+      "url": "https://web.archive.org/web/20090415050338id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-speeches-term2-20090415-facts.json",
+      "extract_sha256": "ba0ad8227cd8a1d2a17c41a9834a4e77c620d70445f9482b4a5812d7d13932c8",
+      "claim_ids": [
+        "sa_jubair_speech_second_term_opening",
+        "sa_jubair_dates_first_term_opening_16_7_1414"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_speeches_term2_20090415.bin",
+      "bytes": 32811,
+      "sha256": "c00d4dd0c0d838a329bd3d1f1a7b67aef895541f36c8b4072356b268e6c8e189",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_second_term_19970706",
+      "url": "https://web.archive.org/web/19991004234358id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-second-term-19970706-facts.json",
+      "extract_sha256": "0a2ec4d3617da81495ba94a10f0d1b23e2b4ec9cb20b6594d33982177075eaa3",
+      "claim_ids": [
+        "sa_shura_membership_90_a63_19970705",
+        "sa_jubair_first_term_end_19970706",
+        "sa_jubair_extension_a90_19970706",
+        "sa_jubair_extension_effective_19970707",
+        "sa_order_a72_second_term_19970706",
+        "sa_shura_term_start_19970707",
+        "sa_first_council_a16_cited_19930820"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_second_term_19970706.bin",
+      "bytes": 24777,
+      "sha256": "0f41939977da960ee62121d097dd7f3924aecaddd1ce16059134e02eac93c271",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_oath_19970714",
+      "url": "https://web.archive.org/web/19991005000525id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_3.html",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-oath-19970714-facts.json",
+      "extract_sha256": "d34903914a8bdd439a672068ab8cfb3d8a708a730da2d63da210775dfc6d605b",
+      "claim_ids": [
+        "sa_jubair_oath_second_term_19970714",
+        "sa_second_term_inaugurated_19970714"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_oath_19970714.bin",
+      "bytes": 7326,
+      "sha256": "c0c99c9f685ac6515e23a2c270b62ee4f8dd414605f50de98ef5992d2a1e3645",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_news_20010614",
+      "url": "https://web.archive.org/web/20010614065918id_/http://www.shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-news-20010614-facts.json",
+      "extract_sha256": "3b151ac68c00bc69a879962ff2c7d410da1088ce93c4997285bee7e9769ee15d",
+      "claim_ids": [
+        "sa_order_a80_third_term_20010524",
+        "sa_order_a72_a62_second_term_cited",
+        "sa_order_a78_art3_120_20010524",
+        "sa_order_a79_vice_chair_20010524",
+        "sa_fahd_letter_chair_end_second_term",
+        "sa_jubair_chairs_third_term_session_20010610",
+        "sa_jubair_extension_congratulated_20010611"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_news_20010614.bin",
+      "bytes": 71970,
+      "sha256": "34afe4935e5b7d3ea5783013f0f1fd390f12af3308c973750c520d965e9b85fe",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_decrees_20010524",
+      "url": "https://web.archive.org/web/20010618015005id_/http://saudiembassy.net:80/press_release/01-spa/05-24-decrees.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-decrees-20010524-facts.json",
+      "extract_sha256": "d0ec260d4b1864326ad33944efc18a31d34a17e30d0dfe598b02036767179214",
+      "claim_ids": [
+        "sa_fahd_message_chair_20010524"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_decrees_20010524.bin",
+      "bytes": 2175,
+      "sha256": "6841957c98f350fc8da28f81760e1d951d3fb4fd729294dc230651b864b805b4",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_oath_20010604",
+      "url": "https://web.archive.org/web/20010711170353id_/http://www.saudiembassy.net:80/press_release/01-spa/06-04-shura.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-oath-20010604-facts.json",
+      "extract_sha256": "727800f2fc1e6c8c8fb23fdabadfa80f6015c4a3934b1165e6d1158cc4e9c49b",
+      "claim_ids": [
+        "sa_jubair_oath_third_term_20010604"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_oath_20010604.bin",
+      "bytes": 2229,
+      "sha256": "3e82c74d9952198fed9ea7b158dfd01b60655a8c45e2347232fe71d00b27f25d",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_king_address_20010604",
+      "url": "https://web.archive.org/web/20011110055015id_/http://www.saudiembassy.net:80/press_release/01-spa/shura01-speech.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-king-address-20010604-facts.json",
+      "extract_sha256": "18b32a8e833ce8842ca47e1dc3668a7b54250cbdabc1bfc5b4dab49d7429e48d",
+      "claim_ids": [
+        "sa_third_term_start_announced_20010604"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_king_address_20010604.bin",
+      "bytes": 24427,
+      "sha256": "a0a4e5f80dc3c6889f46b783c2f64fe9a0a70737f2d245fca6935f427ca628c7",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_session_20010605",
+      "url": "https://web.archive.org/web/20010711173052id_/http://www.saudiembassy.net:80/press_release/01-spa/06-05-shura.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-session-20010605-facts.json",
+      "extract_sha256": "d8513aa34da20df77fa2d988b94a0f0b9ec08537f60f860c5da13096cdfc6ec5",
+      "claim_ids": [
+        "sa_jubair_chairs_first_session_20010605"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_session_20010605.bin",
+      "bytes": 3721,
+      "sha256": "d84467cba193de28677bdcaf995ab2f1a90cf6e26a0d933de613b650dd70f94c",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_news_20020116",
+      "url": "https://web.archive.org/web/20020116225640id_/http://www.shura.gov.sa:80/arabicsite/Anews/Anews.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-news-20020116-facts.json",
+      "extract_sha256": "c550dccd0e54616e3d4241baa8eee669b5c927055552a48c922f017e66e2f400",
+      "claim_ids": [
+        "sa_jubair_chairs_48th_session_20020115"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_news_20020116.bin",
+      "bytes": 20106,
+      "sha256": "7813fabc44f0c66b9634de5ebe011114fe9b70e91560156c1fc141374e06eac5",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_jubair_death_20020124",
+      "url": "https://web.archive.org/web/20030114190231id_/http://saudiembassy.net:80/press_release/02-spa/01-24-shura.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-jubair-death-20020124-facts.json",
+      "extract_sha256": "b564b672395f7a90ab6a02dcb39e19245c8e6d81cb1746b931569fcab1392f36",
+      "claim_ids": [
+        "sa_jubair_death_20020124"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_jubair_death_20020124.bin",
+      "bytes": 1372,
+      "sha256": "e67f6859396e77e968dfaa2545ebb1880c5e998056501416c482ebcf4474ea7c",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_shura_mourning_20020127",
+      "url": "https://web.archive.org/web/20020221033729id_/http://www.saudiembassy.net:80/press_release/02-spa/01-27-shura.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-mourning-20020127-facts.json",
+      "extract_sha256": "daa08c4f16253f7626cc4597cd112888dc5e275a51d3c3e06a8e6cdc157f4004",
+      "claim_ids": [
+        "sa_vice_chair_presides_20020127"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_shura_mourning_20020127.bin",
+      "bytes": 1530,
+      "sha256": "465095988616e72fc243bb3b4993cbecb00428c8c57a7867ebdb58ab53388916",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_magazine_column_20020623",
+      "url": "https://web.archive.org/web/20020623145159id_/http://www.shura.gov.sa:80/arabicsite/majalah/last.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-magazine-column-20020623-facts.json",
+      "extract_sha256": "d69ea0210bab035d115716ebe51045e9fe1b349865650b563447d7466f2704ad",
+      "claim_ids": [
+        "sa_jubair_death_stated_sg_column"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_shura_magazine_column_20020623.retry.bin",
+      "bytes": 11715,
+      "sha256": "5e2908592639ec6a0d18796aa11fcb4e417d8110bd610defe25a76ba71a6e968",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_humaid_appointed_20020207",
+      "url": "https://web.archive.org/web/20020221032155id_/http://saudiembassy.net:80/press_release/02-spa/02-07-shura.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-humaid-appointed-20020207-facts.json",
+      "extract_sha256": "321fab38ee25ec03b0c4118c8a3e2321c3ff5c2fca7a443c25cd91581ebd80ac",
+      "claim_ids": [
+        "sa_humaid_appointed_20020207"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_humaid_appointed_20020207.retry.bin",
+      "bytes": 1041,
+      "sha256": "c302aa57aece728a7679c94e69561aea2c687c1e7765516c04dcf1d9edd61d55",
+      "response_exact": true
+    },
+    {
+      "id": "sa_embassy_humaid_statement_20020207",
+      "url": "https://web.archive.org/web/20020619221611id_/http://saudiembassy.net:80/press_release/02-spa/02-07-shura2.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-humaid-statement-20020207-facts.json",
+      "extract_sha256": "27e6ffc304f435c3344f3f5dfdb4e98da0c5f35fe2e3b824ae744e06cd85fbfc",
+      "claim_ids": [
+        "sa_humaid_statement_20020207"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_embassy_humaid_statement_20020207.retry.bin",
+      "bytes": 1930,
+      "sha256": "86a11955bb33d7e5f7e8eb7eb14aef34486a5872df972d0cde79ef709e6d813f",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_cv_humaid_20020609",
+      "url": "https://web.archive.org/web/20020609224450id_/http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-cv-humaid-20020609-facts.json",
+      "extract_sha256": "6724cccd0793788c064d5c74abb8cfbed43be5e9f9353e93407c0f45785e65eb",
+      "claim_ids": [
+        "sa_humaid_cv_chair_since_24_11_1422"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_shura_magazine_p8_20020824",
+      "url": "https://web.archive.org/web/20020824014603id_/http://www.shura.gov.sa:80/arabicsite/majalah/8-1.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-magazine-p8-20020824-facts.json",
+      "extract_sha256": "081cd00b6befd1d8b5fa76564a4ef8570cee9ee0b49fe286821ca3bbf0e351e6",
+      "claim_ids": [
+        "sa_humaid_first_day_20020211"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_shura_magazine_p28_20020425",
+      "url": "https://web.archive.org/web/20020425022022id_/http://www.shura.gov.sa:80/arabicsite/majalah/28-1.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-magazine-p28-20020425-facts.json",
+      "extract_sha256": "a03f8aab5ea203d2af9c6d59883c447b726196372ba4de005854985c47c505f4",
+      "claim_ids": [
+        "sa_vice_chair_presides_55th_20020210",
+        "sa_humaid_order_issued_before_20020212",
+        "sa_humaid_oath_before_20020212",
+        "sa_humaid_chairs_56th_session_20020212"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_spa_humaid_received_20020212",
+      "url": "https://web.archive.org/web/20020221003944id_/http://www.spa.gov.sa:80/html/archive.asp?srcfile=495549&NDay=12/02/2002&Ryes=2&wcatg=63434",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-humaid-received-20020212-facts.json",
+      "extract_sha256": "58c778b4ca7e2554b69fe784948395c043d7d73c9104a159b202deac2fbce451",
+      "claim_ids": [
+        "sa_spa_humaid_chair_received_20020212"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_humaid_received_20020212.retry.bin",
+      "bytes": 2723,
+      "sha256": "1b7e40468e2b282d02f7855d495e22390a7cffbc509b127a6e260557159bd147",
+      "response_exact": true
+    },
+    {
+      "id": "sa_spa_shura_session_addendum_20020212",
+      "url": "https://web.archive.org/web/20020225003627id_/http://www.spa.gov.sa:80/html/archive.asp?srcfile=495562&NDay=12/02/2002&Ryes=3&wcatg=63434",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-shura-session-addendum-20020212-facts.json",
+      "extract_sha256": "c796ff126eaec20ac54b28c1d917903dbc853736348f2e744521c39690b822c2",
+      "claim_ids": [
+        "sa_spa_humaid_addresses_council_20020212"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_shura_session_addendum_20020212.retry.bin",
+      "bytes": 4044,
+      "sha256": "c93ce54262e0c30ff5a544af3e6004a4bb102ae858d405612b9e13c8cc4292bf",
+      "response_exact": true
+    },
+    {
+      "id": "sa_spa_english_news_20020212",
+      "url": "https://web.archive.org/web/20020212181231id_/http://www.spa.gov.sa:80/html/archive_e.asp?srcfile=l10&NDay=12/02/2002",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-english-news-20020212-facts.json",
+      "extract_sha256": "0ebea8e76a9e52e6e518d55f5278a9d0c34d6b545cebb5b5c4b8873e50e2fcb2",
+      "claim_ids": [
+        "sa_spa_en_humaid_first_session_20020212",
+        "sa_calendar_14221128_20020211"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_english_news_20020212.retry.bin",
+      "bytes": 11589,
+      "sha256": "68d9f877ee59e4f0bf6983bb7cbc4aba55460760b3c3faaeade44a9acd0682f0",
+      "response_exact": true
+    },
+    {
+      "id": "sa_shura_news_20020401",
+      "url": "https://web.archive.org/web/20020401212232id_/http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-news-20020401-facts.json",
+      "extract_sha256": "08b544b214ada797037b9fcffb0e2fec2b1d3b392ed8c83032e82577a66f7f9c",
+      "claim_ids": [
+        "sa_humaid_chairs_65th_session_20020331"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_spa_orders_20090214",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/b961954b0a",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-20090214-facts.json",
+      "extract_sha256": "73f332b593cf469f64fd4df1bd9e3e4d67329a7c37aba16c082eea738ad3c856",
+      "claim_ids": [
+        "sa_royal_orders_issued_20090214"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_orders_20090214.bin",
+      "bytes": 1108,
+      "sha256": "12fc65c03d307d477bfd82ab7cdb3c368aae44fceb07b73a36b5b3f72d43c733",
+      "response_exact": true,
+      "article_content_sha256": "483c0d6e254029e35d615c179ba973510e914636c0dc9158437c12dae498f17c"
+    },
+    {
+      "id": "sa_spa_order_a13_20090214",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/2bf3150546",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a13-20090214-facts.json",
+      "extract_sha256": "f2371e4c60fff49fec0e3a801fe5e3c04e25ac540cd9bb9bc9698ff15dc6fd52",
+      "claim_ids": [
+        "sa_alsheikh_appointed_a13_20090214",
+        "sa_alsheikh_effective_a13_20090228"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a13_20090214.bin",
+      "bytes": 2752,
+      "sha256": "7757999da3e8daff0506ae55ca786c78884e421b82f20c2fe1dac868d01fb8f2",
+      "response_exact": true,
+      "article_content_sha256": "6a39d55074971894b2fb2c1e2837352ef86cb6a99c3fe76263a4d307cc846439"
+    },
+    {
+      "id": "sa_spa_order_a15_20090214",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/0841d1571c",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a15-20090214-facts.json",
+      "extract_sha256": "a9fff5a00651bed58f700594603f0ef3a5f3d725c45c99b5428b246579a983a3",
+      "claim_ids": [
+        "sa_shura_formed_a15_20090214"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a15_20090214.bin",
+      "bytes": 3567,
+      "sha256": "e3eee58814b7695b2e9e9dcb9096d774889d44b273b4bf9bdc6b71d98db6e798",
+      "response_exact": true,
+      "article_content_sha256": "82452aaa69df83569a79b37a73f01861499fc181962c700c1a765a9aed04e701"
+    },
+    {
+      "id": "sa_spa_dateline_20090228",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/d9a5830afd",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-dateline-20090228-facts.json",
+      "extract_sha256": "5c3ab8325a69f7804b7e4d44847784ed4e61762c304b74316ca4e47e7b6416d2",
+      "claim_ids": [
+        "sa_calendar_14300303_20090228"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_dateline_20090228.bin",
+      "bytes": 2278,
+      "sha256": "1da545ea383bd2a6fe6e1e3e23928b9a4182a9ff1798f775381e4e6c345a990d",
+      "response_exact": true,
+      "article_content_sha256": "eacc82fa3f272b43cf724d834930be92c64f243baf4bf2d3a148577ada41c218"
+    },
+    {
+      "id": "sa_spa_oath_20090301",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/ac56a5648d",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-20090301-facts.json",
+      "extract_sha256": "aedd80e0cc5eb06e13407f7183063407843ed75a7fd28763b31307043f03f9f8",
+      "claim_ids": [
+        "sa_alsheikh_oath_20090301",
+        "sa_humaid_styled_sjc_chair_20090301"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_20090301.bin",
+      "bytes": 3744,
+      "sha256": "bcc605cc1306fd026f5affc34f520858449d18bf51693a332defdc430a8f5d05",
+      "response_exact": true,
+      "article_content_sha256": "fab9c54a239d72605a54dc6529a9fdcc666484000fafb0c8c9842942737f34c9"
+    },
+    {
+      "id": "sa_shura_cv_alsheikh_20260808",
+      "url": "https://web.archive.org/web/20260808032029id_/https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-cv-alsheikh-20260808-facts.json",
+      "extract_sha256": "6cc82f365b5d4f4a8243e7a3ea3e8a5417109c3ac93b1681dd71040577f5911d",
+      "claim_ids": [
+        "sa_shura_cv_a13_retrospective_20260808"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_spa_orders_20130111",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/5602569e6f",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-20130111-facts.json",
+      "extract_sha256": "f87fdfce106af06d24c282f2960329e8ee997d7f31baba5a4a5a94912e822038",
+      "claim_ids": [
+        "sa_royal_orders_issued_20130111"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_orders_20130111.bin",
+      "bytes": 3783,
+      "sha256": "42e627706cb0232eb763d4957bdd5d09a96bf18e39f6edd7edd2c3f92e053b5e",
+      "response_exact": true,
+      "article_content_sha256": "4cd304a69a12d68ed319a54aaed4e933731ecb50586755774ddd4e0e55422e7b"
+    },
+    {
+      "id": "sa_spa_order_a45_20130111",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/193b5adb44",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a45-20130111-facts.json",
+      "extract_sha256": "77fdcc03edf3dacbf8e365f6857ce2e9c46eca72344e6ce02e187c03f90361d6",
+      "claim_ids": [
+        "sa_alsheikh_named_a45_20130111"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a45_20130111.bin",
+      "bytes": 3578,
+      "sha256": "749692cd10b0f47779cf303bdd05a3417ec9a66cf36136fe2624fc53d7baa023",
+      "response_exact": true,
+      "article_content_sha256": "64c92bbc680a18439fe00bc913b63d09abfc8d4bc04e04d56cb61d33bf772f04"
+    },
+    {
+      "id": "sa_spa_oath_20130219",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/f2fe8fea0f",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-20130219-facts.json",
+      "extract_sha256": "66958b791730a993adbd64c53dd660eea07be67ba59ea1ae47d38fb2e414a55c",
+      "claim_ids": [
+        "sa_alsheikh_oath_20130219"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_20130219.bin",
+      "bytes": 1446,
+      "sha256": "cef915cf03953c661dcca26b60dddc8126e240a805926a24f6d477520b6e2e30",
+      "response_exact": true,
+      "article_content_sha256": "90c4cf41de2c19efdfac82f6f820a7b14e2cd80e6afcb63ac3b589110693b2a5"
+    },
+    {
+      "id": "sa_spa_oath_addition_20130219",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/c656945f06",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-addition-20130219-facts.json",
+      "extract_sha256": "b4e983d1f76d5537144709d3ff37b27a3f5574f1b0c3e2ec32791e1af092615c",
+      "claim_ids": [
+        "sa_sixth_term_opened_20130219"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_addition_20130219.bin",
+      "bytes": 3612,
+      "sha256": "49813626e83895cd47ab63710ce99dcc85ad4f8c4799688905eb60815e6e8687",
+      "response_exact": true,
+      "article_content_sha256": "e1e58de2e3a673dbd0d3b2299d4c73c8188c59744f19ebbdeb3e66099e9be9bf"
+    },
+    {
+      "id": "sa_spa_orders_20161202",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/4641b3e86c",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-20161202-facts.json",
+      "extract_sha256": "fa2344d7a7870d470c9945a3d5865fe5bb7518f64f901a4a7c424fe65611ecda",
+      "claim_ids": [
+        "sa_royal_orders_issued_20161202",
+        "sa_alsheikh_named_a54_20161202",
+        "sa_shura_term_start_20161202"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_orders_20161202.bin",
+      "bytes": 30893,
+      "sha256": "359e15d7b4117f0c437dacc547f69dbada4053dd8f48b09c10e674c04137bebb",
+      "response_exact": true,
+      "article_content_sha256": "4991f62740b7571d89d2e675054d98607c8fdccbffa035404f2dcfb60de4f95c"
+    },
+    {
+      "id": "sa_shura_news_a54_20161202",
+      "url": "https://web.archive.org/web/20260820112847id_/https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-shura-news-a54-20161202-facts.json",
+      "extract_sha256": "9f18e049741370bb915432804ace4f8731e23298c128c895f34c9efda9186e80",
+      "claim_ids": [
+        "sa_shura_site_a54_20161202"
+      ],
+      "content_status": "unverified_original_inaccessible",
+      "response_exact": false,
+      "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+    },
+    {
+      "id": "sa_spa_oath_20161213",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/fe176a401b",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-20161213-facts.json",
+      "extract_sha256": "641e02a3a9849ae021d475a520e9e01f3b28bfb1d94afff48647242224a33904",
+      "claim_ids": [
+        "sa_alsheikh_oath_20161213"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_20161213.bin",
+      "bytes": 5809,
+      "sha256": "a5204e5b50233ff6c628cdf90f1dd0323bdda7229fb3e4f91781c3584898e904",
+      "response_exact": true,
+      "article_content_sha256": "ddb1139026b3356dca24902c170011df6af7403d7c3077f7be67b50e1724bc7f"
+    },
+    {
+      "id": "sa_spa_orders_20201018_ar",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/10ddc4a914",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-ar-20201018-facts.json",
+      "extract_sha256": "3089abf7b650e286714e9495ec2ee42cd77521e18d3bb89b28fd671ab4d6dfc6",
+      "claim_ids": [
+        "sa_royal_orders_issued_20201018",
+        "sa_alsheikh_named_a146_20201018",
+        "sa_shura_term_start_20201020"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_orders_20201018_ar.bin",
+      "bytes": 26311,
+      "sha256": "9b4e91c44ded76d817fd0ddca89b141cf838dd2a2eab492650276f929c75f530",
+      "response_exact": true,
+      "article_content_sha256": "f6b5b32f3eb964d6cec1121d996b3cfb5e86034a09ab7bb7c7e0bf32ca6f116a"
+    },
+    {
+      "id": "sa_spa_orders_20201018_en",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/dcaf51c67d",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-en-20201018-facts.json",
+      "extract_sha256": "78f26a9b7c7bcbcb587c1d850334280418a1430f6a489cfdb86403cd339e3071",
+      "claim_ids": [
+        "sa_alsheikh_speaker_en_20201018"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_orders_20201018_en.bin",
+      "bytes": 13318,
+      "sha256": "3838ce24a453d4f1aeb260ef41dfb725920547d5ab563b103b6926c8bd126351",
+      "response_exact": true,
+      "article_content_sha256": "051ca953560eb9dbf70a8cfe1249f88a8068ddef0e33e9a76b3fa0df8dd8c0f1"
+    },
+    {
+      "id": "sa_spa_dateline_20201020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/e6e70e26f0",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-dateline-20201020-facts.json",
+      "extract_sha256": "87a587d9fa91f6f031dade2bee394997285f844eb4351990d76ed24f03fbc0f9",
+      "claim_ids": [
+        "sa_calendar_14420303_20201020"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_dateline_20201020.bin",
+      "bytes": 3244,
+      "sha256": "dc2c662f9ebe442065a2503dfb8405990aae97f05e49bf2720fdc509ee0a2ed3",
+      "response_exact": true,
+      "article_content_sha256": "776f5ded4865fc1361706cb5279572e31ed00ef325ca897643bb4a7322f8a2de"
+    },
+    {
+      "id": "sa_spa_oath_notice_20201108",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/efc4852210",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-notice-20201108-facts.json",
+      "extract_sha256": "6351e5dbc53bc6da2c5c4f57b38734ab1bbcea6e4c8d9164306a65076468649d",
+      "claim_ids": [
+        "sa_shura_oath_scheduled_20201108"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_notice_20201108.bin",
+      "bytes": 7300,
+      "sha256": "7b1acc42fce14540fb2edbdcaf0da622f03b626242cbc8561c763d35cf5ec9fb",
+      "response_exact": true,
+      "article_content_sha256": "8208719cd803157832f2f89e96121adaeda912d41fbe33915d2dd5d3eb90c10c"
+    },
+    {
+      "id": "sa_spa_oath_20201111",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/4d552786de",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-oath-20201111-facts.json",
+      "extract_sha256": "8c2aa4596fd582a4dcf5261a6ed3b5cfdb0d95ff66621c9baaa02d182f316748",
+      "claim_ids": [
+        "sa_alsheikh_oath_20201111"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_oath_20201111.bin",
+      "bytes": 13387,
+      "sha256": "9637b22ef8a0423ab07010e434df8c0d2ba9c9c98bb17f3f44270ead64979186",
+      "response_exact": true,
+      "article_content_sha256": "d20f23cb967d4b1b4b16867a45f2cb4495c210dacfa6c748cee3ba2857616967"
+    },
+    {
+      "id": "sa_spa_order_a84_20240902",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2164448",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a84-20240902-facts.json",
+      "extract_sha256": "8895fbe80c98f170988db3b59cd01c34063b29504fd2737c550a894e1df98588",
+      "claim_ids": [
+        "sa_alsheikh_named_a84_20240902",
+        "sa_shura_term_start_20240906"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a84_20240902.bin",
+      "bytes": 16335,
+      "sha256": "c4bb09c0f7b57987c9fd0f86afe79e7c640c6c19ee1684b2d0ffc00c5a576c5e",
+      "response_exact": true,
+      "article_content_sha256": "51a2344a04f09d882762f0bdea5f565cd95efefd760e0d2ab713557f0f486619"
+    },
+    {
+      "id": "sa_uqn_order_a84_20240902",
+      "url": "https://web.archive.org/web/20240914235032id_/https://www.uqn.gov.sa/details?p=25419",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-uqn-order-a84-20240902-facts.json",
+      "extract_sha256": "f677b7a2382ab77b2d059c3f3630fa3313d86ab57fe8ee17dd136a838ae6c7e6",
+      "claim_ids": [
+        "sa_uqn_a84_20240902"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_uqn_order_a84_20240902.retry.bin",
+      "bytes": 52606,
+      "sha256": "be596fc3c805e4d171f6120a9a4315194f37d6df6a6f38928b22e7b36f30291f",
+      "response_exact": true
+    },
+    {
+      "id": "sa_spa_dateline_20240906",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2166760",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-dateline-20240906-facts.json",
+      "extract_sha256": "308d880390f680cbcd2974944f52ca341bdba9d3fd745eaa35317b06e18d5be7",
+      "claim_ids": [
+        "sa_calendar_14460303_20240906"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_dateline_20240906.bin",
+      "bytes": 1958,
+      "sha256": "fc5780cc8826c4b87e08a9f6f966d3ff6205cf0143534d6c052d0e10e100e37d",
+      "response_exact": true,
+      "article_content_sha256": "25a49397f84a960a60d9714574e25744c033a714f6f082045defa68e47cf601e"
+    },
+    {
+      "id": "sa_spa_ninth_term_opening_20240918",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2173497",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-ninth-term-opening-20240918-facts.json",
+      "extract_sha256": "5507c85f7edf7fa1016546f5a99eb028a0aaec1bf431a4ac57cb72ea65eebac0",
+      "claim_ids": [
+        "sa_ninth_term_opened_20240918",
+        "sa_alsheikh_oath_20240918"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_ninth_term_opening_20240918.bin",
+      "bytes": 31715,
+      "sha256": "aaaa65af49e60069ccef0f8140105d6b8d4e998dec20b744badd74cf20d18120",
+      "response_exact": true,
+      "article_content_sha256": "cbefc5db655fac4e5694c82b2dba9d59b7eb45809aa05c610c5316c041dcd321"
+    },
+    {
+      "id": "sa_spa_a135_statement_20061019",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/d3e3d43825",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-a135-statement-20061019-facts.json",
+      "extract_sha256": "6033751b77b4b46629a7fdfc034153f0db46126a24d3358a79596b4a5af89732",
+      "claim_ids": [
+        "sa_allegiance_law_a135_statement_20061019",
+        "sa_allegiance_law_a135_basic_law_5c",
+        "sa_allegiance_law_a135_future_cases"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_a135_statement_20061019.bin",
+      "bytes": 2636,
+      "sha256": "f1e7dcbd2d4d2acb3a1aaf3055a950e78c610b9b0bf9188175283a221c6c6987",
+      "response_exact": true,
+      "article_content_sha256": "fc70a1e9c1e5d6b2af777315648684eaf4ebb8ec1210671a6e10db335154f409"
+    },
+    {
+      "id": "sa_spa_a135_statement_resend_20061020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/888ccb60a4",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-a135-statement-resend-20061020-facts.json",
+      "extract_sha256": "5b054bc9582e7e47bfeb11b8ef4b4739ed518bca72285e4ce8180a57d02632ad",
+      "claim_ids": [
+        "sa_allegiance_law_a135_statement_yesterday_20061020"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_a135_statement_resend_20061020.bin",
+      "bytes": 2680,
+      "sha256": "ec092537bd01795e9a0000fbc59c85adead469138a8de3f3123ee89b0c1ba9fa",
+      "response_exact": true,
+      "article_content_sha256": "65c8ea94f49ee8d61b7ef56f08d39cbe7d830ca383d34b89179b205659fa51cc"
+    },
+    {
+      "id": "sa_spa_allegiance_law_arts1_5_20061020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/e99200adca",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-allegiance-law-arts1-5-20061020-facts.json",
+      "extract_sha256": "0b8fc890b9de041eb2b7ecc28d36abf04799106e90bfa4e26d9a2e6a879710d8",
+      "claim_ids": [
+        "sa_allegiance_law_art1_constitution",
+        "sa_allegiance_law_art5_oath"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_allegiance_law_arts1_5_20061020.bin",
+      "bytes": 3882,
+      "sha256": "5e65e69fb2b8cd68157f260ab7c4f5a2769d84a08b7075f745a2c43079fbb60c",
+      "response_exact": true,
+      "article_content_sha256": "49e0d08916b23bd2c8e2690c73f6ac46a5a1f0ff0cbaeaf7556fdfcc9ede729e"
+    },
+    {
+      "id": "sa_spa_allegiance_law_arts14_18_20061020",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/727f838436",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-allegiance-law-arts14-18-20061020-facts.json",
+      "extract_sha256": "d5c6404c7b2b7f49a301943755566a08a7885768ce379ad9c70be2a84801c6d7",
+      "claim_ids": [
+        "sa_allegiance_law_art15_chair_seniority",
+        "sa_allegiance_law_art17_chair_convenes"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_allegiance_law_arts14_18_20061020.bin",
+      "bytes": 3349,
+      "sha256": "1f499fbf81be1d817c8c4b9082efb0a513a6cd2d9344bbe3c684704ab0dc01d5",
+      "response_exact": true,
+      "article_content_sha256": "64bfd0c3e6e3b01c09e1261ed243067a5ebeb4a41f43a99d2cacb801fa0afd0e"
+    },
+    {
+      "id": "sa_spa_order_a164_statute_20071007",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/c9a039516c",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a164-statute-20071007-facts.json",
+      "extract_sha256": "d214a98d5e658c5cc10fbdd035801b753b6d45cb9982783bc8afce8d597a7437",
+      "claim_ids": [
+        "sa_allegiance_statute_a164_published_20071007"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a164_statute_20071007.bin",
+      "bytes": 2681,
+      "sha256": "242ba749e78bbfc7ce26ff0b4b63c8d5b47fe7821fb408533385063a83dd2621",
+      "response_exact": true,
+      "article_content_sha256": "92e3fac8f9d99d995d9cfadfb8b2961fb2bfc7de2935f483f1fe33529a649635"
+    },
+    {
+      "id": "sa_spa_statute_arts2_5_20071007",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/c6933762ab",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-statute-arts2-5-20071007-facts.json",
+      "extract_sha256": "921dd65606c98d13f6a064363f033f08ba01417052c0ca0315fc6bef0ff275db",
+      "claim_ids": [
+        "sa_allegiance_statute_art3_term",
+        "sa_allegiance_statute_art4_chair_committee"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_statute_arts2_5_20071007.bin",
+      "bytes": 2777,
+      "sha256": "d470638aac267e874f9d963f29852841c6234ce9f40a9ca6c76c9b2707ebf387",
+      "response_exact": true,
+      "article_content_sha256": "f9df17606c1b53c0015b97972f8fa0b7a48fd942d2b93076792d874bd23efbbc"
+    },
+    {
+      "id": "sa_spa_formation_reception_20071210",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/721b17bba0",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-formation-reception-20071210-facts.json",
+      "extract_sha256": "470d984eb2e5096190e523553fbd5d485ea639f6d99785b80cf5ea199f5409c2",
+      "claim_ids": [
+        "sa_allegiance_formation_reception_20071209"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_formation_reception_20071210.bin",
+      "bytes": 5273,
+      "sha256": "9e633a9d0800b727de5829244bc43dfbcda6eed5a046bbc74bf65fc4e836aa5a",
+      "response_exact": true,
+      "article_content_sha256": "fc7e4dddccfba0f4ac2a5c437265ddb0b540b56bb9a6465bf4cd298d3729be0a"
+    },
+    {
+      "id": "sa_spa_order_a180_20071210",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/b7c5304aa8",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a180-20071210-facts.json",
+      "extract_sha256": "b606a71a896a69a5e914fcd4299b9c65b111a665b7a8f0679201542a7759adbc",
+      "claim_ids": [
+        "sa_allegiance_formation_meeting_20071209",
+        "sa_mishaal_designated_a180_20071209"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a180_20071210.bin",
+      "bytes": 3753,
+      "sha256": "1c90e6b3bc107e706222bbf459ccdc18b1e0b3cff18328b8815cc231682db9b6",
+      "response_exact": true,
+      "article_content_sha256": "bc4e0a2df41f14ceef5e1cc4f5442b7298e2560adc008e0eaeb5e7616a46561a"
+    },
+    {
+      "id": "sa_spa_order_a180_members_20071210",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/185ac0e837",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a180-members-20071210-facts.json",
+      "extract_sha256": "279a34ea120d2a33336be02eec75e74c524ff0e105cc2110c2e19d2ed6cc7e3e",
+      "claim_ids": [
+        "sa_allegiance_a180_members_10_35_20071209"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a180_members_20071210.bin",
+      "bytes": 4312,
+      "sha256": "038405c42f1f075712d8ecf60c10825024241c98184ef29d4d10034e6e6aed57",
+      "response_exact": true,
+      "article_content_sha256": "62dc66cddc3295a104eebc68fcebf0832296d48056d108bed6b588de605ce684"
+    },
+    {
+      "id": "sa_spa_commission_oath_20071210",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/9e78c00c0a",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-commission-oath-20071210-facts.json",
+      "extract_sha256": "df89bcca4ee81934b1ce9d0595defe7c96d4435335e44d22c8d2036ce629eacf",
+      "claim_ids": [
+        "sa_allegiance_oath_20071209"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_commission_oath_20071210.bin",
+      "bytes": 1743,
+      "sha256": "a043bbda1af5890eb73955987569cf76e66d7317cbde87b120a83462943e60ab",
+      "response_exact": true,
+      "article_content_sha256": "1fdef39787f797c3acc5b4c128cce52bea2c18e323e5484d63fdf5214aae8e55"
+    },
+    {
+      "id": "sa_spa_order_a180_en_20071210",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/0b3bf053f5",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a180-en-20071210-facts.json",
+      "extract_sha256": "9a566ab971f98e7406a31cffba1a03be99eb35189b6027320d261a33f989fb37",
+      "claim_ids": [
+        "sa_a180_english_no_chair_title_20071210"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_order_a180_en_20071210.bin",
+      "bytes": 1879,
+      "sha256": "83887899cf905306a1259d87b5618efa63b48eaa05d7e73788482275554f4539",
+      "response_exact": true,
+      "article_content_sha256": "5fd63854fa0d3f7385f10d823c36d6652b938a6f8beae9486124aa738ae4e32a"
+    },
+    {
+      "id": "sa_spa_mishaal_statement_ar_20071211",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/ace867077a",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-statement-ar-20071211-facts.json",
+      "extract_sha256": "84d73e1c4613ef2520fcf26c4cd96fa2ec5e28e4ebb7626b29f272ba90d06822",
+      "claim_ids": [
+        "sa_mishaal_chair_thanks_20071211"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_statement_ar_20071211.bin",
+      "bytes": 5361,
+      "sha256": "7f42efd40e370b59a0c6581ffab4fafc8805ed9473f8a549d90aba539a30f1f8",
+      "response_exact": true,
+      "article_content_sha256": "24b5f81b538deca1a092481d2c311647b4431383724cac81db797bf671adc62e"
+    },
+    {
+      "id": "sa_spa_mishaal_statement_en_20071211",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/aa7fb4152a",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-statement-en-20071211-facts.json",
+      "extract_sha256": "e3c3e383b9a6189feb79f114fe56b368396a1c29b7cad1011ce72439a1ba8bf2",
+      "claim_ids": [
+        "sa_mishaal_chair_en_20071211"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_statement_en_20071211.bin",
+      "bytes": 1783,
+      "sha256": "98f18a8dc647a774e274bc19b922b7f57ca036d3bc13593dcff3ce0fe1a66338",
+      "response_exact": true,
+      "article_content_sha256": "a537d28f9b59c1c2c75559797fa0be123d5813cf809dc473198c2f049dc02541"
+    },
+    {
+      "id": "sa_spa_mishaal_interview_addition_20080630",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/3d24f87f04",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-interview-addition-20080630-facts.json",
+      "extract_sha256": "978e5308b6f3941f48ac59eb743c4771d6c8e556c39913e81f6a23056f8749f2",
+      "claim_ids": [
+        "sa_mishaal_on_appointment_art15_20080630"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_interview_addition_20080630.bin",
+      "bytes": 3779,
+      "sha256": "d84103dd96c2fd17b0bf22fb93d7a99a3311eee6514a86f9347b7215eaa7a1dc",
+      "response_exact": true,
+      "article_content_sha256": "a234ffa303cb80b848d617b148c86c2f71af8b9d5fe6b4a5e4835b4e0cf7be24"
+    },
+    {
+      "id": "sa_spa_mishaal_death_ar_20170503",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/aab2e2dbe6",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-death-ar-20170503-facts.json",
+      "extract_sha256": "ac74e829eeeebb9970155b15b12e4851615520f6ff00a298d42e13a77921c02e",
+      "claim_ids": [
+        "sa_mishaal_death_20170503"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_death_ar_20170503.bin",
+      "bytes": 1952,
+      "sha256": "8ac17b30878537fa9dc5ee9b2e61fa5b6ede184b84f0dab4dd5d6db00903a929",
+      "response_exact": true,
+      "article_content_sha256": "c94b0000eccc8472a799a300526f409309df417440a461a598f2460020e818e7"
+    },
+    {
+      "id": "sa_spa_mishaal_death_en_20170503",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/fd8a37a45b",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-death-en-20170503-facts.json",
+      "extract_sha256": "f608506f344e6e30e331c3eec6cdf41795fed8f2c658bcbfba66a76053cefab6",
+      "claim_ids": [
+        "sa_mishaal_death_en_20170503"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_death_en_20170503.bin",
+      "bytes": 1359,
+      "sha256": "6e032b8b4480a96e6f0356f8deec1014a71fc72ee1cbd7de5a3f05291d440da3",
+      "response_exact": true,
+      "article_content_sha256": "6fd75d5edf394ca9737ca9d281d5f2b8d1bec13294ebf2f5475758656f779e96"
+    },
+    {
+      "id": "sa_spa_mishaal_interview_20080630",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/8f4fcee598",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-interview-20080630-facts.json",
+      "extract_sha256": "dc1e1bff64de94fb8b74e22abc7d06f9dc172e179d3cada1b043eaa850f4d2a6",
+      "claim_ids": [
+        "sa_mishaal_chair_interview_20080630"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_interview_20080630.bin",
+      "bytes": 3557,
+      "sha256": "b37e3a28f86558e1fd5abfb27cf69374684e9cfd32383a8aa87fb18943d3a61e",
+      "response_exact": true,
+      "article_content_sha256": "a11da8a6e471cc6fca35c62384c1f7e133b66e50732e716778646adfc1a4a1a7"
+    },
+    {
+      "id": "sa_spa_mishaal_chair_obs_20151219",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/7fd56544f3",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mishaal-chair-obs-20151219-facts.json",
+      "extract_sha256": "18300d9274f852e1e2af2f879ba413783e967e780943af100e4b28de8999d8d6",
+      "claim_ids": [
+        "sa_mishaal_chair_obs_20151219"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_mishaal_chair_obs_20151219.bin",
+      "bytes": 2800,
+      "sha256": "e0a9e2136f0aa55d2ac8666e76c88496271c05b510158792cf98e83715da3a32",
+      "response_exact": true,
+      "article_content_sha256": "3717d1f324a77e93544f6c5286286ddfaa223b747c551aa290b0bcc3f7e1320c"
+    },
+    {
+      "id": "sa_spa_shura_chair_obs_20260906",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2669846",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-shura-chair-obs-20260906-facts.json",
+      "extract_sha256": "0cb1b4b44d9ad40dd0b0d15eabbb279a0e1144456d54d2115c2fc2d902ba35a4",
+      "claim_ids": [
+        "sa_shura_chair_obs_20260906"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_shura_chair_obs_20260906.bin",
+      "bytes": 2139,
+      "sha256": "cb446c354ac61f68225a5780406dc0d5bdb0c6b5dd34a82f40e9569d75b68352",
+      "response_exact": true,
+      "article_content_sha256": "74553863fb19a2bf05c02b01100a3dd267d75152156f46a6e7fd8d44e19d8050"
+    },
+    {
+      "id": "sa_spa_shura_chair_obs_20260907",
+      "url": "https://portalapi.spa.gov.sa/api/v1/news/N2670614",
+      "extract_path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-shura-chair-obs-20260907-facts.json",
+      "extract_sha256": "8a2e0755d5c9f9c44f1bab39544b59d2b3a14edfe8588af105edd72cc5cc9a89",
+      "claim_ids": [
+        "sa_shura_chair_obs_20260907"
+      ],
+      "content_status": "reviewed_material_claims_supported",
+      "body_path": "bodies/sa_spa_shura_chair_obs_20260907.bin",
+      "bytes": 2204,
+      "sha256": "9bccefa64e9aa651c080111fb8032dcf2088160a178a48fa2009b0fea82152d4",
+      "response_exact": true,
+      "article_content_sha256": "4560cb01b1ba95ee6e4cee143851a751e3521e673fec9731fa7653e3661acc11"
+    }
+  ]
+}

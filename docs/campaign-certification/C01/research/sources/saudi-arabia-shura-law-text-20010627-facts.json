@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_law_text_20010627",
+  "source_url": "https://web.archive.org/web/20010627024458id_/http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+  "original_url": "http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+  "archive_capture_utc": "2001-06-27T02:44:58Z",
+  "source_title": "نظام مجلس الشورى, the law as published on the Shura Council website (Internet Archive capture 20010627024458)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20010627024458id_/http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm",
+  "source_response_bytes": 48227,
+  "source_response_sha256": "f8cb0c1cc19f56f82fa9ff54ecd217b2fed7c3078a2be8bdd75f47448ce2b5e4",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:46:39Z and again at 2026-09-28T00:29:16Z, 42 minutes later; both identical (48227 bytes, SHA-256 f8cb0c1cc19f56f82fa9ff54ecd217b2fed7c3078a2be8bdd75f47448ce2b5e4).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20010627024458 of http://www.shura.gov.sa:80/ArabicSite/Alaw/alaw1.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Council's own 2001 copy of the law (Arabic as numeric character references under a windows-1252 meta charset). Procedure only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_site_law_a91_27_8_1412",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "promulgation",
+      "attested_on": null,
+      "text": "The Council's website reproduces the law under the heading of King Fahd's royal order number A/91 dated 27/8/1412 AH. Its clauses match the Bureau's text, including application within six months of publication and publication in the official gazette.",
+      "locator": "Page head (الرقم أ/91، التاريخ 27/8/1412هـ); clauses First to Fifth"
+    },
+    {
+      "claim_id": "sa_shura_site_law_art3_120_2001",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": "sa_shura_chair",
+      "holder_name": null,
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "As served in June 2001, Article 3 reads 'a Chairman and one hundred and twenty members chosen by the King'. Article 10 has the Chairman, his deputy and the Secretary-General appointed and relieved by royal orders; Article 11 requires the oath before the King before they begin work; Article 13 sets a four-Hijri-year term from the date in the forming order.",
+      "locator": "Articles 3, 10, 11 and 13"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

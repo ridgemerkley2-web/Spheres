@@ -1,0 +1,113 @@
+{
+  "submission": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+  "user_agent": "curl/8.16.0",
+  "accept_encoding": "identity",
+  "scope": "Response reproduction only; no content acceptance implied",
+  "total": 6,
+  "retrieved": 6,
+  "exact": 6,
+  "sources": [
+    {
+      "id": "sa_shura_cv_humaid_20020609",
+      "url": "https://web.archive.org/web/20020609224450id_/http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+      "accessed_utc": "2026-09-28T18:58:26.466673+00:00",
+      "expected_bytes": 9686,
+      "expected_sha256": "a24b110d9b4e833bf75b5b2e73d0c0bc301506ed461967cddb99af31f9a5c72a",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20020609224450id_/http://www.shura.gov.sa:80/ArabicSite/Acv/ResCV.asp?MemNo=1",
+      "content_type": "text/html",
+      "content_encoding": null,
+      "bytes": 9686,
+      "sha256": "a24b110d9b4e833bf75b5b2e73d0c0bc301506ed461967cddb99af31f9a5c72a",
+      "exact": true,
+      "body": "bodies/sa_shura_cv_humaid_20020609.final.bin"
+    },
+    {
+      "id": "sa_shura_magazine_p8_20020824",
+      "url": "https://web.archive.org/web/20020824014603id_/http://www.shura.gov.sa:80/arabicsite/majalah/8-1.htm",
+      "accessed_utc": "2026-09-28T18:58:27.158557+00:00",
+      "expected_bytes": 15258,
+      "expected_sha256": "51c93469aa2ec1c768433e4e3bcf289c4a15a5b26c7b46ecb2fc1117c57e1eaa",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20020824014603id_/http://www.shura.gov.sa:80/arabicsite/majalah/8-1.htm",
+      "content_type": "text/html",
+      "content_encoding": null,
+      "bytes": 15258,
+      "sha256": "51c93469aa2ec1c768433e4e3bcf289c4a15a5b26c7b46ecb2fc1117c57e1eaa",
+      "exact": true,
+      "body": "bodies/sa_shura_magazine_p8_20020824.final.bin"
+    },
+    {
+      "id": "sa_shura_magazine_p28_20020425",
+      "url": "https://web.archive.org/web/20020425022022id_/http://www.shura.gov.sa:80/arabicsite/majalah/28-1.htm",
+      "accessed_utc": "2026-09-28T18:58:28.647167+00:00",
+      "expected_bytes": 64110,
+      "expected_sha256": "38ac167f648a0c0c05cad23798f1cadbdc13f82d20feba26900868650dca3123",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20020425022022id_/http://www.shura.gov.sa:80/arabicsite/majalah/28-1.htm",
+      "content_type": "text/html",
+      "content_encoding": null,
+      "bytes": 64110,
+      "sha256": "38ac167f648a0c0c05cad23798f1cadbdc13f82d20feba26900868650dca3123",
+      "exact": true,
+      "body": "bodies/sa_shura_magazine_p28_20020425.final.bin"
+    },
+    {
+      "id": "sa_shura_news_20020401",
+      "url": "https://web.archive.org/web/20020401212232id_/http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+      "accessed_utc": "2026-09-28T18:58:29.285155+00:00",
+      "expected_bytes": 18782,
+      "expected_sha256": "9484876fb1de3805cb3313a3428050aff6a71f853f683e82e030b0ebd7055675",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20020401212232id_/http://shura.gov.sa:80/ArabicSite/Anews/Anews.htm",
+      "content_type": "text/html",
+      "content_encoding": null,
+      "bytes": 18782,
+      "sha256": "9484876fb1de3805cb3313a3428050aff6a71f853f683e82e030b0ebd7055675",
+      "exact": true,
+      "body": "bodies/sa_shura_news_20020401.final.bin"
+    },
+    {
+      "id": "sa_shura_cv_alsheikh_20260808",
+      "url": "https://web.archive.org/web/20260808032029id_/https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+      "accessed_utc": "2026-09-28T18:58:29.846647+00:00",
+      "expected_bytes": 60974,
+      "expected_sha256": "b44a27c228fd17253825edc5955f76b80da1655143881b3b1018bc0a8c84ef57",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20260808032029id_/https://www.shura.gov.sa/wps/wcm/connect/shuraarabic/internet/cv/abdullah%20bin%20ibrahim%20al%20al-sheikh/",
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "gzip",
+      "transport": {
+        "path": "bodies/sa_shura_cv_alsheikh_20260808.final.transport.gz",
+        "bytes": 15780,
+        "sha256": "4b9b72d3545d58e9a53ed2a3c4ddc6534585e2227f24b88de3a2eb141872edd2"
+      },
+      "identity_decode": "gzip transport decoded as explicitly specified by source extract",
+      "bytes": 60974,
+      "sha256": "b44a27c228fd17253825edc5955f76b80da1655143881b3b1018bc0a8c84ef57",
+      "exact": true,
+      "body": "bodies/sa_shura_cv_alsheikh_20260808.final.bin"
+    },
+    {
+      "id": "sa_shura_news_a54_20161202",
+      "url": "https://web.archive.org/web/20260820112847id_/https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+      "accessed_utc": "2026-09-28T18:58:31.064347+00:00",
+      "expected_bytes": 56416,
+      "expected_sha256": "bd339eae23a0c531cd5d14beaa8a9f9244a27565c0542f6187916e59979b6a7f",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20260820112847id_/https://www.shura.gov.sa/wps/wcm/connect/ShuraArabic/internet/News/3031438/",
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": "gzip",
+      "transport": {
+        "path": "bodies/sa_shura_news_a54_20161202.final.transport.gz",
+        "bytes": 18610,
+        "sha256": "45fdb04366f09e9e7c7bf8c7355204c7ad22233268099477314d53358ca43483"
+      },
+      "identity_decode": "gzip transport decoded as explicitly specified by source extract",
+      "bytes": 56416,
+      "sha256": "bd339eae23a0c531cd5d14beaa8a9f9244a27565c0542f6187916e59979b6a7f",
+      "exact": true,
+      "body": "bodies/sa_shura_news_a54_20161202.final.bin"
+    }
+  ]
+}

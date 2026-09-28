@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_hollande_declaration_20120515",
+  "source_url": "https://web.archive.org/web/20260618082345id_/https://www.elysee.fr/francois-hollande/2012/05/15/declaration-de-m-francois-hollande-president-de-la-republique-sur-son-projet-pour-la-france-a-paris-le-15-mai-2012",
+  "original_url": "https://www.elysee.fr/francois-hollande/2012/05/15/declaration-de-m-francois-hollande-president-de-la-republique-sur-son-projet-pour-la-france-a-paris-le-15-mai-2012",
+  "archive_capture_utc": "2026-06-18T08:23:45Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-05-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 203678,
+  "source_response_sha256": "b218534b505f0fbf827489ea83fc239ece0b4fc25b9032124645f131d7d7b029",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-18T08:23:45Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of the Élysée archive page, used in place of the live page, whose rotating menu blocks change the bytes. The text is marked 'Seul le prononcé fait foi'; the heading is a later catalogue label.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (document card and opening paragraphs); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_hollande_invested_statement_20120515",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François Hollande",
+      "role_title": "Président de la République",
+      "event_kind": "holder_assumption_statement",
+      "attested_on": "2012-05-15",
+      "text": "In the declaration dated 15 May 2012, headed as M. François Hollande's as President of the Republic, the speaker opens: 'En ce jour où je suis investi de la plus haute charge de l'État, j'adresse aux Français un message de confiance.'",
+      "locator": {
+        "html": "document card dated '15 mai 2012', first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

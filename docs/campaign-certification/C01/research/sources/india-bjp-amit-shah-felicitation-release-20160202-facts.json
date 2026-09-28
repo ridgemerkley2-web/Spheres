@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_amit_shah_felicitation_20160202",
+  "source_url": "https://web.archive.org/web/20160203091502id_/http://www.bjp.org/en/media-resources/press-releases/press-members-from-different-communities-felicitating-bjp-national-president-shri-amit-shah-at-11-ashok-road",
+  "original_url": "http://www.bjp.org/en/media-resources/press-releases/press-members-from-different-communities-felicitating-bjp-national-president-shri-amit-shah-at-11-ashok-road",
+  "archive_capture_utc": "2016-02-03T09:15:02Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2016-02-02",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 76078,
+  "source_response_sha256": "d8104fcf252978ce78732b4833f8e462d080b4cd5fcde3505dd71a46ce0e8f86",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2016-02-03T09:15:02Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part C check downloaded it at 00:36:06Z and 01:07:11Z on 28 September 2026, and this packet downloaded it at 02:17:17Z and 02:53:43Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's release, recorded as a raw Internet Archive capture of 3 February 2016. Imported on the Part C check, which downloaded it twice with identical bytes. The 2014-2016 bjp.org pages print the release's date line; the site template's current office-bearer sidebar is never used as evidence.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read). The Hindi body was read in the original Devanagari."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_amit_shah_styled_national_president_felicitation_20160202",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-08",
+      "role_id": "in_bjp_president",
+      "holder_name": "Amit Shah",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2016-02-02",
+      "text": "The party's release dated 'Tuesday, 02 February 2016' is headed 'Press : Members from different communities felicitating BJP National President, Shri Amit Shah at 11, Ashok Road', and its Hindi body says 'भारतीय जनता पार्टी के राष्ट्रीय अध्यक्ष श्री अमित शाह जी के दोबारा भाजपा अध्यक्ष मनोनीत होने पर आज, मंगलवार को' (today, Tuesday, on BJP National President Shri Amit Shah's being named BJP President again) organisations felicitated him at the central office.",
+      "locator": {
+        "section": "page heading, date line and first two lines of the Hindi body",
+        "language": "hi"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_shura_mourning_20020127",
+  "source_url": "https://web.archive.org/web/20020221033729id_/http://www.saudiembassy.net:80/press_release/02-spa/01-27-shura.htm",
+  "original_url": "http://www.saudiembassy.net:80/press_release/02-spa/01-27-shura.htm",
+  "archive_capture_utc": "2002-02-21T03:37:29Z",
+  "source_title": "Shura Council Mourns Death of Its Chairman (January 27, 2002)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-01-27",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020221033729id_/http://www.saudiembassy.net:80/press_release/02-spa/01-27-shura.htm",
+  "source_response_bytes": 1530,
+  "source_response_sha256": "465095988616e72fc243bb3b4993cbecb00428c8c57a7867ebdb58ab53388916",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:49:01Z and again at 2026-09-28T00:31:48Z, 42 minutes later; both identical (1530 bytes, SHA-256 465095988616e72fc243bb3b4993cbecb00428c8c57a7867ebdb58ab53388916).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020221033729 of http://www.saudiembassy.net:80/press_release/02-spa/01-27-shura.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/02-spa/; an official Saudi government publication in English, not the Arabic original. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_vice_chair_presides_20020127",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Bakri bin Salih Shatta",
+      "printed_name": "Bakri Shata",
+      "role_title": "نائب رئيس مجلس الشورى — Vice Chairman of the Shura Council (presiding)",
+      "event_kind": "acting_presiding",
+      "attested_on": "2002-01-27",
+      "text": "Release dated January 27, 2002: 'today's regular session of the Consultative Council ... presided over by Deputy Chairman Bakri Shata'; the Secretary-General read an obituary of 'the late Shaikh Muhammad bin Ibrahim bin Jubair, the Council's deceased chairman'.",
+      "locator": "Paragraph 1"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

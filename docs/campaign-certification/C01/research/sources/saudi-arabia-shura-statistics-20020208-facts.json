@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_statistics_20020208",
+  "source_url": "https://web.archive.org/web/20020208130801id_/http://www.shura.gov.sa:80/ArabicSite/Shnw/Shnw.htm",
+  "original_url": "http://www.shura.gov.sa:80/ArabicSite/Shnw/Shnw.htm",
+  "archive_capture_utc": "2002-02-08T13:08:01Z",
+  "source_title": "احصائيات وأعمال المجلس (Council statistics index), Shura Council website (Internet Archive capture 20020208130801)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020208130801id_/http://www.shura.gov.sa:80/ArabicSite/Shnw/Shnw.htm",
+  "source_response_bytes": 10951,
+  "source_response_sha256": "e4bbef934328a0e7617919f0521da385ad02138a7f76ae033a15a6a364c65605",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:49:33Z and again at 2026-09-28T00:32:20Z, 42 minutes later; both identical (10951 bytes, SHA-256 e4bbef934328a0e7617919f0521da385ad02138a7f76ae033a15a6a364c65605).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020208130801 of http://www.shura.gov.sa:80/ArabicSite/Shnw/Shnw.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Located by the independent check of part A. A retrospective index of the periods the Council counts; claims only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_term_years_listed",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The Council's statistics index lists the periods it counts: first term, first year, 20/7/1414 to 2/3/1415 AH, then yearly to the first term's fourth year, 3/3/1417 to 2/3/1418; the second term in four yearly rows from 3/3/1418 to 2/3/1422; and the third term's first year from 3/3/1422 AH (to 17/4/1422 when captured).",
+      "locator": "Rows under الموضوعات التي درسها المجلس ، ولجانه المتخصصة"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

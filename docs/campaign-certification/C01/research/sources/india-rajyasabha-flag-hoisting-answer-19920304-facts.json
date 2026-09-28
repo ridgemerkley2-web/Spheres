@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_written_answers_19920304_usq1067_flag_hoisting",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/16/41/10/164110164459151916782684350841764481651?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_162_04031992_U1067_p188-189.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_and_pages_rendered",
+  "source_response_bytes": 59344,
+  "source_response_sha256": "fc4df69aa85e1287999c6c70b43b7b16be3cb1a3465fe37492db7ec747fe807f",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body; the query sets only the served content type and file name. The Part A check downloaded it at about 02:51Z on 26 September 2026 and again with a cache-busting parameter, and this packet downloaded it at 01:41:12Z and 02:39:34Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/232559). Imported on the Part A check. The Hindi question and answer are a scanned image with no text layer; col. 189 prints the date line '[ 4 MAR. 1992 ]'.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 1 (cols 187-188) rendered by this packet and the Hindi question and answer in col. 188 read in the original Devanagari; page 2 (cols 189-190) read from its text layer for the date line."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_jacob_answer_bjp_president_joshi_flag_hoisting_19920304",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1992-03-04",
+      "text": "In the Hindi written answer to Unstarred Question 1067, headed 'भारतीय जनता पार्टी के अध्यक्ष द्वारा श्रीनगर में ध्वज फहराया जाना' (the flag hoisted at Srinagar by the President of the Bharatiya Janata Party), the Minister of State Shri M. M. Jacob says the Jammu and Kashmir Government reported that, because the road at Ramban was blocked, 'भारतीय जनता पार्टी के अध्यक्ष डा० मुरलीमनोहर जोशी' (the President of the Bharatiya Janata Party, Dr. Murli Manohar Joshi) had asked the State authorities to travel by air.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "188",
+        "item": "Unstarred Question 1067 (Hindi) and answer"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

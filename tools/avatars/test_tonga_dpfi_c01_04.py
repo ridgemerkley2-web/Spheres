@@ -213,7 +213,10 @@ class TongaDpfiTests(unittest.TestCase):
         stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18'),
                        ("Prince 'Ulukalala Lavaka Ata", '2006-02-11'),
                        # CLAUDE-C01-03: Sovaleni's resignation 'effective immediately' and its acceptance, 9 December 2024.
-                       ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09')}
+                       ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09'),
+                       # CLAUDE-C01-24: Veikune's Speakership 'ended on 25th January, 2006', as the PMO states, and the
+                       # revocation of Lasike's appointment 'effective immediately' by the letter of 17 July 2012.
+                       ('Hon. Veikune', '2006-01-25'), ('Lord Lasike', '2012-07-17')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 if entry['until'] is not None:
@@ -252,7 +255,16 @@ class TongaDpfiTests(unittest.TestCase):
         # Seat events, the 2025 poll and the executive member become nobody's holder observation.
         for role_id in ('to_peoples_representatives', 'to_ministers'):
             self.assertEqual(self.roles[role_id]['holder_claims'], [])
-        self.assertEqual(self.roles['to_speaker']['holder_claims'], ['to_speakers_appointment'])
+        # CLAUDE-C01-24 appends eleven dated Speaker observations after the string observation, which stays first and is
+        # the only string; none of them cites a claim of this packet.
+        speaker = self.roles['to_speaker']['holder_claims']
+        self.assertEqual(speaker[0], 'to_speakers_appointment')
+        self.assertEqual([h for h in speaker if isinstance(h, str)], ['to_speakers_appointment'])
+        self.assertEqual([h['name'] for h in speaker if isinstance(h, dict)], [
+            "Fusitu'a", 'Hon. Veikune', "Hon. Tu'ivakano", 'Hon. Veikune', "Lord Tu'ilakepa", 'Lord Lasike', 'Lord Fakafanua',
+            "Lord Tu'ivakano", 'Lord Fakafanua', 'Lord Fakafanua', 'Lord Vaea'])
+        for entry in speaker[1:]:
+            self.assertFalse(set(entry['claim_ids']) & NEW_CLAIMS, entry['name'])
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 for name in ('Sika', 'Siaosi Pohiva', 'Siaosi Vailahi', 'Piukala', 'Puloka', 'Fasi'):

@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_advani_opening_remarks_ne_19980411",
+  "source_url": "https://web.archive.org/web/19990202202118id_/http://bjp.org:80/news/nr3a13.htm",
+  "original_url": "http://bjp.org/news/nr3a13.htm",
+  "archive_capture_utc": "1999-02-02T20:21:18Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35726,
+  "source_response_sha256": "76916f4cc8e0f55f9d75025c5c125e89efafcf813a002e4c0e710da6fcf31904",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 1999-02-02T20:21:18Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:07:55Z and 03:48:53Z on 26 September 2026, and the Part B check again at 03:50:35Z and 04:28:02Z on 26 September 2026, and this packet downloaded it at 01:43:46Z and 02:39:57Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the opening remarks (archived Last-Modified Thu, 12 Nov 1998 14:44:57 GMT), recorded as a raw Internet Archive capture of 2 February 1999. The page's <title> element carries another item's heading ('Resolutions on BJP's election Victory, Government formation and the Tasks ahead'); its own heading reads 'BJP : National Executive meeting / Advani's opening remarks'. The page prints no publication date; the site's news index lists the item under 13 April 1998.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_advani_new_president_to_be_declared_next_week_19980411",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_stated_prospective",
+      "attested_on": "1998-04-11",
+      "text": "In his opening remarks to the National Executive on 11 April 1998 the speaker (named in the page heading only as 'Advani') says 'All the formalities of electing the new president will soon be over, and the Party's unanimous-but by no means anonymous-choice will be declared next week'; the new president is not named.",
+      "locator": {
+        "section": "heading 'Advani's opening remarks / BJP National Executive meeting held on 11 April, 1998'; paragraph beginning 'The new era the BJP is about to enter'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_advani_outgoing_president_last_ne_19980411",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "outgoing_president_statement",
+      "attested_on": "1998-04-11",
+      "text": "In the same remarks the speaker calls the meeting 'the last full-fledged meeting of the National Executive during my tenure as the Party president' and says 'I, as the outgoing president, pledge my fullest support and co-operation to my successor'.",
+      "locator": {
+        "section": "first paragraph and paragraph beginning 'The new era the BJP is about to enter'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

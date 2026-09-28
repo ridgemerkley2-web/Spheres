@@ -1,0 +1,256 @@
+{
+  "source_revision": "d8ac8b9d4e0d95e3a64f11cc675f9417e77f1099",
+  "commands": [
+    {
+      "name": "france",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_france*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:23.123934+00:00",
+      "finished_utc": "2026-09-28T19:10:25.871608+00:00",
+      "log": "france.log",
+      "bytes": 114,
+      "sha256": "1378fa71e5ba3590f37c212fcbbc794de4fdafd3e09806b7dac2ec606b29e8f3"
+    },
+    {
+      "name": "tonga",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tonga*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:25.907677+00:00",
+      "finished_utc": "2026-09-28T19:10:35.196456+00:00",
+      "log": "tonga.log",
+      "bytes": 183,
+      "sha256": "939d235a3be89f5d21fdeb2dd23befa59cd17b49dfd6c40451f18b46ffbcf7d7"
+    },
+    {
+      "name": "saudi",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_saudi*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:35.225695+00:00",
+      "finished_utc": "2026-09-28T19:10:37.306342+00:00",
+      "log": "saudi.log",
+      "bytes": 121,
+      "sha256": "09acd4136a9a73e12b7fb4de603b141dc6ab72007be8ce3aafdbe326dbce40c9"
+    },
+    {
+      "name": "india",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:37.344725+00:00",
+      "finished_utc": "2026-09-28T19:10:46.877213+00:00",
+      "log": "india.log",
+      "bytes": 150,
+      "sha256": "b5d4d3fb4c9333c92d4b0f8b4a9e5520cf2fa3166a6d3417b2dab5ef817ad72a"
+    },
+    {
+      "name": "research",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:46.956884+00:00",
+      "finished_utc": "2026-09-28T19:10:55.250025+00:00",
+      "log": "research.log",
+      "bytes": 183,
+      "sha256": "feb6f933828774d8de0e23ab3a90056869c7377ec2a72dc1862a373cad52e3c2"
+    },
+    {
+      "name": "importer",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_import_cnccfp_census.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:55.285757+00:00",
+      "finished_utc": "2026-09-28T19:10:57.150356+00:00",
+      "log": "importer.log",
+      "bytes": 114,
+      "sha256": "bd3899d1f6a206b46c7b58de7173bfcec46fa849cd600f3b4d94bab09f1d8edb"
+    },
+    {
+      "name": "campaign",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:57.185735+00:00",
+      "finished_utc": "2026-09-28T19:10:59.508448+00:00",
+      "log": "campaign.log",
+      "bytes": 120,
+      "sha256": "b0690044a0d40882a981eac457e8873bf8ec63c547222dfec7ce7b94dfbc5abc"
+    },
+    {
+      "name": "atlas",
+      "command": [
+        "node",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:59.538170+00:00",
+      "finished_utc": "2026-09-28T19:10:59.819015+00:00",
+      "log": "atlas.log",
+      "bytes": 1123,
+      "sha256": "a2f978f59b30954147c69408ae3e8a932eed9c049710518563e34a192f4d818d"
+    },
+    {
+      "name": "importer-check",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:10:59.854367+00:00",
+      "finished_utc": "2026-09-28T19:11:00.013376+00:00",
+      "log": "importer-check.log",
+      "bytes": 149,
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "name": "census",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:11:00.058850+00:00",
+      "finished_utc": "2026-09-28T19:11:00.515710+00:00",
+      "log": "census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "index",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:11:00.577343+00:00",
+      "finished_utc": "2026-09-28T19:11:01.497121+00:00",
+      "log": "index.log",
+      "bytes": 251,
+      "sha256": "08a0a1d2955493c7cfffc90c3336cee48ccb8614221859e77edb63ec4acbfadb"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-28T19:11:01.604785+00:00",
+      "finished_utc": "2026-09-28T19:11:01.725678+00:00",
+      "log": "workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "8d338dd2",
+        "HEAD"
+      ],
+      "exit_code": 2,
+      "started_utc": "2026-09-28T19:11:01.802500+00:00",
+      "finished_utc": "2026-09-28T19:11:01.899310+00:00",
+      "log": "diff.log",
+      "bytes": 14320,
+      "sha256": "e94d5f32e84e5c999968997bd562d70877de6d78b8a29ec332c61d30cd88e679"
+    }
+  ]
+}

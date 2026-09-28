@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_org_advani_profile_19961019",
+  "source_url": "https://web.archive.org/web/19961019165000id_/http://www.bjp.org:80/bjp/profiles/advani-1.html",
+  "original_url": "http://www.bjp.org/bjp/profiles/advani-1.html",
+  "archive_capture_utc": "1996-10-19T16:50:00Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3567,
+  "source_response_sha256": "463e92e7a0ac792268fed6c6718d9e187b1385a2a823e5f0c12d21db3cf38ad0",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 1996-10-19T16:50:00Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:13:19Z and 02:44:11Z on 26 September 2026, and the Part A check again at 02:47:05Z on 26 September 2026, and this packet downloaded it at 01:40:48Z and 02:39:06Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's profile of Advani (archived Last-Modified 4 August 1996), recorded as a raw Internet Archive capture of 19 October 1996. A retrospective biography: its term statements are claims, never boundaries. The 19 May 1998 copy of the profile (bjp.org/leader/advaniji.htm) repeats the sentence and is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_profile_advani_president_until_199101",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The party's website profile, as captured on 19 October 1996, says of Shri L.K. Advani: 'In 1986, he became the All India President, which post he held until January 1991'.",
+      "locator": {
+        "item": "section 'Bharatiya Janata Party', second sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

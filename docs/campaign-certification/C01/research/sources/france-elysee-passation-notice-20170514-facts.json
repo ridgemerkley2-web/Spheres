@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_passation_20170514",
+  "source_url": "https://web.archive.org/web/20260217204752id_/https://www.elysee.fr/emmanuel-macron/2017/05/14/passation-de-pouvoir-et-ceremonie-d-investiture",
+  "original_url": "https://www.elysee.fr/emmanuel-macron/2017/05/14/passation-de-pouvoir-et-ceremonie-d-investiture",
+  "archive_capture_utc": "2026-02-17T20:47:52Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 185153,
+  "source_response_sha256": "43ebb93cfe8df94d38d1418803bcefe033438c30a040331504a9d3fe303c90f2",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-02-17T20:47:52Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. The part C researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 31 to 85 minutes later; the part C check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 17 February 2026 of a one-sentence live-stream notice; the live page carries rotating blocks and is not a reproducible identity. Recorded once, as FR-PRES-06 context.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (a single sentence); the video was not used."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_elysee_passation_announced_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "handover_announced",
+      "attested_on": "2017-05-14",
+      "text": "On 14 May 2017 the Élysée announced: 'A partir de 10H, suivez en direct la passation de pouvoir, puis la cérémonie d'investiture du président Emmanuel Macron.'",
+      "locator": {
+        "item": "article body, single sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

@@ -1,0 +1,77 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_elib_party_document_vol10_evolution_of_bjp",
+  "source_url": "https://library.bjp.org/jspui/bitstream/123456789/275/2/Evolution%20of%20BJP%20-%20Full.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "party_repository_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 1409320,
+  "source_response_sha256": "2d33ba5938c217d67d1cbfc715a1b6b7c3d6dcb88307d090177f61ad0d79f6a4",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static bitstream on the Bharatiya Janata Party's e-Library (DSpace, library.bjp.org), served without Content-Encoding and with a fixed Last-Modified header, not generated per request. The research part downloaded it at 01:49:05Z, 02:16:41Z and 02:19:21Z on 26 September 2026, and the Part A check again at 02:46:44Z on 26 September 2026, and this packet downloaded it at 01:41:01Z and 02:39:22Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party compilation on the Bharatiya Janata Party's own e-Library (DSpace, library.bjp.org, item 123456789/275), served as a static bitstream without Content-Encoding (Last-Modified Fri, 31 Mar 2017 19:46:43 GMT; no ETag). The PDF was made in November 2016 (PDF CreationDate 8 November 2016); it reprints dated party texts, each under a printed heading giving the body, place and date. A party history (the e-Library metadata dates the work 2006), retrospective throughout: its statements are claims, never boundaries, and it has no list of presidents with dates.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      20,
+      21,
+      31,
+      40
+    ],
+    "method": "Text layer (InDesign text, not OCR; 306 pages; printed page = PDF page) read on the cited pages by this packet and searched for President, Advani and Joshi; the research part rendered and read pages 21, 31 and 40."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_evolution_advani_national_president_except_1991_93",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The party's history says 'In this period, Shri L.K. Advani except for about two years from 1991-93 led-BJP as National President'; the sentence follows one on the BJP-led government of 1998-2004, while the paragraph opens on the previous page with 'The period that followed 1985 to 1998'.",
+      "locator": {
+        "pdf_page": [
+          20,
+          21
+        ],
+        "printed_page": "20-21",
+        "item": "paragraph beginning 'The period that followed 1985 to 1998'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_evolution_joshi_president_1991_1993",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same history says 'From 1991 to 1993, Dr. Murli Manohar Joshi became the President of BJP'.",
+      "locator": {
+        "pdf_page": 31,
+        "printed_page": 31,
+        "item": "paragraph beginning 'From 1991 to 1993'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_evolution_advani_president_swarna_jayanti_yatra_19970518",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": "1997-05-18",
+      "text": "The same history says 'Shri L.K. Advani, President of BJP undertook the Swarna Jayanti Rath-Yatra from August Kranti Maidan, Mumbai on 18th May, 1997'.",
+      "locator": {
+        "pdf_page": 40,
+        "printed_page": 40,
+        "item": "paragraph beginning 'Shri L.K. Advani, President of BJP'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a180_20071210",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/b7c5304aa8",
+  "original_url": "https://www.spa.gov.sa/b7c5304aa8",
+  "portal_metadata": {
+    "uuid": "b7c5304aa8",
+    "locale": "ar",
+    "published_at_utc": "2007-12-10T05:51:40Z",
+    "date_hijri_field": "1428-11-30"
+  },
+  "title_as_published": "عام / خادم الحرمين الشريفين / استقبال إضافة أولى",
+  "source_title": "Royal Order A/180 constituting the Allegiance Commission, members 1-9 (first addition, 10 December 2007)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-12-10",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/b7c5304aa8",
+  "source_response_bytes": 3753,
+  "source_response_sha256": "1c90e6b3bc107e706222bbf459ccdc18b1e0b3cff18328b8815cc231682db9b6",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "bc4e0a2df41f14ceef5e1cc4f5442b7298e2560adc008e0eaeb5e7616a46561a",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:52:00Z and again at 2026-09-28T00:35:39Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3753 bytes, SHA-256 1c90e6b3bc107e706222bbf459ccdc18b1e0b3cff18328b8815cc231682db9b6).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/b7c5304aa8 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "First addition of the 10 December 2007 release (filed 08:51 Makkah time).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_formation_meeting_20071209",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-08",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "meeting",
+      "attested_on": "2007-12-09",
+      "text": "The recital of Royal Order A/180 refers to the meeting held on 29/11/1428 AH to complete the procedures for constituting the Allegiance Commission, attended by the sons of the founder and the sons of those of them who had died.",
+      "locator": "Royal Order A/180, recital"
+    },
+    {
+      "claim_id": "sa_mishaal_designated_a180_20071209",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-08",
+      "role_id": "sa_succession_chair",
+      "holder_name": "Mishaal bin Abdulaziz Al Saud",
+      "printed_name": "مشعل بن عبدالعزيز آل سعود",
+      "role_title": "رئيس هيئة البيعة — Chairman of the Allegiance Commission",
+      "event_kind": "commission_formation_naming_chair",
+      "attested_on": "2007-12-09",
+      "text": "Royal Order A/180 dated 29/11/1428 AH by King Abdullah, item First: the Allegiance Commission is constituted from the listed sons and grandsons of the founder, the first being 'صاحب السمو الملكي الأمير مشعل بن عبدالعزيز آل سعود رئيساً'.",
+      "locator": "Royal Order A/180, number and date, item First, entry 1; trailer 0851"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,127 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_dossier_documentaire_2017",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2017171pdr/2017171pdr_doc.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-10",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 161471,
+  "source_response_sha256": "72e4bb37912f73bc6bfe3399c04f83657104ee86124cbf7f58dee22ab14c6fce",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:48Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2017, ETag \"591336d2-276bf\"; embedded CreationDate 10 May 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. Issued with the 10 May 2017 proclamation. Its summary table 'Du scrutin à la prise de fonction' (page 8) and the formula entries (pages 11-12) are retrospective: each row is recorded as printed with no structured date and is never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      8,
+      11,
+      12
+    ],
+    "method": "Text layer of all 16 pages searched; pages 1, 8 and 12 rendered and read by the part B researcher; page 11 read from the text layer for this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_dossier2017_row_1988",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "Monsieur François Mitterrand",
+      "role_title": "Président de la République",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_date": "21 mai",
+      "text": "The summary table gives for 1988: second round '8 mai', Council decision '10 et 11 mai', date in the decision 'Le 21 mai à 0 heures', investiture or transfer-of-powers ceremony '21 mai'; the page 11 entry prints 'Cérémonie : 21 mai 1988' above decision no. 88-60 PDR proclaiming Monsieur François Mitterrand.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 1988",
+        "also": "pdf_page 11, entry '1988'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_dossier2017_row_1995",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_date": "17 mai",
+      "text": "The same table gives for 1995: second round '7 mai', decision '10, 11 et 12 mai', date in the decision 'Au plus tard le 21 mai à 0 heures', ceremony '17 mai'; the page 11 entry prints 'Cérémonie : 17 mai 1995' above decision no. 95-81 PDR proclaiming M. Jacques Chirac.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 1995",
+        "also": "pdf_page 11, entry '1995'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_dossier2017_row_2002",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-03",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_date": "16 mai",
+      "text": "The same table gives for 2002: second round '5 mai', decision '6, 7 et 8 mai', date in the decision 'A compter du 17 mai à 0 heures', ceremony '16 mai'; the page 11 entry prints 'Cérémonie : 16 mai 2002' above decision no. 2002-111 PDR of 8 May 2002 proclaiming M. Jacques Chirac 'à compter du 17 mai 2002 à 0 heure'.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 2002",
+        "also": "pdf_page 11, entry '2002'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_dossier2017_row_2007",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_date": "16 mai",
+      "text": "The same table gives for 2007: second round '6 mai', decision '7, 8 9 et 10 mai', date in the decision 'Au plus tard le 16 mai à 24 heures', ceremony '16 mai'; the page 12 entry prints 'Cérémonie : 16 mai 2007' above decision no. 2007-141 PDR proclaiming M. Nicolas SARKOZY.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 2007",
+        "also": "pdf_page 12, entry '2007'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_dossier2017_row_2012",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François HOLLANDE",
+      "role_title": "Président de la République",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_date": "15 mai",
+      "text": "The same table gives for 2012: second round '6 mai', decision '7, 8, 9 et 10 mai', date in the decision 'Au plus tard le 15 mai à 24 heures', ceremony '15 mai'; the page 12 entry prints 'Cérémonie : 15 mai 2012' above decision 2012-154 PDR proclaiming M. François HOLLANDE.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 2012",
+        "also": "pdf_page 12, entry '2012'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_dossier2017_2017_ceremony_pending_20170510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République",
+      "event_kind": "ceremony_pending_at_issue",
+      "attested_on": "2017-05-10",
+      "text": "As issued with the proclamation of 10 May 2017, the table's 2017 row has an empty ceremony cell and the page 12 entry prints 'Cérémonie : à venir' above decision 2017-171 PDR proclaiming M. Emmanuel MACRON elected.",
+      "locator": {
+        "pdf_page": 8,
+        "item": "table row 2017",
+        "also": "pdf_page 12, entry '2017'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

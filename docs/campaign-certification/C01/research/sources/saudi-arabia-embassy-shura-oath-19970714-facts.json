@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_shura_oath_19970714",
+  "source_url": "https://web.archive.org/web/19991005000525id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_3.html",
+  "original_url": "http://www.saudiembassy.net:80/press_release/97_spa/97_07_3.html",
+  "archive_capture_utc": "1999-10-05T00:05:25Z",
+  "source_title": "Week ending Friday, July 18 [1997]: King Fahd Swears In New Shura Council (07/14/97)",
+  "accessed_date": "2026-09-27",
+  "published_date": "1997-07-18",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/19991005000525id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_3.html",
+  "source_response_bytes": 7326,
+  "source_response_sha256": "c0c99c9f685ac6515e23a2c270b62ee4f8dd414605f50de98ef5992d2a1e3645",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:56:21Z and again at 2026-09-28T00:31:02Z, 34 minutes later; both identical (7326 bytes, SHA-256 c0c99c9f685ac6515e23a2c270b62ee4f8dd414605f50de98ef5992d2a1e3645).",
+  "provenance_note": "Raw Internet Archive capture (id_) 19991005000525 of http://www.saudiembassy.net:80/press_release/97_spa/97_07_3.html, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/97_spa/; an official Saudi government publication in English, not the Arabic original. A weekly page; published_date is its heading's week-ending day. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_oath_second_term_19970714",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "oath",
+      "attested_on": "1997-07-14",
+      "text": "Item dated July 14, 1997: King Fahd 'today received Chairman of the Shura Council Sheikh Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair', the Deputy Chairman, the Secretary-General and the members of the newly formed Council, 'who all swore an oath before him'.",
+      "locator": "Item KING FAHD SWEARS IN NEW SHURA COUNCIL, paragraph 1"
+    },
+    {
+      "claim_id": "sa_second_term_inaugurated_19970714",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_opening",
+      "attested_on": "1997-07-14",
+      "text": "The same item says King Fahd 'then proceeded to inaugurate the second term of the Council', and that in his speech Sheikh Ibn Jubair reviewed the first term and recalled the King's address at its inauguration.",
+      "locator": "Item KING FAHD SWEARS IN NEW SHURA COUNCIL, paragraphs 1-2"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

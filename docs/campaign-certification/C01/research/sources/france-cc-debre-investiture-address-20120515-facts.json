@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_debre_investiture_address_20120515",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/discours_interventions/2012/ceremonie_du_PR.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-05-15",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 9865,
+  "source_response_sha256": "f410fddf900598bb2156170d5065ed09315a03228d3fef0d10626b4b0c5d0719",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 16 May 2012, ETag \"4fb3bdfa-2689\"; embedded CreationDate 16 May 2012). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The page names neither the speaker nor the addressee; the Council's 2012 note links it as Jean-Louis Debré's address at the investiture of François Hollande.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single page rendered and read by the part B researcher and the check; text layer re-read."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_debre_2012_investiture_ceremony_20120515",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2012-05-15",
+      "text": "Address headed 'Cérémonie d'investiture', 'Palais de l'Elysée', '15 mai 2012', delivered to 'Monsieur le Président de la République', recalling that on 6 May 2012 'vous avez recueilli 18 000 668 voix' and that the Council proclaimed him elected 'le 10 mai dernier'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "heading and first two body paragraphs"
+      }
+    },
+    {
+      "claim_id": "fr_cc_debre_2012_from_this_day_20120515",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "start_stated_at_investiture",
+      "attested_on": "2012-05-15",
+      "text": "The address states that 'vous devenez ainsi le septième Président de la Cinquième République' and 'A compter de ce jour, 15 mai 2012, et pour la durée de votre mandat, vous incarnez la France, symbolisez la République et ses valeurs'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "first and second paragraphs after the second salutation 'Monsieur le Président de la République' (body paragraphs 3-4)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

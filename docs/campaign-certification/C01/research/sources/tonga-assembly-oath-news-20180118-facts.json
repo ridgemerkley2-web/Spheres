@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_mps_sworn_20180118",
+  "source_url": "https://web.archive.org/web/20180302230312id_/http://parliament.gov.to:80/media-centre/latest-news/latest-news-in-english/607-mps-take-oaths-of-office-today",
+  "original_url": "http://parliament.gov.to/media-centre/latest-news/latest-news-in-english/607-mps-take-oaths-of-office-today",
+  "archive_capture_utc": "2018-03-02T23:03:12Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2018-01-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 36585,
+  "source_response_sha256": "64fc85aa31068343783d860e07579bbd000536f3210189aca88e0a0ea80cc0b5",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-28T00:06:15Z and again at 2026-09-28T01:09:42Z (UTC), 63 minutes later, from the same URL: both responses were 36585 bytes with SHA-256 64fc85aa31068343783d860e07579bbd000536f3210189aca88e0a0ea80cc0b5. The raw id_ form replays the stored capture rather than generating a page per request. The researcher first recorded the same identity on 2026-09-26 (UTC) and the independent check re-downloaded it that day with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-03-02T23:03:12Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 18 January 2018' (raw Internet Archive capture of 2 March 2018). Only the oath and the Deputy Speaker's styling are used; the discussion of the Prime Minister's health is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and captions); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_speaker_fakafanua_sworn_news_20180118",
+      "observation_id": "to_legislative_assembly",
+      "review_observation": "TO-SPK-08",
+      "role_id": "to_speaker",
+      "holder_name": "Fakafanua",
+      "role_title": "Speaker",
+      "event_kind": "oath",
+      "attested_on": "2018-01-18",
+      "text": "The Assembly's news item created on 18 January 2018 reports that 'MEMBERS of Parliament including the Lord Speaker Fakafanua and the Hon. Prime Minister, 'Akilisi Pohiva were sworn into office today'; later in the same item 'Deputy Speaker Lord Tu'ilakepa' speaks in the debate.",
+      "locator": "Article header ('Created: 18 January 2018'); paragraphs 1 and 12",
+      "uncertainty": "The source prints the name only as 'the Lord Speaker Fakafanua'. The oath before the Assembly is its own event and not a start or holder date. It is not the Assembly's election of its Speaker after the 2017 election, and not a royal appointment, which no source retrieved for this packet dates."
+    }
+  ],
+  "bounded_scope": "Speaker observations for CLAUDE-C01-24 only (role to_speaker on the to_legislative_assembly observation). Royal appointment, the Assembly's election or recommendation of its Speaker, the oath, a resignation, a revocation, an acting or interim Speaker and a Deputy Speaker presiding stay separate rows; holder observations are decided in the packet, not by any row."
+}

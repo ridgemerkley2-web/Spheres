@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_nadda_letter_to_karyakartas_20230117",
+  "source_url": "https://web.archive.org/web/20230117215424id_/https://www.bjp.org/pressreleases/letter-honble-bjp-national-president-shri-jp-nadda-party-karyakartas",
+  "original_url": "https://www.bjp.org/pressreleases/letter-honble-bjp-national-president-shri-jp-nadda-party-karyakartas",
+  "archive_capture_utc": "2023-01-17T21:54:24Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2023-01-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 109764,
+  "source_response_sha256": "8bdac60556ae1e4b6b0bd8982fa4ae9f9a22c4366f9a7f9a2e9d86bd8d8030f9",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2023-01-17T21:54:24Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part C check downloaded it at 00:37:55Z and 01:09:04Z on 28 September 2026, and this packet downloaded it at 02:17:44Z and 02:54:14Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's release page (the letter itself is an image, not reused), recorded as a raw Internet Archive capture of 17 January 2023. Imported on the Part C check, which downloaded it twice with identical bytes. The 2023-2026 bjp.org release pages carry a template block ('SOCIAL STREAM') whose items are not the release's; only the dated release body is evidence.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_nadda_styled_national_president_letter_20230117",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-09",
+      "role_id": "in_bjp_president",
+      "holder_name": "J. P. Nadda",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2023-01-17",
+      "text": "The party's release page dated '17-01-2023' is headed 'Letter : Hon'ble BJP National President Shri J.P. Nadda to the Party Karyakartas', 'by Shri Jagat Prakash Nadda'.",
+      "locator": {
+        "section": "page title, heading, byline and date"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

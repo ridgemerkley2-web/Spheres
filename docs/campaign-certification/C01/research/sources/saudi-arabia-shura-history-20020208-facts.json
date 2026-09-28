@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_history_20020208",
+  "source_url": "https://web.archive.org/web/20020208141417id_/http://www.shura.gov.sa:80/ArabicSite/Maserah/Maserah.htm",
+  "original_url": "http://www.shura.gov.sa:80/ArabicSite/Maserah/Maserah.htm",
+  "archive_capture_utc": "2002-02-08T14:14:17Z",
+  "source_title": "مسيرة المجلس (The Council's journey), Shura Council website (Internet Archive capture 20020208141417)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020208141417id_/http://www.shura.gov.sa:80/ArabicSite/Maserah/Maserah.htm",
+  "source_response_bytes": 12434,
+  "source_response_sha256": "f4c71b31655d56f7ebc049aeaeaaab3d4c04a134042f45c085ced70a30325bf9",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:46:45Z and again at 2026-09-28T00:29:23Z, 42 minutes later; both identical (12434 bytes, SHA-256 f4c71b31655d56f7ebc049aeaeaaab3d4c04a134042f45c085ced70a30325bf9).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020208141417 of http://www.shura.gov.sa:80/ArabicSite/Maserah/Maserah.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective institutional history on the Council's own site. Claims only, never boundaries.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_history_fahd_speech_27_8_1412",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The Council's history page says King Fahd announced a new Shura Council system in a speech on 27/8/1412 AH, and describes a four-Hijri-year term, a first term of sixty members and a second term of a Chairman and ninety members.",
+      "locator": "Section on the Shura Council under King Fahd bin Abdulaziz"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

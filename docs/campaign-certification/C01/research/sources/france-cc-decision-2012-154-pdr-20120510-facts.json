@@ -1,0 +1,89 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_decision_2012_154_pdr",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2012proclamationPDR/2012proclamationPDR.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2012-05-10",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 24142,
+  "source_response_sha256": "3bad086522171386e47b7dd634e551001bc34ab395c8d481dc3de5ad79f94dc0",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 10 May 2012, ETag \"4fab7944-5e4e\"; embedded CreationDate 10 May 2012). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's HTML page for the same decision (2012154PDR.htm) is not recorded: one rendering per decision.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      4
+    ],
+    "method": "All five pages read from the text layer; pages 1 and 4 rendered and read by the part B researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_2012_cites_sarkozy_proclamation_20070510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République",
+      "event_kind": "proclamation_reference",
+      "attested_on": "2007-05-10",
+      "text": "Its visas cite 'la décision du Conseil constitutionnel du 10 mai 2007 proclamant M. Nicolas SARKOZY Président de la République et la date à laquelle celui-ci a pris ses fonctions'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "visa 'Vu la décision du Conseil constitutionnel du 10 mai 2007'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2012_second_round_20120505_20120506",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François HOLLANDE",
+      "role_title": "Président de la République française",
+      "event_kind": "election_round",
+      "attested_on": null,
+      "period": {
+        "from": "2012-05-05",
+        "through": "2012-05-06"
+      },
+      "text": "The decision states that the second round was held 'les 5 et 6 mai 2012' and records 46 066 307 registered electors, 34 861 353 votes cast, 18 000 668 for M. François HOLLANDE and 16 860 685 for M. Nicolas SARKOZY.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "ground 7"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2012_proclamation_hollande_20120510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-05",
+      "role_id": "fr_president",
+      "holder_name": "M. François HOLLANDE",
+      "role_title": "Président de la République française",
+      "event_kind": "result_proclamation",
+      "attested_on": "2012-05-10",
+      "text": "Deliberating at its sittings of 7, 8, 9 and 10 May 2012, the Council 'P R O C L A M E M. François HOLLANDE Président de la République française à compter de la cessation des fonctions de M. Nicolas SARKOZY'.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "dispositif 'P R O C L A M E'",
+        "also": "pdf_page 1 heading 'Décision du 10 mai 2012'; pdf_pages 4-5 deliberation line"
+      }
+    },
+    {
+      "claim_id": "fr_cc_2012_sarkozy_cessation_bound_20120510",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas SARKOZY",
+      "role_title": "Président de la République française",
+      "event_kind": "cessation_latest_bound_stated",
+      "attested_on": "2012-05-10",
+      "text": "The same sentence states that the cessation of M. Nicolas SARKOZY's functions 'en vertu de l'article 6 de la Constitution, aura lieu, au plus tard, le 15 mai 2012 à 24 heures'; the new President's term runs from that cessation.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "dispositif, sentence after 'P R O C L A M E'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

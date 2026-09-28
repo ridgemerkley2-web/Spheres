@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19911210_ekta_yatra_bjp_president",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/89/22/11/89221195727699565727282682252236236928?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_161_10121991_01_p223-228_1.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 83271,
+  "source_response_sha256": "16d162004276da02b0ad7259d74ef8ce3cd7c210aa3787a2b6a12a2bb6a4bf23",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body; the query sets only the served content type and file name. The research part downloaded it at 01:59:01Z, 02:22:14Z and 02:44:07Z on 26 September 2026, and the Part A check again at 02:46:48Z on 26 September 2026, and this packet downloaded it at 01:41:06Z and 02:39:28Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026; handle 123456789/233319). A member's statement in the House under the Secretariat's item heading; Parliament records are used only where they record the party office. The date is printed on col. 225 ('[10 DEC. 1991]').",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF page 1 (cols 223-224) rendered and read by the research part, including the item heading and Shri V. Narayanasamy's speech; pages 2 and 3 read from the text layer by this packet (page 2 prints '[10 DEC. 1991]'). The Hindi interventions on page 1 name Dr. Murli Manohar Joshi without calling him President and are not used."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_narayanasamy_ekta_yatra_bjp_president_joshi_19911210",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-12-10",
+      "text": "In the Rajya Sabha on 10 December 1991, under the item headed 'REGARDING \"EKTA YATRA\" BY B.J.P. PRESIDENT', Shri V. Narayanasamy (Pondicherry) asks the Home Minister 'to immediately stop this Ekta Yatra, by the BJP President, Dr. Murli Manohar Joshi'.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "223-224",
+        "item": "item heading and speech of SRI V. NARAYANASAMY (right-hand column)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_boe_shura_law_en_20250513",
+  "source_url": "https://web.archive.org/web/20250513164302id_/https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+  "original_url": "https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+  "archive_capture_utc": "2025-05-13T16:43:02Z",
+  "source_title": "Shura Council Law, Bureau of Experts official English translation (PDF), Internet Archive capture 20250513164302",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250513164302id_/https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+  "source_response_bytes": 261632,
+  "source_response_sha256": "a58d7c0036b7f5174f7a165b3c76a816774ea325672d101736a0e3f9850770cf",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:46:33Z and again at 2026-09-28T00:29:10Z, 42 minutes later; both identical (261632 bytes, SHA-256 a58d7c0036b7f5174f7a165b3c76a816774ea325672d101736a0e3f9850770cf).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20250513164302 of https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same download URL as the packet's existing sa_boe_shura_law, now fixed as a hashable pre-cutoff capture. The response identity is of this capture only; the consolidated text is not the 1992 wording.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      4
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1 (cover) and 4 (Articles 6-13) rendered with pypdfium2 and viewed for this packet; the text of pages 1-7 was extracted and read."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_law_en_cover_19920302",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-01",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "promulgation",
+      "attested_on": "1992-03-02",
+      "text": "The Bureau's official English translation cover prints 'Shura Council Law, Royal Decree No. A/91, March 2, 1992'. The consolidated text gives Article 3 as a chairman and 150 members with women at least 20 per cent, and its Article 10 covers the Chairman, Vice Chairman, Assistant Chairman and Secretary General.",
+      "locator": "PDF page 1 (cover); pages 3-4"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}
