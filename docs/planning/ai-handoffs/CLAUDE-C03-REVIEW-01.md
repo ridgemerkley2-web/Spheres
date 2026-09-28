@@ -1,7 +1,8 @@
 # CLAUDE-C03-REVIEW-01 — cartoon review workbench
 
-Owner: Claude. State: **queued**. Parent: C03, **preparation only**.
-Suggested branch: `claude/c03-review-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C03, **preparation only**.
+Branch: `claude/c03-review-01`. Base: `e41aa18d` (current `codex/campaign-certification`). Claim commit: this record's first commit on
+the branch. Touched paths: only the owned paths below. Next checkpoint: the standalone reviewer, asset check/export and a visibly reviewed six-to-eight-portrait sample, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
