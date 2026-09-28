@@ -15,8 +15,8 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     text:document.activeElement?.textContent?.trim().slice(0,120)||'',tag:document.activeElement?.tagName||'',
     visible:!!document.activeElement?.getClientRects().length,insideProvince:!!document.activeElement?.closest('#provinceDossier')}));
   async function expectFocus(locator,label){
-    assert(await locator.evaluate(el=>el===document.activeElement),label);
-    proof.focus.push({label,...await active()});
+    const observation={label,...await active()};proof.focus.push(observation);
+    assert(await locator.evaluate(el=>el===document.activeElement),label+'; active='+JSON.stringify(observation));
   }
   async function keyboardTo(locator,label){
     await locator.waitFor({state:'visible'});
