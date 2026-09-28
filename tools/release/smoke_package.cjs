@@ -115,6 +115,8 @@ async function main(argv=process.argv.slice(2)) {
   try {
     const verifier=path.join(__dirname,'verify_package.py');
     proof.extractor_sha256=fileHash(verifier);
+    const verifierImplementation=path.join(__dirname,'release_package.py');
+    proof.extractor_implementation_sha256=fileHash(verifierImplementation);
     const extracted=cp.spawnSync(process.env.SPHERES_PYTHON||'python',['-B',verifier,zip,path.join(out,'extracted'),'--report',path.join(out,'extraction.json')],
       {windowsHide:true,encoding:'utf8',maxBuffer:4*1024*1024,timeout:120000});
     fs.writeFileSync(path.join(out,'extraction.log'),(extracted.stdout||'')+(extracted.stderr||''));
@@ -229,6 +231,7 @@ async function main(argv=process.argv.slice(2)) {
     await campaigns(page);proof.recovered_save=await save(page,'package-recovered');const recovered=archive(path.join(root,'saves/package-recovered.json'));assert(recovered.normalized===a.normalized,'Backup recovery changed full campaign');proof.recovered_archive={...retain('archive-recovered',recovered),exact_except_saved_unix:true};
     assert.deepEqual(proof.blocked_requests,[],'Package attempted an external network dependency');assert.deepEqual(proof.errors,[]);assert.deepEqual(proof.http_errors,[]);assert.deepEqual(proof.console_errors,[]);
     assert.equal(fileHash(binary),proof.binary_sha256);assert.equal(fileHash(zip),proof.archive.sha256);assert.equal(fileHash(__filename),proof.driver_sha256);assert.equal(fileHash(verifier),proof.extractor_sha256);
+    assert.equal(fileHash(verifierImplementation),proof.extractor_implementation_sha256);
     for(const [name,hash] of Object.entries(packagePins))assert.equal(fileHash(path.join(root,name)),hash,'Package payload changed: '+name);
     proof.package_payload_unchanged=true;proof.passed=true;
   } catch(error) {
