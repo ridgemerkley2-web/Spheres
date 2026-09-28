@@ -7,14 +7,20 @@ G5, CP1 certification and worldwide character coverage remain open. S23 is next:
 
 ## Latest checkpoint — 28 September
 
-Codex is executing the user's independent engineering order: recovery, long-campaign
+Codex completed the user's independent engineering order: recovery, long-campaign
 stability, then packaging. **CODEX-S24-RECOVERY-01 is complete** with native, UI
 and actual five-boundary browser recovery evidence. **CODEX-S25-RUNNER-01 is
 complete**: both annual save/resume pilots and independent retained-evidence
-verification pass. **CODEX-S28-PACKAGE-01 is in progress**. These bounded tasks do not change canonical
+verification pass. **CODEX-S28-PACKAGE-01 is complete for tooling/local proof**:
+identical Windows packages and both extracted offline browser checks passed;
+the new Windows and Linux CI package jobs also passed on candidate `a2cf1dcc`.
+These bounded tasks do not change canonical
 S24/S25/S28 dependencies. [Scope](planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md)
 and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/README.md),
-plus the [stability runner and pilot](campaign-certification/S25/preparation/native-stability/README.md).
+plus the [stability runner and pilot](campaign-certification/S25/preparation/native-stability/README.md)
+and [portable release closeout](campaign-certification/S28/preparation/portable-release/README.md).
+The existing A1 political-calibration concentration gate remains failed under
+its unchanged limit; no complete CI or campaign qualification is claimed.
 
 | Area | Verified state | Next owner / action |
 |---|---|---|
@@ -30,7 +36,7 @@ plus the [stability runner and pilot](campaign-certification/S25/preparation/nat
 | Budget explanation repair | **CODEX-S24-BUDGET-01 complete.** Rate floor and sovereign risk are now shown separately. | [Native/UI/browser evidence](campaign-certification/S24/repairs/budget-rate-explanation/README.md), current runtime `52e1c2ab`; unchanged economic charges. |
 | E05 company pilot | **CLAUDE-E05-RESEARCH-01 complete as research preparation.** Eight dossiers, corrected validator and 61 tests. | [Review](campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md). 68/99 bodies retrieved (54 byte-exact, 14 changed); explicit claim-level content limits remain. No runtime installation. |
 | S26 human-playtest preparation | **CODEX-S26-PREP-01 complete.** Facilitator guide, eight-country plan and evidence/coverage validator; 23 synthetic tests pass. | [Kit](campaign-certification/S26/preparation/README.md). Zero actual human observations; S26 still awaits S24 and real participants. |
-| Pending Claude work | C01-23/24/25/27 await independent historical review. Japan branch C01-29 now has new submission `e0bb7a01`, noted but not accepted in this engineering pass. C01-28 preserves the active Russia claim. | Check Git between completed sections; avoid duplicate work. |
+| Pending Claude work | C01-23/24/25/27 await independent historical review. Japan C01-29 at `3b304785` passes 150 passing test executions; 35/54 original responses reproduced exactly, but 19 archived responses remain unavailable. Merge and historical acceptance are held. C01-28 preserves the active Russia claim. | [Japan review checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md); resume source review without duplicating research. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
@@ -76,7 +82,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification complete on its recorded candidate. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex completed ordinary later-outcome qualification; S19 is closed. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27 are submitted for review. C01 remains incomplete. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27/29 are submitted for review. C01 remains incomplete. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | S22 complete under the unchanged frozen protocol; Codex-owned S24 awaits Claude-owned S23 and its open C06 dependency. Claude retains bounded S24 successor-fixture preparation; Codex owns final qualification. G5 and CP1 remain unearned. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
@@ -103,8 +109,8 @@ review and submission rules. Suggested order for one worker:
 Each task has its own allowed files, deliverables and acceptance checks.
 All six listed deliveries are complete as bounded preparation after independent
 review and repairs, including S24 `5a23ebe0` and E05 `1fe45b2c`. Their review packets
-retain original failures, unsupported cases and source-verification limits. C01-28/29 are separately
-registered Russia/Japan research claims. This work does not complete historical
+retain original failures, unsupported cases and source-verification limits. C01-28 remains an active Russia research claim;
+C01-29 Japan is submitted and awaiting source-review completion. This work does not complete historical
 coverage. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
 44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
@@ -197,7 +203,8 @@ Copy this into Claude to resume its claimed sections:
 > Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
 > docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
 > `python tools/planning/workboard.py --tasks --owner Claude`. Start with
-> one of your existing active claims: C01-28 Russia or C01-29 Japan.
+> your existing active claim: C01-28 Russia. C01-29 Japan is submitted;
+> preserve it while Codex completes the recorded source review.
 > Skip all six completed expanded preparation deliveries.
 > Read that task's handoff, record your branch/base and claim, and build its bounded
 > deliverables with the required checks. The six new sections do not wait on unrelated

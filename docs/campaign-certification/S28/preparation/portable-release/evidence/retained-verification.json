@@ -1,0 +1,18 @@
+{
+  "scope": "Independent retained-byte verification; no native/browser reexecution",
+  "passed": true,
+  "checks": [
+    {
+      "run": "portable-smoke-01",
+      "archives": 4,
+      "complete_archive_pairs": 2,
+      "passed": true
+    },
+    {
+      "run": "portable-smoke-02",
+      "archives": 4,
+      "complete_archive_pairs": 2,
+      "passed": true
+    }
+  ]
+}

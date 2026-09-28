@@ -1,0 +1,11 @@
+{"cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-jp29", "parent_revision": "3b30478562ec78c2392d0472061e773e23cb25dd", "scope": "Working-tree bounded wording correction", "command": ["python", "-B", "-X", "utf8", "tools/avatars/campaign_research.py", "--check"], "started_utc": "2026-09-28T17:22:57.402131+00:00", "finished_utc": "2026-09-28T17:22:58.061663+00:00", "exit_code": 1}
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-jp29\tools\avatars\campaign_research.py", line 181, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-jp29\tools\avatars\campaign_research.py", line 174, in main
+    require(target.exists() and target.read_text(encoding='utf-8') == text, 'Research index differs from inputs')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-jp29\tools\avatars\campaign_research.py", line 29, in require
+    raise ValueError(message)
+ValueError: Research index differs from inputs

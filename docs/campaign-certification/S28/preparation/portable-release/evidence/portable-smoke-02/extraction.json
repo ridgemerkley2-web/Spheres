@@ -1,0 +1,996 @@
+{
+  "archive": {
+    "bytes": 360485340,
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\portable-package-01\\SPHERES-0.6.0-Windows.zip",
+    "sha256": "6e1bd2c9dccbb40ea8613519249bad9584b7cc4256fbf22868729f9c6abb32a4"
+  },
+  "extracted_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\portable-smoke-02\\extracted\\SPHERES-0.6.0-Windows",
+  "files_verified": 86,
+  "format": "spheres-package-verification/v1",
+  "manifest": {
+    "architecture": "x86_64",
+    "archive_method": "ZIP_STORED; fixed UTC build timestamp and modes",
+    "executable": {
+      "bytes": 358621116,
+      "path": "spheres-web.exe",
+      "sha256": "47b9698f42e7075f4c344d38995445e845d975d19e3e96de83a01b0ac4d88cf7"
+    },
+    "files": {
+      "ART_DIRECTION.md": {
+        "bytes": 4031,
+        "mode": "0644",
+        "sha256": "51cb6049f0b673e554602655b169762c4fa5cad6b79b56b80083045c923274af"
+      },
+      "CAMPAIGN_AIMS.md": {
+        "bytes": 3590,
+        "mode": "0644",
+        "sha256": "d346738b4f253a898c2f70795e08bf36c9272ae1d3cc2a42092a120bcc3402fc"
+      },
+      "CURRENT_ARCHITECTURE.md": {
+        "bytes": 5503,
+        "mode": "0644",
+        "sha256": "4ad02909831e66630caa42b2998f5e04df9dfcaa7f31773f19f9f5fd40974df9"
+      },
+      "DAILY_CALIBRATION.md": {
+        "bytes": 9644,
+        "mode": "0644",
+        "sha256": "36e100ac81ecd0422881927127eb5a8c9e399ac0fc80f341081b097f6ef02f2e"
+      },
+      "DECISIONS.md": {
+        "bytes": 2706,
+        "mode": "0644",
+        "sha256": "9857272253c64d50b5e337f5677503840fda2e4ad9e9f395a864f9ca2654f70b"
+      },
+      "HEADLESS_BASELINE_2026-09-04.md": {
+        "bytes": 4118,
+        "mode": "0644",
+        "sha256": "d920dd5172915e7852db673212b5611e853ccf08301c680b95de89bef948b0f4"
+      },
+      "INVESTMENT_COMPLETION_AUDIT.md": {
+        "bytes": 3051,
+        "mode": "0644",
+        "sha256": "807e6fd76d495b844a1f2d99bd154e33412c40e927fa95f1e5dac054ba5321bd"
+      },
+      "MANUFACTURING.md": {
+        "bytes": 32632,
+        "mode": "0644",
+        "sha256": "921abbab8b8a49b040436895ff8e7e38d2fb91448d89b4e8c09928fd4b76e275"
+      },
+      "MILITARY_OPERATIONS.md": {
+        "bytes": 8997,
+        "mode": "0644",
+        "sha256": "984e63d07625820b47dbd7e4db1fad5648b1124241601495a0185b3cf058753d"
+      },
+      "PERFORMANCE.md": {
+        "bytes": 7610,
+        "mode": "0644",
+        "sha256": "68cc14289221544cf685f0484cb5c3cbf67936880d46667d9a2e0b72bb2d82f4"
+      },
+      "PLAYER_DECISIONS.md": {
+        "bytes": 4118,
+        "mode": "0644",
+        "sha256": "d4e57d629a8d5d4ee3554c24470e37554470686fc689651fa758a32f6118557f"
+      },
+      "PLAYTEST.md": {
+        "bytes": 2854,
+        "mode": "0644",
+        "sha256": "dddc250f87a7ef35c8a3d3a4da040eb0d51780d1726484d361dfda241309a465"
+      },
+      "PROVINCE_ECONOMY.md": {
+        "bytes": 7924,
+        "mode": "0644",
+        "sha256": "b4984132928ddd239e31adf8cc461d84a7de9e60e1dfedac0cac5afa92bcbf91"
+      },
+      "Play SPHERES.cmd": {
+        "bytes": 155,
+        "mode": "0644",
+        "sha256": "b582fc6bdb4b024e5074bc0f079d3c786e4a18c764695848d88b64ab9db0caf3"
+      },
+      "README.md": {
+        "bytes": 9472,
+        "mode": "0644",
+        "sha256": "61d7561a419be37b5dbbadc0c981f665599bdbaf78b4f19a296d34d0f65b1bea"
+      },
+      "SECTOR_PROFILES.md": {
+        "bytes": 2367,
+        "mode": "0644",
+        "sha256": "71fecda5a3a571765d9be59dbae7b4f1f2e3bbffd59bced8820b889432c4e090"
+      },
+      "START-HERE.txt": {
+        "bytes": 1040,
+        "mode": "0644",
+        "sha256": "0c60f43d0c667c60c33d6db980a68e1d3b5250b517306ce72806499dfb932afa"
+      },
+      "TECH_REFERENCE_REPAIR.md": {
+        "bytes": 4040,
+        "mode": "0644",
+        "sha256": "15eca3b5a92f20114f272f4fc1e37b2577905dac38cef14ec7725bada2325782"
+      },
+      "attribution/areas/manifest.json": {
+        "bytes": 7592,
+        "mode": "0644",
+        "sha256": "5b696f404177d6935068f005b02ecaad4d9808f89e08315f5c764472812aaaae"
+      },
+      "attribution/areas/prompts/cabinet-v1.md": {
+        "bytes": 2131,
+        "mode": "0644",
+        "sha256": "373e509bfeab5b76a01c618b69822579d99d72c75216df7bd697feb1fb56b001"
+      },
+      "attribution/areas/prompts/campaign-v1.md": {
+        "bytes": 2070,
+        "mode": "0644",
+        "sha256": "d752d89ffa64212259bb5b81b8bc2ee0fda800065f78c7d9c2a027ad7c1e983b"
+      },
+      "attribution/areas/prompts/diplomacy-v1.md": {
+        "bytes": 2014,
+        "mode": "0644",
+        "sha256": "c8f1a1e3df89c7d9f772d15a6f73426e68e04a2bbab3c1df15567b5216fcdb4e"
+      },
+      "attribution/areas/prompts/history-v1.md": {
+        "bytes": 1943,
+        "mode": "0644",
+        "sha256": "ca74ab1965a5fac8e3c8bf5d56497c6e525024d05b0a4e656a24505fa1270dd0"
+      },
+      "attribution/areas/prompts/logistics-v1.md": {
+        "bytes": 1918,
+        "mode": "0644",
+        "sha256": "d0436cb22c38f36710719724569c495e45dd5ec0b1fb8f76bd9f71b4afee8470"
+      },
+      "attribution/areas/prompts/military-v1.md": {
+        "bytes": 2065,
+        "mode": "0644",
+        "sha256": "89a82617a99ac195cc5b9c868069cfd0e3b8acfc9845f5fb7142162c9d24add7"
+      },
+      "attribution/areas/prompts/production-v1.md": {
+        "bytes": 1950,
+        "mode": "0644",
+        "sha256": "ee82962838c8e0f2f31ab4519ccccab573de3f632b80db708b177e243aace2ef"
+      },
+      "attribution/areas/prompts/research-v1.md": {
+        "bytes": 1924,
+        "mode": "0644",
+        "sha256": "8b8486c41b54eb5b7190c826a734657fe077b2c124dc0b7f0a3192025787789d"
+      },
+      "attribution/areas/prompts/resources-v1.md": {
+        "bytes": 1983,
+        "mode": "0644",
+        "sha256": "cb8e06736bd4d4367e81bbe21d5fc13f646c8e09e555d53d22e287c89e665555"
+      },
+      "attribution/areas/prompts/treasury-v1.md": {
+        "bytes": 2033,
+        "mode": "0644",
+        "sha256": "8c1d6e58730b444b48a6f6d58f844e48f7dcbf76cf16eeba831b47299194ee65"
+      },
+      "attribution/artwork-source-policy.md": {
+        "bytes": 11210,
+        "mode": "0644",
+        "sha256": "e8ab7252d70e1d97efcfb00368d5b349da16b347fd3c4f85a42b44305d804dd6"
+      },
+      "attribution/broad-sector-observations.json": {
+        "bytes": 207082,
+        "mode": "0644",
+        "sha256": "6173ac1563ebd1312704491fc42461d25a4410b9f6e37c060620ac70938809ce"
+      },
+      "attribution/component-art.json": {
+        "bytes": 9438,
+        "mode": "0644",
+        "sha256": "bf04840ba130881c340ad40ee67d7490aeafab4e7ae27039c16ef8dac7c56ae2"
+      },
+      "attribution/display-derivatives.json": {
+        "bytes": 133156,
+        "mode": "0644",
+        "sha256": "afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb"
+      },
+      "attribution/fictional-portraits.json": {
+        "bytes": 7666,
+        "mode": "0644",
+        "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
+      },
+      "attribution/flag-icons-LICENSE": {
+        "bytes": 1087,
+        "mode": "0644",
+        "sha256": "8f1195d55a2fd315a07d812328470ca9ba2abb78c8d317ff19619d5125e00cea"
+      },
+      "attribution/height-detail.json": {
+        "bytes": 5636,
+        "mode": "0644",
+        "sha256": "a3bc9e6e2e5e9751add3228d0ce2e4719f2974b0b4228eb7f7178bdadf00ce22"
+      },
+      "attribution/historical-flag-sources.json": {
+        "bytes": 10374,
+        "mode": "0644",
+        "sha256": "f0768ce6fcb73b19d697da3b57f8a4ba0c47a4a1820764bcb8d2183ccdf75c72"
+      },
+      "attribution/lake-surfaces.json": {
+        "bytes": 3807,
+        "mode": "0644",
+        "sha256": "bf8c29d64866faaf02bc7fbba5482fe0882e11d5cfb9a9f3bb2d82ee5ce95522"
+      },
+      "attribution/model-viewer/GAINMAP-LICENSE": {
+        "bytes": 1065,
+        "mode": "0644",
+        "sha256": "7fb8f722609c6669a9c9a4865e2a86205c7760e7dc7a039b0fb9913c3e62c6cc"
+      },
+      "attribution/model-viewer/LICENSE": {
+        "bytes": 11358,
+        "mode": "0644",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      "attribution/model-viewer/LIT-LICENSE": {
+        "bytes": 1561,
+        "mode": "0644",
+        "sha256": "c94b94b40b85a5083dea825ae844b1cedb40dd425685362c135e143265dd6cd4"
+      },
+      "attribution/model-viewer/THREE-LICENSE": {
+        "bytes": 1081,
+        "mode": "0644",
+        "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+      },
+      "attribution/nation-figures-and-rights.json": {
+        "bytes": 408800,
+        "mode": "0644",
+        "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962"
+      },
+      "attribution/page-art.json": {
+        "bytes": 96093,
+        "mode": "0644",
+        "sha256": "7cffd10d6c1f8b3075c41259bec249d457b612aa52a05ca16bf2f5470e39738c"
+      },
+      "attribution/person-models.json": {
+        "bytes": 5038,
+        "mode": "0644",
+        "sha256": "97a3cee3505a798c84c9a925b982c822b295808446c4b0a2c9fa88a673343476"
+      },
+      "attribution/person-portraits.json": {
+        "bytes": 290378,
+        "mode": "0644",
+        "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d"
+      },
+      "attribution/rust-dependencies.json": {
+        "bytes": 11731,
+        "mode": "0644",
+        "sha256": "a913f5bb4175eff9d2401c578517cb47a6f5851784f854db28b192d5c945284c"
+      },
+      "attribution/rust/ascii-1.1.0-999d6abb9108/LICENSE-APACHE": {
+        "bytes": 11326,
+        "mode": "0644",
+        "sha256": "fabba0cb7d00a4b3211fdc13699223ab2d22f88678ccd608494cf2b332b903e9"
+      },
+      "attribution/rust/ascii-1.1.0-999d6abb9108/LICENSE-MIT": {
+        "bytes": 1132,
+        "mode": "0644",
+        "sha256": "7e4b8a17b118d3d7fd7a362a4b6563e0bd98b098a24c4c7f07dd22042091a847"
+      },
+      "attribution/rust/chunked_transfer-1.5.0-80103c5a0f8f/LICENSE-APACHE": {
+        "bytes": 10847,
+        "mode": "0644",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      "attribution/rust/chunked_transfer-1.5.0-80103c5a0f8f/LICENSE-MIT": {
+        "bytes": 1151,
+        "mode": "0644",
+        "sha256": "5eda8c6538e7d543efe31ebad3fc0e66a7c4df056ddb901a5bdfbf5ef397e116"
+      },
+      "attribution/rust/httpdate-1.0.3-a42d670b9e78/LICENSE-APACHE": {
+        "bytes": 10255,
+        "mode": "0644",
+        "sha256": "4d10fe5f3aa176b05b229a248866bad70b834c173f1252a814ff4748d8a13837"
+      },
+      "attribution/rust/httpdate-1.0.3-a42d670b9e78/LICENSE-MIT": {
+        "bytes": 1051,
+        "mode": "0644",
+        "sha256": "934887691e05d69d7c86ad3f2c360980fa30c15b035e351f3c9865e99da4debc"
+      },
+      "attribution/rust/itoa-1.0.18-b22a1f7a1210/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/itoa-1.0.18-b22a1f7a1210/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/log-0.4.33-5fef357e9f1d/LICENSE-APACHE": {
+        "bytes": 10847,
+        "mode": "0644",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      "attribution/rust/log-0.4.33-5fef357e9f1d/LICENSE-MIT": {
+        "bytes": 1071,
+        "mode": "0644",
+        "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+      },
+      "attribution/rust/memchr-2.8.3-9c6980a5a4f4/COPYING": {
+        "bytes": 126,
+        "mode": "0644",
+        "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+      },
+      "attribution/rust/memchr-2.8.3-9c6980a5a4f4/LICENSE-MIT": {
+        "bytes": 1081,
+        "mode": "0644",
+        "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+      },
+      "attribution/rust/proc-macro2-1.0.107-ccabd92ae666/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/proc-macro2-1.0.107-ccabd92ae666/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/quote-1.0.47-0f6442d57d05/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/quote-1.0.47-0f6442d57d05/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/serde-1.0.229-f2b8eb6ed833/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/serde-1.0.229-f2b8eb6ed833/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/serde_core-1.0.229-08cccc74f6fe/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/serde_core-1.0.229-08cccc74f6fe/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/serde_derive-1.0.229-db09cb763d5d/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/serde_derive-1.0.229-db09cb763d5d/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/serde_json-1.0.151-1923d23e1529/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/serde_json-1.0.151-1923d23e1529/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/syn-3.0.3-9e0d448f7f84/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/syn-3.0.3-9e0d448f7f84/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/tiny_http-0.12.0-f505e6459103/LICENSE-APACHE": {
+        "bytes": 10847,
+        "mode": "0644",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      "attribution/rust/tiny_http-0.12.0-f505e6459103/LICENSE-MIT": {
+        "bytes": 1075,
+        "mode": "0644",
+        "sha256": "e69bb98ae371fc43e5ef9cb1fc648762faf92edd93a8afd71411fac419b1b550"
+      },
+      "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-APACHE": {
+        "bytes": 9723,
+        "mode": "0644",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-UNICODE": {
+        "bytes": 1995,
+        "mode": "0644",
+        "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+      },
+      "attribution/rust/zmij-1.0.23-bfa809988001/LICENSE-MIT": {
+        "bytes": 1023,
+        "mode": "0644",
+        "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+      },
+      "attribution/terrain-sources.md": {
+        "bytes": 21840,
+        "mode": "0644",
+        "sha256": "1cdea0865111435d11d28185f698b06553dfaae8c29f50bf7dd6cff0806c881b"
+      },
+      "attribution/terrain-tiles/manifest.json": {
+        "bytes": 253962,
+        "mode": "0644",
+        "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b"
+      },
+      "source/Cargo.lock": {
+        "bytes": 9405,
+        "mode": "0644",
+        "sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56"
+      },
+      "source/SOURCE.json": {
+        "bytes": 12959,
+        "mode": "0644",
+        "sha256": "e2fa363b144f97d55b64acd69a5320593d1678808d8f73220d8f154d6a907deb"
+      },
+      "spheres-web.exe": {
+        "bytes": 358621116,
+        "mode": "0755",
+        "sha256": "47b9698f42e7075f4c344d38995445e845d975d19e3e96de83a01b0ac4d88cf7"
+      }
+    },
+    "format": "spheres-release/v1",
+    "launcher": "Play SPHERES.cmd",
+    "native_build_info": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790614460,
+      "full_revision": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49",
+      "revision": "a2cf1dcc3ee8",
+      "target_arch": "x86_64",
+      "target_os": "windows",
+      "version": "0.6.0"
+    },
+    "package_name": "SPHERES-0.6.0-Windows",
+    "platform": "windows",
+    "revision": "a2cf1dcc3ee89281547d820d3a3b010a67ae0d49",
+    "runtime_assets": {
+      "/": {
+        "bytes": 1144494,
+        "committed_sha256": "9a261f5dfe82d1270398b44c185b79ff1840a16006dfde38e4f80bc2294eb793",
+        "sha256": "9a261f5dfe82d1270398b44c185b79ff1840a16006dfde38e4f80bc2294eb793",
+        "source": "spheres-web/ui/index.html"
+      },
+      "/arsenal-models.js": {
+        "bytes": 456286,
+        "committed_sha256": "77f850c6be4a89978f478505a453d49e389fb7660b5e15d52bc420f0f6a08ef7",
+        "sha256": "ffafc27e63057b020d275b0963500b882be8583f8cae9e924b5cbd90edd4eddb",
+        "source": "spheres-web/ui/arsenal-models.js"
+      },
+      "/arsenal3d.js": {
+        "bytes": 58592,
+        "committed_sha256": "b8bed44c8fc052125b5b729e37f774be6cb42a96622c4b6893778643187aa938",
+        "sha256": "c5dac9ce0d40a609dc5d59265da789ba43effaa5ca8412bd58ff441da8edb7ab",
+        "source": "spheres-web/ui/arsenal3d.js"
+      },
+      "/art/pages/nation-selection-v1.webp": {
+        "bytes": 147710,
+        "committed_sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+        "sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+        "source": "spheres-web/ui/page-art/nation-selection-v1.webp"
+      },
+      "/art/pages/saved-campaigns-v1.webp": {
+        "bytes": 146948,
+        "committed_sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+        "sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+        "source": "spheres-web/ui/page-art/saved-campaigns-v1.webp"
+      },
+      "/art/pages/tank-designer-v1.webp": {
+        "bytes": 169266,
+        "committed_sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+        "sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+        "source": "spheres-web/ui/page-art/tank-designer-v1.webp"
+      },
+      "/campaign-transport.js": {
+        "bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "source": "spheres-web/ui/campaign-transport.js"
+      },
+      "/campaign-ui.js": {
+        "bytes": 13800,
+        "committed_sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+        "sha256": "329d1b599f2fa92d5e53bdd41609cd38412d3cd63ab5c1d881273f3b09514c1c",
+        "source": "spheres-web/ui/campaign-ui.js"
+      },
+      "/equipment-export.js": {
+        "bytes": 8868,
+        "committed_sha256": "4057adc8ae13d8c2c107b2fe7a797e8018b16a37adcc88a91a347604fb355475",
+        "sha256": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd",
+        "source": "spheres-web/ui/equipment-export.js"
+      },
+      "/equipment-mesh.js": {
+        "bytes": 180994,
+        "committed_sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+        "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+        "source": "spheres-web/ui/equipment-mesh.js"
+      },
+      "/equipment-model.js": {
+        "bytes": 47269,
+        "committed_sha256": "356403f2a135ca3ac12fa46de0483091d663cfa339de0c043fdb2a5201a03b82",
+        "sha256": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73",
+        "source": "spheres-web/ui/equipment-model.js"
+      },
+      "/equipment-ui.js": {
+        "bytes": 137072,
+        "committed_sha256": "af7aa8119cc55a9678bd4c595f422b87f7a391628abfa299fb754c6ea89c60a7",
+        "sha256": "e6ac4a3cee407491984c19de5cdff058d99a8fc8c6f8bf149f6936b84140b394",
+        "source": "spheres-web/ui/equipment-ui.js"
+      },
+      "/globe3d.js": {
+        "bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "source": "spheres-web/ui/globe3d.js"
+      },
+      "/height-detail.png": {
+        "bytes": 6258094,
+        "committed_sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a",
+        "sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a",
+        "source": "spheres-web/ui/height-detail.png"
+      },
+      "/relief.png": {
+        "bytes": 2856812,
+        "committed_sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6",
+        "sha256": "fb4e7512c4b5527c3f99f30e08279a85aab13bfc027d023579ef760d60a95ed6",
+        "source": "spheres-web/ui/relief.png"
+      },
+      "/terrain-tiles/manifest.json": {
+        "bytes": 253962,
+        "committed_sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+        "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+        "source": "spheres-web/ui/terrain-tiles/manifest.json"
+      },
+      "/terrain-tiles/x00_y00.png": {
+        "bytes": 8909,
+        "committed_sha256": "ccfed8f56803ca69be3981fe9ab84a211363d7bf7310ef0a48e281dc072215b3",
+        "sha256": "ccfed8f56803ca69be3981fe9ab84a211363d7bf7310ef0a48e281dc072215b3",
+        "source": "spheres-web/ui/terrain-tiles/x00_y00.png"
+      }
+    },
+    "short_revision": "a2cf1dcc3ee8",
+    "source_repository": "https://github.com/ridgemerkley2-web/Spheres",
+    "version": "0.6.0"
+  },
+  "package_name": "SPHERES-0.6.0-Windows",
+  "passed": true,
+  "verified_files": {
+    "ART_DIRECTION.md": {
+      "bytes": 4031,
+      "mode": 420,
+      "sha256": "51cb6049f0b673e554602655b169762c4fa5cad6b79b56b80083045c923274af"
+    },
+    "CAMPAIGN_AIMS.md": {
+      "bytes": 3590,
+      "mode": 420,
+      "sha256": "d346738b4f253a898c2f70795e08bf36c9272ae1d3cc2a42092a120bcc3402fc"
+    },
+    "CURRENT_ARCHITECTURE.md": {
+      "bytes": 5503,
+      "mode": 420,
+      "sha256": "4ad02909831e66630caa42b2998f5e04df9dfcaa7f31773f19f9f5fd40974df9"
+    },
+    "DAILY_CALIBRATION.md": {
+      "bytes": 9644,
+      "mode": 420,
+      "sha256": "36e100ac81ecd0422881927127eb5a8c9e399ac0fc80f341081b097f6ef02f2e"
+    },
+    "DECISIONS.md": {
+      "bytes": 2706,
+      "mode": 420,
+      "sha256": "9857272253c64d50b5e337f5677503840fda2e4ad9e9f395a864f9ca2654f70b"
+    },
+    "HEADLESS_BASELINE_2026-09-04.md": {
+      "bytes": 4118,
+      "mode": 420,
+      "sha256": "d920dd5172915e7852db673212b5611e853ccf08301c680b95de89bef948b0f4"
+    },
+    "INVESTMENT_COMPLETION_AUDIT.md": {
+      "bytes": 3051,
+      "mode": 420,
+      "sha256": "807e6fd76d495b844a1f2d99bd154e33412c40e927fa95f1e5dac054ba5321bd"
+    },
+    "MANUFACTURING.md": {
+      "bytes": 32632,
+      "mode": 420,
+      "sha256": "921abbab8b8a49b040436895ff8e7e38d2fb91448d89b4e8c09928fd4b76e275"
+    },
+    "MILITARY_OPERATIONS.md": {
+      "bytes": 8997,
+      "mode": 420,
+      "sha256": "984e63d07625820b47dbd7e4db1fad5648b1124241601495a0185b3cf058753d"
+    },
+    "PERFORMANCE.md": {
+      "bytes": 7610,
+      "mode": 420,
+      "sha256": "68cc14289221544cf685f0484cb5c3cbf67936880d46667d9a2e0b72bb2d82f4"
+    },
+    "PLAYER_DECISIONS.md": {
+      "bytes": 4118,
+      "mode": 420,
+      "sha256": "d4e57d629a8d5d4ee3554c24470e37554470686fc689651fa758a32f6118557f"
+    },
+    "PLAYTEST.md": {
+      "bytes": 2854,
+      "mode": 420,
+      "sha256": "dddc250f87a7ef35c8a3d3a4da040eb0d51780d1726484d361dfda241309a465"
+    },
+    "PROVINCE_ECONOMY.md": {
+      "bytes": 7924,
+      "mode": 420,
+      "sha256": "b4984132928ddd239e31adf8cc461d84a7de9e60e1dfedac0cac5afa92bcbf91"
+    },
+    "Play SPHERES.cmd": {
+      "bytes": 155,
+      "mode": 420,
+      "sha256": "b582fc6bdb4b024e5074bc0f079d3c786e4a18c764695848d88b64ab9db0caf3"
+    },
+    "README.md": {
+      "bytes": 9472,
+      "mode": 420,
+      "sha256": "61d7561a419be37b5dbbadc0c981f665599bdbaf78b4f19a296d34d0f65b1bea"
+    },
+    "SECTOR_PROFILES.md": {
+      "bytes": 2367,
+      "mode": 420,
+      "sha256": "71fecda5a3a571765d9be59dbae7b4f1f2e3bbffd59bced8820b889432c4e090"
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 9077,
+      "mode": 420,
+      "sha256": "966acb8fdb6fed4d56aad73015fd502f61d28b1d5bcac2598202652adc2009cb"
+    },
+    "START-HERE.txt": {
+      "bytes": 1040,
+      "mode": 420,
+      "sha256": "0c60f43d0c667c60c33d6db980a68e1d3b5250b517306ce72806499dfb932afa"
+    },
+    "TECH_REFERENCE_REPAIR.md": {
+      "bytes": 4040,
+      "mode": 420,
+      "sha256": "15eca3b5a92f20114f272f4fc1e37b2577905dac38cef14ec7725bada2325782"
+    },
+    "attribution/areas/manifest.json": {
+      "bytes": 7592,
+      "mode": 420,
+      "sha256": "5b696f404177d6935068f005b02ecaad4d9808f89e08315f5c764472812aaaae"
+    },
+    "attribution/areas/prompts/cabinet-v1.md": {
+      "bytes": 2131,
+      "mode": 420,
+      "sha256": "373e509bfeab5b76a01c618b69822579d99d72c75216df7bd697feb1fb56b001"
+    },
+    "attribution/areas/prompts/campaign-v1.md": {
+      "bytes": 2070,
+      "mode": 420,
+      "sha256": "d752d89ffa64212259bb5b81b8bc2ee0fda800065f78c7d9c2a027ad7c1e983b"
+    },
+    "attribution/areas/prompts/diplomacy-v1.md": {
+      "bytes": 2014,
+      "mode": 420,
+      "sha256": "c8f1a1e3df89c7d9f772d15a6f73426e68e04a2bbab3c1df15567b5216fcdb4e"
+    },
+    "attribution/areas/prompts/history-v1.md": {
+      "bytes": 1943,
+      "mode": 420,
+      "sha256": "ca74ab1965a5fac8e3c8bf5d56497c6e525024d05b0a4e656a24505fa1270dd0"
+    },
+    "attribution/areas/prompts/logistics-v1.md": {
+      "bytes": 1918,
+      "mode": 420,
+      "sha256": "d0436cb22c38f36710719724569c495e45dd5ec0b1fb8f76bd9f71b4afee8470"
+    },
+    "attribution/areas/prompts/military-v1.md": {
+      "bytes": 2065,
+      "mode": 420,
+      "sha256": "89a82617a99ac195cc5b9c868069cfd0e3b8acfc9845f5fb7142162c9d24add7"
+    },
+    "attribution/areas/prompts/production-v1.md": {
+      "bytes": 1950,
+      "mode": 420,
+      "sha256": "ee82962838c8e0f2f31ab4519ccccab573de3f632b80db708b177e243aace2ef"
+    },
+    "attribution/areas/prompts/research-v1.md": {
+      "bytes": 1924,
+      "mode": 420,
+      "sha256": "8b8486c41b54eb5b7190c826a734657fe077b2c124dc0b7f0a3192025787789d"
+    },
+    "attribution/areas/prompts/resources-v1.md": {
+      "bytes": 1983,
+      "mode": 420,
+      "sha256": "cb8e06736bd4d4367e81bbe21d5fc13f646c8e09e555d53d22e287c89e665555"
+    },
+    "attribution/areas/prompts/treasury-v1.md": {
+      "bytes": 2033,
+      "mode": 420,
+      "sha256": "8c1d6e58730b444b48a6f6d58f844e48f7dcbf76cf16eeba831b47299194ee65"
+    },
+    "attribution/artwork-source-policy.md": {
+      "bytes": 11210,
+      "mode": 420,
+      "sha256": "e8ab7252d70e1d97efcfb00368d5b349da16b347fd3c4f85a42b44305d804dd6"
+    },
+    "attribution/broad-sector-observations.json": {
+      "bytes": 207082,
+      "mode": 420,
+      "sha256": "6173ac1563ebd1312704491fc42461d25a4410b9f6e37c060620ac70938809ce"
+    },
+    "attribution/component-art.json": {
+      "bytes": 9438,
+      "mode": 420,
+      "sha256": "bf04840ba130881c340ad40ee67d7490aeafab4e7ae27039c16ef8dac7c56ae2"
+    },
+    "attribution/display-derivatives.json": {
+      "bytes": 133156,
+      "mode": 420,
+      "sha256": "afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb"
+    },
+    "attribution/fictional-portraits.json": {
+      "bytes": 7666,
+      "mode": 420,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
+    },
+    "attribution/flag-icons-LICENSE": {
+      "bytes": 1087,
+      "mode": 420,
+      "sha256": "8f1195d55a2fd315a07d812328470ca9ba2abb78c8d317ff19619d5125e00cea"
+    },
+    "attribution/height-detail.json": {
+      "bytes": 5636,
+      "mode": 420,
+      "sha256": "a3bc9e6e2e5e9751add3228d0ce2e4719f2974b0b4228eb7f7178bdadf00ce22"
+    },
+    "attribution/historical-flag-sources.json": {
+      "bytes": 10374,
+      "mode": 420,
+      "sha256": "f0768ce6fcb73b19d697da3b57f8a4ba0c47a4a1820764bcb8d2183ccdf75c72"
+    },
+    "attribution/lake-surfaces.json": {
+      "bytes": 3807,
+      "mode": 420,
+      "sha256": "bf8c29d64866faaf02bc7fbba5482fe0882e11d5cfb9a9f3bb2d82ee5ce95522"
+    },
+    "attribution/model-viewer/GAINMAP-LICENSE": {
+      "bytes": 1065,
+      "mode": 420,
+      "sha256": "7fb8f722609c6669a9c9a4865e2a86205c7760e7dc7a039b0fb9913c3e62c6cc"
+    },
+    "attribution/model-viewer/LICENSE": {
+      "bytes": 11358,
+      "mode": 420,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "attribution/model-viewer/LIT-LICENSE": {
+      "bytes": 1561,
+      "mode": 420,
+      "sha256": "c94b94b40b85a5083dea825ae844b1cedb40dd425685362c135e143265dd6cd4"
+    },
+    "attribution/model-viewer/THREE-LICENSE": {
+      "bytes": 1081,
+      "mode": 420,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    "attribution/nation-figures-and-rights.json": {
+      "bytes": 408800,
+      "mode": 420,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962"
+    },
+    "attribution/page-art.json": {
+      "bytes": 96093,
+      "mode": 420,
+      "sha256": "7cffd10d6c1f8b3075c41259bec249d457b612aa52a05ca16bf2f5470e39738c"
+    },
+    "attribution/person-models.json": {
+      "bytes": 5038,
+      "mode": 420,
+      "sha256": "97a3cee3505a798c84c9a925b982c822b295808446c4b0a2c9fa88a673343476"
+    },
+    "attribution/person-portraits.json": {
+      "bytes": 290378,
+      "mode": 420,
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d"
+    },
+    "attribution/rust-dependencies.json": {
+      "bytes": 11731,
+      "mode": 420,
+      "sha256": "a913f5bb4175eff9d2401c578517cb47a6f5851784f854db28b192d5c945284c"
+    },
+    "attribution/rust/ascii-1.1.0-999d6abb9108/LICENSE-APACHE": {
+      "bytes": 11326,
+      "mode": 420,
+      "sha256": "fabba0cb7d00a4b3211fdc13699223ab2d22f88678ccd608494cf2b332b903e9"
+    },
+    "attribution/rust/ascii-1.1.0-999d6abb9108/LICENSE-MIT": {
+      "bytes": 1132,
+      "mode": 420,
+      "sha256": "7e4b8a17b118d3d7fd7a362a4b6563e0bd98b098a24c4c7f07dd22042091a847"
+    },
+    "attribution/rust/chunked_transfer-1.5.0-80103c5a0f8f/LICENSE-APACHE": {
+      "bytes": 10847,
+      "mode": 420,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    "attribution/rust/chunked_transfer-1.5.0-80103c5a0f8f/LICENSE-MIT": {
+      "bytes": 1151,
+      "mode": 420,
+      "sha256": "5eda8c6538e7d543efe31ebad3fc0e66a7c4df056ddb901a5bdfbf5ef397e116"
+    },
+    "attribution/rust/httpdate-1.0.3-a42d670b9e78/LICENSE-APACHE": {
+      "bytes": 10255,
+      "mode": 420,
+      "sha256": "4d10fe5f3aa176b05b229a248866bad70b834c173f1252a814ff4748d8a13837"
+    },
+    "attribution/rust/httpdate-1.0.3-a42d670b9e78/LICENSE-MIT": {
+      "bytes": 1051,
+      "mode": 420,
+      "sha256": "934887691e05d69d7c86ad3f2c360980fa30c15b035e351f3c9865e99da4debc"
+    },
+    "attribution/rust/itoa-1.0.18-b22a1f7a1210/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/itoa-1.0.18-b22a1f7a1210/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/log-0.4.33-5fef357e9f1d/LICENSE-APACHE": {
+      "bytes": 10847,
+      "mode": 420,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    "attribution/rust/log-0.4.33-5fef357e9f1d/LICENSE-MIT": {
+      "bytes": 1071,
+      "mode": 420,
+      "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    },
+    "attribution/rust/memchr-2.8.3-9c6980a5a4f4/COPYING": {
+      "bytes": 126,
+      "mode": 420,
+      "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    },
+    "attribution/rust/memchr-2.8.3-9c6980a5a4f4/LICENSE-MIT": {
+      "bytes": 1081,
+      "mode": 420,
+      "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    },
+    "attribution/rust/proc-macro2-1.0.107-ccabd92ae666/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/proc-macro2-1.0.107-ccabd92ae666/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/quote-1.0.47-0f6442d57d05/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/quote-1.0.47-0f6442d57d05/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/serde-1.0.229-f2b8eb6ed833/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/serde-1.0.229-f2b8eb6ed833/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/serde_core-1.0.229-08cccc74f6fe/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/serde_core-1.0.229-08cccc74f6fe/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/serde_derive-1.0.229-db09cb763d5d/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/serde_derive-1.0.229-db09cb763d5d/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/serde_json-1.0.151-1923d23e1529/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/serde_json-1.0.151-1923d23e1529/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/syn-3.0.3-9e0d448f7f84/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/syn-3.0.3-9e0d448f7f84/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/tiny_http-0.12.0-f505e6459103/LICENSE-APACHE": {
+      "bytes": 10847,
+      "mode": 420,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    "attribution/rust/tiny_http-0.12.0-f505e6459103/LICENSE-MIT": {
+      "bytes": 1075,
+      "mode": 420,
+      "sha256": "e69bb98ae371fc43e5ef9cb1fc648762faf92edd93a8afd71411fac419b1b550"
+    },
+    "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-APACHE": {
+      "bytes": 9723,
+      "mode": 420,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/rust/unicode-ident-1.0.24-60dd4efe1bb6/LICENSE-UNICODE": {
+      "bytes": 1995,
+      "mode": 420,
+      "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+    },
+    "attribution/rust/zmij-1.0.23-bfa809988001/LICENSE-MIT": {
+      "bytes": 1023,
+      "mode": 420,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "attribution/terrain-sources.md": {
+      "bytes": 21840,
+      "mode": 420,
+      "sha256": "1cdea0865111435d11d28185f698b06553dfaae8c29f50bf7dd6cff0806c881b"
+    },
+    "attribution/terrain-tiles/manifest.json": {
+      "bytes": 253962,
+      "mode": 420,
+      "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b"
+    },
+    "release.json": {
+      "bytes": 21270,
+      "mode": 420,
+      "sha256": "b55d2452ff8eb3cae0982ac547188381fffec893c7ee4e58750c9ef22d528fb0"
+    },
+    "source/Cargo.lock": {
+      "bytes": 9405,
+      "mode": 420,
+      "sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56"
+    },
+    "source/SOURCE.json": {
+      "bytes": 12959,
+      "mode": 420,
+      "sha256": "e2fa363b144f97d55b64acd69a5320593d1678808d8f73220d8f154d6a907deb"
+    },
+    "spheres-web.exe": {
+      "bytes": 358621116,
+      "mode": 493,
+      "sha256": "47b9698f42e7075f4c344d38995445e845d975d19e3e96de83a01b0ac4d88cf7"
+    }
+  }
+}

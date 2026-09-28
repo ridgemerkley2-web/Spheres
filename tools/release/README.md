@@ -22,8 +22,8 @@ The inspection command exits before creating a campaign, listener or save files.
 
 The output contains a portable folder, its ZIP and a JSON receipt on stdout.
 The ZIP preserves exact file hashes, stable ordering, fixed timestamps and modes.
-Identical input binary, committed source/asset bytes and dependency licenses
-produce identical package bytes; this is not a claim of reproducible compilation
+Identical input binary, committed documents, checkout asset bytes and dependency
+licenses produce identical package bytes; this is not a claim of reproducible compilation
 across Rust versions or operating systems. ZIP entries use stored compression;
 CI compresses the surrounding artifact transport without altering the ZIP.
 

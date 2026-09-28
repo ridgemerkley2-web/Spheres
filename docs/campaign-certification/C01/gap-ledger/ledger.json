@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 13812,
-      "sha256": "c5a3fd44c6f4aee50c289abdfc543d9aa210d4c46ac92a62a1e343098d15e696"
+      "bytes": 16312,
+      "sha256": "5b3663e7512d9a10d75243a662c753bf1b75d20286a19aac854fa6b3420d38a8"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -751,7 +751,7 @@
     },
     {
       "task": "CLAUDE-C01-29",
-      "state": "claimed",
+      "state": "ready_for_review",
       "branch": "claude/c01-jp-29",
       "case": "Japan",
       "scope": "Japan Socialist Party / Social Democratic Party chairs; active research claim, no accepted mapping",

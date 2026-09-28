@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "method": "Independently rehashed both complete ZIP files after two separate packaging invocations; no file copied between output directories.",
+  "files": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\portable-package-01\\SPHERES-0.6.0-Windows.zip",
+      "bytes": 360485340,
+      "sha256": "6e1bd2c9dccbb40ea8613519249bad9584b7cc4256fbf22868729f9c6abb32a4"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\portable-package-02\\SPHERES-0.6.0-Windows.zip",
+      "bytes": 360485340,
+      "sha256": "6e1bd2c9dccbb40ea8613519249bad9584b7cc4256fbf22868729f9c6abb32a4"
+    }
+  ]
+}
