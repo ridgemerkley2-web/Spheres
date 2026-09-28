@@ -241,13 +241,18 @@ pub fn deployment_route(w:&WorldState,nation:NationId,district:&str)->Option<(Ve
 
 /// Pure movement quotes against one immutable world. The lifetime prevents
 /// control, access, inventory or freight reservations changing under this
-/// snapshot; a later settlement must create a new context. In particular,
-/// daily service dispatch cannot reuse it while reserving shared capacity.
+/// snapshot. Completed route quotes cannot be reused during service dispatch,
+/// which must inspect the live capacity left by every earlier reservation.
 pub(crate) struct DeploymentRoutes<'w> {
     world: &'w WorldState,
     graph: Option<Graph>,
     hubs: BTreeMap<NationId,Option<String>>,
 }
+/// Owned opening graph for the immediately following service settlement.
+/// Only campaign records may change between the deployment quotes and that
+/// settlement: control, access, infrastructure, contractors, occupation and
+/// commercial freight usage must still describe the same opening world.
+pub(crate) struct PreparedSupplyGraph(Graph);
 impl<'w> DeploymentRoutes<'w> {
     pub(crate) fn new(world:&'w WorldState)->Self {
         Self {world,graph:None,hubs:BTreeMap::new()}
@@ -262,6 +267,9 @@ impl<'w> DeploymentRoutes<'w> {
             burn_monthly:0.0,sea_escort:0.0,sea_denial:0.0};
         let path=route(w,g,&request,hub).ok()?;
         Some((path.nodes,path.days))
+    }
+    pub(crate) fn into_supply_graph(self) -> Option<PreparedSupplyGraph> {
+        self.graph.map(PreparedSupplyGraph)
     }
 }
 
@@ -283,11 +291,25 @@ pub fn deployment_path_open(w:&WorldState,nation:NationId,path:&[String])->bool 
 /// freight has opened this day's shared settlement. Never opens/reset that
 /// ledger itself, and never debits national ammunition or fuel.
 pub fn prepare(w: &mut WorldState, requests: &[SupplyRequest]) -> BTreeMap<String,SupplyDelivery> {
+    prepare_with_graph(w, requests, None)
+}
+
+pub(crate) fn prepare_with_graph(w: &mut WorldState, requests: &[SupplyRequest],
+    graph: Option<PreparedSupplyGraph>) -> BTreeMap<String,SupplyDelivery> {
     if !clock::is_daily(w) || !w.rules.military_operations { return BTreeMap::new(); }
     let today = clock::absolute_day(w);
     if w.campaign_supply.last_day == Some(today) { return w.campaign_supply.deliveries.clone(); }
     if requests.is_empty() && w.campaign_supply.is_empty() { return BTreeMap::new(); }
-    let g = Graph::new(w);
+    #[cfg(test)]
+    let graph = if graph_handoff_tests::FRESH_GRAPH.with(|flag| flag.get()) { None } else { graph };
+    let g = match graph {
+        Some(PreparedSupplyGraph(graph)) => {
+            #[cfg(test)]
+            graph_handoff_tests::HANDOFFS.with(|count| count.set(count.get() + 1));
+            graph
+        }
+        None => Graph::new(w),
+    };
     let mut state = std::mem::take(&mut w.campaign_supply);
     let mut rows = BTreeMap::new();
     for r in requests { rows.entry(r.key.clone()).or_insert(r); }
@@ -547,11 +569,181 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
 }
 
 #[cfg(test)]
+pub(crate) mod graph_handoff_tests {
+    use super::*;
+    use crate::{production::ProjectKind, theatre::{Access, TheatreId}, world::Conflict};
+    use std::cell::Cell;
+
+    thread_local! {
+        pub(super) static FRESH_GRAPH: Cell<bool> = const { Cell::new(false) };
+        pub(super) static HANDOFFS: Cell<usize> = const { Cell::new(0) };
+    }
+    pub(crate) fn fresh_graphs<T>(run: impl FnOnce() -> T) -> T {
+        struct Reset(bool);
+        impl Drop for Reset {
+            fn drop(&mut self) { FRESH_GRAPH.with(|flag| flag.set(self.0)); }
+        }
+        let _reset = Reset(FRESH_GRAPH.with(|flag| flag.replace(true)));
+        run()
+    }
+    fn graph_bytes(g: &Graph) -> Vec<u8> {
+        serde_json::to_vec(&(
+            g.nodes.iter().map(|n| (&n.id, &n.district)).collect::<Vec<_>>(),
+            g.edges.iter().map(|e| (e.a, e.b, &e.key, e.sea, e.travel_weight,
+                e.capacity_tonnes.to_bits())).collect::<Vec<_>>(),
+            &g.index, &g.adj,
+            g.commercial_usage.iter().map(|(k,v)| (k, v.to_bits())).collect::<Vec<_>>(),
+            g.resistance.iter().map(|v| v.to_bits()).collect::<Vec<_>>(),
+        )).unwrap()
+    }
+    fn occupation(w: &mut WorldState, r: &SupplyRequest, coverage: f64, hold: f32) {
+        w.districts.insert(r.district.clone(), NationId::France);
+        w.conflicts.push(Conflict { id: 1, theatre: TheatreId::CentralEurope,
+            side_a: vec![r.nation], side_b: vec![NationId::France], posture: vec![],
+            control: 0.0, months: 0, quiet_months: 0, frozen_since: None,
+            start_year: 1990, start_month: 1, origin_attacker: r.nation,
+            invasion_declared: true, front: BTreeMap::from([(r.district.clone(), hold)]),
+            pockets: vec![], aim: None });
+        w.campaign_peace.occupation.insert(r.district.clone(), crate::campaign_peace::Occupation {
+            district: r.district.clone(), conflict: 1, occupier: r.nation,
+            owner: NationId::France, days: 90, resistance: 1.0, coverage,
+        });
+    }
+    #[test]
+    fn deployment_graph_handoff_preserves_live_supply_and_rebuilds_changed_openings() {
+        let (base, request) = super::tests::fixture();
+        for case in 0..11 {
+            let mut cached = base.clone();
+            let mut r = request.clone();
+            // Explicit synthetic edge cases, not qualification campaign data.
+            match case {
+                1 | 2 => {
+                    cached.districts.insert(r.district.clone(), NationId::France);
+                    if case == 2 { cached.access.push(Access { theatre: TheatreId::CentralEurope,
+                        host: NationId::France, seeker: r.nation, since_year: 1990, since_month: 1 }); }
+                }
+                3 => occupation(&mut cached, &r, 0.0, 0.0),
+                4 => occupation(&mut cached, &r, 0.0, 1.0),
+                5 => occupation(&mut cached, &r, 1.0, 1.0),
+                6 => {
+                    for p in &mut cached.production.provinces { p.infrastructure = 5; }
+                    let terminal = cached.districts.iter().find(|(d,n)| **n == r.nation
+                        && logistics::has_terminal(d)).unwrap().0.clone();
+                    crate::industry::complete_site(&mut cached, &terminal, ProjectKind::FreightTerminal);
+                    crate::sector_contractors::enable(&mut cached);
+                    let company = cached.sector_contractors.roster.iter_mut().find(|c|
+                        c.nation == r.nation && c.sector == crate::sector_contractors::CompanySector::Logistics).unwrap();
+                    company.work_bonus = 0.4;
+                    company.experience = 600.0;
+                    let id = company.id;
+                    let target = crate::sector_contractors::CompanyTarget::Facility {
+                        district: terminal, sector: crate::sector_contractors::CompanySector::Logistics };
+                    crate::sector_contractors::assign(&mut cached, r.nation, id, target.clone()).unwrap();
+                    assert!(crate::sector_contractors::modifiers(&cached, r.nation, &target).work_rate > 1.0);
+                }
+                7 => {
+                    cached.nation_mut(r.nation).mil_strength = 1_000_000.0;
+                    r.deployed = 100_000.0;
+                }
+                9 => { cached.districts.insert("DE-BE".into(), NationId::France); }
+                10 => { r.district = "DE-SN".into(); }
+                _ => {}
+            }
+            logistics::begin_month(&mut cached);
+            if case == 8 {
+                for edge in Graph::new(&cached).edges {
+                    cached.logistics.usage_tonnes.insert(edge.key, edge.capacity_tonnes);
+                }
+            }
+            // Include existing lots so the new preparation still holds, moves,
+            // arrives and expires them. Relocation preserves no old local stock.
+            let mut old = base.clone();
+            logistics::begin_month(&mut old);
+            prepare(&mut old, std::slice::from_ref(&request));
+            cached.campaign_supply.cargo = old.campaign_supply.cargo;
+            let today = clock::absolute_day(&cached);
+            for cargo in &mut cached.campaign_supply.cargo {
+                cargo.due_day = today;
+            }
+            let mut second = r.clone();
+            second.key = format!("second-{}", r.key);
+            let requests = [second, r.clone()];
+            let before = crate::save(&cached);
+            let mut quotes = DeploymentRoutes::new(&cached);
+            let _ = quotes.route(r.nation, &r.district);
+            let graph = quotes.into_supply_graph().expect("a quote built its opening graph");
+            assert_eq!(graph_bytes(&graph.0), graph_bytes(&Graph::new(&cached)), "opening case {case}");
+            assert_eq!(crate::save(&cached), before, "quotes remain pure case {case}");
+            let mut original = cached.clone();
+            // These are the only world records changed by the caller between
+            // deployment planning and service settlement.
+            cached.campaign.initialized = true;
+            original.campaign.initialized = true;
+            let count = HANDOFFS.with(Cell::get);
+            let actual = prepare_with_graph(&mut cached, &requests, Some(graph));
+            let expected = prepare(&mut original, &requests);
+            assert_eq!(actual, expected, "deliveries case {case}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "complete world case {case}");
+            assert_eq!(cached.headlines, original.headlines);
+            assert_eq!(HANDOFFS.with(Cell::get), count + 1, "exercise actual reuse");
+            let before_repeat = crate::save(&cached);
+            assert_eq!(prepare_with_graph(&mut cached, &requests, None), expected);
+            assert_eq!(crate::save(&cached), before_repeat, "same-day receipt case {case}");
+            assert_eq!(HANDOFFS.with(Cell::get), count + 1, "same-day guard still precedes graph use");
+        }
+    }
+    pub(crate) fn campaign_fixture() -> WorldState {
+        let mut cached = crate::equipment::ammunition_operation_tests::fixture("air_light_attack");
+        cached.rules.operational_warfare = 1;
+        cached.rules.logistics_routes = true;
+        cached.rules.physical_logistics = true;
+        cached.campaign.initialized = true;
+        cached.campaign_supply.sources.insert(NationId::USA, Source {
+            district: "US-NY".into(), service: 0.0,
+        });
+        cached
+    }
+    #[test]
+    fn campaign_graph_handoff_matches_fresh_graphs_for_complete_days() {
+        let mut cached = campaign_fixture();
+        let mut original = cached.clone();
+        let before = HANDOFFS.with(Cell::get);
+        for day in 0..8 {
+            let actual = crate::tick_day(&mut cached, &[]);
+            let expected = fresh_graphs(|| crate::tick_day(&mut original, &[]));
+            assert_eq!(actual, expected, "returned headlines day {day}");
+            assert_eq!(cached.headlines, original.headlines, "retained headlines day {day}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "complete world day {day}");
+        }
+        assert!(HANDOFFS.with(Cell::get) > before, "complete days must exercise a real graph handoff");
+    }
+    #[test]
+    #[ignore = "explicit actual-checkpoint original-path parity; no timing assertions"]
+    fn campaign_graph_handoff_matches_actual_checkpoint_for_31_complete_days() {
+        let path = std::env::var("SPHERES_S22_CHECKPOINT").expect("actual simulation checkpoint required");
+        let source = std::fs::read_to_string(&path).unwrap();
+        let mut cached = crate::load(&source).unwrap();
+        assert!(crate::campaign::enabled(&cached));
+        let mut original = cached.clone();
+        let before = HANDOFFS.with(Cell::get);
+        for day in 0..31 {
+            let actual = crate::tick_day(&mut cached, &[]);
+            let expected = fresh_graphs(|| crate::tick_day(&mut original, &[]));
+            assert_eq!(actual, expected, "actual returned headlines day {day}");
+            assert_eq!(cached.headlines, original.headlines, "actual retained headlines day {day}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "actual complete world day {day}");
+        }
+        assert!(HANDOFFS.with(Cell::get) > before, "actual input must exercise the changed path");
+        assert_eq!(std::fs::read_to_string(path).unwrap(), source, "source remains immutable");
+    }
+}
+
+#[cfg(test)]
 mod tests {
     use super::*;
     use crate::{init::world_1990, theatre::{Access,TheatreId}, world::{Conflict,GameRules}};
 
-    fn fixture() -> (WorldState,SupplyRequest) {
+    pub(super) fn fixture() -> (WorldState,SupplyRequest) {
         let mut w = world_1990(GameRules { daily_simulation:true, military_operations:true,
             resource_market:true, logistics_routes:true, physical_logistics:true, ..GameRules::default() });
         w.nation_mut(NationId::Germany).mil_strength=20.0;

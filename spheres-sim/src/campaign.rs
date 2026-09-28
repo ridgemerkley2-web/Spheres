@@ -839,6 +839,7 @@ fn prepare_traced(w: &mut WorldState, snapshot: &operations::Snapshot,
 
 fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &operations::Snapshot,
     mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) -> Opening {
+    let mut supply_graph = None;
     let mut stage_start = observer.as_ref().map(|_| std::time::Instant::now());
     macro_rules! stage {
         ($name:expr) => {
@@ -1165,6 +1166,10 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
                 });
             }
         }
+        // Quotes changed only the detached campaign book. Hand the identical
+        // opening graph to service settlement; its capacity reservations are
+        // still read live for every cargo dispatch below.
+        supply_graph = deployment_routes.into_supply_graph();
         stage!("resolve.campaign_prepare.route_deploy");
         state.sectors.retain(|_, s| s.strength > EPS);
         state
@@ -1238,7 +1243,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
     }
     requests.extend(crate::campaign_peace::garrison_requests(w, snapshot));
     stage!("resolve.campaign_prepare.supply_requests");
-    let supply = crate::campaign_supply::prepare(w, &requests);
+    let supply = crate::campaign_supply::prepare_with_graph(w, &requests, supply_graph);
     if let (Some(start), Some(observe)) = (stage_start, observer.as_deref_mut()) {
         observe("resolve.campaign_prepare.supply_prepare", start.elapsed());
     }
@@ -2454,6 +2459,21 @@ mod transfer_path_tests {
     fn opening_bytes(opening: &Opening) -> Vec<u8> {
         serde_json::to_vec(&(&opening.sectors, &opening.control, &opening.supply,
             &opening.orders, &opening.assets)).unwrap()
+    }
+    #[test]
+    fn supply_graph_handoff_preserves_complete_opening_and_same_date_preparation() {
+        use crate::campaign_supply::graph_handoff_tests::{campaign_fixture, fresh_graphs};
+        let mut cached = campaign_fixture();
+        crate::logistics::begin_month(&mut cached);
+        let mut original = cached.clone();
+        for repeated in [false, true] {
+            let snapshot = operations::Snapshot::new(&cached);
+            let actual = prepare(&mut cached, &snapshot);
+            let expected = fresh_graphs(|| prepare(&mut original, &snapshot));
+            assert_eq!(opening_bytes(&actual), opening_bytes(&expected), "repeated={repeated}");
+            assert_eq!(crate::save(&cached), crate::save(&original), "repeated={repeated}");
+            assert_eq!(cached.headlines, original.headlines);
+        }
     }
     #[test]
     fn preparation_observer_preserves_opening_world_and_same_date_guard() {
