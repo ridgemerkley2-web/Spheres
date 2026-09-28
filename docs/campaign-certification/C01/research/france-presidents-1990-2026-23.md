@@ -27,7 +27,7 @@ that could not be retrieved, each explained there.
 
 | ID | Question | Decision |
 |---|---|---|
-| FR-PRES-01 | Who was President when the period opens, and does a source state the day his term ended? | **Accepted in part:** François Mitterrand, from 21 May 1988 (the effect day decision 88-60 PDR states); in office on 4 January and 22-27 August 1990; no source records the day his functions ended (his own letter of 16 May 1995 announces the handover for the next morning) |
+| FR-PRES-01 | Who was President when the period opens, and does a source state the day his term ended? | **Accepted in part:** François Mitterrand, observed on 4 January 1990 and in office on 22-27 August 1990 (his 21 May 1988 start, the effect day decision 88-60 PDR states, lies before the period and is a claim only); no source records the day his functions ended (his own letter of 16 May 1995 announces the handover for the next morning) |
 | FR-PRES-02 | 1995: the proclamation and Jacques Chirac's assumption of office | **Accepted in part:** proclaimed 12 May 1995 (not 11 May) with effect from Mitterrand's cessation, at the latest 21 May 1995 at 0 heure; observed on 17 May 1995 in his own address and message to the armed forces; no source fixes the first day, so no start |
 | FR-PRES-03 | 2002: the proclamation and the start of Chirac's second term | **Accepted:** proclaimed 8 May 2002 (not 9 May); from 17 May 2002 at 0 heure, the day the decision fixes; investiture the day before (16 May 2002) |
 | FR-PRES-04 | 2007: the proclamation and Nicolas Sarkozy's assumption of office | **Accepted:** second round 5-6 May; proclaimed 10 May; published 11 May 2007; from 16 May 2007 (the President of the Council's address at the investiture: "A compter de ce jour") |
@@ -42,7 +42,7 @@ The resulting holder observations, in date order, all on `fr_president`:
 
 | Holder | `attested_on` | `from` | `until` | Basis |
 |---|---|---|---|---|
-| François Mitterrand | null | 1988-05-21 | null | decision 88-60 PDR: "prendra effet le 21 mai 1988 à 0 heure"; his investiture address; in office on 4 Jan and 22-27 Aug 1990 |
+| François Mitterrand | 1990-01-04 | null | null | Chancellor Kohl at the Latché press conference ("Je suis d'accord avec M. Mitterrand"; "le Président de la République"); the Assembly's record of his decree of 22 Aug and message of 27 Aug 1990; the 1988 effect day is a claim |
 | Jacques Chirac | 1995-05-17 | null | null | his address "En ce jour où je prends la responsabilité d'assumer la plus haute charge de l'Etat" and his message to the armed forces of that day |
 | Jacques Chirac | null | 2002-05-17 | null | decision of 8 May 2002: "à compter du 17 mai 2002 à 0 heure" |
 | Nicolas Sarkozy | null | 2007-05-16 | null | the President of the Council's investiture address ("A compter de ce jour"; 18.983.138 votes); his own installation address |
@@ -54,14 +54,15 @@ The resulting holder observations, in date order, all on `fr_president`:
 
 The three checks raised the same questions, and this packet applies one rule to all three parts. A holder has `from` only where
 the Constitutional Council, the authority that proclaims the result, states the day the mandate takes effect (its decisions of
-1988, 2002 and 2022: "prendra effet le 21 mai 1988 à 0 heure", "à compter du 17 mai 2002 à 0 heure", "à compter du 14 mai 2022 à
-0 heure") or, in its President's address at the investiture, the day office is taken up (2007, 2012, 2017). Those statements are
-claims dated by the day they were made; the day they fix is the holder's `from`. A holder's own statement that he assumes office
-"today" supports a start but never makes one, as CLAUDE-C01-10 ruled, so Chirac's 1995 term is dated only by `attested_on`
-(17 May 1995): decision 95-81 PDR proclaims him only "à compter de la cessation des fonctions de M. François Mitterrand", with an
-outer limit, and no address of the President of the Council at a 1995 investiture was found. An investiture ceremony, a
-proclamation, its publication, a handover meeting and an election round are never boundaries; in 2002 and 2022 the investiture
-precedes the stated start.
+2002 and 2022: "à compter du 17 mai 2002 à 0 heure", "à compter du 14 mai 2022 à 0 heure") or, in its President's address at the
+investiture, the day office is taken up (2007, 2012, 2017). Those statements are claims dated by the day they were made; the day
+they fix is the holder's `from`. A start before 1 January 1990 is not structured: decision 88-60 PDR's "prendra effet le 21 mai
+1988 à 0 heure" is a claim, and Mitterrand is dated by `attested_on` (4 January 1990). A holder's own statement that he assumes
+office "today" supports a start but never makes one, as CLAUDE-C01-10 ruled, so Chirac's 1995 term is dated only by
+`attested_on` (17 May 1995): decision 95-81 PDR proclaims him only "à compter de la cessation des fonctions de M. François
+Mitterrand", with an outer limit, and no address of the President of the Council at a 1995 investiture was found. An investiture
+ceremony, a proclamation, its publication, a handover meeting and an election round are never boundaries; in 2002 and 2022 the
+investiture precedes the stated start.
 
 A holder has `until` only where a source states, as a record, the day the office ended. None does. The Council states only outer
 limits ("au plus tard ... à 24 heures", or "à 0 heure" in 1995); Mitterrand (16 May 1995), Chirac (15 May 2007) and Hollande
@@ -136,8 +137,8 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | Date | Event | Claim or field |
 |---|---|---|
 | 11 May 1988 | Decision 88-60 PDR proclaims Mitterrand and states the effect day | `fr_cc_proclaims_mitterrand_19880511`, `fr_cc_88_60_states_mandate_effect_19880511`; cited by 95-81 PDR (`fr_cc_1995_cites_mitterrand_proclamation_19880511`) |
-| 21 May 1988 | Effect day of the second septennat; investiture address ("aujourd'hui") | Mitterrand `from`; `fr_mitterrand_investiture_ceremony_19880521`, `fr_mitterrand_assumes_second_septennat_statement_19880521` |
-| 3-4 Jan 1990 | Diplomatic corps address (heading only); joint press conference with Chancellor Kohl | `fr_mitterrand_diplomatic_corps_new_year_19900103`, `fr_mitterrand_kohl_press_conference_attestation_19900104` |
+| 21 May 1988 | Effect day of the second septennat; investiture address ("aujourd'hui") | `fr_mitterrand_investiture_ceremony_19880521`, `fr_mitterrand_assumes_second_septennat_statement_19880521` |
+| 3-4 Jan 1990 | Diplomatic corps address (heading only); joint press conference with Chancellor Kohl | Mitterrand `attested_on` (4 Jan); `fr_mitterrand_diplomatic_corps_new_year_19900103`, `fr_mitterrand_kohl_press_conference_attestation_19900104` |
 | 22 and 27 Aug 1990 | Decree convening Parliament; message to Parliament (Assemblée nationale record) | `fr_mitterrand_signs_convocation_decree_as_president_19900822`, `fr_mitterrand_message_to_parliament_read_19900827` |
 | 7 May 1995 | Second round; Mitterrand's congratulations | `fr_mitterrand_congratulates_chirac_election_19950507`, `fr_chirac_address_cites_election_day_19950507` |
 | 10 May 1995 | Mitterrand accepts the Prime Minister's resignation (heading only) | `fr_mitterrand_accepts_pm_resignation_19950510` |
@@ -189,8 +190,8 @@ message of that day, both signed FRANÇOIS MITTERRAND (the first official in-per
 accepting the Prime Minister's resignation is heading-only support. His letter of 16 May 1995 announces the handover for "Demain
 matin à onze heures" (`fr_mitterrand_handover_announced_19950516`).
 
-Decision: accepted in part. The holder has `from` 1988-05-21, the effect day fixed in advance by the proclaiming authority (before
-the period), and no end.
+Decision: accepted in part. The holder is observed on 4 January 1990 (`attested_on`), with no start and no end: the effect day
+fixed in advance by the proclaiming authority (21 May 1988) lies before the period and is recorded only as a claim.
 
 Limits: no official record from January to July 1990 was found (the 2 April 1990 sitting record does not name the President); the
 Journal officiel of 12 May 1988 was not retrieved; the day his functions ended is not recorded by any source.
@@ -267,7 +268,7 @@ n°0110 of 11 May 2017 publishes it. The Council's dossier issued with it prints
 Fabius told the President of the Republic, credited with 20 743 128 votes, "Et aujourd'hui, en ce dimanche 14 mai, en cet instant
 précis où vous prenez vos hautes fonctions" (`fr_cc_fabius_2017_takes_office_now_20170514`). The Élysée announced the live stream
 of the handover that morning, and records Hollande's reception of Macron at 10:00 and the ceremony. The Council's activity report
-(September 2018) and Macron's address of 7 May 2022 ("le mandat qui s'achève, commencé le 14 mai 2017") are retrospective.
+of 2017 and Macron's address of 7 May 2022 ("le mandat qui s'achève, commencé le 14 mai 2017") are retrospective.
 
 Decision: accepted. The holder has `from` 2017-05-14, resting on Fabius's contemporaneous address (B12); the report and the 2022
 statement are corroboration only.
@@ -402,7 +403,7 @@ and each identity is the response of a stored page or file, not one generated pe
   downloaded by the check twice, 8 to 52 minutes apart;
 - this packet, with curl's default User-Agent (no browser User-Agent was sent) and `Accept-Encoding: identity`: every response at
   27 September 2026 23:46-23:53Z, again at 28 September 00:21-00:24Z (33 to 35 minutes later), and, for the 24 responses from live hosts, a third
-  time with a cache-busting query (`?cb=<unix time>`) at 00:24Z; the two replacement captures were downloaded at 23:52-23:53Z,
+  time with a cache-busting query (`?cb=<unix time>`) at 00:23-00:24Z; the two replacement captures were downloaded at 23:52-23:53Z,
   00:22-00:24Z and 00:25Z. All matched. The DILA files and the Council's and the Assembly's PDFs
   kept their Last-Modified and ETag.
 
@@ -482,7 +483,7 @@ Points a reviewer needs:
 |---|---|---|
 | A1 | Mitterrand's `until` rested on his own prospective letter | **Applied**: `until` null; the letter is `fr_mitterrand_handover_announced_19950516` (kind `handover_announced_by_holder`), dated 16 May 1995 |
 | A2 | Chirac's 1995 `from` rested on his own "assumes today" address | **Applied**: `attested_on` 1995-05-17, `from` null; the armed-forces message of 17 May 1995 added and cited |
-| A3 | The 1988 effect statement dated by the day it fixes | **Applied**: `fr_cc_88_60_states_mandate_effect_19880511`, dated 11 May 1988; `from` 1988-05-21 unchanged |
+| A3 | The 1988 effect statement dated by the day it fixes | **Applied**: `fr_cc_88_60_states_mandate_effect_19880511`, dated 11 May 1988; the 1988 effect day is a claim only; Mitterrand is dated by `attested_on` 1990-01-04 |
 | A4 | The 2002 effect statement dated by the day it fixes | **Applied**: `fr_cc_2002_states_effect_from_20020508`, dated 8 May 2002; `from` 2002-05-17 unchanged |
 | A5 | One claim held the election-day reference and the predecessor's departure | **Applied**: split; `fr_chirac_predecessor_departure_statement_19950517` is a claim, never an `until`; the election-day row names nobody |
 | A6 | 1988 investiture locator omitted page 2 | **Applied**: page 1 and page 2 |
@@ -562,7 +563,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   claims, locators and snapshot bytes, all unchanged, and it now runs with the supplement merged.
 - The new test `test_france_presidents_c01_23.py` pins the importer output and the empty-supplement equivalence, the supplement's
   failure modes, the institution, the role, the seven holders with their claims and bases, every claim's date, kind and
-  observation, every response identity, the extracts, the lead and volatile-URL guards, the report and handoff, and 34 invariant
+  observation, every response identity, the extracts, the lead and volatile-URL guards, the report and handoff, and 35 invariant
   and 9 validator mutations.
 - New fields: `printed_date` and `period` in extract rows. `docs/planning/ai-task-queue.json` still lists CLAUDE-C01-23 as
   `claimed`, and `research/README.md`, the C01 README totals and `docs/planning/ai-workstreams.json` are left for the integrator;

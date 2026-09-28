@@ -122,7 +122,7 @@ PDF_PAGES = {
 INSTITUTION, ROLE = 'fr_presidency', 'fr_president'
 # Exact holder observations, in chronological order: (name, attested_on, from, until).
 HOLDERS = [
-    ('François Mitterrand', None, '1988-05-21', None),
+    ('François Mitterrand', '1990-01-04', None, None),
     ('Jacques Chirac', '1995-05-17', None, None),
     ('Jacques Chirac', None, '2002-05-17', None),
     ('Nicolas Sarkozy', None, '2007-05-16', None),
@@ -131,8 +131,7 @@ HOLDERS = [
     ('Emmanuel Macron', None, '2022-05-14', None),
 ]
 HOLDER_CLAIMS = [
-    ['fr_cc_88_60_states_mandate_effect_19880511', 'fr_mitterrand_assumes_second_septennat_statement_19880521',
-     'fr_mitterrand_kohl_press_conference_attestation_19900104', 'fr_mitterrand_signs_convocation_decree_as_president_19900822',
+    ['fr_mitterrand_kohl_press_conference_attestation_19900104', 'fr_mitterrand_signs_convocation_decree_as_president_19900822',
      'fr_mitterrand_message_to_parliament_read_19900827'],
     ['fr_chirac_assumes_office_statement_19950517', 'fr_chirac_armed_forces_message_as_president_19950517'],
     ['fr_cc_2002_states_effect_from_20020508'],
@@ -144,8 +143,7 @@ HOLDER_CLAIMS = [
      'fr_jorf_decree_signed_macron_20260903', 'fr_jorf_decree_signed_macron_20260904'],
 ]
 # The claim each `from` rests on, and the French words by which it states the day.
-FROM_BASIS = {0: ('fr_cc_88_60_states_mandate_effect_19880511', 'prendra effet le 21 mai 1988 à 0 heure'),
-              2: ('fr_cc_2002_states_effect_from_20020508', 'à compter du 17 mai 2002 à 0 heure'),
+FROM_BASIS = {2: ('fr_cc_2002_states_effect_from_20020508', 'à compter du 17 mai 2002 à 0 heure'),
               3: ('fr_cc_debre_2007_from_this_day_20070516', 'A compter de ce jour'),
               4: ('fr_cc_debre_2012_from_this_day_20120515', 'A compter de ce jour, 15 mai 2012'),
               5: ('fr_cc_fabius_2017_takes_office_now_20170514', 'où vous prenez vos hautes fonctions'),
@@ -281,15 +279,16 @@ NEVER_KINDS = {'election_round', 'election_acknowledgement', 'election_reference
                'in_office_attestation_archive_heading', 'in_office_act_archive_heading'}
 NEVER_HOLDER = tuple(cid for cid, (_, kind, _) in EVENTS.items() if kind in NEVER_KINDS)
 # Dates that are never any holder's attested_on, start or end: rounds, proclamations, publications, the ceremonies that
-# precede a start, announcements, outer limits, computed expiries, continuation letters and an inferred 2022 end.
-NEVER_HOLDER_DATE = {'1988-05-08', '1988-05-11', '1990-01-03', '1995-05-07', '1995-05-10', '1995-05-12', '1995-05-16',
-                     '1995-05-18', '1995-05-21', '2002-05-05', '2002-05-08', '2002-05-09', '2002-05-16', '2007-05-05',
-                     '2007-05-06', '2007-05-10', '2007-05-11', '2007-05-15', '2012-05-05', '2012-05-06', '2012-05-10',
-                     '2012-05-11', '2012-05-16', '2017-05-06', '2017-05-07', '2017-05-10', '2017-05-11', '2022-04-09',
-                     '2022-04-10', '2022-04-13', '2022-04-23', '2022-04-24', '2022-04-27', '2022-04-28', '2022-05-07',
-                     '2022-05-13'}
-STARTS = [('François Mitterrand', '1988-05-21'), ('Jacques Chirac', '2002-05-17'), ('Nicolas Sarkozy', '2007-05-16'),
-          ('François Hollande', '2012-05-15'), ('Emmanuel Macron', '2017-05-14'), ('Emmanuel Macron', '2022-05-14')]
+# precede a start, announcements, outer limits, computed expiries, continuation letters, the effect day of a term that began
+# before the period and an inferred 2022 end.
+NEVER_HOLDER_DATE = {'1988-05-08', '1988-05-11', '1988-05-21', '1990-01-03', '1995-05-07', '1995-05-10', '1995-05-12',
+                     '1995-05-16', '1995-05-18', '1995-05-21', '2002-05-05', '2002-05-08', '2002-05-09', '2002-05-16',
+                     '2007-05-05', '2007-05-06', '2007-05-10', '2007-05-11', '2007-05-15', '2012-05-05', '2012-05-06',
+                     '2012-05-10', '2012-05-11', '2012-05-16', '2017-05-06', '2017-05-07', '2017-05-10', '2017-05-11',
+                     '2022-04-09', '2022-04-10', '2022-04-13', '2022-04-23', '2022-04-24', '2022-04-27', '2022-04-28',
+                     '2022-05-07', '2022-05-13'}
+STARTS = [('Jacques Chirac', '2002-05-17'), ('Nicolas Sarkozy', '2007-05-16'), ('François Hollande', '2012-05-15'),
+          ('Emmanuel Macron', '2017-05-14'), ('Emmanuel Macron', '2022-05-14')]
 # Leads (news, other renderings, dropped duplicates and gzip-served or wrong captures): never an identity URL.
 LEAD_URL_MARKERS = ('wikipedia', 'europe1', 'lapresse', 'senat.fr', 'elysee.fr/recherche', 'elysee-module-8256',
                     'elysee-module-8260', 'elysee-module-27176', 'sp-module-2234', '20260804110044', '20230126145839',
@@ -713,6 +712,7 @@ class FrancePresidentsTests(unittest.TestCase):
         invariant_cases = [
             ('announced handover used as an end (Mitterrand)', lambda p: holder(p, 0).update(until='1995-05-17')),
             ('outer limit used as an end (Mitterrand)', lambda p: holder(p, 0).update(until='1995-05-21')),
+            ('pre-period effect day used as a start (Mitterrand)', lambda p: holder(p, 0).update({'from': '1988-05-21', 'attested_on': None})),
             ('own same-day statement used as a start (Chirac 1995)', lambda p: holder(p, 1).update({'from': '1995-05-17', 'attested_on': None})),
             ('proclamation used as a start (Chirac 1995)', lambda p: holder(p, 1).update({'from': '1995-05-12', 'attested_on': None})),
             ('proclamation used as the observation (Chirac 1995)', lambda p: holder(p, 1).update(attested_on='1995-05-12')),
