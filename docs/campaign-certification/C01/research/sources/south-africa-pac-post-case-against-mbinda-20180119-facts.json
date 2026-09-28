@@ -16,7 +16,7 @@
   "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T20:52:58Z; downloaded again at 2026-09-28T21:53:20Z, 2026-09-28T22:37:18Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (46442 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
   "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2018-03-22T21:28:37Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-  "scope_note": "Raw Internet Archive capture made 22 March 2018 of a PAC post dated January 19, 2018, written as a news item citing the party's spokesperson. Served without content encoding.",
+  "scope_note": "Raw Internet Archive capture made 22 March 2018 of a PAC post dated January 19, 2018. Republished news text: the post repeats word for word, without credit, the Political Analysis South Africa article \"PAC case against Mbinda, for parliamentary seat to be heard in March 2018\" by Mzoxolo Mpolase, published 18 January 2018 (https://www.politicalanalysis.co.za/pac-case-against-mbinda-for-parliamentary-seat-to-be-heard-in-march-2018/, read in the Internet Archive capture 20230109165609). It is not a primary PAC record: its four claims are kept as claims only and never feed a holder. Served without content encoding.",
   "visual_review": {
     "pdf_pages_one_based": [],
     "method": "Archived HTML text read; no images reviewed."
@@ -29,7 +29,7 @@
       "role_id": "za_pac_president",
       "holder_name": "Narius Moloto",
       "role_title": "President of the Pan Africanist Congress of Azania",
-      "event_kind": "in_office_attestation",
+      "event_kind": "in_office_reference_republished_news",
       "attested_on": "2018-01-19",
       "text": "The PAC post dated January 19, 2018 says the case will include other parties \"such as the Speaker's Office (Parliament), PAC president Narius Moloto, and the PAC disciplinary committee\".",
       "locator": {

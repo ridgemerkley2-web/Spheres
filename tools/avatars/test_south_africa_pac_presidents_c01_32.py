@@ -155,7 +155,7 @@ EVENTS = {
     'za_pac_statement_president_mphahlele_20080920': ('2008-09-20', 'in_office_attestation'),
     'za_pac_notice_president_mphahlele_20081003': ('2008-10-03', 'in_office_attestation'),
     'za_pac_leadership_page_president_mphahlele_2008': (None, 'in_office_continuation_attestation'),
-    'za_pac_statement_president_mphahlele_20090114': ('2009-01-14', 'in_office_attestation'),
+    'za_pac_statement_president_mphahlele_20090114': (None, 'in_office_continuation_attestation'),
     'za_pac_profile_president_mphahlele_2013': (None, 'in_office_continuation_attestation'),
     'za_pac_profile_mphahlele_elected_president_2006': (None, 'election_reference_retrospective'),
     'za_pac_profile_mphahlele_reelected_unopposed_2008': (None, 'election_reference_retrospective'),
@@ -174,7 +174,7 @@ EVENTS = {
     'za_pac_iec_funding_suspended_leadership_struggle_20150617': ('2015-06-17', 'iec_decision_on_leadership_dispute'),
     'za_pac_court_leave_to_appeal_refused_mphahlele_2016': (None, 'court_order'),
     'za_pac_interview_secretary_general_moloto_20171004': ('2017-10-04', 'other_office_attestation'),
-    'za_pac_post_president_moloto_20180119': ('2018-01-19', 'in_office_attestation'),
+    'za_pac_post_president_moloto_20180119': ('2018-01-19', 'in_office_reference_republished_news'),
     'za_pac_post_former_president_mbinda_expelled_2017': (None, 'expulsion_reference'),
     'za_pac_post_then_president_mphethi_2014': (None, 'predecessor_reference'),
     'za_pac_post_case_against_mbinda_hearing_scheduled_20180119': ('2018-01-19', 'court_hearing_scheduled'),
@@ -218,6 +218,7 @@ UNDATED = (
     'za_pac_constitution_amendments_1990_1992_1996_2000',
     'za_pac_constitution_adopted_9th_national_congress_2008',
     'za_pac_leadership_page_president_mphahlele_2008',
+    'za_pac_statement_president_mphahlele_20090114',
     'za_pac_profile_president_mphahlele_2013',
     'za_pac_profile_mphahlele_elected_president_2006',
     'za_pac_profile_mphahlele_reelected_unopposed_2008',
@@ -238,6 +239,22 @@ UNDATED = (
     'za_pac_court_bloemfontein_congress_elects_nyhontso_2019',
 )
 NEW_SOURCES = list(RESPONSES)
+# Ruling: the PAC post of 19 January 2018 repeats word for word, without credit, a Political Analysis South Africa news
+# article of 18 January 2018. It is non-primary (like CLAUDE-C01-28's republished reference text): its four claims are
+# kept as claims only and never feed a holder.
+REPUBLISHED_SOURCE = 'za_pac_post_case_against_mbinda_20180119'
+REPUBLISHED_TYPE = 'party_republished_news_text'
+REPUBLISHED_CLAIMS = ('za_pac_post_president_moloto_20180119', 'za_pac_post_former_president_mbinda_expelled_2017',
+                      'za_pac_post_then_president_mphethi_2014',
+                      'za_pac_post_case_against_mbinda_hearing_scheduled_20180119')
+REPUBLISHED_ORIGINAL = ('Political Analysis South Africa',
+                        '"PAC case against Mbinda, for parliamentary seat to be heard in March 2018"', 'Mzoxolo Mpolase',
+                        'published 18 January 2018', 'without credit',
+                        'https://www.politicalanalysis.co.za/pac-case-against-mbinda-for-parliamentary-seat-to-be-heard-'
+                        'in-march-2018/', '20230109165609')
+# Ruling: the 2009 statement has no dateline; its page's Joomla "Last Updated" stamp is an edit stamp, never a date.
+EDIT_STAMP_CLAIM = 'za_pac_statement_president_mphahlele_20090114'
+EDIT_STAMP_RANGE = 'undated statement; page edit stamp "Last Updated ( Wednesday, 14 January 2009 )"'
 # Holder observations (name, attested_on, from, until), one per cited in-office attestation, in date order.
 HOLDERS = [
     ('Stanley Mogoba', '1998-05-19', None, None),
@@ -246,10 +263,8 @@ HOLDERS = [
     ('Stanley Mogoba', '1998-11-03', None, None),
     ('Letlapa Mphahlele', '2008-09-20', None, None),
     ('Letlapa Mphahlele', '2008-10-03', None, None),
-    ('Letlapa Mphahlele', '2009-01-14', None, None),
     ('Alton Mphethi', '2014-03-21', None, None),
     ('Luthando Mbinda', '2016-01-31', None, None),
-    ('Narius Moloto', '2018-01-19', None, None),
     ('Narius Moloto', '2018-05-25', None, None),
     ('Narius Moloto', '2019-07-12', None, None),
     ('Mzwanele Nyhontso', '2020-02-15', None, None),
@@ -264,10 +279,8 @@ HOLDER_CLAIMS = [
     ['za_pac_release_president_mogoba_19981103'],
     ['za_pac_statement_president_mphahlele_20080920'],
     ['za_pac_notice_president_mphahlele_20081003'],
-    ['za_pac_statement_president_mphahlele_20090114'],
     ['za_pac_report_president_mphethi_20140321'],
     ['za_pac_release_president_mbinda_20160131'],
-    ['za_pac_post_president_moloto_20180119'],
     ['za_pac_statement_president_moloto_20180525'],
     ['za_pac_court_current_president_moloto_20190712'],
     ['za_pac_speech_president_nyhontso_20200215'],
@@ -275,9 +288,9 @@ HOLDER_CLAIMS = [
     ['za_pac_new_year_message_president_nyhontso_20211231'],
     ['za_pac_x_president_nyhontso_manifesto_launch_20260829'],
 ]
-HOLDER_REVIEW = ['ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-05', 'ZA-PAC-05', 'ZA-PAC-05', 'ZA-PAC-06', 'ZA-PAC-07', 'ZA-PAC-08', 'ZA-PAC-08', 'ZA-PAC-09', 'ZA-PAC-10', 'ZA-PAC-10', 'ZA-PAC-10', 'ZA-PAC-11']
+HOLDER_REVIEW = ['ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-03', 'ZA-PAC-05', 'ZA-PAC-05', 'ZA-PAC-06', 'ZA-PAC-07', 'ZA-PAC-08', 'ZA-PAC-09', 'ZA-PAC-10', 'ZA-PAC-10', 'ZA-PAC-10', 'ZA-PAC-11']
 # Holder observations from years in which another person claimed the presidency: marked disputed, never resolved.
-DISPUTED = [7, 8, 9, 10, 12, 13, 14]
+DISPUTED = [6, 7, 8, 10, 11, 12]
 # Role claims that must never feed a holder.
 NEVER_HOLDER = (
     'za_pac_previous_leaders_list_2008',
@@ -288,6 +301,7 @@ NEVER_HOLDER = (
     'za_pac_manifesto_1999_president_mogoba',
     'za_pac_manifesto_2004_foreword_president_pheko',
     'za_pac_leadership_page_president_mphahlele_2008',
+    'za_pac_statement_president_mphahlele_20090114',
     'za_pac_profile_president_mphahlele_2013',
     'za_pac_profile_mphahlele_elected_president_2006',
     'za_pac_profile_mphahlele_reelected_unopposed_2008',
@@ -304,6 +318,7 @@ NEVER_HOLDER = (
     'za_pac_iec_funding_suspended_leadership_struggle_20150617',
     'za_pac_court_leave_to_appeal_refused_mphahlele_2016',
     'za_pac_interview_secretary_general_moloto_20171004',
+    'za_pac_post_president_moloto_20180119',
     'za_pac_post_former_president_mbinda_expelled_2017',
     'za_pac_post_then_president_mphethi_2014',
     'za_pac_post_case_against_mbinda_hearing_scheduled_20180119',
@@ -335,15 +350,16 @@ ORGANIZATION_ONLY = (
 )
 REVIEW = ['ZA-PAC-01', 'ZA-PAC-02', 'ZA-PAC-03', 'ZA-PAC-04', 'ZA-PAC-05', 'ZA-PAC-06', 'ZA-PAC-07', 'ZA-PAC-08', 'ZA-PAC-09', 'ZA-PAC-10', 'ZA-PAC-11']
 # Days that must never be any holder's observation, start or end: elections and congress spans, result publications,
-# expulsions, suspensions, court orders and findings, the IEC decision, the other office, acting service and lead days
+# expulsions, suspensions, court orders and findings, the IEC decision, the other office, acting service, the 2009 page
+# edit stamp, the republished news article (18 January 2018) and the PAC's copy of it (19 January 2018), and lead days
 # (Mothopeng's reported death, Makwetu's reported election, the TRC hearing, the dropped 2008 and 2009 items, the
 # ministerial appointment announced in 2024).
 NEVER_HOLDER_DATE = {'1990-10-23', '1990-12-01', '1996-12-01', '1997-10-07', '1997-12-01', '2003-06-15', '2006-09-25',
-                     '2008-07-04', '2008-07-06', '2008-10-23', '2009-01-16', '2013-05-01', '2014-09-28', '2015-06-17',
-                     '2016-04-20', '2016-06-20', '2016-06-21', '2016-06-29', '2017-06-13', '2017-10-04', '2018-03-01',
-                     '2018-03-04', '2019-03-08', '2019-06-09', '2019-07-20', '2019-08-24', '2019-08-25', '2019-08-29',
-                     '2019-08-30', '2019-09-01', '2019-12-30', '2021-08-23', '2023-10-27', '2024-06-30', '2025-12-11',
-                     '2025-12-14'}
+                     '2008-07-04', '2008-07-06', '2008-10-23', '2009-01-14', '2009-01-16', '2013-05-01', '2014-09-28',
+                     '2015-06-17', '2016-04-20', '2016-06-20', '2016-06-21', '2016-06-29', '2017-06-13', '2017-10-04',
+                     '2018-01-18', '2018-01-19', '2018-03-01', '2018-03-04', '2019-03-08', '2019-06-09', '2019-07-20',
+                     '2019-08-24', '2019-08-25', '2019-08-29', '2019-08-30', '2019-09-01', '2019-12-30', '2021-08-23',
+                     '2023-10-27', '2024-06-30', '2025-12-11', '2025-12-14'}
 HOLDER_KINDS = {'in_office_attestation'}
 BOUNDARY_KINDS = {'assumption_of_office', 'end_of_term_statement', 'resignation_effective', 'oath_of_office'}
 # Rows whose printed office is not the role's own title.
@@ -364,7 +380,7 @@ PDF_PAGES = {'za_pac_statement_moloto_africa_day_20180525': [1, 2], 'za_pac_safl
 LEAD_URL_MARKERS = ('sahistory', 'wikipedia', 'britannica', 'news24', 'iol.co.za', 'timeslive', 'dailymaverick',
                     'ewn.co.za', 'sabcnews', 'politicsweb', 'polity.org', 'reuters', 'bbc.', 'voanews', 'mg.co.za',
                     'nelsonmandela.org', 'omalley', 'disa.ukzn', 'citizen.co.za', 'lawlibrary', 'justice.gov.za',
-                    'digitallibrary.un.org', 'pmg.org.za', 'x.com/')
+                    'digitallibrary.un.org', 'pmg.org.za', 'x.com/', 'politicalanalysis')
 # Page shapes a server can generate per request or that grow over time (search, API, listings, feeds, cache-busting).
 PER_REQUEST_URL = re.compile(r'wp-json|cdx/search|cdn-cgi|email-protection|nocache|cachebust|[?&]s=|[?&]_=|[?&]cb=|'
                              r'/search[/?]|/feed|/embed|/page/\d|/tag/|/category/|download\.php|rnd=|/api/', re.I)
@@ -388,6 +404,12 @@ def pac_invariants(packet):
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     claim_source = {c['id']: s['id'] for s in packet['sources'] for c in s['claims']}
     orgs = {o['id']: o for o in packet['organizations']}
+    # The PAC's copy of a news article is the packet's only non-primary PAC source, and its four claims are claims only.
+    assert [s['id'] for s in packet['sources']
+            if s['id'].startswith(PREFIX) and s['source_type'] == REPUBLISHED_TYPE] == [REPUBLISHED_SOURCE]
+    assert [c['id'] for s in packet['sources'] if s['id'] == REPUBLISHED_SOURCE for c in s['claims']] == list(
+        REPUBLISHED_CLAIMS)
+    assert set(REPUBLISHED_CLAIMS) <= set(NEVER_HOLDER) and EDIT_STAMP_CLAIM in NEVER_HOLDER
     assert len(packet['institutions']) == 1 and packet['institutions'][0]['id'] == 'za_presidency'
     presidency = packet['institutions'][0]
     # The presidency roles and the ANC, DA, ACDP, Freedom Front and IFP party roles are unchanged by this packet.
@@ -419,6 +441,9 @@ def pac_invariants(packet):
     for index, h in enumerate(holders):
         assert 'acting' not in h['name'].lower() and 'interim' not in h['name'].lower(), h['name']
         assert h['from'] is None and h['until'] is None, h['name']
+        # Republished news text and an undated statement's page edit stamp never date a holder.
+        assert REPUBLISHED_SOURCE not in h['sources'] and not set(h['claim_ids']) & set(REPUBLISHED_CLAIMS), h['name']
+        assert EDIT_STAMP_CLAIM not in h['claim_ids'], h['name']
         assert h['attested_on'] not in NEVER_HOLDER_DATE, h['name']
         assert not set(h['claim_ids']) & set(NEVER_HOLDER), h['name']
         assert not set(h['claim_ids']) & set(ORGANIZATION_ONLY), h['name']
@@ -504,7 +529,7 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
         groups = holder_claims + list(NEVER_HOLDER) + list(ORGANIZATION_ONLY)
         self.assertEqual(len(groups), len(set(groups)))
         self.assertEqual(set(groups), set(self.new_claims))
-        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(ORGANIZATION_ONLY)), (16, 46, 3))
+        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(ORGANIZATION_ONLY)), (14, 48, 3))
         self.assertEqual(self.role['claim_ids'], [cid for cid in self.new_claims if cid not in ORGANIZATION_ONLY])
         self.assertEqual(self.role['sources'], [sid for sid in NEW_SOURCES
                                                 if {c['id'] for c in self.sources[sid]['claims']} - set(ORGANIZATION_ONLY)])
@@ -527,9 +552,36 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
 
     def test_holders_are_exactly_as_intended(self):
         pac_invariants(self.packet)
-        self.assertEqual(len(DISPUTED), 7)
+        self.assertEqual(len(DISPUTED), 6)
         self.assertEqual({HOLDERS[i][0] for i in DISPUTED},
                          {'Alton Mphethi', 'Luthando Mbinda', 'Narius Moloto', 'Mzwanele Nyhontso'})
+        self.assertEqual([HOLDERS[i][:2] for i in DISPUTED], [
+            ('Alton Mphethi', '2014-03-21'), ('Luthando Mbinda', '2016-01-31'), ('Narius Moloto', '2018-05-25'),
+            ('Mzwanele Nyhontso', '2020-02-15'), ('Mzwanele Nyhontso', '2021-07-19'), ('Mzwanele Nyhontso', '2021-12-31')])
+        # Ruling: the PAC's copy of a Political Analysis South Africa article is non-primary; its source type is pinned
+        # exactly, its scope note names the original, and none of its four claims feeds a holder.
+        republished = self.sources[REPUBLISHED_SOURCE]
+        self.assertEqual(republished['source_type'], REPUBLISHED_TYPE)
+        self.assertEqual([c['id'] for c in republished['claims']], list(REPUBLISHED_CLAIMS))
+        for phrase in REPUBLISHED_ORIGINAL:
+            self.assertIn(phrase, republished['scope_note'], phrase)
+        for cid in REPUBLISHED_CLAIMS:
+            self.assertIn(cid, NEVER_HOLDER, cid)
+            self.assertNotIn(self.rows[cid]['event_kind'], HOLDER_KINDS | BOUNDARY_KINDS, cid)
+            self.assertIn('republished news text', self.claims[cid]['uncertainty'].lower(), cid)
+        self.assertEqual(self.rows['za_pac_post_president_moloto_20180119']['event_kind'],
+                         'in_office_reference_republished_news')
+        self.assertFalse([h for h in self.role['holder_claims']
+                          if REPUBLISHED_SOURCE in h['sources'] or set(h['claim_ids']) & set(REPUBLISHED_CLAIMS)])
+        self.assertIn('reproducing a Political Analysis South Africa interview',
+                      self.sources['za_pac_interview_moloto_secretary_general_20171004']['scope_note'])
+        # Ruling: the 2009 statement is an undated continuation claim; its page's Joomla edit stamp is no date.
+        self.assertEqual(self.rows[EDIT_STAMP_CLAIM]['event_kind'], 'in_office_continuation_attestation')
+        self.assertEqual(self.rows[EDIT_STAMP_CLAIM]['printed_range'], EDIT_STAMP_RANGE)
+        self.assertIsNone(self.sources['za_pac_statement_zuma_case_2009']['published_date'])
+        self.assertIn('edit stamp', self.sources['za_pac_statement_zuma_case_2009']['scope_note'])
+        self.assertEqual([h['attested_on'] for h in self.role['holder_claims'] if h['name'] == 'Letlapa Mphahlele'],
+                         ['2008-09-20', '2008-10-03'])
         for index, holder in enumerate(self.role['holder_claims']):
             self.assertTrue(holder['note'].startswith('Observed on '), holder['name'])
             self.assertRegex(holder['uncertainty'], r'No start', holder['name'])
@@ -658,6 +710,7 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
             if sid in X_SOURCES:
                 self.assertIn('@MyPAConline', extract['provenance_note'])
                 self.assertEqual(source['source_type'], 'party_social_media_post_archived')
+            self.assertEqual(source['source_type'] == REPUBLISHED_TYPE, sid == REPUBLISHED_SOURCE, sid)
             self.assertIn('No open license, portrait permission or likeness approval', extract['rights_note'])
             self.assertEqual(extract['visual_review']['pdf_pages_one_based'], PDF_PAGES.get(sid, []))
             self.assertTrue(source['source_type'] and source['scope_note'] and source['publisher'])
@@ -747,10 +800,10 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
         validator_cases = [
             (lambda p: source(p, 'za_pac_saflii_gphc_2021_539')['snapshot'].update(sha256='0' * 64), 'checksum mismatch'),
             (lambda p: source(p, 'za_pac_x_manifesto_launch_20260829')['snapshot'].update(bytes=1), 'checksum mismatch'),
-            (lambda p: holder(p, 15).update(attested_on='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 13).update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'za_pac_x_president_nyhontso_manifesto_launch_20260829').update(attested_on='2026-09-08'),
              'exceeds cutoff'),
-            (lambda p: holder(p, 12)['claim_ids'].append('za_pac_court_bloemfontein_congress_elects_nyhontso_2019'),
+            (lambda p: holder(p, 10)['claim_ids'].append('za_pac_court_bloemfontein_congress_elects_nyhontso_2019'),
              'cited source'),
             (lambda p: role(p)['claim_ids'].append('za_pac_does_not_exist'), 'Unknown'),
             (lambda p: org(p).update(represented_party_ids=['SouthAfrica/guessed_pac']), 'foreign represented party'),
@@ -760,51 +813,66 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
                 self.validate(mutated(change))
         invariant_cases = [
             ('successor start used as an end (Mogoba)', lambda p: holder(p, 3).update(until='2008-09-20')),
-            ('successor start used as an end (Mphahlele)', lambda p: holder(p, 6).update(until='2014-03-21')),
-            ('successor start used as an end (Mbinda)', lambda p: holder(p, 8).update(until='2018-01-19')),
-            ('successor start used as an end (Moloto)', lambda p: holder(p, 11).update(until='2020-02-15')),
-            ('expulsion month used as an end (Mphahlele)', lambda p: holder(p, 6).update(until='2013-05-01')),
-            ('expulsion effective day used as an end (Mbinda)', lambda p: holder(p, 8).update(until='2017-06-13')),
-            ('suspension used as an end (Moloto)', lambda p: holder(p, 11).update(until='2019-07-20')),
-            ('court declaration used as an end (Moloto)', lambda p: holder(p, 11).update(until='2021-08-23')),
-            ('court finding used as an end (Moloto)', lambda p: holder(p, 11).update(until='2023-10-27')),
+            ('successor start used as an end (Mphahlele)', lambda p: holder(p, 5).update(until='2014-03-21')),
+            ('successor start used as an end (Mbinda)', lambda p: holder(p, 7).update(until='2018-05-25')),
+            ('successor start used as an end (Moloto)', lambda p: holder(p, 9).update(until='2020-02-15')),
+            ('expulsion month used as an end (Mphahlele)', lambda p: holder(p, 5).update(until='2013-05-01')),
+            ('expulsion effective day used as an end (Mbinda)', lambda p: holder(p, 7).update(until='2017-06-13')),
+            ('suspension used as an end (Moloto)', lambda p: holder(p, 9).update(until='2019-07-20')),
+            ('court declaration used as an end (Moloto)', lambda p: holder(p, 9).update(until='2021-08-23')),
+            ('court finding used as an end (Moloto)', lambda p: holder(p, 9).update(until='2023-10-27')),
             ('election used as start without stated assumption (Nyhontso)',
-             lambda p: holder(p, 12).update({'from': '2019-08-29'})),
+             lambda p: holder(p, 10).update({'from': '2019-08-29'})),
             ('election used as start without stated assumption (Mbinda)',
-             lambda p: holder(p, 8).update({'from': '2014-09-28'})),
+             lambda p: holder(p, 7).update({'from': '2014-09-28'})),
             ('election used as start without stated assumption (Mphahlele)',
              lambda p: holder(p, 4).update({'from': '2006-09-25'})),
-            ('consent order used as a start (Moloto)', lambda p: holder(p, 11).update({'from': '2019-03-08'})),
-            ('in-office observation used as start (Nyhontso 2026)', lambda p: holder(p, 15).update({'from': '2026-08-29'})),
-            ('result publication used as observation (Nyhontso)', lambda p: holder(p, 12).update(attested_on='2019-09-01')),
-            ('other office used as observation (Moloto)', lambda p: holder(p, 9).update(attested_on='2017-10-04')),
-            ('acting holder added', lambda p: role(p)['holder_claims'].insert(7, {
+            ('consent order used as a start (Moloto)', lambda p: holder(p, 9).update({'from': '2019-03-08'})),
+            ('in-office observation used as start (Nyhontso 2026)', lambda p: holder(p, 13).update({'from': '2026-08-29'})),
+            ('result publication used as observation (Nyhontso)', lambda p: holder(p, 10).update(attested_on='2019-09-01')),
+            ('other office used as observation (Moloto)', lambda p: holder(p, 8).update(attested_on='2017-10-04')),
+            ('acting holder added', lambda p: role(p)['holder_claims'].insert(6, {
                 'name': 'Acting President of the PAC', 'attested_on': None, 'from': None, 'until': None,
                 'sources': ['za_pac_home_page_2013_acting'],
                 'claim_ids': ['za_pac_home_page_acting_president_mpheti_2013'], 'note': 'Observed on',
                 'uncertainty': 'No start.'})),
-            ('acting service added as a holder (Mphethi)', lambda p: role(p)['holder_claims'].insert(7, {
+            ('acting service added as a holder (Mphethi)', lambda p: role(p)['holder_claims'].insert(6, {
                 'name': 'Alton Mphethi', 'attested_on': None, 'from': None, 'until': None,
                 'sources': ['za_pac_home_page_2013_acting'],
                 'claim_ids': ['za_pac_home_page_acting_president_mpheti_2013'], 'note': 'Observed on',
                 'uncertainty': 'No start.'})),
-            ('Secretary General added as a holder (Moloto)', lambda p: role(p)['holder_claims'].insert(9, {
+            ('Secretary General added as a holder (Moloto)', lambda p: role(p)['holder_claims'].insert(8, {
                 'name': 'Narius Moloto', 'attested_on': '2017-10-04', 'from': None, 'until': None,
                 'sources': ['za_pac_interview_moloto_secretary_general_20171004'],
                 'claim_ids': ['za_pac_interview_secretary_general_moloto_20171004'], 'note': 'Observed on',
                 'uncertainty': 'No start.'})),
             ('rival claim cited by a holder (Mbinda)', lambda p: (
-                holder(p, 9)['claim_ids'].append('za_pac_release_mbinda_claims_to_be_legitimate_pac_20180304'),
-                holder(p, 9)['sources'].append('za_pac_release_fraud_case_mbinda_20180304'))),
+                holder(p, 8)['claim_ids'].append('za_pac_release_mbinda_claims_to_be_legitimate_pac_20180304'),
+                holder(p, 8)['sources'].append('za_pac_release_fraud_case_mbinda_20180304'))),
             ('mixed state-office attestation cited by a holder (Mbinda)', lambda p: (
-                holder(p, 8)['claim_ids'].append('za_pac_statement_president_mbinda_sworn_in_mp_2015'),
-                holder(p, 8)['sources'].append('za_pac_statement_iec_20160629'))),
-            ('dispute marker removed (Nyhontso 2020)', lambda p: holder(p, 12).update(
-                uncertainty=holder(p, 12)['uncertainty'].replace('Disputed:', 'Contested:'))),
-            ('dispute resolved by inference (Mphethi)', lambda p: holder(p, 7).update(
-                uncertainty=holder(p, 7)['uncertainty'].split(' Disputed:')[0])),
-            ('dispute marker added (Nyhontso 2026)', lambda p: holder(p, 15).update(
-                uncertainty=holder(p, 15)['uncertainty'] + ' Disputed: invented.')),
+                holder(p, 7)['claim_ids'].append('za_pac_statement_president_mbinda_sworn_in_mp_2015'),
+                holder(p, 7)['sources'].append('za_pac_statement_iec_20160629'))),
+            ('republished news observation restored (Moloto 2018-01-19)', lambda p: role(p)['holder_claims'].insert(8, {
+                'name': 'Narius Moloto', 'attested_on': '2018-01-19', 'from': None, 'until': None,
+                'sources': [REPUBLISHED_SOURCE], 'claim_ids': ['za_pac_post_president_moloto_20180119'],
+                'note': 'Observed on 19 January 2018', 'uncertainty': 'No start. Disputed: the dispute is recorded, not resolved.'})),
+            ('republished news claim cited by a holder (Moloto 2018-05-25)', lambda p: (
+                holder(p, 8)['claim_ids'].append('za_pac_post_president_moloto_20180119'),
+                holder(p, 8)['sources'].append(REPUBLISHED_SOURCE))),
+            ('republished news text typed as a primary statement', lambda p: source(p, REPUBLISHED_SOURCE).update(
+                source_type='primary_party_statement_archived')),
+            ('page edit stamp used as an observation (Mphahlele 2009)', lambda p: role(p)['holder_claims'].insert(6, {
+                'name': 'Letlapa Mphahlele', 'attested_on': '2009-01-14', 'from': None, 'until': None,
+                'sources': ['za_pac_statement_zuma_case_2009'], 'claim_ids': [EDIT_STAMP_CLAIM],
+                'note': 'Observed on 14 January 2009', 'uncertainty': 'No start.'})),
+            ('page edit stamp given a date (Mphahlele 2009)', lambda p: claim(p, EDIT_STAMP_CLAIM).update(
+                attested_on='2009-01-14')),
+            ('dispute marker removed (Nyhontso 2020)', lambda p: holder(p, 10).update(
+                uncertainty=holder(p, 10)['uncertainty'].replace('Disputed:', 'Contested:'))),
+            ('dispute resolved by inference (Mphethi)', lambda p: holder(p, 6).update(
+                uncertainty=holder(p, 6)['uncertainty'].split(' Disputed:')[0])),
+            ('dispute marker added (Nyhontso 2026)', lambda p: holder(p, 13).update(
+                uncertainty=holder(p, 13)['uncertainty'] + ' Disputed: invented.')),
             ('ANC claim fed into the PAC role', lambda p: (
                 role(p)['claim_ids'].append('za_anc_nec_reaffirms_ramaphosa_anc_president_20260515'),
                 role(p)['sources'].append('za_anc_sg_statement_special_nec_20260515'))),
@@ -817,7 +885,7 @@ class SouthAfricaPacPresidentsTests(unittest.TestCase):
             ('presidency holder added to the PAC role', lambda p: role(p)['holder_claims'].append(
                 copy.deepcopy(president_role(p)['holder_claims'][8]))),
             ('PAC holder added to the Presidency', lambda p: president_role(p)['holder_claims'].append(
-                copy.deepcopy(holder(p, 15)))),
+                copy.deepcopy(holder(p, 13)))),
             ('PAC claim moved onto the ANC role', lambda p: (
                 role(p, ANC_ID)['claim_ids'].append('za_pac_release_president_mbinda_20160131'),
                 role(p, ANC_ID)['sources'].append('za_pac_release_strategic_plan_20160131'))),
