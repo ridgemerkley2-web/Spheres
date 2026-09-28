@@ -1,0 +1,238 @@
+{
+  "annual_growth": 0.003505,
+  "change_since_1990": 0.042024,
+  "day": 13,
+  "density_per_sqkm": 98.154,
+  "economy": {
+    "change_since_opening": 0.107474440359425,
+    "change_since_opening_bn": 15.351866149610771,
+    "contribution_date": {
+      "day": 12,
+      "month": 5,
+      "year": 1999
+    },
+    "current_date": {
+      "day": 13,
+      "month": 5,
+      "year": 1999
+    },
+    "id": "FRA_auvergne-rh-ne-alpes",
+    "inherited_gdp_bn": 158.189080754017,
+    "materials_accounting": {
+      "additional_annual_bn": 0,
+      "already_included_annual_bn": 0,
+      "background_annual_bn": 8.480224939604142,
+      "observed_annual_bn": 0,
+      "total_annual_bn": 8.480224939604142,
+      "unobserved_annual_bn": 8.480224939604142
+    },
+    "name": "Auvergne-Rhône-Alpes",
+    "nation": "France",
+    "note": "Modeled province accounts: broad national agriculture/industry/services shares use frozen WDI observations or disclosed income-peer estimates; manufacturing retains the inherited UNIDO estimate. Sub-sector splits and bounded density-weighted population allocations are model assumptions. Province weights follow land and reconcile to national GDP; this grants no output or inventory. See inherited-industry source records for observation years, peer countries and normalization.",
+    "opening_date": {
+      "day": 1,
+      "month": 1,
+      "year": 1990
+    },
+    "opening_gdp_bn": 142.8420199097551,
+    "project_gdp_bn": 0.004805305348867046,
+    "projects": [
+      {
+        "annual_gdp_bn": 0.004805305348867046,
+        "annualization_days": 365,
+        "classification": "incremental_value_added",
+        "counted": true,
+        "daily_value_added_bn": 0.000013165220133882316,
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "gross_output_daily_bn": 0.0000253469995,
+        "id": "site:FRA_auvergne-rh-ne-alpes:advanced_industry",
+        "intermediate_inputs_daily_bn": 0.000012181779366117682,
+        "kind": "advanced_industry",
+        "name": "Advanced Industry",
+        "output_quantity_daily": 0.050693999,
+        "output_unit": "advanced components",
+        "payments_daily_bn": 0.0000025346999900000002,
+        "reason": "Actual advanced components enter the separate inventory available to explicitly adopted supplier operating requirements. Consumed intermediates, copper, rare earths and power are deducted once; no free electronics stock or second equipment GDP bonus.",
+        "sector": "manufacturing",
+        "status": "producing",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      },
+      {
+        "annual_gdp_bn": 0,
+        "annualization_days": 365,
+        "classification": "enabling_asset",
+        "counted": false,
+        "daily_value_added_bn": 0,
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "gross_output_daily_bn": 0,
+        "id": "site:FRA_auvergne-rh-ne-alpes:arms_plant",
+        "intermediate_inputs_daily_bn": 0,
+        "kind": "arms_plant",
+        "name": "Arms Plant",
+        "output_quantity_daily": 0,
+        "output_unit": "",
+        "payments_daily_bn": 0,
+        "reason": "Adds one arms-plant level for funded manufacturing lines; equipment still needs its recipe, procurement authority and production time. No independent GDP bonus; only actual downstream output or completed work is counted.",
+        "sector": "manufacturing",
+        "status": "enabling",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      },
+      {
+        "annual_gdp_bn": 0,
+        "annualization_days": 365,
+        "classification": "enabling_asset",
+        "counted": false,
+        "daily_value_added_bn": 0,
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "gross_output_daily_bn": 0,
+        "id": "site:FRA_auvergne-rh-ne-alpes:power_grid",
+        "intermediate_inputs_daily_bn": 0,
+        "kind": "power_grid",
+        "name": "Power Grid",
+        "output_quantity_daily": 0,
+        "output_unit": "",
+        "payments_daily_bn": 0,
+        "reason": "Delivers 5 modeled power units/day per level to this province; requires national generation. No independent GDP bonus; only actual downstream output or completed work is counted.",
+        "sector": "utilities",
+        "status": "enabling",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      }
+    ],
+    "receipt_date_label": "Work settled 12 May 1999 · not a forecast",
+    "sectors": [
+      {
+        "gdp_bn": 5.386935954345825,
+        "id": "agriculture",
+        "name": "Agriculture",
+        "share": 0.03405274431607461
+      },
+      {
+        "gdp_bn": 5.2572612746585765,
+        "id": "extraction",
+        "name": "Extraction",
+        "share": 0.03323302439568157
+      },
+      {
+        "gdp_bn": 25.356262930461046,
+        "id": "manufacturing",
+        "name": "Manufacturing",
+        "share": 0.1602859855212453
+      },
+      {
+        "gdp_bn": 3.5048408497723837,
+        "id": "utilities",
+        "name": "Utilities",
+        "share": 0.022155349597121045
+      },
+      {
+        "gdp_bn": 6.133471487101671,
+        "id": "construction",
+        "name": "Construction",
+        "share": 0.03877186179496182
+      },
+      {
+        "gdp_bn": 20.46456610236843,
+        "id": "transport",
+        "name": "Transport & logistics",
+        "share": 0.12936382443180286
+      },
+      {
+        "gdp_bn": 61.393698307105296,
+        "id": "services",
+        "name": "Market services",
+        "share": 0.3880914732954086
+      },
+      {
+        "gdp_bn": 30.69684915355262,
+        "id": "public_services",
+        "name": "Public services",
+        "share": 0.1940457366477041
+      }
+    ],
+    "settled_day": 3418,
+    "total_gdp_bn": 158.19388605936587
+  },
+  "id": "FRA_auvergne-rh-ne-alpes",
+  "month": 5,
+  "name": "Auvergne-Rhône-Alpes",
+  "national_share": 0.116929,
+  "opening_population": 6.664928,
+  "owner": "France",
+  "owner_count": 18,
+  "owner_name": "France",
+  "owner_rank": 2,
+  "population": 6.9450154,
+  "starting_industry": {
+    "allocation_basis": "Population with a bounded density proxy for urban activity (0.75–1.25 times population, then normalized). Model allocation, not measured provincial GDP or historical factory locations. Broad sector observations and fallback sources are frozen with the campaign.",
+    "capacity_annual_bn": 28.61491290649362,
+    "current_output_annual_bn": 25.35145762511218,
+    "district": "FRA_auvergne-rh-ne-alpes",
+    "factory_equivalents": 286.14912906493623,
+    "groups": [
+      {
+        "capacity_annual_bn": 3.9481453061876404,
+        "current_output_annual_bn": 3.497869756049045,
+        "factory_equivalents": 39.4814530618764,
+        "key": "food_textiles",
+        "name": "Food & textiles",
+        "opening_output_annual_bn": 3.1585162449501127,
+        "utilization": 0.8859526397286058
+      },
+      {
+        "capacity_annual_bn": 9.571871632102017,
+        "current_output_annual_bn": 8.480224939604142,
+        "factory_equivalents": 95.71871632102017,
+        "key": "materials",
+        "name": "Materials",
+        "opening_output_annual_bn": 7.6574973056816145,
+        "utilization": 0.8859526397286059
+      },
+      {
+        "capacity_annual_bn": 3.4752779548512835,
+        "current_output_annual_bn": 3.0789316778911258,
+        "factory_equivalents": 34.752779548512834,
+        "key": "chemicals",
+        "name": "Chemicals",
+        "opening_output_annual_bn": 2.7802223638810273,
+        "utilization": 0.8859526397286059
+      },
+      {
+        "capacity_annual_bn": 9.813505479011535,
+        "current_output_annual_bn": 8.694301084121408,
+        "factory_equivalents": 98.13505479011535,
+        "key": "machinery_electronics",
+        "name": "Machinery & electronics",
+        "opening_output_annual_bn": 7.85080438320923,
+        "utilization": 0.885952639728606
+      },
+      {
+        "capacity_annual_bn": 1.806112534341142,
+        "current_output_annual_bn": 1.6001301674464585,
+        "factory_equivalents": 18.06112534341142,
+        "key": "other",
+        "name": "Other manufacturing",
+        "opening_output_annual_bn": 1.4448900274729137,
+        "utilization": 0.8859526397286067
+      }
+    ],
+    "nation": "France",
+    "note": "Estimated factory equivalents, not literal establishments. Inherited manufacturing output is already included in GDP; no goods, cash, operating inputs or construction are granted. Capacity stays frozen while the existing macroeconomy changes its output. Utilization above 100% indicates that output has outgrown the opening estimate, not new automatically built factories.",
+    "opening_output_annual_bn": 22.8919303251949,
+    "origin": "France",
+    "source": {
+      "manufacturing_share": 0.16026047755175676,
+      "mix_quality": "partial_1990_model",
+      "notes": "GAME CAPACITY ESTIMATE, not a literal factory or establishment census. Source GDP is retained for ratio provenance only; it does not replace the calibrated game GDP.\nPartial 1990 GAME MODEL sector profile: same-group aggregate parents counted once; any explicitly listed missing divisions use the within-country median positive uncombined value. Raw source nulls remain unknown.",
+      "origin": "France",
+      "share_quality": "sourced_1990",
+      "source": "{\n  \"country_iso3\": \"FRA\",\n  \"footnotes\": [\n    {\n      \"scope\": \"ym\",\n      \"value\": [\n        {\n          \"metadataList\": [\n            {\n              \"note\": \"Yes.\",\n              \"noteClass\": \"Adjusted for non-response\"\n            },\n            {\n              \"note\": \"Service des Etudes et des Statistiques  Industrielles (SESSI), Ministère de l'Economie, des Finances et de l'Industrie, Paris.Industrial statistics for the OECD countries are compiled by the OECD secretariat, which supplies them to UNIDO.\",\n              \"noteClass\": \"Data Supplier\"\n            },\n            {\n              \"note\": \"Data were originally classified according to the Nomenclature d'Activités et de Produits with 100 headings (NAP 100). The national conversion table was used to produce the ISIC-classified figures.\",\n              \"noteClass\": \"Deviations from ISIC\"\n            },\n            {\n              \"note\": \"Mail questionnaires.\",\n              \"noteClass\": \"Method of data collection\"\n            },\n            {\n              \"note\": \"La situation de l'industrie, published by Service des Etudes et des Statistiques Industrielles (SESSI), Ministère de l'Economie, des Finances et de l'Industrie, Paris.\",\n              \"noteClass\": \"Related national publications\"\n            },\n            {\n              \"note\": \"Kind-of-activity units with 20 or more employees.\",\n              \"noteClass\": \"Scope\"\n            },\n            {\n              \"note\": \"Annual survey; administrative data; business register.\",\n              \"noteClass\": \"Source\"\n            },\n            {\n              \"note\": \"Value added at factor values\",\n              \"noteClass\": \"Table Note\"\n            }\n          ],\n          \"year\": \"1990\"\n        }\n      ]\n    }\n  ],\n  \"indstat_cache_key\": \"6ffe8b45501c0fa91461a28e1358153c63f94b4dc0cf13bdaf5b953093647d53\",\n  \"indstat_country_code\": \"250\",\n  \"indstat_metadata_url\": \"https://stat.unido.org/portal/dataset/getDataset/INDSTAT/3\",\n  \"indstat_variable\": \"20\",\n  \"national_accounts_cache_key\": \"fcba21d924ceb0278ba85fda2476f1097bece7f0237c59c7bd41f8da071efc58\",\n  \"national_accounts_country_code\": \"250\",\n  \"national_accounts_metadata_url\": \"https://stat.unido.org/portal/dataset/getDataset/NATIONAL_ACCOUNTS\",\n  \"national_accounts_notes\": {\n    \"vm\": [],\n    \"ym\": []\n  },\n  \"national_accounts_observations\": [\n    {\n      \"c\": \"GdpCud\",\n      \"p\": \"1990\",\n      \"v\": 1257608803749.31\n    },\n    {\n      \"c\": \"MvaCud\",\n      \"p\": \"1990\",\n      \"v\": 201544987462.158\n    }\n  ],\n  \"national_accounts_reporter\": null,\n  \"national_accounts_variables\": [\n    \"GdpCud\",\n    \"MvaCud\"\n  ],\n  \"provider\": \"UNIDO\",\n  \"sector_mix_model\": {\n    \"aggregates\": [],\n    \"covered_by_parent\": [],\n    \"covered_divisions\": 20,\n    \"imputation_basis\": \"Within-country median of positive uncombined observed division value added; GAME MODEL estimate, not a historical observation.\",\n    \"imputed_value_added\": {\n      \"15\": 5539323500,\n      \"16\": 5539323500,\n      \"37\": 5539323500\n    },\n    \"missing_divisions\": [\n      \"15\",\n      \"16\",\n      \"37\"\n    ],\n    \"observed_divisions\": 20\n  }\n}",
+      "source_gdp_usd": 1257608803749.31,
+      "source_mva_share": 0.16026047755175676,
+      "source_mva_usd": 201544987462.158
+    },
+    "utilization": 0.885952639728606
+  },
+  "world_count": 2610,
+  "world_rank": 141,
+  "year": 1999
+}

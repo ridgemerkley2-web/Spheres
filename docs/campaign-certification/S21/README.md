@@ -1,7 +1,7 @@
 # S21 — campaign goals, history and continuation
 
 Status: **complete** on `4ac849a4f5a636a0e573e5cfdad03e05c7133566`. [Exact qualification and retained evidence](manifest.json).
-**G4 and CP1 remain open.** S19 is now complete; Codex is qualifying S20. See the [S19 closeout](../S19/integration/CLOSEOUT.md).
+**G4 is now earned; CP1 remains open.** S19 and S20 have closed. The [dated G4 decision](../G4/README.md) retains this original S21 qualification unchanged.
 
 The new **Campaign** dock button opens an illustrated overview, goals and history.
 It shows real national changes, fixed goal targets, qualifying days, current

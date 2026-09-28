@@ -1,0 +1,928 @@
+{
+  "format": "spheres-s20-closure/v1",
+  "session": "S20",
+  "status": "complete",
+  "candidate_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+  "completed_utc": "2026-09-28T04:19:38.233974+00:00",
+  "cp1_earned": false,
+  "scope": "Actual recorded France campaign map/city/province/facility/company/Air Command journey, desktop keyboard and 390px touch; real GET fault recovery and unchanged save envelope. Windows qualification only; no new performance, full-campaign, historical-coverage or human playtest claim.",
+  "runs": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "runtime_revision": "582d4654d67c2873d80d341eb7665eaa8e465e82",
+      "recorded_head": "582d4654d67c2873d80d341eb7665eaa8e465e82",
+      "original_run": "france-z4QSHy",
+      "reason": "Actual Find dialog stole city focus; fixed in 99ea6316.",
+      "result": "evidence/attempt-01/result.json.gz"
+    },
+    {
+      "attempt": 2,
+      "passed": false,
+      "runtime_revision": "bc8cb9f8971c444ae2e5b918d5796dcfd169fad5",
+      "recorded_head": "64ab28ec63820e330d0a5d018601f6d5a1c06287",
+      "original_run": "france-EMyuAw",
+      "reason": "Detached locator race in test assertion; replaced with atomic connected/focused observation.",
+      "result": "evidence/attempt-02/result.json.gz"
+    },
+    {
+      "attempt": 3,
+      "passed": false,
+      "runtime_revision": "bc8cb9f8971c444ae2e5b918d5796dcfd169fad5",
+      "recorded_head": "053d9e2df1b53af80ce45ebb458258b5f2d598a6",
+      "original_run": "france-ra0q8j",
+      "reason": "Harness expected one Escape to close nested construction preview and room; corrected to cancel preview then close room.",
+      "result": "evidence/attempt-03/result.json.gz"
+    },
+    {
+      "attempt": 4,
+      "passed": false,
+      "runtime_revision": "bc8cb9f8971c444ae2e5b918d5796dcfd169fad5",
+      "recorded_head": "053d9e2df1b53af80ce45ebb458258b5f2d598a6",
+      "original_run": "france-BkxW5V",
+      "reason": "Actual detached province opener returned to dock; fixed in ad03f4c7.",
+      "result": "evidence/attempt-04/result.json.gz"
+    },
+    {
+      "attempt": 5,
+      "passed": false,
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "recorded_head": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "original_run": "france-coGTpF",
+      "reason": "JSON-based test clone lost negative zero; corrected with structuredClone and strict equality retained.",
+      "result": "evidence/attempt-05/result.json.gz"
+    },
+    {
+      "attempt": 6,
+      "passed": false,
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "recorded_head": "277ad61b8a264f34ef75fdce099f43e7420d1f45",
+      "original_run": "france-QsKdLo",
+      "reason": "Final POST whitelist omitted two verified read-only previews; whole save equality had already passed.",
+      "result": "evidence/attempt-06/result.json.gz"
+    },
+    {
+      "attempt": 7,
+      "passed": true,
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "recorded_head": "277ad61b8a264f34ef75fdce099f43e7420d1f45",
+      "original_run": "france-o2gCRn",
+      "reason": "All route, fault, focus, purity and page-error assertions pass.",
+      "result": "evidence/attempt-07/result.json.gz"
+    }
+  ],
+  "files": [
+    {
+      "path": "evidence/attempt-01/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-01/failure.png",
+      "sha256": "b1240dab1c5923320369b3d7ff67ef9e72926c982b5b8b41ae738cbfe468c9b5",
+      "bytes": 629249
+    },
+    {
+      "path": "evidence/attempt-01/failure.txt",
+      "sha256": "4b98fb8c822ba71de8511fbe1f8e020bdaa0cce0455fd1924b16e70576cbe048",
+      "bytes": 1224
+    },
+    {
+      "path": "evidence/attempt-01/navigation-driver.cjs",
+      "sha256": "6c8f6dd3480469ce04e167ec3966fb53f7e3caf4c34e3cb06fdd094645ed8386",
+      "bytes": 21806
+    },
+    {
+      "path": "evidence/attempt-01/result.json.gz",
+      "sha256": "1a129e6b9c86e1b26de309f8fcb8452ea557f642e018b3441542c6e343b399ea",
+      "bytes": 508868,
+      "uncompressed_sha256": "0e21f8fb5f38d6f2ffba114fbd5d4d008a3b0b6e7ac697db838937a6cb0bdb13",
+      "uncompressed_bytes": 6661023
+    },
+    {
+      "path": "evidence/attempt-01/server.log",
+      "sha256": "727b0129299237dedd4f5ade682f22f30bca39aed8f656bd06575377b99e6ea8",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-01/run.log.gz",
+      "sha256": "162cd15751d7aa20bb56934d8801a34e491088e1428a5399ad7a6a6f7f46c14c",
+      "bytes": 373,
+      "uncompressed_sha256": "73a6a7750252cca29781a67501c45fb5f1d949364a860e3132f7d160bc54e7fd",
+      "uncompressed_bytes": 1031
+    },
+    {
+      "path": "evidence/attempt-02/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-02/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-02/failure.png",
+      "sha256": "b9526cf8447b914e52645b85ca177989892cada45c6c10f5dfdcc9e82ae474c5",
+      "bytes": 586977
+    },
+    {
+      "path": "evidence/attempt-02/failure.txt",
+      "sha256": "a36fbe9cdd1ceccc289bba716a5fc383c0307a718b088f019702710f9ff9b10d",
+      "bytes": 1298
+    },
+    {
+      "path": "evidence/attempt-02/navigation-driver.cjs",
+      "sha256": "d08acc79abd1381a3ad171f5f65c9777bab0d8dc11295011a0e45a743fce9191",
+      "bytes": 21900
+    },
+    {
+      "path": "evidence/attempt-02/result.json.gz",
+      "sha256": "4dc7d426a545037e2ba27e7187af12dd0253e2a84831c9d0f90000ca82adb28b",
+      "bytes": 512967,
+      "uncompressed_sha256": "75b73609814dcb774df6218f79319fca3372930f4de44cbbcdee325a591238f1",
+      "uncompressed_bytes": 6675964
+    },
+    {
+      "path": "evidence/attempt-02/server.log",
+      "sha256": "3a5c31f1b9fdbc134f26240ed6e56b67b63b436df70bfc126f65407ade0e3583",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-02/run.log.gz",
+      "sha256": "eeb408e2b72e0ec6673d545affa245367e06fa13e5a2fcfdf3d520351803fef2",
+      "bytes": 457,
+      "uncompressed_sha256": "2b1a79d68b0d913d482d14194c99d0bf1253faa796c60b8f00692aa0a481c298",
+      "uncompressed_bytes": 1189
+    },
+    {
+      "path": "evidence/attempt-03/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-03/desktop-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-03/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-03/failure.png",
+      "sha256": "cacd2c013d67cbcead36809eba65a4c2d627e5c2db467deb274ab4859bdc6d2c",
+      "bytes": 1209539
+    },
+    {
+      "path": "evidence/attempt-03/failure.txt",
+      "sha256": "1de620dbf0f7d23fac334973a7d4f4d1f0bcfa21d0fd926d37250ae7e31122f7",
+      "bytes": 3482
+    },
+    {
+      "path": "evidence/attempt-03/navigation-driver.cjs",
+      "sha256": "5d9a0b33a71c7f615ace62356c54497ea558110d1170076165f9192767eef0ad",
+      "bytes": 22696
+    },
+    {
+      "path": "evidence/attempt-03/result.json.gz",
+      "sha256": "5c22cbb7c6e150d7e4f87c44e5a3997298d5fb301adc8095b0ecc3edfa38c7fb",
+      "bytes": 513504,
+      "uncompressed_sha256": "6d1be56b899d310906ddeae89d2d8e3e93adb94057e64db2d4e501360e795941",
+      "uncompressed_bytes": 6678069
+    },
+    {
+      "path": "evidence/attempt-03/s20-desktop-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-03/s20-desktop-production.json",
+      "sha256": "6cf2f97d5b2f7a47f60163d39cfbedbc695f9cd87944d3c0195edb17498527c4",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-03/s20-desktop-review.png",
+      "sha256": "c8142a264d019bcafec7734aa2f46a399fe4163c635a608d08da5b91a73c5e8e",
+      "bytes": 1106587
+    },
+    {
+      "path": "evidence/attempt-03/s20-province-desktop.png",
+      "sha256": "a6292438be7f15674665941d73c3c89e62fc9de4e1ad2f44d852dba0dfad0fd3",
+      "bytes": 577603
+    },
+    {
+      "path": "evidence/attempt-03/server.log",
+      "sha256": "bb133d185fbbe8bf6e66af51f18998e6cab7b8d476185bfc3cf096cf6ec3b25a",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-03/run.log.gz",
+      "sha256": "b4ca86854bf2807241e8f5e3072a6517dc73408fb9d7ca58a4982bde23adf0af",
+      "bytes": 472,
+      "uncompressed_sha256": "de1569d22814c95edd0031c958f004c123cd678ed89675c5dd59a7f82abee612",
+      "uncompressed_bytes": 1041
+    },
+    {
+      "path": "evidence/attempt-04/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-04/desktop-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-04/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-04/failure.png",
+      "sha256": "74d478ec6533421c8e1ae83faac58b6d097303f706d88fba46e9813add675ec0",
+      "bytes": 578171
+    },
+    {
+      "path": "evidence/attempt-04/failure.txt",
+      "sha256": "5fe7e777a865696d0a0e495db0dcff09caa2877e9c787898e55c78b65ddbc026",
+      "bytes": 2167
+    },
+    {
+      "path": "evidence/attempt-04/navigation-driver.cjs",
+      "sha256": "cc7cca6ded7b6a3ebb65b997bbb3e265fa10059d524ba046d420c02b3dda9440",
+      "bytes": 22889
+    },
+    {
+      "path": "evidence/attempt-04/result.json.gz",
+      "sha256": "0dc2a35f2af3b1c19c442ce303e66ce355c14c336d432b2d6c07d882e0c21b26",
+      "bytes": 513482,
+      "uncompressed_sha256": "d130bf785ddf556018ab6d8b7296647ddcfdc934134b9c96736cd41a84d6fa84",
+      "uncompressed_bytes": 6678584
+    },
+    {
+      "path": "evidence/attempt-04/s20-desktop-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-04/s20-desktop-production.json",
+      "sha256": "d9a492a0442d3bf20410e1328d6b7bb4b8dbc87fae9aa7c5b2d987fbddeb24ae",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-04/s20-desktop-review.png",
+      "sha256": "c8142a264d019bcafec7734aa2f46a399fe4163c635a608d08da5b91a73c5e8e",
+      "bytes": 1106587
+    },
+    {
+      "path": "evidence/attempt-04/s20-province-desktop.png",
+      "sha256": "906af004f4b441979e64137451de0eb4ce8a6b040add7d2803e19f67b90908ba",
+      "bytes": 577612
+    },
+    {
+      "path": "evidence/attempt-04/server.log",
+      "sha256": "6dd1aa293017d6e40de783aa5bf9bd6c131a5b7ed407495c76fdf178d0330901",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-04/run.log.gz",
+      "sha256": "422d71a310e2d7e87870c1bf894e9371abc40af2c804bb9930bfc17f0f8d38a9",
+      "bytes": 508,
+      "uncompressed_sha256": "e20cbc3f252945b1dc827fabe9230e6720e0e2a654648540fd3899e0bcb4c451",
+      "uncompressed_bytes": 1238
+    },
+    {
+      "path": "evidence/attempt-05/completed-facility-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-05/cross-campaign-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/cross-province-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/desktop-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/different-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-05/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-05/failure.png",
+      "sha256": "e69d8ff233ecb40960b790e41793aeea4e1ba23344d8af89b2da14a7412e405b",
+      "bytes": 926594
+    },
+    {
+      "path": "evidence/attempt-05/failure.txt",
+      "sha256": "805f164f1c6eec18520232de199a2369420dd8b12ec7bf8a1996b67b9556b470",
+      "bytes": 14172
+    },
+    {
+      "path": "evidence/attempt-05/navigation-driver.cjs",
+      "sha256": "cc7cca6ded7b6a3ebb65b997bbb3e265fa10059d524ba046d420c02b3dda9440",
+      "bytes": 22889
+    },
+    {
+      "path": "evidence/attempt-05/navigation-equipment.json.gz",
+      "sha256": "6b38e9848a1ef7a26444cb14a795227ca149de45cfceefdcfabdccd4a78c4cd9",
+      "bytes": 44614,
+      "uncompressed_sha256": "ba382e99c44f4d109fae59236a152685b98e60aa9c7057cbefc5ae1f09603815",
+      "uncompressed_bytes": 508481
+    },
+    {
+      "path": "evidence/attempt-05/navigation-industry.json",
+      "sha256": "27b2e52196764e40a45adb71ac51146bd40648e0a8abebadcbbad8bef72a3ce2",
+      "bytes": 27210
+    },
+    {
+      "path": "evidence/attempt-05/navigation-production.json",
+      "sha256": "e9297e8609f7a20c7a5df84b8d64f693ffbea6af3aab3c8fdefa99b4956ced28",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-05/result.json.gz",
+      "sha256": "aa4c5971f571a0e5334262a3572a945175c3086da4f35cd48f3baea4c49c8d00",
+      "bytes": 515007,
+      "uncompressed_sha256": "45cbe59cc6cfa9e53980c00b7304d9fb0785fb8ed219ef6a18c67f4c416c2d4f",
+      "uncompressed_bytes": 6724592
+    },
+    {
+      "path": "evidence/attempt-05/retried-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/s20-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-05/s20-city-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-05/s20-completed-arms-plant.png",
+      "sha256": "dafb55e7ecdd2d978dcaa62384c87caaab06293303dd13df3017cc6da47c66e4",
+      "bytes": 987581
+    },
+    {
+      "path": "evidence/attempt-05/s20-cross-province-390.png",
+      "sha256": "f24644de90e66926c96753b77c03ab7596797a15accd4cb55ac0269173c16422",
+      "bytes": 170676
+    },
+    {
+      "path": "evidence/attempt-05/s20-desktop-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-05/s20-desktop-production.json",
+      "sha256": "e9297e8609f7a20c7a5df84b8d64f693ffbea6af3aab3c8fdefa99b4956ced28",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-05/s20-desktop-review.png",
+      "sha256": "359e81eaaf2c31de71c71a15f0e842958e3a39eebd671bc514ec185dd71bb485",
+      "bytes": 1149255
+    },
+    {
+      "path": "evidence/attempt-05/s20-operating-province.png",
+      "sha256": "e7dfedf9176a091cf742261a5fa33078a614477cd9e160275ebc829a0685f0ac",
+      "bytes": 923928
+    },
+    {
+      "path": "evidence/attempt-05/s20-province-390.png",
+      "sha256": "cdc82cc894d34f7689dd4b1c17c651b6f68016cd7e93964e401392c738385d9b",
+      "bytes": 169099
+    },
+    {
+      "path": "evidence/attempt-05/s20-province-desktop.png",
+      "sha256": "4329a878eeb5950e8ffba1f45090930250d16524e8c0b6a66c88bd26a6748ebb",
+      "bytes": 573988
+    },
+    {
+      "path": "evidence/attempt-05/s20-province-read-error.png",
+      "sha256": "da1bca059af5b4631ba55737abd06f5b9279e98ca2ce803787916069353506e6",
+      "bytes": 170335
+    },
+    {
+      "path": "evidence/attempt-05/s20-touch-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-05/s20-touch-production.json",
+      "sha256": "e9297e8609f7a20c7a5df84b8d64f693ffbea6af3aab3c8fdefa99b4956ced28",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-05/s20-touch-review.png",
+      "sha256": "d5834e5850f6b282d1284694664b67a83ab2b9537bddc91a4cf8981a255ac0cb",
+      "bytes": 237296
+    },
+    {
+      "path": "evidence/attempt-05/server.log",
+      "sha256": "9b5247f71344f4d87d78ebee232b811d70127258ea5e687b72949e34e0f9801c",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-05/touch-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-05/run.log.gz",
+      "sha256": "4cc7ea4a4b166ed7a213e8cf5a33aef5082e7aeb4b0057320142a1911698edab",
+      "bytes": 515,
+      "uncompressed_sha256": "6cc3bda076d0527886203a220762bd031e9574909dab3bcbfa2565fc4ff63368",
+      "uncompressed_bytes": 1093
+    },
+    {
+      "path": "evidence/attempt-06/completed-facility-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-06/cross-campaign-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/cross-province-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/desktop-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/different-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-06/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-06/failure.png",
+      "sha256": "5decd2ec8c7578677d2010c22858f327032ba4feb9670fe578447b36b35607c5",
+      "bytes": 216682
+    },
+    {
+      "path": "evidence/attempt-06/failure.txt",
+      "sha256": "dfc77ab9b62b474b679753b3693c711a0eb76f0a4b0beb93326b5ca24c7e1dc8",
+      "bytes": 558
+    },
+    {
+      "path": "evidence/attempt-06/navigation-driver.cjs",
+      "sha256": "d14f2ce3f73dd816008b09694758fc1039c4272f027f1861082711bd4b28409a",
+      "bytes": 22845
+    },
+    {
+      "path": "evidence/attempt-06/navigation-equipment.json.gz",
+      "sha256": "39de39f6c94873c795e2b68075e8be4e80629ad429979786d39ed5025e99798b",
+      "bytes": 44614,
+      "uncompressed_sha256": "8946b08bf6ae799b3cb9d3f9dbea010ec65eafa6fbef4d4ca000734b5c16f1f9",
+      "uncompressed_bytes": 508481
+    },
+    {
+      "path": "evidence/attempt-06/navigation-industry.json",
+      "sha256": "2b461cad5d89058d320807934b5c15f367c89c5ce9b035720e28a720f4e1db37",
+      "bytes": 27210
+    },
+    {
+      "path": "evidence/attempt-06/navigation-production.json",
+      "sha256": "cc0486f689d2d10b4d4feb50eb13310df066ae66f3fdd30a930566c4ec55bba5",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-06/result.json.gz",
+      "sha256": "edf3a207ad7aeaac8bd1566ee17dca94bb26485680f4817dd65db747737dd25e",
+      "bytes": 515205,
+      "uncompressed_sha256": "b929bdc3cf9c6eeab785ff94e55b9546ba072d19d5472e8fa70e4af3782e4410",
+      "uncompressed_bytes": 6728030
+    },
+    {
+      "path": "evidence/attempt-06/retried-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/s20-air-command-desktop.png",
+      "sha256": "c7580cf35018787ddc228fb317419143dc171e76326f4ab8297f7efe998db198",
+      "bytes": 985351
+    },
+    {
+      "path": "evidence/attempt-06/s20-air-reports-390.png",
+      "sha256": "9b25bf6a0ce617024aea54ce4927fb3c2dc19954f49c1cff2be1f85ffe782e86",
+      "bytes": 151302
+    },
+    {
+      "path": "evidence/attempt-06/s20-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-06/s20-city-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-06/s20-company-destination.png",
+      "sha256": "e69d8ff233ecb40960b790e41793aeea4e1ba23344d8af89b2da14a7412e405b",
+      "bytes": 926594
+    },
+    {
+      "path": "evidence/attempt-06/s20-completed-arms-plant.png",
+      "sha256": "11d2e32dda855c8210bedbeb38385ed7f75bd51857b4c65db7646d7f9c1df395",
+      "bytes": 987665
+    },
+    {
+      "path": "evidence/attempt-06/s20-cross-province-390.png",
+      "sha256": "0a86b3ece4fc3d8d2c4f7eefd05e29317e16e3d7bd57e8974a676158ae53216e",
+      "bytes": 170531
+    },
+    {
+      "path": "evidence/attempt-06/s20-desktop-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-06/s20-desktop-production.json",
+      "sha256": "cc0486f689d2d10b4d4feb50eb13310df066ae66f3fdd30a930566c4ec55bba5",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-06/s20-desktop-review.png",
+      "sha256": "82dc725885ad5604645d234cbab93e060a864a68af399d12dc9b410a822a962f",
+      "bytes": 1106582
+    },
+    {
+      "path": "evidence/attempt-06/s20-operating-province.png",
+      "sha256": "6a9b4e6e7d4c259800aa5ea2f5e8ca928db7db1a181d823809f4ad1c08bee000",
+      "bytes": 884145
+    },
+    {
+      "path": "evidence/attempt-06/s20-province-390.png",
+      "sha256": "aaa8a162392032f46f9765022ae30e7058c3d19a30994ec66a047aa9072f4a0b",
+      "bytes": 168111
+    },
+    {
+      "path": "evidence/attempt-06/s20-province-desktop.png",
+      "sha256": "0adc57697dcb74f646a0d1abaa6340f97c9ba54f9201c3b6addd382a3079e87c",
+      "bytes": 577612
+    },
+    {
+      "path": "evidence/attempt-06/s20-province-read-error.png",
+      "sha256": "da1bca059af5b4631ba55737abd06f5b9279e98ca2ce803787916069353506e6",
+      "bytes": 170335
+    },
+    {
+      "path": "evidence/attempt-06/s20-touch-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-06/s20-touch-production.json",
+      "sha256": "cc0486f689d2d10b4d4feb50eb13310df066ae66f3fdd30a930566c4ec55bba5",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-06/s20-touch-review.png",
+      "sha256": "1b5775423fdb006b758b7da875056ec55f0168743c94ae3f83e99a985c354143",
+      "bytes": 190670
+    },
+    {
+      "path": "evidence/attempt-06/server.log",
+      "sha256": "f9794f0b04d72b49f6dbf8f7d2c50208771d2f780d4fcf65ed612419762bd42d",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-06/touch-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-06/run.log.gz",
+      "sha256": "21dbf4429de853c4faca56055b03f33dd5c58c5e049fbf9dd99a971422ba9c4c",
+      "bytes": 383,
+      "uncompressed_sha256": "7bfff8859780486b0dc204d7a701366f333ab3f25416ac073537f73ae331c104",
+      "uncompressed_bytes": 741
+    },
+    {
+      "path": "evidence/attempt-07/completed-facility-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-07/cross-campaign-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/cross-province-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/desktop-async-focus-held-response.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/desktop-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/different-province-native.json",
+      "sha256": "1a9822becf956966e7916e3253dd33d675a3244a3165e6b595f40c9443c48edc",
+      "bytes": 12999
+    },
+    {
+      "path": "evidence/attempt-07/driver.cjs",
+      "sha256": "0625700fb27b7b29441e3935f6eb294b31757be0df51c6ab9b79c2d7a02cdfca",
+      "bytes": 13636
+    },
+    {
+      "path": "evidence/attempt-07/navigation-driver.cjs",
+      "sha256": "9969e8ab7af84ca6aee587f0ece03b63f0ce70f2691892251b24f97d91ea4cbf",
+      "bytes": 23138
+    },
+    {
+      "path": "evidence/attempt-07/navigation-equipment.json.gz",
+      "sha256": "80b6f0fc83158c68f3fbca841866a1db207a9300d4249ce2633a9e1dc694952c",
+      "bytes": 44614,
+      "uncompressed_sha256": "a57cea6b64f632cbde78c14aab87f84fec8f0f326c534e9d74b65b4f2574ebe9",
+      "uncompressed_bytes": 508481
+    },
+    {
+      "path": "evidence/attempt-07/navigation-industry.json",
+      "sha256": "6f4250ac67803f104fbba93586a8d4fa697bec863092e47efb794526452e2de9",
+      "bytes": 27210
+    },
+    {
+      "path": "evidence/attempt-07/navigation-production.json",
+      "sha256": "c278997461bc147a96773bf0962f7eec169378348dbf6b32cd550da764949509",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-07/result.json.gz",
+      "sha256": "70e12ff8e30365aaca43c43efe902aea23e8b80390ba4617a8e8dfffef1b22e8",
+      "bytes": 515700,
+      "uncompressed_sha256": "a9f9ac24b1faa1e7b3119d7498fdbd11f8a1acb7c720efbcb286255cfbace096",
+      "uncompressed_bytes": 6737363
+    },
+    {
+      "path": "evidence/attempt-07/retried-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/s20-air-command-desktop.png",
+      "sha256": "c7580cf35018787ddc228fb317419143dc171e76326f4ab8297f7efe998db198",
+      "bytes": 985351
+    },
+    {
+      "path": "evidence/attempt-07/s20-air-reports-390.png",
+      "sha256": "9b25bf6a0ce617024aea54ce4927fb3c2dc19954f49c1cff2be1f85ffe782e86",
+      "bytes": 151302
+    },
+    {
+      "path": "evidence/attempt-07/s20-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-07/s20-city-campaign-replaced.png",
+      "sha256": "b392050b21a0f82521b469ad15cc5e396378dc01d5403442a7b0208e3cf5535f",
+      "bytes": 153224
+    },
+    {
+      "path": "evidence/attempt-07/s20-company-destination.png",
+      "sha256": "e69d8ff233ecb40960b790e41793aeea4e1ba23344d8af89b2da14a7412e405b",
+      "bytes": 926594
+    },
+    {
+      "path": "evidence/attempt-07/s20-completed-arms-plant.png",
+      "sha256": "a87375a9ec571f7277e9f2e071b1b736ef9ab0f722f2abb879607ea6b04d7237",
+      "bytes": 987616
+    },
+    {
+      "path": "evidence/attempt-07/s20-cross-province-390.png",
+      "sha256": "7e9ddb5871ea0c976c14c1b37fcdfc96976da2583c600bf8b25e5c1a987edfbf",
+      "bytes": 171139
+    },
+    {
+      "path": "evidence/attempt-07/s20-desktop-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-07/s20-desktop-production.json",
+      "sha256": "c278997461bc147a96773bf0962f7eec169378348dbf6b32cd550da764949509",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-07/s20-desktop-review.png",
+      "sha256": "c8142a264d019bcafec7734aa2f46a399fe4163c635a608d08da5b91a73c5e8e",
+      "bytes": 1106587
+    },
+    {
+      "path": "evidence/attempt-07/s20-navigation-after.json.gz",
+      "sha256": "3a2c70b9c67fb99a1459683ae97cd3ddebdaa293b44fd53c6f16ef88b85f604f",
+      "bytes": 15338925
+    },
+    {
+      "path": "evidence/attempt-07/s20-navigation-before.json.gz",
+      "sha256": "2f2d0c5932c78c549b7e217d21507e32121735999eddee11415a30607b967c1a",
+      "bytes": 15338925
+    },
+    {
+      "path": "evidence/attempt-07/s20-operating-province.png",
+      "sha256": "62ed335c213800c4fcbffbc538b2568f309aa232e631433ac48cc73ed61faf6e",
+      "bytes": 715271
+    },
+    {
+      "path": "evidence/attempt-07/s20-province-390.png",
+      "sha256": "aaa8a162392032f46f9765022ae30e7058c3d19a30994ec66a047aa9072f4a0b",
+      "bytes": 168111
+    },
+    {
+      "path": "evidence/attempt-07/s20-province-desktop.png",
+      "sha256": "36a6d953f69f172dd6d59fb24b6ff49ce1f46abc907adee59cb55e49b72e329f",
+      "bytes": 577611
+    },
+    {
+      "path": "evidence/attempt-07/s20-province-read-error.png",
+      "sha256": "da1bca059af5b4631ba55737abd06f5b9279e98ca2ce803787916069353506e6",
+      "bytes": 170335
+    },
+    {
+      "path": "evidence/attempt-07/s20-touch-construction-review.json",
+      "sha256": "157e7f2b6d5bc8af45b50144c7e71b34c11b5e975b45e87602883391475471bf",
+      "bytes": 4914
+    },
+    {
+      "path": "evidence/attempt-07/s20-touch-production.json",
+      "sha256": "c278997461bc147a96773bf0962f7eec169378348dbf6b32cd550da764949509",
+      "bytes": 47549
+    },
+    {
+      "path": "evidence/attempt-07/s20-touch-review.png",
+      "sha256": "1b5775423fdb006b758b7da875056ec55f0168743c94ae3f83e99a985c354143",
+      "bytes": 190670
+    },
+    {
+      "path": "evidence/attempt-07/server.log",
+      "sha256": "0960b64e86bb3916de076ce5d5dee0dd7c3f923d25a792a061dbd0bbf0fb462b",
+      "bytes": 78
+    },
+    {
+      "path": "evidence/attempt-07/touch-paris-native.json",
+      "sha256": "22781390adbe83ad10b4ede9bd726fbbab355a9303b5964bbc7f979c1cd15bce",
+      "bytes": 12091
+    },
+    {
+      "path": "evidence/attempt-07/run.log.gz",
+      "sha256": "f70af036cf0c4e0a82396baacbc9ef429e95beb326482076e5ef9efc05b2f2f3",
+      "bytes": 225,
+      "uncompressed_sha256": "a6e425a7442511c8a243b3cbd9600be5232cefd6b1e68373f38c3fcefeb3cc86",
+      "uncompressed_bytes": 272
+    },
+    {
+      "path": "evidence/checks/s20-ui-tests.log",
+      "sha256": "7c8c6f173093ad1a14c790bbcda655153aafcb2c88cfb4453dc8c47e1c4dd654",
+      "bytes": 174555
+    },
+    {
+      "path": "evidence/checks/s20-ui-tests-closeout.log",
+      "sha256": "95e60a61829062d864481a62cb5c35bb256ac9f5659235e8f7c35e0c186e89af",
+      "bytes": 172600
+    },
+    {
+      "path": "evidence/checks/s20-native-web-closeout.log",
+      "sha256": "0f0231926eacb03e7b5c9f22fe09f3c11f4e215dd7c39b04c260ce80bb0e0868",
+      "bytes": 44007
+    },
+    {
+      "path": "evidence/checks/s20-construction-return-tests.log",
+      "sha256": "0dfd86d02ca0e780008a55d6349930f7c8827d9cb397633dea97a03b7cbdb520",
+      "bytes": 9308
+    },
+    {
+      "path": "evidence/checks/s20-dialog-handoff-tests.log",
+      "sha256": "1c93b6ed9e22ef9b3cb626dc901a5666dd105238e65a5835e23b86d710fdc3d5",
+      "bytes": 5716
+    },
+    {
+      "path": "evidence/checks/s20-cabinet-contract-final.log",
+      "sha256": "2e821bc94bdb32d50b8dc3f3add8e9c45d224b2b330eb73bfc8bf7b5899f44c4",
+      "bytes": 6859
+    },
+    {
+      "path": "evidence/checks/s20-release-build-return.log",
+      "sha256": "3d5d3bc6918218f2c78c191e190314ceb8c4652749de46c436fc70f15d1ae6c4",
+      "bytes": 1069
+    }
+  ],
+  "tests": [
+    {
+      "scope": "Initial UI aggregate:1711 passed,2 outdated fixture failures retained",
+      "log": "evidence/checks/s20-ui-tests.log"
+    },
+    {
+      "scope": "Final UI aggregate:1717 passed,0 failed,0 skipped",
+      "log": "evidence/checks/s20-ui-tests-closeout.log"
+    },
+    {
+      "scope": "Final native web:420 passed,0 failed,21 existing ignored",
+      "log": "evidence/checks/s20-native-web-closeout.log"
+    },
+    {
+      "scope": "Targeted construction/map return:91 passed",
+      "log": "evidence/checks/s20-construction-return-tests.log"
+    },
+    {
+      "scope": "Targeted delayed Finder handoff:55 passed",
+      "log": "evidence/checks/s20-dialog-handoff-tests.log"
+    },
+    {
+      "scope": "Cabinet/industry/navigation fixture contracts:67 passed",
+      "log": "evidence/checks/s20-cabinet-contract-final.log"
+    },
+    {
+      "scope": "Final release build passed",
+      "log": "evidence/checks/s20-release-build-return.log"
+    }
+  ],
+  "archive_notes": [
+    "Original failed attempts are retained without changing their status. Disposable failed-run saved copies are omitted; their recorded input is the archived S19 qualified save. The successful before/after saves are included in full.",
+    "Text artifacts are stored byte-for-byte. Large JSON/logs use lossless gzip with compressed and original hashes. Runtime assets are pinned in each raw result."
+  ],
+  "binary_sha256": "23b5dd0c63b8d2f0b6095058e1d3223b1bc484b4e264d9ac28f9161efb529a6a",
+  "qualified_input_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+  "successful_run": "evidence/attempt-07/result.json.gz",
+  "inherited_input": {
+    "path": "docs/campaign-certification/S19/integration/flight-closeout-evidence/recorded-flight-qualified.json.gz",
+    "uncompressed_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c"
+  },
+  "qualification": {
+    "ui": {
+      "command": "node tools/ui/run-unit.cjs",
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "passed": 1717,
+      "failed": 0,
+      "skipped": 0
+    },
+    "native": {
+      "command": "cargo test --locked -p spheres-web --bin spheres-web",
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "passed": 420,
+      "failed": 0,
+      "ignored": 21
+    },
+    "browser": {
+      "command": "node tools/ui/ci-supplier-input-recovery.cjs with SPHERES_NAVIGATION_CLOSEOUT=1",
+      "runtime_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "executed_helper_sha256": "9969e8ab7af84ca6aee587f0ece03b63f0ce70f2691892251b24f97d91ea4cbf",
+      "screenshots": 13,
+      "native_observations": 15,
+      "focus_observations": 30,
+      "get_faults": 4,
+      "page_errors": 0
+    },
+    "provenance_note": "Full suites started at the candidate. Later commits changed only the browser helper, not runtime or aggregate unit-test inputs. The final executed helper is captured byte-for-byte in attempt-07."
+  }
+}

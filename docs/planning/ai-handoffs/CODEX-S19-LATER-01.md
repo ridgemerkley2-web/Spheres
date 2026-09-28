@@ -109,7 +109,7 @@ and paid on 1 February 1997 and delivered on 8 February. The exact unedited
 and superseded Continue test timing attempt remain labeled as failures.
 [Reproducible evidence and limits](../../campaign-certification/S19/integration/PROCUREMENT_DELIVERY.md).
 
-**Current next action:** obtain actual aircraft through the ordinary supplier
+**Historical next action at this checkpoint (now completed):** obtain actual aircraft through the ordinary supplier
 route, form/support a squadron, and verify readiness plus a supported flown result
 under an eligible conflict. Retain construction/procurement outcomes and their
 save/resume behavior. S19, S20 and CP1 completion are not implied by this checkpoint.

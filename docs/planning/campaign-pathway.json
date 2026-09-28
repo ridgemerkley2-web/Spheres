@@ -549,7 +549,7 @@
       "id": "S20",
       "phase": "experience",
       "title": "Unify map, province and accessible room navigation",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S07",
         "S10",
@@ -565,6 +565,15 @@
         "owner": "Codex",
         "base": "ad498418",
         "scope": "Complete existing province/city focus and read recovery, actual facility-to-company navigation and exact native desktop/narrow keyboard/touch proof."
+      },
+      "completed_date": "2026-09-28",
+      "evidence": "../campaign-certification/S20/README.md",
+      "closure": {
+        "candidate_revision": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+        "evidence": "docs/campaign-certification/S20/manifest.json",
+        "completed_utc": "2026-09-28T04:19:38.233974+00:00",
+        "g4_earned": true,
+        "cp1_earned": false
       }
     },
     {
@@ -983,16 +992,20 @@
       }
     ]
   },
-  "last_completed_session": "S21",
-  "next_session": "S20",
+  "last_completed_session": "S20",
+  "next_session": "S22",
   "execution": {
-    "authorized_through": "S21",
-    "stop_boundary": "S21",
-    "status": "in_progress",
-    "previous_stop": "S18",
-    "instruction": "Fix and complete open tasks; close S19 and S20 with retained native evidence, then publish the synchronized roadmap.",
+    "status": "checkpoint_complete",
+    "instruction": "Close outstanding tasks: S19 and S20 completed, G4 earned, synchronized reviewed tasks published. Next canonical session: S22 performance qualification.",
     "instruction_date": "2026-09-28",
-    "next_session_requires_instruction": false
+    "next_session_requires_instruction": false,
+    "historical_boundary": {
+      "authorized_through": "S21",
+      "stop_boundary": "S21",
+      "previous_stop": "S18",
+      "superseded": true
+    },
+    "authorization_scope": "User-directed open-task repairs and session closeout; retained prior numbered stop boundary is historical."
   },
   "gate_decisions": {
     "G1": {
@@ -1016,6 +1029,13 @@
       "candidate": "eacf90e3e083d951cbd942957f573b7135953cea",
       "evidence": "docs/campaign-certification/S16/manifest.json",
       "reason": "Ground and the three supported air missions use real campaign forces and results. G3 combines the exact inherited G2 and S11–S15 records with the pinned S16 fighter lifecycle, coordinated interception and depleted-defense regressions, plus the authored France browser comparison. Explicit opposing orders are authored; S17 AI, later content/campaign/performance qualification and CP1 remain open."
+    },
+    "G4": {
+      "status": "earned",
+      "date": "2026-09-28",
+      "candidate": "534c8bf190a0e39f3b1e6c0b025201b37e8279ff",
+      "evidence": "docs/campaign-certification/G4/manifest.json",
+      "reason": "Supported AI and player journey, inheriting the stated bounded session qualifications; no full-period, performance, historical-coverage or human-testing certificate."
     }
   }
 }

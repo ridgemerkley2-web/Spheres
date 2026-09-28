@@ -45,9 +45,8 @@ were inspected; these claim commits do not contain accepted deliverables.
 
 SOURCE-05 and SOURCE-06 are **complete** after independent source/content review;
 see their integration evidence. SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23
-`9c0f5c14`, C01-24 `a7a9e39c`, C01-25 `c06839c1`, and C01-27 `31035e25` declare
+`9c0f5c14`, C01-24 `a7a9e39c`, C01-25 `c06839c1`, and C01-27 `0765c590` declare
 `ready_for_review`. These pending submissions are not independent verification or
 merge acceptance. Do not duplicate them. See [the research handoff](CLAUDE-C01-NEXT.md).
 
-Codex has closed S19 and retains S20 shared UI, historical acceptance and final
-integration. Human S26 playtests still require actual independent human participants.
+Codex has closed S19/S20 and earned G4. It retains S22 performance, historical acceptance and final integration. Human S26 playtests still require actual independent human participants.

@@ -12,7 +12,7 @@ C01-GAPS-01 is also **complete**, accepted with repairs at `68a38eb4`. These bou
 closures do not promote the parent research packets to complete historical coverage.
 
 SOURCE-17 `efeac546`, SOURCE-26 `c1f537f2`, C01-23 `9c0f5c14`, C01-24 `a7a9e39c`,
-C01-25 `c06839c1`, and C01-27 `31035e25` declare `ready_for_review`. Their remote
+C01-25 `c06839c1`, and C01-27 `0765c590` declare `ready_for_review`. Their remote
 handoffs were read; independent acceptance remains pending. Do not duplicate them.
 The five remaining [expanded sections](CLAUDE-EXPANDED-NEXT.md) are now claimed.
 
@@ -67,7 +67,7 @@ C01-01/02/03/04/07/08 are accepted bounded intake. C01-05/06/09–22/26 are inte
 research with historical acceptance pending; they are not unstarted work. The new
 [expanded queue](CLAUDE-EXPANDED-NEXT.md) authorizes bounded tools, a gap audit,
 fictional successor proposals and company research; production cartoon/leader
-installation remains outside those packets. C01, G4 and CP1 remain open; the
+installation remains outside those packets. G4 is earned; C01 and CP1 remain open. The
 previously earned G2 gameplay gate does not certify complete historical content.
 The research cutoff stays 7 September 2026; successors
-after that are explicitly fictional. S19 later-outcome qualification is complete. Codex is closing S20; Claude supplies targeted fixes only when a reproduced defect is handed off.
+after that are explicitly fictional. S19 later-outcome qualification is complete. Codex has closed S20; Claude supplies targeted fixes only when a reproduced defect is handed off.
