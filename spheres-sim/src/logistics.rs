@@ -440,7 +440,12 @@ fn route_open(
 /// Only mapped gateways can receive a player-built terminal upgrade. This is
 /// routing geometry, not an assertion that a historical port existed here.
 pub fn has_terminal(district: &str) -> bool {
-    network().edges.iter().any(|e| e.kind == "terminal" && (e.a == district || e.b == district))
+    let net = network();
+    // Network initialization requires every edge endpoint in this index and
+    // records each edge in both endpoints' adjacency lists.
+    net.index.get(district).is_some_and(|&node| {
+        net.adj[node].iter().any(|&edge| net.edges[edge].kind == "terminal")
+    })
 }
 
 /// Read-only adapter for military service cargo. Geometry, stable segment keys,
@@ -1884,6 +1889,51 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+    #[test]
+    fn terminal_adjacency_matches_original_scan_for_every_node_and_unknown_id() {
+        let net = network();
+        let original = |id: &str| net.edges.iter()
+            .any(|edge| edge.kind == "terminal" && (edge.a == id || edge.b == id));
+
+        // Prove that the missing-index fast return cannot omit an authored
+        // endpoint, including gateway IDs accepted by the original function.
+        assert_eq!(net.index.len(), net.nodes.len());
+        assert_eq!(net.adj.len(), net.nodes.len());
+        for (edge_index, edge) in net.edges.iter().enumerate() {
+            for endpoint in [&edge.a, &edge.b] {
+                let node = *net.index.get(endpoint).expect("every endpoint is indexed");
+                assert_eq!(&net.nodes[node].id, endpoint);
+                assert!(net.adj[node].contains(&edge_index));
+                if edge.kind == "terminal" { assert!(has_terminal(endpoint)); }
+            }
+        }
+        let mut terminal_districts = 0;
+        let mut terminal_gateways = 0;
+        let mut nodes_without_terminals = 0;
+        for (node_index, node) in net.nodes.iter().enumerate() {
+            assert_eq!(net.index.get(&node.id), Some(&node_index));
+            for &edge in &net.adj[node_index] {
+                assert!(net.edges[edge].a == node.id || net.edges[edge].b == node.id,
+                    "adjacency must not introduce an unrelated terminal");
+            }
+            let expected = original(&node.id);
+            assert_eq!(has_terminal(&node.id), expected, "node {} ({})", node.id, node.kind);
+            if expected && node.kind == "district" { terminal_districts += 1; }
+            if expected && node.kind == "gateway" { terminal_gateways += 1; }
+            if !expected { nodes_without_terminals += 1; }
+        }
+        assert!(terminal_districts > 0 && terminal_gateways > 0 && nodes_without_terminals > 0);
+        for unknown in ["", "__s22_unknown_terminal__", " ", "\0"] {
+            assert!(!net.index.contains_key(unknown));
+            assert_eq!(has_terminal(unknown), original(unknown));
+            assert!(!has_terminal(unknown));
+        }
+        for node in net.nodes.iter().filter(|node| original(&node.id)).take(2) {
+            let malformed = format!(" {} ", node.id);
+            assert!(!net.index.contains_key(&malformed));
+            assert_eq!(has_terminal(&malformed), original(&malformed));
+        }
+    }
     #[test]
     #[ignore = "observer-only Materials freight-capacity microprofile"]
     fn materials_segment_capacity_profile() {
