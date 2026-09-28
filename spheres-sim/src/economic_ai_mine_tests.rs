@@ -201,10 +201,30 @@ fn mine_review_reuses_only_no_command_reads_and_matches_full_original_review() {
     let mut accepted = 0;
     let mut refused = 0;
     for active in [false,true] { for closed in [false,true] { for low_pc in [false,true] {
+        for legacy_priced in [false,true] {
+        if legacy_priced && (!active || !closed) { continue; }
         let (mut actual,_) = prepared(active,closed);
+        // Daily construction intentionally has zero standing cost, so low PC
+        // cannot refuse a candidate whose mine preflight just succeeded. The
+        // private review also handles the legacy priced command correctly:
+        // exercise that boundary explicitly, without claiming the ordinary
+        // legacy scheduler runs economic AI (its public gate remains daily).
+        if legacy_priced { actual.rules.daily_simulation = false; }
         if low_pc { actual.nation_mut(ME).political_capital = 0.0; }
         let mut original = actual.clone();
         let context = RawSupplyContext::new(&actual);
+        if legacy_priced {
+            let (district, commodity) = original_mine_for_shortage(&actual,ME,&context)
+                .expect("legacy fixture must still propose an eligible mapped mine");
+            let command = Command::DevelopResource { nation:ME, district, commodity };
+            assert_eq!(crate::command_price(&actual,&command).unwrap().1,resources::MINE_PC_COST);
+            let mut probe=actual.clone();
+            let result=execute(&mut probe,&command);
+            if low_pc {
+                assert!(result.unwrap_err().starts_with("Saving political capital:"));
+                assert_eq!(crate::save(&probe),crate::save(&actual),"the priced refusal changes nothing");
+            } else { result.unwrap(); }
+        }
         let before = REUSED.with(Cell::get);
         let mut stages = Vec::new();
         let mut old_stages = Vec::new();
@@ -218,6 +238,12 @@ fn mine_review_reuses_only_no_command_reads_and_matches_full_original_review() {
         assert_eq!(actual.headlines,original.headlines);
         let reused = REUSED.with(Cell::get)-before;
         total_reused += reused;
+        if legacy_priced {
+            assert!(stages.iter().any(|s|s=="review.mine") && stages.iter().any(|s|s=="review.execute"),
+                "the full legacy-priced review must actually attempt the selected mine");
+            assert_eq!(actual.resources.mine_projects.iter().any(|p|p.started_by==ME),!low_pc,
+                "the same chosen mine is accepted with standing and refused without it");
+        }
         if stages.iter().any(|s|s=="review.mine") && stages.iter().any(|s|s=="review.execute") {
             assert_eq!(reused,0,"a proposed mine cannot retain a pre-command forecast");
             if actual.resources.mine_projects.iter().any(|p|p.started_by==ME) { accepted += 1; }
@@ -226,7 +252,7 @@ fn mine_review_reuses_only_no_command_reads_and_matches_full_original_review() {
         let saved = crate::save(&actual);
         evaluate(&mut actual,ME);
         assert_eq!(crate::save(&actual),saved,"same-day scheduled review is still inert");
-    }}}
+    }}}}
     assert!(total_reused>0,"exercise actual no-command forecast handoff");
     assert!(accepted>0 && refused>0,"exercise both successful and refused candidate commands");
 }
