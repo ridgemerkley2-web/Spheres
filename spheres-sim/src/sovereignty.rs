@@ -237,10 +237,27 @@ fn maintenance_reason(w: &WorldState, c: &Compact) -> Option<String> {
     None
 }
 
-// AI needs only ready candidates. A mutual defense pact is already a necessary
-// quote gate; reject unprotected pairs before scanning the delivered-trade
-// ledgers. Keep the public quote complete, including metrics for refused offers.
-// Nothing is cached across patrons: a previous proposal can change sovereignty.
+// These are exact necessary refusal predicates from quote, used only when the
+// AI needs a ready candidate. Preserve the negative floating-point comparisons:
+// NaN reputation/relations do not fail those public gates, and a NaN partner GDP
+// still uses the public denominator's max(1e-9). Full quotes remain unchanged.
+fn candidate_scalar_refusal(w: &WorldState, patron: NationId, partner: NationId) -> bool {
+    let Some(a) = w.nation_opt(patron).filter(|n| n.alive) else { return true; };
+    let Some(b) = w.nation_opt(partner).filter(|n| n.alive) else { return true; };
+    if patron == partner || domination::direct_overlord(w, patron).is_some()
+        || domination::direct_overlord(w, partner).is_some()
+    {
+        return true;
+    }
+    let ratio = a.gdp / b.gdp.max(1e-9);
+    !ratio.is_finite() || ratio < MIN_SIZE_RATIO
+        || w.reputation(patron) < 50.0 || w.relation(patron, partner) < MIN_RELATIONS
+}
+
+// AI needs only ready candidates. Reject pairs that already fail necessary
+// quote gates before delivered-trade ledgers and descendant hostility scans.
+// Keep public refused-offer metrics complete. Nothing is cached across patrons:
+// a previous proposal can change sovereignty before the next candidate search.
 fn candidate(w: &WorldState, patron: NationId, skip_unprotected: bool) -> Option<NationId> {
     w.nations
         .iter()
@@ -249,6 +266,11 @@ fn candidate(w: &WorldState, patron: NationId, skip_unprotected: bool) -> Option
             if skip_unprotected && !w.pact_partners(n.id).contains(&patron) {
                 #[cfg(test)]
                 TEST_SKIPPED_UNPROTECTED.with(|count| count.set(count.get() + 1));
+                return None;
+            }
+            if skip_unprotected && candidate_scalar_refusal(w, patron, n.id) {
+                #[cfg(test)]
+                TEST_SKIPPED_SCALAR_REFUSALS.with(|count| count.set(count.get() + 1));
                 return None;
             }
             let q = quote(w, patron, n.id);
@@ -262,6 +284,7 @@ fn candidate(w: &WorldState, patron: NationId, skip_unprotected: bool) -> Option
 std::thread_local! {
     static TEST_ORIGINAL_CANDIDATES: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
     static TEST_SKIPPED_UNPROTECTED: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
+    static TEST_SKIPPED_SCALAR_REFUSALS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
 }
 
 pub fn tick(w: &mut WorldState) {
