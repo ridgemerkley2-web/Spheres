@@ -15,9 +15,17 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Retain the exact historical successor harness source
+        run: |
+          node -e "const cp=require('node:child_process'),fs=require('node:fs');const r=JSON.parse(fs.readFileSync('docs/campaign-certification/S24/preparation/successor-fixtures/evidence/result.json','utf8'));const sha=r.harness.revision;if(!/^[0-9a-f]{40}$/.test(sha))throw Error('Invalid historical source pin');if(cp.spawnSync('git',['cat-file','-e',sha+'^{commit}']).status!==0)cp.execFileSync('git',['fetch','--no-tags','origin',sha],{stdio:'inherit'});cp.execFileSync('git',['cat-file','-e',sha+'^{commit}']);"
       # Independent of the native build: both suites must report even when
       # the other fails, and neither should delay the other's feedback.
       - run: node tools/ui/run-unit.cjs
@@ -37,15 +45,23 @@ jobs:
         run: python -B tools/planning/workboard.py --check
       - name: Verify task queries and dependency guards
         run: python -B -m unittest discover -s tools/planning -p "test_*.py"
+      - name: Verify strict native stability evidence orchestration
+        run: python -B -m unittest discover -s tools/campaign -p "test_stability_matrix.py"
+      - name: Verify release packaging and extraction guards
+        run: python -B -m unittest discover -s tools/release -p "test_*.py"
+      - name: Verify extracted smoke boundary guards
+        run: node --test tools/release/test_smoke_package.cjs
   native:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: dtolnay/rust-toolchain@stable
       - uses: actions/setup-node@v4
         with:
@@ -66,6 +82,58 @@ jobs:
         with:
           name: browser-evidence-${{ matrix.os }}
           path: artifacts/browser-ci
+  # Exercise shipped bytes independently: an unrelated existing calibration or
+  # source-browser failure must not hide portable-package diagnostics.
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            binary: target/release/spheres-web
+          - os: windows-latest
+            platform: windows
+            binary: target/release/spheres-web.exe
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/ui/package-lock.json
+      - run: cargo build --locked --release -p spheres-web
+      - name: Retain dependency license metadata for this locked release
+        run: cargo fetch --locked
+      - run: npm ci --prefix tools/ui
+      - run: npx --prefix tools/ui playwright install --with-deps chromium
+      - name: Package the exact native executable without an implicit source patch
+        run: python -B tools/release/package_windows.py --binary "${{ matrix.binary }}" --output artifacts/release --name SPHERES-ci --platform "${{ matrix.platform }}"
+      - name: Verify extraction and ordinary offline play from shipped bytes
+        run: node tools/release/smoke_package.cjs artifacts/release/SPHERES-ci.zip "${{ github.sha }}" artifacts/package-smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portable-package-${{ matrix.os }}
+          compression-level: 0
+          retention-days: 7
+          path: |
+            artifacts/release/*.zip
+            artifacts/package-smoke/result.json
+            artifacts/package-smoke/extraction.json
+            artifacts/package-smoke/*.log
+            artifacts/package-smoke/*.jsonl
+            artifacts/package-smoke/*.png
+            artifacts/package-smoke/*.html
+            artifacts/package-smoke/*.json.gz
   # This static WebGL harness needs no native executable. Give it an independent
   # allowance so a cold Windows Rust build cannot consume its execution time.
   town-browser:
@@ -112,7 +180,7 @@ jobs:
   # Preserve the original required-check names, each covering every suite.
   verify:
     if: always()
-    needs: [javascript, native, town-browser, political-calibration]
+    needs: [javascript, native, package, town-browser, political-calibration]
     strategy:
       fail-fast: false
       matrix:
@@ -126,4 +194,5 @@ jobs:
           JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
           TOWN_BROWSER_RESULT: ${{ needs['town-browser'].result }}
           POLITICAL_RESULT: ${{ needs['political-calibration'].result }}
-        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+          PACKAGE_RESULT: ${{ needs.package.result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT','PACKAGE_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
