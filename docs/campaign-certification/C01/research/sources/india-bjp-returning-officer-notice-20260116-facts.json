@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_returning_officer_notice_20260116",
+  "source_url": "https://web.archive.org/web/20260116185004id_/https://www.bjp.org/files/press-releases-documents/Under-the-Sangathan-Parv-of-the-BJP-the-National-Returning-Officer-Dr.K.Laxman-officially-announced-the-election-for-the-post-of-BJP-National-President.pdf",
+  "original_url": "https://www.bjp.org/files/press-releases-documents/Under-the-Sangathan-Parv-of-the-BJP-the-National-Returning-Officer-Dr.K.Laxman-officially-announced-the-election-for-the-post-of-BJP-National-President.pdf",
+  "archive_capture_utc": "2026-01-16T18:50:04Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-01-16",
+  "access_method": "downloaded_archived_raw_capture_pdf_pages_rendered",
+  "source_response_bytes": 659783,
+  "source_response_sha256": "24f5fc1b928e4ed6109c1eaa5ae37b1bd4cea6ba8e3cdc4bfc7972426cb11557",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-01-16T18:50:04Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part C check downloaded it at 00:26:32Z and 00:57:39Z on 28 September 2026, and this packet downloaded it at 02:22:07Z and 02:54:49Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored PDF on the party website (one scanned page, no text layer; archived Last-Modified 16 January 2026), recorded as a raw Internet Archive capture of 16 January 2026. Imported on the Part C check, which downloaded it twice with identical bytes. Procedure only: it dates no holder.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered by this packet and read in full in the original Devanagari; the emblem, stamp and signature are not reused."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_returning_officer_announces_president_election_schedule_20260116",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_schedule",
+      "attested_on": "2026-01-16",
+      "text": "In a notice dated 'दिनांक - 16.01.2026' under 'संगठन पर्व - 2024', the National Returning Officer, Dr. K. Laxman, announces the election of the National President ('आज मैं राष्ट्रीय अध्यक्ष के निर्वाचन प्रक्रिया की आधिकारिक घोषणा करता हूँ') with a schedule: the electoral college list at noon on 16 January 2026; nominations (2-4 p.m.), scrutiny (4-5 p.m.), withdrawal (5-6 p.m.) and his press statement (6.30 p.m.) on 19 January 2026; and 'आधिकारिक घोषणा / मतदान (यदि आवश्यक हो)' (official announcement / poll, if needed) at 11.30 a.m.-1.30 p.m. on 20 January 2026, at 6A Deendayal Upadhyay Marg, New Delhi.",
+      "locator": {
+        "page": 1,
+        "section": "notice text and schedule",
+        "language": "hi"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

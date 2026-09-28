@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_elib_party_document_vol6_economic_resolutions",
+  "source_url": "https://library.bjp.org/jspui/bitstream/123456789/265/1/BJP-Economics%20Resolutions.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "party_repository_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3111032,
+  "source_response_sha256": "043834819a685a58cf6b9ae8eb2379e3ce47c1d76a93dd7713ae470374babb07",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static bitstream on the Bharatiya Janata Party's e-Library (DSpace, library.bjp.org), served without Content-Encoding and with a fixed Last-Modified header, not generated per request. The Part A check downloaded it at about 02:53Z on 26 September 2026 and again with a cache-busting query, and this packet downloaded it at 01:39:55Z and 02:38:48Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party compilation on the Bharatiya Janata Party's own e-Library (DSpace, library.bjp.org, item 123456789/265), served as a static bitstream without Content-Encoding (Last-Modified Fri, 31 Mar 2017 19:37:55 GMT; no ETag). The PDF was made in November 2016 (PDF CreationDate 8 November 2016); it reprints dated party texts, each under a printed heading giving the body, place and date. Economic resolutions of the National Executive and National Council. Imported on the Part A check, which downloaded it twice with identical bytes; its Jaipur 1991 and Bangalore 1993 headings are read as context only.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      163,
+      189,
+      196,
+      205,
+      209
+    ],
+    "method": "Text layer (InDesign text, not OCR; 368 pages; printed page = PDF page) read on the cited pages by this packet; the Part A check rendered page 209 and found it matches the text layer. Pages 163, 189 and 196 are read only for their meeting headings (context)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_ne_resolution_authorises_party_president_advani_199007",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "The resolution 'Need for holistic New Industrial Policy', printed under 'National Executive / Madras 21-23 July, 1990', ends by saying the BJP 'also authorises its Party President Shri L. K. Advani, to appoint a sub-committee for preparing the BJP's industrial policy statement'.",
+      "locator": {
+        "pdf_page": [
+          205,
+          209
+        ],
+        "printed_page": "205 (heading), 209 (last paragraph)",
+        "item": "National Executive, Madras 21-23 July, 1990: 'Need for holistic New Industrial Policy', last paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

@@ -1,0 +1,79 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_press_statement_naidu_resignation_20041018",
+  "source_url": "https://web.archive.org/web/20041214090024id_/http://www.bjp.org:80/Press/oct_1804.htm",
+  "original_url": "http://www.bjp.org/Press/oct_1804.htm",
+  "archive_capture_utc": "2004-12-14T09:00:24Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2004-10-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5685,
+  "source_response_sha256": "fe4232cb0a40f0852fbf7aa92a995185497426a1a538ead01cb737f2edb4743b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-12-14T09:00:24Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:09:48Z and 03:46:33Z on 26 September 2026, and the Part B check again at 03:59:10Z and 04:33:49Z on 26 September 2026, and this packet downloaded it at 01:54:34Z and 02:45:53Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's press statement (archived Last-Modified Thu, 21 Oct 2004 06:47:41 GMT), recorded as a raw Internet Archive capture of 14 December 2004. The file was saved three days after the date it carries; the site's home page of 21 October 2004 links it as 'Meeting of the Office Bearers'.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_naidu_chairs_meeting_as_party_president_20041018",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "M. Venkaiah Naidu",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2004-10-18",
+      "text": "A meeting of the office bearers and senior leaders took place on 18 October 2004 'with Party President Shri M. Venkaiah Naidu in the chair'.",
+      "locator": {
+        "section": "first sentence of the statement dated October 18, 2004"
+      }
+    },
+    {
+      "claim_id": "in_bjp_naidu_offers_resignation_20041018",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "M. Venkaiah Naidu",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_offered",
+      "attested_on": "2004-10-18",
+      "text": "At that meeting 'Shri Venkaiah Naidu offered to resign from his post for personal reasons', saying a senior leader should assume the office of the Party President; colleagues declined to accept the resignation and tried to persuade him to continue, but he 'stood firm on his decision to step down'.",
+      "locator": {
+        "section": "second to fourth sentences"
+      }
+    },
+    {
+      "claim_id": "in_bjp_naidu_resignation_accepted_20041018",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "M. Venkaiah Naidu",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2004-10-18",
+      "text": "'With much reluctance, the resignation was accepted' at the same meeting.",
+      "locator": {
+        "section": "sentence 'With much reluctance, the resignation was accepted.'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_advani_appointed_president_ratification_pending_20041018",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "appointment_decision",
+      "attested_on": "2004-10-18",
+      "text": "The meeting then 'unanimously resolved to appoint Shri L.K. Advani as the new President of the Bharatiya Janata Party'; the statement adds that 'His appointment will be duly ratified at the meeting of the Party's National Council, which will be held shortly in New Delhi'.",
+      "locator": {
+        "section": "sentences beginning 'Thereafter, the meeting unanimously resolved'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

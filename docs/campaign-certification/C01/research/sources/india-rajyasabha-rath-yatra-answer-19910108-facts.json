@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_written_answers_19910108_usq1586_rath_yatra",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/58/50/68/58506864111270525533137094688919784898?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_156_08011991_U1586_p324.pdf%22",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 100324,
+  "source_response_sha256": "df546af7447066924d4b2b83f2e82c0f74fb0a5061ab8e0649e90fb48725b9ad",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store, a static object whose ETag equals the MD5 of the body; the query sets only the served content type and file name. The research part downloaded it at 01:58:58Z, 02:22:13Z and 02:44:06Z on 26 September 2026, and the Part A check again at 02:46:47Z on 26 September 2026, and this packet downloaded it at 01:40:01Z and 02:38:53Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store, the host CLAUDE-C01-11 and CLAUDE-C01-20 already record: a static object whose ETag equals the MD5 of the body (Last-Modified 29 July 2026), located through the Secretariat's data service (handle 123456789/247303); the store's second, image-only copy was not used. A Government answer printed in the official report; Parliament records are used only where they record the party office. The printed page (cols 323-324) carries no date line; the date is the Secretariat's (store file name IQ_156_08011991 and index record) and is printed as '[ 8 JAN. 1991 ]' on col. 325, the continuation of the same sheet in the store file of question 1587, recorded as this extract's date anchor.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single PDF page (cols 323-324; a re-set text page, so its text layer and render carry the same printing errors, such as 'AHLUWAUA') rendered and read by this packet; question 1586 and its answer are in col. 324."
+  },
+  "date_anchor": {
+    "url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/60/58/74/60587411690360787246341881119249040878?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_156_08011991_U1587_p324-325.pdf%22",
+    "source_response_bytes": 180594,
+    "source_response_sha256": "5a201ebcca9a545a5ecc20d805ad7ccb08d1fbb714f40e39197384aab6794baa",
+    "note": "The Secretariat's store file of Unstarred Question 1587 of the same sitting (IQ_156_08011991_U1587_p324-325.pdf, handle 123456789/247411): its first page is the same printed sheet as this source (cols 323-324) and its second page, col. 325, prints the date line '[ 8 JAN. 1991 ]'. A static object whose ETag equals the MD5 of the body; used only to date the undated page, located by this packet through the Secretariat's data service. This packet downloaded it at 01:40:04Z and 02:38:57Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_sahay_advani_president_bjp_rath_yatra_19910108",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-01-08",
+      "text": "In the Rajya Sabha's written answers of 8 January 1991, answering the question of Shri S. S. Ahluwalia (printed 'AHLUWAUA') on the 'Rath Yatra' conducted in October 1990 by the President of a national political party, the Minister of State in the Ministry of Home Affairs, Shri Subodh Kant Sahay, states that 'Shri L. K. Advani, President BJP' conducted the Rath Yatra starting from Somnath on 25 September 1990 and that it was stopped on his arrest at Samastipur, Bihar, on 23 October 1990.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "324",
+        "item": "Unstarred Question 1586 'Rath Yatra', answer to parts (a) and (b)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

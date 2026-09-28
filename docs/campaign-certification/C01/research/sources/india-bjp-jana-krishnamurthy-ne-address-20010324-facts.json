@@ -1,0 +1,93 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_jana_krishnamurthy_ne_address_20010324",
+  "source_url": "https://web.archive.org/web/20010816142640id_/http://www.bjp.org:80/news/Mar2401.htm",
+  "original_url": "http://www.bjp.org/news/Mar2401.htm",
+  "archive_capture_utc": "2001-08-16T14:26:40Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2001-03-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 23578,
+  "source_response_sha256": "1acdbd7ba5bf2a1cad69e15a0ddd455f8f20d7e464aacfc4c319eef7f58a5bc3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-08-16T14:26:40Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:21:27Z and 03:41:52Z on 26 September 2026, and the Part B check again at 03:53:48Z and 04:32:32Z on 26 September 2026, and this packet downloaded it at 01:46:39Z and 02:43:49Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the address to the National Executive (archived Last-Modified Sat, 24 Mar 2001 11:35:44 GMT), recorded as a raw Internet Archive capture of 16 August 2001.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_jana_krishnamurthy_styled_national_president_ne_address_20010324",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "K. Jana Krishnamurthi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2001-03-24",
+      "text": "The party heads his address of 24 March 2001 'Opening Remarks : Shri K. Jana Krishnamurthy, President, BJP' and 'Address of Shri K. Jana Krishnamurthy National President, BJP To the National Executive of Bharatiya Janata Party on 24th March, 2001 at Parliament Annexe, New Delhi', and in it he says 'you find me addressing this august house today from the Chair of the President'.",
+      "locator": {
+        "section": "heading block; paragraph ending 'from the Chair of the President'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_entrusted_presidentship_to_jana_krishnamurthy_20010324",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "K. Jana Krishnamurthi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "national_executive_entrustment_statement",
+      "attested_on": "2001-03-24",
+      "text": "In the same address he tells the National Executive: 'The very fact that you have entrusted the responsibility of party presidentship to me is proof positive that I enjoy your trust, confidence as well as your total cooperation'.",
+      "locator": {
+        "section": "paragraph beginning 'The very fact that you have entrusted'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_laxman_resignation_letter_dated_20010313_recalled",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Bangaru Laxman",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_tendered",
+      "attested_on": "2001-03-13",
+      "text": "In the same address he says Shri Bangaru Laxman's 'resignation letter of 13.3.2001 addressed to me which reached my hands by midnight that day' said 'pending enquiry and in keeping with the high moral standards of the BJP I hereby offer to step down from the office of the president of the party'.",
+      "locator": {
+        "section": "paragraph beginning 'When Tehelka.com tapes found their way'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_office_bearers_acceptance_recalled_20010314",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Bangaru Laxman",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_acceptance_recalled",
+      "attested_on": "2001-03-14",
+      "text": "The same address says 'the available Office-bearers who met on the 14th had no other option but to accept the resignation'.",
+      "locator": {
+        "section": "paragraph beginning 'Under these circumstances'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_jana_krishnamurthy_accepted_acting_responsibility_recalled_2001",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "K. Jana Krishnamurthi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "acting_responsibility_accepted",
+      "attested_on": null,
+      "text": "The same address says the office bearers 'asked me to shoulder the responsibility in his place. Being the senior most Vice-president of the Party I had to accept it for the party cannot afford to be headless'.",
+      "locator": {
+        "section": "paragraph beginning 'Under these circumstances'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

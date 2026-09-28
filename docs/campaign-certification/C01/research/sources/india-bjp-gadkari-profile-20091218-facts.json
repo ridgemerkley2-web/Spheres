@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_profile_gadkari_national_president_20091218",
+  "source_url": "https://web.archive.org/web/20091225011522id_/http://www.bjp.org:80/content/view/3095/394/",
+  "original_url": "http://www.bjp.org/content/view/3095/394/",
+  "archive_capture_utc": "2009-12-25T01:15:22Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 42195,
+  "source_response_sha256": "512d377daefe9acffa8a6587f1e2d8dcb0a0e1afca7be18e5f3e7a97e59dc568",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-12-25T01:15:22Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 03:45:22Z and 04:24:53Z on 26 September 2026, and the Part C check again at 23:41:33Z on 27 September 2026, and this packet downloaded it at 01:58:38Z and 02:47:39Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's profile item, recorded as a raw Internet Archive capture of 25 December 2009. The item page prints 'Friday, 18 December 2009' while the site's Press Releases listing captured on 28 December 2009 lists the same item under 'Saturday, 19 December 2009' (in_bjp_site_press_release_listing_20091228); both are the system's item dates. The 2009-2013 bjp.org pages are served by a content-management system that prints the item's date line; the archive records the capture time as the page's Last-Modified. Rotating sidebars (for example a current 'President' block) are never used as evidence.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_gadkari_profile_heading_national_president_200912",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Gadkari",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "profile_heading_styling",
+      "attested_on": null,
+      "text": "The party's press-release item headed 'Profile of Shri Nitin Gadkari BJP National President' is dated 'Friday, 18 December 2009' on its page (the site's listing dates it 19 December 2009); its body still lists him as 'President, Bharatiya Janata Party, Maharashtra (Since November 2004)' and ends that 'The leadership is confident of his capability to steer the party through the present times'.",
+      "locator": {
+        "section": "page title, item heading and date line; first lines and last paragraph of the profile"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

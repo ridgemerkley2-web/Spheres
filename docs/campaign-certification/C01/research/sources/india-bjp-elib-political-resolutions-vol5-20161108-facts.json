@@ -1,0 +1,170 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_elib_party_document_vol5_political_resolutions",
+  "source_url": "https://library.bjp.org/jspui/bitstream/123456789/264/1/Untitled-2.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "party_repository_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3810049,
+  "source_response_sha256": "33ddad0dcd6f64726a041646440ef66379ff6c88cdc4ee26cf0edb85c20022f5",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static bitstream on the Bharatiya Janata Party's e-Library (DSpace, library.bjp.org), served without Content-Encoding and with a fixed Last-Modified header, not generated per request. The research part downloaded it at 01:49:08Z, 02:16:46Z and 02:19:27Z on 26 September 2026, and the Part A check again at 02:46:28Z on 26 September 2026, and this packet downloaded it at 01:39:50Z and 02:38:42Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party compilation on the Bharatiya Janata Party's own e-Library (DSpace, library.bjp.org, item 123456789/264), served as a static bitstream without Content-Encoding (Last-Modified Fri, 31 Mar 2017 19:37:24 GMT; no ETag). The PDF was made in November 2016 (PDF CreationDate 8 November 2016); it reprints dated party texts, each under a printed heading giving the body, place and date. Resolutions of the National Executive and National Council, 1980-2005; a heading that spans several days gives no single day, and the e-Library item date (2004) is repository metadata.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      136,
+      137,
+      202,
+      203,
+      218,
+      220,
+      242,
+      246,
+      247,
+      268,
+      292
+    ],
+    "method": "Text layer (InDesign text, not OCR; 456 pages; printed page = PDF page) read on every cited page by this packet and searched for President, Advani and Joshi in the resolutions headed 1989-1998; the research part rendered and read pages 202, 203, 218, 220, 246, 268 and 292. Page 247 is read only for its meeting heading (context)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_ne_resolution_narrates_president_advani_199004",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "narrated_styling",
+      "attested_on": null,
+      "text": "The resolution 'Granting Statehood to Delhi', printed under the heading 'National Executive / Calcutta 06-08 April, 1990', recalls that 'on the 10th of December, 1989, Bharatiya Janata Party President, Shri Lal Krishna Advani was assured by the Prime Minister' that a Bill for a Delhi Legislative Assembly would be prepared before March 1990.",
+      "locator": {
+        "pdf_page": 268,
+        "printed_page": 268,
+        "item": "National Executive, Calcutta 06-08 April, 1990: 'Granting Statehood to Delhi', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_bjp_president_rath_yatra_199011",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-01",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "The political resolution 'State Terror against Rath Yatra', printed under 'National Executive / New Delhi 09-10 November, 1990', says 'the BJP President undertook Ram Rath Yatra from Somnath to Ayodhya' and, a few sentences later, that the authorities 'arrested Shri Advani and impounded the Ram Rath' (the source prints the title and, separately, only the surname).",
+      "locator": {
+        "pdf_page": 292,
+        "printed_page": 292,
+        "item": "National Executive, New Delhi 09-10 November, 1990, Political Resolution: 'State Terror against Rath Yatra', second paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_our_president_joshi_ekta_yatra_199203",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "The resolution 'Jammu and Kashmir Problem', printed under 'National Executive / Varanasi 13-15 March, 1992', says the Ekta Yatra culminated in 'the unfurling of the national flag by our President, Dr. Murli Manohar Joshi, in Lal Chowk in Srinagar on Republic Day, 26 January', and that the National Executive 'hails the Party President on this achievement'.",
+      "locator": {
+        "pdf_page": 220,
+        "printed_page": 220,
+        "item": "National Executive, Varanasi 13-15 March, 1992: 'Jammu and Kashmir Problem', 'Historic Ekta Yatra', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_release_joshi_president_bjp_199212",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "Among the demands of the resolution 'Political Situation', printed under 'National Executive / New Delhi 23-24 December, 1992', is the release of 'Dr. Murli Manohar Joshi, President BJP, Shri LK Advani, Leader of Opposition' and other leaders.",
+      "locator": {
+        "pdf_page": [
+          242,
+          246
+        ],
+        "printed_page": "242 (heading), 246 (demand 2)",
+        "item": "National Executive, New Delhi 23-24 December, 1992: Political Situation; list of demands, item 2"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_assault_bjp_president_joshi_19930227",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1993-02-27",
+      "text": "The political resolution printed under 'National Executive / New Delhi 27 February, 1993' describes 'The murderous assault on the BJP President, Dr. Murli Manohar Joshi' at the party's rally in New Delhi on 25 February 1993, and under the heading 'Assault on Dr. MM Joshil' (sic) speaks of 'The brutal assault on our President, Dr. Murli Manohar Joshi'.",
+      "locator": {
+        "pdf_page": [
+          202,
+          203
+        ],
+        "printed_page": "202-203",
+        "item": "National Executive, New Delhi 27 February, 1993, Political Resolution: 'BJP's Massive Rally' (p.202) and 'Assault on Dr. MM Joshil' (p.203)"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_our_president_advani_199312",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "The resolution 'Fabricated Cases against BJP Leaders', printed under 'National Executive / New Delhi 18-19 December, 1993', takes serious note of the cases filed against 'our President, Shri LK Advani' and other leaders.",
+      "locator": {
+        "pdf_page": 218,
+        "printed_page": 218,
+        "item": "National Executive, New Delhi 18-19 December, 1993: A. Political Situation, 'Fabricated Cases against BJP Leaders', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_ex_president_joshi_199312",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": null,
+      "text": "The same resolution names 'Ex-President, Dr. MM Joshi' among the leaders against whom cases were filed.",
+      "locator": {
+        "pdf_page": 218,
+        "printed_page": 218,
+        "item": "National Executive, New Delhi 18-19 December, 1993: 'Fabricated Cases against BJP Leaders', first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_resolution_party_president_advani_hawala_199602",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "meeting_span_attestation",
+      "attested_on": null,
+      "text": "The resolution 'Political Situation', printed under 'National Executive / New Delhi 22-23 February, 1996', says the CBI 'has levelled trumpery charges against our Party President' and, in a later sentence, that 'Shri Advani immediately quit the Parliament' (the source prints the title and, separately, only the surname); the next page speaks of 'Shri Advani's resignation'.",
+      "locator": {
+        "pdf_page": [
+          136,
+          137
+        ],
+        "printed_page": "136-137",
+        "item": "National Executive, New Delhi 22-23 February, 1996: Political Situation, 'Method in Rao's Madness' (p.136) and 'CBI Prosecution of the Prime Minister Demanded' (p.137)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

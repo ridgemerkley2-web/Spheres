@@ -1,0 +1,195 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_elib_party_document_vol2_presidential_speeches_part1",
+  "source_url": "https://library.bjp.org/jspui/bitstream/123456789/247/1/Lal%20Krishna%20Advani.pdf",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "party_repository_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 2118173,
+  "source_response_sha256": "d6b44cbfd05642a16cb1b57959a03a21b01f384d039ad3871410c1384ff6df83",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: a static bitstream on the Bharatiya Janata Party's e-Library (DSpace, library.bjp.org), served without Content-Encoding and with a fixed Last-Modified header, not generated per request. The research part downloaded it at 01:49:02Z, 02:16:37Z and 02:19:17Z on 26 September 2026, and the Part A check again at 02:46:39Z on 26 September 2026, and this packet downloaded it at 01:41:15Z and 02:39:37Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party compilation on the Bharatiya Janata Party's own e-Library (DSpace, library.bjp.org, item 123456789/247), served as a static bitstream without Content-Encoding (Last-Modified Tue, 08 Nov 2016 07:37:17 GMT; no ETag). The PDF was made in November 2016 (Nitro Pro, PDF CreationDate 7 November 2016); it reprints dated party texts, each under a printed heading giving the body, place and date. Presidential addresses of 1993-2005 under named section headings (PDF pp.1, 25, 116, 156, 209 and 296: 'SHRI LK ADVANI', 'SHRI M. VENKAIAH NAIDU', 'SHRI K. JANA KRISHNAMURTHY', 'SHRI BANGARU LAXMAN', 'SHRI KUSHABHAU THAKRE' and 'SHRI LK ADVANI' for the addresses of 11 April 1998 back to 18 June 1993; printed page = PDF page + 7). The addresses print no speaker's name; because the compilation's section headings are shown to be unreliable (Vol-3), rows whose own text names nobody have holder_name null.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      296,
+      298,
+      310,
+      311,
+      316,
+      372,
+      438
+    ],
+    "method": "Text layer read on the cited pages by this packet; the research part rendered and read PDF pages 296, 298, 310, 311, 372 and 438, and the Part A check read page 316 (printed 323)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_nc_bangalore_elected_once_again_president_19930618",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "national_council_election_statement",
+      "attested_on": "1993-06-18",
+      "text": "In the address printed under 'National Council / Bangalore 18 June, 1993', in the section the compilation heads 'SHRI LK ADVANI', the speaker, whom the text does not name, thanks the 'members of the BJP National Council, for the confidence reposed in me, and for having elected me once again President of this great Party'.",
+      "locator": {
+        "pdf_page": [
+          296,
+          438
+        ],
+        "printed_page": "303 (section heading), 445",
+        "item": "National Council / Bangalore 18 June, 1993, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_nc_bangalore_joshi_proposed_name_19930618",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "nomination_proposal_stated",
+      "attested_on": "1993-06-18",
+      "text": "The same address says the speaker is 'particularly grateful to Dr. Murli Manohar Joshi who proposed my name for this high office'.",
+      "locator": {
+        "pdf_page": 438,
+        "printed_page": 445,
+        "item": "National Council / Bangalore 18 June, 1993, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_nc_bangalore_joshi_stewardship_predecessor_19930618",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-02",
+      "role_id": "in_bjp_president",
+      "holder_name": "Murli Manohar Joshi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": "1993-06-18",
+      "text": "The same address says of Dr. Joshi: 'Under his stewardship the party has made immense strides during the past two and a half years'.",
+      "locator": {
+        "pdf_page": 438,
+        "printed_page": 445,
+        "item": "National Council / Bangalore 18 June, 1993, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_nc_mumbai_elected_president_yet_another_term_19951110",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "reelection_statement",
+      "attested_on": "1995-11-10",
+      "text": "In the address printed under 'National Council / Mumbai 10 November, 1995' in the same section, the speaker, whom the text does not name, expresses gratitude to the delegates 'for having elected me the President of this great Party for yet another term'.",
+      "locator": {
+        "pdf_page": 372,
+        "printed_page": 379,
+        "item": "National Council / Mumbai 10 November, 1995, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_new_delhi_last_meeting_during_tenure_19980411",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "unnamed_holder_attestation",
+      "attested_on": "1998-04-11",
+      "text": "In the address printed under 'National Executive / New Delhi 11 April, 1998' the speaker, whom the text does not name, says it 'happens to be the last full-fledged meeting of the National Executive during my tenure as the Party President'.",
+      "locator": {
+        "pdf_page": 298,
+        "printed_page": 305,
+        "item": "National Executive / New Delhi 11 April, 1998, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_gandhinagar_i_as_president_19980502",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "unnamed_holder_attestation",
+      "attested_on": "1998-05-02",
+      "text": "In the address printed under 'National Executive / Gandhinagar 2 May, 1998' the speaker, whom the text does not name, says: 'For whatever has been left unaccomplished, I as President, own full responsibility'.",
+      "locator": {
+        "pdf_page": 311,
+        "printed_page": 318,
+        "item": "National Executive / Gandhinagar 2 May, 1998: first paragraph of p.318"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_gandhinagar_handover_announced_for_tomorrow_19980502",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "handover_statement",
+      "attested_on": "1998-05-02",
+      "text": "The same address says 'tomorrow marks an important day in my own personal calendar. As I hand over the baton of presidency to Shri Kushabhauji, an unforgettable chapter in my own life will come to a close'; on the next page the speaker says, in the present tense, 'As I lay down my responsibility as President, my memory dates back to the Jana Sangh days'.",
+      "locator": {
+        "pdf_page": [
+          310,
+          311
+        ],
+        "printed_page": "317-318",
+        "item": "National Executive, Gandhinagar 2 May, 1998: fourth paragraph (p.317) and 'Evolution of BJP into a Powerful Force' (p.318)"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_gandhinagar_thakre_elected_unanimously_19980502",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Kushabhau Thakre",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_result_stated",
+      "attested_on": "1998-05-02",
+      "text": "The same address says the Gandhinagar session of the National Council 'will give the Party a new President, Shri Kushabhau Thakre, who has been elected unanimously to this post'.",
+      "locator": {
+        "pdf_page": 310,
+        "printed_page": 317,
+        "item": "National Executive / Gandhinagar 2 May, 1998: third paragraph"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_gandhinagar_thakre_president_elect_19980502",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Kushabhau Thakre",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "president_elect_styling",
+      "attested_on": "1998-05-02",
+      "text": "The address opens with the salutation 'Prime Minister Shri Atal Bihari Vajapyee, President-elect Shri Kushabhau Thakre, and esteemed colleagues'.",
+      "locator": {
+        "pdf_page": 310,
+        "printed_page": 317,
+        "item": "National Executive / Gandhinagar 2 May, 1998: salutation"
+      }
+    },
+    {
+      "claim_id": "in_bjp_ne_gandhinagar_farewell_as_party_president_19980502",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-03",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "farewell_address",
+      "attested_on": "1998-05-02",
+      "text": "Near its end the same address says 'Even as I take leave of you as Party President, I warmly welcome Shri Kushabhau Thakre, the new President-elect'.",
+      "locator": {
+        "pdf_page": 316,
+        "printed_page": 323,
+        "item": "National Executive, Gandhinagar 2 May, 1998: 'Party will Prosper under Thakreji's Leadership'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

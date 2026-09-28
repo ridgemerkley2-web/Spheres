@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_advani_statement_20041020",
+  "source_url": "https://web.archive.org/web/20041216204631id_/http://www.bjp.org:80/Press/oct_2004.htm",
+  "original_url": "http://www.bjp.org/Press/oct_2004.htm",
+  "archive_capture_utc": "2004-12-16T20:46:31Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2004-10-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25103,
+  "source_response_sha256": "1129703f17c57ddc5ab0df95e16843ee1c96e9ddc48c05a4838037aa41313208",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-12-16T20:46:31Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:10:05Z and 03:46:49Z on 26 September 2026, and the Part B check again at 03:59:23Z and 04:34:02Z on 26 September 2026, and this packet downloaded it at 01:54:40Z and 02:46:00Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's statement (archived Last-Modified Wed, 20 Oct 2004 12:05:36 GMT), recorded as a raw Internet Archive capture of 16 December 2004.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_advani_statement_as_president_20041020",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2004-10-20",
+      "text": "The party heads the statement of 20 October 2004 'Statement issued by Shri L.K. Advani President At a press conference in New Delhi on October 20, 2004'.",
+      "locator": {
+        "section": "page heading and date line"
+      }
+    },
+    {
+      "claim_id": "in_bjp_advani_assumed_office_two_days_ago_recalled_20041018",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_recalled_retrospective",
+      "attested_on": "2004-10-18",
+      "text": "In the statement he says he is pleased to be 'at my first press conference after assuming the office of the President of the Bharatiya Janata Party two days ago', the party having entrusted the responsibility to him after Shri M. Venkaiah Naidu stepped down, and refers to 'The meeting of the office-bearers, which took place day before yesterday'.",
+      "locator": {
+        "section": "first and second paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

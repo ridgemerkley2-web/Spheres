@@ -1,0 +1,158 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_kamal_sandesh_vol21_no02_20260116",
+  "source_url": "https://web.archive.org/web/20260203120007id_/https://www.bjp.org/files/kamal-sandesh-documents/KS_ENG_Jan%202026_2.pdf",
+  "original_url": "https://www.bjp.org/files/kamal-sandesh-documents/KS_ENG_Jan%202026_2.pdf",
+  "archive_capture_utc": "2026-02-03T12:00:07Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-01-24",
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 1853966,
+  "source_response_sha256": "37da7adcbe88a98e051bd01181d0e27d5627e7b4501b6aed44f51d6ea2c56c8a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-02-03T12:00:07Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part C check downloaded it at 00:47:33Z and 01:18:35Z on 28 September 2026, and this packet downloaded it at 02:23:06Z and 02:55:09Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The issue PDF of the party organ stored on www.bjp.org (files/kamal-sandesh-documents), recorded as a raw Internet Archive capture made before the cutoff; the printed issue gives the volume, number, fortnight and publication date, and it replaces the research's live WordPress API response for the same articles. 36 pages, text layer; PDF CreationDate 27 January 2026, recorded as a raw Internet Archive capture of 3 February 2026. Imported on the Part C check in place of the web post 38671, whose report it prints on pages 6-9.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      6,
+      7,
+      8,
+      9,
+      36
+    ],
+    "method": "Text layer read by this packet on the cited pages (page 36 for the publication line)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ks_nabin_elected_unopposed_stated_20260119",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Nabin",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_result",
+      "attested_on": "2026-01-19",
+      "text": "The report's standfirst says Shri Nitin Nabin 'was elected unopposed as the new National President of Bharatiya Janata Party, making him the youngest to hold the party's top post on 19 January 2026'.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "item": "standfirst"
+      }
+    },
+    {
+      "claim_id": "in_ks_laxman_declares_nabin_elected_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Nabin",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "result_declaration",
+      "attested_on": "2026-01-20",
+      "text": "The report says 'A formal announcement regarding Shri Nitin Nabin's election as the BJP National President was made on 20 January 2026' and that 'Dr. K Laxman, made the official declaration of the election'.",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "item": "second paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_nabin_assumes_charge_national_president_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Nabin",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_statement",
+      "attested_on": "2026-01-20",
+      "text": "The report opens: 'The Newly elected BJP National President Shri Nitin Nabin formally assumed charge at the party headquarters in New Delhi on 20 January 2026 in the gracious presence of the Hon'ble Prime Minister'.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_nadda_hands_over_charge_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "J. P. Nadda",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "handover_statement",
+      "attested_on": "2026-01-20",
+      "text": "The report says 'Following the declaration of the result, outgoing party National President Shri JP Nadda handed over the charge to Shri Nitin Nabin at the party Headquarters in New Delhi'.",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "item": "second paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_nabin_working_president_appointed_20251214_recalled",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Nabin",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "working_president_appointment_recalled",
+      "attested_on": "2025-12-14",
+      "text": "The standfirst recalls that Shri Nabin 'was appointed as the Working President of the BJP on 14 December 2025'.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "item": "standfirst"
+      }
+    },
+    {
+      "claim_id": "in_ks_former_national_president_rajnath_singh_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": "2026-01-20",
+      "text": "Among those who felicitated the newly elected President the report names 'former National President and Defence Minister Shri Rajnath Singh'.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_former_national_president_amit_shah_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Amit Shah",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": "2026-01-20",
+      "text": "The same sentence names 'former National President and Union Minister for Home Affairs and Cooperation Shri Amit Shah'.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_former_national_president_nitin_gadkari_20260120",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-10",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Gadkari",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": "2026-01-20",
+      "text": "The same sentence names 'former National President and Union Minister for Road Transport and Highways Shri Nitin Gadkari'.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "item": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}
