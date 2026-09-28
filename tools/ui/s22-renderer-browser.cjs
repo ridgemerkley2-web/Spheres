@@ -220,7 +220,6 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     await loseRestore('arsenal');await observe('s22-city-card-restored');await shot('s22-city-card-restored');
     // Repeated actual city cards must not retain canvases removed by room/map redraw.
     for(let visit=0;visit<6;visit++){
-      const visitStarted=performance.now();
       await findCity(visit%2?'Paris':'Delhi');await tap('[data-map-detail-focus="city-close"]');await settle();
       const row=await observe('s22-city-room-closed-'+visit);assert.equal(row.arsenal.mounted,0);assert.equal(row.arsenal.pending,0);
     }
@@ -229,6 +228,7 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     // Native designer visits. The family controls change only the local draft;
     // no commissioning, procurement or research command is sent.
     for(let visit=0;visit<6;visit++){
+      const visitStarted=performance.now();
       if(await page.locator('#intelDrawer').getAttribute('aria-hidden')!=='false')await tap('[data-drawer="intelDrawer"]');
       await tap('#warsCard [data-ground-equipment-tab="service"]');await page.waitForFunction(()=>equipmentCurrent());
       await tap('[role="tab"][data-equipment-tab="designer"]');await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='designer'&&!equipmentPending());
