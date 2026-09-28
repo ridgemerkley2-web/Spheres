@@ -237,7 +237,42 @@ fn maintenance_reason(w: &WorldState, c: &Compact) -> Option<String> {
     None
 }
 
+// AI needs only ready candidates. A mutual defense pact is already a necessary
+// quote gate; reject unprotected pairs before scanning the delivered-trade
+// ledgers. Keep the public quote complete, including metrics for refused offers.
+// Nothing is cached across patrons: a previous proposal can change sovereignty.
+fn candidate(w: &WorldState, patron: NationId, skip_unprotected: bool) -> Option<NationId> {
+    w.nations
+        .iter()
+        .filter(|n| n.alive && w.player != Some(n.id))
+        .filter_map(|n| {
+            if skip_unprotected && !w.pact_partners(n.id).contains(&patron) {
+                #[cfg(test)]
+                TEST_SKIPPED_UNPROTECTED.with(|count| count.set(count.get() + 1));
+                return None;
+            }
+            let q = quote(w, patron, n.id);
+            q.ready.then_some((n.id, q.dependency))
+        })
+        .max_by(|a, b| a.1.total_cmp(&b.1).then_with(|| b.0.cmp(&a.0)))
+        .map(|(id, _)| id)
+}
+
+#[cfg(test)]
+std::thread_local! {
+    static TEST_ORIGINAL_CANDIDATES: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_SKIPPED_UNPROTECTED: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
+}
+
 pub fn tick(w: &mut WorldState) {
+    #[cfg(not(test))]
+    let skip_unprotected = true;
+    #[cfg(test)]
+    let skip_unprotected = !TEST_ORIGINAL_CANDIDATES.with(|flag| flag.get());
+    tick_impl(w, skip_unprotected);
+}
+
+fn tick_impl(w: &mut WorldState, skip_unprotected: bool) {
     if !enabled(w) {
         return;
     }
@@ -320,21 +355,15 @@ pub fn tick(w: &mut WorldState) {
         if w.nation(patron).political_capital < COMPACT_PC {
             continue;
         }
-        let candidate = w
-            .nations
-            .iter()
-            .filter(|n| n.alive && w.player != Some(n.id))
-            .filter_map(|n| {
-                let q = quote(w, patron, n.id);
-                q.ready.then_some((n.id, q.dependency))
-            })
-            .max_by(|a, b| a.1.total_cmp(&b.1).then_with(|| b.0.cmp(&a.0)))
-            .map(|(id, _)| id);
-        if let Some(partner) = candidate {
+        if let Some(partner) = candidate(w, patron, skip_unprotected) {
             let _ = crate::apply_command(w, &Command::ProposeEconomicUnion { patron, partner });
         }
     }
 }
+
+#[cfg(test)]
+#[path = "sovereignty_candidate_tests.rs"]
+mod candidate_tests;
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct SphereView {
