@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_cessation_fillon_20070618",
+  "source_url": "https://web.archive.org/web/20240906152409id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000273883",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000273883",
+  "archive_capture_utc": "2024-09-06T15:24:09Z",
+  "accessed_date": "2026-09-29",
+  "published_date": "2007-06-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 96182,
+  "source_response_sha256": "2104cfbb73ca35e6f3a02f8a638e5c784815db91e8cb4231c0afa7feb4fdd4cc",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-09-06T15:24:09Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. This packet downloaded it at 2026-09-29 05:01Z and again at 2026-09-29 05:33Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 6 September 2024 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX0710491D); Légifrance itself refuses automated access (HTTP 403 on 29 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_fillon_government_resignation_letter_20070618",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-09",
+      "role_id": "fr_pm",
+      "holder_name": "François Fillon",
+      "role_title": "Premier ministre",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2007-06-18",
+      "text": "The decree ending the Government's functions (NOR HRUX0710491D) cites in its visas 'la lettre en date du 18 juin 2007 par laquelle le Premier ministre a présenté au Président de la République la démission du Gouvernement'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710491D', 'JORF n°140 du 19 juin 2007 Texte n° 1') and the second visa"
+      }
+    },
+    {
+      "claim_id": "fr_jorf_fillon_functions_ended_20070618",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-09",
+      "role_id": "fr_pm",
+      "holder_name": "François Fillon",
+      "role_title": "Premier ministre",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2007-06-18",
+      "text": "The decree ending the Government's functions, published in JORF n°140 of 19 June 2007 (NOR HRUX0710491D), decrees 'Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. François Fillon, Premier ministre, et des autres membres du Gouvernement' and closes 'Fait à Paris, le 18 juin 2007.', signed 'Nicolas Sarkozy'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710491D', 'JORF n°140 du 19 juin 2007 Texte n° 1'), article 1 and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-37 only (Premier ministre, 1 January 1990 to the 7 September 2026 cutoff; this batch covers the first ten people to hold the office in the period). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister, a decree countersigned or signed by the Prime Minister and a later decree's reference to an appointment stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

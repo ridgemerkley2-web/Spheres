@@ -69,7 +69,7 @@ Decisions per chain (sixteen holder observations of ten people; `attested_on` / 
 
 - Michel Rocard: 1990-01-24 / – / 1991-05-15 (decree 90-89 signed as Prime Minister; decree ending the functions);
 - Édith Cresson: 1991-05-16 / – / – (countersignature; the appointment page renders no text and the decree of 2 April 1992 ending
-  the functions has no usable capture);
+  the functions has no capture);
 - Pierre Bérégovoy: – / 1992-04-02 / 1993-03-29;
 - Édouard Balladur: 1993-03-30 / – / 1995-05-11 (countersignature; no capture of the 29 March 1993 appointment; the end is the
   decree, not the resignation letter of 10 May 1995);
@@ -84,23 +84,9 @@ Decisions per chain (sixteen holder observations of ten people; `attested_on` / 
 Starts are appointment decrees whose text names the appointee; ends are the decrees ending the Government's functions, each on
 its signature day. Resignation letters (cited by the decrees), publication days, nameless references to appointment decrees, the
 title-only appointment page and successors' appointments are never boundaries. No current-affairs continuation or acting Prime
-Minister is stated, so none is recorded. The Prime Ministers appointed from 31 March 2014 onward are the next batch.
-
-Rulings recorded (Ridge's, applied here; Codex may still decide otherwise). (a) The decree ending the Government's functions
-gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the office on a stated day,
-consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36 (resignation accepted on a stated
-day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date stay separate claims. Any later
-statement that current affairs continued is a claim only. The decrees state no effective day, so the signing day is taken as
-the effective day. (b) A countersignature ("Par le Président de la République : Le Premier ministre, [name]"), or Rocard's own
-decree headed "Le Premier ministre", gives `attested_on` only. It never gives a start, including when paired with a nameless
-reference to the appointment decree.
-
-Verifier fixes (commit "Apply verifier fixes to CLAUDE-C01-37"): the two gzip-served extracts
-(`fr_jorf_nomination_jospin_19970602`, `fr_jorf_nomination_fillon_20070618`) now carry `source_response_content_encoding`,
-`decoded_response_bytes` and `decoded_response_sha256` as structured fields, as in CLAUDE-C01-16 and CLAUDE-C01-30, pinned by
-the focused test; the decree of 7 November 1995 ending Juppé's first Government is only probably JORFTEXT000000189843 (the
-"Texte précédent" link is unreliable); JORFTEXT000000539723 (2 April 1992) is confirmed by the Journal officiel summary of
-3 April 1992 but has no usable capture (only a non-replaying 302 row).
+Minister is stated, so none is recorded. The Prime Ministers appointed from 31 March 2014 onward are the next batch. Two rulings
+are requested in the report: whether the cessation decree gives `until`, and whether a countersignature plus a nameless
+appointment reference may give a start (this packet: yes and no).
 
 Checks (from the worktree, `PYTHONDONTWRITEBYTECODE=1`, `python -X utf8`): `import_cnccfp_census.py` regenerated then `--check`
 passed; `campaign_research.py` regenerated then `--check` passed; `campaign_census.py --check` **fails**, a known failure of the
