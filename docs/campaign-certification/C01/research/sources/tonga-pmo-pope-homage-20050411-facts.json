@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20050411_pope_homage",
+  "source_url": "https://web.archive.org/web/20051018153427id_/http://pmo.gov.to:80/index.php/articles/176",
+  "original_url": "http://pmo.gov.to/index.php/articles/176",
+  "archive_capture_utc": "2005-10-18T15:34:27Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2005-04-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 19686,
+  "source_response_sha256": "76df4a308340ca16a21534a8fdd5eb2d1738e787e9c93ef3a889474ff534ab7d",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:40:34Z and again at 2026-09-29T04:15:46Z (UTC), 35 minutes later, from the same URL: both responses were 19686 bytes with SHA-256 76df4a308340ca16a21534a8fdd5eb2d1738e787e9c93ef3a889474ff534ab7d. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:55:25Z and 2026-09-29T03:35:28Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2005-10-18T15:34:27Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Media release 'Posted by: Joyce Cocker on Mon, 11 April 2005 22:15:52' on the government portal (raw Internet Archive capture of 18 October 2005). Used only for the Acting Prime Minister's public notice; the royal attendance and mass are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_pm_cocker_20050410",
+      "observation_id": "to_prime_minister",
+      "review_observation": "TO-DPM-04",
+      "role_id": "to_pm",
+      "holder_name": "Hon. James Cecil Cocker",
+      "role_title": "Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2005-04-10",
+      "text": "'On Sunday evening, 10th April, 2005 the Acting Prime Minister, Hon. James Cecil Cocker, issued a public notice' that, by His Majesty's command, all official flags be flown at half mast on Monday 11 April 2005 for the funeral of Pope John Paul II.",
+      "locator": "Paragraph 1",
+      "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The release does not style him Deputy Prime Minister and does not give the start or end of the acting service."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

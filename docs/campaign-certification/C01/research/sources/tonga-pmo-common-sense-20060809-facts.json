@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20060809_common_sense",
+  "source_url": "https://web.archive.org/web/20060822122944id_/http://www.pmo.gov.to:80/artman/publish/article_147.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_147.shtml",
+  "archive_capture_utc": "2006-08-22T12:29:44Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2006-08-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12953,
+  "source_response_sha256": "cf7cfbe2157142123ac9ba17c25994c5a30dc4edbdc5cf3e13b0805a70f2d7b8",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "windows-1252 (no charset declared; read as windows-1252)",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:09Z and again at 2026-09-29T04:13:11Z (UTC), 41 minutes later, from the same URL: both responses were 12953 bytes with SHA-256 cf7cfbe2157142123ac9ba17c25994c5a30dc4edbdc5cf3e13b0805a70f2d7b8. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:40:53Z and 2026-09-29T02:24:24Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2006-08-22T12:29:44Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO press release dated 'Aug 9, 2006, 09:34' (raw Internet Archive capture of 22 August 2006). Used only for the styling of the Deputy Prime Minister; the plea and the letter it answers are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_tangi_styled_20060808",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-05",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Dr. Viliami Tangi",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2006-08-08",
+      "text": "The PMO release dated 9 August 2006 says that the Prime Minister 'and the Deputy Prime Minister Dr. Viliami Tangi, made a public plea for common sense' in a television programme broadcast 'last night' (8 August 2006).",
+      "locator": "Paragraph 1",
+      "uncertainty": "The earliest dated record found naming him Deputy Prime Minister, dated to the broadcast ('last night' read from the release's date line). It gives no appointment day; the retrospective 'In May 2006' is a separate claim and not a start."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

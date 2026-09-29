@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20141231_new_cabinet",
+  "source_url": "https://web.archive.org/web/20151002125546id_/http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+  "original_url": "http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+  "archive_capture_utc": "2015-10-02T12:55:46Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2014-12-31",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 47371,
+  "source_response_sha256": "6ff556adae3b8d70096fd5520ae800e80d731d5c7f3d6fa7a1e96f19bc9ceb2f",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:54Z and again at 2026-09-29T04:13:58Z (UTC), 41 minutes later, from the same URL: both responses were 47371 bytes with SHA-256 6ff556adae3b8d70096fd5520ae800e80d731d5c7f3d6fa7a1e96f19bc9ceb2f. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:29:13Z and 2026-09-29T02:30:17Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2015-10-02T12:55:46Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO media release dated '(31 Decemeber 2014)' [sic] (raw Internet Archive capture of 2 October 2015). Used only for the recommendation sentence and the Deputy Prime Minister's list entry; the other ministers are not imported. A shorter PMO item of the same day listing the same Cabinet (see the report's leads) is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_sovaleni_appointment_recommended_20141231",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": null,
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "appointment_recommended",
+      "attested_on": "2014-12-31",
+      "text": "The PMO media release of 31 December 2014 says that the Prime Minister-elect 'has recommended to His Majesty King Tupou VI' the appointment of the ministers of the new Government, which 'will be effective as of 31st December, 2014'.",
+      "locator": "Paragraph 1",
+      "uncertainty": "The recommendation and the effective day it forecast (the sentence is garbled as printed). No royal act or its day is stated, so 31 December 2014 is not used as a start, just as the 2017 revocation recommendation is not used as an end. IPU's record that the Cabinet took office on 19 January 2015 (to_ipu_2014_cabinet_took_office_20150119) conflicts; IPU is corroboration only and is not cited here. The 'Parliamentary term 2015-2018' it names is not an end."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_cabinet_list_20141231",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Siaosi'Ofakivahafolau Sovaleni",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2014-12-31",
+      "text": "The same release lists the members of the new Cabinet, the second being 'Hon. Siaosi'Ofakivahafolau Sovaleni- Deputy Prime Minister' with the environment, energy, climate change, disaster management, meteorology, information and communications portfolios.",
+      "locator": "List entry 2",
+      "uncertainty": "The release's list styles him Deputy Prime Minister on its date, which dates the holder observation; it is not a start. The other ministers are not imported."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

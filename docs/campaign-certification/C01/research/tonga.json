@@ -5053,6 +5053,1141 @@
         "sha256": "62cbdee0e66215ff5ea95b741c9cf6493f3ed02c0dc6d42556fa79f06f7bdca6",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_pmo_2000_press_releases",
+      "title": "Government Press Release (PMO page of 2000-2001 releases, archived)",
+      "url": "https://web.archive.org/web/20011230032256id_/http://pmo.gov.to:80/Government_Press_Release.html",
+      "original_url": "http://pmo.gov.to/Government_Press_Release.html",
+      "publisher": "Prime Minister's Office, Government of Tonga (Information Unit)",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_kavaliku_retirement_announced_2000",
+          "text": "A PMO release headed 'DR. LANGI KAVALIKU, DEPUTY PRIME MINISTER RETIRES' (after 34 years of service) says that 'Dr. S. Langi Kavaliku' is 'due for retirement, commencing on the 11th November 2000.'",
+          "locator": "Kavaliku item: heading and first paragraph",
+          "uncertainty": "A prospective announcement: 11 November 2000 is the day the retirement was due to commence, not a stated end of office, and no record retrieved confirms the day it took effect; no until is set. The item has no date line of its own (the index dates it 6/11/00), so this claim stores no structured date. The heading's length of service is given here in figures."
+        },
+        {
+          "id": "to_dpm_kavaliku_appointed_1991_retro",
+          "text": "The same release says: 'At the height of his career, Dr. Kavaliku was appointed the Deputy Prime Minister in 1991.'",
+          "locator": "Kavaliku item: career paragraph",
+          "uncertainty": "Retrospective and year only: it dates no appointment day, supplies no start and says nothing about who held the office on 1 January 1990. It is never a holder date or boundary."
+        }
+      ],
+      "scope_note": "PMO page collecting the government press releases of late 2000 and early 2001 (raw Internet Archive capture of 30 December 2001). The Kavaliku item carries no date line of its own; the PMO's 'News in Brief' index dates it 6/11/00 (to_pmo_news_in_brief_2001). Used only for the Kavaliku item; the other releases are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-press-releases-2000-facts.json",
+        "bytes": 5078,
+        "sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_news_in_brief_2001",
+      "title": "News in Brief - Government Press Release (PMO index, archived)",
+      "url": "https://web.archive.org/web/20010708233245id_/http://pmo.gov.to:80/NEWS_IN_BRIEF.html",
+      "original_url": "http://pmo.gov.to/NEWS_IN_BRIEF.html",
+      "publisher": "Prime Minister's Office, Government of Tonga (Information Unit)",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_government_reference_list_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_kavaliku_listed_20001106",
+          "text": "The PMO's 'NEWS IN BRIEF' index lists, against the date '6/11/00', the release 'Dr. Langi Kavaliku, Deputy Prime Minister retires after thirty-four (34) years of Service'.",
+          "attested_on": "2000-11-06",
+          "locator": "Table 'DATES / EVENTS', row dated 6/11/00",
+          "uncertainty": "The index row dates the release to 6 November 2000 and styles him Deputy Prime Minister on that day. It is the only contemporaneous dated record found of him in office; it supplies no appointment day and no end."
+        }
+      ],
+      "scope_note": "The PMO's dated index of its press releases ('this press release will be updated on a weekly basis'; raw Internet Archive capture of 8 July 2001). Used only for the row dating the Kavaliku item; the other rows are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-news-in-brief-2001-facts.json",
+        "bytes": 4048,
+        "sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20010124_pm_address",
+      "title": "Translation of the Address delivered to the Nation by H.R.H. Prince 'Ulukalala Lavaka Ata, The Prime Minister, 24 January 2001 (archived)",
+      "url": "https://web.archive.org/web/20010430180727id_/http://pmo.gov.to:80/hrhadd.24j.html",
+      "original_url": "http://pmo.gov.to/hrhadd.24j.html",
+      "publisher": "Prime Minister's Office, Government of Tonga (Information Unit)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2001-01-24",
+      "source_type": "primary_government_address_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tupou_appointment_effective_20010124",
+          "text": "In his address of Wednesday 24 January 2001 the Prime Minister announces that the King 'in - Privy Council today' consented to ministerial appointments 'with effect from 24th January, 2001', the second being 'Hon. Tevita P. Tupou' as 'Deputy Prime Minister & The Attorney General & Minister of Justice'.",
+          "attested_on": "2001-01-24",
+          "locator": "Address, appointment paragraph and list item 2",
+          "uncertainty": "The stated effective day of the royal consent in Privy Council. The instrument itself was not seen. Other ministers in the list are not imported, and no end of any earlier deputy premiership is inferred from this start."
+        }
+      ],
+      "scope_note": "PMO Information Unit press release giving the English translation of the Prime Minister's address to the nation 'At 7:00 p.m. on Wednesday, 24th January, 2001' (raw Internet Archive capture of 30 April 2001). Used only for the ministerial appointment paragraph and list item 2; the other ministers and policy directives are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-address-20010124-facts.json",
+        "bytes": 4319,
+        "sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20010928_tupou_resignation_to",
+      "title": "Ongoongo 'ae Pule'anga: Fakafisi 'ae 'Eiki Tokoni Palemia ... Hon. Tevita Poasi Tupou pea mo e Fakanofo 'o e 'Eiki Tokoni Palemia Le'oleo, Hon. Clive Edwards (Tongan release, 28 September 2001, archived)",
+      "url": "https://web.archive.org/web/20011230022245id_/http://pmo.gov.to:80/Fkfisitupou.html",
+      "original_url": "http://pmo.gov.to/Fkfisitupou.html",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2001-09-28",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tupou_resignation_accepted_20010928",
+          "text": "The release of 28 September 2001 says that at 4 p.m. that day ('I he taimi 4 efiafi 'o e 'aho ni') Tevita Poasi Tupou resigned ('na'e fakafisi') as Deputy Prime Minister ('Tokoni Palemia'), Attorney General and Minister of Justice, and that the Princess Regent, Pilinisesi Salote Mafile'o Pilolevu Tuita, accepted the request ('Na'e tali 'a e poaki ni').",
+          "attested_on": "2001-09-28",
+          "locator": "Paragraph 2",
+          "uncertainty": "The resignation and its acceptance are stated for the same day, 28 September 2001, and give the holder's until. The Princess Regent's act is recorded as printed; no regency is observed here. The resignation letter itself was not seen."
+        },
+        {
+          "id": "to_dpm_tupou_appointed_jan2001_retro",
+          "text": "The same release, on Tevita Poasi Tupou, says that he was appointed Deputy Prime Minister in January 2001 ('i Sanuali 2001 ... ko e 'Eiki Tokoni Palemia') and held that office for nine months ('i he mahina 'e 9').",
+          "locator": "Paragraph 5",
+          "uncertainty": "Retrospective and month only; consistent with the stated effective day of 24 January 2001 (to_dpm_tupou_appointment_effective_20010124) but never itself a holder date. 'toe' (again) is read as part of the sentence's list of successive appointments, not as a second deputy premiership."
+        },
+        {
+          "id": "to_acting_dpm_edwards_appointed_20010928",
+          "text": "After the Princess Regent accepted the resignation, she appointed the Minister of Police, Hon. Clive Edwards, Acting Deputy Prime Minister ('na'a ne fakanofo ai 'a e 'Eiki Minisita Polisi, Hon. Clive Edwards, ko e 'Eiki Tokoni Palemia Le'ole'o'), a duty given to him 'i he 'aho ni' (today).",
+          "attested_on": "2001-09-28",
+          "locator": "Paragraphs 6 and 10",
+          "uncertainty": "Acting Deputy Prime Minister service: a claim on to_deputy_pm only, never a holder and never a boundary of the substantive office. The end of the acting appointment is not stated."
+        }
+      ],
+      "scope_note": "Tongan-language government release dated ''Aho 28 Sepitma, 2001' [sic], signed by the Chief Secretary and Secretary to Cabinet (raw Internet Archive capture of 30 December 2001). The English renderings are this packet's reading. Used for the resignation, its acceptance, the retrospective appointment month and the acting appointment; the biographies are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-tupou-resignation-to-20010928-facts.json",
+        "bytes": 6206,
+        "sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20020111_acting_dpm_statement",
+      "title": "Statement by the Acting Deputy Prime Minister, Hon. William Clive Edwards, on the detention of three vessels on the Tonga ship registry, 11 January 2002 (archived)",
+      "url": "https://web.archive.org/web/20020210211730id_/http://pmo.gov.to:80/gpr11jan02.htm",
+      "original_url": "http://pmo.gov.to/gpr11jan02.htm",
+      "publisher": "Prime Minister's Office, Government of Tonga (Information Unit)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2002-01-11",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_dpm_edwards_20020111",
+          "text": "The PMO statement dated '11 January 2002' is issued 'By the Acting Deputy Prime Minister, Hon. William Clive Edwards' on the recent detention and inspection of three foreign vessels registered under the Tonga International Registry of Ships.",
+          "attested_on": "2002-01-11",
+          "locator": "Date line and byline",
+          "uncertainty": "Acting Deputy Prime Minister service: a claim on to_deputy_pm only, never a holder and never a boundary of the substantive office. The statement does not say whether the office of Deputy Prime Minister was vacant or its holder absent."
+        }
+      ],
+      "scope_note": "PMO government press release dated '11 January 2002' (raw Internet Archive capture of 10 February 2002). Used only for the byline styling Edwards Acting Deputy Prime Minister; the shipping matters are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-statement-20020111-facts.json",
+        "bytes": 4121,
+        "sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20020514_acting_dpm_paunga",
+      "title": "Tonga Government Media Statement: Appointment of Dr. Giulio Masasso Paunga as Acting Deputy Prime Minister (May 2002, archived)",
+      "url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+      "original_url": "http://pmo.gov.to/gpr14May02.htm",
+      "publisher": "Prime Minister's Office, Government of Tonga (Information Unit)",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_cocker_abroad_20020513",
+          "text": "The statement says that Dr. Paunga's appointment as Acting Deputy Prime Minister 'in lieu of Deputy Prime Minister, Hon. Cecil Cocker who is abroad on official duties, came in to effect on 13th May 2002.'",
+          "attested_on": "2002-05-13",
+          "locator": "Paragraph 1",
+          "uncertainty": "Styles Cocker Deputy Prime Minister on 13 May 2002, the earliest dated record of him in that office found. No appointment day is given; no end of Tupou's term or of the acting service of 2001-2002 is inferred from it."
+        },
+        {
+          "id": "to_acting_dpm_paunga_20020513",
+          "text": "The statement says that 'Dr. Giulio T. Massaso Paunga', Minister for Labour, Commerce, Industries and Tourism, 'has been appointed as Acting Deputy Prime Minister', with effect from 13 May 2002, while the Deputy Prime Minister is abroad.",
+          "attested_on": "2002-05-13",
+          "locator": "Heading and paragraph 1",
+          "uncertainty": "Acting Deputy Prime Minister service: a claim on to_deputy_pm only, never a holder and never a boundary of the substantive office. The name is printed 'Masasso' in the heading and 'Massaso' in the text; the end of the acting appointment is not stated."
+        }
+      ],
+      "scope_note": "PMO media statement (file name gpr14May02; raw Internet Archive capture of 16 August 2002); the statement prints no date line of its own, so no published date is recorded. Used for the acting appointment and for the styling of Cocker as Deputy Prime Minister; Paunga's other offices are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-paunga-20020514-facts.json",
+        "bytes": 5048,
+        "sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20020903_wssd_statement",
+      "title": "Statement by the Honourable James Cecil Cocker, Deputy Prime Minister of the Kingdom of Tonga, at the World Summit for Sustainable Development, 3 September 2002 (archived)",
+      "url": "https://web.archive.org/web/20021219084233id_/http://pmo.gov.to:80/DepPM%20Speech%20on%20WSSD,%202002.htm",
+      "original_url": "http://pmo.gov.to/DepPM%20Speech%20on%20WSSD,%202002.htm",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2002-09-03",
+      "source_type": "primary_government_address_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_cocker_wssd_statement_20020903",
+          "text": "The PMO-published statement at the World Summit for Sustainable Development is headed as a 'STATEMENT BY THE HONOURABLE JAMES CECIL COCKER DEPUTY PRIME MINISTER OF THE KINGDOM OF TONGA' and dated '3rd SEPTEMBER 2002, JOHANNESBURG'.",
+          "attested_on": "2002-09-03",
+          "locator": "Heading and date line",
+          "uncertainty": "A contemporaneous styling on the statement's date only; no appointment or end date."
+        }
+      ],
+      "scope_note": "PMO-published text of the statement delivered at the general debate of the World Summit for Sustainable Development, dated '3rd SEPTEMBER 2002, JOHANNESBURG, SOUTH AFRICA' (raw Internet Archive capture of 19 December 2002). Used only for the heading and date; the statement's content is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-wssd-statement-20020903-facts.json",
+        "bytes": 4092,
+        "sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20040909_confirmation_of_appointments",
+      "title": "Government of Tonga Press Release: Reshuffling of Ministerial Portfolios in the Government of Tonga (9 September 2004, archived)",
+      "url": "https://web.archive.org/web/20041105172122id_/http://www.pmo.gov.to:80/confirmation_of_appointments_24august2004.htm",
+      "original_url": "http://www.pmo.gov.to/confirmation_of_appointments_24august2004.htm",
+      "publisher": "Government Information Unit, Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2004-09-09",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_cocker_appointment_confirmed_20040824",
+          "text": "The release of 9 September 2004 says that, after the Prime Minister's announcement of 25 August 2004 on the reshuffle, the King 'has accordingly confirmed the following appointments, with effect from 24th August, 2004', the second being 'Hon. James Cecil Cocker' as 'Deputy Prime Minister' with the police, prisons and fire services and the labour, commerce and industries portfolios.",
+          "attested_on": "2004-08-24",
+          "locator": "Paragraph 1 and list item 2",
+          "uncertainty": "A royal confirmation of a reshuffle while he already held the office: it is not the start of his deputy premiership and creates no second holder, and no earlier appointment day is derived from it. The instrument was not seen."
+        }
+      ],
+      "scope_note": "Government press release 'on Thursday, 9th September, 2004' (raw Internet Archive capture of 5 November 2004). Used only for the confirmation paragraph and list item 2; the other ministers are not imported. A Tongan version and an earlier announcement of 27 August 2004 exist and are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-confirmation-of-appointments-20040909-facts.json",
+        "bytes": 4441,
+        "sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20050411_pope_homage",
+      "title": "Tonga Pays Homage to the Pope, John Paul II (government media release, April 2005, archived)",
+      "url": "https://web.archive.org/web/20051018153427id_/http://pmo.gov.to:80/index.php/articles/176",
+      "original_url": "http://pmo.gov.to/index.php/articles/176",
+      "publisher": "Government of Tonga (media release on the government portal pmo.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2005-04-11",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_cocker_20050410",
+          "text": "'On Sunday evening, 10th April, 2005 the Acting Prime Minister, Hon. James Cecil Cocker, issued a public notice' that, by His Majesty's command, all official flags be flown at half mast on Monday 11 April 2005 for the funeral of Pope John Paul II.",
+          "attested_on": "2005-04-10",
+          "locator": "Paragraph 1",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The release does not style him Deputy Prime Minister and does not give the start or end of the acting service."
+        }
+      ],
+      "scope_note": "Media release 'Posted by: Joyce Cocker on Mon, 11 April 2005 22:15:52' on the government portal (raw Internet Archive capture of 18 October 2005). Used only for the Acting Prime Minister's public notice; the royal attendance and mass are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pope-homage-20050411-facts.json",
+        "bytes": 4189,
+        "sha256": "31935248497b7f5a4dd5a84c6847f96735bd2eb48550bd6d5b19b4947466f69a",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060310_ub40_concert",
+      "title": "Royalty, Government and the People of Tonga welcomes the UB40 Band with immense applause (PMO item, 10 March 2006, archived)",
+      "url": "https://web.archive.org/web/20060426083232id_/http://www.pmo.gov.to:80/artman/publish/article_96.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_96.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2006-03-10",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_cocker_styled_20060308",
+          "text": "The PMO item of 10 March 2006 says that at the concert on the evening of Wednesday 8 March 2006 the band's manager and promoter were introduced to the Acting Prime Minister and to 'the Deputy Prime Minister, Hon. James Cecil Cocker at the grandstand'.",
+          "attested_on": "2006-03-08",
+          "locator": "Paragraphs 1-2",
+          "uncertainty": "The latest dated record found styling Cocker Deputy Prime Minister; no end of his office is stated, and none is inferred from the later records naming another holder. Sevele's acting premiership is not imported."
+        }
+      ],
+      "scope_note": "PMO 'Tonga News' item dated 'Mar 10, 2006, 19:50' (raw Internet Archive capture of 26 April 2006). Used only for the styling of the Deputy Prime Minister at the concert of Wednesday 8 March 2006; Sevele's acting premiership in the same sentence (recorded by CLAUDE-C01-08 from other sources) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ub40-concert-20060310-facts.json",
+        "bytes": 4263,
+        "sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060609_pohiva_statements",
+      "title": "Akilisi Should Stop Making Unjustified Statements (PMO press release, 9 June 2006, archived)",
+      "url": "https://web.archive.org/web/20060615072009id_/http://www.pmo.gov.to:80/artman/publish/article_121.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_121.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2006-06-09",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_office_with_health_20060609",
+          "text": "The PMO release of 9 June 2006 quotes the Press Secretary as saying that 'as the Deputy Prime Minister and Minister of Health pointed out to him from the floor', Mr. Pohiva's first nominee for the chairmanship of the Committee of the Whole had been HRH Prince Tu'ipelehake.",
+          "attested_on": "2006-06-09",
+          "locator": "Paragraph 5",
+          "uncertainty": "The office-holder is not named; the claim records only that the Deputy Prime Minister was also Minister of Health by 9 June 2006. The day of the Assembly exchange is not given, so the release date is kept. It is consistent with the retrospective 'In May 2006' (to_dpm_tangi_appointed_may2006_retro) but names nobody and feeds no holder."
+        }
+      ],
+      "scope_note": "PMO press release dated 'Jun 9, 2006, 14:33' quoting the Press Secretary (raw Internet Archive capture of 15 June 2006). Used only for its reference to the Deputy Prime Minister and Minister of Health; the political statements are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pohiva-statements-20060609-facts.json",
+        "bytes": 4334,
+        "sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060809_common_sense",
+      "title": "Government Pleads For Common Sense (PMO press release, 9 August 2006, archived)",
+      "url": "https://web.archive.org/web/20060822122944id_/http://www.pmo.gov.to:80/artman/publish/article_147.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_147.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2006-08-09",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tangi_styled_20060808",
+          "text": "The PMO release dated 9 August 2006 says that the Prime Minister 'and the Deputy Prime Minister Dr. Viliami Tangi, made a public plea for common sense' in a television programme broadcast 'last night' (8 August 2006).",
+          "attested_on": "2006-08-08",
+          "locator": "Paragraph 1",
+          "uncertainty": "The earliest dated record found naming him Deputy Prime Minister, dated to the broadcast ('last night' read from the release's date line). It gives no appointment day; the retrospective 'In May 2006' is a separate claim and not a start."
+        }
+      ],
+      "scope_note": "PMO press release dated 'Aug 9, 2006, 09:34' (raw Internet Archive capture of 22 August 2006). Used only for the styling of the Deputy Prime Minister; the plea and the letter it answers are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-common-sense-20060809-facts.json",
+        "bytes": 4141,
+        "sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20090114_hauofa_funeral",
+      "title": "Deputy Prime Minister to Represent Government at Professor 'Epeli Hau'ofa's Funeral in Suva (PMO, 14 January 2009, archived)",
+      "url": "https://web.archive.org/web/20090122085852id_/http://pmo.gov.to:80/component/content/article/55-lastes-news/365-deputy-prime-minister-to-represent-government-at-professor-epeli-hauofas-funeral-in-suva.html",
+      "original_url": "http://pmo.gov.to/component/content/article/55-lastes-news/365-deputy-prime-minister-to-represent-government-at-professor-epeli-hauofas-funeral-in-suva.html",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2009-01-14",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tangi_represents_government_20090114",
+          "text": "The PMO item of Wednesday 14 January 2009 says that 'The Deputy Prime Minister, Dr the Hon Viliami Ta'u Tangi' will represent the Government at Professor 'Epeli Hau'ofa's funeral service in Suva on 15 January.",
+          "attested_on": "2009-01-14",
+          "locator": "Date line and paragraph 1",
+          "uncertainty": "A contemporaneous styling on the item's date; no appointment or end date."
+        }
+      ],
+      "scope_note": "PMO latest-news item 'From the Prime Minister's Office, Wednesday 14 January 2009' (raw Internet Archive capture of 22 January 2009). Used only for the Deputy Prime Minister's styling; the obituary is not imported. A Tongan version (printed with the year 2008) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-hauofa-funeral-20090114-facts.json",
+        "bytes": 4240,
+        "sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_2009_australia_day_speech",
+      "title": "Australian Day 2009, Speech by Dr. The Hon. Viliami T. Tangi, Acting Prime Minister (PMO speeches page, archived)",
+      "url": "https://web.archive.org/web/20090326123858id_/http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/english-mainmenu-95/379-australian-day-2009-speech-by-dr-the-hon-viliami-t-tangi-acting-prime-minister.html",
+      "original_url": "http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/english-mainmenu-95/379-australian-day-2009-speech-by-dr-the-hon-viliami-t-tangi-acting-prime-minister.html",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_government_address_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_tangi_australia_day_2009",
+          "text": "The PMO speeches page is titled 'Australian Day 2009, Speech by Dr. The Hon. Viliami T. Tangi, Acting Prime Minister' and gives the text of his toast on behalf of the Government.",
+          "locator": "Page title and speech text",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The page prints no day, so no structured date is stored. CLAUDE-C01-08's to_pmo_vaea_tribute_acting_pm_20090613 records another occasion of his acting service."
+        }
+      ],
+      "scope_note": "PMO English speeches page 'Issued by: PMO Website Bureau' (raw Internet Archive capture of 26 March 2009). The page prints no date, so no published date is recorded. Used only for the title styling him Acting Prime Minister; the toast is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-australia-day-speech-2009-facts.json",
+        "bytes": 4433,
+        "sha256": "f05f4c4b9dc407b0c2ccfe57a60139a111805c9064fa0567999c61282a82d682",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20100624_throne_reply",
+      "title": "Tali 'o e Folofola 'e he 'Eiki Tokoni Palemia, Hon. Dr. Viliami Tau Tangi (government speeches page, 24 June 2010, archived)",
+      "url": "https://web.archive.org/web/20111130060948id_/http://pmo.gov.to/speeches/1541-tali-o-e-folofola-e-he-eiki-tokoni-palemia-dr-viliami-tau-tangi-",
+      "original_url": "http://pmo.gov.to/speeches/1541-tali-o-e-folofola-e-he-eiki-tokoni-palemia-dr-viliami-tau-tangi-",
+      "publisher": "Government of Tonga (speeches page on pmo.gov.to, then hosting the Ministry of Information and Communications portal)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2010-06-24",
+      "source_type": "primary_government_address_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tangi_throne_reply_20100624",
+          "text": "The speech page 'Tali To Folofola 'e he 'Eiki Tokoni Palemia, Hon. Dr. Viliami Tau Tangi' (the Deputy Prime Minister's reply to the Speech from the Throne) is dated '24 Sune 2010' and opens with salutations to the King, 'Tu'i ko Siaosi Tupou V'.",
+          "attested_on": "2010-06-24",
+          "locator": "Page heading, date line and salutations",
+          "uncertainty": "A contemporaneous styling on the speech's date; no appointment or end date. The English gloss of the heading is this packet's reading."
+        }
+      ],
+      "scope_note": "Tongan-language speech page stamped 'Thursday, 24 June 2010 17:09' (raw Internet Archive capture of 30 November 2011). The English rendering is this packet's reading. Used only for the heading and date; the reply's content is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-reply-dpm-20100624-facts.json",
+        "bytes": 4176,
+        "sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20101230_lord_tangi",
+      "title": "Lord Tangi of Vaonukonuka (government portal item, 30 December 2010, archived)",
+      "url": "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+      "original_url": "http://www.mic.gov.to/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2010-12-30",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_tangi_styled_life_peer_20101230",
+          "text": "The item of 30 December 2010 says that the King granted a life peerage 'to Dr. Viliami Ta'u Tangi, interim Health Minister and Deputy Prime Minister', invested as Lord Tangi of Vaonukonuka on the evening of Thursday 30 December 2010.",
+          "attested_on": "2010-12-30",
+          "locator": "Paragraphs 1-2",
+          "uncertainty": "The latest dated record found styling him Deputy Prime Minister. 'interim' is printed before 'Health Minister'; whether it also qualifies 'Deputy Prime Minister' is not stated. It falls after Lord Tu'ivakano's appointment audience of 22 December 2010 and before the new Cabinet commenced on 4 January 2011; no end of his deputy premiership is inferred from either. The peerage is not an office of this role."
+        },
+        {
+          "id": "to_dpm_tangi_appointed_may2006_retro",
+          "text": "The same item says: 'In May 2006 His Majesty King Taufa'ahau Tupou IV appointed Dr. Tangi as Deputy Prime Minister and Minister of Health'.",
+          "locator": "Final paragraph",
+          "uncertainty": "Retrospective and month only: it gives no day, supplies no start and is never a holder date. No end of Cocker's office is inferred from it."
+        }
+      ],
+      "scope_note": "Government portal item stamped 'Thursday, 30 December 2010 23:19' under Appointments / Nobles (raw Internet Archive capture of 2 January 2014). Used for the styling at the life peerage and for the retrospective appointment month; the career summary is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-lord-tangi-20101230-facts.json",
+        "bytes": 5105,
+        "sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20110103_vaipulu_appointed",
+      "title": "Hon. Samiu Vaipulu - Deputy PM / Justice & Transport Minister (government portal item, 3 January 2011, archived)",
+      "url": "https://web.archive.org/web/20171024214701id_/http://www.mic.gov.to/appointments/new-ministers-/1973-samiu-vaipulu-deputy-pm-justice-works-minister",
+      "original_url": "http://www.mic.gov.to/appointments/new-ministers-/1973-samiu-vaipulu-deputy-pm-justice-works-minister",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2011-01-03",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_vaipulu_appointment_reported_20110103",
+          "text": "The item of 3 January 2011 reports: 'The Prime Minister, Lord Tu'ivakano has appointed the Hon. Samiu Kuita Vaipulu, as his Deputy Prime Minister', and that he is also responsible for the Ministries of Justice, Transport and Works.",
+          "attested_on": "2011-01-03",
+          "locator": "Paragraph 1",
+          "uncertainty": "A report of the appointment dated by the item; the royal appointment and its day are not stated, and the Cabinet's stated commencement on 4 January 2011 is a separate claim. Not a start."
+        }
+      ],
+      "scope_note": "Government portal item stamped 'Monday, 03 January 2011 22:41' under Appointments / New Ministers (raw Internet Archive capture of 24 October 2017). Used only for the report of the appointment; the profile is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-vaipulu-appointed-20110103-facts.json",
+        "bytes": 4194,
+        "sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20110104_cabinet_named",
+      "title": "Prime Minister Announces new Cabinet Ministers (media release, 4 January 2011, archived)",
+      "url": "https://web.archive.org/web/20171024212340id_/http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+      "original_url": "http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+      "publisher": "Office of the Chief Secretary and Secretary to Cabinet, Prime Minister's Office (published on the government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2011-01-04",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_vaipulu_cabinet_commences_20110104",
+          "text": "The PMO media release of 4 January 2011 says that Lord Tu'ivakano recommended the new ministers to King George Tupou V and that 'The Cabinet Ministers commence today, Tuesday 4th. January, 2011'; its list gives 'Hon. Samiu Kuita Vaipulu - Deputy Prime Minister' with Justice, Transport and Works.",
+          "attested_on": "2011-01-04",
+          "locator": "Paragraph 1 and the first list entry after the Prime Minister",
+          "uncertainty": "The stated day the Cabinet ministers commenced, which gives the holder's from; the royal instrument and its date are not given. The ministers' oath in the Assembly on 14 January 2011 is not imported. Other ministers are not imported."
+        }
+      ],
+      "scope_note": "Media release dated '04 January 2011' and 'Issued by the Office of the Chief Secretary & Secretary to Cabinet, PMO' (raw Internet Archive capture of 24 October 2017). Used only for the commencement sentence and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-named-20110104-facts.json",
+        "bytes": 4515,
+        "sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20120213_foi_speech",
+      "title": "Speech by the Deputy Prime Minister Hon. Samiu Kuita Vaipulu at the Tonga National FOI Policy Consultation Workshop on Monday 13 February 2012 (government portal video page, archived)",
+      "url": "https://web.archive.org/web/20170906162059id_/http://www.mic.gov.to:80/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+      "original_url": "http://www.mic.gov.to/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2012-02-29",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_vaipulu_styled_20120213",
+          "text": "A government portal page of 29 February 2012 is titled 'Speech by the Deputy Prime Minister Hon. Samiu Kuita Vaipulu' at the national freedom-of-information consultation workshop 'on Monday 13 February 2012'.",
+          "attested_on": "2012-02-13",
+          "locator": "Page title",
+          "uncertainty": "A styling dated to the speech day the title gives; no appointment or end date."
+        }
+      ],
+      "scope_note": "Government portal video-gallery page stamped 'Wednesday, 29 February 2012 16:27' (raw Internet Archive capture of 6 September 2017). Only its title is used; the video itself was not viewed.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-foi-speech-20120213-facts.json",
+        "bytes": 4225,
+        "sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20130424_rti_speech",
+      "title": "Rights to Information Workshop: Speech by the Hon. Samiu Vaipulu (government portal, April 2013, archived)",
+      "url": "https://web.archive.org/web/20171024223318id_/http://www.mic.gov.to/speeches/general-statements/4361-rti-workshop-speech-by-the-hon-samiu-vaipulu",
+      "original_url": "http://www.mic.gov.to/speeches/general-statements/4361-rti-workshop-speech-by-the-hon-samiu-vaipulu",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2013-04-24",
+      "source_type": "primary_government_address_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_vaipulu_20130422",
+          "text": "The speech page gives the opening statement 'by the Acting Prime Minister, Hon. Samiu Vaipulu' at a workshop on the right to information in Nuku'alofa 'on 22 April 2013'.",
+          "attested_on": "2013-04-22",
+          "locator": "Lead paragraph",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). Start and end of the acting service are not stated."
+        }
+      ],
+      "scope_note": "Government portal speech page stamped 'Wednesday, 24 April 2013 23:17', dated '23 April 2013' in its lead and 'Authorized from the Office of the Deputy Prime Minister, April 23, 2013' (raw Internet Archive capture of 24 October 2017). Used only for the Acting Prime Minister's styling; the speech is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-rti-speech-20130424-facts.json",
+        "bytes": 4228,
+        "sha256": "38e6690a33fe1e09501f72fa473b49c05017d5c0e2e3baaae74b6f906a8dc3d5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20140619_half_mast",
+      "title": "National Flags to be flown at half-mast for HSH Prince Tu'ipelehake (government release, 19 June 2014, archived)",
+      "url": "https://web.archive.org/web/20200611163419id_/http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+      "publisher": "Prime Minister's Office, Government of Tonga (published on the government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2014-06-19",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_vaipulu_20140618",
+          "text": "The release of 19 June 2014 says that 'The Acting Prime Minister, Hon. Samiu Kuita Vaipulu on 18 June approved' that national flags fly at half-mast on 20 June 2014 for the funeral of Prince Tu'ipelehake.",
+          "attested_on": "2014-06-18",
+          "locator": "Paragraphs 1 and 2",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The year of '18 June' is taken from the release's own date line."
+        }
+      ],
+      "scope_note": "Press release dated '19 June 2014' (page stamp 'Friday, 20 June 2014 08:31'; raw Internet Archive capture of 11 June 2020). Used only for the Acting Prime Minister's approval; the obituary is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-half-mast-20140619-facts.json",
+        "bytes": 4214,
+        "sha256": "eb479026d4e41a4fcb326d60a926f6f3036c62a8c0fa6e7725d330c10368a1b2",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20140909_toloa",
+      "title": "Restoration of Toloa Rainforest (government release, 9 September 2014, archived)",
+      "url": "https://web.archive.org/web/20170127082234id_/http://www.mic.gov.to:80/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2014-09-09",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_vaipulu_styled_20140905",
+          "text": "The release of 9 September 2014 says that on Friday 5 September 'Hon. Samiu Kuita Vaipulu the Acting Prime Minister, Deputy Prime Minister and Minister for Environment' was guest of honour at a ground-breaking for the Toloa rainforest nursery.",
+          "attested_on": "2014-09-05",
+          "locator": "Paragraph 1",
+          "uncertainty": "The latest dated record found styling him Deputy Prime Minister in this term. The year of 'Friday 5th of September' is taken from the release's date line. The acting premiership in the same sentence is a separate claim on to_pm. No end is stated; CLAUDE-C01-08's record of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited here."
+        },
+        {
+          "id": "to_acting_pm_vaipulu_20140905",
+          "text": "The same sentence styles 'Hon. Samiu Kuita Vaipulu' as 'the Acting Prime Minister' at the ceremony on Friday 5 September 2014.",
+          "attested_on": "2014-09-05",
+          "locator": "Paragraph 1",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion)."
+        }
+      ],
+      "scope_note": "Press release dated '09th September 2014' (raw Internet Archive capture of 27 January 2017). Used only for his styling at the ceremony of Friday 5 September 2014; the project is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-toloa-rainforest-20140909-facts.json",
+        "bytes": 4998,
+        "sha256": "986518abc1a6b081388486bd8df68ec794f0b4d515664281e464dbb05f7c5aa4",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20141231_new_cabinet",
+      "title": "Prime Minister announces new Cabinet (Government of Tonga media release, 31 December 2014, archived)",
+      "url": "https://web.archive.org/web/20151002125546id_/http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+      "original_url": "http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2014-12-31",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sovaleni_appointment_recommended_20141231",
+          "text": "The PMO media release of 31 December 2014 says that the Prime Minister-elect 'has recommended to His Majesty King Tupou VI' the appointment of the ministers of the new Government, which 'will be effective as of 31st December, 2014'.",
+          "attested_on": "2014-12-31",
+          "locator": "Paragraph 1",
+          "uncertainty": "The recommendation and the effective day it forecast (the sentence is garbled as printed). No royal act or its day is stated, so 31 December 2014 is not used as a start, just as the 2017 revocation recommendation is not used as an end. IPU's record that the Cabinet took office on 19 January 2015 (to_ipu_2014_cabinet_took_office_20150119) conflicts; IPU is corroboration only and is not cited here. The 'Parliamentary term 2015-2018' it names is not an end."
+        },
+        {
+          "id": "to_dpm_sovaleni_cabinet_list_20141231",
+          "text": "The same release lists the members of the new Cabinet, the second being 'Hon. Siaosi'Ofakivahafolau Sovaleni- Deputy Prime Minister' with the environment, energy, climate change, disaster management, meteorology, information and communications portfolios.",
+          "attested_on": "2014-12-31",
+          "locator": "List entry 2",
+          "uncertainty": "The release's list styles him Deputy Prime Minister on its date, which dates the holder observation; it is not a start. The other ministers are not imported."
+        }
+      ],
+      "scope_note": "PMO media release dated '(31 Decemeber 2014)' [sic] (raw Internet Archive capture of 2 October 2015). Used only for the recommendation sentence and the Deputy Prime Minister's list entry; the other ministers are not imported. A shorter PMO item of the same day listing the same Cabinet (see the report's leads) is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20141231-facts.json",
+        "bytes": 5324,
+        "sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20150212_sovaleni_profile",
+      "title": "PROFILE: Hon. Siaosi Sovaleni (government portal, 12 February 2015, archived)",
+      "url": "https://web.archive.org/web/20171024204047id_/http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+      "original_url": "http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2015-02-12",
+      "source_type": "primary_government_office_profile_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sovaleni_profile_20150212",
+          "text": "The profile of 12 February 2015 gives 'NAME : Hon. Siaosi Sovaleni' and his 'MINISTERIAL PORTFOLIO' as 'Deputy Prime Minister' with meteorology, energy, information, disaster management, environment, climate change and communications.",
+          "attested_on": "2015-02-12",
+          "locator": "Profile fields NAME and MINISTERIAL PORTFOLIO",
+          "uncertainty": "A contemporaneous styling on the profile's date; no appointment or end date."
+        }
+      ],
+      "scope_note": "Government portal ministers' profile stamped 'Thursday, 12 February 2015 14:47' (raw Internet Archive capture of 24 October 2017). Used only for the ministerial portfolio line; the career details are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-profile-20150212-facts.json",
+        "bytes": 4019,
+        "sha256": "8987408d4e8be61c9bf58b1f11a29ac1e3e957f497579ffb48655e49145caffe",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20151116_acting_pm_itu",
+      "title": "Acting Prime Minister Meets with Director for Telecommunication Development Bureau (BDT) of the ITU (government release, 16 November 2015, archived)",
+      "url": "https://web.archive.org/web/20151206105609id_/http://mic.gov.to:80/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+      "original_url": "http://mic.gov.to/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2015-11-16",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_sovaleni_20151112",
+          "text": "The release of 16 November 2015 says that 'Last week' the 'Hon. Acting Prime Minister and Minister for' MEIDECC, 'Siaosi Sovaleni', hosted the visit of the ITU's development bureau director 'from 12th-13th November, 2015'.",
+          "attested_on": "2015-11-12",
+          "locator": "Paragraph 1",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The claim is dated to the first day of the visit; the start and end of the acting service are not stated."
+        }
+      ],
+      "scope_note": "Press release dated '16th November 2015' (raw Internet Archive capture of 6 December 2015). Used only for the Acting Prime Minister's styling; the visit is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-itu-20151116-facts.json",
+        "bytes": 4397,
+        "sha256": "66492d0e7d532962ceea051ec7e4d0016492abd087ef21606021f569acf47808",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20160907_renewable",
+      "title": "Hon. Siaosi Sovaleni- Deputy Prime Minister and Minister for MEIDECC announced Tonga's commitment to a 100% Renewable Energy by 2035 (government release, 7 September 2016, archived)",
+      "url": "https://web.archive.org/web/20160916095045id_/http://www.mic.gov.to:80/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2016-09-07",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sovaleni_styled_20160904",
+          "text": "The release of 7 September 2016 says that 'The Deputy Prime Minister and Minister of MEIDECC Hon. Siaosi Sovaleni' announced Tonga's renewable-energy commitment at a press conference at the Hawaii Convention Centre 'on 4th of September 2016'.",
+          "attested_on": "2016-09-04",
+          "locator": "Paragraph 1",
+          "uncertainty": "A contemporaneous styling dated to the press conference; no appointment or end date."
+        }
+      ],
+      "scope_note": "Press release dated '07th September 2016' (raw Internet Archive capture of 16 September 2016). Used only for his styling at the press conference of 4 September 2016; the energy commitment is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-renewable-20160907-facts.json",
+        "bytes": 4223,
+        "sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20170404_acting_pm_whales",
+      "title": "Tonga's Acting PM opens the first regional conference on whales (government release, 4 April 2017, archived)",
+      "url": "https://web.archive.org/web/20170407191540id_/http://mic.gov.to:80/news-today/press-releases/6627-tongas-acting-pm-opens-the-first-regional-conference-on-whales",
+      "original_url": "http://mic.gov.to/news-today/press-releases/6627-tongas-acting-pm-opens-the-first-regional-conference-on-whales",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2017-04-04",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_acting_pm_sovaleni_20170404",
+          "text": "The release of 4 April 2017 says that 'The Acting Prime Minister and Minister for MEIDECC and Foreign Affairs Hon. Siaosi Sovaleni' opened the first regional conference on whales 'this morning'.",
+          "attested_on": "2017-04-04",
+          "locator": "Paragraph 1",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). 'This morning' is read from the release's date line."
+        }
+      ],
+      "scope_note": "Press release dated '04th April, 2017' (raw Internet Archive capture of 7 April 2017). Used only for the Acting Prime Minister's styling; the conference and the keynote are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-whales-20170404-facts.json",
+        "bytes": 4159,
+        "sha256": "6f8d24fe24c6adad12b8d46a4d50f594795fc5ed3ad2ecd75c8a9cb859a42461",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20170831_macbio",
+      "title": "DPM Officially launched the two MACBIO Reports for Tonga (government release, 31 August 2017, archived)",
+      "url": "https://web.archive.org/web/20170903073650id_/http://mic.gov.to:80/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+      "original_url": "http://mic.gov.to/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2017-08-31",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sovaleni_styled_20170830",
+          "text": "The release of 31 August 2017 reports that 'Deputy Prime Minister Hon. Siaosi Sovaleni officially launched two MACBIO Reports ... yesterday evening at Davina House, Ma'ufanga.'",
+          "attested_on": "2017-08-30",
+          "locator": "Paragraph 1",
+          "uncertainty": "The latest dated record found styling him Deputy Prime Minister; 'yesterday evening' is read from the release's date line as 30 August 2017. It falls after the Assembly's dissolution of 24 August 2017; the page address has 'caretaker-dpm' but the text does not, and no caretaker status is asserted."
+        }
+      ],
+      "scope_note": "Press release dated '31st August,2017' (raw Internet Archive capture of 3 September 2017). Its address has 'caretaker-dpm'; the page itself says 'Deputy Prime Minister'. Used only for his styling at the launch; the reports are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-macbio-20170831-facts.json",
+        "bytes": 4270,
+        "sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20170906_ministerial_appointments",
+      "title": "Ministerial Appointments (Government of Tonga media release, 6 September 2017, archived)",
+      "url": "https://web.archive.org/web/20170910020802id_/http://www.pmo.gov.to:80/ministerial-appointments/",
+      "original_url": "http://www.pmo.gov.to/ministerial-appointments/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2017-09-06",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sovaleni_revocation_recommended_20170901",
+          "text": "The PMO media release of 6 September 2017 says that on 1 September 2017 the Prime Minister recommended to the King, under clause 51(3)(a) of the Constitution, 'to revoke the appointments of Hon. Siaosi Sovaleni, Deputy Prime Minister' and of the Minister for Finance, 'effective from 1st September, 2017'.",
+          "attested_on": "2017-09-01",
+          "locator": "Paragraph 1",
+          "uncertainty": "The Prime Minister's recommendation and the effective day it proposed. The release states the royal endorsement only for the new appointments (paragraph 3), not for the revocation, so 1 September 2017 is not used as Sovaleni's until; CLAUDE-C01-08's MEIDECC claim of the King's consent conveyed on 5 September (to_pohiva_conveys_deputy_pm_removal_20170905) is named here and not cited. No end is inferred from Lord Ma'afu's start."
+        },
+        {
+          "id": "to_dpm_maafu_appointment_recommended_20170901",
+          "text": "The same release says that the Prime Minister recommended 'the ministerial appointments of Lord Ma'afu, as Deputy Prime Minister' and of a new Minister for Finance 'with effect from 1st September, 2017'.",
+          "attested_on": "2017-09-01",
+          "locator": "Paragraph 2",
+          "uncertainty": "The recommendation, a separate event from the royal endorsement; not itself a start."
+        },
+        {
+          "id": "to_dpm_maafu_royal_endorsement_effective_20170901",
+          "text": "It says that the King 'has duly endorsed with the Royal Sign Manual, the appointments of Lord Ma'afu as Deputy Prime Minister' and of the Minister for Finance, 'with effect from 1st September, 2017'.",
+          "attested_on": "2017-09-01",
+          "locator": "Paragraph 3",
+          "uncertainty": "The stated effective day of the royal appointment, which gives the holder's from; the endorsement's own date is not given (it was conveyed on 5 September, a separate claim)."
+        },
+        {
+          "id": "to_dpm_maafu_endorsement_conveyed_20170905",
+          "text": "It says that 'On 5th September, 2017 a letter was received by the Prime Minister's Office from the Lord Chamberlain' conveying the royal endorsement of the appointments of Lord Ma'afu and the Minister for Finance.",
+          "attested_on": "2017-09-05",
+          "locator": "Paragraph 3",
+          "uncertainty": "The day the Palace letter was received, not the effective day and not a start."
+        },
+        {
+          "id": "to_acting_pm_maafu_20170901",
+          "text": "It says that while the Prime Minister attends the Pacific Islands Forum meeting in Apia, 'Lord Ma'afu, Deputy Prime Minister shall be Acting Prime Minister, with effect from 1st September, 2017.'",
+          "attested_on": "2017-09-01",
+          "locator": "Paragraph 4",
+          "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The end of the acting service is not stated."
+        }
+      ],
+      "scope_note": "PMO media release dated '(6 September 2017)' (raw Internet Archive capture of 10 September 2017). Tongan and government-portal copies of the same release exist and are not imported. Used for the revocation recommendation, Lord Ma'afu's appointment, the royal endorsement and the acting premiership; the Finance appointment is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ministerial-appointments-20170906-facts.json",
+        "bytes": 7582,
+        "sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20180122_cabinet_to",
+      "title": "Fakanofo 'e he 'Ene 'Afio 'a e 'Eiki Palēmiá mo e Hou'eiki Minisitā 'o e Kapineti 'a 'Ene 'Afió (Tongan version of the government release, 22 January 2018, archived)",
+      "url": "https://web.archive.org/web/20181030055038id_/http://www.mic.gov.to/press-releases-tongan-version/7085-fakanofo-e-he-ene-afio-a-e-eiki-palmia-mo-e-houeiki-minisit-o-e-kapineti-a-ene-afio",
+      "original_url": "http://www.mic.gov.to/press-releases-tongan-version/7085-fakanofo-e-he-ene-afio-a-e-eiki-palmia-mo-e-houeiki-minisit-o-e-kapineti-a-ene-afio",
+      "publisher": "Prime Minister's Office, Government of Tonga (Tongan version published on the government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2018-01-22",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sika_appointment_effective_20180105",
+          "text": "The Tongan release of 22 January 2018 says that the King appointed the Cabinet ministers, the first being 'Hon. Semisi Kioa Lafu Sika', People's Representative for Tongatapu 2, as ''Eiki Tokoni Palēmia' (Deputy Prime Minister) and Minister for Infrastructure and Tourism, with effect from 5 January 2018 (printed ''o kamata lau mei he 'aho 5'o Sanuali, 2018').",
+          "attested_on": "2018-01-05",
+          "locator": "Paragraph 1 and list item 1",
+          "uncertainty": "The stated effective day of the appointment, which gives the holder's from. Item 2 of the same list appoints Lord Ma'afu Minister of Lands only; that is not stated as the end of his deputy premiership and none is inferred. The English rendering is this packet's reading."
+        }
+      ],
+      "scope_note": "Tongan version of the release dated '22 'o Sanuali, 2018' (raw Internet Archive capture of 30 October 2018); the English version is CLAUDE-C01-08's to_pmo_20180122_cabinet and is not cited here. The English renderings are this packet's reading. Used only for the effective date and list item 1; the other ministers are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-appointments-to-20180122-facts.json",
+        "bytes": 4602,
+        "sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20180615_dpm_gita",
+      "title": "Tongan Deputy PM surveys Cyclone Gita recovery with ADF (government release, 15 June 2018, archived)",
+      "url": "https://web.archive.org/web/20181030053741id_/http://www.mic.gov.to/news-today/press-releases/7343-tongan-deputy-pm-surveys-cyclone-gita-recovery-with-adf",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7343-tongan-deputy-pm-surveys-cyclone-gita-recovery-with-adf",
+      "publisher": "Ministry of Information and Communications, Government of Tonga (government portal mic.gov.to)",
+      "accessed_date": "2026-09-28",
+      "published_date": "2018-06-15",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sika_styled_20180615",
+          "text": "The release of 15 June 2018 says that the 'Deputy Prime Minister of Tonga, the Hon Semisi Sika' surveyed areas of Tongatapu and 'Eua damaged by Tropical Cyclone Gita.",
+          "attested_on": "2018-06-15",
+          "locator": "Paragraph 1",
+          "uncertainty": "A contemporaneous styling on the release's date; no appointment or end date."
+        }
+      ],
+      "scope_note": "Press release dated '15th June, 2018' (raw Internet Archive capture of 30 October 2018). Used only for his styling; the survey is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-gita-survey-20180615-facts.json",
+        "bytes": 3917,
+        "sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_news_20181108_auditor",
+      "title": "'Auditor general independent to carry out audit work' according to Lord Speaker (Assembly news, 8 November 2018, archived)",
+      "url": "https://web.archive.org/web/20190723035015id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/658-auditor-general-independent-to-carry-out-audit-work-according-to-lord-speaker",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/658-auditor-general-independent-to-carry-out-audit-work-according-to-lord-speaker",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2018-11-08",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_sika_styled_20181108",
+          "text": "The Assembly item of 8 November 2018 reports that 'The Deputy Prime Minister Hon. Semisi Sika said the auditor's report is wrong and all accusations against them are baseless and unfounded.'",
+          "attested_on": "2018-11-08",
+          "locator": "Paragraph 6",
+          "uncertainty": "The latest dated record found styling him Deputy Prime Minister. The day of his remarks in the House is given only as 'last week' (paragraph 3), so the item's date is kept. No end is stated; CLAUDE-C01-08's records of his acting premiership in September 2019 are not cited here."
+        }
+      ],
+      "scope_note": "Assembly news item 'Created: 08 November 2018' (raw Internet Archive capture of 23 July 2019). Used only for the Deputy Prime Minister's styling; the audit dispute is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-auditor-news-20181108-facts.json",
+        "bytes": 4278,
+        "sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_term_report_2017_2021",
+      "title": "Fakamatala 'o e Ngāue 'a e Fale Alea 'o Tongá, To'u Fale Alea Nōvema 2017 - Sepitema 2021 (Assembly report, archived PDF)",
+      "url": "https://web.archive.org/web/20211124235017id_/https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+      "original_url": "https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_legislature_report_archived",
+      "access_method": "downloaded_archived_raw_capture_pdf_text_read_and_pages_rendered",
+      "claims": [
+        {
+          "id": "to_la_report_sika_dpm_jan2018_sep2019",
+          "text": "Appendix 1 of the Assembly's 2017-2021 report lists 'Semisi Kioa Lafu Sika' (People's Representative for Tongatapu 2) with 'Tokoni Palemia (Sanuali 2018 – Sepitema 2019)' (Deputy Prime Minister, January 2018 - September 2019).",
+          "locator": "PDF page 208 (printed page 205), appendix 1 table",
+          "uncertainty": "A retrospective list with months only: it supplies no start or end day and is never a holder date or boundary."
+        },
+        {
+          "id": "to_la_report_faotusia_dpm_oct2019_2020",
+          "text": "The same appendix lists 'Sione Vuna Fa'otusia' (People's Representative for Tongatapu 7) with 'Tokoni Palemia ('Okatopa 2019 – 2020)' (Deputy Prime Minister, October 2019 - 2020).",
+          "locator": "PDF page 209 (printed page 206), appendix 1 table",
+          "uncertainty": "A retrospective list with a month and a year only; it supplies no start or end day and is never a holder date or boundary."
+        },
+        {
+          "id": "to_la_report_maafu_dpm_from_dec2020",
+          "text": "The same appendix lists 'Lord Ma'afu' (Nobles' Representative No. 2 for Tongatapu) with 'Tokoni Palemia (mei Tisema 2020)' (Deputy Prime Minister, from December 2020).",
+          "locator": "PDF page 206 (printed page 203), appendix 1 table",
+          "uncertainty": "A retrospective list with a month only; it supplies no start day and is never a holder date or boundary. It does not list his deputy premiership of 2017."
+        }
+      ],
+      "scope_note": "The Legislative Assembly's Tongan-language report on the work of the Assembly of November 2017 to September 2021, appendix 1 (members' roles), as a raw Internet Archive capture of 24 November 2021 (238 pages; PDF metadata created 15 September 2021 and modified 23 September 2021; no published date recorded). The English renderings are this packet's reading. Used only for the three Deputy Prime Minister entries; the other roles are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-term-report-2017-2021-facts.json",
+        "bytes": 6163,
+        "sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20191010_new_cabinet",
+      "title": "'Prime Minister Announces New Cabinet Ministers' (Government of Tonga media release, 10 October 2019, archived)",
+      "url": "https://web.archive.org/web/20191011220754id_/https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+      "original_url": "https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2019-10-10",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_faotusia_appointment_effective_20191009",
+          "text": "The PMO release of 10 October 2019 says that the King, on the Prime Minister's recommendations, 'has appointed the New Ministers of Government, with effect from 9th October, 2019', listing 'Hon. Sione Vuna Fa'otusia' as 'Deputy Prime Minister & Minister for Justice and Prison'.",
+          "attested_on": "2019-10-09",
+          "locator": "Paragraph 1 and list entry 2",
+          "uncertainty": "The stated effective day of the appointment, which gives the holder's from. No end of Sika's office is inferred from it. Other ministers are not imported."
+        }
+      ],
+      "scope_note": "PMO post of the media release dated '(10th October, 2019)' (raw Internet Archive capture of 11 October 2019). Used only for the effective date and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20191010-facts.json",
+        "bytes": 4194,
+        "sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_news_20191028_oath",
+      "title": "Prime Minister & Cabinet Members took oath in Parliament (Assembly news, 28 October 2019, archived)",
+      "url": "https://web.archive.org/web/20191122121749id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2019-10-28",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_faotusia_oath_news_20191028",
+          "text": "The Assembly item of 28 October 2019 says that the Prime Minister and Cabinet 'were sworn in at the Legislative Assembly today', listing 'Deputy Prime Minister & Ministry of Justice and Prison – Hon. Vuna Fa'otusia'.",
+          "attested_on": "2019-10-28",
+          "locator": "Paragraph 1 and list item 2",
+          "uncertainty": "The oath is an event, not a start; the effective day of the appointment is a separate claim."
+        }
+      ],
+      "scope_note": "Assembly news item 'Created: 28 October 2019' (raw Internet Archive capture of 22 November 2019). Used only for the oath and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-cabinet-oath-news-20191028-facts.json",
+        "bytes": 4105,
+        "sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20200416_dpm_clarification",
+      "title": "Ongoongo Tukuatu: 'Fakama'ala'ala e ongoongo fekau'aki mo e Tokoni Palēmia' (PMO release image, 16 April 2020, archived)",
+      "url": "https://web.archive.org/web/20230802205155id_/https://pmo.gov.to/wp-content/uploads/2020/04/image-12.png",
+      "original_url": "https://pmo.gov.to/wp-content/uploads/2020/04/image-12.png",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2020-04-16",
+      "source_type": "primary_government_public_announcement_image_archived",
+      "access_method": "downloaded_archived_raw_capture_and_image_read",
+      "claims": [
+        {
+          "id": "to_dpm_faotusia_styled_20200416",
+          "text": "The PMO's Tongan release dated ''Aho 16 'o 'Epeleli, 2020', clarifying reports about the Deputy Prime Minister, says that the Deputy Prime Minister, 'Hon. Sione Vuna Fa'otusia', had travelled to New Zealand for medical reasons ('i he 'uhinga fakafaito'o') and that he fully supports the Prime Minister and Cabinet.",
+          "attested_on": "2020-04-16",
+          "locator": "Release image: date line, heading and paragraphs 1 and 3",
+          "uncertainty": "The latest dated record found styling him Deputy Prime Minister; no end is stated. His resignation is known only by year (to_dpm_faotusia_resignation_2020_retro) and is never a holder date. The English renderings are this packet's reading."
+        }
+      ],
+      "scope_note": "Tongan-language PMO release published as an image (PNG) in the PMO post of 16 April 2020, whose archived page text gives only the heading and date (post capture of 2 July 2020, not imported); raw Internet Archive capture of the image of 2 August 2023. The English renderings are this packet's reading. Used only for the styling of the Deputy Prime Minister; the remainder of the clarification is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-dpm-clarification-to-20200416-facts.json",
+        "bytes": 4620,
+        "sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_news_20210901_faotusia",
+      "title": "The Lord Speaker and the Members of the Legislative Assembly are deeply saddened by the passing of the late Hon Sione Vuna Fa'otusia (Assembly news, 1 September 2021, archived)",
+      "url": "https://web.archive.org/web/20210902180606id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2021-09-01",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_faotusia_resignation_2020_retro",
+          "text": "The Assembly's condolence item of 1 September 2021 on 'the late Hon Sione Vuna Fa'otusia' says that 'He also served as the Deputy Prime Minister of Tonga until his resignation in 2020.'",
+          "locator": "Paragraph 2",
+          "uncertainty": "Retrospective and year only: it gives no day or month for the resignation, no acceptance and no instrument, so the holder has no until. Never a holder date or boundary."
+        }
+      ],
+      "scope_note": "Assembly news item 'Created: 01 September 2021' (raw Internet Archive capture of 2 September 2021). Used only for the retrospective sentence on his deputy premiership; the condolences are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-faotusia-condolence-20210901-facts.json",
+        "bytes": 4391,
+        "sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_member_maafu_2021",
+      "title": "Lord Ma'afu (Legislative Assembly members' page, archived)",
+      "url": "https://web.archive.org/web/20210421132335id_/https://parliament.gov.to/members-of-parliament/ministers/818-lord-ma-afu",
+      "original_url": "https://parliament.gov.to/members-of-parliament/ministers/818-lord-ma-afu",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-28",
+      "source_type": "primary_legislature_member_profile_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_dpm_maafu_member_page_20210421",
+          "text": "The Assembly's member page for 'Lord Ma'afu', as captured on 21 April 2021, gives his offices as 'Deputy Prime Minister' and Minister of Defence and His Majesty's Armed Forces and of Lands, and his seat as Nobles' Representative No. 2 for Tongatapu.",
+          "attested_on": "2021-04-21",
+          "locator": "Page heading and first line",
+          "uncertainty": "The page is undated; the capture date is when the site presented this text, not the day of any appointment. The start of this deputy premiership is known only as 'mei Tisema 2020' (to_la_report_maafu_dpm_from_dec2020)."
+        }
+      ],
+      "scope_note": "Undated Assembly member page (Members of Parliament / Ministers) as a raw Internet Archive capture of 21 April 2021; the capture date dates only what the site then presented. Used only for the offices line; the career details are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-member-maafu-2021-facts.json",
+        "bytes": 4181,
+        "sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20211213_maafu_death",
+      "title": "Media Release (13th December, 2021): 'Public Statement-Office of the Prime Minister' (PMO release image, archived)",
+      "url": "https://web.archive.org/web/20250415130759id_/https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+      "original_url": "https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-28",
+      "published_date": "2021-12-13",
+      "source_type": "primary_government_public_announcement_image_archived",
+      "access_method": "downloaded_archived_raw_capture_and_image_read",
+      "claims": [
+        {
+          "id": "to_dpm_maafu_styled_at_death_20211213",
+          "text": "The PMO media release of 13 December 2021 announces the death of 'the Lord Ma'afu', styling him Lord Minister in Waiting to His Majesty in Privy Council, 'Deputy Prime Minister', Minister for Lands and Natural Resources and Minister responsible for His Majesty's Armed Forces.",
+          "locator": "Release image, paragraph 1",
+          "uncertainty": "Styles him Deputy Prime Minister at his death on 12 December 2021 (a separate claim); no structured date is stored, since the release's date (its publication, 13 December) falls after the death."
+        },
+        {
+          "id": "to_dpm_maafu_death_20211212",
+          "text": "The same release states that 'His Lordship' (Lord Ma'afu) 'passed away in the early hours of Sunday, 12 December 2021, at the Auckland City Hospital, New Zealand.'",
+          "attested_on": "2021-12-12",
+          "locator": "Release image, paragraph 2",
+          "uncertainty": "The stated day of death (Auckland), a death in office that gives the holder's until. Who, if anyone, held or acted in the office from then until the Cabinet effective 28 December 2021 is not stated."
+        }
+      ],
+      "scope_note": "English PMO media release published as an image (JPEG) with the PMO post of 14 December 2021; raw Internet Archive capture of the image of 15 April 2025. Signed by the Prime Minister and dated 13 December 2021. A Tongan version is not imported. Used for the styles at death and the day of death; the funeral note is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-maafu-death-20211213-facts.json",
+        "bytes": 5222,
+        "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -5921,7 +7056,15 @@
             "to_assembly_oath_sitting_notice_20250129",
             "to_assembly_minutes_01_20250131",
             "to_assembly_oath_news_20250203",
-            "to_ipu_2025"
+            "to_ipu_2025",
+            "to_pmo_20050411_pope_homage",
+            "to_pmo_2009_australia_day_speech",
+            "to_mic_20130424_rti_speech",
+            "to_mic_20140619_half_mast",
+            "to_mic_20140909_toloa",
+            "to_mic_20151116_acting_pm_itu",
+            "to_mic_20170404_acting_pm_whales",
+            "to_pmo_20170906_ministerial_appointments"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
@@ -6006,7 +7149,15 @@
             "to_oath_sitting_notice_20250129",
             "to_eke_oath_20250131",
             "to_assembly_news_oath_20250131",
-            "to_ipu_2025_transition"
+            "to_ipu_2025_transition",
+            "to_acting_pm_cocker_20050410",
+            "to_acting_pm_tangi_australia_day_2009",
+            "to_acting_pm_vaipulu_20130422",
+            "to_acting_pm_vaipulu_20140618",
+            "to_acting_pm_vaipulu_20140905",
+            "to_acting_pm_sovaleni_20151112",
+            "to_acting_pm_sovaleni_20170404",
+            "to_acting_pm_maafu_20170901"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
@@ -6260,7 +7411,15 @@
         "to_assembly_oath_sitting_notice_20250129",
         "to_assembly_minutes_01_20250131",
         "to_assembly_oath_news_20250203",
-        "to_ipu_2025"
+        "to_ipu_2025",
+        "to_pmo_20050411_pope_homage",
+        "to_pmo_2009_australia_day_speech",
+        "to_mic_20130424_rti_speech",
+        "to_mic_20140619_half_mast",
+        "to_mic_20140909_toloa",
+        "to_mic_20151116_acting_pm_itu",
+        "to_mic_20170404_acting_pm_whales",
+        "to_pmo_20170906_ministerial_appointments"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -6350,7 +7509,15 @@
         "to_oath_sitting_notice_20250129",
         "to_eke_oath_20250131",
         "to_assembly_news_oath_20250131",
-        "to_ipu_2025_transition"
+        "to_ipu_2025_transition",
+        "to_acting_pm_cocker_20050410",
+        "to_acting_pm_tangi_australia_day_2009",
+        "to_acting_pm_vaipulu_20130422",
+        "to_acting_pm_vaipulu_20140618",
+        "to_acting_pm_vaipulu_20140905",
+        "to_acting_pm_sovaleni_20151112",
+        "to_acting_pm_sovaleni_20170404",
+        "to_acting_pm_maafu_20170901"
       ],
       "coverage": {
         "status": "partial",
@@ -6376,7 +7543,8 @@
           "TO-DPFI-05 (tonga-dpfi-04.md): IPU 2014 dates the Assembly's election of 'Akilisi Pohiva as Prime Minister to 29 December 2014, the King's endorsement only to 'the following day', and the Cabinet's taking office to 19 January 2015. These are three separate claims. No royal instrument was seen, no to_pm holder, start or end is created for Pohiva from the IPU record (CLAUDE-C01-08 later adds his holders from the PMO releases of 30 December 2014 and 4 January 2018), and his death in September 2019 is not used as the end of any premiership.",
           "2024-2025 transition (tonga-transition-2024-03.md): Siaosi Sovaleni's resignation, announced 'effective immediately' and accepted by the King on 9 December 2024 (TO-TR24-01), the Assembly's selection of 'Aisake Valu Eke on 24 December 2024 by 16 votes to 8 (TO-TR24-03) and his royal appointment under Clause 50A(1) on 22 January 2025 (TO-TR24-04) are separately sourced; none of these dates is merged into another.",
           "TO-TR24-02: Samiu Kuita Vaipulu is attested as Acting Prime Minister on 24 December 2024 (Assembly minutes) and on 6 January 2025 (PMO caretaker announcement) only. The start, instrument and end of the acting arrangement, the revocation of the caretaker ministers and the PMO's promised announcement of the new Government's commencement are unsourced; none is inferred from the 9 December ruling or from the 22 and 28 January 2025 appointments.",
-          "TO-TR24-05: no separate effective date, and no Royal Warrant signature, presentation or number, is recorded for Eke's appointment; the release survives only in archive captures and was posted on 23 January 2025 local time. The 31 January 2025 oath in the Assembly is a separate event. The Attorney General's Office gazette listing is selective, so no Gazette notice is ruled out."
+          "TO-TR24-05: no separate effective date, and no Royal Warrant signature, presentation or number, is recorded for Eke's appointment; the release survives only in archive captures and was posted on 23 January 2025 local time. The 31 January 2025 oath in the Assembly is a separate event. The Attorney General's Office gazette listing is selective, so no Gazette notice is ruled out.",
+          "CLAUDE-C01-36 adds acting Prime Minister claims by Deputy Prime Ministers on to_pm (James Cecil Cocker on 10 April 2005; Viliami Ta'u Tangi in 2009, undated; Samiu Kuita Vaipulu on 22 April 2013, 18 June 2014 and 5 September 2014; Siaosi Sovaleni on 12-13 November 2015 and 4 April 2017; Lord Ma'afu from 1 September 2017). None is a to_pm holder or boundary, and they are not an exhaustive survey of acting arrangements."
         ]
       }
     },
@@ -6414,7 +7582,40 @@
             "to_pmo_cabinet_20211229",
             "to_assembly_minutes_48_20241209",
             "to_pmo_eke_cabinet_20250128",
-            "to_assembly_minutes_01_20250131"
+            "to_assembly_minutes_01_20250131",
+            "to_pmo_2000_press_releases",
+            "to_pmo_news_in_brief_2001",
+            "to_pmo_20010124_pm_address",
+            "to_pmo_20010928_tupou_resignation_to",
+            "to_pmo_20020111_acting_dpm_statement",
+            "to_pmo_20020514_acting_dpm_paunga",
+            "to_pmo_20020903_wssd_statement",
+            "to_pmo_20040909_confirmation_of_appointments",
+            "to_pmo_20060310_ub40_concert",
+            "to_pmo_20060609_pohiva_statements",
+            "to_pmo_20060809_common_sense",
+            "to_pmo_20090114_hauofa_funeral",
+            "to_pmo_20100624_throne_reply",
+            "to_mic_20101230_lord_tangi",
+            "to_mic_20110103_vaipulu_appointed",
+            "to_mic_20110104_cabinet_named",
+            "to_mic_20120213_foi_speech",
+            "to_mic_20140909_toloa",
+            "to_pmo_20141231_new_cabinet",
+            "to_mic_20150212_sovaleni_profile",
+            "to_mic_20160907_renewable",
+            "to_mic_20170831_macbio",
+            "to_pmo_20170906_ministerial_appointments",
+            "to_mic_20180122_cabinet_to",
+            "to_mic_20180615_dpm_gita",
+            "to_la_news_20181108_auditor",
+            "to_la_term_report_2017_2021",
+            "to_pmo_20191010_new_cabinet",
+            "to_la_news_20191028_oath",
+            "to_pmo_20200416_dpm_clarification",
+            "to_la_news_20210901_faotusia",
+            "to_la_member_maafu_2021",
+            "to_pmo_20211213_maafu_death"
           ],
           "claim_ids": [
             "to_cabinet_appointment",
@@ -6423,10 +7624,231 @@
             "to_deputy_pm_vaipulu_listed_20241209",
             "to_eke_cabinet_effective_20250128",
             "to_eke_oath_20250131",
-            "to_vaipulu_peoples_rep_listed_20250131"
+            "to_vaipulu_peoples_rep_listed_20250131",
+            "to_dpm_kavaliku_retirement_announced_2000",
+            "to_dpm_kavaliku_appointed_1991_retro",
+            "to_dpm_kavaliku_listed_20001106",
+            "to_dpm_tupou_appointment_effective_20010124",
+            "to_dpm_tupou_resignation_accepted_20010928",
+            "to_dpm_tupou_appointed_jan2001_retro",
+            "to_acting_dpm_edwards_appointed_20010928",
+            "to_acting_dpm_edwards_20020111",
+            "to_dpm_cocker_abroad_20020513",
+            "to_acting_dpm_paunga_20020513",
+            "to_dpm_cocker_wssd_statement_20020903",
+            "to_dpm_cocker_appointment_confirmed_20040824",
+            "to_dpm_cocker_styled_20060308",
+            "to_dpm_office_with_health_20060609",
+            "to_dpm_tangi_styled_20060808",
+            "to_dpm_tangi_represents_government_20090114",
+            "to_dpm_tangi_throne_reply_20100624",
+            "to_dpm_tangi_styled_life_peer_20101230",
+            "to_dpm_tangi_appointed_may2006_retro",
+            "to_dpm_vaipulu_appointment_reported_20110103",
+            "to_dpm_vaipulu_cabinet_commences_20110104",
+            "to_dpm_vaipulu_styled_20120213",
+            "to_dpm_vaipulu_styled_20140905",
+            "to_dpm_sovaleni_appointment_recommended_20141231",
+            "to_dpm_sovaleni_cabinet_list_20141231",
+            "to_dpm_sovaleni_profile_20150212",
+            "to_dpm_sovaleni_styled_20160904",
+            "to_dpm_sovaleni_styled_20170830",
+            "to_dpm_sovaleni_revocation_recommended_20170901",
+            "to_dpm_maafu_appointment_recommended_20170901",
+            "to_dpm_maafu_royal_endorsement_effective_20170901",
+            "to_dpm_maafu_endorsement_conveyed_20170905",
+            "to_dpm_sika_appointment_effective_20180105",
+            "to_dpm_sika_styled_20180615",
+            "to_dpm_sika_styled_20181108",
+            "to_la_report_sika_dpm_jan2018_sep2019",
+            "to_la_report_faotusia_dpm_oct2019_2020",
+            "to_la_report_maafu_dpm_from_dec2020",
+            "to_dpm_faotusia_appointment_effective_20191009",
+            "to_dpm_faotusia_oath_news_20191028",
+            "to_dpm_faotusia_styled_20200416",
+            "to_dpm_faotusia_resignation_2020_retro",
+            "to_dpm_maafu_member_page_20210421",
+            "to_dpm_maafu_styled_at_death_20211213",
+            "to_dpm_maafu_death_20211212"
           ],
           "holder_claims": [
             "to_cabinet_appointment",
+            {
+              "name": "Langi Kavaliku",
+              "attested_on": "2000-11-06",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_news_in_brief_2001"
+              ],
+              "claim_ids": [
+                "to_dpm_kavaliku_listed_20001106"
+              ],
+              "note": "Styled Deputy Prime Minister in the PMO's index row dated 6 November 2000 for the release announcing his retirement (TO-DPM-02). The release prints 'Dr. S. Langi Kavaliku'.",
+              "uncertainty": "The only contemporaneous dated record of him in office found; the PMO's retrospective 'appointed the Deputy Prime Minister in 1991' is a separate claim and supplies no start. The retirement 'due ... commencing on the 11th November 2000' is an announcement, not a stated end, so no until is set; nothing is inferred from Tevita Poasi Tupou's appointment of 24 January 2001."
+            },
+            {
+              "name": "Tevita Poasi Tupou",
+              "attested_on": null,
+              "from": "2001-01-24",
+              "until": "2001-09-28",
+              "sources": [
+                "to_pmo_20010124_pm_address",
+                "to_pmo_20010928_tupou_resignation_to"
+              ],
+              "claim_ids": [
+                "to_dpm_tupou_appointment_effective_20010124",
+                "to_dpm_tupou_resignation_accepted_20010928"
+              ],
+              "note": "Deputy Prime Minister, Attorney General and Minister of Justice from the royal consent in Privy Council 'with effect from 24th January, 2001' until his resignation at 4 p.m. on 28 September 2001, accepted that day by the Princess Regent (TO-DPM-03). The appointment list prints 'Hon. Tevita P. Tupou'.",
+              "uncertainty": "Both boundaries are days the sources state: the effective day of the consent and the day the resignation was made and accepted. The Tongan release's '9 months' and 'January 2001' are retrospective claims, not boundaries. Clive Edwards's acting deputy premiership from the same day is a claim only."
+            },
+            {
+              "name": "James Cecil Cocker",
+              "attested_on": "2002-05-13",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_20020514_acting_dpm_paunga",
+                "to_pmo_20020903_wssd_statement",
+                "to_pmo_20040909_confirmation_of_appointments",
+                "to_pmo_20060310_ub40_concert"
+              ],
+              "claim_ids": [
+                "to_dpm_cocker_abroad_20020513",
+                "to_dpm_cocker_wssd_statement_20020903",
+                "to_dpm_cocker_appointment_confirmed_20040824",
+                "to_dpm_cocker_styled_20060308"
+              ],
+              "note": "Styled Deputy Prime Minister, abroad on official duties, when Dr Paunga's acting appointment took effect on 13 May 2002; attested again on 3 September 2002, in the reshuffle confirmed with effect from 24 August 2004, and on 8 March 2006 (TO-DPM-04). The 2002 statement prints 'Hon. Cecil Cocker'.",
+              "uncertainty": "The day of his appointment as Deputy Prime Minister (after Tupou's resignation of 28 September 2001 and the acting service of 2001-2002) was not found, and the 2004 confirmation of a reshuffle is not a start. No end is stated; the retrospective 'In May 2006' appointment of his successor is not used as an end and none is inferred."
+            },
+            {
+              "name": "Viliami Ta'u Tangi",
+              "attested_on": "2006-08-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_20060809_common_sense",
+                "to_pmo_20090114_hauofa_funeral",
+                "to_pmo_20100624_throne_reply",
+                "to_mic_20101230_lord_tangi"
+              ],
+              "claim_ids": [
+                "to_dpm_tangi_styled_20060808",
+                "to_dpm_tangi_represents_government_20090114",
+                "to_dpm_tangi_throne_reply_20100624",
+                "to_dpm_tangi_styled_life_peer_20101230"
+              ],
+              "note": "Styled Deputy Prime Minister from 8 August 2006 to 30 December 2010, when he was made a life peer as Lord Tangi of Vaonukonuka (TO-DPM-05). Printed 'Dr. Viliami Tangi', 'Dr the Hon Viliami Ta'u Tangi' and 'Hon. Dr. Viliami Tau Tangi'.",
+              "uncertainty": "The appointment is known only as 'In May 2006' (retrospective, month only), so the holder is event-dated to the first dated styling. The PMO release of 9 June 2006 names the office but not the holder and is not cited. No end is stated; the change of government of December 2010 and the Cabinet that commenced on 4 January 2011 supply none. His acting premierships are claims on to_pm."
+            },
+            {
+              "name": "Samiu Kuita Vaipulu",
+              "attested_on": null,
+              "from": "2011-01-04",
+              "until": null,
+              "sources": [
+                "to_mic_20110104_cabinet_named",
+                "to_mic_20110103_vaipulu_appointed",
+                "to_mic_20120213_foi_speech",
+                "to_mic_20140909_toloa"
+              ],
+              "claim_ids": [
+                "to_dpm_vaipulu_cabinet_commences_20110104",
+                "to_dpm_vaipulu_appointment_reported_20110103",
+                "to_dpm_vaipulu_styled_20120213",
+                "to_dpm_vaipulu_styled_20140905"
+              ],
+              "note": "Deputy Prime Minister, with Justice, Transport and Works, in the Cabinet that commenced on Tuesday 4 January 2011; attested to 5 September 2014 (TO-DPM-06). A separate observation from the existing 2024 holder 'Samiu Vaipulu'.",
+              "uncertainty": "The start is the stated day the Cabinet ministers commenced; the report of 3 January 2011 is not a start. No end is stated: CLAUDE-C01-08's styling of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited, and no end is inferred from the Cabinet effective 31 December 2014. His acting premierships are claims on to_pm."
+            },
+            {
+              "name": "Siaosi Sovaleni",
+              "attested_on": "2014-12-31",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_20141231_new_cabinet",
+                "to_mic_20150212_sovaleni_profile",
+                "to_mic_20160907_renewable",
+                "to_mic_20170831_macbio"
+              ],
+              "claim_ids": [
+                "to_dpm_sovaleni_cabinet_list_20141231",
+                "to_dpm_sovaleni_profile_20150212",
+                "to_dpm_sovaleni_styled_20160904",
+                "to_dpm_sovaleni_styled_20170830"
+              ],
+              "note": "Listed as Deputy Prime Minister in the Pohiva Cabinet announced on 31 December 2014; attested to 30 August 2017 (TO-DPM-07). A separate observation from the to_pm holder \"Siaosi 'Ofakivahafolau Sovaleni\" of 2021-2024.",
+              "uncertainty": "No from: the release states only the Prime Minister-elect's recommendation and that the appointments 'will be effective as of 31st December, 2014' (to_dpm_sovaleni_appointment_recommended_20141231), and IPU's Cabinet date of 19 January 2015 conflicts. No until: the PMO states only that the Prime Minister recommended the revocation 'effective from 1st September, 2017' (to_dpm_sovaleni_revocation_recommended_20170901), and the royal endorsement it reports covers the new appointments; Lord Ma'afu's start is not used as an end."
+            },
+            {
+              "name": "Lord Ma'afu",
+              "attested_on": null,
+              "from": "2017-09-01",
+              "until": null,
+              "sources": [
+                "to_pmo_20170906_ministerial_appointments"
+              ],
+              "claim_ids": [
+                "to_dpm_maafu_royal_endorsement_effective_20170901",
+                "to_dpm_maafu_endorsement_conveyed_20170905"
+              ],
+              "note": "Appointed Deputy Prime Minister by the King's endorsement under the Royal Sign Manual 'with effect from 1st September, 2017', conveyed to the PMO on 5 September 2017 (TO-DPM-08).",
+              "uncertainty": "No later attestation of this deputy premiership and no end was found; the Cabinet effective 5 January 2018, which names him Minister of Lands only, supplies none. His acting premiership from 1 September 2017 is a claim on to_pm. A separate observation from his 2020-2021 deputy premiership."
+            },
+            {
+              "name": "Semisi Kioa Lafu Sika",
+              "attested_on": null,
+              "from": "2018-01-05",
+              "until": null,
+              "sources": [
+                "to_mic_20180122_cabinet_to",
+                "to_mic_20180615_dpm_gita",
+                "to_la_news_20181108_auditor"
+              ],
+              "claim_ids": [
+                "to_dpm_sika_appointment_effective_20180105",
+                "to_dpm_sika_styled_20180615",
+                "to_dpm_sika_styled_20181108"
+              ],
+              "note": "Appointed Deputy Prime Minister and Minister for Infrastructure and Tourism with effect from 5 January 2018; attested to 8 November 2018 (TO-DPM-08).",
+              "uncertainty": "No end is stated: the Assembly's retrospective 'Sanuali 2018 - Sepitema 2019' gives months only, and no end is inferred from Fa'otusia's appointment of 9 October 2019. CLAUDE-C01-08's records of his acting premiership in September 2019 are claims on to_pm and are not cited."
+            },
+            {
+              "name": "Sione Vuna Fa'otusia",
+              "attested_on": null,
+              "from": "2019-10-09",
+              "until": null,
+              "sources": [
+                "to_pmo_20191010_new_cabinet",
+                "to_pmo_20200416_dpm_clarification"
+              ],
+              "claim_ids": [
+                "to_dpm_faotusia_appointment_effective_20191009",
+                "to_dpm_faotusia_styled_20200416"
+              ],
+              "note": "Appointed Deputy Prime Minister and Minister for Justice and Prison with effect from 9 October 2019; styled Deputy Prime Minister on 16 April 2020 (TO-DPM-09). Sworn in the Assembly on 28 October 2019 as 'Hon. Vuna Fa'otusia'.",
+              "uncertainty": "The oath is a separate claim and not a start. His resignation is known only as 'in 2020' (Assembly, retrospective) and 'Okatopa 2019 - 2020' (Assembly list), so no until is set."
+            },
+            {
+              "name": "Lord Ma'afu",
+              "attested_on": "2021-04-21",
+              "from": null,
+              "until": "2021-12-12",
+              "sources": [
+                "to_la_member_maafu_2021",
+                "to_pmo_20211213_maafu_death"
+              ],
+              "claim_ids": [
+                "to_dpm_maafu_member_page_20210421",
+                "to_dpm_maafu_styled_at_death_20211213",
+                "to_dpm_maafu_death_20211212"
+              ],
+              "note": "Deputy Prime Minister on the Assembly's member page as captured on 21 April 2021 and styled so by the PMO at his death in Auckland in the early hours of Sunday 12 December 2021 (TO-DPM-10).",
+              "uncertainty": "The start is known only as 'mei Tisema 2020' (Assembly list, month only), so the holder is event-dated to the capture; until is the stated day of his death in office. Who, if anyone, held or acted in the office from 12 to 27 December 2021 is unresolved, and Poasi Mataele Tei's start on 28 December 2021 is unchanged."
+            },
             {
               "name": "Poasi Mataele Tei",
               "attested_on": null,
@@ -6469,7 +7891,8 @@
               "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
               "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred."
             }
-          ]
+          ],
+          "scope_note": "Holder observations carry from/until only where a source states an effective or commencement day, an accepted resignation or a death in office. A dated styling, profile, speech heading or member page is event-dated through attested_on, as is a Cabinet list announced before a stated royal act. Prime Ministers' recommendations, reports of appointments, royal endorsements conveyed later, oaths, the confirmation of a reshuffle, retirement announcements, revocation recommendations, retrospective statements and lists, and acting service (acting Deputy Prime Ministers on this role; a Deputy acting as Prime Minister on to_pm) are claims, never holders or boundaries. The string observation to_cabinet_appointment stays first (CLAUDE-C01-36)."
         }
       ],
       "sources": [
@@ -6486,7 +7909,40 @@
         "to_pmo_eke_cabinet_20250128",
         "to_assembly_oath_sitting_notice_20250129",
         "to_assembly_minutes_01_20250131",
-        "to_assembly_oath_news_20250203"
+        "to_assembly_oath_news_20250203",
+        "to_pmo_2000_press_releases",
+        "to_pmo_news_in_brief_2001",
+        "to_pmo_20010124_pm_address",
+        "to_pmo_20010928_tupou_resignation_to",
+        "to_pmo_20020111_acting_dpm_statement",
+        "to_pmo_20020514_acting_dpm_paunga",
+        "to_pmo_20020903_wssd_statement",
+        "to_pmo_20040909_confirmation_of_appointments",
+        "to_pmo_20060310_ub40_concert",
+        "to_pmo_20060609_pohiva_statements",
+        "to_pmo_20060809_common_sense",
+        "to_pmo_20090114_hauofa_funeral",
+        "to_pmo_20100624_throne_reply",
+        "to_mic_20101230_lord_tangi",
+        "to_mic_20110103_vaipulu_appointed",
+        "to_mic_20110104_cabinet_named",
+        "to_mic_20120213_foi_speech",
+        "to_mic_20140909_toloa",
+        "to_pmo_20141231_new_cabinet",
+        "to_mic_20150212_sovaleni_profile",
+        "to_mic_20160907_renewable",
+        "to_mic_20170831_macbio",
+        "to_pmo_20170906_ministerial_appointments",
+        "to_mic_20180122_cabinet_to",
+        "to_mic_20180615_dpm_gita",
+        "to_la_news_20181108_auditor",
+        "to_la_term_report_2017_2021",
+        "to_pmo_20191010_new_cabinet",
+        "to_la_news_20191028_oath",
+        "to_pmo_20200416_dpm_clarification",
+        "to_la_news_20210901_faotusia",
+        "to_la_member_maafu_2021",
+        "to_pmo_20211213_maafu_death"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -6505,7 +7961,52 @@
         "to_oath_sitting_notice_20250129",
         "to_eke_oath_20250131",
         "to_vaipulu_peoples_rep_listed_20250131",
-        "to_assembly_news_oath_20250131"
+        "to_assembly_news_oath_20250131",
+        "to_dpm_kavaliku_retirement_announced_2000",
+        "to_dpm_kavaliku_appointed_1991_retro",
+        "to_dpm_kavaliku_listed_20001106",
+        "to_dpm_tupou_appointment_effective_20010124",
+        "to_dpm_tupou_resignation_accepted_20010928",
+        "to_dpm_tupou_appointed_jan2001_retro",
+        "to_acting_dpm_edwards_appointed_20010928",
+        "to_acting_dpm_edwards_20020111",
+        "to_dpm_cocker_abroad_20020513",
+        "to_acting_dpm_paunga_20020513",
+        "to_dpm_cocker_wssd_statement_20020903",
+        "to_dpm_cocker_appointment_confirmed_20040824",
+        "to_dpm_cocker_styled_20060308",
+        "to_dpm_office_with_health_20060609",
+        "to_dpm_tangi_styled_20060808",
+        "to_dpm_tangi_represents_government_20090114",
+        "to_dpm_tangi_throne_reply_20100624",
+        "to_dpm_tangi_styled_life_peer_20101230",
+        "to_dpm_tangi_appointed_may2006_retro",
+        "to_dpm_vaipulu_appointment_reported_20110103",
+        "to_dpm_vaipulu_cabinet_commences_20110104",
+        "to_dpm_vaipulu_styled_20120213",
+        "to_dpm_vaipulu_styled_20140905",
+        "to_dpm_sovaleni_appointment_recommended_20141231",
+        "to_dpm_sovaleni_cabinet_list_20141231",
+        "to_dpm_sovaleni_profile_20150212",
+        "to_dpm_sovaleni_styled_20160904",
+        "to_dpm_sovaleni_styled_20170830",
+        "to_dpm_sovaleni_revocation_recommended_20170901",
+        "to_dpm_maafu_appointment_recommended_20170901",
+        "to_dpm_maafu_royal_endorsement_effective_20170901",
+        "to_dpm_maafu_endorsement_conveyed_20170905",
+        "to_dpm_sika_appointment_effective_20180105",
+        "to_dpm_sika_styled_20180615",
+        "to_dpm_sika_styled_20181108",
+        "to_la_report_sika_dpm_jan2018_sep2019",
+        "to_la_report_faotusia_dpm_oct2019_2020",
+        "to_la_report_maafu_dpm_from_dec2020",
+        "to_dpm_faotusia_appointment_effective_20191009",
+        "to_dpm_faotusia_oath_news_20191028",
+        "to_dpm_faotusia_styled_20200416",
+        "to_dpm_faotusia_resignation_2020_retro",
+        "to_dpm_maafu_member_page_20210421",
+        "to_dpm_maafu_styled_at_death_20211213",
+        "to_dpm_maafu_death_20211212"
       ],
       "coverage": {
         "status": "partial",
@@ -6518,7 +8019,13 @@
           "Cabinet collective executive authority must not become a single party portrait or a claim that the King lacks reserved powers.",
           "TO-TR21-06: the PMO's 29 December 2021 release lists twelve Cabinet members appointed with effect from 28 December 2021, with letters of appointment presented and oaths taken on 29 December. Only the Deputy Prime Minister is imported as a holder observation; the other 2021 portfolios, later changes and acting ministers remain to be researched.",
           "TO-DPFI-05: IPU 2014 states that a 12-member Cabinet (five DPFI members, one noble and six independents) took office on 19 January 2015; no minister is named and no to_ministers holder is created.",
-          "TO-TR24-06: the PMO's 28 January 2025 release lists eleven Cabinet members appointed with effect from 28 January 2025; only the Deputy Prime Minister is imported as a holder observation. Letters of appointment were forecast for 30 January (unconfirmed) and oaths were taken in the Assembly on 31 January. The caretaker Cabinet continued the Sovaleni ministers (Speaker's ruling of 9 December 2024; PMO announcement of 6 January 2025); the revocation of their appointments and the end of Samiu Vaipulu's deputy premiership are unsourced, although he is outside the Cabinet list by 31 January 2025."
+          "TO-TR24-06: the PMO's 28 January 2025 release lists eleven Cabinet members appointed with effect from 28 January 2025; only the Deputy Prime Minister is imported as a holder observation. Letters of appointment were forecast for 30 January (unconfirmed) and oaths were taken in the Assembly on 31 January. The caretaker Cabinet continued the Sovaleni ministers (Speaker's ruling of 9 December 2024; PMO announcement of 6 January 2025); the revocation of their appointments and the end of Samiu Vaipulu's deputy premiership are unsourced, although he is outside the Cabinet list by 31 January 2025.",
+          "TO-DPM-01 (tonga-deputy-prime-ministers-1990-2026-36.md): the Deputy Prime Minister on 1 January 1990 is unresolved; no 1990-1991 primary record naming the office-holder was found, and the PMO's retrospective statement that Langi Kavaliku was 'appointed the Deputy Prime Minister in 1991' gives the year only.",
+          "TO-DPM-02/03/04: Langi Kavaliku is attested only on 6 November 2000, when his retirement was announced as due to commence on 11 November 2000 (not used as an end); no Deputy Prime Minister is named between then and Tevita Poasi Tupou's appointment effective 24 January 2001. Tupou's resignation was accepted on 28 September 2001. The day James Cecil Cocker was appointed (attested 13 May 2002 to 8 March 2006) and the end of his office are unresolved; the government's cabinet and Assembly pages that still listed earlier Deputy Prime Ministers after these changes are not used.",
+          "TO-DPM-05/06: Viliami Ta'u Tangi's appointment is known only as 'In May 2006' and his end is unstated (attested 8 August 2006 to 30 December 2010). Samiu Kuita Vaipulu is Deputy Prime Minister from the Cabinet's commencement on 4 January 2011 with no stated end; the royal instruments of both appointments were not found.",
+          "TO-DPM-07/08: Siaosi Sovaleni is attested as Deputy Prime Minister from the Cabinet list of 31 December 2014, whose effective day is stated only as the Prime Minister-elect's forecast (IPU gives 19 January 2015); the end of his office is stated only as the effective day of the Prime Minister's revocation recommendation, 1 September 2017, and is not set. Lord Ma'afu (from 1 September 2017) and Semisi Kioa Lafu Sika (from 5 January 2018) have no stated end.",
+          "TO-DPM-09/10: Sione Vuna Fa'otusia (from 9 October 2019) resigned 'in 2020' (year only), so no end is set. Lord Ma'afu's second deputy premiership began 'mei Tisema 2020' (month only) and ended with his death on 12 December 2021; who held or acted in the office from then to 27 December 2021 is unresolved.",
+          "Acting Deputy Prime Ministers (Clive Edwards from 28 September 2001 and on 11 January 2002; Dr Giulio Paunga from 13 May 2002) are claims on to_deputy_pm only, and a Deputy Prime Minister's acting premiership is a claim on to_pm only; neither is a holder (CLAUDE-C01-36). Acting arrangements were not surveyed exhaustively."
         ]
       }
     },
@@ -7155,7 +8662,8 @@
       "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved.",
       "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved.",
       "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed.",
-      "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed."
+      "Speaker packet 24 (tonga-speakers-1990-2026-24.md) adds 1990-2026 to_speaker holder observations after the unchanged string observation to_speakers_appointment: Fusitu'a (attested 1996-11-14), Hon. Veikune (attested 2001-04-30), Hon. Tu'ivakano (attested 2003-04-08), Hon. Veikune (attested 2005-03-22, until 2006-01-25), Lord Tu'ilakepa (attested 2008-06-02), Lord Lasike (attested 2011-01-14, until 2012-07-17), Lord Fakafanua (attested 2012-07-19), Lord Tu'ivakano (attested 2015-02-24), Lord Fakafanua (attested 2018-03-05 and 2022-02-17) and Lord Vaea (attested 2026-05-19). Royal appointments, the Assembly's elections and recommendations, oaths, the 2012 revocation, acting and interim Speakers and retrospective lists are separate claims. The Speaker on 1 January 1990, every pre-2010 appointment instrument, Tu'iha'angana's 2006-2008 Speakership and the post-2014 appointment days remain unresolved; no complete term is claimed.",
+      "Deputy Prime Minister packet 36 (tonga-deputy-prime-ministers-1990-2026-36.md) adds 1990-2021 to_deputy_pm holder observations after the unchanged string observation to_cabinet_appointment and before the existing 2021-2025 holders: Langi Kavaliku (attested 2000-11-06), Tevita Poasi Tupou (2001-01-24 to 2001-09-28), James Cecil Cocker (attested 2002-05-13), Viliami Ta'u Tangi (attested 2006-08-08), Samiu Kuita Vaipulu (from 2011-01-04), Siaosi Sovaleni (attested 2014-12-31), Lord Ma'afu (from 2017-09-01), Semisi Kioa Lafu Sika (from 2018-01-05), Sione Vuna Fa'otusia (from 2019-10-09) and Lord Ma'afu (attested 2021-04-21, until his death on 2021-12-12). The Deputy Prime Minister of 1 January 1990 and most ends remain unresolved; acting service is recorded as claims only, and no complete term is claimed."
     ]
   }
 }

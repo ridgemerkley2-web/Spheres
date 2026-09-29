@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20020514_acting_dpm_paunga",
+  "source_url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+  "original_url": "http://pmo.gov.to/gpr14May02.htm",
+  "archive_capture_utc": "2002-08-16T15:11:02Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11566,
+  "source_response_sha256": "87e5594913a3d2cc7d7b191a2bfcee15dbf9792ea098bbc2964806ead6a82e65",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "windows-1252 (declared)",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:40:23Z and again at 2026-09-29T04:15:34Z (UTC), 35 minutes later, from the same URL: both responses were 11566 bytes with SHA-256 87e5594913a3d2cc7d7b191a2bfcee15dbf9792ea098bbc2964806ead6a82e65. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:36:24Z and 2026-09-29T03:10:52Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2002-08-16T15:11:02Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO media statement (file name gpr14May02; raw Internet Archive capture of 16 August 2002); the statement prints no date line of its own, so no published date is recorded. Used for the acting appointment and for the styling of Cocker as Deputy Prime Minister; Paunga's other offices are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_cocker_abroad_20020513",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-04",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Cecil Cocker",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2002-05-13",
+      "text": "The statement says that Dr. Paunga's appointment as Acting Deputy Prime Minister 'in lieu of Deputy Prime Minister, Hon. Cecil Cocker who is abroad on official duties, came in to effect on 13th May 2002.'",
+      "locator": "Paragraph 1",
+      "uncertainty": "Styles Cocker Deputy Prime Minister on 13 May 2002, the earliest dated record of him in that office found. No appointment day is given; no end of Tupou's term or of the acting service of 2001-2002 is inferred from it."
+    },
+    {
+      "claim_id": "to_acting_dpm_paunga_20020513",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-04",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Dr. Giulio T. Massaso Paunga",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2002-05-13",
+      "text": "The statement says that 'Dr. Giulio T. Massaso Paunga', Minister for Labour, Commerce, Industries and Tourism, 'has been appointed as Acting Deputy Prime Minister', with effect from 13 May 2002, while the Deputy Prime Minister is abroad.",
+      "locator": "Heading and paragraph 1",
+      "uncertainty": "Acting Deputy Prime Minister service: a claim on to_deputy_pm only, never a holder and never a boundary of the substantive office. The name is printed 'Masasso' in the heading and 'Massaso' in the text; the end of the acting appointment is not stated."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20191010_new_cabinet",
+  "source_url": "https://web.archive.org/web/20191011220754id_/https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+  "original_url": "https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+  "archive_capture_utc": "2019-10-11T22:07:54Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-10-10",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 48927,
+  "source_response_sha256": "81d5b44876e6fcce84072d4d67ad1175ae349fa68f0ce7e4c1a694f2aeb71bf7",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:34Z and again at 2026-09-29T04:14:39Z (UTC), 41 minutes later, from the same URL: both responses were 48927 bytes with SHA-256 81d5b44876e6fcce84072d4d67ad1175ae349fa68f0ce7e4c1a694f2aeb71bf7. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:29:33Z and 2026-09-29T02:36:46Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2019-10-11T22:07:54Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO post of the media release dated '(10th October, 2019)' (raw Internet Archive capture of 11 October 2019). Used only for the effective date and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_faotusia_appointment_effective_20191009",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-09",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Sione Vuna Fa'otusia",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "royal_appointment",
+      "attested_on": "2019-10-09",
+      "text": "The PMO release of 10 October 2019 says that the King, on the Prime Minister's recommendations, 'has appointed the New Ministers of Government, with effect from 9th October, 2019', listing 'Hon. Sione Vuna Fa'otusia' as 'Deputy Prime Minister & Minister for Justice and Prison'.",
+      "locator": "Paragraph 1 and list entry 2",
+      "uncertainty": "The stated effective day of the appointment, which gives the holder's from. No end of Sika's office is inferred from it. Other ministers are not imported."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

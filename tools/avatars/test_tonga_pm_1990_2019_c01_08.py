@@ -369,9 +369,17 @@ class TongaPrimeMinisterTests(unittest.TestCase):
                 ids = [entry] if isinstance(entry, str) else entry['claim_ids']
                 self.assertFalse(set(ids) & set(NEVER_HOLDER), role_id)
                 if isinstance(entry, dict):
-                    self.assertNotIn('Sika', entry['name'])
-                    self.assertNotIn('Tangi', entry['name'])
-                    self.assertNotIn('Kavaliku', entry['name'])
+                    # CLAUDE-C01-36: the only exceptions are its to_deputy_pm observations of the substantive Deputy Prime
+                    # Ministers Kavaliku, Tangi and Sika, which cite no acting claim (checked above); no other role names them.
+                    exempt = {'to_deputy_pm': ('Langi Kavaliku', "Viliami Ta'u Tangi", 'Semisi Kioa Lafu Sika')}.get(role_id, ())
+                    if entry['name'] not in exempt:
+                        self.assertNotIn('Sika', entry['name'])
+                        self.assertNotIn('Tangi', entry['name'])
+                        self.assertNotIn('Kavaliku', entry['name'])
+        deputies = [(rid, h['name']) for rid, r in self.roles.items() for h in r['holder_claims']
+                    if isinstance(h, dict) and any(n in h['name'] for n in ('Sika', 'Tangi', 'Kavaliku'))]
+        self.assertEqual(deputies, [('to_deputy_pm', 'Langi Kavaliku'), ('to_deputy_pm', "Viliami Ta'u Tangi"),
+                                    ('to_deputy_pm', 'Semisi Kioa Lafu Sika')])
         self.assertIn('Acting Prime Ministers are recorded only as claims', ' '.join(self.pm['coverage']['unresolved']))
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):

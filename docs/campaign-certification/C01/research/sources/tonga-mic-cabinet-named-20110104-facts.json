@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20110104_cabinet_named",
+  "source_url": "https://web.archive.org/web/20171024212340id_/http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+  "original_url": "http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+  "archive_capture_utc": "2017-10-24T21:23:40Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2011-01-04",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 30867,
+  "source_response_sha256": "5217317070781a7dd180176ae38fd72ba9a0d5a6f9265b6a6932147630608289",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:34Z and again at 2026-09-29T04:13:39Z (UTC), 41 minutes later, from the same URL: both responses were 30867 bytes with SHA-256 5217317070781a7dd180176ae38fd72ba9a0d5a6f9265b6a6932147630608289. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:28:01Z and 2026-09-29T02:28:34Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-10-24T21:23:40Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Media release dated '04 January 2011' and 'Issued by the Office of the Chief Secretary & Secretary to Cabinet, PMO' (raw Internet Archive capture of 24 October 2017). Used only for the commencement sentence and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_vaipulu_cabinet_commences_20110104",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-06",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Samiu Kuita Vaipulu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "cabinet_commencement",
+      "attested_on": "2011-01-04",
+      "text": "The PMO media release of 4 January 2011 says that Lord Tu'ivakano recommended the new ministers to King George Tupou V and that 'The Cabinet Ministers commence today, Tuesday 4th. January, 2011'; its list gives 'Hon. Samiu Kuita Vaipulu - Deputy Prime Minister' with Justice, Transport and Works.",
+      "locator": "Paragraph 1 and the first list entry after the Prime Minister",
+      "uncertainty": "The stated day the Cabinet ministers commenced, which gives the holder's from; the royal instrument and its date are not given. The ministers' oath in the Assembly on 14 January 2011 is not imported. Other ministers are not imported."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

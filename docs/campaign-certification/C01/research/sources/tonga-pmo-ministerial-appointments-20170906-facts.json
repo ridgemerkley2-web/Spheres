@@ -1,0 +1,92 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20170906_ministerial_appointments",
+  "source_url": "https://web.archive.org/web/20170910020802id_/http://www.pmo.gov.to:80/ministerial-appointments/",
+  "original_url": "http://www.pmo.gov.to/ministerial-appointments/",
+  "archive_capture_utc": "2017-09-10T02:08:02Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2017-09-06",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 41468,
+  "source_response_sha256": "72b063fb52eac4bf6bcb4bbf347b49c22c2ac9f0614342ebab2dd2a4ab26b323",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:18Z and again at 2026-09-29T04:14:22Z (UTC), 41 minutes later, from the same URL: both responses were 41468 bytes with SHA-256 72b063fb52eac4bf6bcb4bbf347b49c22c2ac9f0614342ebab2dd2a4ab26b323. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:29:23Z and 2026-09-29T02:35:56Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-09-10T02:08:02Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO media release dated '(6 September 2017)' (raw Internet Archive capture of 10 September 2017). Tongan and government-portal copies of the same release exist and are not imported. Used for the revocation recommendation, Lord Ma'afu's appointment, the royal endorsement and the acting premiership; the Finance appointment is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_sovaleni_revocation_recommended_20170901",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Siaosi Sovaleni",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "revocation_recommended",
+      "attested_on": "2017-09-01",
+      "text": "The PMO media release of 6 September 2017 says that on 1 September 2017 the Prime Minister recommended to the King, under clause 51(3)(a) of the Constitution, 'to revoke the appointments of Hon. Siaosi Sovaleni, Deputy Prime Minister' and of the Minister for Finance, 'effective from 1st September, 2017'.",
+      "locator": "Paragraph 1",
+      "uncertainty": "The Prime Minister's recommendation and the effective day it proposed. The release states the royal endorsement only for the new appointments (paragraph 3), not for the revocation, so 1 September 2017 is not used as Sovaleni's until; CLAUDE-C01-08's MEIDECC claim of the King's consent conveyed on 5 September (to_pohiva_conveys_deputy_pm_removal_20170905) is named here and not cited. No end is inferred from Lord Ma'afu's start."
+    },
+    {
+      "claim_id": "to_dpm_maafu_appointment_recommended_20170901",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-08",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "appointment_recommended",
+      "attested_on": "2017-09-01",
+      "text": "The same release says that the Prime Minister recommended 'the ministerial appointments of Lord Ma'afu, as Deputy Prime Minister' and of a new Minister for Finance 'with effect from 1st September, 2017'.",
+      "locator": "Paragraph 2",
+      "uncertainty": "The recommendation, a separate event from the royal endorsement; not itself a start."
+    },
+    {
+      "claim_id": "to_dpm_maafu_royal_endorsement_effective_20170901",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-08",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "royal_appointment",
+      "attested_on": "2017-09-01",
+      "text": "It says that the King 'has duly endorsed with the Royal Sign Manual, the appointments of Lord Ma'afu as Deputy Prime Minister' and of the Minister for Finance, 'with effect from 1st September, 2017'.",
+      "locator": "Paragraph 3",
+      "uncertainty": "The stated effective day of the royal appointment, which gives the holder's from; the endorsement's own date is not given (it was conveyed on 5 September, a separate claim)."
+    },
+    {
+      "claim_id": "to_dpm_maafu_endorsement_conveyed_20170905",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-08",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "royal_endorsement_conveyed",
+      "attested_on": "2017-09-05",
+      "text": "It says that 'On 5th September, 2017 a letter was received by the Prime Minister's Office from the Lord Chamberlain' conveying the royal endorsement of the appointments of Lord Ma'afu and the Minister for Finance.",
+      "locator": "Paragraph 3",
+      "uncertainty": "The day the Palace letter was received, not the effective day and not a start."
+    },
+    {
+      "claim_id": "to_acting_pm_maafu_20170901",
+      "observation_id": "to_prime_minister",
+      "review_observation": "TO-DPM-08",
+      "role_id": "to_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2017-09-01",
+      "text": "It says that while the Prime Minister attends the Pacific Islands Forum meeting in Apia, 'Lord Ma'afu, Deputy Prime Minister shall be Acting Prime Minister, with effect from 1st September, 2017.'",
+      "locator": "Paragraph 4",
+      "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The end of the acting service is not stated."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

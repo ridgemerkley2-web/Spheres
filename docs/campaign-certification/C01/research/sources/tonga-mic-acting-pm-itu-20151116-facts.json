@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20151116_acting_pm_itu",
+  "source_url": "https://web.archive.org/web/20151206105609id_/http://mic.gov.to:80/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+  "original_url": "http://mic.gov.to/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+  "archive_capture_utc": "2015-12-06T10:56:09Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2015-11-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35533,
+  "source_response_sha256": "354e629b1495f9479b86cbe13ea81221f51734d7f06180fbe7c50450d6df7a66",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:01Z and again at 2026-09-29T04:14:06Z (UTC), 41 minutes later, from the same URL: both responses were 35533 bytes with SHA-256 354e629b1495f9479b86cbe13ea81221f51734d7f06180fbe7c50450d6df7a66. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:48:26Z and 2026-09-29T02:31:12Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2015-12-06T10:56:09Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release dated '16th November 2015' (raw Internet Archive capture of 6 December 2015). Used only for the Acting Prime Minister's styling; the visit is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_pm_sovaleni_20151112",
+      "observation_id": "to_prime_minister",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_pm",
+      "holder_name": "Siaosi Sovaleni",
+      "role_title": "Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2015-11-12",
+      "text": "The release of 16 November 2015 says that 'Last week' the 'Hon. Acting Prime Minister and Minister for' MEIDECC, 'Siaosi Sovaleni', hosted the visit of the ITU's development bureau director 'from 12th-13th November, 2015'.",
+      "locator": "Paragraph 1",
+      "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The claim is dated to the first day of the visit; the start and end of the acting service are not stated."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

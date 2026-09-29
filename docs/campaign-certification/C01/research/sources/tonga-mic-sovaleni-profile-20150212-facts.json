@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20150212_sovaleni_profile",
+  "source_url": "https://web.archive.org/web/20171024204047id_/http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+  "original_url": "http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+  "archive_capture_utc": "2017-10-24T20:40:47Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2015-02-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32128,
+  "source_response_sha256": "279eaf8c7339092714b1a58989f8b96ddd6b178a18def8210e4130d098c256f3",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:58Z and again at 2026-09-29T04:14:02Z (UTC), 41 minutes later, from the same URL: both responses were 32128 bytes with SHA-256 279eaf8c7339092714b1a58989f8b96ddd6b178a18def8210e4130d098c256f3. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:47:55Z and 2026-09-29T02:30:29Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-10-24T20:40:47Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Government portal ministers' profile stamped 'Thursday, 12 February 2015 14:47' (raw Internet Archive capture of 24 October 2017). Used only for the ministerial portfolio line; the career details are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_sovaleni_profile_20150212",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Siaosi Sovaleni",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2015-02-12",
+      "text": "The profile of 12 February 2015 gives 'NAME : Hon. Siaosi Sovaleni' and his 'MINISTERIAL PORTFOLIO' as 'Deputy Prime Minister' with meteorology, energy, information, disaster management, environment, climate change and communications.",
+      "locator": "Profile fields NAME and MINISTERIAL PORTFOLIO",
+      "uncertainty": "A contemporaneous styling on the profile's date; no appointment or end date."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}
