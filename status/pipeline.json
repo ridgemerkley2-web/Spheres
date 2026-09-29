@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T04:22:13Z",
+  "updated": "2026-09-29T04:28:32Z",
   "packets": [
     {
       "n": "28",
@@ -67,10 +67,10 @@
       "n": "35",
       "title": "Democratic Russia and Soyuz group leaders, 1990–1991",
       "country": "USSR",
-      "state": "verify",
+      "state": "fix",
       "branch": "claude/c01-su-35",
       "head": "fb225cc6",
-      "note": "2026-09-28: 2 new orgs (Democratic Russia, Soyuz group), 16 sources, 36 claims, 8 co-chair holder obs"
+      "note": "4 text/disclosure defects; 16/16 sources byte-identical. Rulings: letter attested 1991-09-12 (document date); лидер/руководитель claims only; 12 Dec 1991 official list holders kept (C01-33 standard), flagged for Codex"
     },
     {
       "n": "36",
@@ -94,7 +94,6 @@
     "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
   ],
   "log": [
-    "2026-09-28 C01-29 research done (claude/c01-jp-29@e0bb7a01: jp_sdp_chair, 54 sources, 111 claims, 16 holder obs / 7 people; handoff conflict resolved by keeping Codex copy + appended result). Verifier launched. Active: 28 research, 29 verify. C: 8.7 GB.",
     "2026-09-28 C01-29 verified: 2 prose defects fixed by me (3b304785), all checks pass -> submitted; worktree removed (Codex already reviewing at e0bb7a01 in review-jp29). C01-30 (South Africa ACDP/FF/IFP leaders) set up at 68535825 on b949f64e, research. Active: 28 research, 30 research. C: 6.1 GB.",
     "2026-09-28 C01-28 research done (claude/c01-ru-28@16153784: 5 roles, 68 sources, 137 claims, 24 holder obs / 10 people). Gap-ledger test fails on the branch by design (COMMIT_PACKETS needs cc06f873 at integration). Verifier launched. Active: 28 verify, 30 research.",
     "2026-09-28 C01-28 verified: 68/68 sources byte-identical; 4 defects + DVR republished-reference source + stale comment. My rulings: no until for Zhirinovsky (item never names the office or its end); Yabloko association-era rows titled as printed. Fix agent launched. Active: 28 fix, 30 research.",
@@ -113,6 +112,7 @@
     "2026-09-28 C01-34 fixed (79b028cb/16ef41a6: 12 holder obs; Lupi 2004 interim claims only) -> submitted, worktree removed. C01-36 (Tonga Deputy PMs) set up unstacked at e8821f40 on 44098c5a (to-24 now detected as merged via queue). Active: 35 research, 36 research. Remaining: 31 (held for 29), 37.",
     "2026-09-28 SPHERES Command dashboard built on orphan branch `dashboard` (worktree <local>, 400c8583); status publisher publish_status.py added (first status d7b20d18). Pages must be enabled by the user (source: dashboard, root).",
     "2026-09-28 C01-35 research done (claude/c01-su-35@fb225cc6: Democratic Russia + Soyuz, 16 sources, 36 claims, 8 co-chair holder obs). Verifier launched. Active: 35 verify, 36 research.",
-    "2026-09-28 C01-36 research done (claude/c01-to-36@e5b62596: 39 sources, 53 claims, 10 Deputy PM holder obs). Verifier launched. Active: 35 verify, 36 verify. Remaining: 31 (held), 37."
+    "2026-09-28 C01-36 research done (claude/c01-to-36@e5b62596: 39 sources, 53 claims, 10 Deputy PM holder obs). Verifier launched. Active: 35 verify, 36 verify. Remaining: 31 (held), 37.",
+    "2026-09-28 C01-35 verified: 16/16 sources clean; 4 text defects. Rulings: 1991-09-12 kept; \"лидер\" references claims only; 12 Dec 1991 President-office list holders kept. Fix agent launched. Active: 35 fix, 36 verify."
   ]
 }
