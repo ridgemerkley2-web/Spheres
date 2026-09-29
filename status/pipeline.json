@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T03:42:37Z",
+  "updated": "2026-09-29T04:22:13Z",
   "packets": [
     {
       "n": "28",
@@ -76,9 +76,10 @@
       "n": "36",
       "title": "Tongan Deputy Prime Ministers, 1990–2026",
       "country": "Tonga",
-      "state": "research",
+      "state": "verify",
       "branch": "claude/c01-to-36",
-      "head": "e8821f40"
+      "head": "e5b62596",
+      "note": "2026-09-28: to_deputy_pm, 39 sources, 53 claims, 10 holder obs (6 with stated from/until)"
     },
     {
       "n": "37",
@@ -93,7 +94,6 @@
     "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
   ],
   "log": [
-    "2026-09-28 S24 finished: claude/s24-successors-01@5a23ebe0 ready_for_review (23-row inventory, 21 activatable + Namibia/East Timor flagged; guard 23/0/0/0, activation+save/load 21/0/0/2, browser 4/0/0/19; USSR->Russia via continue-as, reload byte-equal). Flagged for Codex: budget card labels the -2% real-rate floor as a +32.90pp \"sovereign spread\". My checks passed. Worktree stays on D:.",
     "2026-09-28 C01-29 research done (claude/c01-jp-29@e0bb7a01: jp_sdp_chair, 54 sources, 111 claims, 16 holder obs / 7 people; handoff conflict resolved by keeping Codex copy + appended result). Verifier launched. Active: 28 research, 29 verify. C: 8.7 GB.",
     "2026-09-28 C01-29 verified: 2 prose defects fixed by me (3b304785), all checks pass -> submitted; worktree removed (Codex already reviewing at e0bb7a01 in review-jp29). C01-30 (South Africa ACDP/FF/IFP leaders) set up at 68535825 on b949f64e, research. Active: 28 research, 30 research. C: 6.1 GB.",
     "2026-09-28 C01-28 research done (claude/c01-ru-28@16153784: 5 roles, 68 sources, 137 claims, 24 holder obs / 10 people). Gap-ledger test fails on the branch by design (COMMIT_PACKETS needs cc06f873 at integration). Verifier launched. Active: 28 verify, 30 research.",
@@ -112,6 +112,7 @@
     "2026-09-28 C01-34 verified: 76/76 sources clean, 4 text defects. Rulings: Brizola until kept; Lupi 2004 interim -> claims only (C01-22 Genoino precedent); Lupi 2025 kept; PMDB->MDB on one role; Jucá acting. Active: 34 fix, 35 research.",
     "2026-09-28 C01-34 fixed (79b028cb/16ef41a6: 12 holder obs; Lupi 2004 interim claims only) -> submitted, worktree removed. C01-36 (Tonga Deputy PMs) set up unstacked at e8821f40 on 44098c5a (to-24 now detected as merged via queue). Active: 35 research, 36 research. Remaining: 31 (held for 29), 37.",
     "2026-09-28 SPHERES Command dashboard built on orphan branch `dashboard` (worktree <local>, 400c8583); status publisher publish_status.py added (first status d7b20d18). Pages must be enabled by the user (source: dashboard, root).",
-    "2026-09-28 C01-35 research done (claude/c01-su-35@fb225cc6: Democratic Russia + Soyuz, 16 sources, 36 claims, 8 co-chair holder obs). Verifier launched. Active: 35 verify, 36 research."
+    "2026-09-28 C01-35 research done (claude/c01-su-35@fb225cc6: Democratic Russia + Soyuz, 16 sources, 36 claims, 8 co-chair holder obs). Verifier launched. Active: 35 verify, 36 research.",
+    "2026-09-28 C01-36 research done (claude/c01-to-36@e5b62596: 39 sources, 53 claims, 10 Deputy PM holder obs). Verifier launched. Active: 35 verify, 36 verify. Remaining: 31 (held), 37."
   ]
 }
