@@ -1,0 +1,120 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd3_steno_vol3",
+  "source_url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+  "original_url": "https://snd.sssr.su/III/III.pdf",
+  "archive_capture_utc": "2024-09-03T21:09:42Z",
+  "source_title": "Внеочередной третий Съезд народных депутатов СССР, 12-15 марта 1990 г. Стенографический отчет. Том III (sittings of 14-15 March 1990, acts and unspoken speeches), scanned volume, Internet Archive capture 20240903210942",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1990-03-14",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+  "source_response_bytes": 12922126,
+  "source_response_sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/III/III.pdf",
+    "bytes": 12922126,
+    "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+    "last_modified": "Mon, 20 May 2024 23:35:08 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Discovery: the live file was downloaded at 2026-09-28T23:59:13Z and the raw capture at 2026-09-29T00:11:08Z; identical bytes. This packet: downloaded at 2026-09-29T00:15:18Z and again at 2026-09-29T00:47:04Z (31 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 12,922,126 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest 32FRDYNMC4T2XBM2SR3D5UMOLJ3KGRHJ. The independent check re-downloaded the capture and the live file once more (2026-09-29T01:30Z-01:54Z); identical.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:18Z",
+        "2026-09-29T00:47:04Z"
+      ],
+      "bytes": 12922126,
+      "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/III/III.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:20Z",
+        "2026-09-29T00:47:06Z"
+      ],
+      "bytes": 12922126,
+      "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/III/III.pdf, captured at 2024-09-03T21:09:42Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the extraordinary Third Congress, volume III, as a page-image scan (340 PDF pages). The sixth sitting of 14 March 1990 (printed pp. 3-4 and 22) and the seventh sitting of 15 March 1990 (printed pp. 54 and 82) were read for the Soyuz group's nominations; a member's statement of 14 March (printed p. 9) states no office and is not imported. The scan is hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response).",
+  "edition_and_host": {
+    "edition": "Внеочередной третий съезд народных депутатов СССР, 12-15 марта 1990 г. Стенографический отчет. Том III. Издание Верховного Совета СССР, Москва, 1990 (title page, PDF p. 3); imprint (PDF p. 338): 'Сдано в набор 28.06.90. Подписано к печати 22.11.90', 'Тираж 17 000 экз.', printed by the Izvestia printing house, Moscow; 340 PDF pages, printed p. N on PDF p. N + 2 for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official stenographic reports as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      5,
+      6,
+      24,
+      56,
+      84,
+      338
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd3_alksnis_relays_soyuz_presidential_nominations_19900314",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Алкснис В. И.",
+        "Блохин Ю. В."
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_nomination_relayed",
+      "attested_on": "1990-03-14",
+      "text": "At the sixth sitting (14 March 1990, 17:45, 'Председательствует Первый заместитель Председателя Верховного Совета СССР А. И. Лукьянов'), 'Алкснис В. И., полковник, старший инженер-инспектор войсковой части, г. Рига' says that 'Вчера депутат Блохин проинформировал вас о том, что депутатская группа «Союз» на своем общем собрании предлагает внести в список кандидатур для тайного голосования на пост Президента СССР' three candidates, and asks that they be entered in the list.",
+      "locator": "Sixth sitting: heading, printed p. 3 (PDF p. 5); speech, printed p. 4 (PDF p. 6)"
+    },
+    {
+      "claim_id": "su_snd3_presiding_officer_soyuz_over_300_19900314",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "event_kind": "membership_size_reported",
+      "attested_on": "1990-03-14",
+      "text": "In the same sitting the presiding officer states: 'Хочу напомнить, что депутатская группа «Союз», которая выдвинула кандидатуру товарища Бакатина, насчитывает более 300 человек. Она имеет право на выдвижение...'",
+      "locator": "Sixth sitting, printed p. 22 (PDF p. 24)"
+    },
+    {
+      "claim_id": "su_snd3_kim_relays_soyuz_chair_nominations_19900315",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Ким Е. У."
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_nomination_relayed",
+      "attested_on": "1990-03-15",
+      "text": "At the seventh sitting (15 March 1990), 'Ким Е. У., член Верховного Совета СССР' says: 'Я хочу довести до вас решение общего собрания депутатской группы «Союз». Депутатская группа «Союз» выдвигает в качестве кандидата на пост Председателя Верховного Совета СССР трех товарищей', naming three candidates in alphabetical order.",
+      "locator": "Seventh sitting: heading, printed p. 54 (PDF p. 56); statement, printed p. 82 (PDF p. 84)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

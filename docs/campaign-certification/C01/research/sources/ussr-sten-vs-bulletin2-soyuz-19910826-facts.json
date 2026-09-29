@@ -1,0 +1,113 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_vs_bulletin2_soyuz_19910826",
+  "source_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/2.pdf",
+  "original_url": "https://sten.vs.sssr.su/12/6/2.pdf",
+  "archive_capture_utc": "2025-07-18T14:36:07Z",
+  "source_title": "Верховный Совет СССР, внеочередная сессия: Бюллетень No. 2 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (stenographic bulletin, evening sitting), scanned facsimile, Internet Archive capture 20250718143607; recorded for the Soyuz group",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1991-08-26",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/2.pdf",
+  "source_response_bytes": 1530044,
+  "source_response_sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://sten.vs.sssr.su/12/6/2.pdf",
+    "bytes": 1530044,
+    "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+    "last_modified": "Thu, 24 Mar 2016 23:32:43 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Discovery: the live file was downloaded at 2026-09-29T00:05:22Z and the raw capture at 2026-09-29T00:11:15Z; identical bytes. This packet: downloaded at 2026-09-29T00:15:38Z and again at 2026-09-29T00:47:38Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 1,530,044 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest BHTJ6RRMIJITAAUZWD4TQ5UNM4KTXZXP. The independent check re-downloaded the capture and the live file once more (2026-09-29T01:30Z-01:54Z); identical.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/2.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:38Z",
+        "2026-09-29T00:47:38Z"
+      ],
+      "bytes": 1530044,
+      "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://sten.vs.sssr.su/12/6/2.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:39Z",
+        "2026-09-29T00:47:39Z"
+      ],
+      "bytes": 1530044,
+      "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.vs.sssr.su/12/6/2.pdf, captured at 2025-07-18T14:36:07Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic bulletin of the evening sitting of 26 August 1991, a page-image scan with an ABBYY FineReader 11 OCR layer. The same file is already recorded for CLAUDE-C01-26 as su_sten_vs_bulletin2_19910826 (as the live file); it is recorded again here, as its pre-cutoff raw capture, so that the CLAUDE-C01-26 extract and its CLAUDE-C01-SOURCE-26 review stay unchanged. PDF pp. 1, 3, 22 and 27-30 (printed pp. 61, 80 and 85-88) were read for the Soyuz group. Other passages about the group state no office and are not imported: Blokhin's speech (printed p. 80), Alksnis's reply speaking of 'наша группа' and Chelyshev's statement for the Interregional group (printed p. 87), and Petrushenko's reply (printed p. 88).",
+  "edition_and_host": {
+    "edition": "Верховный Совет СССР. Внеочередная сессия. Бюллетень № 2 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (cover, PDF p. 1; contents: pp. 61-85, pagination continued from bulletin No. 1); 44 PDF pages, printed p. N on PDF p. N - 58 for the cited pages (the page number is partly cut off at the scan's edge on PDF p. 28).",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official stenographic reports as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      22,
+      27,
+      28,
+      29,
+      30
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_vs26_boyars_proposal_names_soyuz_leaders_19910826",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-04",
+      "role_id": "su_soyuz_co_chair",
+      "holder_name": null,
+      "persons_named": [
+        "Боярс Ю. Р.",
+        "Коган Е. В.",
+        "Алкснис В. И.",
+        "Блохин Ю. В.",
+        "Чехоев А. Г.",
+        "Петрушенко Н. С.",
+        "Ю. Н. Афанасьев",
+        "И. О. Бишер",
+        "И. Д. Лаптев (Председатель Совета Союза, presiding)"
+      ],
+      "role_title": "Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group",
+      "role_title_as_printed": "'ее лидеров народных депутатов СССР Когана, Алксниса, Блохина, Чехоева и Петрушенко' (genitive, as printed)",
+      "event_kind": "leadership_reference_by_another_deputy",
+      "attested_on": "1991-08-26",
+      "text": "At the evening sitting of 26 August 1991 (hall of the chambers in the Kremlin, 16:00, 'Председательствует Председатель Совета Союза Верховного Совета СССР И. Д. Лаптев'), 'Боярс Ю. Р., директор института международных отношений Латвийского государственного университета имени Стучки, г. Рига' proposes: 'С учетом того, что депутатская группа «Союз» принимала активное участие в подготовке и осуществлении военного переворота в Советском Союзе, просим поставить на голосование вопрос о приостановлении действия депутатских мандатов ее лидеров народных депутатов СССР Когана, Алксниса, Блохина, Чехоева и Петрушенко для выяснения степени их вины правоохранительными органами. Это предложение подписали 32 очень уважаемых народных депутата (среди них Ю. Н. Афанасьев, И. О. Бишер)'; the presiding officer answers that the text will be copied and distributed.",
+      "locator": "Bulletin No. 2: sitting heading, printed p. 61 (PDF p. 3); speaker line, printed p. 85 (PDF p. 27); proposal and reply, printed p. 86 (PDF p. 28)"
+    },
+    {
+      "claim_id": "su_vs26_kogan_active_member_of_soyuz_19910826",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-04",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Коган Е. В.",
+        "Боярс Ю. Р."
+      ],
+      "role_title": null,
+      "role_title_as_printed": "'активным членом группы «Союз»' (self-description)",
+      "event_kind": "member_self_description",
+      "attested_on": "1991-08-26",
+      "text": "Replying in the same sitting, 'Коган Е. В., заведующий лабораторией охраны труда объединения «Эстрыбпром», г. Таллинн' calls the statement 'депутата Боярса' an attempt to settle scores with political opponents and says: 'Что касается утверждения о том, что группа «Союз» участвовала в этом перевороте, то заявляю, что это клевета (а я все-таки являюсь активным членом группы «Союз»).'",
+      "locator": "Bulletin No. 2, printed p. 88 (PDF p. 30)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

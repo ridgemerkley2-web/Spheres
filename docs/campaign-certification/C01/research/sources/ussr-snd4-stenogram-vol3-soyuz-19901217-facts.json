@@ -1,0 +1,148 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd4_steno_vol3_soyuz",
+  "source_url": "https://web.archive.org/web/20241124015727id_/https://snd.sssr.su/IV/III.pdf",
+  "original_url": "https://snd.sssr.su/IV/III.pdf",
+  "archive_capture_utc": "2024-11-24T01:57:27Z",
+  "source_title": "Четвертый Съезд народных депутатов СССР, 17-27 декабря 1990 г. Стенографический отчет. Том III (sittings 17-20 of 26-27 December 1990, with the acts adopted), scanned volume, Internet Archive capture 20241124015727; recorded for the Soyuz group",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1990-12-17",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20241124015727id_/https://snd.sssr.su/IV/III.pdf",
+  "source_response_bytes": 12653342,
+  "source_response_sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/IV/III.pdf",
+    "bytes": 12653342,
+    "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+    "last_modified": "Sat, 25 May 2024 22:19:52 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Discovery: the independent check downloaded the raw capture at 2026-09-29T01:43:33Z and the live file at 01:43:35Z; this packet downloaded the live file at 2026-09-29T02:03:19Z and the capture at 02:03:31Z; identical bytes. This packet: downloaded at 2026-09-29T02:11:28Z and again at 2026-09-29T02:43:03Z (31 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 12,653,342 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest 7FKJGSKA5SUVY2VPDTY2YTHHQFKEWWKD.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20241124015727id_/https://snd.sssr.su/IV/III.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:11:28Z",
+        "2026-09-29T02:43:03Z"
+      ],
+      "bytes": 12653342,
+      "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/IV/III.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:11:31Z",
+        "2026-09-29T02:43:06Z"
+      ],
+      "bytes": 12653342,
+      "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/IV/III.pdf, captured at 2024-11-24T01:57:27Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Fourth Congress, volume III, as a page-image scan with an ABBYY FineReader 11 OCR layer (404 PDF pages). The same file is already recorded for CLAUDE-C01-26 as su_snd4_steno_vol3 (capture 20250718143642); it is recorded again here, as another pre-cutoff raw capture of the same bytes, so that the CLAUDE-C01-26 extract and its CLAUDE-C01-SOURCE-26 review stay unchanged. The eighteenth sitting of 26 December 1990 (printed pp. 66, 88, 91 and 136-137), the twentieth sitting of 27 December 1990 (printed pp. 206 and 231) and Congress resolution No. 1842-I of 17 December 1990 (printed pp. 291-293) were read for the Soyuz group. This volume prints the group's name in typographic double quotes (”Союз”), not guillemets.",
+  "edition_and_host": {
+    "edition": "Четвертый съезд народных депутатов СССР, 17-27 декабря 1990 г. Стенографический отчет. Том III. Издание Верховного Совета СССР, Москва, 1991 (title page, PDF p. 3); imprint (PDF p. 401): 'Отдел опубликования актов Секретариата Верховного Совета СССР', 'Сдано в набор 18.02.91. Подписано в печать 17.06.91', printed by the Izvestia printing house, Moscow; 404 PDF pages, printed p. N on PDF p. N + 2 for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official stenographic reports as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      68,
+      90,
+      93,
+      138,
+      139,
+      208,
+      233,
+      293,
+      294,
+      295,
+      401
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd4_res_1842i_names_soyuz_nominees_19901217",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Коган Евгений Владимирович",
+        "Чехоев Анатолий Георгиевич",
+        "А. ЛУКЬЯНОВ (signature)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The resolution names no group and no office in any group.",
+      "event_kind": "group_nominees_elected",
+      "attested_on": "1990-12-17",
+      "text": "Congress resolution 'Об образовании Редакционной комиссии по подготовке проекта Постановления Съезда по вопросу об общей концепции нового Союзного Договора и порядке его заключения' ('Москва, Кремль. 17 декабря 1990 г. № 1842-I', signed 'Председатель Верховного Совета СССР А. ЛУКЬЯНОВ') elects to the 46-member commission, among others, 'Коган Евгений Владимирович — заведующий лабораторией охраны труда объединения ”Эстрыбпром”, гор. Таллинн' and 'Чехоев Анатолий Георгиевич — член Комиссии Совета Национальностей по национальной политике и межнациональным отношениям'.",
+      "locator": "Resolution No. 1842-I, printed pp. 291-293 (PDF pp. 293-295)"
+    },
+    {
+      "claim_id": "su_snd4_sazonov_refers_to_soyuz_leaders_19901226",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-04",
+      "role_id": "su_soyuz_co_chair",
+      "holder_name": null,
+      "persons_named": [
+        "Сазонов Н. С.",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": "Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group",
+      "role_title_as_printed": "'Некоторые лидеры группы ”Союз”' (unnamed)",
+      "event_kind": "leadership_reference_by_another_deputy",
+      "attested_on": "1990-12-26",
+      "text": "At the eighteenth sitting (26 December 1990, 16:00, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов'), 'Сазонов Н.С., член Верховного Совета СССР' says: 'Некоторые лидеры группы ”Союз”, члены нашего Комитета по вопросам экономической реформы обвиняли меня в том, что изменилась моя позиция'.",
+      "locator": "Eighteenth sitting: heading, printed p. 66 (PDF p. 68); speech, printed p. 88 (PDF p. 90)"
+    },
+    {
+      "claim_id": "su_snd4_kogan_reports_soyuz_rotation_list_19901226",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Коган Е. В.",
+        "Гниненко Ю. И.",
+        "Блохин Ю. В.",
+        "Комаров Г. А."
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_decision_reported",
+      "attested_on": "1990-12-26",
+      "text": "Later in the same sitting (after the break), 'Коган Е. В.' says: 'В связи с этим хочу сказать, что депутатская группа ”Союз” такой список подготовила' for the rotation of the Supreme Soviet, a list that 'включает депутатов Гниненко, Бродавского (от Литвы), Блохина (от Молдовы), Петкевича (от Латвии), Комарова (от Киргизии), Когана и Суркова'.",
+      "locator": "Eighteenth sitting: after the break, printed p. 91 (PDF p. 93); statement, printed pp. 136-137 (PDF pp. 138-139)"
+    },
+    {
+      "claim_id": "su_snd4_chekhoev_reports_soyuz_meeting_19901227",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Чехоев А. Г.",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_decision_reported",
+      "attested_on": "1990-12-27",
+      "text": "At the twentieth sitting (27 December 1990, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов'), 'Чехоев А. Г., член Комиссии Совета Национальностей по национальной политике и межнациональным отношениям' says: 'В перерыве депутатская группа ”Союз” собралась и однозначно оценила ситуацию, которая сейчас сложилась на Съезде, как критическую', and that 'группа ”Союз” единогласно потребовала от Совета Федерации' an economic agreement on the Union budget.",
+      "locator": "Twentieth sitting: heading, printed p. 206 (PDF p. 208); statement, printed p. 231 (PDF p. 233)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

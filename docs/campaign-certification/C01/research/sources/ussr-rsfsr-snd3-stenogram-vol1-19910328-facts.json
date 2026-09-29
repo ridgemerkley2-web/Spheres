@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_snd3_sten_v1",
+  "source_url": "https://web.archive.org/web/20220313024757id_/https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+  "original_url": "https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+  "archive_capture_utc": "2022-03-13T02:47:57Z",
+  "source_title": "Третий (внеочередной) Съезд народных депутатов РСФСР, 28 марта - 5 апреля 1991 года. Стенографический отчет. Том I (28-30 March 1991), scanned volume, Internet Archive capture 20220313024757",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1991-03-28",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220313024757id_/https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+  "source_response_bytes": 18252813,
+  "source_response_sha256": "0b65f35688e13fff9fef958b1951d01738513825b44f1159c5576ea3fa3ba076",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "The research dossier downloaded the capture at 2026-09-29T00:45:10Z and 01:58:05Z; identical bytes. This packet: downloaded at 2026-09-29T02:57:49Z and again at 2026-09-29T03:30:02Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 18,252,813 bytes and SHA-256. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest CPO4UW7HZXLQN7Q543YZQIVXB34FLGBL.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20220313024757id_/https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:57:49Z",
+        "2026-09-29T03:30:02Z"
+      ],
+      "bytes": 18252813,
+      "sha256": "0b65f35688e13fff9fef958b1951d01738513825b44f1159c5576ea3fa3ba076",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.snd.rsfsr-rf.ru/r3s1.pdf, captured at 2022-03-13T02:47:57Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Third (extraordinary) Congress of People's Deputies of the RSFSR, volume I, as an image-only scan of two-page spreads. The first sitting of 28 March 1991 (printed p. 59) was read, with the contents (PDF pp. 214-215). Another deputy's description of 'Льва Пономарева, народного депутата РСФСР, координатора “Демократической России”' at the second sitting of 29 March 1991 (printed p. 71, PDF p. 36) was read but is not imported: the speaker calls the organiser a 'блок', so whether the movement or the RSFSR deputies' bloc is meant is not established, and 'координатор' is not the co-chair title. The volume has no text layer; it was searched with a word spotter and the hits read from the page images. An announcement on printed p. 59 for the 'Депутатской группе “Демократическая Россия”' (the RSFSR deputies' group) is a separate identity and is not imported. The scan is hosted by the non-official ISTNET / RSFSR-RF.RU project; the recorded identity is a raw Internet Archive capture made before the cutoff.",
+  "edition_and_host": {
+    "edition": "Третий (внеочередной) Съезд народных депутатов РСФСР, 28 марта - 5 апреля 1991 г.: Стеногр. отчет: В 5 т. Т. 1. - М.: Республика, 1992. - 430 с. ISBN 5-250-02160-3 (library card, PDF p. 216); an image-only scan of two-page spreads (217 PDF pages): PDF page n shows printed pp. 2n-2 (left) and 2n-1 (right).",
+    "host": "sten.snd.rsfsr-rf.ru, a non-official project of the ISTNET / RSFSR-RF.RU group (the same editors as the SSSR.SU portal), not a state body and not the publisher. It serves page-image scans of the printed stenographic reports of the RSFSR Congresses; its live HTTPS certificate does not verify from this environment, so each identity is a pre-cutoff raw Internet Archive capture (the base32 SHA-1 of the recorded bytes equals the capture's CDX digest)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      30,
+      36,
+      214,
+      215,
+      216
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_dr_coordinating_council_march_application_19910328",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "unnamed deputy (\"Депутат (не представился)\")"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage names no one.",
+      "event_kind": "movement_body_act_reported",
+      "attested_on": "1991-03-28",
+      "text": "At the first sitting of the Third (extraordinary) Congress of People's Deputies of the RSFSR (28 March 1991), a deputy who did not introduce himself reads the organising committee's appeal: '28 марта по заявке координационного совета движения ”Демократическая Россия”, удовлетворенной Мосгорисполкомом, должны состояться уличные шествия от площади Маяковского и Новоарбатского проспекта в центр Москвы и митинг на Манежной площади.'",
+      "locator": "First sitting: contents, PDF p. 214 (printed pp. 3-60); appeal, printed p. 59 (PDF p. 30, right page)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

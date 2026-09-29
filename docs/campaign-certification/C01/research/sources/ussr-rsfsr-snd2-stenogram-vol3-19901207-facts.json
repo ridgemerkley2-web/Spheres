@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_snd2_sten_v3",
+  "source_url": "https://web.archive.org/web/20220313024936id_/https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+  "original_url": "https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+  "archive_capture_utc": "2022-03-13T02:49:36Z",
+  "source_title": "Второй (внеочередной) Съезд народных депутатов РСФСР, 27 ноября - 15 декабря 1990 года. Стенографический отчет. Том III (6-7 December 1990), scanned volume, Internet Archive capture 20220313024936",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1990-12-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220313024936id_/https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+  "source_response_bytes": 19806883,
+  "source_response_sha256": "ccb68d98f52437a491c566152ef65f425052e2c41b7f314f0c331a8324ab794a",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "The research dossier downloaded the capture at 2026-09-29T01:07:39Z and 01:58:08Z; identical bytes. This packet: downloaded at 2026-09-29T02:57:48Z and again at 2026-09-29T03:29:59Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 19,806,883 bytes and SHA-256. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest FBBKXCEZKLHVUSVFCTPCBBVDXCFYASX4.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20220313024936id_/https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:57:48Z",
+        "2026-09-29T03:29:59Z"
+      ],
+      "bytes": 19806883,
+      "sha256": "ccb68d98f52437a491c566152ef65f425052e2c41b7f314f0c331a8324ab794a",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.snd.rsfsr-rf.ru/r2s3.pdf, captured at 2022-03-13T02:49:36Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Second Congress of People's Deputies of the RSFSR, volume III, as an image-only scan of two-page spreads. The sixteenth (morning) sitting of 7 December 1990 (contents, PDF p. 239; printed p. 134 on PDF p. 68) was read. The volume has no text layer; it was searched with a word spotter and the hits read from the page images, so other mentions may be missed. The scan is hosted by the non-official ISTNET / RSFSR-RF.RU project; the recorded identity is a raw Internet Archive capture made before the cutoff.",
+  "edition_and_host": {
+    "edition": "Второй (внеочередной) Съезд народных депутатов РСФСР, 27 нояб. - 15 дек. 1990 г.: Стеногр. отчет: В 6 т. Т. 3. - М.: Республика, 1992. - 478 с. ISBN 5-250-02191-3 (library card, PDF p. 240); an image-only scan of two-page spreads (241 PDF pages): PDF page n shows printed pp. 2n-2 (left) and 2n-1 (right).",
+    "host": "sten.snd.rsfsr-rf.ru, a non-official project of the ISTNET / RSFSR-RF.RU group (the same editors as the SSSR.SU portal), not a state body and not the publisher. It serves page-image scans of the printed stenographic reports of the RSFSR Congresses; its live HTTPS certificate does not verify from this environment, so each identity is a pre-cutoff raw Internet Archive capture (the base32 SHA-1 of the recorded bytes equals the capture's CDX digest)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      68,
+      239,
+      240
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_dr_representatives_council_election_announced_19901207",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "unnamed deputy (\"Депутат (не представился)\")"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage names no one.",
+      "event_kind": "movement_body_election_announced",
+      "attested_on": "1990-12-07",
+      "text": "At the sixteenth (morning) sitting of the Second (extraordinary) Congress of People's Deputies of the RSFSR (7 December 1990), a deputy who did not introduce himself announces: 'Членов блока ”Демократическая Россия” просьба собраться в два часа на балконе. Будет рассматриваться вопрос о выборах в совет представителей движения ”Демократическая Россия”.'",
+      "locator": "Sixteenth sitting: contents, PDF pp. 239-240 (sixteenth sitting printed pp. 71-136, seventeenth from p. 137); announcement, printed p. 134 (PDF p. 68, left page)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

@@ -1,0 +1,206 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd4_steno_vol1",
+  "source_url": "https://web.archive.org/web/20240902002244id_/https://snd.sssr.su/IV/I.pdf",
+  "original_url": "https://snd.sssr.su/IV/I.pdf",
+  "archive_capture_utc": "2024-09-02T00:22:44Z",
+  "source_title": "Четвертый Съезд народных депутатов СССР, 17-27 декабря 1990 г. Стенографический отчет. Том I (sittings 1-10 of 17-21 December 1990), scanned volume, Internet Archive capture 20240902002244",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1990-12-17",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240902002244id_/https://snd.sssr.su/IV/I.pdf",
+  "source_response_bytes": 25557430,
+  "source_response_sha256": "a0e2b8470edec278d89323da0e65d71a48c30b55ff5634e8a1a76b9c7bf3ace1",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/IV/I.pdf",
+    "bytes": 25557430,
+    "sha256": "a0e2b8470edec278d89323da0e65d71a48c30b55ff5634e8a1a76b9c7bf3ace1",
+    "last_modified": "Sat, 25 May 2024 22:20:21 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Discovery: the live file was downloaded at 2026-09-28T23:59:19Z and the raw capture at 2026-09-29T00:11:11Z; identical bytes. This packet: downloaded at 2026-09-29T00:15:24Z and again at 2026-09-29T00:47:11Z (31 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 25,557,430 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest UFZP3PQYKP2I4HJN7WDGZUYZDBZOLL7Z. The independent check re-downloaded the capture and the live file once more (2026-09-29T01:30Z-01:54Z); identical.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20240902002244id_/https://snd.sssr.su/IV/I.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:24Z",
+        "2026-09-29T00:47:11Z"
+      ],
+      "bytes": 25557430,
+      "sha256": "a0e2b8470edec278d89323da0e65d71a48c30b55ff5634e8a1a76b9c7bf3ace1",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/IV/I.pdf",
+      "downloaded_at": [
+        "2026-09-29T00:15:26Z",
+        "2026-09-29T00:47:13Z"
+      ],
+      "bytes": 25557430,
+      "sha256": "a0e2b8470edec278d89323da0e65d71a48c30b55ff5634e8a1a76b9c7bf3ace1",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/IV/I.pdf, captured at 2024-09-02T00:22:44Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Fourth Congress, volume I, as a page-image scan with an ABBYY FineReader 11 OCR layer (620 PDF pages; sittings 1-10, 17-21 December 1990). The sittings of 17, 18, 19 and 20 December 1990 were read for the Soyuz group and the Democratic Russia movement (printed pp. 3, 14, 64, 76, 118-119, 128, 169, 186-187, 325, 361, 370 and 403-404). The scan is hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response).",
+  "edition_and_host": {
+    "edition": "Четвертый съезд народных депутатов СССР, 17-27 декабря 1990 г. Стенографический отчет. Том I. Издание Верховного Совета СССР, Москва, 1991 (title page, PDF p. 3); imprint (PDF p. 617): 'Отдел опубликования актов Секретариата Верховного Совета СССР', 'Сдано в набор 01.02.91. Подписано к печати 13.06.91', 'Тираж 8100 экз.', printed by the Izvestia printing house, Moscow; 620 PDF pages, printed p. N on PDF p. N + 2 for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official stenographic reports as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      5,
+      16,
+      66,
+      78,
+      120,
+      121,
+      130,
+      171,
+      188,
+      189,
+      327,
+      363,
+      372,
+      405,
+      406,
+      617
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd4_gninenko_reports_soyuz_meeting_decision_19901217",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Гниненко Ю. И.",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_decision_reported",
+      "attested_on": "1990-12-17",
+      "text": "At the first sitting of the Fourth Congress (17 December 1990, 10:00, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов'), 'Гниненко Ю. И.' says: 'От имени группы «Союз» хочу сообщить, что на собрании было принято решение в основном одобрить предложенную повестку дня', with the group's proposed additions.",
+      "locator": "First sitting: heading, printed p. 3 (PDF p. 5); statement, printed p. 14 (PDF p. 16)"
+    },
+    {
+      "claim_id": "su_snd4_soyuz_commission_nominees_general_meeting_19901217",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Блохин Ю. В.",
+        "Коган Е. В.",
+        "Чехоев А. Г.",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage prints no office in the group for the speaker.",
+      "event_kind": "group_decision_reported",
+      "attested_on": "1990-12-17",
+      "text": "In the same sitting 'Блохин Ю. В.' reminds the presiding officer that 'мы давали список народных депутатов от группы «Союз», который был утвержден решением нашего общего собрания', including 'кандидатуры депутатов Когана, Чехоева' for a drafting commission; the presiding officer reads the nominations and adds: 'Это предложение внесла депутатская группа «Союз».'",
+      "locator": "First sitting, printed p. 64 (PDF p. 66)"
+    },
+    {
+      "claim_id": "su_snd4_golyakov_murashev_dr_orgcommittee_chair_19901217",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-02",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Голяков А. И.",
+        "Мурашев (народный депутат СССР)",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "'Председатель оргкомитета движения «Демократическая Россия»' (another deputy's description)",
+      "event_kind": "organizing_committee_chair_reference",
+      "attested_on": "1990-12-17",
+      "text": "At the second sitting of the Fourth Congress of People's Deputies of the USSR (17 December 1990, 16:00, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов'), 'Голяков А. И., первый заместитель председателя Всесоюзного совета ветеранов войны, труда и Вооруженных Сил' says: 'Сошлюсь на такой факт. Председатель оргкомитета движения «Демократическая Россия» народный депутат СССР Мурашев в интервью еженедельнику «Аргументы и факты» отмечает, что самыми важными задачами движения «Демократическая Россия» на ближайшее будущее является содействие скорейшему принятию всенародным референдумом новой российской Конституции'.",
+      "locator": "Second sitting: heading, printed p. 76 (PDF p. 78); speaker line, printed p. 118 (PDF p. 120); passage, printed p. 119 (PDF p. 121)"
+    },
+    {
+      "claim_id": "su_snd4_bisher_refers_to_soyuz_leader_19901218",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-04",
+      "role_id": "su_soyuz_co_chair",
+      "holder_name": null,
+      "persons_named": [
+        "Бишер И. О.",
+        "Алкснис В. И.",
+        "Блохин Ю. В."
+      ],
+      "role_title": "Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group",
+      "role_title_as_printed": "'уважаемого руководителя группы «Союз»' (genitive), in a passage about deputy Алкснис",
+      "event_kind": "leadership_reference_by_another_deputy",
+      "attested_on": "1990-12-18",
+      "text": "At the third sitting (18 December 1990; after the break 'Председательствует Председатель Верховного Совета РСФСР Б. Н. Ельцин'), 'Бишер И. О., Первый заместитель Председателя Совета Министров Латвийской ССР' answers 'мой коллега полковник Алкснис': 'Депутат Алкснис считает, что в связи с этим надо отстранить нынешнее руководство страны, сформировать комитет общественного спасения...'; he continues: 'Известно, что в последнее время уважаемого руководителя группы «Союз» не устраивают даже попытки обновить федерацию', and calls deputy Блохин 'представителя этой группы'.",
+      "locator": "Third sitting: heading, printed p. 128 (PDF p. 130); after the break, printed p. 169 (PDF p. 171); speech, printed pp. 186-187 (PDF pp. 188-189)"
+    },
+    {
+      "claim_id": "su_snd4_zaslavsky_murashev_dr_orgcommittee_chair_19901219",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-02",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Заславский И. И.",
+        "Голяков (депутат)",
+        "Мурашев (депутат)",
+        "А. И. Лукьянов (presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "'председателем оргкомитета движения «Демократическая Россия»' (instrumental; another deputy's description)",
+      "event_kind": "organizing_committee_chair_reference",
+      "attested_on": "1990-12-19",
+      "text": "At the sixth sitting (19 December 1990, 16:00, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов'), 'Заславский И. И., председатель Октябрьского районного Совета народных депутатов, г. Москва' says: 'Позавчера в своем выступлении депутат Голяков вступил в идеологическую полемику с председателем оргкомитета движения «Демократическая Россия» депутатом Мурашевым и членом координационного совета «Демократической России» депутатом Заславским.'",
+      "locator": "Sixth sitting: heading, printed p. 325 (PDF p. 327); speech, printed p. 361 (PDF p. 363)"
+    },
+    {
+      "claim_id": "su_snd4_zaslavsky_dr_council_member_19901219",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-02",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Заславский И. И."
+      ],
+      "role_title": null,
+      "role_title_as_printed": "'членом координационного совета «Демократической России»' (self-description)",
+      "event_kind": "member_self_description",
+      "attested_on": "1990-12-19",
+      "text": "In the same sentence 'Заславский И. И.' describes himself as 'членом координационного совета «Демократической России» депутатом Заславским' and refers to his article 'в газете «Демократическая Россия», опубликованной два месяца назад'.",
+      "locator": "Sixth sitting, printed p. 361 (PDF p. 363)"
+    },
+    {
+      "claim_id": "su_snd4_chekhoev_one_of_soyuz_co_chairs_19901220",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-02",
+      "role_id": "su_soyuz_co_chair",
+      "holder_name": "Анатолий Георгиевич Чехоев",
+      "persons_named": [
+        "Чехоев А. Г.",
+        "А. Акаев (Президент Киргизской ССР, presiding)"
+      ],
+      "role_title": "Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group",
+      "role_title_as_printed": "'один из сопредседателей депутатской группы «Союз»' (self-description); printed name 'Чехоев А. Г.' (initials only)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-12-20",
+      "text": "At the seventh sitting (Kremlin Palace of Congresses, 20 December 1990, 10:00, 'Председательствует Президент Киргизской ССР А. Акаев') the presiding officer gives the floor 'депутату Чехоеву'; 'Чехоев А. Г., член Комиссии Совета Национальностей по национальной политике и межнациональным отношениям (Цхинвальский городской национально-территориальный избирательный округ, Юго-Осетинская автономная область)', after the salutation 'Уважаемый Съезд, уважаемый Президиум, уважаемый Президент!', says: 'Как один из сопредседателей депутатской группы «Союз», я хотел бы довести до вас те соображения, которые были высказаны на нашем общем собрании в преддверии настоящего Съезда в отношении нового Союзного Договора.'",
+      "locator": "Seventh sitting: heading, printed p. 370 (PDF p. 372); speech, printed pp. 403-404 (PDF pp. 405-406)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}
