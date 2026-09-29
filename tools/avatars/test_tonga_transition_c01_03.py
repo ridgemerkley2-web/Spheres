@@ -263,7 +263,11 @@ class TongaTransition2024Tests(unittest.TestCase):
         role = self.roles['to_deputy_pm']
         holders = role['holder_claims']
         self.assertEqual(holders[0], 'to_cabinet_appointment')
-        self.assertEqual([h['name'] for h in holders[1:]], ['Poasi Mataele Tei', VAIPULU, FUSIMALOHI])
+        # CLAUDE-C01-36 inserts ten 1990-2021 observations between the string observation and Tei.
+        self.assertEqual([h['name'] for h in holders[1:]], [
+            'Langi Kavaliku', 'Tevita Poasi Tupou', 'James Cecil Cocker', "Viliami Ta'u Tangi", 'Samiu Kuita Vaipulu',
+            'Siaosi Sovaleni', "Lord Ma'afu", 'Semisi Kioa Lafu Sika', "Sione Vuna Fa'otusia", "Lord Ma'afu",
+            'Poasi Mataele Tei', VAIPULU, FUSIMALOHI])
         self.assertIsNone(self.holder('to_deputy_pm', 'Poasi Mataele Tei')['until'])
         vaipulu = self.holder('to_deputy_pm', VAIPULU)
         self.assertEqual((vaipulu['attested_on'], vaipulu['from'], vaipulu['until']), ('2024-12-09', None, None))

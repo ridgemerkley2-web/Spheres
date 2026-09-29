@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20060609_pohiva_statements",
+  "source_url": "https://web.archive.org/web/20060615072009id_/http://www.pmo.gov.to:80/artman/publish/article_121.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_121.shtml",
+  "archive_capture_utc": "2006-06-15T07:20:09Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2006-06-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 14317,
+  "source_response_sha256": "50a84552b6214d1263489c0456040bc68ca388a6bbb19b795645bf78275c3a7d",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "windows-1252 (no charset declared; read as windows-1252)",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:40:41Z and again at 2026-09-29T04:15:53Z (UTC), 35 minutes later, from the same URL: both responses were 14317 bytes with SHA-256 50a84552b6214d1263489c0456040bc68ca388a6bbb19b795645bf78275c3a7d. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:59:10Z and 2026-09-29T03:35:46Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2006-06-15T07:20:09Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PMO press release dated 'Jun 9, 2006, 14:33' quoting the Press Secretary (raw Internet Archive capture of 15 June 2006). Used only for its reference to the Deputy Prime Minister and Minister of Health; the political statements are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_office_with_health_20060609",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-05",
+      "role_id": "to_deputy_pm",
+      "holder_name": null,
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2006-06-09",
+      "text": "The PMO release of 9 June 2006 quotes the Press Secretary as saying that 'as the Deputy Prime Minister and Minister of Health pointed out to him from the floor', Mr. Pohiva's first nominee for the chairmanship of the Committee of the Whole had been HRH Prince Tu'ipelehake.",
+      "locator": "Paragraph 5",
+      "uncertainty": "The office-holder is not named; the claim records only that the Deputy Prime Minister was also Minister of Health by 9 June 2006. The day of the Assembly exchange is not given, so the release date is kept. It is consistent with the retrospective 'In May 2006' (to_dpm_tangi_appointed_may2006_retro) but names nobody and feeds no holder."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

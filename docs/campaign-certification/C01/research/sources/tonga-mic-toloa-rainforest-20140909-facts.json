@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20140909_toloa",
+  "source_url": "https://web.archive.org/web/20170127082234id_/http://www.mic.gov.to:80/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+  "archive_capture_utc": "2017-01-27T08:22:34Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2014-09-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 30803,
+  "source_response_sha256": "b46af3a70632addfe0e2f05af77504ede91fb74299e5ae5d11de3d4b9332a9a3",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:49Z and again at 2026-09-29T04:13:54Z (UTC), 41 minutes later, from the same URL: both responses were 30803 bytes with SHA-256 b46af3a70632addfe0e2f05af77504ede91fb74299e5ae5d11de3d4b9332a9a3. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:20:56Z and 2026-09-29T02:51:49Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-01-27T08:22:34Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release dated '09th September 2014' (raw Internet Archive capture of 27 January 2017). Used only for his styling at the ceremony of Friday 5 September 2014; the project is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_vaipulu_styled_20140905",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-06",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Samiu Kuita Vaipulu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2014-09-05",
+      "text": "The release of 9 September 2014 says that on Friday 5 September 'Hon. Samiu Kuita Vaipulu the Acting Prime Minister, Deputy Prime Minister and Minister for Environment' was guest of honour at a ground-breaking for the Toloa rainforest nursery.",
+      "locator": "Paragraph 1",
+      "uncertainty": "The latest dated record found styling him Deputy Prime Minister in this term. The year of 'Friday 5th of September' is taken from the release's date line. The acting premiership in the same sentence is a separate claim on to_pm. No end is stated; CLAUDE-C01-08's record of him as 'caretaker Deputy Prime Minister' on 29 December 2014 is not cited here."
+    },
+    {
+      "claim_id": "to_acting_pm_vaipulu_20140905",
+      "observation_id": "to_prime_minister",
+      "review_observation": "TO-DPM-06",
+      "role_id": "to_pm",
+      "holder_name": "Hon. Samiu Kuita Vaipulu",
+      "role_title": "Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2014-09-05",
+      "text": "The same sentence styles 'Hon. Samiu Kuita Vaipulu' as 'the Acting Prime Minister' at the ceremony on Friday 5 September 2014.",
+      "locator": "Paragraph 1",
+      "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion)."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

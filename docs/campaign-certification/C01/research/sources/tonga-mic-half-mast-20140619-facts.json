@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20140619_half_mast",
+  "source_url": "https://web.archive.org/web/20200611163419id_/http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+  "archive_capture_utc": "2020-06-11T16:34:19Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2014-06-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 33061,
+  "source_response_sha256": "94f91e69e78011d33d62996fcf71117fd8ddf0feb858486eb40a6f8ca17d5a97",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:46Z and again at 2026-09-29T04:13:51Z (UTC), 41 minutes later, from the same URL: both responses were 33061 bytes with SHA-256 94f91e69e78011d33d62996fcf71117fd8ddf0feb858486eb40a6f8ca17d5a97. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:09:52Z and 2026-09-29T02:40:54Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2020-06-11T16:34:19Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release dated '19 June 2014' (page stamp 'Friday, 20 June 2014 08:31'; raw Internet Archive capture of 11 June 2020). Used only for the Acting Prime Minister's approval; the obituary is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_acting_pm_vaipulu_20140618",
+      "observation_id": "to_prime_minister",
+      "review_observation": "TO-DPM-06",
+      "role_id": "to_pm",
+      "holder_name": "Hon. Samiu Kuita Vaipulu",
+      "role_title": "Prime Minister",
+      "event_kind": "acting_service",
+      "attested_on": "2014-06-18",
+      "text": "The release of 19 June 2014 says that 'The Acting Prime Minister, Hon. Samiu Kuita Vaipulu on 18 June approved' that national flags fly at half-mast on 20 June 2014 for the funeral of Prince Tu'ipelehake.",
+      "locator": "Paragraphs 1 and 2",
+      "uncertainty": "Acting Prime Minister service by the Deputy Prime Minister during an absence: a claim on to_pm only, never a holder of either office and never a boundary (CLAUDE-C01-08 criterion). The year of '18 June' is taken from the release's own date line."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

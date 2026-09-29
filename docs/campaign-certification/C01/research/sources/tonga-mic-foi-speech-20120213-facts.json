@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20120213_foi_speech",
+  "source_url": "https://web.archive.org/web/20170906162059id_/http://www.mic.gov.to:80/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+  "original_url": "http://www.mic.gov.to/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+  "archive_capture_utc": "2017-09-06T16:20:59Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2012-02-29",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 29486,
+  "source_response_sha256": "ecb526ea466ce71c98525d4e434ccefb77d2f0194459833ba4f1fb01789a37e0",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:32:38Z and again at 2026-09-29T04:13:43Z (UTC), 41 minutes later, from the same URL: both responses were 29486 bytes with SHA-256 ecb526ea466ce71c98525d4e434ccefb77d2f0194459833ba4f1fb01789a37e0. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:41:38Z and 2026-09-29T02:29:17Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-09-06T16:20:59Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Government portal video-gallery page stamped 'Wednesday, 29 February 2012 16:27' (raw Internet Archive capture of 6 September 2017). Only its title is used; the video itself was not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_vaipulu_styled_20120213",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-06",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Samiu Kuita Vaipulu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2012-02-13",
+      "text": "A government portal page of 29 February 2012 is titled 'Speech by the Deputy Prime Minister Hon. Samiu Kuita Vaipulu' at the national freedom-of-information consultation workshop 'on Monday 13 February 2012'.",
+      "locator": "Page title",
+      "uncertainty": "A styling dated to the speech day the title gives; no appointment or end date."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

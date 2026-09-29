@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20160907_renewable",
+  "source_url": "https://web.archive.org/web/20160916095045id_/http://www.mic.gov.to:80/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+  "archive_capture_utc": "2016-09-16T09:50:45Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2016-09-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 31933,
+  "source_response_sha256": "71286caa8d86e3fddbb277a32ddbd22e2caeac0fb8d413401fb284fa60375f78",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:07Z and again at 2026-09-29T04:14:10Z (UTC), 41 minutes later, from the same URL: both responses were 31933 bytes with SHA-256 71286caa8d86e3fddbb277a32ddbd22e2caeac0fb8d413401fb284fa60375f78. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:48:52Z and 2026-09-29T02:32:55Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2016-09-16T09:50:45Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release dated '07th September 2016' (raw Internet Archive capture of 16 September 2016). Used only for his styling at the press conference of 4 September 2016; the energy commitment is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_sovaleni_styled_20160904",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Siaosi Sovaleni",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2016-09-04",
+      "text": "The release of 7 September 2016 says that 'The Deputy Prime Minister and Minister of MEIDECC Hon. Siaosi Sovaleni' announced Tonga's renewable-energy commitment at a press conference at the Hawaii Convention Centre 'on 4th of September 2016'.",
+      "locator": "Paragraph 1",
+      "uncertainty": "A contemporaneous styling dated to the press conference; no appointment or end date."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

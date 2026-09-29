@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_term_report_2017_2021",
+  "source_url": "https://web.archive.org/web/20211124235017id_/https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+  "original_url": "https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+  "archive_capture_utc": "2021-11-24T23:50:17Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_read_and_pages_rendered",
+  "source_response_bytes": 15526342,
+  "source_response_sha256": "37d85723dd6c1a794c60431135d305dd0f3191d47f022ec2465a108cb3a76f87",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "not applicable (PDF; text layer read and pages rendered)",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:50Z and again at 2026-09-29T04:14:59Z (UTC), 41 minutes later, from the same URL: both responses were 15526342 bytes with SHA-256 37d85723dd6c1a794c60431135d305dd0f3191d47f022ec2465a108cb3a76f87. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:56:07Z and 2026-09-29T02:37:07Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-11-24T23:50:17Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Legislative Assembly's Tongan-language report on the work of the Assembly of November 2017 to September 2021, appendix 1 (members' roles), as a raw Internet Archive capture of 24 November 2021 (238 pages; PDF metadata created 15 September 2021 and modified 23 September 2021; no published date recorded). The English renderings are this packet's reading. Used only for the three Deputy Prime Minister entries; the other roles are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      206,
+      208,
+      209
+    ],
+    "method": "PDF text layer read around each Deputy Prime Minister entry; PDF pages 206, 208 and 209 (printed pages 203, 205 and 206) rendered and visually checked, confirming that each role line sits under the member it is printed with in the two-column table."
+  },
+  "rows": [
+    {
+      "claim_id": "to_la_report_sika_dpm_jan2018_sep2019",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-08",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Semisi Kioa Lafu Sika",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "retrospective_list",
+      "attested_on": null,
+      "text": "Appendix 1 of the Assembly's 2017-2021 report lists 'Semisi Kioa Lafu Sika' (People's Representative for Tongatapu 2) with 'Tokoni Palemia (Sanuali 2018 – Sepitema 2019)' (Deputy Prime Minister, January 2018 - September 2019).",
+      "locator": "PDF page 208 (printed page 205), appendix 1 table",
+      "uncertainty": "A retrospective list with months only: it supplies no start or end day and is never a holder date or boundary."
+    },
+    {
+      "claim_id": "to_la_report_faotusia_dpm_oct2019_2020",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-09",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Sione Vuna Fa'otusia",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "retrospective_list",
+      "attested_on": null,
+      "text": "The same appendix lists 'Sione Vuna Fa'otusia' (People's Representative for Tongatapu 7) with 'Tokoni Palemia ('Okatopa 2019 – 2020)' (Deputy Prime Minister, October 2019 - 2020).",
+      "locator": "PDF page 209 (printed page 206), appendix 1 table",
+      "uncertainty": "A retrospective list with a month and a year only; it supplies no start or end day and is never a holder date or boundary."
+    },
+    {
+      "claim_id": "to_la_report_maafu_dpm_from_dec2020",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-10",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "retrospective_list",
+      "attested_on": null,
+      "text": "The same appendix lists 'Lord Ma'afu' (Nobles' Representative No. 2 for Tongatapu) with 'Tokoni Palemia (mei Tisema 2020)' (Deputy Prime Minister, from December 2020).",
+      "locator": "PDF page 206 (printed page 203), appendix 1 table",
+      "uncertainty": "A retrospective list with a month only; it supplies no start day and is never a holder date or boundary. It does not list his deputy premiership of 2017."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

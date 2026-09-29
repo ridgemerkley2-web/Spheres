@@ -301,7 +301,9 @@ class TongaTransitionTests(unittest.TestCase):
             (lambda p: sovaleni(p).update({'from': '2026-09-08'}), 'exceeds cutoff'),
             (lambda p: sovaleni(p).update(until='2021-12-26'), 'Reversed historical interval'),
             (lambda p: source(p, 'to_pmo_cabinet_20211229')['claims'][1].update(attested_on='2026-09-08'), 'exceeds cutoff'),
-            (lambda p: next(h for h in role(p, 'to_deputy_pm')['holder_claims'] if isinstance(h, dict)).update(
+            # CLAUDE-C01-36 adds earlier observations before Tei, so this packet's holder is found by name.
+            (lambda p: next(h for h in role(p, 'to_deputy_pm')['holder_claims']
+                            if isinstance(h, dict) and h['name'] == 'Poasi Mataele Tei').update(
                 claim_ids=[APPOINTMENT[0]]), 'cited source'),
         ]
         for change, message in cases:

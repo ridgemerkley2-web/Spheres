@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_20191028_oath",
+  "source_url": "https://web.archive.org/web/20191122121749id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+  "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+  "archive_capture_utc": "2019-11-22T12:17:49Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-10-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 37376,
+  "source_response_sha256": "19e943fd9abc5f7cb86cfe8cee22cad447ac3e37e6a33dc98aa82ac4cdc9f4a1",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:38Z and again at 2026-09-29T04:14:43Z (UTC), 41 minutes later, from the same URL: both responses were 37376 bytes with SHA-256 19e943fd9abc5f7cb86cfe8cee22cad447ac3e37e6a33dc98aa82ac4cdc9f4a1. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:44:52Z and 2026-09-29T02:36:51Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2019-11-22T12:17:49Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 28 October 2019' (raw Internet Archive capture of 22 November 2019). Used only for the oath and the Deputy Prime Minister's list entry; the other ministers are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_faotusia_oath_news_20191028",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-09",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Vuna Fa'otusia",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "oath",
+      "attested_on": "2019-10-28",
+      "text": "The Assembly item of 28 October 2019 says that the Prime Minister and Cabinet 'were sworn in at the Legislative Assembly today', listing 'Deputy Prime Minister & Ministry of Justice and Prison – Hon. Vuna Fa'otusia'.",
+      "locator": "Paragraph 1 and list item 2",
+      "uncertainty": "The oath is an event, not a start; the effective day of the appointment is a separate claim."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_la_news_20210901_faotusia",
+  "source_url": "https://web.archive.org/web/20210902180606id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+  "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+  "archive_capture_utc": "2021-09-02T18:06:06Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2021-09-01",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 41553,
+  "source_response_sha256": "ec4ae5f74b62bd61e98fea8b2dceb7a0a76bbd9793c4c8a6eb039db54d604f5c",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:46Z and again at 2026-09-29T04:14:51Z (UTC), 41 minutes later, from the same URL: both responses were 41553 bytes with SHA-256 ec4ae5f74b62bd61e98fea8b2dceb7a0a76bbd9793c4c8a6eb039db54d604f5c. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:44:56Z and 2026-09-29T02:37:02Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-09-02T18:06:06Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Assembly news item 'Created: 01 September 2021' (raw Internet Archive capture of 2 September 2021). Used only for the retrospective sentence on his deputy premiership; the condolences are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_faotusia_resignation_2020_retro",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-09",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon Sione Vuna Fa'otusia",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The Assembly's condolence item of 1 September 2021 on 'the late Hon Sione Vuna Fa'otusia' says that 'He also served as the Deputy Prime Minister of Tonga until his resignation in 2020.'",
+      "locator": "Paragraph 2",
+      "uncertainty": "Retrospective and year only: it gives no day or month for the resignation, no acceptance and no instrument, so the holder has no until. Never a holder date or boundary."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

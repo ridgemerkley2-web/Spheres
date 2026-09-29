@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_mic_20170831_macbio",
+  "source_url": "https://web.archive.org/web/20170903073650id_/http://mic.gov.to:80/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+  "original_url": "http://mic.gov.to/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+  "archive_capture_utc": "2017-09-03T07:36:50Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2017-08-31",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 33077,
+  "source_response_sha256": "2d78ccd04685450a79cccc2d6cb0f3fbbab7917fbbb5014ff78d572d62f76d98",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "utf-8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:14Z and again at 2026-09-29T04:14:17Z (UTC), 41 minutes later, from the same URL: both responses were 33077 bytes with SHA-256 2d78ccd04685450a79cccc2d6cb0f3fbbab7917fbbb5014ff78d572d62f76d98. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T01:49:04Z and 2026-09-29T02:35:02Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2017-09-03T07:36:50Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Press release dated '31st August,2017' (raw Internet Archive capture of 3 September 2017). Its address has 'caretaker-dpm'; the page itself says 'Deputy Prime Minister'. Used only for his styling at the launch; the reports are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (body, dateline and headings); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_sovaleni_styled_20170830",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-07",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Hon. Siaosi Sovaleni",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "attested_in_office",
+      "attested_on": "2017-08-30",
+      "text": "The release of 31 August 2017 reports that 'Deputy Prime Minister Hon. Siaosi Sovaleni officially launched two MACBIO Reports ... yesterday evening at Davina House, Ma'ufanga.'",
+      "locator": "Paragraph 1",
+      "uncertainty": "The latest dated record found styling him Deputy Prime Minister; 'yesterday evening' is read from the release's date line as 30 August 2017. It falls after the Assembly's dissolution of 24 August 2017; the page address has 'caretaker-dpm' but the text does not, and no caretaker status is asserted."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

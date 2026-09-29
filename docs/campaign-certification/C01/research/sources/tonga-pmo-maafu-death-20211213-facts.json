@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "to_pmo_20211213_maafu_death",
+  "source_url": "https://web.archive.org/web/20250415130759id_/https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+  "original_url": "https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+  "archive_capture_utc": "2025-04-15T13:07:59Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2021-12-13",
+  "access_method": "downloaded_archived_raw_capture_and_image_read",
+  "source_response_bytes": 258072,
+  "source_response_sha256": "3adfa6775d2554271056c0514d421051a03092c38087cbb3c0c0c259ee18978a",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "not applicable (JPEG image; text read visually)",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with the request header 'Accept-Encoding: identity' and no automatic decoding (for example curl -s -H 'Accept-Encoding: identity' -o FILE URL, without --compressed), then hash the body. The archive returned this capture without a Content-Encoding header, so the body is hashed as received.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded for this packet at 2026-09-29T03:33:59Z and again at 2026-09-29T04:15:09Z (UTC), 41 minutes later, from the same URL: both responses were 258072 bytes with SHA-256 3adfa6775d2554271056c0514d421051a03092c38087cbb3c0c0c259ee18978a. The raw id_ form replays the stored capture rather than generating a page per request. The research downloads of 2026-09-29T02:28:28Z and 2026-09-29T02:59:17Z (UTC) had already recorded the same identity.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-04-15T13:07:59Z, before the 7 September 2026 cutoff; the capture is used in place of the live page. The identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). The original response is not checked into this repository; this checked-in file is a derived factual extract, not a copy of the original response or of an archived snapshot, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only, with short quotations. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "English PMO media release published as an image (JPEG) with the PMO post of 14 December 2021; raw Internet Archive capture of the image of 15 April 2025. Signed by the Prime Minister and dated 13 December 2021. A Tongan version is not imported. Used for the styles at death and the day of death; the funeral note is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The release image was viewed at full size: the date line, the heading, the paragraph of styles, the day of death and the signature block. The coat of arms and signature were not used."
+  },
+  "rows": [
+    {
+      "claim_id": "to_dpm_maafu_styled_at_death_20211213",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-10",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "styled_at_death",
+      "attested_on": null,
+      "text": "The PMO media release of 13 December 2021 announces the death of 'the Lord Ma'afu', styling him Lord Minister in Waiting to His Majesty in Privy Council, 'Deputy Prime Minister', Minister for Lands and Natural Resources and Minister responsible for His Majesty's Armed Forces.",
+      "locator": "Release image, paragraph 1",
+      "uncertainty": "Styles him Deputy Prime Minister at his death on 12 December 2021 (a separate claim); no structured date is stored, since the release's date (its publication, 13 December) falls after the death."
+    },
+    {
+      "claim_id": "to_dpm_maafu_death_20211212",
+      "observation_id": "to_cabinet",
+      "review_observation": "TO-DPM-10",
+      "role_id": "to_deputy_pm",
+      "holder_name": "Lord Ma'afu",
+      "role_title": "Deputy Prime Minister",
+      "event_kind": "death_in_office",
+      "attested_on": "2021-12-12",
+      "text": "The same release states that 'His Lordship' (Lord Ma'afu) 'passed away in the early hours of Sunday, 12 December 2021, at the Auckland City Hospital, New Zealand.'",
+      "locator": "Release image, paragraph 2",
+      "uncertainty": "The stated day of death (Auckland), a death in office that gives the holder's until. Who, if anyone, held or acted in the office from then until the Cabinet effective 28 December 2021 is not stated."
+    }
+  ],
+  "bounded_scope": "Deputy Prime Minister observations for CLAUDE-C01-36 only (role to_deputy_pm on the to_cabinet observation), with acting Prime Minister service by a Deputy recorded as claims on to_pm (to_prime_minister). A royal appointment, a Cabinet announcement, an effective date, an oath, acting service, a resignation or removal and a roster or styling stay separate rows; holder observations are decided in the packet, not by any row."
+}

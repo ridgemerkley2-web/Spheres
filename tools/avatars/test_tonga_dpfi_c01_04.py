@@ -209,14 +209,20 @@ class TongaDpfiTests(unittest.TestCase):
                   ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18'),
                   ("Prince 'Ulukalala Lavaka Ata", '2000-01-03'), ("Samuela 'Akilisi Pohiva", '2018-01-02'),
                   # CLAUDE-C01-03: the 2025 Cabinet's stated effective date for the new Deputy Prime Minister.
-                  ('Taniela Likuohihifo Fusimalohi', '2025-01-28')}
+                  ('Taniela Likuohihifo Fusimalohi', '2025-01-28'),
+                  # CLAUDE-C01-36: the stated effective or commencement days of five Deputy Prime Ministers, 2001-2019.
+                  ('Tevita Poasi Tupou', '2001-01-24'), ('Samiu Kuita Vaipulu', '2011-01-04'), ("Lord Ma'afu", '2017-09-01'),
+                  ('Semisi Kioa Lafu Sika', '2018-01-05'), ("Sione Vuna Fa'otusia", '2019-10-09')}
         stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18'),
                        ("Prince 'Ulukalala Lavaka Ata", '2006-02-11'),
                        # CLAUDE-C01-03: Sovaleni's resignation 'effective immediately' and its acceptance, 9 December 2024.
                        ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09'),
                        # CLAUDE-C01-24: Veikune's Speakership 'ended on 25th January, 2006', as the PMO states, and the
                        # revocation of Lasike's appointment 'effective immediately' by the letter of 17 July 2012.
-                       ('Hon. Veikune', '2006-01-25'), ('Lord Lasike', '2012-07-17')}
+                       ('Hon. Veikune', '2006-01-25'), ('Lord Lasike', '2012-07-17'),
+                       # CLAUDE-C01-36: Tupou's resignation accepted on 28 September 2001, and Lord Ma'afu's death in office
+                       # on 12 December 2021, as the PMO states.
+                       ('Tevita Poasi Tupou', '2001-09-28'), ("Lord Ma'afu", '2021-12-12')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 if entry['until'] is not None:
@@ -265,10 +271,16 @@ class TongaDpfiTests(unittest.TestCase):
             "Lord Tu'ivakano", 'Lord Fakafanua', 'Lord Fakafanua', 'Lord Vaea'])
         for entry in speaker[1:]:
             self.assertFalse(set(entry['claim_ids']) & NEW_CLAIMS, entry['name'])
-        for _, entry, _ in self.holder_ids():
+        for role_id, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
+                # CLAUDE-C01-36's to_deputy_pm observation of Semisi Kioa Lafu Sika (Deputy Prime Minister with effect from 5
+                # January 2018) is the one exception to 'Sika'; it cites none of this packet's claims (checked above).
+                exempt = (role_id, entry['name']) == ('to_deputy_pm', 'Semisi Kioa Lafu Sika')
                 for name in ('Sika', 'Siaosi Pohiva', 'Siaosi Vailahi', 'Piukala', 'Puloka', 'Fasi'):
-                    self.assertNotIn(name, entry['name'])
+                    if not (exempt and name == 'Sika'):
+                        self.assertNotIn(name, entry['name'])
+        self.assertEqual([(r, e['name']) for r, e, _ in self.holder_ids() if isinstance(e, dict) and 'Sika' in e['name']],
+                         [('to_deputy_pm', 'Semisi Kioa Lafu Sika')])
 
     def test_court_names_are_separate_observations_and_the_grouping_stays_provisional(self):
         dpfi = self.entries['to_dpfi']

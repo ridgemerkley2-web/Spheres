@@ -417,8 +417,9 @@ class TongaSpeakerTests(unittest.TestCase):
         ids = self.validate()
         self.assertLessEqual(NEW_SOURCES, set(ids['sources']))
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims), len(set(self.new_claims))), (49, 82, 82))
-        # The new sources follow every earlier packet's, in this packet's order.
-        self.assertEqual([s['id'] for s in self.packet['sources'][119:]], ORDER)
+        # The new sources follow every earlier packet's, in this packet's order. CLAUDE-C01-36's sources follow these 49,
+        # so the block is pinned by its fixed position.
+        self.assertEqual([s['id'] for s in self.packet['sources'][119:168]], ORDER)
         self.assertEqual(list(self.sources)[118], 'to_gazette_ext_28_2019')
         # Every new claim sits on the Speaker role and the Assembly entry, and no other entry or role cites one.
         self.assertEqual(self.role['claim_ids'], ['to_constitution_assembly', STRING_HOLDER] + self.new_claims)
@@ -552,7 +553,8 @@ class TongaSpeakerTests(unittest.TestCase):
                          ['TO-SPK-01', 'TO-SPK-02/03', 'TO-SPK-05/06', 'TO-SPK-07'])
         self.assertTrue(unresolved[0].startswith('Build dated membership, Speakers, acting Speakers'))
         self.assertEqual(sum('Speaker packet 24' in u for u in self.packet['coverage']['unresolved']), 1)
-        self.assertTrue(self.packet['coverage']['unresolved'][-1].startswith('Speaker packet 24'))
+        # CLAUDE-C01-36 appends its own packet note after this one, so the entry is pinned at its fixed position.
+        self.assertTrue(self.packet['coverage']['unresolved'][13].startswith('Speaker packet 24'))
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:
