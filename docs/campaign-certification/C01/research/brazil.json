@@ -7930,8 +7930,8 @@
       "scope_note": "The PDT home page dated by its own update line 'Última atualização: Brasília, 3a. feira, 06/07/04, 10h17m', captured 7 July 2004. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-home-20040706-facts.json",
-        "bytes": 5091,
-        "sha256": "450f555b6c4a69abe369210cd44781c31f469489a0bb11d07534cd189702c44a"
+        "bytes": 5108,
+        "sha256": "22c16e5554523bd45ed915906ce9dace6121f2f20e25b205d6a053004e2a136f"
       },
       "claims": [
         {
@@ -7941,7 +7941,7 @@
           "locator": {
             "section": "Headline list at the top of the page"
           },
-          "uncertainty": "The earliest day-dated PDT record found that styles him the national President, fifteen days after Brizola's death, without 'interino' or 'em exercício'. Dates the holder observation on its own day; not itself a start."
+          "uncertainty": "The earliest day-dated PDT record found that styles him the national President, fifteen days after Brizola's death, without 'interino' or 'em exercício', but within the period that the party's 2019 history records as his interim service (from the executive's meeting of 28 June 2004 to his election on 21 March 2005); a claim only, never a holder date (integrator's ruling, following CLAUDE-C01-22's Genoino precedent)."
         },
         {
           "id": "br_pdt_home_links_executive_note_after_succession_20040706",
@@ -7967,8 +7967,8 @@
       "scope_note": "The PDT site's undated roster of its national leadership, captured 22 July 2004. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-direcao-nacional-capt20040722-facts.json",
-        "bytes": 4420,
-        "sha256": "c2cfdfdfa482490c6de349e7e79701b12465e0708fc32b4cb6f3246fcae3e05c"
+        "bytes": 4430,
+        "sha256": "c3f8a0a40de90ce188b53a0b183b7835f8bd3c3ab9cb5aa7772e48b19c5cb98e"
       },
       "claims": [
         {
@@ -7977,7 +7977,7 @@
           "locator": {
             "section": "Top of the roster"
           },
-          "uncertainty": "An undated roster: a continuation claim with no structured date is stored."
+          "uncertainty": "An undated roster, captured within the period that the party's 2019 history records as his interim service (from 28 June 2004 to 21 March 2005): a claim only, never a holder date, and no structured date is stored."
         }
       ]
     },
@@ -8023,8 +8023,8 @@
       "scope_note": "A PDT site item dated 1 March 2005 reproducing the convocation notice and Resolution 005/05 of 28 February 2005, captured 5 March 2005. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pdt-edital-convencao-20050228-facts.json",
-        "bytes": 5276,
-        "sha256": "632a0ffeec0e32cce3984f7f747355b2639fc0b79b74f70da92e2e84c664bdbc"
+        "bytes": 5280,
+        "sha256": "2a788b00fca91c411b749ea1b22d0849d717928824cd2696193f449cf90364f6"
       },
       "claims": [
         {
@@ -8034,7 +8034,7 @@
           "locator": {
             "section": "Signature blocks of the Edital and of Resolução nº 005/05"
           },
-          "uncertainty": "Signed acts of their own day, in the term already observed from 6 July 2004. An in-office styling within a term already observed on an earlier day (continuation): a claim only, never a holder date."
+          "uncertainty": "Signed acts of their own day, within the period that the party's 2019 history records as his interim service (from the executive's meeting of 28 June 2004 to his election on 21 March 2005): a claim only, never a holder date."
         },
         {
           "id": "br_pdt_convention_convoked_for_20050321_20050228",
@@ -8265,7 +8265,7 @@
           "locator": {
             "section": "Paragraph beginning 'Os grandes setores midiáticos'"
           },
-          "uncertainty": "Retrospective, so no structured date is stored: a claim only, never a start. It conflicts with the 2004 profile (automatic succession on Brizola's death) and the contemporaneous home page of 6 July 2004 ('presidente nacional', without 'interino'); whether his service from June 2004 to March 2005 was interim is open."
+          "uncertainty": "Retrospective, so no structured date is stored: a claim only, never a start. It conflicts with the 2004 profile (automatic succession on Brizola's death) and the contemporaneous home page of 6 July 2004 ('presidente nacional', without 'interino'); by the integrator's ruling his service from June 2004 to March 2005 is interim, so its stylings are claims only and never holder dates."
         },
         {
           "id": "br_pdt_history_xvi_convention_reelects_lupi_2007",
@@ -10743,21 +10743,7 @@
                 "br_pdt_brizola_dies_as_presidente_nacional_20040621"
               ],
               "note": "Observed on 2 June 2004: a PDT item of that day says 'Decisão se deu em reunião das bancadas com o Presidente Nacional do Partido, Leonel Brizola (Brasilia - 02/06/04)'. Until 21 June 2004: the PDT home page updated at 22h15m that day reports that 'O presidente nacional do PDT' Leonel de Moura Brizola 'faleceu ás 21h29m'.",
-              "uncertainty": "The end rests on the party's same-day statement that its national President died in office; it is a death, not a successor's start (fallback: a death claim only and no until). The Curitiba report of 22 June 2004 (21:20, 'ontem') is a claim, and his Tijolaço column printed '06.05.2004' is an undated claim because its own text places it in early June 2004. No start: the convention of March 2003 appears in the 2004 profile of Carlos Lupi (month only) and in the party's 2019 history (21 March 2003, retrospective); neither says that Brizola was re-elected there, and neither is a start."
-            },
-            {
-              "name": "Carlos Lupi",
-              "attested_on": "2004-07-06",
-              "from": null,
-              "until": null,
-              "sources": [
-                "br_pdt_home_20040706"
-              ],
-              "claim_ids": [
-                "br_pdt_lupi_presidente_nacional_home_20040706"
-              ],
-              "note": "Observed on 6 July 2004: the PDT home page updated that day heads 'Perfil de Carlos Lupi, presidente nacional do PDT'.",
-              "uncertainty": "No start: the undated 2004 profile says he 'assume automaticamente a Presidência Nacional do PDT com a morte de Leonel Brizola' as first vice-president but prints no day; the party's 2019 history says he assumed 'interinamente' at the executive's meeting of 28 June 2004 and was elected on 21 March 2005; its 2017 'Líderes Históricos' page gives 21 June 2004. The home page of 6 July 2004 also links a 'Nota da Executiva Nacional' at partido/pdt280604.asp, whose file name suggests 28 June 2004; it was never archived. Contemporaneous records weigh against an interim reading: the roster captured 22 July 2004 lists 'Presidente Carlos Lupi' with no first vice-president, and the report of 21 March 2005 calls him 'o atual presidente nacional' and says he was 'confirmado na presidência do partido'. Whether his service before March 2005 was interim is open for Codex to rule; if it was, this observation becomes a claim. Brizola's death is never used as his start."
+              "uncertainty": "The end rests on the party's same-day statement that its national President died in office; it is a death, not a successor's start (fallback: a death claim only and no until). The day comes from the page's printed update line (Monday 21/06/04, 22h15m) with 'esta noite' (that evening); the same item misdates his admission to the clinic ('segunda-feira, 20/06', a Sunday) without affecting the day of death. The Curitiba report of 22 June 2004 (21:20, 'ontem') is a claim, and his Tijolaço column printed '06.05.2004' is an undated claim because its own text places it in early June 2004. No start: the convention of March 2003 appears in the 2004 profile of Carlos Lupi (month only) and in the party's 2019 history (21 March 2003, retrospective); neither says that Brizola was re-elected there, and neither is a start."
             },
             {
               "name": "Carlos Lupi",
@@ -10771,7 +10757,7 @@
                 "br_pdt_lupi_signs_resolution_001_07_as_presidente_nacional_20070209"
               ],
               "note": "Observed on 9 February 2007: Resolução nº 001/07 of that day closes 'CARLOS LUPI Presidente Nacional'.",
-              "uncertainty": "No start: the convention of 21 March 2005 (re-election) is never a start, and the re-election of 9 March 2007 is known only from the party's 2019 history. No end: his leave, which the 2019 history dates 12 March 2008 and a news reprint (a lead) to 7 March 2008 or earlier, is a claim; the day he resumed after the 2009 convention is not found."
+              "uncertainty": "Lupi's first holder observation: his service from June 2004 to his election of 21 March 2005, which the party's 2019 history calls interim, is claims only (the stylings of 6 July 2004, the roster captured 22 July 2004 and the edital of 28 February 2005). No start: the convention of 21 March 2005 (re-election) is never a start, and the re-election of 9 March 2007 is known only from the party's 2019 history. No end: his leave, which the 2019 history dates 12 March 2008 and a news reprint (a lead) to 7 March 2008 or earlier, is a claim; the day he resumed after the 2009 convention is not found."
             },
             {
               "name": "Carlos Lupi",
@@ -10799,7 +10785,7 @@
                 "br_pdt_lupi_styled_presidente_nacional_20250521"
               ],
               "note": "Observed on 21 May 2025: the PDT item of that day, reporting his return decided 'nesta terça-feira (20)', attributes his statement to 'o presidente nacional do PDT'.",
-              "uncertainty": "No start: the executive's decision of 20 May 2025 is a return from leave, not a stated day of resumption. The styling sits in the report of the return and introduces a statement on the decisions of the meeting of 20 May; if Codex treats it like a styling on the day of an election, the resumed service is observed first on 19 August 2026 (a continuation claim with a weekday slip) and 4 September 2026. André Figueiredo's service as 'presidente em exercício' from 2 February 2023 is a claim only and never a holder."
+              "uncertainty": "No start: the executive's decision of 20 May 2025 is a return from leave, not a stated day of resumption. The styling sits in the report of the return and introduces a statement on the decisions of the meeting of 20 May; if Codex treats it like a styling on the day of an election, the resumed service is observed first on 4 September 2026 (the styling of 19 August 2026, whose event day carries a weekday slip, stays a continuation claim). André Figueiredo's service as 'presidente em exercício' from 2 February 2023 is a claim only and never a holder."
             },
             {
               "name": "Carlos Lupi",
@@ -10816,7 +10802,7 @@
               "uncertainty": "A second observation of the service resumed in May 2025, three days before the cutoff; the styling of 19 August 2026 is a continuation claim. No end is recorded."
             }
           ],
-          "scope_note": "Presidente Nacional do Partido Democrático Trabalhista, the party office, recorded on the PDT's 2024 funding observation (whose identity, lifecycle and empty game mapping are unchanged). CLAUDE-C01-34 keeps national conventions, elections and re-elections, the succession of 2004, leaves and returns, acting service, the death of a President and in-office attestations as separate dated claims. A holder has a start only where a source states the day the office was assumed (no PDT record found does), and an end only where a source states the day it ended (the party's same-day report of Leonel Brizola's death in office on 21 June 2004 is the only one); otherwise it is dated by attested_on from an in-office attestation of that day. Acting service and continuation stylings are claims only, never holders, and never split or end a holder. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's selection, election or first styling. Party office and state office stay separate: ministerial, legislative and gubernatorial offices never start, end or split a holder, and no br_presidency claim or source feeds this role. Retrospective histories, profiles and SGIP registry exercise periods are claims, never boundaries. Holder names are normalised and the printed forms stay in the claim texts; every claim and source id of this role begins br_pdt_."
+          "scope_note": "Presidente Nacional do Partido Democrático Trabalhista, the party office, recorded on the PDT's 2024 funding observation (whose identity, lifecycle and empty game mapping are unchanged). CLAUDE-C01-34 keeps national conventions, elections and re-elections, the succession of 2004, leaves and returns, acting service, the death of a President and in-office attestations as separate dated claims. A holder has a start only where a source states the day the office was assumed (no PDT record found does), and an end only where a source states the day it ended (the party's same-day report of Leonel Brizola's death in office on 21 June 2004 is the only one); otherwise it is dated by attested_on from an in-office attestation of that day. Acting service and continuation stylings are claims only, never holders, and never split or end a holder. Carlos Lupi's service from June 2004 to his election of 21 March 2005, which the party's 2019 history calls interim, is likewise claims only: its stylings of 6 July 2004, the roster captured 22 July 2004 and 28 February 2005 are never holder dates. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's selection, election or first styling. Party office and state office stay separate: ministerial, legislative and gubernatorial offices never start, end or split a holder, and no br_presidency claim or source feeds this role. Retrospective histories, profiles and SGIP registry exercise periods are claims, never boundaries. Holder names are normalised and the printed forms stay in the claim texts; every claim and source id of this role begins br_pdt_."
         }
       ],
       "sources": [
@@ -10899,7 +10885,7 @@
           "Reconcile the exact source identity and separately dated name variants before any game mapping.",
           "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
           "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established.",
-          "PDT national presidents 1990-2026 (CLAUDE-C01-34): role br_pdt_president holds eight holder observations from the party's archived site (Leonel Brizola observed on 11 April 1997, 26 August 1999 and 2 June 2004, with one stated end, his death in office on 21 June 2004; Carlos Lupi observed on 6 July 2004, 9 February 2007, 21 December 2021, 21 May 2025 and 4 September 2026) and claims from two closed SGIP organs. Still open: who held the office on 1 January 1990 (the party's 2019 history ties Brizola's 1992 recondução to the death of Doutel de Andrade); the form and day of Lupi's assumption in June 2004 (automatic, interim from 28 June 2004, or 21 June 2004); his 2008 leave and the day he resumed; any contemporaneous record of 2011-2016 and the result of the convention of 21 January 2022; and every start day. The organization's identity, lifecycle and empty game mapping are unchanged."
+          "PDT national presidents 1990-2026 (CLAUDE-C01-34): role br_pdt_president holds seven holder observations from the party's archived site (Leonel Brizola observed on 11 April 1997, 26 August 1999 and 2 June 2004, with one stated end, his death in office on 21 June 2004; Carlos Lupi observed on 9 February 2007, 21 December 2021, 21 May 2025 and 4 September 2026) and claims from two closed SGIP organs; Lupi's service from June 2004 to his election of 21 March 2005, interim by the party's 2019 history, is claims only. Still open: who held the office on 1 January 1990 (the party's 2019 history ties Brizola's 1992 recondução to the death of Doutel de Andrade); the day Lupi's interim service began in June 2004 (28 June 2004 by the 2019 history, 21 June 2004 by a later retrospective page; the 2004 profile says he succeeded automatically); his 2008 leave and the day he resumed; any contemporaneous record of 2011-2016 and the result of the convention of 21 January 2022; and every start day. The organization's identity, lifecycle and empty game mapping are unchanged."
         ]
       },
       "source_identifier": {
@@ -14083,7 +14069,7 @@
       "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
       "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted.",
       "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted.",
-      "PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34): the MDB funding observation br_tse_fefc_2024_party_01 now holds one party role, br_mdb_president, and the PDT funding observation br_tse_fefc_2024_party_02 one party role, br_pdt_president, each with dated holder observations; the PFL/DEM national presidency is recorded only as claims (sources br_pfl_*) that no organization, role or holder cites, and the UNIÃO funding observation is unchanged. Renamings (PFL to Democratas, PMDB to MDB) and the fusion of the Democratas with the PSL into União Brasil are claims about the organizations, never merged identities. Party office and state office stay separate, acting and interim service is claims only, the presidency, vice-presidency and PT holders are unchanged, and no game identity or portrait permission is granted. At most ten people are researched: Leonel Brizola and Carlos Lupi (PDT); Jader Barbalho, Michel Temer, Romero Jucá and Baleia Rossi (PMDB/MDB); Jorge Bornhausen, Rodrigo Maia, José Agripino and ACM Neto (PFL/DEM, claims only). The PMDB presidents of 1990-1998 (Ulysses Guimarães, Orestes Quércia, Luiz Henrique da Silveira, Paes de Andrade), the PFL presidents before 1999 (including Hugo Napoleão) and every other party office remain unresearched."
+      "PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 (CLAUDE-C01-34): the MDB funding observation br_tse_fefc_2024_party_01 now holds one party role, br_mdb_president, and the PDT funding observation br_tse_fefc_2024_party_02 one party role, br_pdt_president, each with dated holder observations; the PFL/DEM national presidency is recorded only as claims (sources br_pfl_*) that no organization, role or holder cites, and the UNIÃO funding observation is unchanged. Renamings (PFL to Democratas, PMDB to MDB) and the fusion of the Democratas with the PSL into União Brasil are claims about the organizations, never merged identities. Party office and state office stay separate, acting and interim service is claims only, the presidency, vice-presidency and PT holders are unchanged, and no game identity or portrait permission is granted. At most ten people are researched: Leonel Brizola and Carlos Lupi (PDT); Jader Barbalho, Michel Temer, Romero Jucá and Baleia Rossi (PMDB/MDB); Jorge Bornhausen, Rodrigo Maia, José Agripino and ACM Neto (PFL/DEM, claims only). The PMDB presidents of 1990-1998 (Jarbas Vasconcelos, Ulysses Guimarães, Orestes Quércia, José Fogaça, Luiz Henrique da Silveira and Paes de Andrade, as the party's retrospective list gives them, the first two with overlapping mandates and the third and fourth likewise), the PFL presidents before 1999 (including Hugo Napoleão) and every other party office remain unresearched."
     ]
   }
 }

@@ -312,15 +312,15 @@ EVENTS = {
     "br_pdt_curitiba_reports_death_of_presidente_nacional":
         ("PDT-PRES-01", "2004-06-21", "death_reported", "Leonel Brizola", "P"),
     "br_pdt_lupi_presidente_nacional_home_20040706":
-        ("PDT-PRES-02", "2004-07-06", "in_office_attestation", "Carlos Lupi", "P"),
+        ("PDT-PRES-02", "2004-07-06", "styled_president_during_interim_period", "Carlos Lupi", "P"),
     "br_pdt_home_links_executive_note_after_succession_20040706":
         ("PDT-PRES-02", None, "executive_note_reference", None, "P"),
     "br_pdt_roster_lupi_presidente_capt20040722":
-        ("PDT-PRES-02", None, "in_office_period_attestation", "Carlos Lupi", "P"),
+        ("PDT-PRES-02", None, "styled_president_during_interim_period", "Carlos Lupi", "P"),
     "br_pdt_lupi_assumes_automatically_on_brizola_death":
         ("PDT-PRES-02", None, "stated_assumption_day_not_printed", "Carlos Lupi", "P"),
     "br_pdt_lupi_signs_convocation_as_presidente_nacional_20050228":
-        ("PDT-PRES-02", "2005-02-28", "in_office_continuation_attestation", "Carlos Lupi", "P"),
+        ("PDT-PRES-02", "2005-02-28", "styled_president_during_interim_period", "Carlos Lupi", "P"),
     "br_pdt_convention_convoked_for_20050321_20050228":
         ("PDT-PRES-03", "2005-02-28", "convention_called_prospective", None, "P"),
     "br_pdt_convention_held_20050321":
@@ -563,7 +563,6 @@ HOLDERS = {
         ("Leonel Brizola", "1997-04-11", None, None),
         ("Leonel Brizola", "1999-08-26", None, None),
         ("Leonel Brizola", "2004-06-02", None, "2004-06-21"),
-        ("Carlos Lupi", "2004-07-06", None, None),
         ("Carlos Lupi", "2007-02-09", None, None),
         ("Carlos Lupi", "2021-12-21", None, None),
         ("Carlos Lupi", "2025-05-21", None, None),
@@ -582,7 +581,6 @@ HOLDER_CLAIMS = {
         ["br_pdt_brizola_presidente_nacional_home_19970411"],
         ["br_pdt_brizola_styled_presidente_do_pdt_19990826"],
         ["br_pdt_brizola_meets_caucuses_as_presidente_nacional_20040602", "br_pdt_brizola_dies_as_presidente_nacional_20040621"],
-        ["br_pdt_lupi_presidente_nacional_home_20040706"],
         ["br_pdt_lupi_signs_resolution_001_07_as_presidente_nacional_20070209"],
         ["br_pdt_lupi_signs_normative_resolution_003_2021_20211221"],
         ["br_pdt_lupi_styled_presidente_nacional_20250521"],
@@ -592,7 +590,7 @@ HOLDER_CLAIMS = {
 # The review observation each holder answers, in holder order.
 HOLDER_OBSERVATIONS = {
     "br_mdb_president": ["MDB-PRES-02", "MDB-PRES-03", "MDB-PRES-05", "MDB-PRES-05", "MDB-PRES-05"],
-    "br_pdt_president": ["PDT-PRES-01", "PDT-PRES-01", "PDT-PRES-01", "PDT-PRES-02", "PDT-PRES-03", "PDT-PRES-03", "PDT-PRES-04", "PDT-PRES-04"],
+    "br_pdt_president": ["PDT-PRES-01", "PDT-PRES-01", "PDT-PRES-01", "PDT-PRES-03", "PDT-PRES-03", "PDT-PRES-04", "PDT-PRES-04"],
 }
 STARTS = {
     "br_mdb_president": [],
@@ -603,8 +601,9 @@ ENDS = {
     "br_pdt_president": [("Leonel Brizola", "2004-06-21")],
 }
 # Days that are never any holder's attested_on, start or end in that role: conventions, elections, re-elections, extensions,
-# leaves and returns, acting service, prospective and scheduled days, continuation stylings, registry periods and
-# the days the SGIP registry and retrospective lists give.
+# leaves and returns, acting service, stylings of an interim period (Lupi, 6 July 2004 and 28 February 2005),
+# prospective and scheduled days, continuation stylings, registry periods and the days the SGIP registry and
+# retrospective lists give.
 NEVER_HOLDER_DATE = {
     "br_mdb_president": {
         "1998-09-15", "2001-05-15", "2001-09-09", "2009-03-10", "2010-01-20", "2010-01-21", "2010-01-27", "2010-03-10",
@@ -613,7 +612,8 @@ NEVER_HOLDER_DATE = {
         "2019-06-17", "2019-10-06", "2021-02-23", "2023-10-05", "2023-10-06", "2026-03-30", "2026-06-08", "2026-06-15",
     },
     "br_pdt_president": {
-        "1991-01-07", "1992-04-26", "1999-04-19", "2003-03-21", "2004-06-28", "2005-02-28", "2005-03-21", "2007-03-09",
+        "1991-01-07", "1992-04-26", "1999-04-19", "2003-03-21", "2004-06-28", "2004-07-06", "2005-02-28", "2005-03-21",
+        "2007-03-09",
         "2008-03-07", "2008-03-12", "2009-03-06", "2017-03-18", "2019-03-18", "2022-01-10", "2022-01-21", "2022-01-22",
         "2023-02-02", "2025-05-20", "2026-08-18", "2026-08-19",
     },
@@ -632,9 +632,11 @@ ELECTION_KINDS = {'election', 'reelection', 'reelection_while_on_leave', 'conven
                   'convention_speech_published', 'styled_on_election_day', 'executive_note_reference'}
 DEPARTURE_KINDS = {'leave_of_absence', 'leave_status_signature', 'leave_status_roster', 'return_from_leave',
                    'death_reported'}
+# Stylings of an interim period use CLAUDE-C01-22's kind for Genoino's: Lupi's service from June 2004 to his election
+# of 21 March 2005, interim by the party's 2019 history (integrator's ruling), is claims only.
 STYLING_KINDS = {'in_office_continuation_attestation', 'in_office_period_attestation',
-                 'styled_president_during_acting_period', 'styled_president_conflicting_record',
-                 'stated_assumption_day_not_printed'}
+                 'styled_president_during_acting_period', 'styled_president_during_interim_period',
+                 'styled_president_conflicting_record', 'stated_assumption_day_not_printed'}
 ORGANIZATION_KINDS = {'renaming_decision', 'renaming_filed', 'tse_renaming_decision', 'renaming_statement',
                       'name_in_use_attestation', 'fusion_approved_by_conventions', 'tse_session_scheduled_prospective',
                       'tse_registration_decision', 'registry_identity_of_fused_party', 'registry_party_record',
@@ -881,7 +883,7 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
         self.assertEqual((len(NEW_SOURCES), len(NEW_CLAIMS)), (76, 127))
-        self.assertEqual({r: len(h) for r, h in HOLDERS.items()}, {MDB: 5, PDT: 8})
+        self.assertEqual({r: len(h) for r, h in HOLDERS.items()}, {MDB: 5, PDT: 7})
         order = [s['id'] for s in self.packet['sources']]
         self.assertEqual(order[EARLIER_SOURCE_COUNT:], NEW_SOURCES)
         self.assertEqual(order[EARLIER_SOURCE_COUNT - len(pt.NEW_SOURCES):EARLIER_SOURCE_COUNT], pt.NEW_SOURCES)
@@ -904,7 +906,7 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
         # Every new claim is a holder claim or a claim that never feeds a holder, never both.
         holder_claims = [cid for role in HOLDER_CLAIMS.values() for ids_ in role for cid in ids_]
         self.assertEqual(len(holder_claims), len(set(holder_claims)))
-        self.assertEqual(len(holder_claims), 14)
+        self.assertEqual(len(holder_claims), 13)
         known = (HOLDER_KINDS | ACTING_KINDS | ELECTION_KINDS | DEPARTURE_KINDS | STYLING_KINDS | ORGANIZATION_KINDS |
                  RETROSPECTIVE_KINDS)
         for cid, event in EVENTS.items():
@@ -951,6 +953,17 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
         for cid, e in EVENTS.items():
             if e[3] == 'Romero Jucá':
                 self.assertIn(e[2], ACTING_KINDS | {'styled_president_during_acting_period'}, cid)
+        # Carlos Lupi's service before his election of 21 March 2005 is interim by the party's 2019 history
+        # (integrator's ruling): its three stylings are claims of the interim period, and his first holder is 2007.
+        interim = [cid for cid, e in EVENTS.items() if e[2] == 'styled_president_during_interim_period']
+        self.assertEqual(interim, ['br_pdt_lupi_presidente_nacional_home_20040706', 'br_pdt_roster_lupi_presidente_capt20040722',
+                                   'br_pdt_lupi_signs_convocation_as_presidente_nacional_20050228'])
+        for cid in interim:
+            self.assertEqual(EVENTS[cid][3], 'Carlos Lupi', cid)
+            self.assertIn("the party's 2019 history records as his interim service", self.claims[cid]['uncertainty'], cid)
+            self.assertIn('never a holder date', self.claims[cid]['uncertainty'], cid)
+        lupi = [h['attested_on'] for h in role_of(self.packet, PDT)['holder_claims'] if h['name'] == 'Carlos Lupi']
+        self.assertEqual(lupi[0], '2007-02-09')
         # Holder claims explain their use.
         for role_id in ROLE_ORG:
             for holder in role_of(self.packet, role_id)['holder_claims']:
@@ -1165,7 +1178,7 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
             (lambda p: source(p, 'br_mdb_tse_sgip_cen_2019_2023')['snapshot'].update(bytes=1), 'checksum mismatch'),
             (lambda p: source(p, 'br_pfl_tse_uniao_registro_20220208')['snapshot'].update(sha256='f' * 64), 'checksum mismatch'),
             (lambda p: source(p, 'br_mdb_executiva_convocada_df_20260608')['snapshot'].update(path=REPORT.as_posix()), 'escapes'),
-            (lambda p: holder(p, PDT, 7).update(attested_on='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, PDT, 6).update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: holder(p, MDB, 4).update(until='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'br_pdt_lupi_styled_presidente_nacional_20260904').update(attested_on='2026-09-08'),
              'exceeds cutoff'),
@@ -1184,28 +1197,30 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
         temer_vp = copy.deepcopy(next(h for h in self.packet['institutions'][0]['roles'][1]['holder_claims']
                                       if h['name'] == 'Michel Temer'))
         rule_cases = [
-            ("successor's first styling used as an end (Brizola, Lupi)", lambda p: holder(p, PDT, 2).update(until='2004-07-06')),
+            ("successor's interim styling used as an end (Brizola, Lupi 2004)", lambda p: holder(p, PDT, 2).update(until='2004-07-06')),
             ('death reported next day cited as the end (Brizola)', lambda p: cite(
                 p, PDT, 2, 'br_pdt_curitiba_reports_death_of_presidente_nacional', 'br_pdt_curitiba_perda_20040622')),
             ('death end removed while the death claim stays cited', lambda p: holder(p, PDT, 2).update(until=None)),
             ("successor's election used as an end (Temer, Baleia Rossi)", lambda p: holder(p, MDB, 1).update(until='2019-10-06')),
             ('leave used as an end (Temer 2016)', lambda p: holder(p, MDB, 1).update(until='2016-04-05')),
-            ('leave used as an end (Lupi 2021)', lambda p: holder(p, PDT, 5).update(until='2023-02-02')),
+            ('leave used as an end (Lupi 2021)', lambda p: holder(p, PDT, 4).update(until='2023-02-02')),
             ('renaming used as a boundary (Temer 2016)', lambda p: holder(p, MDB, 1).update(until='2017-12-19')),
             ('registry end used as an end (Baleia Rossi 2019)', lambda p: holder(p, MDB, 2).update(until='2023-10-06')),
             ('election date used as start (Baleia Rossi 2019)', lambda p: holder(p, MDB, 2).update({'from': '2019-10-06', 'attested_on': None})),
             ('re-election used as start (Temer 2016)', lambda p: holder(p, MDB, 1).update({'from': '2016-03-12', 'attested_on': None})),
             ('executive posse on an undated roster used as start (Temer 2010)', lambda p: role_of(p, MDB)['holder_claims'].insert(1, extra(
                 'Michel Temer', None, 'br_mdb_executiva_roster_capt2011', 'br_mdb_executive_posse_20100310', start='2010-03-10'))),
-            ('retrospective assumption day used as start (Lupi 2004)', lambda p: holder(p, PDT, 3).update({'from': '2004-06-28', 'attested_on': None})),
-            ('death of the predecessor used as start (Lupi 2004)', lambda p: holder(p, PDT, 3).update({'from': '2004-06-21', 'attested_on': None})),
-            ('return from leave used as start (Lupi 2025)', lambda p: holder(p, PDT, 6).update({'from': '2025-05-20', 'attested_on': None})),
-            ('registry start used as start (Lupi 2019)', lambda p: holder(p, PDT, 5).update({'from': '2019-03-18', 'attested_on': None})),
+            ('retrospective assumption day used as start (Lupi 2004, on his first holder)', lambda p: holder(p, PDT, 3).update({'from': '2004-06-28', 'attested_on': None})),
+            ('death of the predecessor used as start (Lupi 2004, on his first holder)', lambda p: holder(p, PDT, 3).update({'from': '2004-06-21', 'attested_on': None})),
+            ('return from leave used as start (Lupi 2025)', lambda p: holder(p, PDT, 5).update({'from': '2025-05-20', 'attested_on': None})),
+            ('registry start used as start (Lupi 2019)', lambda p: holder(p, PDT, 4).update({'from': '2019-03-18', 'attested_on': None})),
             ('election claim cited by a holder (Baleia Rossi 2023)', lambda p: cite(
                 p, MDB, 3, 'br_mdb_baleia_reelected_20231005', 'br_mdb_convencao_20231005')),
             ('continuation claim cited by a holder (Lupi 2021)', lambda p: cite(
-                p, PDT, 5, 'br_pdt_lupi_signs_communique_as_presidente_nacional_20220110', 'br_pdt_convencao_virtual_20220110')),
-            ('acting service added as a holder (André Figueiredo)', lambda p: role_of(p, PDT)['holder_claims'].insert(6, extra(
+                p, PDT, 4, 'br_pdt_lupi_signs_communique_as_presidente_nacional_20220110', 'br_pdt_convencao_virtual_20220110')),
+            ('Lupi 2004 interim styling restored as a holder', lambda p: role_of(p, PDT)['holder_claims'].insert(3, extra(
+                'Carlos Lupi', '2004-07-06', 'br_pdt_home_20040706', 'br_pdt_lupi_presidente_nacional_home_20040706'))),
+            ('acting service added as a holder (André Figueiredo)', lambda p: role_of(p, PDT)['holder_claims'].insert(5, extra(
                 'André Figueiredo', '2023-02-02', 'br_pdt_figueiredo_exercicio_20230202', 'br_pdt_figueiredo_announced_presidente_em_exercicio_20230202'))),
             ('acting service added as a holder (Romero Jucá 2016)', lambda p: role_of(p, MDB)['holder_claims'].insert(2, extra(
                 'Romero Jucá', '2016-04-07', 'br_mdb_juca_em_exercicio_20160407', 'br_mdb_juca_styled_presidente_em_exercicio_20160407'))),
@@ -1265,6 +1280,17 @@ class BrazilPartyPresidentsTests(unittest.TestCase):
                     party_rules(packet, self.rows)
                 with self.assertRaises((AssertionError, KeyError, IndexError, ValueError)):
                     party_invariants(packet, self.rows)
+        # Restoring Lupi's 2004 interim styling as a holder fails on the never-holder date even with its row's kind
+        # restored to an in-office attestation.
+        rows = copy.deepcopy(self.rows)
+        rows['br_pdt_lupi_presidente_nacional_home_20040706']['event_kind'] = 'in_office_attestation'
+        packet = mutated(lambda p: role_of(p, PDT)['holder_claims'].insert(3, extra(
+            'Carlos Lupi', '2004-07-06', 'br_pdt_home_20040706', 'br_pdt_lupi_presidente_nacional_home_20040706')))
+        with self.subTest(label='Lupi 2004 interim styling restored as a holder, row kind restored'):
+            with self.assertRaisesRegex(AssertionError, 'Carlos Lupi'):
+                party_rules(packet, rows)
+            with self.assertRaises(AssertionError):
+                party_invariants(packet, rows)
         # Event collapses are caught by the pinned events.
         for cid, day in (('br_mdb_convention_elects_executive_baleia_20191006', '2019-10-17'),
                          ('br_pdt_lupi_returns_to_presidency_20250520', '2025-05-21'),
