@@ -56,7 +56,7 @@ class BrazilDiscoveryTests(unittest.TestCase):
         ids = self.validate()
         # 31 organization observations plus the presidency: CLAUDE-C01-10 (48 sources, 112 claims, br_president),
         # CLAUDE-C01-17 (11 sources, 85 claims, br_vice_president), CLAUDE-C01-22 (108 sources, 177 claims, the PT
-        # observation's party role br_pt_president) and CLAUDE-C01-34 (76 sources, 123 claims, the MDB and PDT
+        # observation's party role br_pt_president) and CLAUDE-C01-34 (76 sources, 127 claims, the MDB and PDT
         # observations' party roles br_mdb_president and br_pdt_president, and the PFL/DEM claims).
         self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
         self.assertEqual(len(self.packet['organizations']), 31)
