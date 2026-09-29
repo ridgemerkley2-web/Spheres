@@ -332,7 +332,9 @@ async function loadCore() {
     rawJSON(b, 'docs/planning/campaign-pathway.json').then(d => state.data.path = d).catch(e => err('Pathway', e)),
     rawJSON(b, 'docs/planning/ai-task-queue.json').then(d => state.data.queue = d).catch(e => err('Task queue', e)),
     rawText(b, 'docs/AI_WORKSTREAMS.md').then(d => state.data.wb = d).catch(e => err('Workboard', e)),
-    rawJSON('dashboard', 'status/pipeline.json').then(d => state.data.pipe = d).catch(() => state.data.pipe = null),
+    rawJSON('dashboard', 'status/pipeline.json').then(d => state.data.pipe = d)
+      .catch(() => api(`/repos/${cfg.repo}/contents/status/pipeline.json?ref=dashboard`, { headers: { Accept: 'application/vnd.github.raw+json' } }).then(d => state.data.pipe = d))
+      .catch(() => state.data.pipe = null),
     api(`/repos/${cfg.repo}/commits?sha=${encodeURIComponent(b)}&per_page=20`).then(d => state.data.commits = d).catch(e => err('Commits', e)),
     api(`/repos/${cfg.repo}/actions/runs?per_page=30`).then(d => state.data.runs = d.workflow_runs).catch(e => err('CI runs', e)),
   ];
