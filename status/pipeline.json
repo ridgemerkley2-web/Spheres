@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T04:28:32Z",
+  "updated": "2026-09-29T04:31:48Z",
   "packets": [
     {
       "n": "28",
@@ -76,17 +76,18 @@
       "n": "36",
       "title": "Tongan Deputy Prime Ministers, 1990–2026",
       "country": "Tonga",
-      "state": "verify",
+      "state": "submitted",
       "branch": "claude/c01-to-36",
-      "head": "e5b62596",
-      "note": "2026-09-28: to_deputy_pm, 39 sources, 53 claims, 10 holder obs (6 with stated from/until)"
+      "head": "6b82475e",
+      "note": "1 defect (quote spacing) fixed by me; 39/39 sources byte-identical; all 6 from/until boundaries kept (royal acts with effective days, resignation accepted on stated day, death in office stated by PMO)"
     },
     {
       "n": "37",
       "title": "French prime ministers, 1990–2026",
       "country": "France",
-      "state": "queued",
-      "branch": "claude/c01-fr-37"
+      "state": "research",
+      "branch": "claude/c01-fr-37",
+      "head": "1a3fc352"
     }
   ],
   "attention": [
@@ -94,7 +95,6 @@
     "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
   ],
   "log": [
-    "2026-09-28 C01-29 verified: 2 prose defects fixed by me (3b304785), all checks pass -> submitted; worktree removed (Codex already reviewing at e0bb7a01 in review-jp29). C01-30 (South Africa ACDP/FF/IFP leaders) set up at 68535825 on b949f64e, research. Active: 28 research, 30 research. C: 6.1 GB.",
     "2026-09-28 C01-28 research done (claude/c01-ru-28@16153784: 5 roles, 68 sources, 137 claims, 24 holder obs / 10 people). Gap-ledger test fails on the branch by design (COMMIT_PACKETS needs cc06f873 at integration). Verifier launched. Active: 28 verify, 30 research.",
     "2026-09-28 C01-28 verified: 68/68 sources byte-identical; 4 defects + DVR republished-reference source + stale comment. My rulings: no until for Zhirinovsky (item never names the office or its end); Yabloko association-era rows titled as printed. Fix agent launched. Active: 28 fix, 30 research.",
     "2026-09-28 C01-28 fixed (fixer 831ed5e7/d4d6fb36 + my title fix 2c6709e4/03141c43) -> submitted at 03141c43; worktree removed. Codex reviewed C01-29 (30410e55): technical pass, 19 IA responses refused on its side, wording fix c98d1d56 on codex/review-c01-jp29; held, stays ready_for_review, nothing asked of Claude. C01-31 held until 29 merges (stacking on 29 hits a handoff conflict). C01-33 (India Janata Dal) set up stacked on claude/c01-in-27 at 89decb6a. Active: 30 research, 33 research. RESEARCH_AGENT.md now lists the gap-ledger/S23 known failures and bans disabling hooks.",
@@ -113,6 +113,7 @@
     "2026-09-28 SPHERES Command dashboard built on orphan branch `dashboard` (worktree <local>, 400c8583); status publisher publish_status.py added (first status d7b20d18). Pages must be enabled by the user (source: dashboard, root).",
     "2026-09-28 C01-35 research done (claude/c01-su-35@fb225cc6: Democratic Russia + Soyuz, 16 sources, 36 claims, 8 co-chair holder obs). Verifier launched. Active: 35 verify, 36 research.",
     "2026-09-28 C01-36 research done (claude/c01-to-36@e5b62596: 39 sources, 53 claims, 10 Deputy PM holder obs). Verifier launched. Active: 35 verify, 36 verify. Remaining: 31 (held), 37.",
-    "2026-09-28 C01-35 verified: 16/16 sources clean; 4 text defects. Rulings: 1991-09-12 kept; \"лидер\" references claims only; 12 Dec 1991 President-office list holders kept. Fix agent launched. Active: 35 fix, 36 verify."
+    "2026-09-28 C01-35 verified: 16/16 sources clean; 4 text defects. Rulings: 1991-09-12 kept; \"лидер\" references claims only; 12 Dec 1991 President-office list holders kept. Fix agent launched. Active: 35 fix, 36 verify.",
+    "2026-09-28 C01-36 verified: 1 quote-spacing defect fixed by me (6b82475e); all six boundaries kept -> submitted, worktree removed. C01-37 (French PMs) set up at 1a3fc352 on 44098c5a, agent launched. Active: 35 fix, 37 research. Remaining: 31 (held for 29)."
   ]
 }
