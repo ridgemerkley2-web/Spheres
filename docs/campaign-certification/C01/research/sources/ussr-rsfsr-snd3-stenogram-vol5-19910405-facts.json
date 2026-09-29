@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_snd3_sten_v5",
+  "source_url": "https://web.archive.org/web/20220313030126id_/https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+  "original_url": "https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+  "archive_capture_utc": "2022-03-13T03:01:26Z",
+  "source_title": "Третий (внеочередной) Съезд народных депутатов РСФСР, 28 марта - 5 апреля 1991 года. Стенографический отчет. Том V (5 April 1991), scanned volume, Internet Archive capture 20220313030126",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1991-04-05",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220313030126id_/https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+  "source_response_bytes": 18615464,
+  "source_response_sha256": "65ff1f36f4ecfbc2d8954898f5d9bd0bd78a0b6a4b2b550fa7720baee44eb54d",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "The research dossier downloaded the capture at 2026-09-29T01:43:32Z, 01:58:39Z and 02:43:45Z; identical bytes. This packet: downloaded at 2026-09-29T02:57:51Z and again at 2026-09-29T03:30:06Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 18,615,464 bytes and SHA-256. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest SKMJ7V7OVOOIEWX7IDWWIWMJ5FZS6L7G.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20220313030126id_/https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:57:51Z",
+        "2026-09-29T03:30:06Z"
+      ],
+      "bytes": 18615464,
+      "sha256": "65ff1f36f4ecfbc2d8954898f5d9bd0bd78a0b6a4b2b550fa7720baee44eb54d",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.snd.rsfsr-rf.ru/r3s5.pdf, captured at 2022-03-13T03:01:26Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Third (extraordinary) Congress of People's Deputies of the RSFSR, volume V, as an image-only scan of two-page spreads. The sixteenth (morning) sitting of 5 April 1991 (contents, PDF p. 222; printed p. 53 on PDF p. 27) was read. The volume has no text layer; it was searched with a word spotter and the hits read from the page images. The scan is hosted by the non-official ISTNET / RSFSR-RF.RU project; the recorded identity is a raw Internet Archive capture made before the cutoff.",
+  "edition_and_host": {
+    "edition": "Третий (внеочередной) Съезд народных депутатов РСФСР, 28 марта - 5 апреля 1991 года. Стенографический отчет. Том V (title page, PDF p. 1: 'Москва / Издательство ”Республика” / 1992'); library card (PDF p. 224): 'В 5 т. Т. 5. - М.: Республика, 1992. - 446 с. ISBN 5-250-02164-6'; an image-only scan of two-page spreads (225 PDF pages): PDF page n shows printed pp. 2n-2 (left) and 2n-1 (right).",
+    "host": "sten.snd.rsfsr-rf.ru, a non-official project of the ISTNET / RSFSR-RF.RU group (the same editors as the SSSR.SU portal), not a state body and not the publisher. It serves page-image scans of the printed stenographic reports of the RSFSR Congresses; its live HTTPS certificate does not verify from this environment, so each identity is a pre-cutoff raw Internet Archive capture (the base32 SHA-1 of the recorded bytes equals the capture's CDX digest)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      27,
+      222,
+      224
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_dr_dmitriev_one_of_co_chairs_19910405",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-03",
+      "role_id": "su_dr_co_chair",
+      "holder_name": "Виктор Владимирович Дмитриев",
+      "persons_named": [
+        "Дмитриев В.В.",
+        "Дмитриев Виктор Владимирович (printed \"Дмитриеву Виктору Владимировичу\", dative)"
+      ],
+      "role_title": "Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement",
+      "role_title_as_printed": "'являюсь сопредседателем его координационного совета' (self-description)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-04-05",
+      "text": "At the sixteenth (morning) sitting of the Third (extraordinary) Congress of People's Deputies of the RSFSR (5 April 1991) the presiding officer gives the floor 'народному депутату Дмитриеву Виктору Владимировичу'; 'Дмитриев В.В., Колпинский территориальный избирательный округ, г. Ленинград' says: 'Сам я принадлежу к движению \"Демократическая Россия\" и являюсь сопредседателем его координационного совета.'",
+      "locator": "Sixteenth sitting: contents, PDF p. 222 (\"Дмитриев В.В. ....53\"); speech, printed p. 53 (PDF p. 27, right page)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

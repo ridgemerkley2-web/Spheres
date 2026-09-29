@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_snd5_sten_v1",
+  "source_url": "https://web.archive.org/web/20220313024839id_/https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+  "original_url": "https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+  "archive_capture_utc": "2022-03-13T02:48:39Z",
+  "source_title": "Пятый (внеочередной) Съезд народных депутатов РСФСР, 10-17 июля, 28 октября - 2 ноября 1991 года. Стенографический отчет. Том I (10-17 July 1991), scanned volume, Internet Archive capture 20220313024839",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1991-07-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220313024839id_/https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+  "source_response_bytes": 36840143,
+  "source_response_sha256": "392cfe46497cbd1d2937c094c2cbbe6a83ebaf307f6649f7a7aab941a0fc1805",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "The research dossier downloaded the capture at 2026-09-29T02:06:36Z and 02:38:10Z; identical bytes. This packet: downloaded at 2026-09-29T02:57:54Z and again at 2026-09-29T03:30:12Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 36,840,143 bytes and SHA-256. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest FRL4MWMSMHDAHBXQBQND23CHM3UP6GGC.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20220313024839id_/https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:57:54Z",
+        "2026-09-29T03:30:12Z"
+      ],
+      "bytes": 36840143,
+      "sha256": "392cfe46497cbd1d2937c094c2cbbe6a83ebaf307f6649f7a7aab941a0fc1805",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.snd.rsfsr-rf.ru/r5s1.pdf, captured at 2022-03-13T02:48:39Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the Fifth (extraordinary) Congress of People's Deputies of the RSFSR, volume I, as an image-only scan of two-page spreads. The ninth (evening) sitting of 15 July 1991 (contents, PDF p. 368; printed pp. 310-311 on PDF p. 156) was read. The volume has no text layer; it was searched with a word spotter and the hits read from the page images. Speeches for the RSFSR deputies' group or faction «Демократическая Россия» in this volume are a separate identity and are not imported. The scan is hosted by the non-official ISTNET / RSFSR-RF.RU project; the recorded identity is a raw Internet Archive capture made before the cutoff.",
+  "edition_and_host": {
+    "edition": "Пятый (внеочередной) Съезд народных депутатов РСФСР, 10-17 июля, 28 октября - 2 ноября 1991 года. Стенографический отчет. Том I (title page, PDF p. 1: 'Москва / Издательство ”Республика” / 1992'); an image-only scan of two-page spreads (369 PDF pages): PDF page n shows printed pp. 2n-2 (left) and 2n-1 (right).",
+    "host": "sten.snd.rsfsr-rf.ru, a non-official project of the ISTNET / RSFSR-RF.RU group (the same editors as the SSSR.SU portal), not a state body and not the publisher. It serves page-image scans of the printed stenographic reports of the RSFSR Congresses; its live HTTPS certificate does not verify from this environment, so each identity is a pre-cutoff raw Internet Archive capture (the base32 SHA-1 of the recorded bytes equals the capture's CDX digest)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      156,
+      368
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_dr_afanasyev_co_chair_statement_19910715",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-03",
+      "role_id": "su_dr_co_chair",
+      "holder_name": "Юрий Николаевич Афанасьев",
+      "persons_named": [
+        "Афанасьев Ю.Н.",
+        "Юрий Николаевич Афанасьев (presiding officer)"
+      ],
+      "role_title": "Сопредседатель движения «Демократическая Россия» (Координационного совета) — Co-chair of the Democratic Russia movement",
+      "role_title_as_printed": "'я как сопредседатель движения ”Демократическая Россия”' (self-description)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-07-15",
+      "text": "At the ninth (evening) sitting of the Fifth (extraordinary) Congress of People's Deputies of the RSFSR (15 July 1991) the presiding officer gives the floor to 'координатор фракции беспартийных Юрий Николаевич Афанасьев'; 'Афанасьев Ю.Н., Первомайский территориальный избирательный округ, г. Москва' answers 'я не координатор беспартийных. Здесь, видимо, ошибка' and ends: 'В случае, если это предложение будет отвергнуто, я как сопредседатель движения ”Демократическая Россия” обращаюсь к гражданам России с призывом развернуть широкую кампанию по отзыву всех без исключения депутатов, входящих в эти фракции.'",
+      "locator": "Ninth sitting: contents, PDF p. 368 (\"Повторное выдвижение кандидатур ... 310\"); speech, printed pp. 310-311 (PDF p. 156)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

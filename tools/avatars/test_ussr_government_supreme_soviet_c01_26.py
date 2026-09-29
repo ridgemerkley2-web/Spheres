@@ -441,8 +441,9 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (30, 74))
-        self.assertEqual([s['id'] for s in self.packet['sources'][10:]], NEW_SOURCES)
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (40, 95, 5, 6))
+        # CLAUDE-C01-35 appended 16 sources after these 30 (positions 40-55), pinned in test_ussr_democratic_russia_soyuz_c01_35.
+        self.assertEqual([s['id'] for s in self.packet['sources'][10:40]], NEW_SOURCES)
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (56, 131, 7, 8))
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         dates = [self.sources[sid]['document_date'] for sid in NEW_SOURCES]
         self.assertEqual(dates, sorted(dates))
@@ -788,8 +789,9 @@ class UssrGovernmentSupremeSovietTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'USSR')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
+        # With CLAUDE-C01-35's two organizations and two roles (36 claims), none mapped.
         self.assertEqual((country['institution_observations'], country['role_observations'], country['source_claims'],
-                          country['mapping_pending']), (4, 6, 95, 5))
+                          country['mapping_pending']), (4, 8, 131, 7))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'USSR'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

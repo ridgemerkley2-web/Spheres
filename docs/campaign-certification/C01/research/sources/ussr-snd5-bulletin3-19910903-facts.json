@@ -1,0 +1,85 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd5_bulletin3_19910903",
+  "source_url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+  "original_url": "https://snd.sssr.su/V/3.pdf",
+  "archive_capture_utc": "2024-09-01T23:43:07Z",
+  "source_title": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень No. 3, 3 сентября 1991 г. (stenographic bulletin), scanned facsimile, Internet Archive capture 20240901234307",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1991-09-03",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+  "source_response_bytes": 2146995,
+  "source_response_sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/V/3.pdf",
+    "bytes": 2146995,
+    "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+    "last_modified": "Mon, 03 Jun 2024 23:27:10 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Discovery: the live file was downloaded at 2026-09-28T23:58:49Z and the raw capture at 2026-09-29T00:11:14Z; identical bytes. This packet: downloaded at 2026-09-29T02:11:49Z and again at 2026-09-29T02:43:14Z (31 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 2,146,995 bytes and SHA-256; the attached responses also matched on both downloads. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest XM6CNRB3DIYJ3KWYI6MRT53TBO4WUOEJ. The independent check re-downloaded the capture and the live file once more (2026-09-29T01:30Z-01:54Z); identical.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:11:49Z",
+        "2026-09-29T02:43:14Z"
+      ],
+      "bytes": 2146995,
+      "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+      "result": "identical on both downloads"
+    },
+    {
+      "response": "live_file_response",
+      "url": "https://snd.sssr.su/V/3.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:11:52Z",
+        "2026-09-29T02:43:15Z"
+      ],
+      "bytes": 2146995,
+      "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/V/3.pdf, captured at 2024-09-01T23:43:07Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic bulletin of the Fifth Congress's morning sitting of 3 September 1991, a two-column page-image scan with an OCR layer, served by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). PDF pp. 1, 3 and 24 were read for the Soyuz group.",
+  "edition_and_host": {
+    "edition": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень № 3, 3 сентября 1991 г. (cover, PDF p. 1; running head 'Внеочередной пятый Съезд народных депутатов СССР'); 30 PDF pages, printed p. N on PDF p. N for the cited pages.",
+    "host": "SSSR.SU portal (snd.sssr.su, sten.vs.sssr.su): a non-commercial project registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345), not a state body and not the publisher; it serves page-image scans of the official stenographic reports as static files (see the CLAUDE-C01-SOURCE-26 review of the same host)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      24
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd5_kraiko_refers_to_soyuz_leaders_19910903",
+      "observation_id": "su_soyuz_deputies_group",
+      "review_observation": "SU-SOYUZ-04",
+      "role_id": "su_soyuz_co_chair",
+      "holder_name": null,
+      "persons_named": [
+        "Крайко А. Н.",
+        "Н. А. Назарбаев (Президент Казахской ССР, presiding)"
+      ],
+      "role_title": "Сопредседатель депутатской группы «Союз» — Co-chair of the Soyuz deputies' group",
+      "role_title_as_printed": "'лидеров группы \"Союз\"' (unnamed)",
+      "event_kind": "leadership_reference_by_another_deputy",
+      "attested_on": "1991-09-03",
+      "text": "At the Fifth Congress's morning sitting of 3 September 1991 (Kremlin Palace of Congresses, 10:00, 'Председательствует Президент Казахской ССР Н. А. Назарбаев'), 'Крайко А. Н., начальник отдела отделения Центрального института авиационного моторостроения имени П. И. Баранова, г. Москва' says: 'Причем Президентом в этих условиях (знаю, такова же позиция даже лидеров группы \"Союз\") должен оставаться М. С. Горбачев.'",
+      "locator": "Bulletin No. 3: sitting heading, printed p. 3 (PDF p. 3); speech, printed p. 24 (PDF p. 24)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}

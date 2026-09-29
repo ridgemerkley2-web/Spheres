@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_snd1_sten_v5",
+  "source_url": "https://web.archive.org/web/20220313025049id_/https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+  "original_url": "https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+  "archive_capture_utc": "2022-03-13T02:50:49Z",
+  "source_title": "Первый Съезд народных депутатов РСФСР, 16 мая - 22 июня 1990 года. Стенографический отчет. Том V (18-22 June 1990), scanned volume, Internet Archive capture 20220313025049",
+  "accessed_date": "2026-09-29",
+  "published_date": null,
+  "document_date": "1990-06-22",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220313025049id_/https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+  "source_response_bytes": 18684503,
+  "source_response_sha256": "da3383db9bcde8f07829b38441970ecf10a31d1706f3ba70c9b8943c389eeb24",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "The research dossier downloaded the capture at 2026-09-29T00:42:39Z and 01:58:03Z; identical bytes. This packet: downloaded at 2026-09-29T02:57:41Z and again at 2026-09-29T03:29:56Z (32 minutes later) with plain curl (curl's own User-Agent, 'Accept-Encoding: identity', no cookies, no cache-busting query); identical 18,684,503 bytes and SHA-256. The base32 SHA-1 of the recorded bytes equals the Internet Archive CDX digest F74WV4KFSUWKAIAKGOUO5R37LOKLJHG6.",
+  "downloads": [
+    {
+      "response": "source_response",
+      "url": "https://web.archive.org/web/20220313025049id_/https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+      "downloaded_at": [
+        "2026-09-29T02:57:41Z",
+        "2026-09-29T03:29:56Z"
+      ],
+      "bytes": 18684503,
+      "sha256": "da3383db9bcde8f07829b38441970ecf10a31d1706f3ba70c9b8943c389eeb24",
+      "result": "identical on both downloads"
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://sten.snd.rsfsr-rf.ru/I/V.pdf, captured at 2022-03-13T02:50:49Z, before the 7 September 2026 cutoff; requested with 'Accept-Encoding: identity' (curl without --compressed) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip may be served gzip-encoded, with different bytes). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic report of the First Congress of People's Deputies of the RSFSR, volume V, as a page-image scan with an OCR layer. The fifty-first sitting of 22 June 1990 (printed pp. 336-337) was read for the appeal of the RSFSR deputies' bloc «Демократическая Россия» to form a movement. The bloc and its deputies' group, registered in this Congress, are a separate identity from the movement founded later; their other records in this volume are not imported. The scan is hosted by the non-official ISTNET / RSFSR-RF.RU project; the recorded identity is a raw Internet Archive capture made before the cutoff. This volume prints quotation marks as ”...”.",
+  "edition_and_host": {
+    "edition": "Первый Съезд народных депутатов РСФСР, 16 мая - 22 июня 1990 года. Стенографический отчет. Том V (title page, PDF p. 1: 'Москва / Издательство ”Республика” / 1993'); 608 PDF pages with an ABBYY FineReader 11 text layer, printed p. N on PDF p. N for the cited pages.",
+    "host": "sten.snd.rsfsr-rf.ru, a non-official project of the ISTNET / RSFSR-RF.RU group (the same editors as the SSSR.SU portal), not a state body and not the publisher. It serves page-image scans of the printed stenographic reports of the RSFSR Congresses; its live HTTPS certificate does not verify from this environment, so each identity is a pre-cutoff raw Internet Archive capture (the base32 SHA-1 of the recorded bytes equals the capture's CDX digest)."
+  },
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      336,
+      337
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Every cited page was rendered from the recorded bytes with PyMuPDF (100-150 dpi) and read from the page image, not from the OCR layer; the sitting headings, speaker lines and quotations were compared with the image, and the title page and imprint were read for the edition."
+  },
+  "rows": [
+    {
+      "claim_id": "su_dr_bloc_appeal_calls_for_movement_19900622",
+      "observation_id": "su_democratic_russia",
+      "review_observation": "SU-DR-01",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "Манохин А.Н.",
+        "Б. Н. Ельцин (Председатель Верховного Совета РСФСР, presiding)"
+      ],
+      "role_title": null,
+      "role_title_as_printed": "The passage names no leader of the bloc or of the movement.",
+      "event_kind": "call_to_found_movement",
+      "attested_on": "1990-06-22",
+      "text": "At the fifty-first sitting of the First Congress of People's Deputies of the RSFSR (Большой Кремлевский дворец, 22 June 1990, 12:00, 'Председательствует Председатель Верховного Совета РСФСР Б. Н. Ельцин'), 'Манохин А.Н., заведующий лабораторией Института математики Сибирского отделения Академии наук СССР, г. Новосибирск' reads the 'Обращение блока ”Демократическая Россия” к избирателям, народным депутатам всех уровней и общественно-политическим организациям': 'Осознавая свою ответственность перед избирателями, блок ”Демократическая Россия” призывает избирателей, депутатов всех уровней, демократические, общественные, политические, общественно-политические организации объединиться в массовое общественно-политическое движение ”Демократическая Россия”.'",
+      "locator": "Fifty-first sitting: heading and speaker line, printed p. 336 (PDF p. 336); the appeal, printed p. 337 (PDF p. 337)"
+    }
+  ],
+  "bounded_scope": "Democratic Russia movement and Soyuz deputies' group observations for CLAUDE-C01-35 only. Founding, selection or election, statements, nominations, registration, leadership references by other deputies, membership statements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. Co-chairs are recorded as co-leadership, one person per holder observation. State offices, the CPSU, russia.json and the simulation's party rows are outside this extract."
+}
