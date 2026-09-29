@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pfl_dem_resolucao_113_20110324",
+  "source_url": "https://web.archive.org/web/20111007170605id_/http://www.dem.org.br:80/2011/03/resolucao-n%C2%BA-113-de-24-de-marco-de-2011/",
+  "original_url": "http://www.dem.org.br/2011/03/resolucao-n%C2%BA-113-de-24-de-marco-de-2011/",
+  "archive_capture_utc": "2011-10-07T17:06:05Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2011-03-24",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 44631,
+  "source_response_sha256": "487a0eace0526e420fa8bea86338716fb71a16ceb5a4dba42e84ffb191b71df6",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:09:45Z, 2026-09-28T22:43:14Z and again at 2026-09-28T23:18:58Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 44631 bytes with SHA-256 487a0eace0526e420fa8bea86338716fb71a16ceb5a4dba42e84ffb191b71df6 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-10-07T17:06:05Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:09:45Z, 2026-09-28T22:43:14Z and again at 2026-09-28T23:18:58Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 44631 bytes with SHA-256 487a0eace0526e420fa8bea86338716fb71a16ceb5a4dba42e84ffb191b71df6 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A resolution of the Democratas' national executive dated 24 March 2011, on the party site, captured 7 October 2011. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PFL/DEM national-president observations for CLAUDE-C01-34, recorded as claims only: no role, no holder and no organization observation carries these rows (observation_id and role_id are null). The renaming of the PFL as Democratas and the fusion of the Democratas with the PSL into União Brasil are claims about the organization, never merged identities; the UNIÃO funding observation (br_tse_fefc_2024_party_27) is not linked to them. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pfl_agripino_signs_resolution_113_as_presidente_nacional_20110324",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-03",
+      "role_id": null,
+      "holder_name": "José Agripino",
+      "role_title": "Presidente Nacional do Partido da Frente Liberal (PFL) / Democratas (DEM) (claims only, no role)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2011-03-24",
+      "text": "Resolução nº 113, de 24 de março de 2011, issued by 'A Comissão Executiva Nacional do Democratas' 'por seu Presidente ao final assinado', appoints a provisional commission in Roraima and is signed 'SENADOR JOSÉ AGRIPINO MAIA Presidente Nacional do Democratas'.",
+      "locator": {
+        "section": "Resolution text, preamble and signature line"
+      }
+    }
+  ]
+}

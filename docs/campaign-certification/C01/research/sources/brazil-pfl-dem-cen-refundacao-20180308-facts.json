@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pfl_dem_cen_refundacao_2018",
+  "source_url": "https://web.archive.org/web/20181016194449id_/http://www.dem.org.br:80/comissao-executiva-nacional/",
+  "original_url": "http://www.dem.org.br/comissao-executiva-nacional/",
+  "archive_capture_utc": "2018-10-16T19:44:49Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 24687,
+  "source_response_sha256": "28d6e0826ef3731adbeb3631478675eb387656a38d76ea07e23a56f7ef821efc",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:09:48Z, 2026-09-28T22:43:16Z and again at 2026-09-28T23:19:01Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24687 bytes with SHA-256 28d6e0826ef3731adbeb3631478675eb387656a38d76ea07e23a56f7ef821efc and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2018-10-16T19:44:49Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:09:48Z, 2026-09-28T22:43:16Z and again at 2026-09-28T23:19:01Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24687 bytes with SHA-256 28d6e0826ef3731adbeb3631478675eb387656a38d76ea07e23a56f7ef821efc and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Democratas site's undated page of its national executive committee, captured 16 October 2018. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PFL/DEM national-president observations for CLAUDE-C01-34, recorded as claims only: no role, no holder and no organization observation carries these rows (observation_id and role_id are null). The renaming of the PFL as Democratas and the fusion of the Democratas with the PSL into União Brasil are claims about the organization, never merged identities; the UNIÃO funding observation (br_tse_fefc_2024_party_27) is not linked to them. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pfl_cen_refundacao_elected_convention_acm_neto_20180308",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-04",
+      "role_id": null,
+      "holder_name": "ACM Neto",
+      "role_title": "Presidente Nacional do Partido da Frente Liberal (PFL) / Democratas (DEM) (claims only, no role)",
+      "event_kind": "executive_elected_at_convention",
+      "attested_on": "2018-03-08",
+      "text": "The Democratas site's page of its national executive committee is headed 'COMISSÃO EXECUTIVA NACIONAL DE REFUNDAÇÃO DO DEMOCRATAS ELEITA NA CONVENÇÃO NACIONAL DE 08/03/2018' and lists 'Presidente Nacional: Prefeito ACM Neto' first.",
+      "locator": {
+        "section": "Page heading and first line of the list"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pdt_xxv_convencao_20190318",
+  "source_url": "https://web.archive.org/web/20190320060546id_/http://www.pdt.org.br:80/index.php/diretorio-nacional-do-pdt-fecha-questao-contra-reforma-da-previdencia/",
+  "original_url": "http://www.pdt.org.br/index.php/diretorio-nacional-do-pdt-fecha-questao-contra-reforma-da-previdencia/",
+  "archive_capture_utc": "2019-03-20T06:05:46Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-03-18",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 73307,
+  "source_response_sha256": "f6960ed1e4d8a4e8c5b10d199ce02fe91d63ac195a2769d84fe832e897dd03a2",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:34:30Z, 2026-09-28T22:46:14Z and again at 2026-09-28T23:21:29Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 73307 bytes with SHA-256 f6960ed1e4d8a4e8c5b10d199ce02fe91d63ac195a2769d84fe832e897dd03a2 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-03-20T06:05:46Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:34:30Z, 2026-09-28T22:46:14Z and again at 2026-09-28T23:21:29Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 73307 bytes with SHA-256 f6960ed1e4d8a4e8c5b10d199ce02fe91d63ac195a2769d84fe832e897dd03a2 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A same-day PDT site report of the XXV national convention, captured 20 March 2019. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PDT national-president observations for CLAUDE-C01-34 only (role br_pdt_president of the PDT funding observation br_tse_fefc_2024_party_02). Party meetings and conventions, elections, the assumption of the office, leaves, acting and interim service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices (ministries, the Chamber, governorships) are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pdt_lupi_reconducted_xxv_convention_20190318",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-03",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "reelection",
+      "attested_on": "2019-03-18",
+      "text": "The report says 'Carlos Lupi foi reconduzido à Presidência Nacional do PDT nesta segunda (18), durante a XXV Convenção Nacional do PDT.' and lists 'Presidente – Carlos Roberto Lupi' in the executive elected.",
+      "locator": {
+        "section": "First paragraph and the list after 'Confira abaixo a composição da Executiva Nacional eleita'"
+      }
+    }
+  ]
+}

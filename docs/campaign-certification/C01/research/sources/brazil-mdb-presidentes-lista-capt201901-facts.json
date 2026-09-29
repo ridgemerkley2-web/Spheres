@@ -1,0 +1,138 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_presidentes_lista_capt201901",
+  "source_url": "https://web.archive.org/web/20190105045549id_/https://www.mdb.org.br/conheca/presidentes-do-mdb/",
+  "original_url": "https://www.mdb.org.br/conheca/presidentes-do-mdb/",
+  "archive_capture_utc": "2019-01-05T04:55:49Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 20891,
+  "source_response_sha256": "dc42d8070c8cf504ca59d9775dd2da641da2e45c8ea3702eef04b36004148183",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:44:11Z and again at 2026-09-28T23:22:45Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 20891 bytes with SHA-256 dc42d8070c8cf504ca59d9775dd2da641da2e45c8ea3702eef04b36004148183 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-01-05T04:55:49Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:44:11Z and again at 2026-09-28T23:22:45Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 20891 bytes with SHA-256 dc42d8070c8cf504ca59d9775dd2da641da2e45c8ea3702eef04b36004148183 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The MDB site's undated retrospective list of its national presidents, captured 5 January 2019. Every entry is retrospective. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_list_jader_mandate_1998_2001",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-01",
+      "role_id": "br_mdb_president",
+      "holder_name": "Jader Barbalho",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The party's list of its presidents gives '8º) SENADOR JADER BARBALHO' ... 'Mandato: 15/09/1998 a 15/05/2001'.",
+      "locator": {
+        "section": "Entry 8"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_maguito_mandate_2001",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-01",
+      "role_id": "br_mdb_president",
+      "holder_name": "Maguito Vilela",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The list gives '9º) SENADOR MAGUITO VILELA' ... 'Mandato: 15/05/2001 a 09/09/2001'.",
+      "locator": {
+        "section": "Entry 9"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_temer_mandate_2001_leave_2009",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-02",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The list gives '10º) DEPUTADO MICHEL TEMER' ... 'Mandato 09/09/2001 e licenciou-se no dia 10/03/2009'.",
+      "locator": {
+        "section": "Entry 10"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_iris_interim_2009_2010",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-02",
+      "role_id": "br_mdb_president",
+      "holder_name": "Iris de Araújo",
+      "role_title": "Presidente Nacional do PMDB / MDB em exercício ou interino",
+      "event_kind": "interim_service",
+      "attested_on": null,
+      "text": "The list gives '11º) DEPUTADA ÍRIS DE ARAUJO (1ª VICE)' ... 'Mandato Interino: 10/03/2009 a 27/01/2010'.",
+      "locator": {
+        "section": "Entry 11"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_temer_resumes_2010_leave_2010",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The list gives '12º) DEPUTADO MICHEL TEMER' ... 'Reassume a Presidência do Partido em 27/01/2010 e licencia-se em 15/06/2010'.",
+      "locator": {
+        "section": "Entry 12"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_raupp_interim_2010_2014",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Valdir Raupp",
+      "role_title": "Presidente Nacional do PMDB / MDB em exercício ou interino",
+      "event_kind": "interim_service",
+      "attested_on": null,
+      "text": "The list gives '13º) SENADOR VALDIR RAUPP ( 1º VICE)' ... 'Mandato Interino: 15/06/2010 a 11/03/2014'.",
+      "locator": {
+        "section": "Entry 13"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_temer_assumes_2014",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The list gives '14º) VICE-PRESIDENTE DA REPÚBLICA MICHEL TEMER' ... 'Assume a direção do Partido em 14/01/2014'.",
+      "locator": {
+        "section": "Entry 14"
+      }
+    },
+    {
+      "claim_id": "br_mdb_list_juca_interim_2016",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-04",
+      "role_id": "br_mdb_president",
+      "holder_name": "Romero Jucá",
+      "role_title": "Presidente Nacional do PMDB / MDB em exercício ou interino",
+      "event_kind": "interim_service",
+      "attested_on": null,
+      "text": "The list gives '15º) SENADOR ROMERO JUCÁ' ... 'Assume a direção interina do Partido em 05/04/2016'.",
+      "locator": {
+        "section": "Entry 15"
+      }
+    }
+  ]
+}

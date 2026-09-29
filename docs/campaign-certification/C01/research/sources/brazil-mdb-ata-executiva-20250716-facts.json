@@ -1,0 +1,75 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_ata_executiva_20250716",
+  "source_url": "https://web.archive.org/web/20250915073142id_/https://www.mdb.org.br/wp-content/uploads/2025/08/ATA_COMISSAO_EXECUTIVA_NACIONAL_16_DE_JULHO_2025_protocolo-1-739-2025_assinado_versaoImpressao.pdf",
+  "original_url": "https://www.mdb.org.br/wp-content/uploads/2025/08/ATA_COMISSAO_EXECUTIVA_NACIONAL_16_DE_JULHO_2025_protocolo-1-739-2025_assinado_versaoImpressao.pdf",
+  "archive_capture_utc": "2025-09-15T07:31:42Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-07-16",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 246382,
+  "source_response_sha256": "34de51f9758a6d442539783b90ebad5ed12831d2368ed848f9978b2b2a8261cb",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:43:27Z and again at 2026-09-28T23:21:58Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 246382 bytes with SHA-256 34de51f9758a6d442539783b90ebad5ed12831d2368ed848f9978b2b2a8261cb and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-09-15T07:31:42Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:43:27Z and again at 2026-09-28T23:21:58Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 246382 bytes with SHA-256 34de51f9758a6d442539783b90ebad5ed12831d2368ed848f9978b2b2a8261cb and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The signed minutes (6 pages) of the MDB national executive meeting of 16 July 2025, uploaded to the party site and captured 15 September 2025 (the PDF was generated on 28 July 2025 and signed from 25 July 2025). Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "method": "PDF text layer extracted with PyMuPDF from all six pages; signature page checked by eye."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_baleia_opens_executive_meeting_as_presidente_nacional_20250716",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-05",
+      "role_id": "br_mdb_president",
+      "holder_name": "Baleia Rossi",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-07-16",
+      "text": "The minutes of 16 July 2025 record that 'o Presidente Nacional do Partido e Deputado Federal Baleia Rossi (MDB-SP) iniciou a reunião'.",
+      "locator": {
+        "section": "PDF page 2, opening paragraph"
+      }
+    },
+    {
+      "claim_id": "br_mdb_executive_and_directorate_extended_to_20270515_20250716",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-05",
+      "role_id": "br_mdb_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "mandate_extension",
+      "attested_on": "2025-07-16",
+      "text": "The minutes record that the chair 'colocou em votação a prorrogação da Comissão Executiva Nacional e do Diretório Nacional até o dia 15 de maio de 2027, o que foi aprovado de forma unânime'.",
+      "locator": {
+        "section": "PDF page 4"
+      }
+    },
+    {
+      "claim_id": "br_mdb_baleia_reconduction_congratulated_20250716",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-05",
+      "role_id": "br_mdb_president",
+      "holder_name": "Baleia Rossi",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The minutes record a member who 'parabenizou o Presidente Baleia Rossi pela sua recondução ao cargo de presidente do Partido'.",
+      "locator": {
+        "section": "PDF page 3"
+      }
+    }
+  ]
+}

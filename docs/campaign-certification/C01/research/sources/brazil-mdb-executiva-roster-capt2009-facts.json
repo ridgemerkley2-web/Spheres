@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_executiva_roster_capt2009",
+  "source_url": "https://web.archive.org/web/20091108153056id_/http://www.pmdb.org.br:80/executiva.php",
+  "original_url": "http://www.pmdb.org.br/executiva.php",
+  "archive_capture_utc": "2009-11-08T15:30:56Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 26330,
+  "source_response_sha256": "7155be74983beae708f39769c57f2341ac950c3dd0dddfb36b6841560a934e98",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:45:21Z and again at 2026-09-28T23:23:50Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 26330 bytes with SHA-256 7155be74983beae708f39769c57f2341ac950c3dd0dddfb36b6841560a934e98 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-11-08T15:30:56Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:45:21Z and again at 2026-09-28T23:23:50Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 26330 bytes with SHA-256 7155be74983beae708f39769c57f2341ac950c3dd0dddfb36b6841560a934e98 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PMDB site's undated roster of its national executive, captured 8 November 2009. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_roster_temer_presidente_licenciado_capt2009",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-02",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "leave_status_roster",
+      "attested_on": null,
+      "text": "The PMDB's undated roster, captured 8 November 2009, is headed 'Executiva Nacional (11 DE MARÇO DE 2007)' and lists 'Presidente: MICHEL TEMER (SP) (Licenciado)'.",
+      "locator": {
+        "section": "Roster heading and first line"
+      }
+    },
+    {
+      "claim_id": "br_mdb_iris_presidente_em_exercicio_roster_capt2009",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-02",
+      "role_id": "br_mdb_president",
+      "holder_name": "Iris de Araújo",
+      "role_title": "Presidente Nacional do PMDB / MDB em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": null,
+      "text": "The same roster lists '1º Vice-Presidente: ÍRIS DE ARAÚJO (GO) (Presidente em exercício)'.",
+      "locator": {
+        "section": "Second line of the roster"
+      }
+    }
+  ]
+}

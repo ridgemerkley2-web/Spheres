@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_raupp_presidente_nacional_20140514",
+  "source_url": "https://web.archive.org/web/20140528172803id_/http://pmdb.org.br/noticias/em-reuniao-da-executiva-nacional-parlamentares-e-diretorios-reforcam-apoio-a-michel-temer/",
+  "original_url": "http://pmdb.org.br/noticias/em-reuniao-da-executiva-nacional-parlamentares-e-diretorios-reforcam-apoio-a-michel-temer/",
+  "archive_capture_utc": "2014-05-28T17:28:03Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2014-05-14",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 29191,
+  "source_response_sha256": "20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:45:06Z and again at 2026-09-28T23:23:36Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 29191 bytes with SHA-256 20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-05-28T17:28:03Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:45:06Z and again at 2026-09-28T23:23:36Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 29191 bytes with SHA-256 20b987ff614df845a6f2758977dfac8e8afe6313fd80e45dff9f893a4cc912e1 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PMDB site item dated 14 May 2014, captured 28 May 2014. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_raupp_styled_presidente_nacional_20140514",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Valdir Raupp",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "styled_president_conflicting_record",
+      "attested_on": "2014-05-14",
+      "text": "The item says that the executive's meeting 'desta quarta-feira (14)' was 'comandada pelo presidente nacional da legenda, senador Valdir Raupp (RO)'.",
+      "locator": {
+        "section": "First paragraph"
+      }
+    }
+  ]
+}

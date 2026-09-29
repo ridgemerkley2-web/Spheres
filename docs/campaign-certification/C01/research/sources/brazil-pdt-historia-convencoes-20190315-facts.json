@@ -1,0 +1,96 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pdt_historia_convencoes_20190315",
+  "source_url": "https://web.archive.org/web/20190319020710id_/http://www.pdt.org.br:80/index.php/xxv-convencao-nacional-do-pdt-um-resgate-da-historia-e-das-lutas-do-trabalhismo/",
+  "original_url": "http://www.pdt.org.br/index.php/xxv-convencao-nacional-do-pdt-um-resgate-da-historia-e-das-lutas-do-trabalhismo/",
+  "archive_capture_utc": "2019-03-19T02:07:10Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-03-15",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 101392,
+  "source_response_sha256": "a23cf8f995f9e7d86aa78721fbeb4bb9afdc170cdc65526aaaf26268c49d3e79",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:34:27Z, 2026-09-28T22:45:49Z and again at 2026-09-28T23:21:26Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 101392 bytes with SHA-256 a23cf8f995f9e7d86aa78721fbeb4bb9afdc170cdc65526aaaf26268c49d3e79 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-03-19T02:07:10Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:34:27Z, 2026-09-28T22:45:49Z and again at 2026-09-28T23:21:26Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 101392 bytes with SHA-256 a23cf8f995f9e7d86aa78721fbeb4bb9afdc170cdc65526aaaf26268c49d3e79 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective history of the PDT's national conventions, signed by a member of the Diretório Nacional and posted on the party site on 15 March 2019, captured 19 March 2019. Every statement is retrospective. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PDT national-president observations for CLAUDE-C01-34 only (role br_pdt_president of the PDT funding observation br_tse_fefc_2024_party_02). Party meetings and conventions, elections, the assumption of the office, leaves, acting and interim service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices (ministries, the Chamber, governorships) are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pdt_history_v_convention_reconducts_brizola_1992",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-01",
+      "role_id": "br_pdt_president",
+      "holder_name": "Leonel Brizola",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The party's 2019 history says that 'A V Convenção Nacional, feita em 26 de abril de 1992' ... 'reconduziria Leonel Brizola à Presidência Nacional do PDT, momentos após o falecimento, em 7 de janeiro de 1991, de Doutel de Andrade'.",
+      "locator": {
+        "section": "Paragraph beginning 'Momentos antes do impeachment de Collor'"
+      }
+    },
+    {
+      "claim_id": "br_pdt_history_ix_convention_reconducts_brizola_1999",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-01",
+      "role_id": "br_pdt_president",
+      "holder_name": "Leonel Brizola",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The history says the 'IX Convenção Nacional, realizada em Brasília em 19 de abril de 1999' would 'reconduzir Leonel Brizola à Presidência Nacional do PDT'.",
+      "locator": {
+        "section": "Paragraph beginning 'O PDT, antenado com os rumos do País'"
+      }
+    },
+    {
+      "claim_id": "br_pdt_history_lupi_assumed_interim_executive_meeting_2004",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-02",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The history says 'Carlos Lupi assumia interinamente a Presidência Nacional do PDT na reunião da Executiva Nacional, em 28 de junho de 2004.' and 'Meses após, em 21 de março de 2005, Lupi foi eleito Presidente, na XIV Convenção.'",
+      "locator": {
+        "section": "Paragraph beginning 'Os grandes setores midiáticos'"
+      }
+    },
+    {
+      "claim_id": "br_pdt_history_xvi_convention_reelects_lupi_2007",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-03",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The history says that 'a XVI Convenção Nacional foi realizada em 09 de março de 2007, reelegendo Lupi para a Presidência Nacional do PDT'.",
+      "locator": {
+        "section": "Paragraph beginning 'No início de 2007'"
+      }
+    },
+    {
+      "claim_id": "br_pdt_history_lupi_leave_to_vieira_da_cunha_2008",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-03",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "The history says that 'em 12 de março de 2008, Lupi se licenciaria, cedendo a Presidência para o Deputado Federal Vieira da Cunha, exercendo estas funções até a XVII Convenção Nacional do PDT, que reelegeu Carlos Lupi como Presidente'.",
+      "locator": {
+        "section": "Paragraph beginning 'No início de 2007'"
+      }
+    }
+  ]
+}

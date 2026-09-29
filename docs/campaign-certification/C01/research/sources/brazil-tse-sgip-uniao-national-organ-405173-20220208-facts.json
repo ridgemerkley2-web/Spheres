@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pfl_tse_sgip_uniao_cen_2022_2024",
+  "source_url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=405173&isMembrosAtivos=false",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refuse curl (Akamai 403)",
+  "source_response_bytes": 22515,
+  "source_response_sha256": "1e5d34f13d653eef16d48c02ed9df27055e1096f7252a33657c16e2cd774dfa3",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded, without login, with no Accept-Encoding request header (or Accept-Encoding: identity); compare the byte count and SHA-256 of the JSON body as received. Do not copy any personal field of the response.",
+  "stability_check": "Downloaded at 2026-09-28T22:18:57Z, 2026-09-28T22:43:30Z and again at 2026-09-28T23:20:17Z (61 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 22515 bytes with SHA-256 1e5d34f13d653eef16d48c02ed9df27055e1096f7252a33657c16e2cd774dfa3 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:18:57Z, 2026-09-28T22:43:30Z and again at 2026-09-28T23:20:17Z (61 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 22515 bytes with SHA-256 1e5d34f13d653eef16d48c02ed9df27055e1096f7252a33657c16e2cd774dfa3 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Superior Electoral Court's public SGIP record of the first, closed national executive committee of União Brasil, read through the consultation page's own JSON endpoint without login, for the organ's registry identity only. PRIVACY: the public response carries members' CPF and voter-registration numbers and other personal fields; no member of this organ is extracted (its offices belong to another organization), and the raw body was deleted after hashing and review. Organ 405173: Comissão executiva, Nacional, vigência 08/02/2022-31/05/2024, despacho 08/02/2022, record altered 28/05/2024.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JSON registry record; the organ fields only (no member) read programmatically and checked by eye."
+  },
+  "bounded_scope": "PFL/DEM national-president observations for CLAUDE-C01-34, recorded as claims only: no role, no holder and no organization observation carries these rows (observation_id and role_id are null). The renaming of the PFL as Democratas and the fusion of the Democratas with the PSL into União Brasil are claims about the organization, never merged identities; the UNIÃO funding observation (br_tse_fefc_2024_party_27) is not linked to them. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pfl_tse_sgip_uniao_organ_registry_identity_20220208",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-04",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "registry_identity_of_fused_party",
+      "attested_on": "2022-02-08",
+      "text": "The TSE's annotation of the UNIÃO national executive committee (organ 405173, 'Comissão executiva', number 44, vigência 08/02/2022-31/05/2024, despacho 08/02/2022) carries the CNPJ 44.551.496/0001-67.",
+      "locator": {
+        "item": "orgaoPartidario nrCnpjFormatado, dtInicioVigenciaFormatada, dtDecisaoDespachoFormatada; anotacaoOrgaoPartidarioInfo numero and sigla"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_nota_temer_licenciado_20100121",
+  "source_url": "https://web.archive.org/web/20101010032018id_/http://www.pmdb.org.br/noticias.php?cd=2054",
+  "original_url": "http://www.pmdb.org.br/noticias.php?cd=2054",
+  "archive_capture_utc": "2010-10-10T03:20:18Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2010-01-21",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 45487,
+  "source_response_sha256": "f04896ba6d291ee985cee0c4fc0072d032ce989ed7b70d2bfa0fc17972200603",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:45:15Z and again at 2026-09-28T23:23:45Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 45487 bytes with SHA-256 f04896ba6d291ee985cee0c4fc0072d032ce989ed7b70d2bfa0fc17972200603 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-10-10T03:20:18Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:45:15Z and again at 2026-09-28T23:23:45Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 45487 bytes with SHA-256 f04896ba6d291ee985cee0c4fc0072d032ce989ed7b70d2bfa0fc17972200603 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PMDB site press note dated 21 January 2010 (11h53), captured 10 October 2010. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_temer_signs_note_as_presidente_licenciado_20100121",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "leave_status_signature",
+      "attested_on": "2010-01-21",
+      "text": "A PMDB press note of 21 January 2010 is signed 'Michel Temer Presidente licenciado do PMDB'.",
+      "locator": {
+        "section": "Signature of the note"
+      }
+    },
+    {
+      "claim_id": "br_mdb_convention_set_for_20100206_prospective_20100120",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "convention_called_prospective",
+      "attested_on": "2010-01-20",
+      "text": "The note reports a meeting of party members 'nesta quarta-feira (20-01-10)' at which 'Foi definido, por unanimidade, o dia 6 de fevereiro para a realização do encontro.'",
+      "locator": {
+        "section": "Opening sentence and item 1 of the note"
+      }
+    }
+  ]
+}

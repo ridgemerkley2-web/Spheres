@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_edital_convencao_20171123",
+  "source_url": "https://web.archive.org/web/20171230052402id_/http://pmdb.org.br:80/institucional/edital-de-convocacao/",
+  "original_url": "http://pmdb.org.br/institucional/edital-de-convocacao/",
+  "archive_capture_utc": "2017-12-30T05:24:02Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2017-12-13",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 23935,
+  "source_response_sha256": "d835f7606e7b3797286e44681b108e0fb6b861dcf0e2a4d0124b9153f3bfa9f3",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:44:26Z and again at 2026-09-28T23:22:59Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 23935 bytes with SHA-256 d835f7606e7b3797286e44681b108e0fb6b861dcf0e2a4d0124b9153f3bfa9f3 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-12-30T05:24:02Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:44:26Z and again at 2026-09-28T23:22:59Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 23935 bytes with SHA-256 d835f7606e7b3797286e44681b108e0fb6b861dcf0e2a4d0124b9153f3bfa9f3 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PMDB site page dated 13 December 2017 reproducing the convocation notice of 23 November 2017, captured 30 December 2017. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_juca_signs_edital_as_presidente_nacional_20171123",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-04",
+      "role_id": "br_mdb_president",
+      "holder_name": "Romero Jucá",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "styled_president_during_acting_period",
+      "attested_on": "2017-11-23",
+      "text": "The convocation notice closes 'Brasília-DF, 23 de novembro de 2017. ROMERO JUCÁ Presidente Nacional do PMDB'.",
+      "locator": {
+        "section": "Signature block"
+      }
+    },
+    {
+      "claim_id": "br_mdb_convention_called_renaming_prospective_20171123",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-04",
+      "role_id": "br_mdb_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "convention_called_prospective",
+      "attested_on": "2017-11-23",
+      "text": "The notice convenes a 'reunião extraordinária que se realizará no dia 19 de dezembro de 2017' whose agenda includes 'o restabelecimento do nome MOVIMENTO DEMOCRÁTICO BRASILEIRO – MDB e suas consequências'.",
+      "locator": {
+        "section": "Body of the edital"
+      }
+    }
+  ]
+}
