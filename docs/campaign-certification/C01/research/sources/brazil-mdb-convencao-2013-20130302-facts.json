@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_convencao_2013_20130302",
+  "source_url": "https://web.archive.org/web/20130305171905id_/http://pmdb.org.br:80/noticias/pmdb-elege-nova-executiva-nacional-para-o-bienio-2013-2015/",
+  "original_url": "http://pmdb.org.br/noticias/pmdb-elege-nova-executiva-nacional-para-o-bienio-2013-2015/",
+  "archive_capture_utc": "2013-03-05T17:19:05Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2013-03-02",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 24869,
+  "source_response_sha256": "045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:45:09Z and again at 2026-09-28T23:23:40Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24869 bytes with SHA-256 045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-03-05T17:19:05Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:45:09Z and again at 2026-09-28T23:23:40Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24869 bytes with SHA-256 045d5b38dbf90c939d034b1f212710c800b56681f493ee34f366c4257d61e912 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A same-day PMDB site report of the national convention of 2 March 2013, captured 5 March 2013. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_convention_held_20130302",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "convention_held",
+      "attested_on": "2013-03-02",
+      "text": "The item says 'A Convenção Nacional do PMDB foi encerrada neste sábado, em Brasília, com a escolha da nova direção nacional do Partido.'",
+      "locator": {
+        "section": "First paragraph"
+      }
+    },
+    {
+      "claim_id": "br_mdb_temer_reelected_20130302",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "reelection",
+      "attested_on": "2013-03-02",
+      "text": "The item says 'Convencionais de todo o país aprovaram a recondução de Michel Temer na presidência do PMDB, para o biênio 2013-2015.' and lists 'Presidente: MICHEL TEMER (SP) 1º Vice-Presidente: VALDIR RAUPP (RO)'.",
+      "locator": {
+        "section": "First paragraph and roster"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pdt_marcha_speech_19990826",
+  "source_url": "https://web.archive.org/web/20000116085821id_/http://www.pdt.org.br:80/bzdisc260899.htm",
+  "original_url": "http://www.pdt.org.br/bzdisc260899.htm",
+  "archive_capture_utc": "2000-01-16T08:58:21Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "1999-08-26",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 18015,
+  "source_response_sha256": "5e4e7c6f57d5841362c4e8d3730684700d9fac9c03018eeeb3a8e756d7f54d4b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:33:24Z, 2026-09-28T22:44:03Z and again at 2026-09-28T23:20:26Z (47 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18015 bytes with SHA-256 5e4e7c6f57d5841362c4e8d3730684700d9fac9c03018eeeb3a8e756d7f54d4b and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2000-01-16T08:58:21Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:33:24Z, 2026-09-28T22:44:03Z and again at 2026-09-28T23:20:26Z (47 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18015 bytes with SHA-256 5e4e7c6f57d5841362c4e8d3730684700d9fac9c03018eeeb3a8e756d7f54d4b and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PDT press-office item datelined Brasília, 26 August 1999, on the PDT site, captured 16 January 2000. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PDT national-president observations for CLAUDE-C01-34 only (role br_pdt_president of the PDT funding observation br_tse_fefc_2024_party_02). Party meetings and conventions, elections, the assumption of the office, leaves, acting and interim service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices (ministries, the Chamber, governorships) are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pdt_brizola_styled_presidente_do_pdt_19990826",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-01",
+      "role_id": "br_pdt_president",
+      "holder_name": "Leonel Brizola",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1999-08-26",
+      "text": "A PDT press item datelined 'Brasília, 26 de agosto de 1999' says 'O presidente do PDT, Leonel Brizola, encerrou seu discurso por volta das 14:45.'",
+      "locator": {
+        "section": "First paragraph after the heading 'O discurso na Marcha'"
+      }
+    }
+  ]
+}

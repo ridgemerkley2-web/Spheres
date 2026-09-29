@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pfl_convencao_2007_edital_20070313",
+  "source_url": "https://web.archive.org/web/20070317095802id_/http://www.pfl.org.br:80/convencao2007.asp",
+  "original_url": "http://www.pfl.org.br/convencao2007.asp",
+  "archive_capture_utc": "2007-03-17T09:58:02Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2007-03-13",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 16102,
+  "source_response_sha256": "58a436876abbb399adaee310cb336efbc45968299cb221807690af14122476ce",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:09:23Z, 2026-09-28T22:42:57Z and again at 2026-09-28T23:18:42Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 16102 bytes with SHA-256 58a436876abbb399adaee310cb336efbc45968299cb221807690af14122476ce and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2007-03-17T09:58:02Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:09:23Z, 2026-09-28T22:42:57Z and again at 2026-09-28T23:18:42Z (69 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 16102 bytes with SHA-256 58a436876abbb399adaee310cb336efbc45968299cb221807690af14122476ce and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PFL's convocation notice of 13 March 2007 for an extraordinary national convention, on the PFL site, captured 17 March 2007. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PFL/DEM national-president observations for CLAUDE-C01-34, recorded as claims only: no role, no holder and no organization observation carries these rows (observation_id and role_id are null). The renaming of the PFL as Democratas and the fusion of the Democratas with the PSL into União Brasil are claims about the organization, never merged identities; the UNIÃO funding observation (br_tse_fefc_2024_party_27) is not linked to them. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pfl_bornhausen_signs_convocation_as_presidente_20070313",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-01",
+      "role_id": null,
+      "holder_name": "Jorge Bornhausen",
+      "role_title": "Presidente Nacional do Partido da Frente Liberal (PFL) / Democratas (DEM) (claims only, no role)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2007-03-13",
+      "text": "The PFL's convocation notice, issued by 'O Presidente da Comissão Executiva Nacional do Partido da Frente Liberal – PFL', is dated 'Brasília, 13 de março de 2007' and signed 'Jorge Bornhausen Presidente'.",
+      "locator": {
+        "section": "Edital de convocação: opening words and the date and signature lines"
+      }
+    },
+    {
+      "claim_id": "br_pfl_convention_called_for_20070328_prospective_20070313",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-02",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "convention_called_prospective",
+      "attested_on": "2007-03-13",
+      "text": "The notice convenes the 'Convenção Extraordinária Nacional, a realizar-se no dia 28 de março de 2007', whose agenda includes the 'eleição da Comissão Provisória Nacional', the 'dissolução dos demais órgãos da administração partidária' and a 'proposta de reforma do Estatuto do Partido, que prevê a nova denominação da legenda'.",
+      "locator": {
+        "section": "Edital de convocação: first paragraph ('para deliberar sobre a seguinte Ordem do Dia')"
+      }
+    }
+  ]
+}

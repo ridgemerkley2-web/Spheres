@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pdt_discurso_lupi_20220121",
+  "source_url": "https://web.archive.org/web/20220122061423id_/https://www.pdt.org.br/index.php/discurso-de-carlos-lupi-na-convencao-nacional-do-pdt/",
+  "original_url": "https://www.pdt.org.br/index.php/discurso-de-carlos-lupi-na-convencao-nacional-do-pdt/",
+  "archive_capture_utc": "2022-01-22T06:14:23Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2022-01-21",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 76754,
+  "source_response_sha256": "0d13d37f8de19f8a441f2de316c064d5df03ecf3603f969b3de223d5303a51d2",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:34:39Z, 2026-09-28T22:46:23Z and again at 2026-09-28T23:21:38Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 76754 bytes with SHA-256 0d13d37f8de19f8a441f2de316c064d5df03ecf3603f969b3de223d5303a51d2 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-01-22T06:14:23Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:34:39Z, 2026-09-28T22:46:23Z and again at 2026-09-28T23:21:38Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 76754 bytes with SHA-256 0d13d37f8de19f8a441f2de316c064d5df03ecf3603f969b3de223d5303a51d2 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The text of Carlos Lupi's speech at the national convention, posted on the PDT site on 21 January 2022 and captured 22 January 2022. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PDT national-president observations for CLAUDE-C01-34 only (role br_pdt_president of the PDT funding observation br_tse_fefc_2024_party_02). Party meetings and conventions, elections, the assumption of the office, leaves, acting and interim service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices (ministries, the Chamber, governorships) are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pdt_convention_speech_published_20220121",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-03",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "convention_speech_published",
+      "attested_on": "2022-01-21",
+      "text": "The post 'Discurso de Carlos Lupi na Convenção Nacional do PDT Por Carlos Lupi 21/01/2022' gives his speech at the convention, recalling Brizola, 'que amanhã estaria fazendo 100 anos'.",
+      "locator": {
+        "section": "Heading, byline and the paragraph on Brizola"
+      }
+    }
+  ]
+}

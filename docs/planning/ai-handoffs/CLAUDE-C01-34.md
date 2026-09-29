@@ -51,9 +51,7 @@ Touched paths (nothing else):
   CLAUDE-C01-22's; on the MDB observation `br_tse_fefc_2024_party_01` and the PDT observation
   `br_tse_fefc_2024_party_02`, one new role each and the new ids appended to their sources and claims; one coverage note
   on each of the two observations and one on the packet);
-- 76 new extracts `docs/campaign-certification/C01/research/sources/brazil-*-facts.json` (no existing extract edited;
-  three of this packet's own, `brazil-pdt-home-20040706-facts.json`, `brazil-pdt-direcao-nacional-capt20040722-facts.json`
-  and `brazil-pdt-edital-convencao-20050228-facts.json`, re-kinded by the verifier fixes, with new snapshots);
+- 76 new extracts `docs/campaign-certification/C01/research/sources/brazil-*-facts.json` (no existing extract edited);
 - `tools/avatars/test_brazil_party_presidents_c01_34.py` (new); `tools/avatars/test_brazil_research_s10f.py`,
   `tools/avatars/test_brazil_presidents_c01_10.py`, `tools/avatars/test_brazil_vice_presidents_c01_17.py` and
   `tools/avatars/test_brazil_pt_presidents_c01_22.py` (pins re-expressed exactly, none loosened);
@@ -66,33 +64,21 @@ presidents of 1990-1998 and the PFL presidents before 1999 are outside the packe
 
 Decisions per chain:
 
-- **PDT** (`br_pdt_president`, seven holders): Leonel Brizola observed 11 April 1997, 26 August 1999 and 2 June 2004,
-  until 21 June 2004 (the party's same-day report of his death in office, kept by the integrator's ruling: the home page
-  names him national president and states his death that evening, dated by its printed update line, Monday 21/06/04,
-  22h15m, and the Curitiba item of 22.06.04 corroborates the day); Carlos Lupi observed 9 February 2007, 21 December
-  2021, 21 May 2025 and 4 September 2026. No start. Who presided on 1 January 1990 is open (the party's 2019 history ties
-  Brizola's 1992 recondução to the death of Doutel de Andrade). Lupi's service from June 2004 to his election of 21 March
-  2005 is interim claims only (integrator's ruling, following CLAUDE-C01-22's Genoino ruling: the party's 2019 history
-  says he took the presidency on an interim basis at the executive of 28 June 2004), so his styling of 6 July 2004, the
-  roster captured 22 July 2004 and the edital of 28 February 2005 are `styled_president_during_interim_period` claims
-  and 6 July 2004 is never a holder date. Lupi's 2025-05-21 holder is kept by the integrator's ruling: a styling in the
-  party's next-day report of the executive's decision is an in-office attestation of its own day, as with
-  CLAUDE-C01-22's Tarso Genro on 10 July 2005 (Codex may still decide otherwise). The day his interim service began, his
-  2008-2009 leave with Vieira da Cunha acting, his 2023-2025 leave with André Figueiredo acting, the return decided on 20
-  May 2025, re-elections and two closed SGIP organs are claims. Brizola's Tijolaço column printed '06.05.2004' is
-  undated: its own text places it in early June 2004.
+- **PDT** (`br_pdt_president`, eight holders): Leonel Brizola observed 11 April 1997, 26 August 1999 and 2 June 2004,
+  until 21 June 2004 (the party's same-day report of his death in office; fallback: a claim only); Carlos Lupi observed
+  6 July 2004, 9 February 2007, 21 December 2021, 21 May 2025 and 4 September 2026. No start. Who presided on 1 January
+  1990 is open (the party's 2019 history ties Brizola's 1992 recondução to the death of Doutel de Andrade); Lupi's 2004
+  assumption (automatic, interim from 28 June 2004, or 21 June 2004), his 2008-2009 leave with Vieira da Cunha acting,
+  his 2023-2025 leave with André Figueiredo acting, the return decided on 20 May 2025, re-elections and two closed SGIP
+  organs are claims. His Tijolaço column printed '06.05.2004' is undated: its own text places it in early June 2004.
 - **PMDB/MDB** (`br_mdb_president`, five holders): Michel Temer observed 2 July 2003 and 29 March 2016; Baleia Rossi
   observed 17 October 2019, 16 July 2025 and 7 June 2026. No start or end. Jader Barbalho (elected 15 September 1998)
   has no day-dated party attestation and no holder. Romero Jucá's service from 5 April 2016 is recorded as acting (the
   party's roster and list and the TSE registry say 'em exercício' or 'interina'), so his unqualified stylings, including
-  the signed edital of 23 November 2017, are claims; the integrator's ruling keeps him acting, claims only, because the
-  edital is unqualified but every other record, including the TSE registry's 'PRESIDENTE EM EXERCÍCIO', calls his service
-  acting (Codex may still decide otherwise). The posse of the executive of 10 March 2010, printed
+  the signed edital of 23 November 2017, are claims (Codex to rule). The posse of the executive of 10 March 2010, printed
   on an undated roster, is a claim, not Temer's start. The renaming PMDB to MDB (convention of 19
   December 2017, filed with the TSE on 31 January 2018, approved by the TSE on 15 May 2018) is recorded as organization
-  claims and ties the MDB label to the PMDB; the integrator's ruling accepts one role, since it is a pure renaming with
-  the same registration and CNPJ, consistent with CLAUDE-C01-22 (PT) and CLAUDE-C01-30 (FF to FF Plus) (Codex may still
-  decide otherwise).
+  claims and ties the MDB label to the PMDB.
 - **PFL/DEM** (claims only; no role, no holder, `UNIÃO` unchanged): Bornhausen (executive elected and invested 7 May
   1999; styled 7 March 2003; signs 13 March 2007), the renaming as Democratas (convention called for 28 March 2007;
   Rodrigo Maia signs as 'Presidente Nacional do Democratas' on 29 March 2007, still styled so on 15 February and 14 March
@@ -106,14 +92,14 @@ Observation decisions:
 
 | ID | Decision |
 |---|---|
-| PDT-PRES-01 | Accepted in part: the 1990 holder open; Brizola observed 1997, 1999 and 2004, until 21 June 2004 (death in office; kept by ruling) |
-| PDT-PRES-02 | Accepted in part: Lupi's service from June 2004 to 21 March 2005 is interim, claims only (ruling); no holder, no start |
+| PDT-PRES-01 | Accepted in part: the 1990 holder open; Brizola observed 1997, 1999 and 2004, until 21 June 2004 (death in office) |
+| PDT-PRES-02 | Accepted in part: Lupi observed 6 July 2004; three conflicting assumption versions, no start |
 | PDT-PRES-03 | Accepted in part: Lupi observed 9 February 2007 and 21 December 2021; re-elections, leave, acting service and registry periods are claims |
-| PDT-PRES-04 | Accepted in part: leave and Figueiredo's acting service (claims); Lupi observed 21 May 2025 (kept by ruling) and 4 September 2026 |
+| PDT-PRES-04 | Accepted in part: leave and Figueiredo's acting service (claims); Lupi observed 21 May 2025 and 4 September 2026 |
 | MDB-PRES-01 | Accepted in part: Jader Barbalho elected 15 September 1998; no dated attestation, no holder; the end open |
 | MDB-PRES-02 | Accepted in part: Temer observed 2 July 2003; the 2009 leave and Iris de Araújo's interim service are claims |
 | MDB-PRES-03 | Accepted in part: Temer observed 29 March 2016; the 2010 posse on an undated roster, leaves, Raupp's acting service and conflicting records are claims |
-| MDB-PRES-04 | Accepted in part: Temer's leave, Jucá as acting, the renaming PMDB to MDB (claims; one role and Jucá acting by ruling) |
+| MDB-PRES-04 | Accepted in part: Temer's leave, Jucá as acting, the renaming PMDB to MDB (claims) |
 | MDB-PRES-05 | Accepted in part: Baleia Rossi observed 17 October 2019, 16 July 2025 and 7 June 2026 |
 | PFL-PRES-01 | Claims only: Bornhausen |
 | PFL-PRES-02 | Claims only: the renaming as Democratas and Rodrigo Maia |
@@ -124,28 +110,13 @@ Checker defects: two independent checks read every claim, extract row and holder
 PFL/DEM: 5 must-fix, 15 suggestions; PMDB/MDB: 8 must-fix, 8 suggestions). All must-fix defects are fixed (among them
 Brizola's Tijolaço column, whose printed '06.05.2004' its own text contradicts, is now undated, so his 2004 observation is
 the caucus meeting of 2 June 2004; the SGIP record dates; Temer's and Jucá's registry periods; the start of Temer's
-mandate; the 2010 convention's setting day; the undated 2009 roster); the suggestions are applied, and Lupi's 2025
-observation, which the check left to a ruling, is kept by the integrator's ruling. The raw SGIP bodies, which carry
-members' personal data, were deleted after hashing and review; no personal field is copied.
-
-Verifier fixes (commit "Apply verifier fixes to CLAUDE-C01-34"): the independent verifier re-downloaded all 76
-responses (byte-identical) and found four text defects, all applied after checking the source or file: the
-`test_brazil_research_s10f.py` comment now gives 127 claims (not 123); the report's ledger says the fusion was approved
-by the DEM and PSL joint convention, whose day the TSE states; Lupi's 2025-05-21 holder's fallback is observed first on
-4 September 2026 (the 19 August 2026 styling stays a continuation claim); and the PMDB presidents of 1990-1998 are all
-named in the report and the packet coverage note (Jarbas Vasconcelos, Ulysses Guimarães, Orestes Quércia, José Fogaça,
-Luiz Henrique da Silveira and Paes de Andrade), checked against `br_mdb_presidentes_lista_capt201901`, where Jarbas
-Vasconcelos's mandate lies within Ulysses Guimarães's and José Fogaça's within Orestes Quércia's. The integrator's
-rulings above are applied: the 2004-07-06 holder is removed (seven PDT holders), the three 2004-2005 stylings are
-re-kinded in `brazil.json` and their extracts, 2004-07-06 is a never-holder date, Brizola's holder says its day comes
-from the page's update line and 'esta noite' and that the misdated admission ('segunda-feira, 20/06', a Sunday) does not
-affect it, and the report's 1999 `presid.htm` note says the archive digest is the SHA-1 of the body plus one trailing
-newline (1,977 bytes) while the served body is 1,976 bytes and equals the original Content-Length.
+mandate; the 2010 convention's setting day; the undated 2009 roster); the suggestions are applied, with Lupi's 2025
+observation left to Codex's ruling. The raw SGIP bodies, which carry members' personal data, were deleted after hashing
+and review; no personal field is copied.
 
 Checks run on 28 September 2026 in this sparse worktree (`docs/campaign-certification/C01`,
 `docs/campaign-certification/verification`, `docs/planning`, `spheres-sim/data`, `spheres-sim/src`, `spheres-web/data`,
-`tools/avatars`, `tools/planning`, `tools/ui`; not widened), after merging `44098c5a`, with `PYTHONDONTWRITEBYTECODE=1`,
-and all re-run after the verifier fixes with the same results (`codex/campaign-certification` still at `44098c5a`):
+`tools/avatars`, `tools/planning`, `tools/ui`; not widened), after merging `44098c5a`, with `PYTHONDONTWRITEBYTECODE=1`:
 
 - `python -X utf8 tools/avatars/campaign_research.py` then `--check`: exact regeneration passes; 9 packets,
   841 organization and 35 institution observations, 1,647 sources, 4,309 claims, 93 discovery batches.
@@ -169,8 +140,7 @@ and all re-run after the verifier fixes with the same results (`codex/campaign-c
   renaming or a registry end used as an end; an election, re-election, the executive posse of 2010, a retrospective
   assumption day, a predecessor's death, a return from leave or a registry start used as a start; an election or
   continuation claim cited by a holder; acting, interim, acting-period, conflicting or undated-roster service added as a
-  holder (Figueiredo, Jucá, Iris de Araújo, Raupp, Jader Barbalho); Lupi's 2004 interim styling restored as a holder
-  (also with its row's kind restored, caught by the never-holder date); cross-role and cross-institution moves between the
+  holder (Figueiredo, Jucá, Iris de Araújo, Raupp, Jader Barbalho); cross-role and cross-institution moves between the
   PDT, MDB, PT and presidency records; any PFL/DEM claim or role placed on `UNIÃO`; a second party role or none; a
   lifecycle start; a retrospective span given a date; a printed civil name as the holder name; holders out of order;
   collapsed event dates; and checksum, path, beyond-cutoff, reversed-interval, cited-source, unknown-claim and

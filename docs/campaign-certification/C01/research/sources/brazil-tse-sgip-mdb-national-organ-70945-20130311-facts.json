@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_tse_sgip_cen_2013_2019",
+  "source_url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70945&isMembrosAtivos=false",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refuse curl (Akamai 403)",
+  "source_response_bytes": 18952,
+  "source_response_sha256": "1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded, without login, with no Accept-Encoding request header (or Accept-Encoding: identity); compare the byte count and SHA-256 of the JSON body as received. Do not copy any personal field of the response.",
+  "stability_check": "Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:00:30Z, 2026-09-28T22:42:03Z and again at 2026-09-28T23:17:11Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 18952 bytes with SHA-256 1d00f3018ea6d2fdc9f863cff6762edee15cd546dd791880f6c75dcb0b2b2247 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed MDB national executive committee with its members, read through the consultation page's own JSON endpoint without login; the record carries the party's later name and site (www.mdb.org.br). PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and the raw body was deleted after hashing and review. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70945: Comissão executiva, Nacional, vigência 11/03/2013-06/10/2019, despacho 08/04/2013, record created 03/09/2019 and altered 04/09/2019.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JSON registry record; the organ fields and the President entry read programmatically and checked by eye."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_tse_sgip_temer_registered_presidente_licenciado_20140716_20160405",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-03",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "registry_exercise_period",
+      "attested_on": null,
+      "text": "The TSE's annotation of the MDB national executive committee (organ 70945, vigência 11/03/2013-06/10/2019) lists 'MICHEL MIGUEL ELIAS TEMER LULIA' as 'PRESIDENTE LICENCIADO' with registered exercise 16/07/2014 to 05/04/2016, status Inativo.",
+      "locator": {
+        "item": "membros[] entry nomeCargo 'PRESIDENTE LICENCIADO'; orgaoPartidario vigência"
+      }
+    },
+    {
+      "claim_id": "br_mdb_tse_sgip_juca_registered_presidente_em_exercicio_20160312_20191006",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-04",
+      "role_id": "br_mdb_president",
+      "holder_name": "Romero Jucá",
+      "role_title": "Presidente Nacional do PMDB / MDB em exercício ou interino",
+      "event_kind": "registry_acting_period",
+      "attested_on": null,
+      "text": "The same annotation lists 'ROMERO JUCÁ FILHO' as 'PRESIDENTE EM EXERCÍCIO | PRIMEIRO VICE-PRESIDENTE' with registered exercise 12/03/2016 to 06/10/2019, status Inativo.",
+      "locator": {
+        "item": "membros[] entry nomeCargo 'PRESIDENTE EM EXERCÍCIO   |  PRIMEIRO VICE-PRESIDENTE'"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pdt_eleicoes_2026_20260904",
+  "source_url": "https://web.archive.org/web/20260905041426id_/https://pdt.org.br/index.php/pdt-entra-forte-na-disputa-de-2026-com-candidaturas-competitivas-em-todas-as-regioes-do-pais/",
+  "original_url": "https://pdt.org.br/index.php/pdt-entra-forte-na-disputa-de-2026-com-candidaturas-competitivas-em-todas-as-regioes-do-pais/",
+  "archive_capture_utc": "2026-09-05T04:14:26Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2026-09-04",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 24187,
+  "source_response_sha256": "99e5090f3968db00f07018a04e17ede002253921ded13cfe1561f9bb720c2d48",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "zstd",
+  "decoded_response_bytes": 95681,
+  "decoded_response_sha256": "b836ef065993754d305254ff3b18eb23c158d39d107f4df1919f5c98ae2b43c4",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:34:51Z, 2026-09-28T22:46:34Z and again at 2026-09-28T23:21:50Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24187 bytes with SHA-256 99e5090f3968db00f07018a04e17ede002253921ded13cfe1561f9bb720c2d48, served with Content-Encoding: zstd (the archive serves this capture zstd-encoded even to an identity request); the recorded identity is the zstd-encoded body exactly as served, and the decoded body is 95681 bytes with SHA-256 b836ef065993754d305254ff3b18eb23c158d39d107f4df1919f5c98ae2b43c4. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-09-05T04:14:26Z; that form replays the archived bytes unchanged and is used in place of the live page. The archive serves this capture with Content-Encoding: zstd even to an identity request: the recorded identity is the zstd-encoded body exactly as served, and the decoded identity is recorded beside it; do not let the client decode it. Downloaded at 2026-09-28T22:34:51Z, 2026-09-28T22:46:34Z and again at 2026-09-28T23:21:50Z (46 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 24187 bytes with SHA-256 99e5090f3968db00f07018a04e17ede002253921ded13cfe1561f9bb720c2d48, served with Content-Encoding: zstd (the archive serves this capture zstd-encoded even to an identity request); the recorded identity is the zstd-encoded body exactly as served, and the decoded body is 95681 bytes with SHA-256 b836ef065993754d305254ff3b18eb23c158d39d107f4df1919f5c98ae2b43c4. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PDT site item dated 4 September 2026, captured 5 September 2026, before the cutoff. Raw Internet Archive capture served with Content-Encoding: zstd; the recorded identity is the zstd-encoded body as served, and the decoded identity is recorded beside it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored. The zstd-encoded body was decoded for reading only."
+  },
+  "bounded_scope": "PDT national-president observations for CLAUDE-C01-34 only (role br_pdt_president of the PDT funding observation br_tse_fefc_2024_party_02). Party meetings and conventions, elections, the assumption of the office, leaves, acting and interim service, deaths and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. State offices (ministries, the Chamber, governorships) are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pdt_lupi_styled_presidente_nacional_20260904",
+      "observation_id": "br_tse_fefc_2024_party_02",
+      "review_observation": "PDT-PRES-04",
+      "role_id": "br_pdt_president",
+      "holder_name": "Carlos Lupi",
+      "role_title": "Presidente Nacional do Partido Democrático Trabalhista",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-09-04",
+      "text": "The item, dated 4 September 2026, says 'O presidente nacional do PDT, Carlos Lupi, reforça o papel estratégico do partido na disputa que definirá o futuro do país'.",
+      "locator": {
+        "section": "Second paragraph"
+      }
+    }
+  ]
+}

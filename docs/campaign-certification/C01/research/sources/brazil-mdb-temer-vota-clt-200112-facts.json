@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_temer_vota_clt_200112",
+  "source_url": "https://web.archive.org/web/20020111051010id_/http://www.pmdb.org.br:80/noticias/nt_051101_05.htm",
+  "original_url": "http://www.pmdb.org.br/noticias/nt_051101_05.htm",
+  "archive_capture_utc": "2002-01-11T05:10:10Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 10603,
+  "source_response_sha256": "30ec40a39f7a413e3e76861b04695cf8e26526f6c6bfe8a4f1da7da8da595f82",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:45:24Z and again at 2026-09-28T23:23:53Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 10603 bytes with SHA-256 30ec40a39f7a413e3e76861b04695cf8e26526f6c6bfe8a4f1da7da8da595f82 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-01-11T05:10:10Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:45:24Z and again at 2026-09-28T23:23:53Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 10603 bytes with SHA-256 30ec40a39f7a413e3e76861b04695cf8e26526f6c6bfe8a4f1da7da8da595f82 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An undated Agência PMDB item on the PMDB site reporting a Chamber vote of 'terça-feira (04/12)' (the year is not printed; archived Last-Modified header 5 December 2001), captured 11 January 2002. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused; menus and sidebars ignored."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_temer_styled_presidente_do_pmdb_undated_2001",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-02",
+      "role_id": "br_mdb_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "An undated Agência PMDB item on a vote held 'nesta terça-feira (04/12)' says 'O presidente do PMDB, deputado Michel Temer, também votou contra o projeto do Governo'.",
+      "locator": {
+        "section": "Second paragraph"
+      }
+    }
+  ]
+}

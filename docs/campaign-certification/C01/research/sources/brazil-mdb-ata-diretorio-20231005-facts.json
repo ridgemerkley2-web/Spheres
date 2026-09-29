@@ -1,0 +1,44 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_mdb_ata_diretorio_20231005",
+  "source_url": "https://web.archive.org/web/20240301071321id_/https://www.mdb.org.br/wp-content/uploads/2023/12/ATA-DA-REUNIAO-DO-DIRETORIO-NACIONAL-DO-MOVIMENTO-DEMOCRATICO-BRASILEIRO-MDB-05-10-2023.pdf",
+  "original_url": "https://www.mdb.org.br/wp-content/uploads/2023/12/ATA-DA-REUNIAO-DO-DIRETORIO-NACIONAL-DO-MOVIMENTO-DEMOCRATICO-BRASILEIRO-MDB-05-10-2023.pdf",
+  "archive_capture_utc": "2024-03-01T07:13:21Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2023-10-05",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, Accept-Encoding: identity, no redirects followed)",
+  "source_response_bytes": 232963,
+  "source_response_sha256": "11e40f63775353561791c7b908aebe12eea72872cc46c49600b1d132987bef00",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header (or Accept-Encoding: identity) and no automatic decoding (curl without --compressed), following no redirects; compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-28T22:43:30Z and again at 2026-09-28T23:22:23Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 232963 bytes with SHA-256 11e40f63775353561791c7b908aebe12eea72872cc46c49600b1d132987bef00 and no Content-Encoding. The raw id_ form replays the stored capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-03-01T07:13:21Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that asks for Accept-Encoding: identity or sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-28T22:43:30Z and again at 2026-09-28T23:22:23Z (38 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 232963 bytes with SHA-256 11e40f63775353561791c7b908aebe12eea72872cc46c49600b1d132987bef00 and no Content-Encoding. The raw id_ form replays the stored capture. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The signed minutes (3 pages) of the MDB Diretório Nacional meeting of 5 October 2023, uploaded to the party site and captured 1 March 2024; the member table on page 1 is an image, read visually. Raw Internet Archive capture (served without Content-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF text layer extracted with PyMuPDF; page 1 rendered and its image table read by eye."
+  },
+  "bounded_scope": "PMDB/MDB national-president observations for CLAUDE-C01-34 only (role br_mdb_president of the MDB funding observation br_tse_fefc_2024_party_01). Conventions, elections, the assumption of the office, leaves, acting and interim service, resignations, the PMDB-to-MDB renaming and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency and Vice-Presidency of the Republic (br_presidency) and other state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_mdb_directorate_elects_executive_by_acclamation_20231005",
+      "observation_id": "br_tse_fefc_2024_party_01",
+      "review_observation": "MDB-PRES-05",
+      "role_id": "br_mdb_president",
+      "holder_name": "Baleia Rossi",
+      "role_title": "Presidente Nacional do PMDB / MDB (Movimento Democrático Brasileiro)",
+      "event_kind": "election",
+      "attested_on": "2023-10-05",
+      "text": "The minutes of 5 October 2023 record that 'foi definida por aclamação a nova Comissão Executiva Nacional do Movimento Democrático Brasileiro (MDB)' 'para o mandato de 2 (dois) anos', whose table (an image) lists Baleia Rossi first as PRESIDENTE.",
+      "locator": {
+        "section": "PDF page 1: paragraph beginning 'Aos 05 (cinco) dias do mês de outubro de 2023' and the image table"
+      }
+    }
+  ]
+}

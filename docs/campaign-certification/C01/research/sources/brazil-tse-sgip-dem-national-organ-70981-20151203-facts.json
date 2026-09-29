@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pfl_tse_sgip_dem_cen_2015_2018",
+  "source_url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70981&isMembrosAtivos=false",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refuse curl (Akamai 403)",
+  "source_response_bytes": 23088,
+  "source_response_sha256": "c88585aee6e866a7ec1fe2f7bd1952ba016a8931bc0891521164bacfb701fd10",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded, without login, with no Accept-Encoding request header (or Accept-Encoding: identity); compare the byte count and SHA-256 of the JSON body as received. Do not copy any personal field of the response.",
+  "stability_check": "Downloaded at 2026-09-28T22:00:44Z, 2026-09-28T22:42:18Z and again at 2026-09-28T23:17:26Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 23088 bytes with SHA-256 c88585aee6e866a7ec1fe2f7bd1952ba016a8931bc0891521164bacfb701fd10 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at 2026-09-28T22:00:44Z, 2026-09-28T22:42:18Z and again at 2026-09-28T23:17:26Z (76 minutes between the first and last download) from the same exact URL with curl, the request header Accept-Encoding: identity, no decoding and no redirects followed; every response was 23088 bytes with SHA-256 c88585aee6e866a7ec1fe2f7bd1952ba016a8931bc0891521164bacfb701fd10 and no Content-Encoding. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed DEM national executive committee with its members, read through the consultation page's own JSON endpoint without login. PRIVACY: the public response also carries members' CPF and voter-registration numbers and other personal fields; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and the raw body was deleted after hashing and review. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70981: Comissão executiva, Nacional, vigência 03/12/2015-08/03/2018, despacho 11/12/2015, record created 15/03/2018 and altered 16/03/2018.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JSON registry record; the organ fields and the President entry read programmatically and checked by eye."
+  },
+  "bounded_scope": "PFL/DEM national-president observations for CLAUDE-C01-34, recorded as claims only: no role, no holder and no organization observation carries these rows (observation_id and role_id are null). The renaming of the PFL as Democratas and the fusion of the Democratas with the PSL into União Brasil are claims about the organization, never merged identities; the UNIÃO funding observation (br_tse_fefc_2024_party_27) is not linked to them. State offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pfl_tse_sgip_agripino_registered_exercise_20151203_20180308",
+      "observation_id": null,
+      "review_observation": "PFL-PRES-03",
+      "role_id": null,
+      "holder_name": "José Agripino",
+      "role_title": "Presidente Nacional do Partido da Frente Liberal (PFL) / Democratas (DEM) (claims only, no role)",
+      "event_kind": "registry_exercise_period",
+      "attested_on": null,
+      "text": "The TSE's annotation of the DEM national executive committee (organ 70981, CNPJ 01.633.510/0001-69, vigência 03/12/2015-08/03/2018) lists 'JOSÉ AGRIPINO MAIA' as PRESIDENTE with registered exercise 03/12/2015 to 08/03/2018, status Inativo.",
+      "locator": {
+        "item": "membros[] entry nomeCargo 'PRESIDENTE'; orgaoPartidario vigência"
+      }
+    }
+  ]
+}

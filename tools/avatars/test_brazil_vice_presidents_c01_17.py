@@ -21,6 +21,9 @@ C01_10_CLAIM_COUNT = 112
 # CLAUDE-C01-22 appends 108 sources for the PT party role br_pt_president after this packet's (pinned exactly in
 # test_brazil_pt_presidents_c01_22.py, which imports this module; the count and id prefix are pinned here).
 C01_22_SOURCE_COUNT = 108
+# CLAUDE-C01-34 then appends 76 sources for the MDB and PDT party roles and the PFL/DEM claims (pinned exactly in
+# test_brazil_party_presidents_c01_34.py; the count and id prefixes are pinned here).
+C01_34_SOURCE_COUNT = 76
 
 # New sources, in packet order, with the original response identity recorded in each extract: (bytes, sha256).
 RESPONSES = {
@@ -498,13 +501,18 @@ class BrazilVicePresidentsTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 172, 408, 3))
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 248, 535, 5))
         self.assertEqual((len(NEW_SOURCES), len(C01_17_CLAIMS), len(CITED)), (11, 85, 12))
         start = ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT
         self.assertEqual([s['id'] for s in self.packet['sources']][start:start + len(NEW_SOURCES)], NEW_SOURCES)
         self.assertEqual(len(self.packet['sources']),
-                         ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT + len(NEW_SOURCES) + C01_22_SOURCE_COUNT)
-        self.assertTrue(all(s['id'].startswith('br_pt_') for s in self.packet['sources'][start + len(NEW_SOURCES):]))
+                         ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT + len(NEW_SOURCES) + C01_22_SOURCE_COUNT +
+                         C01_34_SOURCE_COUNT)
+        later = start + len(NEW_SOURCES)
+        self.assertTrue(all(s['id'].startswith('br_pt_')
+                            for s in self.packet['sources'][later:later + C01_22_SOURCE_COUNT]))
+        self.assertTrue(all(s['id'].startswith(('br_pdt_', 'br_mdb_', 'br_pfl_'))
+                            for s in self.packet['sources'][later + C01_22_SOURCE_COUNT:]))
         # Claims on responses CLAUDE-C01-10 already records are appended to those source records, after its own.
         self.assertEqual(set(ADDED_TO_C01_10), set(SHARED))
         added = []
@@ -641,9 +649,11 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         self.assertTrue(unresolved[-2].startswith('Still open for the Vice-Presidency'))
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         packet_unresolved = self.packet['coverage']['unresolved']
-        # CLAUDE-C01-22's note on the PT party role follows this packet's note, exactly once.
-        self.assertTrue(packet_unresolved[-2].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
-        self.assertTrue(packet_unresolved[-1].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
+        # CLAUDE-C01-22's note on the PT party role follows this packet's note, then CLAUDE-C01-34's, each exactly once.
+        self.assertTrue(packet_unresolved[-3].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
+        self.assertTrue(packet_unresolved[-2].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
+        self.assertTrue(packet_unresolved[-1].startswith('PFL/DEM, PDT and PMDB/MDB national presidents 1990-2026 '
+                                                         '(CLAUDE-C01-34)'))
         self.assertEqual(sum('CLAUDE-C01-17' in u for u in packet_unresolved), 1)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -918,7 +928,7 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 3))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 5))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 
