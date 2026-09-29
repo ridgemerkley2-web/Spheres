@@ -84,6 +84,11 @@ ARCHIVED = {
 }
 # Captures the Internet Archive serves gzip-compressed even to Accept-Encoding: identity; identity = compressed body as received.
 GZIP = {'fr_jorf_nomination_jospin_19970602', 'fr_jorf_nomination_fillon_20070618'}
+# Their decoded bodies, (bytes, SHA-256) after gzip decompression, recorded as structured fields.
+DECODED = {
+    'fr_jorf_nomination_jospin_19970602': (89703, '2728a17a331456eda7154928188b524d2c8f94847c3fe75bc5ef74d45d59fa39'),
+    'fr_jorf_nomination_fillon_20070618': (86648, '88b257880336499ea25716228014222346503f3d2bffb2092a6c3696d8cb733a'),
+}
 # Every new claim's (attested_on, event_kind, review observation), exactly.
 EVENTS = {
     'fr_jorf_rocard_signs_decree_as_pm_19900124': ('1990-01-24', 'in_office_signature_as_pm', 'FR-PM-01'),
@@ -456,8 +461,11 @@ class FrancePrimeMinistersTests(unittest.TestCase):
                 self.assertIn('Content-Encoding: gzip', extract['provenance_note'])
                 self.assertIn('the gzip stream', extract['provenance_note'])
                 self.assertIn('gzip-compressed', source['scope_note'])
+                self.assertEqual((extract['source_response_content_encoding'], extract['decoded_response_bytes'],
+                                  extract['decoded_response_sha256']), ('gzip',) + DECODED[sid])
             else:
                 self.assertIn('served without Content-Encoding', extract['provenance_note'])
+                self.assertNotIn('decoded_response_sha256', extract)
             self.assertIn('No open license, portrait permission or likeness approval', extract['rights_note'])
             self.assertEqual(extract['rights_note'], source['rights_note'])
             self.assertEqual(extract['visual_review']['pdf_pages_one_based'], [])
