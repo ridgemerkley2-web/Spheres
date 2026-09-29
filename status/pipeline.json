@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T05:49:48Z",
+  "updated": "2026-09-29T05:55:24Z",
   "packets": [
     {
       "n": "28",
@@ -85,18 +85,18 @@
       "n": "37",
       "title": "French prime ministers, 1990–2026",
       "country": "France",
-      "state": "fix",
+      "state": "submitted",
       "branch": "claude/c01-fr-37",
-      "head": "45eca96e",
+      "head": "eb700617",
       "note": "2 recording defects (structured gzip identity; missing-text overstatement); 31/31 sources byte-identical; all 16 boundaries confirmed. Rulings: cessation decree gives until on signing day; countersignature gives attested_on only"
     }
   ],
   "attention": [
     "C01-31 waits for Codex to merge C01-29.",
-    "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
+    "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json).",
+    "Nine packets (C01-28-30, 32-37) await Codex review."
   ],
   "log": [
-    "2026-09-28 C01-30 research done (claude/c01-za-30@b4292a01: 3 roles, 39 sources, 64 claims, 7 people incl. Corné Mulder as FF+ leader 2025-2026). C: 5.0 GB -> moving idle Codex cargo output spheres-population-rebuild/target-population (11 GB, untouched since 2026-09-07) to <local> with a junction at the old path. Active: 30 verify, 33 research.",
     "2026-09-28 move done: target-population 5533 files / 12.96 GB verified on D:, junction created via PowerShell New-Item -ItemType Junction (Git Bash mangles mklink /J). C: 16 GB.",
     "2026-09-28 C01-30 verified: 4 text defects fixed by me (cb0f1153) -> submitted; worktree removed. Codex 4a3d0572 marked complete: C01-23/24/25/27, S24, E05, C03, C04, S23, SOURCE-05/06/17/26, GAPS-01; C01-28/29 ready_for_review. Removed the S24 (D:) and E05 worktrees. C01-32 (PAC) set up stacked on claude/c01-za-30 at a809bcba on 032cd6a3. Active: 32 research, 33 research. C: 16 GB.",
     "2026-09-28 C01-33 research done (claude/c01-in-33@d6deebd7: 22 sources, 41 claims, 3 holders). Census --check fails on integration itself since Codex 262d5f61 (government.rs test-only observer hooks; census.json not regenerated) - verified on a clean detached checkout (passes at 4a3d0572). Active: 32 research, 33 verify.",
@@ -115,6 +115,7 @@
     "2026-09-28 C01-36 verified: 1 quote-spacing defect fixed by me (6b82475e); all six boundaries kept -> submitted, worktree removed. C01-37 (French PMs) set up at 1a3fc352 on 44098c5a, agent launched. Active: 35 fix, 37 research. Remaining: 31 (held for 29).",
     "2026-09-28 C01-35 fixed (a4ff4753/52e3e313) -> submitted, worktree removed. Integration unchanged (44098c5a); C01-29 still in review, so 31 stays held. Active: 37 research only. Nothing else launchable.",
     "2026-09-29 C01-37 research done (claude/c01-fr-37@45eca96e: 31 sources, 48 claims, 16 holder obs, Rocard-Ayrault; Valls-Lecornu next work). Verifier launched. Active: 37 verify.",
-    "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix."
+    "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix.",
+    "2026-09-29 C01-37 fixed (1e74a0a1/eb700617) -> submitted, worktree removed. Batch 28-37 done except 31 (held until Codex merges C01-29). Loop now idles on a long heartbeat watching for the C01-29 merge and for-claude requests."
   ]
 }
