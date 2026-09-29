@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T05:35:45Z",
+  "updated": "2026-09-29T05:49:48Z",
   "packets": [
     {
       "n": "28",
@@ -85,10 +85,10 @@
       "n": "37",
       "title": "French prime ministers, 1990–2026",
       "country": "France",
-      "state": "verify",
+      "state": "fix",
       "branch": "claude/c01-fr-37",
       "head": "45eca96e",
-      "note": "2026-09-29: fr_prime_minister/fr_pm, 31 sources, 48 claims, 16 holder obs of 10 PMs (Rocard-Ayrault); Valls onward = next work"
+      "note": "2 recording defects (structured gzip identity; missing-text overstatement); 31/31 sources byte-identical; all 16 boundaries confirmed. Rulings: cessation decree gives until on signing day; countersignature gives attested_on only"
     }
   ],
   "attention": [
@@ -96,7 +96,6 @@
     "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
   ],
   "log": [
-    "2026-09-28 C01-28 fixed (fixer 831ed5e7/d4d6fb36 + my title fix 2c6709e4/03141c43) -> submitted at 03141c43; worktree removed. Codex reviewed C01-29 (30410e55): technical pass, 19 IA responses refused on its side, wording fix c98d1d56 on codex/review-c01-jp29; held, stays ready_for_review, nothing asked of Claude. C01-31 held until 29 merges (stacking on 29 hits a handoff conflict). C01-33 (India Janata Dal) set up stacked on claude/c01-in-27 at 89decb6a. Active: 30 research, 33 research. RESEARCH_AGENT.md now lists the gap-ledger/S23 known failures and bans disabling hooks.",
     "2026-09-28 C01-30 research done (claude/c01-za-30@b4292a01: 3 roles, 39 sources, 64 claims, 7 people incl. Corné Mulder as FF+ leader 2025-2026). C: 5.0 GB -> moving idle Codex cargo output spheres-population-rebuild/target-population (11 GB, untouched since 2026-09-07) to <local> with a junction at the old path. Active: 30 verify, 33 research.",
     "2026-09-28 move done: target-population 5533 files / 12.96 GB verified on D:, junction created via PowerShell New-Item -ItemType Junction (Git Bash mangles mklink /J). C: 16 GB.",
     "2026-09-28 C01-30 verified: 4 text defects fixed by me (cb0f1153) -> submitted; worktree removed. Codex 4a3d0572 marked complete: C01-23/24/25/27, S24, E05, C03, C04, S23, SOURCE-05/06/17/26, GAPS-01; C01-28/29 ready_for_review. Removed the S24 (D:) and E05 worktrees. C01-32 (PAC) set up stacked on claude/c01-za-30 at a809bcba on 032cd6a3. Active: 32 research, 33 research. C: 16 GB.",
@@ -115,6 +114,7 @@
     "2026-09-28 C01-35 verified: 16/16 sources clean; 4 text defects. Rulings: 1991-09-12 kept; \"лидер\" references claims only; 12 Dec 1991 President-office list holders kept. Fix agent launched. Active: 35 fix, 36 verify.",
     "2026-09-28 C01-36 verified: 1 quote-spacing defect fixed by me (6b82475e); all six boundaries kept -> submitted, worktree removed. C01-37 (French PMs) set up at 1a3fc352 on 44098c5a, agent launched. Active: 35 fix, 37 research. Remaining: 31 (held for 29).",
     "2026-09-28 C01-35 fixed (a4ff4753/52e3e313) -> submitted, worktree removed. Integration unchanged (44098c5a); C01-29 still in review, so 31 stays held. Active: 37 research only. Nothing else launchable.",
-    "2026-09-29 C01-37 research done (claude/c01-fr-37@45eca96e: 31 sources, 48 claims, 16 holder obs, Rocard-Ayrault; Valls-Lecornu next work). Verifier launched. Active: 37 verify."
+    "2026-09-29 C01-37 research done (claude/c01-fr-37@45eca96e: 31 sources, 48 claims, 16 holder obs, Rocard-Ayrault; Valls-Lecornu next work). Verifier launched. Active: 37 verify.",
+    "2026-09-29 C01-37 verified: 31/31 sources clean, 16 boundaries confirmed; 2 recording defects. Rulings: cessation decree = until on signing day; countersignature = attested_on only. Fix agent launched. Active: 37 fix."
   ]
 }
