@@ -1,0 +1,116 @@
+{
+  "updated": "2026-09-29T02:38:06Z",
+  "packets": [
+    {
+      "n": "28",
+      "title": "Russian party leaders, 1990–2026",
+      "country": "Russia",
+      "state": "submitted",
+      "branch": "claude/c01-ru-28",
+      "head": "03141c43",
+      "note": "4 defects (undisclosed S23 boundary-matrix failure; 2 mis-specified mutations; death-claim misquote; undisclosed hooks-disabled merge 7c38049f) + DVR 1998 history page is republished reference text (minimal fix) + stale comment; 68/68 sources byte-identical twice; rulings: Zhirinovsky no until; Yabloko association rows titled as printed"
+    },
+    {
+      "n": "29",
+      "title": "Social Democratic Party (Japan Socialist Party) chairs, 1990–2026",
+      "country": "Japan",
+      "state": "submitted",
+      "branch": "claude/c01-jp-29",
+      "head": "3b304785",
+      "note": "2 prose defects (Diet count 22->15; \"integrator\" ambiguity) fixed by me in 3b304785; all 7 targeted points held; 54/54 sources re-fetched byte-identical; 28 mutations red"
+    },
+    {
+      "n": "30",
+      "title": "ACDP, Freedom Front and IFP leaders, 1990–2026",
+      "country": "SouthAfrica",
+      "state": "submitted",
+      "branch": "claude/c01-za-30",
+      "head": "cb0f1153",
+      "note": "4 text defects (known failures undisclosed; spheres-sim/data note; merged-handoff header edits; redirect wording) fixed by me in cb0f1153; 39/39 sources byte-identical; Corné Mulder confirmed as FF+ leader"
+    },
+    {
+      "n": "31",
+      "title": "Komeito representatives, 1990–2026",
+      "country": "Japan",
+      "state": "queued",
+      "branch": "claude/c01-jp-31",
+      "hold": "Wait for Codex to merge C01-29 (review 30410e55 holds it for source gaps; its handoff conflicts with integration, so stacking on claude/c01-jp-29 needs a hand merge). Launch unstacked once 29 is merged."
+    },
+    {
+      "n": "32",
+      "title": "Pan Africanist Congress presidents, 1990–2026",
+      "country": "SouthAfrica",
+      "state": "submitted",
+      "branch": "claude/c01-za-32",
+      "head": "df470746",
+      "note": "9 defects (2018-01-19 PAC post is an uncredited Political Analysis SA article; census undisclosed in report; wording). 38/38 sources byte-identical. Rulings: republished news kept as non-primary claims only (like C01-28 DVR), Moloto 2018-01-19 holder dropped; Mphahlele 2009 Joomla stamp demoted; Moloto 2019 court judgment kept"
+    },
+    {
+      "n": "33",
+      "title": "Janata Dal presidents, 1990–2026",
+      "country": "India",
+      "state": "submitted",
+      "branch": "claude/c01-in-33",
+      "head": "2c78e89f",
+      "note": "6 text/disclosure defects; 22/22 sources byte-identical twice; 25 mutations red. Rulings: keep Bommai (party letter), keep Laloo with disclosure (India practice C01-20/27), demote Sharad Yadav 1997 statements (party not named); cross-country evidence standard flagged for Codex"
+    },
+    {
+      "n": "34",
+      "title": "PFL/DEM, PDT and PMDB/MDB national presidents, 1990–2026",
+      "country": "Brazil",
+      "state": "submitted",
+      "branch": "claude/c01-br-34",
+      "head": "16ef41a6",
+      "note": "4 text defects; 76/76 sources byte-identical; no personal data copied. Rulings: Brizola until kept (party page names office + day via update line); Lupi 2004 -> interim claims only (Genoino precedent); Lupi 2025 kept; PMDB->MDB one role; Jucá acting"
+    },
+    {
+      "n": "35",
+      "title": "Democratic Russia and Soyuz group leaders, 1990–1991",
+      "country": "USSR",
+      "state": "research",
+      "branch": "claude/c01-su-35",
+      "head": "c1475ada"
+    },
+    {
+      "n": "36",
+      "title": "Tongan Deputy Prime Ministers, 1990–2026",
+      "country": "Tonga",
+      "state": "research",
+      "branch": "claude/c01-to-36",
+      "head": "e8821f40"
+    },
+    {
+      "n": "37",
+      "title": "French prime ministers, 1990–2026",
+      "country": "France",
+      "state": "queued",
+      "branch": "claude/c01-fr-37"
+    }
+  ],
+  "attention": [
+    "C01-31 waits for Codex to merge C01-29.",
+    "Census --check fails on integration since 262d5f61 (government.rs changed without regenerating census.json)."
+  ],
+  "log": [
+    "2026-09-28 relaunch (user: \"Continue\"): moved the S24 worktree (repair) -> <local>, its cargo target -> <local> and scratch -> <local> (C: 4.5 -> 6.5 GB). Relaunched four agents: S24 finisher, E05 finisher, C01-28, C01-29. Original briefs saved in <local> Silent-stop check: transcript mtimes in ~/.claude/projects/C--Users-ridge/c27941a4-../subagents/agent-<id>.jsonl.",
+    "2026-09-28 E05 finished: claude/e05-research-01@1fe45b2c ready_for_review (8 dossiers, 99 sources, 195 claims, 57 validator tests). My checks passed (owned paths only, pushed, validator, 65 planning tests, workboard, 9/9 sampled anchors vs first-download SHA). Its scratch moved to <local> C: 9.7 GB.",
+    "2026-09-28 S24 finished: claude/s24-successors-01@5a23ebe0 ready_for_review (23-row inventory, 21 activatable + Namibia/East Timor flagged; guard 23/0/0/0, activation+save/load 21/0/0/2, browser 4/0/0/19; USSR->Russia via continue-as, reload byte-equal). Flagged for Codex: budget card labels the -2% real-rate floor as a +32.90pp \"sovereign spread\". My checks passed. Worktree stays on D:.",
+    "2026-09-28 C01-29 research done (claude/c01-jp-29@e0bb7a01: jp_sdp_chair, 54 sources, 111 claims, 16 holder obs / 7 people; handoff conflict resolved by keeping Codex copy + appended result). Verifier launched. Active: 28 research, 29 verify. C: 8.7 GB.",
+    "2026-09-28 C01-29 verified: 2 prose defects fixed by me (3b304785), all checks pass -> submitted; worktree removed (Codex already reviewing at e0bb7a01 in review-jp29). C01-30 (South Africa ACDP/FF/IFP leaders) set up at 68535825 on b949f64e, research. Active: 28 research, 30 research. C: 6.1 GB.",
+    "2026-09-28 C01-28 research done (claude/c01-ru-28@16153784: 5 roles, 68 sources, 137 claims, 24 holder obs / 10 people). Gap-ledger test fails on the branch by design (COMMIT_PACKETS needs cc06f873 at integration). Verifier launched. Active: 28 verify, 30 research.",
+    "2026-09-28 C01-28 verified: 68/68 sources byte-identical; 4 defects + DVR republished-reference source + stale comment. My rulings: no until for Zhirinovsky (item never names the office or its end); Yabloko association-era rows titled as printed. Fix agent launched. Active: 28 fix, 30 research.",
+    "2026-09-28 C01-28 fixed (fixer 831ed5e7/d4d6fb36 + my title fix 2c6709e4/03141c43) -> submitted at 03141c43; worktree removed. Codex reviewed C01-29 (30410e55): technical pass, 19 IA responses refused on its side, wording fix c98d1d56 on codex/review-c01-jp29; held, stays ready_for_review, nothing asked of Claude. C01-31 held until 29 merges (stacking on 29 hits a handoff conflict). C01-33 (India Janata Dal) set up stacked on claude/c01-in-27 at 89decb6a. Active: 30 research, 33 research. RESEARCH_AGENT.md now lists the gap-ledger/S23 known failures and bans disabling hooks.",
+    "2026-09-28 C01-30 research done (claude/c01-za-30@b4292a01: 3 roles, 39 sources, 64 claims, 7 people incl. Corné Mulder as FF+ leader 2025-2026). C: 5.0 GB -> moving idle Codex cargo output spheres-population-rebuild/target-population (11 GB, untouched since 2026-09-07) to <local> with a junction at the old path. Active: 30 verify, 33 research.",
+    "2026-09-28 move done: target-population 5533 files / 12.96 GB verified on D:, junction created via PowerShell New-Item -ItemType Junction (Git Bash mangles mklink /J). C: 16 GB.",
+    "2026-09-28 C01-30 verified: 4 text defects fixed by me (cb0f1153) -> submitted; worktree removed. Codex 4a3d0572 marked complete: C01-23/24/25/27, S24, E05, C03, C04, S23, SOURCE-05/06/17/26, GAPS-01; C01-28/29 ready_for_review. Removed the S24 (D:) and E05 worktrees. C01-32 (PAC) set up stacked on claude/c01-za-30 at a809bcba on 032cd6a3. Active: 32 research, 33 research. C: 16 GB.",
+    "2026-09-28 C01-33 research done (claude/c01-in-33@d6deebd7: 22 sources, 41 claims, 3 holders). Census --check fails on integration itself since Codex 262d5f61 (government.rs test-only observer hooks; census.json not regenerated) - verified on a clean detached checkout (passes at 4a3d0572). Active: 32 research, 33 verify.",
+    "2026-09-28 C01-33 verified: 6 text/disclosure defects, sources clean. Rulings: Bommai kept (JD leader letter to the JD President), Laloo kept with disclosure (India practice of C01-20/27), Sharad Yadav demoted (party not named; one names no office); flagged C01-29 vs India evidence standard for Codex. Active: 32 research, 33 fix.",
+    "2026-09-28 C01-33 fixed (ea946b3a/2c78e89f; holders Bommai + Laloo; Sharad Yadav demoted to party_not_named_lead) -> submitted, worktree removed. C01-34 setup first stacked on claude/c01-source-17 and hit brazil.json conflicts: Codex integrates Claude branches with its own scoped commits, so ancestry never shows them merged. setup_packet.merged now also treats a branch as merged when integration queue marks its task complete. C01-34 set up unstacked at c2ff9396 on 032cd6a3. Active: 32 research, 34 research.",
+    "2026-09-28 C01-32 research done (claude/c01-za-32@f62aa17a: 38 sources, 65 claims, 16 holder obs / 6 people, 7 disputed). Active: 32 verify, 34 research.",
+    "2026-09-28 C01-32 verified: 38/38 sources clean; 9 defects. Rulings: 2018-01-19 \"PAC post\" = uncredited republished news -> non-primary, claims only, holder dropped (same treatment as C01-28 DVR reference text); Mphahlele 2009-01-14 Joomla edit stamp demoted; Moloto 2019-07-12 court record kept. Active: 32 fix, 34 research.",
+    "2026-09-28 C01-32 fixed (a05592f7/df470746: 14 holder obs / 6 people, 6 disputed) -> submitted, worktree removed. C01-29 still under Codex review, so 31 stays held. C01-35 (Democratic Russia + Soyuz, USSR) set up at c1475ada on 44098c5a. Active: 34 research, 35 research. Remaining queued: 31 (held), 36, 37.",
+    "2026-09-28 C01-34 research done (claude/c01-br-34@4d51cc10: 76 sources, 127 claims, 13 holder obs; Brizola until 2004-06-21 from party death report; open rulings on Lupi 2004/2025, Jucá, PMDB->MDB). Active: 34 verify, 35 research.",
+    "2026-09-28 C01-34 verified: 76/76 sources clean, 4 text defects. Rulings: Brizola until kept; Lupi 2004 interim -> claims only (C01-22 Genoino precedent); Lupi 2025 kept; PMDB->MDB on one role; Jucá acting. Active: 34 fix, 35 research.",
+    "2026-09-28 C01-34 fixed (79b028cb/16ef41a6: 12 holder obs; Lupi 2004 interim claims only) -> submitted, worktree removed. C01-36 (Tonga Deputy PMs) set up unstacked at e8821f40 on 44098c5a (to-24 now detected as merged via queue). Active: 35 research, 36 research. Remaining: 31 (held for 29), 37."
+  ]
+}
