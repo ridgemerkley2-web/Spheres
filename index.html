@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPHERES Command</title>
+<meta name="description" content="Live development dashboard for SPHERES: pathway, gates, tasks, Claude pipeline, commits and CI, read from the repository.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%234f8cff' stroke-width='3'/%3E%3Cellipse cx='16' cy='16' rx='13' ry='5' fill='none' stroke='%234f8cff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<style>
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --panel-2: #f0f2f5; --line: #dfe3ea; --text: #1a1f29; --muted: #5f6b7d;
+  --accent: #2f6fe4; --accent-soft: #e6eefc; --ok: #1d8a52; --ok-soft: #e3f4ea; --warn: #b7791f; --warn-soft: #fbf1de;
+  --bad: #c53b3b; --bad-soft: #fbe6e6; --info: #6b4fd1; --info-soft: #eee9fb; --shadow: 0 1px 2px rgba(20,30,50,.06), 0 2px 8px rgba(20,30,50,.05);
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace; --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1117; --panel: #161b24; --panel-2: #1c2230; --line: #283043; --text: #e6e9ef; --muted: #8e99ab;
+  --accent: #5b93ff; --accent-soft: #1b2a47; --ok: #3fbf7f; --ok-soft: #14301f; --warn: #e0a84a; --warn-soft: #33280f;
+  --bad: #ef6b6b; --bad-soft: #3a1818; --info: #9d85ff; --info-soft: #251d45; --shadow: none;
+} }
+:root[data-theme="dark"] {
+  --bg: #0e1117; --panel: #161b24; --panel-2: #1c2230; --line: #283043; --text: #e6e9ef; --muted: #8e99ab;
+  --accent: #5b93ff; --accent-soft: #1b2a47; --ok: #3fbf7f; --ok-soft: #14301f; --warn: #e0a84a; --warn-soft: #33280f;
+  --bad: #ef6b6b; --bad-soft: #3a1818; --info: #9d85ff; --info-soft: #251d45; --shadow: none;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 14px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+code, .mono { font-family: var(--mono); font-size: 12.5px; }
+header.top { position: sticky; top: 0; z-index: 10; background: var(--panel); border-bottom: 1px solid var(--line); }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px; }
+.bar { display: flex; align-items: center; gap: 14px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.brand svg { flex: none; }
+.brand small { font-weight: 500; color: var(--muted); letter-spacing: 0; }
+nav.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs button { background: none; border: 0; color: var(--muted); font: 500 13.5px var(--sans); padding: 8px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+nav.tabs button:hover { color: var(--text); background: var(--panel-2); }
+nav.tabs button[aria-selected="true"] { color: var(--accent); background: var(--accent-soft); }
+.actions { display: flex; gap: 6px; align-items: center; }
+.btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); font: 500 13px var(--sans); padding: 6px 11px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:disabled { opacity: .5; cursor: default; }
+.iconbtn { width: 32px; padding: 6px 0; text-align: center; }
+main { padding: 20px 0 48px; }
+.status-line { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--muted); margin-right: 5px; vertical-align: 1px; }
+.dot.ok { background: var(--ok); } .dot.bad { background: var(--bad); } .dot.warn { background: var(--warn); }
+.grid { display: grid; gap: 14px; }
+.g4 { grid-template-columns: repeat(4, minmax(0,1fr)); } .g3 { grid-template-columns: repeat(3, minmax(0,1fr)); } .g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+@media (max-width: 1000px) { .g4 { grid-template-columns: repeat(2, minmax(0,1fr)); } .g3 { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+  .g4, .g2 { grid-template-columns: 1fr; } .brand small { display: none; }
+  .bar { flex-wrap: wrap; height: auto; padding: 8px 0 6px; row-gap: 6px; }
+  .brand { flex: 1; } nav.tabs { order: 3; flex-basis: 100%; }
+}
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 16px; min-width: 0; }
+.card h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.card h2 .aside { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.stat .v { font-size: 26px; font-weight: 700; line-height: 1.15; }
+.stat .l { color: var(--muted); font-size: 12.5px; }
+.stat .s { font-size: 12.5px; margin-top: 6px; }
+.progress { height: 8px; border-radius: 99px; background: var(--panel-2); overflow: hidden; display: flex; margin-top: 10px; }
+.progress span { display: block; height: 100%; }
+.pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--panel-2); color: var(--muted); white-space: nowrap; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); } .pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.bad { background: var(--bad-soft); color: var(--bad); } .pill.info { background: var(--info-soft); color: var(--info); } .pill.acc { background: var(--accent-soft); color: var(--accent); }
+.gates { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.gate { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--panel-2); }
+.gate .n { font-weight: 700; font-size: 15px; } .gate .d { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.gate.done { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.gate.next { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+.phase { margin-bottom: 18px; }
+.phase-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.phase-head h3 { margin: 0; font-size: 15px; }
+.sessions { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.session { border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 9px 11px; background: var(--panel); cursor: pointer; }
+.session:hover { border-color: var(--accent); }
+.session.complete { border-left-color: var(--ok); } .session.in_progress { border-left-color: var(--accent); } .session.planned { border-left-color: var(--line); }
+.session .id { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.session .t { font-weight: 500; }
+.board { display: grid; grid-template-columns: repeat(5, minmax(220px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+.col { background: var(--panel-2); border-radius: 12px; padding: 10px; min-height: 120px; }
+.col h3 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 2px 4px 10px; display: flex; justify-content: space-between; }
+.task { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 10px; margin-bottom: 8px; cursor: pointer; }
+.task:hover { border-color: var(--accent); }
+.task .id { font-family: var(--mono); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; }
+.task .t { font-weight: 500; margin: 3px 0 6px; }
+.task .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+select, input[type=text], input[type=password], textarea { font: 13.5px var(--sans); color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; max-width: 100%; }
+textarea { width: 100%; min-height: 120px; resize: vertical; }
+label.f { display: block; font-size: 12.5px; color: var(--muted); margin: 10px 0 4px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+tr:last-child td { border-bottom: 0; }
+.tablewrap { overflow-x: auto; }
+.list-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.list-row:last-child { border-bottom: 0; }
+.list-row .main { flex: 1; min-width: 0; }
+.list-row .sub { color: var(--muted); font-size: 12.5px; }
+.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.md { line-height: 1.6; overflow-wrap: anywhere; }
+.md h1 { font-size: 22px; } .md h2 { font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-top: 26px; }
+.md table { display: block; overflow-x: auto; } .md code { background: var(--panel-2); padding: 1px 5px; border-radius: 5px; }
+.empty { color: var(--muted); padding: 18px; text-align: center; }
+.err { background: var(--bad-soft); color: var(--bad); border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 13px; }
+.note { background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+.hidden { display: none !important; }
+dialog { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--text); max-width: min(760px, calc(100vw - 32px)); width: 100%; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+dialog::backdrop { background: rgba(10,14,22,.5); }
+dialog .dh { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); gap: 10px; }
+dialog .dh h3 { margin: 0; font-size: 16px; }
+dialog .db { padding: 16px 18px; max-height: 70vh; overflow: auto; }
+dialog .db dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-top: 12px; }
+dialog .db dd { margin: 3px 0 0; overflow-wrap: anywhere; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: var(--panel); color: var(--muted); padding: 6px 12px; font: 500 13px var(--sans); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="var(--accent)" stroke-width="3"/><ellipse cx="16" cy="16" rx="13" ry="5" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>
+      SPHERES <small>Command</small>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+    <div class="actions">
+      <button class="btn iconbtn" id="refresh" title="Refresh now" aria-label="Refresh">⟳</button>
+      <button class="btn iconbtn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <button class="btn" id="settingsBtn">Settings</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="status-line" id="statusLine"><span><span class="dot"></span>Loading…</span></div>
+  <div id="errors"></div>
+
+  <!-- Overview -->
+  <section data-view="overview">
+    <div class="grid g4" id="stats"></div>
+    <div class="card" style="margin-top:14px">
+      <h2>Certification gates <span class="aside" id="target"></span></h2>
+      <div class="gates" id="gates"></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h2>Needs attention</h2><div id="attention"></div></div>
+      <div class="card"><h2>Claude research pipeline <span class="aside" id="pipeUpdated"></span></h2><div id="pipeSummary"></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h2>Latest on integration <a class="aside" id="integLink" target="_blank" rel="noopener">view on GitHub</a></h2><div id="recentCommits"></div></div>
+      <div class="card"><h2>Recent CI runs</h2><div id="recentRuns"></div></div>
+    </div>
+  </section>
+
+  <!-- Pathway -->
+  <section data-view="pathway" class="hidden">
+    <div class="card"><h2>Pathway to CP1 <span class="aside" id="pathSummary"></span></h2><div id="phases"></div></div>
+  </section>
+
+  <!-- Tasks -->
+  <section data-view="tasks" class="hidden">
+    <div class="filters">
+      <div class="seg" id="ownerSeg"></div>
+      <input type="text" id="taskSearch" placeholder="Filter tasks…" aria-label="Filter tasks">
+      <label style="font-size:13px;color:var(--muted)"><input type="checkbox" id="showComplete"> show complete</label>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <!-- Pipeline -->
+  <section data-view="pipeline" class="hidden">
+    <div class="card">
+      <h2>C01 research pipeline <span class="aside" id="pipeUpdated2"></span></h2>
+      <p class="note" style="margin-top:0">Claude's back-to-back research loop publishes this table to the <code>dashboard</code> branch on each check. Each packet goes research → independent verify → fix → Claude's own checks → submitted (ready for Codex review).</p>
+      <div class="tablewrap"><table id="pipeTable"></table></div>
+      <div id="pipeLog" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <!-- Activity -->
+  <section data-view="activity" class="hidden">
+    <div class="grid g2">
+      <div class="card"><h2>Commits <select id="commitBranch" aria-label="Branch"></select></h2><div id="commitList"></div></div>
+      <div class="card"><h2>Branches by last push</h2><div id="branchList"></div></div>
+    </div>
+  </section>
+
+  <!-- CI -->
+  <section data-view="ci" class="hidden">
+    <div class="card"><h2>GitHub Actions runs <a class="aside" id="actionsLink" target="_blank" rel="noopener">all runs</a></h2><div class="tablewrap"><table id="ciTable"></table></div></div>
+  </section>
+
+  <!-- Workboard -->
+  <section data-view="workboard" class="hidden">
+    <div class="card"><h2>AI workboard <a class="aside" id="wbLink" target="_blank" rel="noopener">source</a></h2><div class="md" id="workboard"></div></div>
+  </section>
+
+  <!-- Requests -->
+  <section data-view="requests" class="hidden">
+    <div class="grid g2">
+      <div class="card">
+        <h2>New request</h2>
+        <p class="note" style="margin-top:0">Files a GitHub issue labelled for Claude or Codex. Claude's loop lists new issues from you on each check and asks you in chat before acting on one.</p>
+        <label class="f">For</label>
+        <div class="seg" id="reqAgent"><button aria-pressed="true" data-v="claude">Claude</button><button aria-pressed="false" data-v="codex">Codex</button><button aria-pressed="false" data-v="both">Both</button></div>
+        <label class="f" for="reqTitle">Title</label>
+        <input type="text" id="reqTitle" style="width:100%" placeholder="e.g. Research Komeito once C01-29 merges">
+        <label class="f" for="reqBody">Details</label>
+        <textarea id="reqBody" placeholder="What should happen, and any limits"></textarea>
+        <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap">
+          <button class="btn primary" id="reqSend">File request</button>
+          <span id="reqMsg" style="font-size:13px;color:var(--muted)"></span>
+        </div>
+      </div>
+      <div class="card"><h2>Open requests <a class="aside" id="issuesLink" target="_blank" rel="noopener">all issues</a></h2><div id="issueList"></div></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="detail"><div class="dh"><h3 id="dTitle"></h3><button class="btn" onclick="detail.close()">Close</button></div><div class="db" id="dBody"></div></dialog>
+
+<dialog id="settings">
+  <div class="dh"><h3>Settings</h3><button class="btn" onclick="settings.close()">Close</button></div>
+  <div class="db">
+    <label class="f" for="sRepo">Repository</label>
+    <input type="text" id="sRepo" style="width:100%">
+    <label class="f" for="sBranch">Integration branch</label>
+    <input type="text" id="sBranch" style="width:100%">
+    <label class="f" for="sToken">GitHub token (optional)</label>
+    <input type="password" id="sToken" style="width:100%" autocomplete="off" placeholder="fine-grained token">
+    <p style="font-size:12.5px;color:var(--muted)">Reading works without a token (60 GitHub API calls per hour). A token raises that limit and lets you file requests. Use a fine-grained token for this repository only, with <b>Issues: read and write</b> (and read-only Contents, Actions, Metadata). It is stored only in this browser's local storage and sent only to api.github.com.</p>
+    <label class="f" for="sAuto">Auto-refresh</label>
+    <select id="sAuto"><option value="0">Off</option><option value="5">Every 5 minutes</option><option value="10">Every 10 minutes</option><option value="30">Every 30 minutes</option></select>
+    <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+      <button class="btn primary" id="sSave">Save</button>
+      <button class="btn" id="sClear">Forget token</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('spheres.' + k); return v === null ? d : v; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('spheres.' + k, v); } catch {} },
+  del(k) { try { localStorage.removeItem('spheres.' + k); } catch {} },
+};
+const cfg = {
+  repo: store.get('repo', 'ridgemerkley2-web/Spheres'),
+  branch: store.get('branch', 'codex/campaign-certification'),
+  token: store.get('token', ''),
+  auto: +store.get('auto', '10'),
+};
+const VIEWS = [['overview','Overview'],['pathway','Pathway'],['tasks','Tasks'],['pipeline','Pipeline'],['activity','Activity'],['ci','CI'],['workboard','Workboard'],['requests','Requests']];
+const state = { owner: store.get('owner', 'All'), view: store.get('view', 'overview'), data: {}, reqAgent: 'claude' };
+
+// ---------- theme ----------
+function applyTheme(t) { if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme; }
+applyTheme(store.get('theme', ''));
+$('#theme').onclick = () => {
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const cur = document.documentElement.dataset.theme || (dark ? 'dark' : 'light');
+  const next = cur === 'dark' ? 'light' : 'dark'; applyTheme(next); store.set('theme', next);
+};
+
+// ---------- tabs ----------
+const tabs = $('#tabs');
+VIEWS.forEach(([id, label]) => {
+  const b = document.createElement('button'); b.textContent = label; b.dataset.v = id; b.setAttribute('role', 'tab');
+  b.onclick = () => show(id); tabs.appendChild(b);
+});
+function show(id) {
+  state.view = id; store.set('view', id); location.hash = id;
+  document.querySelectorAll('[data-view]').forEach(s => s.classList.toggle('hidden', s.dataset.view !== id));
+  tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.v === id));
+  if (id === 'activity' && !state.data.branches) loadActivity();
+  if (id === 'requests') loadIssues();
+}
+const hashView = location.hash.slice(1);
+show(VIEWS.some(v => v[0] === hashView) ? hashView : state.view);
+
+// ---------- fetch helpers ----------
+let apiRemaining = null;
+async function api(path, opts = {}) {
+  const headers = { Accept: 'application/vnd.github+json', ...(opts.headers || {}) };
+  if (cfg.token) headers.Authorization = 'Bearer ' + cfg.token;
+  const r = await fetch('https://api.github.com' + path, { ...opts, headers });
+  const rem = r.headers.get('x-ratelimit-remaining'); if (rem !== null) apiRemaining = rem;
+  if (!r.ok) { let m = r.status + ' ' + r.statusText; try { m += ': ' + (await r.json()).message; } catch {} throw new Error(m); }
+  return r.status === 204 ? null : r.json();
+}
+async function raw(branch, path) {
+  const r = await fetch(`https://raw.githubusercontent.com/${cfg.repo}/${encodeURIComponent(branch).replace(/%2F/g, '/')}/${path}?t=${Math.floor(Date.now() / 60000)}`);
+  if (!r.ok) throw new Error(`${path}: ${r.status}`);
+  return r;
+}
+const rawJSON = async (b, p) => (await raw(b, p)).json();
+const rawText = async (b, p) => (await raw(b, p)).text();
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const gh = p => `https://github.com/${cfg.repo}${p}`;
+function ago(iso) {
+  if (!iso) return ''; const s = (Date.now() - new Date(iso)) / 1000;
+  if (s < 90) return 'just now'; if (s < 3600) return Math.round(s / 60) + ' min ago';
+  if (s < 86400) return Math.round(s / 3600) + ' h ago'; return Math.round(s / 86400) + ' d ago';
+}
+const errs = new Set();
+function err(where, e) { errs.add(`${where}: ${e.message || e}`); renderErrors(); }
+function renderErrors() { $('#errors').innerHTML = [...errs].map(m => `<div class="err">${esc(m)}</div>`).join(''); }
+
+// ---------- pills ----------
+const STATE_PILL = { complete: 'ok', ready_for_review: 'info', claimed: 'acc', in_progress: 'acc', blocked: 'bad', planned: '', submitted: 'info', research: 'acc', verify: 'warn', fix: 'warn', queued: '', held: 'bad' };
+const pill = (s, label) => `<span class="pill ${STATE_PILL[s] ?? ''}">${esc(label ?? String(s).replace(/_/g, ' '))}</span>`;
+const ownerPill = o => `<span class="pill ${o === 'Claude' ? 'warn' : o === 'Codex' ? 'acc' : ''}">${esc(o)}</span>`;
+
+// ---------- load ----------
+async function loadCore() {
+  errs.clear(); renderErrors();
+  const b = cfg.branch;
+  const jobs = [
+    rawJSON(b, 'docs/planning/campaign-pathway.json').then(d => state.data.path = d).catch(e => err('Pathway', e)),
+    rawJSON(b, 'docs/planning/ai-task-queue.json').then(d => state.data.queue = d).catch(e => err('Task queue', e)),
+    rawText(b, 'docs/AI_WORKSTREAMS.md').then(d => state.data.wb = d).catch(e => err('Workboard', e)),
+    rawJSON('dashboard', 'status/pipeline.json').then(d => state.data.pipe = d).catch(() => state.data.pipe = null),
+    api(`/repos/${cfg.repo}/commits?sha=${encodeURIComponent(b)}&per_page=20`).then(d => state.data.commits = d).catch(e => err('Commits', e)),
+    api(`/repos/${cfg.repo}/actions/runs?per_page=30`).then(d => state.data.runs = d.workflow_runs).catch(e => err('CI runs', e)),
+  ];
+  await Promise.all(jobs);
+  renderAll();
+  state.loadedAt = new Date();
+  renderStatus();
+}
+function renderStatus() {
+  const head = state.data.commits?.[0];
+  const parts = [];
+  parts.push(`<span><span class="dot ${errs.size ? 'warn' : 'ok'}"></span>Updated ${state.loadedAt ? state.loadedAt.toLocaleTimeString() : ''}</span>`);
+  parts.push(`<span>Integration <code>${esc(cfg.branch)}</code>${head ? ` at <a href="${head.html_url}" target="_blank" rel="noopener"><code>${head.sha.slice(0, 8)}</code></a> · ${ago(head.commit.committer.date)}` : ''}</span>`);
+  if (apiRemaining !== null) parts.push(`<span>API calls left: ${apiRemaining}${cfg.token ? '' : ' (no token)'}</span>`);
+  $('#statusLine').innerHTML = parts.join('');
+}
+
+function renderAll() { renderOverview(); renderPathway(); renderBoard(); renderPipeline(); renderCI(); renderWorkboard(); }
+
+// ---------- overview ----------
+function renderOverview() {
+  const p = state.data.path, q = state.data.queue, runs = state.data.runs || [];
+  const stats = [];
+  if (p) {
+    const ss = p.sessions, done = ss.filter(s => s.status === 'complete').length, ip = ss.filter(s => s.status === 'in_progress').length;
+    stats.push(`<div class="card stat"><div class="l">Sessions complete</div><div class="v">${done} / ${ss.length}</div>
+      <div class="progress"><span style="width:${done / ss.length * 100}%;background:var(--ok)"></span><span style="width:${ip / ss.length * 100}%;background:var(--accent)"></span></div>
+      <div class="s">Last: <b>${esc(p.last_completed_session)}</b> · Next: <b>${esc(p.next_session)}</b></div></div>`);
+    $('#target').textContent = p.target || '';
+  }
+  if (q) {
+    const open = q.tasks.filter(t => t.state !== 'complete');
+    const by = s => q.tasks.filter(t => t.state === s).length;
+    stats.push(`<div class="card stat"><div class="l">Open tasks</div><div class="v">${open.length}</div>
+      <div class="s">${pill('ready_for_review', by('ready_for_review') + ' in review')} ${pill('in_progress', by('in_progress') + by('claimed') + ' active')} ${pill('blocked', by('blocked') + ' blocked')}</div></div>`);
+  }
+  const pipe = state.data.pipe;
+  if (pipe) {
+    const pk = pipe.packets || [], c = s => pk.filter(x => x.state === s).length;
+    stats.push(`<div class="card stat"><div class="l">C01 research packets</div><div class="v">${c('submitted')} submitted</div>
+      <div class="s">${pill('research', c('research') + ' research')} ${pill('verify', c('verify') + c('fix') + ' checking')} ${pill('queued', c('queued') + ' queued')}</div></div>`);
+  } else stats.push(`<div class="card stat"><div class="l">C01 research packets</div><div class="v">—</div><div class="s">No pipeline status published yet.</div></div>`);
+  const last = runs.find(r => r.head_branch === cfg.branch) || runs[0];
+  if (last) {
+    const c = last.status !== 'completed' ? 'in_progress' : last.conclusion;
+    const failed = runs.slice(0, 20).filter(r => r.conclusion === 'failure').length;
+    stats.push(`<div class="card stat"><div class="l">CI · ${esc(last.name)}</div><div class="v" style="color:var(--${c === 'success' ? 'ok' : c === 'failure' ? 'bad' : 'accent'})">${esc(String(c).replace(/_/g, ' '))}</div>
+      <div class="s">${ago(last.created_at)} on <code>${esc(last.head_branch)}</code> · ${failed} failed of last ${Math.min(20, runs.length)}</div></div>`);
+  }
+  $('#stats').innerHTML = stats.join('');
+
+  if (p) {
+    const gd = p.gate_decisions || {};
+    $('#gates').innerHTML = p.phases.map(ph => {
+      const code = (ph.gate || '').split('·')[0].trim();
+      const earned = /✓/.test(ph.gate) || gd[code]?.status === 'earned';
+      const phaseSessions = p.sessions.filter(s => s.phase === ph.id);
+      const done = phaseSessions.filter(s => s.status === 'complete').length;
+      const next = !earned && phaseSessions.some(s => s.status !== 'complete') && p.phases.slice(0, p.phases.indexOf(ph)).every(x => /✓/.test(x.gate) || gd[(x.gate || '').split('·')[0].trim()]?.status === 'earned' || x.id === 'content');
+      return `<div class="gate ${earned ? 'done' : next ? 'next' : ''}"><div class="n">${earned ? '✓ ' : ''}${esc(code)}</div>
+        <div class="d">${esc((ph.gate || '').split('·').slice(1).join('·').replace('✓', '').trim())}</div>
+        <div class="d">${esc(ph.name)} · ${done}/${phaseSessions.length}</div></div>`;
+    }).join('');
+  }
+
+  const att = [];
+  if (q) {
+    q.tasks.filter(t => t.state === 'blocked').forEach(t => att.push(row(pill('blocked'), t.id + ' — ' + t.title, t.next, () => taskDetail(t))));
+    q.tasks.filter(t => t.state === 'ready_for_review').forEach(t => att.push(row(pill('ready_for_review', 'review'), t.id + ' — ' + t.title, `${t.owner} submitted; waiting for ${t.owner === 'Claude' ? 'Codex' : 'Claude'}`, () => taskDetail(t))));
+  }
+  (pipe?.attention || []).forEach(a => att.push(row(pill('held', 'note'), a, '', null)));
+  const failing = (runs || []).filter(r => r.head_branch === cfg.branch && r.conclusion === 'failure').slice(0, 3);
+  failing.forEach(r => att.push(row(pill('blocked', 'CI'), `${r.name} failed`, `${ago(r.created_at)} · ${r.display_title || ''}`, null, r.html_url)));
+  $('#attention').innerHTML = att.length ? att.join('') : '<div class="empty">Nothing waiting.</div>';
+  wireRows($('#attention'));
+
+  $('#pipeUpdated').textContent = pipe ? 'updated ' + ago(pipe.updated) : '';
+  $('#pipeSummary').innerHTML = pipe ? (pipe.packets || []).filter(x => x.state !== 'submitted' || x.recent).slice(0, 8).map(x =>
+    `<div class="list-row"><div>${pill(x.state)}</div><div class="main"><b>C01-${esc(x.n)}</b> ${esc(x.title)}<div class="sub">${esc(x.country)}${x.head ? ' · <code>' + esc(x.head) + '</code>' : ''}${x.hold ? ' · held: ' + esc(x.hold) : ''}</div></div></div>`).join('') || '<div class="empty">Queue empty.</div>'
+    : '<div class="empty">The pipeline publishes its status here on its next check.</div>';
+
+  $('#integLink').href = gh('/commits/' + cfg.branch);
+  $('#recentCommits').innerHTML = (state.data.commits || []).slice(0, 8).map(commitRow).join('') || '<div class="empty">—</div>';
+  $('#recentRuns').innerHTML = (runs || []).slice(0, 8).map(runRow).join('') || '<div class="empty">—</div>';
+}
+function row(left, title, sub, onclick, href) {
+  const id = onclick ? 'r' + Math.random().toString(36).slice(2) : '';
+  if (onclick) (state.rowHandlers ||= {})[id] = onclick;
+  const t = href ? `<a href="${href}" target="_blank" rel="noopener">${esc(title)}</a>` : esc(title);
+  return `<div class="list-row" ${id ? `data-row="${id}" style="cursor:pointer"` : ''}><div>${left}</div><div class="main"><div>${t}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ''}</div></div>`;
+}
+function wireRows(root) { root.querySelectorAll('[data-row]').forEach(el => el.onclick = () => state.rowHandlers[el.dataset.row]()); }
+function commitRow(c) {
+  const msg = c.commit.message.split('\n')[0];
+  return `<div class="list-row"><code style="padding-top:1px"><a href="${c.html_url}" target="_blank" rel="noopener">${c.sha.slice(0, 8)}</a></code><div class="main"><div class="ellipsis" title="${esc(msg)}">${esc(msg)}</div><div class="sub">${esc(c.commit.author.name)} · ${ago(c.commit.committer.date)}${/Co-Authored-By: Claude/i.test(c.commit.message) ? ' · ' + ownerPill('Claude') : ''}</div></div></div>`;
+}
+function runRow(r) {
+  const c = r.status !== 'completed' ? r.status : r.conclusion;
+  const k = c === 'success' ? 'ok' : c === 'failure' ? 'bad' : c === 'cancelled' || c === 'skipped' ? '' : 'acc';
+  return `<div class="list-row"><span class="pill ${k}">${esc(String(c).replace(/_/g, ' '))}</span><div class="main"><div class="ellipsis"><a href="${r.html_url}" target="_blank" rel="noopener">${esc(r.name)}</a> · ${esc(r.display_title || '')}</div><div class="sub"><code>${esc(r.head_branch)}</code> · ${esc(r.event)} · ${ago(r.created_at)}</div></div></div>`;
+}
+
+// ---------- pathway ----------
+function renderPathway() {
+  const p = state.data.path; if (!p) return;
+  const ss = p.sessions;
+  $('#pathSummary').textContent = `${ss.filter(s => s.status === 'complete').length} of ${ss.length} sessions complete · updated ${p.date || ''}`;
+  $('#phases').innerHTML = p.phases.map(ph => {
+    const list = ss.filter(s => s.phase === ph.id), done = list.filter(s => s.status === 'complete').length;
+    return `<div class="phase"><div class="phase-head"><h3>${esc(ph.name)}</h3><span>${pill(/✓/.test(ph.gate) ? 'complete' : 'planned', ph.gate)} <span style="color:var(--muted);font-size:12.5px">${done}/${list.length}</span></span></div>
+      <div class="sessions">${list.map(s => `<div class="session ${esc(s.status)}" data-sid="${esc(s.id)}"><div class="id">${esc(s.id)} · ${esc(s.status.replace(/_/g, ' '))}${s.claim?.owner ? ' · ' + esc(s.claim.owner) : ''}</div><div class="t">${esc(s.title)}</div></div>`).join('')}</div></div>`;
+  }).join('');
+  document.querySelectorAll('.session').forEach(el => el.onclick = () => sessionDetail(ss.find(s => s.id === el.dataset.sid)));
+}
+function sessionDetail(s) {
+  const q = state.data.queue?.tasks.filter(t => t.session === s.id) || [];
+  const closure = s.closure || {};
+  openDetail(`${s.id} · ${s.title}`, `<dl>
+    <dt>Status</dt><dd>${pill(s.status)} ${s.completed_date ? 'completed ' + esc(s.completed_date) : ''}</dd>
+    ${s.depends?.length ? `<dt>Depends on</dt><dd>${s.depends.map(esc).join(', ')}</dd>` : ''}
+    <dt>Output</dt><dd>${esc(s.output)}</dd>
+    ${s.accept?.length ? `<dt>Acceptance</dt><dd><ul>${s.accept.map(a => `<li>${esc(a)}</li>`).join('')}</ul></dd>` : ''}
+    ${s.claim?.scope ? `<dt>Claim (${esc(s.claim.owner)})</dt><dd>${esc(s.claim.scope)}</dd>` : ''}
+    ${closure.qualification ? `<dt>Qualification</dt><dd>${esc(closure.qualification)}</dd>` : ''}
+    ${closure.retained_failures ? `<dt>Retained failures</dt><dd>${esc(closure.retained_failures)}</dd>` : ''}
+    ${s.evidence ? `<dt>Evidence</dt><dd><a target="_blank" rel="noopener" href="${gh('/blob/' + cfg.branch + '/docs/planning/' + s.evidence)}">${esc(s.evidence)}</a></dd>` : ''}
+    ${q.length ? `<dt>Bounded tasks</dt><dd>${q.map(t => `${pill(t.state)} ${esc(t.id)} — ${esc(t.title)}`).join('<br>')}</dd>` : ''}
+  </dl>`);
+}
+
+// ---------- tasks ----------
+const COLS = [['claimed', 'Claimed'], ['in_progress', 'In progress'], ['ready_for_review', 'In review'], ['blocked', 'Blocked'], ['complete', 'Complete']];
+function renderBoard() {
+  const q = state.data.queue; if (!q) return;
+  const owners = ['All', ...new Set(q.tasks.map(t => t.owner))];
+  $('#ownerSeg').innerHTML = owners.map(o => `<button data-o="${esc(o)}" aria-pressed="${o === state.owner}">${esc(o)}</button>`).join('');
+  $('#ownerSeg').querySelectorAll('button').forEach(b => b.onclick = () => { state.owner = b.dataset.o; store.set('owner', state.owner); renderBoard(); });
+  const f = ($('#taskSearch').value || '').toLowerCase(), showDone = $('#showComplete').checked;
+  const tasks = q.tasks.filter(t => (state.owner === 'All' || t.owner === state.owner) && (!f || JSON.stringify(t).toLowerCase().includes(f)));
+  const cols = showDone ? COLS : COLS.filter(c => c[0] !== 'complete');
+  $('#board').style.gridTemplateColumns = `repeat(${cols.length}, minmax(220px, 1fr))`;
+  $('#board').innerHTML = cols.map(([s, label]) => {
+    const list = tasks.filter(t => t.state === s).sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+    return `<div class="col"><h3><span>${label}</span><span>${list.length}</span></h3>${list.map(t => `<div class="task" data-tid="${esc(t.id)}">
+      <div class="id"><span>${esc(t.id)}</span>${ownerPill(t.owner)}</div><div class="t">${esc(t.title)}</div>
+      <div class="meta">${t.session ? `<span class="pill">${esc(t.session)}</span>` : ''}${t.priority != null ? `<span class="pill">P${esc(t.priority)}</span>` : ''}</div></div>`).join('') || '<div class="empty">—</div>'}</div>`;
+  }).join('');
+  document.querySelectorAll('.task').forEach(el => el.onclick = () => taskDetail(q.tasks.find(t => t.id === el.dataset.tid)));
+}
+$('#taskSearch').oninput = renderBoard; $('#showComplete').onchange = renderBoard;
+function taskDetail(t) {
+  const revs = ['claim_revision', 'submission_revision', 'review_revision'].filter(k => t[k]);
+  openDetail(`${t.id}`, `<dl>
+    <dt>Title</dt><dd>${esc(t.title)}</dd>
+    <dt>State</dt><dd>${pill(t.state)} ${ownerPill(t.owner)} ${t.session ? `<span class="pill">${esc(t.session)}</span>` : ''}</dd>
+    ${t.next ? `<dt>Next / notes</dt><dd>${esc(t.next)}</dd>` : ''}
+    ${t.depends_on?.length ? `<dt>Depends on</dt><dd>${t.depends_on.map(esc).join(', ')}</dd>` : ''}
+    ${t.branch ? `<dt>Branch</dt><dd><a target="_blank" rel="noopener" href="${gh('/tree/' + t.branch)}"><code>${esc(t.branch)}</code></a> · <a target="_blank" rel="noopener" href="${gh('/compare/' + cfg.branch + '...' + t.branch)}">compare with integration</a></dd>` : ''}
+    ${t.handoff ? `<dt>Handoff</dt><dd><a target="_blank" rel="noopener" href="${gh('/blob/' + cfg.branch + '/' + t.handoff)}">${esc(t.handoff)}</a></dd>` : ''}
+    ${revs.map(k => `<dt>${esc(k.replace(/_/g, ' '))}</dt><dd><a target="_blank" rel="noopener" href="${gh('/commit/' + t[k])}"><code>${esc(t[k].slice(0, 12))}</code></a></dd>`).join('')}
+  </dl>`);
+}
+
+// ---------- pipeline ----------
+function renderPipeline() {
+  const pipe = state.data.pipe;
+  $('#pipeUpdated2').textContent = pipe ? 'updated ' + ago(pipe.updated) : 'not published yet';
+  if (!pipe) { $('#pipeTable').innerHTML = '<tr><td class="empty">No status yet.</td></tr>'; return; }
+  $('#pipeTable').innerHTML = `<thead><tr><th>Packet</th><th>Country</th><th>State</th><th>Head</th><th>Notes</th></tr></thead><tbody>${(pipe.packets || []).map(x => `<tr>
+    <td><b>C01-${esc(x.n)}</b><div class="sub" style="color:var(--muted)">${esc(x.title)}</div></td><td>${esc(x.country)}</td><td>${pill(x.hold && x.state === 'queued' ? 'held' : x.state, x.hold && x.state === 'queued' ? 'held' : null)}</td>
+    <td>${x.head ? `<a target="_blank" rel="noopener" href="${gh('/tree/' + x.branch)}"><code>${esc(x.head)}</code></a>` : (x.branch ? `<code>${esc(x.branch)}</code>` : '—')}</td>
+    <td style="font-size:12.5px;color:var(--muted)">${esc(x.note || x.hold || '')}</td></tr>`).join('')}</tbody>`;
+  $('#pipeLog').innerHTML = pipe.log?.length ? `<h2 style="font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Recent log</h2>${pipe.log.slice(-12).reverse().map(l => `<div class="list-row"><div class="main" style="font-size:13px">${esc(l)}</div></div>`).join('')}` : '';
+}
+
+// ---------- activity ----------
+async function loadActivity() {
+  try {
+    const branches = [];
+    for (let page = 1; page <= 3; page++) {
+      const b = await api(`/repos/${cfg.repo}/branches?per_page=100&page=${page}`); branches.push(...b); if (b.length < 100) break;
+    }
+    state.data.branches = branches;
+    const sel = $('#commitBranch');
+    const pref = [cfg.branch, 'master', 'dashboard'];
+    const names = [...pref.filter(n => branches.some(b => b.name === n)), ...branches.map(b => b.name).filter(n => !pref.includes(n)).sort()];
+    sel.innerHTML = names.map(n => `<option>${esc(n)}</option>`).join('');
+    sel.value = cfg.branch; sel.onchange = () => loadCommits(sel.value);
+    renderCommitList(state.data.commits || []);
+    // last-push dates for claude/* and codex/* branches (one commit call each, capped)
+    const interesting = branches.filter(b => /^(claude|codex)\//.test(b.name)).slice(0, 40);
+    const rows = await Promise.all(interesting.map(async b => {
+      try { const c = await api(`/repos/${cfg.repo}/commits/${b.commit.sha}`); return { name: b.name, sha: b.commit.sha, date: c.commit.committer.date, msg: c.commit.message.split('\n')[0] }; }
+      catch { return { name: b.name, sha: b.commit.sha }; }
+    }));
+    rows.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    $('#branchList').innerHTML = rows.slice(0, 30).map(r => `<div class="list-row"><div>${ownerPill(r.name.startsWith('claude/') ? 'Claude' : 'Codex')}</div><div class="main"><div class="ellipsis"><a target="_blank" rel="noopener" href="${gh('/tree/' + r.name)}"><code>${esc(r.name)}</code></a></div><div class="sub ellipsis">${esc(r.msg || '')}${r.date ? ' · ' + ago(r.date) : ''}</div></div></div>`).join('');
+  } catch (e) { err('Branches', e); }
+  renderStatus();
+}
+async function loadCommits(branch) {
+  try { renderCommitList(await api(`/repos/${cfg.repo}/commits?sha=${encodeURIComponent(branch)}&per_page=30`)); } catch (e) { err('Commits', e); }
+  renderStatus();
+}
+function renderCommitList(list) { $('#commitList').innerHTML = list.map(commitRow).join('') || '<div class="empty">—</div>'; }
+
+// ---------- CI ----------
+function renderCI() {
+  $('#actionsLink').href = gh('/actions');
+  const runs = state.data.runs || [];
+  $('#ciTable').innerHTML = `<thead><tr><th>Result</th><th>Workflow</th><th>Branch</th><th>Event</th><th>When</th></tr></thead><tbody>${runs.map(r => {
+    const c = r.status !== 'completed' ? r.status : r.conclusion, k = c === 'success' ? 'ok' : c === 'failure' ? 'bad' : c === 'cancelled' || c === 'skipped' ? '' : 'acc';
+    return `<tr><td><span class="pill ${k}">${esc(String(c).replace(/_/g, ' '))}</span></td><td><a target="_blank" rel="noopener" href="${r.html_url}">${esc(r.name)}</a><div style="color:var(--muted);font-size:12.5px">${esc(r.display_title || '')}</div></td><td><code>${esc(r.head_branch)}</code></td><td>${esc(r.event)}</td><td>${ago(r.created_at)}</td></tr>`;
+  }).join('')}</tbody>`;
+}
+
+// ---------- workboard ----------
+function renderWorkboard() {
+  $('#wbLink').href = gh('/blob/' + cfg.branch + '/docs/AI_WORKSTREAMS.md');
+  if (!state.data.wb) return;
+  const base = `https://github.com/${cfg.repo}/blob/${cfg.branch}/docs/`;
+  const html = DOMPurify.sanitize(marked.parse(state.data.wb));
+  const div = document.createElement('div'); div.innerHTML = html;
+  div.querySelectorAll('a[href]').forEach(a => { const h = a.getAttribute('href'); if (!/^(https?:|#|mailto:)/.test(h)) a.href = base + h; a.target = '_blank'; a.rel = 'noopener'; });
+  $('#workboard').replaceChildren(...div.childNodes);
+}
+
+// ---------- requests ----------
+$('#reqAgent').querySelectorAll('button').forEach(b => b.onclick = () => {
+  state.reqAgent = b.dataset.v; $('#reqAgent').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
+$('#issuesLink').href = gh('/issues');
+async function loadIssues() {
+  try {
+    const list = await api(`/repos/${cfg.repo}/issues?state=open&per_page=50`);
+    const issues = list.filter(i => !i.pull_request);
+    $('#issueList').innerHTML = issues.map(i => `<div class="list-row"><div>${(i.labels || []).map(l => `<span class="pill ${/claude/i.test(l.name) ? 'warn' : /codex/i.test(l.name) ? 'acc' : ''}">${esc(l.name)}</span>`).join(' ') || '<span class="pill">issue</span>'}</div><div class="main"><div><a target="_blank" rel="noopener" href="${i.html_url}">#${i.number} ${esc(i.title)}</a></div><div class="sub">${esc(i.user.login)} · ${ago(i.created_at)} · ${i.comments} comments</div></div></div>`).join('') || '<div class="empty">No open requests.</div>';
+  } catch (e) { $('#issueList').innerHTML = `<div class="err">${esc(e.message)}</div>`; }
+  renderStatus();
+}
+$('#reqSend').onclick = async () => {
+  const title = $('#reqTitle').value.trim(), body = $('#reqBody').value.trim(), msg = $('#reqMsg');
+  if (!cfg.token) { msg.textContent = 'Add a token in Settings to file requests.'; return; }
+  if (!title) { msg.textContent = 'Give the request a title.'; return; }
+  const labels = state.reqAgent === 'both' ? ['for-claude', 'for-codex'] : ['for-' + state.reqAgent];
+  $('#reqSend').disabled = true; msg.textContent = 'Filing…';
+  try {
+    const i = await api(`/repos/${cfg.repo}/issues`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title, body: body + '\n\n_Filed from SPHERES Command._', labels }) });
+    msg.innerHTML = `Filed <a target="_blank" rel="noopener" href="${i.html_url}">#${i.number}</a>.`;
+    $('#reqTitle').value = ''; $('#reqBody').value = ''; loadIssues();
+  } catch (e) { msg.textContent = 'Failed: ' + e.message; }
+  $('#reqSend').disabled = false;
+};
+
+// ---------- detail / settings ----------
+const detail = $('#detail'), settings = $('#settings');
+function openDetail(title, html) { $('#dTitle').textContent = title; $('#dBody').innerHTML = html; detail.showModal(); }
+$('#settingsBtn').onclick = () => { $('#sRepo').value = cfg.repo; $('#sBranch').value = cfg.branch; $('#sToken').value = cfg.token; $('#sAuto').value = String(cfg.auto); settings.showModal(); };
+$('#sSave').onclick = () => {
+  cfg.repo = $('#sRepo').value.trim() || cfg.repo; cfg.branch = $('#sBranch').value.trim() || cfg.branch; cfg.token = $('#sToken').value.trim(); cfg.auto = +$('#sAuto').value;
+  store.set('repo', cfg.repo); store.set('branch', cfg.branch); store.set('auto', String(cfg.auto));
+  if (cfg.token) store.set('token', cfg.token); else store.del('token');
+  settings.close(); schedule(); refresh();
+};
+$('#sClear').onclick = () => { cfg.token = ''; store.del('token'); $('#sToken').value = ''; };
+
+// ---------- refresh ----------
+let timer = null;
+function schedule() { clearInterval(timer); if (cfg.auto > 0) timer = setInterval(refresh, cfg.auto * 60000); }
+async function refresh() {
+  $('#refresh').disabled = true;
+  await loadCore();
+  if (state.view === 'activity') { state.data.branches = null; loadActivity(); }
+  if (state.view === 'requests') loadIssues();
+  $('#refresh').disabled = false;
+}
+$('#refresh').onclick = refresh;
+setInterval(renderStatus, 60000);
+schedule(); refresh();
+</script>
+</body>
+</html>
