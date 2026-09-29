@@ -21631,8 +21631,8 @@
       "scope_note": "Raw Internet Archive capture of 10 December 2023 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX9702065D); Légifrance itself refuses automated access (HTTP 403 on 29 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it. The Internet Archive serves this capture gzip-compressed even to a request for identity encoding; the recorded identity is the compressed body as received, and the provenance note also gives the decompressed size and SHA-256.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-jospin-19970602-facts.json",
-        "bytes": 4145,
-        "sha256": "c5679731d1631396a352ac40266ccfb09f16725dfdf86ba9411fb00632dfe46c"
+        "bytes": 4323,
+        "sha256": "b4d07572b71210f42429860952379453ce52945034f34f134e0db5552c24d60d"
       },
       "claims": [
         {
@@ -22033,8 +22033,8 @@
       "scope_note": "Raw Internet Archive capture of 2 July 2022 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX0710493D); Légifrance itself refuses automated access (HTTP 403 on 29 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it. The Internet Archive serves this capture gzip-compressed even to a request for identity encoding; the recorded identity is the compressed body as received, and the provenance note also gives the decompressed size and SHA-256.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20070618-facts.json",
-        "bytes": 4162,
-        "sha256": "ed51dd5150700c6b2d4b4d1932232a99bb29c29564064b795c856ce410bab201"
+        "bytes": 4340,
+        "sha256": "01c54831a0a2b1c504b2eebe87af0758ad2404a3b3fafeecb74c1b0724811baa"
       },
       "claims": [
         {
@@ -51663,7 +51663,7 @@
                 "fr_jorf_cresson_countersigns_composition_19910516"
               ],
               "note": "Observed on 16 May 1991: the decree on the composition of the Government of that day, made 'Sur proposition du Premier ministre', is countersigned 'Le Premier ministre, EDITH CRESSON'.",
-              "uncertainty": "No start: Légifrance's page for the appointment decree of 15 May 1991 renders no text and names nobody, and the composition decree's reference to 'le décret du 15 mai 1991 portant nomination du Premier ministre' does not name the appointee; pairing the two would infer a start, so neither is used. No end: the decree of 2 April 1992 ending her Government's functions (JORFTEXT000000539723) has no archive capture, and her successor's appointment of 2 April 1992 is never used as this end."
+              "uncertainty": "No start: Légifrance's page for the appointment decree of 15 May 1991 renders no text and names nobody, and the composition decree's reference to 'le décret du 15 mai 1991 portant nomination du Premier ministre' does not name the appointee; pairing the two would infer a start, so neither is used. No end: the decree of 2 April 1992 ending her Government's functions (JORFTEXT000000539723) has no usable archive capture, and her successor's appointment of 2 April 1992 is never used as this end."
             },
             {
               "name": "Pierre Bérégovoy",

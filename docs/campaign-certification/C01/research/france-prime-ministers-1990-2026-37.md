@@ -24,7 +24,7 @@ the Prime Ministers appointed from 31 March 2014 onward are recorded as the next
 | ID | Question | Decision |
 |---|---|---|
 | FR-PM-01 | Michel Rocard: an in-period attestation and the end of his functions | **Accepted:** observed 24 January 1990 (decree no. 90-89, opening "Le Premier ministre," and signed "MICHEL ROCARD"); until 15 May 1991 (decree ending the Government's functions); his 1988 appointment lies before the period |
-| FR-PM-02 | Édith Cresson: appointment, attestation, end | **Accepted in part:** observed 16 May 1991 (countersignature of the composition decree); the appointment page of 15 May 1991 renders no text and the composition decree's reference to it names nobody, so no start; the decree of 2 April 1992 ending her functions has no archive capture, so no end |
+| FR-PM-02 | Édith Cresson: appointment, attestation, end | **Accepted in part:** observed 16 May 1991 (countersignature of the composition decree); the appointment page of 15 May 1991 renders no text and the composition decree's reference to it names nobody, so no start; the decree of 2 April 1992 ending her functions has no usable archive capture, so no end |
 | FR-PM-03 | Pierre Bérégovoy: appointment and end | **Accepted:** from 2 April 1992; until 29 March 1993 |
 | FR-PM-04 | Édouard Balladur: appointment, attestation, end | **Accepted in part:** observed 30 March 1993 (countersignature); the appointment decree of 29 March 1993 has no capture, so no start; until 11 May 1995 (decree), after his resignation letter of 10 May 1995 |
 | FR-PM-05 | Alain Juppé: two appointments and their ends | **Accepted in part:** first term observed 18 May 1995 (countersignature), no start (the appointment decree of 17 May 1995 has no capture) and no end (the decree of 7 November 1995 ending that Government's functions was not retrieved); second term from 7 November 1995 until 2 June 1997 |
@@ -66,7 +66,7 @@ read ("M. X est nommé Premier ministre"), and `until` only where the decree "re
 Gouvernement" is read ("Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. X, Premier
 ministre, et des autres membres du Gouvernement"); each boundary is the decree's own date. The decree is the instrument that
 ends the office, so this packet treats it as a source stating the day, as CLAUDE-C01-11 treated a notified acceptance of a
-resignation "with effect from" a day; **an integrator ruling is requested** on this reading (see Integration notes).
+resignation "with effect from" a day; this reading is **recorded as a ruling** (see Integration notes).
 
 Five kinds of claim never make a boundary. (1) The Prime Minister's letter presenting the Government's resignation, which each
 decree cites with its date: it is a separate claim even on the same day, and in 1995 it precedes the decree (letter of 10 May,
@@ -139,7 +139,9 @@ ministre" and is countersigned "Par le Président de la République: Le Premier 
 
 Decision: accepted in part. Observed 16 May 1991. No start: neither the title-only page nor the nameless reference names the
 appointee, and combining them with the countersignature would infer the start. No end: the decree of 2 April 1992 ending her
-Government's functions (JORFTEXT000000539723) has no archive capture; her successor's appointment of the same day is not used.
+Government's functions (JORFTEXT000000539723, confirmed by the Journal officiel summary of 3 April 1992, capture 20240617194933)
+has no usable archive capture (the CDX index lists only a 302 redirect row, 20241111045046, which the Wayback Machine does not
+replay); her successor's appointment of the same day is not used.
 
 ### FR-PM-03 — Pierre Bérégovoy
 
@@ -168,9 +170,9 @@ Juppé est nommé Premier ministre". The decree of 2 June 1997 (NOR HRUX9702063D
 functions.
 
 Decision: accepted in part. First term observed 18 May 1995 with no start (JORFTEXT000000718399 has no capture) and no end: the
-decree of 7 November 1995 ending the first Government's functions was not retrieved (the reappointment page's "Texte précédent"
-link points to JORFTEXT000000189843, which has no capture), and his own reappointment that day is never used as the end. Second
-term from 7 November 1995, until 2 June 1997.
+decree of 7 November 1995 ending the first Government's functions was not retrieved (the reappointment page's unreliable
+"Texte précédent" link points to JORFTEXT000000189843, which has no capture; see Sources attempted), and his own reappointment
+that day is never used as the end. Second term from 7 November 1995, until 2 June 1997.
 
 ### FR-PM-06 — Lionel Jospin
 
@@ -278,7 +280,10 @@ also downloaded in an exploratory pass shortly before the first recorded pass, w
   encoding, because the stored response was compressed: the appointments of 2 June 1997 and 18 June 2007. No uncompressed capture
   of either text was found (the 2 June 1997 page has only this capture; the 18 June 2007 page's other capture is an Incapsula
   error stub). Their recorded identity is the compressed body as received, which is what curl without `--compressed` saves; each
-  provenance note also gives the decompressed size and SHA-256. A replay that decompresses will show the decompressed identity.
+  provenance note also gives the decompressed size and SHA-256, and each extract records them as structured fields
+  (`source_response_content_encoding` "gzip", `decoded_response_bytes`, `decoded_response_sha256`: 89,703 bytes,
+  `2728a17a…9fa39`, and 86,648 bytes, `88b25788…b733a`), as CLAUDE-C01-16 and CLAUDE-C01-30 do. A replay that decompresses
+  will show the decompressed identity.
   Seven other appointment pages whose most recent capture is gzip-served were replaced by uncompressed captures of the same text.
 - **Two renderings of the Ayrault decree of 15 May 2012.** CLAUDE-C01-23 records the current Légifrance page (capture of 19
   September 2024) as a presidency claim. This packet reads the earlier page in a capture of 25 May 2012 so that the prime-minister
@@ -310,8 +315,11 @@ also downloaded in an exploratory pass shortly before the first recorded pass, w
 - Records without a usable capture (CDX queries on the `/jorf/id/`, `/loda/id/` and `affichTexte.do?cidTexte=` forms, 29 September
   2026): the decree of 2 April 1992 ending Cresson's Government's functions (JORFTEXT000000539723); the appointment decrees of
   29 March 1993 (JORFTEXT000000726609) and 17 May 1995 (JORFTEXT000000718399); the decree of 7 November 1995 ending Juppé's first
-  Government's functions (JORFTEXT000000189843, identified from the reappointment page's "Texte précédent" link). The older
-  `WAspad/UnTexteDeJorf?numjo=` captures are redirect stubs.
+  Government's functions (probably JORFTEXT000000189843, the target of the reappointment page's "Texte précédent" link;
+  unconfirmed, because that link is unreliable: on the 15 May 1991 appointment page it points to JORFTEXT000000498819, an arrêté
+  of 22 April 1991, and on the 2 April 1992 appointment page to JORFTEXT000000505543 rather than the cessation decree
+  JORFTEXT000000539723 listed in the Journal officiel summary). The older `WAspad/UnTexteDeJorf?numjo=` captures are redirect
+  stubs.
 - The appointment decree of 15 May 1991: Légifrance renders the title only; the scanned issue behind "Télécharger" is a
   script-driven secure download and was not attempted.
 - Decree no. 90-66 of 17 January 1990 (capture 20240815122811): the Wayback Machine returned an HTTP 500 page.
@@ -348,9 +356,14 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `research-index.json` is regenerated in a **separate commit**; it is the only file shared with other pending packets. New
   totals: 1,602 sources and 4,230 claims; 36 institution observations. If another packet lands first, regenerate the index rather
   than merging it.
-- **Rulings requested.** (1) Whether the decree ending the Government's functions gives the outgoing Prime Minister's `until`
-  (this packet: yes, the decree's date). (2) Whether a composition decree's countersignature plus its reference to a
-  title-only or uncaptured appointment decree may give a start (this packet: no).
+- **Rulings recorded** (Ridge's, applied in this packet; Codex may still decide otherwise). (a) The decree ending the
+  Government's functions gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the
+  office on a stated day, consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36
+  (resignation accepted on a stated day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date
+  stay separate claims. Any later statement that current affairs continued is a claim only. The decrees state no effective
+  day, so the signing day is taken as the effective day. (b) A countersignature ("Par le Président de la République : Le
+  Premier ministre, [name]"), or Rocard's own decree headed "Le Premier ministre", gives `attested_on` only. It never gives a
+  start, including when paired with a nameless reference to the appointment decree.
 - **Known failures outside this packet** (not fixed): `tools/avatars/campaign_census.py --check` fails on the integration base
   itself because commit `262d5f61` changed `spheres-sim/src/government.rs` without regenerating `census.json`; regenerating it
   here shows that input's hash as the only difference. `tools/avatars/test_certified_gap_ledger.py` will report no pinned
