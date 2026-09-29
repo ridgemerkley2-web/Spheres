@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_composition_cresson_19910516",
+  "source_url": "https://web.archive.org/web/20240503222542id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000526518",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000526518",
+  "archive_capture_utc": "2024-05-03T22:25:42Z",
+  "accessed_date": "2026-09-29",
+  "published_date": "1991-05-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 98372,
+  "source_response_sha256": "2f72ff08be03ab20b5165c83ce0e3574662ece21db02407832696976460cd90a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-05-03T22:25:42Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. This packet downloaded it at 2026-09-29 05:00Z and again at 2026-09-29 05:32Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 3 May 2024 of Légifrance's Journal officiel text page (the /jorf/id/ address; NOR HRUX9110309D); Légifrance itself refuses automated access (HTTP 403 on 29 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it. Only the visas, the signature line and the countersignature are used; the list of ministers is not recorded.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_cresson_countersigns_composition_19910516",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-02",
+      "role_id": "fr_pm",
+      "holder_name": "EDITH CRESSON",
+      "role_title": "Premier ministre",
+      "event_kind": "in_office_countersignature",
+      "attested_on": "1991-05-16",
+      "text": "The decree on the composition of the Government of 16 May 1991, published in JORF n°114 of 17 May 1991 (NOR HRUX9110309D), is made 'Sur proposition du Premier ministre', closes 'Fait à Paris, le 16 mai 1991.', signed 'FRANCOIS MITTERRAND', and is countersigned 'Par le Président de la République: Le Premier ministre, EDITH CRESSON'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9110309D', 'JORF n°114 du 17 mai 1991'), the visas, the signature line and the countersignature"
+      }
+    },
+    {
+      "claim_id": "fr_jorf_composition_cites_pm_appointment_19910515",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-02",
+      "role_id": "fr_pm",
+      "holder_name": null,
+      "role_title": "Premier ministre",
+      "event_kind": "appointment_decree_reference",
+      "attested_on": "1991-05-15",
+      "text": "The same decree cites in its visas 'le décret du 15 mai 1991 portant nomination du Premier ministre'.",
+      "locator": {
+        "item": "the second visa"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-37 only (Premier ministre, 1 January 1990 to the 7 September 2026 cutoff; this batch covers the first ten people to hold the office in the period). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister, a decree countersigned or signed by the Prime Minister and a later decree's reference to an appointment stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}

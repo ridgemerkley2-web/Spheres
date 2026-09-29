@@ -326,7 +326,8 @@ PRE_SUPPLEMENT_SHA256 = '6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b
 def presidency_invariants(packet):
     """Packet-level rules this test owns; raises AssertionError, KeyError or IndexError on any violation."""
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
-    assert [e['id'] for e in packet['institutions']] == [INSTITUTION], 'exactly one presidency institution'
+    # Exactly one presidency institution, first; CLAUDE-C01-37's prime-minister institution follows it.
+    assert [e['id'] for e in packet['institutions']] == [INSTITUTION, 'fr_prime_minister'], 'exactly one presidency institution'
     presidency = packet['institutions'][0]
     assert presidency['kind'] == 'executive_institution' and presidency['name'] == 'Présidence de la République'
     assert presidency['represented_party_ids'] == [] and presidency['reconciled_organization_id'] is None
@@ -487,9 +488,10 @@ class FrancePresidentsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (49, 95))
-        self.assertEqual([s['id'] for s in self.packet['sources']][-49:], NEW_SOURCES)
-        self.assertEqual(len(ids['entries']), 636)
-        self.assertEqual(ids['roles'], {ROLE})
+        # This packet's 49 sources open the supplement; CLAUDE-C01-37's sources follow them.
+        self.assertEqual([s['id'] for s in self.supplement['sources']][:49], NEW_SOURCES)
+        self.assertEqual(len(ids['entries']), 637)
+        self.assertEqual(ids['roles'], {ROLE, 'fr_pm'})
         self.assertEqual(set(self.new_claims), set(EVENTS))
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
@@ -800,7 +802,8 @@ class FrancePresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'France')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 1))
+        # The presidency and CLAUDE-C01-37's prime-minister institution, one role each.
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 2))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'France'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

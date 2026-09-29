@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_nomination_ayrault_20120618",
+  "source_url": "https://web.archive.org/web/20130614074937id_/http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026037548",
+  "original_url": "http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026037548",
+  "archive_capture_utc": "2013-06-14T07:49:37Z",
+  "accessed_date": "2026-09-29",
+  "published_date": "2012-06-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11111,
+  "source_response_sha256": "1e0b3e6eb62a3fa56542421426f920f8e754fa3dbb74a899b716381f44894a91",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2013-06-14T07:49:37Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. This packet downloaded it at 2026-09-29 05:01Z and again at 2026-09-29 05:33Z (UTC, more than 30 minutes apart), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 14 June 2013 of Légifrance's Journal officiel text page (the earlier affichTexte.do address; NOR HRUX1226329D); Légifrance itself refuses automated access (HTTP 403 on 29 September 2026), which was not bypassed. The reference line is printed as Légifrance prints it.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decree text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_ayrault_appointed_pm_20120618",
+      "observation_id": "fr_prime_minister",
+      "review_observation": "FR-PM-10",
+      "role_id": "fr_pm",
+      "holder_name": "Jean-Marc Ayrault",
+      "role_title": "Premier ministre",
+      "event_kind": "appointment_decree",
+      "attested_on": "2012-06-18",
+      "text": "A decree of 'Le Président de la République', 'Vu l'article 8 de la Constitution', published in JORF n°0141 of 19 June 2012 (NOR HRUX1226329D), decrees 'M. Jean-Marc Ayrault est nommé Premier ministre' and closes 'Fait le 18 juin 2012.', signed 'François Hollande'.",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1226329D', 'JORF n°0141 du 19 juin 2012 page 10160 texte n° 2'), the article appointing the Prime Minister and the signature line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-37 only (Premier ministre, 1 January 1990 to the 7 September 2026 cutoff; this batch covers the first ten people to hold the office in the period). The Prime Minister's letter presenting the Government's resignation, the decree ending the Government's functions, the decree appointing a Prime Minister, a decree countersigned or signed by the Prime Minister and a later decree's reference to an appointment stay separate rows; holder boundaries are decided in the packet, not by any row. The Président de la République, ministers, party offices and continued handling of current affairs are excluded."
+}
