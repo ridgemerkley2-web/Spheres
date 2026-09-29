@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 35,
-    "sources": 1571,
-    "source_claims": 4182,
+    "institution_observations": 36,
+    "sources": 1602,
+    "source_claims": 4230,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -80,10 +80,10 @@
       "nation": "France",
       "packet": "docs/campaign-certification/C01/research/france.json",
       "organization_observations": 635,
-      "institution_observations": 1,
-      "role_observations": 1,
-      "source_claims": 1372,
-      "mapping_pending": 636,
+      "institution_observations": 2,
+      "role_observations": 2,
+      "source_claims": 1420,
+      "mapping_pending": 637,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -101,7 +101,8 @@
           "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts.",
           "Twelve shared CNCCFP codes have differing names or character encodings across the two pinned sources; exact rename dates and the causes of differences remain unverified.",
           "AD does not prove an organization dissolved, stopped political activity, or remained non-compliant after this publication; later appeals and filings require dated evidence.",
-          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched."
+          "CLAUDE-C01-23 adds the executive institution fr_presidency (Présidence de la République) through the hand-maintained supplement research/supplements/france.json, merged by tools/avatars/import_cnccfp_census.py; it covers the Président de la République only. Prime ministers, the President of the Senate's interim office, ministers and party offices remain unresearched.",
+          "CLAUDE-C01-37 adds the executive institution fr_prime_minister (Premier ministre) through the same supplement; it covers the first ten people to hold the office from 1 January 1990 (Michel Rocard to Jean-Marc Ayrault, to 31 March 2014). The Prime Ministers appointed from 31 March 2014 onward, ministers and party offices remain unresearched."
         ],
         "financial_reporting_universe": {
           "exercise": "2024",
@@ -2106,7 +2107,8 @@
         "fr_cnccfp_1573",
         "fr_cnccfp_1584",
         "fr_cnccfp_1598",
-        "fr_presidency"
+        "fr_presidency",
+        "fr_prime_minister"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2678,8 +2680,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
-      "bytes": 1987748,
-      "sha256": "a6e6bd18f47a78e5c2de84e562bd86c1013e5281b4afde9d1bb37a102f22d126"
+      "bytes": 2112298,
+      "sha256": "cda01bba84742dd909223118d7c6e747ed43d13814c15a400b3fe24d358769e9"
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
