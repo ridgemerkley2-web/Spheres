@@ -32,7 +32,7 @@ check found are imported (see [Independent checks](#independent-checks)).
 
 | ID | Question | Decision |
 |---|---|---|
-| SU-DR-01 | The movement's founding, its bodies and its separation from the 1990 bloc and the RSFSR deputies' group | **Accepted in part:** the RSFSR deputies' bloc calls for a movement (22 Jun 1990); bloc members are to elect the movement's Council of Representatives (7 Dec 1990); the movement's Coordinating Council applies for the march of 28 Mar 1991; a plenum of the Council of Representatives (15 Sep 1991). No primary record of the founding congress |
+| SU-DR-01 | The movement's founding, its bodies and its separation from the 1990 bloc and the RSFSR deputies' group | **Accepted in part:** the bloc «Демократическая Россия» calls for a movement (electoral or deputies' bloc not established) (22 Jun 1990); bloc members are to elect the movement's Council of Representatives (7 Dec 1990); the movement's Coordinating Council applies for the march of 28 Mar 1991; a plenum of the Council of Representatives (15 Sep 1991). No primary record of the founding congress |
 | SU-DR-02 | Leadership before the co-chairs are attested (the organizing committee) | **Accepted in part:** two USSR deputies call Мурашев "председатель оргкомитета движения «Демократическая Россия»" (17 and 19 Dec 1990); Заславский calls himself a member of its coordinating council. Claims on the organization only, never holders |
 | SU-DR-03 | The co-chairs attested between 1990 and 1991 | **Accepted in part:** five co-chairs, seven observations: Дмитриев (5 Apr 1991, his own words at the RSFSR Congress), Афанасьев (15 Jul 1991, his own words; 12 Sep 1991), Пономарев (12 Sep and 12 Dec 1991), Мурашев (12 Sep 1991), Якунин (12 Dec 1991), from the Coordinating Council's letter signed by three co-chairs and the RSFSR President's office list; one intermediate signature (15 Sep 1991) is a role claim |
 | SU-DR-04 | The second congress | **Accepted in part:** the Coordinating Council's invitation to the second congress, 9-10 November (year not printed); no record of its proceedings or elections |
@@ -118,7 +118,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 13 Mar 1990 | the group's statement; its pre-Congress meeting reported (the meeting undated); more than 300 members | `su_snd3_blokhin_delivers_soyuz_statement_19900313`, `su_snd3_blokhin_reports_soyuz_pre_congress_meeting_19900313`, `su_snd3_blokhin_soyuz_membership_19900313` |
 | 14 Mar 1990 | the group's presidential nominations relayed; the presiding officer on its size | `su_snd3_alksnis_relays_soyuz_presidential_nominations_19900314`, `su_snd3_presiding_officer_soyuz_over_300_19900314` |
 | 15 Mar 1990 | the group's nominations for Chairman of the Supreme Soviet relayed | `su_snd3_kim_relays_soyuz_chair_nominations_19900315` |
-| 22 Jun 1990 | the RSFSR deputies' bloc calls for a movement | `su_dr_bloc_appeal_calls_for_movement_19900622` |
+| 22 Jun 1990 | the bloc «Демократическая Россия» calls for a movement (electoral or deputies' bloc not established) | `su_dr_bloc_appeal_calls_for_movement_19900622` |
 | 7 Dec 1990 | election to the movement's Council of Representatives announced | `su_dr_representatives_council_election_announced_19901207` |
 | 17 Dec 1990 | the Soyuz group's meeting decision and nominees; the organizing-committee description of Мурашев; resolution 1842-I names the nominees | `su_snd4_gninenko_reports_soyuz_meeting_decision_19901217`, `su_snd4_soyuz_commission_nominees_general_meeting_19901217`, `su_snd4_golyakov_murashev_dr_orgcommittee_chair_19901217`, `su_snd4_res_1842i_names_soyuz_nominees_19901217` |
 | 18 Dec 1990 | "руководителя группы «Союз»" | `su_snd4_bisher_refers_to_soyuz_leader_19901218` |
@@ -189,12 +189,12 @@ Evidence:
   1991: "Движение "Демократическая Россия" сопредседатели Координационного совета: Якунин Глеб Павлович, Пономарев Лев
   Александрович; Боксер Владимир Оскарович-член КС".
 
-Decision: **accepted in part**. Seven holder observations of five co-chairs (see [Holders](#holders)). The letter keeps the date it
-bears: it is written lower left in the letter's hand, the registration mark is that of the meeting of 12 October 1991, and the
-plenum of 15 September approving a delegation to the President fits a request made in mid-September; on either reading the letter
-existed by 12 October. The list of 12 December 1991 is the President's office's record, not the movement's, and shows only those
-attending. Other deputies' "координатор" for Пономарев (29 March 1991) is read but not imported, because the speaker calls the
-organiser a "блок" and the identity is not established.
+Decision: **accepted in part**. Seven holder observations of five co-chairs (see [Holders](#holders)). The letter keeps the date
+it bears: it is written lower left (the hand is not identified), the registration mark is that of the meeting of 12 October 1991,
+and the plenum of 15 September approving a delegation to the President fits a request made in mid-September; on either reading the
+letter existed by 12 October. The list of 12 December 1991 is the President's office's record, not the movement's, and shows only
+those attending. Other deputies' "координатор" for Пономарев (29 March 1991) is read but not imported, because the speaker calls
+the organiser a "блок" and the identity is not established.
 
 Limits: when each co-chair was elected, the full list of co-chairs at any date and any withdrawal are not in a reviewed primary
 record; Попов Г. Х. appears as a co-chair only in leads.
@@ -303,11 +303,16 @@ photograph is republished. Every identity is a raw Internet Archive capture made
 Hosting. The USSR stenograms and bulletins are page-image scans of official publications served by the non-official SSSR.SU
 project (snd.sssr.su, sten.vs.sssr.su), the host whose provenance the CLAUDE-C01-SOURCE-26 review documented; the RSFSR Congress
 reports are page-image scans of the official editions (Издательство "Республика", 1992-1993) served by the non-official ISTNET /
-RSFSR-RF.RU project (sten.snd.rsfsr-rf.ru), whose live certificate does not verify here, so only raw captures are used; the three
-archival facsimiles are copies from the Archive of the President of the Russian Federation (fund 91) published by the Yeltsin
-Presidential Center, a federal institution. Every source says its host in its publisher; whether these hosts meet the
-official-facsimile standard is the integrator's decision, as for CLAUDE-C01-26 (C12). If the ruling goes against the SSSR.SU and
-RSFSR-RF.RU hosts, SU-DR-03 keeps its three archival records (five of the seven observations) and SU-SOYUZ loses every claim.
+RSFSR-RF.RU project (sten.snd.rsfsr-rf.ru) — part of the private ISTNET project ('часть проекта ISTNET по созданию связанной
+гиперлинками базы документальных источников', rsfsr-rf.ru, IA 20260710134724), whose index (IA 20260618021334) describes its files
+as 'нераспознанными или частично распознанными PDF-версиями 35 из 38 томов книжной версии стенотчётов' of the edition 'М.:
+Республика, 1992-1993'; its live certificate does not verify here, so only raw captures are used; the three archival facsimiles
+are copies from the Archive of the President of the Russian Federation (fund 91) published by the Yeltsin Presidential Center, a
+federal institution. Every source says its host in its publisher; whether these hosts meet the official-facsimile standard is the
+integrator's decision, as for CLAUDE-C01-26 (C12). If the ruling goes against the SSSR.SU and RSFSR-RF.RU hosts, SU-DR-03 keeps
+its three archival records (five of the seven observations; Дмитриев and Афанасьев of 15 July 1991 are lost), SU-DR-01 keeps only
+the plenum of 15 September 1991, SU-DR-02 loses all three claims, SU-DR-04 is kept, and every SU-SOYUZ claim is lost, so
+`su_soyuz_deputies_group` and its role would be withdrawn.
 
 Three sources repeat files already recorded for CLAUDE-C01-26 (the Fourth Congress vol. III and the two Supreme Soviet bulletins
 of 26 August 1991), each as a pre-cutoff raw capture of the same bytes under a new ID, so that the CLAUDE-C01-26 extracts and their
@@ -361,14 +366,15 @@ Points a reviewer needs:
 
 ## Sources attempted
 
-- Read but not imported (no office stated, or another identity): the RSFSR First Congress vols. II-IV (the deputies' group's
+- Read but not imported (no office stated, or another identity): the RSFSR First Congress vols. II-IV (vol. II, IA 20210628054023
+  of sten.snd.rsfsr-rf.ru/I/II.pdf, 19,466,526 bytes, printed pp. 266-267, 16th sitting of 25 May 1990: the deputies' group's
   registration of 25 May 1990 with 66 members, its coordinating council and spokesmen), the Second Congress vols. I, II, IV and V
   and the Fifth Congress vol. I speeches for the RSFSR group or faction, the Third Congress vol. I remark of 29 March 1991 calling
-  Пономарев "координатор “Демократической России”" (identity not established), the Yeltsin Center items 10634, 10636 and 10637
-  (notes of 5 November 1991; the faction coordinators' list of 11 December 1991), leaf 6 of Д. 104 (participants of 12 October 1991,
-  no titles) and the Coordinating Council's appeal of December 1991 (its day not legible), the Д. 25 bloc paper of April 1990; the
-  USSR Third Congress vol. II and Fourth Congress vol. IV (unspoken speeches), the Fifth Congress bulletins 1, 2 and 4-7 and
-  Vedomosti 1991 Nos. 35-38 and 41 (no Soyuz or movement office).
+  Пономарев "координатор “Демократической России”" (identity not established), the Yeltsin Center items 10634, 10636 and 10637 (Ф.
+  6. Оп. 1. Д. 104. Л. 82-127) (notes of 5 November 1991; the faction coordinators' list of 11 December 1991), leaf 6 of Д. 104
+  (participants of 12 October 1991, no titles) and the Coordinating Council's appeal of December 1991 (its day not legible), the
+  Д. 25 bloc paper of April 1990; the USSR Third Congress vol. II and Fourth Congress vol. IV (unspoken speeches), the Fifth
+  Congress bulletins 1, 2 and 4-7 and Vedomosti 1991 Nos. 35-38 and 41 (no Soyuz or movement office).
 - `sten.snd.rsfsr-rf.ru` live: certificate verification fails (not bypassed); r4s4, r5s4 and r5s5 have no usable capture.
 - `sten.vs.sssr.su`: only 12/6/1.pdf and 12/6/2.pdf exist as scans for 1990-1991; 12/6/3.pdf to 8.pdf, 12/5/1.pdf and 12/4/1.pdf
   return 404; the HTML transcriptions on the same host and on sten.sr.vs.sssr.su were not used.
@@ -430,6 +436,18 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 
 - **Stacking.** The branch is **not stacked**: claim commit `c1475ada` sits directly on `44098c5a`. The CLAUDE-C01-SOURCE-26 repair
   is already integrated. `codex/campaign-certification` is fetched again before committing and merged if it moved.
+- **Integrator rulings on the verifier's findings (Ridge, 29 September 2026).**
+  - The letter keeps `attested_on` 1991-09-12, the date the document states; the registration mark of 12.10.1991 records its
+    receipt.
+  - "лидер", "лидеры" and "руководитель" stay claims only, because they do not name the office (co-chair).
+  - The Якунин and Пономарев holders of 12 December 1991 are kept: the President's office list names the movement and the exact
+    office ("сопредседатели Координационного совета"), which is consistent with CLAUDE-C01-33's standard.
+  - Evidence standard: CLAUDE-C01-29 admitted only a party officer's own statements; CLAUDE-C01-33 and this packet also admit
+    official records naming the organisation and the exact office. Under a strict C01-29 reading Якунин would drop out and
+    Пономарев's 15 September 1991 signature would become his latest attestation; a single cross-country ruling is for the
+    integrator.
+- **Verifier fixes.** Two of this packet's own extracts were edited after review, scope notes only, with their snapshots updated:
+  `ussr-rsfsr-snd1-stenogram-vol5-19900622-facts.json` and `ussr-yeltsin-center-f6-d222-l129-19911109-facts.json`.
 - **Existing records changed.** None: no existing source, claim, extract, entry, role or holder of `ussr.json` is edited; two
   organizations, 16 sources and one coverage item are appended. No existing extract is edited.
 - **Existing tests updated** (pinned counts, exact sets and access dates only; none loosened):

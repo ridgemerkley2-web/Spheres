@@ -50,8 +50,8 @@ re-downloaded and re-read each part, and all 19 of their defects are applied (14
 Decisions per chain:
 
 - Democratic Russia movement (`su_democratic_russia`, new organization, jurisdiction USSR at republic level, RSFSR; role
-  `su_dr_co_chair`, kind `party_leader`, co-leadership). SU-DR-01 accepted in part (the RSFSR deputies' bloc's call for a
-  movement, 22 Jun 1990; the election of the movement's Council of Representatives announced, 7 Dec 1990; its Coordinating
+  `su_dr_co_chair`, kind `party_leader`, co-leadership). SU-DR-01 accepted in part (the bloc's call for a movement (which bloc not
+  established), 22 Jun 1990; the election of the movement's Council of Representatives announced, 7 Dec 1990; its Coordinating
   Council's march application, 28 Mar 1991; a Council of Representatives plenum, 15 Sep 1991; no primary record of the founding
   congress). SU-DR-02 accepted in part (other deputies call Мурашев "председатель оргкомитета движения", 17 and 19 Dec 1990;
   claims only). SU-DR-03 accepted in part: seven holder observations of five co-chairs, Виктор Владимирович Дмитриев (attested
@@ -59,8 +59,8 @@ Decisions per chain:
   Александрович Пономарев (1991-09-12; 1991-12-12), А. Мурашев (1991-09-12) and Глеб Павлович Якунин (1991-12-12), from the
   Coordinating Council's letter signed "Сопредседатели КС „Дем. России“" (dated 12.09.91, registered 12.10.1991) and the RSFSR
   President's office list of 12 Dec 1991 (Yeltsin Center facsimiles of Presidential Archive copies); Пономарев's signature of 15
-  Sep 1991 is a role claim. SU-DR-04 accepted in part (the second congress announced for 9-10 November, year not printed; an undated
-  claim). SU-DR-05 not found (no end).
+  Sep 1991 is a role claim. SU-DR-04 accepted in part (the second congress announced for 9-10 November, year not printed; an
+  undated claim). SU-DR-05 not found (no end).
 - Soyuz deputies' group (`su_soyuz_deputies_group`, new organization, union level; role `su_soyuz_co_chair`, kind
   `parliamentary_leader`, co-leadership). SU-SOYUZ-01 accepted (the group speaking, deciding and nominating through its general
   meeting in the USSR Congress, 12 Mar-27 Dec 1990). SU-SOYUZ-02 accepted in part: one holder, Анатолий Георгиевич Чехоев (attested
@@ -69,6 +69,20 @@ Decisions per chain:
   part (other deputies' "руководитель" and "лидеры", including the accusing proposal of 26 Aug 1991 naming Коган, Алкснис, Блохин,
   Чехоев and Петрушенко; role claims, never holders; integrator ruling requested). SU-SOYUZ-05 not found (latest record 3 Sep
   1991; no end).
+
+Verifier fixes (29 September 2026 UTC): the appeal of 22 June 1990 no longer says which bloc «Демократическая Россия» is meant
+(electoral or RSFSR deputies' bloc not established); the letter's date is no longer said to be in the text's hand; the report
+records the RSFSR-RF.RU host's provenance (the private ISTNET project) and the full fallback if the non-official hosts are ruled
+out; locators are added for RSFSR First Congress vol. II and Yeltsin Center item 10637; the d222 extract's file-name date is
+declared a catalogue date. Two of this packet's own extracts were edited, scope notes only, with snapshots updated
+(`ussr-rsfsr-snd1-stenogram-vol5-19900622-facts.json`, `ussr-yeltsin-center-f6-d222-l129-19911109-facts.json`). Rulings (Ridge):
+the letter keeps `attested_on` 1991-09-12, the date it states (12.10.1991 records receipt); "лидер", "лидеры" and "руководитель"
+stay claims only, because they do not name the office (co-chair); the Якунин and Пономарев holders of 12 December 1991 are kept,
+since the President's office list names the movement and the exact office ("сопредседатели Координационного совета"), consistent
+with CLAUDE-C01-33's standard. Integration note: evidence standard: CLAUDE-C01-29 admitted only a party officer's own statements;
+CLAUDE-C01-33 and this packet also admit official records naming the organisation and the exact office. Under a strict C01-29
+reading Якунин would drop out and Пономарев's 15 September 1991 signature would become his latest attestation; a single
+cross-country ruling is for the integrator.
 
 No holder has a `from` or an `until`; every observation is one person. The RSFSR deputies' group, bloc and faction «Демократическая
 Россия» are separate identities, read and not imported. Neither organization is mapped to `USSR/su_dr` or `USSR/su_soyuz`. At most
