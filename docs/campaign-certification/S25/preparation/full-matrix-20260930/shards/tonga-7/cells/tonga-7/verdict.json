@@ -1,0 +1,105 @@
+{
+  "id": "tonga-7",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json",
+        "bytes": 136637585,
+        "sha256": "3796dc2421f663a078a7c777d1116304942f3a0f4ec8b75badaa1a9ba8259857"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+        "bytes": 24377975,
+        "sha256": "99d942f641b8d7a3bcde17d72768ca47aace484cd291827b38208c3ab1346989"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 136637585,
+        "sha256": "3796dc2421f663a078a7c777d1116304942f3a0f4ec8b75badaa1a9ba8259857"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json.bak",
+        "bytes": 129945149,
+        "sha256": "98f47d9e0f53b6020ae6e6346cff2ef0a8374f0da8093b5a211fb9b7b8d08c3e"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 23659935,
+        "sha256": "09d77eaac4c74fdf50261bf656844f9bbaae8df25316f5d89ea8f81f86195865"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 129945149,
+        "sha256": "98f47d9e0f53b6020ae6e6346cff2ef0a8374f0da8093b5a211fb9b7b8d08c3e"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/archive-manifest.json",
+      "bytes": 1972,
+      "sha256": "f4fde9a71c659c18f5ad439b08078aaffcd3e93878b4e3a336eea05837a7da72"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/execution.json",
+      "bytes": 1044,
+      "sha256": "f29b780a39557f8e9982d191cfbccf99e043a417cadee6fd1a53663716afa352"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/progress.jsonl",
+      "bytes": 36952,
+      "sha256": "18caba116c39ce81a8d156168683e68c8cb9cc21c02008af5f3bed3828933396"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/result.json",
+      "bytes": 256981,
+      "sha256": "081994c1964ebafda5d19995a1a17a589d6f6951b67760065246c8925515e4f1"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23659935,
+      "sha256": "09d77eaac4c74fdf50261bf656844f9bbaae8df25316f5d89ea8f81f86195865"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 24377975,
+      "sha256": "99d942f641b8d7a3bcde17d72768ca47aace484cd291827b38208c3ab1346989"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/request.json",
+      "bytes": 183,
+      "sha256": "e9d999e72b294e46621d8236e49a2fa7876e0d0efff8d8ffbb2bbdeebcc14cb5"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-7/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\tonga-42.zip",
+  "zip_pin": {
+    "bytes": 45857163,
+    "sha256": "21c5c7eb8310d8647c8ef31ce65476229795a35fdc39e837ebf72745538c7faf"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-42",
+  "files": [
+    {
+      "path": "cells/tonga-42/archive-manifest.json",
+      "bytes": 1976,
+      "sha256": "a85400254d8f4ddeb50bb16e1f86ec56c2d3833eff2fe2e5d6e6d6421bf779eb"
+    },
+    {
+      "path": "cells/tonga-42/native/progress.jsonl",
+      "bytes": 41223,
+      "sha256": "d11306102699376a36e1ad149722ac161c2cf66a1242c4f4b3614747eb25b323"
+    },
+    {
+      "path": "cells/tonga-42/execution.json",
+      "bytes": 1046,
+      "sha256": "ab847a7c66ab345ca879f2c509619dc471270b737e75ab8fa192de3bb51d7533"
+    },
+    {
+      "path": "cells/tonga-42/native/result.json",
+      "bytes": 282742,
+      "sha256": "716688c9cfe7902a175ddf21d868665308377d2e4c9f5e181afce5569e9efae5"
+    },
+    {
+      "path": "cells/tonga-42/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 22353778,
+      "sha256": "705e0596d73cda7557e02d552e4291c3fe3fd7092159a96bd3a60f2ed6447ae8"
+    },
+    {
+      "path": "cells/tonga-42/native/resumed/saves/monthly.json.gz",
+      "bytes": 23070664,
+      "sha256": "6e89514bd0c9f69342044e98cae997d01f365269d6a2dfe7e2aa31a3c9b0fdbb"
+    },
+    {
+      "path": "cells/tonga-42/request.json",
+      "bytes": 185,
+      "sha256": "dc1bba73b4dd6731399443ba3f2e998fa68aca07df34e05429e9956972586e7c"
+    },
+    {
+      "path": "cells/tonga-42/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/tonga-42/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/tonga-42/verdict.json",
+      "bytes": 4524,
+      "sha256": "bae3b427a1323437897ec7018d37e38264930fb9092e6ae71fd802b3b42a2302"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1538,
+      "sha256": "4c1cd12ca3b713155619d0011795b924e9cb72eef73268e170c10e3f6b55dd55"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5303,
+      "sha256": "36577ea6157ee66241b2eadda3b9d2ef4b29972cb382190044000ca8ef121dc4"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8678,
+      "sha256": "cb448b9faeb8ad5f536009b3df46db6bebad7974c271c7b6405b3776bbddd9bf"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:28.640779+00:00"
+}

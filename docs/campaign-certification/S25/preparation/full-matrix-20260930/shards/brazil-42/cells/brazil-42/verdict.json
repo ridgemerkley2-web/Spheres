@@ -1,0 +1,105 @@
+{
+  "id": "brazil-42",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json",
+        "bytes": 135056000,
+        "sha256": "82c1288026ad89ebedd54a3084d87c32748f5ad4f4c895b6b0692e3ec4862272"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json.gz",
+        "bytes": 24238405,
+        "sha256": "a5fc4a6e8b7dccd0364da152359632485d5b3451af19074cc5c8e7f93b28ab07"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 135056000,
+        "sha256": "82c1288026ad89ebedd54a3084d87c32748f5ad4f4c895b6b0692e3ec4862272"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json.bak",
+        "bytes": 141496809,
+        "sha256": "835ec689e68f78b0f8c7ee5c352108722e369ce064d6a98e03d36470cd68110f"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24901626,
+        "sha256": "8fe4a216b1561885f2523810f9d0376e4ad37e372ef5550d8c831de0a13183f4"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 141496809,
+        "sha256": "835ec689e68f78b0f8c7ee5c352108722e369ce064d6a98e03d36470cd68110f"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/archive-manifest.json",
+      "bytes": 1980,
+      "sha256": "8a8803afcb881c9655c85e7c12c4a5314031e80fcef09aed3f951ac0f8d3bedf"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/execution.json",
+      "bytes": 1050,
+      "sha256": "3b8542e2ca924a58874ee8d3ab1ccd7c63d609ab07c047808599076afff5b7de"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/progress.jsonl",
+      "bytes": 47181,
+      "sha256": "2cb34498e6d4c13856748ad2fc26275324d37f50d76844b3d08027391e346567"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/result.json",
+      "bytes": 350074,
+      "sha256": "23859029f0e40b9c86125fd0e9a4cdc15e989d0879d86a3743d0526fbf56111a"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 24901626,
+      "sha256": "8fe4a216b1561885f2523810f9d0376e4ad37e372ef5550d8c831de0a13183f4"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/native/resumed/saves/monthly.json.gz",
+      "bytes": 24238405,
+      "sha256": "a5fc4a6e8b7dccd0364da152359632485d5b3451af19074cc5c8e7f93b28ab07"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/request.json",
+      "bytes": 187,
+      "sha256": "4fc04cddc82e746f0163c590f7024b3e3dbea1cf7c38edc2facc36fe5fca768a"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-42/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

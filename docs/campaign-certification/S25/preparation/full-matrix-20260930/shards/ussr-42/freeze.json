@@ -1,0 +1,39 @@
+{
+  "format": "spheres-stability-freeze/v1",
+  "created_utc": "2026-09-29T00:48:10.821489+00:00",
+  "candidate_revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "expected_compiled_revision": "5d970f6d7370",
+  "binary": {
+    "path": "/home/runner/work/Spheres/Spheres/frozen/native-test",
+    "bytes": 349874624,
+    "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+  },
+  "plan": {
+    "path": "/home/runner/work/Spheres/Spheres/frozen/plan.json",
+    "bytes": 2861,
+    "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+  },
+  "frozen_plan": {
+    "path": "/home/runner/work/Spheres/Spheres/evidence/plan.json",
+    "bytes": 2861,
+    "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+  },
+  "harness": {
+    "path": "/home/runner/work/Spheres/Spheres/frozen/stability_matrix.py",
+    "bytes": 80364,
+    "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+  },
+  "frozen_harness": {
+    "path": "/home/runner/work/Spheres/Spheres/evidence/stability_matrix.py",
+    "bytes": 80364,
+    "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+  },
+  "native_test": "s25_stability_tests::s25_stability_cell",
+  "scope": "full",
+  "jobs": 1,
+  "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
+  "qualification": false,
+  "s25_complete": false,
+  "only_cell": "ussr-42",
+  "batch_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8"
+}

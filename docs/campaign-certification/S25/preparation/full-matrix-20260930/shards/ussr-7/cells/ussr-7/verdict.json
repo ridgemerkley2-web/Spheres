@@ -1,0 +1,105 @@
+{
+  "id": "ussr-7",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json",
+        "bytes": 136577169,
+        "sha256": "8817a99b5b6d643bc8448247435330ee3a3a12707bafae056137ab5d1730f88c"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json.gz",
+        "bytes": 24228511,
+        "sha256": "e81bcacb82f4a1963282469e17b690b27b36935010edfc7376c6e31cbc660f5e"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 136577169,
+        "sha256": "8817a99b5b6d643bc8448247435330ee3a3a12707bafae056137ab5d1730f88c"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json.bak",
+        "bytes": 129998630,
+        "sha256": "627ab263fefdd60150c38c1e35816f16a4318952da1b560aa3eb0a7ae3e6ca82"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 23531581,
+        "sha256": "7e87fab58bf065fe15cef4e763eb8849a730ccca9f1450e72873abf94323a6ed"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 129998630,
+        "sha256": "627ab263fefdd60150c38c1e35816f16a4318952da1b560aa3eb0a7ae3e6ca82"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/archive-manifest.json",
+      "bytes": 1968,
+      "sha256": "7760e77c9eb2d80e985f0488df3db32b1a81e668603af844291996646c0915de"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/execution.json",
+      "bytes": 1041,
+      "sha256": "b6c13828eb741d21c17e3e6f2b01fdd65a6182417818e307a643bb70fcba6ca3"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/progress.jsonl",
+      "bytes": 40607,
+      "sha256": "d0223fd4a757470b7c131889fe41305814568fabef40b68d2087b6c33a18a514"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/result.json",
+      "bytes": 374946,
+      "sha256": "07c53cd89ac5372c02de62f950adbdd4c5d65ca889303d49507752b8d372f169"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23531581,
+      "sha256": "7e87fab58bf065fe15cef4e763eb8849a730ccca9f1450e72873abf94323a6ed"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 24228511,
+      "sha256": "e81bcacb82f4a1963282469e17b690b27b36935010edfc7376c6e31cbc660f5e"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/request.json",
+      "bytes": 181,
+      "sha256": "9064325b9ba4dca05ecb09dc6b379cf8ead885734dec9f8b8ef5d7fa94cef55b"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

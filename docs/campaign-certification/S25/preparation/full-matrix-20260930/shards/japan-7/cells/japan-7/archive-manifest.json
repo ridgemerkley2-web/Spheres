@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-7/native/resumed/saves/monthly.json",
+        "bytes": 136158052,
+        "sha256": "8c6f8d1bb01260ea6f0b4e9d61b74f308432c2a2d0719151539f7eee10b30492"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-7/native/resumed/saves/monthly.json.gz",
+        "bytes": 24163489,
+        "sha256": "40ddb7d625cce041960911c71b64f02fe1bc4fe126e88f8658a88bea9979ac03"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 136158052,
+        "sha256": "8c6f8d1bb01260ea6f0b4e9d61b74f308432c2a2d0719151539f7eee10b30492"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-7/native/resumed/saves/monthly.json.bak",
+        "bytes": 129577745,
+        "sha256": "19f26943c60ea375735bbc299bea0f5b83b12fc1c0490c7853ffc295a5c2deaa"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-7/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 23452925,
+        "sha256": "754fa18abb19f7974986012453960189be776f44d23d0f65efc6a18e65716a4c"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 129577745,
+        "sha256": "19f26943c60ea375735bbc299bea0f5b83b12fc1c0490c7853ffc295a5c2deaa"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

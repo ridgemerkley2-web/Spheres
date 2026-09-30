@@ -1,0 +1,284 @@
+{
+  "format": "spheres-stability-matrix-result/v1",
+  "finished_utc": "2026-09-29T01:02:21.955650+00:00",
+  "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "plan_id": "s25-full-v1",
+  "scope": "full",
+  "jobs": 1,
+  "binary_unchanged": true,
+  "interrupted": false,
+  "coverage": {
+    "declared": 24,
+    "attempted": 1,
+    "passed": 0,
+    "failed": [
+      "brazil-7"
+    ],
+    "missing_requested": [
+      "brazil-1990",
+      "brazil-42",
+      "france-1990",
+      "france-42",
+      "france-7",
+      "india-1990",
+      "india-42",
+      "india-7",
+      "japan-1990",
+      "japan-42",
+      "japan-7",
+      "saudiarabia-1990",
+      "saudiarabia-42",
+      "saudiarabia-7",
+      "southafrica-1990",
+      "southafrica-42",
+      "southafrica-7",
+      "tonga-1990",
+      "tonga-42",
+      "tonga-7",
+      "ussr-1990",
+      "ussr-42",
+      "ussr-7"
+    ],
+    "requested_plan_passed": false,
+    "pilot_passed": false,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "brazil-7",
+      "passed": false,
+      "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+      "archives": [
+        {
+          "original": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json",
+            "bytes": 122784976,
+            "sha256": "3428be74f8ffb101263a5a875d326bc0d03aa7e6c1a96ac2a337e6dd26f0feaf"
+          },
+          "original_relative": "resumed/saves/monthly.json",
+          "gzip": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json.gz",
+            "bytes": 22427107,
+            "sha256": "00f0617972e452aab86de59baf0d51dad5db795bc74f3bdff99381dcbd8d307c"
+          },
+          "gzip_relative": "resumed/saves/monthly.json.gz",
+          "decoded": {
+            "bytes": 122784976,
+            "sha256": "3428be74f8ffb101263a5a875d326bc0d03aa7e6c1a96ac2a337e6dd26f0feaf"
+          },
+          "roundtrip_verified": true,
+          "raw_removed": true,
+          "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+        },
+        {
+          "original": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json.bak",
+            "bytes": 129235960,
+            "sha256": "879a640dacbaa453fdfd4d8c985c3e5bfdd6c58fbf52e25f25015652812e3ca8"
+          },
+          "original_relative": "resumed/saves/monthly.json.bak",
+          "gzip": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json.bak.gz",
+            "bytes": 23105292,
+            "sha256": "e87d5c1a8534e156a80cda657297647422c32841633e8832b5980b3ebb82a59e"
+          },
+          "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+          "decoded": {
+            "bytes": 129235960,
+            "sha256": "879a640dacbaa453fdfd4d8c985c3e5bfdd6c58fbf52e25f25015652812e3ca8"
+          },
+          "roundtrip_verified": true,
+          "raw_removed": true,
+          "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+        }
+      ],
+      "files": [
+        {
+          "relative": "archive-manifest.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/archive-manifest.json",
+          "bytes": 1976,
+          "sha256": "9fe6e8d6b10be00ef8e91e04d940d55d63ea8c909f26e650b496fdf6336df490"
+        },
+        {
+          "relative": "execution.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/execution.json",
+          "bytes": 1047,
+          "sha256": "e57adef4d9a5fdf22caeceb9296eaeee5284ea33a93c27ee83eb2e0382006511"
+        },
+        {
+          "relative": "native/progress.jsonl",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/progress.jsonl",
+          "bytes": 37643,
+          "sha256": "a230f57f81808853fb4444ab284b5f51e3257db84ac32956f41da4c29caca779"
+        },
+        {
+          "relative": "native/result.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/result.json",
+          "bytes": 280918,
+          "sha256": "e82ace426fe908c9325e3e8d88e859f4d04fd966484192d9a9c06438ae25789c"
+        },
+        {
+          "relative": "native/resumed/saves/monthly.json.bak.gz",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 23105292,
+          "sha256": "e87d5c1a8534e156a80cda657297647422c32841633e8832b5980b3ebb82a59e"
+        },
+        {
+          "relative": "native/resumed/saves/monthly.json.gz",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/native/resumed/saves/monthly.json.gz",
+          "bytes": 22427107,
+          "sha256": "00f0617972e452aab86de59baf0d51dad5db795bc74f3bdff99381dcbd8d307c"
+        },
+        {
+          "relative": "request.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/request.json",
+          "bytes": 185,
+          "sha256": "94b4f55ac512d88424af7ccd5e726e49172b093b029b6e619e104d29b084eff3"
+        },
+        {
+          "relative": "stderr.log",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "stdout.log",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-7/stdout.log",
+          "bytes": 65,
+          "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "qualification": false,
+  "s25_complete": false,
+  "only_cell": "brazil-7",
+  "batch_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8",
+  "selected_cell_passed": false
+}

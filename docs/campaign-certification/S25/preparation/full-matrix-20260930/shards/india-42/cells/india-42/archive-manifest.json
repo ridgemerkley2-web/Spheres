@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/india-42/native/resumed/saves/monthly.json",
+        "bytes": 142143235,
+        "sha256": "0c09bdf68c330af6ee5490bae444ee49f4646a67e90e18489ed4a54e5e23974f"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/india-42/native/resumed/saves/monthly.json.gz",
+        "bytes": 25178753,
+        "sha256": "fbda9a39824712c0d13d31e17d650541dca0775e0ea11ed17ec219e70f08a9c7"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 142143235,
+        "sha256": "0c09bdf68c330af6ee5490bae444ee49f4646a67e90e18489ed4a54e5e23974f"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/india-42/native/resumed/saves/monthly.json.bak",
+        "bytes": 135480591,
+        "sha256": "0cc3a373f0be8e84bf687ab34cb9c360b6df528f39089860dfeec5fe986d1374"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/india-42/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24469879,
+        "sha256": "4480508b39afd6fb256eb60d700013bb9c3906628683049828314ccc55f7481f"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 135480591,
+        "sha256": "0cc3a373f0be8e84bf687ab34cb9c360b6df528f39089860dfeec5fe986d1374"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

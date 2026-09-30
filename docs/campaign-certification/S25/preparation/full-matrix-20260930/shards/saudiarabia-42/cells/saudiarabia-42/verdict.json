@@ -1,0 +1,105 @@
+{
+  "id": "saudiarabia-42",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json",
+        "bytes": 138482099,
+        "sha256": "a31e88b08ffe518dfababbc6d97f60433a91fda18b6392ef8d0001be9ea474fe"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json.gz",
+        "bytes": 24626797,
+        "sha256": "304101d7e777a79382c454399a0884147ff7c4a78d47acfceb44a540f000d0c7"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 138482099,
+        "sha256": "a31e88b08ffe518dfababbc6d97f60433a91fda18b6392ef8d0001be9ea474fe"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json.bak",
+        "bytes": 132462101,
+        "sha256": "a32d04174552de3c5cbda2971972aeb7875589910399d03c5cafca17dfb9dfdf"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 23983962,
+        "sha256": "0d01e1c4305f5f4d79859b7dc07b4e3be44f9e7f534e9db0d690ab348d7d8577"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 132462101,
+        "sha256": "a32d04174552de3c5cbda2971972aeb7875589910399d03c5cafca17dfb9dfdf"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/archive-manifest.json",
+      "bytes": 2000,
+      "sha256": "400f42fd0f08b02c49e1b6c8b8536fafb1abcf223a25f3351a97c967d39c616d"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/execution.json",
+      "bytes": 1065,
+      "sha256": "dcd17ddefa6ee22e81a50f52ca227b744df3a0f3d0f773856e881f5dd087c256"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/progress.jsonl",
+      "bytes": 35274,
+      "sha256": "8bfe93754e763854754413cdabaf302eabdbd472022ee0ee0648a3c4cfcbfe92"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/result.json",
+      "bytes": 256155,
+      "sha256": "6d68fe97d271493d39031343d032f8188d6c9ad6196416d0752d3995a9e9f3b0"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23983962,
+      "sha256": "0d01e1c4305f5f4d79859b7dc07b4e3be44f9e7f534e9db0d690ab348d7d8577"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/native/resumed/saves/monthly.json.gz",
+      "bytes": 24626797,
+      "sha256": "304101d7e777a79382c454399a0884147ff7c4a78d47acfceb44a540f000d0c7"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/request.json",
+      "bytes": 197,
+      "sha256": "17944888444109039da2661e9fcfbe0d179d8464ae1435122becc4f821a8ed4f"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-42/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

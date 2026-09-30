@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/southafrica-42/native/resumed/saves/monthly.json",
+        "bytes": 129777781,
+        "sha256": "a80b2826c1140eaa958b348bbbc3ce2ce6e2bcdc4c4378f61647583651f03671"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/southafrica-42/native/resumed/saves/monthly.json.gz",
+        "bytes": 23498172,
+        "sha256": "5b2d35654ac376cbdbebd62b2544f954da4dec1ac13122c23648bbdfd8348cea"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 129777781,
+        "sha256": "a80b2826c1140eaa958b348bbbc3ce2ce6e2bcdc4c4378f61647583651f03671"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/southafrica-42/native/resumed/saves/monthly.json.bak",
+        "bytes": 135955361,
+        "sha256": "75b7040a82a19f454939a3c45e753a3e502e72421f3cf8963015f43278506dfb"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/southafrica-42/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24136002,
+        "sha256": "da4f039283fb6a4d7ab521efdf96a8d2d0f2ce84bddb9e08780c5e9c764c080d"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 135955361,
+        "sha256": "75b7040a82a19f454939a3c45e753a3e502e72421f3cf8963015f43278506dfb"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

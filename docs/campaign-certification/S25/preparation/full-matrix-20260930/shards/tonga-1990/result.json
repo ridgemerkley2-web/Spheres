@@ -1,0 +1,284 @@
+{
+  "format": "spheres-stability-matrix-result/v1",
+  "finished_utc": "2026-09-29T00:47:52.620708+00:00",
+  "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "plan_id": "s25-full-v1",
+  "scope": "full",
+  "jobs": 1,
+  "binary_unchanged": true,
+  "interrupted": false,
+  "coverage": {
+    "declared": 24,
+    "attempted": 1,
+    "passed": 0,
+    "failed": [
+      "tonga-1990"
+    ],
+    "missing_requested": [
+      "brazil-1990",
+      "brazil-42",
+      "brazil-7",
+      "france-1990",
+      "france-42",
+      "france-7",
+      "india-1990",
+      "india-42",
+      "india-7",
+      "japan-1990",
+      "japan-42",
+      "japan-7",
+      "saudiarabia-1990",
+      "saudiarabia-42",
+      "saudiarabia-7",
+      "southafrica-1990",
+      "southafrica-42",
+      "southafrica-7",
+      "tonga-42",
+      "tonga-7",
+      "ussr-1990",
+      "ussr-42",
+      "ussr-7"
+    ],
+    "requested_plan_passed": false,
+    "pilot_passed": false,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "tonga-1990",
+      "passed": false,
+      "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+      "archives": [
+        {
+          "original": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json",
+            "bytes": 134001810,
+            "sha256": "445f5a76e3a9ae5a819b155b96009d96de36480b007d33c8345df746b35f225d"
+          },
+          "original_relative": "resumed/saves/monthly.json",
+          "gzip": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.gz",
+            "bytes": 24145771,
+            "sha256": "dfe1f108477af09d11bdc9837dd895df569a2a9bb5eac63e661550a5124a1520"
+          },
+          "gzip_relative": "resumed/saves/monthly.json.gz",
+          "decoded": {
+            "bytes": 134001810,
+            "sha256": "445f5a76e3a9ae5a819b155b96009d96de36480b007d33c8345df746b35f225d"
+          },
+          "roundtrip_verified": true,
+          "raw_removed": true,
+          "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+        },
+        {
+          "original": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.bak",
+            "bytes": 140603063,
+            "sha256": "a3c87cb23426594097afdf39aacfd88b4083d39fa447edec5662e6852d70d36a"
+          },
+          "original_relative": "resumed/saves/monthly.json.bak",
+          "gzip": {
+            "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.bak.gz",
+            "bytes": 24836201,
+            "sha256": "57cda680aa3e13deb5058661bed7d40b965c0ba4300dfa8a37e16e67933483fa"
+          },
+          "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+          "decoded": {
+            "bytes": 140603063,
+            "sha256": "a3c87cb23426594097afdf39aacfd88b4083d39fa447edec5662e6852d70d36a"
+          },
+          "roundtrip_verified": true,
+          "raw_removed": true,
+          "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+        }
+      ],
+      "files": [
+        {
+          "relative": "archive-manifest.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/archive-manifest.json",
+          "bytes": 1984,
+          "sha256": "10dd04ef6469335c4223b1c58a5ec5a370b6520d9f6997cc86bff3620c0d0823"
+        },
+        {
+          "relative": "execution.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/execution.json",
+          "bytes": 1056,
+          "sha256": "b798c2cdced67c0ff7c55440d0fa9698b3d10091c12d49923d096a9f772145b6"
+        },
+        {
+          "relative": "native/progress.jsonl",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/progress.jsonl",
+          "bytes": 47117,
+          "sha256": "d7ac81e514491160e6f73e983ba29257a3c14bb4a8f286e5f9ae8f62c79ee273"
+        },
+        {
+          "relative": "native/result.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/result.json",
+          "bytes": 321665,
+          "sha256": "42df0e6c4457e3e981b420bac5335d42125a7adc03dc4bc02e2818109c648ccf"
+        },
+        {
+          "relative": "native/resumed/saves/monthly.json.bak.gz",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 24836201,
+          "sha256": "57cda680aa3e13deb5058661bed7d40b965c0ba4300dfa8a37e16e67933483fa"
+        },
+        {
+          "relative": "native/resumed/saves/monthly.json.gz",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.gz",
+          "bytes": 24145771,
+          "sha256": "dfe1f108477af09d11bdc9837dd895df569a2a9bb5eac63e661550a5124a1520"
+        },
+        {
+          "relative": "request.json",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/request.json",
+          "bytes": 189,
+          "sha256": "d0cdc5aa9240b4ce9edd5f76fbc470d18e046cfa48384274a69ee0c2b8176bd3"
+        },
+        {
+          "relative": "stderr.log",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "relative": "stdout.log",
+          "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/stdout.log",
+          "bytes": 65,
+          "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "qualification": false,
+  "s25_complete": false,
+  "only_cell": "tonga-1990",
+  "batch_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8",
+  "selected_cell_passed": false
+}

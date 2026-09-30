@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\southafrica-7.zip",
+  "zip_pin": {
+    "bytes": 50580318,
+    "sha256": "7f9b453a22c6117d8c03b976246514e081737e376102fcced26958e010e57ce2"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-7",
+  "files": [
+    {
+      "path": "cells/southafrica-7/archive-manifest.json",
+      "bytes": 1996,
+      "sha256": "af43dfba8013a22b1f87ced236a73f1d12153b1114740dfb720342ab7ef3696c"
+    },
+    {
+      "path": "cells/southafrica-7/execution.json",
+      "bytes": 1062,
+      "sha256": "749b941e8816e8971e51a57135d8a22b3b6da139b6a4c716486d3affff41522e"
+    },
+    {
+      "path": "cells/southafrica-7/native/progress.jsonl",
+      "bytes": 36846,
+      "sha256": "ccf15d433185e5ba0e47ead26de386ddc8bdafdbccf52434f1761ddde827ca00"
+    },
+    {
+      "path": "cells/southafrica-7/native/result.json",
+      "bytes": 260412,
+      "sha256": "e7fe10003c65a39b7052b8fb465f50e2f5d17c14093cc09cf1c217734a430d80"
+    },
+    {
+      "path": "cells/southafrica-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 25100498,
+      "sha256": "dd92178b9a0249c317f13993d37079b2aacc258cfba5774b0f967f63d8f756a0"
+    },
+    {
+      "path": "cells/southafrica-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 25073470,
+      "sha256": "569e32193f283980b00e1d3a7768742e2e3ab5f320eb902de676cd162473959d"
+    },
+    {
+      "path": "cells/southafrica-7/request.json",
+      "bytes": 195,
+      "sha256": "82f9715c93934f41bfce329a9449e8639a898819da6ad156565b41059a6e0ebe"
+    },
+    {
+      "path": "cells/southafrica-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/southafrica-7/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/southafrica-7/verdict.json",
+      "bytes": 4594,
+      "sha256": "6db4a86ef494bea2878a0dd60d7933848cb7357340dd758998da3c798086672a"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1543,
+      "sha256": "80b8846c3d7a032ece0f3d9738a843a53e9ccaf99fe6f14b4071d0c21aef02a2"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5343,
+      "sha256": "6048ae505403ada6137f461748952554889431840d9a9bba60aea7a4654b46a2"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8753,
+      "sha256": "97596e6a0d3ae435f40bf9a471db5c5f77a17d151a9ea99f196223618b51073f"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:21.850202+00:00"
+}

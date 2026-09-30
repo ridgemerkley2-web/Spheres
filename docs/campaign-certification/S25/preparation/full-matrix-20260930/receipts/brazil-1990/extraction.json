@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\brazil-1990.zip",
+  "zip_pin": {
+    "bytes": 45714314,
+    "sha256": "a20dd20c2ef89c9bf62f779cfc9724875487eea9d09f202e176253587b38929e"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-1990",
+  "files": [
+    {
+      "path": "cells/brazil-1990/archive-manifest.json",
+      "bytes": 1988,
+      "sha256": "e35a5ea80c9cc84801b3b3558cd2ff0f57f932f892f282fe69b10418092162ee"
+    },
+    {
+      "path": "cells/brazil-1990/execution.json",
+      "bytes": 1056,
+      "sha256": "2139136f06d8433b87dd5f5f883f5fe1f37b4c1ed5bca3d15186d0639169636e"
+    },
+    {
+      "path": "cells/brazil-1990/native/progress.jsonl",
+      "bytes": 37109,
+      "sha256": "51a9024ea2717638d3507ddf9a486b004aaf735acbbbe50641532450792be60c"
+    },
+    {
+      "path": "cells/brazil-1990/native/result.json",
+      "bytes": 272373,
+      "sha256": "1102e3594e877a4b04f830751d8ab06b5a5025e45b842e30e24010ec5dfa1685"
+    },
+    {
+      "path": "cells/brazil-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 22317472,
+      "sha256": "4ebfbcf86bdf617a36c3f4bf8656e673e0bbe23233528eaf7c3f83f7f29c133c"
+    },
+    {
+      "path": "cells/brazil-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 22978402,
+      "sha256": "4024d8d508e7e940014c5794ff7c74937e394056bbfe9a4987a9c4adc396d772"
+    },
+    {
+      "path": "cells/brazil-1990/request.json",
+      "bytes": 191,
+      "sha256": "667cd8fffe6c3f0801871b3db388ecc20c4157e4747ac63279452cafaaab278b"
+    },
+    {
+      "path": "cells/brazil-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/brazil-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/brazil-1990/verdict.json",
+      "bytes": 4566,
+      "sha256": "d0b7e50594fc504d43768969c16e2afe70f298593c39d175645529256ebc4e7a"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1541,
+      "sha256": "2260a9a4fe1ffc4def230fc2220d444e4a3c27b5c925dbcb1faa2867c3c19579"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5327,
+      "sha256": "a5a2816834b6a03c73633e4b0d35ce1ac6bc298430290302556e271a19fcb9df"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8723,
+      "sha256": "a6163d2ef203ad0791c053563a19c80a08e2261d9aac28f8055a5fac2c378a86"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:15.022973+00:00"
+}

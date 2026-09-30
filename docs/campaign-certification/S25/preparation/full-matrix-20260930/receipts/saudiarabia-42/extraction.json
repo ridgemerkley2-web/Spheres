@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\saudiarabia-42.zip",
+  "zip_pin": {
+    "bytes": 49011347,
+    "sha256": "de1cdfa968448e2eef6df3eb0cce8801352d03856269e8310ac3239785b1fbb1"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-42",
+  "files": [
+    {
+      "path": "cells/saudiarabia-42/execution.json",
+      "bytes": 1065,
+      "sha256": "dcd17ddefa6ee22e81a50f52ca227b744df3a0f3d0f773856e881f5dd087c256"
+    },
+    {
+      "path": "cells/saudiarabia-42/native/progress.jsonl",
+      "bytes": 35274,
+      "sha256": "8bfe93754e763854754413cdabaf302eabdbd472022ee0ee0648a3c4cfcbfe92"
+    },
+    {
+      "path": "cells/saudiarabia-42/archive-manifest.json",
+      "bytes": 2000,
+      "sha256": "400f42fd0f08b02c49e1b6c8b8536fafb1abcf223a25f3351a97c967d39c616d"
+    },
+    {
+      "path": "cells/saudiarabia-42/native/result.json",
+      "bytes": 256155,
+      "sha256": "6d68fe97d271493d39031343d032f8188d6c9ad6196416d0752d3995a9e9f3b0"
+    },
+    {
+      "path": "cells/saudiarabia-42/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23983962,
+      "sha256": "0d01e1c4305f5f4d79859b7dc07b4e3be44f9e7f534e9db0d690ab348d7d8577"
+    },
+    {
+      "path": "cells/saudiarabia-42/native/resumed/saves/monthly.json.gz",
+      "bytes": 24626797,
+      "sha256": "304101d7e777a79382c454399a0884147ff7c4a78d47acfceb44a540f000d0c7"
+    },
+    {
+      "path": "cells/saudiarabia-42/request.json",
+      "bytes": 197,
+      "sha256": "17944888444109039da2661e9fcfbe0d179d8464ae1435122becc4f821a8ed4f"
+    },
+    {
+      "path": "cells/saudiarabia-42/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/saudiarabia-42/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/saudiarabia-42/verdict.json",
+      "bytes": 4608,
+      "sha256": "b51fe5916e33e44e39a67afb037a1afb9b174c40372f409afc52ad1026460513"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1544,
+      "sha256": "641e2bfcfa1947c2e56cabb86ad1c5e8be68dcf8f20510f2359bd3fd934cc8fe"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5351,
+      "sha256": "6fe1a083805d441085b780457c0fe1f919c15ac438bea5703aedaa2786ead09d"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8768,
+      "sha256": "6b82ff7720b1afa7253cd72993f0a8aa499c7088794e29ac6f34fd9c7f58e838"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:35.812214+00:00"
+}

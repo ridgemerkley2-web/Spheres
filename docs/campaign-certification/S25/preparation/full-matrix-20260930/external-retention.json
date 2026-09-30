@@ -1,0 +1,488 @@
+{
+  "scope": "Complete ZIPs and46actualgziparchives retained externally, not omitted from verification. This Git packet is explicitly compact and not independently complete without those external bytes.",
+  "files": [
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\france-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "france-1990",
+      "bytes": 47888047,
+      "sha256": "3709d9342a81fac98a6e423269ffe163e88a2fb5389411afc420008840a5a662"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-1990\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-1990",
+      "bytes": 24026979,
+      "sha256": "a17639349be6edb1891cb47fc4d5cc00c3b0acd69568bd805bad814a1853f778"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-1990\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-1990",
+      "bytes": 23337298,
+      "sha256": "d4d84d1909ea9afc16a2af1f1093a7a6097cf3c3d1abc65d0f902ca7a7ebca6e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\france-7.zip",
+      "kind": "original_github_zip",
+      "cell": "france-7",
+      "bytes": 47938257,
+      "sha256": "095b2716800cbc8272b0cfddee01de8213164aee47bd28e2b3efdea4b3e96c70"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-7\\cells\\france-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-7",
+      "bytes": 23347710,
+      "sha256": "0d7ea09f9acb303f72d25a3b240d659b4d4df89c4e6aa85bfa01b598f644da47"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-7\\cells\\france-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-7",
+      "bytes": 24020355,
+      "sha256": "8ad7fbc337e02a9d1e85edf7368f8c320f7877816896de9e0358353b61a08bcb"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\france-42.zip",
+      "kind": "original_github_zip",
+      "cell": "france-42",
+      "bytes": 50433421,
+      "sha256": "f22f9ab55ff3520649c74d2e3e32ef1726768e32785290f517ea29a874730b0e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-42\\cells\\france-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-42",
+      "bytes": 25319184,
+      "sha256": "0b1e70a45d741b291935224935d84d697397b4c3c66a09a99a6cd1246e0b2a1e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-42\\cells\\france-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "france-42",
+      "bytes": 24613639,
+      "sha256": "eea54e5924e7b72538af5d2dd1c344c1a6815e79d27e55bda7e3e5984a6ee4f3"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\japan-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "japan-1990",
+      "bytes": 48991210,
+      "sha256": "0ff9f2d4147150fa6b705b06525a2832f95c064e56b996e5f554b1712c243d6a"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-1990\\cells\\japan-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-1990",
+      "bytes": 24275771,
+      "sha256": "1c249f9d0aa597cd0b3ff482327e37ec936b456ae1bd0063375f92d6ecca2acc"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-1990\\cells\\japan-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-1990",
+      "bytes": 24276124,
+      "sha256": "b07afe42f84ccf504de12f21f3dbd9c544bad59331fd70fa124c6089a2285086"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\japan-7.zip",
+      "kind": "original_github_zip",
+      "cell": "japan-7",
+      "bytes": 48053942,
+      "sha256": "c6ecb84545254df292daf620a8ee6c0197855fce899e026cf50077f8005f4e16"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-7\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-7",
+      "bytes": 23452925,
+      "sha256": "754fa18abb19f7974986012453960189be776f44d23d0f65efc6a18e65716a4c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-7\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-7",
+      "bytes": 24163489,
+      "sha256": "40ddb7d625cce041960911c71b64f02fe1bc4fe126e88f8658a88bea9979ac03"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\japan-42.zip",
+      "kind": "original_github_zip",
+      "cell": "japan-42",
+      "bytes": 47811418,
+      "sha256": "7ec25d9c8812971624ea23ff0d61b60d9673645db9f01e890252ae3b139c1af9"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-42\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-42",
+      "bytes": 23337824,
+      "sha256": "4949abfbe34c40638000ae7cd1523dc09fae5ccd481077d590c02eedf929a45b"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-42\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "japan-42",
+      "bytes": 24018120,
+      "sha256": "28cd4efb5e5982046584d2bf7fae9422becdd9cccad35528f807d2e4145b66ab"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\india-7.zip",
+      "kind": "original_github_zip",
+      "cell": "india-7",
+      "bytes": 45088677,
+      "sha256": "87c445dcd5a2b23368825187daeb49ed359166e16d0cf2a3c221c8d258ceda6c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-7\\cells\\india-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "india-7",
+      "bytes": 22675113,
+      "sha256": "bd69f9398ed833ca29a003b2b7c2a2a5970935dfa6b7919307ffed6cd4959bf9"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-7\\cells\\india-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "india-7",
+      "bytes": 22005918,
+      "sha256": "d883ee61483dbc429c2221f3775e91e8e56d45e47ce107e6da76f2c53fe162ee"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\india-42.zip",
+      "kind": "original_github_zip",
+      "cell": "india-42",
+      "bytes": 50100214,
+      "sha256": "5cb11d40dbb3541c775e6a28121a395ef3787429b855431b181b0e0ad27a4354"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-42\\cells\\india-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "india-42",
+      "bytes": 24469879,
+      "sha256": "4480508b39afd6fb256eb60d700013bb9c3906628683049828314ccc55f7481f"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-42\\cells\\india-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "india-42",
+      "bytes": 25178753,
+      "sha256": "fbda9a39824712c0d13d31e17d650541dca0775e0ea11ed17ec219e70f08a9c7"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\brazil-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "brazil-1990",
+      "bytes": 45714314,
+      "sha256": "a20dd20c2ef89c9bf62f779cfc9724875487eea9d09f202e176253587b38929e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-1990\\cells\\brazil-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-1990",
+      "bytes": 22317472,
+      "sha256": "4ebfbcf86bdf617a36c3f4bf8656e673e0bbe23233528eaf7c3f83f7f29c133c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-1990\\cells\\brazil-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-1990",
+      "bytes": 22978402,
+      "sha256": "4024d8d508e7e940014c5794ff7c74937e394056bbfe9a4987a9c4adc396d772"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\brazil-7.zip",
+      "kind": "original_github_zip",
+      "cell": "brazil-7",
+      "bytes": 45959717,
+      "sha256": "7cd2de6b012565a11f4a80ab920857c3cda0991adf4023038b19e560258d325d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-7\\cells\\brazil-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-7",
+      "bytes": 23105292,
+      "sha256": "e87d5c1a8534e156a80cda657297647422c32841633e8832b5980b3ebb82a59e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-7\\cells\\brazil-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-7",
+      "bytes": 22427107,
+      "sha256": "00f0617972e452aab86de59baf0d51dad5db795bc74f3bdff99381dcbd8d307c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\brazil-42.zip",
+      "kind": "original_github_zip",
+      "cell": "brazil-42",
+      "bytes": 49646110,
+      "sha256": "b3883004777dc798e0c5290277e2ae73bb1bc69830796cc79150ad9e0e362718"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-42\\cells\\brazil-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-42",
+      "bytes": 24901626,
+      "sha256": "8fe4a216b1561885f2523810f9d0376e4ad37e372ef5550d8c831de0a13183f4"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-42\\cells\\brazil-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "brazil-42",
+      "bytes": 24238405,
+      "sha256": "a5fc4a6e8b7dccd0364da152359632485d5b3451af19074cc5c8e7f93b28ab07"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\southafrica-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "southafrica-1990",
+      "bytes": 48771802,
+      "sha256": "e3c58432b4b2a2c6dfb9c127e2d3e54328f584a9e909f566595ce2a73c19a75a"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-1990\\cells\\southafrica-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-1990",
+      "bytes": 23862292,
+      "sha256": "2e6dbcaa0491a3824bf74b8239bf841f893de29bf5f401346903e010850303fa"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-1990\\cells\\southafrica-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-1990",
+      "bytes": 24507181,
+      "sha256": "9906fc32e0d5d794457bae89ea192d288dc2edd48320c714626842ccb279b805"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\southafrica-7.zip",
+      "kind": "original_github_zip",
+      "cell": "southafrica-7",
+      "bytes": 50580318,
+      "sha256": "7f9b453a22c6117d8c03b976246514e081737e376102fcced26958e010e57ce2"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-7\\cells\\southafrica-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-7",
+      "bytes": 25100498,
+      "sha256": "dd92178b9a0249c317f13993d37079b2aacc258cfba5774b0f967f63d8f756a0"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-7\\cells\\southafrica-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-7",
+      "bytes": 25073470,
+      "sha256": "569e32193f283980b00e1d3a7768742e2e3ab5f320eb902de676cd162473959d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\southafrica-42.zip",
+      "kind": "original_github_zip",
+      "cell": "southafrica-42",
+      "bytes": 48042581,
+      "sha256": "a18948459e4fe278ccf514055de7cb64984cefacaf103beb31e00a05a8193a41"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-42\\cells\\southafrica-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-42",
+      "bytes": 24136002,
+      "sha256": "da4f039283fb6a4d7ab521efdf96a8d2d0f2ce84bddb9e08780c5e9c764c080d"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-42\\cells\\southafrica-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "southafrica-42",
+      "bytes": 23498172,
+      "sha256": "5b2d35654ac376cbdbebd62b2544f954da4dec1ac13122c23648bbdfd8348cea"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\tonga-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "tonga-1990",
+      "bytes": 49459648,
+      "sha256": "3bbf2be1a6e1a1c056f181f8b288fab221c401d9dce682d522f0b47e8544b262"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-1990\\cells\\tonga-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-1990",
+      "bytes": 24836201,
+      "sha256": "57cda680aa3e13deb5058661bed7d40b965c0ba4300dfa8a37e16e67933483fa"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-1990\\cells\\tonga-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-1990",
+      "bytes": 24145771,
+      "sha256": "dfe1f108477af09d11bdc9837dd895df569a2a9bb5eac63e661550a5124a1520"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\tonga-7.zip",
+      "kind": "original_github_zip",
+      "cell": "tonga-7",
+      "bytes": 48440533,
+      "sha256": "f90791e6d6d156e87b903c9debefff901bd3cde638791ec1b2a2830de6b4dd12"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-7\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-7",
+      "bytes": 23659935,
+      "sha256": "09d77eaac4c74fdf50261bf656844f9bbaae8df25316f5d89ea8f81f86195865"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-7\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-7",
+      "bytes": 24377975,
+      "sha256": "99d942f641b8d7a3bcde17d72768ca47aace484cd291827b38208c3ab1346989"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\tonga-42.zip",
+      "kind": "original_github_zip",
+      "cell": "tonga-42",
+      "bytes": 45857163,
+      "sha256": "21c5c7eb8310d8647c8ef31ce65476229795a35fdc39e837ebf72745538c7faf"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-42\\cells\\tonga-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-42",
+      "bytes": 22353778,
+      "sha256": "705e0596d73cda7557e02d552e4291c3fe3fd7092159a96bd3a60f2ed6447ae8"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-42\\cells\\tonga-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "tonga-42",
+      "bytes": 23070664,
+      "sha256": "6e89514bd0c9f69342044e98cae997d01f365269d6a2dfe7e2aa31a3c9b0fdbb"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\saudiarabia-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "saudiarabia-1990",
+      "bytes": 48092222,
+      "sha256": "2c0e22c34671811a28b6273d8d0647aa9f23cf5608841fc207f86467ba337e99"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-1990\\cells\\saudiarabia-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-1990",
+      "bytes": 24154523,
+      "sha256": "8db9e0120bb6e2fd49fb8359186bcb43c5ebb63e808503be19a962ce3031b28e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-1990\\cells\\saudiarabia-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-1990",
+      "bytes": 23518458,
+      "sha256": "3307e635bb77cf6792cc153c79e698c617bbf61506f0cf126fb3565d5275558a"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\saudiarabia-7.zip",
+      "kind": "original_github_zip",
+      "cell": "saudiarabia-7",
+      "bytes": 47647630,
+      "sha256": "b0d782f79b970680ad1b57e1fe67671602a730fdeb609996b4bbb09850658d6f"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-7\\cells\\saudiarabia-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-7",
+      "bytes": 23929834,
+      "sha256": "874cb3e6f053fcdf09d1908ae19583cd59d7c388710185ff2682f312d73e29b8"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-7\\cells\\saudiarabia-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-7",
+      "bytes": 23295444,
+      "sha256": "eb58bd2fc2bd7fc4cee830c602bcc1cfd245fee4bde7c94cc42b318582483fb7"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\saudiarabia-42.zip",
+      "kind": "original_github_zip",
+      "cell": "saudiarabia-42",
+      "bytes": 49011347,
+      "sha256": "de1cdfa968448e2eef6df3eb0cce8801352d03856269e8310ac3239785b1fbb1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-42\\cells\\saudiarabia-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-42",
+      "bytes": 23983962,
+      "sha256": "0d01e1c4305f5f4d79859b7dc07b4e3be44f9e7f534e9db0d690ab348d7d8577"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-42\\cells\\saudiarabia-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "saudiarabia-42",
+      "bytes": 24626797,
+      "sha256": "304101d7e777a79382c454399a0884147ff7c4a78d47acfceb44a540f000d0c7"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\ussr-1990.zip",
+      "kind": "original_github_zip",
+      "cell": "ussr-1990",
+      "bytes": 48498310,
+      "sha256": "5b926eec5b2b631c0ecc9232c1fe3151c27e67f0928e74ba19574a8e822ef3ad"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-1990\\cells\\ussr-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-1990",
+      "bytes": 23654383,
+      "sha256": "97f8936b164e3b4d82d634b112d5e4e0c3b2267e07145c8a8d00539745ba46b1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-1990\\cells\\ussr-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-1990",
+      "bytes": 24351034,
+      "sha256": "bff3170caca86d2249122664808574b351e61086fb2abbe9d97e89f12a247f30"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\ussr-7.zip",
+      "kind": "original_github_zip",
+      "cell": "ussr-7",
+      "bytes": 48284268,
+      "sha256": "819c980b1f1b8ac5ac2d6081b56e3a4a49b7a1b2395cdec3435b213ef51c3609"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-7\\cells\\ussr-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-7",
+      "bytes": 23531581,
+      "sha256": "7e87fab58bf065fe15cef4e763eb8849a730ccca9f1450e72873abf94323a6ed"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-7\\cells\\ussr-7\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-7",
+      "bytes": 24228511,
+      "sha256": "e81bcacb82f4a1963282469e17b690b27b36935010edfc7376c6e31cbc660f5e"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\ussr-42.zip",
+      "kind": "original_github_zip",
+      "cell": "ussr-42",
+      "bytes": 49313919,
+      "sha256": "87bdb3b7313598d7fc5d747ae884c82a47bb9448c1982397f7bd6923762fcbb1"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-42\\cells\\ussr-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-42",
+      "bytes": 24400743,
+      "sha256": "ae29033a67ac54723eb3c08e4ef1acd7a2624ac13096cffd15e551cdcf51b03c"
+    },
+    {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-42\\cells\\ussr-42\\native\\resumed\\saves\\monthly.json.gz",
+      "kind": "complete_gzip_checkpoint",
+      "cell": "ussr-42",
+      "bytes": 24418159,
+      "sha256": "579eae7d1f9314dbc985d6c839ce4fccfc911033b3809b5c62acf74ad3bf3dcf"
+    }
+  ]
+}

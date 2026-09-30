@@ -1,0 +1,105 @@
+{
+  "id": "france-1990",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json",
+        "bytes": 129081563,
+        "sha256": "e6dc8f115f1aeea114db0de62ca82b82cfb21f78652acf521bfaf2b1a2d17fda"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json.gz",
+        "bytes": 23337298,
+        "sha256": "d4d84d1909ea9afc16a2af1f1093a7a6097cf3c3d1abc65d0f902ca7a7ebca6e"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 129081563,
+        "sha256": "e6dc8f115f1aeea114db0de62ca82b82cfb21f78652acf521bfaf2b1a2d17fda"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json.bak",
+        "bytes": 135695277,
+        "sha256": "c84f22515abfc12aeb0436232874d5cf3e8be59677c552396132153b77c7964c"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24026979,
+        "sha256": "a17639349be6edb1891cb47fc4d5cc00c3b0acd69568bd805bad814a1853f778"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 135695277,
+        "sha256": "c84f22515abfc12aeb0436232874d5cf3e8be59677c552396132153b77c7964c"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/archive-manifest.json",
+      "bytes": 1988,
+      "sha256": "5e8810a46134cc4c86b8eaf1c052119e8f37dbdc8e5086888a5073f8b2575046"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/execution.json",
+      "bytes": 1056,
+      "sha256": "a52d25994f130acc6721dff8a7c6dc2a40ce6865a19aef458fc64c4f4daac9f1"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/progress.jsonl",
+      "bytes": 43890,
+      "sha256": "b5aeede591421668367158d9338247420d6575a629f2975fcfb61f60a7a67fa8"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/result.json",
+      "bytes": 370922,
+      "sha256": "43b3250962fc0929f52479f78f1ccfbd127280e24ee5d4c5dda61542a4bdf249"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 24026979,
+      "sha256": "a17639349be6edb1891cb47fc4d5cc00c3b0acd69568bd805bad814a1853f778"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 23337298,
+      "sha256": "d4d84d1909ea9afc16a2af1f1093a7a6097cf3c3d1abc65d0f902ca7a7ebca6e"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "584a488ff21d62762721a3da1af3a609e215c660b92ccb2a4f7e48c33ad3530f"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

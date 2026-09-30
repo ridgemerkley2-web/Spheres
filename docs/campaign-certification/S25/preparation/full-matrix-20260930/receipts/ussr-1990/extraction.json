@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\ussr-1990.zip",
+  "zip_pin": {
+    "bytes": 48498310,
+    "sha256": "5b926eec5b2b631c0ecc9232c1fe3151c27e67f0928e74ba19574a8e822ef3ad"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-1990",
+  "files": [
+    {
+      "path": "cells/ussr-1990/archive-manifest.json",
+      "bytes": 1980,
+      "sha256": "069a5812067880504d2b92085acdffb4981c6f3901f095027ddefe7c1625070e"
+    },
+    {
+      "path": "cells/ussr-1990/execution.json",
+      "bytes": 1053,
+      "sha256": "2dbd96389b3bf0102f05e2e3b390c86ba6f13264c51dc4bcf42c3080142f0f4d"
+    },
+    {
+      "path": "cells/ussr-1990/native/progress.jsonl",
+      "bytes": 37818,
+      "sha256": "e8cfb3846641e8856051c3abd989d2e810eba674f013b74282418d0c278e9729"
+    },
+    {
+      "path": "cells/ussr-1990/native/result.json",
+      "bytes": 346248,
+      "sha256": "b9c0c6b54df6a6f894fa1d2460a997ba71e17b16f6535b1f536952bb75eebd8c"
+    },
+    {
+      "path": "cells/ussr-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23654383,
+      "sha256": "97f8936b164e3b4d82d634b112d5e4e0c3b2267e07145c8a8d00539745ba46b1"
+    },
+    {
+      "path": "cells/ussr-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 24351034,
+      "sha256": "bff3170caca86d2249122664808574b351e61086fb2abbe9d97e89f12a247f30"
+    },
+    {
+      "path": "cells/ussr-1990/request.json",
+      "bytes": 187,
+      "sha256": "b2c6919d1cbe55dd80dbf7747d1e90fef666c2e88ddf81ff74c72aa0b82aa368"
+    },
+    {
+      "path": "cells/ussr-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/ussr-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/ussr-1990/verdict.json",
+      "bytes": 4538,
+      "sha256": "0564d91e53b0bd85034d88996be6fe2b26ccaf4966a1ac40d4d9c4181b17e870"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1539,
+      "sha256": "c9fe555f84ee18f81c7bcc99dda4a690d049b28e875f1cb47d1de12e1a1cb538"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5311,
+      "sha256": "b282d8f3b1a9b18cf25fd998d282e19f294d8bfbed59b64bf2fa58000be525a0"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8693,
+      "sha256": "76aee090e8590d14f918b92aa3e34409081412f33daac1ac0dd0ea85ac39a66b"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:35.814522+00:00"
+}

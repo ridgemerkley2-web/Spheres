@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-1990/native/resumed/saves/monthly.json",
+        "bytes": 127335261,
+        "sha256": "95ddcb041b462189b96885ef41b577402c1e4471ce1ab8a57024da8b22e5603b"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-1990/native/resumed/saves/monthly.json.gz",
+        "bytes": 22978402,
+        "sha256": "4024d8d508e7e940014c5794ff7c74937e394056bbfe9a4987a9c4adc396d772"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 127335261,
+        "sha256": "95ddcb041b462189b96885ef41b577402c1e4471ce1ab8a57024da8b22e5603b"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-1990/native/resumed/saves/monthly.json.bak",
+        "bytes": 120979893,
+        "sha256": "5508e562eadb7cab6ac5cb326f22fbc417ef6a23312fde3d0aa4ab314b918127"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/brazil-1990/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 22317472,
+        "sha256": "4ebfbcf86bdf617a36c3f4bf8656e673e0bbe23233528eaf7c3f83f7f29c133c"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 120979893,
+        "sha256": "5508e562eadb7cab6ac5cb326f22fbc417ef6a23312fde3d0aa4ab314b918127"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

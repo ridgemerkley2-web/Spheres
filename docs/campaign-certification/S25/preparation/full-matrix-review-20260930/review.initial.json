@@ -1,0 +1,955 @@
+{
+  "format": "spheres-independent-compact-matrix-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-30T08:50:20.807709+00:00",
+  "packet": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S25\\preparation\\full-matrix-20260930",
+  "original_manifest_pin": {
+    "bytes": 101288,
+    "sha256": "462cf2c0179eff0ee3d5ceda3b265d6e42c4434b746c25b69eecb9bf39083123"
+  },
+  "payload_count": 583,
+  "payload_bytes": 11934414,
+  "independently_rehashed_packet_payloads": 583,
+  "independently_rehashed_copied_originals": 579,
+  "all_payload_and_copy_hashes_match": true,
+  "frozen_manifest_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8",
+  "available_cells": 23,
+  "missing_cells": [
+    "india-1990"
+  ],
+  "all_available_cells_timeout_seconds_limit": 18000,
+  "all_available_cells_failed": true,
+  "matching_partial_comparison_rows": 18100,
+  "archive_integrity_receipts_reconciled": 46,
+  "large_external_files_newly_stat_checked": 69,
+  "large_external_files_newly_hashed": 0,
+  "gzip_streams_newly_decoded": 0,
+  "large_byte_integrity_scope": "Relied on contemporaneous unchanged frozen-verifier receipts; independently matched receipt/frozen-source identities, decoded/original/archive/extraction pins and current externalfileexistence/size. No independent rehash of ZIP/gzip bodies or native replay.",
+  "ci_metadata": [
+    {
+      "prefix": "ci032",
+      "revision": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "run_id": 36477494166,
+      "jobs": {
+        "native": [
+          "success",
+          "success"
+        ],
+        "javascript": [
+          "success",
+          "success"
+        ],
+        "town-browser": [
+          "success",
+          "success"
+        ],
+        "package": [
+          "success",
+          "success"
+        ],
+        "political-calibration": [
+          "failure",
+          "failure"
+        ],
+        "verify": [
+          "failure",
+          "failure"
+        ]
+      }
+    },
+    {
+      "prefix": "ci440",
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "run_id": 36490073575,
+      "jobs": {
+        "native": [
+          "success",
+          "success"
+        ],
+        "javascript": [
+          "success",
+          "success"
+        ],
+        "town-browser": [
+          "success",
+          "success"
+        ],
+        "package": [
+          "success",
+          "success"
+        ],
+        "political-calibration": [
+          "failure",
+          "failure"
+        ],
+        "verify": [
+          "failure",
+          "failure"
+        ]
+      }
+    }
+  ],
+  "cells": [
+    {
+      "cell": "france-1990",
+      "last_checkpoint": "2024-07-01",
+      "days_each_leg": 12600,
+      "comparisons": 862,
+      "elapsed_seconds": 18000.226683341,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "france-7",
+      "last_checkpoint": "2031-01-01",
+      "days_each_leg": 14975,
+      "comparisons": 1027,
+      "elapsed_seconds": 18000.182866848,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "france-42",
+      "last_checkpoint": "2024-11-01",
+      "days_each_leg": 12723,
+      "comparisons": 870,
+      "elapsed_seconds": 18000.224440725,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "japan-1990",
+      "last_checkpoint": "2020-02-01",
+      "days_each_leg": 10988,
+      "comparisons": 752,
+      "elapsed_seconds": 18000.288708567,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "japan-7",
+      "last_checkpoint": "2020-07-01",
+      "days_each_leg": 11139,
+      "comparisons": 762,
+      "elapsed_seconds": 18000.286055199,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "japan-42",
+      "last_checkpoint": "2020-11-01",
+      "days_each_leg": 11262,
+      "comparisons": 770,
+      "elapsed_seconds": 18000.256584273,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "india-7",
+      "last_checkpoint": "2019-06-01",
+      "days_each_leg": 10743,
+      "comparisons": 735,
+      "elapsed_seconds": 18000.255479741998,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "india-42",
+      "last_checkpoint": "2023-05-01",
+      "days_each_leg": 12173,
+      "comparisons": 833,
+      "elapsed_seconds": 18000.222366027,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "brazil-1990",
+      "last_checkpoint": "2019-04-01",
+      "days_each_leg": 10682,
+      "comparisons": 731,
+      "elapsed_seconds": 18000.257152028,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "brazil-7",
+      "last_checkpoint": "2019-09-01",
+      "days_each_leg": 10835,
+      "comparisons": 741,
+      "elapsed_seconds": 18000.255293306,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "brazil-42",
+      "last_checkpoint": "2026-12-01",
+      "days_each_leg": 13483,
+      "comparisons": 924,
+      "elapsed_seconds": 18000.202096967,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "southafrica-1990",
+      "last_checkpoint": "2018-12-01",
+      "days_each_leg": 10561,
+      "comparisons": 722,
+      "elapsed_seconds": 18000.254571118003,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "southafrica-7",
+      "last_checkpoint": "2019-02-01",
+      "days_each_leg": 10623,
+      "comparisons": 727,
+      "elapsed_seconds": 18000.286697646,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "southafrica-42",
+      "last_checkpoint": "2019-05-01",
+      "days_each_leg": 10712,
+      "comparisons": 733,
+      "elapsed_seconds": 18000.257288336,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "tonga-1990",
+      "last_checkpoint": "2026-12-01",
+      "days_each_leg": 13483,
+      "comparisons": 924,
+      "elapsed_seconds": 18000.192175793003,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "tonga-7",
+      "last_checkpoint": "2019-03-01",
+      "days_each_leg": 10651,
+      "comparisons": 729,
+      "elapsed_seconds": 18000.256283372,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "tonga-42",
+      "last_checkpoint": "2022-07-01",
+      "days_each_leg": 11869,
+      "comparisons": 812,
+      "elapsed_seconds": 18000.22661518,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "saudiarabia-1990",
+      "last_checkpoint": "2019-10-01",
+      "days_each_leg": 10865,
+      "comparisons": 743,
+      "elapsed_seconds": 18000.315655366,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "saudiarabia-7",
+      "last_checkpoint": "2019-09-01",
+      "days_each_leg": 10835,
+      "comparisons": 741,
+      "elapsed_seconds": 18000.255530545,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "saudiarabia-42",
+      "last_checkpoint": "2017-11-01",
+      "days_each_leg": 10166,
+      "comparisons": 695,
+      "elapsed_seconds": 18000.330506838,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "ussr-1990",
+      "last_checkpoint": "2019-10-01",
+      "days_each_leg": 10865,
+      "comparisons": 743,
+      "elapsed_seconds": 18000.254486215003,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "ussr-7",
+      "last_checkpoint": "2021-12-01",
+      "days_each_leg": 11657,
+      "comparisons": 797,
+      "elapsed_seconds": 18000.248640736,
+      "integrity_receipt_checked": true,
+      "passed": false
+    },
+    {
+      "cell": "ussr-42",
+      "last_checkpoint": "2019-02-01",
+      "days_each_leg": 10623,
+      "comparisons": 727,
+      "elapsed_seconds": 18000.254266504,
+      "integrity_receipt_checked": true,
+      "passed": false
+    }
+  ],
+  "archives": [
+    {
+      "cell": "france-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-1990\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 23337298,
+        "sha256": "d4d84d1909ea9afc16a2af1f1093a7a6097cf3c3d1abc65d0f902ca7a7ebca6e"
+      },
+      "decoded_pin": {
+        "bytes": 129081563,
+        "sha256": "e6dc8f115f1aeea114db0de62ca82b82cfb21f78652acf521bfaf2b1a2d17fda"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-1990/collection.json"
+    },
+    {
+      "cell": "france-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-1990\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24026979,
+        "sha256": "a17639349be6edb1891cb47fc4d5cc00c3b0acd69568bd805bad814a1853f778"
+      },
+      "decoded_pin": {
+        "bytes": 135695277,
+        "sha256": "c84f22515abfc12aeb0436232874d5cf3e8be59677c552396132153b77c7964c"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-1990/collection.json"
+    },
+    {
+      "cell": "france-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-7\\cells\\france-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24020355,
+        "sha256": "8ad7fbc337e02a9d1e85edf7368f8c320f7877816896de9e0358353b61a08bcb"
+      },
+      "decoded_pin": {
+        "bytes": 135725330,
+        "sha256": "25dd9c0e334d21ed477b37b11557c42261d7ce6d1bdf32a125d7b08cce9334b8"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-7/collection.json"
+    },
+    {
+      "cell": "france-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-7\\cells\\france-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23347710,
+        "sha256": "0d7ea09f9acb303f72d25a3b240d659b4d4df89c4e6aa85bfa01b598f644da47"
+      },
+      "decoded_pin": {
+        "bytes": 129178579,
+        "sha256": "99875b26ab3291187cb30ae49c50c0f4b2211b26f48e7e594991a11291164821"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-7/collection.json"
+    },
+    {
+      "cell": "france-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-42\\cells\\france-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24613639,
+        "sha256": "eea54e5924e7b72538af5d2dd1c344c1a6815e79d27e55bda7e3e5984a6ee4f3"
+      },
+      "decoded_pin": {
+        "bytes": 136202947,
+        "sha256": "983ec380f27215d6f0a9cd06a952a1e3193c3f7acfc9d442361b138fb31d2570"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-42/collection.json"
+    },
+    {
+      "cell": "france-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-42\\cells\\france-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 25319184,
+        "sha256": "0b1e70a45d741b291935224935d84d697397b4c3c66a09a99a6cd1246e0b2a1e"
+      },
+      "decoded_pin": {
+        "bytes": 142889037,
+        "sha256": "598ed0a5082431839a80a89184e18542913712a8dd0bf33948f83dccf5103e99"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/france-42/collection.json"
+    },
+    {
+      "cell": "japan-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-1990\\cells\\japan-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24276124,
+        "sha256": "b07afe42f84ccf504de12f21f3dbd9c544bad59331fd70fa124c6089a2285086"
+      },
+      "decoded_pin": {
+        "bytes": 136323074,
+        "sha256": "6ecac18466c94a281adcc7acfde5ffaf66ce75763f1e6b3af9afae634c5448ea"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-1990/collection.json"
+    },
+    {
+      "cell": "japan-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-1990\\cells\\japan-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24275771,
+        "sha256": "1c249f9d0aa597cd0b3ff482327e37ec936b456ae1bd0063375f92d6ecca2acc"
+      },
+      "decoded_pin": {
+        "bytes": 136254977,
+        "sha256": "0aedc57828280da516925e73de00800c563593d8f9f381b237b7d7a6ababef44"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-1990/collection.json"
+    },
+    {
+      "cell": "japan-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-7\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24163489,
+        "sha256": "40ddb7d625cce041960911c71b64f02fe1bc4fe126e88f8658a88bea9979ac03"
+      },
+      "decoded_pin": {
+        "bytes": 136158052,
+        "sha256": "8c6f8d1bb01260ea6f0b4e9d61b74f308432c2a2d0719151539f7eee10b30492"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-7/collection.json"
+    },
+    {
+      "cell": "japan-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-7\\cells\\japan-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23452925,
+        "sha256": "754fa18abb19f7974986012453960189be776f44d23d0f65efc6a18e65716a4c"
+      },
+      "decoded_pin": {
+        "bytes": 129577745,
+        "sha256": "19f26943c60ea375735bbc299bea0f5b83b12fc1c0490c7853ffc295a5c2deaa"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-7/collection.json"
+    },
+    {
+      "cell": "japan-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-42\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24018120,
+        "sha256": "28cd4efb5e5982046584d2bf7fae9422becdd9cccad35528f807d2e4145b66ab"
+      },
+      "decoded_pin": {
+        "bytes": 134380161,
+        "sha256": "0a498b9e2a13e886b2734f416b2ea56538bd8799349716f615f1c1bc638672ae"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-42/collection.json"
+    },
+    {
+      "cell": "japan-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-42\\cells\\japan-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23337824,
+        "sha256": "4949abfbe34c40638000ae7cd1523dc09fae5ccd481077d590c02eedf929a45b"
+      },
+      "decoded_pin": {
+        "bytes": 127841645,
+        "sha256": "7831b59d47d120a26ff12c42f1636b688590c7bf803de011194f5931e1333408"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/japan-42/collection.json"
+    },
+    {
+      "cell": "india-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-7\\cells\\india-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 22005918,
+        "sha256": "d883ee61483dbc429c2221f3775e91e8e56d45e47ce107e6da76f2c53fe162ee"
+      },
+      "decoded_pin": {
+        "bytes": 119132994,
+        "sha256": "953d63ec08d6603cdfee446304ce58bff60bada63eaa7b42ef7cbf6fcabb110c"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/india-7/collection.json"
+    },
+    {
+      "cell": "india-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-7\\cells\\india-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 22675113,
+        "sha256": "bd69f9398ed833ca29a003b2b7c2a2a5970935dfa6b7919307ffed6cd4959bf9"
+      },
+      "decoded_pin": {
+        "bytes": 125532136,
+        "sha256": "03114c921eb7a17fa32b2c996646e385836ee0784c165da47e66a4d107c18d2e"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/india-7/collection.json"
+    },
+    {
+      "cell": "india-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-42\\cells\\india-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 25178753,
+        "sha256": "fbda9a39824712c0d13d31e17d650541dca0775e0ea11ed17ec219e70f08a9c7"
+      },
+      "decoded_pin": {
+        "bytes": 142143235,
+        "sha256": "0c09bdf68c330af6ee5490bae444ee49f4646a67e90e18489ed4a54e5e23974f"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/india-42/collection.json"
+    },
+    {
+      "cell": "india-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\india-42\\cells\\india-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24469879,
+        "sha256": "4480508b39afd6fb256eb60d700013bb9c3906628683049828314ccc55f7481f"
+      },
+      "decoded_pin": {
+        "bytes": 135480591,
+        "sha256": "0cc3a373f0be8e84bf687ab34cb9c360b6df528f39089860dfeec5fe986d1374"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/india-42/collection.json"
+    },
+    {
+      "cell": "brazil-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-1990\\cells\\brazil-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 22978402,
+        "sha256": "4024d8d508e7e940014c5794ff7c74937e394056bbfe9a4987a9c4adc396d772"
+      },
+      "decoded_pin": {
+        "bytes": 127335261,
+        "sha256": "95ddcb041b462189b96885ef41b577402c1e4471ce1ab8a57024da8b22e5603b"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-1990/collection.json"
+    },
+    {
+      "cell": "brazil-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-1990\\cells\\brazil-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 22317472,
+        "sha256": "4ebfbcf86bdf617a36c3f4bf8656e673e0bbe23233528eaf7c3f83f7f29c133c"
+      },
+      "decoded_pin": {
+        "bytes": 120979893,
+        "sha256": "5508e562eadb7cab6ac5cb326f22fbc417ef6a23312fde3d0aa4ab314b918127"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-1990/collection.json"
+    },
+    {
+      "cell": "brazil-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-7\\cells\\brazil-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 22427107,
+        "sha256": "00f0617972e452aab86de59baf0d51dad5db795bc74f3bdff99381dcbd8d307c"
+      },
+      "decoded_pin": {
+        "bytes": 122784976,
+        "sha256": "3428be74f8ffb101263a5a875d326bc0d03aa7e6c1a96ac2a337e6dd26f0feaf"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-7/collection.json"
+    },
+    {
+      "cell": "brazil-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-7\\cells\\brazil-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23105292,
+        "sha256": "e87d5c1a8534e156a80cda657297647422c32841633e8832b5980b3ebb82a59e"
+      },
+      "decoded_pin": {
+        "bytes": 129235960,
+        "sha256": "879a640dacbaa453fdfd4d8c985c3e5bfdd6c58fbf52e25f25015652812e3ca8"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-7/collection.json"
+    },
+    {
+      "cell": "brazil-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-42\\cells\\brazil-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24238405,
+        "sha256": "a5fc4a6e8b7dccd0364da152359632485d5b3451af19074cc5c8e7f93b28ab07"
+      },
+      "decoded_pin": {
+        "bytes": 135056000,
+        "sha256": "82c1288026ad89ebedd54a3084d87c32748f5ad4f4c895b6b0692e3ec4862272"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-42/collection.json"
+    },
+    {
+      "cell": "brazil-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\brazil-42\\cells\\brazil-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24901626,
+        "sha256": "8fe4a216b1561885f2523810f9d0376e4ad37e372ef5550d8c831de0a13183f4"
+      },
+      "decoded_pin": {
+        "bytes": 141496809,
+        "sha256": "835ec689e68f78b0f8c7ee5c352108722e369ce064d6a98e03d36470cd68110f"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/brazil-42/collection.json"
+    },
+    {
+      "cell": "southafrica-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-1990\\cells\\southafrica-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24507181,
+        "sha256": "9906fc32e0d5d794457bae89ea192d288dc2edd48320c714626842ccb279b805"
+      },
+      "decoded_pin": {
+        "bytes": 138118761,
+        "sha256": "b3c4164d38d7862662d49edca30cacb595494a531c12c5f0114ac1de1ae660ac"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-1990/collection.json"
+    },
+    {
+      "cell": "southafrica-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-1990\\cells\\southafrica-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23862292,
+        "sha256": "2e6dbcaa0491a3824bf74b8239bf841f893de29bf5f401346903e010850303fa"
+      },
+      "decoded_pin": {
+        "bytes": 131751362,
+        "sha256": "23af418cf9b0e8150dd3775d5721d69a92a474db38d999bd4e7c295f2d95b74d"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-1990/collection.json"
+    },
+    {
+      "cell": "southafrica-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-7\\cells\\southafrica-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 25073470,
+        "sha256": "569e32193f283980b00e1d3a7768742e2e3ab5f320eb902de676cd162473959d"
+      },
+      "decoded_pin": {
+        "bytes": 141318059,
+        "sha256": "60bdeb1879fcb9332d61db382db1c61601a8c5315aa068a77776edde0c4bb938"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-7/collection.json"
+    },
+    {
+      "cell": "southafrica-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-7\\cells\\southafrica-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 25100498,
+        "sha256": "dd92178b9a0249c317f13993d37079b2aacc258cfba5774b0f967f63d8f756a0"
+      },
+      "decoded_pin": {
+        "bytes": 141473870,
+        "sha256": "776274b723d28629380a2ae3414f7f98e4a98f00b42978886f1e3998062ab968"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-7/collection.json"
+    },
+    {
+      "cell": "southafrica-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-42\\cells\\southafrica-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 23498172,
+        "sha256": "5b2d35654ac376cbdbebd62b2544f954da4dec1ac13122c23648bbdfd8348cea"
+      },
+      "decoded_pin": {
+        "bytes": 129777781,
+        "sha256": "a80b2826c1140eaa958b348bbbc3ce2ce6e2bcdc4c4378f61647583651f03671"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-42/collection.json"
+    },
+    {
+      "cell": "southafrica-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\southafrica-42\\cells\\southafrica-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24136002,
+        "sha256": "da4f039283fb6a4d7ab521efdf96a8d2d0f2ce84bddb9e08780c5e9c764c080d"
+      },
+      "decoded_pin": {
+        "bytes": 135955361,
+        "sha256": "75b7040a82a19f454939a3c45e753a3e502e72421f3cf8963015f43278506dfb"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/southafrica-42/collection.json"
+    },
+    {
+      "cell": "tonga-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-1990\\cells\\tonga-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24145771,
+        "sha256": "dfe1f108477af09d11bdc9837dd895df569a2a9bb5eac63e661550a5124a1520"
+      },
+      "decoded_pin": {
+        "bytes": 134001810,
+        "sha256": "445f5a76e3a9ae5a819b155b96009d96de36480b007d33c8345df746b35f225d"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-1990/collection.json"
+    },
+    {
+      "cell": "tonga-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-1990\\cells\\tonga-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24836201,
+        "sha256": "57cda680aa3e13deb5058661bed7d40b965c0ba4300dfa8a37e16e67933483fa"
+      },
+      "decoded_pin": {
+        "bytes": 140603063,
+        "sha256": "a3c87cb23426594097afdf39aacfd88b4083d39fa447edec5662e6852d70d36a"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-1990/collection.json"
+    },
+    {
+      "cell": "tonga-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-7\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24377975,
+        "sha256": "99d942f641b8d7a3bcde17d72768ca47aace484cd291827b38208c3ab1346989"
+      },
+      "decoded_pin": {
+        "bytes": 136637585,
+        "sha256": "3796dc2421f663a078a7c777d1116304942f3a0f4ec8b75badaa1a9ba8259857"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-7/collection.json"
+    },
+    {
+      "cell": "tonga-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-7\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23659935,
+        "sha256": "09d77eaac4c74fdf50261bf656844f9bbaae8df25316f5d89ea8f81f86195865"
+      },
+      "decoded_pin": {
+        "bytes": 129945149,
+        "sha256": "98f47d9e0f53b6020ae6e6346cff2ef0a8374f0da8093b5a211fb9b7b8d08c3e"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-7/collection.json"
+    },
+    {
+      "cell": "tonga-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-42\\cells\\tonga-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 23070664,
+        "sha256": "6e89514bd0c9f69342044e98cae997d01f365269d6a2dfe7e2aa31a3c9b0fdbb"
+      },
+      "decoded_pin": {
+        "bytes": 128796028,
+        "sha256": "d99d84100190fae34d994704b825cf2b6b123f3d4fb1abab51a82dc3da7e825d"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-42/collection.json"
+    },
+    {
+      "cell": "tonga-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\tonga-42\\cells\\tonga-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 22353778,
+        "sha256": "705e0596d73cda7557e02d552e4291c3fe3fd7092159a96bd3a60f2ed6447ae8"
+      },
+      "decoded_pin": {
+        "bytes": 122261375,
+        "sha256": "dd2c575d45365d48de935e17cb22cbc68a55fa2fdc0dbc37b1b231561484a5df"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/tonga-42/collection.json"
+    },
+    {
+      "cell": "saudiarabia-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-1990\\cells\\saudiarabia-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 23518458,
+        "sha256": "3307e635bb77cf6792cc153c79e698c617bbf61506f0cf126fb3565d5275558a"
+      },
+      "decoded_pin": {
+        "bytes": 129660695,
+        "sha256": "46f0a2ad293af10886c3a629e528b3223190500eafb06f244b8a23214c8bf960"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-1990/collection.json"
+    },
+    {
+      "cell": "saudiarabia-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-1990\\cells\\saudiarabia-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24154523,
+        "sha256": "8db9e0120bb6e2fd49fb8359186bcb43c5ebb63e808503be19a962ce3031b28e"
+      },
+      "decoded_pin": {
+        "bytes": 135706588,
+        "sha256": "9131495ed13b8a2392eecd018c45f103ac48d4d311d81f4437e438402e615ef3"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-1990/collection.json"
+    },
+    {
+      "cell": "saudiarabia-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-7\\cells\\saudiarabia-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 23295444,
+        "sha256": "eb58bd2fc2bd7fc4cee830c602bcc1cfd245fee4bde7c94cc42b318582483fb7"
+      },
+      "decoded_pin": {
+        "bytes": 127228727,
+        "sha256": "fdc847a31f954a15ac81ae02bdbc207873612358a2cb443cbfa1d0930e1a65a0"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-7/collection.json"
+    },
+    {
+      "cell": "saudiarabia-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-7\\cells\\saudiarabia-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23929834,
+        "sha256": "874cb3e6f053fcdf09d1908ae19583cd59d7c388710185ff2682f312d73e29b8"
+      },
+      "decoded_pin": {
+        "bytes": 133256061,
+        "sha256": "516370d7c49437e1bd3422d6bdd5b7615831d65a1448ab29e4d834bc6572c972"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-7/collection.json"
+    },
+    {
+      "cell": "saudiarabia-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-42\\cells\\saudiarabia-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24626797,
+        "sha256": "304101d7e777a79382c454399a0884147ff7c4a78d47acfceb44a540f000d0c7"
+      },
+      "decoded_pin": {
+        "bytes": 138482099,
+        "sha256": "a31e88b08ffe518dfababbc6d97f60433a91fda18b6392ef8d0001be9ea474fe"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-42/collection.json"
+    },
+    {
+      "cell": "saudiarabia-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\saudiarabia-42\\cells\\saudiarabia-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23983962,
+        "sha256": "0d01e1c4305f5f4d79859b7dc07b4e3be44f9e7f534e9db0d690ab348d7d8577"
+      },
+      "decoded_pin": {
+        "bytes": 132462101,
+        "sha256": "a32d04174552de3c5cbda2971972aeb7875589910399d03c5cafca17dfb9dfdf"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/saudiarabia-42/collection.json"
+    },
+    {
+      "cell": "ussr-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-1990\\cells\\ussr-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24351034,
+        "sha256": "bff3170caca86d2249122664808574b351e61086fb2abbe9d97e89f12a247f30"
+      },
+      "decoded_pin": {
+        "bytes": 136566923,
+        "sha256": "4fdb5d36c4bb1e0e268054c2a044ed55f39b994777f7f95b7ac9546f4d7f219e"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-1990/collection.json"
+    },
+    {
+      "cell": "ussr-1990",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-1990\\cells\\ussr-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23654383,
+        "sha256": "97f8936b164e3b4d82d634b112d5e4e0c3b2267e07145c8a8d00539745ba46b1"
+      },
+      "decoded_pin": {
+        "bytes": 130213995,
+        "sha256": "bdc223ed03ec5087270b9f98a67e2d47a958628f42859924dc4fcface10a3fbc"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-1990/collection.json"
+    },
+    {
+      "cell": "ussr-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-7\\cells\\ussr-7\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24228511,
+        "sha256": "e81bcacb82f4a1963282469e17b690b27b36935010edfc7376c6e31cbc660f5e"
+      },
+      "decoded_pin": {
+        "bytes": 136577169,
+        "sha256": "8817a99b5b6d643bc8448247435330ee3a3a12707bafae056137ab5d1730f88c"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-7/collection.json"
+    },
+    {
+      "cell": "ussr-7",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-7\\cells\\ussr-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 23531581,
+        "sha256": "7e87fab58bf065fe15cef4e763eb8849a730ccca9f1450e72873abf94323a6ed"
+      },
+      "decoded_pin": {
+        "bytes": 129998630,
+        "sha256": "627ab263fefdd60150c38c1e35816f16a4318952da1b560aa3eb0a7ae3e6ca82"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-7/collection.json"
+    },
+    {
+      "cell": "ussr-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-42\\cells\\ussr-42\\native\\resumed\\saves\\monthly.json.gz",
+      "gzip_pin": {
+        "bytes": 24418159,
+        "sha256": "579eae7d1f9314dbc985d6c839ce4fccfc911033b3809b5c62acf74ad3bf3dcf"
+      },
+      "decoded_pin": {
+        "bytes": 137255614,
+        "sha256": "e7f5d91f0856dc9cbdc078bfc6143c815aa032e053d68e4bb6b28c9fbd80775b"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-42/collection.json"
+    },
+    {
+      "cell": "ussr-42",
+      "gzip_external": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\ussr-42\\cells\\ussr-42\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "gzip_pin": {
+        "bytes": 24400743,
+        "sha256": "ae29033a67ac54723eb3c08e4ef1acd7a2624ac13096cffd15e551cdcf51b03c"
+      },
+      "decoded_pin": {
+        "bytes": 137170937,
+        "sha256": "2dd9bad35ebaaee84444f7786baf563ee704a1bf812d3055056f53f0bae092ce"
+      },
+      "freshly_hashed_or_decoded_by_this_audit": false,
+      "existing_frozen_verifier_receipt": "receipts/ussr-42/collection.json"
+    }
+  ],
+  "aggregate_refusal_checked": true,
+  "qualification": false,
+  "native_executed": false,
+  "finding_before_wrapper_repair": [
+    "README attributes exactA1 numerical outcomes to both CIcandidates but only440 political logs are retained; narrow exactnumbers to440.",
+    "README says Linuxexecutable path/hash are in external-retention.json, but that record covers69ZIP/gzipfiles only; provide precise separate frozenbinary reference.",
+    "Missing spacing and ambiguous independentlychecked wording need cleanup."
+  ]
+}

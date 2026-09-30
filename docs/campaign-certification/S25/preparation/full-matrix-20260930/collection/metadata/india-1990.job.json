@@ -1,0 +1,76 @@
+{
+  "id": 109105272931,
+  "run_id": 36474011141,
+  "workflow_name": "Full campaign stability evidence",
+  "head_branch": "codex/s25-run-20260928",
+  "run_url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/runs/36474011141",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOUJEN0s8AAAAZZy5YYw",
+  "head_sha": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/actions/jobs/109105272931",
+  "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011141/job/109105272931",
+  "status": "completed",
+  "conclusion": "failure",
+  "created_at": "2026-09-28T19:47:35Z",
+  "started_at": "2026-09-28T21:14:17Z",
+  "completed_at": "2026-09-29T00:38:33Z",
+  "name": "cell (india-1990)",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-09-28T21:14:17Z",
+      "completed_at": "2026-09-28T21:14:19Z"
+    },
+    {
+      "name": "Run actions/setup-python@v5",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-09-28T21:14:19Z",
+      "completed_at": "2026-09-28T21:14:19Z"
+    },
+    {
+      "name": "Run actions/download-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-09-28T21:14:19Z",
+      "completed_at": "2026-09-28T21:14:26Z"
+    },
+    {
+      "name": "Execute the assigned full-horizon paired campaign",
+      "status": "in_progress",
+      "conclusion": null,
+      "number": 4,
+      "started_at": "2026-09-28T21:14:26Z",
+      "completed_at": null
+    },
+    {
+      "name": "Retain complete evidence, including failed or timed-out cells",
+      "status": "pending",
+      "conclusion": null,
+      "number": 5,
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "Post Run actions/setup-python@v5",
+      "status": "pending",
+      "conclusion": null,
+      "number": 10,
+      "started_at": null,
+      "completed_at": null
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/ridgemerkley2-web/Spheres/check-runs/109105272931",
+  "labels": [
+    "ubuntu-24.04"
+  ],
+  "runner_id": 1000002522,
+  "runner_name": "GitHub Actions 1000002522",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

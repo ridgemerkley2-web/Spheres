@@ -1,0 +1,30 @@
+{
+  "format": "spheres-external-audit-manifest/v1",
+  "files": [
+    {
+      "path": "manifest.before.json",
+      "bytes": 101288,
+      "sha256": "462cf2c0179eff0ee3d5ceda3b265d6e42c4434b746c25b69eecb9bf39083123"
+    },
+    {
+      "path": "README.before.md",
+      "bytes": 4668,
+      "sha256": "5d46a2e265b03b96e02c41428a0ffff053140127cb855b4289ea200dd33be5e1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1871,
+      "sha256": "05cb89126e77da266bf0385abd696b8175399e80ae7f5512545870bd9d529ea9"
+    },
+    {
+      "path": "review.initial.json",
+      "bytes": 38847,
+      "sha256": "77a6483dc94234414323d7bc37b763b3dfd2e71717b59ca938319de955955d62"
+    },
+    {
+      "path": "review.json",
+      "bytes": 38568,
+      "sha256": "9e7e4db52ef9e110a6f8577e9b50e76fba5a1968e627c3f5963696d21b84520d"
+    }
+  ]
+}

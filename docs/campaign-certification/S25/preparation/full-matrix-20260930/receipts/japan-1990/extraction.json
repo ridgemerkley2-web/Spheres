@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\japan-1990.zip",
+  "zip_pin": {
+    "bytes": 48991210,
+    "sha256": "0ff9f2d4147150fa6b705b06525a2832f95c064e56b996e5f554b1712c243d6a"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\japan-1990",
+  "files": [
+    {
+      "path": "cells/japan-1990/archive-manifest.json",
+      "bytes": 1984,
+      "sha256": "1426eb9ed3d6cf15da7cd577a1a079269619e379ae9521f9c20aed9442ec6878"
+    },
+    {
+      "path": "cells/japan-1990/execution.json",
+      "bytes": 1053,
+      "sha256": "e43b8f2869ba672b84c4394523cff0bfd15d74d83d22e74aca03f64c6b0f70be"
+    },
+    {
+      "path": "cells/japan-1990/native/progress.jsonl",
+      "bytes": 38219,
+      "sha256": "2862da7fdad6dfeac160d18e10ce30b62ff6edf843f9bb67b3ac828769fd55ac"
+    },
+    {
+      "path": "cells/japan-1990/native/result.json",
+      "bytes": 292205,
+      "sha256": "9f19b37e2ec3798ffc203e081830bc423c12301a6c06b36dcba8699dd52cc2ac"
+    },
+    {
+      "path": "cells/japan-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 24275771,
+      "sha256": "1c249f9d0aa597cd0b3ff482327e37ec936b456ae1bd0063375f92d6ecca2acc"
+    },
+    {
+      "path": "cells/japan-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 24276124,
+      "sha256": "b07afe42f84ccf504de12f21f3dbd9c544bad59331fd70fa124c6089a2285086"
+    },
+    {
+      "path": "cells/japan-1990/request.json",
+      "bytes": 189,
+      "sha256": "5a76dbac356f7e7b12df04a54cf995a3cf1a0956185fc18bf2ac496e29a5aba1"
+    },
+    {
+      "path": "cells/japan-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/japan-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/japan-1990/verdict.json",
+      "bytes": 4552,
+      "sha256": "dc3d6a6d63ae1b98c7420280ec68f26dc22f5cd031b20402a88fb2da1fb9dd4b"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1540,
+      "sha256": "c106c84918786d99e0c4cd288dc0cb98c7a5104298e867b430094a3820f2dded"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5319,
+      "sha256": "abe3afdd8c13e0efdd2c9fa5bf7ba92f423d8d39f8973fec9fa4c3edcd1509d4"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8708,
+      "sha256": "a854fb76e76a8caa7a778d5d694c16a6113bd65e4a25ad464d026ae3c38c1bff"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:39:08.269272+00:00"
+}

@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-1990/native/resumed/saves/monthly.json",
+        "bytes": 129660695,
+        "sha256": "46f0a2ad293af10886c3a629e528b3223190500eafb06f244b8a23214c8bf960"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-1990/native/resumed/saves/monthly.json.gz",
+        "bytes": 23518458,
+        "sha256": "3307e635bb77cf6792cc153c79e698c617bbf61506f0cf126fb3565d5275558a"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 129660695,
+        "sha256": "46f0a2ad293af10886c3a629e528b3223190500eafb06f244b8a23214c8bf960"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-1990/native/resumed/saves/monthly.json.bak",
+        "bytes": 135706588,
+        "sha256": "9131495ed13b8a2392eecd018c45f103ac48d4d311d81f4437e438402e615ef3"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/saudiarabia-1990/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24154523,
+        "sha256": "8db9e0120bb6e2fd49fb8359186bcb43c5ebb63e808503be19a962ce3031b28e"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 135706588,
+        "sha256": "9131495ed13b8a2392eecd018c45f103ac48d4d311d81f4437e438402e615ef3"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

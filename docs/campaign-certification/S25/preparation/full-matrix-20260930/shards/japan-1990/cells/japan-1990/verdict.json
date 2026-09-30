@@ -1,0 +1,105 @@
+{
+  "id": "japan-1990",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json",
+        "bytes": 136323074,
+        "sha256": "6ecac18466c94a281adcc7acfde5ffaf66ce75763f1e6b3af9afae634c5448ea"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json.gz",
+        "bytes": 24276124,
+        "sha256": "b07afe42f84ccf504de12f21f3dbd9c544bad59331fd70fa124c6089a2285086"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 136323074,
+        "sha256": "6ecac18466c94a281adcc7acfde5ffaf66ce75763f1e6b3af9afae634c5448ea"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json.bak",
+        "bytes": 136254977,
+        "sha256": "0aedc57828280da516925e73de00800c563593d8f9f381b237b7d7a6ababef44"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24275771,
+        "sha256": "1c249f9d0aa597cd0b3ff482327e37ec936b456ae1bd0063375f92d6ecca2acc"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 136254977,
+        "sha256": "0aedc57828280da516925e73de00800c563593d8f9f381b237b7d7a6ababef44"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/archive-manifest.json",
+      "bytes": 1984,
+      "sha256": "1426eb9ed3d6cf15da7cd577a1a079269619e379ae9521f9c20aed9442ec6878"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/execution.json",
+      "bytes": 1053,
+      "sha256": "e43b8f2869ba672b84c4394523cff0bfd15d74d83d22e74aca03f64c6b0f70be"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/progress.jsonl",
+      "bytes": 38219,
+      "sha256": "2862da7fdad6dfeac160d18e10ce30b62ff6edf843f9bb67b3ac828769fd55ac"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/result.json",
+      "bytes": 292205,
+      "sha256": "9f19b37e2ec3798ffc203e081830bc423c12301a6c06b36dcba8699dd52cc2ac"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 24275771,
+      "sha256": "1c249f9d0aa597cd0b3ff482327e37ec936b456ae1bd0063375f92d6ecca2acc"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 24276124,
+      "sha256": "b07afe42f84ccf504de12f21f3dbd9c544bad59331fd70fa124c6089a2285086"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/request.json",
+      "bytes": 189,
+      "sha256": "5a76dbac356f7e7b12df04a54cf995a3cf1a0956185fc18bf2ac496e29a5aba1"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/japan-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

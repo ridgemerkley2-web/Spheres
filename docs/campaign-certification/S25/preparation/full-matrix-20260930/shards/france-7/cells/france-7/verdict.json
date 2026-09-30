@@ -1,0 +1,105 @@
+{
+  "id": "france-7",
+  "passed": false,
+  "failure": "TimeoutExpired: Command '['/home/runner/work/Spheres/Spheres/frozen/native-test', '--exact', 's25_stability_tests::s25_stability_cell', '--ignored', '--nocapture', '--test-threads=1']' timed out after 18000.0 seconds",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json",
+        "bytes": 135725330,
+        "sha256": "25dd9c0e334d21ed477b37b11557c42261d7ce6d1bdf32a125d7b08cce9334b8"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json.gz",
+        "bytes": 24020355,
+        "sha256": "8ad7fbc337e02a9d1e85edf7368f8c320f7877816896de9e0358353b61a08bcb"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 135725330,
+        "sha256": "25dd9c0e334d21ed477b37b11557c42261d7ce6d1bdf32a125d7b08cce9334b8"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json.bak",
+        "bytes": 129178579,
+        "sha256": "99875b26ab3291187cb30ae49c50c0f4b2211b26f48e7e594991a11291164821"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 23347710,
+        "sha256": "0d7ea09f9acb303f72d25a3b240d659b4d4df89c4e6aa85bfa01b598f644da47"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 129178579,
+        "sha256": "99875b26ab3291187cb30ae49c50c0f4b2211b26f48e7e594991a11291164821"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/archive-manifest.json",
+      "bytes": 1976,
+      "sha256": "98189d19e096b8250c69c90ee8738e90212a47406f6ac71af5b784aca8c73e2d"
+    },
+    {
+      "relative": "execution.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/execution.json",
+      "bytes": 1047,
+      "sha256": "2d42472194eed5e40baa8688224f882ebae8741f4a43a4faed5001ad09adb683"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/progress.jsonl",
+      "bytes": 52468,
+      "sha256": "14bb1914fdfa95d4f65074b2a14ec81922f6b8861f9b3b3fc6699eff4af710e4"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/result.json",
+      "bytes": 408967,
+      "sha256": "57fba1fe71b384234faf1904d648b8c182480e63ae704a99b1cb6fe7172a7502"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 23347710,
+      "sha256": "0d7ea09f9acb303f72d25a3b240d659b4d4df89c4e6aa85bfa01b598f644da47"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 24020355,
+      "sha256": "8ad7fbc337e02a9d1e85edf7368f8c320f7877816896de9e0358353b61a08bcb"
+    },
+    {
+      "relative": "request.json",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/request.json",
+      "bytes": 185,
+      "sha256": "8d1c4eca0ca926a45f1bdcae05f1b56117b53d1838e256968321e7e9ea2b5a86"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "/home/runner/work/Spheres/Spheres/evidence/cells/france-7/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    }
+  ]
+}

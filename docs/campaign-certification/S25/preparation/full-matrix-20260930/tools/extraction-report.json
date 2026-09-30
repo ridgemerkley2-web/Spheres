@@ -1,0 +1,41 @@
+{
+  "format": "spheres-distributed-extraction/v1",
+  "passed": true,
+  "source_archive": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\full-stability-frozen-1.zip",
+  "source_archive_pin": {
+    "bytes": 251763956,
+    "sha256": "c0b8cac48eb04e5c4bf171d44ae480bcc940e7884c236ab973963fed4621021f"
+  },
+  "manifest_sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8",
+  "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "run_id": "36474011141",
+  "attempt": "1",
+  "extracted_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\frozen",
+  "files_verified": {
+    "distributed_stability.py": {
+      "bytes": 12526,
+      "sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f"
+    },
+    "manifest.json": {
+      "bytes": 3733,
+      "sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8"
+    },
+    "native-test": {
+      "bytes": 349874624,
+      "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+    },
+    "plan.json": {
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    "stability_matrix.py": {
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  },
+  "frozen_driver_bundle_validation": true,
+  "full_plan_cells": 24,
+  "native_executed": false,
+  "full_matrix_passed": false,
+  "qualification": false
+}

@@ -1,0 +1,9 @@
+# Independent compact failed-matrix audit
+
+The compact packet's 583 payloads and 579 copied originals independently rehash exactly. All 24 declared cells are accounted for: 23 native timeouts after the 18,000-second limit and one missing India/1990 artifact with a recorded lost-runner annotation/404 logs response. All 18,100 partial comparison rows report matching, with no completed terminal or sandbox boundary. The aggregate correctly refused the missing shard with exit 2 and no result.
+
+All 46 checkpoint decoded/original/gzip/extraction pins reconcile with the frozen verifier's successful integrity receipts. This audit independently checked the small records, pinned verifier bytes, and current presence/size of all 69 external ZIP/gzip files. It did NOT newly rehash or decompress those large bodies, rerun the verifier over them, rebuild/execute a native binary, or replay any campaign. Large-body integrity relies on the captured verifier receipts. The packet remains explicitly compact, with no qualification or S25 pass.
+
+Only the parent-authorized wrapper README and its manifest entry were changed. Missing spaces were fixed, exact A1 numbers were scoped to the two retained 44098c5a political logs, and the excluded executable's distinct frozen pin/path was stated precisely. 032cd6a3 metadata supports its job outcomes but no exact numerical A1 claim without its political logs. All copied evidence is unchanged. No remaining substantive inconsistency was found within this scope.
+
+review.json retains exact before/after hashes and all cell/archive/CI reconciliation facts. README.before.md and manifest.before.json preserve the original wrapper. This is an independent read-only evidence audit relative to the parent's collection, not a second simulation or new source retrieval. The local wrapper edits are the only repository changes by this audit.

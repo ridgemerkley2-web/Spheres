@@ -1,0 +1,47 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json",
+        "bytes": 134001810,
+        "sha256": "445f5a76e3a9ae5a819b155b96009d96de36480b007d33c8345df746b35f225d"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.gz",
+        "bytes": 24145771,
+        "sha256": "dfe1f108477af09d11bdc9837dd895df569a2a9bb5eac63e661550a5124a1520"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 134001810,
+        "sha256": "445f5a76e3a9ae5a819b155b96009d96de36480b007d33c8345df746b35f225d"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.bak",
+        "bytes": 140603063,
+        "sha256": "a3c87cb23426594097afdf39aacfd88b4083d39fa447edec5662e6852d70d36a"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "/home/runner/work/Spheres/Spheres/evidence/cells/tonga-1990/native/resumed/saves/monthly.json.bak.gz",
+        "bytes": 24836201,
+        "sha256": "57cda680aa3e13deb5058661bed7d40b965c0ba4300dfa8a37e16e67933483fa"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 140603063,
+        "sha256": "a3c87cb23426594097afdf39aacfd88b4083d39fa447edec5662e6852d70d36a"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

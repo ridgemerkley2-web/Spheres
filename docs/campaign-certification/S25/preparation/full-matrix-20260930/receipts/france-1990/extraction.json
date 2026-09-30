@@ -1,0 +1,86 @@
+{
+  "source_zip": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\final-collection-20260930-01\\downloads\\france-1990.zip",
+  "zip_pin": {
+    "bytes": 47888047,
+    "sha256": "3709d9342a81fac98a6e423269ffe163e88a2fb5389411afc420008840a5a662"
+  },
+  "shard_root": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\shards\\france-1990",
+  "files": [
+    {
+      "path": "cells/france-1990/archive-manifest.json",
+      "bytes": 1988,
+      "sha256": "5e8810a46134cc4c86b8eaf1c052119e8f37dbdc8e5086888a5073f8b2575046"
+    },
+    {
+      "path": "cells/france-1990/execution.json",
+      "bytes": 1056,
+      "sha256": "a52d25994f130acc6721dff8a7c6dc2a40ce6865a19aef458fc64c4f4daac9f1"
+    },
+    {
+      "path": "cells/france-1990/native/progress.jsonl",
+      "bytes": 43890,
+      "sha256": "b5aeede591421668367158d9338247420d6575a629f2975fcfb61f60a7a67fa8"
+    },
+    {
+      "path": "cells/france-1990/native/result.json",
+      "bytes": 370922,
+      "sha256": "43b3250962fc0929f52479f78f1ccfbd127280e24ee5d4c5dda61542a4bdf249"
+    },
+    {
+      "path": "cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 24026979,
+      "sha256": "a17639349be6edb1891cb47fc4d5cc00c3b0acd69568bd805bad814a1853f778"
+    },
+    {
+      "path": "cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 23337298,
+      "sha256": "d4d84d1909ea9afc16a2af1f1093a7a6097cf3c3d1abc65d0f902ca7a7ebca6e"
+    },
+    {
+      "path": "cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "584a488ff21d62762721a3da1af3a609e215c660b92ccb2a4f7e48c33ad3530f"
+    },
+    {
+      "path": "cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cells/france-1990/stdout.log",
+      "bytes": 65,
+      "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+    },
+    {
+      "path": "cells/france-1990/verdict.json",
+      "bytes": 4566,
+      "sha256": "4e237627437a94376a575d5b90637dc90f93d5a294606d03910e8824e83b57fd"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1541,
+      "sha256": "216532e5454f2294d3a964e310ee3c6e9562c48fa3538eeb42ccdad64959f9b2"
+    },
+    {
+      "path": "journal.jsonl",
+      "bytes": 5327,
+      "sha256": "a84c015200f18371cc20e61ccbc8278d51d3a4fc1a06ea56aa8ee637cd3bb4ce"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8723,
+      "sha256": "4fcc1241f62266f850dde321311a45d5a6e8133c8345e4c117d6facee12be1c3"
+    },
+    {
+      "path": "stability_matrix.py",
+      "bytes": 80364,
+      "sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274"
+    }
+  ],
+  "completed_utc": "2026-09-30T08:37:17.619188+00:00"
+}

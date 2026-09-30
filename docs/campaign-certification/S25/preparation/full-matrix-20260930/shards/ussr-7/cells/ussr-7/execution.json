@@ -1,0 +1,29 @@
+{
+  "args": [
+    "/home/runner/work/Spheres/Spheres/frozen/native-test",
+    "--exact",
+    "s25_stability_tests::s25_stability_cell",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "environment": {
+    "SPHERES_S25_REQUEST": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/request.json",
+    "SPHERES_S25_OUT": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7/native"
+  },
+  "cwd": "/home/runner/work/Spheres/Spheres/evidence/cells/ussr-7",
+  "started_utc": "2026-09-29T00:48:08.370221+00:00",
+  "binary_before": {
+    "path": "/home/runner/work/Spheres/Spheres/frozen/native-test",
+    "bytes": 349874624,
+    "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+  },
+  "finished_utc": "2026-09-29T05:48:08.861689+00:00",
+  "elapsed_seconds": 18000.248640736,
+  "exit_code": -9,
+  "binary_after": {
+    "path": "/home/runner/work/Spheres/Spheres/frozen/native-test",
+    "bytes": 349874624,
+    "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+  }
+}
