@@ -1,0 +1,109 @@
+[
+  {
+    "name": "ussr",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_ussr*.py"
+    ],
+    "exit_code": 0,
+    "log": "ussr.log"
+  },
+  {
+    "name": "russia",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_russia*.py"
+    ],
+    "exit_code": 0,
+    "log": "russia.log"
+  },
+  {
+    "name": "research",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "exit_code": 0,
+    "log": "research.log"
+  },
+  {
+    "name": "campaign",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "exit_code": 0,
+    "log": "campaign.log"
+  },
+  {
+    "name": "atlas",
+    "command": [
+      "node",
+      "--test",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "exit_code": 0,
+    "log": "atlas.log"
+  },
+  {
+    "name": "index",
+    "command": [
+      "python",
+      "-B",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "index.log"
+  },
+  {
+    "name": "census",
+    "command": [
+      "python",
+      "-B",
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    "exit_code": 1,
+    "log": "census.log"
+  },
+  {
+    "name": "workboard",
+    "command": [
+      "python",
+      "-B",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "workboard.log"
+  }
+]

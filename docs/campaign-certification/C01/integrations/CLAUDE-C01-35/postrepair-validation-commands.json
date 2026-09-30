@@ -1,0 +1,45 @@
+[
+  {
+    "name": "postrepair-ussr",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_ussr*.py"
+    ],
+    "exit_code": 0,
+    "log": "postrepair-ussr.log"
+  },
+  {
+    "name": "postrepair-research",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "exit_code": 0,
+    "log": "postrepair-research.log"
+  },
+  {
+    "name": "postrepair-index",
+    "command": [
+      "python",
+      "-B",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "postrepair-index.log"
+  }
+]

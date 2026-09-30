@@ -1,0 +1,13 @@
+{
+  "original_scoped_author_commits": [
+    "847d18b941ca54f30b3dea4342ac73f0a0845648",
+    "a4ff4753bad2e436bb4717ac4035d4f8b8d131b9"
+  ],
+  "codex_repair_commit": "6582e01ca1a0fc8a497e15cab186ee53eeb7f8e5",
+  "branch_local_index_commit_omit_and_regenerate": "ec9a2a034920b6bcdc6214ddd683fd676fbef5c3",
+  "also_omit_original_generated_indexes": [
+    "fb225cc64868c678dc7539b74a50f21f3bfbd29e",
+    "52e3e313b7c53601833c2b170d504b3bed9fe4ff"
+  ],
+  "parent_actions": "Integrate only scoped original research/test commits, precision repair and this review packet. Regenerate combined research index/census/attribution ledgers separately. Preserve SOURCE-26 and other inherited research. No automatic runtime or parent certification acceptance."
+}

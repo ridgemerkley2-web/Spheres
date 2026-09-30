@@ -1,0 +1,247 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-35",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "agent": "/root/review_source05",
+  "reviewed_commit": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
+  "repair_commit": "6582e01ca1a0fc8a497e15cab186ee53eeb7f8e5",
+  "decision": "Accept only the bounded 16-source / 36-claim attributed-facsimile preparation after precision and host-status repair. All recorded response identities reproduced and material claims reviewed; preserve nonofficial-host/paper-authentication limits, inferred-boundary exclusions and the inherited census failure. SOURCE-26 remains unchanged. No parent certification, game mapping or complete office history acceptance.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "baseline-isolation.json",
+      "bytes": 3125,
+      "sha256": "f9da2bc82d6c53559881cd1f89e09b3d1c667708b7e0ba774f4743819a45f5f2"
+    },
+    {
+      "path": "census-difference.json",
+      "bytes": 850,
+      "sha256": "4c1a5ef3a198daefc3b0ab585927198ef618ea52d3fb942e286cfd5fd9af752b"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 18741,
+      "sha256": "0f20be5eaa3ae2d9188f55d806c9f906079504451ce1f5958fca225f24120cbf"
+    },
+    {
+      "path": "headers/su_rsfsr_snd1_sten_v5.headers",
+      "bytes": 1899,
+      "sha256": "a0c0d58984a1557e235b390ed16efe05c1779162e905a693cf000bfb9f3fb962"
+    },
+    {
+      "path": "headers/su_rsfsr_snd2_sten_v3.headers",
+      "bytes": 1904,
+      "sha256": "af9b987fe5ca7ba1e8d376734e463642b9343f64b19640bc0896df2973c1d310"
+    },
+    {
+      "path": "headers/su_rsfsr_snd3_sten_v1.headers",
+      "bytes": 1904,
+      "sha256": "52601513dff4292eb869137c9936b9ce5c0e3dc5420fe9d9ce7ecbbb9ebef1a2"
+    },
+    {
+      "path": "headers/su_rsfsr_snd3_sten_v5.headers",
+      "bytes": 1902,
+      "sha256": "1e8b784d982d7b890e427a2faf91f6f77eb320454ef1ef675805561c20583537"
+    },
+    {
+      "path": "headers/su_rsfsr_snd5_sten_v1.headers",
+      "bytes": 1902,
+      "sha256": "3fe47817d8ec070d945e2692984eb5abd2edfa4d8d7e45f6f3bdae71696feb65"
+    },
+    {
+      "path": "headers/su_snd3_steno_vol1.headers",
+      "bytes": 1857,
+      "sha256": "9a0cf629975b98a65ba2872b716597536e30f1b12ecd68577eb1d92e8e3206c8"
+    },
+    {
+      "path": "headers/su_snd3_steno_vol3.headers",
+      "bytes": 1863,
+      "sha256": "ba2650cea25138f2fa923029c91a0cc392206f4b792eeadfe24354981d74754b"
+    },
+    {
+      "path": "headers/su_snd4_steno_vol1.headers",
+      "bytes": 1858,
+      "sha256": "4edbf5c3a785c05076eeee4918dadcc75e3bd5c9876ae0c99b7717a68f6a5f8c"
+    },
+    {
+      "path": "headers/su_snd4_steno_vol2.headers",
+      "bytes": 1858,
+      "sha256": "78862ba4942b863d9fdfb9d91228be3b27b1c8cac0d6872e5afb83999a2d39b6"
+    },
+    {
+      "path": "headers/su_snd4_steno_vol3_soyuz.headers",
+      "bytes": 1860,
+      "sha256": "b97f7a82d3a4ff14e1bcd85395f1f270c6107a942c8dda75e56710455e4c04a5"
+    },
+    {
+      "path": "headers/su_snd5_bulletin3_19910903.headers",
+      "bytes": 1853,
+      "sha256": "518eb07ff20d45359758a7c1e7c15369c2dda030b27c3e54c0a4860e4a159890"
+    },
+    {
+      "path": "headers/su_vs_bulletin1_soyuz_19910826.headers",
+      "bytes": 1823,
+      "sha256": "f603092112c85827de5823f41d4d6aa7d3b23354d18df2e2eff9561dc3591611"
+    },
+    {
+      "path": "headers/su_vs_bulletin2_soyuz_19910826.headers",
+      "bytes": 1820,
+      "sha256": "e6c94d30ff692e5aa5bbca1afe944a18e936466ef3effe986e251585e39e4da5"
+    },
+    {
+      "path": "headers/su_yc_f6_d104_l128_134_19911212.headers",
+      "bytes": 2257,
+      "sha256": "f7ab7966ab44e1c4315544e11f70e2bad87450a367224cbb5e4e6110b10df857"
+    },
+    {
+      "path": "headers/su_yc_f6_d104_l1_18_19910912.headers",
+      "bytes": 2258,
+      "sha256": "345866324db169fe786c9b6cb5fe044619fd0ee2dd7a00bd8fce1a3b64a07467"
+    },
+    {
+      "path": "headers/su_yc_f6_d222_l129_199111.headers",
+      "bytes": 2252,
+      "sha256": "5c7f3a9ededc7d45f22ffef9f415e4f2e28fa5f0f3618dfd868bb6c67216d66f"
+    },
+    {
+      "path": "headers/yeltsin-about.headers",
+      "bytes": 360,
+      "sha256": "37e4f9ef6ceed36787719103435b9bccc648ed35cf50072ad8354d81dc6ae0f8"
+    },
+    {
+      "path": "host-status-review.json",
+      "bytes": 992,
+      "sha256": "98c3391c60a902493cf2f6190061e67d85fccd11293b86f36828abb5ff6f4d2f"
+    },
+    {
+      "path": "integration-plan.json",
+      "bytes": 747,
+      "sha256": "9ef47f786b2cb2621ada430490ff34005ae034ea6f87b1b721ba229b21ad07bb"
+    },
+    {
+      "path": "logs/atlas.log",
+      "bytes": 1123,
+      "sha256": "15cb932d74ca2428ddc7d57409a1f7f3e61ab9136019b5b9be4c56ace2c54974"
+    },
+    {
+      "path": "logs/campaign.log",
+      "bytes": 120,
+      "sha256": "10cd575b6196603d56a3f057bfd81ad2ac8daebc68520f5de07cf1798b823411"
+    },
+    {
+      "path": "logs/census.log",
+      "bytes": 118,
+      "sha256": "b3c0a2e35f6f600671d54066cd71dcdad987af1be74ee32055414940afee7b2a"
+    },
+    {
+      "path": "logs/index.log",
+      "bytes": 251,
+      "sha256": "4d50817d5f748a09a20bc291dae12b68f2b3634d4d1b54b3ca17a5fc4867b2e1"
+    },
+    {
+      "path": "logs/postrepair-index.log",
+      "bytes": 251,
+      "sha256": "4d50817d5f748a09a20bc291dae12b68f2b3634d4d1b54b3ca17a5fc4867b2e1"
+    },
+    {
+      "path": "logs/postrepair-research.log",
+      "bytes": 183,
+      "sha256": "323155b62e123f16c560bfb6cade875434b4ef514e75a028ed79bc791ea67d1c"
+    },
+    {
+      "path": "logs/postrepair-ussr.log",
+      "bytes": 141,
+      "sha256": "d580ad255ea0897eedb86f905c48eeecf7cfa6b21ac7a8bbae40bfdbcfaba346"
+    },
+    {
+      "path": "logs/research.log",
+      "bytes": 183,
+      "sha256": "e33418b7c9b438f6ac13e6009c318db4972e4b5cb62301bc7d7ee02a75651bfe"
+    },
+    {
+      "path": "logs/russia.log",
+      "bytes": 133,
+      "sha256": "a4a0bbe27ec778ca02d2bfa6fe599e6a35edea8eadc659ed24f59195c930154e"
+    },
+    {
+      "path": "logs/ussr.log",
+      "bytes": 141,
+      "sha256": "80e2c3e5da5dff74318b07f9feff603a66444230922ad4febdc46379d9e17d82"
+    },
+    {
+      "path": "logs/workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "postrepair-preservation.json",
+      "bytes": 405,
+      "sha256": "68209721fda782e776d610fc835f5475403d9d407101a0267e08eae4fb636f3c"
+    },
+    {
+      "path": "postrepair-validation-commands.json",
+      "bytes": 792,
+      "sha256": "7dca74cc5fa39897e89fc261438bbd80432d77287842bc6f2d33c3165d7ef1cf"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5743,
+      "sha256": "2fecf05ed6c7b406c98efb21907da68d1717cd9e6e1e1d1171142d39e44b874b"
+    },
+    {
+      "path": "recipe-notes.json",
+      "bytes": 593,
+      "sha256": "3a4df90fd4c9319b7c3cbcd062050b9be4e4c16467c3465319f7ac26c3172509"
+    },
+    {
+      "path": "recipes/su35-census.py",
+      "bytes": 858,
+      "sha256": "d6672dc408ba5883b6ef14ffdc76787ed19a0d7c6cd493500fe024602affa737"
+    },
+    {
+      "path": "recipes/su35-checks.py",
+      "bytes": 2430,
+      "sha256": "c16e85f0087bf44444bff37f7fd85a6593fdb4012cd3a9da14b165c53fd8c789"
+    },
+    {
+      "path": "recipes/su35-extract.py",
+      "bytes": 2229,
+      "sha256": "3a8ea64c6c0dc412a9e28717590902e631325809eae04dd90641c703908e3c8f"
+    },
+    {
+      "path": "recipes/su35-retrieve.py",
+      "bytes": 1968,
+      "sha256": "bc6621e15edccdd44b69d305f3498605d7b72640ac5acccbacc3bee38eceeb2d"
+    },
+    {
+      "path": "repair-delta.json",
+      "bytes": 1409,
+      "sha256": "ef4b85f253ebd1601c42fae2239ea995f4c9779616b6e645286d0741d0345d8a"
+    },
+    {
+      "path": "retrieval.json",
+      "bytes": 13009,
+      "sha256": "9a7c8f4b805ed4a90f4348f198f40e17c36fab337710f8b8ca3f3ae56c01e542"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 24300,
+      "sha256": "d32914c4848b853901165d1887c3a4833730129eb34f3653bf9c76c0dbaffb1b"
+    },
+    {
+      "path": "validation-commands.json",
+      "bytes": 1840,
+      "sha256": "a2a951ef42dc6dd2615d223c74b3ee4c151a409f5769f4232a8251caea140a2c"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 13360,
+      "sha256": "9093005b607848bdfda08366408d4cbc2bfbab56775463c950cc590868b685dc"
+    }
+  ]
+}

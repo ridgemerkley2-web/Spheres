@@ -1,0 +1,616 @@
+{
+  "recorded_responses": 16,
+  "exact": 16,
+  "failed": 0,
+  "retries": 0,
+  "total_received_bytes": 211395643,
+  "sources": [
+    {
+      "source_id": "su_snd3_steno_vol1",
+      "source_url": "https://web.archive.org/web/20241206074206id_/https://snd.sssr.su/III/I.pdf",
+      "original_url": "https://snd.sssr.su/III/I.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 14627192,
+      "sha256": "3339b40a557e54787fd6c9186f81557aaddd02a878d4981e52f6ac56c40acfdb",
+      "sha1_base32": "MAG6OTVPEM3YAX2L72GRO3SPOOW74JSZ",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol1-19900312-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 11306,
+        "sha256": "9b72fb660d007896c21f139e1eaba8a7e9f8199eec7d3019545e49f20072dcd2"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol1-19900312-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 11306,
+        "sha256": "9b72fb660d007896c21f139e1eaba8a7e9f8199eec7d3019545e49f20072dcd2"
+      },
+      "recorded_pages_rendered": [
+        3,
+        60,
+        100,
+        106,
+        135,
+        136,
+        137,
+        138,
+        139,
+        424
+      ],
+      "pages_visually_inspected": [
+        60,
+        100,
+        106,
+        135,
+        136,
+        138,
+        139
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_snd3_steno_vol3",
+      "source_url": "https://web.archive.org/web/20240903210942id_/https://snd.sssr.su/III/III.pdf",
+      "original_url": "https://snd.sssr.su/III/III.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 12922126,
+      "sha256": "ae895c021cd21ea893c0c97a5386a434eff9d7c681721162c1999dfa0b07b345",
+      "sha1_base32": "32FRDYNMC4T2XBM2SR3D5UMOLJ3KGRHJ",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol3-19900314-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 9972,
+        "sha256": "3836f951fb58e93216c6ea4ec0e99463621903509080c0cccb9fc53262feeed6"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol3-19900314-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 9972,
+        "sha256": "3836f951fb58e93216c6ea4ec0e99463621903509080c0cccb9fc53262feeed6"
+      },
+      "recorded_pages_rendered": [
+        3,
+        5,
+        6,
+        24,
+        56,
+        84,
+        338
+      ],
+      "pages_visually_inspected": [
+        5,
+        6,
+        24,
+        56,
+        84
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_rsfsr_snd1_sten_v5",
+      "source_url": "https://web.archive.org/web/20220313025049id_/https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+      "original_url": "https://sten.snd.rsfsr-rf.ru/I/V.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 18684503,
+      "sha256": "da3383db9bcde8f07829b38441970ecf10a31d1706f3ba70c9b8943c389eeb24",
+      "sha1_base32": "F74WV4KFSUWKAIAKGOUO5R37LOKLJHG6",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd1-stenogram-vol5-19900622-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7564,
+        "sha256": "fd8afd8cad537e8c5e5d85acd6e2d210424996ee063b9789b6f9650473a5da22"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd1-stenogram-vol5-19900622-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7564,
+        "sha256": "fd8afd8cad537e8c5e5d85acd6e2d210424996ee063b9789b6f9650473a5da22"
+      },
+      "recorded_pages_rendered": [
+        1,
+        336,
+        337
+      ],
+      "pages_visually_inspected": [
+        336,
+        337
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_rsfsr_snd2_sten_v3",
+      "source_url": "https://web.archive.org/web/20220313024936id_/https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+      "original_url": "https://sten.snd.rsfsr-rf.ru/r2s3.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 19806883,
+      "sha256": "ccb68d98f52437a491c566152ef65f425052e2c41b7f314f0c331a8324ab794a",
+      "sha1_base32": "FBBKXCEZKLHVUSVFCTPCBBVDXCFYASX4",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd2-stenogram-vol3-19901207-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 6562,
+        "sha256": "92cb2c95c1018d80ad8eb51a1302b6416166da944a6fdf9090e4095b658078fa"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd2-stenogram-vol3-19901207-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 6562,
+        "sha256": "92cb2c95c1018d80ad8eb51a1302b6416166da944a6fdf9090e4095b658078fa"
+      },
+      "recorded_pages_rendered": [
+        68,
+        239,
+        240
+      ],
+      "pages_visually_inspected": [
+        68,
+        239,
+        240
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_snd4_steno_vol1",
+      "source_url": "https://web.archive.org/web/20240902002244id_/https://snd.sssr.su/IV/I.pdf",
+      "original_url": "https://snd.sssr.su/IV/I.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 25557430,
+      "sha256": "a0e2b8470edec278d89323da0e65d71a48c30b55ff5634e8a1a76b9c7bf3ace1",
+      "sha1_base32": "UFZP3PQYKP2I4HJN7WDGZUYZDBZOLL7Z",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol1-19901217-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 17917,
+        "sha256": "5b3aeb69f5567702af42d44da05672702c7de9abd5db66aefd5c47977464602e"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol1-19901217-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 17917,
+        "sha256": "5b3aeb69f5567702af42d44da05672702c7de9abd5db66aefd5c47977464602e"
+      },
+      "recorded_pages_rendered": [
+        3,
+        5,
+        16,
+        66,
+        78,
+        120,
+        121,
+        130,
+        171,
+        188,
+        189,
+        327,
+        363,
+        372,
+        405,
+        406,
+        617
+      ],
+      "pages_visually_inspected": [
+        16,
+        66,
+        120,
+        121,
+        188,
+        189,
+        363,
+        372,
+        405,
+        406
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_snd4_steno_vol3_soyuz",
+      "source_url": "https://web.archive.org/web/20241124015727id_/https://snd.sssr.su/IV/III.pdf",
+      "original_url": "https://snd.sssr.su/IV/III.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 12653342,
+      "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+      "sha1_base32": "7FKJGSKA5SUVY2VPDTY2YTHHQFKEWWKD",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol3-soyuz-19901217-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 12689,
+        "sha256": "704cba0cc83a07269c6bc90ee7dc188b5d1501f42ec535d1e5efbdfa9f011087"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol3-soyuz-19901217-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 12689,
+        "sha256": "704cba0cc83a07269c6bc90ee7dc188b5d1501f42ec535d1e5efbdfa9f011087"
+      },
+      "recorded_pages_rendered": [
+        3,
+        68,
+        90,
+        93,
+        138,
+        139,
+        208,
+        233,
+        293,
+        294,
+        295,
+        401
+      ],
+      "pages_visually_inspected": [
+        90,
+        138,
+        139,
+        233,
+        293,
+        294,
+        295
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_snd4_steno_vol2",
+      "source_url": "https://web.archive.org/web/20240901144454id_/https://snd.sssr.su/IV/II.pdf",
+      "original_url": "https://snd.sssr.su/IV/II.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 18853969,
+      "sha256": "ee347c29174109f450ddd7d0b40d3a0206e4b1289d92c802d557235d7c820246",
+      "sha1_base32": "BTQDNJRQ4YMBXWFNL2VPHBQ6F6LRKIRM",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol2-19901225-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 8174,
+        "sha256": "19eee3c986c1e1631a50973cfdd9f23825cef69627bc5188a18b9bd57ffcbd6d"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol2-19901225-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 8174,
+        "sha256": "19eee3c986c1e1631a50973cfdd9f23825cef69627bc5188a18b9bd57ffcbd6d"
+      },
+      "recorded_pages_rendered": [
+        1,
+        3,
+        368,
+        423,
+        424,
+        544,
+        546
+      ],
+      "pages_visually_inspected": [
+        368,
+        423,
+        424
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_rsfsr_snd3_sten_v1",
+      "source_url": "https://web.archive.org/web/20220313024757id_/https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+      "original_url": "https://sten.snd.rsfsr-rf.ru/r3s1.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 18252813,
+      "sha256": "0b65f35688e13fff9fef958b1951d01738513825b44f1159c5576ea3fa3ba076",
+      "sha1_base32": "CPO4UW7HZXLQN7Q543YZQIVXB34FLGBL",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol1-19910328-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7274,
+        "sha256": "e78e937d5f3ce41977371379d4b75f482c7d1abc8e4c0a036b957332a0fc7baf"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol1-19910328-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7274,
+        "sha256": "e78e937d5f3ce41977371379d4b75f482c7d1abc8e4c0a036b957332a0fc7baf"
+      },
+      "recorded_pages_rendered": [
+        30,
+        36,
+        214,
+        215,
+        216
+      ],
+      "pages_visually_inspected": [
+        30,
+        214
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_rsfsr_snd3_sten_v5",
+      "source_url": "https://web.archive.org/web/20220313030126id_/https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+      "original_url": "https://sten.snd.rsfsr-rf.ru/r3s5.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 18615464,
+      "sha256": "65ff1f36f4ecfbc2d8954898f5d9bd0bd78a0b6a4b2b550fa7720baee44eb54d",
+      "sha1_base32": "SKMJ7V7OVOOIEWX7IDWWIWMJ5FZS6L7G",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol5-19910405-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7168,
+        "sha256": "72ead0003919fe5a4e70e336a16f441d3b4271cca4ee722adb1053c09c09fc24"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol5-19910405-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7168,
+        "sha256": "72ead0003919fe5a4e70e336a16f441d3b4271cca4ee722adb1053c09c09fc24"
+      },
+      "recorded_pages_rendered": [
+        1,
+        27,
+        222,
+        224
+      ],
+      "pages_visually_inspected": [
+        1,
+        27,
+        222
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_rsfsr_snd5_sten_v1",
+      "source_url": "https://web.archive.org/web/20220313024839id_/https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+      "original_url": "https://sten.snd.rsfsr-rf.ru/r5s1.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 36840143,
+      "sha256": "392cfe46497cbd1d2937c094c2cbbe6a83ebaf307f6649f7a7aab941a0fc1805",
+      "sha1_base32": "FRL4MWMSMHDAHBXQBQND23CHM3UP6GGC",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd5-stenogram-vol1-19910715-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7566,
+        "sha256": "92a49fc6e9718fa87cde7ceefbc4801435e6b5147b15927c08c46fb2144cadc0"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd5-stenogram-vol1-19910715-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7566,
+        "sha256": "92a49fc6e9718fa87cde7ceefbc4801435e6b5147b15927c08c46fb2144cadc0"
+      },
+      "recorded_pages_rendered": [
+        1,
+        156,
+        368
+      ],
+      "pages_visually_inspected": [
+        156,
+        368
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_vs_bulletin1_soyuz_19910826",
+      "source_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/1.pdf",
+      "original_url": "https://sten.vs.sssr.su/12/6/1.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 2252696,
+      "sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+      "sha1_base32": "ZCGGKKXUWMPIIQHDCKF2ITXG5FHRLVFA",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin1-soyuz-19910826-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7620,
+        "sha256": "787cc83aa9daa510230ea8231cf0a06b0caf4479ca0f81ee56f310167370f172"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin1-soyuz-19910826-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7620,
+        "sha256": "787cc83aa9daa510230ea8231cf0a06b0caf4479ca0f81ee56f310167370f172"
+      },
+      "recorded_pages_rendered": [
+        1,
+        3,
+        22
+      ],
+      "pages_visually_inspected": [
+        22
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_vs_bulletin2_soyuz_19910826",
+      "source_url": "https://web.archive.org/web/20250718143607id_/https://sten.vs.sssr.su/12/6/2.pdf",
+      "original_url": "https://sten.vs.sssr.su/12/6/2.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 1530044,
+      "sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+      "sha1_base32": "BHTJ6RRMIJITAAUZWD4TQ5UNM4KTXZXP",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin2-soyuz-19910826-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 10688,
+        "sha256": "cc9fc674052fbe8744e306014a8ba25641daf2f7aaec076ebe5c8794172f0de0"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin2-soyuz-19910826-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 10688,
+        "sha256": "cc9fc674052fbe8744e306014a8ba25641daf2f7aaec076ebe5c8794172f0de0"
+      },
+      "recorded_pages_rendered": [
+        1,
+        3,
+        22,
+        27,
+        28,
+        29,
+        30
+      ],
+      "pages_visually_inspected": [
+        27,
+        28,
+        30
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_snd5_bulletin3_19910903",
+      "source_url": "https://web.archive.org/web/20240901234307id_/https://snd.sssr.su/V/3.pdf",
+      "original_url": "https://snd.sssr.su/V/3.pdf",
+      "source_type": "primary_official_stenogram_facsimile_non_official_host",
+      "bytes": 2146995,
+      "sha256": "8eeae4731e35ac7e25d099bb85a95610382cbe215ab6b49820a57675dcd9ac26",
+      "sha1_base32": "XM6CNRB3DIYJ3KWYI6MRT53TBO4WUOEJ",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd5-bulletin3-19910903-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7579,
+        "sha256": "9e27cd412a582ab96195fd2e252528d1de35827513560e635f2554ca9904f578"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-snd5-bulletin3-19910903-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7579,
+        "sha256": "9e27cd412a582ab96195fd2e252528d1de35827513560e635f2554ca9904f578"
+      },
+      "recorded_pages_rendered": [
+        1,
+        3,
+        24
+      ],
+      "pages_visually_inspected": [
+        24
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_yc_f6_d104_l1_18_19910912",
+      "source_url": "https://web.archive.org/web/20230622210558id_/https://yeltsin.ru/uploads/upload/2015/03/27/f6_o1_d104_001_aJ7dx2A.pdf",
+      "original_url": "https://yeltsin.ru/uploads/upload/2015/03/27/f6_o1_d104_001_aJ7dx2A.pdf",
+      "source_type": "primary_organization_document_archival_facsimile",
+      "bytes": 4143217,
+      "sha256": "ed39047202ab5b24b0469a1268055b18e2453c2f92acfba159292f6912b5e765",
+      "sha1_base32": "PHB53EWIML4VGFDNZ2YKAIFA54FICJ4J",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l1-18-19910912-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 14348,
+        "sha256": "0d6a6df8b64deab2070449036e69ce76882052f367577989d77d6452a441dacd"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l1-18-19910912-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 14349,
+        "sha256": "e0de465b80a94dd690b92cd409a5975350b956ecd3b7c29107ef2aa8b5c7cebe"
+      },
+      "recorded_pages_rendered": [
+        1,
+        5,
+        6
+      ],
+      "pages_visually_inspected": [
+        1,
+        5,
+        6
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_yc_f6_d222_l129_199111",
+      "source_url": "https://web.archive.org/web/20230623225515id_/https://yeltsin.ru/uploads/upload/2015/08/20/f6_o1_d222_060_0WLtD2F.pdf",
+      "original_url": "https://yeltsin.ru/uploads/upload/2015/08/20/f6_o1_d222_060_0WLtD2F.pdf",
+      "source_type": "primary_organization_document_archival_facsimile",
+      "bytes": 106744,
+      "sha256": "a553a66a958da6d99f2f02ab5f9a0d8889c07b0e8e92d953d27f16bc2d8819d2",
+      "sha1_base32": "NGB5ZM5ESRYNGXZF7TH3FPRCNX5P5A43",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d222-l129-19911109-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7708,
+        "sha256": "35bd6ad91209d84bf066a8d46c1da2d0ad00f50c8de83a438141670b257c53a1"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d222-l129-19911109-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 7709,
+        "sha256": "29e4e2f31788662c2883e8d5f8b16f4525f99054d31accc86302cec8ee46d7fa"
+      },
+      "recorded_pages_rendered": [
+        1
+      ],
+      "pages_visually_inspected": [
+        1
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    },
+    {
+      "source_id": "su_yc_f6_d104_l128_134_19911212",
+      "source_url": "https://web.archive.org/web/20230622210559id_/https://yeltsin.ru/uploads/upload/2015/03/27/f6_o1_d104_006_oscl6gt.pdf",
+      "original_url": "https://yeltsin.ru/uploads/upload/2015/03/27/f6_o1_d104_006_oscl6gt.pdf",
+      "source_type": "primary_official_record_archival_facsimile",
+      "bytes": 4402082,
+      "sha256": "37c8a1415f12ff66f105d3146c78ebc6b41a6ace5fea11c39dff9b35a11293d8",
+      "sha1_base32": "5ZTT47EKFMWMH6MF5D36TQAWMZOTY2CD",
+      "status": "recorded_response_reproduced_exactly",
+      "submitted_CDX_digest_matches_received_SHA1": true,
+      "submitted_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l128-134-19911212-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 10648,
+        "sha256": "90ac1bd782b5f07993c67671ab174cf43cb9c4661acf712264fb602ad6f61100"
+      },
+      "reviewed_extract": {
+        "path": "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l128-134-19911212-facts.json",
+        "kind": "derived_factual_extract",
+        "bytes": 10649,
+        "sha256": "096f10bf25e1db20f05dfc00dbd2d660d484fc492d672ee63a87a2ebc6f0781c"
+      },
+      "recorded_pages_rendered": [
+        1
+      ],
+      "pages_visually_inspected": [
+        1
+      ],
+      "live_file_response_retrieval_repeated": false,
+      "original_paper_authentication_performed": false
+    }
+  ]
+}
