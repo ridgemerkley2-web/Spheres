@@ -1,0 +1,1084 @@
+{
+  "reviewer": "Codex /root/review_gap_submission",
+  "reviewed_commit": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+  "checked_utc": "2026-09-30T09:32:10.285347+00:00",
+  "exact_original_bodies": 39,
+  "initial_exact": 22,
+  "initial_refused": 17,
+  "missing_only_retry_exact": 17,
+  "remaining_missing": 0,
+  "attempt_receipts": [
+    "retrieval-01.json",
+    "retrieval-02.json"
+  ],
+  "limits": "This independently reproduces each original response. It does not repeat the author's separated-in-time stability experiment or verify excluded research leads.",
+  "sources": [
+    {
+      "source_id": "to_pmo_2000_press_releases",
+      "url": "https://web.archive.org/web/20011230032256id_/http://pmo.gov.to:80/Government_Press_Release.html",
+      "original_url": "http://pmo.gov.to/Government_Press_Release.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_2000_press_releases.bin",
+        "bytes": 53628,
+        "sha256": "d31a98c9903902629e7695c0461b02548e1109ec476286f23ce3392ba69a739a",
+        "sha1_base32": "WNR4CUK5DDJMP7W2DAMOOWSGXX4NUBEB"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_2000_press_releases.txt",
+      "retrieval_utc": "2026-09-30T09:17:16.189720+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-press-releases-2000-facts.json",
+        "bytes": 5078,
+        "sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216"
+      },
+      "claim_ids": [
+        "to_dpm_kavaliku_retirement_announced_2000",
+        "to_dpm_kavaliku_appointed_1991_retro"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5078,
+        "sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216"
+      }
+    },
+    {
+      "source_id": "to_pmo_news_in_brief_2001",
+      "url": "https://web.archive.org/web/20010708233245id_/http://pmo.gov.to:80/NEWS_IN_BRIEF.html",
+      "original_url": "http://pmo.gov.to/NEWS_IN_BRIEF.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_news_in_brief_2001.bin",
+        "bytes": 31877,
+        "sha256": "dd163157b535109414c35179576f4118762f507364ddaf2be78061b8b7eb04f4",
+        "sha1_base32": "I2M2MZWW26I46FQU6FGFQPU4Y3MU747K"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_news_in_brief_2001.txt",
+      "retrieval_utc": "2026-09-30T09:17:17.041321+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-news-in-brief-2001-facts.json",
+        "bytes": 4048,
+        "sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465"
+      },
+      "claim_ids": [
+        "to_dpm_kavaliku_listed_20001106"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4048,
+        "sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465"
+      }
+    },
+    {
+      "source_id": "to_pmo_20010124_pm_address",
+      "url": "https://web.archive.org/web/20010430180727id_/http://pmo.gov.to:80/hrhadd.24j.html",
+      "original_url": "http://pmo.gov.to/hrhadd.24j.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20010124_pm_address.bin",
+        "bytes": 11567,
+        "sha256": "d89cb254ab151dfd28d5e2c910870e4a76e72fac151ff137c7878c1ae1ad4f6d",
+        "sha1_base32": "3D45DH3RLIWQTMXEW3XTPLIEJUX623VK"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20010124_pm_address.txt",
+      "retrieval_utc": "2026-09-30T09:17:17.728249+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-address-20010124-facts.json",
+        "bytes": 4319,
+        "sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8"
+      },
+      "claim_ids": [
+        "to_dpm_tupou_appointment_effective_20010124"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4319,
+        "sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8"
+      }
+    },
+    {
+      "source_id": "to_pmo_20010928_tupou_resignation_to",
+      "url": "https://web.archive.org/web/20011230022245id_/http://pmo.gov.to:80/Fkfisitupou.html",
+      "original_url": "http://pmo.gov.to/Fkfisitupou.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20010928_tupou_resignation_to.bin",
+        "bytes": 4898,
+        "sha256": "958ebb0a55d5827e27e0875ff9ca12807affc420a1405a6c7cb49cbea10aa653",
+        "sha1_base32": "BA4YODA53766IY5RGBAUSWKOLJYMEIXW"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20010928_tupou_resignation_to.txt",
+      "retrieval_utc": "2026-09-30T09:17:18.666907+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-tupou-resignation-to-20010928-facts.json",
+        "bytes": 6206,
+        "sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0"
+      },
+      "claim_ids": [
+        "to_dpm_tupou_resignation_accepted_20010928",
+        "to_dpm_tupou_appointed_jan2001_retro",
+        "to_acting_dpm_edwards_appointed_20010928"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 6206,
+        "sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0"
+      }
+    },
+    {
+      "source_id": "to_pmo_20020111_acting_dpm_statement",
+      "url": "https://web.archive.org/web/20020210211730id_/http://pmo.gov.to:80/gpr11jan02.htm",
+      "original_url": "http://pmo.gov.to/gpr11jan02.htm",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20020111_acting_dpm_statement.bin",
+        "bytes": 22721,
+        "sha256": "7d8c1fb16fcc95b7e27a0176475293d460b7062a3fa6f26892be8c71aba3167f",
+        "sha1_base32": "XLX3UXESYT7IXHLURVHRYAN26NL63K5T"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20020111_acting_dpm_statement.txt",
+      "retrieval_utc": "2026-09-30T09:17:19.342221+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-statement-20020111-facts.json",
+        "bytes": 4121,
+        "sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d"
+      },
+      "claim_ids": [
+        "to_acting_dpm_edwards_20020111"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4121,
+        "sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d"
+      }
+    },
+    {
+      "source_id": "to_pmo_20020514_acting_dpm_paunga",
+      "url": "https://web.archive.org/web/20020816151102id_/http://pmo.gov.to:80/gpr14May02.htm",
+      "original_url": "http://pmo.gov.to/gpr14May02.htm",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20020514_acting_dpm_paunga.bin",
+        "bytes": 11566,
+        "sha256": "87e5594913a3d2cc7d7b191a2bfcee15dbf9792ea098bbc2964806ead6a82e65",
+        "sha1_base32": "QQ3XMJLFBFBPH2OJVVRUEY6IT5UIRAT5"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20020514_acting_dpm_paunga.txt",
+      "retrieval_utc": "2026-09-30T09:17:20.156145+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-paunga-20020514-facts.json",
+        "bytes": 5048,
+        "sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8"
+      },
+      "claim_ids": [
+        "to_dpm_cocker_abroad_20020513",
+        "to_acting_dpm_paunga_20020513"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5048,
+        "sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8"
+      }
+    },
+    {
+      "source_id": "to_pmo_20020903_wssd_statement",
+      "url": "https://web.archive.org/web/20021219084233id_/http://pmo.gov.to:80/DepPM%20Speech%20on%20WSSD,%202002.htm",
+      "original_url": "http://pmo.gov.to/DepPM%20Speech%20on%20WSSD,%202002.htm",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20020903_wssd_statement.bin",
+        "bytes": 25681,
+        "sha256": "a10dbe0193e1eb3d871d511071ad205da0535fa683f3cada7b78aca299506bfa",
+        "sha1_base32": "5MPAYEC5P25RUWIOLWQMXDHDMB57EYTE"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20020903_wssd_statement.txt",
+      "retrieval_utc": "2026-09-30T09:17:20.828750+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-wssd-statement-20020903-facts.json",
+        "bytes": 4092,
+        "sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40"
+      },
+      "claim_ids": [
+        "to_dpm_cocker_wssd_statement_20020903"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4092,
+        "sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40"
+      }
+    },
+    {
+      "source_id": "to_pmo_20040909_confirmation_of_appointments",
+      "url": "https://web.archive.org/web/20041105172122id_/http://www.pmo.gov.to:80/confirmation_of_appointments_24august2004.htm",
+      "original_url": "http://www.pmo.gov.to/confirmation_of_appointments_24august2004.htm",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20040909_confirmation_of_appointments.bin",
+        "bytes": 19494,
+        "sha256": "c8aa0ca0318d16914932eb12920b196316ecef26bed47a08b630b4de5e4e3476",
+        "sha1_base32": "QRMARMCRLZGDY6WRR2OJK7EJLDGETSUG"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20040909_confirmation_of_appointments.txt",
+      "retrieval_utc": "2026-09-30T09:17:21.445526+00:00",
+      "source_character_encoding": "windows-1252 (declared)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-confirmation-of-appointments-20040909-facts.json",
+        "bytes": 4441,
+        "sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9"
+      },
+      "claim_ids": [
+        "to_dpm_cocker_appointment_confirmed_20040824"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4441,
+        "sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9"
+      }
+    },
+    {
+      "source_id": "to_pmo_20050411_pope_homage",
+      "url": "https://web.archive.org/web/20051018153427id_/http://pmo.gov.to:80/index.php/articles/176",
+      "original_url": "http://pmo.gov.to/index.php/articles/176",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20050411_pope_homage.bin",
+        "bytes": 19686,
+        "sha256": "76df4a308340ca16a21534a8fdd5eb2d1738e787e9c93ef3a889474ff534ab7d",
+        "sha1_base32": "ALBVEN3VDA2RVSNP4N6LINWPYEIQC5A3"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20050411_pope_homage.txt",
+      "retrieval_utc": "2026-09-30T09:17:22.233698+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pope-homage-20050411-facts.json",
+        "bytes": 4189,
+        "sha256": "31935248497b7f5a4dd5a84c6847f96735bd2eb48550bd6d5b19b4947466f69a"
+      },
+      "claim_ids": [
+        "to_acting_pm_cocker_20050410"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4217,
+        "sha256": "a9b79e457aaf6997aed53b1e39a9d201508a3e818aff5a299589f37ce6ef8962"
+      }
+    },
+    {
+      "source_id": "to_pmo_20060310_ub40_concert",
+      "url": "https://web.archive.org/web/20060426083232id_/http://www.pmo.gov.to:80/artman/publish/article_96.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_96.shtml",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20060310_ub40_concert.bin",
+        "bytes": 13311,
+        "sha256": "7924a5942904e4abce7817bbf1ee16385d20fc39bb6c69486dc6beb2613a6f3d",
+        "sha1_base32": "MJQR73RUCEDZKL4MQCYB5G2O2GLHAXBF"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20060310_ub40_concert.txt",
+      "retrieval_utc": "2026-09-30T09:17:23.000006+00:00",
+      "source_character_encoding": "windows-1252 (no charset declared; read as windows-1252)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ub40-concert-20060310-facts.json",
+        "bytes": 4263,
+        "sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff"
+      },
+      "claim_ids": [
+        "to_dpm_cocker_styled_20060308"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4263,
+        "sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff"
+      }
+    },
+    {
+      "source_id": "to_pmo_20060609_pohiva_statements",
+      "url": "https://web.archive.org/web/20060615072009id_/http://www.pmo.gov.to:80/artman/publish/article_121.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_121.shtml",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20060609_pohiva_statements.bin",
+        "bytes": 14317,
+        "sha256": "50a84552b6214d1263489c0456040bc68ca388a6bbb19b795645bf78275c3a7d",
+        "sha1_base32": "YDR47JQNQX4NB7J4P6FSTE5N7GMUHSWC"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20060609_pohiva_statements.txt",
+      "retrieval_utc": "2026-09-30T09:17:23.819685+00:00",
+      "source_character_encoding": "windows-1252 (no charset declared; read as windows-1252)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pohiva-statements-20060609-facts.json",
+        "bytes": 4334,
+        "sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7"
+      },
+      "claim_ids": [
+        "to_dpm_office_with_health_20060609"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4334,
+        "sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7"
+      }
+    },
+    {
+      "source_id": "to_pmo_20060809_common_sense",
+      "url": "https://web.archive.org/web/20060822122944id_/http://www.pmo.gov.to:80/artman/publish/article_147.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_147.shtml",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20060809_common_sense.bin",
+        "bytes": 12953,
+        "sha256": "cf7cfbe2157142123ac9ba17c25994c5a30dc4edbdc5cf3e13b0805a70f2d7b8",
+        "sha1_base32": "ZQ7VZPXDJ5QMETNJXTRCLPVNRMG6TQAA"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20060809_common_sense.txt",
+      "retrieval_utc": "2026-09-30T09:17:24.609350+00:00",
+      "source_character_encoding": "windows-1252 (no charset declared; read as windows-1252)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-common-sense-20060809-facts.json",
+        "bytes": 4141,
+        "sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f"
+      },
+      "claim_ids": [
+        "to_dpm_tangi_styled_20060808"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4141,
+        "sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f"
+      }
+    },
+    {
+      "source_id": "to_pmo_20090114_hauofa_funeral",
+      "url": "https://web.archive.org/web/20090122085852id_/http://pmo.gov.to:80/component/content/article/55-lastes-news/365-deputy-prime-minister-to-represent-government-at-professor-epeli-hauofas-funeral-in-suva.html",
+      "original_url": "http://pmo.gov.to/component/content/article/55-lastes-news/365-deputy-prime-minister-to-represent-government-at-professor-epeli-hauofas-funeral-in-suva.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20090114_hauofa_funeral.bin",
+        "bytes": 19408,
+        "sha256": "c5174de668f8de3c02b2f5c50db9d477f5cc4e76642739ca9ac1417972ca3ebe",
+        "sha1_base32": "HJ2SIQHAZWPWX7MPFBGTHCVUCHI2F3KD"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20090114_hauofa_funeral.txt",
+      "retrieval_utc": "2026-09-30T09:17:25.405632+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-hauofa-funeral-20090114-facts.json",
+        "bytes": 4240,
+        "sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059"
+      },
+      "claim_ids": [
+        "to_dpm_tangi_represents_government_20090114"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4240,
+        "sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059"
+      }
+    },
+    {
+      "source_id": "to_pmo_2009_australia_day_speech",
+      "url": "https://web.archive.org/web/20090326123858id_/http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/english-mainmenu-95/379-australian-day-2009-speech-by-dr-the-hon-viliami-t-tangi-acting-prime-minister.html",
+      "original_url": "http://pmo.gov.to/media-mainmenu-82/speeches-mainmenu-84/english-mainmenu-95/379-australian-day-2009-speech-by-dr-the-hon-viliami-t-tangi-acting-prime-minister.html",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_2009_australia_day_speech.bin",
+        "bytes": 23691,
+        "sha256": "d5f8460a4426c83eaaac0d43a61d31b82577a1a406260c7e6c43a4c429954638",
+        "sha1_base32": "N4FJU2LPTPSHWR3ERYMEHCDQPCM6SFAH"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_2009_australia_day_speech.txt",
+      "retrieval_utc": "2026-09-30T09:17:26.298522+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-australia-day-speech-2009-facts.json",
+        "bytes": 4433,
+        "sha256": "f05f4c4b9dc407b0c2ccfe57a60139a111805c9064fa0567999c61282a82d682"
+      },
+      "claim_ids": [
+        "to_acting_pm_tangi_australia_day_2009"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4461,
+        "sha256": "4cf10ac47c5b3b45575512050c0287a8022094236133d0c2d4e8920403cc8cd9"
+      }
+    },
+    {
+      "source_id": "to_pmo_20100624_throne_reply",
+      "url": "https://web.archive.org/web/20111130060948id_/http://pmo.gov.to/speeches/1541-tali-o-e-folofola-e-he-eiki-tokoni-palemia-dr-viliami-tau-tangi-",
+      "original_url": "http://pmo.gov.to/speeches/1541-tali-o-e-folofola-e-he-eiki-tokoni-palemia-dr-viliami-tau-tangi-",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20100624_throne_reply.bin",
+        "bytes": 36849,
+        "sha256": "9b299f69a7c630797c2800e1cde6a74bf8319b435f546de5f30c5356a017d2ff",
+        "sha1_base32": "B5E7AIH5JSCKRUKGW3TOCCGL6DRFLZMX"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20100624_throne_reply.txt",
+      "retrieval_utc": "2026-09-30T09:17:27.184922+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-reply-dpm-20100624-facts.json",
+        "bytes": 4176,
+        "sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d"
+      },
+      "claim_ids": [
+        "to_dpm_tangi_throne_reply_20100624"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4176,
+        "sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d"
+      }
+    },
+    {
+      "source_id": "to_mic_20101230_lord_tangi",
+      "url": "https://web.archive.org/web/20140102125353id_/http://www.mic.gov.to:80/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+      "original_url": "http://www.mic.gov.to/government/nobles-of-the-realm/1969-lord-tangi-of-vaonukonuka",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_mic_20101230_lord_tangi.bin",
+        "bytes": 35793,
+        "sha256": "edab13cfcd4bb62e251510f02d33d1feeec594ee0495b5fcdcb8d3a9f731ebfc",
+        "sha1_base32": "4GUHFXSUZDRDZQZSAUFRT6SBBHP3TBOU"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_mic_20101230_lord_tangi.txt",
+      "retrieval_utc": "2026-09-30T09:17:28.099033+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-lord-tangi-20101230-facts.json",
+        "bytes": 5105,
+        "sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa"
+      },
+      "claim_ids": [
+        "to_dpm_tangi_styled_life_peer_20101230",
+        "to_dpm_tangi_appointed_may2006_retro"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5105,
+        "sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa"
+      }
+    },
+    {
+      "source_id": "to_mic_20110103_vaipulu_appointed",
+      "url": "https://web.archive.org/web/20171024214701id_/http://www.mic.gov.to/appointments/new-ministers-/1973-samiu-vaipulu-deputy-pm-justice-works-minister",
+      "original_url": "http://www.mic.gov.to/appointments/new-ministers-/1973-samiu-vaipulu-deputy-pm-justice-works-minister",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_mic_20110103_vaipulu_appointed.bin",
+        "bytes": 31190,
+        "sha256": "69ef89602fe479027d91ea3e33fbb2ce832b1f3e168bb9fbd20519d99248f9a4",
+        "sha1_base32": "SKNWMHFL5AELVCEZGLEBV37SFQIWKAPD"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_mic_20110103_vaipulu_appointed.txt",
+      "retrieval_utc": "2026-09-30T09:17:29.145048+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-vaipulu-appointed-20110103-facts.json",
+        "bytes": 4194,
+        "sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0"
+      },
+      "claim_ids": [
+        "to_dpm_vaipulu_appointment_reported_20110103"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4194,
+        "sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0"
+      }
+    },
+    {
+      "source_id": "to_mic_20110104_cabinet_named",
+      "url": "https://web.archive.org/web/20171024212340id_/http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+      "original_url": "http://www.mic.gov.to/ministrydepartment/14-govt-ministries/prime-ministers-office/1974-prime-minister-lord-tuivakano-has-named-his-new-cabinet-members",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_mic_20110104_cabinet_named.bin",
+        "bytes": 30867,
+        "sha256": "5217317070781a7dd180176ae38fd72ba9a0d5a6f9265b6a6932147630608289",
+        "sha1_base32": "GDF57EYWPOKROXHRMQE3PLUYWXV47WBX"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_mic_20110104_cabinet_named.txt",
+      "retrieval_utc": "2026-09-30T09:17:29.952836+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-named-20110104-facts.json",
+        "bytes": 4515,
+        "sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3"
+      },
+      "claim_ids": [
+        "to_dpm_vaipulu_cabinet_commences_20110104"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4515,
+        "sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3"
+      }
+    },
+    {
+      "source_id": "to_mic_20120213_foi_speech",
+      "url": "https://web.archive.org/web/20170906162059id_/http://www.mic.gov.to:80/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+      "original_url": "http://www.mic.gov.to/about-mic/videos-gallery/3414-speech-by-the-deputy-prime-minister-hon-samiu-kuita-vaipulu-at-the-tonga-national-foi-policy-consultation-workshop-on-monday-13-february-2012-english-version",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_mic_20120213_foi_speech.bin",
+        "bytes": 29486,
+        "sha256": "ecb526ea466ce71c98525d4e434ccefb77d2f0194459833ba4f1fb01789a37e0",
+        "sha1_base32": "SO3OMRQ6HE4UI6IOME22TAQTOJ3O2TF3"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_mic_20120213_foi_speech.txt",
+      "retrieval_utc": "2026-09-30T09:17:30.749154+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-foi-speech-20120213-facts.json",
+        "bytes": 4225,
+        "sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2"
+      },
+      "claim_ids": [
+        "to_dpm_vaipulu_styled_20120213"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4225,
+        "sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2"
+      }
+    },
+    {
+      "source_id": "to_mic_20130424_rti_speech",
+      "url": "https://web.archive.org/web/20171024223318id_/http://www.mic.gov.to/speeches/general-statements/4361-rti-workshop-speech-by-the-hon-samiu-vaipulu",
+      "original_url": "http://www.mic.gov.to/speeches/general-statements/4361-rti-workshop-speech-by-the-hon-samiu-vaipulu",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_mic_20130424_rti_speech.bin",
+        "bytes": 44363,
+        "sha256": "c7af0f2ac1ccdb5b295cdad7276a668e20763160532a9ffcd49dc94561eac770",
+        "sha1_base32": "2ILRD4K2EGNA3JX3DBXMXRBWIVHFDJUC"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_mic_20130424_rti_speech.txt",
+      "retrieval_utc": "2026-09-30T09:17:31.570671+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-rti-speech-20130424-facts.json",
+        "bytes": 4228,
+        "sha256": "38e6690a33fe1e09501f72fa473b49c05017d5c0e2e3baaae74b6f906a8dc3d5"
+      },
+      "claim_ids": [
+        "to_acting_pm_vaipulu_20130422"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4256,
+        "sha256": "2a5c95cb7ca153484afa408c46f1db9bf6bda71da0d568b350da58a11f82509b"
+      }
+    },
+    {
+      "source_id": "to_mic_20140619_half_mast",
+      "url": "https://web.archive.org/web/20200611163419id_/http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/4991-national-flag-to-be-flown-at-half-mast-for-hsh-prince-tuipelehake",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20140619_half_mast.bin",
+        "bytes": 33061,
+        "sha256": "94f91e69e78011d33d62996fcf71117fd8ddf0feb858486eb40a6f8ca17d5a97",
+        "sha1_base32": "PSHFNXUQRY3WZVVPHKBGASXNEXJCPVHF"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20140619_half_mast.txt",
+      "retrieval_utc": "2026-09-30T09:19:22.410021+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-half-mast-20140619-facts.json",
+        "bytes": 4214,
+        "sha256": "eb479026d4e41a4fcb326d60a926f6f3036c62a8c0fa6e7725d330c10368a1b2"
+      },
+      "claim_ids": [
+        "to_acting_pm_vaipulu_20140618"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4242,
+        "sha256": "4520331fda05eaf0e5a4443164510d096ddc20d16d4b51662fd78481d2423f2e"
+      }
+    },
+    {
+      "source_id": "to_mic_20140909_toloa",
+      "url": "https://web.archive.org/web/20170127082234id_/http://www.mic.gov.to:80/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/5089-restoration-of-toloa-rainforest",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20140909_toloa.bin",
+        "bytes": 30803,
+        "sha256": "b46af3a70632addfe0e2f05af77504ede91fb74299e5ae5d11de3d4b9332a9a3",
+        "sha1_base32": "UGP3AVKEQHTRPNSFNZGHQJWYCM2QKYFM"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20140909_toloa.txt",
+      "retrieval_utc": "2026-09-30T09:19:24.322796+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-toloa-rainforest-20140909-facts.json",
+        "bytes": 4998,
+        "sha256": "986518abc1a6b081388486bd8df68ec794f0b4d515664281e464dbb05f7c5aa4"
+      },
+      "claim_ids": [
+        "to_dpm_vaipulu_styled_20140905",
+        "to_acting_pm_vaipulu_20140905"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5026,
+        "sha256": "5d9ae407911b6eb04221f23f12116cfea465b65f4ffda5694dda2181cd1d2a93"
+      }
+    },
+    {
+      "source_id": "to_pmo_20141231_new_cabinet",
+      "url": "https://web.archive.org/web/20151002125546id_/http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+      "original_url": "http://www.pmo.gov.to/prime-minister-announces-new-cabinet-2/",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_pmo_20141231_new_cabinet.bin",
+        "bytes": 47371,
+        "sha256": "6ff556adae3b8d70096fd5520ae800e80d731d5c7f3d6fa7a1e96f19bc9ceb2f",
+        "sha1_base32": "KHRE4TT4F7LXPWWXHGCQOCIR2YA57N4A"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_pmo_20141231_new_cabinet.txt",
+      "retrieval_utc": "2026-09-30T09:19:25.497025+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20141231-facts.json",
+        "bytes": 5324,
+        "sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f"
+      },
+      "claim_ids": [
+        "to_dpm_sovaleni_appointment_recommended_20141231",
+        "to_dpm_sovaleni_cabinet_list_20141231"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5324,
+        "sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f"
+      }
+    },
+    {
+      "source_id": "to_mic_20150212_sovaleni_profile",
+      "url": "https://web.archive.org/web/20171024204047id_/http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+      "original_url": "http://www.mic.gov.to/ministers/5215-profile-hon-siaosi-sovaleni",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20150212_sovaleni_profile.bin",
+        "bytes": 32128,
+        "sha256": "279eaf8c7339092714b1a58989f8b96ddd6b178a18def8210e4130d098c256f3",
+        "sha1_base32": "ERLDIJQE7KRQSSJ37FTS736GFCWVHIGM"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20150212_sovaleni_profile.txt",
+      "retrieval_utc": "2026-09-30T09:19:26.274671+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-profile-20150212-facts.json",
+        "bytes": 4018,
+        "sha256": "5ac7d9d8becebf11af9117da3e70bc2db86fe59b142b9763d6b826963d39b207"
+      },
+      "claim_ids": [
+        "to_dpm_sovaleni_profile_20150212"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4018,
+        "sha256": "5ac7d9d8becebf11af9117da3e70bc2db86fe59b142b9763d6b826963d39b207"
+      }
+    },
+    {
+      "source_id": "to_mic_20151116_acting_pm_itu",
+      "url": "https://web.archive.org/web/20151206105609id_/http://mic.gov.to:80/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+      "original_url": "http://mic.gov.to/news-today/press-releases/5672-acting-prime-minister-meets-with-director-for-telecommunication-development-bureau-bdt-of-the-international-telecommunications-union-itu-mr-brahima-sanou",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20151116_acting_pm_itu.bin",
+        "bytes": 35533,
+        "sha256": "354e629b1495f9479b86cbe13ea81221f51734d7f06180fbe7c50450d6df7a66",
+        "sha1_base32": "3HLZBGVAYJVMIHIRLXKNANH2AFDK4F6K"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20151116_acting_pm_itu.txt",
+      "retrieval_utc": "2026-09-30T09:19:27.178946+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-itu-20151116-facts.json",
+        "bytes": 4397,
+        "sha256": "66492d0e7d532962ceea051ec7e4d0016492abd087ef21606021f569acf47808"
+      },
+      "claim_ids": [
+        "to_acting_pm_sovaleni_20151112"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4425,
+        "sha256": "c4591a9d39cd1ee853b230b33f29180d7ed01aa9c7d50b02aa1d32859a234707"
+      }
+    },
+    {
+      "source_id": "to_mic_20160907_renewable",
+      "url": "https://web.archive.org/web/20160916095045id_/http://www.mic.gov.to:80/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/6252-hon-siaosi-sovaleni-deputy-prime-minister-and-minister-for-meidecc-announced-tongas-commitment-to-a-100-renewable-energy-by-2035-",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20160907_renewable.bin",
+        "bytes": 31933,
+        "sha256": "71286caa8d86e3fddbb277a32ddbd22e2caeac0fb8d413401fb284fa60375f78",
+        "sha1_base32": "PDLLE3NSDBP5R465F7XSOFEP4YTGCHZL"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20160907_renewable.txt",
+      "retrieval_utc": "2026-09-30T09:19:28.386047+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-renewable-20160907-facts.json",
+        "bytes": 4223,
+        "sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23"
+      },
+      "claim_ids": [
+        "to_dpm_sovaleni_styled_20160904"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4223,
+        "sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23"
+      }
+    },
+    {
+      "source_id": "to_mic_20170404_acting_pm_whales",
+      "url": "https://web.archive.org/web/20170407191540id_/http://mic.gov.to:80/news-today/press-releases/6627-tongas-acting-pm-opens-the-first-regional-conference-on-whales",
+      "original_url": "http://mic.gov.to/news-today/press-releases/6627-tongas-acting-pm-opens-the-first-regional-conference-on-whales",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20170404_acting_pm_whales.bin",
+        "bytes": 36681,
+        "sha256": "22156a022914a44de0f4ed8f91b8b1fe0116abfb2128c57accbeb2c21a32eaa3",
+        "sha1_base32": "US6ON5K4IODORFSQMOY6XLOCDZFCJKZP"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20170404_acting_pm_whales.txt",
+      "retrieval_utc": "2026-09-30T09:19:29.166393+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-whales-20170404-facts.json",
+        "bytes": 4159,
+        "sha256": "6f8d24fe24c6adad12b8d46a4d50f594795fc5ed3ad2ecd75c8a9cb859a42461"
+      },
+      "claim_ids": [
+        "to_acting_pm_sovaleni_20170404"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4187,
+        "sha256": "61220f798758a00b6b09ca5e68b241f7a5ac3a55f5c9b919263071ab03f20e26"
+      }
+    },
+    {
+      "source_id": "to_mic_20170831_macbio",
+      "url": "https://web.archive.org/web/20170903073650id_/http://mic.gov.to:80/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+      "original_url": "http://mic.gov.to/news-today/press-releases/6882-caretaker-dpm-officially-launched-the-two-macbio-reports-for-tonga",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20170831_macbio.bin",
+        "bytes": 33077,
+        "sha256": "2d78ccd04685450a79cccc2d6cb0f3fbbab7917fbbb5014ff78d572d62f76d98",
+        "sha1_base32": "ZOTMYJOJOA37JKWA4JOU7FCOH2VLX4HR"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20170831_macbio.txt",
+      "retrieval_utc": "2026-09-30T09:19:30.024771+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-macbio-20170831-facts.json",
+        "bytes": 4270,
+        "sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e"
+      },
+      "claim_ids": [
+        "to_dpm_sovaleni_styled_20170830"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4270,
+        "sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e"
+      }
+    },
+    {
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "url": "https://web.archive.org/web/20170910020802id_/http://www.pmo.gov.to:80/ministerial-appointments/",
+      "original_url": "http://www.pmo.gov.to/ministerial-appointments/",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_pmo_20170906_ministerial_appointments.bin",
+        "bytes": 41468,
+        "sha256": "72b063fb52eac4bf6bcb4bbf347b49c22c2ac9f0614342ebab2dd2a4ab26b323",
+        "sha1_base32": "IRY5MMAQXTPRNUQ7NK4V7UTWFEX764QS"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_pmo_20170906_ministerial_appointments.txt",
+      "retrieval_utc": "2026-09-30T09:19:31.511029+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ministerial-appointments-20170906-facts.json",
+        "bytes": 7582,
+        "sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5"
+      },
+      "claim_ids": [
+        "to_dpm_sovaleni_revocation_recommended_20170901",
+        "to_dpm_maafu_appointment_recommended_20170901",
+        "to_dpm_maafu_royal_endorsement_effective_20170901",
+        "to_dpm_maafu_endorsement_conveyed_20170905",
+        "to_acting_pm_maafu_20170901"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 7582,
+        "sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5"
+      }
+    },
+    {
+      "source_id": "to_mic_20180122_cabinet_to",
+      "url": "https://web.archive.org/web/20181030055038id_/http://www.mic.gov.to/press-releases-tongan-version/7085-fakanofo-e-he-ene-afio-a-e-eiki-palmia-mo-e-houeiki-minisit-o-e-kapineti-a-ene-afio",
+      "original_url": "http://www.mic.gov.to/press-releases-tongan-version/7085-fakanofo-e-he-ene-afio-a-e-eiki-palmia-mo-e-houeiki-minisit-o-e-kapineti-a-ene-afio",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20180122_cabinet_to.bin",
+        "bytes": 34581,
+        "sha256": "f97d7a8f781f3466a5de7243f39d2e0f59e7d368d48da185ef1b6037a5c7c30c",
+        "sha1_base32": "VOWQQPKBHH22Z26AMFSOUZFJ7I5OJWDX"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20180122_cabinet_to.txt",
+      "retrieval_utc": "2026-09-30T09:19:32.703026+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-appointments-to-20180122-facts.json",
+        "bytes": 4602,
+        "sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2"
+      },
+      "claim_ids": [
+        "to_dpm_sika_appointment_effective_20180105"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4602,
+        "sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2"
+      }
+    },
+    {
+      "source_id": "to_mic_20180615_dpm_gita",
+      "url": "https://web.archive.org/web/20181030053741id_/http://www.mic.gov.to/news-today/press-releases/7343-tongan-deputy-pm-surveys-cyclone-gita-recovery-with-adf",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7343-tongan-deputy-pm-surveys-cyclone-gita-recovery-with-adf",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_mic_20180615_dpm_gita.bin",
+        "bytes": 30732,
+        "sha256": "934102be5923291e184b70b457a1956bed6b923b8446cd7d4bb482cf8990f5a8",
+        "sha1_base32": "JZUVESGFWU6LDWMGVI3KFOOK4T42TI3R"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_mic_20180615_dpm_gita.txt",
+      "retrieval_utc": "2026-09-30T09:19:33.797295+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-gita-survey-20180615-facts.json",
+        "bytes": 3917,
+        "sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4"
+      },
+      "claim_ids": [
+        "to_dpm_sika_styled_20180615"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 3917,
+        "sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4"
+      }
+    },
+    {
+      "source_id": "to_la_news_20181108_auditor",
+      "url": "https://web.archive.org/web/20190723035015id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/658-auditor-general-independent-to-carry-out-audit-work-according-to-lord-speaker",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/658-auditor-general-independent-to-carry-out-audit-work-according-to-lord-speaker",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_la_news_20181108_auditor.bin",
+        "bytes": 40794,
+        "sha256": "5ecaa85307a153cb0fe62ce7ad2f2f437fa67fc2a3c580976ba602e84b0dd878",
+        "sha1_base32": "BNXTYQG5TQ643UD2T2VULUPVNEL5YQHJ"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_la_news_20181108_auditor.txt",
+      "retrieval_utc": "2026-09-30T09:19:34.733754+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-auditor-news-20181108-facts.json",
+        "bytes": 4278,
+        "sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f"
+      },
+      "claim_ids": [
+        "to_dpm_sika_styled_20181108"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4278,
+        "sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f"
+      }
+    },
+    {
+      "source_id": "to_la_term_report_2017_2021",
+      "url": "https://web.archive.org/web/20211124235017id_/https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+      "original_url": "https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_la_term_report_2017_2021.bin",
+        "bytes": 15526342,
+        "sha256": "37d85723dd6c1a794c60431135d305dd0f3191d47f022ec2465a108cb3a76f87",
+        "sha1_base32": "JXHJTSAKWX26LB5RK2KDEALDBVIAHCPF"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_la_term_report_2017_2021.txt",
+      "retrieval_utc": "2026-09-30T09:19:36.678640+00:00",
+      "source_character_encoding": "not applicable (PDF; text layer read and pages rendered)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-term-report-2017-2021-facts.json",
+        "bytes": 6163,
+        "sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e"
+      },
+      "claim_ids": [
+        "to_la_report_sika_dpm_jan2018_sep2019",
+        "to_la_report_faotusia_dpm_oct2019_2020",
+        "to_la_report_maafu_dpm_from_dec2020"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 6163,
+        "sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e"
+      }
+    },
+    {
+      "source_id": "to_pmo_20191010_new_cabinet",
+      "url": "https://web.archive.org/web/20191011220754id_/https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+      "original_url": "https://pmo.gov.to/index.php/2019/10/10/prime-minister-announces-new-cabinet-ministers/",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_pmo_20191010_new_cabinet.bin",
+        "bytes": 48927,
+        "sha256": "81d5b44876e6fcce84072d4d67ad1175ae349fa68f0ce7e4c1a694f2aeb71bf7",
+        "sha1_base32": "SY5IOEXT2MUFRMDDL5FASVNCJPCKEEHM"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_pmo_20191010_new_cabinet.txt",
+      "retrieval_utc": "2026-09-30T09:19:37.514577+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20191010-facts.json",
+        "bytes": 4194,
+        "sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c"
+      },
+      "claim_ids": [
+        "to_dpm_faotusia_appointment_effective_20191009"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4194,
+        "sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c"
+      }
+    },
+    {
+      "source_id": "to_la_news_20191028_oath",
+      "url": "https://web.archive.org/web/20191122121749id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/704-prime-minister-cabinet-members-took-oath-in-parliament",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_la_news_20191028_oath.bin",
+        "bytes": 37376,
+        "sha256": "19e943fd9abc5f7cb86cfe8cee22cad447ac3e37e6a33dc98aa82ac4cdc9f4a1",
+        "sha1_base32": "6IKOS25DNECLQGQGN5LB7GFE5ZBQSJNF"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_la_news_20191028_oath.txt",
+      "retrieval_utc": "2026-09-30T09:19:39.008010+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-cabinet-oath-news-20191028-facts.json",
+        "bytes": 4105,
+        "sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65"
+      },
+      "claim_ids": [
+        "to_dpm_faotusia_oath_news_20191028"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4105,
+        "sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65"
+      }
+    },
+    {
+      "source_id": "to_pmo_20200416_dpm_clarification",
+      "url": "https://web.archive.org/web/20230802205155id_/https://pmo.gov.to/wp-content/uploads/2020/04/image-12.png",
+      "original_url": "https://pmo.gov.to/wp-content/uploads/2020/04/image-12.png",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_pmo_20200416_dpm_clarification.bin",
+        "bytes": 88720,
+        "sha256": "ab551fc715cfb705d662eb9f775fa8b4fc0432210e7b66688a89ea6c6ce59331",
+        "sha1_base32": "WN7YSCMECPNWIKIMOMXV3POLSG2BQAUN"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_pmo_20200416_dpm_clarification.txt",
+      "retrieval_utc": "2026-09-30T09:19:40.049520+00:00",
+      "source_character_encoding": "not applicable (PNG image; text read visually)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-dpm-clarification-to-20200416-facts.json",
+        "bytes": 4620,
+        "sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47"
+      },
+      "claim_ids": [
+        "to_dpm_faotusia_styled_20200416"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4620,
+        "sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47"
+      }
+    },
+    {
+      "source_id": "to_la_news_20210901_faotusia",
+      "url": "https://web.archive.org/web/20210902180606id_/https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+      "original_url": "https://parliament.gov.to/media-centre/latest-news/latest-news-in-english/841-the-lord-speaker-and-the-members-of-the-legislative-assembly-are-deeply-saddened-by-the-passing-of-the-late-hon-sione-vuna-fa-otusia-people-s-representative-for-tongatapu-7",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\bodies\\to_la_news_20210901_faotusia.bin",
+        "bytes": 41553,
+        "sha256": "ec4ae5f74b62bd61e98fea8b2dceb7a0a76bbd9793c4c8a6eb039db54d604f5c",
+        "sha1_base32": "RP2V7A54M3UTJTHYVY4F5KEJSFKZSNUU"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-02\\headers\\to_la_news_20210901_faotusia.txt",
+      "retrieval_utc": "2026-09-30T09:19:41.194021+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-faotusia-condolence-20210901-facts.json",
+        "bytes": 4391,
+        "sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87"
+      },
+      "claim_ids": [
+        "to_dpm_faotusia_resignation_2020_retro"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4391,
+        "sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87"
+      }
+    },
+    {
+      "source_id": "to_la_member_maafu_2021",
+      "url": "https://web.archive.org/web/20210421132335id_/https://parliament.gov.to/members-of-parliament/ministers/818-lord-ma-afu",
+      "original_url": "https://parliament.gov.to/members-of-parliament/ministers/818-lord-ma-afu",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_la_member_maafu_2021.bin",
+        "bytes": 40129,
+        "sha256": "b9c6399c3df8ed2331740a20d3abc0523e7b1288cbf727fa1478bea1f7ca7136",
+        "sha1_base32": "CLT7UIXEYPTK6QI4AUCNRGKS75CIVA2B"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_la_member_maafu_2021.txt",
+      "retrieval_utc": "2026-09-30T09:18:17.314816+00:00",
+      "source_character_encoding": "utf-8",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-member-maafu-2021-facts.json",
+        "bytes": 4181,
+        "sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed"
+      },
+      "claim_ids": [
+        "to_dpm_maafu_member_page_20210421"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 4181,
+        "sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed"
+      }
+    },
+    {
+      "source_id": "to_pmo_20211213_maafu_death",
+      "url": "https://web.archive.org/web/20250415130759id_/https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+      "original_url": "https://pmo.gov.to/wp-content/uploads/2021/12/PR-LordMaafu.jpg",
+      "body": {
+        "path": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\bodies\\to_pmo_20211213_maafu_death.bin",
+        "bytes": 258072,
+        "sha256": "3adfa6775d2554271056c0514d421051a03092c38087cbb3c0c0c259ee18978a",
+        "sha1_base32": "NSVZU6JEBDNBFSYLPDEWUQ6NQ3G4EHGG"
+      },
+      "headers": "D:\\spheres-offload\\codex-next-20260928\\to36-review-evidence-01\\retrieval-01\\headers\\to_pmo_20211213_maafu_death.txt",
+      "retrieval_utc": "2026-09-30T09:18:18.593187+00:00",
+      "source_character_encoding": "not applicable (JPEG image; text read visually)",
+      "extract": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-maafu-death-20211213-facts.json",
+        "bytes": 5222,
+        "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd"
+      },
+      "claim_ids": [
+        "to_dpm_maafu_styled_at_death_20211213",
+        "to_dpm_maafu_death_20211212"
+      ],
+      "independently_rehashed": true,
+      "repaired_extract_git_bytes": {
+        "bytes": 5222,
+        "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd"
+      }
+    }
+  ]
+}

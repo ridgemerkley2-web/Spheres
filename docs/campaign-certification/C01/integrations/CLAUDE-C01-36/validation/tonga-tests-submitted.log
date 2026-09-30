@@ -1,0 +1,14 @@
+.......................................F.................................................
+======================================================================
+FAIL: test_submitted_report_and_accepted_handoff_close_no_parent_gate (test_tonga_pm_1990_2019_c01_08.TongaPrimeMinisterTests.test_submitted_report_and_accepted_handoff_close_no_parent_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-to36\tools\avatars\test_tonga_pm_1990_2019_c01_08.py", line 557, in test_submitted_report_and_accepted_handoff_close_no_parent_gate
+    self.assertTrue((research.ROOT / 'docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md').is_file())
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 89 tests in 9.748s
+
+FAILED (failures=1)

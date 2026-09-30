@@ -1,0 +1,74 @@
+[
+  {
+    "name": "tonga-tests-repaired",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_tonga*.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:01.522194+00:00",
+    "finish": "2026-09-30T09:28:07.859065+00:00",
+    "exit": 0
+  },
+  {
+    "name": "research-tests-repaired",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign_research.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:07.865510+00:00",
+    "finish": "2026-09-30T09:28:08.751649+00:00",
+    "exit": 0
+  },
+  {
+    "name": "campaign-tests-repaired",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign_census.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:08.759248+00:00",
+    "finish": "2026-09-30T09:28:09.179574+00:00",
+    "exit": 0
+  },
+  {
+    "name": "atlas-tests-repaired",
+    "command": [
+      "node",
+      "--test",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:09.186310+00:00",
+    "finish": "2026-09-30T09:28:09.363496+00:00",
+    "exit": 0
+  }
+]

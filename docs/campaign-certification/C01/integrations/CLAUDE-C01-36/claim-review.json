@@ -1,0 +1,399 @@
+{
+  "reviewer": "Codex /root/review_gap_submission",
+  "reviewed_commit": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+  "repaired_commit": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+  "claims_reviewed": 53,
+  "holder_observations": 10,
+  "distinct_people": 9,
+  "review_method": "Read original HTML at material locators, visual PDF pages and original images; distinguish publication, capture, event and effective dates. Tongan text reading is a bounded reviewer interpretation, not a certified translation.",
+  "visual_reading": {
+    "pdf_pages_one_based": [
+      206,
+      208,
+      209
+    ],
+    "printed_pages": [
+      203,
+      205,
+      206
+    ],
+    "images": [
+      "to_pmo_20200416_dpm_clarification",
+      "to_pmo_20211213_maafu_death"
+    ],
+    "render_caveats": "Poppler warned about Symbol and ArialUnicode display fonts; reviewed table text was legible. Transparent PNG was composited on white locally solely to read it; original bytes/hash unchanged."
+  },
+  "claims": [
+    {
+      "claim_id": "to_dpm_kavaliku_retirement_announced_2000",
+      "source_id": "to_pmo_2000_press_releases",
+      "locator": "Kavaliku item: heading and first paragraph",
+      "result": "supported_in_bounded_scope",
+      "note": "The retirement date is prospective and the appointment year retrospective; neither becomes a holder boundary."
+    },
+    {
+      "claim_id": "to_dpm_kavaliku_appointed_1991_retro",
+      "source_id": "to_pmo_2000_press_releases",
+      "locator": "Kavaliku item: career paragraph",
+      "result": "supported_in_bounded_scope",
+      "note": "The retirement date is prospective and the appointment year retrospective; neither becomes a holder boundary."
+    },
+    {
+      "claim_id": "to_dpm_kavaliku_listed_20001106",
+      "source_id": "to_pmo_news_in_brief_2001",
+      "locator": "Table 'DATES / EVENTS', row dated 6/11/00",
+      "result": "supported_in_bounded_scope",
+      "note": "Index date is an attestation, not an appointment or completed retirement."
+    },
+    {
+      "claim_id": "to_dpm_tupou_appointment_effective_20010124",
+      "source_id": "to_pmo_20010124_pm_address",
+      "locator": "Address, appointment paragraph and list item 2",
+      "result": "supported_in_bounded_scope",
+      "note": "The royal consent and explicit effective day support the structured start."
+    },
+    {
+      "claim_id": "to_dpm_tupou_resignation_accepted_20010928",
+      "source_id": "to_pmo_20010928_tupou_resignation_to",
+      "locator": "Paragraph 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Tongan resignation, acceptance and acting appointment are separate events on the stated day; acting deputy is not a substantive holder."
+    },
+    {
+      "claim_id": "to_dpm_tupou_appointed_jan2001_retro",
+      "source_id": "to_pmo_20010928_tupou_resignation_to",
+      "locator": "Paragraph 5",
+      "result": "supported_in_bounded_scope",
+      "note": "Tongan resignation, acceptance and acting appointment are separate events on the stated day; acting deputy is not a substantive holder."
+    },
+    {
+      "claim_id": "to_acting_dpm_edwards_appointed_20010928",
+      "source_id": "to_pmo_20010928_tupou_resignation_to",
+      "locator": "Paragraphs 6 and 10",
+      "result": "supported_in_bounded_scope",
+      "note": "Tongan resignation, acceptance and acting appointment are separate events on the stated day; acting deputy is not a substantive holder."
+    },
+    {
+      "claim_id": "to_acting_dpm_edwards_20020111",
+      "source_id": "to_pmo_20020111_acting_dpm_statement",
+      "locator": "Date line and byline",
+      "result": "supported_in_bounded_scope",
+      "note": "The dated acting-deputy byline supports only the acting claim."
+    },
+    {
+      "claim_id": "to_dpm_cocker_abroad_20020513",
+      "source_id": "to_pmo_20020514_acting_dpm_paunga",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "The effective acting appointment attests Cocker as substantive deputy abroad; it does not date Cocker's appointment."
+    },
+    {
+      "claim_id": "to_acting_dpm_paunga_20020513",
+      "source_id": "to_pmo_20020514_acting_dpm_paunga",
+      "locator": "Heading and paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "The effective acting appointment attests Cocker as substantive deputy abroad; it does not date Cocker's appointment."
+    },
+    {
+      "claim_id": "to_dpm_cocker_wssd_statement_20020903",
+      "source_id": "to_pmo_20020903_wssd_statement",
+      "locator": "Heading and date line",
+      "result": "supported_in_bounded_scope",
+      "note": "Statement heading and Johannesburg date support the holder name and event attestation."
+    },
+    {
+      "claim_id": "to_dpm_cocker_appointment_confirmed_20040824",
+      "source_id": "to_pmo_20040909_confirmation_of_appointments",
+      "locator": "Paragraph 1 and list item 2",
+      "result": "supported_in_bounded_scope",
+      "note": "The stated effective date and later confirmation release remain distinct; no new holder term is created."
+    },
+    {
+      "claim_id": "to_acting_pm_cocker_20050410",
+      "source_id": "to_pmo_20050411_pope_homage",
+      "locator": "Paragraph 1",
+      "result": "supported_with_precision_repair",
+      "note": "Acting PM on 10 April is explicit; an absence is not. Unsupported causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_cocker_styled_20060308",
+      "source_id": "to_pmo_20060310_ub40_concert",
+      "locator": "Paragraphs 1-2",
+      "result": "supported_in_bounded_scope",
+      "note": "Event day differs from posting day; substantive deputy and separate acting PM are distinguishable."
+    },
+    {
+      "claim_id": "to_dpm_office_with_health_20060609",
+      "source_id": "to_pmo_20060609_pohiva_statements",
+      "locator": "Paragraph 5",
+      "result": "supported_in_bounded_scope",
+      "note": "The office is unnamed; no holder identity is inferred."
+    },
+    {
+      "claim_id": "to_dpm_tangi_styled_20060808",
+      "source_id": "to_pmo_20060809_common_sense",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "The previous-night broadcast supports 8 August attestation, not an appointment day."
+    },
+    {
+      "claim_id": "to_dpm_tangi_represents_government_20090114",
+      "source_id": "to_pmo_20090114_hauofa_funeral",
+      "locator": "Date line and paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Release-day styling is not shifted to the next-day funeral."
+    },
+    {
+      "claim_id": "to_acting_pm_tangi_australia_day_2009",
+      "source_id": "to_pmo_2009_australia_day_speech",
+      "locator": "Page title and speech text",
+      "result": "supported_with_precision_repair",
+      "note": "The speech title supplies acting status and year only; no day or reason for acting is stated. Causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_tangi_throne_reply_20100624",
+      "source_id": "to_pmo_20100624_throne_reply",
+      "locator": "Page heading, date line and salutations",
+      "result": "supported_in_bounded_scope",
+      "note": "Tongan title supplies deputy identity and the dated throne reply."
+    },
+    {
+      "claim_id": "to_dpm_tangi_styled_life_peer_20101230",
+      "source_id": "to_mic_20101230_lord_tangi",
+      "locator": "Paragraphs 1-2",
+      "result": "supported_in_bounded_scope",
+      "note": "The interim wording and life-peerage date do not establish an office end; May 2006 remains month-only."
+    },
+    {
+      "claim_id": "to_dpm_tangi_appointed_may2006_retro",
+      "source_id": "to_mic_20101230_lord_tangi",
+      "locator": "Final paragraph",
+      "result": "supported_in_bounded_scope",
+      "note": "The interim wording and life-peerage date do not establish an office end; May 2006 remains month-only."
+    },
+    {
+      "claim_id": "to_dpm_vaipulu_appointment_reported_20110103",
+      "source_id": "to_mic_20110103_vaipulu_appointed",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Report of appointment is kept separate from the following-day Cabinet commencement."
+    },
+    {
+      "claim_id": "to_dpm_vaipulu_cabinet_commences_20110104",
+      "source_id": "to_mic_20110104_cabinet_named",
+      "locator": "Paragraph 1 and the first list entry after the Prime Minister",
+      "result": "supported_in_bounded_scope",
+      "note": "Explicit Cabinet commencement supplies the structured start."
+    },
+    {
+      "claim_id": "to_dpm_vaipulu_styled_20120213",
+      "source_id": "to_mic_20120213_foi_speech",
+      "locator": "Page title",
+      "result": "supported_in_bounded_scope",
+      "note": "Speech-event date, not later website posting date, is the attestation."
+    },
+    {
+      "claim_id": "to_acting_pm_vaipulu_20130422",
+      "source_id": "to_mic_20130424_rti_speech",
+      "locator": "Lead paragraph",
+      "result": "supported_with_precision_repair",
+      "note": "Workshop event day is 22 April; acting status is explicit but absence is not. Causal note repaired."
+    },
+    {
+      "claim_id": "to_acting_pm_vaipulu_20140618",
+      "source_id": "to_mic_20140619_half_mast",
+      "locator": "Paragraphs 1 and 2",
+      "result": "supported_with_precision_repair",
+      "note": "Approval on 18 June is distinct from release/posting and funeral dates. Absence is not stated; causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_vaipulu_styled_20140905",
+      "source_id": "to_mic_20140909_toloa",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "The event sentence states both roles; acting PM stays a separate claim. Absence is not stated; causal note repaired."
+    },
+    {
+      "claim_id": "to_acting_pm_vaipulu_20140905",
+      "source_id": "to_mic_20140909_toloa",
+      "locator": "Paragraph 1",
+      "result": "supported_with_precision_repair",
+      "note": "The event sentence states both roles; acting PM stays a separate claim. Absence is not stated; causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_appointment_recommended_20141231",
+      "source_id": "to_pmo_20141231_new_cabinet",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Recommendation/forecast does not prove royal appointment; list supplies only attestation. Conflicting IPU lead is not imported as a boundary."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_cabinet_list_20141231",
+      "source_id": "to_pmo_20141231_new_cabinet",
+      "locator": "List entry 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Recommendation/forecast does not prove royal appointment; list supplies only attestation. Conflicting IPU lead is not imported as a boundary."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_profile_20150212",
+      "source_id": "to_mic_20150212_sovaleni_profile",
+      "locator": "Profile fields NAME and MINISTERIAL PORTFOLIO",
+      "result": "supported_in_bounded_scope",
+      "note": "Contemporary profile styles the deputy without an appointment date."
+    },
+    {
+      "claim_id": "to_acting_pm_sovaleni_20151112",
+      "source_id": "to_mic_20151116_acting_pm_itu",
+      "locator": "Paragraph 1",
+      "result": "supported_with_precision_repair",
+      "note": "Acting status during the 12–13 November visit supports the event claim; no acting-term bounds or absence cause. Causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_styled_20160904",
+      "source_id": "to_mic_20160907_renewable",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "The 4 September press conference is distinct from the 7 September posting."
+    },
+    {
+      "claim_id": "to_acting_pm_sovaleni_20170404",
+      "source_id": "to_mic_20170404_acting_pm_whales",
+      "locator": "Paragraph 1",
+      "result": "supported_with_precision_repair",
+      "note": "The same-morning acting status is explicit; absence is not. Causal note repaired."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_styled_20170830",
+      "source_id": "to_mic_20170831_macbio",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Previous-evening event supports 30 August. A URL slug alone is not used to assert caretaker status."
+    },
+    {
+      "claim_id": "to_dpm_sovaleni_revocation_recommended_20170901",
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Revocation recommendation, new appointment recommendation, royal endorsement effective day, letter receipt and acting service are separate. Only this acting-PM source explicitly says the PM is abroad."
+    },
+    {
+      "claim_id": "to_dpm_maafu_appointment_recommended_20170901",
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "locator": "Paragraph 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Revocation recommendation, new appointment recommendation, royal endorsement effective day, letter receipt and acting service are separate. Only this acting-PM source explicitly says the PM is abroad."
+    },
+    {
+      "claim_id": "to_dpm_maafu_royal_endorsement_effective_20170901",
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "locator": "Paragraph 3",
+      "result": "supported_in_bounded_scope",
+      "note": "Revocation recommendation, new appointment recommendation, royal endorsement effective day, letter receipt and acting service are separate. Only this acting-PM source explicitly says the PM is abroad."
+    },
+    {
+      "claim_id": "to_dpm_maafu_endorsement_conveyed_20170905",
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "locator": "Paragraph 3",
+      "result": "supported_in_bounded_scope",
+      "note": "Revocation recommendation, new appointment recommendation, royal endorsement effective day, letter receipt and acting service are separate. Only this acting-PM source explicitly says the PM is abroad."
+    },
+    {
+      "claim_id": "to_acting_pm_maafu_20170901",
+      "source_id": "to_pmo_20170906_ministerial_appointments",
+      "locator": "Paragraph 4",
+      "result": "supported_in_bounded_scope",
+      "note": "Revocation recommendation, new appointment recommendation, royal endorsement effective day, letter receipt and acting service are separate. Only this acting-PM source explicitly says the PM is abroad."
+    },
+    {
+      "claim_id": "to_dpm_sika_appointment_effective_20180105",
+      "source_id": "to_mic_20180122_cabinet_to",
+      "locator": "Paragraph 1 and list item 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Tongan appointment list makes 5 January effective for Cabinet, including Sika. No predecessor end inferred."
+    },
+    {
+      "claim_id": "to_dpm_sika_styled_20180615",
+      "source_id": "to_mic_20180615_dpm_gita",
+      "locator": "Paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "Release styles Sika as deputy without an appointment or end day."
+    },
+    {
+      "claim_id": "to_dpm_sika_styled_20181108",
+      "source_id": "to_la_news_20181108_auditor",
+      "locator": "Paragraph 6",
+      "result": "supported_in_bounded_scope",
+      "note": "The article dates the attestation; last-week parliamentary remarks do not identify an exact event day."
+    },
+    {
+      "claim_id": "to_la_report_sika_dpm_jan2018_sep2019",
+      "source_id": "to_la_term_report_2017_2021",
+      "locator": "PDF page 208 (printed page 205), appendix 1 table",
+      "result": "supported_in_bounded_scope",
+      "note": "PDF pages 206/208/209 (printed 203/205/206) visually read. Ma'afu December 2020, Sika January 2018–September 2019, Fa'otusia October 2019–2020 remain month/year-only claims."
+    },
+    {
+      "claim_id": "to_la_report_faotusia_dpm_oct2019_2020",
+      "source_id": "to_la_term_report_2017_2021",
+      "locator": "PDF page 209 (printed page 206), appendix 1 table",
+      "result": "supported_in_bounded_scope",
+      "note": "PDF pages 206/208/209 (printed 203/205/206) visually read. Ma'afu December 2020, Sika January 2018–September 2019, Fa'otusia October 2019–2020 remain month/year-only claims."
+    },
+    {
+      "claim_id": "to_la_report_maafu_dpm_from_dec2020",
+      "source_id": "to_la_term_report_2017_2021",
+      "locator": "PDF page 206 (printed page 203), appendix 1 table",
+      "result": "supported_in_bounded_scope",
+      "note": "PDF pages 206/208/209 (printed 203/205/206) visually read. Ma'afu December 2020, Sika January 2018–September 2019, Fa'otusia October 2019–2020 remain month/year-only claims."
+    },
+    {
+      "claim_id": "to_dpm_faotusia_appointment_effective_20191009",
+      "source_id": "to_pmo_20191010_new_cabinet",
+      "locator": "Paragraph 1 and list entry 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Explicit royal appointment effective 9 October supports start; no predecessor end inferred."
+    },
+    {
+      "claim_id": "to_dpm_faotusia_oath_news_20191028",
+      "source_id": "to_la_news_20191028_oath",
+      "locator": "Paragraph 1 and list item 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Later parliamentary oath remains an event, not a replacement appointment date."
+    },
+    {
+      "claim_id": "to_dpm_faotusia_styled_20200416",
+      "source_id": "to_pmo_20200416_dpm_clarification",
+      "locator": "Release image: date line, heading and paragraphs 1 and 3",
+      "result": "supported_in_bounded_scope",
+      "note": "PNG visually read on white background to display transparency: release date, named deputy, medical travel and continued support match. No office end stated."
+    },
+    {
+      "claim_id": "to_dpm_faotusia_resignation_2020_retro",
+      "source_id": "to_la_news_20210901_faotusia",
+      "locator": "Paragraph 2",
+      "result": "supported_in_bounded_scope",
+      "note": "Retrospective resignation year remains unstructured; death is not promoted to the deputy term end."
+    },
+    {
+      "claim_id": "to_dpm_maafu_member_page_20210421",
+      "source_id": "to_la_member_maafu_2021",
+      "locator": "Page heading and first line",
+      "result": "supported_in_bounded_scope",
+      "note": "Undated member page attests the website at capture, not appointment; identity and office match."
+    },
+    {
+      "claim_id": "to_dpm_maafu_styled_at_death_20211213",
+      "source_id": "to_pmo_20211213_maafu_death",
+      "locator": "Release image, paragraph 1",
+      "result": "supported_in_bounded_scope",
+      "note": "JPEG visually read: deputy styling at death plus explicit death on 12 December supports end; 13 December release remains distinct."
+    },
+    {
+      "claim_id": "to_dpm_maafu_death_20211212",
+      "source_id": "to_pmo_20211213_maafu_death",
+      "locator": "Release image, paragraph 2",
+      "result": "supported_in_bounded_scope",
+      "note": "JPEG visually read: deputy styling at death plus explicit death on 12 December supports end; 13 December release remains distinct."
+    }
+  ]
+}

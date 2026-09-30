@@ -1,0 +1,17 @@
+F
+======================================================================
+FAIL: test_acting_service_does_not_invent_an_absence (test_tonga_deputy_prime_ministers_c01_36.TongaDeputyPrimeMinisterTests.test_acting_service_does_not_invent_an_absence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\spheres-offload\codex-next-20260928\review-to36\tools\avatars\test_tonga_deputy_prime_ministers_c01_36.py", line 666, in test_acting_service_does_not_invent_an_absence
+    dpm_invariants(self.packet)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\review-to36\tools\avatars\test_tonga_deputy_prime_ministers_c01_36.py", line 393, in dpm_invariants
+    assert 'during an absence' not in claims[cid]['uncertainty'], 'unsupported acting-service cause'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unsupported acting-service cause
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (failures=1)

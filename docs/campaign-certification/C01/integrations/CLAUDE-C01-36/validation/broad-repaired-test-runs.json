@@ -1,0 +1,42 @@
+[
+  {
+    "name": "research-broad-repaired",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test*research*.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:38.468819+00:00",
+    "finish": "2026-09-30T09:28:44.092231+00:00",
+    "exit": 0
+  },
+  {
+    "name": "campaign-broad-repaired",
+    "command": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "cwd": "D:\\spheres-offload\\codex-next-20260928\\review-to36",
+    "start": "2026-09-30T09:28:44.098489+00:00",
+    "finish": "2026-09-30T09:28:45.309720+00:00",
+    "exit": 0
+  }
+]

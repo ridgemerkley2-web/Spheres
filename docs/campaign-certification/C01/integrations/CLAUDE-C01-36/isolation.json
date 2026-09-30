@@ -1,0 +1,128 @@
+{
+  "base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+  "submitted": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+  "repaired": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+  "previous_168_sources_exact": true,
+  "all_previous_claims_holders_and_order_exact": true,
+  "organizations_exact": true,
+  "speaker_institution_exact": true,
+  "runtime_and_runtime_data_delta": [],
+  "allowed_additions": [
+    {
+      "path": "/sources",
+      "old_rows": 168,
+      "new_rows": 207,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_prime_minister/roles/to_pm/sources",
+      "old_rows": 64,
+      "new_rows": 72,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_prime_minister/roles/to_pm/claim_ids",
+      "old_rows": 83,
+      "new_rows": 91,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_prime_minister/sources",
+      "old_rows": 69,
+      "new_rows": 77,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_prime_minister/claim_ids",
+      "old_rows": 88,
+      "new_rows": 96,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_prime_minister/coverage/unresolved",
+      "old_rows": 18,
+      "new_rows": 19,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/roles/to_deputy_pm/scope_note",
+      "kind": "new scope note"
+    },
+    {
+      "path": "/institutions/to_cabinet/roles/to_deputy_pm/sources",
+      "old_rows": 5,
+      "new_rows": 38,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/roles/to_deputy_pm/claim_ids",
+      "old_rows": 7,
+      "new_rows": 52,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/roles/to_deputy_pm/holder_claims",
+      "old_rows": 4,
+      "new_rows": 14,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/sources",
+      "old_rows": 14,
+      "new_rows": 47,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/claim_ids",
+      "old_rows": 17,
+      "new_rows": 62,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/institutions/to_cabinet/coverage/unresolved",
+      "old_rows": 5,
+      "new_rows": 11,
+      "existing_rows_exact_and_ordered": true
+    },
+    {
+      "path": "/coverage/unresolved",
+      "old_rows": 14,
+      "new_rows": 15,
+      "existing_rows_exact_and_ordered": true
+    }
+  ],
+  "precision_repair_claim_ids": [
+    "to_acting_pm_cocker_20050410",
+    "to_acting_pm_tangi_australia_day_2009",
+    "to_acting_pm_vaipulu_20130422",
+    "to_acting_pm_vaipulu_20140618",
+    "to_acting_pm_vaipulu_20140905",
+    "to_acting_pm_sovaleni_20151112",
+    "to_acting_pm_sovaleni_20170404"
+  ],
+  "repair_changes_holder_or_date": false,
+  "census_inherited_stale_input": {
+    "path": "spheres-sim/src/government.rs",
+    "recorded_bytes": 848551,
+    "current_bytes": 849546,
+    "recorded_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "current_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+    "unchanged_git_pins": [
+      {
+        "path": "spheres-sim/src/government.rs",
+        "base_git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+        "submitted_git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+        "git_blob_bytes": 849546,
+        "git_blob_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+      },
+      {
+        "path": "docs/campaign-certification/C01/census.json",
+        "base_git_blob": "db7f433e981e669b92ddbe645dcbcbb5ac814d9a",
+        "submitted_git_blob": "db7f433e981e669b92ddbe645dcbcbb5ac814d9a",
+        "git_blob_bytes": 6105,
+        "git_blob_sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244"
+      }
+    ],
+    "action": "No census edit. Root must regenerate against combined integration."
+  }
+}

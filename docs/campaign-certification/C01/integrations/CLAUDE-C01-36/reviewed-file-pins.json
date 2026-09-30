@@ -1,0 +1,655 @@
+{
+  "scope": "Git blob bytes are authoritative. Raw checkout hashes are separately labeled; only CRLF→LF comparison is permitted. No content normalization.",
+  "files": [
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "234d9672a0469c9e6f691ddc965499bc4e19e878",
+      "git_blob_bytes": 118273,
+      "git_blob_sha256": "15ab52392e569a7da9fb4154f04888bae580d224ee6442edf08a805d9b310795",
+      "raw_checkout": {
+        "bytes": 118273,
+        "sha256": "15ab52392e569a7da9fb4154f04888bae580d224ee6442edf08a805d9b310795"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-auditor-news-20181108-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "7c56e0e939684e445ed0e2234f08c3300fe53c3e",
+      "git_blob_bytes": 4278,
+      "git_blob_sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f",
+      "raw_checkout": {
+        "bytes": 4278,
+        "sha256": "9fedeb4f921a1149c5bef346635271d4d3a126b66c54cd6cc54a4d51415a2b9f"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-cabinet-oath-news-20191028-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "eba6b103353cc095a864388b4efcbdcd88dede28",
+      "git_blob_bytes": 4105,
+      "git_blob_sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65",
+      "raw_checkout": {
+        "bytes": 4105,
+        "sha256": "a7a101b7ad79fbd09106d8279349b8c02f2c35707b7b665ef3bf68e29c9fec65"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-faotusia-condolence-20210901-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "c256c860a83440810e33eb90a88b643e28c2447f",
+      "git_blob_bytes": 4391,
+      "git_blob_sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87",
+      "raw_checkout": {
+        "bytes": 4391,
+        "sha256": "5131b0217ef0c1d88baa0d6c8b1df9e9abcd077152cd86ef018b8b2ae9473c87"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-member-maafu-2021-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "d1f7992056bac2a2e90ed6ebb7b2fc1ee09eeb64",
+      "git_blob_bytes": 4181,
+      "git_blob_sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed",
+      "raw_checkout": {
+        "bytes": 4181,
+        "sha256": "01ddaef629792c0dba2517ba6f4378ddc5620b0b6fa2774271825ff7d74fdfed"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-term-report-2017-2021-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "5e305df676de7086f3da244fb45cc8ca78a1417f",
+      "git_blob_bytes": 6163,
+      "git_blob_sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e",
+      "raw_checkout": {
+        "bytes": 6163,
+        "sha256": "26b304ea810382f628a75f62b954b01545b668da238b3fce34b314db37ceb59e"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-itu-20151116-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "10a8ac85cdc2a444838c8d9903c62d1fcc60e5d6",
+      "git_blob_bytes": 4425,
+      "git_blob_sha256": "c4591a9d39cd1ee853b230b33f29180d7ed01aa9c7d50b02aa1d32859a234707",
+      "raw_checkout": {
+        "bytes": 4425,
+        "sha256": "c4591a9d39cd1ee853b230b33f29180d7ed01aa9c7d50b02aa1d32859a234707"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-whales-20170404-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "25f93c232b4170820cadcc5807b72af7b1f339f8",
+      "git_blob_bytes": 4187,
+      "git_blob_sha256": "61220f798758a00b6b09ca5e68b241f7a5ac3a55f5c9b919263071ab03f20e26",
+      "raw_checkout": {
+        "bytes": 4187,
+        "sha256": "61220f798758a00b6b09ca5e68b241f7a5ac3a55f5c9b919263071ab03f20e26"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-appointments-to-20180122-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "5fa6a4e7c2de7bfd985a94a3c8d92f9d9fbee5e4",
+      "git_blob_bytes": 4602,
+      "git_blob_sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2",
+      "raw_checkout": {
+        "bytes": 4602,
+        "sha256": "00c3d2183e7d105477c8aabb26744c73859df31c2bdda7f6f2805d8e2d00f5f2"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-named-20110104-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "7b888b40bff71cc36133725c7444f237e7a983e0",
+      "git_blob_bytes": 4515,
+      "git_blob_sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3",
+      "raw_checkout": {
+        "bytes": 4515,
+        "sha256": "5d1dd4bb9366d0de444c34d4d9c91ede4bbff1235eb978c9d6e701d7c506f6f3"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-gita-survey-20180615-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "8445b0c08f2edb69a2fbdef8e29064f9c0b647fb",
+      "git_blob_bytes": 3917,
+      "git_blob_sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4",
+      "raw_checkout": {
+        "bytes": 3917,
+        "sha256": "6be9374547862b793a09454f3a8e9bfa95a6c358956733b9ccadf23c8a8584b4"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-macbio-20170831-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "08c2958d8c48b97ff20333893ad7e7c00332d1bf",
+      "git_blob_bytes": 4270,
+      "git_blob_sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e",
+      "raw_checkout": {
+        "bytes": 4270,
+        "sha256": "b9aaa222f7259c33dfd75dc197e9b316ca4f95daf58e0647c7bf588901b4295e"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-foi-speech-20120213-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "412a0c7c4ae56e1c0e6133cd29331e1131599766",
+      "git_blob_bytes": 4225,
+      "git_blob_sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2",
+      "raw_checkout": {
+        "bytes": 4225,
+        "sha256": "b1beeb7326b5cb4d221a90d87769eb5853125e6f70ccf76e45d1d956a52d85f2"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-half-mast-20140619-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "4c5d2e374788f4e65e2842b025b90c5fef5fd80e",
+      "git_blob_bytes": 4242,
+      "git_blob_sha256": "4520331fda05eaf0e5a4443164510d096ddc20d16d4b51662fd78481d2423f2e",
+      "raw_checkout": {
+        "bytes": 4242,
+        "sha256": "4520331fda05eaf0e5a4443164510d096ddc20d16d4b51662fd78481d2423f2e"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-lord-tangi-20101230-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "874ac08fdbf0dc49f6ef3cefeee638767f62e715",
+      "git_blob_bytes": 5105,
+      "git_blob_sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa",
+      "raw_checkout": {
+        "bytes": 5105,
+        "sha256": "c621abbe3265bafa8042d14d94c1ec2b0f4568e73569437c0a76d2bff7b60faa"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-rti-speech-20130424-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "1bc30597eae1564a2608a7b0ef23fe2af42cf9b5",
+      "git_blob_bytes": 4256,
+      "git_blob_sha256": "2a5c95cb7ca153484afa408c46f1db9bf6bda71da0d568b350da58a11f82509b",
+      "raw_checkout": {
+        "bytes": 4256,
+        "sha256": "2a5c95cb7ca153484afa408c46f1db9bf6bda71da0d568b350da58a11f82509b"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-profile-20150212-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "1e942da8c6c9c69ee9ab378f03d96cfefcf79619",
+      "git_blob_bytes": 4018,
+      "git_blob_sha256": "5ac7d9d8becebf11af9117da3e70bc2db86fe59b142b9763d6b826963d39b207",
+      "raw_checkout": {
+        "bytes": 4018,
+        "sha256": "5ac7d9d8becebf11af9117da3e70bc2db86fe59b142b9763d6b826963d39b207"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-renewable-20160907-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "ce9e89d217a4953f424ba83327fa7d5f3fc5ea5d",
+      "git_blob_bytes": 4223,
+      "git_blob_sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23",
+      "raw_checkout": {
+        "bytes": 4223,
+        "sha256": "b03bc304d7fd216415065a8f6741572a27d18540ba099a5398b66d35ad98db23"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-toloa-rainforest-20140909-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "666025830a290e88ef6715e3b3d6ea26c04fbff3",
+      "git_blob_bytes": 5026,
+      "git_blob_sha256": "5d9ae407911b6eb04221f23f12116cfea465b65f4ffda5694dda2181cd1d2a93",
+      "raw_checkout": {
+        "bytes": 5026,
+        "sha256": "5d9ae407911b6eb04221f23f12116cfea465b65f4ffda5694dda2181cd1d2a93"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-mic-vaipulu-appointed-20110103-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "68bc6e7398d915dd383c9148fd332ba8fbd6b0f6",
+      "git_blob_bytes": 4194,
+      "git_blob_sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0",
+      "raw_checkout": {
+        "bytes": 4194,
+        "sha256": "1b72b5e13b9d5518790ebc4eb26913ef58e1b69e5d0df05cb6c425ce71b9a7b0"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-paunga-20020514-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "09be1b788af98f36b922f5685afcbc729dbd2194",
+      "git_blob_bytes": 5048,
+      "git_blob_sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8",
+      "raw_checkout": {
+        "bytes": 5048,
+        "sha256": "3a414c9121bc9defbf8e92f6c9eddda2e5d4cd9b99e9c7e01c88cf302f27caf8"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-statement-20020111-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "cf75a2c771eafd690803b4eb7d52a628e4fe7893",
+      "git_blob_bytes": 4121,
+      "git_blob_sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d",
+      "raw_checkout": {
+        "bytes": 4121,
+        "sha256": "4dd9fb522d813023dfdadc0812027d2ce46cfa7b43f0fa0e908e0db3ce69aa8d"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-australia-day-speech-2009-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "58be828e81426c1b5e1cacb6d61097641752c40f",
+      "git_blob_bytes": 4461,
+      "git_blob_sha256": "4cf10ac47c5b3b45575512050c0287a8022094236133d0c2d4e8920403cc8cd9",
+      "raw_checkout": {
+        "bytes": 4461,
+        "sha256": "4cf10ac47c5b3b45575512050c0287a8022094236133d0c2d4e8920403cc8cd9"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-common-sense-20060809-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "1bd43db58259ef414f1fd42df8c188e308ae839d",
+      "git_blob_bytes": 4141,
+      "git_blob_sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f",
+      "raw_checkout": {
+        "bytes": 4141,
+        "sha256": "045759c6f1036295c0c08eb679b831f25a039df95bbd84fb9c47a617bb9b692f"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-confirmation-of-appointments-20040909-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "b784a20b435c808ab1dae8c737e5a7095c081ca3",
+      "git_blob_bytes": 4441,
+      "git_blob_sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9",
+      "raw_checkout": {
+        "bytes": 4441,
+        "sha256": "2ec90d51d605dd57697371e0c733d7a1df706cce8a065cb4aa5e68827173bba9"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-dpm-clarification-to-20200416-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "6156c8a1ae0f218abc5f484e6602c5f8a11090ed",
+      "git_blob_bytes": 4620,
+      "git_blob_sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47",
+      "raw_checkout": {
+        "bytes": 4620,
+        "sha256": "ca7806a1480b8c66296e8b44d413b2c4ebab4bda8e827e9f1882cc92e2ad4e47"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-hauofa-funeral-20090114-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "622817443ae1742d973fc0cbbc472e47991242bc",
+      "git_blob_bytes": 4240,
+      "git_blob_sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059",
+      "raw_checkout": {
+        "bytes": 4240,
+        "sha256": "d0c4762c4e6d0c8866aa5da468b5832d5e440d1bcbf3243915ff879cca3ea059"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-maafu-death-20211213-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "f95b00a88523665865bf0b023f13d3b854bdcbc0",
+      "git_blob_bytes": 5222,
+      "git_blob_sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd",
+      "raw_checkout": {
+        "bytes": 5222,
+        "sha256": "0c6b46bd03dbcb2ae5c164bcc722493c1986f9618866081995b9e62c30cc2fbd"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ministerial-appointments-20170906-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "cf4019dcefe1779f1c4d27c857ef5146130dca06",
+      "git_blob_bytes": 7582,
+      "git_blob_sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5",
+      "raw_checkout": {
+        "bytes": 7582,
+        "sha256": "e933586fd2eb6677174ddaae36c67240f91ab1baeb393ff9de244f03c09088a5"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20141231-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "ce988ae97364dd40779aec54fd82c3b5da33ae7d",
+      "git_blob_bytes": 5324,
+      "git_blob_sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f",
+      "raw_checkout": {
+        "bytes": 5324,
+        "sha256": "d79be539209873634eea4c0e55b786d4b1e58c46eca7f4718fb08ae5b3e4ee2f"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20191010-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "9d74aefd8d532ca1f7689ca94a7a2ec6e1120ce9",
+      "git_blob_bytes": 4194,
+      "git_blob_sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c",
+      "raw_checkout": {
+        "bytes": 4194,
+        "sha256": "0db6032975721cbcec0fdd2eeece2569285ba0d9e87b92f070810b3ff40fb42c"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-news-in-brief-2001-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "d92ed315d7a18f50c8f9ad5e161617c5e234b234",
+      "git_blob_bytes": 4048,
+      "git_blob_sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465",
+      "raw_checkout": {
+        "bytes": 4048,
+        "sha256": "04e42a6b9076c2b1087ee4d452c42f358e266108370494869dffb5fb3a2b8465"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-address-20010124-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "43d07a6287cc3e254fb6c48c1524ae1bf634e8a7",
+      "git_blob_bytes": 4319,
+      "git_blob_sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8",
+      "raw_checkout": {
+        "bytes": 4319,
+        "sha256": "031c84e8b91004286679b6a7f0fc5d4c3ce9871f1d47a53e370b83d13d845ea8"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pohiva-statements-20060609-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "9eb3c51df53f993a2a8c2c55570b50d2b5155b37",
+      "git_blob_bytes": 4334,
+      "git_blob_sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7",
+      "raw_checkout": {
+        "bytes": 4334,
+        "sha256": "e3394a9da3daacb33841cd05e45122993765bcb58aab2ee350073b6d899faea7"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pope-homage-20050411-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "8cb5e8148dbb26eb3f5ec316a5d640122890c2e0",
+      "git_blob_bytes": 4217,
+      "git_blob_sha256": "a9b79e457aaf6997aed53b1e39a9d201508a3e818aff5a299589f37ce6ef8962",
+      "raw_checkout": {
+        "bytes": 4217,
+        "sha256": "a9b79e457aaf6997aed53b1e39a9d201508a3e818aff5a299589f37ce6ef8962"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-press-releases-2000-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "15555500d4028470fff33eaeaaa6462959a09690",
+      "git_blob_bytes": 5078,
+      "git_blob_sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216",
+      "raw_checkout": {
+        "bytes": 5078,
+        "sha256": "0577fcb12323084370070d24dc72643689c18f2b3a104fe2a3d73d6c61ff4216"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-reply-dpm-20100624-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "23d845cdb051bfb8e10680140ace659b8325c9a4",
+      "git_blob_bytes": 4176,
+      "git_blob_sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d",
+      "raw_checkout": {
+        "bytes": 4176,
+        "sha256": "30a86e79f6b5f342209198ed740683d4644cba57061865003e2df7d654d84e4d"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-tupou-resignation-to-20010928-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "4f54a84b703d518b4e6b2af333a72aba4f3f4301",
+      "git_blob_bytes": 6206,
+      "git_blob_sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0",
+      "raw_checkout": {
+        "bytes": 6206,
+        "sha256": "da164bdb2c8fc838d2de31ba0efd43d7df04a11f114172fcf156c879f23c14b0"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-ub40-concert-20060310-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "f5cd2681cff326636183cc91086ea4750cb5342e",
+      "git_blob_bytes": 4263,
+      "git_blob_sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff",
+      "raw_checkout": {
+        "bytes": 4263,
+        "sha256": "9b75de8b75027206a03efa8b29f47aa3ddd17d8eec8bf4e2538bbdf1bc04dcff"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-wssd-statement-20020903-facts.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "9010e18288e8b4c4e9102a3eaae427a4af24345c",
+      "git_blob_bytes": 4092,
+      "git_blob_sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40",
+      "raw_checkout": {
+        "bytes": 4092,
+        "sha256": "82ebc2e56356ca6a84e275822e81b1b24dca6270d8bb7a135315e97f9f037f40"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "429cf1127a4296369a0c15490beff682a63c343d",
+      "git_blob_bytes": 60447,
+      "git_blob_sha256": "a5dcac8880759a7294a1b1b296d4a48815287249a5175465dbc74e60384293f3",
+      "raw_checkout": {
+        "bytes": 61023,
+        "sha256": "3dc30a1b15cd51edffe33fd88dd4590a25693d9b8e5a9d2d00802af0bc4a5866"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "0d5250587a30cdfc6a8b5694edc1c81bd8c4853c",
+      "git_blob_bytes": 637522,
+      "git_blob_sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853",
+      "raw_checkout": {
+        "bytes": 637522,
+        "sha256": "fb8318a2280123cb79976275356484e91ef5ad2720fd40bb8b4614781eb47853"
+      },
+      "raw_equals_git": true,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "9bd05c5f3c909b2a5bed48d6a14167b876b9fda9",
+      "git_blob_bytes": 12878,
+      "git_blob_sha256": "c912e907a305bff4651b9243c0479fa08ae19d91c5e31d249baffe46c5b0ed2c",
+      "raw_checkout": {
+        "bytes": 13026,
+        "sha256": "344e71b2d46720cf5755b46786433892403f7af2c7009f88971836f4785c5c1c"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_deputy_prime_ministers_c01_36.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "f861b4af05f15ababe2e91010980ca1d422e180c",
+      "git_blob_bytes": 56006,
+      "git_blob_sha256": "581b7b467cbc303d5b4295b070f9514bbe3aba2b99147e69103e2a05e0490d50",
+      "raw_checkout": {
+        "bytes": 56783,
+        "sha256": "1d861db67b8302e6eb09b9f4fb98191b502a40d19e09355eb32d363793c4c518"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_dpfi_c01_04.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "6881c7dc2c82294a2c7f52ae63dde435a39fb030",
+      "git_blob_bytes": 33180,
+      "git_blob_sha256": "386e9d49301dfdfa5a6538c261224b404e56d3406dc94c986a714a5f58cfc468",
+      "raw_checkout": {
+        "bytes": 33637,
+        "sha256": "d75a76ff58c966dc752d21fa0b0046121cfea8ed9c8cf1a7ce5f56cc785e1d62"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_pm_1990_2019_c01_08.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "33430de00d0b0f372da2ee09ccd2ef07638c9fad",
+      "git_blob_bytes": 42925,
+      "git_blob_sha256": "c84b793fa04c4aac53ae6cd302b5b948960f4fc8c7656219ab5cd54e43c51b9f",
+      "raw_checkout": {
+        "bytes": 43493,
+        "sha256": "beb85cd45afd266a82da46bc1bc83643a7f54bf492c61c9e0b684a4d15004f2f"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_research_s10g.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "149173e788171c3a607dc6023171410416156951",
+      "git_blob_bytes": 11292,
+      "git_blob_sha256": "81ac14e0228e31c6b3693a43454422cd6d0f46c714feeef1c0c007c7a480bf91",
+      "raw_checkout": {
+        "bytes": 11469,
+        "sha256": "b990b8fd15be8b9fce78f879b8b111a4c9c4cf8104e53d96d505a5aab2782d17"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_speakers_c01_24.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "3181c1c78e4fbb52f5851aead4068228fd93245c",
+      "git_blob_bytes": 57586,
+      "git_blob_sha256": "10c84123b66b2192806b7ac9adcda7cd26c1e0139702a8fc1060d16f77e63179",
+      "raw_checkout": {
+        "bytes": 58359,
+        "sha256": "72223fa3aa3775bf7efdcdb70928af553abd9e108a6f5f6b5211c5408d99529a"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_transition_c01_02.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "cc0a1697e243f10d7c04093b14848181d300aeb3",
+      "git_blob_bytes": 20846,
+      "git_blob_sha256": "a23b870834f3260f85ef24c07d7527e5a0e25ccdd51e713c8d6669339fd8ebd2",
+      "raw_checkout": {
+        "bytes": 21183,
+        "sha256": "e523ede62da324f94c3f0d2b66c7e8d318c662d6e105c1f8bde95d53cd68eea2"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    },
+    {
+      "path": "tools/avatars/test_tonga_transition_c01_03.py",
+      "revision": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+      "git_blob": "c62de63a8c6268ea6251f60c6eedb5e78e35c284",
+      "git_blob_bytes": 31465,
+      "git_blob_sha256": "b97b0230da5b9e5bf82224073df8507af8fbf86f597e98e055dfefc3f8d1b1a2",
+      "raw_checkout": {
+        "bytes": 31918,
+        "sha256": "af62c73f44a9c29d17530493a465d6725a6355c3a8f6113b80d869affc1aa4a7"
+      },
+      "raw_equals_git": false,
+      "utf8_lf_equals_git": true
+    }
+  ]
+}

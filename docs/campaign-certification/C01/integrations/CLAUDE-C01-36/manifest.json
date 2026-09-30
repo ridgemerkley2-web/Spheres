@@ -1,0 +1,458 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-36",
+  "reviewer": "Codex /root/review_gap_submission",
+  "status": "accepted_for_integration",
+  "reviewed_commit": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+  "reviewed_repaired_commit": "50a8808163e1b38bbe2c48dee2e59b2016ef9500",
+  "decision": "Bounded research intake after seven uncertainty-note precision repairs; root owns integration and task status. No period, runtime, art or campaign certification.",
+  "c01_complete": false,
+  "qualification": false,
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 19177,
+      "sha256": "061059b53200e2eef9bdba026dc687d80d1ac1e821eca57ebad9c7b35e4f4d73"
+    },
+    {
+      "path": "copy-ledger.json",
+      "bytes": 25959,
+      "sha256": "33c20af5ed7dc29b05f2b1e21eab0776153aada1ff37e35e7fdfcda5543357ee"
+    },
+    {
+      "path": "isolation.json",
+      "bytes": 4102,
+      "sha256": "0c037c23bd6e0478863e5d9bf8ca3d2353cb568eff393d15695c8091cd8a8878"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4753,
+      "sha256": "c13ed3700512475de7ddd294b98040880eb8e95258c11c21cbcc0f26352b5642"
+    },
+    {
+      "path": "retrieval-01/headers/to_la_member_maafu_2021.txt",
+      "bytes": 2548,
+      "sha256": "ab093896c592e07400c4a3aa5c1db1b02ae4d76e452365fcfbb4dd7dfb65ba5e"
+    },
+    {
+      "path": "retrieval-01/headers/to_la_news_20181108_auditor.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_la_news_20191028_oath.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_la_news_20210901_faotusia.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_la_term_report_2017_2021.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20101230_lord_tangi.txt",
+      "bytes": 2613,
+      "sha256": "7b5e7b3aa5150565babc6540cb0032976e34c2da13aba773b4be61a13e8a8161"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20110103_vaipulu_appointed.txt",
+      "bytes": 2499,
+      "sha256": "3514282cc423427b24ae0dc01ae752ccf90aeda3246eced35868d29ce07e7d85"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20110104_cabinet_named.txt",
+      "bytes": 2648,
+      "sha256": "87dfca269123361999b6207db60c43bae707b525e071e166f73598e6c4e93588"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20120213_foi_speech.txt",
+      "bytes": 2780,
+      "sha256": "3a55347a0228c088d9b2e627ad165ba2ff8a516fbcf071b79606a2fde3217fa2"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20130424_rti_speech.txt",
+      "bytes": 2492,
+      "sha256": "be60d4bcdc6095776655aaa74fdd131c9e388668325992a13aca58f430a930e2"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20140619_half_mast.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20140909_toloa.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20150212_sovaleni_profile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20151116_acting_pm_itu.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20160907_renewable.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20170404_acting_pm_whales.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20170831_macbio.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20180122_cabinet_to.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_mic_20180615_dpm_gita.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_2000_press_releases.txt",
+      "bytes": 1947,
+      "sha256": "e9d9df97ce4036c76df2bb2b48f7d926fb4553b104b8eeb644fced3a5e9b2b33"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20010124_pm_address.txt",
+      "bytes": 1832,
+      "sha256": "29b260dfb3ddd0ef0512d3a562d492e025ecfbe88b27f3493620e5e26540d612"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20010928_tupou_resignation_to.txt",
+      "bytes": 1904,
+      "sha256": "2c791ef11a7f97d3f8837e91483ad1d4b7c3c287a06bfc6045b2c7787fc20f50"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20020111_acting_dpm_statement.txt",
+      "bytes": 1898,
+      "sha256": "19d77e9b1ee864b77563e566c639a8f103be6a880ad2c1dfadb71a1950a17a47"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20020514_acting_dpm_paunga.txt",
+      "bytes": 1900,
+      "sha256": "46715dde08495ce4f6ef71dd2b30d830212229eaa4b3f4beeb0c1f5687e92ccd"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20020903_wssd_statement.txt",
+      "bytes": 1996,
+      "sha256": "e2bd5e9ba9b0f2a8385934f042386009d9c76e39113fcbab3f44f4585043a57f"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20040909_confirmation_of_appointments.txt",
+      "bytes": 1949,
+      "sha256": "adc6361e56ae6e20f0997e151d5b52906e0334ec078e274d6ba3a278b2fd82be"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20050411_pope_homage.txt",
+      "bytes": 2075,
+      "sha256": "94aa343d6070d5683b05edb205ec0bcaccbb11a7c7d9edc6b5b83eeff670dc85"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20060310_ub40_concert.txt",
+      "bytes": 1783,
+      "sha256": "b49d1b5f46a166ee32e8486a07ed0ce4a07b0aa8c117fd49b869b4f6503a9651"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20060609_pohiva_statements.txt",
+      "bytes": 1778,
+      "sha256": "ba623e6d203d97a9ceee4e3dcc69e8490577a4f8222c303deb7d82507a1b5808"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20060809_common_sense.txt",
+      "bytes": 1773,
+      "sha256": "028797df9788e0b3a485d8a02f25535a0a9392f208a79593bdc6fc080c3b70d5"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20090114_hauofa_funeral.txt",
+      "bytes": 2579,
+      "sha256": "92814778e1c30be75fcce40b5f763b9d4d128ad139d7b0b1c0689c8b3ccfcef6"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_2009_australia_day_speech.txt",
+      "bytes": 2549,
+      "sha256": "51bf79cc429fd2f71e3f4f3ee6148332a3462e3bc50b7e4116ee9a0d2f7925f7"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20100624_throne_reply.txt",
+      "bytes": 2332,
+      "sha256": "aaa7450c8a9e5ac6c4a00cb796c9115d3e32ecb8398967258569e5b923a827ee"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20141231_new_cabinet.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20170906_ministerial_appointments.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20191010_new_cabinet.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20200416_dpm_clarification.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_20211213_maafu_death.txt",
+      "bytes": 2112,
+      "sha256": "f1c60abef8bbf036ed38a96ea45d7a2bc8a230e91d5c78e6e2c25013ae1fe46c"
+    },
+    {
+      "path": "retrieval-01/headers/to_pmo_news_in_brief_2001.txt",
+      "bytes": 1901,
+      "sha256": "2c00270171bb1eeb357cdeb465e751671aab76cb6413ba0b81505d20b85660f1"
+    },
+    {
+      "path": "retrieval-01-attempts.jsonl",
+      "bytes": 492978,
+      "sha256": "b09d680364081a513d5d2b074ba0ac8298ad27ec1a77654b2f0c029043103f21"
+    },
+    {
+      "path": "retrieval-01.json",
+      "bytes": 527807,
+      "sha256": "97ed1cea3d9a6593d4c1288c8cca47779c540b736baf1a531d8d0f7fa6b01b90"
+    },
+    {
+      "path": "retrieval-02/headers/to_la_news_20181108_auditor.txt",
+      "bytes": 2823,
+      "sha256": "b0e2eb31642f7cf84ab392efa432f525008ac50ab6d9d6dca395e651e63ac0a5"
+    },
+    {
+      "path": "retrieval-02/headers/to_la_news_20191028_oath.txt",
+      "bytes": 2895,
+      "sha256": "eb672f5ea1fbeb27ef897318862d418d1b920cbd2c488fcb2ea30cd785a48bc3"
+    },
+    {
+      "path": "retrieval-02/headers/to_la_news_20210901_faotusia.txt",
+      "bytes": 3053,
+      "sha256": "58f84dda410bc5d56cd412dba9060d87f7d29fe7a2ea6a0c13164502ef11b55e"
+    },
+    {
+      "path": "retrieval-02/headers/to_la_term_report_2017_2021.txt",
+      "bytes": 2349,
+      "sha256": "f1d03e3b13c14af889805c3a60bdd48cc1f9493f028f6c7633d9a5c0af9719d9"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20140619_half_mast.txt",
+      "bytes": 2440,
+      "sha256": "cddbdf1f89d2fc3980a2c14600f37b3caa688076072d0fb0467b2940f1e895c3"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20140909_toloa.txt",
+      "bytes": 2207,
+      "sha256": "73e5cd4205755559082b3c671a0bb702c93c220143dd378efc61e827347bea94"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20150212_sovaleni_profile.txt",
+      "bytes": 2386,
+      "sha256": "522ae753dbaba5b1056388966d80d61965dcbbd43b3bd544cc9af97ad97712de"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20151116_acting_pm_itu.txt",
+      "bytes": 2520,
+      "sha256": "d6929297ae37ff9812743128d610083610d02e687574cf50f8b2437d910e476f"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20160907_renewable.txt",
+      "bytes": 2663,
+      "sha256": "b420c782bce4b605574c4e0cf78d38642420585ab4ddf231e7a9622a3316d1fb"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20170404_acting_pm_whales.txt",
+      "bytes": 2486,
+      "sha256": "40f320cfd1d9b4fd23783cafa377843ad5f1a772a86e46a325610399dcbf46ef"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20170831_macbio.txt",
+      "bytes": 2501,
+      "sha256": "f1987631af0a8401a6885350f77dbe7f219037ba1dbd5b4a1a3b0fb72640b1df"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20180122_cabinet_to.txt",
+      "bytes": 2639,
+      "sha256": "3602aedd5e04a93f850d92b5b8b040e4399305aae6438f006bb925552476d12d"
+    },
+    {
+      "path": "retrieval-02/headers/to_mic_20180615_dpm_gita.txt",
+      "bytes": 2544,
+      "sha256": "66cbf5579778858d079012c038fa0ec845f26b7f3f2297d922de055a7e51b7ba"
+    },
+    {
+      "path": "retrieval-02/headers/to_pmo_20141231_new_cabinet.txt",
+      "bytes": 1891,
+      "sha256": "c339f6bd00e28538cd54ec9d3a82094689ea1cfb940302de7432662649d27481"
+    },
+    {
+      "path": "retrieval-02/headers/to_pmo_20170906_ministerial_appointments.txt",
+      "bytes": 2068,
+      "sha256": "0493fd70089cb6f60ea0e68ce072afd740012f2b2b24ef5c2c80fe963c00d3d3"
+    },
+    {
+      "path": "retrieval-02/headers/to_pmo_20191010_new_cabinet.txt",
+      "bytes": 2227,
+      "sha256": "6b27536e1f00ee2ec907bf94ee0fa069bb14547cf8db7d93dc6fdf950a1fa210"
+    },
+    {
+      "path": "retrieval-02/headers/to_pmo_20200416_dpm_clarification.txt",
+      "bytes": 2115,
+      "sha256": "6f2305011bcfb24a969d5e6502b62722577e3ab0e77410d68334d6a90308e4b5"
+    },
+    {
+      "path": "retrieval-02-attempts.jsonl",
+      "bytes": 329205,
+      "sha256": "e36dee65d0b9264b8a4b2ed34926e3c1e4f8e9173135794c818bf36ff43a4bf9"
+    },
+    {
+      "path": "retrieval-02.json",
+      "bytes": 345486,
+      "sha256": "a432b855e28b7be19d93646f21ede9e836063b809deaff3534129127b0240bb1"
+    },
+    {
+      "path": "retrieve_originals.py",
+      "bytes": 4267,
+      "sha256": "84d6429ae97ea66348571fcc26b072164a852e2f74017253c855d3b9be911679"
+    },
+    {
+      "path": "reviewed-file-pins.json",
+      "bytes": 28532,
+      "sha256": "4fa75745cade2517be07159719f4324053c9841034de715e0580e9af13d96f26"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 58160,
+      "sha256": "e2497f148749684a1cd3ac05e4fc56bc51dee3cb9311190314b005ffb2a578c6"
+    },
+    {
+      "path": "validation/acting-cause-red.log",
+      "bytes": 1088,
+      "sha256": "a6eb0e346b15ed1dd2df5a424c27567a1d5e6d4638e8f3cc659a582f60da7021"
+    },
+    {
+      "path": "validation/atlas-tests-repaired.log",
+      "bytes": 1123,
+      "sha256": "cc9396db11cba8c34420d288b464ec76dc5ac5e2491c7cf07242aa1e7db2acc0"
+    },
+    {
+      "path": "validation/atlas-tests-submitted.log",
+      "bytes": 1141,
+      "sha256": "4e62d67bbdb6672032983ea51e7d9b711ee647b66cc61a2d4cb78c4bbb0c17a5"
+    },
+    {
+      "path": "validation/broad-repaired-test-runs.json",
+      "bytes": 901,
+      "sha256": "7390b57b1f73a75f4e829b9732bf6b6ce3686e6fba965c99d3c81c5b14817c61"
+    },
+    {
+      "path": "validation/campaign-broad-repaired.log",
+      "bytes": 120,
+      "sha256": "bc2e02702f14f85a389f1dcb3743ddfcb54e4f6ea5c8b4e398b9422d336f84ba"
+    },
+    {
+      "path": "validation/campaign-tests-repaired.log",
+      "bytes": 110,
+      "sha256": "860468ea2d4f655d3af1f2d69ea48e4585270a4558af3b186f300dc107b61778"
+    },
+    {
+      "path": "validation/campaign-tests-submitted.log",
+      "bytes": 120,
+      "sha256": "bdf670455252cf8b866b3dd742c9a310617ef9f802e108e5d4bf6ff29abcd0ba"
+    },
+    {
+      "path": "validation/census-preview.log",
+      "bytes": 1463,
+      "sha256": "627b0f8dee139e3f4f02f7880585c8857db6005114aabe495e7e64a1d8d0aee3"
+    },
+    {
+      "path": "validation/census-submitted.log",
+      "bytes": 118,
+      "sha256": "7f210dafed17a91b3c02c140deae6e625e83cf23eafa1f48d6b8051e930c2b01"
+    },
+    {
+      "path": "validation/index-regenerated.log",
+      "bytes": 252,
+      "sha256": "f514d0eb2149ad504b29efa2fe083af1a688a86af5bd69e177239e1d80bef8ac"
+    },
+    {
+      "path": "validation/index-repaired-check.log",
+      "bytes": 251,
+      "sha256": "024a0c762049fecabce239ad1dfd9f0b49b4de5155ee6f113a0fed00155edc9b"
+    },
+    {
+      "path": "validation/index-submitted.log",
+      "bytes": 251,
+      "sha256": "024a0c762049fecabce239ad1dfd9f0b49b4de5155ee6f113a0fed00155edc9b"
+    },
+    {
+      "path": "validation/repaired-test-runs.json",
+      "bytes": 1703,
+      "sha256": "c95e00c817bf981915c48ac3a147f88c44178cbe69cda1ffe5673cd3cd1f2c7d"
+    },
+    {
+      "path": "validation/research-broad-repaired.log",
+      "bytes": 183,
+      "sha256": "2e7e748f7cc38022b611eb2a4b059f2e3a6382e0e5e23bf264592a1ca4f382e0"
+    },
+    {
+      "path": "validation/research-tests-repaired.log",
+      "bytes": 112,
+      "sha256": "fbcd950de0fc445ae0c083c7ff0d435de9e9976a67a29c6c1c013520b6141fb4"
+    },
+    {
+      "path": "validation/research-tests-submitted.log",
+      "bytes": 183,
+      "sha256": "8cdf8269bb77bac98a5a0291a34becad8846c3a0e1b16d2436176da7543ceba5"
+    },
+    {
+      "path": "validation/tonga-tests-repaired.log",
+      "bytes": 194,
+      "sha256": "326c4b9ddba7f3cab79f8f0707cb3c7d8467c112c5e9dd257104fbc2fd5597f6"
+    },
+    {
+      "path": "validation/tonga-tests-sparse-retry.log",
+      "bytes": 193,
+      "sha256": "4b6527dbebdcde9f30c2e0fb9e5d096285248ebff0ebc04f731863db268ddcc3"
+    },
+    {
+      "path": "validation/tonga-tests-submitted.log",
+      "bytes": 1048,
+      "sha256": "41a7a021542024796c433956b25e4ca0b107ecd337924974bf735ce8bbe39781"
+    },
+    {
+      "path": "validation/workboard-submitted.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 2295,
+      "sha256": "7a19a1f1ce833c106c6e8b8922d55959e89c198f9d6411375b8700522d81096a"
+    }
+  ]
+}

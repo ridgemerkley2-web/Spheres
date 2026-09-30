@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 30 Sep 2026 09:19:35 GMT
+Content-Type: application/pdf
+Content-Length: 15526342
+Connection: keep-alive
+x-archive-orig-connection: close
+x-archive-orig-cache-control: public, max-age=2592000
+x-archive-orig-expires: Fri, 24 Dec 2021 23:50:18 GMT
+x-archive-orig-last-modified: Tue, 23 Nov 2021 20:57:36 GMT
+x-archive-orig-accept-ranges: bytes
+x-archive-orig-content-length: 15526342
+x-archive-orig-date: Wed, 24 Nov 2021 23:50:18 GMT
+x-archive-orig-server: LiteSpeed
+x-archive-orig-vary: User-Agent,User-Agent
+x-archive-orig-alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
+cache-control: max-age=1800
+accept-ranges: bytes
+memento-datetime: Wed, 24 Nov 2021 23:50:17 GMT
+link: <https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf>; rel="original", <https://web.archive.org/web/timemap/link/https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf>; rel="timemap"; type="application/link-format", <https://web.archive.org/web/https://parliament.gov.to/images/Fakamatala_o_e_Ngaue_a_e_Fale_Alea_i_he_Tau_Novema_2017_ki_he_Sepitema_2021.pdf>; rel="timegate"
+content-security-policy: default-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: archive.org web.archive.org web-static.archive.org wayback-api.archive.org athena.archive.org analytics.archive.org pragma.archivelab.org wwwb-events.archive.org
+x-archive-src: GDELT-20211124233928-crawl500/GDELT-20211124234205-11426.warc.gz
+server-timing: captures_list;dur=0.515010, exclusion.robots;dur=0.079403, exclusion.robots.policy;dur=0.069149, esindex;dur=0.008516, cdx.remote;dur=25.442571, LoadShardBlock;dur=163.268053, PetaboxLoader3.datanode;dur=77.238987, PetaboxLoader3.resolve;dur=78.491840, load_resource;dur=385.797116
+x-app-server: wwwb-app253-dc8
+x-ts: 200
+x-tr: 590
+server-timing: TR;dur=0,Tw;dur=0,Tc;dur=0
+set-cookie: wb-p-SERVER=wwwb-app253; path=/
+cache-control: private
+X-RL: 0
+X-NA: 0
+X-Page-Cache: BYPASS
+Server-Timing: BYPASS
+X-NID: COMCAST-7922
+Referrer-Policy: no-referrer-when-downgrade
+Permissions-Policy: interest-cohort=()
+X-sd: 0
+X-location: _pdf
+
