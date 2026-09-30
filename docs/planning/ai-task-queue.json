@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-28",
+  "updated": "2026-09-30",
   "tasks": [
     {
       "id": "CLAUDE-C01-SOURCE-05",
@@ -259,7 +259,7 @@
       "depends_on": [],
       "branch": "claude/c01-jp-29",
       "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
-      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted; South Africa C01-30 is claimed. Neither is accepted.",
+      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted and unaccepted. The later bounded C01-30 acceptance does not resolve this Japan source-access hold.",
       "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
     },
     {
@@ -327,14 +327,16 @@
       "id": "CLAUDE-C01-30",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "complete",
       "priority": 17,
       "title": "Research ACDP, Freedom Front and IFP party leaders",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
       "depends_on": [],
       "branch": "claude/c01-za-30",
       "claim_revision": "68535825eca53986feb5b6d9bf5ad44981bc6543",
-      "next": "Existing remote claim inspected at 68535825eca53986feb5b6d9bf5ad44981bc6543. Preserve the three-party, at-most-ten-person scope and existing branch; no submitted research, integration or acceptance. Return ready_for_review with primary evidence and focused tests."
+      "next": "Accepted bounded intake after independent review of all 39 original responses, 64 claims and 22 holder observations, with 148 passing test executions. Scoped source import 1b2c1ae2 and explanatory wording repair dc48d30c are integrated. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md. No complete term chronology, runtime mapping, portraits or parent C01 acceptance.",
+      "submission_revision": "cb0f1153f0d26729445acbc05843c3f16bf78ee7",
+      "review_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32"
     },
     {
       "id": "CODEX-S27-A1-01",
@@ -382,7 +384,7 @@
       "depends_on": [
         "CODEX-S25-SUCCESSION-01"
       ],
-      "next": "Full24 plan remains incomplete. Two local full-plan attempts stopped for USB contention/SSD capacity; all checkpoints retained, no passing cell claimed. Read-only audit found real distinct education-funding histories, so no gameplay pruning. Frozen distributed execution at5d970f6d uses one binary and batch, all24 complete horizons, strict per-cell archives and independent aggregation; await every actual result. Evidence: docs/campaign-certification/development/2026-09-28-ordered/README.md."
+      "next": "The prior frozen distributed attempt at 5d970f6d failed: 23 native timeouts at 18,000 seconds plus India/1990 lost runner communication, with no completed cell. Its 18,100 matching partial comparisons, 46 complete checkpoints and aggregate refusal remain at docs/campaign-certification/S25/preparation/full-matrix-20260930/README.md. A fresh full 24-cell attempt began 2026-09-30T09:03:11Z on candidate 68ba0622ec709b78617aadd1f9198d18f532bb32 after the lossless diagnostic-digest repair and passing two-cell pilot. Output: D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01. Four workers, 12-hour per-cell execution budget, managed compressed SSD scratch and verified D: retention; unchanged seeds, full horizon, invariants, reloads and archive comparisons. Await all actual results and independent verification; no old-cell reuse or S25 qualification."
     },
     {
       "id": "CODEX-C01-23-REVIEW",
@@ -433,6 +435,91 @@
         "CODEX-C01-25-REVIEW"
       ],
       "next": "Bounded BJP review accepted and integrated after Saudi Arabia at065341c9:74 declared source responses plus dating anchor/167 claims reviewed;19 holder observations preserve acting/elected/appointed distinctions and disputed dates. Original access/test attempts retained. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-27/review-2026-09-28/README.md. No C01/runtime closure."
+    },
+    {
+      "id": "CLAUDE-C01-32",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 18,
+      "title": "Research Pan Africanist Congress presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-32.md",
+      "depends_on": [],
+      "branch": "claude/c01-za-32",
+      "claim_revision": "a809bcbac70d7dc0f8eb7b05808e6b29218b2516",
+      "submission_revision": "df4707462903b893916b5ef2d56a875a82f4030f",
+      "next": "Accepted bounded PAC intake after independent review of all 38 original archive responses, 65 claims and 14 dated holder observations. Scoped import 62f6be6c and attribution repair d06b1f7b preserve the accepted C01-30 changes. The corrected review records 145 overlapping Python and 11 Node test executions passing; its inherited stale census source pin remains disclosed for combined regeneration. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md. No uninterrupted terms, runtime mapping, portraits or parent C01 acceptance.",
+      "review_revision": "7f4d8812de15ffeb5dac802188825a8e12f0ee1a"
+    },
+    {
+      "id": "CLAUDE-C01-33",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 19,
+      "title": "Research Janata Dal presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-33.md",
+      "depends_on": [],
+      "branch": "claude/c01-in-33",
+      "claim_revision": "89decb6a72db0dd5da84359a6bf3cb4e0d6ac75d",
+      "submission_revision": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
+      "next": "Submitted at 2c78e89f67e9e21090a7da775fd8897c71d7dbd6; independent source, content, isolation and focused technical review required before acceptance. Reserve India/in_jd from duplicate research. Preserve the already accepted C01-27 BJP repair when combining the India packet. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+    },
+    {
+      "id": "CLAUDE-C01-34",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 20,
+      "title": "Research PFL/DEM, PDT and PMDB/MDB national presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+      "depends_on": [],
+      "branch": "claude/c01-br-34",
+      "claim_revision": "c2ff93965b8a3e04c9d6755dcda6c99266c06032",
+      "submission_revision": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+      "next": "Submitted at 16ef41a66d992e7a09417ab332cb6fc8fb6e1c76; independent source, content, isolation and focused technical review required before acceptance. Reserve Brazil/br_pfl, Brazil/br_pdt and Brazil/br_pmdb from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+    },
+    {
+      "id": "CLAUDE-C01-35",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 21,
+      "title": "Research Democratic Russia and Soyuz group leaders",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+      "depends_on": [],
+      "branch": "claude/c01-su-35",
+      "claim_revision": "c1475ada8058f3861c560caa1cf082f5a97c244c",
+      "submission_revision": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
+      "next": "Submitted at 52e3e313b7c53601833c2b170d504b3bed9fe4ff; independent source, content, isolation and focused technical review required before acceptance. Reserve USSR/su_dr and USSR/su_soyuz from duplicate research. The bounded period is 1990-1991. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+    },
+    {
+      "id": "CLAUDE-C01-36",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 22,
+      "title": "Research Tongan deputy prime ministers",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+      "depends_on": [],
+      "branch": "claude/c01-to-36",
+      "claim_revision": "e8821f40ab28d49aa3a329940f89de9599300f7f",
+      "submission_revision": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+      "next": "Submitted at 6b82475ea8224a7fecf911f6442e8b6d7b506ca1; independent source, content, isolation and focused technical review required before acceptance. Reserve to_cabinet#to_deputy_pm from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+    },
+    {
+      "id": "CLAUDE-C01-37",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 23,
+      "title": "Research French prime ministers",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+      "depends_on": [],
+      "branch": "claude/c01-fr-37",
+      "claim_revision": "1a3fc352711169d41a2182cb46fae85ea4e8d611",
+      "submission_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+      "next": "Submitted at eb7006176756796f5fd0a7244d9a3316ab275e60; independent source, content, isolation and focused technical review required before acceptance. Reserve institution:fr_prime_minister from duplicate research. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
     }
   ]
 }

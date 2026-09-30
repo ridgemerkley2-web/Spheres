@@ -64,6 +64,8 @@ COMMIT_PACKETS = {
     # First source-addition imports pinned by ORDERED-2026-09-28/import-map.json.
     '09b27c49': 'CLAUDE-C01-23', '6af1e942': 'CLAUDE-C01-24',
     '61a3402d': 'CLAUDE-C01-25', '644ce003': 'CLAUDE-C01-27',
+    # Scoped C01-30/32 source imports; independent reviews are separately pinned by the queue.
+    '1b2c1ae2': 'CLAUDE-C01-30', '62f6be6c': 'CLAUDE-C01-32',
 }
 
 EVIDENCE_CLASSES = {
@@ -73,8 +75,8 @@ EVIDENCE_CLASSES = {
     'c01_integrated_pending': 'C01 research packet merged into integration; historical acceptance pending.',
 }
 
-# Claimed or submitted C01 packets and repairs that are not integrated. Their targets are excluded from new batches
-# and never labelled accepted. The queue supplies their state; the targets below are taken from their handoffs.
+# Tracked C01 packets and repairs. Active targets are excluded from new batches and never labelled accepted.
+# Completed entries require their separate explicit review. Targets come from each bounded handoff.
 IN_FLIGHT = {
     'CLAUDE-C01-23': {'case': 'France', 'targets': ['institution:fr_presidency'],
                       'scope': 'French presidents, 1990-2026'},
@@ -92,7 +94,20 @@ IN_FLIGHT = {
                       'scope': 'Japan Socialist Party / Social Democratic Party chairs; submitted with source review held, no accepted mapping'},
     'CLAUDE-C01-30': {'case': 'SouthAfrica',
                       'targets': ['party:SouthAfrica/' + p for p in ('za_acdp', 'za_ff', 'za_ifp')],
-                      'scope': 'ACDP, Freedom Front and IFP party leaders; active research claim, no accepted mapping'},
+                      'scope': 'ACDP, Freedom Front and IFP party-leader observations, 1990-2026; no accepted runtime mapping'},
+    'CLAUDE-C01-32': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_pac'],
+                      'scope': 'Pan Africanist Congress presidents, 1990-2026; no accepted runtime mapping'},
+    'CLAUDE-C01-33': {'case': 'India', 'targets': ['party:India/in_jd'],
+                      'scope': 'Janata Dal presidents, 1990-2026; submitted, not accepted'},
+    'CLAUDE-C01-34': {'case': 'Brazil',
+                      'targets': ['party:Brazil/' + p for p in ('br_pfl', 'br_pdt', 'br_pmdb')],
+                      'scope': 'PFL/DEM, PDT and PMDB/MDB national presidents, 1990-2026; submitted, not accepted'},
+    'CLAUDE-C01-35': {'case': 'USSR -> Russia', 'targets': ['party:USSR/su_dr', 'party:USSR/su_soyuz'],
+                      'scope': 'Democratic Russia and Soyuz group leaders, 1990-1991; submitted, not accepted'},
+    'CLAUDE-C01-36': {'case': 'Tonga', 'targets': ['role:to_deputy_pm'],
+                      'scope': 'Tongan deputy prime ministers, 1990-2026; submitted, not accepted'},
+    'CLAUDE-C01-37': {'case': 'France', 'targets': ['institution:fr_prime_minister'],
+                      'scope': 'French prime ministers, 1990-2026; submitted, not accepted'},
     'CLAUDE-C01-SOURCE-05': {'case': 'USSR -> Russia', 'targets': [],
                              'scope': 'Source-review repair of one CLAUDE-C01-05 source (no coverage change)'},
     'CLAUDE-C01-SOURCE-06': {'case': 'SaudiArabia', 'targets': [],

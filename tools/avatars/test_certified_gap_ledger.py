@@ -6,6 +6,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import certified_gap_ledger as ledger
 
@@ -335,6 +336,25 @@ class FixtureLedger(unittest.TestCase):
             self.assertNotIn(excluded, entities)
         self.assertEqual(self.chain('India', 'India/in_bjp')['in_flight'], 'CLAUDE-C01-27')
 
+    def test_submitted_deputy_role_reserves_only_that_role_without_granting_coverage(self):
+        path = self.root / ledger.RESEARCH / 'tonga.json'
+        data = json.loads(path.read_text(encoding='utf-8'))
+        data['institutions'].append({'id': 'to_cabinet', 'name': 'Cabinet', 'kind': 'x', 'roles': [
+            {'id': 'to_deputy_pm', 'title': 'Deputy Prime Minister', 'kind': 'institutional_office',
+             'sources': ['s_to'], 'holder_claims': []},
+            {'id': 'to_pm', 'title': 'Prime Minister', 'kind': 'head_of_government',
+             'sources': ['s_to'], 'holder_claims': []}]})
+        path.write_text(json.dumps(data), encoding='utf-8')
+        result = ledger.build(self.root, self.attribution)
+        roles = {r['id']: r for c in result['cases'] for r in c['research_roles'] if r['nation'] == 'Tonga'}
+        self.assertEqual(roles['to_deputy_pm']['in_flight'], 'CLAUDE-C01-36')
+        self.assertEqual(roles['to_deputy_pm']['coverage']['days']['definite'], 0)
+        self.assertIsNone(roles['to_pm']['in_flight'])
+        entities = {i['entity'] for b in result['next_batches'] for i in b['items']}
+        self.assertNotIn('to_cabinet#to_deputy_pm', entities)
+        self.assertIn('to_cabinet#to_pm', entities)
+        self.assertFalse(next(r for r in result['in_flight'] if r['task'] == 'CLAUDE-C01-36')['accepted'])
+
     def test_acceptance_requires_an_explicit_decision_not_a_directory(self):
         review = self.root / ledger.INTEGRATIONS / 'CLAUDE-C01-01' / 'README.md'
         review.unlink()
@@ -383,6 +403,15 @@ class FixtureLedger(unittest.TestCase):
         self.assertIn(('collective_institution', 'sa_shura_members'), kinds)
         self.assertIn(('no_simulation_party_rows', None), kinds)
         missing = [i for i in self.items() if i['item'] == 'missing_institution']
+        self.assertEqual(missing, [])  # The submitted C01-37 reserves this missing institution, not its history.
+        queue_path = self.root / ledger.TASK_QUEUE
+        queue = json.loads(queue_path.read_text(encoding='utf-8'))
+        queue['tasks'] = [t for t in queue['tasks'] if t['id'] != 'CLAUDE-C01-37']
+        queue_path.write_text(json.dumps(queue), encoding='utf-8')
+        without_claim = {tid: spec for tid, spec in ledger.IN_FLIGHT.items() if tid != 'CLAUDE-C01-37'}
+        with patch.dict(ledger.IN_FLIGHT, without_claim, clear=True):
+            unclaimed = ledger.build(self.root, self.attribution)
+        missing = [i for b in unclaimed['next_batches'] for i in b['items'] if i['item'] == 'missing_institution']
         self.assertEqual([i['entity'] for i in missing], ['institution:fr_prime_minister'])
         self.assertEqual(missing[0]['leads'], ['https://example.org/constitution'])
 
@@ -472,23 +501,29 @@ class CheckedInLedger(unittest.TestCase):
         items = [i for b in self.data['next_batches'] for i in b['items']]
         entities = {i['entity'] for i in items}
         completed = {row['task']: row for row in self.data['completed_research_intakes']}
-        self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25', 'CLAUDE-C01-27'})
+        self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25',
+                                         'CLAUDE-C01-27', 'CLAUDE-C01-30', 'CLAUDE-C01-32'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
-        for target in (ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']
-                       + ledger.IN_FLIGHT['CLAUDE-C01-30']['targets']):
-            self.assertNotIn(target.removeprefix('party:'), entities)
         claims = {row['task']: row for row in self.data['in_flight']}
-        for tid, state in (('CLAUDE-C01-28', 'ready_for_review'), ('CLAUDE-C01-29', 'ready_for_review'),
-                           ('CLAUDE-C01-30', 'claimed')):
-            self.assertEqual(claims[tid]['state'], state)
+        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28, 29, 33, 34, 35, 36, 37)})
+        chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
+        for tid, claim in claims.items():
+            self.assertEqual(claim['state'], 'ready_for_review')
             self.assertFalse(claims[tid]['accepted'])
-        self.assertIn('institution:fr_prime_minister', entities)
+            for target in claim['targets']:
+                if target.startswith('party:'):
+                    entity = target.removeprefix('party:')
+                    self.assertEqual(chains[entity]['in_flight'], tid)
+                    self.assertNotIn(entity, entities)
+        self.assertNotIn('institution:fr_prime_minister', entities)
+        self.assertNotIn('to_cabinet#to_deputy_pm', entities)
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))
         roles = {(r['nation'], r['id']): r for c in self.data['cases'] for r in c['research_roles']}
         self.assertEqual(roles[('USSR', 'su_president')]['window']['until'], '1991-12-25')
         self.assertEqual(roles[('Russia', 'ru_president')]['window']['from'], '1991-12-25')
+        self.assertEqual(roles[('Tonga', 'to_deputy_pm')]['in_flight'], 'CLAUDE-C01-36')
 
     def test_party_chains_hold_only_their_own_census_terms(self):
         census = json.loads((ledger.ROOT / ledger.C01 / 'roles-and-lifecycle.json').read_text(encoding='utf-8'))
@@ -508,7 +543,8 @@ class CheckedInLedger(unittest.TestCase):
         self.assertEqual(classes['CLAUDE-C01-06'], 'c01_integrated_pending')  # renumbered from its first-commit label 03
         self.assertEqual(classes['CLAUDE-C01-03'], 'c01_accepted')
         expected = {'CLAUDE-C01-23': ('09b27c49', 49), 'CLAUDE-C01-24': ('6af1e942', 49),
-                    'CLAUDE-C01-25': ('61a3402d', 71), 'CLAUDE-C01-27': ('644ce003', 74)}
+                    'CLAUDE-C01-25': ('61a3402d', 71), 'CLAUDE-C01-27': ('644ce003', 74),
+                    'CLAUDE-C01-30': ('1b2c1ae2', 39), 'CLAUDE-C01-32': ('62f6be6c', 38)}
         for packet, (commit, count) in expected.items():
             rows = [row for sources in attribution['sources'].values() for row in sources.values() if row['packet'] == packet]
             self.assertEqual(len(rows), count)

@@ -8,7 +8,9 @@ that every independent task must pass before work can continue. A blocked attemp
 retains its failure and evidence; it does not become complete. A1 is now blocked
 after diagnosis and rejected trial 01. Startup, controlled succession and all four
 ordered source reviews are complete as bounded tasks. The full matrix remains
-in progress after two preserved resource interruptions. Independent historical
+open after two preserved local resource interruptions and a failed distributed
+attempt: 23 native timeouts plus India/1990's lost runner. A fresh full attempt
+on `68ba0622` began on 30 September at 09:03 UTC. Independent historical
 reviews followed those attempts; the matrix is not a research-data prerequisite.
 Query the [task queue](../ai-task-queue.json) with
 `python tools/planning/workboard.py --tasks --owner Codex`.
@@ -24,7 +26,7 @@ scope; an accepted research packet does not install historical people or art.
 | 1 | `CODEX-S27-A1-01` — repair political A1 calibration | S27 preparation | Blocked; A1 still fails |
 | 2 | `CODEX-S24-STARTUP-01` — current-build 137-country startup sweep | S24 preparation | Complete: 137 native + 137 browser |
 | 3 | `CODEX-S25-SUCCESSION-01` — controlled paired USSR → Russia continuity | S25 preparation | Complete: 20 full archives verified |
-| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | In progress; full matrix not passed |
+| 4 | `CODEX-S25-MATRIX-01` — complete 24-cell long-campaign preflight | S25 preparation | In progress: fresh `68ba0622` attempt; prior 23 timeouts and lost India runner retained |
 | 5 | `CODEX-C01-23-REVIEW` — French presidents | C01 review | Complete: bounded acceptance |
 | 6 | `CODEX-C01-24-REVIEW` — Tongan Speakers | C01 review | Complete: bounded acceptance |
 | 7 | `CODEX-C01-25-REVIEW` — Saudi council chairs | C01 review | Complete: bounded acceptance |
@@ -134,6 +136,24 @@ and independent retained-evidence verification. A failed cell remains visible;
 repair and rerun under a newly declared candidate without erasing prior results.
 This is a full engineering preflight, not S25 qualification while S24 is pending.
 
+The [30 September failed-run packet](../../campaign-certification/S25/preparation/full-matrix-20260930/README.md)
+records frozen candidate `5d970f6d7370baf16760585c641d81253d1c2175` and all 24
+cell dispositions. Twenty-three native children timed out at exactly 18,000
+seconds; India/1990 lost runner communication and yielded no downloadable
+artifact. All 18,100 retained partial comparisons matched, and 46 complete
+checkpoint archives have integrity receipts. No cell reached the terminal
+comparison, and aggregation refused the missing 24th shard. These partial
+states do not pass a cell or permit reuse of selected old cells in a new batch.
+The lossless diagnostic-digest repair and a two-cell pilot now pass on candidate
+`68ba0622ec709b78617aadd1f9198d18f532bb32`. A fresh frozen full-plan execution began
+2026-09-30 at 09:03:11 UTC in
+`D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01`. It uses four
+workers, a 12-hour per-cell resource budget, managed compressed SSD scratch and
+verified D: retention. No horizon, daily invariant, native validation, monthly
+reload or complete-archive comparison is reduced. Await all actual outcomes and
+independent retained verification. Keep both earlier local attempts and the
+distributed failure intact; no selected old cells can satisfy the new run.
+
 ## 5–8. Independent historical intake
 
 Review the existing submissions in this exact order, using their original
@@ -153,20 +173,47 @@ it cannot call inaccessible evidence verified or award country coverage.
 | `CODEX-C01-25-REVIEW` | `claude/c01-sa-25` | `78e52b03cb2f321ed30e621fe0512e92b2e1e579` |
 | `CODEX-C01-27-REVIEW` | `claude/c01-in-27` | `0765c590c120d3aed3291dccec9d391670110543` |
 
-## Separate remote inventory — no acceptance or added ordered task
+## Separate remote inventory — bounded reviews outside the eight-task order
 
 - Russia `CLAUDE-C01-28` is now **ready_for_review** at
   latest follow-up `03141c43`; original claim
   `2c4d5bd725b84161fd742adec75febc6241b8c92` remains recorded. Its five party
   chains and submitted test/source claims require independent review.
-- South Africa `CLAUDE-C01-30` is **claimed**, not submitted, at
-  `68535825eca53986feb5b6d9bf5ad44981bc6543`, covering ACDP, Freedom Front and
-  IFP party leaders only. Preserve its file ownership and avoid duplicate research.
+- South Africa `CLAUDE-C01-30` at submitted
+  `cb0f1153f0d26729445acbc05843c3f16bf78ee7` is now **complete as bounded intake**,
+  with integrated review `68ba0622ec709b78617aadd1f9198d18f532bb32`.
+  [The independent review](../../campaign-certification/C01/integrations/CLAUDE-C01-30/README.md)
+  covers 39 exact original responses, 64 claims and 22 holder observations after
+  a wording repair; 148 test executions pass. Runtime mapping, complete terms and
+  parent C01 remain open.
 - Japan `CLAUDE-C01-29` remains held at its
   [existing source-review checkpoint](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md):
   150 passing test executions, 35/54 original responses reproduced and 19 unavailable.
-- India `CLAUDE-C01-33` is separately claimed on `claude/c01-in-33` at
-  `89decb6a`. This is inventory only; it adds no ninth task to the present order.
+- South Africa `CLAUDE-C01-32` at submitted
+  `df4707462903b893916b5ef2d56a875a82f4030f` is **complete as bounded intake** at
+  review `7f4d8812de15ffeb5dac802188825a8e12f0ee1a`.
+  [The independent review](../../campaign-certification/C01/integrations/CLAUDE-C01-32/README.md)
+  covers 38 exact original responses, 65 claims and 14 dated holder observations;
+  145 overlapping Python and 11 Node test executions pass. The correction attributes
+  republished news text without changing holders. Its inherited stale census pin
+  remains disclosed for combined regeneration. No full terms or runtime mapping
+  are accepted; the earlier C01-30 repair is preserved.
+- India `CLAUDE-C01-33` is **ready_for_review** on `claude/c01-in-33` at
+  `2c78e89f67e9e21090a7da775fd8897c71d7dbd6`, covering Janata Dal presidents.
+  Preserve the accepted BJP C01-27 repair when combining country data.
+- Brazil `CLAUDE-C01-34` is **ready_for_review** on `claude/c01-br-34` at
+  `16ef41a66d992e7a09417ab332cb6fc8fb6e1c76`, covering PFL/DEM, PDT and PMDB/MDB
+  national presidents.
+- USSR `CLAUDE-C01-35` is **ready_for_review** on `claude/c01-su-35` at
+  `52e3e313b7c53601833c2b170d504b3bed9fe4ff`, covering Democratic Russia and Soyuz
+  group leaders in 1990–1991.
+- Tonga `CLAUDE-C01-36` is **ready_for_review** on `claude/c01-to-36` at
+  `6b82475ea8224a7fecf911f6442e8b6d7b506ca1`, covering deputy prime ministers.
+- France `CLAUDE-C01-37` is **ready_for_review** on `claude/c01-fr-37` at
+  `eb7006176756796f5fd0a7244d9a3316ab275e60`, covering prime ministers.
 
-These inventory updates import no research sources, runtime content or asset
-approvals and do not append unrequested reviews to the eight-task execution order.
+The exact authored handoffs and submission revisions are retained in the task
+queue. Registration alone imports no research sources or runtime content and
+grants no acceptance or asset approval. Reserve each submitted target from new
+gap-ledger work while its independent review is pending. These later reviews do
+not change the six-of-eight count or append a ninth task to the original order.

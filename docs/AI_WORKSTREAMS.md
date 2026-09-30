@@ -1,6 +1,6 @@
 # Spheres — Codex and Claude workboard
 
-Updated 28 September 2026 UTC. **Integration branch: `codex/campaign-certification`.**
+Updated 30 September 2026 UTC. **Integration branch: `codex/campaign-certification`.**
 Start from this branch, not `master` or an older Claude branch. S01–S22 are complete.
 Codex closed S19 and S20 with actual campaign evidence. [G4 is earned](campaign-certification/G4/README.md); [S22 performance qualification](campaign-certification/S22/README.md) is complete.
 G5, CP1 certification and worldwide character coverage remain open. S23 is next: Claude owns it, its status remains planned, and C06 is still required. S24 awaits S23.
@@ -33,7 +33,7 @@ and certification prerequisites are unchanged.
 | 1 | A1 political calibration | **Open/blocked.** The unchanged concentration gate still fails; rejected trial and restored source retained. Further diagnostic work uses only the existing development cohort. |
 | 2 | Worldwide startup | **Complete.** 137/137 native and 137/137 actual-browser cases pass on the same frozen runtime. Independent verification passed all 1,377 browser artifacts. |
 | 3 | Controlled USSR → Russia continuity | **Complete.** Twenty whole archives, ten reloads and every paired comparison pass; actual Russia continuation is required. |
-| 4 | Full long-campaign matrix | **In progress.** Two resource-limited local attempts are retained. [Frozen distributed run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011141) uses the unchanged 24-cell plan. No full-matrix pass yet. |
+| 4 | Full long-campaign matrix | **In progress: fresh full attempt on `68ba0622` began 30 September at 09:03 UTC.** The prior [frozen distributed run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/36474011141) failed: 23 native timeouts at 18,000 seconds; India/1990 lost runner communication with no artifact. No cell reached terminal completion. Both earlier resource-limited local attempts remain retained. |
 | 5 | French presidents C01-23 | **Complete.** Bounded source review accepted and merged; missing-snapshot checks and term-hour description repaired. |
 | 6 | Tongan Speakers C01-24 | **Complete.** Bounded source review accepted and merged; initial held evidence and subsequent access resolution retained. |
 | 7 | Saudi council chairs C01-25 | **Complete.** Bounded source review accepted and merged; distinct roles, uncertainty and earlier SOURCE-06 fix preserved. |
@@ -52,6 +52,17 @@ not create a historical-research prerequisite; France → Tonga → Saudi Arabia
 India were reviewed and integrated in that order after the recorded attempts.
 A1 and the matrix remain open until their actual acceptance requirements pass.
 [Task details](planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md).
+
+The [failed full-matrix packet](campaign-certification/S25/preparation/full-matrix-20260930/README.md)
+retains the 23 timeout results, 46 complete checkpoints and India/1990's
+lost-runner record. All 18,100 partial archive comparisons matched; they do not prove
+the full horizon. Aggregation refused the missing 24th shard. The fresh run at
+`D:/spheres-offload/codex-next-20260928/full-matrix-local-20260930-01` uses candidate
+`68ba0622ec709b78617aadd1f9198d18f532bb32` after the lossless diagnostic-digest repair
+and passing two-cell pilot. It retains the complete plan and every invariant,
+reload and archive comparison, using four workers and a 12-hour per-cell resource
+budget with managed SSD scratch. Its results and independent verification are
+still pending; no old cells are reused or promoted to passes.
 
 The [complete A1 firing diagnostic](campaign-certification/S27/preparation/a1-firing-observer-20260928/README.md)
 retains all 146,525 observations and both final worlds in a portable packet.
@@ -76,9 +87,22 @@ verified. Ordinary native days averaged 87.34 ms on the recorded local machine;
 this diagnostic's extra daily comparisons do not predict the full matrix's
 completion time or qualify production memory.
 
-Russia C01-28 has a newer unreviewed follow-up at `03141c43`. South Africa C01-30
-is claimed at `68535825`; India C01-33 is separately claimed at `89decb6a`. These
-inventory entries are not new acceptance or additional tasks in the current order.
+The 30 September inventory found seven newly submitted packets: C01-30 and
+C01-32–37. C01-30 and C01-32 are now accepted as bounded intake after independent
+source and content review; C01-33–37 remain ready for review. Russia C01-28 remains
+submitted at `03141c43`, and Japan C01-29 remains held. The queue and gap ledger
+reserve each pending target from duplicate research. These additional reviews do not change the
+six-of-eight closeout count or award parent historical coverage.
+
+| Packet | Exact submitted revision | Current disposition |
+|---|---|---|
+| C01-30: ACDP, Freedom Front and IFP | `cb0f1153f0d26729445acbc05843c3f16bf78ee7` | Bounded intake accepted at `68ba0622`; [review](campaign-certification/C01/integrations/CLAUDE-C01-30/README.md): 39 exact original responses, 64 claims, 22 holder observations and 148 passing test executions. No runtime mapping or complete chronology. |
+| C01-32: PAC presidents | `df4707462903b893916b5ef2d56a875a82f4030f` | Bounded intake accepted at `7f4d8812`; [review](campaign-certification/C01/integrations/CLAUDE-C01-32/README.md): 38 exact original responses, 65 claims, 14 holder observations and 156 passing test executions. Republishing attribution repaired; inherited census limitation retained. |
+| C01-33: Janata Dal presidents | `2c78e89f67e9e21090a7da775fd8897c71d7dbd6` | Ready for review; preserve the accepted C01-27 BJP repair. |
+| C01-34: PFL/DEM, PDT and PMDB/MDB presidents | `16ef41a66d992e7a09417ab332cb6fc8fb6e1c76` | Ready for review. |
+| C01-35: Democratic Russia and Soyuz leaders | `52e3e313b7c53601833c2b170d504b3bed9fe4ff` | Ready for review; bounded to 1990–1991. |
+| C01-36: Tongan deputy prime ministers | `6b82475ea8224a7fecf911f6442e8b6d7b506ca1` | Ready for review. |
+| C01-37: French prime ministers | `eb7006176756796f5fd0a7244d9a3316ab275e60` | Ready for review. |
 
 | Area | Verified state | Next owner / action |
 |---|---|---|
@@ -94,7 +118,7 @@ inventory entries are not new acceptance or additional tasks in the current orde
 | Budget explanation repair | **CODEX-S24-BUDGET-01 complete.** Rate floor and sovereign risk are now shown separately. | [Native/UI/browser evidence](campaign-certification/S24/repairs/budget-rate-explanation/README.md), current runtime `52e1c2ab`; unchanged economic charges. |
 | E05 company pilot | **CLAUDE-E05-RESEARCH-01 complete as research preparation.** Eight dossiers, corrected validator and 61 tests. | [Review](campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md). 68/99 bodies retrieved (54 byte-exact, 14 changed); explicit claim-level content limits remain. No runtime installation. |
 | S26 human-playtest preparation | **CODEX-S26-PREP-01 complete.** Facilitator guide, eight-country plan and evidence/coverage validator; 23 synthetic tests pass. | [Kit](campaign-certification/S26/preparation/README.md). Zero actual human observations; S26 still awaits S24 and real participants. |
-| Pending Claude work | C01-23/24/25/27 are accepted bounded intake after independent review; their parent historical coverage remains open. Japan C01-29 at `3b304785` passes 150 passing test executions; 35/54 original responses reproduced exactly, but 19 archived responses remain unavailable. Merge and historical acceptance are held. Russia C01-28 is submitted with follow-up `03141c43`; South Africa C01-30 is claimed at `68535825`. Neither is accepted. | [Japan review checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md); resume source review without duplicating research. |
+| Claude research review | C01-23/24/25/27/30/32 are accepted bounded intake after independent review; parent historical coverage remains open. Japan C01-29 at `3b304785` has 150 passing test executions and 35/54 exact original responses; 19 archived responses remain unavailable, so merge and historical acceptance are held. Russia C01-28 and C01-33–37 are submitted, not accepted. | [Japan checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md), [C01-30 review](campaign-certification/C01/integrations/CLAUDE-C01-30/README.md), and the exact inventory above; review existing submissions without duplicating research. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
@@ -140,7 +164,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification complete on its recorded candidate. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex completed ordinary later-outcome qualification; S19 is closed. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27/28/29 are submitted for review; C01-30 is an active South African party-leader claim. C01 remains incomplete. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08/23/24/25/27/30/32 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-28 and C01-33–37 are submitted for independent review; C01-29 remains held on source access. C01 remains incomplete. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | S22 complete under the unchanged frozen protocol; Codex-owned S24 awaits Claude-owned S23 and its open C06 dependency. Claude retains bounded S24 successor-fixture preparation; Codex owns final qualification. G5 and CP1 remain unearned. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
@@ -167,8 +191,9 @@ review and submission rules. Suggested order for one worker:
 Each task has its own allowed files, deliverables and acceptance checks.
 All six listed deliveries are complete as bounded preparation after independent
 review and repairs, including S24 `5a23ebe0` and E05 `1fe45b2c`. Their review packets
-retain original failures, unsupported cases and source-verification limits. C01-28 Russia is now submitted; C01-30 South Africa is an active research claim.
-C01-29 Japan is submitted and awaiting source-review completion. This work does not complete historical
+retain original failures, unsupported cases and source-verification limits. C01-30
+and C01-32 South Africa are accepted as bounded intake. C01-28 and C01-33–37 are submitted;
+C01-29 Japan awaits source-review completion. This work does not complete historical
 coverage. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
 44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
@@ -260,9 +285,10 @@ Copy this into Claude to resume its claimed sections:
 
 > Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
 > docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
-> `python tools/planning/workboard.py --tasks --owner Claude`. Start with
-> your existing active claim: C01-30 South Africa. C01-28 Russia is now submitted;
-> preserve it and the held C01-29 Japan packet while Codex completes source review.
+> `python tools/planning/workboard.py --tasks --owner Claude`. Check the review
+> status of submitted scopes C01-28 and C01-33–37. Preserve those packets and the
+> held C01-29 Japan evidence while Codex completes independent review; do not
+> repeat accepted C01-30/32 research or infer acceptance from submission status.
 > Skip all six completed expanded preparation deliveries.
 > Read that task's handoff, record your branch/base and claim, and build its bounded
 > deliverables with the required checks. The six new sections do not wait on unrelated
