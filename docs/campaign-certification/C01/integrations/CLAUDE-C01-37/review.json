@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-independent-review/v1",
+  "reviewer": "Codex /root/s20_preflight",
+  "reviewed_date": "2026-09-30",
+  "submission": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+  "own_prepacket_parent": "44098c5a48f491f43fbcb74d121f290380af0b12",
+  "prose_repair_commit": "2942fcd7cd2c859fffbbf56de779767fb5fe6a71",
+  "recommendation": "accepted_bounded_source_observation_intake_after_conservative_boundary_repair",
+  "sources_exact": 31,
+  "material_claims_read": 48,
+  "holder_observations_checked": 16,
+  "effective_boundaries_held": 0,
+  "presidential_data_unchanged": true,
+  "unchanged_importer_regeneration_passed": true,
+  "tests": {
+    "final_france": 20,
+    "importer_tests": 10,
+    "research": 79,
+    "campaign": 16,
+    "node": 11,
+    "note": "Overlapping discovery executions, not unique tests. Final France includes 2 new regressions. All listed final checks pass; corrected-first retains an intermediate test-only indentation failure."
+  },
+  "known_failed_check": "Pre-existing census government pin; see baseline-limit.json.",
+  "no_runtime_art_schema_mapping_changes": true,
+  "no_parent_gate_closed": true,
+  "external_evidence": "D:\\spheres-offload\\codex-next-20260928\\c01-37-review-evidence-01",
+  "full_source_bytes_in_git": false,
+  "boundary_repair_commit": "73d748ef541d4d1970a07b9050115cf52bb2ecee",
+  "index_commit": "9cdae8910a9cdae8cadb129f27f842a29aab2ce1",
+  "inferred_effective_boundaries_removed": 26,
+  "remaining_term_date_research_open": true,
+  "retained_failures": [
+    "11 original connection-refused requests, all recovered exactly on missing-only retry.",
+    "Two new regression failures against untouched original inferred boundaries.",
+    "One intermediate test-only indentation error introduced during unused-local cleanup, corrected; final20France pass.",
+    "Known pre-existing census government pin failure."
+  ],
+  "reviewed_final_utc": "2026-09-30T09:38:14.141655+00:00"
+}

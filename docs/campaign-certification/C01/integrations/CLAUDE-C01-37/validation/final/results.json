@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "name": "france",
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_france*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:36:11.160538+00:00",
+      "finished_utc": "2026-09-30T09:36:14.328026+00:00",
+      "log": "france.log"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T09:36:14.328060+00:00",
+      "finished_utc": "2026-09-30T09:36:14.421261+00:00",
+      "log": "diff-check.log"
+    }
+  ]
+}

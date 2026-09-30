@@ -1,0 +1,584 @@
+{
+  "reviewer": "Codex /root/s20_preflight",
+  "claims": [
+    {
+      "source_id": "fr_jorf_rocard_signs_decree_90_89_19900124",
+      "claim_id": "fr_jorf_rocard_signs_decree_as_pm_19900124",
+      "event_kind": "in_office_signature_as_pm",
+      "attested_on": "1990-01-24",
+      "locator": {
+        "item": "reference block ('NOR : AGRA8902380D', 'JORF n°0021 du 25 janvier 1990'), the opening words and the signature block"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named Prime Minister signs/countersigns this dated instrument. In-office attestation only; not proof of a start or end."
+    },
+    {
+      "source_id": "fr_jorf_cessation_rocard_19910515",
+      "claim_id": "fr_jorf_rocard_government_resignation_letter_19910515",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "1991-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9110103D', 'JORF n°113 du 16 mai 1991') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_rocard_19910515",
+      "claim_id": "fr_jorf_rocard_functions_ended_19910515",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "1991-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9110103D', 'JORF n°113 du 16 mai 1991'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_pm_19910515",
+      "claim_id": "fr_jorf_pm_appointment_decree_title_19910515",
+      "event_kind": "appointment_decree_text_not_rendered",
+      "attested_on": "1991-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9110104D', 'JORF n°113 du 16 mai 1991'), the title and the empty 'Version initiale' block"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Capture prints only title/reference and blank initial-text block; appointee is not named. No start inferred."
+    },
+    {
+      "source_id": "fr_jorf_composition_cresson_19910516",
+      "claim_id": "fr_jorf_cresson_countersigns_composition_19910516",
+      "event_kind": "in_office_countersignature",
+      "attested_on": "1991-05-16",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9110309D', 'JORF n°114 du 17 mai 1991'), the visas, the signature line and the countersignature"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named Prime Minister signs/countersigns this dated instrument. In-office attestation only; not proof of a start or end."
+    },
+    {
+      "source_id": "fr_jorf_composition_cresson_19910516",
+      "claim_id": "fr_jorf_composition_cites_pm_appointment_19910515",
+      "event_kind": "appointment_decree_reference",
+      "attested_on": "1991-05-15",
+      "locator": {
+        "item": "the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Composition decree refers to an earlier appointment decree without an appointee name; reference remains a claim, not a holder start."
+    },
+    {
+      "source_id": "fr_jorf_nomination_beregovoy_19920402",
+      "claim_id": "fr_jorf_beregovoy_appointed_pm_19920402",
+      "event_kind": "appointment_decree",
+      "attested_on": "1992-04-02",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9210090D', 'JORF n°80 du 3 avril 1992'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_beregovoy_19930329",
+      "claim_id": "fr_jorf_beregovoy_government_resignation_letter_19930329",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "1993-03-29",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9310928D', 'JORF n°75 du 29 mars 1993') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_beregovoy_19930329",
+      "claim_id": "fr_jorf_beregovoy_functions_ended_19930329",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "1993-03-29",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9310928D', 'JORF n°75 du 29 mars 1993'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_composition_balladur_19930330",
+      "claim_id": "fr_jorf_balladur_countersigns_composition_19930330",
+      "event_kind": "in_office_countersignature",
+      "attested_on": "1993-03-30",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9310932D', 'JORF n°76 du 31 mars 1993'), the visas, the signature line and the countersignature"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named Prime Minister signs/countersigns this dated instrument. In-office attestation only; not proof of a start or end."
+    },
+    {
+      "source_id": "fr_jorf_composition_balladur_19930330",
+      "claim_id": "fr_jorf_composition_cites_pm_appointment_19930329",
+      "event_kind": "appointment_decree_reference",
+      "attested_on": "1993-03-29",
+      "locator": {
+        "item": "the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Composition decree refers to an earlier appointment decree without an appointee name; reference remains a claim, not a holder start."
+    },
+    {
+      "source_id": "fr_jorf_cessation_balladur_19950511",
+      "claim_id": "fr_jorf_balladur_government_resignation_letter_19950510",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "1995-05-10",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9500803D', 'JORF n°111 du 12 mai 1995') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_balladur_19950511",
+      "claim_id": "fr_jorf_balladur_functions_ended_19950511",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "1995-05-11",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9500803D', 'JORF n°111 du 12 mai 1995'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_composition_juppe_19950518",
+      "claim_id": "fr_jorf_juppe_countersigns_composition_19950518",
+      "event_kind": "in_office_countersignature",
+      "attested_on": "1995-05-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9500827D', 'JORF n°117 du 19 mai 1995 Texte n° 100'), the visas, the signature line and the countersignature"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named Prime Minister signs/countersigns this dated instrument. In-office attestation only; not proof of a start or end."
+    },
+    {
+      "source_id": "fr_jorf_composition_juppe_19950518",
+      "claim_id": "fr_jorf_composition_cites_pm_appointment_19950517",
+      "event_kind": "appointment_decree_reference",
+      "attested_on": "1995-05-17",
+      "locator": {
+        "item": "the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Composition decree refers to an earlier appointment decree without an appointee name; reference remains a claim, not a holder start."
+    },
+    {
+      "source_id": "fr_jorf_nomination_juppe_19951107",
+      "claim_id": "fr_jorf_juppe_appointed_pm_19951107",
+      "event_kind": "appointment_decree",
+      "attested_on": "1995-11-07",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9501167D', 'JORF n°260 du 8 novembre 1995 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_juppe_19970602",
+      "claim_id": "fr_jorf_juppe_government_resignation_letter_19970602",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "1997-06-02",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9702063D', 'JORF n°127 du 3 juin 1997') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_juppe_19970602",
+      "claim_id": "fr_jorf_juppe_functions_ended_19970602",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "1997-06-02",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9702063D', 'JORF n°127 du 3 juin 1997'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_jospin_19970602",
+      "claim_id": "fr_jorf_jospin_appointed_pm_19970602",
+      "event_kind": "appointment_decree",
+      "attested_on": "1997-06-02",
+      "locator": {
+        "item": "reference block ('NOR : HRUX9702065D', 'JORF n°127 du 3 juin 1997'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_jospin_20020506",
+      "claim_id": "fr_jorf_jospin_government_resignation_letter_20020506",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2002-05-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205554D', 'JORF n°106 du 7 mai 2002 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_jospin_20020506",
+      "claim_id": "fr_jorf_jospin_functions_ended_20020506",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2002-05-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205554D', 'JORF n°106 du 7 mai 2002 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_raffarin_20020506",
+      "claim_id": "fr_jorf_raffarin_appointed_pm_20020506",
+      "event_kind": "appointment_decree",
+      "attested_on": "2002-05-06",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205555D', 'JORF n°106 du 7 mai 2002 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20020617",
+      "claim_id": "fr_jorf_raffarin_government_resignation_letter_20020617",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2002-06-17",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205646D', 'JORF n°140 du 18 juin 2002 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20020617",
+      "claim_id": "fr_jorf_raffarin_functions_ended_20020617",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2002-06-17",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205646D', 'JORF n°140 du 18 juin 2002 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_raffarin_20020617",
+      "claim_id": "fr_jorf_raffarin_appointed_pm_20020617",
+      "event_kind": "appointment_decree",
+      "attested_on": "2002-06-17",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0205647D', 'JORF n°140 du 18 juin 2002 page 10719 texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20040330",
+      "claim_id": "fr_jorf_raffarin_government_resignation_letter_20040330",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2004-03-30",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0407222D', 'JORF n°77 du 31 mars 2004 page 6179 texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20040330",
+      "claim_id": "fr_jorf_raffarin_functions_ended_20040330",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2004-03-30",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0407222D', 'JORF n°77 du 31 mars 2004 page 6179 texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_raffarin_20040330",
+      "claim_id": "fr_jorf_raffarin_appointed_pm_20040330",
+      "event_kind": "appointment_decree",
+      "attested_on": "2004-03-30",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0407223D', 'JORF n°77 du 31 mars 2004 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20050531",
+      "claim_id": "fr_jorf_raffarin_government_resignation_letter_20050531",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2005-05-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0508473D', 'JORF n°126 du 1 juin 2005 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_raffarin_20050531",
+      "claim_id": "fr_jorf_raffarin_functions_ended_20050531",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2005-05-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0508473D', 'JORF n°126 du 1 juin 2005 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_villepin_20050531",
+      "claim_id": "fr_jorf_villepin_appointed_pm_20050531",
+      "event_kind": "appointment_decree",
+      "attested_on": "2005-05-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0508472D', 'JORF n°126 du 1 juin 2005 page 0 texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_villepin_20070515",
+      "claim_id": "fr_jorf_villepin_government_resignation_letter_20070515",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2007-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710384D', 'JORF n°113 du 16 mai 2007 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_villepin_20070515",
+      "claim_id": "fr_jorf_villepin_functions_ended_20070515",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2007-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710384D', 'JORF n°113 du 16 mai 2007 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_fillon_20070517",
+      "claim_id": "fr_jorf_fillon_appointed_pm_20070517",
+      "event_kind": "appointment_decree",
+      "attested_on": "2007-05-17",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710386D', 'JORF n°115 du 19 mai 2007 Texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20070618",
+      "claim_id": "fr_jorf_fillon_government_resignation_letter_20070618",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2007-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710491D', 'JORF n°140 du 19 juin 2007 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20070618",
+      "claim_id": "fr_jorf_fillon_functions_ended_20070618",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2007-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710491D', 'JORF n°140 du 19 juin 2007 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_fillon_20070618",
+      "claim_id": "fr_jorf_fillon_appointed_pm_20070618",
+      "event_kind": "appointment_decree",
+      "attested_on": "2007-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX0710493D', 'JORF n°140 du 19 juin 2007 Texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20101113",
+      "claim_id": "fr_jorf_fillon_government_resignation_letter_20101113",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2010-11-13",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1003135D', 'JORF n°0264 du 14 novembre 2010 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20101113",
+      "claim_id": "fr_jorf_fillon_functions_ended_20101113",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2010-11-13",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1003135D', 'JORF n°0264 du 14 novembre 2010 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_fillon_20101114",
+      "claim_id": "fr_jorf_fillon_appointed_pm_20101114",
+      "event_kind": "appointment_decree",
+      "attested_on": "2010-11-14",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1029021D', 'JORF n°0265 du 16 novembre 2010 page 20344 texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20120510",
+      "claim_id": "fr_jorf_fillon_government_resignation_letter_20120510",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2012-05-10",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1223041D', 'JORF n°0110 du 11 mai 2012 page 9002 texte n° 3') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_fillon_20120510",
+      "claim_id": "fr_jorf_fillon_functions_ended_20120510",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2012-05-10",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1223041D', 'JORF n°0110 du 11 mai 2012 page 9002 texte n° 3'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_ayrault_20120515",
+      "claim_id": "fr_jorf_ayrault_appointed_pm_20120515",
+      "event_kind": "appointment_decree",
+      "attested_on": "2012-05-15",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1223252D', 'JORF n°0114 du 16 mai 2012 page 9125 texte n° 1'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_ayrault_20120618",
+      "claim_id": "fr_jorf_ayrault_government_resignation_letter_20120618",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2012-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1226328D', 'JORF n°0141 du 19 juin 2012 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_ayrault_20120618",
+      "claim_id": "fr_jorf_ayrault_functions_ended_20120618",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2012-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1226328D', 'JORF n°0141 du 19 juin 2012 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_nomination_ayrault_20120618",
+      "claim_id": "fr_jorf_ayrault_appointed_pm_20120618",
+      "event_kind": "appointment_decree",
+      "attested_on": "2012-06-18",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1226329D', 'JORF n°0141 du 19 juin 2012 page 10160 texte n° 2'), the article appointing the Prime Minister and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    },
+    {
+      "source_id": "fr_jorf_cessation_ayrault_20140331",
+      "claim_id": "fr_jorf_ayrault_government_resignation_letter_20140331",
+      "event_kind": "government_resignation_presented",
+      "attested_on": "2014-03-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1407797D', 'JORF n°0077 du 1 avril 2014 Texte n° 1') and the second visa"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "The dated resignation letter is mentioned in the decree; the letter itself was not retrieved. A submission is not treated as acceptance/cessation."
+    },
+    {
+      "source_id": "fr_jorf_cessation_ayrault_20140331",
+      "claim_id": "fr_jorf_ayrault_functions_ended_20140331",
+      "event_kind": "cessation_of_functions_decree",
+      "attested_on": "2014-03-31",
+      "locator": {
+        "item": "reference block ('NOR : HRUX1407797D', 'JORF n°0077 du 1 avril 2014 Texte n° 1'), article 1 and the signature line"
+      },
+      "quote_screen_match": true,
+      "source_content_decision": "accepted_as_dated_source_observation",
+      "note": "Named operative appointment/cessation text and signature date verified and unchanged. Separate explicit effective day absent; inferred effective holder boundary removed. Actual dated source observation remains accepted."
+    }
+  ],
+  "method": "All48 material claims and nearby source context independently read; exact quoted-text screening is corroboration only. HTML sources only; no PDF needed or claimed.",
+  "claimed_continuation_absence_scope": "No reviewed decree states current-affairs continuation; absence in selected sources is not historical absence.",
+  "post_2014_research_not_covered": true
+}

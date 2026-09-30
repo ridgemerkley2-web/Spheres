@@ -1,0 +1,1015 @@
+{
+  "base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+  "submission": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+  "accepted_C01_23_sources_identical": 49,
+  "accepted_C01_23_presidency_identical": true,
+  "accepted_C01_23_coverage_note_identical": true,
+  "all_635_financial_organizations_identical": true,
+  "importer_unchanged": {
+    "path": "tools/avatars/import_cnccfp_census.py",
+    "bytes": 24576,
+    "sha256": "93d6e863dce068f86ff417244eb598ecf93f204a09167aa730353824e34a2d80"
+  },
+  "prior_extracts": [
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-88-60-pdr-19880511-facts.json",
+      "bytes": 4691,
+      "sha256": "b01679e16a215c0c287ca3660f8495e6906748e75d2a6958f7845a73ca9bf8ca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-investiture-address-19880521-facts.json",
+      "bytes": 4595,
+      "sha256": "c06507bd68154d92c937fed2584c8ac7da66b6d1834b787d0b3e3967d0f88fdf"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-diplomatic-corps-19900103-facts.json",
+      "bytes": 3877,
+      "sha256": "4cc5fd19df7611f09bd84a8360a6746d1eaf0b0efda520f68e6824a18a3f6b6d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-kohl-press-conference-19900104-facts.json",
+      "bytes": 3873,
+      "sha256": "d1a8de673a261bfbde607b212421676c8bdd7e33a5caf48c7a8b9cb7025344f4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-an-debats-seance-19900827-facts.json",
+      "bytes": 4570,
+      "sha256": "ec5c2e7bc50ebe4ce5dd467afb7d4a73a96206e725c328d78453aa126fc1121c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-reply-pm-resignation-19950510-facts.json",
+      "bytes": 3789,
+      "sha256": "1b0cb9103c0afdc4e2954668fad1ff3bbc650961478988859f214b21f833beee"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-congratulates-chirac-19950507-facts.json",
+      "bytes": 3797,
+      "sha256": "2c644ea293788b47489eece549e1220bcbec9c69d51cc426f681007d91d121dd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-95-81-pdr-19950512-facts.json",
+      "bytes": 5023,
+      "sha256": "429d0c9a696632e1ec33ea131b39fdf58f60c9ba2491b08830129a3de83b0aee"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-mitterrand-letter-19950516-facts.json",
+      "bytes": 4033,
+      "sha256": "b66c3d5aa9ce13bd0f9ddcca6388d059ba6c791221316714e8f2384e43fa702d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-address-19950517-facts.json",
+      "bytes": 5040,
+      "sha256": "ed5d16d256d092719701548de5bc07a398d7b87bc979214017f5a03832c2e84e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-armed-forces-message-19950517-facts.json",
+      "bytes": 3744,
+      "sha256": "3baabcace4c495dd06ea58569d749a99391b228b45066e0222363c82ed770978"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-an-debats-seance-19950519-facts.json",
+      "bytes": 3669,
+      "sha256": "db0e65952d6e8ee7d02c5fe8348d1760816c11b973d0304dbeb8ba1198cf685c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-reelection-declaration-20020505-facts.json",
+      "bytes": 4110,
+      "sha256": "9cb5782bb83bd2dda44742dd99bfb67fefc3cd3779ccba42aad78ee68de2820f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2002-111-pdr-20020508-facts.json",
+      "bytes": 4979,
+      "sha256": "06fac17b4672f9ec006c474103287adca6b3abbe07e346ef0d6a3146a55c0f07"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-requests-20020509-facts.json",
+      "bytes": 3379,
+      "sha256": "df23127665859af147b61b09a0893e37a129f60ae2f7fc67728facd5a3fd132c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-investiture-declaration-20020516-facts.json",
+      "bytes": 4035,
+      "sha256": "1a3c0618cc4e5697352486fbebb3ea6ed87be180db8769dadd5c5a2fc64f82d3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2007-141-pdr-20070510-facts.json",
+      "bytes": 5819,
+      "sha256": "ec687f602fe1c696b1fc44f2aaf9473c244db4089a3ac5a18787e9ed2b841c82"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-communication-20070510-facts.json",
+      "bytes": 4033,
+      "sha256": "e8332609b4daf4daae0d80f137be5ba26e2cfa69c422701baeb6082d6b9e4755"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2007-20070511-facts.json",
+      "bytes": 3743,
+      "sha256": "6fdeb63ac428e015ad14cfe79d1f01f3599d5ebca596d6676d7c8268b6d99208"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-investiture-address-20070516-facts.json",
+      "bytes": 4190,
+      "sha256": "6af4303e4ae91a11076542659de90d15bbb742e8894234544bab92bf863187b4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-investiture-page-2007-20240405-facts.json",
+      "bytes": 3744,
+      "sha256": "9aed6e90ca70e246a1ce8b34ac91467ab5a08ebe2e9ce77aaa228bc8d8fc2905"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-presidency-sarkozy-installation-speech-20070516-facts.json",
+      "bytes": 3573,
+      "sha256": "ac66273ea043645e638e5355c5e16463d732e2f429f9d860add44c15c569c956"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-sarkozy-20260618-facts.json",
+      "bytes": 4972,
+      "sha256": "9ade09b61258b17ae2e6ad327f73769ca5f20f4083d0b24cc9042e90efeb852f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-end-of-mandate-declaration-20070515-facts.json",
+      "bytes": 3710,
+      "sha256": "70d617253a348c34c185e399a9210d5d0d2a22375cad5b71eb611b77982e50e6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-chirac-biography-20260618-facts.json",
+      "bytes": 3516,
+      "sha256": "29813f06d70c898e93dce7c9b9993121d0f723fca14df6c803f2e7df2355edc5"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-note-duree-des-mandats-20250224-facts.json",
+      "bytes": 7113,
+      "sha256": "b1e407e061578d90a6c5125180a23b9b8dd5e500bb9b56aac1ce53b119532b30"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2012-154-pdr-20120510-facts.json",
+      "bytes": 5774,
+      "sha256": "e06013fac8636dfb3a99fa660d3fc6ee524dc827545691d15ebaaeb679caa371"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-communication-20120510-facts.json",
+      "bytes": 4020,
+      "sha256": "9be8cc0ec9d6b62b465030b9c4c3ae8ec25fafb3e9fefbc637fc271aad1ca748"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2012-20120511-facts.json",
+      "bytes": 3510,
+      "sha256": "b5042207165e1f241fa4fa2e01cc4e3e76c6d5fa89de3e2100799b67e3c3eb45"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-debre-investiture-address-20120515-facts.json",
+      "bytes": 4345,
+      "sha256": "de14c6982fc3b0a3b3d479401bbb23b849d578757c67a950a6646abaf128c733"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-hollande-20260618-facts.json",
+      "bytes": 4390,
+      "sha256": "e7bc96ebf3a0571580ebbbb2ade8a3178ff973bc9a7a536e69fa4a6ce7aec8a1"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-hollande-declaration-20120515-facts.json",
+      "bytes": 3666,
+      "sha256": "2ea8c454f20ce32e19f0a8c6bb72fae1ace092ea25e536d52319ad85759e7c14"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-decree-prime-minister-20120515-facts.json",
+      "bytes": 3389,
+      "sha256": "2f42a5b09fcd67b590cfcc32d32f6f489c5b4dc7ffce589883f7949117476463"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2017-171-pdr-20170510-facts.json",
+      "bytes": 5824,
+      "sha256": "3e76bf0426b3f81da5f5a4b92ef29c60fb84eecb6fa064d64311080e62faf71b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-proclamation-statement-20170510-facts.json",
+      "bytes": 4251,
+      "sha256": "bf90a4aebe173d14342a30168cd090cf79622cc52ab0e3c408583bd07c39ecc9"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2017-20170511-facts.json",
+      "bytes": 3457,
+      "sha256": "730c02428bda3fc0b7e3fc7a0bf435e5d7ee7b862c4cbfef26fc801f2c6bb415"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-dossier-documentaire-2017-20170510-facts.json",
+      "bytes": 7776,
+      "sha256": "fa28a59b93216ea606684b38b688667ed108f8a6fc9063c92c5ab65adb6819fd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-investiture-address-20170514-facts.json",
+      "bytes": 4187,
+      "sha256": "c5fe6976ff438f85c0d74b26dffe2da24814faeb6ff1ad33ffac0fc541ca5359"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-rapport-activite-2017-20180926-facts.json",
+      "bytes": 4394,
+      "sha256": "198f23a6c80db679ffa1a2571eb63d14f2fb8f7dad145a1b62c392c7f605cddd"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-macron-20260618-facts.json",
+      "bytes": 4544,
+      "sha256": "c98230137e8a68f6e88afb2264a9ff75f4b32b8e825ac85601b2ab26c28904c6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-passation-notice-20170514-facts.json",
+      "bytes": 3358,
+      "sha256": "37620ffc1f3389a4be19c3efea11d17e4527a2e9d33fd81e033a602fd8946b51"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-hollande-interview-20170510-facts.json",
+      "bytes": 3864,
+      "sha256": "725e6f11b5925abbdd4c666ff6decba541c21f81c4c58f5aab8ed3d56fa34e9a"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2022-195-pdr-20220413-facts.json",
+      "bytes": 4229,
+      "sha256": "26f59259b91cf08348ee5220ee4ae1db8b17c08ab05fabb2742a82d2a04dd585"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-decision-2022-197-pdr-20220427-facts.json",
+      "bytes": 5878,
+      "sha256": "36ff253b0352b2008441a45b9e3c7afb013dadc781d02fcbf59c5419a8fc701d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-proclamation-2022-20220428-facts.json",
+      "bytes": 3569,
+      "sha256": "fdda4ef5df7e1a1f36cf9fffb0abfb146800b417454c4253e2743ce60ba28cca"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-elysee-investiture-20220507-facts.json",
+      "bytes": 5131,
+      "sha256": "bba70629d4e691a8937eebb5d45d020c63ab16c5f13e2368f2c3b8c1a868ac21"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-cc-fabius-investiture-address-20220507-facts.json",
+      "bytes": 4263,
+      "sha256": "70fc9a626720cb8c0f90aef8d55820ccb8e02427feeb970ab30a8411e2b761bb"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-dila-jorf-opendata-20260904-facts.json",
+      "bytes": 4103,
+      "sha256": "e3b946213414bb5a50c74760cec5c8b62d6af4e89dd26e9a896a07f35ba99e25"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-dila-jorf-opendata-20260905-facts.json",
+      "bytes": 4163,
+      "sha256": "b525da65b8b8fbae47b2d05bfde2946bce8567dde7994be3735ffc5a3f2f5793"
+    }
+  ],
+  "new_sources": 31,
+  "new_claims": 48,
+  "new_institutions": [
+    "fr_prime_minister"
+  ],
+  "submitted_delta": [
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "git_blob": "77af7ba1c75846dcb27bf019bfc074d50dbcd2f0",
+      "bytes": 117832,
+      "sha256": "c461e9f06c2591ae033dce6d932a6681cd900366a17b5163deb0b6542d8190d4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france-prime-ministers-1990-2026-37.md",
+      "git_blob": "d54fff0d02dd7c31a96195ee731eaaaac2b3575b",
+      "bytes": 36275,
+      "sha256": "113e34620ef7ab131131a1b890ec77f33f8bc0349a4bc97f95f8450bdf5ecf21"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "git_blob": "54b336a004ba97f57973b5d8fa21a753d10f6055",
+      "bytes": 2112305,
+      "sha256": "3e175fe63debfb0ee9a8570c7609deabcf6cbfbf9ad78607185dc24399d11570"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-ayrault-20120618-facts.json",
+      "git_blob": "14347b1b3f5c44839f1556a02bf01b20e9173132",
+      "bytes": 4450,
+      "sha256": "290c29abdfa231176d1c961c655246da8a7316617a20c582c97ba42dd78ed2c4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-ayrault-20140331-facts.json",
+      "git_blob": "9b56d80aa8926bc58551e3d114fba61c2d2141b6",
+      "bytes": 4450,
+      "sha256": "6d704dd51e8ca6e3e57222ecc1ecc8a9432c753247393976e3b8f69f459fcc3f"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-balladur-19950511-facts.json",
+      "git_blob": "2378691204d81e6853c3a4c0f4853e08084d9eb9",
+      "bytes": 4431,
+      "sha256": "35934b1d5ea1c23e1009bbe9748c33e7994df88f2870ede12f5ca72fa4274403"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-beregovoy-19930329-facts.json",
+      "git_blob": "07e2fa1a6f1c97a82022b6b5a4a1e5f89e94a5f6",
+      "bytes": 4444,
+      "sha256": "638e3b43501d1dfc6f77603d224047bd69e3f95e6bb710a8b0e4ef9e3b19cfb4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20070618-facts.json",
+      "git_blob": "30d1d73dedb69d6087bb8a1910586acf775b544f",
+      "bytes": 4448,
+      "sha256": "d2d2285e5e2830d2ab7d243cab9d6e1114f87c3d4b6dd31e09f8c12eb1c799ed"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20101113-facts.json",
+      "git_blob": "dd63747527fe5717d54657bc622e3f60297ba584",
+      "bytes": 4471,
+      "sha256": "086844bb3b2209dfae3d8e670029b7a31ac3c74e414c56c50459cef0cabd0490"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20120510-facts.json",
+      "git_blob": "ba0aa0f0bf5a98dc4ee395c5c48748e629a26e2c",
+      "bytes": 4500,
+      "sha256": "2cbfff4f1ef2f51604b4d12414ce60a9dcc59cee5851164876448ff30529192e"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-jospin-20020506-facts.json",
+      "git_blob": "d9da3aeffd2673793295040e634ce1a97bf56342",
+      "bytes": 4428,
+      "sha256": "9b4e1ea00525595f35a64b22b4d555f834bc11f6d573a062dc4a4f3478cafb83"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-juppe-19970602-facts.json",
+      "git_blob": "937405853d2c6e56775b2f93a7e2b86c8ce0addb",
+      "bytes": 4403,
+      "sha256": "bade96994bb36b2a3e86e3b44ce66a0a4afb9ec7ae311fb16248c31da4bb8cfc"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20020617-facts.json",
+      "git_blob": "d8356a4d85a22144fc976998db53cddecfcdf4ad",
+      "bytes": 4467,
+      "sha256": "83cb16bd38c12cba4669d9946a6b4c9346d60e2612859df7cf3358d3ad84ca06"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20040330-facts.json",
+      "git_blob": "5f71fe7abdbaf41bd17008fe9508b6bcfdcd3e16",
+      "bytes": 4527,
+      "sha256": "0b0399fbae17c15c6e070d1eae330badee47db8879ad6900898938425abddfe4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20050531-facts.json",
+      "git_blob": "db9416fcc92625712e9d74b09c813576d0e17d8e",
+      "bytes": 4462,
+      "sha256": "f3e4905725495ad45d8f7b28b7cd39c122f1c31c8082493879c0d24de4ae1866"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-rocard-19910515-facts.json",
+      "git_blob": "1de46d7a966e15d0b6e80c9a1606c5d1c47f99ce",
+      "bytes": 4416,
+      "sha256": "7885bd4fee7b79428bd2cc0827517c50bc804d3b8880e219896ae62ba1790c3d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-cessation-villepin-20070515-facts.json",
+      "git_blob": "c77860059ea6c4b54cc07b1501b05bbe94399ce6",
+      "bytes": 4465,
+      "sha256": "ad989d05d41b555664dc3a7c837dbaf101247dd81440aa1890e7d4b27fe4ff98"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-composition-balladur-19930330-facts.json",
+      "git_blob": "634dedc69ab8498bf6601b79f94473726f0791f0",
+      "bytes": 4339,
+      "sha256": "6dc39eb5ae0c8b7529aeda8cd08d70385dcc3dc1bb8344787553d5187e64b907"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-composition-cresson-19910516-facts.json",
+      "git_blob": "10d34aaef34fb17da04ab70c48b5897b3481ce9d",
+      "bytes": 4318,
+      "sha256": "55f789ed8695a4f5cd2b0afb3b2f92f4f5ca688d92fbc5020d3e3a0f84da9925"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-composition-juppe-19950518-facts.json",
+      "git_blob": "cc8909f97891610595fddac60921b39ea4bbc3fa",
+      "bytes": 4329,
+      "sha256": "8195bc9754bb1107263f5391fa0db7a7552fc01a0e0a71a9e7bd1a6ca02a0a42"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-ayrault-20120515-facts.json",
+      "git_blob": "3604ba6262119c44bc1a8ba00862e585907ca696",
+      "bytes": 3681,
+      "sha256": "e8340288cf529ecc2a9d1f488b4999bb1fdfadab2c394a05e7fe73a411b601e3"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-ayrault-20120618-facts.json",
+      "git_blob": "562ace8cd348abc63c0c18b1e30f523877a8ba34",
+      "bytes": 3674,
+      "sha256": "535891ecaee22dfa8414f45d70e40bbd7b9ca01768b811d36e6f1891f273e67b"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-beregovoy-19920402-facts.json",
+      "git_blob": "f7aa0e02f0a0c4274db31f37878e60f2c5194a50",
+      "bytes": 3624,
+      "sha256": "180c9c5ea36d0e326c984e46bbe9c96c59edadee4f41a6d1c405aa0d51fc2212"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20070517-facts.json",
+      "git_blob": "a20a8495f622d82202434d9010e5a713eb58c66b",
+      "bytes": 3617,
+      "sha256": "2590d585fe410a937ed62a325a76429e400927174b9b43a0cd2be8494d1d77f2"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20070618-facts.json",
+      "git_blob": "5142b42cd04fac07970d69c2dc320f5ad7a4f6d7",
+      "bytes": 4340,
+      "sha256": "01c54831a0a2b1c504b2eebe87af0758ad2404a3b3fafeecb74c1b0724811baa"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20101114-facts.json",
+      "git_blob": "8d8d279dd13423be52072af0f1ab955f7b82ef49",
+      "bytes": 3692,
+      "sha256": "8dfd3846b145776ff99f855ccb53a584c5fbe7e6512d86850916d0f0969264d8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-jospin-19970602-facts.json",
+      "git_blob": "e68cb12bea4f9472632b3fcd3b2533ebb44a0788",
+      "bytes": 4323,
+      "sha256": "b4d07572b71210f42429860952379453ce52945034f34f134e0db5552c24d60d"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-juppe-19951107-facts.json",
+      "git_blob": "26ea108dc9d56993ada10803d122667e2d4955c0",
+      "bytes": 3619,
+      "sha256": "af26f4d9d7ec3d9938fd46e8358ca5c2f9167ba40770de27c8516eed3f1491c8"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-pm-19910515-facts.json",
+      "git_blob": "7ef1be30c9f1c5a347dda0c8145cdb65411489ed",
+      "bytes": 3797,
+      "sha256": "3f29e6403781d7998bb44ddb9081c36be85af3c095b6fac6c76deb12274f6734"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20020506-facts.json",
+      "git_blob": "498909d2ffbf728b25089f00d356c545e6258b91",
+      "bytes": 3629,
+      "sha256": "2c40959393abaa6063c43cf56b85b2f66e115577f47f8c3a0aee10d585816a46"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20020617-facts.json",
+      "git_blob": "8fca7ed0b5da07bde0bb63c4a7e35c8b513dc601",
+      "bytes": 3689,
+      "sha256": "270c6ebec55ac19d4be0b123efb89d757782aba82838c2d487c4c3aa11e176f6"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20040330-facts.json",
+      "git_blob": "1950389c55dd19289a5c870d38d3abbc1bff2b26",
+      "bytes": 3634,
+      "sha256": "2fa2a33b5acc937e6e8530ec24a296e9a8069173065b0f235ec7dba47206f9ff"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-nomination-villepin-20050531-facts.json",
+      "git_blob": "f9da8ca2e24e71b9e65503d3fe58ca000277ea33",
+      "bytes": 3683,
+      "sha256": "0ca31a1e08e97a3da2878590dcd4ab8327da661dfcf716dd9ca25cffe603c332"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/france-jorf-rocard-signs-decree-90-89-19900124-facts.json",
+      "git_blob": "b18fe2a3588cec62a506a209fabd10b9a55037a6",
+      "bytes": 3869,
+      "sha256": "7864343fa57729e67c509acda7d591e659bc56b0596b52a7c6c230ddb07d32f4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/supplements/france.json",
+      "git_blob": "35a45bba5cbf0419f4b5a18245dd6ada44c71b6b",
+      "bytes": 308937,
+      "sha256": "c1e863a832183d36b1ee844d0a48eada2904bacaee67150ba15450d13773f66e"
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+      "git_blob": "3d3b9729c8f55b6573612fa7cc53efe173fb08e5",
+      "bytes": 10334,
+      "sha256": "5f91248a9cead006a611cb076a4ccea8508167ead6bdf46a2cb680b15f71d4e2"
+    },
+    {
+      "path": "tools/avatars/test_campaign_research.py",
+      "git_blob": "147c53e4d1dd31b532c35939283defbf14dd0a9d",
+      "bytes": 5827,
+      "sha256": "bd1b3feb51682ec4dd528813742a26dc02ada48a545c1bf5dc4d79f561207cc3"
+    },
+    {
+      "path": "tools/avatars/test_france_presidents_c01_23.py",
+      "git_blob": "7431d786bebdede7b00eccece275623a54fcefe9",
+      "bytes": 65643,
+      "sha256": "698d7606b00b32af2234c607d31954a18a04242630fbc849418beb33b9780428"
+    },
+    {
+      "path": "tools/avatars/test_france_prime_ministers_c01_37.py",
+      "git_blob": "675a9864a78f85b22f8623086566ea202e1fccd7",
+      "bytes": 48890,
+      "sha256": "89ad2fd72aa0c3705441ae135ee5b16adc7cbc9d4427527657d8543880d32faf"
+    }
+  ],
+  "review_fix_commit": "2942fcd7cd2c859fffbbf56de779767fb5fe6a71",
+  "received_holders": [
+    {
+      "name": "Michel Rocard",
+      "attested_on": "1990-01-24",
+      "from": null,
+      "until": "1991-05-15",
+      "sources": [
+        "fr_jorf_rocard_signs_decree_90_89_19900124",
+        "fr_jorf_cessation_rocard_19910515"
+      ],
+      "claim_ids": [
+        "fr_jorf_rocard_signs_decree_as_pm_19900124",
+        "fr_jorf_rocard_functions_ended_19910515"
+      ],
+      "note": "Observed on 24 January 1990: decree no. 90-89 of that day opens 'Le Premier ministre,' and is signed 'MICHEL ROCARD'. Until 15 May 1991: the decree of that day ends, on the Government's resignation, the functions of 'M. Michel Rocard, Premier ministre'.",
+      "uncertainty": "No start: his appointment (1988) lies before the packet period and was not researched, so he is dated by an in-period attestation. The end rests on the decree ending the functions, signed 15 May 1991; the resignation letter of the same day is a separate claim, and the decree appointing his successor (whose text is not rendered) is never used as this end."
+    },
+    {
+      "name": "Édith Cresson",
+      "attested_on": "1991-05-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_composition_cresson_19910516"
+      ],
+      "claim_ids": [
+        "fr_jorf_cresson_countersigns_composition_19910516"
+      ],
+      "note": "Observed on 16 May 1991: the decree on the composition of the Government of that day, made 'Sur proposition du Premier ministre', is countersigned 'Le Premier ministre, EDITH CRESSON'.",
+      "uncertainty": "No start: Légifrance's page for the appointment decree of 15 May 1991 renders no text and names nobody, and the composition decree's reference to 'le décret du 15 mai 1991 portant nomination du Premier ministre' does not name the appointee; pairing the two would infer a start, so neither is used. No end: the decree of 2 April 1992 ending her Government's functions (JORFTEXT000000539723) has no usable archive capture, and her successor's appointment of 2 April 1992 is never used as this end."
+    },
+    {
+      "name": "Pierre Bérégovoy",
+      "attested_on": null,
+      "from": "1992-04-02",
+      "until": "1993-03-29",
+      "sources": [
+        "fr_jorf_nomination_beregovoy_19920402",
+        "fr_jorf_cessation_beregovoy_19930329"
+      ],
+      "claim_ids": [
+        "fr_jorf_beregovoy_appointed_pm_19920402",
+        "fr_jorf_beregovoy_functions_ended_19930329"
+      ],
+      "note": "From 2 April 1992: the decree of that day reads 'M. Pierre Bérégovoy est nommé Premier ministre'. Until 29 March 1993: the decree of that day ends the functions of 'M. Pierre Bérégovoy, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; their publication in the Journal officiel is not a boundary. The resignation letter of 29 March 1993 is a separate claim."
+    },
+    {
+      "name": "Édouard Balladur",
+      "attested_on": "1993-03-30",
+      "from": null,
+      "until": "1995-05-11",
+      "sources": [
+        "fr_jorf_composition_balladur_19930330",
+        "fr_jorf_cessation_balladur_19950511"
+      ],
+      "claim_ids": [
+        "fr_jorf_balladur_countersigns_composition_19930330",
+        "fr_jorf_balladur_functions_ended_19950511"
+      ],
+      "note": "Observed on 30 March 1993: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, EDOUARD BALLADUR'. Until 11 May 1995: the decree of that day ends the functions of 'M. Edouard Balladur, Premier ministre'.",
+      "uncertainty": "No start: the appointment decree of 29 March 1993 (JORFTEXT000000726609) has no archive capture, and the composition decree's reference to it names nobody. The end is the decree of 11 May 1995, not the resignation letter it cites, dated 10 May 1995, which is a separate claim."
+    },
+    {
+      "name": "Alain Juppé",
+      "attested_on": "1995-05-18",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_composition_juppe_19950518"
+      ],
+      "claim_ids": [
+        "fr_jorf_juppe_countersigns_composition_19950518"
+      ],
+      "note": "Observed on 18 May 1995: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, Alain Juppé'.",
+      "uncertainty": "No start: the appointment decree of 17 May 1995 (JORFTEXT000000718399) has no archive capture, and the composition decree's reference to it names nobody. No end: the decree of 7 November 1995 ending the first Government's functions was not retrieved (its likely identifier, JORFTEXT000000189843, has no capture), and his own reappointment of 7 November 1995 is never used as this end."
+    },
+    {
+      "name": "Alain Juppé",
+      "attested_on": null,
+      "from": "1995-11-07",
+      "until": "1997-06-02",
+      "sources": [
+        "fr_jorf_nomination_juppe_19951107",
+        "fr_jorf_cessation_juppe_19970602"
+      ],
+      "claim_ids": [
+        "fr_jorf_juppe_appointed_pm_19951107",
+        "fr_jorf_juppe_functions_ended_19970602"
+      ],
+      "note": "From 7 November 1995: the decree of that day reads 'M. Alain Juppé est nommé Premier ministre'. Until 2 June 1997: the decree of that day ends the functions of 'M. Alain Juppé, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed. The resignation letter of 2 June 1997 is a separate claim."
+    },
+    {
+      "name": "Lionel Jospin",
+      "attested_on": null,
+      "from": "1997-06-02",
+      "until": "2002-05-06",
+      "sources": [
+        "fr_jorf_nomination_jospin_19970602",
+        "fr_jorf_cessation_jospin_20020506"
+      ],
+      "claim_ids": [
+        "fr_jorf_jospin_appointed_pm_19970602",
+        "fr_jorf_jospin_functions_ended_20020506"
+      ],
+      "note": "From 2 June 1997: the decree of that day reads 'M. Lionel Jospin est nommé Premier ministre'. Until 6 May 2002: the decree of that day ends the functions of 'M. Lionel Jospin, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the appointment capture is served gzip-compressed (see its scope). The resignation letter of 6 May 2002 is a separate claim."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": null,
+      "from": "2002-05-06",
+      "until": "2002-06-17",
+      "sources": [
+        "fr_jorf_nomination_raffarin_20020506",
+        "fr_jorf_cessation_raffarin_20020617"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020506",
+        "fr_jorf_raffarin_functions_ended_20020617"
+      ],
+      "note": "From 6 May 2002: the decree of that day reads 'M. Jean-Pierre Raffarin est nommé Premier ministre'. Until 17 June 2002: the decree of that day ends the functions of 'M. Jean-Pierre Raffarin, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the reappointment of the same day is a separate decree and holder."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": null,
+      "from": "2002-06-17",
+      "until": "2004-03-30",
+      "sources": [
+        "fr_jorf_nomination_raffarin_20020617",
+        "fr_jorf_cessation_raffarin_20040330"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020617",
+        "fr_jorf_raffarin_functions_ended_20040330"
+      ],
+      "note": "From 17 June 2002: the decree of that day appoints 'M. Jean-Pierre Raffarin' Prime Minister. Until 30 March 2004: the decree of that day ends his functions as Prime Minister.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the resignation letters are separate claims."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": null,
+      "from": "2004-03-30",
+      "until": "2005-05-31",
+      "sources": [
+        "fr_jorf_nomination_raffarin_20040330",
+        "fr_jorf_cessation_raffarin_20050531"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20040330",
+        "fr_jorf_raffarin_functions_ended_20050531"
+      ],
+      "note": "From 30 March 2004: the decree of that day appoints 'M. Jean-Pierre Raffarin' Prime Minister. Until 31 May 2005: the decree of that day ends his functions as Prime Minister.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the resignation letters are separate claims."
+    },
+    {
+      "name": "Dominique de Villepin",
+      "attested_on": null,
+      "from": "2005-05-31",
+      "until": "2007-05-15",
+      "sources": [
+        "fr_jorf_nomination_villepin_20050531",
+        "fr_jorf_cessation_villepin_20070515"
+      ],
+      "claim_ids": [
+        "fr_jorf_villepin_appointed_pm_20050531",
+        "fr_jorf_villepin_functions_ended_20070515"
+      ],
+      "note": "From 31 May 2005: the decree of that day reads 'M. Dominique de Villepin est nommé Premier ministre'. Until 15 May 2007: the decree of that day ends the functions of 'M. Dominique de Villepin, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed. His successor was appointed on 17 May 2007, two days later; that appointment is never used as this end."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": null,
+      "from": "2007-05-17",
+      "until": "2007-06-18",
+      "sources": [
+        "fr_jorf_nomination_fillon_20070517",
+        "fr_jorf_cessation_fillon_20070618"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070517",
+        "fr_jorf_fillon_functions_ended_20070618"
+      ],
+      "note": "From 17 May 2007: the decree of that day reads 'M. François Fillon est nommé Premier ministre'. Until 18 June 2007: the decree of that day ends the functions of 'M. François Fillon, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the reappointment of the same day is a separate holder."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": null,
+      "from": "2007-06-18",
+      "until": "2010-11-13",
+      "sources": [
+        "fr_jorf_nomination_fillon_20070618",
+        "fr_jorf_cessation_fillon_20101113"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070618",
+        "fr_jorf_fillon_functions_ended_20101113"
+      ],
+      "note": "From 18 June 2007: the decree of that day appoints 'M. François Fillon' Prime Minister. Until 13 November 2010: the decree of that day ends his functions as Prime Minister.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the appointment capture is served gzip-compressed (see its scope). The reappointment is dated the next day, 14 November 2010, and is never used as this end."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": null,
+      "from": "2010-11-14",
+      "until": "2012-05-10",
+      "sources": [
+        "fr_jorf_nomination_fillon_20101114",
+        "fr_jorf_cessation_fillon_20120510"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20101114",
+        "fr_jorf_fillon_functions_ended_20120510"
+      ],
+      "note": "From 14 November 2010: the decree of that day appoints 'M. François Fillon' Prime Minister. Until 10 May 2012: the decree of that day ends his functions as Prime Minister.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed. His successor was appointed on 15 May 2012; that appointment is never used as this end."
+    },
+    {
+      "name": "Jean-Marc Ayrault",
+      "attested_on": null,
+      "from": "2012-05-15",
+      "until": "2012-06-18",
+      "sources": [
+        "fr_jorf_nomination_ayrault_20120515",
+        "fr_jorf_cessation_ayrault_20120618"
+      ],
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120515",
+        "fr_jorf_ayrault_functions_ended_20120618"
+      ],
+      "note": "From 15 May 2012: the decree of that day reads 'M. Jean-Marc Ayrault est nommé Premier ministre'. Until 18 June 2012: the decree of that day ends the functions of 'M. Jean-Marc Ayrault, Premier ministre'.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed; the appointment is read in a capture of the earlier Légifrance page made on 25 May 2012. The reappointment of the same day is a separate holder."
+    },
+    {
+      "name": "Jean-Marc Ayrault",
+      "attested_on": null,
+      "from": "2012-06-18",
+      "until": "2014-03-31",
+      "sources": [
+        "fr_jorf_nomination_ayrault_20120618",
+        "fr_jorf_cessation_ayrault_20140331"
+      ],
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120618",
+        "fr_jorf_ayrault_functions_ended_20140331"
+      ],
+      "note": "From 18 June 2012: the decree of that day appoints 'M. Jean-Marc Ayrault' Prime Minister. Until 31 March 2014: the decree of that day ends his functions as Prime Minister.",
+      "uncertainty": "Both boundaries are the days the two decrees are signed. The appointment of the next Prime Minister, also dated 31 March 2014, belongs to the next batch and is never used as this end."
+    }
+  ],
+  "reviewed_holders": [
+    {
+      "name": "Michel Rocard",
+      "attested_on": "1990-01-24",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_rocard_signs_decree_90_89_19900124",
+        "fr_jorf_cessation_rocard_19910515"
+      ],
+      "claim_ids": [
+        "fr_jorf_rocard_signs_decree_as_pm_19900124",
+        "fr_jorf_rocard_functions_ended_19910515"
+      ],
+      "note": "Observed on 24 January 1990: decree no. 90-89 of that day opens 'Le Premier ministre,' and is signed 'MICHEL ROCARD'. A separate signed cessation instrument dated 1991-05-15 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Édith Cresson",
+      "attested_on": "1991-05-16",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_composition_cresson_19910516"
+      ],
+      "claim_ids": [
+        "fr_jorf_cresson_countersigns_composition_19910516"
+      ],
+      "note": "Observed on 16 May 1991: the decree on the composition of the Government of that day, made 'Sur proposition du Premier ministre', is countersigned 'Le Premier ministre, EDITH CRESSON'.",
+      "uncertainty": "No start: Légifrance's page for the appointment decree of 15 May 1991 renders no text and names nobody, and the composition decree's reference to 'le décret du 15 mai 1991 portant nomination du Premier ministre' does not name the appointee; pairing the two would infer a start, so neither is used. No end: the decree of 2 April 1992 ending her Government's functions (JORFTEXT000000539723) has no usable archive capture, and her successor's appointment of 2 April 1992 is never used as this end."
+    },
+    {
+      "name": "Pierre Bérégovoy",
+      "attested_on": "1992-04-02",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_beregovoy_19920402",
+        "fr_jorf_cessation_beregovoy_19930329"
+      ],
+      "claim_ids": [
+        "fr_jorf_beregovoy_appointed_pm_19920402",
+        "fr_jorf_beregovoy_functions_ended_19930329"
+      ],
+      "note": "Observed on 1992-04-02: the signed instrument names Pierre Bérégovoy as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 1993-03-29 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Édouard Balladur",
+      "attested_on": "1993-03-30",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_composition_balladur_19930330",
+        "fr_jorf_cessation_balladur_19950511"
+      ],
+      "claim_ids": [
+        "fr_jorf_balladur_countersigns_composition_19930330",
+        "fr_jorf_balladur_functions_ended_19950511"
+      ],
+      "note": "Observed on 30 March 1993: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, EDOUARD BALLADUR'. A separate signed cessation instrument dated 1995-05-11 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Alain Juppé",
+      "attested_on": "1995-05-18",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_composition_juppe_19950518"
+      ],
+      "claim_ids": [
+        "fr_jorf_juppe_countersigns_composition_19950518"
+      ],
+      "note": "Observed on 18 May 1995: the decree on the composition of the Government of that day is countersigned 'Le Premier ministre, Alain Juppé'.",
+      "uncertainty": "No start: the appointment decree of 17 May 1995 (JORFTEXT000000718399) has no archive capture, and the composition decree's reference to it names nobody. No end: the decree of 7 November 1995 ending the first Government's functions was not retrieved (its likely identifier, JORFTEXT000000189843, has no capture), and his own reappointment of 7 November 1995 is never used as this end."
+    },
+    {
+      "name": "Alain Juppé",
+      "attested_on": "1995-11-07",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_juppe_19951107",
+        "fr_jorf_cessation_juppe_19970602"
+      ],
+      "claim_ids": [
+        "fr_jorf_juppe_appointed_pm_19951107",
+        "fr_jorf_juppe_functions_ended_19970602"
+      ],
+      "note": "Observed on 1995-11-07: the signed instrument names Alain Juppé as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 1997-06-02 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Lionel Jospin",
+      "attested_on": "1997-06-02",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_jospin_19970602",
+        "fr_jorf_cessation_jospin_20020506"
+      ],
+      "claim_ids": [
+        "fr_jorf_jospin_appointed_pm_19970602",
+        "fr_jorf_jospin_functions_ended_20020506"
+      ],
+      "note": "Observed on 1997-06-02: the signed instrument names Lionel Jospin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2002-05-06 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": "2002-05-06",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_raffarin_20020506",
+        "fr_jorf_cessation_raffarin_20020617"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020506",
+        "fr_jorf_raffarin_functions_ended_20020617"
+      ],
+      "note": "Observed on 2002-05-06: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2002-06-17 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": "2002-06-17",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_raffarin_20020617",
+        "fr_jorf_cessation_raffarin_20040330"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020617",
+        "fr_jorf_raffarin_functions_ended_20040330"
+      ],
+      "note": "Observed on 2002-06-17: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2004-03-30 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean-Pierre Raffarin",
+      "attested_on": "2004-03-30",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_raffarin_20040330",
+        "fr_jorf_cessation_raffarin_20050531"
+      ],
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20040330",
+        "fr_jorf_raffarin_functions_ended_20050531"
+      ],
+      "note": "Observed on 2004-03-30: the signed instrument names Jean-Pierre Raffarin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2005-05-31 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Dominique de Villepin",
+      "attested_on": "2005-05-31",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_villepin_20050531",
+        "fr_jorf_cessation_villepin_20070515"
+      ],
+      "claim_ids": [
+        "fr_jorf_villepin_appointed_pm_20050531",
+        "fr_jorf_villepin_functions_ended_20070515"
+      ],
+      "note": "Observed on 2005-05-31: the signed instrument names Dominique de Villepin as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2007-05-15 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": "2007-05-17",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_fillon_20070517",
+        "fr_jorf_cessation_fillon_20070618"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070517",
+        "fr_jorf_fillon_functions_ended_20070618"
+      ],
+      "note": "Observed on 2007-05-17: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2007-06-18 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": "2007-06-18",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_fillon_20070618",
+        "fr_jorf_cessation_fillon_20101113"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070618",
+        "fr_jorf_fillon_functions_ended_20101113"
+      ],
+      "note": "Observed on 2007-06-18: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2010-11-13 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "François Fillon",
+      "attested_on": "2010-11-14",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_fillon_20101114",
+        "fr_jorf_cessation_fillon_20120510"
+      ],
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20101114",
+        "fr_jorf_fillon_functions_ended_20120510"
+      ],
+      "note": "Observed on 2010-11-14: the signed instrument names François Fillon as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2012-05-10 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean-Marc Ayrault",
+      "attested_on": "2012-05-15",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_ayrault_20120515",
+        "fr_jorf_cessation_ayrault_20120618"
+      ],
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120515",
+        "fr_jorf_ayrault_functions_ended_20120618"
+      ],
+      "note": "Observed on 2012-05-15: the signed instrument names Jean-Marc Ayrault as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2012-06-18 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    },
+    {
+      "name": "Jean-Marc Ayrault",
+      "attested_on": "2012-06-18",
+      "from": null,
+      "until": null,
+      "sources": [
+        "fr_jorf_nomination_ayrault_20120618",
+        "fr_jorf_cessation_ayrault_20140331"
+      ],
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120618",
+        "fr_jorf_ayrault_functions_ended_20140331"
+      ],
+      "note": "Observed on 2012-06-18: the signed instrument names Jean-Marc Ayrault as Premier ministre. This records the appointment instrument, not an independently established effective start. A separate signed cessation instrument dated 2014-03-31 is retained among the cited claims; it does not supply an independently established effective end.",
+      "uncertainty": "No start or end established: the reviewed appointment/cessation instruments identify their signing dates without a separate explicit effective-date clause. attested_on dates the named source observation only and does not assert a continuous term or an effective assumption/cessation that day. Publication dates, resignation letters, successors and reappointments do not fill the missing boundaries. Further effective-term and any current-affairs continuation research remains open."
+    }
+  ],
+  "reviewed_index_commit": "9cdae8910a9cdae8cadb129f27f842a29aab2ce1",
+  "boundary_repair_commit": "73d748ef541d4d1970a07b9050115cf52bb2ecee",
+  "source_event_text_dates_locators_unchanged": 48,
+  "source_claim_uncertainty_changes": 40,
+  "accepted_presidential_data_still_exact_after_regeneration": true
+}

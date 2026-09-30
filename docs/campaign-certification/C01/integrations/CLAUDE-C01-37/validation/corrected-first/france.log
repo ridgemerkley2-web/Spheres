@@ -1,0 +1,20 @@
+E..................
+======================================================================
+ERROR: test_france_pm_boundaries_review (unittest.loader._FailedTest.test_france_pm_boundaries_review)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_france_pm_boundaries_review
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "D:\spheres-offload\codex-next-20260928\c01-37-review\tools\avatars\test_france_pm_boundaries_review.py", line 29
+    claims = {c['id']: (source, c) for source in self.supplement['sources'] for c in source['claims']}
+IndentationError: unexpected indent
+
+
+----------------------------------------------------------------------
+Ran 19 tests in 3.090s
+
+FAILED (errors=1)

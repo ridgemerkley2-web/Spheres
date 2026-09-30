@@ -1,0 +1,39 @@
+{
+  "known_failure": "campaign_census.py --check: stale production government pin",
+  "expected_government": {
+    "path": "spheres-sim/src/government.rs",
+    "bytes": 848551,
+    "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f"
+  },
+  "actual_government": {
+    "path": "spheres-sim/src/government.rs",
+    "git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+    "bytes": 849546,
+    "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+    "identical_prepacket_submission_reviewed": true
+  },
+  "baseline_proof": [
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "git_blob": "db7f433e981e669b92ddbe645dcbcbb5ac814d9a",
+      "bytes": 6105,
+      "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "identical_prepacket_submission_reviewed": true
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+      "bytes": 849546,
+      "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+      "identical_prepacket_submission_reviewed": true
+    },
+    {
+      "path": "tools/avatars/campaign_census.py",
+      "git_blob": "1fb0996d57a7a99425a481e3b97ddb623b528ac7",
+      "bytes": 19826,
+      "sha256": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b",
+      "identical_prepacket_submission_reviewed": true
+    }
+  ],
+  "regenerated_unrelated_census": false
+}

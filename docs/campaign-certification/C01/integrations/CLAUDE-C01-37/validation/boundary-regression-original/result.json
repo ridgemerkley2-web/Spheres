@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_france_pm_boundaries_review.py"
+  ],
+  "exit_code": 1,
+  "source_submission": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+  "data_unchanged": true
+}

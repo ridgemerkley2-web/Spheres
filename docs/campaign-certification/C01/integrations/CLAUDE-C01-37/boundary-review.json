@@ -1,0 +1,381 @@
+{
+  "decision": "removed_unsupported_effective_boundaries_retained_all_source_events",
+  "submitted_from_count": 12,
+  "submitted_until_count": 14,
+  "boundary_changes_made": true,
+  "source_events_accepted": true,
+  "false_date_claim_established": false,
+  "reason": "The report admits no effective-date clause and infers signature day. Canonical C01-23 acceptance distinguished source instrument/proclamation date from effect; no equivalent accepted rule for all Prime Minister decrees was demonstrated. This flags a support/contract question, not proof that the proposed historical dates are wrong.",
+  "unverified_author_attribution": "Submission attributes the interpretation to Ridge; no independent authorization was established from that handoff.",
+  "accepted_precedent": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/review-2026-09-28/README.md",
+  "boundaries": [
+    {
+      "holder_index": 0,
+      "name": "Michel Rocard",
+      "field": "until",
+      "proposed_day": "1991-05-15",
+      "claim_ids": [
+        "fr_jorf_rocard_signs_decree_as_pm_19900124",
+        "fr_jorf_rocard_functions_ended_19910515"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1990-01-24"
+    },
+    {
+      "holder_index": 2,
+      "name": "Pierre Bérégovoy",
+      "field": "from",
+      "proposed_day": "1992-04-02",
+      "claim_ids": [
+        "fr_jorf_beregovoy_appointed_pm_19920402",
+        "fr_jorf_beregovoy_functions_ended_19930329"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1992-04-02"
+    },
+    {
+      "holder_index": 2,
+      "name": "Pierre Bérégovoy",
+      "field": "until",
+      "proposed_day": "1993-03-29",
+      "claim_ids": [
+        "fr_jorf_beregovoy_appointed_pm_19920402",
+        "fr_jorf_beregovoy_functions_ended_19930329"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1992-04-02"
+    },
+    {
+      "holder_index": 3,
+      "name": "Édouard Balladur",
+      "field": "until",
+      "proposed_day": "1995-05-11",
+      "claim_ids": [
+        "fr_jorf_balladur_countersigns_composition_19930330",
+        "fr_jorf_balladur_functions_ended_19950511"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1993-03-30"
+    },
+    {
+      "holder_index": 5,
+      "name": "Alain Juppé",
+      "field": "from",
+      "proposed_day": "1995-11-07",
+      "claim_ids": [
+        "fr_jorf_juppe_appointed_pm_19951107",
+        "fr_jorf_juppe_functions_ended_19970602"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1995-11-07"
+    },
+    {
+      "holder_index": 5,
+      "name": "Alain Juppé",
+      "field": "until",
+      "proposed_day": "1997-06-02",
+      "claim_ids": [
+        "fr_jorf_juppe_appointed_pm_19951107",
+        "fr_jorf_juppe_functions_ended_19970602"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1995-11-07"
+    },
+    {
+      "holder_index": 6,
+      "name": "Lionel Jospin",
+      "field": "from",
+      "proposed_day": "1997-06-02",
+      "claim_ids": [
+        "fr_jorf_jospin_appointed_pm_19970602",
+        "fr_jorf_jospin_functions_ended_20020506"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1997-06-02"
+    },
+    {
+      "holder_index": 6,
+      "name": "Lionel Jospin",
+      "field": "until",
+      "proposed_day": "2002-05-06",
+      "claim_ids": [
+        "fr_jorf_jospin_appointed_pm_19970602",
+        "fr_jorf_jospin_functions_ended_20020506"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "1997-06-02"
+    },
+    {
+      "holder_index": 7,
+      "name": "Jean-Pierre Raffarin",
+      "field": "from",
+      "proposed_day": "2002-05-06",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020506",
+        "fr_jorf_raffarin_functions_ended_20020617"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2002-05-06"
+    },
+    {
+      "holder_index": 7,
+      "name": "Jean-Pierre Raffarin",
+      "field": "until",
+      "proposed_day": "2002-06-17",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020506",
+        "fr_jorf_raffarin_functions_ended_20020617"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2002-05-06"
+    },
+    {
+      "holder_index": 8,
+      "name": "Jean-Pierre Raffarin",
+      "field": "from",
+      "proposed_day": "2002-06-17",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020617",
+        "fr_jorf_raffarin_functions_ended_20040330"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2002-06-17"
+    },
+    {
+      "holder_index": 8,
+      "name": "Jean-Pierre Raffarin",
+      "field": "until",
+      "proposed_day": "2004-03-30",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20020617",
+        "fr_jorf_raffarin_functions_ended_20040330"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2002-06-17"
+    },
+    {
+      "holder_index": 9,
+      "name": "Jean-Pierre Raffarin",
+      "field": "from",
+      "proposed_day": "2004-03-30",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20040330",
+        "fr_jorf_raffarin_functions_ended_20050531"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2004-03-30"
+    },
+    {
+      "holder_index": 9,
+      "name": "Jean-Pierre Raffarin",
+      "field": "until",
+      "proposed_day": "2005-05-31",
+      "claim_ids": [
+        "fr_jorf_raffarin_appointed_pm_20040330",
+        "fr_jorf_raffarin_functions_ended_20050531"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2004-03-30"
+    },
+    {
+      "holder_index": 10,
+      "name": "Dominique de Villepin",
+      "field": "from",
+      "proposed_day": "2005-05-31",
+      "claim_ids": [
+        "fr_jorf_villepin_appointed_pm_20050531",
+        "fr_jorf_villepin_functions_ended_20070515"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2005-05-31"
+    },
+    {
+      "holder_index": 10,
+      "name": "Dominique de Villepin",
+      "field": "until",
+      "proposed_day": "2007-05-15",
+      "claim_ids": [
+        "fr_jorf_villepin_appointed_pm_20050531",
+        "fr_jorf_villepin_functions_ended_20070515"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2005-05-31"
+    },
+    {
+      "holder_index": 11,
+      "name": "François Fillon",
+      "field": "from",
+      "proposed_day": "2007-05-17",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070517",
+        "fr_jorf_fillon_functions_ended_20070618"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2007-05-17"
+    },
+    {
+      "holder_index": 11,
+      "name": "François Fillon",
+      "field": "until",
+      "proposed_day": "2007-06-18",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070517",
+        "fr_jorf_fillon_functions_ended_20070618"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2007-05-17"
+    },
+    {
+      "holder_index": 12,
+      "name": "François Fillon",
+      "field": "from",
+      "proposed_day": "2007-06-18",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070618",
+        "fr_jorf_fillon_functions_ended_20101113"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2007-06-18"
+    },
+    {
+      "holder_index": 12,
+      "name": "François Fillon",
+      "field": "until",
+      "proposed_day": "2010-11-13",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20070618",
+        "fr_jorf_fillon_functions_ended_20101113"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2007-06-18"
+    },
+    {
+      "holder_index": 13,
+      "name": "François Fillon",
+      "field": "from",
+      "proposed_day": "2010-11-14",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20101114",
+        "fr_jorf_fillon_functions_ended_20120510"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2010-11-14"
+    },
+    {
+      "holder_index": 13,
+      "name": "François Fillon",
+      "field": "until",
+      "proposed_day": "2012-05-10",
+      "claim_ids": [
+        "fr_jorf_fillon_appointed_pm_20101114",
+        "fr_jorf_fillon_functions_ended_20120510"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2010-11-14"
+    },
+    {
+      "holder_index": 14,
+      "name": "Jean-Marc Ayrault",
+      "field": "from",
+      "proposed_day": "2012-05-15",
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120515",
+        "fr_jorf_ayrault_functions_ended_20120618"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2012-05-15"
+    },
+    {
+      "holder_index": 14,
+      "name": "Jean-Marc Ayrault",
+      "field": "until",
+      "proposed_day": "2012-06-18",
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120515",
+        "fr_jorf_ayrault_functions_ended_20120618"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2012-05-15"
+    },
+    {
+      "holder_index": 15,
+      "name": "Jean-Marc Ayrault",
+      "field": "from",
+      "proposed_day": "2012-06-18",
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120618",
+        "fr_jorf_ayrault_functions_ended_20140331"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2012-06-18"
+    },
+    {
+      "holder_index": 15,
+      "name": "Jean-Marc Ayrault",
+      "field": "until",
+      "proposed_day": "2014-03-31",
+      "claim_ids": [
+        "fr_jorf_ayrault_appointed_pm_20120618",
+        "fr_jorf_ayrault_functions_ended_20140331"
+      ],
+      "review": "unsupported_effective_boundary_removed",
+      "holder_data_edited": true,
+      "reviewed_value": null,
+      "reviewed_attested_on": "2012-06-18"
+    }
+  ],
+  "boundary_repair_commit": "73d748ef541d4d1970a07b9050115cf52bb2ecee",
+  "remaining_effective_term_research_open": true,
+  "regression_initial_failed": true,
+  "regression_final_passed": true
+}

@@ -1,0 +1,14 @@
+{
+  "method": "Final committed regression module with setUp replaced only to read exact original supplement Git blob; no repository data written. Both original inference cases fail.",
+  "original_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+  "original_path": "docs/campaign-certification/C01/research/supplements/france.json",
+  "original_raw_bytes": 308937,
+  "original_raw_sha256": "c1e863a832183d36b1ee844d0a48eada2904bacaee67150ba15450d13773f66e",
+  "regression_file": "tools/avatars/test_france_pm_boundaries_review.py",
+  "regression_sha256_utf8_lf": "f2c26af177c51a8e0bab4c7b45ee6177ae6271b84bfaa96d71389f1a89b99e0c",
+  "tests_run": 2,
+  "failures": 2,
+  "errors": 0,
+  "expected_failure_demonstrated": true,
+  "utc": "2026-09-30T09:39:04.358290+00:00"
+}
