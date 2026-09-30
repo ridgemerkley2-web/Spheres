@@ -1,0 +1,150 @@
+{
+  "submission_revision": "df4707462903b893916b5ef2d56a875a82f4030f",
+  "working_tree_fix": "SABC republished news classification and regression tests",
+  "checks": [
+    {
+      "name": "index-regenerate",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:11.784105+00:00",
+      "finished_utc": "2026-09-30T08:52:12.374724+00:00",
+      "log": "index-regenerate.log",
+      "bytes": 252,
+      "sha256": "2bf3b7ddedd43862abaf434bfaf18847dda85b29f5d55e32ab063a073703a240"
+    },
+    {
+      "name": "south-africa",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_south_africa*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:12.374794+00:00",
+      "finished_utc": "2026-09-30T08:52:17.595484+00:00",
+      "log": "south-africa.log",
+      "bytes": 154,
+      "sha256": "e0b1eaef419a105bd72d0973539f68cc23c12407118e359a33613efc918ca3f8"
+    },
+    {
+      "name": "research",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:17.595527+00:00",
+      "finished_utc": "2026-09-30T08:52:22.746208+00:00",
+      "log": "research.log",
+      "bytes": 183,
+      "sha256": "6dd0cf2685f92893ce86f1ac635287a1ccc9fb2bfd9ef1600a7d9a77781789d4"
+    },
+    {
+      "name": "campaign",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:22.746254+00:00",
+      "finished_utc": "2026-09-30T08:52:23.810740+00:00",
+      "log": "campaign.log",
+      "bytes": 120,
+      "sha256": "f53504646559c5bece31e6ead8d8e3b3488835e5f3a1e2c378ebdc74152edef0"
+    },
+    {
+      "name": "index-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:23.810779+00:00",
+      "finished_utc": "2026-09-30T08:52:24.339023+00:00",
+      "log": "index-check.log",
+      "bytes": 251,
+      "sha256": "fd65a86dec8a93abe8cdb31733f37b8e7979f173e5ab23af90b8b339f0003615"
+    },
+    {
+      "name": "leadership-atlas",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:24.339063+00:00",
+      "finished_utc": "2026-09-30T08:52:24.517586+00:00",
+      "log": "leadership-atlas.log",
+      "bytes": 1122,
+      "sha256": "2baca8f1a7774330f703427ca546ab05e98cecce7c70f692b570cdac0bab676c"
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:24.517665+00:00",
+      "finished_utc": "2026-09-30T08:52:24.577551+00:00",
+      "log": "workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "started_utc": "2026-09-30T08:52:24.577594+00:00",
+      "finished_utc": "2026-09-30T08:52:24.618020+00:00",
+      "log": "diff-check.log",
+      "bytes": 461,
+      "sha256": "1398fb78b8f133511b7cf2e6813eefa0268be3975cd23d558de49374b495f0a0"
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+{
+  "attempts": [
+    {
+      "record": "source-retrieval.json",
+      "record_sha256": "3c724e8138e173dade7a833402900a888719c100e99dc02dba408159c6e6dbb7",
+      "attempted": 38,
+      "exact": 17,
+      "results": [
+        {
+          "source_id": "za_pac_address_hawkers_council_19981012",
+          "started_utc": "2026-09-30T08:38:12.268912+00:00",
+          "finished_utc": "2026-09-30T08:38:14.600710+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2287 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_constitution_1996_page",
+          "started_utc": "2026-09-30T08:38:12.269305+00:00",
+          "finished_utc": "2026-09-30T08:38:14.600257+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2288 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_constitution_2008_page",
+          "started_utc": "2026-09-30T08:38:12.269542+00:00",
+          "finished_utc": "2026-09-30T08:38:14.600356+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2288 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_current_leadership_page_2008",
+          "started_utc": "2026-09-30T08:38:14.602385+00:00",
+          "finished_utc": "2026-09-30T08:38:16.888348+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2270 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_election_manifesto_1999",
+          "started_utc": "2026-09-30T08:38:14.602609+00:00",
+          "finished_utc": "2026-09-30T08:38:16.889631+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2271 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_election_manifesto_2004",
+          "started_utc": "2026-09-30T08:38:14.602717+00:00",
+          "finished_utc": "2026-09-30T08:38:16.888691+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2270 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2016_485",
+          "started_utc": "2026-09-30T08:38:16.889818+00:00",
+          "finished_utc": "2026-09-30T08:38:19.157180+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2249 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2019_537",
+          "started_utc": "2026-09-30T08:38:16.890825+00:00",
+          "finished_utc": "2026-09-30T08:38:19.174948+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2267 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2021_539",
+          "started_utc": "2026-09-30T08:38:16.890994+00:00",
+          "finished_utc": "2026-09-30T08:38:19.176940+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2268 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_home_page_2013_acting",
+          "started_utc": "2026-09-30T08:38:19.163200+00:00",
+          "finished_utc": "2026-09-30T08:38:21.422791+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2244 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_home_page_2013_president",
+          "started_utc": "2026-09-30T08:38:19.176068+00:00",
+          "finished_utc": "2026-09-30T08:38:21.475860+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2285 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_home_page_2015",
+          "started_utc": "2026-09-30T08:38:19.177917+00:00",
+          "finished_utc": "2026-09-30T08:38:21.455019+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2263 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_interview_moloto_secretary_general_20171004",
+          "started_utc": "2026-09-30T08:38:21.430745+00:00",
+          "finished_utc": "2026-09-30T08:38:23.712550+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2265 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_latest_news_page_2014",
+          "started_utc": "2026-09-30T08:38:21.456619+00:00",
+          "finished_utc": "2026-09-30T08:38:23.747728+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2275 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_new_year_message_20211231",
+          "started_utc": "2026-09-30T08:38:21.477001+00:00",
+          "finished_utc": "2026-09-30T08:38:23.753239+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2261 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_notice_election_summit_20081003",
+          "started_utc": "2026-09-30T08:38:23.741307+00:00",
+          "finished_utc": "2026-09-30T08:38:26.031629+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2265 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_paca_history_page_1998",
+          "started_utc": "2026-09-30T08:38:23.748706+00:00",
+          "finished_utc": "2026-09-30T08:38:26.032488+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2262 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_paca_home_page_1998",
+          "started_utc": "2026-09-30T08:38:23.754454+00:00",
+          "finished_utc": "2026-09-30T08:38:26.040388+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2269 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_post_case_against_mbinda_20180119",
+          "started_utc": "2026-09-30T08:38:26.032674+00:00",
+          "finished_utc": "2026-09-30T08:38:28.332245+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2266 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_post_nyhontso_re_elected_20190901",
+          "started_utc": "2026-09-30T08:38:26.033564+00:00",
+          "finished_utc": "2026-09-30T08:38:28.332401+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2267 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_post_president_regional_tour_20210719",
+          "started_utc": "2026-09-30T08:38:26.041805+00:00",
+          "finished_utc": "2026-09-30T08:38:28.297620+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2241 ms: Could not connect to server\r\n"
+        },
+        {
+          "source_id": "za_pac_previous_leaders_page_2008",
+          "started_utc": "2026-09-30T08:38:28.330939+00:00",
+          "finished_utc": "2026-09-30T08:38:29.598507+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_previous_presidents_page_2016",
+          "started_utc": "2026-09-30T08:38:28.333513+00:00",
+          "finished_utc": "2026-09-30T08:38:29.536536+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_profile_mphahlele_2013",
+          "started_utc": "2026-09-30T08:38:28.333717+00:00",
+          "finished_utc": "2026-09-30T08:38:29.319170+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_release_fraud_case_mbinda_20180304",
+          "started_utc": "2026-09-30T08:38:29.320951+00:00",
+          "finished_utc": "2026-09-30T08:38:29.939172+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_release_june16_rally_19980616",
+          "started_utc": "2026-09-30T08:38:29.537614+00:00",
+          "finished_utc": "2026-09-30T08:38:29.942081+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_release_lesotho_19981103",
+          "started_utc": "2026-09-30T08:38:29.599451+00:00",
+          "finished_utc": "2026-09-30T08:38:30.019643+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_release_strategic_plan_20160131",
+          "started_utc": "2026-09-30T08:38:29.939923+00:00",
+          "finished_utc": "2026-09-30T08:38:30.667513+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_saflii_sca_2023_140",
+          "started_utc": "2026-09-30T08:38:29.942994+00:00",
+          "finished_utc": "2026-09-30T08:38:30.675334+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_speech_polokwane_congress_20200215",
+          "started_utc": "2026-09-30T08:38:30.020735+00:00",
+          "finished_utc": "2026-09-30T08:38:31.033340+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_iec_20160629",
+          "started_utc": "2026-09-30T08:38:30.669885+00:00",
+          "finished_utc": "2026-09-30T08:38:31.461785+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_litigation_moloto_20191230",
+          "started_utc": "2026-09-30T08:38:30.676188+00:00",
+          "finished_utc": "2026-09-30T08:38:31.668811+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_mbeki_recall_20080920",
+          "started_utc": "2026-09-30T08:38:31.034730+00:00",
+          "finished_utc": "2026-09-30T08:38:32.630139+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_moloto_africa_day_20180525",
+          "started_utc": "2026-09-30T08:38:31.464136+00:00",
+          "finished_utc": "2026-09-30T08:38:31.993886+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_rustenburg_killings_19980519",
+          "started_utc": "2026-09-30T08:38:31.670064+00:00",
+          "finished_utc": "2026-09-30T08:38:32.059170+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_statement_zuma_case_2009",
+          "started_utc": "2026-09-30T08:38:31.995115+00:00",
+          "finished_utc": "2026-09-30T08:38:32.657337+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_x_elective_congress_opens_20251211",
+          "started_utc": "2026-09-30T08:38:32.060099+00:00",
+          "finished_utc": "2026-09-30T08:38:32.589369+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_x_manifesto_launch_20260829",
+          "started_utc": "2026-09-30T08:38:32.590387+00:00",
+          "finished_utc": "2026-09-30T08:38:34.279938+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "record": "retry-02/source-retrieval.json",
+      "record_sha256": "be4128275ee1ef4ffe371f24286829cf205b09e0e905468d8fb0486b3c4640b2",
+      "attempted": 21,
+      "exact": 20,
+      "results": [
+        {
+          "source_id": "za_pac_address_hawkers_council_19981012",
+          "started_utc": "2026-09-30T08:41:08.233656+00:00",
+          "finished_utc": "2026-09-30T08:41:08.730955+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_constitution_1996_page",
+          "started_utc": "2026-09-30T08:41:08.732294+00:00",
+          "finished_utc": "2026-09-30T08:41:09.278283+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_constitution_2008_page",
+          "started_utc": "2026-09-30T08:41:09.279859+00:00",
+          "finished_utc": "2026-09-30T08:41:09.758356+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_current_leadership_page_2008",
+          "started_utc": "2026-09-30T08:41:09.759497+00:00",
+          "finished_utc": "2026-09-30T08:41:10.346333+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_election_manifesto_1999",
+          "started_utc": "2026-09-30T08:41:10.347637+00:00",
+          "finished_utc": "2026-09-30T08:41:10.811125+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_election_manifesto_2004",
+          "started_utc": "2026-09-30T08:41:10.812254+00:00",
+          "finished_utc": "2026-09-30T08:41:11.469540+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2016_485",
+          "started_utc": "2026-09-30T08:41:11.470558+00:00",
+          "finished_utc": "2026-09-30T08:41:11.929485+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2019_537",
+          "started_utc": "2026-09-30T08:41:11.930432+00:00",
+          "finished_utc": "2026-09-30T08:41:12.489506+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_saflii_gphc_2021_539",
+          "started_utc": "2026-09-30T08:41:12.490814+00:00",
+          "finished_utc": "2026-09-30T08:41:12.970732+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_home_page_2013_acting",
+          "started_utc": "2026-09-30T08:41:12.971798+00:00",
+          "finished_utc": "2026-09-30T08:41:13.536414+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_home_page_2013_president",
+          "started_utc": "2026-09-30T08:41:13.537747+00:00",
+          "finished_utc": "2026-09-30T08:41:15.171958+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_home_page_2015",
+          "started_utc": "2026-09-30T08:41:15.172949+00:00",
+          "finished_utc": "2026-09-30T08:41:16.884369+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_interview_moloto_secretary_general_20171004",
+          "started_utc": "2026-09-30T08:41:16.885421+00:00",
+          "finished_utc": "2026-09-30T08:41:17.403307+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_latest_news_page_2014",
+          "started_utc": "2026-09-30T08:41:17.404811+00:00",
+          "finished_utc": "2026-09-30T08:41:17.811422+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_new_year_message_20211231",
+          "started_utc": "2026-09-30T08:41:17.812560+00:00",
+          "finished_utc": "2026-09-30T08:41:18.915828+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_notice_election_summit_20081003",
+          "started_utc": "2026-09-30T08:41:18.917035+00:00",
+          "finished_utc": "2026-09-30T08:41:20.444850+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_paca_history_page_1998",
+          "started_utc": "2026-09-30T08:41:20.445961+00:00",
+          "finished_utc": "2026-09-30T08:41:20.855127+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_paca_home_page_1998",
+          "started_utc": "2026-09-30T08:41:20.856172+00:00",
+          "finished_utc": "2026-09-30T08:41:21.457610+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_post_case_against_mbinda_20180119",
+          "started_utc": "2026-09-30T08:41:21.458824+00:00",
+          "finished_utc": "2026-09-30T08:41:22.166866+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_post_nyhontso_re_elected_20190901",
+          "started_utc": "2026-09-30T08:41:22.167794+00:00",
+          "finished_utc": "2026-09-30T08:41:23.091392+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        },
+        {
+          "source_id": "za_pac_post_president_regional_tour_20210719",
+          "started_utc": "2026-09-30T08:41:23.092579+00:00",
+          "finished_utc": "2026-09-30T08:41:25.379038+00:00",
+          "http_status": 0,
+          "curl_exit_code": 7,
+          "exact_recorded_response": false,
+          "stderr": "curl: (7) Failed to connect to web.archive.org port 443 after 2259 ms: Could not connect to server\r\n"
+        }
+      ]
+    },
+    {
+      "record": "retry-03/source-retrieval.json",
+      "record_sha256": "df04834e5a4753de3c44908ad483e407f036ba214c6a53a663e642d5764d7045",
+      "attempted": 1,
+      "exact": 1,
+      "results": [
+        {
+          "source_id": "za_pac_post_president_regional_tour_20210719",
+          "started_utc": "2026-09-30T08:42:26.673072+00:00",
+          "finished_utc": "2026-09-30T08:42:27.247285+00:00",
+          "http_status": 200,
+          "curl_exit_code": 0,
+          "exact_recorded_response": true,
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "original_failures_retained": true,
+  "failure_reason": "curl connection-refused (exit 7 / HTTP 0) before body delivery; bounded missing-only retries recovered every response.",
+  "concurrency_note": "First pass up to three parallel requests; subsequent missing-only retries sequential after coordination with the other source reviewer."
+}

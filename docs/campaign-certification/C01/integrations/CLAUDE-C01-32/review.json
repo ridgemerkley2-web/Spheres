@@ -1,0 +1,47 @@
+{
+  "format": "spheres-independent-source-review/v1",
+  "task": "CLAUDE-C01-32",
+  "reviewer": "Codex /root/s20_preflight",
+  "reviewed_utc": "2026-09-30T08:55:29.154202+00:00",
+  "submission": {
+    "branch": "origin/claude/c01-za-32",
+    "revision": "df4707462903b893916b5ef2d56a875a82f4030f",
+    "pre_packet_parent": "4fe2f1ba13a3595ac2c4affb9975132fcd666429"
+  },
+  "corrections": [
+    "8d545b1925b6de125586f0ae6ba7a4d28562507d",
+    "f2559b84a04f1ae88c82272090e818dce3ef702e"
+  ],
+  "recommendation": "reviewed_with_bounded_correction; recommend intake of own packet delta after preserving separately reviewed C01-30 changes",
+  "status_scope": "This receipt does not merge the branch, accept its inherited dependency, close C01/C06/S23 or award WC1/CP1.",
+  "source_verification": {
+    "new_sources": 38,
+    "exact_response_matches": 38,
+    "new_claims_checked": 65,
+    "holder_observations_checked": 14,
+    "unretrieved_sources": 0
+  },
+  "checks": {
+    "south_africa_python": 50,
+    "research_python": 79,
+    "campaign_python": 16,
+    "python_test_count_sum_not_unique": 145,
+    "leadership_atlas_node": 11,
+    "failures_in_corrected_selected_checks": 0,
+    "index_check": "passed",
+    "workboard_check": "passed",
+    "baseline_census_check": "failed_preexisting_retained"
+  },
+  "original_failures_retained": [
+    "21 first retrieval connection failures, then one remaining retry failure before all recovered.",
+    "Initial sparse-checkout campaign/census missing-input errors; expanded data sparse path and reran.",
+    "Review runner console cp1252 printing error after successful Node tests; no test failure hidden.",
+    "First attribution-fix test draft failed the exact publisher URL blanket assertion; narrow exception added, final selected checks pass.",
+    "Existing census stale input hash remains outside packet."
+  ],
+  "external_evidence_root": "D:\\spheres-offload\\codex-next-20260928\\c01-32-review-evidence-01",
+  "raw_original_responses_checked_in": false,
+  "runtime_changed": false,
+  "cargo_or_game_executed": false,
+  "licensing": "No asset, portrait or likeness reuse authorization inferred."
+}

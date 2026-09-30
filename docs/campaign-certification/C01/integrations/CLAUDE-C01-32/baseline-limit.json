@@ -1,0 +1,26 @@
+{
+  "census_check_exit": 1,
+  "diagnostic": "C01 evidence differs: docs/campaign-certification/C01/census.json",
+  "recorded_input": {
+    "path": "spheres-sim/src/government.rs",
+    "bytes": 848551,
+    "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f"
+  },
+  "actual_input": {
+    "revision": "df4707462903b893916b5ef2d56a875a82f4030f",
+    "path": "spheres-sim/src/government.rs",
+    "git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25",
+    "bytes": 849546,
+    "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+  },
+  "same_government_git_blob_pre_packet": true,
+  "same_census_git_blob_pre_packet": true,
+  "pre_packet": "4fe2f1ba13a3595ac2c4affb9975132fcd666429",
+  "submission": "df4707462903b893916b5ef2d56a875a82f4030f",
+  "census_not_regenerated_here": true,
+  "other_integration_followups": [
+    "Classify the accepted packet commits in COMMIT_PACKETS/gap ledger at integration.",
+    "Refresh S23 boundary-matrix attribution after integration; these checks were not rerun as qualified in this sparse review.",
+    "Preserve the separate C01-30 review correction; do not blanket merge this stacked branch."
+  ]
+}

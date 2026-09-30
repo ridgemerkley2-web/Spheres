@@ -1,0 +1,183 @@
+{
+  "format": "spheres-review-manifest/v1",
+  "created_utc": "2026-09-30T08:57:17.266589+00:00",
+  "hash_scope": "exact raw bytes, all files except this manifest",
+  "submission": "df4707462903b893916b5ef2d56a875a82f4030f",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "baseline-limit.json",
+      "bytes": 1184,
+      "sha256": "d3c0697c650e6c818ae0d0a0a096c6cbb8b2d9b473decad40fefb66995fbbc5d"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 37709,
+      "sha256": "73c2b8db91c5b1623bd09e57d7fd732d6bf6e903d45272c9c788565a5472edaa"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5969,
+      "sha256": "041d72c0218df525f02bee6dc50dda4862373bc229727c2a6f0358619442b17e"
+    },
+    {
+      "path": "review.json",
+      "bytes": 2147,
+      "sha256": "4c87a9c22f67cf547584596cc864d315fe0be0290531fb58a58a7fe8e86b60a2"
+    },
+    {
+      "path": "sabc-attribution.json",
+      "bytes": 1182,
+      "sha256": "a0a1d2a477a99688ae97df7a613cc145a2776f2dbe7d71a40b5d3e83bb6195de"
+    },
+    {
+      "path": "scope-audit.json",
+      "bytes": 17714,
+      "sha256": "ef71b4a46e160819f053b11c6b6e87e5a988df5d5120695fd946de0b2c542eff"
+    },
+    {
+      "path": "source-attempts.json",
+      "bytes": 23140,
+      "sha256": "d1672410c19ec03493d77dbb000f75a24fe60825e9d306690db5e6ae1eda460c"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 38079,
+      "sha256": "21469b6afba1f37754f3a4d596d2e3df35b8e52edbb6fd719792608f513491d8"
+    },
+    {
+      "path": "validation/attribution-test-first-failure.json",
+      "bytes": 356,
+      "sha256": "d11de1a448cb942cc4611b4690bcc739e6672382857bce0733c87cb930206ad1"
+    },
+    {
+      "path": "validation/attribution-test-first-failure.log.gz",
+      "bytes": 146769,
+      "sha256": "5bff5fa6d50f044f2d3cf6c7f7aa02e93280854ac8cd09efffb0291d17a6da06"
+    },
+    {
+      "path": "validation/corrected/campaign.log",
+      "bytes": 120,
+      "sha256": "f53504646559c5bece31e6ead8d8e3b3488835e5f3a1e2c378ebdc74152edef0"
+    },
+    {
+      "path": "validation/corrected/diff-check.log",
+      "bytes": 461,
+      "sha256": "1398fb78b8f133511b7cf2e6813eefa0268be3975cd23d558de49374b495f0a0"
+    },
+    {
+      "path": "validation/corrected/index-check.log",
+      "bytes": 251,
+      "sha256": "fd65a86dec8a93abe8cdb31733f37b8e7979f173e5ab23af90b8b339f0003615"
+    },
+    {
+      "path": "validation/corrected/index-regenerate.log",
+      "bytes": 252,
+      "sha256": "2bf3b7ddedd43862abaf434bfaf18847dda85b29f5d55e32ab063a073703a240"
+    },
+    {
+      "path": "validation/corrected/leadership-atlas.log",
+      "bytes": 1122,
+      "sha256": "2baca8f1a7774330f703427ca546ab05e98cecce7c70f692b570cdac0bab676c"
+    },
+    {
+      "path": "validation/corrected/research.log",
+      "bytes": 183,
+      "sha256": "6dd0cf2685f92893ce86f1ac635287a1ccc9fb2bfd9ef1600a7d9a77781789d4"
+    },
+    {
+      "path": "validation/corrected/results.json",
+      "bytes": 4835,
+      "sha256": "f05ed268f66ee6dfb5628a2aa2566d27a524c6a42a76fe68042563ba1d2521ea"
+    },
+    {
+      "path": "validation/corrected/south-africa.log",
+      "bytes": 154,
+      "sha256": "e0b1eaef419a105bd72d0973539f68cc23c12407118e359a33613efc918ca3f8"
+    },
+    {
+      "path": "validation/corrected/workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "validation/sparse-retry/campaign.stderr.log",
+      "bytes": 120,
+      "sha256": "717bb8e10b7459c53df7769ab283ad2062a36ca4a9389a9bf787f95ad8a3ae56"
+    },
+    {
+      "path": "validation/sparse-retry/campaign.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/sparse-retry/census.stderr.log",
+      "bytes": 120,
+      "sha256": "5eab6a3a453cd727befc9953d346d39e38866e752c9526ceec51514580258e53"
+    },
+    {
+      "path": "validation/sparse-retry/census.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/sparse-retry/diff-check.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/sparse-retry/diff-check.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/sparse-retry/results.json",
+      "bytes": 1114,
+      "sha256": "f9f9c468550ba02bff8741d763721f4b0c908083a805ec8071c2e08f64795588"
+    },
+    {
+      "path": "validation/submitted/campaign.log",
+      "bytes": 2056,
+      "sha256": "a2905a0cda0fd5e169522ed0a0ce0569336e92b10df7d1acb2e829f451baae22"
+    },
+    {
+      "path": "validation/submitted/census.log",
+      "bytes": 1816,
+      "sha256": "8bfdf877991043a991b680562bbc0956f1b052669c0a2b80bf84a19f4aea381d"
+    },
+    {
+      "path": "validation/submitted/leadership-atlas.log",
+      "bytes": 1122,
+      "sha256": "2a2e28b02ec9ff8ade94fbfd07640776f24a41b0427fcec7d25cd81e915f2256"
+    },
+    {
+      "path": "validation/submitted/research-index.log",
+      "bytes": 251,
+      "sha256": "fd65a86dec8a93abe8cdb31733f37b8e7979f173e5ab23af90b8b339f0003615"
+    },
+    {
+      "path": "validation/submitted/research.log",
+      "bytes": 183,
+      "sha256": "42eb1f7a7de960c468664fb42be35050707517d53e6d597be2fe768b9b19b73f"
+    },
+    {
+      "path": "validation/submitted/south-africa.log",
+      "bytes": 154,
+      "sha256": "abd3594cf2234f49a21ac2d47a0370ef2d3370fe2605098df52abf27bf028745"
+    },
+    {
+      "path": "validation/submitted/workboard.log",
+      "bytes": 146,
+      "sha256": "77e4efba2d4184aa95bccc7999c79d697dd9d0dd20472028f716d6a8dc6d42f3"
+    },
+    {
+      "path": "verify_receipt.py",
+      "bytes": 1937,
+      "sha256": "3def615dfc27d05b37cd6ee88562c097f7dffc03b1bfe42684b3af66a10fa167"
+    }
+  ]
+}

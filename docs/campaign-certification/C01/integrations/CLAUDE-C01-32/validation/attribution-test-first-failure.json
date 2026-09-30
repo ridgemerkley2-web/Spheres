@@ -1,0 +1,6 @@
+{
+  "raw_bytes": 1026286,
+  "raw_sha256": "0f02ae61941fec01af2bece2d0bd303e1b5c189fafa2cef679566e9937d3d807",
+  "reason": "New original-publisher URL tripped the prior blanket news-domain assertion. Fixed by exempting only the exact URL in this source scope; source URLs and other text remain guarded.",
+  "no_production_or_source_content_failure": true
+}
