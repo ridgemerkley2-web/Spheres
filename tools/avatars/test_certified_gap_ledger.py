@@ -502,12 +502,12 @@ class CheckedInLedger(unittest.TestCase):
         entities = {i['entity'] for i in items}
         completed = {row['task']: row for row in self.data['completed_research_intakes']}
         self.assertEqual(set(completed), {'CLAUDE-C01-23', 'CLAUDE-C01-24', 'CLAUDE-C01-25',
-                                         'CLAUDE-C01-27', 'CLAUDE-C01-30', 'CLAUDE-C01-32'})
+                                         'CLAUDE-C01-27', 'CLAUDE-C01-30', 'CLAUDE-C01-32', 'CLAUDE-C01-33'})
         self.assertTrue(all(row['runtime_mapping_accepted'] is False and row['historical_period_complete'] is False
                             for row in completed.values()))
         self.assertFalse(set(completed) & {row['task'] for row in self.data['in_flight']})
         claims = {row['task']: row for row in self.data['in_flight']}
-        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28, 29, 33, 34, 35, 36, 37)})
+        self.assertEqual(set(claims), {f'CLAUDE-C01-{n}' for n in (28, 29, 34, 35, 36, 37)})
         chains = {row['id']: row for case in self.data['cases'] for row in case['party_chains']}
         for tid, claim in claims.items():
             self.assertEqual(claim['state'], 'ready_for_review')

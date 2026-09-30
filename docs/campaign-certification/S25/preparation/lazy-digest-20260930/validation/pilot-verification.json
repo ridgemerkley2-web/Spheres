@@ -1,0 +1,169 @@
+{
+  "format": "spheres-stability-retained-verification/v1",
+  "integrity_verified": true,
+  "native_reexecuted": false,
+  "source": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-pilot-20260930",
+  "recorded_origin": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930",
+  "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "frozen_harness_sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0",
+  "verifier": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "binary_reexecuted_or_rebuilt": false,
+  "passed": true,
+  "coverage": {
+    "declared": 2,
+    "attempted": 2,
+    "passed": 2,
+    "failed": [],
+    "missing_requested": [],
+    "requested_plan_passed": true,
+    "pilot_passed": true,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "france-1990",
+      "passed": true,
+      "files_verified": 12,
+      "archives_verified": 4
+    },
+    {
+      "id": "tonga-7",
+      "passed": true,
+      "files_verified": 12,
+      "archives_verified": 4
+    }
+  ],
+  "files_verified": 32,
+  "archives_verified": 8,
+  "qualification": false,
+  "s25_complete": false
+}

@@ -76,8 +76,14 @@
     }
   },
   "production_snapshot": {
-    "all_declared_inputs_current": true,
-    "stale_inputs": [],
+    "all_declared_inputs_current": false,
+    "stale_inputs": [
+      {
+        "path": "spheres-sim/src/government.rs",
+        "recorded_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+        "current_sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
+      }
+    ],
     "current_party_rows_match_snapshot_exactly": true,
     "job_person_and_portrait_inputs_current": true,
     "physical_art_revalidated_this_run": false,
@@ -91,8 +97,8 @@
     },
     {
       "path": "spheres-sim/src/government.rs",
-      "bytes": 848551,
-      "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f"
+      "bytes": 849546,
+      "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202"
     },
     {
       "path": "spheres-sim/data/party_leaders.json",

@@ -14,6 +14,8 @@ C04 is **not** complete: full C04 still requires accepted C02 inputs, reviewed a
 Validator: [`tools/avatars/check_successor_proposals.py`](../../../../../tools/avatars/check_successor_proposals.py).
 Tests: [`tools/avatars/test_successor_proposals.py`](../../../../../tools/avatars/test_successor_proposals.py).
 
+On 30 September 2026, the fourth Tonga draft was renamed from Kalolo Vaikona to **Kalolo Matalehu** because the expanded research corpus mentions the prior surname. The unchanged name guard rejects it. The replacement passes the current corpus checks; an exact-name lead search returned no results. This does not prove that no private person shares the name. Earlier search counts and original review receipts below remain historical records of the original packet.
+
 ## The eight drafts
 
 Every window is a **potential eligibility window**, not a prediction. A draft can be seated only by an actual vacancy or election reached in play, and every incumbent is kept. Ages give the youngest possible age when the window opens and the oldest when it closes.
@@ -27,7 +29,7 @@ Every window is a **potential eligibility window**, not a prediction. A draft ca
 | `draft_c04_to_01` | Lesieli Fotu | People's representative (collective institution) | none | 1984 | 2026-09-08 → 2035-12-31 | 41–51 |
 | `draft_c04_to_02` | Sitani Lolohea | Prime Minister via a people's seat (executive eligibility) | none | 1971 | 2026-09-08 → 2035-12-31 | 54–64 |
 | `draft_c04_to_03` | Pisila Tukuafu | Non-elected Cabinet Minister (collective institution) | none | 1979 | 2026-09-08 → 2035-12-31 | 46–56 |
-| `draft_c04_to_04` | Kalolo Vaikona | PTOA leader (party leadership) | none | 1976 | 2026-09-08 → 2035-12-31 | 49–59 |
+| `draft_c04_to_04` | Kalolo Matalehu | PTOA leader (party leadership) | none | 1976 | 2026-09-08 → 2035-12-31 | 49–59 |
 
 Each nation covers party leadership, executive eligibility and a collective institution. France has no hereditary office. Tonga's hereditary offices are excluded outright (see below).
 
@@ -93,7 +95,7 @@ Invented Tongan names are also screened against noble titles and royal names. Th
 - **`draft_c04_to_01` Lesieli Fotu.** An invented science teacher and cooperative coordinator from an outer island of Vava'u. She holds a people's seat only if she wins one in play, standing formally as an individual.
 - **`draft_c04_to_02` Sitani Lolohea.** An invented civil engineer. He must first win a Tongatapu people's seat in play. Only then could he be nominated, seconded and recommended by an Assembly majority for appointment as Prime Minister.
 - **`draft_c04_to_03` Pisila Tukuafu.** An invented public-finance specialist. A Prime Minister in play could nominate her as a non-elected Minister, within the cap of four, for appointment by the King. Following a general election she remains a caretaker until her appointment is revoked or continued on the incoming Prime Minister's recommendation (clause 51(3)); an election date alone does not dismiss her.
-- **`draft_c04_to_04` Kalolo Vaikona.** An invented community-radio producer. He could lead the Democratic Party of the Friendly Islands (PTOA) only under its own unpublished rules and only if its leadership falls vacant. Leading it gives him no seat.
+- **`draft_c04_to_04` Kalolo Matalehu.** An invented community-radio producer. He could lead the Democratic Party of the Friendly Islands (PTOA) only under its own unpublished rules and only if its leadership falls vacant. Leading it gives him no seat.
 
 ## Unresolved institutional mappings
 

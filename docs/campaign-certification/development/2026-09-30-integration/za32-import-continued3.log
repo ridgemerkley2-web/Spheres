@@ -1,0 +1,42 @@
+[codex/campaign-certification d06b1f7b] Correct C01-32 republished SABC provenance and protect holder exclusion
+ Date: Wed Sep 30 01:53:22 2026 -0700
+ 5 files changed, 56 insertions(+), 21 deletions(-)
+[codex/campaign-certification 00bae0ce] Record independent C01-32 source review and preserved validation limits
+ Date: Wed Sep 30 01:57:34 2026 -0700
+ 36 files changed, 3130 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/baseline-limit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/sabc-attribution.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/scope-audit.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/source-attempts.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/source-verification.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/attribution-test-first-failure.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/attribution-test-first-failure.log.gz
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/diff-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/index-check.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/index-regenerate.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/south-africa.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/corrected/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/campaign.stderr.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/campaign.stdout.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/census.stderr.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/census.stdout.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/diff-check.stderr.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/diff-check.stdout.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/sparse-retry/results.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/leadership-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/research-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/south-africa.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/validation/submitted/workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-32/verify_receipt.py

@@ -1,0 +1,54 @@
+[codex/campaign-certification 62f6be6c] Add CLAUDE-C01-32: Pan Africanist Congress presidents, 1990-2026
+ Date: Mon Sep 28 15:58:18 2026 -0700
+ 47 files changed, 5455 insertions(+), 37 deletions(-)
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-address-hawkers-council-19981012-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-constitution-1996-20081214-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-constitution-2008-20081214-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-current-leadership-20081214-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-election-manifesto-1999-20000116-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-election-manifesto-2004-20040408-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-mphahlele-leave-to-appeal-20160621-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-pac-v-moloto-20190712-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-pac-v-moloto-20210823-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20130704-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20130918-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20150726-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-interview-moloto-20171004-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-latest-news-20140421-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-new-year-message-20211231-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-notice-election-summit-20081003-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-paca-history-19990202-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-paca-home-page-19981203-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-post-case-against-mbinda-20180119-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-post-nyhontso-re-elected-20190901-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-post-president-regional-tour-20210719-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-previous-leaders-20081214-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-previous-presidents-20160331-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-profile-mphahlele-20130324-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-release-fraud-case-mbinda-20180304-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-release-june16-rally-19980616-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-release-lesotho-19981103-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-release-strategic-plan-20160131-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-sca-moloto-v-pac-20231027-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-speech-polokwane-congress-20200215-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-iec-20160629-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-litigation-moloto-20191230-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-mbeki-recall-20080920-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-moloto-africa-day-20180525-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-rustenburg-19980519-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-statement-zuma-case-20090114-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-x-elective-congress-20251211-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-pac-x-manifesto-launch-20260829-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/south-africa-pac-presidents-1990-2026-32.md
+ create mode 100644 docs/planning/ai-handoffs/CLAUDE-C01-32.md
+ create mode 100644 tools/avatars/test_south_africa_pac_presidents_c01_32.py
+Auto-merging docs/campaign-certification/C01/research/south-africa.json
+CONFLICT (content): Merge conflict in docs/campaign-certification/C01/research/south-africa.json
+error: could not apply a05592f7... Apply verifier fixes to CLAUDE-C01-32
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"

@@ -1,0 +1,1849 @@
+{
+  "format": "spheres-claude-inventory-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-30T08:36:36.374826+00:00",
+  "integration_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+  "scope": "Read-only inventory of already-fetched origin/claude/* references, current workboard/queue, remote handoffs and existing acceptance/hold receipts. No fetch, integration, tests, source retrieval, Cargo, simulation or acceptance decision.",
+  "tip_count": 50,
+  "classification_counts": {
+    "legacy_preserved_branch_not_new_submission": 1,
+    "research_integrated_historical_acceptance_pending": 18,
+    "newly_ready_research_not_accepted": 7,
+    "bounded_research_intake_complete": 11,
+    "older_untracked_tooling_followup": 1,
+    "unchanged_held_source_review": 1,
+    "unchanged_ready_unreviewed": 1,
+    "bounded_source_repair_complete_parent_history_pending": 4,
+    "bounded_preparation_complete": 5,
+    "guidance_integrated_session_complete": 1
+  },
+  "newly_ready_tasks": [
+    "CLAUDE-C01-34",
+    "CLAUDE-C01-37",
+    "CLAUDE-C01-33",
+    "CLAUDE-C01-35",
+    "CLAUDE-C01-36",
+    "CLAUDE-C01-30",
+    "CLAUDE-C01-32"
+  ],
+  "explicit_unchanged_holds": [
+    "CLAUDE-C01-29"
+  ],
+  "rows": [
+    {
+      "ref": "origin/claude/admiring-euclid-a867c9",
+      "tip": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "commit_date": "2026-09-08T13:19:09-07:00",
+      "subject": "Record completed fiscal campaigns and final cross-platform QA",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/evidence/2026-09-22-outstanding/protected-originals.json"
+      ],
+      "classification": "legacy_preserved_branch_not_new_submission"
+    },
+    {
+      "ref": "origin/claude/c01-br-10",
+      "tip": "73e5fd363769e589a09615e957b14c86f8756513",
+      "commit_date": "2026-09-23T07:46:31-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-10 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-10"
+    },
+    {
+      "ref": "origin/claude/c01-br-17",
+      "tip": "7d71acef98e7a94781f48054b4574312bd9e7470",
+      "commit_date": "2026-09-24T19:23:15-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-17 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-17"
+    },
+    {
+      "ref": "origin/claude/c01-br-22",
+      "tip": "39bb64395273ea3cb7eef0a3fd1b10068a787002",
+      "commit_date": "2026-09-25T10:28:53-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-22 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-22"
+    },
+    {
+      "ref": "origin/claude/c01-br-34",
+      "tip": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+      "commit_date": "2026-09-28T18:17:13-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-34 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-34",
+      "scope": "Brazil: PFL/DEM, PDT and PMDB/MDB national presidents",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+        "bytes": 16382,
+        "sha256": "ca0fdf7b330b92552e234d052270438bc5fd13658cb81e3d0b7b258e49d83018",
+        "git_blob": "43945949c4c3af43b4dffee16149a6a5d9500296",
+        "retained": "remote-handoffs/CLAUDE-C01-34.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (28 September 2026; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 39,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 43,
+            "text": "Submitted `ready_for_review` on 28 September 2026 on `claude/c01-br-34`, based on `032cd6a3` with the moved integration"
+          }
+        ]
+      },
+      "merge_base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/brazil-party-presidents-1990-2026-34.md",
+        "docs/campaign-certification/C01/research/brazil.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-adocao-sigla-tse-20180131-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-ata-diretorio-20231005-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-ata-executiva-20250716-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-baleia-prorrogacao-20210223-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-baleia-reune-executiva-20191017-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-comunicado-licenca-temer-20160405-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-2013-20130302-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-2016-20160312-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-convencao-20231005-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-edital-convencao-20171123-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-eleicao-baleia-20191007-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-convocada-df-20260607-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt2009-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt2011-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-executiva-roster-capt201901-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-iris-interina-20090310-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-jader-presidente-page-19980915-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-juca-em-exercicio-20160407-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-juca-juventude-20190617-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-nota-oficial-roriz-20030702-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-nota-temer-licenciado-20100121-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-pmdb-muda-sigla-20171219-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-presidentes-lista-capt201901-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-prorroga-mandatos-20180222-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-raupp-presidente-nacional-20140514-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-resolucao-blinda-20260615-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-rompe-alianca-20160329-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-temer-vota-clt-200112-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-mdb-tse-name-change-20180515-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-comite-fortaleza-20260819-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-hibrida-20211221-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-reelege-20050321-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-reelege-20090306-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-convencao-virtual-20220110-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-curitiba-perda-20040622-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-direcao-nacional-capt20040609-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-direcao-nacional-capt20040722-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-discurso-lupi-20220121-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-edital-convencao-20050228-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-edital-convencao-20070209-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-eleicoes-2026-20260904-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-figueiredo-exercicio-20230202-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-historia-convencoes-20190315-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-home-19970411-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-home-20040621-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-home-20040706-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-legalidade-interview-199611-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-lupi-retorna-20250521-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-marcha-speech-19990826-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-perfil-lupi-capt20041011-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-salario-minimo-20040602-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-tijolaco-35-2004-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-xxiii-convencao-20170318-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pdt-xxv-convencao-20190318-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-agencia-bornhausen-20030307-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-convencao-2007-edital-20070313-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-agripino-eleito-20110316-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-cen-refundacao-20180308-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-convencao-20110314-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-convencao-fusao-20211005-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-homologacao-uniao-20220208-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-informe-acm-neto-20220112-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-006-20070329-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-112-20110215-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-dem-resolucao-113-20110324-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-site-democratas-transformation-2007-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-pfl-site-executiva-nacional-19990507-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-248141-20180308-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-275827-20190530-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-dem-national-organ-70981-20151203-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-mdb-national-organ-291052-20191006-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-mdb-national-organ-70945-20130311-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-pdt-national-organ-269142-20190318-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-pdt-national-organ-70996-20170318-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-sgip-uniao-national-organ-405173-20220208-facts.json",
+        "docs/campaign-certification/C01/research/sources/brazil-tse-uniao-brasil-registration-20220208-facts.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+        "tools/avatars/test_brazil_party_presidents_c01_34.py",
+        "tools/avatars/test_brazil_presidents_c01_10.py",
+        "tools/avatars/test_brazil_pt_presidents_c01_22.py",
+        "tools/avatars/test_brazil_research_s10f.py",
+        "tools/avatars/test_brazil_vice_presidents_c01_17.py"
+      ],
+      "stack_warning": "No other new packet in current merge-base diff; generated shared index and overlapping country tests still require combined regeneration/review."
+    },
+    {
+      "ref": "origin/claude/c01-fr-23",
+      "tip": "9c0f5c14bf83ef51ab3e6eb7483c379814d59a42",
+      "commit_date": "2026-09-27T18:32:42-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-23 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-23",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 5,
+        "title": "Finish existing claim: French presidents",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "branch": "claude/c01-fr-23",
+        "depends_on": [],
+        "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+        "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-23"
+    },
+    {
+      "ref": "origin/claude/c01-fr-37",
+      "tip": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+      "commit_date": "2026-09-28T22:54:20-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-37 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-37",
+      "scope": "France: prime ministers",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+        "bytes": 10334,
+        "sha256": "5f91248a9cead006a611cb076a4ccea8508167ead6bdf46a2cb680b15f71d4e2",
+        "git_blob": "3d3b9729c8f55b6573612fa7cc53efe173fb08e5",
+        "retained": "remote-handoffs/CLAUDE-C01-37.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (29 September 2026 UTC; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 40,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 44,
+            "text": "Submitted `ready_for_review` on 29 September 2026 (UTC; 28 September local). Claim commit `1a3fc352`, base `44098c5a`. Before committing, `codex/campaign-certification`"
+          }
+        ]
+      },
+      "merge_base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/france-prime-ministers-1990-2026-37.md",
+        "docs/campaign-certification/C01/research/france.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-ayrault-20120618-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-ayrault-20140331-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-balladur-19950511-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-beregovoy-19930329-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20070618-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20101113-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-fillon-20120510-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-jospin-20020506-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-juppe-19970602-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20020617-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20040330-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-raffarin-20050531-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-rocard-19910515-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-cessation-villepin-20070515-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-composition-balladur-19930330-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-composition-cresson-19910516-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-composition-juppe-19950518-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-ayrault-20120515-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-ayrault-20120618-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-beregovoy-19920402-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20070517-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20070618-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-fillon-20101114-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-jospin-19970602-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-juppe-19951107-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-pm-19910515-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20020506-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20020617-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-raffarin-20040330-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-nomination-villepin-20050531-facts.json",
+        "docs/campaign-certification/C01/research/sources/france-jorf-rocard-signs-decree-90-89-19900124-facts.json",
+        "docs/campaign-certification/C01/research/supplements/france.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+        "tools/avatars/test_campaign_research.py",
+        "tools/avatars/test_france_presidents_c01_23.py",
+        "tools/avatars/test_france_prime_ministers_c01_37.py"
+      ],
+      "stack_warning": "No other new packet in current merge-base diff; generated shared index and overlapping country tests still require combined regeneration/review."
+    },
+    {
+      "ref": "origin/claude/c01-gaps-01",
+      "tip": "b4d953964d7f1ab720c3fe72a62f74437bc81edf",
+      "commit_date": "2026-09-27T18:25:08-07:00",
+      "subject": "Add CLAUDE-C01-GAPS-01: certified-country research gap ledger",
+      "tip_is_ancestor_of_integration": true,
+      "queue": {
+        "id": "CLAUDE-C01-GAPS-01",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 9,
+        "title": "Build the certified-country research gap ledger",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
+        "depends_on": [],
+        "next": "Accepted with provenance and cross-platform hash repairs 12ee48f1, independently reviewed at 157aac55. Bounded gap-audit tool complete; C01 historical coverage remains open. Regenerate pinned ledger when queue/research inputs change.",
+        "branch": "claude/c01-gaps-01",
+        "claim_revision": "5324614593da8694e1fb9848ea79002830b2723e"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-01"
+    },
+    {
+      "ref": "origin/claude/c01-gaps-01-fix",
+      "tip": "1aa670479758a1320701639db28807fb3553adba",
+      "commit_date": "2026-09-27T21:36:55-07:00",
+      "subject": "Hash only the gap ledger's own task-queue rows (CLAUDE-C01-GAPS-01 follow-up)",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "older_untracked_tooling_followup",
+      "task": "CLAUDE-C01-GAPS-01",
+      "note": "One non-ancestor commit1aa67047; no acceptance receipt located. Remote handoff appends Ready for Codex review. Current generator still hashes whole task queue, no queue_projection. Do not replace newer accepted ledger wholesale.",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
+        "bytes": 7871,
+        "sha256": "6e1baa9189e9772bb9b841fd52f057f314b88c8acad70d244809febbd565801d",
+        "git_blob": "877efaa89143cb0ca0e21486f2d415ba204730ca",
+        "retained": "remote-handoffs/CLAUDE-C01-GAPS-01.followup.md",
+        "state_lines": [
+          {
+            "line": 43,
+            "text": "Submitted `ready_for_review` on 27 September 2026. Touched paths (nothing else):"
+          },
+          {
+            "line": 107,
+            "text": "No other ledger content changed. Ready for Codex review."
+          }
+        ]
+      },
+      "merge_base": "846df4797712935efb5a221e188d410b09f0d083",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/gap-ledger/README.md",
+        "docs/campaign-certification/C01/gap-ledger/ledger.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
+        "tools/avatars/certified_gap_ledger.py",
+        "tools/avatars/test_certified_gap_ledger.py"
+      ]
+    },
+    {
+      "ref": "origin/claude/c01-in-11",
+      "tip": "538920f14c5784e16d910dc2df22766ccd72f59c",
+      "commit_date": "2026-09-24T07:51:05-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-11 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-11"
+    },
+    {
+      "ref": "origin/claude/c01-in-15",
+      "tip": "dd58a610859f997a1ad2452012b464d305b7ba91",
+      "commit_date": "2026-09-24T18:12:15-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-15 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-15"
+    },
+    {
+      "ref": "origin/claude/c01-in-20",
+      "tip": "2ee3b14689e445486554604b69ff82dc1f9db9df",
+      "commit_date": "2026-09-25T09:15:49-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-20 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-20"
+    },
+    {
+      "ref": "origin/claude/c01-in-27",
+      "tip": "0765c590c120d3aed3291dccec9d391670110543",
+      "commit_date": "2026-09-27T21:14:44-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-27 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-27",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 8,
+        "title": "Finish existing claim: BJP presidents",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "branch": "claude/c01-in-27",
+        "depends_on": [],
+        "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+        "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-27"
+    },
+    {
+      "ref": "origin/claude/c01-in-33",
+      "tip": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
+      "commit_date": "2026-09-28T14:46:21-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-33 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-33",
+      "scope": "India: Janata Dal presidents",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-33.md",
+        "bytes": 11652,
+        "sha256": "630adddb9554b107c2a8bbb0a03291a7416c26359fdef10667322cdb9784e2a4",
+        "git_blob": "d18d618e4d8960650b73406e62f6a04f365aed88",
+        "retained": "remote-handoffs/CLAUDE-C01-33.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (28 September 2026; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 40,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 44,
+            "text": "Submitted `ready_for_review` on 28 September 2026 (UTC). Claim commit: `89decb6a` (this record only), made while the"
+          }
+        ]
+      },
+      "merge_base": "032cd6a3b1a01149fc84d731fc649c3ba2319f62",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/india-janata-dal-presidents-1990-2026-33.md",
+        "docs/campaign-certification/C01/research/india.json",
+        "docs/campaign-certification/C01/research/sources/india-eci-dispute-order-19990807-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-eci-janata-dal-dispute-19930117-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-eci-janata-dal-dispute-19990809-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-eci-national-parties-19960205-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-eci-national-parties-19980110-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-hrd-resolution-19961014-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-hrd-resolution-19970929-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-speaker-decision-19930601-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-welfare-resolution-19910329-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-gazette-welfare-resolution-19920214-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-goa-gazette-eci-janata-dal-decision-19930909-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-loksabha-bihar-situation-19970729-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-loksabha-confidence-debate-19970422-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-loksabha-nic-answer-19910829-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-loksabha-petroleum-prices-19960715-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-loksabha-working-president-19970317-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-bihar-situation-19970805-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-human-development-discussion-19970826-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-meham-reference-19900518-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-motion-of-thanks-19891228-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-obituary-synopsis-20071115-facts.json",
+        "docs/campaign-certification/C01/research/sources/india-rajyasabha-pm-letters-answer-19900828-facts.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-33.md",
+        "tools/avatars/test_india_bjp_presidents_c01_27.py",
+        "tools/avatars/test_india_inc_presidents_c01_20.py",
+        "tools/avatars/test_india_janata_dal_presidents_c01_33.py",
+        "tools/avatars/test_india_presidents_c01_15.py",
+        "tools/avatars/test_india_prime_ministers_c01_11.py",
+        "tools/avatars/test_india_research_s10e.py"
+      ],
+      "stack_warning": "Historical ancestry includes C01-27, now independently accepted/repaired in integration. Current merge-base diff names only C01-33 handoff and India research/tooling; preserve accepted C01-27 fixes and regenerate index."
+    },
+    {
+      "ref": "origin/claude/c01-jp-12",
+      "tip": "da358dbff9ae536a6b83a012d36f98f0dd639e49",
+      "commit_date": "2026-09-24T14:50:37-07:00",
+      "subject": "Apply verifier fixes to CLAUDE-C01-12",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-12"
+    },
+    {
+      "ref": "origin/claude/c01-jp-13",
+      "tip": "42f98dc8b3d2aae748cabd7f234e0ef7d1575eee",
+      "commit_date": "2026-09-24T21:07:10-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-13 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-13"
+    },
+    {
+      "ref": "origin/claude/c01-jp-18",
+      "tip": "2120b697a1c51efc680d3747912115efede183af",
+      "commit_date": "2026-09-25T08:45:08-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-18 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-18"
+    },
+    {
+      "ref": "origin/claude/c01-jp-29",
+      "tip": "3b30478562ec78c2392d0472061e773e23cb25dd",
+      "commit_date": "2026-09-28T10:16:25-07:00",
+      "subject": "Apply verifier fixes to CLAUDE-C01-29",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-29",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "ready_for_review",
+        "priority": 16,
+        "title": "Research Japanese Socialist / Social Democratic Party chairs",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
+        "depends_on": [],
+        "branch": "claude/c01-jp-29",
+        "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
+        "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted; South Africa C01-30 is claimed. Neither is accepted.",
+        "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md"
+      ],
+      "classification": "unchanged_held_source_review",
+      "task": "CLAUDE-C01-29",
+      "note": "Same3b304785 tip;35/54 exact original responses,19 unavailable in retained review. No new retrieval attempted; held status cannot be removed by unchanged technical tests.",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
+        "bytes": 12141,
+        "sha256": "49d6413372ddab906d8ba211712d4f8a9843f4e2afab3d4a38636d9a7e654b5d",
+        "git_blob": "fbe70e16ee0c54ddd0dc344cf261edf0ab6f0189",
+        "retained": "remote-handoffs/CLAUDE-C01-29.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (28 September 2026; not complete, pending Codex acceptance). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 39,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 47,
+            "text": "## Result (ready_for_review)"
+          }
+        ]
+      },
+      "merge_base": "3efac1b954c4dff444621d2acf374e1b1e8424d9",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/japan-sdp-chairs-1990-2026-29.md",
+        "docs/campaign-certification/C01/research/japan.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19941018-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-19950519-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20031126-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20131024-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-budget-committee-sdp-chair-20180302-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sangiin-plenary-sdp-chair-19930924-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-convention-agenda-2020-20201022-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-fifth-rinji-convention-19980830-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-kenren-kanjicho-meeting-19961130-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-profile-2000-retrospective-20000516-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-reelection-shakaishinpo-19980121-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-greeting-20031115-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-resignation-kaiken-20031113-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-second-rinji-convention-19961222-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-election-shakaishinpo-20000126-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-doi-third-term-danwa-20000121-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-21st-convention-20260429-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-edano-meeting-20201117-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-eighth-convention-20031213-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fifth-election-shakaishinpo-20120201-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-fourth-election-shakaishinpo-20091216-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-inaugural-greeting-20031115-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260408-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-kaiken-20260729-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-12th-20220114-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-reelection-20231201-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-fukushima-resignation-kaiken-20130725-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-decided-20130830-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2013-schedule-20130907-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2018-renotice-20180120-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-candidates-20260306-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-first-count-20260323-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-rerun-result-20260406-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-leader-election-2026-schedule-20260220-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-acting-leader-20130805-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-inaugural-greeting-20180225-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-mataichi-uncontested-2018-20180208-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-statement-20th-anniversary-20160119-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-statement-murayama-obituary-20251017-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-top-page-17th-convention-2020-20200324-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-candidacy-2015-20151204-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-last-greeting-20180224-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-leader-election-page-2013-20131014-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-stays-on-20160905-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-sdp-yoshida-teirei-kaiken-20131106-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19900406-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19901019-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19910820-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19941013-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19950206-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s101-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-budget-committee-sdp-chair-19951011-s99-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19930125-facts.json",
+        "docs/campaign-certification/C01/research/sources/japan-shugiin-plenary-sdp-chair-19960124-facts.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
+        "tools/avatars/test_japan_ldp_presidents_c01_18.py",
+        "tools/avatars/test_japan_prime_ministers_c01_12.py",
+        "tools/avatars/test_japan_prime_ministers_c01_13.py",
+        "tools/avatars/test_japan_research_s10d.py",
+        "tools/avatars/test_japan_sdp_chairs_c01_29.py"
+      ]
+    },
+    {
+      "ref": "origin/claude/c01-ru-14",
+      "tip": "1d749e1520e3ee6a8b971e36b5027c723249b918",
+      "commit_date": "2026-09-24T19:23:08-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-14 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-14"
+    },
+    {
+      "ref": "origin/claude/c01-ru-19",
+      "tip": "6f4ef2c27c5c4293bb324ee4c8ad359fd155ad66",
+      "commit_date": "2026-09-25T08:51:34-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-19 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-19"
+    },
+    {
+      "ref": "origin/claude/c01-ru-28",
+      "tip": "03141c43c5663e35d21eebc631aaf5eec4e909aa",
+      "commit_date": "2026-09-28T11:32:38-07:00",
+      "subject": "Regenerate the C01 research index after the CLAUDE-C01-28 title change",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-28",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "ready_for_review",
+        "priority": 15,
+        "title": "Research five Russian party-leader chains",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+        "depends_on": [],
+        "branch": "claude/c01-ru-28",
+        "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
+        "next": "Latest remote follow-up inspected at03141c43 on claude/c01-ru-28. Submitted research remains unreviewed and unaccepted; no import of its new research. Preserve existing claim and scoped five-party chain; independent content/source checks still required.",
+        "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa"
+      },
+      "evidence_paths": [
+        "docs/planning/ai-handoffs/CLAUDE-C01-28.md"
+      ],
+      "classification": "unchanged_ready_unreviewed",
+      "task": "CLAUDE-C01-28",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+        "bytes": 13038,
+        "sha256": "b694eff8284c05d6738a657b06588f696da4e2a542ae63728277a6768f01fdd2",
+        "git_blob": "d7b141f2292b9f6f66d5a05bc7c49b8570ed53cb",
+        "retained": "remote-handoffs/CLAUDE-C01-28.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (submitted 28 September 2026; not complete). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 63,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 71,
+            "text": "## Submission (ready_for_review)"
+          }
+        ]
+      },
+      "merge_base": "30410e55217c7461937ad42564678c59d34f53b1",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/russia-party-leaders-1990-2026-28.md",
+        "docs/campaign-certification/C01/research/russia.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-chairman-page-20080630-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-history-note-20021117-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-home-page-20081016-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-leadership-page-20040520-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-new-chairman-release-20040526-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-plenum-release-20040531-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-xi-congress-release-20030910-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-apr-xii-congress-second-stage-20041012-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-about-page-20010303-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-congress-statement-19950618-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-founding-congress-edition-19940612-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-history-page-19980627-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-ii-congress-decision-19950618-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-information-bulletin-1-19940710-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-newspaper-demvybor-21-20010607-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-decision-19971216-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-politsovet-statement-20001216-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-statement-grozny-19941211-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-supporters-protocol-19940519-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decision-19960921-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-dvr-v-congress-decisions-19960922-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-date-in-history-1993-20260213-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-19970420-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-20210424-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-i-plenum-notice-20250705-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-official-i-plenum-20250705-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-party-reference-20250912-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-v-congress-notice-19980523-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-xix-congress-notice-20250705-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-xix-second-stage-20260620-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-xviii-congress-notice-20210424-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-kprf-zyuganov-greeting-20260828-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-citizenship-proposal-20260811-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-news-congress-opens-20220527-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-news-death-20220406-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-news-slutsky-elected-20220527-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-news-supreme-council-20220526-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-news-vote-day-20220527-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no04-20220330-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no05-20220506-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-newspaper-no06-07-20220627-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-party-history-20100922-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-party-history-20260216-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-plenum-resolution-19961123-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-slutsky-congress-post-20251002-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-ldpr-slutsky-reelected-20251002-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-vybor-rossii-bloc-programme-19931017-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-association-reference-19980630-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-charter-amendments-20040704-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-congress-schedule-20040703-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-fsin-appeal-20231213-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-leadership-report-20111112-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-new-chairman-deputies-20151220-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-new-leadership-20080622-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-party-transformation-20011222-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-appeal-20260819-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-elected-20191215-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-rybakov-second-term-20231209-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-slabunova-elected-20151220-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-term-limit-20151219-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-vi-congress-report-19980314-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-x-congress-chairman-speech-20011223-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-x-congress-section-20020123-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-xv-congress-decisions-20080626-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-xxi-congress-main-20191216-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-xxii-congress-main-20231211-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-yavlinsky-elected-20011223-facts.json",
+        "docs/campaign-certification/C01/research/sources/russia-yabloko-yavlinsky-reelected-20040703-facts.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+        "tools/avatars/test_russia_heads_of_government_c01_19.py",
+        "tools/avatars/test_russia_party_leaders_c01_28.py",
+        "tools/avatars/test_russia_presidents_c01_14.py",
+        "tools/avatars/test_russia_research_s10h.py",
+        "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py"
+      ]
+    },
+    {
+      "ref": "origin/claude/c01-sa-25",
+      "tip": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+      "commit_date": "2026-09-27T18:47:21-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-25 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-25",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 7,
+        "title": "Finish existing claim: Saudi council chairs",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "branch": "claude/c01-sa-25",
+        "depends_on": [],
+        "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+        "submission_revision": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+        "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-25/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-25"
+    },
+    {
+      "ref": "origin/claude/c01-saudi-03",
+      "tip": "8a65a26c091e33dd44b21a181b87ac2f60c76a50",
+      "commit_date": "2026-09-21T21:50:58-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-03 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "alias_note": "Older numbering of the same Saudi C01-06 submission; not a separate C01-03 packet.",
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-06"
+    },
+    {
+      "ref": "origin/claude/c01-saudi-06",
+      "tip": "7948ab987efeaadba2c9dca67d8ccec03db430ca",
+      "commit_date": "2026-09-21T21:53:27-07:00",
+      "subject": "Merge current integration into the Saudi packet (CLAUDE-C01-06)",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-06"
+    },
+    {
+      "ref": "origin/claude/c01-source-05",
+      "tip": "66331d9d00704d5298f08c5d738631ee830350df",
+      "commit_date": "2026-09-27T18:37:02-07:00",
+      "subject": "Apply verifier fixes to CLAUDE-C01-SOURCE-05",
+      "tip_is_ancestor_of_integration": true,
+      "queue": {
+        "id": "CLAUDE-C01-SOURCE-05",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 1,
+        "title": "Recover and verify the Russian archive resolution",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "depends_on": [],
+        "next": "Bounded source recovery accepted after independent review b3434002: exact archived page and three facsimiles reproduced, cited content visually checked, leaf discrepancy preserved. No broad C01 historical-coverage claim.",
+        "branch": "claude/c01-source-05",
+        "claim_revision": "d276830e9674daeea1e335cc4d01c982949ed510"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md"
+      ],
+      "classification": "bounded_source_repair_complete_parent_history_pending",
+      "task": "CLAUDE-C01-SOURCE-05"
+    },
+    {
+      "ref": "origin/claude/c01-source-06",
+      "tip": "93467faaef254a71b4a776d00e56c16dda963eca",
+      "commit_date": "2026-09-27T17:20:21-07:00",
+      "subject": "Regenerate the C01 research index for CLAUDE-C01-SOURCE-06",
+      "tip_is_ancestor_of_integration": true,
+      "queue": {
+        "id": "CLAUDE-C01-SOURCE-06",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 2,
+        "title": "Compare the changed Bush Library response",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "depends_on": [],
+        "next": "Bounded Bush Library repair accepted after independent review 63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open.",
+        "branch": "claude/c01-source-06",
+        "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md"
+      ],
+      "classification": "bounded_source_repair_complete_parent_history_pending",
+      "task": "CLAUDE-C01-SOURCE-06"
+    },
+    {
+      "ref": "origin/claude/c01-source-17",
+      "tip": "efeac5461022ed27f27973cbc215615339ee5c10",
+      "commit_date": "2026-09-27T18:48:59-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-SOURCE-17 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-SOURCE-17",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 3,
+        "title": "Compare the changed Brazilian Senate diary response",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "depends_on": [],
+        "next": "Bounded source repair accepted after independent live/archive response and cited-page review, plus qualification repair bdb35a07. Three reviewed extracts are pinned; the earlier unavailable body discrepancy remains unexplained. Parent Brazil/C01 history remains pending.",
+        "branch": "claude/c01-source-17",
+        "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17",
+        "review_revision": "1c5f129f"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/README.md"
+      ],
+      "classification": "bounded_source_repair_complete_parent_history_pending",
+      "task": "CLAUDE-C01-SOURCE-17"
+    },
+    {
+      "ref": "origin/claude/c01-source-26",
+      "tip": "569f8d2374170365999f2b06445d6cbe656ffc29",
+      "commit_date": "2026-09-27T18:58:26-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-SOURCE-26 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-SOURCE-26",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 4,
+        "title": "Review Vedomosti facsimile provenance",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "depends_on": [],
+        "next": "Bounded source repair accepted after 41 exact reported retrievals, corrected-quotation review and withdrawal of unsupported Izvestia evidence. Thirty reviewed extracts are pinned. Parent chronology and C12 source admissibility remain separate; no C01/C06 closure.",
+        "branch": "claude/c01-source-26",
+        "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6",
+        "review_revision": "1c5f129f"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/README.md"
+      ],
+      "classification": "bounded_source_repair_complete_parent_history_pending",
+      "task": "CLAUDE-C01-SOURCE-26"
+    },
+    {
+      "ref": "origin/claude/c01-su-26",
+      "tip": "09f41dd4bbe05cec693e619eedd1740aec897d54",
+      "commit_date": "2026-09-25T21:30:13-07:00",
+      "subject": "Regenerate the C01 research index for CLAUDE-C01-26",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-26"
+    },
+    {
+      "ref": "origin/claude/c01-su-35",
+      "tip": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
+      "commit_date": "2026-09-28T21:33:07-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-35 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-35",
+      "scope": "USSR: Democratic Russia and Soyuz group leaders",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+        "bytes": 11025,
+        "sha256": "9de37cd16a9e2d4bc12f00a72579e03726d030da387c19220a91eca5f8bda235",
+        "git_blob": "5d812544bd10cf7b6f644ed1f0279d625afd53aa",
+        "retained": "remote-handoffs/CLAUDE-C01-35.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (submitted 29 September 2026 UTC; not complete). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 39,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 41,
+            "text": "## Submission (ready_for_review)"
+          }
+        ]
+      },
+      "merge_base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd1-stenogram-vol5-19900622-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd2-stenogram-vol3-19901207-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol1-19910328-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd3-stenogram-vol5-19910405-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-rsfsr-snd5-stenogram-vol1-19910715-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol1-19900312-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd3-stenogram-vol3-19900314-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol1-19901217-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol2-19901225-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd4-stenogram-vol3-soyuz-19901217-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-snd5-bulletin3-19910903-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin1-soyuz-19910826-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-sten-vs-bulletin2-soyuz-19910826-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l1-18-19910912-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d104-l128-134-19911212-facts.json",
+        "docs/campaign-certification/C01/research/sources/ussr-yeltsin-center-f6-d222-l129-19911109-facts.json",
+        "docs/campaign-certification/C01/research/ussr-democratic-russia-soyuz-1990-1991-35.md",
+        "docs/campaign-certification/C01/research/ussr.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+        "tools/avatars/test_ussr_democratic_russia_soyuz_c01_35.py",
+        "tools/avatars/test_ussr_government_supreme_soviet_c01_26.py",
+        "tools/avatars/test_ussr_research_s10h.py"
+      ],
+      "stack_warning": "No other new packet in current merge-base diff; generated shared index and overlapping country tests still require combined regeneration/review."
+    },
+    {
+      "ref": "origin/claude/c01-to-24",
+      "tip": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+      "commit_date": "2026-09-27T19:21:36-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-24 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-24",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "complete",
+        "priority": 6,
+        "title": "Finish existing claim: Tongan Speakers",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+        "branch": "claude/c01-to-24",
+        "depends_on": [],
+        "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+        "submission_revision": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+        "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-24"
+    },
+    {
+      "ref": "origin/claude/c01-to-36",
+      "tip": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+      "commit_date": "2026-09-28T21:31:16-07:00",
+      "subject": "Regenerate the C01 research index after the CLAUDE-C01-36 fix",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-36",
+      "scope": "Tonga: deputy prime ministers",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+        "bytes": 12878,
+        "sha256": "c912e907a305bff4651b9243c0479fa08ae19d91c5e31d249baffe46c5b0ed2c",
+        "git_blob": "9bd05c5f3c909b2a5bed48d6a14167b876b9fda9",
+        "retained": "remote-handoffs/CLAUDE-C01-36.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (29 September 2026 UTC; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 40,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 44,
+            "text": "Submitted `ready_for_review` on 29 September 2026 (UTC; 28 September local) on `claude/c01-to-36` (claim `e8821f40`, base"
+          }
+        ]
+      },
+      "merge_base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/sources/tonga-assembly-auditor-news-20181108-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-assembly-cabinet-oath-news-20191028-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-assembly-faotusia-condolence-20210901-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-assembly-member-maafu-2021-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-assembly-term-report-2017-2021-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-itu-20151116-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-acting-pm-whales-20170404-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-appointments-to-20180122-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-cabinet-named-20110104-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-gita-survey-20180615-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-dpm-macbio-20170831-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-foi-speech-20120213-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-half-mast-20140619-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-lord-tangi-20101230-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-rti-speech-20130424-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-profile-20150212-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-sovaleni-renewable-20160907-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-toloa-rainforest-20140909-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-mic-vaipulu-appointed-20110103-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-paunga-20020514-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-acting-dpm-statement-20020111-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-australia-day-speech-2009-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-common-sense-20060809-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-confirmation-of-appointments-20040909-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-dpm-clarification-to-20200416-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-hauofa-funeral-20090114-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-maafu-death-20211213-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-ministerial-appointments-20170906-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20141231-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-new-cabinet-20191010-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-news-in-brief-2001-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-address-20010124-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-pohiva-statements-20060609-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-pope-homage-20050411-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-press-releases-2000-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-reply-dpm-20100624-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-tupou-resignation-to-20010928-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-ub40-concert-20060310-facts.json",
+        "docs/campaign-certification/C01/research/sources/tonga-pmo-wssd-statement-20020903-facts.json",
+        "docs/campaign-certification/C01/research/tonga-deputy-prime-ministers-1990-2026-36.md",
+        "docs/campaign-certification/C01/research/tonga.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+        "tools/avatars/test_tonga_deputy_prime_ministers_c01_36.py",
+        "tools/avatars/test_tonga_dpfi_c01_04.py",
+        "tools/avatars/test_tonga_pm_1990_2019_c01_08.py",
+        "tools/avatars/test_tonga_research_s10g.py",
+        "tools/avatars/test_tonga_speakers_c01_24.py",
+        "tools/avatars/test_tonga_transition_c01_02.py",
+        "tools/avatars/test_tonga_transition_c01_03.py"
+      ],
+      "stack_warning": "No other new packet in current merge-base diff; generated shared index and overlapping country tests still require combined regeneration/review."
+    },
+    {
+      "ref": "origin/claude/c01-tonga-01",
+      "tip": "426f0ddb17a93c3d8b9a809c0129b441b29d3fe6",
+      "commit_date": "2026-09-21T17:12:29-07:00",
+      "subject": "Record CLAUDE-C01-01 as ready for review with its result commits",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-01"
+    },
+    {
+      "ref": "origin/claude/c01-tonga-02",
+      "tip": "b6767837b8080cae133e073ffb9ecb6f9371ee5f",
+      "commit_date": "2026-09-21T20:53:28-07:00",
+      "subject": "Regenerate the C01 research index after the TO-TR21-05 wording fix",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-02"
+    },
+    {
+      "ref": "origin/claude/c01-tonga-03",
+      "tip": "387e45266cd9f7ad79170c7beb391dc2305891f0",
+      "commit_date": "2026-09-22T10:30:20-07:00",
+      "subject": "Complete the C01-03 merge: add its stated dates to the DPFI test's exact pins",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-03"
+    },
+    {
+      "ref": "origin/claude/c01-tonga-04",
+      "tip": "62690e61ebf32750ae0b392f8171ad314ec3ac43",
+      "commit_date": "2026-09-21T21:54:05-07:00",
+      "subject": "Note that CLAUDE-C01-04 now applies directly to current integration",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-04"
+    },
+    {
+      "ref": "origin/claude/c01-tonga-07",
+      "tip": "e6f9fa4140ec881eec73fa8770e4b3bbf4700cac",
+      "commit_date": "2026-09-21T23:15:08-07:00",
+      "subject": "Apply verifier fixes to CLAUDE-C01-07",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-07"
+    },
+    {
+      "ref": "origin/claude/c01-tonga-08",
+      "tip": "3291facf7f304959614d67741a2497449fa9398d",
+      "commit_date": "2026-09-22T10:33:25-07:00",
+      "subject": "Merge CLAUDE-C01-03 into CLAUDE-C01-08 and resolve the shared Tonga records",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md"
+      ],
+      "classification": "bounded_research_intake_complete",
+      "task": "CLAUDE-C01-08"
+    },
+    {
+      "ref": "origin/claude/c01-ussr-05",
+      "tip": "1c698ed00cd3989e6c7dfc2c676fc7185c7b4c84",
+      "commit_date": "2026-09-21T22:50:10-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-05 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-05"
+    },
+    {
+      "ref": "origin/claude/c01-za-09",
+      "tip": "82a23f9da8660839731c1aa02a1e9b9baf8614e2",
+      "commit_date": "2026-09-22T19:42:15-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-09 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-09"
+    },
+    {
+      "ref": "origin/claude/c01-za-16",
+      "tip": "2df4a0a6854a14796515d846d0d504edd785a83e",
+      "commit_date": "2026-09-24T18:52:06-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-16 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-16"
+    },
+    {
+      "ref": "origin/claude/c01-za-21",
+      "tip": "32ea29336e204eafb52e68485e97c8844a96cd6b",
+      "commit_date": "2026-09-25T09:34:32-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-21 fixes",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/verification/2026-09-27-claude-integration.md"
+      ],
+      "classification": "research_integrated_historical_acceptance_pending",
+      "task": "CLAUDE-C01-21"
+    },
+    {
+      "ref": "origin/claude/c01-za-30",
+      "tip": "cb0f1153f0d26729445acbc05843c3f16bf78ee7",
+      "commit_date": "2026-09-28T13:40:25-07:00",
+      "subject": "Apply verifier fixes to CLAUDE-C01-30",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C01-30",
+        "owner": "Claude",
+        "session": "C01",
+        "state": "claimed",
+        "priority": 17,
+        "title": "Research ACDP, Freedom Front and IFP party leaders",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+        "depends_on": [],
+        "branch": "claude/c01-za-30",
+        "claim_revision": "68535825eca53986feb5b6d9bf5ad44981bc6543",
+        "next": "Existing remote claim inspected at 68535825eca53986feb5b6d9bf5ad44981bc6543. Preserve the three-party, at-most-ten-person scope and existing branch; no submitted research, integration or acceptance. Return ready_for_review with primary evidence and focused tests."
+      },
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-30",
+      "scope": "South Africa: ACDP, Freedom Front and IFP leaders",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+        "bytes": 11325,
+        "sha256": "d602a9b113d027fe9a6f8db5f9a7e9f32a0f0ca66758fa55ddbd288bf78942b8",
+        "git_blob": "737d4952ffc9475fc1b565e8ca8d1765a2a3fa4d",
+        "retained": "remote-handoffs/CLAUDE-C01-30.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (28 September 2026; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 40,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 53,
+            "text": "Submitted `ready_for_review` on 28 September 2026. Touched paths (nothing else):"
+          },
+          {
+            "line": 106,
+            "text": "the packet commit `033f098d` then changed only its header (the State line to `ready_for_review`, the Report link and the claim-commit hash) and appended this result. After the packet commits (`033f098d`, index `cd335f3b`), `codex/campaign-certification` had moved again, to"
+          }
+        ]
+      },
+      "merge_base": "5d970f6d7370baf16760585c641d81253d1c2175",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-home-page-19990501-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-kzn-newsletter-19990904-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-leader-statement-20180214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-manifesto-launch-notice-20140218-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-nepad-speech-20011031-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-profile-20211207-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-our-leadership-page-20190401-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-party-history-20040113-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-president-statement-20260304-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-da-ff-leaders-release-20240822-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-covid-item-20200402-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-farm-visit-release-20161227-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-minister-post-release-20240722-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-budget-debate-speech-20010621-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-not-available-release-20161112-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-af-20030429-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-en-20030904-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-reelected-release-20131118-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-new-leadership-release-20161112-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-new-members-release-20260325-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-presidency-budget-debate-item-20250716-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-vfplus-media-release-20030928-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-death-release-20200403-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-media-release-19970826-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-profile-20030504-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-buthelezi-timeline-20240403-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-buthelezi-20190824-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-hlabisa-20190824-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-elective-conference-resolutions-20121216-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-resolutions-20240810-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-statement-20190120-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-historical-perspective-20000930-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-history-profile-19970702-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-nec-statement-20190827-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-newly-elected-leadership-20190825-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-press-release-19951024-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-20190912-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-abaqulusi-20260201-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-statement-passing-buthelezi-20230909-facts.json",
+        "docs/campaign-certification/C01/research/south-africa-acdp-ff-ifp-leaders-1990-2026-30.md",
+        "docs/campaign-certification/C01/research/south-africa.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+        "tools/avatars/test_south_africa_anc_presidents_c01_16.py",
+        "tools/avatars/test_south_africa_deputy_presidents_c01_21.py",
+        "tools/avatars/test_south_africa_heads_of_state_c01_09.py",
+        "tools/avatars/test_south_africa_party_leaders_c01_30.py",
+        "tools/avatars/test_south_africa_research_s10h.py"
+      ]
+    },
+    {
+      "ref": "origin/claude/c01-za-32",
+      "tip": "df4707462903b893916b5ef2d56a875a82f4030f",
+      "commit_date": "2026-09-28T16:54:42-07:00",
+      "subject": "Regenerate the C01 research index after CLAUDE-C01-32 fixes",
+      "tip_is_ancestor_of_integration": false,
+      "queue": null,
+      "evidence_paths": [],
+      "classification": "newly_ready_research_not_accepted",
+      "task": "CLAUDE-C01-32",
+      "scope": "South Africa: PAC presidents",
+      "remote_handoff": {
+        "path": "docs/planning/ai-handoffs/CLAUDE-C01-32.md",
+        "bytes": 13581,
+        "sha256": "5c3d659934e3c784c3a804b9245eb90a70b6f9ad4c2e184fa5cdc9e97aef6432",
+        "git_blob": "dc9abcc3b32da7fe751ee58975f41f6ffc3b07bc",
+        "retained": "remote-handoffs/CLAUDE-C01-32.md",
+        "state_lines": [
+          {
+            "line": 3,
+            "text": "Owner: Claude. State: **ready_for_review** (28 September 2026; submitted, not accepted). Parent: C01 (incomplete)."
+          },
+          {
+            "line": 40,
+            "text": "Mark the packet `ready_for_review` when done. C01 and all parent gates stay open."
+          },
+          {
+            "line": 44,
+            "text": "Submitted `ready_for_review` on 28 September 2026. Touched paths (nothing else):"
+          }
+        ]
+      },
+      "merge_base": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "changed_paths_from_merge_base": [
+        "docs/campaign-certification/C01/research-index.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-home-page-19990501-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-kzn-newsletter-19990904-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-leader-statement-20180214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-manifesto-launch-notice-20140218-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-nepad-speech-20011031-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-profile-20211207-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-our-leadership-page-20190401-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-party-history-20040113-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-acdp-president-statement-20260304-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-da-ff-leaders-release-20240822-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-covid-item-20200402-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-farm-visit-release-20161227-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-minister-post-release-20240722-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-budget-debate-speech-20010621-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-not-available-release-20161112-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-af-20030429-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-en-20030904-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-reelected-release-20131118-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-new-leadership-release-20161112-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-new-members-release-20260325-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-presidency-budget-debate-item-20250716-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-vfplus-media-release-20030928-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-death-release-20200403-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-media-release-19970826-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-profile-20030504-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-buthelezi-timeline-20240403-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-buthelezi-20190824-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-hlabisa-20190824-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-elective-conference-resolutions-20121216-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-resolutions-20240810-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-statement-20190120-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-historical-perspective-20000930-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-history-profile-19970702-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-nec-statement-20190827-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-newly-elected-leadership-20190825-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-press-release-19951024-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-20190912-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-abaqulusi-20260201-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-ifp-statement-passing-buthelezi-20230909-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-address-hawkers-council-19981012-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-constitution-1996-20081214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-constitution-2008-20081214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-current-leadership-20081214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-election-manifesto-1999-20000116-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-election-manifesto-2004-20040408-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-mphahlele-leave-to-appeal-20160621-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-pac-v-moloto-20190712-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-gphc-pac-v-moloto-20210823-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20130704-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20130918-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-home-page-20150726-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-interview-moloto-20171004-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-latest-news-20140421-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-new-year-message-20211231-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-notice-election-summit-20081003-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-paca-history-19990202-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-paca-home-page-19981203-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-post-case-against-mbinda-20180119-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-post-nyhontso-re-elected-20190901-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-post-president-regional-tour-20210719-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-previous-leaders-20081214-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-previous-presidents-20160331-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-profile-mphahlele-20130324-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-release-fraud-case-mbinda-20180304-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-release-june16-rally-19980616-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-release-lesotho-19981103-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-release-strategic-plan-20160131-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-sca-moloto-v-pac-20231027-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-speech-polokwane-congress-20200215-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-iec-20160629-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-litigation-moloto-20191230-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-mbeki-recall-20080920-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-moloto-africa-day-20180525-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-rustenburg-19980519-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-statement-zuma-case-20090114-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-x-elective-congress-20251211-facts.json",
+        "docs/campaign-certification/C01/research/sources/south-africa-pac-x-manifesto-launch-20260829-facts.json",
+        "docs/campaign-certification/C01/research/south-africa-acdp-ff-ifp-leaders-1990-2026-30.md",
+        "docs/campaign-certification/C01/research/south-africa-pac-presidents-1990-2026-32.md",
+        "docs/campaign-certification/C01/research/south-africa.json",
+        "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+        "docs/planning/ai-handoffs/CLAUDE-C01-32.md",
+        "tools/avatars/test_south_africa_anc_presidents_c01_16.py",
+        "tools/avatars/test_south_africa_deputy_presidents_c01_21.py",
+        "tools/avatars/test_south_africa_heads_of_state_c01_09.py",
+        "tools/avatars/test_south_africa_pac_presidents_c01_32.py",
+        "tools/avatars/test_south_africa_party_leaders_c01_30.py",
+        "tools/avatars/test_south_africa_research_s10h.py"
+      ],
+      "stack_warning": "Includes entire unaccepted C01-30 branch; review C01-30 first or perform explicit scoped extraction, not blanket merge."
+    },
+    {
+      "ref": "origin/claude/c03-review-01",
+      "tip": "c9e4d51f7742e8c9417a3643f942063df5833f61",
+      "commit_date": "2026-09-27T21:44:00-07:00",
+      "subject": "Submit CLAUDE-C03-REVIEW-01 for review with browser evidence",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C03-REVIEW-01",
+        "owner": "Claude",
+        "session": "C03",
+        "state": "complete",
+        "priority": 10,
+        "title": "Build a cartoon review workbench",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
+        "depends_on": [],
+        "next": "Bounded cartoon review workbench accepted with CRLF/UTF-8 provenance repairs: 24 Python and 15 Node/browser entries pass. No new art approval, historical acceptance or C03/C06/S23 closure.",
+        "branch": "claude/c03-review-01",
+        "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10",
+        "review_revision": "ae3610b4"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/README.md"
+      ],
+      "classification": "bounded_preparation_complete",
+      "task": "CLAUDE-C03-REVIEW-01"
+    },
+    {
+      "ref": "origin/claude/c04-prep-01",
+      "tip": "62aae6b76b4789bbb9501bdd768fa25176a66b15",
+      "commit_date": "2026-09-27T21:35:18-07:00",
+      "subject": "Submit CLAUDE-C04-PREP-01 for review",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-C04-PREP-01",
+        "owner": "Claude",
+        "session": "C04",
+        "state": "complete",
+        "priority": 11,
+        "title": "Prepare a fictional successor pilot",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-C04-PREP-01.md",
+        "depends_on": [],
+        "next": "Eight fictional France/Tonga proposal dossiers and validator accepted with independent source review and constraint repairs; 73 tests pass. C04/C06/S23 remain open; no runtime installation or art approval.",
+        "branch": "claude/c04-prep-01",
+        "claim_revision": "f1547abd111f580ea2045c57906cc1d1af3356f1",
+        "review_revision": "99f8a3bc"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md"
+      ],
+      "classification": "bounded_preparation_complete",
+      "task": "CLAUDE-C04-PREP-01"
+    },
+    {
+      "ref": "origin/claude/e05-research-01",
+      "tip": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+      "commit_date": "2026-09-28T07:07:32-07:00",
+      "subject": "E05 research pilot: eight sourced company dossiers, catalog and validator",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-E05-RESEARCH-01",
+        "owner": "Claude",
+        "session": "E05",
+        "state": "complete",
+        "priority": 14,
+        "title": "Research important French and Japanese companies",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
+        "depends_on": [],
+        "next": "Eight-company France/Japan research pilot and validator accepted as bounded preparation with rename-boundary/provenance repairs; 61 tests pass. Independent retrieval obtained 68 of 99 bodies (54 byte-exact, 14 changed); inaccessible sources and claim-level content-review limits remain recorded. This is not certification of all factual claims, runtime installation, or E05 completion.",
+        "branch": "claude/e05-research-01",
+        "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21",
+        "submission_revision": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+        "review_revision": "8c2b3e1d"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md"
+      ],
+      "classification": "bounded_preparation_complete",
+      "task": "CLAUDE-E05-RESEARCH-01"
+    },
+    {
+      "ref": "origin/claude/s19-guidance-01",
+      "tip": "7de625393fe6dc214e39ebd084424d04b229614b",
+      "commit_date": "2026-09-21T21:07:58-07:00",
+      "subject": "Submit CLAUDE-S19-01 for review with real-campaign browser evidence",
+      "tip_is_ancestor_of_integration": true,
+      "queue": null,
+      "evidence_paths": [
+        "docs/campaign-certification/S19/integration/CLOSEOUT.md"
+      ],
+      "classification": "guidance_integrated_session_complete",
+      "task": "CLAUDE-S19-01"
+    },
+    {
+      "ref": "origin/claude/s23-matrix-01",
+      "tip": "8c9f6ce1d533504143419af483e4435cde21835b",
+      "commit_date": "2026-09-27T21:31:32-07:00",
+      "subject": "Add CLAUDE-S23-MATRIX-01 certified boundary matrix (ready_for_review)",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-S23-MATRIX-01",
+        "owner": "Claude",
+        "session": "S23",
+        "state": "complete",
+        "priority": 12,
+        "title": "Build the historical and cartoon boundary audit",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md",
+        "depends_on": [],
+        "next": "Corrected source-derived date/role/art audit accepted as preparation only; 36 tests pass. Recomputed output preserves uncertain dates, missing history/art and saved incumbents. S23 remains planned pending C06; no native replay or certificate granted.",
+        "branch": "claude/s23-matrix-01",
+        "claim_revision": "b4c021ab911851382856061a8c2c00b716b7b6f7",
+        "review_revision": "36740f8b"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/README.md"
+      ],
+      "classification": "bounded_preparation_complete",
+      "task": "CLAUDE-S23-MATRIX-01"
+    },
+    {
+      "ref": "origin/claude/s24-successors-01",
+      "tip": "5a23ebe018612ab008a6ac911af6c2ca498231f6",
+      "commit_date": "2026-09-28T07:09:32-07:00",
+      "subject": "S24 prep: successor fixture evidence, checks and ready_for_review",
+      "tip_is_ancestor_of_integration": false,
+      "queue": {
+        "id": "CLAUDE-S24-SUCCESSORS-01",
+        "owner": "Claude",
+        "session": "S24",
+        "state": "complete",
+        "priority": 13,
+        "title": "Build successor-country fixture coverage",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
+        "depends_on": [],
+        "next": "Bounded successor fixture preparation accepted with retained-input, complete-check and portable source-identity repairs. Independent 5d11 baseline: 23 selection guards, 21 supported activation/save-reload routes and four browser representatives pass; Namibia/East Timor remain no_native_hook. Current budget finding repaired separately. S24 remains planned pending S23; no qualification granted.",
+        "branch": "claude/s24-successors-01",
+        "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c",
+        "submission_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6",
+        "review_revision": "32135770"
+      },
+      "evidence_paths": [
+        "docs/campaign-certification/S24/integrations/CLAUDE-S24-SUCCESSORS-01/README.md"
+      ],
+      "classification": "bounded_preparation_complete",
+      "task": "CLAUDE-S24-SUCCESSORS-01"
+    }
+  ],
+  "source_evidence": [
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/AI_WORKSTREAMS.md",
+      "bytes": 28795,
+      "sha256": "365de22e9530c0c883f762b006304b51ca79b156e1441ecddd9b265b1cb9b1d2",
+      "git_blob": "ef1de70fc9a4bb30e18047fcf164a27d8035eb82"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/planning/ai-task-queue.json",
+      "bytes": 24146,
+      "sha256": "52646537d424fd12f848b3a308bb94e925b19e787187394991e34f6ee2e0ab13",
+      "git_blob": "620876e08edaaafb2710918ef499cdd8546ae88e"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "bytes": 6260,
+      "sha256": "9623a71f5af2c6d73a2e407bcd15bc58c269a68e8c0f470d070691fe7f8b7892",
+      "git_blob": "66d263e49ecf86650dad5be6854a6b640033f35d"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "bytes": 1015111,
+      "sha256": "4792239023b7ddd664b900a4868301df7c681b6f0386c00946425ab1a8a45565",
+      "git_blob": "a90904300bfeb4c0474cd1d260f37c5b33b72926"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-outstanding/protected-originals.json",
+      "bytes": 3068,
+      "sha256": "0c4fc4507c8b95f2e9b54366a4177a53163948164b85fe00caf774488dd9c25c",
+      "git_blob": "4bc1763d00af24fc77144ec5ee8eb81eb17bfdc5"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
+      "bytes": 3256,
+      "sha256": "c886b419e2824543584c5284270be2546c1788e476bc6299c962b20bd00c8066",
+      "git_blob": "5e92a4adcba9071b737b077ae0c039e1445123ad"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-23/README.md",
+      "bytes": 1889,
+      "sha256": "68bfa15292b62ec2a6326b10bc7253170d14514a917515e53884ea12d9bd48f7",
+      "git_blob": "c6f129cfe88ea6f1f1d72e1d364cbbfaa0a98ecd"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md",
+      "bytes": 4478,
+      "sha256": "1466be2b6e79d1580bbf84f4970d6d04b0ba8d726d815f2ce5a8378be93e7d20",
+      "git_blob": "2580e21a269abbac96887dd94131d9041b34f049"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
+      "bytes": 1983,
+      "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
+      "git_blob": "ff550ff3180790165c4c92d30b26c87e1f6163af"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md",
+      "bytes": 7538,
+      "sha256": "dd853c46fa5766d2c1def5403ca55032000c213dcd884b22c665738f541e475c",
+      "git_blob": "9147e69f0ffe99ee4fcf7b516877516397abc129"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+      "bytes": 4951,
+      "sha256": "fb6ad9420d744afc431731ede8118d1439f1b0489f468d21763c83617d49c2e6",
+      "git_blob": "78da0740bdd53758101879df10e27ee875101433"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-25/README.md",
+      "bytes": 1915,
+      "sha256": "f7bc4b58b7706d95a96c63bb38738291384017e2543cf4634621d832a4c39fae",
+      "git_blob": "9d47c1119f24fc6ed3423db987d6e1a762db9d3f"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md",
+      "bytes": 2258,
+      "sha256": "8d0e105508cc3aaea124dea0887d19fe1e3ed0ab9e4a850e6d4015fbfef47db1",
+      "git_blob": "4f884d2c6209979a2bc50f41878b562cb7fa5830"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md",
+      "bytes": 2424,
+      "sha256": "b1de6a113e7bec93a3ebac574d930d3ce22307da71b62ed92f2ffb03ab0d32e1",
+      "git_blob": "88ccea43d312186d7e4a039f2e2d6c20e704e9d9"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-17/README.md",
+      "bytes": 2819,
+      "sha256": "84ce0ec9c05cdeaecaf070b46e1693e5b1b4ed4427a096565861bffa768f91c8",
+      "git_blob": "3ebef080ad2e421da67bb16b21dada1c73f4ee30"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-26/README.md",
+      "bytes": 2998,
+      "sha256": "7e2a9cbd8ef25fb7209c87086adb1ba6cced205f35cb322c4eca370ae3915f30",
+      "git_blob": "e4774b988c66faf6af48ac248e476c8776576863"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-24/README.md",
+      "bytes": 1895,
+      "sha256": "8ebe4555bc3a864ed15bc7a8396183aef8b2e7840d79bd020bd0194d0269a98b",
+      "git_blob": "a38554851ab6474d26b73f2e3cb13f7fce5db0aa"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md",
+      "bytes": 3404,
+      "sha256": "5f6c244627328cef1461597739cf6353766f44ca93de17ce9b0765c790a1e353",
+      "git_blob": "2e4af7f8cec8d657b7235a832d17e686cab73ef7"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md",
+      "bytes": 4607,
+      "sha256": "1cbe851ea9db1d77fb5d808013d7fbec7bbf3b11b5ad12b4050746a9e2e84a9b",
+      "git_blob": "0c6697f27be848b07907f2aa2978055f5a844b32"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md",
+      "bytes": 8025,
+      "sha256": "ae2a2ec522d7670fa06f4a14ca1ccf556863c96a7a02e00a5b4ae35217673e5a",
+      "git_blob": "787389da795a37e97f51a752932f78a2c33e5b58"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+      "bytes": 10834,
+      "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+      "git_blob": "a7a5e45620d31b59fd757c2fe95738844c9c186c"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/README.md",
+      "bytes": 4067,
+      "sha256": "34a06c15791f30890ccded8ef84cc34774908e25a3906449c9eea363511f59f5",
+      "git_blob": "d166a728189a70abc3c7a1e595c62115cd4d53d7"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md",
+      "bytes": 8298,
+      "sha256": "92c0229a59faf6b8a46576e61e80542ae80fa6deb8f13d1f775f2fec0ab811dd",
+      "git_blob": "2b744d17ffd3d5b9aa4d1749c5dd4b0ff2ffb0bb"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md",
+      "bytes": 6686,
+      "sha256": "4d9af438af3e97eb4c45af26e6f14c4362167e910bf87879f278872e6e8cdf17",
+      "git_blob": "8d5725c7a76fa8603ffa94d9e2ba80aeef744ad3"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/S19/integration/CLOSEOUT.md",
+      "bytes": 5283,
+      "sha256": "7274b1ebb8b9c0567043eb3ec41a0e29c35932a14c1a028e0141406f54b51457",
+      "git_blob": "7655b3bf5f2f751b1990aaa6f81d0b46548ef713"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/S23/integrations/CLAUDE-S23-MATRIX-01/README.md",
+      "bytes": 6808,
+      "sha256": "3cb53076e70ab74491e8b59a423345ea7120f7086857408e52560058a36af0b1",
+      "git_blob": "b27b40994a64b1944dcd0efe6b81b681957e9528"
+    },
+    {
+      "revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "path": "docs/campaign-certification/S24/integrations/CLAUDE-S24-SUCCESSORS-01/README.md",
+      "bytes": 6993,
+      "sha256": "6e16c601007ebf75727be3fb00086d89cde96641d4ceb1215e57d39ff5025d2f",
+      "git_blob": "f44307385b0ecbcc0416789f179732cb064698eb"
+    }
+  ],
+  "limitations": [
+    "Remote ready_for_review is an authored submission state, not independent technical or source acceptance.",
+    "No claim-only new branch remains among the seven new research deliveries; remote embedded queue rows can be inherited stale metadata.",
+    "No C01-31 remote branch was present; do not invent an absent task or claim.",
+    "Historical accepted/incorporated scopes are retained as recorded; ancestor status alone is not content acceptance.",
+    "The branch tips predate this inventory; newly ready means not recorded as submitted by the current central queue/workboard, not necessarily committed today."
+  ]
+}

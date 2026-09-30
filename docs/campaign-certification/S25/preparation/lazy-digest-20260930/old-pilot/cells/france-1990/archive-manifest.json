@@ -1,0 +1,89 @@
+{
+  "format": "spheres-stability-archives/v1",
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10798784,
+        "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10798784,
+        "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+        "bytes": 65236438,
+        "sha256": "b893638d3689128c50ea31a8db24624a83a43343f703fc487833e80bf02d0acc"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10779481,
+        "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 65236438,
+        "sha256": "b893638d3689128c50ea31a8db24624a83a43343f703fc487833e80bf02d0acc"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 60126088,
+        "sha256": "ff89b33f90ad83833de77c256a823801664b326e4e3a531eeca2df88b0b82972"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 10075192,
+        "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 60126088,
+        "sha256": "ff89b33f90ad83833de77c256a823801664b326e4e3a531eeca2df88b0b82972"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ]
+}

@@ -18,32 +18,38 @@
    },
    "statistics": {
     "roles": {
-     "research": 0,
+     "research": 1,
      "production_party": 15,
      "executive": 1
     },
-    "cases": 924,
+    "cases": 995,
     "case_kinds": {
-     "cutoff_day": 16,
-     "cutoff_day_before": 16,
+     "attestation_day": 2,
+     "attestation_day_after": 2,
+     "cutoff_day": 17,
+     "cutoff_day_before": 17,
      "dissolution_day_after": 1,
      "dissolution_day_before": 1,
      "dissolution_day_of": 1,
-     "fictional_end_exclusive": 16,
-     "fictional_last_day": 16,
-     "fictional_start_day": 16,
-     "future_2030": 16,
-     "handover_day_after": 32,
-     "handover_day_before": 32,
-     "handover_day_of": 32,
-     "reference_start": 16,
-     "reference_start_day_before": 16,
-     "yearly": 736
+     "fictional_end_exclusive": 17,
+     "fictional_last_day": 17,
+     "fictional_start_day": 17,
+     "future_2030": 17,
+     "handover_day_after": 37,
+     "handover_day_before": 37,
+     "handover_day_of": 37,
+     "reference_start": 17,
+     "reference_start_day_before": 17,
+     "yearly": 782
     },
     "observations_by_acceptance": {
+     "accepted": 7,
      "production_registry": 54
     },
-    "research_yearly_status": {},
+    "research_yearly_status": {
+     "uncertain": 24,
+     "unknown": 13
+    },
     "production_party_yearly_status": {
      "established": 197,
      "inapplicable": 24,
@@ -68,7 +74,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "No C01 office or leadership research role exists for this identity; every historical identity shown comes from the production registry.",
+    "Research roles: 1 (1 with holder observations); 0 of 37 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 13 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 7.",
     "Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.",
     "Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).",
     "Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
@@ -2599,6 +2606,118 @@
      "unbound": 32
     }
    }
+  },
+  {
+   "key": "research:fr_president",
+   "identity": "France",
+   "family": "research_role",
+   "role_id": "fr_president",
+   "title": "Président de la République",
+   "kind": "head_of_state",
+   "entry": {
+    "id": "fr_presidency",
+    "category": "institutions",
+    "name": "Présidence de la République",
+    "kind": "executive_institution",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "fr_president#1",
+    "fr_president#2",
+    "fr_president#3",
+    "fr_president#4",
+    "fr_president#5",
+    "fr_president#6",
+    "fr_president#7"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-05","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-05-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["fr_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-05-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-16","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-17","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["fr_president#3","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-05-18","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-15","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#3","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-16","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["fr_president#4","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-05-17","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-05-14","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#4","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-05-15","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["fr_president#5","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-05-16","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-13","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#5","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-14","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["fr_president#6","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-15","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-13","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#6","after_stated_start"]],"possible_total":4},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-14","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["fr_president#7","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-05-15","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["fr_president#7","after_stated_start"]],"possible_total":5},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 71,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "uncertain": 24,
+     "unknown": 13
+    },
+    "boundary_cases": 15,
+    "attestation_cases": 4
+   }
   }
  ],
  "observations": {
@@ -2976,6 +3095,181 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "fr_president#1": {
+   "role": "research:fr_president",
+   "name": "François Mitterrand",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-01-04",
+   "claim_ids": [
+    "fr_mitterrand_kohl_press_conference_attestation_19900104",
+    "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+    "fr_mitterrand_message_to_parliament_read_19900827"
+   ],
+   "note": "Observed on 4 January 1990, the first in-text attestation in the period: at their joint press conference at Latché (Élysée archive transcript) Chancellor Kohl says 'Je suis d'accord avec M. Mitterrand' and speaks of working in 1990 with 'le Président de la République'. The Assemblée nationale's record of 27 August 1990 reads his decree of 22 August 1990 and his message of 27 August 1990, both signed FRANÇOIS MITTERRAND.",
+   "uncertainty": "No start: his second septennat began before the packet period; decision 88-60 PDR of 11 May 1988 ('prendra effet le 21 mai 1988 à 0 heure') and his investiture address of 21 May 1988 are claims on the role, not a holder date, as the Brazil, India and South Africa packets date the holder in office when the period opens by an in-period attestation. No end: no source reviewed states, as a record, the day his functions ended. His letter of 16 May 1995 announces the handover for 'Demain matin à onze heures' (prospective), decision 95-81 PDR gives only the outer limit of 21 May 1995 at 0 heure, his successor's address of 17 May 1995 speaks of the fourteen years 'qui viennent de s'écouler' without a day, and the Council's undated 2012 note dating the 1995 handover to 17 May is retrospective; all are claims, and Jacques Chirac's observation of 17 May 1995 is not used as this end.",
+   "sources": [
+    "fr_elysee_mitterrand_kohl_press_conference_19900104",
+    "fr_an_jo_debats_19900827"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_president#2": {
+   "role": "research:fr_president",
+   "name": "Jacques Chirac",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-05-17",
+   "claim_ids": [
+    "fr_chirac_assumes_office_statement_19950517",
+    "fr_chirac_armed_forces_message_as_president_19950517"
+   ],
+   "note": "Observed on 17 May 1995: in his address at the Élysée dated that day he says 'En ce jour où je prends la responsabilité d'assumer la plus haute charge de l'Etat', and in his message to the armed forces of the same day he writes 'Président de la République, c'est en tant que chef des Armées que je m'adresse à vous' (Élysée archive).",
+   "uncertainty": "No start: the holder's own same-day statements support but never make a start, and decision 95-81 PDR of 12 May 1995 proclaims him only from the cessation of his predecessor's functions, at the latest 21 May 1995 at 0 heure, without fixing a day; no address of the President of the Council at a 1995 investiture was found. The Council's undated 2012 note and its 2017 dossier table, which date the handover or ceremony to 17 May 1995, are retrospective. The second round (7 May 1995) and the proclamation (12 May 1995) are separate claims, and his letter to Parliament dated 18 May 1995 is a continuation claim. No end: the 2002 decision fixes only the second term's start (17 May 2002 at 0 heure), and the Council's 2012 note computing the first term's end is retrospective.",
+   "sources": [
+    "fr_elysee_chirac_address_elysee_19950517",
+    "fr_elysee_chirac_armed_forces_message_19950517"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_president#3": {
+   "role": "research:fr_president",
+   "name": "Jacques Chirac",
+   "from": "2002-05-17",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "fr_cc_2002_states_effect_from_20020508"
+   ],
+   "note": "From 17 May 2002: the Constitutional Council's decision of 8 May 2002 proclaims M. Jacques CHIRAC President 'à compter du 17 mai 2002 à 0 heure'.",
+   "uncertainty": "The start is the day fixed in advance by the proclaiming authority; decision 2007-141 PDR repeats it in its visas. The investiture ceremony was held the day before (16 May 2002), when he said of the mandate 'Je l'assumerai', and is a separate claim, as is the election-night declaration of 5 May 2002. No end: his televised declaration of 15 May 2007 announces the transfer of powers for 'Demain' (prospective), decision 2007-141 PDR gives only the outer limit of 16 May 2007 at 24 heures, and the Élysée's biography timeline and the Council's 2012 note are retrospective; Nicolas Sarkozy's start is not used as this end.",
+   "sources": [
+    "fr_cc_proclamation_20020508"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "fr_president#4": {
+   "role": "research:fr_president",
+   "name": "Nicolas Sarkozy",
+   "from": "2007-05-16",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "fr_cc_debre_2007_from_this_day_20070516",
+    "fr_sarkozy_takes_office_statement_20070516"
+   ],
+   "note": "From 16 May 2007: at the investiture ceremony at the Élysée that day the President of the Constitutional Council told the President of the Republic, identified by his 18.983.138 second-round votes (the total decision 2007-141 PDR gives for M. Nicolas SARKOZY), that he thereby became the sixth President of the Fifth Republic and 'A compter de ce jour, et pour la durée de votre mandat, vous incarnez la France'; his own installation address of that day opens 'En ce jour où je prends officiellement mes fonctions'.",
+   "uncertainty": "The Council's address names nobody; identity rests on the vote total and on his own address. No hour: the Council's 2007 page puts the ceremony at 11:00, while the Élysée says his predecessor received him at 11:00 before it. The proclamation (10 May 2007), its publication (11 May 2007), the outer limit ('au plus tard, le 16 mai 2007 à 24 heures') and the Élysée's retrospective account of the procès-verbal d'investiture are separate claims. No end: decision 2012-154 PDR gives only the outer limit of 15 May 2012 at 24 heures, and the Council's 2012 note computing the expiry as 16 May 2012 at 0 heure is retrospective; François Hollande's start is not used as this end.",
+   "sources": [
+    "fr_cc_debre_investiture_address_20070516",
+    "fr_cc_sarkozy_installation_speech_20070516"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_president#5": {
+   "role": "research:fr_president",
+   "name": "François Hollande",
+   "from": "2012-05-15",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "fr_cc_debre_2012_from_this_day_20120515",
+    "fr_cc_note_links_debre_address_hollande_investiture",
+    "fr_hollande_invested_statement_20120515",
+    "fr_jorf_hollande_signs_pm_appointment_decree_20120515"
+   ],
+   "note": "From 15 May 2012: at the investiture ceremony the President of the Constitutional Council told the President of the Republic, identified by his 18 000 668 votes, 'A compter de ce jour, 15 mai 2012, et pour la durée de votre mandat, vous incarnez la France'; the Council's note links this address as Jean-Louis Debré's speech at the investiture of François Hollande, his own declaration of that day opens 'En ce jour où je suis investi de la plus haute charge de l'État', and the Journal officiel prints his decree of 15 May 2012 appointing the Prime Minister, signed François Hollande.",
+   "uncertainty": "No hour. The proclamation (10 May 2012), its publication (11 May 2012), the outer limit and the handover meeting at 10:00 are separate claims. No end: his interview of 10 May 2017 announces the handover for Sunday 14 May (prospective), decision 2017-171 PDR gives only the outer limit of 14 May 2017 at 24 heures, and the Council's 2017 activity report is retrospective; Emmanuel Macron's start is not used as this end.",
+   "sources": [
+    "fr_cc_debre_investiture_address_20120515",
+    "fr_cc_note_mai_2012_duree_des_mandats",
+    "fr_elysee_hollande_declaration_20120515",
+    "fr_jorf_decree_prime_minister_20120515"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "fr_president#6": {
+   "role": "research:fr_president",
+   "name": "Emmanuel Macron",
+   "from": "2017-05-14",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "fr_cc_fabius_2017_takes_office_now_20170514",
+    "fr_macron_says_ending_term_began_20170514"
+   ],
+   "note": "From 14 May 2017: at the investiture ceremony at the Élysée on Sunday 14 May 2017 Laurent Fabius, President of the Constitutional Council, told the President of the Republic, identified by his 20 743 128 second-round votes (the total decision 2017-171 PDR and Fabius's statement of 10 May 2017 give for M. Emmanuel Macron), 'aujourd'hui, en ce dimanche 14 mai, en cet instant précis où vous prenez vos hautes fonctions'. In his investiture address of 7 May 2022 he says the ending mandate began on 14 May 2017.",
+   "uncertainty": "The Council's address names nobody; identity rests on the vote total. The 2022 statement is retrospective corroboration, not the basis. No hour: the Élysée says his predecessor received him at 10:00 before the ceremony. The proclamation (10 May 2017), its publication (11 May 2017), the outer limit, the Élysée's same-day live-stream notice and the Council's 2017 activity report (retrospective) are separate claims. No end: the 2022 decision fixes only the second term's start (14 May 2022 at 0 heure), and 13 May 2022 is not inferred.",
+   "sources": [
+    "fr_cc_fabius_investiture_address_20170514",
+    "fr_elysee_investiture_20220507"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "fr_president#7": {
+   "role": "research:fr_president",
+   "name": "Emmanuel Macron",
+   "from": "2022-05-14",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "fr_cc_2022_states_effect_from_20220427",
+    "fr_cc_fabius_2022_second_mandate_begins_20220507",
+    "fr_jorf_decree_signed_macron_20260903",
+    "fr_jorf_decree_signed_macron_20260904"
+   ],
+   "note": "From 14 May 2022: decision 2022-197 PDR of 27 April 2022 proclaims M. Emmanuel MACRON President 'à compter du 14 mai 2022 à 0 heure', and Laurent Fabius repeated at the investiture of 7 May 2022 that the second mandate 'débutera le 14 mai à 0 heure'. The Journal officiel prints decrees he signed on 3 and 4 September 2026 (DILA open-data exports), attestations before the cutoff that neither extend nor end the term.",
+   "uncertainty": "The start is fixed in advance by the proclaiming authority; no record made on 14 May 2022 was reviewed. The first round (9-10 April 2022), the first-round declaration (13 April), the second round (23-24 April), the proclamation (27 April), its publication (28 April) and the investiture (7 May 2022) are separate claims. No end before the 7 September 2026 cutoff.",
+   "sources": [
+    "fr_cc_2022_197_pdr_proclamation_pdf",
+    "fr_cc_fabius_investiture_address_20220507",
+    "fr_jorf_dila_opendata_20260904",
+    "fr_jorf_dila_opendata_20260905"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-23"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
   },
   "fr_ps_francois_hollande_199706_acting": {
    "role": "party:fr_ps",

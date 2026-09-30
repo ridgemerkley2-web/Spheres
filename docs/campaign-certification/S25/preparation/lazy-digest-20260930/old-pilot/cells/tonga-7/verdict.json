@@ -1,0 +1,223 @@
+{
+  "id": "tonga-7",
+  "passed": true,
+  "failure": null,
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "2fabdd4c32bb28553e09255efeb15ce18d2af2fcebd86f5ffbedab782529cb4e"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "8a9faaf822113d73127a1108d519c68d341101c617fbd445b4b589e34f11631c"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "2fabdd4c32bb28553e09255efeb15ce18d2af2fcebd86f5ffbedab782529cb4e"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\final.json",
+        "bytes": 62575024,
+        "sha256": "4912cd72170f6d31da5d9bf25abeebbea221a9ae13987de84276804f062650c0"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10509394,
+        "sha256": "a6ff458f3fef3353eb0ab846a978de00454a57d16dd99c9ff1cf43e9854c0002"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 62575024,
+        "sha256": "4912cd72170f6d31da5d9bf25abeebbea221a9ae13987de84276804f062650c0"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json",
+        "bytes": 61545940,
+        "sha256": "c265d91ee5b2d5f52608d2b9e648171c55a2e23b316848d1db0d1cb3cf9b7f40"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10393944,
+        "sha256": "f638e32d12d9f746fe1a85fd2051b5d8b165fc9f404e854791f43566fb6f8103"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 61545940,
+        "sha256": "c265d91ee5b2d5f52608d2b9e648171c55a2e23b316848d1db0d1cb3cf9b7f40"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 54331217,
+        "sha256": "4e0103901123261f0fd21b5eb4bfec5a6a17aeadbcd62a24e25083f4d00f7296"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 9486496,
+        "sha256": "4400b2292d08e38260c88624c24d10f685b3412147c3f405453f9327f282caf6"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 54331217,
+        "sha256": "4e0103901123261f0fd21b5eb4bfec5a6a17aeadbcd62a24e25083f4d00f7296"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "test_execution": {
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 475
+  },
+  "native_validation": {
+    "comparisons": 30,
+    "calendar_days_each_leg": 398,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 796,
+      "full_horizon_pause": null,
+      "monthly_reloads": 13,
+      "native_validation_checks": 60,
+      "sandbox_continued": false,
+      "sandbox_daily_invariant_checks": 0,
+      "terminal_reloads": 2
+    },
+    "actions": 13,
+    "final_archives": [
+      {
+        "leg": "uninterrupted",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json",
+          "bytes": 62575024,
+          "sha256": "2fabdd4c32bb28553e09255efeb15ce18d2af2fcebd86f5ffbedab782529cb4e"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\resumed\\saves\\final.json",
+          "bytes": 62575024,
+          "sha256": "4912cd72170f6d31da5d9bf25abeebbea221a9ae13987de84276804f062650c0"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      }
+    ],
+    "actual_final_pair_sha256_equal": true
+  },
+  "native_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\tonga-7\\native\\result.json",
+    "bytes": 15162,
+    "sha256": "7f7790484cfaba29d30355aee793bb6bc744b965aebd55bd8c0bc5be15b61f05"
+  },
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\archive-manifest.json",
+      "bytes": 4731,
+      "sha256": "e26df0cd1f0be60fd6e3d9ae9a432152856e8d5dee5139097aba57725ec4c23a"
+    },
+    {
+      "relative": "execution.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\execution.json",
+      "bytes": 1694,
+      "sha256": "0b3c330ff8642622d1614b8fe93f8871d5375b0c60e72e64ffca0c2eaf1cb5ba"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\result.json",
+      "bytes": 15162,
+      "sha256": "7f7790484cfaba29d30355aee793bb6bc744b965aebd55bd8c0bc5be15b61f05"
+    },
+    {
+      "relative": "native/resumed/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\resumed\\saves\\final.json.gz",
+      "bytes": 10509394,
+      "sha256": "a6ff458f3fef3353eb0ab846a978de00454a57d16dd99c9ff1cf43e9854c0002"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "bytes": 9486496,
+      "sha256": "4400b2292d08e38260c88624c24d10f685b3412147c3f405453f9327f282caf6"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "f638e32d12d9f746fe1a85fd2051b5d8b165fc9f404e854791f43566fb6f8103"
+    },
+    {
+      "relative": "native/uninterrupted/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\native\\uninterrupted\\saves\\final.json.gz",
+      "bytes": 10509394,
+      "sha256": "8a9faaf822113d73127a1108d519c68d341101c617fbd445b4b589e34f11631c"
+    },
+    {
+      "relative": "request.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\request.json",
+      "bytes": 183,
+      "sha256": "b345f0dc8bcb69a96aca1f7f296603a74677b2cfc95432c7f5fb6d891ec9280a"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\stdout.log",
+      "bytes": 167,
+      "sha256": "d6fa7f392b2695f6dc2f1a7b9b8044a60fb55538c2cb924bd07fd6e75cbe603d"
+    },
+    {
+      "relative": "transfer.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\tonga-7\\transfer.json",
+      "bytes": 7992,
+      "sha256": "acd71b666175275943423c146fab0b6af9453318b783175680fea372ac3e9ed9"
+    }
+  ]
+}

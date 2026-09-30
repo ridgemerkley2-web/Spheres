@@ -22,32 +22,33 @@
      "production_party": 0,
      "executive": 1
     },
-    "cases": 623,
+    "cases": 680,
     "case_kinds": {
-     "attestation_day": 20,
-     "attestation_day_after": 20,
+     "attestation_day": 46,
+     "attestation_day_after": 46,
      "cutoff_day": 11,
      "cutoff_day_before": 11,
      "fictional_end_exclusive": 11,
      "fictional_last_day": 11,
      "fictional_start_day": 11,
      "future_2030": 11,
-     "handover_day_after": 7,
-     "handover_day_before": 7,
-     "handover_day_of": 7,
+     "handover_day_after": 11,
+     "handover_day_before": 11,
+     "handover_day_of": 11,
      "reference_start": 11,
      "reference_start_day_before": 11,
      "yearly": 506
     },
     "observations_by_acceptance": {
+     "accepted": 33,
      "pending": 13,
      "unattributed_intake": 3
     },
     "research_yearly_status": {
-     "bracketed": 22,
-     "uncertain": 32,
-     "unknown": 57,
-     "unresearched": 259
+     "bracketed": 37,
+     "uncertain": 82,
+     "unknown": 66,
+     "unresearched": 185
     },
     "production_party_yearly_status": {},
     "production_party_yearly_image_bindings": {},
@@ -64,9 +65,7 @@
     "research_roles_without_holder_observation": [
      "sa_cabinet_ministers",
      "sa_municipal_members",
-     "sa_shura_chair",
      "sa_shura_members",
-     "sa_succession_chair",
      "sa_succession_members",
      "sa_succession_secretary"
     ],
@@ -74,8 +73,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.",
-    "Research holder observations by acceptance: pending 13, unattributed_intake 3.",
+    "Research roles: 10 (5 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 82 uncertain, 66 unknown and 185 unresearched.",
+    "Research holder observations by acceptance: accepted 33, pending 13, unattributed_intake 3.",
     "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
     "Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -615,49 +614,125 @@
     }
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
-   "observations": [],
+   "observations": [
+    "sa_shura_chair#1",
+    "sa_shura_chair#2",
+    "sa_shura_chair#3",
+    "sa_shura_chair#4",
+    "sa_shura_chair#5",
+    "sa_shura_chair#6",
+    "sa_shura_chair#7",
+    "sa_shura_chair#8",
+    "sa_shura_chair#9",
+    "sa_shura_chair#10",
+    "sa_shura_chair#11",
+    "sa_shura_chair#12",
+    "sa_shura_chair#13",
+    "sa_shura_chair#14",
+    "sa_shura_chair#15",
+    "sa_shura_chair#16",
+    "sa_shura_chair#17",
+    "sa_shura_chair#18",
+    "sa_shura_chair#19",
+    "sa_shura_chair#20",
+    "sa_shura_chair#21",
+    "sa_shura_chair#22",
+    "sa_shura_chair#23",
+    "sa_shura_chair#24",
+    "sa_shura_chair#25",
+    "sa_shura_chair#26",
+    "sa_shura_chair#27",
+    "sa_shura_chair#28",
+    "sa_shura_chair#29"
+   ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-06","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","attested_on_day"],["sa_shura_chair#2","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_order_a72_second_term_19970706"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-07","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#3","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_jubair_oath_second_term_19970714"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-15","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-05-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#4","attested_on_day"],["sa_shura_chair#5","attested_on_day"],["sa_shura_chair#6","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_fahd_letter_chair_end_second_term","sa_fahd_message_chair_20010524","sa_order_a80_third_term_20010524"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-05-25","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#7","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_jubair_oath_third_term_20010604"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-05","kinds":["attestation_day","attestation_day_after"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#8","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_jubair_chairs_first_session_20010605"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-06","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#9","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_jubair_chairs_third_term_session_20010610"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-11","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#1","bracketed_by_evidence"],["sa_shura_chair#10","attested_on_day"]],"multiple_holders":["Muhammad bin Ibrahim bin Jubair","sa_jubair_chairs_48th_session_20020115"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-16","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-23","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-24","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_shura_chair#1","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-25","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-07","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#11","attested_on_day"],["sa_shura_chair#12","attested_on_day"]],"multiple_holders":["Saleh bin Abdullah bin Humaid","sa_humaid_statement_20020207"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-08","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#11","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-10","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#11","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-11","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_shura_chair#11","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-12","kinds":["attestation_day","handover_day_after"],"historical":{"status":"attested","holders":[["sa_shura_chair#13","attested_on_day"],["sa_shura_chair#14","attested_on_day"],["sa_shura_chair#15","attested_on_day"]],"multiple_holders":["sa_humaid_chairs_56th_session_20020212","sa_spa_en_humaid_first_session_20020212","sa_spa_humaid_chair_received_20020212"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-02-13","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-03-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#16","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-04-01","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#11","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-02-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#17","attested_on_day"],["sa_shura_chair#18","attested_on_day"]],"multiple_holders":["Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh","sa_shura_formed_a15_20090214"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-02-15","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#17","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-02-27","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_shura_chair#17","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-02-28","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_shura_chair#17","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-03-01","kinds":["attestation_day","handover_day_after"],"historical":{"status":"attested","holders":[["sa_shura_chair#19","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-03-02","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#20","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-12","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-02-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#21","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-02-20","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#22","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-13","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#23","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-14","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-10-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#24","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-10-19","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-11-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#25","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-11-12","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#26","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#27","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-09-19","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_shura_chair#17","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["attestation_day","cutoff_day_before"],"historical":{"status":"attested","holders":[["sa_shura_chair#28","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["attestation_day","attestation_day_after","cutoff_day"],"historical":{"status":"attested","holders":[["sa_shura_chair#29","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["attestation_day_after","fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -671,13 +746,14 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 98,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "unresearched": 37
+     "bracketed": 5,
+     "uncertain": 32
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0
+    "boundary_cases": 9,
+    "attestation_cases": 42
    }
   },
   {
@@ -783,48 +859,64 @@
     }
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
-   "observations": [],
+   "observations": [
+    "sa_succession_chair#1",
+    "sa_succession_chair#2",
+    "sa_succession_chair#3",
+    "sa_succession_chair#4"
+   ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unresearched","reason":"role_has_no_holder_observation"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["sa_succession_chair#1","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-12-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_succession_chair#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-12-10","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-12-11","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_succession_chair#1","bracketed_by_evidence"],["sa_succession_chair#2","attested_on_day"]],"multiple_holders":["Mishaal bin Abdulaziz Al Saud","sa_mishaal_chair_thanks_20071211"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-12-12","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-06-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_succession_chair#1","bracketed_by_evidence"],["sa_succession_chair#3","attested_on_day"]],"multiple_holders":["Mishaal bin Abdulaziz Al Saud","sa_mishaal_chair_interview_20080630"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-07-01","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-12-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["sa_succession_chair#1","bracketed_by_evidence"],["sa_succession_chair#4","attested_on_day"]],"multiple_holders":["Mishaal bin Abdulaziz Al Saud","sa_mishaal_chair_obs_20151219"]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-12-20","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-02","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["sa_succession_chair#1","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-03","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["sa_succession_chair#1","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-05-04","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -839,13 +931,15 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 52,
+    "cases": 63,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "unresearched": 37
+     "bracketed": 10,
+     "uncertain": 18,
+     "unknown": 9
     },
-    "boundary_cases": 0,
-    "attestation_cases": 0
+    "boundary_cases": 3,
+    "attestation_cases": 8
    }
   },
   {
@@ -1448,6 +1542,681 @@
    ],
    "source_classes": {
     "pending": 1
+   }
+  },
+  "sa_shura_chair#1": {
+   "role": "research:sa_shura_chair",
+   "name": "Muhammad bin Ibrahim bin Jubair",
+   "from": null,
+   "until": "2002-01-24",
+   "attested_on": "1997-07-06",
+   "claim_ids": [
+    "sa_jubair_first_term_end_19970706",
+    "sa_jubair_death_20020124"
+   ],
+   "note": "Styled Chairman of the Shura Council when King Fahd wrote to him on the end of the Council's first term and when he presided over its final meeting, 6 July 1997 (SA-CHR-03); Council records also show him as Chairman at the opening of the first term (1414 AH, SA-CHR-02). Named Chairman again in the forming orders A/72 (1997) and A/80 (2001), he took the oath with each new council (14 July 1997, 4 June 2001) and died in office on 24 January 2002, as the Royal Court announced.",
+   "uncertainty": "No order of his first appointment was read (Royal Orders A/14 and A/16 of 3/3/1414 AH are cited but unread), so from is null and attested_on is his earliest dated attestation. until is the stated day of death in the Royal Embassy's release of the Royal Court announcement; if that release is not accepted as an official Saudi record, until reverts to null, because the Council's own statements of his death are undated. The 1997 and 2001 designations and extensions are continuations, not new tenures.",
+   "sources": [
+    "sa_embassy_shura_second_term_19970706",
+    "sa_embassy_jubair_death_20020124"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "sa_shura_chair#10": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 1 Dhu al-Qa'da 1422 / 15 January 2002: the Council's 48th ordinary session, held that day, was chaired by 'معالى رئيس المجلس فضيلة الشيخ محمد بن ابراهيم بن جبير'.",
+   "claim": "sa_jubair_chairs_48th_session_20020115",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-01-15",
+   "uncertainty": "The last dated in-office attestation found before his death; it is not an end date.",
+   "sources": [
+    "sa_shura_news_20020116"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#11": {
+   "role": "research:sa_shura_chair",
+   "name": "Saleh bin Abdullah bin Humaid",
+   "from": "2002-02-11",
+   "until": null,
+   "attested_on": "2002-02-07",
+   "claim_ids": [
+    "sa_humaid_appointed_20020207",
+    "sa_humaid_first_day_20020211"
+   ],
+   "note": "Appointed Chairman with the rank of minister by a royal decree issued on 7 February 2002 (24/11/1422 AH), after Jubair's death. The Council's magazine states that he began work as Chairman on Monday 28/11/1422, 11 February 2002, and he chaired his first session on 12 February 2002 after taking the oath (SA-CHR-03). Last attested as Chairman in this packet on 31 March 2002.",
+   "uncertainty": "from is the stated day he began work as Chairman; the decree's number and any effective day in it were not read, and the oath is undated. If the Royal Embassy's release of the decree is not accepted as an official Saudi record, attested_on moves to 11 February 2002. until is null: no relief, resignation or death is stated. Royal Order A/13 of 14 February 2009 appoints a successor without relieving him, and on 1 March 2009 he is styled Chairman of the Supreme Judicial Council; neither is used as an end.",
+   "sources": [
+    "sa_embassy_humaid_appointed_20020207",
+    "sa_shura_magazine_p8_20020824"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "sa_shura_chair#12": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Release dated February 7, 2002: 'Newly-appointed Chairman of the Consultative Council (Majlis Al-Shura) Dr. Saleh bin Abdullah bin Humaid issued a statement today' thanking the King and hoping the Council would continue on the path of 'his predecessor, the late Shaikh Muhammad bin Ibrahim bin Jubair'; he 'has been a member of the Shura Council for eight years'.",
+   "claim": "sa_humaid_statement_20020207",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-02-07",
+   "uncertainty": "An attestation of the newly appointed Chairman on the day of the decree; not an assumption of office.",
+   "sources": [
+    "sa_embassy_humaid_statement_20020207"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#13": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "On Tuesday 29/11/1422 'معالي الشيخ صالح بن عبد الله بن حميد' chaired the Council's 56th session; he thanked the King, the Crown Prince and the Second Deputy and said the charge was heavy because it came after 'معالي الشيخ محمد بن إبراهيم بن جبير رحمه الله', and his own opening words date the session to Tuesday 29 Dhu al-Qa'da 1422, the 56th ordinary session of the first year of the third term.",
+   "claim": "sa_humaid_chairs_56th_session_20020212",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-02-12",
+   "uncertainty": "An attestation of the successor presiding; it refers to the predecessor as deceased without dating the death. Gregorian day from SPA's own equation of 28/11/1422 H with February 11, 2002 (sa_spa_english_news_20020212, message 42) and its Arabic dateline 29 Dhu al-Qa'da 1422 = 12 February 2002 (sa_spa_humaid_received_20020212); the source prints the Hijri day only.",
+   "sources": [
+    "sa_shura_magazine_p28_20020425"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#14": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 29 Dhu al-Qa'da 1422 / 12 February 2002: 'معالي رئيس مجلس الشورى الشيخ الدكتور صالح بن عبدالله بن حميد' received the Deputy President of the Board of Grievances, the President of the General Auditing Bureau, the President of the Control and Investigation Board and the head of the Riyadh Chamber of Commerce, who congratulated him on 'the royal trust in appointing him Chairman of the Shura Council'.",
+   "claim": "sa_spa_humaid_chair_received_20020212",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-02-12",
+   "uncertainty": "An SPA attestation of the successor in office, with both calendars in the dateline; no order number, date or oath.",
+   "sources": [
+    "sa_spa_humaid_received_20020212"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#15": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Message 40, 'ALHUMAID CHAIRS SHOURA COUNCIL', Riyadh Feb. 12: 'DR. SALEH BIN ABDULLAH BIN HUMAID, CHAIRMAN OF THE SHOURA COUNCIL, WHO REPLACED LATE SHEIKH MOHAMMED BIN IBRAHIM BIN JUBAIR, TODAY SAID AT THE COUNCIL'S FIRST SESSION UNDER HIS CHAIRMANSHIP' that he felt the pressure of responsibility; message 41 says the regular 56th meeting followed his speech.",
+   "claim": "sa_spa_en_humaid_first_session_20020212",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-02-12",
+   "uncertainty": "SPA's main English story of his first session; an attestation, not a start date.",
+   "sources": [
+    "sa_spa_english_news_20020212"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#16": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 17 Muharram 1423 / 31 March 2002: the Council's 65th ordinary session, held that day, was chaired by 'معالى رئيس المجلس الدكتور صالح بن عبدالله بن حميد'; on 16 Muharram 1423 / 30 March 2002 Jamil al-Hujailan had congratulated him on the royal trust in appointing him Chairman.",
+   "claim": "sa_humaid_chairs_65th_session_20020331",
+   "from": null,
+   "until": null,
+   "attested_on": "2002-03-31",
+   "uncertainty": "A continued in-office attestation of the successor.",
+   "sources": [
+    "sa_shura_news_20020401"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#17": {
+   "role": "research:sa_shura_chair",
+   "name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+   "from": "2009-02-28",
+   "until": null,
+   "attested_on": "2009-02-14",
+   "claim_ids": [
+    "sa_alsheikh_appointed_a13_20090214",
+    "sa_alsheikh_effective_a13_20090228"
+   ],
+   "note": "Relieved as Minister of Justice and appointed Chairman of the Shura Council at ministerial rank by Royal Order A/13 of 19/2/1430 AH (14 February 2009), with effect from 3/3/1430 AH (28 February 2009); took the oath on 1 March 2009 (SA-CHR-04). Named Chairman in each later forming order (A/45 2013, A/54 2016, A/146 2020, A/84 2024) and took the oath with each council (SA-CHR-05 and 06); styled Chairman by SPA on 6 and 7 September 2026 (SA-CHR-10).",
+   "uncertainty": "from rests on A/13's stated effective day, printed in Hijri only and converted through SPA datelines; if that conversion is not accepted, from reverts to null. until is null: no relief, resignation or death is recorded, and continuity to 7 September 2026 is not established beyond the dated observations. The later forming orders are continuations, not new tenures.",
+   "sources": [
+    "sa_spa_order_a13_20090214"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#18": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Royal Order A/15 dated 19/2/1430 AH constitutes the Shura Council of the Chairman and named members for four Hijri years beginning when the current council's term (the council formed by Royal Order A/30 of 2/3/1426 AH) ends, and lists 'الشيخ الدكتور / عبدالله بن محمد بن إبراهيم آل الشيخ ( رئيس مجلس الشورى )' first.",
+   "claim": "sa_shura_formed_a15_20090214",
+   "from": null,
+   "until": null,
+   "attested_on": "2009-02-14",
+   "uncertainty": "A council-formation order naming the Chairman; the term's first day is defined by the previous council's expiry and is not printed. Never a from.",
+   "sources": [
+    "sa_spa_order_a15_20090214"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#19": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 4 Rabi al-Awwal 1430 / 1 March 2009: at the Royal Court in Al-Yamamah Palace 'معالي رئيس مجلس الشورى الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' and the Council's members took the oath 'today' before King Abdullah bin Abdulaziz, who then addressed them.",
+   "claim": "sa_alsheikh_oath_20090301",
+   "from": null,
+   "until": null,
+   "attested_on": "2009-03-01",
+   "uncertainty": "A dated oath one day after A/13's effective day; it is not a stated assumption of office and does not replace from. Its dateline is an in-topic calendar anchor (4/3/1430 = 1 March 2009).",
+   "sources": [
+    "sa_spa_oath_20090301"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#2": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Item dated July 6, 1997: King Fahd 'today issued royal decree number A/72 announcing, effective from 3/3/1418 H (July 7, 1997), the composition' of the Council with a Chairman and ninety members for a term of four years from the end of the current period of the Council; the list begins 'Sheikh Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair (Chairman of the Shura Council)'.",
+   "claim": "sa_order_a72_second_term_19970706",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-07-06",
+   "uncertainty": "A council-formation order naming the sitting Chairman again, cited by the 1422 AH orders as A/72 of 2/3/1418. Its stated effective day is the new council's, not the start of his chairmanship, so it is not a from. The Arabic text was not read.",
+   "sources": [
+    "sa_embassy_shura_second_term_19970706"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#20": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Royal Order A/45 dated 29/2/1434 AH, issued by King Abdullah, constitutes the Shura Council of 'الرئيس معالي الشيخ الدكتور / عبدالله بن محمد بن إبراهيم آل الشيخ' and named members for four Hijri years beginning when the term of the current council, formed by A/15 of 19/2/1430 AH, ends.",
+   "claim": "sa_alsheikh_named_a45_20130111",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-01-11",
+   "uncertainty": "A council-formation order naming the sitting Chairman again, with no reappointment wording; not a new tenure and never a from. Hijri date only (11 January 2013 is the lead item's dateline); the term's first day is not printed.",
+   "sources": [
+    "sa_spa_order_a45_20130111"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#21": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 9 Rabi al-Akhir 1434 / 19 February 2013: 'معالي رئيس مجلس الشورى الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' and the Council's members took the oath 'today' before King Abdullah at his palace in Riyadh.",
+   "claim": "sa_alsheikh_oath_20130219",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-02-19",
+   "uncertainty": "A dated oath for the sixth term, distinct from A/45 of 11 January 2013; never a from.",
+   "sources": [
+    "sa_spa_oath_20130219"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#22": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Royal Order A/54 dated 3/3/1438 AH, issued by King Salman bin Abdulaziz, constitutes the Shura Council of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ ـ رئيساً ـ' and named members for four Hijri years beginning 3/3/1438 AH; it recites A/45 of 29/2/1434.",
+   "claim": "sa_alsheikh_named_a54_20161202",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-12-02",
+   "uncertainty": "A council-formation order naming the sitting Chairman again; not a new tenure and never a from. A/53 of the same day relieves the Council's Secretary-General and is not a chair event.",
+   "sources": [
+    "sa_spa_orders_20161202"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#23": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 14 Rabi al-Awwal 1438 / 13 December 2016: at the Royal Court in Al-Yamamah Palace 'معالي رئيس مجلس الشورى الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' and the members took the oath 'today' before King Salman, who then addressed them.",
+   "claim": "sa_alsheikh_oath_20161213",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-12-13",
+   "uncertainty": "A dated oath for the seventh term, distinct from A/54 and its 2 December 2016 term start; never a from.",
+   "sources": [
+    "sa_spa_oath_20161213"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#24": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Royal Order A/146 dated 1/3/1442 AH, issued by King Salman, constitutes the Shura Council of 'معالي الشيخ الدكتور/ عبدالله بن محمد بن إبراهيم آل الشيخ - رئيساً -' and named members for four Hijri years from 3/3/1442 AH; it recites A/54 of 3/3/1438.",
+   "claim": "sa_alsheikh_named_a146_20201018",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-10-18",
+   "uncertainty": "A council-formation order naming the sitting Chairman again; not a new tenure and never a from. A/145 of the same day (entry aaa25a5ec3) appoints the Deputy and Assistant Chairman and is not a chair event.",
+   "sources": [
+    "sa_spa_orders_20201018_ar"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#25": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, NEOM 25 Rabi al-Awwal 1442 / 11 November 2020: King Salman opened the first year of the eighth term by video link 'today', and 'معالي رئيس مجلس الشورى الشيخ الدكتور عبدالله بن محمد آل الشيخ' and the members took the oath after the royal order appointing them to the eighth term.",
+   "claim": "sa_alsheikh_oath_20201111",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-11-11",
+   "uncertainty": "The held oath that the 8 November notice announced; the report does not say before whom it was sworn, the King being on video link. Never a from.",
+   "sources": [
+    "sa_spa_oath_20201111"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#26": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "An SPA report datelined Riyadh 29 Safar 1446 / 2 September 2024 prints Royal Order A/84 dated 29/02/1446 AH, issued that day by King Salman: the Shura Council consists of 'معالي الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ - رئيساً -' and 150 named members for four Hijri years from 3/3/1446 AH; it recites A/146 of 1/3/1442.",
+   "claim": "sa_alsheikh_named_a84_20240902",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-09-02",
+   "uncertainty": "The last formation order before the cutoff, naming the sitting Chairman again; it attests the designation, not service on any later day, and is never a from.",
+   "sources": [
+    "sa_spa_order_a84_20240902"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#27": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "The same report says 'معالي رئيس مجلس الشورى الشيخ الدكتور عبد الله بن محمد بن إبراهيم آل الشيخ' received the Crown Prince and then recited the oath before him in the session hall, the members repeating it, before giving the opening speech.",
+   "claim": "sa_alsheikh_oath_20240918",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-09-18",
+   "uncertainty": "An oath before the Crown Prince acting for the King, distinct from the 2 September order and the 6 September term start; never a from, and not proof of service on 7 September 2026.",
+   "sources": [
+    "sa_spa_ninth_term_opening_20240918"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#28": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 24 Rabi' al-Awwal 1448 / 6 September 2026: 'معالي رئيس مجلس الشورى الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' received the Russian ambassador 'today' at the Council's headquarters in Riyadh.",
+   "claim": "sa_shura_chair_obs_20260906",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-09-06",
+   "uncertainty": "A point observation of the style one day before the cutoff; not an appointment and not a continuity claim.",
+   "sources": [
+    "sa_spa_shura_chair_obs_20260906"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#29": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 25 Rabi' al-Awwal 1448 / 7 September 2026: 'معالي رئيس مجلس الشورى الشيخ الدكتور عبدالله بن محمد بن إبراهيم آل الشيخ' received the ambassador of the Philippines at the Council's headquarters in Riyadh.",
+   "claim": "sa_shura_chair_obs_20260907",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-09-07",
+   "uncertainty": "The latest SPA observation found on or before the cutoff, on the cutoff day itself. Unlike N2669846 it does not say 'today', so attested_on is the release date. Not an appointment or a continuity claim.",
+   "sources": [
+    "sa_spa_shura_chair_obs_20260907"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#3": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Item dated July 14, 1997: King Fahd 'today received Chairman of the Shura Council Sheikh Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair', the Deputy Chairman, the Secretary-General and the members of the newly formed Council, 'who all swore an oath before him'.",
+   "claim": "sa_jubair_oath_second_term_19970714",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-07-14",
+   "uncertainty": "A dated oath for the second term, distinct from the 6 July order and its 7 July effective day; never a from.",
+   "sources": [
+    "sa_embassy_shura_oath_19970714"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#4": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Royal Order A/80 of 1/3/1422 AH (SPA series عام/اوامر ملكية كريمة, fifteenth addition) forms the Shura Council of 'the Chairman and the members named' for four Hijri years starting from the date on which the current council, formed by Royal Order A/72 of 2/3/1418, ends. The list begins 'الشيخ محمد بن ابراهيم بن جبير / رئيس مجلس الشورى', then Bakri bin Salih Shatta as Vice Chairman.",
+   "claim": "sa_order_a80_third_term_20010524",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-05-24",
+   "uncertainty": "A council-formation order naming the sitting Chairman again; never a from. The order prints the Hijri date only: 24 May 2001 comes from an SPA dateline on the same page (Jeddah 1 Rabi I 1422 = 24 May 2001, the new members' biographies item) and from the Royal Embassy's release of May 24, 2001 saying the decrees were 'issued today' (sa_fahd_message_chair_20010524). The term's first day is the previous council's end and is not printed.",
+   "sources": [
+    "sa_shura_news_20010614"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#5": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "King Fahd writes to 'معالى رئيس مجلس الشورى الشيخ محمد بن ابراهيم بن جبير' to mark the end of the Council's second term and its formation for a third, thanking the members whose membership has ended.",
+   "claim": "sa_fahd_letter_chair_end_second_term",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-05-24",
+   "uncertainty": "The letter is undated on this page, and the royal-orders series carries no dateline; 24 May 2001 is the day the Royal Embassy's release of that date says the decrees and this message were issued (sa_fahd_message_chair_20010524). It attests him as Chairman at the end of the second term.",
+   "sources": [
+    "sa_shura_news_20010614"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#6": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Release dated May 24, 2001: 'A number of royal decrees were issued today', including the expansion of the Consultative Council from 90 to 120 members, and King Fahd 'has sent a message to Shura Council Chairman Muhammad bin Jubair' on the end of the Council's second term and its formation for the third term.",
+   "claim": "sa_fahd_message_chair_20010524",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-05-24",
+   "uncertainty": "It dates the decrees and the message but prints no order number and does not say whom the orders named; the Arabic A/80 names the Chairman (sa_order_a80_third_term_20010524).",
+   "sources": [
+    "sa_embassy_shura_decrees_20010524"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#7": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Release dated June 4, 2001: King Fahd in Jeddah 'today swore in the members of the recently reconstituted Consultative Council ... for the Council's third term, including Chairman Shaikh Muhammad Ibrahim bin Jubair', the Deputy Chairman and the Secretary-General.",
+   "claim": "sa_jubair_oath_third_term_20010604",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-06-04",
+   "uncertainty": "A dated oath for the third term, distinct from A/80 (24 May 2001) and from any effective day; never a from.",
+   "sources": [
+    "sa_embassy_shura_oath_20010604"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#8": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "Release dated June 5, 2001: the Council 'held the first session of its third four-year term in Riyadh today under the chairmanship of Shaikh Muhammad bin Jubair, whose term of office has been renewed', with the newly appointed Deputy Chairman Dr. Bakri Shatta.",
+   "claim": "sa_jubair_chairs_first_session_20010605",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-06-05",
+   "uncertainty": "An attestation of him chairing; 'term of office has been renewed' is continuation wording, not a new start, and nothing here is a from.",
+   "sources": [
+    "sa_embassy_shura_session_20010605"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_shura_chair#9": {
+   "role": "research:sa_shura_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 18 Rabi I 1422 / 10 June 2001: the Council held the second ordinary session of the first year of its third term 'برئاسة معالى رئيس المجلس فضيلة الشيخ محمد بن ابراهيم بن جبير'.",
+   "claim": "sa_jubair_chairs_third_term_session_20010610",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-06-10",
+   "uncertainty": "An in-office attestation; not a start or an end.",
+   "sources": [
+    "sa_shura_news_20010614"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_succession_chair#1": {
+   "role": "research:sa_succession_chair",
+   "name": "Mishaal bin Abdulaziz Al Saud",
+   "from": null,
+   "until": "2017-05-03",
+   "attested_on": "2007-12-09",
+   "claim_ids": [
+    "sa_mishaal_designated_a180_20071209",
+    "sa_mishaal_death_20170503"
+   ],
+   "note": "Designated chairman (رئيساً) by Royal Order A/180 of 29/11/1428 AH, 9 December 2007 in the SPA release, and took the oath with the members before the King that evening (SA-CHR-08). Styled chairman on 11 December 2007, 30 June 2008 and 19 December 2015, and at his death on Wednesday 7/8/1438 AH, 3 May 2017 (SA-CHR-09 and 10).",
+   "uncertainty": "The order states no effective day and the collective oath is not a stated day of taking office, so from is null and attested_on is the order day. until is the stated day of death. Continuity between the observations is not separately attested, and no successor is recorded: no chairman is attested from 4 May 2017 to 7 September 2026 in the sources searched, and Article 15's seniority rule is not used to name one.",
+   "sources": [
+    "sa_spa_order_a180_20071210",
+    "sa_spa_mishaal_death_ar_20170503"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "sa_succession_chair#2": {
+   "role": "research:sa_succession_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 2 Dhu al-Hijja 1428 / 11 December 2007: 'صاحب السمو الملكي الأمير مشعل بن عبدالعزيز رئيس هيئة البيعة' thanks King Abdullah for the trust shown in appointing him chairman of the Commission (بتعيينه رئيسا لهيئة البيعة) and refers to having taken the oath before the King.",
+   "claim": "sa_mishaal_chair_thanks_20071211",
+   "from": null,
+   "until": null,
+   "attested_on": "2007-12-11",
+   "uncertainty": "An attestation of the chair on 11 December 2007; it acknowledges the appointment and the oath without dating either.",
+   "sources": [
+    "sa_spa_mishaal_statement_ar_20071211"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_succession_chair#3": {
+   "role": "research:sa_succession_chair",
+   "name": null,
+   "identity_text": "SPA, Jeddah 26 Jumada al-Akhira 1429 / 30 June 2008: 'صاحب السمو الملكي الأمير مشعل بن عبدالعزيز آل سعود رئيس هيئة البيعة' praised King Abdullah in an interview published that day, marking three years since the King's accession.",
+   "claim": "sa_mishaal_chair_interview_20080630",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-06-30",
+   "uncertainty": "A point observation of the style on 30 June 2008; it does not certify continuity.",
+   "sources": [
+    "sa_spa_mishaal_interview_20080630"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "sa_succession_chair#4": {
+   "role": "research:sa_succession_chair",
+   "name": null,
+   "identity_text": "SPA, Riyadh 08 Rabi' al-Awwal 1437 / 19 December 2015: 'صاحب السمو الملكي الأمير مشعل بن عبدالعزيز آل سعود رئيس هيئة البيعة' arrived in Riyadh 'الليلة الماضية' (last night) from abroad.",
+   "claim": "sa_mishaal_chair_obs_20151219",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-12-19",
+   "uncertainty": "A point observation of the style on the release date; it does not certify continuity between 2007 and 2017.",
+   "sources": [
+    "sa_spa_mishaal_chair_obs_20151219"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-25"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   }
  },

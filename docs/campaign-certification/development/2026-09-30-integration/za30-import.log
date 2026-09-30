@@ -1,0 +1,98 @@
+[codex/campaign-certification 1b2c1ae2] Add CLAUDE-C01-30: ACDP, Freedom Front and IFP leaders, 1990-2026
+ Date: Mon Sep 28 12:51:09 2026 -0700
+ 47 files changed, 5541 insertions(+), 36 deletions(-)
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-home-page-19990501-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-kzn-newsletter-19990904-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-leader-statement-20180214-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-manifesto-launch-notice-20140218-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-nepad-speech-20011031-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-profile-20211207-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-our-leadership-page-20190401-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-party-history-20040113-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-acdp-president-statement-20260304-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-da-ff-leaders-release-20240822-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-covid-item-20200402-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-farm-visit-release-20161227-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-minister-post-release-20240722-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-budget-debate-speech-20010621-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-not-available-release-20161112-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-af-20030429-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-en-20030904-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-reelected-release-20131118-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-new-leadership-release-20161112-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-new-members-release-20260325-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-presidency-budget-debate-item-20250716-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-vfplus-media-release-20030928-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-death-release-20200403-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-media-release-19970826-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-profile-20030504-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-buthelezi-timeline-20240403-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-buthelezi-20190824-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-hlabisa-20190824-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-elective-conference-resolutions-20121216-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-resolutions-20240810-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-statement-20190120-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-historical-perspective-20000930-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-history-profile-19970702-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-nec-statement-20190827-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-newly-elected-leadership-20190825-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-press-release-19951024-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-20190912-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-abaqulusi-20260201-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/sources/south-africa-ifp-statement-passing-buthelezi-20230909-facts.json
+ create mode 100644 docs/campaign-certification/C01/research/south-africa-acdp-ff-ifp-leaders-1990-2026-30.md
+ create mode 100644 tools/avatars/test_south_africa_party_leaders_c01_30.py
+[codex/campaign-certification fdb9395a] Record the second integration merge in the CLAUDE-C01-30 handoff and report
+ Date: Mon Sep 28 12:52:22 2026 -0700
+ 2 files changed, 13 insertions(+), 4 deletions(-)
+[codex/campaign-certification 6a302be6] Apply verifier fixes to CLAUDE-C01-30
+ Date: Mon Sep 28 13:40:25 2026 -0700
+ 2 files changed, 20 insertions(+), 7 deletions(-)
+[codex/campaign-certification dc48d30c] Clarify C01-30 conservative term-boundary evidence selection
+ Date: Wed Sep 30 01:48:51 2026 -0700
+ 4 files changed, 10 insertions(+), 5 deletions(-)
+[codex/campaign-certification 68ba0622] Record independent C01-30 original-source and bounded content review
+ Date: Wed Sep 30 01:51:35 2026 -0700
+ 42 files changed, 3775 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/baseline-isolation.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-atlas-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-atlas-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-atlas-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-census-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-census-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-census-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-index-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-index-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-index-regenerate-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-index-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-campaign-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-campaign-postrepair-full.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-campaign-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-campaign-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-country-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-country-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-country-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-country.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-research-final.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-research-postrepair-full.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-research-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-research-retry.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-tests-research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-workboard-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/logs/za30-workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/retrieval-retry.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/retrieval.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/scripts/za30-content-check.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/scripts/za30-retrieve.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/scripts/za30-retry.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/scripts/za30-verify-review.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/source-pins.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-30/validation.json

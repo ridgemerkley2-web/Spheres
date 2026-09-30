@@ -1,0 +1,29 @@
+{
+  "args": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+    "--exact",
+    "s25_stability_tests::s25_stability_cell",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "environment": {
+    "SPHERES_S25_REQUEST": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\request.json",
+    "SPHERES_S25_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native"
+  },
+  "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990",
+  "started_utc": "2026-09-30T09:04:51.909893+00:00",
+  "binary_before": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+    "bytes": 353133206,
+    "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-09-30T09:06:35.809300+00:00",
+  "elapsed_seconds": 103.71879640000407,
+  "binary_after": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+    "bytes": 353133206,
+    "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+  }
+}

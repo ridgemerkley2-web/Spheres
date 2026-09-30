@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "path": "spheres-web/src/s25_stability_tests.rs",
+      "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+      "git_blob": "f3acd31ea56a60989a55f154437274f6598ad02f",
+      "bytes": 51674,
+      "sha256": "fa40b13bd9f9190cfb2dfbb211c387cba5fdb3c8a6683182a56c6d143ddbd58b",
+      "current_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "current_blob_sha256": "fa40b13bd9f9190cfb2dfbb211c387cba5fdb3c8a6683182a56c6d143ddbd58b",
+      "current_git_bytes_identical": true,
+      "scope": "Git object bytes, not checkout newline conversion"
+    },
+    {
+      "path": "spheres-web/src/storage.rs",
+      "revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+      "git_blob": "f3e013bfc36f0fd8f5f31ff7a444bf5d5c8a7a7d",
+      "bytes": 47360,
+      "sha256": "220e6804f7c57f65874e7ec45e08ab596b91d262a4fe7a84a0bbdef120e06342",
+      "current_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+      "current_blob_sha256": "220e6804f7c57f65874e7ec45e08ab596b91d262a4fe7a84a0bbdef120e06342",
+      "current_git_bytes_identical": true,
+      "scope": "Git object bytes, not checkout newline conversion"
+    }
+  ],
+  "prior_evidence_inputs": [
+    {
+      "absolute_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S25\\preparation\\native-profile-1994-20260928\\original-run\\profile.json",
+      "bytes": 2738864,
+      "sha256": "c57492062ce0794bec55c8c9f8c21253f0633b9fa25effd28ec7afa6056a1b48"
+    },
+    {
+      "absolute_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S25\\preparation\\native-profile-1994-20260928\\review\\README.md",
+      "bytes": 10443,
+      "sha256": "e72bece2fdbae94b0f5ca0f369852048388a877f9e7fc4d3abb1ae9ec68295b5"
+    },
+    {
+      "absolute_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S25\\preparation\\native-profile-1994-20260928\\original-run\\execution.json",
+      "bytes": 2410,
+      "sha256": "94b872a6de550990dcc6ad92dd9a0d087e63b50cc11b1212794240169eaf4654"
+    },
+    {
+      "absolute_path": "D:\\spheres-offload\\codex-next-20260928\\distributed-run-01\\batch-manifest.json",
+      "bytes": 3733,
+      "sha256": "70a51be54a7e3100a5267ca310bf5c7f05a3c388a389b7c54904e6365c477cc8"
+    }
+  ],
+  "frozen_binary_reference": {
+    "bytes": 349874624,
+    "sha256": "ba81701fade70009481e062f635a42b74bface83ea65944af06f62463f244b0a"
+  },
+  "binary_executed": false
+}

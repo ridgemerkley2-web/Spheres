@@ -1,0 +1,184 @@
+{
+  "format": "spheres-inventory-bookkeeping-validation/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "base_revision": "7f4d8812de15ffeb5dac802188825a8e12f0ee1a",
+  "scope": "Queue, workboard, original submitted handoffs, tracked ledger target/first-source attribution tables and meaningful regression coverage; no source acceptance beyond root-integrated explicit C01-30/32 decisions. No native or browser execution.",
+  "checks": [
+    {
+      "command": "python -B -X utf8 -m unittest test_certified_gap_ledger.FixtureLedger test_certified_gap_ledger.Coverage -v",
+      "cwd": "tools/avatars",
+      "exit": 1,
+      "detail": "First invocation named nonexistent Coverage instead of CoverageUnits; 21 real fixture tests passed plus one loader error. Retained as setup error, not runtime failure."
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/certified_gap_ledger.py --refresh-attribution",
+      "exit": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/certified_gap_ledger.py",
+      "exit": 0
+    },
+    {
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p test_certified_gap_ledger.py -v",
+      "exit": 0,
+      "tests": 29
+    },
+    {
+      "command": "python -B -X utf8 tools/avatars/certified_gap_ledger.py --check",
+      "exit": 0
+    },
+    {
+      "command": "python -B -X utf8 tools/planning/workboard.py --check",
+      "exit": 0,
+      "markers": 44,
+      "bounded_tasks": 39
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    }
+  ],
+  "generated_preview": [
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
+      "bytes": 256446,
+      "sha256": "8c59f9cf16c2758e010d479492a8f1a8e5c8af04334c497d9d591de8a652e10f"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/campaign-certification/C01/gap-ledger/ledger.json",
+      "bytes": 1061154,
+      "sha256": "7dfde65333d2240494c92afbb22c31e2a7c704cbfd6507c457c5e5c69bf6e65d"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/campaign-certification/C01/gap-ledger/ledger.md",
+      "bytes": 84687,
+      "sha256": "fcecfb47624f8a0b53653c0ee5142d116dba2c3f77c87e18e11aa01b2e4c8efe"
+    }
+  ],
+  "generated_scope": "Tests/check were run on locally regenerated preview outputs at the stated base. These generated files are not in the bookkeeping commit; root will regenerate combined research-index/census/ledger/boundary outputs after integration.",
+  "authored_handoff_imports": [
+    {
+      "task": "CLAUDE-C01-33",
+      "submission_revision": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-33.md",
+      "git_blob_sha1": "d18d618e4d8960650b73406e62f6a04f365aed88",
+      "git_blob_bytes": 11652,
+      "git_blob_sha256": "630adddb9554b107c2a8bbb0a03291a7416c26359fdef10667322cdb9784e2a4",
+      "checkout": {
+        "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/planning/ai-handoffs/CLAUDE-C01-33.md",
+        "bytes": 11776,
+        "sha256": "197d01bff27a78dc14cefcdd7020fcc4451ce5b7e7989ab1e0ca55ec6657147f"
+      },
+      "relationship": "Checkout UTF-8 bytes after CRLF-to-LF replacement equal the exact authored submitted Git blob; no research file imported."
+    },
+    {
+      "task": "CLAUDE-C01-34",
+      "submission_revision": "16ef41a66d992e7a09417ab332cb6fc8fb6e1c76",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+      "git_blob_sha1": "43945949c4c3af43b4dffee16149a6a5d9500296",
+      "git_blob_bytes": 16382,
+      "git_blob_sha256": "ca0fdf7b330b92552e234d052270438bc5fd13658cb81e3d0b7b258e49d83018",
+      "checkout": {
+        "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/planning/ai-handoffs/CLAUDE-C01-34.md",
+        "bytes": 16562,
+        "sha256": "a8ced0bf20d0acb29a5bedb0573c2e2bcd51d16a1b142a558b06fe609813b8f9"
+      },
+      "relationship": "Checkout UTF-8 bytes after CRLF-to-LF replacement equal the exact authored submitted Git blob; no research file imported."
+    },
+    {
+      "task": "CLAUDE-C01-35",
+      "submission_revision": "52e3e313b7c53601833c2b170d504b3bed9fe4ff",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+      "git_blob_sha1": "5d812544bd10cf7b6f644ed1f0279d625afd53aa",
+      "git_blob_bytes": 11025,
+      "git_blob_sha256": "9de37cd16a9e2d4bc12f00a72579e03726d030da387c19220a91eca5f8bda235",
+      "checkout": {
+        "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/planning/ai-handoffs/CLAUDE-C01-35.md",
+        "bytes": 11136,
+        "sha256": "a589c37f59e5d8dc597f9f0f371ea33309b27be51c8689dc7cfe9e247681807f"
+      },
+      "relationship": "Checkout UTF-8 bytes after CRLF-to-LF replacement equal the exact authored submitted Git blob; no research file imported."
+    },
+    {
+      "task": "CLAUDE-C01-36",
+      "submission_revision": "6b82475ea8224a7fecf911f6442e8b6d7b506ca1",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+      "git_blob_sha1": "9bd05c5f3c909b2a5bed48d6a14167b876b9fda9",
+      "git_blob_bytes": 12878,
+      "git_blob_sha256": "c912e907a305bff4651b9243c0479fa08ae19d91c5e31d249baffe46c5b0ed2c",
+      "checkout": {
+        "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/planning/ai-handoffs/CLAUDE-C01-36.md",
+        "bytes": 13026,
+        "sha256": "344e71b2d46720cf5755b46786433892403f7af2c7009f88971836f4785c5c1c"
+      },
+      "relationship": "Checkout UTF-8 bytes after CRLF-to-LF replacement equal the exact authored submitted Git blob; no research file imported."
+    },
+    {
+      "task": "CLAUDE-C01-37",
+      "submission_revision": "eb7006176756796f5fd0a7244d9a3316ab275e60",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+      "git_blob_sha1": "3d3b9729c8f55b6573612fa7cc53efe173fb08e5",
+      "git_blob_bytes": 10334,
+      "git_blob_sha256": "5f91248a9cead006a611cb076a4ccea8508167ead6bdf46a2cb680b15f71d4e2",
+      "checkout": {
+        "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping/docs/planning/ai-handoffs/CLAUDE-C01-37.md",
+        "bytes": 10450,
+        "sha256": "90cf28528ad8ef973570f59a6491dc42a0dcef856a6dd4f02f6ef60c453fc2b0"
+      },
+      "relationship": "Checkout UTF-8 bytes after CRLF-to-LF replacement equal the exact authored submitted Git blob; no research file imported."
+    }
+  ],
+  "logs": [
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/diff-check.log",
+      "bytes": 407,
+      "sha256": "8e96f809f1c010ce7b94594a8194081a73cf9f6f80a61faa77ac4239303d9845"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/fixture-tests-01.log",
+      "bytes": 4174,
+      "sha256": "79f9179a75f03bacedf3dd76bc95051d581c0868344ce407998a67af8fdd2f6e"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/ledger-check-final.log",
+      "bytes": 258,
+      "sha256": "492d8ee8b0f0da570f8c1b3d96e3e0de3100c11663f8e5894e14ed3c8b4c9883"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/ledger-check.log",
+      "bytes": 258,
+      "sha256": "492d8ee8b0f0da570f8c1b3d96e3e0de3100c11663f8e5894e14ed3c8b4c9883"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/ledger-tests-final.log",
+      "bytes": 4992,
+      "sha256": "18825f8f74ed68068dbb60c11608e1a97184208f90386c30df5397971c310331"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/ledger-tests.log",
+      "bytes": 4992,
+      "sha256": "d821293406bb2815382ca83a5b97722fff1055733f2e9231c23587e805398d96"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/refresh-attribution.log",
+      "bytes": 259,
+      "sha256": "ce502f59f66a6aacef31e0acc5095467f2e9786ab6165ef7da7e7218e3e6b6e0"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/regenerate-final.log",
+      "bytes": 259,
+      "sha256": "ce502f59f66a6aacef31e0acc5095467f2e9786ab6165ef7da7e7218e3e6b6e0"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/workboard-final.log",
+      "bytes": 146,
+      "sha256": "91a06802a0182a47dd07bac7c5075fa23ab5c1abcaede60142a852c12c720160"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/claude-inventory-bookkeeping-evidence/workboard.log",
+      "bytes": 146,
+      "sha256": "91a06802a0182a47dd07bac7c5075fa23ab5c1abcaede60142a852c12c720160"
+    }
+  ],
+  "matrix_state": "Prior distributed attempt failed with 23 timeouts and one lost runner. Fresh candidate68ba0622 execution launched09:03:11UTC; pending full outcomes. Six/eight bounded ordered tasks remain complete; A1 and full matrix unearned."
+}

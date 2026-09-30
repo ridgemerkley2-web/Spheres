@@ -25,8 +25,8 @@
   "inputs": [
     {
       "path": "docs/campaign-certification/C01/census.json",
-      "bytes": 6105,
-      "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244"
+      "bytes": 6364,
+      "sha256": "64e6cbc05e9f53a8f907d460cca9df72980f06fe6247de57387c0a2b0d5e46ff"
     },
     {
       "path": "docs/campaign-certification/C01/countries.json",
@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research-index.json",
-      "bytes": 117447,
-      "sha256": "a7124dc515f824353517d522c1414bbe1ca99b046d0c4787064ec9dd1797faed"
+      "bytes": 121277,
+      "sha256": "cd049ddd7c6d2d97de6c3f74f7bd1eb795080c47b0b0b04e764ddec0d9373179"
     },
     {
       "path": "docs/campaign-certification/verification/2026-09-27-claude-integration.md",
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 23980,
-      "sha256": "ed2d30ff543390d2e38c09ac5990c0a666501ad429cdfac37e8170d76f95b4fd"
+      "bytes": 30289,
+      "sha256": "ef315c9a4915dbfaf1528229227ad2bd9fb66efacb667327e6d35e1e0ce690a8"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -81,8 +81,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 1153096,
-      "sha256": "173c1c93ba538e99e453d7e9b9476c4094ea191c124c5ad76cb60198de0301c0"
+      "bytes": 1241859,
+      "sha256": "ad31ae748940c61e5fc345228f8b51c1f4c55f897b54f0af58dc9bbb83d97c6d"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
@@ -101,8 +101,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 740024,
-      "sha256": "ba404b46f685442aa9d3798cf437de0f489d742912b1fb9a6084993dc9f6d16f"
+      "bytes": 1007417,
+      "sha256": "51f21208527dc405f7ef4f321d292c688dfdb3628bf8c98c4031c90762faf2d6"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
@@ -166,6 +166,24 @@
       "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
       "bytes": 1983,
       "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
+      "bytes": 7345,
+      "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md",
+      "bytes": 6927,
+      "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd",
+      "hash_encoding": "UTF-8 text with LF line endings"
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-33/README.md",
+      "bytes": 7617,
+      "sha256": "d2bfc7925e948268bd4ba49b5a385de9809238b5dc81a92abfdeffcd12c321a9",
       "hash_encoding": "UTF-8 text with LF line endings"
     },
     {
@@ -710,8 +728,8 @@
   ],
   "attribution": {
     "path": "docs/campaign-certification/C01/gap-ledger/inputs/source-attribution.json",
-    "bytes": 244247,
-    "sha256": "7db7a4e1c842161d80b6e0e4f83eb604767224e5d8b8b35ee534d730ef1d796c"
+    "bytes": 260046,
+    "sha256": "ee7eff4c4ba975c92fdefe856ecccd40531d6e3bffc4232354d207d328face8c"
   },
   "in_flight": [
     {
@@ -743,15 +761,49 @@
       "accepted": false
     },
     {
-      "task": "CLAUDE-C01-30",
-      "state": "claimed",
-      "branch": "claude/c01-za-30",
-      "case": "SouthAfrica",
-      "scope": "ACDP, Freedom Front and IFP party leaders; active research claim, no accepted mapping",
+      "task": "CLAUDE-C01-34",
+      "state": "ready_for_review",
+      "branch": "claude/c01-br-34",
+      "case": "Brazil",
+      "scope": "PFL/DEM, PDT and PMDB/MDB national presidents, 1990-2026; submitted, not accepted",
       "targets": [
-        "party:SouthAfrica/za_acdp",
-        "party:SouthAfrica/za_ff",
-        "party:SouthAfrica/za_ifp"
+        "party:Brazil/br_pfl",
+        "party:Brazil/br_pdt",
+        "party:Brazil/br_pmdb"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-35",
+      "state": "ready_for_review",
+      "branch": "claude/c01-su-35",
+      "case": "USSR -> Russia",
+      "scope": "Democratic Russia and Soyuz group leaders, 1990-1991; submitted, not accepted",
+      "targets": [
+        "party:USSR/su_dr",
+        "party:USSR/su_soyuz"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-36",
+      "state": "ready_for_review",
+      "branch": "claude/c01-to-36",
+      "case": "Tonga",
+      "scope": "Tongan deputy prime ministers, 1990-2026; submitted, not accepted",
+      "targets": [
+        "role:to_deputy_pm"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-37",
+      "state": "ready_for_review",
+      "branch": "claude/c01-fr-37",
+      "case": "France",
+      "scope": "French prime ministers, 1990-2026; submitted, not accepted",
+      "targets": [
+        "institution:fr_prime_minister"
       ],
       "accepted": false
     }
@@ -1467,6 +1519,60 @@
           "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-27/README.md",
           "bytes": 1983,
           "sha256": "6eefa2bf2dfeb1e48c5d90b46861c10ecb22f66ff8ae8704180f69255b105bb9",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-30",
+      "state": "complete",
+      "case": "SouthAfrica",
+      "scope": "ACDP, Freedom Front and IFP party-leader observations, 1990-2026; no accepted runtime mapping",
+      "integration_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-30/README.md",
+          "bytes": 7345,
+          "sha256": "95f531fa06a8f8d604673eb058fee2c76e222b25e64c63e773b80b3ada31e1d9",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-32",
+      "state": "complete",
+      "case": "SouthAfrica",
+      "scope": "Pan Africanist Congress presidents, 1990-2026; no accepted runtime mapping",
+      "integration_revision": "7f4d8812de15ffeb5dac802188825a8e12f0ee1a",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-32/README.md",
+          "bytes": 6927,
+          "sha256": "e0d8901edcf739b52d2d915d0687d5d5385cf33edac80a9b122caee310aa2afd",
+          "hash_encoding": "UTF-8 text with LF line endings"
+        }
+      ],
+      "runtime_mapping_accepted": false,
+      "historical_period_complete": false
+    },
+    {
+      "task": "CLAUDE-C01-33",
+      "state": "complete",
+      "case": "India",
+      "scope": "Janata Dal president observations, 1990-2026; no accepted runtime mapping",
+      "integration_revision": "7cf358866d1bb017b76018042b592301e574bb31",
+      "evidence_class": "c01_accepted",
+      "evidence": [
+        {
+          "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-33/README.md",
+          "bytes": 7617,
+          "sha256": "d2bfc7925e948268bd4ba49b5a385de9809238b5dc81a92abfdeffcd12c321a9",
           "hash_encoding": "UTF-8 text with LF line endings"
         }
       ],
@@ -7920,14 +8026,14 @@
         "represented_rows": 4,
         "components_or_name_phases": 0,
         "party_chains_unresolved": 4,
-        "documented_research_organizations": 82,
-        "documented_unmapped_organizations": 82,
-        "research_organizations_with_roles": 2,
+        "documented_research_organizations": 83,
+        "documented_unmapped_organizations": 83,
+        "research_organizations_with_roles": 3,
         "research_institutions": 2,
-        "research_roles": 4,
-        "research_roles_unresolved": 4,
+        "research_roles": 5,
+        "research_roles_unresolved": 5,
         "research_holders_by_evidence": {
-          "c01_accepted": 19,
+          "c01_accepted": 21,
           "c01_integrated_pending": 31
         },
         "seed_executive_observations": 1,
@@ -9212,6 +9318,15 @@
               "roles": [],
               "counted": false,
               "mapped_by_packet": false
+            },
+            {
+              "organization": "in_eci_19980110_np_06",
+              "name": "Janata Dal",
+              "roles": [
+                "in_jd_president"
+              ],
+              "counted": false,
+              "mapped_by_packet": false
             }
           ]
         }
@@ -10088,6 +10203,140 @@
         },
         {
           "nation": "India",
+          "category": "organizations",
+          "entity": "in_eci_19980110_np_06",
+          "entity_name": "Janata Dal",
+          "id": "in_jd_president",
+          "title": "President of the Janata Dal",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13397,
+              "attested_within_period": 0,
+              "attested_day": 2,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1990-07-14",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1990-07-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1990-07-14",
+                "through": "1990-07-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "1990-07-15",
+                "through": "1996-07-14",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-07-15",
+                "through": "1996-07-15",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-07-16",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1990-07-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1990-07-14",
+                "through": "1990-07-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "1990-07-15",
+                "through": "1996-07-14",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1996-07-15",
+                "through": "1996-07-15",
+                "status": "attested_day"
+              },
+              {
+                "from": "1996-07-16",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "S. R. Bommai",
+              "attested_on": "1990-07-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-33"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Laloo Prasad Yadav",
+              "attested_on": "1996-07-15",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-33"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 17,
+          "leads": [
+            "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/11/62/42/116242901201453682080197547375158743230?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_152_28121989_01_p202-356_1.pdf%22",
+            "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/10/44/92/104492405291112476976067292454644392818?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_154_18051990_01_p170-242_1.pdf%22",
+            "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/42/78/48/42784802429563657718560632993586827574?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22IQ_155_28081990_U2406_p181-183.pdf%22",
+            "https://egazette.gov.in/WriteReadData/1991/E-0528-1991-0076-21565.pdf",
+            "https://archive.org/download/eparlib.nic.in.17679/10_I_29081991_p158_p162_t116.pdf",
+            "https://egazette.gov.in/WriteReadData/1992/E-0491-1992-0033-19183.pdf"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "India",
           "category": "institutions",
           "entity": "in_prime_minister",
           "entity_name": "Prime Minister of India (office)",
@@ -10664,8 +10913,9 @@
         }
       ],
       "documented_organizations": {
-        "total": 82,
+        "total": 83,
         "with_roles": [
+          "in_eci_19980110_np_06",
           "in_eci_20240323_np_03",
           "in_eci_20240323_np_05"
         ],
@@ -10824,6 +11074,24 @@
               "id": "in_eci_20240323_sp_22_02",
               "kind": "research_organization",
               "name": "Dravida Munnetra Kazhagam"
+            }
+          ]
+        },
+        {
+          "nation": "India",
+          "key": "janatadal",
+          "classification": "uncertain_registry_research_match",
+          "merged": false,
+          "members": [
+            {
+              "id": "India/in_jd",
+              "kind": "represented_row",
+              "name": "Janata Dal"
+            },
+            {
+              "id": "in_eci_19980110_np_06",
+              "kind": "research_organization",
+              "name": "Janata Dal"
             }
           ]
         },
@@ -11247,7 +11515,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-34",
           "uncertain_research_candidates": [
             {
               "organization": "br_tse_fefc_2024_party_02",
@@ -11378,7 +11646,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-34",
           "uncertain_research_candidates": []
         },
         {
@@ -11727,7 +11995,7 @@
           "related_work_orders": [
             "CH-Brazil-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-34",
           "uncertain_research_candidates": []
         },
         {
@@ -13338,11 +13606,12 @@
         "party_chains_unresolved": 7,
         "documented_research_organizations": 52,
         "documented_unmapped_organizations": 52,
-        "research_organizations_with_roles": 2,
+        "research_organizations_with_roles": 6,
         "research_institutions": 1,
-        "research_roles": 7,
-        "research_roles_unresolved": 7,
+        "research_roles": 11,
+        "research_roles_unresolved": 11,
         "research_holders_by_evidence": {
+          "c01_accepted": 36,
           "c01_integrated_pending": 32,
           "s10_discovery_intake": 5
         },
@@ -13461,12 +13730,14 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": "CLAUDE-C01-30",
+          "in_flight": null,
           "uncertain_research_candidates": [
             {
               "organization": "za_iec_n2024_008",
               "name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
-              "roles": [],
+              "roles": [
+                "za_acdp_president"
+              ],
               "counted": false,
               "mapped_by_packet": false
             }
@@ -13998,7 +14269,7 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": "CLAUDE-C01-30",
+          "in_flight": null,
           "uncertain_research_candidates": []
         },
         {
@@ -14106,12 +14377,14 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": "CLAUDE-C01-30",
+          "in_flight": null,
           "uncertain_research_candidates": [
             {
               "organization": "za_iec_n2024_034",
               "name": "INKATHA FREEDOM PARTY",
-              "roles": [],
+              "roles": [
+                "za_ifp_president"
+              ],
               "counted": false,
               "mapped_by_packet": false
             }
@@ -14429,6 +14702,239 @@
         }
       ],
       "research_roles": [
+        {
+          "nation": "SouthAfrica",
+          "category": "organizations",
+          "entity": "za_iec_n2024_008",
+          "entity_name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+          "id": "za_acdp_president",
+          "title": "President of the African Christian Democratic Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13394,
+              "attested_within_period": 0,
+              "attested_day": 5,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1999-05-01",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1999-04-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1999-05-01",
+                "through": "1999-05-01",
+                "status": "attested_day"
+              },
+              {
+                "from": "1999-05-02",
+                "through": "2001-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-10-31",
+                "through": "2001-10-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-11-01",
+                "through": "2014-02-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-02-18",
+                "through": "2014-02-18",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-02-19",
+                "through": "2018-02-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-02-14",
+                "through": "2018-02-14",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-02-15",
+                "through": "2026-03-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-03-04",
+                "through": "2026-03-04",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-03-05",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1999-04-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1999-05-01",
+                "through": "1999-05-01",
+                "status": "attested_day"
+              },
+              {
+                "from": "1999-05-02",
+                "through": "2001-10-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-10-31",
+                "through": "2001-10-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-11-01",
+                "through": "2014-02-17",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-02-19",
+                "through": "2018-02-13",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-02-15",
+                "through": "2026-03-03",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-03-05",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Kenneth Meshoe",
+              "attested_on": "1999-05-01",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Kenneth Meshoe",
+              "attested_on": "2001-10-31",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Kenneth Meshoe",
+              "attested_on": "2014-02-18",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Kenneth Meshoe",
+              "attested_on": "2018-02-14",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Kenneth Meshoe",
+              "attested_on": "2026-03-04",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 7,
+          "leads": [
+            "https://web.archive.org/web/19990904001603id_/http://www.acdp.org.za:80/provincial/kzn/provinci.htm",
+            "https://web.archive.org/web/19990501020807id_/http://www.acdp.org.za:80/default.asp",
+            "https://web.archive.org/web/20060925055108id_/http://www.acdp.org.za/oldpress/MbekiResponse1Nov01.htm",
+            "https://web.archive.org/web/20180113011359id_/http://www.acdp.org.za/17022014-acdp-to-launch-manifesto-on-saturday-2202-in-soweto/",
+            "https://web.archive.org/web/20190509205419id_/https://www.acdp.org.za/acdp_leader_calls_on_zuma_to_place_the_country_above_himself",
+            "https://web.archive.org/web/20190401103633id_/https://www.acdp.org.za/our-leadership/"
+          ],
+          "in_flight": null
+        },
         {
           "nation": "SouthAfrica",
           "category": "organizations",
@@ -15111,6 +15617,1153 @@
           "source_count": 1,
           "leads": [
             "https://www-origin.da.org.za/2026/04/da-announces-leadership-election-results"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "SouthAfrica",
+          "category": "organizations",
+          "entity": "za_iec_n2024_034",
+          "entity_name": "INKATHA FREEDOM PARTY",
+          "id": "za_ifp_president",
+          "title": "President of the Inkatha Freedom Party",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13391,
+              "attested_within_period": 0,
+              "attested_day": 8,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1995-10-24",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1995-10-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-10-24",
+                "through": "1995-10-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "1995-10-25",
+                "through": "2012-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-12-16",
+                "through": "2012-12-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2012-12-17",
+                "through": "2019-01-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-01-20",
+                "through": "2019-01-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-01-21",
+                "through": "2019-08-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-08-24",
+                "through": "2019-08-24",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-08-25",
+                "through": "2019-09-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-09-12",
+                "through": "2019-09-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-09-13",
+                "through": "2023-09-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-09-09",
+                "through": "2023-09-09",
+                "status": "attested_day"
+              },
+              {
+                "from": "2023-09-10",
+                "through": "2024-08-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2024-08-10",
+                "through": "2024-08-10",
+                "status": "attested_day"
+              },
+              {
+                "from": "2024-08-11",
+                "through": "2026-01-31",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-02-01",
+                "through": "2026-02-01",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-02-02",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1995-10-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1995-10-25",
+                "through": "2012-12-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2012-12-17",
+                "through": "2019-01-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-01-21",
+                "through": "2019-08-23",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-09-13",
+                "through": "2023-09-08",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2023-09-10",
+                "through": "2024-08-09",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2024-08-11",
+                "through": "2026-01-31",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-02-02",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "1995-10-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2012-12-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2019-01-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2019-08-24",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2019-09-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2023-09-09",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2024-08-10",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2026-02-01",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 13,
+          "leads": [
+            "https://web.archive.org/web/20000930003618id_/http://www.ifp.org.za:80/History/history.htm",
+            "https://web.archive.org/web/19970702040121id_/http://www.ifp.org.za:80/Press/241095.htm",
+            "https://web.archive.org/web/20190512041138id_/http://www.ifp.org.za/documents/resolutions/annual-special-general-conference-resolutions/elective-national-conference-15-december-2012/",
+            "https://web.archive.org/web/20190123104637id_/http://www.ifp.org.za:80/newsroom/following-meeting-ifps-extended-national-council/",
+            "https://web.archive.org/web/20190827151121id_/http://www.ifp.org.za/national-elective-conference-of-the-inkatha-freedom-party-address-by-prince-mangosuthu-buthelezi-mp/",
+            "https://web.archive.org/web/20190827150556id_/http://www.ifp.org.za/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "SouthAfrica",
+          "category": "organizations",
+          "entity": "za_iec_n2024_039",
+          "entity_name": "PAN AFRICANIST CONGRESS OF AZANIA",
+          "id": "za_pac_president",
+          "title": "President of the Pan Africanist Congress of Azania",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13385,
+              "attested_within_period": 0,
+              "attested_day": 14,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1998-05-19",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-05-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-05-19",
+                "through": "1998-05-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-05-20",
+                "through": "1998-06-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-06-16",
+                "through": "1998-06-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-06-17",
+                "through": "1998-10-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-10-12",
+                "through": "1998-10-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-10-13",
+                "through": "1998-11-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-03",
+                "through": "1998-11-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "1998-11-04",
+                "through": "2008-09-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-09-20",
+                "through": "2008-09-20",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-09-21",
+                "through": "2008-10-02",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-10-03",
+                "through": "2008-10-03",
+                "status": "attested_day"
+              },
+              {
+                "from": "2008-10-04",
+                "through": "2014-03-20",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-03-21",
+                "through": "2014-03-21",
+                "status": "attested_day"
+              },
+              {
+                "from": "2014-03-22",
+                "through": "2016-01-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-01-31",
+                "through": "2016-01-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2016-02-01",
+                "through": "2018-05-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-05-25",
+                "through": "2018-05-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2018-05-26",
+                "through": "2019-07-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2019-07-12",
+                "through": "2019-07-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "2019-07-13",
+                "through": "2020-02-14",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-02-15",
+                "through": "2020-02-15",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-02-16",
+                "through": "2021-07-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-07-19",
+                "through": "2021-07-19",
+                "status": "attested_day"
+              },
+              {
+                "from": "2021-07-20",
+                "through": "2021-12-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2021-12-31",
+                "through": "2021-12-31",
+                "status": "attested_day"
+              },
+              {
+                "from": "2022-01-01",
+                "through": "2026-08-28",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-08-29",
+                "through": "2026-08-29",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-08-30",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1998-05-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1998-11-04",
+                "through": "2008-09-19",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2008-10-04",
+                "through": "2014-03-20",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2014-03-22",
+                "through": "2016-01-30",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-02-01",
+                "through": "2018-05-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2018-05-26",
+                "through": "2019-07-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-02-16",
+                "through": "2021-07-18",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2022-01-01",
+                "through": "2026-08-28",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Stanley Mogoba",
+              "attested_on": "1998-05-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Stanley Mogoba",
+              "attested_on": "1998-06-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Stanley Mogoba",
+              "attested_on": "1998-10-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Stanley Mogoba",
+              "attested_on": "1998-11-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Letlapa Mphahlele",
+              "attested_on": "2008-09-20",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Letlapa Mphahlele",
+              "attested_on": "2008-10-03",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Alton Mphethi",
+              "attested_on": "2014-03-21",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Luthando Mbinda",
+              "attested_on": "2016-01-31",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Narius Moloto",
+              "attested_on": "2018-05-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 9,
+              "name": "Narius Moloto",
+              "attested_on": "2019-07-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 10,
+              "name": "Mzwanele Nyhontso",
+              "attested_on": "2020-02-15",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 11,
+              "name": "Mzwanele Nyhontso",
+              "attested_on": "2021-07-19",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 12,
+              "name": "Mzwanele Nyhontso",
+              "attested_on": "2021-12-31",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 13,
+              "name": "Mzwanele Nyhontso",
+              "attested_on": "2026-08-29",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-32"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 36,
+          "leads": [
+            "https://web.archive.org/web/20081214170731id_/http://www.pac.org.za:80/index.php?option=com_content&task=view&id=60&Itemid=134",
+            "https://web.archive.org/web/20160331141517id_/http://pac.org.za/previous-presidents/",
+            "https://web.archive.org/web/19990202211516id_/http://www.paca.org.za:80/history/pachist.htm",
+            "https://web.archive.org/web/19981203082344id_/http://www.paca.org.za:80/",
+            "https://web.archive.org/web/19991009200645id_/http://www.paca.org.za:80/hlines/killings.htm",
+            "https://web.archive.org/web/19990203023632id_/http://www.paca.org.za:80/hlines/June16.htm"
+          ],
+          "in_flight": null
+        },
+        {
+          "nation": "SouthAfrica",
+          "category": "organizations",
+          "entity": "za_iec_n2024_051",
+          "entity_name": "VRYHEIDSFRONT PLUS",
+          "id": "za_ff_leader",
+          "title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+          "kind": "party_leader",
+          "hereditary": null,
+          "exception": null,
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false,
+            "anchors": [],
+            "note": null
+          },
+          "coverage": {
+            "window_days": 13399,
+            "days": {
+              "no_evidence": 13390,
+              "attested_within_period": 0,
+              "attested_day": 9,
+              "open_end": 0,
+              "boundary_imprecise": 0,
+              "acting_definite": 0,
+              "definite": 0
+            },
+            "unresolved_days": 13399,
+            "first_evidence": "1997-08-26",
+            "segments": [
+              {
+                "from": "1990-01-01",
+                "through": "1997-08-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-08-26",
+                "through": "1997-08-26",
+                "status": "attested_day"
+              },
+              {
+                "from": "1997-08-27",
+                "through": "2001-06-20",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-06-21",
+                "through": "2001-06-21",
+                "status": "attested_day"
+              },
+              {
+                "from": "2001-06-22",
+                "through": "2003-09-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2003-09-28",
+                "through": "2003-09-28",
+                "status": "attested_day"
+              },
+              {
+                "from": "2003-09-29",
+                "through": "2016-11-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-11-12",
+                "through": "2016-11-12",
+                "status": "attested_day"
+              },
+              {
+                "from": "2016-11-13",
+                "through": "2016-12-26",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-12-27",
+                "through": "2016-12-27",
+                "status": "attested_day"
+              },
+              {
+                "from": "2016-12-28",
+                "through": "2020-04-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-04-02",
+                "through": "2020-04-02",
+                "status": "attested_day"
+              },
+              {
+                "from": "2020-04-03",
+                "through": "2024-08-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2024-08-22",
+                "through": "2024-08-22",
+                "status": "attested_day"
+              },
+              {
+                "from": "2024-08-23",
+                "through": "2025-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-07-16",
+                "through": "2025-07-16",
+                "status": "attested_day"
+              },
+              {
+                "from": "2025-07-17",
+                "through": "2026-03-24",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2026-03-25",
+                "through": "2026-03-25",
+                "status": "attested_day"
+              },
+              {
+                "from": "2026-03-26",
+                "through": "2026-09-07",
+                "status": "no_evidence"
+              }
+            ],
+            "longest_unresolved": [
+              {
+                "from": "1990-01-01",
+                "through": "1997-08-25",
+                "status": "no_evidence"
+              },
+              {
+                "from": "1997-08-27",
+                "through": "2001-06-20",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2001-06-22",
+                "through": "2003-09-27",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2003-09-29",
+                "through": "2016-11-11",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2016-12-28",
+                "through": "2020-04-01",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2020-04-03",
+                "through": "2024-08-21",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2024-08-23",
+                "through": "2025-07-15",
+                "status": "no_evidence"
+              },
+              {
+                "from": "2025-07-17",
+                "through": "2026-03-24",
+                "status": "no_evidence"
+              }
+            ]
+          },
+          "holders": [
+            {
+              "position": 0,
+              "name": "Constand Viljoen",
+              "attested_on": "1997-08-26",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 1,
+              "name": "Pieter Mulder",
+              "attested_on": "2001-06-21",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 2,
+              "name": "Pieter Mulder",
+              "attested_on": "2003-09-28",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 3,
+              "name": "Pieter Mulder",
+              "attested_on": "2016-11-12",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 4,
+              "name": "Pieter Groenewald",
+              "attested_on": "2016-12-27",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 5,
+              "name": "Pieter Groenewald",
+              "attested_on": "2020-04-02",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 6,
+              "name": "Pieter Groenewald",
+              "attested_on": "2024-08-22",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 7,
+              "name": "Corné Mulder",
+              "attested_on": "2025-07-16",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "position": 8,
+              "name": "Corné Mulder",
+              "attested_on": "2026-03-25",
+              "from": null,
+              "until": null,
+              "attested_period": null,
+              "evidence": [
+                "c01_accepted"
+              ],
+              "packets": [
+                "CLAUDE-C01-30"
+              ],
+              "missing_fields": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "source_count": 16,
+          "leads": [
+            "https://web.archive.org/web/19980613213641id_/http://www.vryheidsfront.co.za:80/media/970826b.html",
+            "https://web.archive.org/web/20030504130710id_/http://www.vryheidsfront.co.za:80/a/viljoen.asp",
+            "https://web.archive.org/web/20030429154123id_/http://www.vryheidsfront.co.za:80/a/leierskap_p_mulder.asp",
+            "https://web.archive.org/web/20030904113907id_/http://www.vryheidsfront.co.za:80/english/leadership_p_mulder.asp",
+            "https://web.archive.org/web/20061007034931id_/http://www.vryheidsfront.co.za/english/speach.asp?id=14",
+            "https://web.archive.org/web/20060929152114id_/http://www.vryheidsfront.co.za/a/media.asp?id=308"
           ],
           "in_flight": null
         },
@@ -15896,8 +17549,12 @@
       "documented_organizations": {
         "total": 52,
         "with_roles": [
+          "za_iec_n2024_008",
           "za_iec_n2024_014",
-          "za_iec_n2024_027"
+          "za_iec_n2024_027",
+          "za_iec_n2024_034",
+          "za_iec_n2024_039",
+          "za_iec_n2024_051"
         ],
         "discovery_work_orders": [
           "C01-SouthAfrica-DISC-B001",
@@ -17467,7 +19124,7 @@
             "https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/",
             "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025"
           ],
-          "in_flight": null
+          "in_flight": "CLAUDE-C01-36"
         },
         {
           "nation": "Tonga",
@@ -20483,7 +22140,7 @@
           "related_work_orders": [
             "CH-USSR-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-35",
           "uncertain_research_candidates": []
         },
         {
@@ -20552,7 +22209,7 @@
           "related_work_orders": [
             "CH-USSR-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-35",
           "uncertain_research_candidates": []
         }
       ],
@@ -23614,25 +25271,6 @@
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
-          "item": "missing_institution",
-          "nation": "France",
-          "entity": "institution:fr_prime_minister",
-          "title": "Prime Minister",
-          "priority": 1,
-          "missing_fields": [
-            {
-              "field": "institution and holder chain",
-              "from": "1990-01-01",
-              "through": "2026-09-07"
-            }
-          ],
-          "leads": [
-            "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958"
-          ],
-          "basis": "Constitution articles 6 and 7 separate the directly elected President of the Republic from party leadership; article 8 gives the President appointment of the Prime Minister.",
-          "related_work_orders": []
-        },
-        {
           "item": "party_leader_chain",
           "nation": "France",
           "entity": "France/fr_udf/fr_udf_pril",
@@ -23758,15 +25396,7 @@
             "pinned": false
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        }
-      ]
-    },
-    {
-      "id": "GAP-France-B002",
-      "case": "France",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "party_leader_chain",
           "nation": "France",
@@ -23812,7 +25442,15 @@
             "pinned": false
           },
           "note": "Component or historical name phase: its active window is not bounded in the pinned inputs; confirm when it existed before seeking leaders for the unresolved spans."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-France-B002",
+      "case": "France",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "party_leader_chain",
           "nation": "France",
@@ -25364,7 +27002,8 @@
             "in_eci_20240323_sp_04_01",
             "in_eci_20240323_sp_10_01",
             "in_eci_20240323_sp_11_01",
-            "in_eci_20240323_sp_13_02"
+            "in_eci_20240323_sp_13_02",
+            "in_eci_19980110_np_06"
           ],
           "leads": [
             "https://cms.rajyasabha.nic.in/UploadedFiles/Synopsis/SynopsisUpload/212/15112007.pdf",
@@ -26247,170 +27886,6 @@
         {
           "item": "party_leader_chain",
           "nation": "Brazil",
-          "entity": "Brazil/br_pfl",
-          "title": "Liberal Front Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 10996,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1992-01-02",
-              "through": "1992-12-31",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1993-01-01",
-              "through": "2022-02-08",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "dates",
-              "holder": "hugo_napoleao",
-              "record": "br_pfl_hugo_napoleao_1989",
-              "missing": [
-                "from (known only to year)",
-                "until (known only to year)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "year",
-                "value": "1992"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2022-02-08"
-              },
-              "reason": "Later PFL/DEM presidents and acting substitutions not yet researched in this bounded batch.",
-              "sources": [
-                "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao",
-                "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "2022-02-08"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2026-09-07"
-              },
-              "reason": "The original organization is dissolved by merger; União Brasil requires its own identity and leadership records.",
-              "sources": [
-                "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao",
-            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-          ],
-          "related_work_orders": [
-            "CH-Brazil-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2022-02-08",
-            "pinned": true
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Brazil",
-          "entity": "Brazil/br_pdt",
-          "title": "Democratic Labour Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 8113,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "2004-06-22",
-              "through": "2004-06-29",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2004-06-30",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "carlos_lupi",
-              "record": "br_pdt_carlos_lupi_200406",
-              "missing": [
-                "from (known only to month)",
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "leonel_brizola",
-              "record": "br_pdt_leonel_brizola_1980",
-              "missing": [
-                "from (known only to year)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "2004-06-21"
-              },
-              "until": {
-                "kind": "month",
-                "value": "2004-06"
-              },
-              "reason": "Conflicting Lupi assumption dates: do not invent exact succession day.",
-              "sources": [
-                "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
-                "https://www.flb-ap.org.br/tribunas/avancar-igualdade/"
-              ]
-            },
-            {
-              "from": {
-                "kind": "year",
-                "value": "2023"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2026-09-07"
-              },
-              "reason": "Investigate ministerial leave and André Figueiredo acting presidency; current chair listed in TSE does not prove uninterrupted active control.",
-              "sources": [
-                "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [
-            "br_tse_fefc_2024_party_02"
-          ],
-          "leads": [
-            "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
-            "https://pdt.org.br/index.php/pdt-40-anos-de-brizola-a-ciro/",
-            "https://www.flb-ap.org.br/tribunas/avancar-igualdade/",
-            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-          ],
-          "related_work_orders": [
-            "CH-Brazil-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Brazil",
           "entity": "Brazil/br_pt",
           "title": "Workers' Party",
           "role": "party leader (census term records)",
@@ -26648,110 +28123,6 @@
             "https://fpabramo.org.br/2024/09/18/acervo-de-gushiken-e-incorporado-ao-centro-de-memoria-da-fpa/",
             "https://www.camara.leg.br/deputados/139289/biografia",
             "https://fpabramo.org.br/focusbrasil/2025/08/04/confira-integra-do-discurso-de-edinho-silva-em-cerimonia-que-o-empossou-presidente-nacional-do-pt/",
-            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
-          ],
-          "related_work_orders": [
-            "CH-Brazil-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "Brazil",
-          "entity": "Brazil/br_pmdb",
-          "title": "Brazilian Democratic Movement Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 3424,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1993-04-24",
-              "through": "1993-09-11",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2014-03-12",
-              "through": "2016-04-04",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2019-10-07",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "baleia_rossi",
-              "record": "br_pmdb_baleia_rossi_20191006",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "ulysses_guimaraes",
-              "record": "br_pmdb_ulysses_guimaraes_1980",
-              "missing": [
-                "from (known only to year)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1989-04-26"
-              },
-              "until": {
-                "kind": "day",
-                "value": "1990-01-02"
-              },
-              "reason": "Titular Ulysses and acting Jarbas overlap intentionally; runtime must distinguish leave and acting control.",
-              "sources": [
-                "https://www.mdb.org.br/quem-somos/",
-                "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "1993-01-26"
-              },
-              "until": {
-                "kind": "day",
-                "value": "1993-09-12"
-              },
-              "reason": "Official table gives Fogaça January 26–April 6 overlapping Quércia through April 23; do not import disputed boundary as fact.",
-              "sources": [
-                "https://www.mdb.org.br/quem-somos/"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "2014-01-14"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2016-04-05"
-              },
-              "reason": "Table dates Temer return January 14 while Raupp ends March 11; resolve original minutes before importing Temer return.",
-              "sources": [
-                "https://www.mdb.org.br/quem-somos/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://www.mdb.org.br/quem-somos/",
-            "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf",
             "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
           ],
           "related_work_orders": [
@@ -27176,6 +28547,83 @@
         {
           "item": "party_leader_chain",
           "nation": "SouthAfrica",
+          "entity": "SouthAfrica/za_acdp",
+          "title": "African Christian Democratic Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 11969,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1993-12-01",
+              "through": "1993-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "1993-12-31",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "kenneth_meshoe",
+              "record": "za_acdp_kenneth_meshoe_199312",
+              "missing": [
+                "from (known only to month)",
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "month",
+                "value": "1993-12"
+              },
+              "reason": "Party did not yet exist.",
+              "sources": [
+                "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf"
+              ]
+            },
+            {
+              "from": {
+                "kind": "day",
+                "value": "2025-08-22"
+              },
+              "until": {
+                "kind": "day",
+                "value": "2026-09-07"
+              },
+              "reason": "Obtain a near-cutoff party official list rather than assume continuity from the 2025 statement.",
+              "sources": [
+                "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [
+            "za_iec_n2024_008"
+          ],
+          "leads": [
+            "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf",
+            "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+          ],
+          "related_work_orders": [
+            "CH-SouthAfrica-B001"
+          ],
+          "window": {
+            "from": "1993-12-01",
+            "until": "2026-09-07",
+            "pinned": true
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "SouthAfrica",
           "entity": "SouthAfrica/za_pac",
           "title": "Pan Africanist Congress",
           "role": "party leader (census term records)",
@@ -27268,6 +28716,127 @@
         {
           "item": "party_leader_chain",
           "nation": "SouthAfrica",
+          "entity": "SouthAfrica/za_ff",
+          "title": "Freedom Front",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 3979,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1994-03-01",
+              "through": "1994-03-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2001-01-02",
+              "through": "2001-12-30",
+              "current_status": "boundary_imprecise"
+            },
+            {
+              "field": "holder",
+              "from": "2016-11-13",
+              "through": "2025-07-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2025-07-16",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "constand_viljoen",
+              "record": "za_ff_constand_viljoen_199403",
+              "missing": [
+                "from (known only to month)",
+                "until (known only to year)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "corne_mulder",
+              "record": "za_ff_corne_mulder_20250716",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "pieter_mulder",
+              "record": "za_ff_pieter_mulder_2001",
+              "missing": [
+                "from (known only to year)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "day",
+                "value": "1990-01-01"
+              },
+              "until": {
+                "kind": "month",
+                "value": "1994-03"
+              },
+              "reason": "Party did not yet exist.",
+              "sources": [
+                "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI"
+              ]
+            },
+            {
+              "from": {
+                "kind": "year",
+                "value": "2001"
+              },
+              "until": {
+                "kind": "year",
+                "value": "2001"
+              },
+              "reason": "Exact Viljoen/Mulder handover remains unresolved.",
+              "sources": [
+                "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+              ]
+            },
+            {
+              "from": {
+                "kind": "day",
+                "value": "2016-11-12"
+              },
+              "until": {
+                "kind": "day",
+                "value": "2025-07-16"
+              },
+              "reason": "Recover Groenewald election, 2025 handover and exact leadership intervals; July 2024 observation alone is not complete coverage.",
+              "sources": [
+                "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
+                "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+                "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI",
+            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
+            "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+            "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
+          ],
+          "related_work_orders": [
+            "CH-SouthAfrica-B001"
+          ],
+          "window": {
+            "from": "1994-03-01",
+            "until": "2026-09-07",
+            "pinned": true
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "SouthAfrica",
           "entity": "SouthAfrica/za_anc",
           "title": "African National Congress",
           "role": "party leader (census term records)",
@@ -27345,6 +28914,63 @@
             "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf",
             "https://www.gov.za/about-sa/history",
             "https://www.anc1912.org.za/officials/"
+          ],
+          "related_work_orders": [
+            "CH-SouthAfrica-B001"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          }
+        },
+        {
+          "item": "party_leader_chain",
+          "nation": "SouthAfrica",
+          "entity": "SouthAfrica/za_ifp",
+          "title": "Inkatha Freedom Party",
+          "role": "party leader (census term records)",
+          "priority": 0,
+          "unresolved_days": 2571,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "2019-08-25",
+              "through": "2026-09-07",
+              "current_status": "open_end"
+            },
+            {
+              "field": "dates",
+              "holder": "velenkosini_hlabisa",
+              "record": "za_ifp_velenkosini_hlabisa_20190824",
+              "missing": [
+                "until (open in registry; continuity to cutoff unconfirmed)"
+              ]
+            }
+          ],
+          "declared_gaps": [
+            {
+              "from": {
+                "kind": "year",
+                "value": "1990"
+              },
+              "until": {
+                "kind": "year",
+                "value": "1990"
+              },
+              "reason": "Exact movement-to-party legal conversion date remains under review.",
+              "sources": [
+                "https://ifp.org.za/who-we-are/our-history/"
+              ]
+            }
+          ],
+          "uncertain_research_candidates": [
+            "za_iec_n2024_034"
+          ],
+          "leads": [
+            "https://ifp.org.za/who-we-are/our-history/",
+            "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+            "https://ifp.org.za/newsroom/ifp-marks-51-years-as-president-velenkosini-hlabisa-leads-human-rights-day-commemoration-in-mpumalanga/"
           ],
           "related_work_orders": [
             "CH-SouthAfrica-B001"
@@ -27826,7 +29452,15 @@
             "pinned": true
           },
           "first_evidence": "1994-05-10"
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-SouthAfrica-B002",
+      "case": "SouthAfrica",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "SouthAfrica",
@@ -28006,6 +29640,371 @@
             "pinned": false
           },
           "first_evidence": "2023-04-03",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "SouthAfrica",
+          "entity": "za_iec_n2024_039#za_pac_president",
+          "title": "President of the Pan Africanist Congress of Azania",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1998-05-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1998-11-04",
+              "through": "2008-09-19",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2008-10-04",
+              "through": "2014-03-20",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2014-03-22",
+              "through": "2016-01-30",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2016-02-01",
+              "through": "2018-05-24",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2018-05-26",
+              "through": "2019-07-11",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-02-16",
+              "through": "2021-07-18",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2022-01-01",
+              "through": "2026-08-28",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Stanley Mogoba",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Stanley Mogoba",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Stanley Mogoba",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Stanley Mogoba",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Letlapa Mphahlele",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Letlapa Mphahlele",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Alton Mphethi",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Luthando Mbinda",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Narius Moloto",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Narius Moloto",
+              "record": 9,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mzwanele Nyhontso",
+              "record": 10,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mzwanele Nyhontso",
+              "record": 11,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mzwanele Nyhontso",
+              "record": 12,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Mzwanele Nyhontso",
+              "record": 13,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/20081214170731id_/http://www.pac.org.za:80/index.php?option=com_content&task=view&id=60&Itemid=134",
+            "https://web.archive.org/web/20160331141517id_/http://pac.org.za/previous-presidents/",
+            "https://web.archive.org/web/19990202211516id_/http://www.paca.org.za:80/history/pachist.htm",
+            "https://web.archive.org/web/19981203082344id_/http://www.paca.org.za:80/",
+            "https://web.archive.org/web/19991009200645id_/http://www.paca.org.za:80/hlines/killings.htm",
+            "https://web.archive.org/web/19990203023632id_/http://www.paca.org.za:80/hlines/June16.htm"
+          ],
+          "related_work_orders": [
+            "C01-SouthAfrica-DISC-B004"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1998-05-19",
+          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
+        },
+        {
+          "item": "research_role_chain",
+          "nation": "SouthAfrica",
+          "entity": "za_iec_n2024_051#za_ff_leader",
+          "title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+          "role": "party_leader",
+          "priority": 4,
+          "unresolved_days": 13399,
+          "missing_fields": [
+            {
+              "field": "holder",
+              "from": "1990-01-01",
+              "through": "1997-08-25",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "1997-08-27",
+              "through": "2001-06-20",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2001-06-22",
+              "through": "2003-09-27",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2003-09-29",
+              "through": "2016-11-11",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2016-12-28",
+              "through": "2020-04-01",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2020-04-03",
+              "through": "2024-08-21",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2024-08-23",
+              "through": "2025-07-15",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "holder",
+              "from": "2025-07-17",
+              "through": "2026-03-24",
+              "current_status": "no_evidence"
+            },
+            {
+              "field": "dates",
+              "holder": "Constand Viljoen",
+              "record": 0,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Mulder",
+              "record": 1,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Mulder",
+              "record": 2,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Mulder",
+              "record": 3,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Groenewald",
+              "record": 4,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Groenewald",
+              "record": 5,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Pieter Groenewald",
+              "record": 6,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Corné Mulder",
+              "record": 7,
+              "missing": [
+                "from",
+                "until"
+              ]
+            },
+            {
+              "field": "dates",
+              "holder": "Corné Mulder",
+              "record": 8,
+              "missing": [
+                "from",
+                "until"
+              ]
+            }
+          ],
+          "declared_gaps": [],
+          "uncertain_research_candidates": [],
+          "leads": [
+            "https://web.archive.org/web/19980613213641id_/http://www.vryheidsfront.co.za:80/media/970826b.html",
+            "https://web.archive.org/web/20030504130710id_/http://www.vryheidsfront.co.za:80/a/viljoen.asp",
+            "https://web.archive.org/web/20030429154123id_/http://www.vryheidsfront.co.za:80/a/leierskap_p_mulder.asp",
+            "https://web.archive.org/web/20030904113907id_/http://www.vryheidsfront.co.za:80/english/leadership_p_mulder.asp",
+            "https://web.archive.org/web/20061007034931id_/http://www.vryheidsfront.co.za/english/speach.asp?id=14",
+            "https://web.archive.org/web/20060929152114id_/http://www.vryheidsfront.co.za/a/media.asp?id=308"
+          ],
+          "related_work_orders": [
+            "C01-SouthAfrica-DISC-B006"
+          ],
+          "window": {
+            "from": "1990-01-01",
+            "until": "2026-09-07",
+            "pinned": false
+          },
+          "first_evidence": "1997-08-26",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         }
       ]
@@ -28247,81 +30246,6 @@
             "pinned": false
           },
           "first_evidence": "1990-01-01"
-        },
-        {
-          "item": "research_role_chain",
-          "nation": "Tonga",
-          "entity": "to_cabinet#to_deputy_pm",
-          "title": "Deputy Prime Minister",
-          "role": "institutional_office",
-          "priority": 2,
-          "unresolved_days": 13399,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "2021-12-27",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2021-12-28",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "to_cabinet_appointment",
-              "record": "to_cabinet_appointment",
-              "missing": [
-                "holder identity and dates (claim-only observation)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "Poasi Mataele Tei",
-              "record": 1,
-              "missing": [
-                "until"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "Samiu Vaipulu",
-              "record": 2,
-              "missing": [
-                "from",
-                "until"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "Taniela Likuohihifo Fusimalohi",
-              "record": 3,
-              "missing": [
-                "until"
-              ]
-            }
-          ],
-          "declared_gaps": [],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://parliament.gov.to/en/media-centre/latest-news/prime-minister-lord-fakafanua-announces-ministers-of-cabinet",
-            "https://pmo.gov.to/prime-minister-hon-siaosi-ofakivahafolau-sovaleni-announces-new-cabinet-ministers/",
-            "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
-            "https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/",
-            "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025"
-          ],
-          "related_work_orders": [
-            "C01-Tonga-DISC-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          },
-          "first_evidence": "2021-12-28",
-          "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
         },
         {
           "item": "research_role_chain",
@@ -28805,15 +30729,7 @@
           },
           "first_evidence": "2022-04-19",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-Tonga-B002",
-      "case": "Tonga",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Tonga",
@@ -29680,90 +31596,6 @@
           }
         },
         {
-          "item": "party_leader_chain",
-          "nation": "USSR",
-          "entity": "USSR/su_dr",
-          "title": "Democratic Russia",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 724,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "1991-12-25",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-USSR-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "1991-12-25",
-            "pinned": true
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "USSR",
-          "entity": "USSR/su_soyuz",
-          "title": "Soyuz group",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 724,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1990-01-01",
-              "through": "1991-12-25",
-              "current_status": "no_evidence"
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "open"
-              },
-              "reason": "Historical party identity, leadership terms and candidate affiliations have not yet been verified for 1990–2026. Existing officeholder ties are not proof of party leadership.",
-              "sources": []
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "no existing lead in the pinned inputs; start from the institution's own primary records"
-          ],
-          "related_work_orders": [
-            "CH-USSR-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "1991-12-25",
-            "pinned": true
-          }
-        },
-        {
           "item": "research_role_chain",
           "nation": "Russia",
           "entity": "ru_government#ru_government_chairman",
@@ -30391,15 +32223,7 @@
           },
           "first_evidence": "2021-10-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        }
-      ]
-    },
-    {
-      "id": "GAP-USSR-Russia-B002",
-      "case": "USSR -> Russia",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "Russia",
@@ -30505,7 +32329,15 @@
           },
           "first_evidence": "2021-10-12",
           "note": "Applicability before the first observation is not established in the pinned inputs: confirm when the office existed before seeking earlier holders."
-        },
+        }
+      ]
+    },
+    {
+      "id": "GAP-USSR-Russia-B002",
+      "case": "USSR -> Russia",
+      "status": "open",
+      "maximum_items": 10,
+      "items": [
         {
           "item": "research_role_chain",
           "nation": "Russia",
@@ -30699,9 +32531,9 @@
     "cases": 8,
     "represented_rows": 35,
     "party_chains_with_unresolved_days": 50,
-    "research_roles": 60,
-    "research_roles_with_unresolved_days": 51,
+    "research_roles": 65,
+    "research_roles_with_unresolved_days": 56,
     "next_batches": 12,
-    "next_items": 85
+    "next_items": 83
   }
 }

@@ -1,0 +1,50 @@
+............................................................................................................F........................................................................................................................................................................................................................................F........F................................................................................................................................................................................
+======================================================================
+FAIL: test_scope_is_preparation_and_covers_all_eight_cases (test_certified_boundary_matrix.RealCommittedOutput.test_scope_is_preparation_and_covers_all_eight_cases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_boundary_matrix.py", line 688, in test_scope_is_preparation_and_covers_all_eight_cases
+    self.assertEqual({k for k, v in statuses.items() if v == 'accepted'}, {'01', '02', '03', '04', '07', '08'})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'30'
+'24'
+'32'
+'25'
+'23'
+'27'
+
+======================================================================
+FAIL: test_committed_packet_exits_zero (test_successor_proposals.CommandLineTests.test_committed_packet_exits_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_successor_proposals.py", line 498, in test_committed_packet_exits_zero
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : E_NAME_REAL proposals[7].name: family name 'vaikona' occurs in the Tonga research or roster record; choose one with no recorded bearer
+FAIL: 1 violation(s) in 8 proposals.
+
+
+======================================================================
+FAIL: test_committed_packet_passes (test_successor_proposals.ProposalPacketTests.test_committed_packet_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_successor_proposals.py", line 46, in test_committed_packet_passes
+    self.assertEqual(self.errors(), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('E_NAME_REAL', 'proposals[7].name', "fam[98 chars]er")] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+('E_NAME_REAL', 'proposals[7].name', "family name 'vaikona' occurs in the Tonga research or roster record; choose one with no recorded bearer")
+
++ []
+- [('E_NAME_REAL',
+-   'proposals[7].name',
+-   "family name 'vaikona' occurs in the Tonga research or roster record; choose "
+-   'one with no recorded bearer')]
+
+----------------------------------------------------------------------
+Ran 527 tests in 72.833s
+
+FAILED (failures=3)

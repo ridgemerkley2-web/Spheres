@@ -1,0 +1,1081 @@
+{
+  "format": "spheres-pilot-equivalence-independent-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "old_revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "new_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "passed": true,
+  "scope": "Offline complete-byte equivalence of the two fresh native pilots; no native execution, benchmark, full-matrix or qualification claim.",
+  "source_scope": "Native changes are test-only observer instrumentation plus lazy mismatch diagnostics. Two additional embedded map UI changes are present and outside the native paired execution. Simulation dependency built without cfg(test); observer hooks are absent there.",
+  "cells": [
+    {
+      "cell": "france-1990",
+      "equal_fields": [
+        "actions",
+        "checks",
+        "comparisons",
+        "initial_rules",
+        "id",
+        "country",
+        "seed",
+        "through",
+        "start_native_date",
+        "end_native_date",
+        "days_each_leg",
+        "legs",
+        "scope"
+      ],
+      "actions": 19,
+      "comparisons": 30,
+      "checks": {
+        "competition_adoptions": 2,
+        "daily_invariant_checks": 796,
+        "full_horizon_pause": null,
+        "monthly_reloads": 13,
+        "native_validation_checks": 60,
+        "sandbox_continued": false,
+        "sandbox_daily_invariant_checks": 0,
+        "terminal_reloads": 2
+      },
+      "complete_comparison_rows_equal": true
+    },
+    {
+      "cell": "tonga-7",
+      "equal_fields": [
+        "actions",
+        "checks",
+        "comparisons",
+        "initial_rules",
+        "id",
+        "country",
+        "seed",
+        "through",
+        "start_native_date",
+        "end_native_date",
+        "days_each_leg",
+        "legs",
+        "scope"
+      ],
+      "actions": 13,
+      "comparisons": 30,
+      "checks": {
+        "competition_adoptions": 2,
+        "daily_invariant_checks": 796,
+        "full_horizon_pause": null,
+        "monthly_reloads": 13,
+        "native_validation_checks": 60,
+        "sandbox_continued": false,
+        "sandbox_daily_invariant_checks": 0,
+        "terminal_reloads": 2
+      },
+      "complete_comparison_rows_equal": true
+    }
+  ],
+  "archive_pairs": [
+    {
+      "cell": "france-1990",
+      "original_relative": "resumed/saves/final.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/final.json.gz",
+          "bytes": 10798784,
+          "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+        },
+        "decoded": {
+          "bytes": 65221417,
+          "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b"
+        },
+        "excluded_terminal_saved_unix": 1790759178
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/final.json.gz",
+          "bytes": 10798784,
+          "sha256": "b4f41d535be012623538512ce7be5de6a6639a63e3f928aee2505e3461fd456c"
+        },
+        "decoded": {
+          "bytes": 65221417,
+          "sha256": "37987323aa96d4b688cd215d4913f7220b232d3905e74a613fa4acee99d9aede"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b"
+        },
+        "excluded_terminal_saved_unix": 1790758773
+      }
+    },
+    {
+      "cell": "france-1990",
+      "original_relative": "resumed/saves/monthly.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.gz",
+          "bytes": 10779481,
+          "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+        },
+        "decoded": {
+          "bytes": 65236438,
+          "sha256": "b893638d3689128c50ea31a8db24624a83a43343f703fc487833e80bf02d0acc"
+        },
+        "canonical": {
+          "bytes": 65236414,
+          "sha256": "d5b12a58a5cb20da997b7ea462cb1284e11f18536056c7e5f13ef7149603d591"
+        },
+        "excluded_terminal_saved_unix": 1790759169
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.gz",
+          "bytes": 10779481,
+          "sha256": "b483e571d4fec5c854635a86b4b6cd0f31756aaffdc47bf5cf0a522aa2284af6"
+        },
+        "decoded": {
+          "bytes": 65236438,
+          "sha256": "3727fa6786355712b86d7e0fae8c7243aaf4b48d0f89082be06b100354f1b0c2"
+        },
+        "canonical": {
+          "bytes": 65236414,
+          "sha256": "d5b12a58a5cb20da997b7ea462cb1284e11f18536056c7e5f13ef7149603d591"
+        },
+        "excluded_terminal_saved_unix": 1790758766
+      }
+    },
+    {
+      "cell": "france-1990",
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 10075192,
+          "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+        },
+        "decoded": {
+          "bytes": 60126088,
+          "sha256": "ff89b33f90ad83833de77c256a823801664b326e4e3a531eeca2df88b0b82972"
+        },
+        "canonical": {
+          "bytes": 60126064,
+          "sha256": "a74170f792b55b3fe88925daa422d332c97ef51c4d30ee7e921a4985af464c4b"
+        },
+        "excluded_terminal_saved_unix": 1790759156
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 10075192,
+          "sha256": "cd64bfad5a514c95826b3018bdd0dcaa92f4ab51c7268b68ab6df7bc5a9957c1"
+        },
+        "decoded": {
+          "bytes": 60126088,
+          "sha256": "e47432d023f7a898c143264c8019211e41672e210e422836db88b7bdb5dd0f6a"
+        },
+        "canonical": {
+          "bytes": 60126064,
+          "sha256": "a74170f792b55b3fe88925daa422d332c97ef51c4d30ee7e921a4985af464c4b"
+        },
+        "excluded_terminal_saved_unix": 1790758755
+      }
+    },
+    {
+      "cell": "france-1990",
+      "original_relative": "uninterrupted/saves/final.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+          "bytes": 10798784,
+          "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+        },
+        "decoded": {
+          "bytes": 65221417,
+          "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b"
+        },
+        "excluded_terminal_saved_unix": 1790759177
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+          "bytes": 10798784,
+          "sha256": "0bb29500575ffb52c92fad02f490d3489fff68c839c11991b2d54bcace463dd8"
+        },
+        "decoded": {
+          "bytes": 65221417,
+          "sha256": "937abecd3b247de5a7526cc85dd442c941d68732595f6a34ccf816b1a34423e3"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b"
+        },
+        "excluded_terminal_saved_unix": 1790758772
+      }
+    },
+    {
+      "cell": "tonga-7",
+      "original_relative": "resumed/saves/final.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/final.json.gz",
+          "bytes": 10509394,
+          "sha256": "a6ff458f3fef3353eb0ab846a978de00454a57d16dd99c9ff1cf43e9854c0002"
+        },
+        "decoded": {
+          "bytes": 62575024,
+          "sha256": "4912cd72170f6d31da5d9bf25abeebbea221a9ae13987de84276804f062650c0"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15"
+        },
+        "excluded_terminal_saved_unix": 1790759175
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/final.json.gz",
+          "bytes": 10509394,
+          "sha256": "bc47f67c059eb1bb05e2d9eadc57334f63cf144be8376ae9ba84197cc8dfccb2"
+        },
+        "decoded": {
+          "bytes": 62575024,
+          "sha256": "5969f9723166d50c5cdd1508ba491aab7040ec2e87a27ca3de423d330b0d5935"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15"
+        },
+        "excluded_terminal_saved_unix": 1790758771
+      }
+    },
+    {
+      "cell": "tonga-7",
+      "original_relative": "resumed/saves/monthly.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+          "bytes": 10393944,
+          "sha256": "f638e32d12d9f746fe1a85fd2051b5d8b165fc9f404e854791f43566fb6f8103"
+        },
+        "decoded": {
+          "bytes": 61545940,
+          "sha256": "c265d91ee5b2d5f52608d2b9e648171c55a2e23b316848d1db0d1cb3cf9b7f40"
+        },
+        "canonical": {
+          "bytes": 61545916,
+          "sha256": "c4be816e00740aeca5e7ddd2f900ea3e951c9918233cbb31f781bfcaa1a4b1c4"
+        },
+        "excluded_terminal_saved_unix": 1790759167
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+          "bytes": 10393944,
+          "sha256": "378aa5bfc00c3abd83083afdb998b66ea9a3e12f3d2f25fff801d5213f517bb5"
+        },
+        "decoded": {
+          "bytes": 61545940,
+          "sha256": "e1a512d24d04f8f76a17e9055fedf91cfa9537649587d25ee626ca461ba51a55"
+        },
+        "canonical": {
+          "bytes": 61545916,
+          "sha256": "c4be816e00740aeca5e7ddd2f900ea3e951c9918233cbb31f781bfcaa1a4b1c4"
+        },
+        "excluded_terminal_saved_unix": 1790758764
+      }
+    },
+    {
+      "cell": "tonga-7",
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 9486496,
+          "sha256": "4400b2292d08e38260c88624c24d10f685b3412147c3f405453f9327f282caf6"
+        },
+        "decoded": {
+          "bytes": 54331217,
+          "sha256": "4e0103901123261f0fd21b5eb4bfec5a6a17aeadbcd62a24e25083f4d00f7296"
+        },
+        "canonical": {
+          "bytes": 54331193,
+          "sha256": "93e704adbe4395f30f0e278f7eccf3dedf185b04e03ae0fe25a258e5e343e104"
+        },
+        "excluded_terminal_saved_unix": 1790759155
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+          "bytes": 9486495,
+          "sha256": "2f3d687e911a8e548a2f2214764d2554eb61778fb30cb7e3dd46be8f1b8cbcce"
+        },
+        "decoded": {
+          "bytes": 54331217,
+          "sha256": "eafad62b76de4ec945784ee3aaed51c438981917ba980a5f2c6feb1d340b2683"
+        },
+        "canonical": {
+          "bytes": 54331193,
+          "sha256": "93e704adbe4395f30f0e278f7eccf3dedf185b04e03ae0fe25a258e5e343e104"
+        },
+        "excluded_terminal_saved_unix": 1790758755
+      }
+    },
+    {
+      "cell": "tonga-7",
+      "original_relative": "uninterrupted/saves/final.json",
+      "whole_canonical_bytes_equal": true,
+      "old": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+          "bytes": 10509394,
+          "sha256": "8a9faaf822113d73127a1108d519c68d341101c617fbd445b4b589e34f11631c"
+        },
+        "decoded": {
+          "bytes": 62575024,
+          "sha256": "2fabdd4c32bb28553e09255efeb15ce18d2af2fcebd86f5ffbedab782529cb4e"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15"
+        },
+        "excluded_terminal_saved_unix": 1790759174
+      },
+      "new": {
+        "gzip": {
+          "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+          "bytes": 10509395,
+          "sha256": "c5abcf447cf33761efe6ad6075163b7e96c3cb9787c693e1ae48007b2384cf14"
+        },
+        "decoded": {
+          "bytes": 62575024,
+          "sha256": "97678fbde49b8149b0bcdfb2774f0f8496276c397d32fa8d0a301a28685a7b5f"
+        },
+        "canonical": {
+          "bytes": 62575000,
+          "sha256": "d2fef75c993af5322bce3f486f38d4eac3288285b4b286c2065ad74360946b15"
+        },
+        "excluded_terminal_saved_unix": 1790758770
+      }
+    }
+  ],
+  "totals": {
+    "cells": 2,
+    "canonical_archive_pairs_compared_byte_for_byte": 8,
+    "gzip_files_independently_rehashed_and_fully_decoded": 16,
+    "decoded_bytes_read": 993665130,
+    "comparison_rows_compared": 60
+  },
+  "binaries": [
+    {
+      "run": "old",
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/codex-next-matrix-binary/spheres-web-test.exe",
+      "bytes": 353133206,
+      "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+    },
+    {
+      "run": "new",
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/spheres-web-test.exe",
+      "bytes": 353201472,
+      "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "spheres-sim/src/government.rs",
+      "old": {
+        "bytes": 848551,
+        "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+        "git_blob": "5582c536ab331a624473a2156038266c6e6e5d87"
+      },
+      "new": {
+        "bytes": 849546,
+        "sha256": "3f846b4beaf1138848d4830a39dac7695503276b4b4b19ca851846c5eaa8d202",
+        "git_blob": "5ffe82869a78fe6d51b062df583f235bff4b0e25"
+      }
+    },
+    {
+      "path": "spheres-sim/src/government_a1_observer.rs",
+      "old": null,
+      "new": {
+        "bytes": 14822,
+        "sha256": "831a8971002e9a013f54f6758cad53e63bbcff25633a840ff06488f622021a14",
+        "git_blob": "fec260f7bca31663ad5b9a16213674caa47f4ab0"
+      }
+    },
+    {
+      "path": "spheres-web/src/s25_stability_tests.rs",
+      "old": {
+        "bytes": 51674,
+        "sha256": "fa40b13bd9f9190cfb2dfbb211c387cba5fdb3c8a6683182a56c6d143ddbd58b",
+        "git_blob": "f3acd31ea56a60989a55f154437274f6598ad02f"
+      },
+      "new": {
+        "bytes": 54805,
+        "sha256": "69c3b14453d4c159a6c53f4b5d85798157927aeec5235817f13488c4986bbbb9",
+        "git_blob": "a67a8d4ae08500903fa338cfbf1862d9a7b71519"
+      }
+    },
+    {
+      "path": "spheres-web/ui/globe3d.js",
+      "old": {
+        "bytes": 35548,
+        "sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "git_blob": "a1d2b285fcfbcfb0179c71675f075d8e3d61e941"
+      },
+      "new": {
+        "bytes": 36569,
+        "sha256": "83bc297d7d68246f312aeb5a082d72e87d58061d2be8656352d139195f7137a0",
+        "git_blob": "92afa99dc18d97acfc13b2c18908c0db1ca7e442"
+      }
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "old": {
+        "bytes": 1144494,
+        "sha256": "9a261f5dfe82d1270398b44c185b79ff1840a16006dfde38e4f80bc2294eb793",
+        "git_blob": "dbdbdb7298fd8a76b564a128eea89e705c5a5c7e"
+      },
+      "new": {
+        "bytes": 1145295,
+        "sha256": "d8491daf3a96dbba1ce06331bd3317f217054d6f2fce59064d9b754fbf97d956",
+        "git_blob": "39e922ed856f40357b3caf18ad7c32be46798b18"
+      }
+    },
+    {
+      "path": "spheres-web/src/storage.rs",
+      "old": {
+        "bytes": 47360,
+        "sha256": "220e6804f7c57f65874e7ec45e08ab596b91d262a4fe7a84a0bbdef120e06342",
+        "git_blob": "f3e013bfc36f0fd8f5f31ff7a444bf5d5c8a7a7d"
+      },
+      "new": {
+        "bytes": 47360,
+        "sha256": "220e6804f7c57f65874e7ec45e08ab596b91d262a4fe7a84a0bbdef120e06342",
+        "git_blob": "f3e013bfc36f0fd8f5f31ff7a444bf5d5c8a7a7d"
+      }
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "old": {
+        "bytes": 984896,
+        "sha256": "a59f1a1c3ab7e213dcdd72bfd78dc02620be2d0512bcea3152e70651ff1d3771",
+        "git_blob": "22574625a38117721c8d733ef001f7166193347c"
+      },
+      "new": {
+        "bytes": 984896,
+        "sha256": "a59f1a1c3ab7e213dcdd72bfd78dc02620be2d0512bcea3152e70651ff1d3771",
+        "git_blob": "22574625a38117721c8d733ef001f7166193347c"
+      }
+    },
+    {
+      "path": "spheres-web/build.rs",
+      "old": {
+        "bytes": 1534,
+        "sha256": "915a3030fcbe1fabef19f98b8e10ec6dd1f8ba01813ae5f203405931c2f8837a",
+        "git_blob": "87e9e77846f1f54a3d566137547e8cdf7fb6fb53"
+      },
+      "new": {
+        "bytes": 1534,
+        "sha256": "915a3030fcbe1fabef19f98b8e10ec6dd1f8ba01813ae5f203405931c2f8837a",
+        "git_blob": "87e9e77846f1f54a3d566137547e8cdf7fb6fb53"
+      }
+    }
+  ],
+  "frozen_source_relation": [
+    {
+      "frozen": "stability_matrix.py",
+      "source": "tools/campaign/stability_matrix.py",
+      "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+      "git_blob": "8f30f7d437c16b6ee7c8df912cbb4b5f35410e4f",
+      "git_blob_bytes": 80364,
+      "git_blob_sha256": "6ac2c3667845222d1d587c3fc0224d7c1cb79ea7e5dcf5832d018741890bd274",
+      "relationship": "Exact Git blob after CRLF-to-LF replacement; raw frozen bytes pinned separately."
+    },
+    {
+      "frozen": "distributed_stability.py",
+      "source": "tools/campaign/distributed_stability.py",
+      "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+      "git_blob": "83aebaed561da4784125c976e905f88830ea15fa",
+      "git_blob_bytes": 12526,
+      "git_blob_sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f",
+      "relationship": "Exact Git blob after CRLF-to-LF replacement; raw frozen bytes pinned separately."
+    },
+    {
+      "frozen": "plan.json",
+      "source": "tools/campaign/stability-full.json",
+      "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+      "git_blob": "f57617b99700e8017262360dfbeb0d77e9b8fac7",
+      "git_blob_bytes": 2861,
+      "git_blob_sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1",
+      "relationship": "Exact Git blob after CRLF-to-LF replacement; raw frozen bytes pinned separately."
+    }
+  ],
+  "build_trace": {
+    "build_records": 36,
+    "web_artifact": {
+      "reason": "compiler-artifact",
+      "package_id": "path+file:///C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-web#0.6.0",
+      "manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\Cargo.toml",
+      "target": {
+        "kind": [
+          "bin"
+        ],
+        "crate_types": [
+          "bin"
+        ],
+        "name": "spheres-web",
+        "src_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\src\\main.rs",
+        "edition": "2021",
+        "doc": true,
+        "doctest": false,
+        "test": true
+      },
+      "profile": {
+        "opt_level": "3",
+        "debuginfo": 0,
+        "debug_assertions": false,
+        "overflow_checks": false,
+        "test": true
+      },
+      "features": [],
+      "filenames": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe"
+      ],
+      "executable": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "fresh": false
+    },
+    "sim_artifact": {
+      "reason": "compiler-artifact",
+      "package_id": "path+file:///C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-sim#0.5.0",
+      "manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\Cargo.toml",
+      "target": {
+        "kind": [
+          "lib"
+        ],
+        "crate_types": [
+          "lib"
+        ],
+        "name": "spheres_sim",
+        "src_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\lib.rs",
+        "edition": "2021",
+        "doc": true,
+        "doctest": true,
+        "test": true
+      },
+      "profile": {
+        "opt_level": "3",
+        "debuginfo": 0,
+        "debug_assertions": false,
+        "overflow_checks": false,
+        "test": false
+      },
+      "features": [],
+      "filenames": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rmeta"
+      ],
+      "executable": null,
+      "fresh": false
+    }
+  },
+  "recorded_focused_tests": {
+    "passed": 9,
+    "failed": 0,
+    "ignored_manual_preflights": 2
+  },
+  "recorded_tooling_tests": {
+    "run": 71,
+    "passed": 70,
+    "skipped": 1
+  },
+  "root_retained_verifier_receipts": [
+    {
+      "file": {
+        "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot-verification.json",
+        "bytes": 4011,
+        "sha256": "117dede91da391d721c29bcddd8e9c4f13442fac2bd51b1e942426d1e99c3d0e"
+      },
+      "recorded_archives_verified": 8,
+      "independently_reexecuted_by_this_review": false
+    },
+    {
+      "file": {
+        "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot-verification.json",
+        "bytes": 4019,
+        "sha256": "24a3cf19626183c4e0b272ce74d0421c3b924eb481116cba6ae104fd7d099eaa"
+      },
+      "recorded_archives_verified": 8,
+      "independently_reexecuted_by_this_review": false
+    }
+  ],
+  "limitation": "This review rehashed binaries and all listed payloads, decoded all 16 gzip bodies, checked exact old/new canonical bytes and report fields. It did not rerun Cargo, native cells or the frozen strict verifier, or separately recalculate the diagnostic FNV. The preserved root verifier receipts checked native FNV linkage. Concurrent host work precludes a timing/speedup claim.",
+  "inputs": [
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/frozen/native-test",
+      "bytes": 353201472,
+      "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/frozen/plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/frozen/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/frozen/distributed_stability.py",
+      "bytes": 12526,
+      "sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/frozen/manifest.json",
+      "bytes": 3725,
+      "sha256": "4f8e94852b2d67e49b36dc2632940d8cf9d8079a6f848f784c50364d58894c50"
+    },
+    {
+      "path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/codex-next-matrix-binary/spheres-web-test.exe",
+      "bytes": 353133206,
+      "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot-plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/archive-manifest.json",
+      "bytes": 4764,
+      "sha256": "f9b85cdf9307ad3a54407556c5fbc93397c16dfe885e2dd6100d18f7bd7f5875"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/execution.json",
+      "bytes": 1708,
+      "sha256": "f39d8d6848c0d7d31272ca0c5112d105acf5d9e5653eb6c8e52cff563695ebc6"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/result.json",
+      "bytes": 16797,
+      "sha256": "f6757797a3022ea7d7035509e3f6f2ab12aa5abe19dd23121c1d86e5802eadee"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 10075192,
+      "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "7bbde0e791801d891e4853f2db7b2711f48aa6e0a00e969df65a2af123d505df"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/stdout.log",
+      "bytes": 167,
+      "sha256": "da7e5f296c06b84a1d7b88cffeaf8be1d00a5fddc90c8c4dc66395e91bae9b43"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/transfer.json",
+      "bytes": 8090,
+      "sha256": "055acf2b7e496d32066c7f68808ee8b5cb93f04501185802af44a2e6ef21d4f2"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/france-1990/verdict.json",
+      "bytes": 10685,
+      "sha256": "5445210cec0398807c85a968c7f90ef779710574345b2704a0cd37a878b34055"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/archive-manifest.json",
+      "bytes": 4731,
+      "sha256": "e26df0cd1f0be60fd6e3d9ae9a432152856e8d5dee5139097aba57725ec4c23a"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/execution.json",
+      "bytes": 1694,
+      "sha256": "0b3c330ff8642622d1614b8fe93f8871d5375b0c60e72e64ffca0c2eaf1cb5ba"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/result.json",
+      "bytes": 15162,
+      "sha256": "7f7790484cfaba29d30355aee793bb6bc744b965aebd55bd8c0bc5be15b61f05"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "a6ff458f3fef3353eb0ab846a978de00454a57d16dd99c9ff1cf43e9854c0002"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 9486496,
+      "sha256": "4400b2292d08e38260c88624c24d10f685b3412147c3f405453f9327f282caf6"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "f638e32d12d9f746fe1a85fd2051b5d8b165fc9f404e854791f43566fb6f8103"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "8a9faaf822113d73127a1108d519c68d341101c617fbd445b4b589e34f11631c"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/request.json",
+      "bytes": 183,
+      "sha256": "b345f0dc8bcb69a96aca1f7f296603a74677b2cfc95432c7f5fb6d891ec9280a"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/stdout.log",
+      "bytes": 167,
+      "sha256": "d6fa7f392b2695f6dc2f1a7b9b8044a60fb55538c2cb924bd07fd6e75cbe603d"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/transfer.json",
+      "bytes": 7992,
+      "sha256": "acd71b666175275943423c146fab0b6af9453318b783175680fea372ac3e9ed9"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/cells/tonga-7/verdict.json",
+      "bytes": 10587,
+      "sha256": "8707cb01bde1adfb44a1c6f8422204519c0efb0d4d4960d4b5830b44695af6fc"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/freeze.json",
+      "bytes": 2205,
+      "sha256": "ff832edd0e90d312119e63dd3de41d782b7c1efe73cfa53dd29c6afa198f2e32"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/result.json",
+      "bytes": 26184,
+      "sha256": "74518bab3ec51d026017bbe45d1affd9f909f8963f433ded27289cbd572b5254"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/journal.jsonl",
+      "bytes": 19212,
+      "sha256": "87c40a313f06411632cef86ef76882b6a394fbe12a09225433e891fe8cf99426"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-old-pilot-20260930/resource-setup.json",
+      "bytes": 440,
+      "sha256": "50b3ab2b5dffe85c7ad9a480a6a4930d577058019066712a047f265d59251536"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/spheres-web-test.exe",
+      "bytes": 353201472,
+      "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/archive-manifest.json",
+      "bytes": 4732,
+      "sha256": "774af9f0abde8a320d7be3e87a84c61a29e55efe17377d8bf0c27adcff1d7733"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/execution.json",
+      "bytes": 1490,
+      "sha256": "b63fc13c59c2cfdeb4ed63cca86853d646d1c7f2fa117e1ce05904873a6341e2"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/result.json",
+      "bytes": 16793,
+      "sha256": "774e7f7d91345290b5620f7c05c398c3861601f6f26a76e59449085989294521"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "b4f41d535be012623538512ce7be5de6a6639a63e3f928aee2505e3461fd456c"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 10075192,
+      "sha256": "cd64bfad5a514c95826b3018bdd0dcaa92f4ab51c7268b68ab6df7bc5a9957c1"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "b483e571d4fec5c854635a86b4b6cd0f31756aaffdc47bf5cf0a522aa2284af6"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "0bb29500575ffb52c92fad02f490d3489fff68c839c11991b2d54bcace463dd8"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "450911a83aacf39c96ac000ec68833776b1d42075a1bacf157f1f8d810cda3dd"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/stdout.log",
+      "bytes": 167,
+      "sha256": "de9bc154998d5710e0f5f8d740e1a40597bae1995b6f813c8157a563120b867e"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/transfer.json",
+      "bytes": 7994,
+      "sha256": "ab8083123568db7c8daa2f6debb1332d983d36010c94404d810fcc8c2d4c71c4"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/france-1990/verdict.json",
+      "bytes": 10593,
+      "sha256": "7779dfc4c418d16cb28f590674324333a6606be029ca152b3f77adf25caffb80"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/archive-manifest.json",
+      "bytes": 4699,
+      "sha256": "1cc1b5760bbf43b59bc04a20f2930282123305fd0df5d430966b8231949aaedc"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/execution.json",
+      "bytes": 1479,
+      "sha256": "8f02f8f3e948fe24264168866b8f99c7d79a5bc5cb5ee81c0552eaf92d19e97f"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/result.json",
+      "bytes": 15158,
+      "sha256": "ff050bc510bb1ad44127b0ccb35dd1e6538ad0c0b23bd81152d12631f1aee71d"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "bc47f67c059eb1bb05e2d9eadc57334f63cf144be8376ae9ba84197cc8dfccb2"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 9486495,
+      "sha256": "2f3d687e911a8e548a2f2214764d2554eb61778fb30cb7e3dd46be8f1b8cbcce"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "378aa5bfc00c3abd83083afdb998b66ea9a3e12f3d2f25fff801d5213f517bb5"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10509395,
+      "sha256": "c5abcf447cf33761efe6ad6075163b7e96c3cb9787c693e1ae48007b2384cf14"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/request.json",
+      "bytes": 183,
+      "sha256": "714844b5b480e4f7b0611e23ce26a5e285981eae119c1d5419c650e059587113"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/stdout.log",
+      "bytes": 167,
+      "sha256": "11d036c80ffff3740c47ca11e325c7d3c023651d3cd24d7d7dfe49c1270780b8"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/transfer.json",
+      "bytes": 7896,
+      "sha256": "a9379e7a3684599fd1c6925f54b9eab200e6ea2c9a3e45a86f010c343d2d5f83"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/cells/tonga-7/verdict.json",
+      "bytes": 10495,
+      "sha256": "261cad947aa1af85c69296b793057eae09d600ee6d95be439e1b49a075a181b6"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/freeze.json",
+      "bytes": 2121,
+      "sha256": "0a3018c42cb9e167062e6127e49db0dd3cbd644169d1ea532ab504b4c123db7f"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/result.json",
+      "bytes": 26000,
+      "sha256": "844a25e7458b07be785ac832f4ee8ab51ad22614faffea07ed24e13c376333dd"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/journal.jsonl",
+      "bytes": 19132,
+      "sha256": "613c1ebc65bb0919d55a728504c4a8b20d4b31bbee7ea3d4b0b05d4d9fa937f8"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-pilot-20260930/resource-setup.json",
+      "bytes": 432,
+      "sha256": "b37a65a77e308645d5cf7cb99c339076af3318c81f1efc4ec5c716d4ec785717"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/build.jsonl",
+      "bytes": 35425,
+      "sha256": "e5d65521522583c33da844788f90ac740f01933639f5dc39b6cc60126bc95628"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/build.stderr.log",
+      "bytes": 378,
+      "sha256": "09c95616352be18fbcac227ba7b52b92757da5c1d0845303f7ac0aa2de90a43f"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/focused-native.log",
+      "bytes": 1485,
+      "sha256": "c0f6c1648e935af1a035e4f704ed5dcff4a7800ca18901475ac40893093077b2"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/freeze.log",
+      "bytes": 435,
+      "sha256": "4626e569a57a421ad9e36e152e40df7946b66d3fc3fb04b1b3a17f23e23bcf1a"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/full-launch.json",
+      "bytes": 1355,
+      "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/launcher.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/launcher.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot-launch.json",
+      "bytes": 1038,
+      "sha256": "d8a2d18c5e65620279c35454d5588c1207379885eb7d0bea0ca514919e71ed37"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot-verification.json",
+      "bytes": 4019,
+      "sha256": "24a3cf19626183c4e0b272ce74d0421c3b924eb481116cba6ae104fd7d099eaa"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot-verification.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/old-pilot.stdout.log",
+      "bytes": 3036,
+      "sha256": "befd6186441af831242edec2a6839fb96636ebcee27094a7d97cf29b24c4eeaf"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot-verification.json",
+      "bytes": 4011,
+      "sha256": "117dede91da391d721c29bcddd8e9c4f13442fac2bd51b1e942426d1e99c3d0e"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot-verification.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/pilot.stdout.log",
+      "bytes": 3032,
+      "sha256": "c16620aeb0001d6f38e134e1476112f2461e76373b0e5556669e62ebc5752ff7"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/revision.txt",
+      "bytes": 41,
+      "sha256": "93739d7280b262579321ffbb90953a820dccb4f5821a7708e4d76aa32934c899"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/run_full.py",
+      "bytes": 2362,
+      "sha256": "d17b5fa3757c37be68e43646e4cecb88a7c1577b18b4208c5a53175d8b628ab7"
+    },
+    {
+      "path": "D:/spheres-offload/codex-next-20260928/lazy-digest-validation-20260930/tooling.log",
+      "bytes": 11494,
+      "sha256": "c8f52807f2b7bfa2577c5de94c985c6a0ad6aea94f8dabbc06afd4fdc784eff1"
+    }
+  ],
+  "qualification": false,
+  "s25_complete": false
+}

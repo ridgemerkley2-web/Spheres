@@ -1,0 +1,62 @@
+[
+  {
+    "name": "index",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "census",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "ledger",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_gap_ledger.py",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "boundary",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/certified_boundary_matrix.py",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "workboard",
+    "args": [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit": 0
+  }
+]

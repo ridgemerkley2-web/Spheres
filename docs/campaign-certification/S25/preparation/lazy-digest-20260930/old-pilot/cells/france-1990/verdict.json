@@ -1,0 +1,223 @@
+{
+  "id": "france-1990",
+  "passed": true,
+  "failure": null,
+  "archives": [
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+      },
+      "original_relative": "uninterrupted/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+        "bytes": 10798784,
+        "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+      },
+      "gzip_relative": "uninterrupted/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+        "bytes": 65221417,
+        "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+      },
+      "original_relative": "resumed/saves/final.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+        "bytes": 10798784,
+        "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+      },
+      "gzip_relative": "resumed/saves/final.json.gz",
+      "decoded": {
+        "bytes": 65221417,
+        "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+        "bytes": 65236438,
+        "sha256": "b893638d3689128c50ea31a8db24624a83a43343f703fc487833e80bf02d0acc"
+      },
+      "original_relative": "resumed/saves/monthly.json",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+        "bytes": 10779481,
+        "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.gz",
+      "decoded": {
+        "bytes": 65236438,
+        "sha256": "b893638d3689128c50ea31a8db24624a83a43343f703fc487833e80bf02d0acc"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    },
+    {
+      "original": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak",
+        "bytes": 60126088,
+        "sha256": "ff89b33f90ad83833de77c256a823801664b326e4e3a531eeca2df88b0b82972"
+      },
+      "original_relative": "resumed/saves/monthly.json.bak",
+      "gzip": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+        "bytes": 10075192,
+        "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+      },
+      "gzip_relative": "resumed/saves/monthly.json.bak.gz",
+      "decoded": {
+        "bytes": 60126088,
+        "sha256": "ff89b33f90ad83833de77c256a823801664b326e4e3a531eeca2df88b0b82972"
+      },
+      "roundtrip_verified": true,
+      "raw_removed": true,
+      "restore": "Decode this gzip into a NEW destination at original_relative; verify decoded bytes and sha256."
+    }
+  ],
+  "test_execution": {
+    "executed": 1,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 475
+  },
+  "native_validation": {
+    "comparisons": 30,
+    "calendar_days_each_leg": 398,
+    "checks": {
+      "competition_adoptions": 2,
+      "daily_invariant_checks": 796,
+      "full_horizon_pause": null,
+      "monthly_reloads": 13,
+      "native_validation_checks": 60,
+      "sandbox_continued": false,
+      "sandbox_daily_invariant_checks": 0,
+      "terminal_reloads": 2
+    },
+    "actions": 19,
+    "final_archives": [
+      {
+        "leg": "uninterrupted",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json",
+          "bytes": 65221417,
+          "sha256": "9c027be8d5ef216935634c79d45ed408dc57f784a32d5e1c2d54bb7eba9e1d5a"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      },
+      {
+        "leg": "resumed",
+        "kind": "final",
+        "file": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json",
+          "bytes": 65221417,
+          "sha256": "0dd46994743257124eec77431141c1a7b3d72ab2869b3844f73d907dd2e1c4be"
+        },
+        "canonical": {
+          "bytes": 65221393,
+          "sha256": "307bc9056f7d75797691a86b852daecb926dbc5d03524f75376ccf4000ddf72b",
+          "normalization": "Only terminal top-level saved_unix removed; every other byte preserved."
+        }
+      }
+    ],
+    "actual_final_pair_sha256_equal": true
+  },
+  "native_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930\\cells\\france-1990\\native\\result.json",
+    "bytes": 16797,
+    "sha256": "f6757797a3022ea7d7035509e3f6f2ab12aa5abe19dd23121c1d86e5802eadee"
+  },
+  "files": [
+    {
+      "relative": "archive-manifest.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\archive-manifest.json",
+      "bytes": 4764,
+      "sha256": "f9b85cdf9307ad3a54407556c5fbc93397c16dfe885e2dd6100d18f7bd7f5875"
+    },
+    {
+      "relative": "execution.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\execution.json",
+      "bytes": 1708,
+      "sha256": "f39d8d6848c0d7d31272ca0c5112d105acf5d9e5653eb6c8e52cff563695ebc6"
+    },
+    {
+      "relative": "native/progress.jsonl",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "relative": "native/result.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\result.json",
+      "bytes": 16797,
+      "sha256": "f6757797a3022ea7d7035509e3f6f2ab12aa5abe19dd23121c1d86e5802eadee"
+    },
+    {
+      "relative": "native/resumed/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\resumed\\saves\\final.json.gz",
+      "bytes": 10798784,
+      "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.bak.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.bak.gz",
+      "bytes": 10075192,
+      "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+    },
+    {
+      "relative": "native/resumed/saves/monthly.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\resumed\\saves\\monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+    },
+    {
+      "relative": "native/uninterrupted/saves/final.json.gz",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\native\\uninterrupted\\saves\\final.json.gz",
+      "bytes": 10798784,
+      "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+    },
+    {
+      "relative": "request.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\request.json",
+      "bytes": 191,
+      "sha256": "7bbde0e791801d891e4853f2db7b2711f48aa6e0a00e969df65a2af123d505df"
+    },
+    {
+      "relative": "stderr.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative": "stdout.log",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\stdout.log",
+      "bytes": 167,
+      "sha256": "da7e5f296c06b84a1d7b88cffeaf8be1d00a5fddc90c8c4dc66395e91bae9b43"
+    },
+    {
+      "relative": "transfer.json",
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\cells\\france-1990\\transfer.json",
+      "bytes": 8090,
+      "sha256": "055acf2b7e496d32066c7f68808ee8b5cb93f04501185802af44a2e6ef21d4f2"
+    }
+  ]
+}

@@ -93,19 +93,26 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 | CLAUDE-C01-20 | pending | 73 |
 | CLAUDE-C01-21 | pending | 59 |
 | CLAUDE-C01-22 | pending | 108 |
+| CLAUDE-C01-23 | accepted | 49 |
+| CLAUDE-C01-24 | accepted | 49 |
+| CLAUDE-C01-25 | accepted | 71 |
 | CLAUDE-C01-26 | pending | 30 |
+| CLAUDE-C01-27 | accepted | 74 |
+| CLAUDE-C01-30 | accepted | 39 |
+| CLAUDE-C01-32 | accepted | 38 |
+| CLAUDE-C01-33 | accepted | 22 |
 
 ## Coverage by country
 
 | Case | Identity | Roles (research / party / executive) | Cases | Research yearly identified | Party yearly established | Party yearly portraits bound |
 |---|---|---|---:|---:|---:|---:|
-| France | France | 0 / 15 / 1 | 924 | none | 197/555 | 23/198 |
+| France | France | 1 / 15 / 1 | 995 | 0/37 | 197/555 | 23/198 |
 | Japan | Japan | 5 / 8 / 1 | 1013 | 9/185 | 151/296 | 15/151 |
-| India | India | 3 / 4 / 1 | 568 | 6/111 | 109/148 | 10/109 |
+| India | India | 5 / 4 / 1 | 720 | 6/185 | 109/148 | 10/109 |
 | Brazil | Brazil | 3 / 6 / 1 | 688 | 20/111 | 99/222 | 7/100 |
-| SouthAfrica | SouthAfrica | 7 / 7 / 1 | 911 | 4/259 | 151/259 | 13/151 |
-| Tonga | Tonga | 15 / 0 / 1 | 920 | 15/555 | none | none |
-| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 623 | 0/370 | none | none |
+| SouthAfrica | SouthAfrica | 11 / 7 / 1 | 1190 | 4/407 | 151/259 | 13/151 |
+| Tonga | Tonga | 15 / 0 / 1 | 948 | 15/555 | none | none |
+| SaudiArabia | SaudiArabia | 10 / 0 / 1 | 680 | 0/370 | none | none |
 | USSR -> Russia | USSR | 6 / 3 / 1 | 561 | 0/222 | 0/111 | none |
 | USSR -> Russia | Russia | 9 / 5 / 1 | 885 | 3/333 | 0/185 | none |
 
@@ -113,7 +120,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### France
 
-- No C01 office or leadership research role exists for this identity; every historical identity shown comes from the production registry.
+- Research roles: 1 (1 with holder observations); 0 of 37 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 0 are bracketed, 24 uncertain, 13 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 7.
 - Production party rows/components: 15; 197 of 555 yearly samples 1990-2026 have an established registry holder, 4 uncertain, 293 unknown, 37 unresearched and 24 inapplicable.
 - Registry holder portraits at yearly samples: 23 bound, 175 unbound (34 distinct people without served art).
 - Campaign-start executive Francois Mitterrand: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
@@ -135,8 +143,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### India
 
-- Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 31.
+- Research roles: 5 (5 with holder observations); 6 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 3 are bracketed, 98 uncertain, 78 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 21, pending 31.
 - Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.
 - Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).
 - Campaign-start executive V. P. Singh: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
@@ -159,8 +167,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### SouthAfrica
 
-- Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.
-- Research holder observations by acceptance: pending 32, unattributed_intake 5.
+- Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 357 unknown and 0 unresearched.
+- Research holder observations by acceptance: accepted 36, pending 32, unattributed_intake 5.
 - Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.
 - Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).
 - Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.
@@ -171,8 +179,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### Tonga
 
-- Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.
-- Research holder observations by acceptance: accepted 19, unattributed_intake 10.
+- Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 62 uncertain, 320 unknown and 148 unresearched.
+- Research holder observations by acceptance: accepted 30, unattributed_intake 10.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -180,8 +188,8 @@ asserted on synthetic fixtures in `tools/avatars/test_certified_boundary_matrix.
 
 ### SaudiArabia
 
-- Research roles: 10 (3 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 22 are bracketed, 32 uncertain, 57 unknown and 259 unresearched.
-- Research holder observations by acceptance: pending 13, unattributed_intake 3.
+- Research roles: 10 (5 with holder observations); 0 of 370 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 37 are bracketed, 82 uncertain, 66 unknown and 185 unresearched.
+- Research holder observations by acceptance: accepted 33, pending 13, unattributed_intake 3.
 - No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.
 - Campaign-start executive Fahd bin Abdulaziz Al Saud: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.
 - Campaign-start comparison: historical_identity_not_established.
@@ -234,6 +242,7 @@ established holders at those samples; for the executive they count the campaign-
 | France | `party:fr_udf/fr_udf_pril` Pôle républicain, indépendant et libéral (PRIL) | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | France | `party:fr_pcf` French Communist Party | production_registry 6 | 37/0/0/0/0/0/0 | 9 | 0 | 5/38 |
 | France | `party:fr_fn` National Front | production_registry 7 | 37/0/0/0/0/0/0 | 15 | 0 | 5/37 |
+| France | `research:fr_president` Président de la République | accepted 7 | 0/0/0/24/13/0/0 | 15 | 4 | - |
 | Japan | `executive` Prime Minister | pending 30 | 9/0/0/21/7/0/0 | 66 | 16 | 5/37 |
 | Japan | `party:jp_ldp` Liberal Democratic Party | production_registry 16 | 37/0/0/0/0/0/0 | 45 | 0 | 2/37 |
 | Japan | `party:jp_jsp/jp_jsp_1945` Japan Socialist Party | production_registry 4 | 6/0/0/1/0/0/30 | 3 | 0 | 2/6 |
@@ -253,7 +262,9 @@ established holders at those samples; for the executive they count the campaign-
 | India | `party:in_jd` Janata Dal | production_registry 3 | 7/0/0/30/0/0/0 | 6 | 0 | 4/7 |
 | India | `party:in_bjp` Bharatiya Janata Party | production_registry 14 | 30/0/0/7/0/0/0 | 18 | 0 | 2/30 |
 | India | `party:in_cpm` Communist Party of India (Marxist) | production_registry 6 | 36/0/0/1/0/0/0 | 9 | 0 | 2/36 |
+| India | `research:in_bjp_president` National President of the Bharatiya Janata Party | accepted 19 | 0/0/1/35/1/0/0 | 12 | 32 | - |
 | India | `research:in_inc_president` President of the Indian National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
+| India | `research:in_jd_president` President of the Janata Dal | accepted 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | India | `research:in_pm` Prime Minister of India | pending 13 | 6/0/2/29/0/0/0 | 15 | 16 | - |
 | India | `research:in_president` President of India | pending 8 | 0/0/0/34/3/0/0 | 21 | 2 | - |
 | Brazil | `executive` President of the Republic | pending 12 | 11/0/0/25/1/0/0 | 33 | 2 | 0/37 |
@@ -274,10 +285,14 @@ established holders at those samples; for the executive they count the campaign-
 | SouthAfrica | `party:za_dp` Democratic Party | production_registry 3 | 0/0/0/1/36/0/0 | 0 | 0 | - |
 | SouthAfrica | `party:za_pac` Pan Africanist Congress | production_registry 2 | 6/0/0/1/30/0/0 | 3 | 0 | 1/6 |
 | SouthAfrica | `party:za_acdp` African Christian Democratic Party | production_registry 1 | 33/0/0/0/0/0/4 | 0 | 0 | 0/33 |
+| SouthAfrica | `research:za_acdp_president` President of the African Christian Democratic Party | accepted 5 | 0/0/0/0/37/0/0 | 0 | 10 | - |
 | SouthAfrica | `research:za_anc_president` President of the African National Congress | pending 10 | 0/0/0/0/37/0/0 | 0 | 20 | - |
 | SouthAfrica | `research:za_da_federal_leader` Federal Leader | unattributed_intake 2 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | SouthAfrica | `research:za_da_federal_chair` Federal Chairperson | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | SouthAfrica | `research:za_da_council_chair` Chairperson of the Federal Council | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| SouthAfrica | `research:za_ifp_president` President of the Inkatha Freedom Party | accepted 8 | 0/0/0/0/37/0/0 | 0 | 16 | - |
+| SouthAfrica | `research:za_pac_president` President of the Pan Africanist Congress of Azania | accepted 14 | 0/0/0/0/37/0/0 | 0 | 28 | - |
+| SouthAfrica | `research:za_ff_leader` Leader of the Freedom Front Plus (Vryheidsfront Plus) | accepted 9 | 0/0/0/0/37/0/0 | 0 | 18 | - |
 | SouthAfrica | `research:za_president_election` President of the Republic of South Africa | pending 9, unattributed_intake 1 | 4/0/9/10/14/0/0 | 12 | 18 | - |
 | SouthAfrica | `research:za_state_president` State President of the Republic of South Africa | pending 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | SouthAfrica | `research:za_deputy_president` Deputy President of the Republic of South Africa | pending 12 | 0/0/0/27/10/0/0 | 3 | 22 | - |
@@ -293,7 +308,7 @@ established holders at those samples; for the executive they count the campaign-
 | Tonga | `research:to_ministers` Cabinet ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Tonga | `research:to_deputy_pm` Deputy Prime Minister | accepted 3, unattributed_intake 1 | 0/0/0/5/32/0/0 | 6 | 4 | - |
 | Tonga | `research:to_privy_councillors` Privy Councillors | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| Tonga | `research:to_speaker` Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
+| Tonga | `research:to_speaker` Speaker | accepted 11, unattributed_intake 1 | 0/0/2/21/14/0/0 | 6 | 24 | - |
 | Tonga | `research:to_deputy_speaker` Deputy Speaker | unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 2 | - |
 | Tonga | `research:to_peoples_representatives` People's representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | Tonga | `research:to_nobles_representatives` Nobles' representatives | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -302,9 +317,9 @@ established holders at those samples; for the executive they count the campaign-
 | SaudiArabia | `research:sa_crown_prince` Crown Prince | pending 8, unattributed_intake 1 | 0/0/12/16/9/0/0 | 15 | 16 | - |
 | SaudiArabia | `research:sa_pm` Prime Minister | pending 1, unattributed_intake 1 | 0/0/0/0/37/0/0 | 0 | 4 | - |
 | SaudiArabia | `research:sa_cabinet_ministers` Ministers | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_shura_chair` Chairman of the Shura Council | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_shura_chair` Chairman of the Shura Council | accepted 29 | 0/0/5/32/0/0/0 | 9 | 42 | - |
 | SaudiArabia | `research:sa_shura_members` Shura Council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
-| SaudiArabia | `research:sa_succession_chair` Chairman | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
+| SaudiArabia | `research:sa_succession_chair` Chairman | accepted 4 | 0/0/10/18/9/0/0 | 3 | 8 | - |
 | SaudiArabia | `research:sa_succession_secretary` Secretary General | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | SaudiArabia | `research:sa_succession_members` Commission members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
 | SaudiArabia | `research:sa_municipal_members` Municipal council members | none | 0/0/0/0/0/37/0 | 0 | 0 | - |
@@ -345,4 +360,4 @@ established holders at those samples; for the executive they count the campaign-
 - Campaign comparison uses the fresh 1990 start derived from production data. Later incumbents depend on play; `--campaign` compares a supplied save without writing the matrix.
 - Portrait checks mirror the served selector and file hashes; they are not a visual likeness review.
 - Future-pool listings refer to the simulation future reference. The served web historical-reference endpoint rejects dates after the cutoff; a future candidate or image never appoints an incumbent.
-- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26) do not change a packet's class.
+- Acceptance classes come from packet reports, numbered packet integration records and the 27 September 2026 integration note; they do not certify dates, people or likenesses. Source-repair and tool records (CLAUDE-C01-GAPS-01, CLAUDE-C01-SOURCE-05, CLAUDE-C01-SOURCE-06, CLAUDE-C01-SOURCE-17, CLAUDE-C01-SOURCE-26, ORDERED-2026-09-28) do not change a packet's class.

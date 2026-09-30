@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "only_cell": null,
+  "selected_cell_passed": null,
+  "coverage": {
+    "declared": 2,
+    "attempted": 2,
+    "passed": 2,
+    "failed": [],
+    "missing_requested": [],
+    "requested_plan_passed": true,
+    "pilot_passed": true,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "output": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930"
+}

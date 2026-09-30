@@ -1,0 +1,438 @@
+{
+  "version": 1,
+  "updated": "2026-09-28",
+  "tasks": [
+    {
+      "id": "CLAUDE-C01-SOURCE-05",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 1,
+      "title": "Recover and verify the Russian archive resolution",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Bounded source recovery accepted after independent review b3434002: exact archived page and three facsimiles reproduced, cited content visually checked, leaf discrepancy preserved. No broad C01 historical-coverage claim.",
+      "branch": "claude/c01-source-05",
+      "claim_revision": "d276830e9674daeea1e335cc4d01c982949ed510"
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-06",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 2,
+      "title": "Compare the changed Bush Library response",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Bounded Bush Library repair accepted after independent review 63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open.",
+      "branch": "claude/c01-source-06",
+      "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-17",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 3,
+      "title": "Compare the changed Brazilian Senate diary response",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Bounded source repair accepted after independent live/archive response and cited-page review, plus qualification repair bdb35a07. Three reviewed extracts are pinned; the earlier unavailable body discrepancy remains unexplained. Parent Brazil/C01 history remains pending.",
+      "branch": "claude/c01-source-17",
+      "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17",
+      "review_revision": "1c5f129f"
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-26",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 4,
+      "title": "Review Vedomosti facsimile provenance",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Bounded source repair accepted after 41 exact reported retrievals, corrected-quotation review and withdrawal of unsupported Izvestia evidence. Thirty reviewed extracts are pinned. Parent chronology and C12 source admissibility remain separate; no C01/C06 closure.",
+      "branch": "claude/c01-source-26",
+      "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6",
+      "review_revision": "1c5f129f"
+    },
+    {
+      "id": "CLAUDE-C01-23",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 5,
+      "title": "Finish existing claim: French presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-fr-23",
+      "depends_on": [],
+      "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+      "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "id": "CLAUDE-C01-24",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 6,
+      "title": "Finish existing claim: Tongan Speakers",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-to-24",
+      "depends_on": [],
+      "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+      "submission_revision": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+      "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "id": "CLAUDE-C01-25",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 7,
+      "title": "Finish existing claim: Saudi council chairs",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-sa-25",
+      "depends_on": [],
+      "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+      "submission_revision": "78e52b03cb2f321ed30e621fe0512e92b2e1e579",
+      "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "id": "CLAUDE-C01-27",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 8,
+      "title": "Finish existing claim: BJP presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-in-27",
+      "depends_on": [],
+      "next": "Accepted bounded source/content intake after independent Codex review and ordered integration. Original failures, later resolutions, uncertainties and inherited scope retained. Combined268 passing test executions; see docs/campaign-certification/C01/integrations/ORDERED-2026-09-28/README.md. Broader historical coverage, runtime installation and C01/C06/S23 remain open.",
+      "review_revision": "065341c94ee92b1f541c4a1c1cf1cfc401c0032b"
+    },
+    {
+      "id": "CODEX-S19-LATER-01",
+      "owner": "Codex",
+      "session": "S19",
+      "state": "complete",
+      "priority": 1,
+      "title": "Qualify real later guidance outcomes and save/resume",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
+      "depends_on": [],
+      "next": "S19 and S20 are complete; G4 is earned. S22 subsequently closed with 18/18 performance qualification cells. S23 is next and remains planned pending C06. CP1 remains open."
+    },
+    {
+      "id": "CODEX-C01-ACCEPTANCE-01",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 3,
+      "title": "Independently review source follow-ups before historical acceptance",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [
+        "CLAUDE-C01-SOURCE-05",
+        "CLAUDE-C01-SOURCE-06",
+        "CLAUDE-C01-SOURCE-17",
+        "CLAUDE-C01-SOURCE-26"
+      ],
+      "next": "All four assigned SOURCE-05/06/17/26 follow-up reviews are complete with pinned bounded decisions and preserved limitations. This closes the review task only; parent historical packets and complete country coverage remain pending.",
+      "review_revision": "1c5f129f"
+    },
+    {
+      "id": "CODEX-C01-SOURCE-06-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 2,
+      "title": "Review the submitted Bush Library source repair",
+      "handoff": "docs/planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md",
+      "depends_on": [],
+      "next": "Bounded Bush Library repair accepted after independent review 63746790: live/archive bodies and exact address/cited paragraphs reproduced; title-only observation and obsolete-body limitation preserved. Broader C01 remains open."
+    },
+    {
+      "id": "CLAUDE-C01-GAPS-01",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "complete",
+      "priority": 9,
+      "title": "Build the certified-country research gap ledger",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
+      "depends_on": [],
+      "next": "Accepted with provenance and cross-platform hash repairs 12ee48f1, independently reviewed at 157aac55. Bounded gap-audit tool complete; C01 historical coverage remains open. Regenerate pinned ledger when queue/research inputs change.",
+      "branch": "claude/c01-gaps-01",
+      "claim_revision": "5324614593da8694e1fb9848ea79002830b2723e"
+    },
+    {
+      "id": "CLAUDE-C03-REVIEW-01",
+      "owner": "Claude",
+      "session": "C03",
+      "state": "complete",
+      "priority": 10,
+      "title": "Build a cartoon review workbench",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
+      "depends_on": [],
+      "next": "Bounded cartoon review workbench accepted with CRLF/UTF-8 provenance repairs: 24 Python and 15 Node/browser entries pass. No new art approval, historical acceptance or C03/C06/S23 closure.",
+      "branch": "claude/c03-review-01",
+      "claim_revision": "28b3c5773f2d886c6133fbbc00d71cdb8ff06f10",
+      "review_revision": "ae3610b4"
+    },
+    {
+      "id": "CLAUDE-C04-PREP-01",
+      "owner": "Claude",
+      "session": "C04",
+      "state": "complete",
+      "priority": 11,
+      "title": "Prepare a fictional successor pilot",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C04-PREP-01.md",
+      "depends_on": [],
+      "next": "Eight fictional France/Tonga proposal dossiers and validator accepted with independent source review and constraint repairs; 73 tests pass. C04/C06/S23 remain open; no runtime installation or art approval.",
+      "branch": "claude/c04-prep-01",
+      "claim_revision": "f1547abd111f580ea2045c57906cc1d1af3356f1",
+      "review_revision": "99f8a3bc"
+    },
+    {
+      "id": "CLAUDE-S23-MATRIX-01",
+      "owner": "Claude",
+      "session": "S23",
+      "state": "complete",
+      "priority": 12,
+      "title": "Build the historical and cartoon boundary audit",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md",
+      "depends_on": [],
+      "next": "Corrected source-derived date/role/art audit accepted as preparation only; 36 tests pass. Recomputed output preserves uncertain dates, missing history/art and saved incumbents. S23 remains planned pending C06; no native replay or certificate granted.",
+      "branch": "claude/s23-matrix-01",
+      "claim_revision": "b4c021ab911851382856061a8c2c00b716b7b6f7",
+      "review_revision": "36740f8b"
+    },
+    {
+      "id": "CLAUDE-S24-SUCCESSORS-01",
+      "owner": "Claude",
+      "session": "S24",
+      "state": "complete",
+      "priority": 13,
+      "title": "Build successor-country fixture coverage",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
+      "depends_on": [],
+      "next": "Bounded successor fixture preparation accepted with retained-input, complete-check and portable source-identity repairs. Independent 5d11 baseline: 23 selection guards, 21 supported activation/save-reload routes and four browser representatives pass; Namibia/East Timor remain no_native_hook. Current budget finding repaired separately. S24 remains planned pending S23; no qualification granted.",
+      "branch": "claude/s24-successors-01",
+      "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c",
+      "submission_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6",
+      "review_revision": "32135770"
+    },
+    {
+      "id": "CLAUDE-E05-RESEARCH-01",
+      "owner": "Claude",
+      "session": "E05",
+      "state": "complete",
+      "priority": 14,
+      "title": "Research important French and Japanese companies",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
+      "depends_on": [],
+      "next": "Eight-company France/Japan research pilot and validator accepted as bounded preparation with rename-boundary/provenance repairs; 61 tests pass. Independent retrieval obtained 68 of 99 bodies (54 byte-exact, 14 changed); inaccessible sources and claim-level content-review limits remain recorded. This is not certification of all factual claims, runtime installation, or E05 completion.",
+      "branch": "claude/e05-research-01",
+      "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21",
+      "submission_revision": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+      "review_revision": "8c2b3e1d"
+    },
+    {
+      "id": "CLAUDE-C01-28",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 15,
+      "title": "Research five Russian party-leader chains",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
+      "depends_on": [],
+      "branch": "claude/c01-ru-28",
+      "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
+      "next": "Latest remote follow-up inspected at03141c43 on claude/c01-ru-28. Submitted research remains unreviewed and unaccepted; no import of its new research. Preserve existing claim and scoped five-party chain; independent content/source checks still required.",
+      "submission_revision": "03141c43c5663e35d21eebc631aaf5eec4e909aa"
+    },
+    {
+      "id": "CLAUDE-C01-29",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "ready_for_review",
+      "priority": 16,
+      "title": "Research Japanese Socialist / Social Democratic Party chairs",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
+      "depends_on": [],
+      "branch": "claude/c01-jp-29",
+      "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
+      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted; South Africa C01-30 is claimed. Neither is accepted.",
+      "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
+    },
+    {
+      "id": "CODEX-S24-BUDGET-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "complete",
+      "priority": 17,
+      "title": "Separate the debt-rate floor from sovereign risk",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S24-BUDGET-01.md",
+      "depends_on": [],
+      "review_revision": "15b35901",
+      "next": "Completed budget explanation repair with native, UI and actual Brazil/France desktop/narrow browser evidence. No economic formula change or S24 qualification."
+    },
+    {
+      "id": "CODEX-S26-PREP-01",
+      "owner": "Codex",
+      "session": "S26",
+      "state": "complete",
+      "priority": 18,
+      "title": "Prepare reproducible independent human playtests",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S26-PREP-01.md",
+      "depends_on": [],
+      "review_revision": "3eeb6c4e",
+      "next": "Facilitator kit and observation/evidence validator complete; 23 synthetic tests pass. No human observations; actual S26 remains dependent on S24 and real participants."
+    },
+    {
+      "id": "CODEX-S24-RECOVERY-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "complete",
+      "priority": 19,
+      "title": "Repair and verify campaign recovery",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "Closed: three storage repairs, visible backup recovery,440 native tests plus 1 HTTP connection test,64UI and five actual active-work browser cases pass. Evidence: docs/campaign-certification/S24/repairs/campaign-recovery/README.md. Worldwide S24 remains pending."
+    },
+    {
+      "id": "CODEX-S25-RUNNER-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "complete",
+      "priority": 20,
+      "title": "Build paired long-campaign stability runner",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S24-RECOVERY-01"
+      ],
+      "next": "Closed: native runner, strict fixed plans, independent retained-evidence verifier and France1990/Tonga7 annual pilot pass. 1592 daily advances; evidence in docs/campaign-certification/S25/preparation/native-stability/README.md. Full24-cell/S25 qualification remains outstanding."
+    },
+    {
+      "id": "CODEX-S28-PACKAGE-01",
+      "owner": "Codex",
+      "session": "S28",
+      "state": "complete",
+      "priority": 21,
+      "title": "Verify portable release identity and recovery",
+      "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S25-RUNNER-01"
+      ],
+      "next": "Closed: verified package tools,18Python/5Node guards, identical actual Windows ZIPs,two extracted offline local passes,and Windows/Linux package CI passes at a2cf1dcc. Evidence: docs/campaign-certification/S28/preparation/portable-release/README.md. Full S28 qualification and existing A1 calibration remain open."
+    },
+    {
+      "id": "CLAUDE-C01-30",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 17,
+      "title": "Research ACDP, Freedom Front and IFP party leaders",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+      "depends_on": [],
+      "branch": "claude/c01-za-30",
+      "claim_revision": "68535825eca53986feb5b6d9bf5ad44981bc6543",
+      "next": "Existing remote claim inspected at 68535825eca53986feb5b6d9bf5ad44981bc6543. Preserve the three-party, at-most-ten-person scope and existing branch; no submitted research, integration or acceptance. Return ready_for_review with primary evidence and focused tests."
+    },
+    {
+      "id": "CODEX-S27-A1-01",
+      "owner": "Codex",
+      "session": "S27",
+      "state": "blocked",
+      "priority": 1,
+      "title": "Repair the unchanged A1 political calibration gate",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "A1 remains failed; rejected trials and original limits are retained. Exact firing and independently reproduced 118-country geography checks found no missed funding command or contract defect. In non-firing eligible crises, 3550/3552 loyalty targets were already at or above .35, with no recorded AI funding increase. No justified model replacement established and no holdouts used. Resume from new causal evidence or a reviewed design contract. Evidence: docs/campaign-certification/S27/preparation/a1-geography-20260928/README.md. S27/CP1 remain unqualified."
+    },
+    {
+      "id": "CODEX-S24-STARTUP-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "complete",
+      "priority": 2,
+      "title": "Refresh all 137 starters and complete browser startup coverage",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "Closed bounded startup proof: all137 native and all137 actual-browser cases pass on frozen8d338dd2, with independent retained-browser verification. Six canonical zero-district island countries use trusted visible-label picking; seven ordinary days and complete save/load comparison pass. Evidence: docs/campaign-certification/S24/preparation/worldwide-startup/README.md. No S24/CP1 qualification."
+    },
+    {
+      "id": "CODEX-S25-SUCCESSION-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "complete",
+      "priority": 3,
+      "title": "Prove controlled paired USSR-to-Russia continuity",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S24-STARTUP-01"
+      ],
+      "next": "Closed controlled continuity proof on ae8084e8: real authored USSR-to-Russia transition,20 complete retained archives,10 scheduled reloads,20 comparisons,40 native validation checks and16 daily invariants pass; separate and portable retained verification pass. First verifier failure preserved and day-one native default repaired. Evidence: docs/campaign-certification/S25/preparation/controlled-succession/README.md. No organic-history/fullmatrix/S25 claim."
+    },
+    {
+      "id": "CODEX-S25-MATRIX-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "in_progress",
+      "priority": 4,
+      "title": "Run the complete 24-cell 1990-2035 engineering preflight",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S25-SUCCESSION-01"
+      ],
+      "next": "Full24 plan remains incomplete. Two local full-plan attempts stopped for USB contention/SSD capacity; all checkpoints retained, no passing cell claimed. Read-only audit found real distinct education-funding histories, so no gameplay pruning. Frozen distributed execution at5d970f6d uses one binary and batch, all24 complete horizons, strict per-cell archives and independent aggregation; await every actual result. Evidence: docs/campaign-certification/development/2026-09-28-ordered/README.md."
+    },
+    {
+      "id": "CODEX-C01-23-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 5,
+      "title": "Independently review French presidents submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "Bounded French review accepted and integrated in order at065341c9:49 source responses/95 claims reviewed, explicit midnight/unknown-hour distinction repaired and missing supplement snapshots rejected. Original attempts retained;635 financial organizations unchanged. Combined268 test executions pass. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-23/review-2026-09-28/README.md. No C01/runtime closure. Review followed the recorded full-matrix attempts; matrix completion is not a historical-source dependency."
+    },
+    {
+      "id": "CODEX-C01-24-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 6,
+      "title": "Independently review Tongan Speakers submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-23-REVIEW"
+      ],
+      "next": "Bounded Tongan review accepted and integrated after France at065341c9:49 source responses/82 claims reviewed. Original44/49 held review and later5-source recovery independently retained; conflicting observations remain explicit. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-24/access-resolution-2026-09-28/README.md. No C01/runtime closure."
+    },
+    {
+      "id": "CODEX-C01-25-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 7,
+      "title": "Independently review Saudi council chairs submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-24-REVIEW"
+      ],
+      "next": "Bounded Saudi review accepted and integrated after Tonga at065341c9:71 source responses/110 claims reviewed. Original65/71 held review and later six-source resolution retained; distinct council roles/date uncertainty and inherited SOURCE-06 repair preserved. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-25/review-2026-09-28/README.md. No C01/runtime closure."
+    },
+    {
+      "id": "CODEX-C01-27-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "complete",
+      "priority": 8,
+      "title": "Independently review BJP presidents submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-25-REVIEW"
+      ],
+      "next": "Bounded BJP review accepted and integrated after Saudi Arabia at065341c9:74 declared source responses plus dating anchor/167 claims reviewed;19 holder observations preserve acting/elected/appointed distinctions and disputed dates. Original access/test attempts retained. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-27/review-2026-09-28/README.md. No C01/runtime closure."
+    }
+  ]
+}

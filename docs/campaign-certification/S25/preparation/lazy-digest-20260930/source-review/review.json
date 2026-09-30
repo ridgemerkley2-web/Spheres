@@ -1,0 +1,80 @@
+{
+  "format": "spheres-s25-harness-cost-review/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "created_utc": "2026-09-30T08:41:57.795098+00:00",
+  "scope": "Read-only frozen native stability harness/storage source and retained Jan1994 diagnostic. No code edit, Cargo, tests, simulation, holdout, source/input mutation, or acceptance decision.",
+  "frozen_matrix_revision": "5d970f6d7370baf16760585c641d81253d1c2175",
+  "current_integration_revision": "44098c5a48f491f43fbcb74d121f290380af0b12",
+  "proposal_count": 1,
+  "finding": {
+    "file": "spheres-web/src/s25_stability_tests.rs",
+    "lines": [
+      190,
+      195
+    ],
+    "kind": "eager_failure_diagnostics",
+    "source_proof": "equivalent supplies format!(...fingerprint(a),fingerprint(b)) as an already-evaluated String argument to require. require returns Ok without using the message when byte equality holds. compare separately fingerprints the canonical result for the required report row.",
+    "proposed_change": "Keep both canonical storage::encode calls and exact Vec equality. Construct and return the identical mismatch message inside if a != b; otherwise return the same a.",
+    "unchanged": [
+      "Complete campaign serialization/canonicalization; only terminal saved_unix excluded",
+      "Native invariants and ordinary daily invariants",
+      "All monthly native save/reloads and backup semantics",
+      "Every monthly,next-day,mandatory,terminal,terminal-reload,sandbox boundary and recorded fingerprint",
+      "Independent uninterrupted and resumed legs; player actions/calendar/seed/horizon",
+      "Mismatch diagnostics and both mismatch fingerprints on an actual difference"
+    ],
+    "structural_saving": "Eliminates requesting two complete FNV passes and formatting on each equal equivalent() call at source level. Actual frozen-binary optimization and elapsed saving were not measured.",
+    "not_claimed": "Not identified as sole timeout cause; no assertion of six-hour completion or production speedup."
+  },
+  "static_complete_schedule": {
+    "scope": "Calendar-only derivation for a successful full2035run, not measurement of failedcells",
+    "comparison_rows": {
+      "opening": 1,
+      "day_after_reload": 551,
+      "monthly_after_reload": 552,
+      "mandatory": 49,
+      "terminal": 1,
+      "terminal_reload": 1,
+      "sandbox_continuation": 1
+    },
+    "compare_calls": 1156,
+    "additional_equivalent_calls": 4,
+    "equivalent_calls": 1160,
+    "unneeded_success_diagnostic_fingerprint_requests": 2320
+  },
+  "retained_diagnostic": {
+    "diagnostic_revision": "ae8084e853a8",
+    "days": 31,
+    "comparisons_all_match": true,
+    "comparison_ms": 16193.1426,
+    "ordinary_native_tick_ms": 2880.0857,
+    "observed_tick_ms": 2962.5364,
+    "min_pretty_native_world_bytes": 220245439,
+    "max_pretty_native_world_bytes": 221381992,
+    "scope": "Existing31day Jan1994 diagnostic; full native worlds/headlines daily, not complete campaign envelopes. No execution in this review. No inference of actualS25 diagnostic FNV cost."
+  },
+  "test_plan": [
+    {
+      "kind": "lazy-evaluation regression",
+      "requirement": "Add a narrowly scoped counter/helper closure for diagnostic fingerprint evaluation. Equal archives must exercise full byte comparison and produce zero diagnostic FNV calls; mismatch must call exactly2 and preserve the old error text/date/length/digests. A test that merely asserts equality is insufficient."
+    },
+    {
+      "kind": "old/new oracle",
+      "requirement": "Against identical prepared Games and controlled corrupted copies, compare new versus literal old equivalent function results, returned canonical bytes, error text and failure timing. Alter one same-length byte in world finance, forces/ammunition,history,log,journey,and unknown saved envelope fields where supported; timestamp-only difference passes."
+    },
+    {
+      "kind": "retained fingerprint preservation",
+      "requirement": "Native compare() report row still has the exact canonical length/FNV, with both native validators executed. Verify collision-prone hash substitution cannot replace byte equality."
+    },
+    {
+      "kind": "bounded real execution",
+      "requirement": "Root may run existing paired pilot fresh under old/new immutable builds, retaining complete artifacts and normalized reports with only declared build/timestamps removed. Require exact checkpoint membership,counters,actions,byte-identical canonical finals and retained-verifier success; never resume both legs."
+    },
+    {
+      "kind": "attribution before broader changes",
+      "requirement": "If timing is collected, isolate equivalent()/diagnostic hashing from storage encoding, native validation, native read/write and native daily simulation. Do not infer their individual costs from Jan1994 residual or reuse failedoldcells as new qualification."
+    }
+  ],
+  "qualification": false,
+  "a1_or_s25_completion": false
+}

@@ -1,0 +1,48 @@
+{
+  "format": "spheres-stability-freeze/v1",
+  "created_utc": "2026-09-30T09:04:51.655684+00:00",
+  "candidate_revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "expected_compiled_revision": "ae8084e853a8",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+    "bytes": 353133206,
+    "sha256": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2"
+  },
+  "plan": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\pilot-plan.json",
+    "bytes": 331,
+    "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+  },
+  "frozen_plan": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\plan.json",
+    "bytes": 331,
+    "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+  },
+  "harness": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\frozen\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "frozen_harness": {
+    "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\stability_matrix.py",
+    "bytes": 81651,
+    "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+  },
+  "native_test": "s25_stability_tests::s25_stability_cell",
+  "scope": "pilot",
+  "jobs": 2,
+  "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
+  "qualification": false,
+  "s25_complete": false,
+  "resource_execution": {
+    "scratch_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\lazy-digest-old-pilot-scratch-20260930",
+    "min_free_bytes": 3221225472,
+    "monitor_seconds": 2,
+    "compress_scratch": false,
+    "setup": {
+      "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-old-pilot-20260930\\resource-setup.json",
+      "bytes": 440,
+      "sha256": "50b3ab2b5dffe85c7ad9a480a6a4930d577058019066712a047f265d59251536"
+    }
+  }
+}

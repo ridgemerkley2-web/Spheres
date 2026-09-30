@@ -22,10 +22,10 @@
      "production_party": 0,
      "executive": 1
     },
-    "cases": 920,
+    "cases": 948,
     "case_kinds": {
-     "attestation_day": 17,
-     "attestation_day_after": 17,
+     "attestation_day": 28,
+     "attestation_day_after": 28,
      "attested_period_from_day_after": 5,
      "attested_period_from_day_before": 5,
      "attested_period_from_day_of": 5,
@@ -38,22 +38,23 @@
      "fictional_last_day": 16,
      "fictional_start_day": 16,
      "future_2030": 16,
-     "handover_day_after": 11,
-     "handover_day_before": 11,
-     "handover_day_of": 11,
+     "handover_day_after": 13,
+     "handover_day_before": 13,
+     "handover_day_of": 13,
      "reference_start": 16,
      "reference_start_day_before": 16,
      "yearly": 736
     },
     "observations_by_acceptance": {
-     "accepted": 19,
+     "accepted": 30,
      "unattributed_intake": 10
     },
     "research_yearly_status": {
+     "bracketed": 2,
      "established": 15,
      "period_attested": 8,
-     "uncertain": 41,
-     "unknown": 343,
+     "uncertain": 62,
+     "unknown": 320,
      "unresearched": 148
     },
     "production_party_yearly_status": {},
@@ -77,8 +78,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 0 are bracketed, 41 uncertain, 343 unknown and 148 unresearched.",
-    "Research holder observations by acceptance: accepted 19, unattributed_intake 10.",
+    "Research roles: 15 (11 with holder observations); 15 of 555 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 8 have period observations only, 2 are bracketed, 62 uncertain, 320 unknown and 148 unresearched.",
+    "Research holder observations by acceptance: accepted 30, unattributed_intake 10.",
     "No simulation party rows: no production party leadership and no fictional successor pool exist for this identity.",
     "Campaign-start executive Taufa'ahau Tupou IV: portrait bound on 1990-01-01; if retained, bound at 1 of 46 yearly samples.",
     "Campaign-start comparison: historical_identity_not_established.",
@@ -1257,49 +1258,88 @@
    },
    "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
    "observations": [
-    "to_speaker#1"
+    "to_speaker#1",
+    "to_speaker#2",
+    "to_speaker#3",
+    "to_speaker#4",
+    "to_speaker#5",
+    "to_speaker#6",
+    "to_speaker#7",
+    "to_speaker#8",
+    "to_speaker#9",
+    "to_speaker#10",
+    "to_speaker#11",
+    "to_speaker#12"
    ],
    "cases": [
     {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
-    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-11-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-11-15","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-04-30","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-05-01","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-04-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-04-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#5","before_stated_end"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-03-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-03-23","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["to_speaker#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["to_speaker#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-24","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["to_speaker#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-25","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_speaker#5","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-26","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-06-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-06-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["to_speaker#7","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-15","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["to_speaker#7","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["to_speaker#7","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-07-16","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["to_speaker#7","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-07-17","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["to_speaker#7","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-07-18","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-07-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-02-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-02-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-03-05","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-03-06","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-02-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-02-18","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#1","attested_on_day"]]},"acceptance":["unattributed_intake"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2025-12-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-05-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["to_speaker#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-05-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
     {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
@@ -1316,13 +1356,15 @@
     {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
    ],
    "statistics": {
-    "cases": 54,
+    "cases": 82,
     "yearly_historical_samples": 37,
     "yearly_status": {
-     "unknown": 37
+     "bracketed": 2,
+     "uncertain": 21,
+     "unknown": 14
     },
-    "boundary_cases": 0,
-    "attestation_cases": 2
+    "boundary_cases": 6,
+    "attestation_cases": 24
    }
   },
   {
@@ -2244,6 +2286,277 @@
    "packets": [],
    "source_classes": {
     "unattributed_intake": 1
+   }
+  },
+  "to_speaker#10": {
+   "role": "research:to_speaker",
+   "name": "Lord Fakafanua",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-03-05",
+   "claim_ids": [
+    "to_speaker_fakafanua_styled_20180305"
+   ],
+   "note": "Styled Speaker, addressing the first sitting held at the Tonga National Centre, in the Assembly's item of 5 March 2018. He took the oath as 'the Lord Speaker Fakafanua' on 18 January 2018 (to_speaker_fakafanua_sworn_news_20180118; the oath is not a start), and the Assembly's election of 18 December 2017 is recorded in the prime-minister packet (to_pohiva_assembly_reselection_20171218).",
+   "uncertainty": "No royal appointment for this Assembly is dated, so there is no start; no end is stated. This is a separate holder observation from the 2012-2014 one, and no continuity or gap between the two is asserted.",
+   "sources": [
+    "to_la_news_speaker_gita_20180305"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "to_speaker#11": {
+   "role": "research:to_speaker",
+   "name": "Lord Fakafanua",
+   "from": null,
+   "until": null,
+   "attested_on": "2022-02-17",
+   "claim_ids": [
+    "to_speaker_fakafanua_styled_20220217"
+   ],
+   "note": "Styled Speaker in the Assembly's item of 17 February 2022, after the Assembly's election of December 2021 (to_speaker_fakafanua_assembly_election_20211215). Claims of the 2024-2025 transition packet style him Speaker on 9 and 10 December 2024 and 31 January 2025 (to_palace_acceptance_letter_20241209, to_pm_nominations_invited_20241210, to_eke_oath_20250131); this holder does not cite them.",
+   "uncertainty": "A separate holder observation for the Assembly elected in November 2021: no continuity with, or gap after, the 2017-2021 holder is asserted. No royal appointment for this Assembly is dated, so there is no start. No end is stated: 'Former Speaker' (16 December 2025) and Lord Vaea's succession (19 December 2025) are not end dates.",
+   "sources": [
+    "to_la_news_speaker_summit_20220217"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "to_speaker#12": {
+   "role": "research:to_speaker",
+   "name": "Lord Vaea",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-05-19",
+   "claim_ids": [
+    "to_speaker_vaea_led_delegation_20260519"
+   ],
+   "note": "The latest official styling found before the cutoff: the Assembly's press release of 19 May 2026 says the delegation to China was led by the Speaker, Lord Vaea. His royal appointment effective 18 December 2025 is the existing string holder to_speakers_appointment, which stays first and unchanged; the Assembly's election (item of 16 December 2025) and his oath (22 January 2026) are separate claims.",
+   "uncertainty": "An attestation, not a term: no from or until. The Acting Speaker presiding on 18 August 2026 (to_acting_speaker_tuihaangana_20260818) is a claim only and neither names nor ends his Speakership.",
+   "sources": [
+    "to_la_news_china_visit_20260519"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "to_speaker#2": {
+   "role": "research:to_speaker",
+   "name": "Fusitu'a",
+   "from": null,
+   "until": null,
+   "attested_on": "1996-11-14",
+   "claim_ids": [
+    "to_speaker_warrant_fusitua_19960920",
+    "to_speaker_fusitua_interview_19961114",
+    "to_speaker_fusitua_material_times_19961114"
+   ],
+   "note": "Court records attest him as Speaker: the Court of Appeal quotes the Speaker's committal warrant of 20 September 1996, signed 'Fusitu'a / Chairman of the Legislative Assembly', and the Supreme Court found that when he was interviewed as the Speaker on 14 November 1996 he was 'at all material times the Speaker'. Event-dated to 14 November 1996, the day of that explicit finding.",
+   "uncertainty": "No appointment instrument, start or end was found. His appointment year is 1990, 1991 or 1995 in the Assembly's retrospectives (to_la_list_fusitua_1990_1998_20111130, to_la_obituary_fusitua_appointed_1991_20140505, to_la_archives_fusitua_1995_1998_20060327); none is a boundary, and the lists' 1998 end is not used. The courts name him only by his noble title.",
+   "sources": [
+    "to_tlr_2003",
+    "to_tlr_1997"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_speaker#3": {
+   "role": "research:to_speaker",
+   "name": "Hon. Veikune",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-04-30",
+   "claim_ids": [
+    "to_speaker_veikune_listed_20010430",
+    "to_speaker_veikune_listed_20011214"
+   ],
+   "note": "First term. The government's Legislative Assembly page presented him as Speaker when captured on 30 April 2001 (last modified 19 February 2001) and in its revision of 14 December 2001.",
+   "uncertainty": "Event-dated to the first capture only; the roster could lag (a capture of August 2002, after his successor's appointment had been reported, still marked him Speaker). His appointment (1998 or 1999 in the Assembly's retrospectives) and the end of this term (2001 or 2002) are unresolved; no end is inferred from Tu'ivakano's 2002 appointment, which the government statement says 'succeeds the Hon. Veikune'.",
+   "sources": [
+    "to_pmo_legislative_assembly_page_2001",
+    "to_pmo_legislative_assembly_page_20011214"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_speaker#4": {
+   "role": "research:to_speaker",
+   "name": "Hon. Tu'ivakano",
+   "from": null,
+   "until": null,
+   "attested_on": "2003-04-08",
+   "claim_ids": [
+    "to_speaker_tuivakano_listed_20030408",
+    "to_speaker_tuivakano_listed_20040906",
+    "to_speaker_tuivakano_listed_20041226"
+   ],
+   "note": "Presented as Speaker by the government's Legislative Assembly page (revision of 8 April 2003), the Assembly's home page (captured 6 September 2004) and the government page's revision of 19 September 2004 (captured 26 December 2004).",
+   "uncertainty": "Event-dated to the earliest attestation after the two conflicting appointment dates, 'last week' in a statement of about 23 May 2002 (to_speaker_tuivakano_appointment_reported_20020523) and 1 July 2002 in the Assembly's later statements; neither is a start. No end is stated: he was replaced by Veikune's appointment of 22 March 2005 after becoming Minister of Works, but no source gives the day his Speakership ended, and none is inferred.",
+   "sources": [
+    "to_pmo_legislative_assembly_page_20030408",
+    "to_la_home_2004",
+    "to_pmo_legislative_assembly_page_20041226"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 3
+   }
+  },
+  "to_speaker#5": {
+   "role": "research:to_speaker",
+   "name": "Hon. Veikune",
+   "from": null,
+   "until": "2006-01-25",
+   "attested_on": "2005-03-22",
+   "claim_ids": [
+    "to_speaker_veikune_royal_appointment_20050322",
+    "to_ipu_2005_speaker_veikune_order_20050323",
+    "to_speaker_veikune_end_20060125",
+    "to_palace_confirms_veikune_speaker_end_20060203"
+   ],
+   "note": "Second term. The Assembly's Speaker page says King Taufa'ahau Tupou IV appointed him on 22 March 2005 (an appointment day, not a stated effective day, so no from). The PMO release of 9 February 2006 states that his position as Speaker ended on 25 January 2006, as the Acting Private Secretary to His Majesty confirmed on 3 February 2006.",
+   "uncertainty": "until is the stated end day. The appointment instrument was not seen, and IPU's 23 March 2005 statement is corroboration only. The Land Court's 2007 recital of his removal (to_speaker_veikune_removal_recited_20071213) gives no day and is not used.",
+   "sources": [
+    "to_la_speaker_page_2005",
+    "to_ipu_2005",
+    "to_pmo_20060209_veikune_directives"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 3
+   }
+  },
+  "to_speaker#6": {
+   "role": "research:to_speaker",
+   "name": "Lord Tu'ilakepa",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-06-02",
+   "claim_ids": [
+    "to_speaker_tuilakepa_reply_signed_20080602",
+    "to_speaker_tuilakepa_presides_20100629"
+   ],
+   "note": "Signed the Assembly's reply of 2 June 2008 to the Princess Regent's Speech from the Throne as 'Sea 'o e Fale Alea', and presided as Speaker on 29 June 2010 in a government-published transcript that addresses a petition to 'Lord Tu'ilakepa, 'Eiki Sea 'o e Fale Alea'.",
+   "uncertainty": "Event-dated to the reply, which prints only 'Tu'ilakepa'. No appointment instrument or release was found; the day 2 May 2008 appears only in IPU's 2008 summary, which the Crown packet holds and this holder does not cite. No end is stated, and the Interim Speaker of December 2010 (to_interim_speaker_tupou_styled_20101203) is not used as one.",
+   "sources": [
+    "to_pmo_20080602_speaker_reply",
+    "to_pmo_20100629_assembly_transcript"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "to_speaker#7": {
+   "role": "research:to_speaker",
+   "name": "Lord Lasike",
+   "from": null,
+   "until": "2012-07-17",
+   "attested_on": "2011-01-14",
+   "claim_ids": [
+    "to_lasike_speaker_administers_oaths_20110114",
+    "to_lasike_speaker_styled_20110404",
+    "to_lasike_testimony_speaker_cr285",
+    "to_lasike_speaker_appointment_revoked_20120717"
+   ],
+   "note": "Selected unopposed by the Assembly on 21 December 2010, with the royal appointment then still to come (claims, not a start). Event-dated to 14 January 2011, the first dated record of him acting as Speaker. The end is the King's revocation of his appointment under clause 61(2)(c), stated as effective immediately and conveyed by letter on 17 July 2012.",
+   "uncertainty": "The royal appointment day is unknown, so from stays null. until rests on the release's 'effective immediately' and the letter dated 17 July 2012; the instrument's own date is not printed. The conviction of 9 July 2012 and the loss of his seat are not used as the end. No identity is asserted with 'the Honourable Lasike' who acted as Speaker in 1995.",
+   "sources": [
+    "to_la_20110114_oaths",
+    "to_la_20110404_knesset_visit",
+    "to_sc_r_v_lasike_cr285_2011",
+    "to_la_20120717_speaker_revoked"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_speaker#8": {
+   "role": "research:to_speaker",
+   "name": "Lord Fakafanua",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-07-19",
+   "claim_ids": [
+    "to_fakafanua_royal_appointment_20120719",
+    "to_fakafanua_royal_appointment_reported_20120720",
+    "to_fakafanua_starts_as_speaker_20120723",
+    "to_fakafanua_speaker_abroad_20130828",
+    "to_fakafanua_speaker_20140814"
+   ],
+   "note": "Elected 17-8 by the Assembly on 19 July 2012; the Assembly's item of 23 July dates his royal appointment to that day and its item of 20 July reports the appointment as done. He began presiding on 23 July 2012 and is attested as Speaker to 14 August 2014.",
+   "uncertainty": "An appointment day with no stated effective date, so it is event-dated through attested_on, as the prime-minister holders of CLAUDE-C01-08 are. The Assembly's Tongan item created at 17:23 on 19 July still called the appointment pending (to_fakafanua_royal_appointment_pending_20120719); the conservative alternative is 20 July 2012, when it was reported as done. 'Started in his new role ... this morning' (23 July) is not taken as from, because the same item dates the appointment earlier. No end is stated, and nothing is inferred from the 2014 election or from clause 61(2)(a).",
+   "sources": [
+    "to_la_20120723_new_speaker_starts",
+    "to_la_20120720_fakafanua_appointed",
+    "to_la_20130828_acting_speaker",
+    "to_la_20140815_speaker_judiciary"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 4
+   }
+  },
+  "to_speaker#9": {
+   "role": "research:to_speaker",
+   "name": "Lord Tu'ivakano",
+   "from": null,
+   "until": null,
+   "attested_on": "2015-02-24",
+   "claim_ids": [
+    "to_speaker_tuivakano_styled_20150224"
+   ],
+   "note": "Styled Lord Speaker by the Assembly's news item of 24 February 2015. His election by the House on 29 December 2014 is recorded in the prime-minister packet (to_pohiva_declared_pm_elect_pmo_20141229), which this holder does not cite.",
+   "uncertainty": "No royal appointment or oath for this Assembly is dated by any source retrieved, so no start is stated. No end is stated either: the Speaker's release of 12 September 2017 already in the packet still names him Speaker. The Assembly's profile identifies him with the Hon. Tu'ivakano who was Speaker in 2002-2005, but that identity is not needed for this observation.",
+   "sources": [
+    "to_la_news_speaker_china_20150224"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-24"
+   ],
+   "source_classes": {
+    "accepted": 1
    }
   }
  },

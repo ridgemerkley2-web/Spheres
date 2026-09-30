@@ -1,0 +1,13 @@
+[codex/campaign-certification 5dfe5276] Apply verifier fixes to CLAUDE-C01-32
+ Date: Mon Sep 28 16:54:32 2026 -0700
+ 10 files changed, 290 insertions(+), 195 deletions(-)
+Auto-merging docs/campaign-certification/C01/research/south-africa.json
+CONFLICT (content): Merge conflict in docs/campaign-certification/C01/research/south-africa.json
+error: could not apply 8d545b19... Correct C01-32 republished SABC provenance and protect holder exclusion
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"

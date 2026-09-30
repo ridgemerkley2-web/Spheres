@@ -1,0 +1,12 @@
+Auto-merging docs/campaign-certification/C01/research/south-africa.json
+CONFLICT (content): Merge conflict in docs/campaign-certification/C01/research/south-africa.json
+CONFLICT (modify/delete): docs/planning/ai-handoffs/CLAUDE-C01-32.md deleted in HEAD and modified in 8fe1ef5d (Add CLAUDE-C01-32: Pan Africanist Congress presidents, 1990-2026).  Version 8fe1ef5d (Add CLAUDE-C01-32: Pan Africanist Congress presidents, 1990-2026) of docs/planning/ai-handoffs/CLAUDE-C01-32.md left in tree.
+Auto-merging tools/avatars/test_south_africa_party_leaders_c01_30.py
+error: could not apply 8fe1ef5d... Add CLAUDE-C01-32: Pan Africanist Congress presidents, 1990-2026
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"

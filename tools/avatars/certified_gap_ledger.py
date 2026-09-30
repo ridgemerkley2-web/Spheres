@@ -66,6 +66,7 @@ COMMIT_PACKETS = {
     '61a3402d': 'CLAUDE-C01-25', '644ce003': 'CLAUDE-C01-27',
     # Scoped C01-30/32 source imports; independent reviews are separately pinned by the queue.
     '1b2c1ae2': 'CLAUDE-C01-30', '62f6be6c': 'CLAUDE-C01-32',
+    '9d97caa9': 'CLAUDE-C01-33',
 }
 
 EVIDENCE_CLASSES = {
@@ -98,7 +99,7 @@ IN_FLIGHT = {
     'CLAUDE-C01-32': {'case': 'SouthAfrica', 'targets': ['party:SouthAfrica/za_pac'],
                       'scope': 'Pan Africanist Congress presidents, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-33': {'case': 'India', 'targets': ['party:India/in_jd'],
-                      'scope': 'Janata Dal presidents, 1990-2026; submitted, not accepted'},
+                      'scope': 'Janata Dal president observations, 1990-2026; no accepted runtime mapping'},
     'CLAUDE-C01-34': {'case': 'Brazil',
                       'targets': ['party:Brazil/' + p for p in ('br_pfl', 'br_pdt', 'br_pmdb')],
                       'scope': 'PFL/DEM, PDT and PMDB/MDB national presidents, 1990-2026; submitted, not accepted'},

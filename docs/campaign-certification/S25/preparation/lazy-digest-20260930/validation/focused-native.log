@@ -1,0 +1,16 @@
+
+running 11 tests
+test s25_stability_tests::controlled_succession_comparison_detects_each_required_state_family ... ok
+test s25_stability_tests::controlled_succession_guards_reject_observer_missing_journey_and_revival ... ok
+test s25_stability_tests::controlled_succession_request_rejects_other_fixture_identity_and_unknown_fields ... ok
+test s25_stability_tests::s25_controlled_ussr_russia_continuity ... ignored, Explicit authored paired succession preflight; requires immutable request and NEW output, never organic history or S25 qualification
+test s25_stability_tests::s25_stability_cell ... ignored, Explicit native stability request and new output directory; run only through the frozen matrix orchestrator
+test s25_stability_tests::stability_archive_comparison_excludes_only_wall_clock_and_detects_finance_history_journey ... ok
+test s25_stability_tests::stability_archive_mismatch_digests_are_lazy_and_match_the_legacy_oracle ... ok
+test s25_stability_tests::stability_endpoint_and_checkpoint_schedule_reject_short_or_overshot_coverage ... ok
+test s25_stability_tests::stability_invariants_reject_nonfinite_negative_money_and_invalid_population ... ok
+test s25_stability_tests::stability_real_opening_and_one_day_preserve_complete_archive_across_native_reload ... ok
+test s25_stability_tests::stability_request_rejects_missing_identity_bad_calendar_and_unapproved_cells ... ok
+
+test result: ok. 9 passed; 0 failed; 2 ignored; 0 measured; 466 filtered out; finished in 12.00s
+

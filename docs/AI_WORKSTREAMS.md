@@ -22,6 +22,8 @@ and [portable release closeout](campaign-certification/S28/preparation/portable-
 The existing A1 political-calibration concentration gate remains failed under
 its unchanged limit; no complete CI or campaign qualification is claimed.
 
+The [lossless stability-harness repair](campaign-certification/S25/preparation/lazy-digest-20260930/README.md) passes nine focused native tests and fresh old/new pilots. All 16 complete archives are retained, and the eight corresponding old/new archive pairs are equal except for their terminal save timestamp. The fresh full run remains in progress; no full-matrix pass follows from these pilots.
+
 ## Current eight-task closeout
 
 **Six of the eight bounded Codex tasks are complete.** The remaining two are
@@ -88,8 +90,8 @@ this diagnostic's extra daily comparisons do not predict the full matrix's
 completion time or qualify production memory.
 
 The 30 September inventory found seven newly submitted packets: C01-30 and
-C01-32–37. C01-30 and C01-32 are now accepted as bounded intake after independent
-source and content review; C01-33–37 remain ready for review. Russia C01-28 remains
+C01-32–37. C01-30, C01-32 and C01-33 are now accepted as bounded intake after independent
+source and content review; C01-34–37 remain ready for review. Russia C01-28 remains
 submitted at `03141c43`, and Japan C01-29 remains held. The queue and gap ledger
 reserve each pending target from duplicate research. These additional reviews do not change the
 six-of-eight closeout count or award parent historical coverage.
@@ -98,7 +100,7 @@ six-of-eight closeout count or award parent historical coverage.
 |---|---|---|
 | C01-30: ACDP, Freedom Front and IFP | `cb0f1153f0d26729445acbc05843c3f16bf78ee7` | Bounded intake accepted at `68ba0622`; [review](campaign-certification/C01/integrations/CLAUDE-C01-30/README.md): 39 exact original responses, 64 claims, 22 holder observations and 148 passing test executions. No runtime mapping or complete chronology. |
 | C01-32: PAC presidents | `df4707462903b893916b5ef2d56a875a82f4030f` | Bounded intake accepted at `7f4d8812`; [review](campaign-certification/C01/integrations/CLAUDE-C01-32/README.md): 38 exact original responses, 65 claims, 14 holder observations and 156 passing test executions. Republishing attribution repaired; inherited census limitation retained. |
-| C01-33: Janata Dal presidents | `2c78e89f67e9e21090a7da775fd8897c71d7dbd6` | Ready for review; preserve the accepted C01-27 BJP repair. |
+| C01-33: Janata Dal presidents | `2c78e89f67e9e21090a7da775fd8897c71d7dbd6` | Bounded intake accepted at `7cf35886`; [review](campaign-certification/C01/integrations/CLAUDE-C01-33/README.md): 22 exact recorded PDF responses, 41 claims and two holder observations. All accepted BJP fields remain unchanged; mirror/IFES-copy limitations remain explicit. |
 | C01-34: PFL/DEM, PDT and PMDB/MDB presidents | `16ef41a66d992e7a09417ab332cb6fc8fb6e1c76` | Ready for review. |
 | C01-35: Democratic Russia and Soyuz leaders | `52e3e313b7c53601833c2b170d504b3bed9fe4ff` | Ready for review; bounded to 1990–1991. |
 | C01-36: Tongan deputy prime ministers | `6b82475ea8224a7fecf911f6442e8b6d7b506ca1` | Ready for review. |
@@ -118,7 +120,7 @@ six-of-eight closeout count or award parent historical coverage.
 | Budget explanation repair | **CODEX-S24-BUDGET-01 complete.** Rate floor and sovereign risk are now shown separately. | [Native/UI/browser evidence](campaign-certification/S24/repairs/budget-rate-explanation/README.md), current runtime `52e1c2ab`; unchanged economic charges. |
 | E05 company pilot | **CLAUDE-E05-RESEARCH-01 complete as research preparation.** Eight dossiers, corrected validator and 61 tests. | [Review](campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md). 68/99 bodies retrieved (54 byte-exact, 14 changed); explicit claim-level content limits remain. No runtime installation. |
 | S26 human-playtest preparation | **CODEX-S26-PREP-01 complete.** Facilitator guide, eight-country plan and evidence/coverage validator; 23 synthetic tests pass. | [Kit](campaign-certification/S26/preparation/README.md). Zero actual human observations; S26 still awaits S24 and real participants. |
-| Claude research review | C01-23/24/25/27/30/32 are accepted bounded intake after independent review; parent historical coverage remains open. Japan C01-29 at `3b304785` has 150 passing test executions and 35/54 exact original responses; 19 archived responses remain unavailable, so merge and historical acceptance are held. Russia C01-28 and C01-33–37 are submitted, not accepted. | [Japan checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md), [C01-30 review](campaign-certification/C01/integrations/CLAUDE-C01-30/README.md), and the exact inventory above; review existing submissions without duplicating research. |
+| Claude research review | C01-23/24/25/27/30/32/33 are accepted bounded intake after independent review; parent historical coverage remains open. Japan C01-29 at `3b304785` has 150 passing test executions and 35/54 exact original responses; 19 archived responses remain unavailable, so merge and historical acceptance are held. Russia C01-28 and C01-34–37 are submitted, not accepted. | [Japan checkpoint](campaign-certification/C01/reviews/CLAUDE-C01-29/README.md), [C01-30 review](campaign-certification/C01/integrations/CLAUDE-C01-30/README.md), and the exact inventory above; review existing submissions without duplicating research. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
@@ -164,7 +166,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification complete on its recorded candidate. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex completed ordinary later-outcome qualification; S19 is closed. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08/23/24/25/27/30/32 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-28 and C01-33–37 are submitted for independent review; C01-29 remains held on source access. C01 remains incomplete. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08/23/24/25/27/30/32/33 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-28 and C01-34–37 are submitted for independent review; C01-29 remains held on source access. C01 remains incomplete. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | S22 complete under the unchanged frozen protocol; Codex-owned S24 awaits Claude-owned S23 and its open C06 dependency. Claude retains bounded S24 successor-fixture preparation; Codex owns final qualification. G5 and CP1 remain unearned. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
@@ -192,7 +194,7 @@ Each task has its own allowed files, deliverables and acceptance checks.
 All six listed deliveries are complete as bounded preparation after independent
 review and repairs, including S24 `5a23ebe0` and E05 `1fe45b2c`. Their review packets
 retain original failures, unsupported cases and source-verification limits. C01-30
-and C01-32 South Africa are accepted as bounded intake. C01-28 and C01-33–37 are submitted;
+and C01-32 South Africa, plus C01-33 India, are accepted as bounded intake. C01-28 and C01-34–37 are submitted;
 C01-29 Japan awaits source-review completion. This work does not complete historical
 coverage. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
@@ -286,9 +288,9 @@ Copy this into Claude to resume its claimed sections:
 > Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
 > docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
 > `python tools/planning/workboard.py --tasks --owner Claude`. Check the review
-> status of submitted scopes C01-28 and C01-33–37. Preserve those packets and the
+> status of submitted scopes C01-28 and C01-34–37. Preserve those packets and the
 > held C01-29 Japan evidence while Codex completes independent review; do not
-> repeat accepted C01-30/32 research or infer acceptance from submission status.
+> repeat accepted C01-30/32/33 research or infer acceptance from submission status.
 > Skip all six completed expanded preparation deliveries.
 > Read that task's handoff, record your branch/base and claim, and build its bounded
 > deliverables with the required checks. The six new sections do not wait on unrelated

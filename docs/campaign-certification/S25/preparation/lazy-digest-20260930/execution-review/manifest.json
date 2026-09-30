@@ -1,0 +1,27 @@
+{
+  "format": "spheres-independent-review-packet/v1",
+  "reviewer": "Codex /root/review_gap_submission",
+  "scope": "Read-only old/new pilot archive equivalence and immutable identity audit; no native execution or performance/qualification claim.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5522,
+      "sha256": "1053a7d81ff90cd00d31f2db4e5643230dafc2e04b6181ff203a623e793bd52f"
+    },
+    {
+      "path": "review.json",
+      "bytes": 45283,
+      "sha256": "868fe22a759b60deee5b6d458f06e93e0169110a8ba6c6362777a5a24b8d6821"
+    },
+    {
+      "path": "verification.log",
+      "bytes": 430,
+      "sha256": "a464fa636013de68515d1a8b9904d0bb69361f2e021eedbeb65711878b504b43"
+    },
+    {
+      "path": "verify_equivalence.py",
+      "bytes": 17091,
+      "sha256": "cab41ec3386eab7330beaf6f9dc37be8458dc75020a5dc35054353ecc7ee054a"
+    }
+  ]
+}

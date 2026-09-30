@@ -1,0 +1,508 @@
+{
+  "format": "spheres-stability-optimization-evidence/v1",
+  "qualification": false,
+  "full_matrix_passed": false,
+  "complete_pilot_archives": true,
+  "files": [
+    {
+      "path": "execution-review/manifest.json",
+      "bytes": 865,
+      "sha256": "16148ef2f1ef359942c594fea2b4aeec21cd5e2ead59b8040b9ce494a7cd2148"
+    },
+    {
+      "path": "execution-review/README.md",
+      "bytes": 5522,
+      "sha256": "1053a7d81ff90cd00d31f2db4e5643230dafc2e04b6181ff203a623e793bd52f"
+    },
+    {
+      "path": "execution-review/review.json",
+      "bytes": 45283,
+      "sha256": "868fe22a759b60deee5b6d458f06e93e0169110a8ba6c6362777a5a24b8d6821"
+    },
+    {
+      "path": "execution-review/verification.log",
+      "bytes": 430,
+      "sha256": "a464fa636013de68515d1a8b9904d0bb69361f2e021eedbeb65711878b504b43"
+    },
+    {
+      "path": "execution-review/verify_equivalence.py",
+      "bytes": 17091,
+      "sha256": "cab41ec3386eab7330beaf6f9dc37be8458dc75020a5dc35054353ecc7ee054a"
+    },
+    {
+      "path": "frozen/distributed_stability.py",
+      "bytes": 12526,
+      "sha256": "59d10ac51ebe70d11a129fa1903221ce37fa6e1a148065ed48f19b1b1f94343f"
+    },
+    {
+      "path": "frozen/manifest.json",
+      "bytes": 3725,
+      "sha256": "4f8e94852b2d67e49b36dc2632940d8cf9d8079a6f848f784c50364d58894c50"
+    },
+    {
+      "path": "frozen/plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "frozen/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "full-run-launch/freeze.json",
+      "bytes": 2136,
+      "sha256": "e987a66ae55d65e894e982b20b6ac76f4ffbbd699e3acbf7b060354bb5771f10"
+    },
+    {
+      "path": "full-run-launch/plan.json",
+      "bytes": 2861,
+      "sha256": "fea604f2af024b094166e6dce5fff9365966cf4fbdb498f816e3b9fd6a38c9a1"
+    },
+    {
+      "path": "full-run-launch/resource-setup.json",
+      "bytes": 1182,
+      "sha256": "353bba79ca37d1289feccf913e1ecc0828c1286972c7a7892944dc255eb1ac22"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/archive-manifest.json",
+      "bytes": 4732,
+      "sha256": "774af9f0abde8a320d7be3e87a84c61a29e55efe17377d8bf0c27adcff1d7733"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/execution.json",
+      "bytes": 1490,
+      "sha256": "b63fc13c59c2cfdeb4ed63cca86853d646d1c7f2fa117e1ce05904873a6341e2"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/result.json",
+      "bytes": 16793,
+      "sha256": "774e7f7d91345290b5620f7c05c398c3861601f6f26a76e59449085989294521"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/resumed/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "b4f41d535be012623538512ce7be5de6a6639a63e3f928aee2505e3461fd456c"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 10075192,
+      "sha256": "cd64bfad5a514c95826b3018bdd0dcaa92f4ab51c7268b68ab6df7bc5a9957c1"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "b483e571d4fec5c854635a86b4b6cd0f31756aaffdc47bf5cf0a522aa2284af6"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "0bb29500575ffb52c92fad02f490d3489fff68c839c11991b2d54bcace463dd8"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "450911a83aacf39c96ac000ec68833776b1d42075a1bacf157f1f8d810cda3dd"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/stdout.log",
+      "bytes": 167,
+      "sha256": "de9bc154998d5710e0f5f8d740e1a40597bae1995b6f813c8157a563120b867e"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/transfer.json",
+      "bytes": 7994,
+      "sha256": "ab8083123568db7c8daa2f6debb1332d983d36010c94404d810fcc8c2d4c71c4"
+    },
+    {
+      "path": "new-pilot/cells/france-1990/verdict.json",
+      "bytes": 10593,
+      "sha256": "7779dfc4c418d16cb28f590674324333a6606be029ca152b3f77adf25caffb80"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/archive-manifest.json",
+      "bytes": 4699,
+      "sha256": "1cc1b5760bbf43b59bc04a20f2930282123305fd0df5d430966b8231949aaedc"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/execution.json",
+      "bytes": 1479,
+      "sha256": "8f02f8f3e948fe24264168866b8f99c7d79a5bc5cb5ee81c0552eaf92d19e97f"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/result.json",
+      "bytes": 15158,
+      "sha256": "ff050bc510bb1ad44127b0ccb35dd1e6538ad0c0b23bd81152d12631f1aee71d"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/resumed/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "bc47f67c059eb1bb05e2d9eadc57334f63cf144be8376ae9ba84197cc8dfccb2"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 9486495,
+      "sha256": "2f3d687e911a8e548a2f2214764d2554eb61778fb30cb7e3dd46be8f1b8cbcce"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "378aa5bfc00c3abd83083afdb998b66ea9a3e12f3d2f25fff801d5213f517bb5"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10509395,
+      "sha256": "c5abcf447cf33761efe6ad6075163b7e96c3cb9787c693e1ae48007b2384cf14"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/request.json",
+      "bytes": 183,
+      "sha256": "714844b5b480e4f7b0611e23ce26a5e285981eae119c1d5419c650e059587113"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/stdout.log",
+      "bytes": 167,
+      "sha256": "11d036c80ffff3740c47ca11e325c7d3c023651d3cd24d7d7dfe49c1270780b8"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/transfer.json",
+      "bytes": 7896,
+      "sha256": "a9379e7a3684599fd1c6925f54b9eab200e6ea2c9a3e45a86f010c343d2d5f83"
+    },
+    {
+      "path": "new-pilot/cells/tonga-7/verdict.json",
+      "bytes": 10495,
+      "sha256": "261cad947aa1af85c69296b793057eae09d600ee6d95be439e1b49a075a181b6"
+    },
+    {
+      "path": "new-pilot/freeze.json",
+      "bytes": 2121,
+      "sha256": "0a3018c42cb9e167062e6127e49db0dd3cbd644169d1ea532ab504b4c123db7f"
+    },
+    {
+      "path": "new-pilot/journal.jsonl",
+      "bytes": 19132,
+      "sha256": "613c1ebc65bb0919d55a728504c4a8b20d4b31bbee7ea3d4b0b05d4d9fa937f8"
+    },
+    {
+      "path": "new-pilot/plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "new-pilot/resource-setup.json",
+      "bytes": 432,
+      "sha256": "b37a65a77e308645d5cf7cb99c339076af3318c81f1efc4ec5c716d4ec785717"
+    },
+    {
+      "path": "new-pilot/result.json",
+      "bytes": 26000,
+      "sha256": "844a25e7458b07be785ac832f4ee8ab51ad22614faffea07ed24e13c376333dd"
+    },
+    {
+      "path": "new-pilot/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/archive-manifest.json",
+      "bytes": 4764,
+      "sha256": "f9b85cdf9307ad3a54407556c5fbc93397c16dfe885e2dd6100d18f7bd7f5875"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/execution.json",
+      "bytes": 1708,
+      "sha256": "f39d8d6848c0d7d31272ca0c5112d105acf5d9e5653eb6c8e52cff563695ebc6"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/progress.jsonl",
+      "bytes": 1521,
+      "sha256": "3541c03492f7c7afae399f6c965869cc862d702cbd755c093f882f40dd956f51"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/result.json",
+      "bytes": 16797,
+      "sha256": "f6757797a3022ea7d7035509e3f6f2ab12aa5abe19dd23121c1d86e5802eadee"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/resumed/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "8e73f49cbfd8f89aeb3d19731f86937febf47daab3b11e349884809b5ead2c22"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 10075192,
+      "sha256": "a5b30edd869ce7c351d08c4418ec8a3300d62f6b3b2ed1ff5bb5626d3a7fb8db"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/resumed/saves/monthly.json.gz",
+      "bytes": 10779481,
+      "sha256": "2c9bd0e94a8b7b98a9f26aafcb4b639514badcc5f2641e34b718dfce00fc9686"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10798784,
+      "sha256": "f246ed67c9a02ae9d4c3e792051ece3f39af4171740f784d53b5294a803ae728"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/request.json",
+      "bytes": 191,
+      "sha256": "7bbde0e791801d891e4853f2db7b2711f48aa6e0a00e969df65a2af123d505df"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/stdout.log",
+      "bytes": 167,
+      "sha256": "da7e5f296c06b84a1d7b88cffeaf8be1d00a5fddc90c8c4dc66395e91bae9b43"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/transfer.json",
+      "bytes": 8090,
+      "sha256": "055acf2b7e496d32066c7f68808ee8b5cb93f04501185802af44a2e6ef21d4f2"
+    },
+    {
+      "path": "old-pilot/cells/france-1990/verdict.json",
+      "bytes": 10685,
+      "sha256": "5445210cec0398807c85a968c7f90ef779710574345b2704a0cd37a878b34055"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/archive-manifest.json",
+      "bytes": 4731,
+      "sha256": "e26df0cd1f0be60fd6e3d9ae9a432152856e8d5dee5139097aba57725ec4c23a"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/execution.json",
+      "bytes": 1694,
+      "sha256": "0b3c330ff8642622d1614b8fe93f8871d5375b0c60e72e64ffca0c2eaf1cb5ba"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/progress.jsonl",
+      "bytes": 1517,
+      "sha256": "47dca5eefa6f177b48c434bdc7c2189ebf37655796fb2376dba43bf6b13b8243"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/result.json",
+      "bytes": 15162,
+      "sha256": "7f7790484cfaba29d30355aee793bb6bc744b965aebd55bd8c0bc5be15b61f05"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/resumed/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "a6ff458f3fef3353eb0ab846a978de00454a57d16dd99c9ff1cf43e9854c0002"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/resumed/saves/monthly.json.bak.gz",
+      "bytes": 9486496,
+      "sha256": "4400b2292d08e38260c88624c24d10f685b3412147c3f405453f9327f282caf6"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/resumed/saves/monthly.json.gz",
+      "bytes": 10393944,
+      "sha256": "f638e32d12d9f746fe1a85fd2051b5d8b165fc9f404e854791f43566fb6f8103"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/native/uninterrupted/saves/final.json.gz",
+      "bytes": 10509394,
+      "sha256": "8a9faaf822113d73127a1108d519c68d341101c617fbd445b4b589e34f11631c"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/request.json",
+      "bytes": 183,
+      "sha256": "b345f0dc8bcb69a96aca1f7f296603a74677b2cfc95432c7f5fb6d891ec9280a"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/stdout.log",
+      "bytes": 167,
+      "sha256": "d6fa7f392b2695f6dc2f1a7b9b8044a60fb55538c2cb924bd07fd6e75cbe603d"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/transfer.json",
+      "bytes": 7992,
+      "sha256": "acd71b666175275943423c146fab0b6af9453318b783175680fea372ac3e9ed9"
+    },
+    {
+      "path": "old-pilot/cells/tonga-7/verdict.json",
+      "bytes": 10587,
+      "sha256": "8707cb01bde1adfb44a1c6f8422204519c0efb0d4d4960d4b5830b44695af6fc"
+    },
+    {
+      "path": "old-pilot/freeze.json",
+      "bytes": 2205,
+      "sha256": "ff832edd0e90d312119e63dd3de41d782b7c1efe73cfa53dd29c6afa198f2e32"
+    },
+    {
+      "path": "old-pilot/journal.jsonl",
+      "bytes": 19212,
+      "sha256": "87c40a313f06411632cef86ef76882b6a394fbe12a09225433e891fe8cf99426"
+    },
+    {
+      "path": "old-pilot/plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "old-pilot/resource-setup.json",
+      "bytes": 440,
+      "sha256": "50b3ab2b5dffe85c7ad9a480a6a4930d577058019066712a047f265d59251536"
+    },
+    {
+      "path": "old-pilot/result.json",
+      "bytes": 26184,
+      "sha256": "74518bab3ec51d026017bbe45d1affd9f909f8963f433ded27289cbd572b5254"
+    },
+    {
+      "path": "old-pilot/stability_matrix.py",
+      "bytes": 81651,
+      "sha256": "c9cb10fd8ee1e9eaf6359316504cd0436e4893d0795bae9360c44880c13d74a0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3536,
+      "sha256": "903a5b2bca65dcb4e7247933ca8893892eebc4f8ccbe7fe3184103726563f8b5"
+    },
+    {
+      "path": "source-review/manifest.json",
+      "bytes": 666,
+      "sha256": "0ab8b5aa7aa55799a17de8f81c1bbd40c91d194d53a0b4c13d0869d621a8f7af"
+    },
+    {
+      "path": "source-review/README.md",
+      "bytes": 4642,
+      "sha256": "16522f0aa352255cddd342c350c8a316efb6cdffe0d17a2338334c6b741e5dcc"
+    },
+    {
+      "path": "source-review/review.json",
+      "bytes": 4944,
+      "sha256": "185b57a6a66c60999a0f4cb3cebfad6de61851125b3ed980f3c2b254efb674b1"
+    },
+    {
+      "path": "source-review/source-excerpts.md",
+      "bytes": 17143,
+      "sha256": "c1b2260380bd0b632aeb90b66c06fe5d0a9be30d7d83c745a250abf3e386d5b4"
+    },
+    {
+      "path": "source-review/source-pins.json",
+      "bytes": 2690,
+      "sha256": "0242c504072e05250014669002a07f12183362dfa87f1da3d9f3fe131974dba1"
+    },
+    {
+      "path": "validation/build.jsonl",
+      "bytes": 35425,
+      "sha256": "e5d65521522583c33da844788f90ac740f01933639f5dc39b6cc60126bc95628"
+    },
+    {
+      "path": "validation/build.stderr.log",
+      "bytes": 378,
+      "sha256": "09c95616352be18fbcac227ba7b52b92757da5c1d0845303f7ac0aa2de90a43f"
+    },
+    {
+      "path": "validation/focused-native.log",
+      "bytes": 1485,
+      "sha256": "c0f6c1648e935af1a035e4f704ed5dcff4a7800ca18901475ac40893093077b2"
+    },
+    {
+      "path": "validation/freeze.log",
+      "bytes": 435,
+      "sha256": "4626e569a57a421ad9e36e152e40df7946b66d3fc3fb04b1b3a17f23e23bcf1a"
+    },
+    {
+      "path": "validation/full-launch.json",
+      "bytes": 1355,
+      "sha256": "79d4779966099e0ec118edc67313d7166aa32ee7ce5d955123e296ef5ea3426c"
+    },
+    {
+      "path": "validation/old-pilot-launch.json",
+      "bytes": 1038,
+      "sha256": "d8a2d18c5e65620279c35454d5588c1207379885eb7d0bea0ca514919e71ed37"
+    },
+    {
+      "path": "validation/old-pilot-verification.json",
+      "bytes": 4019,
+      "sha256": "24a3cf19626183c4e0b272ce74d0421c3b924eb481116cba6ae104fd7d099eaa"
+    },
+    {
+      "path": "validation/old-pilot-verification.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/old-pilot.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/old-pilot.stdout.log",
+      "bytes": 3036,
+      "sha256": "befd6186441af831242edec2a6839fb96636ebcee27094a7d97cf29b24c4eeaf"
+    },
+    {
+      "path": "validation/pilot-plan.json",
+      "bytes": 331,
+      "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+    },
+    {
+      "path": "validation/pilot-verification.json",
+      "bytes": 4011,
+      "sha256": "117dede91da391d721c29bcddd8e9c4f13442fac2bd51b1e942426d1e99c3d0e"
+    },
+    {
+      "path": "validation/pilot-verification.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/pilot.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/pilot.stdout.log",
+      "bytes": 3032,
+      "sha256": "c16620aeb0001d6f38e134e1476112f2461e76373b0e5556669e62ebc5752ff7"
+    },
+    {
+      "path": "validation/revision.txt",
+      "bytes": 41,
+      "sha256": "93739d7280b262579321ffbb90953a820dccb4f5821a7708e4d76aa32934c899"
+    },
+    {
+      "path": "validation/run_full.py",
+      "bytes": 2362,
+      "sha256": "d17b5fa3757c37be68e43646e4cecb88a7c1577b18b4208c5a53175d8b628ab7"
+    },
+    {
+      "path": "validation/tooling.log",
+      "bytes": 11494,
+      "sha256": "c8f52807f2b7bfa2577c5de94c985c6a0ad6aea94f8dabbc06afd4fdc784eff1"
+    }
+  ]
+}

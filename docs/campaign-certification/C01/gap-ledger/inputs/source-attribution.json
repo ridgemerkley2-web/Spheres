@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "cce849402181d0eda2118414ebad2ae6230933a2",
+  "generated_from": "7cf358866d1bb017b76018042b592301e574bb31",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -1583,9 +1583,34 @@
         "packet": "CLAUDE-C01-20",
         "via": "extract_first_added"
       },
+      "in_eci_dispute_case_1_of_1999_order_19990807": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
       "in_eci_national_parties_20240323": {
         "commit": "99b0b9d4",
         "packet": "S10",
+        "via": "extract_first_added"
+      },
+      "in_eci_on11e_19960205_national_parties": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_eci_on18e_19980110_national_parties": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_eci_on28e_19990809_janata_dal_dispute": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_eci_on8e_19930117_janata_dal_dispute": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
         "via": "extract_first_added"
       },
       "in_eci_state_parties_20240323": {
@@ -1786,6 +1811,36 @@
       "in_gazette_ext_so3373_assumption_20220725": {
         "commit": "33fd34e8",
         "packet": "CLAUDE-C01-15",
+        "via": "extract_first_added"
+      },
+      "in_gazette_hrd_resolution_19961014": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_gazette_hrd_resolution_19970929": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_gazette_ls_speaker_decision_19930601": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_gazette_welfare_resolution_19910329": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_gazette_welfare_resolution_19920214": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_goa_gazette_eci_notification_56_93_6_19930909": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
         "via": "extract_first_added"
       },
       "in_inc_brief_history_1995_2005_20260731": {
@@ -2053,6 +2108,26 @@
         "packet": "CLAUDE-C01-11",
         "via": "extract_first_added"
       },
+      "in_ls_debate_19960715_petroleum_prices": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_ls_debate_19970317_environment_appellate_authority": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_ls_debate_19970422_confidence_motion": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_ls_debate_19970729_bihar_situation": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
       "in_ls_debates_19900312": {
         "commit": "d57a7bd4",
         "packet": "CLAUDE-C01-11",
@@ -2156,6 +2231,11 @@
       "in_ls_jpi_199209": {
         "commit": "33fd34e8",
         "packet": "CLAUDE-C01-15",
+        "via": "extract_first_added"
+      },
+      "in_ls_written_answers_19910829_usq5063_nic": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
         "via": "extract_first_added"
       },
       "in_pib_19980312_releases": {
@@ -2438,6 +2518,16 @@
         "packet": "CLAUDE-C01-11",
         "via": "extract_first_added"
       },
+      "in_rs_debate_19891228_motion_of_thanks": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_rs_debate_19900518_meham_countermanding": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
       "in_rs_debate_19900829_sri_lanka": {
         "commit": "f0da27b2",
         "packet": "CLAUDE-C01-20",
@@ -2483,6 +2573,16 @@
         "packet": "CLAUDE-C01-20",
         "via": "extract_first_added"
       },
+      "in_rs_debate_19970805_bihar_situation": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_rs_debate_19970826_human_development_discussion": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
       "in_rs_debates_19901227": {
         "commit": "d57a7bd4",
         "packet": "CLAUDE-C01-11",
@@ -2511,6 +2611,16 @@
       "in_rs_papers_19910307": {
         "commit": "d57a7bd4",
         "packet": "CLAUDE-C01-11",
+        "via": "extract_first_added"
+      },
+      "in_rs_synopsis_20071115_obituary_bommai": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
+        "via": "extract_first_added"
+      },
+      "in_rs_written_answers_19900828_usq2406_pm_letters": {
+        "commit": "9d97caa9",
+        "packet": "CLAUDE-C01-33",
         "via": "extract_first_added"
       },
       "in_rs_written_answers_19910108_usq1586_rath_yatra": {
@@ -5991,6 +6101,51 @@
       }
     },
     "SouthAfrica": {
+      "za_acdp_home_page_19990501": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_kzn_newsletter_199805": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_leader_statement_20180214": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_manifesto_launch_notice_20140218": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_meshoe_nepad_speech_20011031": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_meshoe_profile_page_2021": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_our_leadership_page_20190401": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_party_history_page_2004": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_acdp_president_statement_lekota_20260304": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
       "za_anc1912_48th_conference_page": {
         "commit": "0f1d604b",
         "packet": "CLAUDE-C01-16",
@@ -6296,6 +6451,86 @@
         "packet": "CLAUDE-C01-21",
         "via": "extract_first_added"
       },
+      "za_ff_da_ff_leaders_release_20240822": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_groenewald_covid_item_20200402": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_groenewald_farm_visit_release_20161227": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_minister_post_release_20240722": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_mulder_budget_debate_speech_20010621": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_mulder_not_available_release_20161112": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_mulder_profile_page_af_2003": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_mulder_profile_page_en_2003": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_mulder_reelected_release_20131118": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_new_leadership_release_20161112": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_new_members_release_20260325": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_presidency_budget_debate_item_20250716": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_vfplus_media_release_20030928": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_viljoen_death_release_20200403": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_viljoen_media_release_19970826": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ff_viljoen_profile_page_2003": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
       "za_fwdk_foundation_inauguration_speech_19890920": {
         "commit": "c3f40188",
         "packet": "CLAUDE-C01-09",
@@ -6456,6 +6691,76 @@
         "packet": "S10",
         "via": "extract_first_added"
       },
+      "za_ifp_buthelezi_timeline_page_2024": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_conference_address_buthelezi_20190824": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_conference_address_hlabisa_20190824": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_elective_conference_resolutions_2012": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_extended_nc_resolutions_20240810": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_extended_nc_statement_buthelezi_20190120": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_historical_perspective_page_2000": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_history_profile_page_1997": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_nec_statement_20190827": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_newly_elected_leadership_20190825": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_press_release_19951024": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_rally_advisory_20190912": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_rally_advisory_abaqulusi_20260201": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
+      "za_ifp_statement_passing_buthelezi_20230909": {
+        "commit": "1b2c1ae2",
+        "packet": "CLAUDE-C01-30",
+        "via": "extract_first_added"
+      },
       "za_infogov_executive_deputy_president_rdp_statement_19960418": {
         "commit": "0c841429",
         "packet": "CLAUDE-C01-21",
@@ -6504,6 +6809,196 @@
       "za_mandela_gov_oath_19940510": {
         "commit": "c3f40188",
         "packet": "CLAUDE-C01-09",
+        "via": "extract_first_added"
+      },
+      "za_pac_address_hawkers_council_19981012": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_constitution_1996_page": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_constitution_2008_page": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_current_leadership_page_2008": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_election_manifesto_1999": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_election_manifesto_2004": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_home_page_2013_acting": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_home_page_2013_president": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_home_page_2015": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_interview_moloto_secretary_general_20171004": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_latest_news_page_2014": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_new_year_message_20211231": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_notice_election_summit_20081003": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_paca_history_page_1998": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_paca_home_page_1998": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_post_case_against_mbinda_20180119": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_post_nyhontso_re_elected_20190901": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_post_president_regional_tour_20210719": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_previous_leaders_page_2008": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_previous_presidents_page_2016": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_profile_mphahlele_2013": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_release_fraud_case_mbinda_20180304": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_release_june16_rally_19980616": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_release_lesotho_19981103": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_release_strategic_plan_20160131": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_saflii_gphc_2016_485": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_saflii_gphc_2019_537": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_saflii_gphc_2021_539": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_saflii_sca_2023_140": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_speech_polokwane_congress_20200215": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_iec_20160629": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_litigation_moloto_20191230": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_mbeki_recall_20080920": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_moloto_africa_day_20180525": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_rustenburg_killings_19980519": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_statement_zuma_case_2009": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_x_elective_congress_opens_20251211": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
+        "via": "extract_first_added"
+      },
+      "za_pac_x_manifesto_launch_20260829": {
+        "commit": "62f6be6c",
+        "packet": "CLAUDE-C01-32",
         "via": "extract_first_added"
       },
       "za_parliament_atc14_20180215": {

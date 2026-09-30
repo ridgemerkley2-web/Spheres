@@ -18,34 +18,35 @@
    },
    "statistics": {
     "roles": {
-     "research": 7,
+     "research": 11,
      "production_party": 7,
      "executive": 1
     },
-    "cases": 911,
+    "cases": 1190,
     "case_kinds": {
-     "attestation_day": 45,
-     "attestation_day_after": 45,
-     "cutoff_day": 15,
-     "cutoff_day_before": 15,
+     "attestation_day": 81,
+     "attestation_day_after": 81,
+     "cutoff_day": 19,
+     "cutoff_day_before": 19,
      "death_day_after": 1,
      "death_day_before": 1,
      "death_day_of": 1,
      "dissolution_day_after": 1,
      "dissolution_day_before": 1,
      "dissolution_day_of": 1,
-     "fictional_end_exclusive": 15,
-     "fictional_last_day": 15,
-     "fictional_start_day": 15,
-     "future_2030": 15,
+     "fictional_end_exclusive": 19,
+     "fictional_last_day": 19,
+     "fictional_start_day": 19,
+     "future_2030": 19,
      "handover_day_after": 16,
      "handover_day_before": 16,
      "handover_day_of": 16,
-     "reference_start": 15,
-     "reference_start_day_before": 15,
-     "yearly": 690
+     "reference_start": 19,
+     "reference_start_day_before": 19,
+     "yearly": 874
     },
     "observations_by_acceptance": {
+     "accepted": 36,
      "pending": 32,
      "production_registry": 18,
      "unattributed_intake": 5
@@ -54,7 +55,7 @@
      "bracketed": 9,
      "established": 4,
      "uncertain": 37,
-     "unknown": 209
+     "unknown": 357
     },
     "production_party_yearly_status": {
      "established": 151,
@@ -85,8 +86,8 @@
     "registry_terms_with_unknown_end": []
    },
    "headline": [
-    "Research roles: 7 (7 with holder observations); 4 of 259 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 209 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: pending 32, unattributed_intake 5.",
+    "Research roles: 11 (11 with holder observations); 4 of 407 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 9 are bracketed, 37 uncertain, 357 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 36, pending 32, unattributed_intake 5.",
     "Production party rows/components: 7; 151 of 259 yearly samples 1990-2026 have an established registry holder, 3 uncertain, 76 unknown, 0 unresearched and 29 inapplicable.",
     "Registry holder portraits at yearly samples: 13 bound, 138 unbound (13 distinct people without served art).",
     "Campaign-start executive F. W. de Klerk: portrait bound on 1990-01-01; if retained, bound at 5 of 46 yearly samples.",
@@ -1066,6 +1067,106 @@
    }
   },
   {
+   "key": "research:za_acdp_president",
+   "identity": "SouthAfrica",
+   "family": "research_role",
+   "role_id": "za_acdp_president",
+   "title": "President of the African Christian Democratic Party",
+   "kind": "party_leader",
+   "entry": {
+    "id": "za_iec_n2024_008",
+    "category": "organizations",
+    "name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+    "kind": "national_ballot_party_reporting_identity",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "za_acdp_president#1",
+    "za_acdp_president#2",
+    "za_acdp_president#3",
+    "za_acdp_president#4",
+    "za_acdp_president#5"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-05-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_acdp_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-05-02","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-10-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_acdp_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-11-01","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-02-18","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_acdp_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-02-19","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-02-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_acdp_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-02-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-04","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_acdp_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-05","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 62,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 10
+   }
+  },
+  {
    "key": "research:za_anc_president",
    "identity": "SouthAfrica",
    "family": "research_role",
@@ -1448,6 +1549,353 @@
    }
   },
   {
+   "key": "research:za_ifp_president",
+   "identity": "SouthAfrica",
+   "family": "research_role",
+   "role_id": "za_ifp_president",
+   "title": "President of the Inkatha Freedom Party",
+   "kind": "party_leader",
+   "entry": {
+    "id": "za_iec_n2024_034",
+    "category": "organizations",
+    "name": "INKATHA FREEDOM PARTY",
+    "kind": "national_ballot_party_reporting_identity",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "za_ifp_president#1",
+    "za_ifp_president#2",
+    "za_ifp_president#3",
+    "za_ifp_president#4",
+    "za_ifp_president#5",
+    "za_ifp_president#6",
+    "za_ifp_president#7",
+    "za_ifp_president#8"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-10-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-10-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-12-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-12-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-21","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-08-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-08-25","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-09-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-09-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-09-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-09-10","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-08-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-08-11","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-02-01","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ifp_president#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-02-02","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 68,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 16
+   }
+  },
+  {
+   "key": "research:za_pac_president",
+   "identity": "SouthAfrica",
+   "family": "research_role",
+   "role_id": "za_pac_president",
+   "title": "President of the Pan Africanist Congress of Azania",
+   "kind": "party_leader",
+   "entry": {
+    "id": "za_iec_n2024_039",
+    "category": "organizations",
+    "name": "PAN AFRICANIST CONGRESS OF AZANIA",
+    "kind": "national_ballot_party_reporting_identity",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "za_pac_president#1",
+    "za_pac_president#2",
+    "za_pac_president#3",
+    "za_pac_president#4",
+    "za_pac_president#5",
+    "za_pac_president#6",
+    "za_pac_president#7",
+    "za_pac_president#8",
+    "za_pac_president#9",
+    "za_pac_president#10",
+    "za_pac_president#11",
+    "za_pac_president#12",
+    "za_pac_president#13",
+    "za_pac_president#14"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-05-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-05-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-06-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-06-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-10-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-10-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-11-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-11-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-09-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-09-21","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-10-03","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-10-04","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-03-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-03-22","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-02-01","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-05-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-05-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-07-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-07-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-02-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-02-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-07-19","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-07-20","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-12-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["attestation_day_after","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-29","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_pac_president#14","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-30","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 79,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 28
+   }
+  },
+  {
+   "key": "research:za_ff_leader",
+   "identity": "SouthAfrica",
+   "family": "research_role",
+   "role_id": "za_ff_leader",
+   "title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+   "kind": "party_leader",
+   "entry": {
+    "id": "za_iec_n2024_051",
+    "category": "organizations",
+    "name": "VRYHEIDSFRONT PLUS",
+    "kind": "national_ballot_party_reporting_identity",
+    "lifecycle": {
+     "status": "unknown",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "za_ff_leader#1",
+    "za_ff_leader#2",
+    "za_ff_leader#3",
+    "za_ff_leader#4",
+    "za_ff_leader#5",
+    "za_ff_leader#6",
+    "za_ff_leader#7",
+    "za_ff_leader#8",
+    "za_ff_leader#9"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-08-26","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-08-27","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-21","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-06-22","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-09-28","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-09-29","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-11-12","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-11-13","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-12-28","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-04-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#6","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-04-03","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-08-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-08-23","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-07-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-07-17","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-25","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["za_ff_leader#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-03-26","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 70,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 18
+   }
+  },
+  {
    "key": "research:za_president_election",
    "identity": "SouthAfrica",
    "family": "research_role",
@@ -1808,6 +2256,116 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "za_acdp_president#1": {
+   "role": "research:za_acdp_president",
+   "name": "Kenneth Meshoe",
+   "from": null,
+   "until": null,
+   "attested_on": "1999-05-01",
+   "claim_ids": [
+    "za_acdp_home_page_president_meshoe_19990501"
+   ],
+   "note": "Observed on 1 May 1999: the ACDP home page as served that day presents him as \"President ACDP\".",
+   "uncertainty": "No start: no ACDP record found states the day he became President; the December 1993 founding and his founding of the party are organization claims, and the May 1998 newsletter is month-only. No end: none is stated.",
+   "sources": [
+    "za_acdp_home_page_19990501"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_acdp_president#2": {
+   "role": "research:za_acdp_president",
+   "name": "Kenneth Meshoe",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-10-31",
+   "claim_ids": [
+    "za_acdp_meshoe_speech_as_president_20011031"
+   ],
+   "note": "Observed on 31 October 2001: his speech on NEPAD is headed as by the President of the African Christian Democratic Party.",
+   "uncertainty": "No start and no end: no ACDP record found states either, and no ACDP election of its President was found.",
+   "sources": [
+    "za_acdp_meshoe_nepad_speech_20011031"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_acdp_president#3": {
+   "role": "research:za_acdp_president",
+   "name": "Kenneth Meshoe",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-02-18",
+   "claim_ids": [
+    "za_acdp_manifesto_notice_president_meshoe_20140218"
+   ],
+   "note": "Observed on 18 February 2014: the ACDP's manifesto-launch notice names \"ACDP President Dr Kenneth Meshoe\".",
+   "uncertainty": "No start and no end: none is stated; the announced address of 22 February 2014 is prospective and not recorded.",
+   "sources": [
+    "za_acdp_manifesto_launch_notice_20140218"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_acdp_president#4": {
+   "role": "research:za_acdp_president",
+   "name": "Kenneth Meshoe",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-02-14",
+   "claim_ids": [
+    "za_acdp_leader_meshoe_statement_20180214"
+   ],
+   "note": "Observed on 14 February 2018: the ACDP's press article issued by him that day calls him \"ACDP Leader\".",
+   "uncertainty": "No start and no end: none is stated. The leadership page as served on 1 April 2019 is a continuation claim.",
+   "sources": [
+    "za_acdp_leader_statement_20180214"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_acdp_president#5": {
+   "role": "research:za_acdp_president",
+   "name": "Kenneth Meshoe",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-03-04",
+   "claim_ids": [
+    "za_acdp_president_meshoe_statement_20260304"
+   ],
+   "note": "Observed on 4 March 2026: the ACDP's statement of that day is headed \"Statement by ACDP President, Rev Kenneth Meshoe MP\".",
+   "uncertainty": "No start and no end: none is stated. No acting President, vacancy or change was found in ACDP statements read between March and September 2026.",
+   "sources": [
+    "za_acdp_president_statement_lekota_20260304"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "za_anc_cyril_ramaphosa_20171218": {
    "role": "party:za_anc",
@@ -2663,6 +3221,204 @@
    "executive_grant": null,
    "appearance_backlog": false
   },
+  "za_ff_leader#1": {
+   "role": "research:za_ff_leader",
+   "name": "Constand Viljoen",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-08-26",
+   "claim_ids": [
+    "za_ff_viljoen_media_release_leader_19970826"
+   ],
+   "note": "Observed on 26 August 1997: a Freedom Front media release of that day is issued by him in the capacity \"Leier: Vryheidsfront\".",
+   "uncertainty": "No start: his founding of the party (before the April 1994 election) is an organization claim, and no party record found states the day he became Leader. No end: his retirement is dated only \"2001\", and his successor's election is not used as his end; his death, reported on 3 April 2020 as a former leader, is a separate claim.",
+   "sources": [
+    "za_ff_viljoen_media_release_19970826"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#2": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Mulder",
+   "from": null,
+   "until": null,
+   "attested_on": "2001-06-21",
+   "claim_ids": [
+    "za_ff_mulder_speech_newly_elected_party_leader_20010621"
+   ],
+   "note": "Observed on 21 June 2001: in his speech of that day he calls himself \"a newly elected party leader\".",
+   "uncertainty": "No start: the party's records date his election only to March 2001 (English curriculum vitae and this speech) or April 2001 (Afrikaans curriculum vitae), and no day of taking office is printed. No end: none is stated.",
+   "sources": [
+    "za_ff_mulder_budget_debate_speech_20010621"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#3": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Mulder",
+   "from": null,
+   "until": null,
+   "attested_on": "2003-09-28",
+   "claim_ids": [
+    "za_ff_release_mulder_vf_leader_20030928"
+   ],
+   "note": "Observed on 28 September 2003: the Freedom Front's release of that day names him \"VF leier\".",
+   "uncertainty": "No start and no end: none is stated. The merger and the name Vryheidsfront Plus announced on 27 September 2003 are organization claims, and the pledge of loyalty to him as leader of the Freedom Front Plus is a claim, not an election or a start.",
+   "sources": [
+    "za_ff_vfplus_media_release_20030928"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#4": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Mulder",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-11-12",
+   "claim_ids": [
+    "za_ff_release_mulder_vf_plus_leader_20161112"
+   ],
+   "note": "Observed on 12 November 2016: the release of that day styles him \"VF Plus-leier\" as he declines to stand again at the triennial elective congress.",
+   "uncertainty": "No start. No end: his decision not to stand again and his successor's designation the same day state no day on which his office ended; the 2013 re-election is a claim.",
+   "sources": [
+    "za_ff_mulder_not_available_release_20161112"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#5": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Groenewald",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-12-27",
+   "claim_ids": [
+    "za_ff_release_leader_groenewald_20161227"
+   ],
+   "note": "Observed on 27 December 2016: the release of that day calls him \"The leader of the Freedom Front Plus\".",
+   "uncertainty": "No start: his designation as new leader on 12 November 2016 states no day on which he took up the office. No end: none is stated.",
+   "sources": [
+    "za_ff_groenewald_farm_visit_release_20161227"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#6": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Groenewald",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-04-02",
+   "claim_ids": [
+    "za_ff_item_leader_groenewald_20200402"
+   ],
+   "note": "Observed on 2 April 2020: the party's item of that day calls him \"leader of the FF Plus\".",
+   "uncertainty": "No start and no end: none is stated.",
+   "sources": [
+    "za_ff_groenewald_covid_item_20200402"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#7": {
+   "role": "research:za_ff_leader",
+   "name": "Pieter Groenewald",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-08-22",
+   "claim_ids": [
+    "za_ff_joint_release_national_party_leader_groenewald_20240822"
+   ],
+   "note": "Observed on 22 August 2024: a joint media release of that day calls him \"the FF Plus national party leader\".",
+   "uncertainty": "No start. No end: no party record found states the day his office ended; his successor's first attestation (16 July 2025) is not used as his end. His appointment as Minister of Correctional Services (22 July 2024 release) is a state office and never feeds the party office.",
+   "sources": [
+    "za_ff_da_ff_leaders_release_20240822"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#8": {
+   "role": "research:za_ff_leader",
+   "name": "Corné Mulder",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-07-16",
+   "claim_ids": [
+    "za_ff_item_leader_corne_mulder_20250716"
+   ],
+   "note": "Observed on 16 July 2025: the party's item of that day calls him \"leier van die VF Plus\".",
+   "uncertainty": "No start: no party record found of his election or of the day he took up the office; his designation as parliamentary leader on 22 July 2024 is a different office. No end: none is stated.",
+   "sources": [
+    "za_ff_presidency_budget_debate_item_20250716"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ff_leader#9": {
+   "role": "research:za_ff_leader",
+   "name": "Corné Mulder",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-03-25",
+   "claim_ids": [
+    "za_ff_release_leader_corne_mulder_20260325"
+   ],
+   "note": "Observed on 25 March 2026: the party's release of that day calls him \"leader of the Freedom Front Plus\".",
+   "uncertainty": "No start and no end: none is stated. No acting leader, vacancy or change was found in Freedom Front Plus records up to the cutoff.",
+   "sources": [
+    "za_ff_new_members_release_20260325"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
   "za_ff_pieter_mulder_2001": {
    "role": "party:za_ff",
    "person": "pieter_mulder",
@@ -2718,6 +3474,182 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "za_ifp_president#1": {
+   "role": "research:za_ifp_president",
+   "name": "Mangosuthu Buthelezi",
+   "from": null,
+   "until": null,
+   "attested_on": "1995-10-24",
+   "claim_ids": [
+    "za_ifp_press_release_president_buthelezi_19951024"
+   ],
+   "note": "Observed on 24 October 1995: an IFP press release of that day refers to \"IFP President, Dr M G Buthelezi\".",
+   "uncertainty": "No start: the IFP's retrospective pages say he was unanimously elected President when Inkatha became the IFP in July 1990 (14 July on the 1997 and 2000 pages, 10 July on the later timeline), but they are election references with no structured date and never a start. No end: none is stated. His posts as a Minister and his parliamentary seat are state offices and are not used.",
+   "sources": [
+    "za_ifp_press_release_19951024"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#2": {
+   "role": "research:za_ifp_president",
+   "name": "Mangosuthu Buthelezi",
+   "from": null,
+   "until": null,
+   "attested_on": "2012-12-16",
+   "claim_ids": [
+    "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216"
+   ],
+   "note": "Observed on 16 December 2012: the resolutions of the 2012 Elective National Conference, dated that day, mandate \"its President, Prince Mangosuthu Buthelezi\".",
+   "uncertainty": "No start and no end: the resolutions acclaim his re-election but print no day of the vote or of taking office.",
+   "sources": [
+    "za_ifp_elective_conference_resolutions_2012"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#3": {
+   "role": "research:za_ifp_president",
+   "name": "Mangosuthu Buthelezi",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-01-20",
+   "claim_ids": [
+    "za_ifp_statement_president_buthelezi_20190120"
+   ],
+   "note": "Observed on 20 January 2019: his statement of that day is headed as by the President of the Inkatha Freedom Party.",
+   "uncertainty": "No start and no end: his October 2017 intention not to stand again, recalled here, is a claim and never an end.",
+   "sources": [
+    "za_ifp_extended_nc_statement_buthelezi_20190120"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#4": {
+   "role": "research:za_ifp_president",
+   "name": "Mangosuthu Buthelezi",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-08-24",
+   "claim_ids": [
+    "za_ifp_conference_address_president_buthelezi_20190824"
+   ],
+   "note": "Observed on 24 August 2019: his address to the 35th National General Conference, datelined that day, is headed as by the President of the Inkatha Freedom Party and is his last as President.",
+   "uncertainty": "No start. No end: his valedictory statement, the result published on 25 August 2019, the \"former IFP President\" reference and the later timeline's \"officially retires\" entry state no day his office ended, or are retrospective; his successor's election is not used as his end, and his death on 9 September 2023 (as President Emeritus) is a separate claim.",
+   "sources": [
+    "za_ifp_conference_address_buthelezi_20190824"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#5": {
+   "role": "research:za_ifp_president",
+   "name": "Velenkosini Hlabisa",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-09-12",
+   "claim_ids": [
+    "za_ifp_advisory_president_hlabisa_20190912"
+   ],
+   "note": "Observed on 12 September 2019: the IFP's media advisory of that day names \"IFP President Velenkosini Hlabisa\".",
+   "uncertainty": "No start: the conference result (published 25 August 2019, \"last night\") and his acceptance address of 24 August 2019 are claims, and no IFP record found states the day he assumed the office. No end: none is stated. His seat in the provincial legislature is a state office and is not used.",
+   "sources": [
+    "za_ifp_rally_advisory_20190912"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#6": {
+   "role": "research:za_ifp_president",
+   "name": "Velenkosini Hlabisa",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-09-09",
+   "claim_ids": [
+    "za_ifp_statement_president_hlabisa_20230909"
+   ],
+   "note": "Observed on 9 September 2023: the IFP's statement on Buthelezi's death is issued by him as President of the IFP.",
+   "uncertainty": "No start and no end: none is stated. The same byline's legislature office is not used.",
+   "sources": [
+    "za_ifp_statement_passing_buthelezi_20230909"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#7": {
+   "role": "research:za_ifp_president",
+   "name": "Velenkosini Hlabisa",
+   "from": null,
+   "until": null,
+   "attested_on": "2024-08-10",
+   "claim_ids": [
+    "za_ifp_extended_nc_thanks_president_hlabisa_20240810"
+   ],
+   "note": "Observed on 10 August 2024: the Extended National Council's resolutions of that day thank \"the IFP President Hon. Velenkosini Hlabisa MP\".",
+   "uncertainty": "No start and no end: none is stated. His post as a Minister from 2024 is a state office and never feeds the party office.",
+   "sources": [
+    "za_ifp_extended_nc_resolutions_20240810"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_ifp_president#8": {
+   "role": "research:za_ifp_president",
+   "name": "Velenkosini Hlabisa",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-02-01",
+   "claim_ids": [
+    "za_ifp_advisory_president_hlabisa_20260201"
+   ],
+   "note": "Observed on 1 February 2026: the IFP's release of that day names \"The President of the Inkatha Freedom Party, Hon. Velenkosini Hlabisa\".",
+   "uncertainty": "No start and no end: none is stated. No National General Conference, acting President or change was found in IFP records up to the cutoff.",
+   "sources": [
+    "za_ifp_rally_advisory_abaqulusi_20260201"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-30"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "za_ifp_velenkosini_hlabisa_20190824": {
    "role": "party:za_ifp",
@@ -2831,6 +3763,314 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "za_pac_president#1": {
+   "role": "research:za_pac_president",
+   "name": "Stanley Mogoba",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-05-19",
+   "claim_ids": [
+    "za_pac_statement_president_mogoba_19980519"
+   ],
+   "note": "Observed on 19 May 1998: a PAC statement of that day calls him \"The President of the Pan Africanist Congress, Dr Mmutlanyane Mogoba\".",
+   "uncertainty": "No start: the PAC's history page gives his election as \"December 1996\" (month only, retrospective) and its lists disagree on his range; none states the day he took office. No end: none is stated.",
+   "sources": [
+    "za_pac_statement_rustenburg_killings_19980519"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#10": {
+   "role": "research:za_pac_president",
+   "name": "Narius Moloto",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-07-12",
+   "claim_ids": [
+    "za_pac_court_current_president_moloto_20190712"
+   ],
+   "note": "Observed on 12 July 2019: the High Court's judgment of that day describes him as the PAC's \"current President\".",
+   "uncertainty": "No start: the consent order of 8 March 2019 acknowledged him as President but states no day of taking office. No end: his suspension on 20 July 2019 (claimed by the opposing side), his election at the Limpopo congress of 24-25 August 2019, the declaration of 23 August 2021 that this election was invalid and the finding of 27 October 2023 that he \"has not been re-elected ... since 2020\" are claims and never an end.",
+   "sources": [
+    "za_pac_saflii_gphc_2019_537"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#11": {
+   "role": "research:za_pac_president",
+   "name": "Mzwanele Nyhontso",
+   "from": null,
+   "until": null,
+   "attested_on": "2020-02-15",
+   "claim_ids": [
+    "za_pac_speech_president_nyhontso_20200215"
+   ],
+   "note": "Observed on 15 February 2020: his speech to the Polokwane provincial congress that day closes \"By Mr. Mzwanele Nyhontso President of Pan Africanist Congress of Azania (PAC)\".",
+   "uncertainty": "No start: his election at the Bloemfontein congress of 29-30 August 2019 (court chronology) and the post of 1 September 2019 on his re-election are claims, never starts. No end: none is stated. Disputed: Narius Moloto, elected at the rival Limpopo congress of 24-25 August 2019, contested the leadership in court; the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_speech_polokwane_congress_20200215"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#12": {
+   "role": "research:za_pac_president",
+   "name": "Mzwanele Nyhontso",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-07-19",
+   "claim_ids": [
+    "za_pac_post_president_nyhontso_20210719"
+   ],
+   "note": "Observed on 19 July 2021: a PAC post of that day calls him \"The democratically-elected president of the Pan Africanist Congress (PAC) of Azania\" and says \"Today the president visited the regional leadership in Nyhobo\".",
+   "uncertainty": "No start and no end: none is stated. Disputed: The court's declarations on the rival congresses followed on 23 August 2021 and are claims; the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_post_president_regional_tour_20210719"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#13": {
+   "role": "research:za_pac_president",
+   "name": "Mzwanele Nyhontso",
+   "from": null,
+   "until": null,
+   "attested_on": "2021-12-31",
+   "claim_ids": [
+    "za_pac_new_year_message_president_nyhontso_20211231"
+   ],
+   "note": "Observed on 31 December 2021: his New Year message of that day is headed as by the President of the Pan Africanist Congress of Azania.",
+   "uncertainty": "No start and no end: none is stated. Disputed: Narius Moloto's appeal against the High Court's order of 12 July 2019 was pending until 27 October 2023, and the Supreme Court of Appeal records that the declarations of 23 August 2021 were not appealed; the declarations are claims, and the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_new_year_message_20211231"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#14": {
+   "role": "research:za_pac_president",
+   "name": "Mzwanele Nyhontso",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-29",
+   "claim_ids": [
+    "za_pac_x_president_nyhontso_manifesto_launch_20260829"
+   ],
+   "note": "Observed on 29 August 2026: a PAC post of that day says \"PAC President Cde Mzwanele Nyhontso will unveil the People's Manifesto\".",
+   "uncertainty": "No start: no captured PAC record names the President elected at the National Elective Congress opened in Gqeberha on 11 December 2025. No end: none is stated. His ministerial office and seat in Parliament are state offices and are not used.",
+   "sources": [
+    "za_pac_x_manifesto_launch_20260829"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#2": {
+   "role": "research:za_pac_president",
+   "name": "Stanley Mogoba",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-06-16",
+   "claim_ids": [
+    "za_pac_release_president_mogoba_19980616"
+   ],
+   "note": "Observed on 16 June 1998: a PAC release of that day reports \"the President of the Pan Africanist Congress, Rev Dr Stanley Mogoba\" speaking at a rally in Mafikeng.",
+   "uncertainty": "No start and no end: none is stated.",
+   "sources": [
+    "za_pac_release_june16_rally_19980616"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#3": {
+   "role": "research:za_pac_president",
+   "name": "Stanley Mogoba",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-10-12",
+   "claim_ids": [
+    "za_pac_address_president_mogoba_19981012"
+   ],
+   "note": "Observed on 12 October 1998: his address in Durban that day is headed as by the President of the Pan Africanist Congress.",
+   "uncertainty": "No start and no end: none is stated.",
+   "sources": [
+    "za_pac_address_hawkers_council_19981012"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#4": {
+   "role": "research:za_pac_president",
+   "name": "Stanley Mogoba",
+   "from": null,
+   "until": null,
+   "attested_on": "1998-11-03",
+   "claim_ids": [
+    "za_pac_release_president_mogoba_19981103"
+   ],
+   "note": "Observed on 3 November 1998: a PAC release of that day calls him \"The President of the Pan Africanist Congress, Dr Stanley Mogoba\".",
+   "uncertainty": "No start. No end: no PAC record after this day with a date was found for him; the 1999 manifesto is a continuation claim, and the lists' \"2003\" is retrospective and never an end. His seat in Parliament is a state office and is not used.",
+   "sources": [
+    "za_pac_release_lesotho_19981103"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#5": {
+   "role": "research:za_pac_president",
+   "name": "Letlapa Mphahlele",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-09-20",
+   "claim_ids": [
+    "za_pac_statement_president_mphahlele_20080920"
+   ],
+   "note": "Observed on 20 September 2008: a PAC media statement of that day is issued by him as \"PRESIDENT OF THE PAC OF AZANIA\".",
+   "uncertainty": "No start: his election on 25 September 2006 and re-election on 6 July 2008 are retrospective references in an undated profile, never starts. No end: none is stated.",
+   "sources": [
+    "za_pac_statement_mbeki_recall_20080920"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#6": {
+   "role": "research:za_pac_president",
+   "name": "Letlapa Mphahlele",
+   "from": null,
+   "until": null,
+   "attested_on": "2008-10-03",
+   "claim_ids": [
+    "za_pac_notice_president_mphahlele_20081003"
+   ],
+   "note": "Observed on 3 October 2008: a PAC media notice of that day says \"President Letlapa Mphahlele will address the summit\".",
+   "uncertainty": "No start. No end: his expulsion in \"May 2013\" (court record, month only) is a claim and never an end; his successor's acting service and later titles are not used as his end.",
+   "sources": [
+    "za_pac_notice_election_summit_20081003"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#7": {
+   "role": "research:za_pac_president",
+   "name": "Alton Mphethi",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-03-21",
+   "claim_ids": [
+    "za_pac_report_president_mphethi_20140321"
+   ],
+   "note": "Observed on 21 March 2014: a PAC report says the commemorations that day \"were addressed by the President of the PAC Cde Alton Mphethi\".",
+   "uncertainty": "No start: no PAC record of his election was found; the home page's undated \"Acting President\" and \"President\" entries are claims. No end: the later \"expelled\" reference states no day. Disputed: Letlapa Mphahlele, expelled in May 2013, continued to claim the presidency (court record of June 2016); the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_latest_news_page_2014"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#8": {
+   "role": "research:za_pac_president",
+   "name": "Luthando Mbinda",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-01-31",
+   "claim_ids": [
+    "za_pac_release_president_mbinda_20160131"
+   ],
+   "note": "Observed on 31 January 2016: a PAC release of that day says \"President of the PAC, Luthando Mbinda, called upon all APLA political prisoners\" and is signed \"Luthando Mbinda PAC President\".",
+   "uncertainty": "No start: his election on \"the 28th of September 2014\" is a retrospective reference on an undated page, never a start. No end: his expulsion, which a later PAC release says \"took effect on 13 June 2017\", is a claim and never an end. Disputed: Letlapa Mphahlele continued to claim the presidency (court record of June 2016); the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_release_strategic_plan_20160131"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "za_pac_president#9": {
+   "role": "research:za_pac_president",
+   "name": "Narius Moloto",
+   "from": null,
+   "until": null,
+   "attested_on": "2018-05-25",
+   "claim_ids": [
+    "za_pac_statement_president_moloto_20180525"
+   ],
+   "note": "Observed on 25 May 2018: his statement of that day is headed as by the President of the Pan African Congress, on the PAC's letterhead.",
+   "uncertainty": "No start: no PAC record of his election was found (he was styled Secretary General on 4 October 2017). No end: none is stated. Disputed: Luthando Mbinda claimed to be the legitimate PAC (PAC release of 4 March 2018); the dispute is recorded, not resolved.",
+   "sources": [
+    "za_pac_statement_moloto_africa_day_20180525"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-32"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "za_pac_zephania_mothopeng_198608": {
    "role": "party:za_pac",

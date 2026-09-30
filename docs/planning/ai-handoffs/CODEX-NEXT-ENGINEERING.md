@@ -198,7 +198,7 @@ it cannot call inaccessible evidence verified or award country coverage.
   republished news text without changing holders. Its inherited stale census pin
   remains disclosed for combined regeneration. No full terms or runtime mapping
   are accepted; the earlier C01-30 repair is preserved.
-- India `CLAUDE-C01-33` is **ready_for_review** on `claude/c01-in-33` at
+- India `CLAUDE-C01-33` is **complete as bounded research intake** after independent review `7cf35886`; the submitted `claude/c01-in-33` tip is
   `2c78e89f67e9e21090a7da775fd8897c71d7dbd6`, covering Janata Dal presidents.
   Preserve the accepted BJP C01-27 repair when combining country data.
 - Brazil `CLAUDE-C01-34` is **ready_for_review** on `claude/c01-br-34` at

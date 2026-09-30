@@ -18,39 +18,40 @@
    },
    "statistics": {
     "roles": {
-     "research": 3,
+     "research": 5,
      "production_party": 4,
      "executive": 1
     },
-    "cases": 568,
+    "cases": 720,
     "case_kinds": {
-     "attestation_day": 27,
-     "attestation_day_after": 27,
-     "cutoff_day": 8,
-     "cutoff_day_before": 8,
+     "attestation_day": 45,
+     "attestation_day_after": 45,
+     "cutoff_day": 10,
+     "cutoff_day_before": 10,
      "death_day_after": 2,
      "death_day_before": 2,
      "death_day_of": 2,
-     "fictional_end_exclusive": 8,
-     "fictional_last_day": 8,
-     "fictional_start_day": 8,
-     "future_2030": 8,
-     "handover_day_after": 33,
-     "handover_day_before": 33,
-     "handover_day_of": 33,
-     "reference_start": 8,
-     "reference_start_day_before": 8,
-     "yearly": 368
+     "fictional_end_exclusive": 10,
+     "fictional_last_day": 10,
+     "fictional_start_day": 10,
+     "future_2030": 10,
+     "handover_day_after": 37,
+     "handover_day_before": 37,
+     "handover_day_of": 37,
+     "reference_start": 10,
+     "reference_start_day_before": 10,
+     "yearly": 460
     },
     "observations_by_acceptance": {
+     "accepted": 21,
      "pending": 31,
      "production_registry": 30
     },
     "research_yearly_status": {
-     "bracketed": 2,
+     "bracketed": 3,
      "established": 6,
-     "uncertain": 63,
-     "unknown": 40
+     "uncertain": 98,
+     "unknown": 78
     },
     "production_party_yearly_status": {
      "established": 109,
@@ -79,8 +80,8 @@
     ]
    },
    "headline": [
-    "Research roles: 3 (3 with holder observations); 6 of 111 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 2 are bracketed, 63 uncertain, 40 unknown and 0 unresearched.",
-    "Research holder observations by acceptance: pending 31.",
+    "Research roles: 5 (5 with holder observations); 6 of 185 yearly role-samples 1990-2026 identify a holder (stated interval, boundary day or exact day attestation); 0 have period observations only, 3 are bracketed, 98 uncertain, 78 unknown and 0 unresearched.",
+    "Research holder observations by acceptance: accepted 21, pending 31.",
     "Production party rows/components: 4; 109 of 148 yearly samples 1990-2026 have an established registry holder, 39 uncertain, 0 unknown, 0 unresearched and 0 inapplicable.",
     "Registry holder portraits at yearly samples: 10 bound, 99 unbound (19 distinct people without served art).",
     "Campaign-start executive V. P. Singh: portrait unbound on 1990-01-01; if retained, bound at 0 of 46 yearly samples.",
@@ -829,6 +830,156 @@
    }
   },
   {
+   "key": "research:in_bjp_president",
+   "identity": "India",
+   "family": "research_role",
+   "role_id": "in_bjp_president",
+   "title": "National President of the Bharatiya Janata Party",
+   "kind": "party_leader",
+   "entry": {
+    "id": "in_eci_20240323_np_03",
+    "category": "organizations",
+    "name": "Bharatiya Janata Party",
+    "kind": "political_party_national_recognition_observation",
+    "lifecycle": {
+     "status": "unresearched",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "in_bjp_president#1",
+    "in_bjp_president#2",
+    "in_bjp_president#3",
+    "in_bjp_president#4",
+    "in_bjp_president#5",
+    "in_bjp_president#6",
+    "in_bjp_president#7",
+    "in_bjp_president#8",
+    "in_bjp_president#9",
+    "in_bjp_president#10",
+    "in_bjp_president#11",
+    "in_bjp_president#12",
+    "in_bjp_president#13",
+    "in_bjp_president#14",
+    "in_bjp_president#15",
+    "in_bjp_president#16",
+    "in_bjp_president#17",
+    "in_bjp_president#18",
+    "in_bjp_president#19"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-08","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-09","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-10","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-12-11","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-16","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#3","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-07-17","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-02-27","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#4","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-02-28","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#5","before_stated_end"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-08-31","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#5","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-09-01","kinds":["attestation_day_after"],"historical":{"status":"bracketed","holders":[["in_bjp_president#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"bracketed","holders":[["in_bjp_president#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-03-13","kinds":["handover_day_before"],"historical":{"status":"bracketed","holders":[["in_bjp_president#5","bracketed_by_evidence"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-03-14","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_bjp_president#5","stated_end_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-03-15","kinds":["handover_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-06-30","kinds":["handover_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-07-01","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_bjp_president#6","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-07-02","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-10-20","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#7","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-10-21","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#8","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-12-24","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#9","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-12-25","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-22","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#10","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-23","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-03-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#11","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-03-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-07-09","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#12","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-07-10","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-02-02","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#13","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-02-03","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-06-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#14","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-06-18","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-19","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#6","after_stated_start"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-20","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_bjp_president#15","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-21","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#16","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-18","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#17","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-12-16","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-19","kinds":["handover_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#15","after_stated_start"]],"possible_total":2},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-20","kinds":["handover_day_of"],"historical":{"status":"boundary_day","holders":[["in_bjp_president#18","stated_start_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-21","kinds":["handover_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#18","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-17","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_bjp_president#19","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-08-18","kinds":["attestation_day_after"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#18","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#18","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"uncertain","reason":"one_sided_observation_only","possible":[["in_bjp_president#18","after_stated_start"]],"possible_total":3},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 96,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "bracketed": 1,
+     "uncertain": 35,
+     "unknown": 1
+    },
+    "boundary_cases": 12,
+    "attestation_cases": 32
+   }
+  },
+  {
    "key": "research:in_inc_president",
    "identity": "India",
    "family": "research_role",
@@ -941,6 +1092,97 @@
     },
     "boundary_cases": 0,
     "attestation_cases": 20
+   }
+  },
+  {
+   "key": "research:in_jd_president",
+   "identity": "India",
+   "family": "research_role",
+   "role_id": "in_jd_president",
+   "title": "President of the Janata Dal",
+   "kind": "party_leader",
+   "entry": {
+    "id": "in_eci_19980110_np_06",
+    "category": "organizations",
+    "name": "Janata Dal",
+    "kind": "political_party_national_recognition_observation",
+    "lifecycle": {
+     "status": "unresearched",
+     "from": null,
+     "until": null
+    }
+   },
+   "production_binding": "none: research-only role; no game party row, office or person is mapped (represented_party_ids is empty/unreconciled)",
+   "observations": [
+    "in_jd_president#1",
+    "in_jd_president#2"
+   ],
+   "cases": [
+    {"date":"1989-12-31","kinds":["reference_start_day_before"],"historical":{"status":"inapplicable","reason":"before_reference_period"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-01-01","kinds":["reference_start","yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-14","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_jd_president#1","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1990-07-15","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1991-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1992-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1993-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1994-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1995-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-07-15","kinds":["attestation_day"],"historical":{"status":"attested","holders":[["in_jd_president#2","attested_on_day"]]},"acceptance":["accepted"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1996-07-16","kinds":["attestation_day_after"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1997-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1998-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"1999-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2000-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2001-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2002-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2003-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2004-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2005-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2006-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2007-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2008-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2009-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2010-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2011-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2012-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2013-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2014-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2015-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2016-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2017-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2018-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2019-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2020-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2021-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2022-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2023-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2024-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2025-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-01-01","kinds":["yearly"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-06","kinds":["cutoff_day_before"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-07","kinds":["cutoff_day"],"historical":{"status":"unknown","reason":"no_observation_covers_date"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2026-09-08","kinds":["fictional_start_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2027-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2028-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2029-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2030-01-01","kinds":["future_2030","yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2031-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2032-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2033-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2034-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-01-01","kinds":["yearly"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2035-12-31","kinds":["fictional_last_day"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"},
+    {"date":"2036-01-01","kinds":["fictional_end_exclusive"],"historical":{"status":"inapplicable","reason":"after_historical_cutoff"},"acceptance":["none"],"image":"no_production_identity","asset":"n/a"}
+   ],
+   "statistics": {
+    "cases": 56,
+    "yearly_historical_samples": 37,
+    "yearly_status": {
+     "unknown": 37
+    },
+    "boundary_cases": 0,
+    "attestation_cases": 4
    }
   },
   {
@@ -1526,6 +1768,428 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "in_bjp_president#1": {
+   "role": "research:in_bjp_president",
+   "name": "L. K. Advani",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-01-08",
+   "claim_ids": [
+    "in_rs_sahay_advani_president_bjp_rath_yatra_19910108"
+   ],
+   "note": "Observed on 8 January 1991: in the Rajya Sabha's written answers the Minister of State for Home Affairs, Shri Subodh Kant Sahay, says 'Shri L. K. Advani, President BJP' conducted the Rath Yatra of 1990 (in English, on the official debates store; the date line is printed on the facing column), the earliest single-day record adopted in the period.",
+   "uncertainty": "No start: he became President before the period (the party's 2003 bio-data gives 'May 9, 1986', a retrospective list entry), and no record reviewed attests the holder on 1 January 1990 itself; the party's resolutions of April, July and November 1990 style him President under multi-day headings. No end: the farewell announcing Dr. Joshi's taking over 'tomorrow' is printed twice under conflicting headings (31 January and 1-3 February 1991) and names no speaker, the address of 1 February 1991 says only that he declined a third term, and the party's 1996 profile says 'until January 1991' (retrospective); Joshi's later observation is not used as his end.",
+   "sources": [
+    "in_rs_written_answers_19910108_usq1586_rath_yatra"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#10": {
+   "role": "research:in_bjp_president",
+   "name": "Nitin Gadkari",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-01-22",
+   "claim_ids": [
+    "in_bjp_gadkari_styled_national_president_statement_20130122"
+   ],
+   "note": "Observed on 22 January 2013: the party heads his statement 'Press statement issued by BJP National President, Shri Nitin Gadkari' and 'Statement by Sh. Nitin Gadkari, President'.",
+   "uncertainty": "No start (see the observation of 24 December 2009). No end: the same statement says he decided not to seek a second term, which is not a resignation, and by 27 January 2013 the party styles him 'former BJP National President'; no record states the day his office ended, and Rajnath Singh's election of 23 January 2013 is not used as his end.",
+   "sources": [
+    "in_bjp_site_gadkari_statement_no_second_term_20130122"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#11": {
+   "role": "research:in_bjp_president",
+   "name": "Rajnath Singh",
+   "from": null,
+   "until": null,
+   "attested_on": "2013-03-02",
+   "claim_ids": [
+    "in_bjp_rajnath_singh_presidential_address_national_council_20130302"
+   ],
+   "note": "Observed on 2 March 2013: the party's page dated that day is headed 'Presidential speech by Shri Rajnath Singh at BJP National Council Meeting at Talkatora Stadium' (the meeting of 2-3 March 2013).",
+   "uncertainty": "No start: the National Election Officer declared him elected unopposed on 23 January 2013 and the party calls him 'Newly Elected President' that day, but no record states the day he took charge ('after taking over the responsibility of the national president again' is undated); 2 March is the page's date, and the Hindi text of the address is filed as 3 March. No end: on 9 July 2014 the Parliamentary Board called him the 'outgoing Party President', without a day.",
+   "sources": [
+    "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#12": {
+   "role": "research:in_bjp_president",
+   "name": "Amit Shah",
+   "from": null,
+   "until": null,
+   "attested_on": "2014-07-09",
+   "claim_ids": [
+    "in_bjp_amit_shah_styled_national_president_profile_20140709"
+   ],
+   "note": "Observed on 9 July 2014: the party's release of that day is headed 'Profile of BJP National President, Shri Amit Shah', on the day the Parliamentary Board thanked the 'outgoing' President Rajnath Singh.",
+   "uncertainty": "No start: no party record of the decision naming him, its body or the day he took charge was found; at the National Council of 9 August 2014 he spoke of 'my election as the BJP's National President' without a day. No end here (see the observations of 2016 and 2019).",
+   "sources": [
+    "in_bjp_site_profile_national_president_amit_shah_20140709"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#13": {
+   "role": "research:in_bjp_president",
+   "name": "Amit Shah",
+   "from": null,
+   "until": null,
+   "attested_on": "2016-02-02",
+   "claim_ids": [
+    "in_bjp_amit_shah_styled_national_president_felicitation_20160202"
+   ],
+   "note": "Observed on 2 February 2016: the party's release of that day is headed 'Members from different communities felicitating BJP National President, Shri Amit Shah' and its Hindi body speaks of his being named BJP President again.",
+   "uncertainty": "No start: his re-election is reported on 24 January 2016 (nominations filed that day) without a declaration text, and a re-election is not a new start. No end here (see the observation of 2019).",
+   "sources": [
+    "in_bjp_site_amit_shah_felicitation_20160202"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#14": {
+   "role": "research:in_bjp_president",
+   "name": "Amit Shah",
+   "from": null,
+   "until": null,
+   "attested_on": "2019-06-17",
+   "claim_ids": [
+    "in_ks_amit_shah_styled_national_president_at_board_meeting_20190617"
+   ],
+   "note": "Observed on 17 June 2019: the party organ Kamal Sandesh reports the Parliamentary Board meeting of that day, attended by 'Union Home Minister and BJP National President Shri Amit Shah', which made J. P. Nadda National Working President.",
+   "uncertainty": "No start (see the observation of 2014). No end: his request to be relieved was reported that day, the party said he would continue as National President until the organisational elections, and on 20 January 2020 he handed over charge to J. P. Nadda; a handover statement is never an until, and the day is also his successor's taking charge, which is not used as his end.",
+   "sources": [
+    "in_ks_nadda_appointed_working_president_20190617"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#15": {
+   "role": "research:in_bjp_president",
+   "name": "J. P. Nadda",
+   "from": "2020-01-20",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "in_ks_nadda_took_charge_20200120"
+   ],
+   "note": "From 20 January 2020: the party organ Kamal Sandesh (Vol. 15, No. 03, 01-15 February, 2020) reports that he 'took charge from the outgoing Party National President and Union Home Minister Shri Amit Shah on 20 January, 2020', after his unopposed election that day.",
+   "uncertainty": "The start is day-only and rests on the party organ's report of the day's events. His National Working Presidency from 17 June 2019 is claims only. No end here (see the later observations).",
+   "sources": [
+    "in_kamal_sandesh_vol15_no03_20200201"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#16": {
+   "role": "research:in_bjp_president",
+   "name": "J. P. Nadda",
+   "from": null,
+   "until": null,
+   "attested_on": "2023-01-17",
+   "claim_ids": [
+    "in_bjp_nadda_styled_national_president_letter_20230117"
+   ],
+   "note": "Observed on 17 January 2023: the party's page of that day is headed 'Letter : Hon'ble BJP National President Shri J.P. Nadda to the Party Karyakartas', on the day the National Executive extended his tenure 'till June 2024'.",
+   "uncertainty": "No start (see the holder from 20 January 2020). No end: the extension names a month ('till June 2024'), which is not an until; no record of a further extension or of a constitutional amendment on the tenure was found.",
+   "sources": [
+    "in_bjp_site_nadda_letter_to_karyakartas_20230117"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#17": {
+   "role": "research:in_bjp_president",
+   "name": "J. P. Nadda",
+   "from": null,
+   "until": null,
+   "attested_on": "2025-12-15",
+   "claim_ids": [
+    "in_ks_nadda_styled_national_president_20251215"
+   ],
+   "note": "Observed on 15 December 2025: Kamal Sandesh (Vol. 20, No. 24) reports that 'BJP National President and Union Minister Shri JP Nadda' was present when Nitin Nabin assumed charge as National Working President that day.",
+   "uncertainty": "No start (see the holder from 20 January 2020). No end: on 20 January 2026 he handed over charge to Nitin Nabin and the party called him 'Ex National President'; a handover statement and a predecessor reference are never an until, and the day is also his successor's start, which is not used as his end. The party still styled him National President on 25 December 2025 (a lead).",
+   "sources": [
+    "in_kamal_sandesh_vol20_no24_20251216"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#18": {
+   "role": "research:in_bjp_president",
+   "name": "Nitin Nabin",
+   "from": "2026-01-20",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "in_bjp_nadda_says_nabin_assumed_charge_today_20260120",
+    "in_ks_nabin_assumes_charge_national_president_20260120"
+   ],
+   "note": "From 20 January 2026: the party's release of that day quotes the outgoing President saying 'Today is a very historic day, as the young, energetic and talented National President Shri Nitin Nabin has assumed charge as the National President', and Kamal Sandesh (Vol. 21, No. 02, published on 24 January 2026) says he 'formally assumed charge at the party headquarters in New Delhi on 20 January 2026'.",
+   "uncertainty": "The start is day-only. His National Working Presidency from 14 and 15 December 2025 is claims only, and the National Returning Officer's announcement of 19 January 2026 that only his name had been proposed is an election claim. No end here (see the observation of 17 August 2026).",
+   "sources": [
+    "in_bjp_site_nadda_felicitation_speech_20260120",
+    "in_kamal_sandesh_vol21_no02_20260116"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "in_bjp_president#19": {
+   "role": "research:in_bjp_president",
+   "name": "Nitin Nabin",
+   "from": null,
+   "until": null,
+   "attested_on": "2026-08-17",
+   "claim_ids": [
+    "in_ks_nabin_appoints_national_office_bearers_20260817"
+   ],
+   "note": "Observed on 17 August 2026: Kamal Sandesh's page, as captured on 4 September 2026, says 'Bharatiya Janata Party Hon'ble National President Shri Nitin Nabin is pleased to appoint' the new national office bearers 'on 17 August 2026'.",
+   "uncertainty": "No start (see the holder from 20 January 2026). No end: no vacancy, resignation or acting President is recorded before the cutoff of 7 September 2026. The page prints 'Published on: 16 Aug, 2026', a day before the appointment day its text gives, and its metadata records a modification on 2 September 2026; its only capture (4 September 2026) is of the modified page, so the day is kept as the text prints it, and either day is before the cutoff.",
+   "sources": [
+    "in_ks_national_president_appoints_office_bearers_20260817"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#2": {
+   "role": "research:in_bjp_president",
+   "name": "Murli Manohar Joshi",
+   "from": null,
+   "until": null,
+   "attested_on": "1991-12-10",
+   "claim_ids": [
+    "in_rs_narayanasamy_ekta_yatra_bjp_president_joshi_19911210"
+   ],
+   "note": "Observed on 10 December 1991: in the Rajya Sabha, under the item headed 'REGARDING \"EKTA YATRA\" BY B.J.P. PRESIDENT', Shri V. Narayanasamy asks for 'this Ekta Yatra, by the BJP President, Dr. Murli Manohar Joshi' to be stopped (in English, on the official debates store).",
+   "uncertainty": "No start: the farewell announces his taking over 'tomorrow' (31 January or 1-3 February 1991 by conflicting headings) and the unnamed acceptance address of 1 February 1991 says the presidentship has been entrusted, but no record states the day he assumed the office. No end: he is 'Ex-President' by the National Executive of 18-19 December 1993 and the address of 18 June 1993 speaks of his stewardship in the past tense, without a day; Advani's return is not used as his end. The party's own single-day record naming him is the resolution of 27 February 1993 (a continuation).",
+   "sources": [
+    "in_rs_debate_19911210_ekta_yatra_bjp_president"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#3": {
+   "role": "research:in_bjp_president",
+   "name": "L. K. Advani",
+   "from": null,
+   "until": null,
+   "attested_on": "1997-07-16",
+   "claim_ids": [
+    "in_bjp_press_release_president_advani_19970716"
+   ],
+   "note": "Observed on 16 July 1997: the party's release headed 'Press Release by President, Shri Lal Krishna Advani', dated 16 July 1997, in which the author writes 'As President of the BJP'; the earliest single-day record adopted after his return to the presidency.",
+   "uncertainty": "No start: the address of 18 June 1993 thanking the National Council for electing its speaker 'once again President' names no speaker, the party's 2003 bio-data gives 'July, 1993' (retrospective), and no record states the day of the election or of his taking charge; the re-election of 10 November 1995 is stated without a day. No end: on 2 May 1998 the unnamed speaker announced the handover for 'tomorrow', the bio-data gives 'May 2, 1998' and a report of 2000 says Thakre took over at the session of 3 and 4 May 1998; none states the day the office ended.",
+   "sources": [
+    "in_bjp_org_swarna_jayanti_press_release_19970716"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#4": {
+   "role": "research:in_bjp_president",
+   "name": "Kushabhau Thakre",
+   "from": null,
+   "until": null,
+   "attested_on": "1999-02-27",
+   "claim_ids": [
+    "in_bjp_thakre_styled_president_budget_statement_19990227"
+   ],
+   "note": "Observed on 27 February 1999: the party heads a statement 'Statement on Union Budget 1999-2000 issued by Shri Kushabhau Thakre, President, BJP', the earliest single-day party styling of him found.",
+   "uncertainty": "No start: he was declared elected after 11 April 1998 on a day no record gives, and at the National Council session of 3 and 4 May 1998 he said 'I assume this office', but the day of delivery is not printed. No end: on 2 August 2000 he was the 'outgoing President' and on 27-28 August 2000 his successor called him 'my immediate predecessor', without a day; Bangaru Laxman's election is not used as his end.",
+   "sources": [
+    "in_bjp_site_thakre_budget_statement_19990227"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#5": {
+   "role": "research:in_bjp_president",
+   "name": "Bangaru Laxman",
+   "from": null,
+   "until": "2001-03-14",
+   "attested_on": "2000-08-31",
+   "claim_ids": [
+    "in_bjp_laxman_styled_president_maiden_press_conference_20000831",
+    "in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314"
+   ],
+   "note": "Observed on 31 August 2000: the party heads the statement of his maiden press conference 'Statement issued by Shri Bangaru Laxman, President BJP'. The atlas shows only 'Observed on' for a holder with attested_on, so this note carries the end: 14 March 2001, when the available office bearers, by the party's release of that day, 'unanimously decided to accept the resignation with immediate effect'.",
+   "uncertainty": "No start: his nominations were filed on 2 August 2000 and he took over 'at the two-day National Council session, which concluded in Nagpur on August 28', but no record gives the declaration or the day of assumption. The end is day-only and rests on the office bearers' release; the resignation letter is dated 13 March 2001 in a later record, and the National Executive recorded the resignation on 24 March 2001 without a day.",
+   "sources": [
+    "in_bjp_site_laxman_statement_20000831",
+    "in_bjp_site_office_bearers_press_release_20010314"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 2
+   }
+  },
+  "in_bjp_president#6": {
+   "role": "research:in_bjp_president",
+   "name": "M. Venkaiah Naidu",
+   "from": "2002-07-01",
+   "until": null,
+   "attested_on": null,
+   "claim_ids": [
+    "in_bjp_today_naidu_took_over_on_july_1_20020701"
+   ],
+   "note": "From 1 July 2002: the party journal BJP Today (issue of July 16-31, 2002) says 'he took over from Shri Jana Krishnamurthi on July 1, his 53rd birth anniversary as the president'; the party's profile dated 1 July 2002 lists 'Ist July 2002 onwards President' and he held his 'first press conference on becoming President' on 11 July 2002.",
+   "uncertainty": "The start is day-only and rests on the party journal's editorial, a party statement of the day of his taking over published in the next issue; no record of the selecting body or of an election or ratification was found (the National Council address of 3 August 2002 speaks of workers having 'accepted and endorsed this decision' and names no speaker). No end: on 18 October 2004 his resignation was accepted without a stated day of effect, and Advani's appointment that day is not used as his end.",
+   "sources": [
+    "in_bjp_today_editorial_20020716"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#7": {
+   "role": "research:in_bjp_president",
+   "name": "L. K. Advani",
+   "from": null,
+   "until": null,
+   "attested_on": "2004-10-20",
+   "claim_ids": [
+    "in_bjp_advani_statement_as_president_20041020"
+   ],
+   "note": "Observed on 20 October 2004: the party heads the statement of his press conference 'Statement issued by Shri L.K. Advani President'.",
+   "uncertainty": "No start: the office bearers resolved on 18 October 2004 to appoint him, with ratification by the National Council to follow, and his statement of 20 October recalls 'assuming the office ... two days ago', a recollection in passing that does not date a start (CLAUDE-C01-15 check C1); the National Council endorsed his election on 27 October 2004 (the party's release names the National Executive). No end: his resignation of June 2005 was rejected, and on 26 December 2005 he said it was the last meeting he would preside over; no record states the day his office ended, and Rajnath Singh's styling is not used as his end.",
+   "sources": [
+    "in_bjp_site_advani_statement_20041020"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#8": {
+   "role": "research:in_bjp_president",
+   "name": "Rajnath Singh",
+   "from": null,
+   "until": null,
+   "attested_on": "2006-01-02",
+   "claim_ids": [
+    "in_bjp_rajnath_singh_styled_national_president_20060102"
+   ],
+   "note": "Observed on 2 January 2006: the party heads his statement 'The statement released by the BJP National President, Shri Rajnath Singh'.",
+   "uncertainty": "No start: the statement's 'I am accepting the office' is in the present tense and 'I have taken over' is undated, and on 20 January 2006 he said the responsibility was placed on him at the conclusion of the Silver Jubilee convention (dated 28-30 December 2005 by the party) without a day; no record of his election or its declaration was found. No end: the Parliamentary Board thanked him on 19 December 2009 'for the leadership provided by him to the party during his tenure as president', without a day.",
+   "sources": [
+    "in_bjp_site_rajnath_singh_statement_20060102"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_bjp_president#9": {
+   "role": "research:in_bjp_president",
+   "name": "Nitin Gadkari",
+   "from": null,
+   "until": null,
+   "attested_on": "2009-12-24",
+   "claim_ids": [
+    "in_bjp_gadkari_first_press_conference_as_president_20091224"
+   ],
+   "note": "Observed on 24 December 2009: the party dates the statement in which he meets the national media 'in my first press conference as President of the BJP'.",
+   "uncertainty": "No start: the party's profile headed 'BJP National President' is dated 18 December 2009 on its page and 19 December 2009 in the site's listing, and no record gives the selecting body, the day of selection or the day he took charge; at the National Council of 18 February 2010 he said the leadership and the Council had elected him, without a day. No end here (see the observation of 22 January 2013).",
+   "sources": [
+    "in_bjp_site_gadkari_first_press_conference_as_president_20091224"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-27"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "in_bjp_rajnath_singh_20051231": {
    "role": "party:in_bjp",
@@ -2193,6 +2857,50 @@
    "acceptance": "production_registry",
    "executive_grant": null,
    "appearance_backlog": false
+  },
+  "in_jd_president#1": {
+   "role": "research:in_jd_president",
+   "name": "S. R. Bommai",
+   "from": null,
+   "until": null,
+   "attested_on": "1990-07-14",
+   "claim_ids": [
+    "in_rs_pm_letter_to_bommai_president_janata_dal_19900714"
+   ],
+   "note": "Observed on 14 July 1990: the Prime Minister's letter of that day, printed in the Rajya Sabha's written answer of 28 August 1990 (official debates store), is addressed to 'Shri S. R. Bommai, President, Janata Dal'; the earliest single-day record adopted. The letter is V. P. Singh's, written as the Janata Dal's leader to the party's President on party business (a meeting of the National Front Parliamentary Party to elect a new leader); the House printed it and decided nothing about the office.",
+   "uncertainty": "No start: no record reviewed states the day he assumed the office, and his own recollection of 1997 ('As Janata Dal President, I have given a report in 1989') gives a year only. No end: the Rajya Sabha's 2007 obituary synopsis says 'from 1990 to 1996' (retrospective), and no record states the day he left the office; Laloo Prasad Yadav's later observation is not used as his end. The Election Commission's orders of 1993 name the group 'headed by' or 'represented by' him, not his office.",
+   "sources": [
+    "in_rs_written_answers_19900828_usq2406_pm_letters"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-33"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
+  },
+  "in_jd_president#2": {
+   "role": "research:in_jd_president",
+   "name": "Laloo Prasad Yadav",
+   "from": null,
+   "until": null,
+   "attested_on": "1996-07-15",
+   "claim_ids": [
+    "in_ls_panigrahi_laloo_prasad_yadav_party_president_19960715"
+   ],
+   "note": "Observed on 15 July 1996: in the Lok Sabha Shri Sriballav Panigrahi, speaking in English, called him 'the Janata Dal Party Supremo, the party President, the Bihar Chief Minister' (Internet Archive copy of the Lok Sabha Secretariat's file); the earliest single-day record found. The speaker (Deogarh) is not a Janata Dal officer; he speaks of the ruling Janata Dal from outside it. India's integrated packets accept such parliamentary statements (CLAUDE-C01-20, CLAUDE-C01-27); CLAUDE-C01-29 applied a stricter party-officer-only rule to Diet minutes.",
+   "uncertainty": "No start: no record reviewed states the day he was elected or assumed the office. No end: the records of 29 July 1997 style him President of the Rashtriya Janata Dal, another organisation, and no record states the day he left this office; the 1997 claims and leads naming Sharad Yadav are not used as his end.",
+   "sources": [
+    "in_ls_debate_19960715_petroleum_prices"
+   ],
+   "acceptance": "accepted",
+   "packets": [
+    "CLAUDE-C01-33"
+   ],
+   "source_classes": {
+    "accepted": 1
+   }
   },
   "in_jd_s_r_bommai_1990": {
    "role": "party:in_jd",

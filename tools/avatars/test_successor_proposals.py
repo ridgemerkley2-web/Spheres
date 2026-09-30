@@ -268,6 +268,11 @@ class ProposalPacketTests(unittest.TestCase):
         self.set_name(doc, 'draft_c04_fr_01', 'Camille', 'Renaud')
         self.assertFlags('E_NAME_FICTIONAL', doc)
 
+    def test_retired_draft_surname_found_in_later_research_remains_rejected(self):
+        doc = self.doc_copy()
+        self.set_name(doc, 'draft_c04_to_04', 'Kalolo', 'Vaikona')
+        self.assertFlags('E_NAME_REAL', doc, contains='family name')
+
     def test_template_pool_combination_is_rejected(self):
         doc = self.doc_copy()
         self.set_name(doc, 'draft_c04_to_03', 'Malia', 'Moala')

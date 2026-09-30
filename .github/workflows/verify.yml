@@ -45,6 +45,8 @@ jobs:
         run: python -B tools/planning/workboard.py --check
       - name: Verify task queries and dependency guards
         run: python -B -m unittest discover -s tools/planning -p "test_*.py"
+      - name: Verify historical research and fictional character contracts
+        run: python -B -X utf8 -m unittest discover -s tools/avatars -p "test_*.py"
       - name: Verify strict native stability evidence orchestration
         run: python -B -m unittest discover -s tools/campaign -p "test_*stability*.py"
       - name: Verify release packaging and extraction guards

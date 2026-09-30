@@ -455,7 +455,7 @@
       "id": "CLAUDE-C01-33",
       "owner": "Claude",
       "session": "C01",
-      "state": "ready_for_review",
+      "state": "complete",
       "priority": 19,
       "title": "Research Janata Dal presidents",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-33.md",
@@ -463,7 +463,8 @@
       "branch": "claude/c01-in-33",
       "claim_revision": "89decb6a72db0dd5da84359a6bf3cb4e0d6ac75d",
       "submission_revision": "2c78e89f67e9e21090a7da775fd8897c71d7dbd6",
-      "next": "Submitted at 2c78e89f67e9e21090a7da775fd8897c71d7dbd6; independent source, content, isolation and focused technical review required before acceptance. Reserve India/in_jd from duplicate research. Preserve the already accepted C01-27 BJP repair when combining the India packet. This inventory entry imports no research or runtime mapping and grants no parent C01/C06/S23 closure."
+      "next": "Accepted bounded intake after independent reproduction of 22 recorded PDF responses and review of 41 claims and two holder observations. Import 9d97caa9, authored correction 71dd93ee, precision repair d1e32b71 and review 7cf35886 preserve all accepted BJP data. Mirror and IFES-copy authentication limits, year-only chronology and discrete observations remain explicit. See docs/campaign-certification/C01/integrations/CLAUDE-C01-33/README.md. No full chronology, runtime mapping, art permission or parent C01/C06/S23 closure.",
+      "review_revision": "7cf358866d1bb017b76018042b592301e574bb31"
     },
     {
       "id": "CLAUDE-C01-34",

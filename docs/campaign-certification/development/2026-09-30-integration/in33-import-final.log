@@ -1,0 +1,37 @@
+[codex/campaign-certification 71dd93ee] Apply verifier fixes to CLAUDE-C01-33
+ Date: Mon Sep 28 14:46:14 2026 -0700
+ 10 files changed, 178 insertions(+), 126 deletions(-)
+[codex/campaign-certification d1e32b71] Clarify C01-33 chronology uncertainty and multi-page order locator
+ Date: Wed Sep 30 02:02:05 2026 -0700
+ 3 files changed, 9 insertions(+), 8 deletions(-)
+[codex/campaign-certification 7cf35886] Record independent C01-33 PDF content and inherited India preservation review
+ Date: Wed Sep 30 02:07:28 2026 -0700
+ 28 files changed, 2246 insertions(+)
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/.gitattributes
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/README.md
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/baseline-isolation.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/census-difference.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/claim-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-atlas-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-atlas.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-census.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-extract.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-index-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-index-regenerate.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-index.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-retrieval.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-campaign-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-campaign.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-country-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-country.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-research-postrepair.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-tests-research.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/logs/in33-workboard.log
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/manifest.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/page-review.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/retrieval.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/scripts/in33-extract.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/scripts/in33-retrieve.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/scripts/verify-preserved-inputs.py
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/source-pins.json
+ create mode 100644 docs/campaign-certification/C01/integrations/CLAUDE-C01-33/validation.json
