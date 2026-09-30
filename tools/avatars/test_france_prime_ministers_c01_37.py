@@ -1,6 +1,6 @@
 """CLAUDE-C01-37: French prime ministers, 1990-2014 (the first ten people to hold the office in the period), keep the
 Prime Minister's resignation letter, the decree ending the Government's functions, the appointment decree, in-office
-signatures and a later decree's reference to an appointment apart, state a start or an end only where a decree does, and
+signatures and a later decree's reference to an appointment apart, retain decree dates as observations without inferred effective boundaries, and
 reach france.json only through the importer's supplement merge, beside CLAUDE-C01-23's presidency."""
 import copy
 import hashlib
@@ -142,23 +142,24 @@ EVENTS = {
 }
 # Exact holder observations, in chronological order: (name, attested_on, from, until).
 HOLDERS = [
-    ('Michel Rocard', '1990-01-24', None, '1991-05-15'),
+    ('Michel Rocard', '1990-01-24', None, None),
     ('Édith Cresson', '1991-05-16', None, None),
-    ('Pierre Bérégovoy', None, '1992-04-02', '1993-03-29'),
-    ('Édouard Balladur', '1993-03-30', None, '1995-05-11'),
+    ('Pierre Bérégovoy', '1992-04-02', None, None),
+    ('Édouard Balladur', '1993-03-30', None, None),
     ('Alain Juppé', '1995-05-18', None, None),
-    ('Alain Juppé', None, '1995-11-07', '1997-06-02'),
-    ('Lionel Jospin', None, '1997-06-02', '2002-05-06'),
-    ('Jean-Pierre Raffarin', None, '2002-05-06', '2002-06-17'),
-    ('Jean-Pierre Raffarin', None, '2002-06-17', '2004-03-30'),
-    ('Jean-Pierre Raffarin', None, '2004-03-30', '2005-05-31'),
-    ('Dominique de Villepin', None, '2005-05-31', '2007-05-15'),
-    ('François Fillon', None, '2007-05-17', '2007-06-18'),
-    ('François Fillon', None, '2007-06-18', '2010-11-13'),
-    ('François Fillon', None, '2010-11-14', '2012-05-10'),
-    ('Jean-Marc Ayrault', None, '2012-05-15', '2012-06-18'),
-    ('Jean-Marc Ayrault', None, '2012-06-18', '2014-03-31'),
+    ('Alain Juppé', '1995-11-07', None, None),
+    ('Lionel Jospin', '1997-06-02', None, None),
+    ('Jean-Pierre Raffarin', '2002-05-06', None, None),
+    ('Jean-Pierre Raffarin', '2002-06-17', None, None),
+    ('Jean-Pierre Raffarin', '2004-03-30', None, None),
+    ('Dominique de Villepin', '2005-05-31', None, None),
+    ('François Fillon', '2007-05-17', None, None),
+    ('François Fillon', '2007-06-18', None, None),
+    ('François Fillon', '2010-11-14', None, None),
+    ('Jean-Marc Ayrault', '2012-05-15', None, None),
+    ('Jean-Marc Ayrault', '2012-06-18', None, None),
 ]
+
 HOLDER_CLAIMS = [
     ['fr_jorf_rocard_signs_decree_as_pm_19900124', 'fr_jorf_rocard_functions_ended_19910515'],
     ['fr_jorf_cresson_countersigns_composition_19910516'],
@@ -181,15 +182,15 @@ INSTITUTION, ROLE = 'fr_prime_minister', 'fr_pm'
 PRESIDENCY, PRESIDENT = 'fr_presidency', 'fr_president'
 C01_23_SOURCES = 49
 ACCESSED = '2026-09-29'
-# The claim each `from` rests on (an appointment decree whose text names the appointee), by holder index.
-FROM_BASIS = {2: 'fr_jorf_beregovoy_appointed_pm_19920402', 5: 'fr_jorf_juppe_appointed_pm_19951107',
+# Appointment-event claims, not effective start authority, by holder index.
+APPOINTMENT_BASIS = {2: 'fr_jorf_beregovoy_appointed_pm_19920402', 5: 'fr_jorf_juppe_appointed_pm_19951107',
               6: 'fr_jorf_jospin_appointed_pm_19970602', 7: 'fr_jorf_raffarin_appointed_pm_20020506',
               8: 'fr_jorf_raffarin_appointed_pm_20020617', 9: 'fr_jorf_raffarin_appointed_pm_20040330',
               10: 'fr_jorf_villepin_appointed_pm_20050531', 11: 'fr_jorf_fillon_appointed_pm_20070517',
               12: 'fr_jorf_fillon_appointed_pm_20070618', 13: 'fr_jorf_fillon_appointed_pm_20101114',
               14: 'fr_jorf_ayrault_appointed_pm_20120515', 15: 'fr_jorf_ayrault_appointed_pm_20120618'}
-# The claim each `until` rests on (the decree ending the Government's functions), by holder index.
-UNTIL_BASIS = {0: 'fr_jorf_rocard_functions_ended_19910515', 2: 'fr_jorf_beregovoy_functions_ended_19930329',
+# Cessation-event claims, not effective end authority, by holder index.
+CESSATION_BASIS = {0: 'fr_jorf_rocard_functions_ended_19910515', 2: 'fr_jorf_beregovoy_functions_ended_19930329',
                3: 'fr_jorf_balladur_functions_ended_19950511', 5: 'fr_jorf_juppe_functions_ended_19970602',
                6: 'fr_jorf_jospin_functions_ended_20020506', 7: 'fr_jorf_raffarin_functions_ended_20020617',
                8: 'fr_jorf_raffarin_functions_ended_20040330', 9: 'fr_jorf_raffarin_functions_ended_20050531',
@@ -199,6 +200,7 @@ UNTIL_BASIS = {0: 'fr_jorf_rocard_functions_ended_19910515', 2: 'fr_jorf_beregov
 # The claim each observation date rests on (an in-office signature or countersignature), by holder index.
 ATTESTED_BASIS = {0: 'fr_jorf_rocard_signs_decree_as_pm_19900124', 1: 'fr_jorf_cresson_countersigns_composition_19910516',
                   3: 'fr_jorf_balladur_countersigns_composition_19930330', 4: 'fr_jorf_juppe_countersigns_composition_19950518'}
+ATTESTED_BASIS.update(APPOINTMENT_BASIS)
 SURNAMES = {'Michel Rocard': 'rocard', 'Édith Cresson': 'cresson', 'Pierre Bérégovoy': 'bérégovoy',
             'Édouard Balladur': 'balladur', 'Alain Juppé': 'juppé', 'Lionel Jospin': 'jospin',
             'Jean-Pierre Raffarin': 'raffarin', 'Dominique de Villepin': 'villepin', 'François Fillon': 'fillon',
@@ -218,8 +220,8 @@ NEVER_BOUNDARY = {
     8: {'2002-06-18', '2004-03-31'}, 9: {'2004-03-31', '2005-06-01'}, 10: {'2005-06-01', '2007-05-16', '2007-05-17'},
     11: {'2007-05-19', '2007-06-19'}, 12: {'2007-06-19', '2010-11-14'}, 13: {'2010-11-16', '2012-05-11', '2012-05-15'},
     14: {'2012-05-16', '2012-06-19'}, 15: {'2012-06-19', '2014-04-01'}}
-STARTS = [(HOLDERS[i][0], HOLDERS[i][2]) for i in sorted(FROM_BASIS)]
-ENDS = [(HOLDERS[i][0], HOLDERS[i][3]) for i in sorted(UNTIL_BASIS)]
+STARTS = []
+ENDS = []
 PEOPLE = ['Michel Rocard', 'Édith Cresson', 'Pierre Bérégovoy', 'Édouard Balladur', 'Alain Juppé', 'Lionel Jospin',
           'Jean-Pierre Raffarin', 'Dominique de Villepin', 'François Fillon', 'Jean-Marc Ayrault']
 # Leads (encyclopaedias, retrospective lists, listing pages, the next batch's decree, identifiers without a usable capture
@@ -265,35 +267,17 @@ def pm_invariants(packet):
         for cid in h['claim_ids']:
             assert cid in role['claim_ids'] and cid in pm['claim_ids'], cid
             assert owner[cid] in h['sources'], cid
-        # A start is exactly the day of its appointment decree, an end exactly the day of its decree ending the functions,
-        # an observation exactly the day of its signature; nothing else dates a holder.
-        if h['from'] is not None:
-            basis = FROM_BASIS[index]
-            assert h['claim_ids'][0] == basis and claims[basis]['attested_on'] == h['from'], index
+        # These are dated source observations; signing/publication is not explicit effect evidence.
+        assert h['from'] is None and h['until'] is None, 'no inferred effective boundaries'
+        basis = ATTESTED_BASIS[index]
+        assert h['claim_ids'][0] == basis and claims[basis]['attested_on'] == h['attested_on'], index
+        if index in APPOINTMENT_BASIS:
             assert 'est nommé Premier ministre' in claims[basis]['text'], index
-        else:
-            assert index not in FROM_BASIS, index
-        if h['attested_on'] is not None:
-            basis = ATTESTED_BASIS[index]
-            assert h['claim_ids'][0] == basis and claims[basis]['attested_on'] == h['attested_on'], index
-        else:
-            assert index not in ATTESTED_BASIS, index
-        if h['until'] is not None:
-            basis = UNTIL_BASIS[index]
-            assert h['claim_ids'][-1] == basis and claims[basis]['attested_on'] == h['until'], index
-            assert 'Il est mis fin' in claims[basis]['text'], index
-            assert (h['from'] or h['attested_on']) <= h['until'], index
-        else:
-            assert index not in UNTIL_BASIS, index
-            assert 'No end' in h['uncertainty'], index
+        if index in CESSATION_BASIS:
+            basis = CESSATION_BASIS[index]
+            assert h['claim_ids'][-1] == basis and 'Il est mis fin' in claims[basis]['text'], index
     assert [(h['name'], h['from']) for h in holders if h['from']] == STARTS
     assert [(h['name'], h['until']) for h in holders if h['until']] == ENDS
-    # No end is inferred from a successor's start: where the successor was appointed later (2007, 2010, 2012) the end
-    # stays on the earlier day of its own decree.
-    for index in range(len(holders) - 1):
-        nxt = holders[index + 1]
-        if holders[index]['until'] is not None and nxt['from'] and nxt['from'] != holders[index]['until']:
-            assert holders[index]['until'] < nxt['from'], index
     for cid, (day, _, _) in EVENTS.items():
         assert claims[cid].get('attested_on') == day, cid
     # Separation: no organization cites this institution's claims or sources, and the presidency cites none of them.
@@ -418,10 +402,10 @@ class FrancePrimeMinistersTests(unittest.TestCase):
     def test_distinct_events_keep_distinct_claims(self):
         claims = self.claims
         # The resignation letter and the decree ending the functions are two claims even on the same day; in 1995 the
-        # letter (10 May) precedes the decree (11 May), and the end is the decree's day.
+        # letter (10 May) precedes the decree (11 May); neither is an inferred effective end.
         self.assertEqual(claims['fr_jorf_balladur_government_resignation_letter_19950510']['attested_on'], '1995-05-10')
         self.assertEqual(claims['fr_jorf_balladur_functions_ended_19950511']['attested_on'], '1995-05-11')
-        self.assertEqual(self.role['holder_claims'][3]['until'], '1995-05-11')
+        self.assertIsNone(self.role['holder_claims'][3]['until'])
         letters = [cid for cid, (_, kind, _) in EVENTS.items() if kind == 'government_resignation_presented']
         ended = [cid for cid, (_, kind, _) in EVENTS.items() if kind == 'cessation_of_functions_decree']
         self.assertEqual(len(letters), len(ended))
@@ -547,7 +531,7 @@ class FrancePrimeMinistersTests(unittest.TestCase):
             (lambda p: source(p, 'fr_jorf_cessation_ayrault_20140331')['snapshot'].update(path=REPORT.as_posix()), 'escapes'),
             (lambda p: holder(p, 15).update(until='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'fr_jorf_ayrault_functions_ended_20140331').update(attested_on='2026-09-08'), 'exceeds cutoff'),
-            (lambda p: holder(p, 2).update(until='1992-04-01'), 'Reversed historical interval'),
+            (lambda p: holder(p, 2).update({'from':'1992-04-02','until':'1992-04-01'}), 'Reversed historical interval'),
             (lambda p: holder(p, 6)['claim_ids'].append('fr_jorf_juppe_functions_ended_19970602'), 'cited source'),
             (lambda p: role(p)['claim_ids'].append('fr_does_not_exist'), 'Unknown'),
         ]
@@ -595,7 +579,7 @@ class FrancePrimeMinistersTests(unittest.TestCase):
                 'fr_jorf_jospin_appointed_pm_19970602')),
             ('claim re-dated to its publication', lambda p: claim(p, 'fr_jorf_jospin_appointed_pm_19970602').update(
                 attested_on='1997-06-03')),
-            ('stated end dropped', lambda p: holder(p, 6).update(until=None)),
+            ('cessation evidence dropped', lambda p: holder(p, 6)['claim_ids'].pop()),
         ]
         pm_invariants(self.packet)
         for label, change in invariant_cases:
@@ -605,9 +589,8 @@ class FrancePrimeMinistersTests(unittest.TestCase):
     def test_report_and_handoff_close_no_parent_gate(self):
         self.assertIn('ready_for_review', self.report)
         table = self.section('Outcome')
-        decisions = {'01': 'Accepted', '02': 'Accepted in part', '03': 'Accepted', '04': 'Accepted in part',
-                     '05': 'Accepted in part', '06': 'Accepted', '07': 'Accepted', '08': 'Accepted', '09': 'Accepted',
-                     '10': 'Accepted', '11': 'Accepted', '12': 'Deferred'}
+        decisions = {f'{i:02}': 'Accepted in part' for i in range(1, 11)}
+        decisions.update({'11': 'Accepted', '12': 'Deferred'})
         for number, decision in decisions.items():
             row, = [line for line in table.splitlines() if line.startswith(f'| FR-PM-{number} ')]
             self.assertIn(f'**{decision}:**', row)

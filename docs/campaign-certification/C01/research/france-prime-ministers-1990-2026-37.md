@@ -16,23 +16,23 @@ coverage note. CLAUDE-C01-23's 49 sources, 95 claims, presidency institution and
 (C01, C06, S23, WC1 and CP1) remains open.
 
 More than ten people held the office between 1 January 1990 and the cutoff. Following the spec, this batch covers the first ten
-chronologically, Michel Rocard (in office when the period opens) to Jean-Marc Ayrault (whose functions ended on 31 March 2014);
+chronologically, Michel Rocard (in office when the period opens) to Jean-Marc Ayrault (a cessation instrument is dated 31 March 2014);
 the Prime Ministers appointed from 31 March 2014 onward are recorded as the next batch (FR-PM-12).
 
 ## Outcome
 
 | ID | Question | Decision |
 |---|---|---|
-| FR-PM-01 | Michel Rocard: an in-period attestation and the end of his functions | **Accepted:** observed 24 January 1990 (decree no. 90-89, opening "Le Premier ministre," and signed "MICHEL ROCARD"); until 15 May 1991 (decree ending the Government's functions); his 1988 appointment lies before the period |
-| FR-PM-02 | Édith Cresson: appointment, attestation, end | **Accepted in part:** observed 16 May 1991 (countersignature of the composition decree); the appointment page of 15 May 1991 renders no text and the composition decree's reference to it names nobody, so no start; the decree of 2 April 1992 ending her functions has no usable archive capture, so no end |
-| FR-PM-03 | Pierre Bérégovoy: appointment and end | **Accepted:** from 2 April 1992; until 29 March 1993 |
-| FR-PM-04 | Édouard Balladur: appointment, attestation, end | **Accepted in part:** observed 30 March 1993 (countersignature); the appointment decree of 29 March 1993 has no capture, so no start; until 11 May 1995 (decree), after his resignation letter of 10 May 1995 |
-| FR-PM-05 | Alain Juppé: two appointments and their ends | **Accepted in part:** first term observed 18 May 1995 (countersignature), no start (the appointment decree of 17 May 1995 has no capture) and no end (the decree of 7 November 1995 ending that Government's functions was not retrieved); second term from 7 November 1995 until 2 June 1997 |
-| FR-PM-06 | Lionel Jospin | **Accepted:** from 2 June 1997; until 6 May 2002 |
-| FR-PM-07 | Jean-Pierre Raffarin: three appointments | **Accepted:** from 6 May 2002 until 17 June 2002; from 17 June 2002 until 30 March 2004; from 30 March 2004 until 31 May 2005 |
-| FR-PM-08 | Dominique de Villepin | **Accepted:** from 31 May 2005; until 15 May 2007 (his successor was appointed two days later) |
-| FR-PM-09 | François Fillon: three appointments | **Accepted:** from 17 May 2007 until 18 June 2007; from 18 June 2007 until 13 November 2010; from 14 November 2010 until 10 May 2012 |
-| FR-PM-10 | Jean-Marc Ayrault: two appointments | **Accepted:** from 15 May 2012 until 18 June 2012; from 18 June 2012 until 31 March 2014 |
+| FR-PM-01 | Michel Rocard: an in-period attestation and the end of his functions | **Accepted in part:** dated source observations 1990-01-24; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-02 | Édith Cresson: appointment, attestation, end | **Accepted in part:** dated source observations 1991-05-16; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-03 | Pierre Bérégovoy: appointment and end | **Accepted in part:** dated source observations 1992-04-02; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-04 | Édouard Balladur: appointment, attestation, end | **Accepted in part:** dated source observations 1993-03-30; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-05 | Alain Juppé: two appointments and their ends | **Accepted in part:** dated source observations 1995-05-18, 1995-11-07; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-06 | Lionel Jospin | **Accepted in part:** dated source observations 1997-06-02; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-07 | Jean-Pierre Raffarin: three appointments | **Accepted in part:** dated source observations 2002-05-06, 2002-06-17, 2004-03-30; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-08 | Dominique de Villepin | **Accepted in part:** dated source observations 2005-05-31; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-09 | François Fillon: three appointments | **Accepted in part:** dated source observations 2007-05-17, 2007-06-18, 2010-11-14; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
+| FR-PM-10 | Jean-Marc Ayrault: two appointments | **Accepted in part:** dated source observations 2012-05-15, 2012-06-18; appointment/cessation instrument dates retained as claims. No effective `from` or `until` established. |
 | FR-PM-11 | Continued handling of current affairs, acting or interim service | **Accepted:** no decree reviewed states either, so none is recorded; the absence of a statement in the sources reviewed, not a proven absence |
 | FR-PM-12 | The Prime Ministers appointed from 31 March 2014 to the cutoff | **Deferred:** beyond this packet's ten people; recorded as the next batch |
 
@@ -40,48 +40,39 @@ The resulting holder observations, in date order, all on `fr_pm`:
 
 | Holder | `attested_on` | `from` | `until` | Basis |
 |---|---|---|---|---|
-| Michel Rocard | 1990-01-24 | null | 1991-05-15 | decree 90-89 "Le Premier ministre, ..." signed "MICHEL ROCARD"; decree of 15 May 1991 "Il est mis fin ... aux fonctions de M. Michel Rocard, Premier ministre" |
+| Michel Rocard | 1990-01-24 | null | null | decree 90-89 "Le Premier ministre, ..." signed "MICHEL ROCARD"; decree of 15 May 1991 "Il est mis fin ... aux fonctions de M. Michel Rocard, Premier ministre" |
 | Édith Cresson | 1991-05-16 | null | null | composition decree of 16 May 1991 countersigned "Le Premier ministre, EDITH CRESSON" |
-| Pierre Bérégovoy | null | 1992-04-02 | 1993-03-29 | appointment decree ("M. Pierre Bérégovoy est nommé Premier ministre"); decree of 29 March 1993 ending the functions |
-| Édouard Balladur | 1993-03-30 | null | 1995-05-11 | composition decree of 30 March 1993 countersigned "Le Premier ministre, EDOUARD BALLADUR"; decree of 11 May 1995 |
+| Pierre Bérégovoy | 1992-04-02 | null | null | appointment decree ("M. Pierre Bérégovoy est nommé Premier ministre"); decree of 29 March 1993 ending the functions |
+| Édouard Balladur | 1993-03-30 | null | null | composition decree of 30 March 1993 countersigned "Le Premier ministre, EDOUARD BALLADUR"; decree of 11 May 1995 |
 | Alain Juppé | 1995-05-18 | null | null | composition decree of 18 May 1995 countersigned "Le Premier ministre, Alain Juppé" |
-| Alain Juppé | null | 1995-11-07 | 1997-06-02 | appointment decree of 7 November 1995; decree of 2 June 1997 |
-| Lionel Jospin | null | 1997-06-02 | 2002-05-06 | appointment decree of 2 June 1997; decree of 6 May 2002 |
-| Jean-Pierre Raffarin | null | 2002-05-06 | 2002-06-17 | appointment decree of 6 May 2002; decree of 17 June 2002 |
-| Jean-Pierre Raffarin | null | 2002-06-17 | 2004-03-30 | appointment decree of 17 June 2002; decree of 30 March 2004 |
-| Jean-Pierre Raffarin | null | 2004-03-30 | 2005-05-31 | appointment decree of 30 March 2004; decree of 31 May 2005 |
-| Dominique de Villepin | null | 2005-05-31 | 2007-05-15 | appointment decree of 31 May 2005; decree of 15 May 2007 |
-| François Fillon | null | 2007-05-17 | 2007-06-18 | appointment decree of 17 May 2007; decree of 18 June 2007 |
-| François Fillon | null | 2007-06-18 | 2010-11-13 | appointment decree of 18 June 2007; decree of 13 November 2010 |
-| François Fillon | null | 2010-11-14 | 2012-05-10 | appointment decree of 14 November 2010; decree of 10 May 2012 |
-| Jean-Marc Ayrault | null | 2012-05-15 | 2012-06-18 | appointment decree of 15 May 2012; decree of 18 June 2012 |
-| Jean-Marc Ayrault | null | 2012-06-18 | 2014-03-31 | appointment decree of 18 June 2012; decree of 31 March 2014 |
+| Alain Juppé | 1995-11-07 | null | null | appointment decree of 7 November 1995; decree of 2 June 1997 |
+| Lionel Jospin | 1997-06-02 | null | null | appointment decree of 2 June 1997; decree of 6 May 2002 |
+| Jean-Pierre Raffarin | 2002-05-06 | null | null | appointment decree of 6 May 2002; decree of 17 June 2002 |
+| Jean-Pierre Raffarin | 2002-06-17 | null | null | appointment decree of 17 June 2002; decree of 30 March 2004 |
+| Jean-Pierre Raffarin | 2004-03-30 | null | null | appointment decree of 30 March 2004; decree of 31 May 2005 |
+| Dominique de Villepin | 2005-05-31 | null | null | appointment decree of 31 May 2005; decree of 15 May 2007 |
+| François Fillon | 2007-05-17 | null | null | appointment decree of 17 May 2007; decree of 18 June 2007 |
+| François Fillon | 2007-06-18 | null | null | appointment decree of 18 June 2007; decree of 13 November 2010 |
+| François Fillon | 2010-11-14 | null | null | appointment decree of 14 November 2010; decree of 10 May 2012 |
+| Jean-Marc Ayrault | 2012-05-15 | null | null | appointment decree of 15 May 2012; decree of 18 June 2012 |
+| Jean-Marc Ayrault | 2012-06-18 | null | null | appointment decree of 18 June 2012; decree of 31 March 2014 |
 
 ### How a start and an end are decided
 
-The Prime Minister is appointed and his or her functions are ended by decrees of the Président de la République under article 8
-of the Constitution. Every decree read here is dated by its signature line ("Fait à Paris, le ..." or "Fait le ...") and printed
-with Journal officiel publication metadata recorded separately (including Légifrance's same-day header for 29 March 1993). A holder has `from` only where the appointment decree's text, naming the appointee, is
-read ("M. X est nommé Premier ministre"), and `until` only where the decree "relatif à la cessation des fonctions du
-Gouvernement" is read ("Il est mis fin, sur la présentation de la démission du Gouvernement, aux fonctions de M. X, Premier
-ministre, et des autres membres du Gouvernement"); each boundary is the decree's own date. The decree is the instrument that
-ends the office, so this packet treats it as a source stating the day, as CLAUDE-C01-11 treated a notified acceptance of a
-resignation "with effect from" a day; this reading is **the author's proposed interpretation** (see Integration notes), not a separately sourced effective-date clause.
+Independent review retains the signed appointment and cessation instruments as dated source events. None of the 26 proposed
+boundaries had a separate explicit effective-date clause in the reviewed text. The 12 inferred starts and 14 inferred ends
+are therefore removed. No proposed date is declared historically false; effective-term research remains open. The original
+submission and its signature-day interpretation remain in Git and the review receipt.
 
-Five kinds of claim never make a boundary. (1) The Prime Minister's letter presenting the Government's resignation, which each
-decree cites with its date: it is a separate claim even on the same day, and in 1995 it precedes the decree (letter of 10 May,
-decree of 11 May), so Balladur's end is 11 May. (2) The successor's appointment: in 2007 (15 and 17 May), 2010 (13 and
-14 November) and 2012 (10 and 15 May) the end and the next start are on different days, and where no decree ending the functions
-was read (Cresson 1992, Juppé 1995) there is no end at all. (3) Publication in the Journal officiel, whose printed date is kept separately from the instrument date.
-(4) A composition decree's reference to "le décret du ... portant nomination du Premier ministre": it names nobody, and pairing
-it with the same decree's countersignature would infer a start. (5) Légifrance's page for the appointment decree of 15 May
-1991, which renders the title only. The in-office signature of 24 January 1990 and the three countersignatures date their
-holders by `attested_on` and are neither starts nor ends.
+`attested_on` identifies the named source observation: four signatures/countersignatures attest a Prime Minister in office;
+twelve appointment instruments name an appointee on their signing dates. An appointment observation is not proof that the
+effective term began that day. Cessation instruments and the resignation letters they cite remain separate dated claims.
+Publication metadata, including Légifrance's same-day header for 29 March 1993, stays separate. No successor, reappointment,
+publication date or missing current-affairs statement fills an unknown boundary. Constitution article 8 is procedure, not
+individual date evidence. The accepted C01-23 presidency data and its explicit effective-date evidence remain unchanged.
 
-Date conventions follow CLAUDE-C01-07, 08, 09 and 23: `attested_on` is the day of the observed event as the source dates it; a
-reference is dated by the decree it cites; Légifrance's reference line ("JORF n°... du ...") is quoted as printed (two of its
-issue dates, 29 March 1993 and 19 May 2007, are not the day after the decree and are not used for anything). The resignation
-letters were not retrieved; they are known only as the decrees cite them.
+The handoff's attribution of a general signature-day ruling to the user was not independently verified and is not authority
+for this review. Missing appointment/cessation texts and unnamed references remain unresolved, not inferred dates.
 
 ### Date ledger
 
@@ -90,30 +81,30 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | Date | Event | Claim or field |
 |---|---|---|
 | 24 Jan 1990 | Decree 90-89 made by "Le Premier ministre", signed MICHEL ROCARD | Rocard `attested_on`; `fr_jorf_rocard_signs_decree_as_pm_19900124` |
-| 15 May 1991 | Resignation letter; decree ending Rocard's functions; appointment decree (title only) | Rocard `until`; `fr_jorf_rocard_government_resignation_letter_19910515`, `fr_jorf_rocard_functions_ended_19910515`, `fr_jorf_pm_appointment_decree_title_19910515`; cited in 1991 (`fr_jorf_composition_cites_pm_appointment_19910515`) |
+| 15 May 1991 | Resignation letter; decree ending Rocard's functions; appointment decree (title only) | Rocard cessation event; `fr_jorf_rocard_government_resignation_letter_19910515`, `fr_jorf_rocard_functions_ended_19910515`, `fr_jorf_pm_appointment_decree_title_19910515`; cited in 1991 (`fr_jorf_composition_cites_pm_appointment_19910515`) |
 | 16 May 1991 | Composition decree countersigned by EDITH CRESSON | Cresson `attested_on`; `fr_jorf_cresson_countersigns_composition_19910516` |
-| 2 Apr 1992 | Bérégovoy appointed | Bérégovoy `from`; `fr_jorf_beregovoy_appointed_pm_19920402` |
-| 29 Mar 1993 | Resignation letter; decree ending Bérégovoy's functions; (appointment decree, cited) | Bérégovoy `until`; `fr_jorf_beregovoy_government_resignation_letter_19930329`, `fr_jorf_beregovoy_functions_ended_19930329`, `fr_jorf_composition_cites_pm_appointment_19930329` |
+| 2 Apr 1992 | Bérégovoy appointed | Bérégovoy appointment event; `fr_jorf_beregovoy_appointed_pm_19920402` |
+| 29 Mar 1993 | Resignation letter; decree ending Bérégovoy's functions; (appointment decree, cited) | Bérégovoy cessation event; `fr_jorf_beregovoy_government_resignation_letter_19930329`, `fr_jorf_beregovoy_functions_ended_19930329`, `fr_jorf_composition_cites_pm_appointment_19930329` |
 | 30 Mar 1993 | Composition decree countersigned by EDOUARD BALLADUR | Balladur `attested_on`; `fr_jorf_balladur_countersigns_composition_19930330` |
 | 10 May 1995 | Balladur's resignation letter | `fr_jorf_balladur_government_resignation_letter_19950510` (never an end) |
-| 11 May 1995 | Decree ending Balladur's functions | Balladur `until`; `fr_jorf_balladur_functions_ended_19950511` |
+| 11 May 1995 | Decree ending Balladur's functions | Balladur cessation event; `fr_jorf_balladur_functions_ended_19950511` |
 | 17 May 1995 | (appointment decree, cited) | `fr_jorf_composition_cites_pm_appointment_19950517` |
 | 18 May 1995 | Composition decree countersigned by Alain Juppé | Juppé (1) `attested_on`; `fr_jorf_juppe_countersigns_composition_19950518` |
-| 7 Nov 1995 | Juppé reappointed | Juppé (2) `from`; `fr_jorf_juppe_appointed_pm_19951107` |
-| 2 Jun 1997 | Resignation letter; decree ending Juppé's functions; Jospin appointed | Juppé (2) `until`, Jospin `from`; `fr_jorf_juppe_government_resignation_letter_19970602`, `fr_jorf_juppe_functions_ended_19970602`, `fr_jorf_jospin_appointed_pm_19970602` |
-| 6 May 2002 | Resignation letter; decree ending Jospin's functions; Raffarin appointed | Jospin `until`, Raffarin (1) `from`; `fr_jorf_jospin_government_resignation_letter_20020506`, `fr_jorf_jospin_functions_ended_20020506`, `fr_jorf_raffarin_appointed_pm_20020506` |
-| 17 Jun 2002 | Resignation letter; decree ending Raffarin's functions; Raffarin reappointed | Raffarin (1) `until`, (2) `from`; `fr_jorf_raffarin_government_resignation_letter_20020617`, `fr_jorf_raffarin_functions_ended_20020617`, `fr_jorf_raffarin_appointed_pm_20020617` |
-| 30 Mar 2004 | Resignation letter; decree ending the functions; Raffarin reappointed | Raffarin (2) `until`, (3) `from`; `fr_jorf_raffarin_government_resignation_letter_20040330`, `fr_jorf_raffarin_functions_ended_20040330`, `fr_jorf_raffarin_appointed_pm_20040330` |
-| 31 May 2005 | Resignation letter; decree ending Raffarin's functions; Villepin appointed | Raffarin (3) `until`, Villepin `from`; `fr_jorf_raffarin_government_resignation_letter_20050531`, `fr_jorf_raffarin_functions_ended_20050531`, `fr_jorf_villepin_appointed_pm_20050531` |
-| 15 May 2007 | Resignation letter; decree ending Villepin's functions | Villepin `until`; `fr_jorf_villepin_government_resignation_letter_20070515`, `fr_jorf_villepin_functions_ended_20070515` |
-| 17 May 2007 | Fillon appointed | Fillon (1) `from`; `fr_jorf_fillon_appointed_pm_20070517` |
-| 18 Jun 2007 | Resignation letter; decree ending the functions; Fillon reappointed | Fillon (1) `until`, (2) `from`; `fr_jorf_fillon_government_resignation_letter_20070618`, `fr_jorf_fillon_functions_ended_20070618`, `fr_jorf_fillon_appointed_pm_20070618` |
-| 13 Nov 2010 | Resignation letter; decree ending the functions | Fillon (2) `until`; `fr_jorf_fillon_government_resignation_letter_20101113`, `fr_jorf_fillon_functions_ended_20101113` |
-| 14 Nov 2010 | Fillon reappointed | Fillon (3) `from`; `fr_jorf_fillon_appointed_pm_20101114` |
-| 10 May 2012 | Resignation letter; decree ending Fillon's functions | Fillon (3) `until`; `fr_jorf_fillon_government_resignation_letter_20120510`, `fr_jorf_fillon_functions_ended_20120510` |
-| 15 May 2012 | Ayrault appointed | Ayrault (1) `from`; `fr_jorf_ayrault_appointed_pm_20120515` |
-| 18 Jun 2012 | Resignation letter; decree ending the functions; Ayrault reappointed | Ayrault (1) `until`, (2) `from`; `fr_jorf_ayrault_government_resignation_letter_20120618`, `fr_jorf_ayrault_functions_ended_20120618`, `fr_jorf_ayrault_appointed_pm_20120618` |
-| 31 Mar 2014 | Resignation letter; decree ending Ayrault's functions | Ayrault (2) `until`; `fr_jorf_ayrault_government_resignation_letter_20140331`, `fr_jorf_ayrault_functions_ended_20140331` |
+| 7 Nov 1995 | Juppé reappointed | Juppé (2) appointment event; `fr_jorf_juppe_appointed_pm_19951107` |
+| 2 Jun 1997 | Resignation letter; decree ending Juppé's functions; Jospin appointed | Juppé (2) cessation event, Jospin appointment event; `fr_jorf_juppe_government_resignation_letter_19970602`, `fr_jorf_juppe_functions_ended_19970602`, `fr_jorf_jospin_appointed_pm_19970602` |
+| 6 May 2002 | Resignation letter; decree ending Jospin's functions; Raffarin appointed | Jospin cessation event, Raffarin (1) appointment event; `fr_jorf_jospin_government_resignation_letter_20020506`, `fr_jorf_jospin_functions_ended_20020506`, `fr_jorf_raffarin_appointed_pm_20020506` |
+| 17 Jun 2002 | Resignation letter; decree ending Raffarin's functions; Raffarin reappointed | Raffarin (1) cessation event, (2) appointment event; `fr_jorf_raffarin_government_resignation_letter_20020617`, `fr_jorf_raffarin_functions_ended_20020617`, `fr_jorf_raffarin_appointed_pm_20020617` |
+| 30 Mar 2004 | Resignation letter; decree ending the functions; Raffarin reappointed | Raffarin (2) cessation event, (3) appointment event; `fr_jorf_raffarin_government_resignation_letter_20040330`, `fr_jorf_raffarin_functions_ended_20040330`, `fr_jorf_raffarin_appointed_pm_20040330` |
+| 31 May 2005 | Resignation letter; decree ending Raffarin's functions; Villepin appointed | Raffarin (3) cessation event, Villepin appointment event; `fr_jorf_raffarin_government_resignation_letter_20050531`, `fr_jorf_raffarin_functions_ended_20050531`, `fr_jorf_villepin_appointed_pm_20050531` |
+| 15 May 2007 | Resignation letter; decree ending Villepin's functions | Villepin cessation event; `fr_jorf_villepin_government_resignation_letter_20070515`, `fr_jorf_villepin_functions_ended_20070515` |
+| 17 May 2007 | Fillon appointed | Fillon (1) appointment event; `fr_jorf_fillon_appointed_pm_20070517` |
+| 18 Jun 2007 | Resignation letter; decree ending the functions; Fillon reappointed | Fillon (1) cessation event, (2) appointment event; `fr_jorf_fillon_government_resignation_letter_20070618`, `fr_jorf_fillon_functions_ended_20070618`, `fr_jorf_fillon_appointed_pm_20070618` |
+| 13 Nov 2010 | Resignation letter; decree ending the functions | Fillon (2) cessation event; `fr_jorf_fillon_government_resignation_letter_20101113`, `fr_jorf_fillon_functions_ended_20101113` |
+| 14 Nov 2010 | Fillon reappointed | Fillon (3) appointment event; `fr_jorf_fillon_appointed_pm_20101114` |
+| 10 May 2012 | Resignation letter; decree ending Fillon's functions | Fillon (3) cessation event; `fr_jorf_fillon_government_resignation_letter_20120510`, `fr_jorf_fillon_functions_ended_20120510` |
+| 15 May 2012 | Ayrault appointed | Ayrault (1) appointment event; `fr_jorf_ayrault_appointed_pm_20120515` |
+| 18 Jun 2012 | Resignation letter; decree ending the functions; Ayrault reappointed | Ayrault (1) cessation event, (2) appointment event; `fr_jorf_ayrault_government_resignation_letter_20120618`, `fr_jorf_ayrault_functions_ended_20120618`, `fr_jorf_ayrault_appointed_pm_20120618` |
+| 31 Mar 2014 | Resignation letter; decree ending Ayrault's functions | Ayrault (2) cessation event; `fr_jorf_ayrault_government_resignation_letter_20140331`, `fr_jorf_ayrault_functions_ended_20140331` |
 
 ## Observations
 
@@ -125,7 +116,7 @@ ministre:" and the countersigning ministers. The decree of 15 May 1991 (NOR HRUX
 same day presenting the Government's resignation and ends "aux fonctions de M. Michel Rocard, Premier ministre", signed FRANCOIS
 MITTERRAND.
 
-Decision: accepted. Observed 24 January 1990 (`attested_on`), until 15 May 1991.
+Decision: accepted in part as dated source observations (1990-01-24). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 
 Limits: his appointments of 1988 lie before the period and were not researched; no earlier 1990 attestation was located with a
 usable capture (decree no. 90-66 of 17 January 1990 returned a Wayback error page).
@@ -137,19 +128,13 @@ reference block but no text; the text is offered only as a scanned issue behind 
 used. The composition decree of 16 May 1991 (NOR HRUX9110309D) cites "le décret du 15 mai 1991 portant nomination du Premier
 ministre" and is countersigned "Par le Président de la République: Le Premier ministre, EDITH CRESSON".
 
-Decision: accepted in part. Observed 16 May 1991. No start: neither the title-only page nor the nameless reference names the
-appointee, and combining them with the countersignature would infer the start. No end: the decree of 2 April 1992 ending her
-Government's functions (JORFTEXT000000539723, confirmed by the Journal officiel summary of 3 April 1992, capture 20240617194933)
-has no usable archive capture (the CDX index lists only a 302 redirect row, 20241111045046, which the Wayback Machine does not
-replay); her successor's appointment of the same day is not used.
-
+Decision: accepted in part as dated source observations (1991-05-16). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-03 — Pierre Bérégovoy
 
 Evidence: the decree of 2 April 1992 (NOR HRUX9210090D): "M. Pierre Bérégovoy est nommé Premier ministre". The decree of 29 March
 1993 (NOR HRUX9310928D) cites his letter of the same day and ends his functions.
 
-Decision: accepted. From 2 April 1992, until 29 March 1993.
-
+Decision: accepted in part as dated source observations (1992-04-02). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-04 — Édouard Balladur
 
 Evidence: the composition decree of 30 March 1993 (NOR HRUX9310932D) cites "le décret du 29 mars 1993 portant nomination du Premier
@@ -157,11 +142,7 @@ ministre" and is countersigned "Le Premier ministre, EDOUARD BALLADUR". The decr
 lettre, en date du 10 mai 1995" presenting the Government's resignation and ends "aux fonctions de M. Edouard Balladur, Premier
 ministre", signed FRANCOIS MITTERRAND.
 
-Decision: accepted in part. Observed 30 March 1993; until 11 May 1995. No start: the appointment decree of 29 March 1993
-(JORFTEXT000000726609) has no archive capture. The resignation letter of 10 May 1995 is a separate claim and never the end. (The
-Élysée archive's heading-only reply of 10 May 1995 to the Prime Minister's resignation is already in the packet as a
-presidency claim of CLAUDE-C01-23; it is not cited here, so the two roles stay separate.)
-
+Decision: accepted in part as dated source observations (1993-03-30). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-05 — Alain Juppé
 
 Evidence: the composition decree of 18 May 1995 (NOR HRUX9500827D) cites "le décret du 17 mai 1995 portant nomination du Premier
@@ -169,50 +150,38 @@ ministre" and is countersigned "Le Premier ministre, Alain Juppé". The decree o
 Juppé est nommé Premier ministre". The decree of 2 June 1997 (NOR HRUX9702063D) cites his letter of the same day and ends his
 functions.
 
-Decision: accepted in part. First term observed 18 May 1995 with no start (JORFTEXT000000718399 has no capture) and no end: the
-decree of 7 November 1995 ending the first Government's functions was not retrieved (the reappointment page's unreliable
-"Texte précédent" link points to JORFTEXT000000189843, which has no capture; see Sources attempted), and his own reappointment
-that day is never used as the end. Second term from 7 November 1995, until 2 June 1997.
-
+Decision: accepted in part as dated source observations (1995-05-18, 1995-11-07). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-06 — Lionel Jospin
 
 Evidence: the decree of 2 June 1997 (NOR HRUX9702065D): "M. Lionel Jospin est nommé Premier ministre"; the decree of 6 May 2002
 (NOR HRUX0205554D) cites his letter of that day and ends his functions.
 
-Decision: accepted. From 2 June 1997, until 6 May 2002. The only capture of the appointment page is served gzip-compressed (see
-Response identities).
-
+Decision: accepted in part as dated source observations (1997-06-02). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-07 — Jean-Pierre Raffarin
 
 Evidence: appointment decrees of 6 May 2002 (NOR HRUX0205555D), 17 June 2002 (HRUX0205647D) and 30 March 2004 (HRUX0407223D), each
 "M. Jean-Pierre Raffarin est nommé Premier ministre"; decrees of 17 June 2002 (HRUX0205646D), 30 March 2004 (HRUX0407222D) and
 31 May 2005 (HRUX0508473D) ending his functions, each citing his letter of the same day.
 
-Decision: accepted. Three holder observations: 6 May to 17 June 2002, 17 June 2002 to 30 March 2004, 30 March 2004 to 31 May 2005.
-On 17 June 2002 and 30 March 2004 the end and the reappointment are separate decrees of the same day.
-
+Decision: accepted in part as dated source observations (2002-05-06, 2002-06-17, 2004-03-30). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-08 — Dominique de Villepin
 
 Evidence: the decree of 31 May 2005 (NOR HRUX0508472D): "M. Dominique de Villepin est nommé Premier ministre"; the decree of 15 May
 2007 (NOR HRUX0710384D), signed Jacques Chirac, ends his functions.
 
-Decision: accepted. From 31 May 2005, until 15 May 2007. His successor was appointed on 17 May 2007.
-
+Decision: accepted in part as dated source observations (2005-05-31). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-09 — François Fillon
 
 Evidence: appointment decrees of 17 May 2007 (NOR HRUX0710386D), 18 June 2007 (HRUX0710493D) and 14 November 2010 (HRUX1029021D);
 decrees of 18 June 2007 (HRUX0710491D), 13 November 2010 (HRUX1003135D) and 10 May 2012 (HRUX1223041D) ending his functions.
 
-Decision: accepted. Three holder observations: 17 May to 18 June 2007, 18 June 2007 to 13 November 2010, 14 November 2010 to
-10 May 2012. The one-day gap of November 2010 and the five-day gap of May 2012 are kept.
-
+Decision: accepted in part as dated source observations (2007-05-17, 2007-06-18, 2010-11-14). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-10 — Jean-Marc Ayrault
 
 Evidence: appointment decrees of 15 May 2012 (NOR HRUX1223252D; read in a capture of Légifrance's earlier page made on 25 May 2012)
 and 18 June 2012 (HRUX1226329D); decrees of 18 June 2012 (HRUX1226328D) and 31 March 2014 (HRUX1407797D) ending his functions.
 
-Decision: accepted. From 15 May 2012 until 18 June 2012; from 18 June 2012 until 31 March 2014.
-
+Decision: accepted in part as dated source observations (2012-05-15, 2012-06-18). All appointment and cessation claims remain; no effective start or end is established by the reviewed signing/publication dates. Further primary support is required.
 ### FR-PM-11 — Current affairs, acting or interim service
 
 Evidence: none of the 14 decrees ending a Government's functions read here contains an article on continued handling of current
@@ -334,8 +303,9 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `C01-France-PM-002`: the Prime Ministers appointed from 31 March 2014 to the 7 September 2026 cutoff (the next batch), from the
   Journal officiel (JORFTEXT000028811098 onward; DILA's open-data exports cover the most recent fourteen months).
 - `C01-France-PM-003`: the five missing texts (appointments of 15 May 1991, 29 March 1993 and 17 May 1995; the decrees of 2 April
-  1992 and 7 November 1995 ending the Government's functions), from a Journal officiel facsimile or DILA's full archive; they would
-  give Cresson, Balladur and Juppé's first term a start and Cresson and Juppé's first term an end.
+  1992 and 7 November 1995 ending the Government's functions), from a Journal officiel facsimile or DILA's full archive; these may provide
+  additional appointment/cessation observations. Any effective start/end still needs explicit primary support; signature or
+  publication dates alone do not establish it.
 - `C01-France-PM-004`: Rocard's 1988 appointments, if the integrator wants the holder in office on 1 January 1990 tied to its
   appointment (outside the period; a claim only).
 
@@ -356,14 +326,11 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `research-index.json` is regenerated in a **separate commit**; it is the only file shared with other pending packets. New
   totals: 1,602 sources and 4,230 claims; 36 institution observations. If another packet lands first, regenerate the index rather
   than merging it.
-- **Author's proposed interpretations** (the submission attributes these to Ridge; independent review has not verified that attribution, and integration acceptance remains pending). (a) The decree ending the
-  Government's functions gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the
-  office on a stated day, consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36
-  (resignation accepted on a stated day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date
-  stay separate claims. Any later statement that current affairs continued is a claim only. The decrees state no effective
-  day, so the signing day is taken as the effective day. (b) A countersignature ("Par le Président de la République : Le
-  Premier ministre, [name]"), or Rocard's own decree headed "Le Premier ministre", gives `attested_on` only. It never gives a
-  start, including when paired with a nameless reference to the appointment decree.
+- **Independent boundary correction:** 12 signature-derived starts and 14 signature-derived ends are withdrawn. All 48
+  source-event claims, 31 original response identities, names and source dates remain. The sixteen observations use
+  `attested_on` for their first named source event, with effective `from` and `until` unknown. No general user ruling was
+  established from the submission's attribution. `test_france_pm_boundaries_review.py` fails on the original data and rejects
+  promotion of signature/publication dates into effective boundaries. The unchanged importer regenerates the France packet.
 - **Known failures outside this packet** (not fixed): `tools/avatars/campaign_census.py --check` fails on the integration base
   itself because commit `262d5f61` changed `spheres-sim/src/government.rs` without regenerating `census.json`; regenerating it
   here shows that input's hash as the only difference. `tools/avatars/test_certified_gap_ledger.py` will report no pinned
@@ -391,3 +358,11 @@ git diff --check (this packet's paths)
 ```
 
 Results are recorded in the handoff.
+
+## Independent Codex review — 30 September 2026
+
+All 31 original response identities matched after a missing-only retry, including the two gzip decoded identities; all 48
+claims and their locators were independently read. The original 49-source presidential supplement, institution and all 635
+financial-reporting organizations remain unchanged. The review accepts bounded source observations after the conservative
+boundary repair, not complete term histories or C01/C06/S23/WC1/CP1 closure. The review receipt retains original failures and
+the complete old/new boundary ledger. No source-image or portrait permission is granted.

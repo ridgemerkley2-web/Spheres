@@ -65,35 +65,19 @@ The packet gains 31 sources and 48 claims, and the institution `fr_prime_ministe
 lifecycle `unknown`) with its role `fr_pm` (Premier ministre, `head_of_government`), all through the supplement. Every source is a
 raw Internet Archive capture of a Légifrance Journal officiel text page (Légifrance answered HTTP 403 and was not bypassed).
 
-Decisions per chain (sixteen holder observations of ten people; `attested_on` / `from` / `until`):
+Independent review correction (30 September 2026): all 31 original responses and 48 material claims are verified. The
+submission's 12 `from` and 14 `until` values inferred from signing dates are removed because no separate explicit effective-date
+support was established. The sixteen observations of ten people now carry `attested_on` for their named source event; all
+`from`/`until` values are null. Four dates are in-office signatures/countersignatures, twelve are appointment-instrument
+observations. None asserts continuous service or that an effective assumption/cessation occurred on the instrument day.
+Every resignation, appointment and cessation instrument claim and its original date remains unchanged. Publication dates are
+separate metadata and are not necessarily later than the printed signature date. The original proposal is preserved in Git.
 
-- Michel Rocard: 1990-01-24 / – / 1991-05-15 (decree 90-89 signed as Prime Minister; decree ending the functions);
-- Édith Cresson: 1991-05-16 / – / – (countersignature; the appointment page renders no text and the decree of 2 April 1992 ending
-  the functions has no usable capture);
-- Pierre Bérégovoy: – / 1992-04-02 / 1993-03-29;
-- Édouard Balladur: 1993-03-30 / – / 1995-05-11 (countersignature; no capture of the 29 March 1993 appointment; the end is the
-  decree, not the resignation letter of 10 May 1995);
-- Alain Juppé: 1995-05-18 / – / – (countersignature; the 17 May 1995 appointment and the 7 November 1995 cessation not retrieved),
-  then – / 1995-11-07 / 1997-06-02;
-- Lionel Jospin: – / 1997-06-02 / 2002-05-06;
-- Jean-Pierre Raffarin: – / 2002-05-06 / 2002-06-17; – / 2002-06-17 / 2004-03-30; – / 2004-03-30 / 2005-05-31;
-- Dominique de Villepin: – / 2005-05-31 / 2007-05-15;
-- François Fillon: – / 2007-05-17 / 2007-06-18; – / 2007-06-18 / 2010-11-13; – / 2010-11-14 / 2012-05-10;
-- Jean-Marc Ayrault: – / 2012-05-15 / 2012-06-18; – / 2012-06-18 / 2014-03-31.
-
-Starts are appointment decrees whose text names the appointee; ends are the decrees ending the Government's functions, each on
-its signature day. Resignation letters (cited by the decrees), publication days, nameless references to appointment decrees, the
-title-only appointment page and successors' appointments are never boundaries. No current-affairs continuation or acting Prime
-Minister is stated, so none is recorded. The Prime Ministers appointed from 31 March 2014 onward are the next batch.
-
-Author's proposed interpretations (the submission attributes these to Ridge; independent review has not verified that attribution, and integration acceptance remains pending). (a) The decree ending the Government's functions
-gives the outgoing Prime Minister's `until` on its signing day. It is the instrument that ends the office on a stated day,
-consistent with CLAUDE-C01-11 (resignation accepted with effect from a day), CLAUDE-C01-36 (resignation accepted on a stated
-day) and CLAUDE-C01-23's instrument test. The resignation letter and the publication date stay separate claims. Any later
-statement that current affairs continued is a claim only. The decrees state no effective day, so the signing day is taken as
-the effective day. (b) A countersignature ("Par le Président de la République : Le Premier ministre, [name]"), or Rocard's own
-decree headed "Le Premier ministre", gives `attested_on` only. It never gives a start, including when paired with a nameless
-reference to the appointment decree.
+The attribution of a general signing-day ruling to Ridge was not independently verified and is not used as authority.
+Effective-term dates and any current-affairs continuation remain open primary-source research. The unchanged importer
+regenerates `france.json` from the supplement. Accepted C01-23 presidential data, earlier source extracts and all 635 financial
+organizations remain exact. A focused regression fails on the original inferred boundaries, then rejects signature/publication
+promotion after repair. This is a bounded observation intake, not a complete French prime-minister chronology.
 
 Verifier fixes (commit "Apply verifier fixes to CLAUDE-C01-37"): the two gzip-served extracts
 (`fr_jorf_nomination_jospin_19970602`, `fr_jorf_nomination_fillon_20070618`) now carry `source_response_content_encoding`,
